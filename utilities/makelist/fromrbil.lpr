@@ -16,7 +16,7 @@ uses
 {$R *.res}
 
 const
-  SRC='../../rbil/';
+  SRC='../../rbil61/';
   DST='../../source/';
 
 procedure Banner;
