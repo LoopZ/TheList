@@ -169,6 +169,8 @@ procedure DirScanByDate(out List : TArrayOfStrings; APathSpec : String; Mode : T
 
 function SaveToFile(AFileName: String; AValue : String; ARaise : boolean = true) : integer; overload;
 function SaveToFile(AFileName: String; AValue : TArrayOfBytes; ARaise : boolean = true) : integer; overload;
+function AppendToFile(AFileName: String; AValue : String; ARaise : boolean = true) : integer; overload;
+function AppendToFile(AFileName: String; AValue : TArrayOfBytes; ARaise : boolean = true) : integer; overload;
 function LoadFromFile(AFileName: String; out AValue : String; ARaise : boolean = true) : integer; overload;
 function LoadFromFile(AFileName: String; out AValue : TArrayOfBytes; ARaise : boolean = true) : integer; overload;
 
@@ -1248,6 +1250,58 @@ begin
   if R = 0 then begin
     BlockWrite(F, AValue[0], Length(AValue));
     R := IOResult;
+    Close(F);
+    E := IOResult;
+    if R = 0 then R := E;
+  end;
+  Result := R;
+  if (R <> 0) and ARaise then
+    raise exception.Create('file save error ' + IntToStr(R));
+end;
+
+function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
+  ): integer;
+var
+   T : Text;
+   R, E : integer;
+begin
+  System.Assign(T, AFileName);
+  if FileExists(AFileName) then
+    Append(T)
+  else
+    Rewrite(T);
+  R := IOResult;
+  if R = 0 then begin
+    WriteLn(T, AValue);
+    R := IOResult;
+    Close(T);
+    E := IOResult;
+    if R = 0 then R := E;
+  end;
+  Result := R;
+  if (R <> 0) and ARaise then
+    raise exception.Create('file save error ' + IntToStr(R));
+end;
+
+function AppendToFile(AFileName: String; AValue: TArrayOfBytes; ARaise: boolean
+  ): integer;
+var
+   F : File;
+   R, E : integer;
+begin
+  System.Assign(F, AFileName);
+  if FileExists(AFileName) then
+    Reset(F,1)
+  else
+    Rewrite(F,1);
+  R := IOResult;
+  if R = 0 then begin
+    Seek(F, FileSize(F));
+    R := IOResult;
+    if R = 0 then begin
+      BlockWrite(F, AValue[0], Length(AValue));
+      R := IOResult;
+    end;
     Close(F);
     E := IOResult;
     if R = 0 then R := E;
