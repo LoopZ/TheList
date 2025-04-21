@@ -1,0 +1,6 @@
+File Allocation Table
+	A data structure on disk that records which clusters are free,
+which are unusable, and which have been allocated.  The clusters occupied
+by a file are linked into a list in the file allocation table, allowing
+DOS to find the contents of the file.
+

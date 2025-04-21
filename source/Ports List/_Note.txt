@@ -1,0 +1,25 @@
+Note: the port description format is:
+
+PPPPw RW  description
+
+where:	PPPP	is the four-digit hex port number or a plus sign and three hex
+		digits to indicate an offset from a base port address
+	w	is blank for byte-size port, 'w' for word, and 'd' for dword
+	R	is dash (or blank) if not readable, 'r' if sometimes readable,
+		'R' if "always" readable, '?' if readability unknown
+	W	is dash (or blank) if not writable, 'w' if sometimes writable,
+		'W' if "always" writable, 'C' if write-clear, and
+		'?' if writability unknown
+
+--------------------------------------------------------------------------------
+
+Note:	Addresses above 03FF generally apply to EISA and PCI machines only !
+	EISA port assignments:
+	    1000-1FFF	slot 1 EISA
+	    2000-2FFF	slot 2 EISA
+	    3000-3FFF	slot 3 EISA
+	    4000-4FFF	slot 4 EISA
+	    5000-5FFF	slot 5 EISA
+	    6000-6FFF	slot 6 EISA
+	    7000-7FFF	slot 7 EISA
+

@@ -1,0 +1,28 @@
+Notes:	An I2C device uses two consecutive subaddresses; the low bit indicates
+	  whether a read (bit 0 = 1) or write (bit 0 = 0) is being performed
+	the header of each entry in this file indicates the device's subaddress
+	  (the "slave address" in official terminology) and the register number
+	  within the device; for certain indexed registers, the index value is
+	  given as the third value in the entry header
+	SMBus, ACCESS.bus, and the DDC2B data link to the monitor are all
+	  variants of the I2C bus, and are thus listed here as well.
+	unless otherwise noted, all device registers are eight bits in size,
+	  and may be both read and written
+	the access method for communicating with an I2C device is
+	  implementation-dependent; for example, recent S3 chipsets supporting
+	  the "Scenic Highway" Local Peripheral Bus access the I2C bus via
+	  bit-banging of memory-mapped I/O register FF20h
+	  (see MEM A000h:FF00h"S3").  On the Zoran ZR36057 used by the
+	  Miro DC-30, the I2C bus is accessed by bit-banging memory-mapped
+	  register 17 (at offset 0x44).	 On the Cirrus Logic GD7556, extended
+	  sequencer register 8 is used (see #P0677).
+	maximum data rates on the I2C bus are also device-dependent; typical
+	  maximum rates are 80 kHz (DIMMs), 100 kHz (VPX3220A), and 400 kHz.
+	in DDC (Dislay Data Channel) 2B, the monitor's EDID info appears to be
+	  stored in an EEPROM at the standard bus address of A0h; access to
+	  the DDC clock/data lines is, however, chipset-specific.  On S3's
+	  Trio64V+, the DDC lines share a port with the LPB's I2C bus: when the
+	  feature connector is disabled, they are connected to the monitor;
+	  when enabled, the lines are connected to the Local Peripheral Bus	  
+	I2C FAQ: http://www.paranoia.com/%7Efilipg/HTML/LINK/ELE/F_I2C.html
+

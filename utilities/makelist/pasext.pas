@@ -98,7 +98,8 @@ function SubStr(AStr : String; AFrom : String; MatchCase : boolean = True) : Str
 function Excise(var AStr : String; AFrom : String; ATo : String;  MatchCase : boolean = True) : String; overload;
 function Excise(var AStr : String; AFrom : String; MatchCase : boolean = True) : String; overload;
 
-function AlphaOnly(AStr : String) : String; overload;
+function AlphaOnly(AStr : String; Substitute : String = '') : String; overload;
+function AlphaNumOnly(AStr : String; Substitute : String = '') : String; overload;
 
 function Implode(AStr: String; ADelim : String = CR) : String; overload;
 function Implode(AStr: TStringArray; ADelim : String = CR) : String; overload;
@@ -544,14 +545,28 @@ begin
   Result := SubStrExcise(AStr, AFrom, '', MatchCase, True);
 end;
 
-function AlphaOnly(AStr: String): String; overload;
+function AlphaOnly(AStr: String; Substitute: String): String;
 var
   I : integer;
 begin
   Result := '';
   for I := 1 to length(AStr) do
     if (AStr[I] in [#$41..#$5A,#$61..#$7A]) then
-      Result := Result + AStr[I];
+      Result := Result + AStr[I]
+    else
+      Result:=Result + Substitute;
+end;
+
+function AlphaNumOnly(AStr: String; Substitute: String): String;
+var
+  I : integer;
+begin
+  Result := '';
+  for I := 1 to length(AStr) do
+    if (AStr[I] in [#$30..#$39,#$41..#$5A,#$61..#$7A]) then
+      Result := Result + AStr[I]
+    else
+      Result:=Result + Substitute;
 end;
 
 function Implode(AStr: String; ADelim : String ) : String; overload;
@@ -1418,8 +1433,8 @@ begin
   WordCase := S;
 end;
 
-function WordWrap(S: String; Max: integer; Min, Indent: integer; LineEndings: String
-  ): String;
+function WordWrap(S: String; Max: integer; Min: integer; Indent: integer;
+  LineEndings: String): String;
 var
   I : integer;
 begin
@@ -1558,7 +1573,7 @@ begin
   FindClose(S);
 end;
 
-function FileCopy(Source, Dest : String; Overwrite : boolean = true) : Integer;
+function FileCopy(Source, Dest: String; Overwrite: boolean): integer;
 const
   BufSize = 32*1024;
 var
@@ -1741,7 +1756,7 @@ begin
 end;
 {$POP}
 
-function FileMove(Source, Dest : String; Overwrite : boolean = true) : Integer;
+function FileMove(Source, Dest: String; Overwrite: boolean): integer;
 begin
   FileMove:=-1;
   if (not Overwrite) and FileExists(Dest) then Exit;

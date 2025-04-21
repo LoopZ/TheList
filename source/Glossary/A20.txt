@@ -1,0 +1,12 @@
+A20
+	(Address line 20) The 80286 and higher CPUs allow addresses in
+real mode to extend slightly beyond the one megabyte mark, which causes
+an incompatibility with some older programs which expect such addresses
+to wrap back to the beginning of the address space.  For complete
+compatibility with the 8088, newer machines thus contain circuitry
+which permits the twenty-first address line (A20) to be disabled.  The
+CPU then effectively has only twenty address lines in real mode, just
+as the 8088 does, and addresses which would extend beyond the one
+megabyte mark wrap to the beginning of the address space.  See also
+High Memory Area, Real Mode.
+

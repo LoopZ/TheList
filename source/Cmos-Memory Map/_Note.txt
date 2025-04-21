@@ -1,0 +1,168 @@
+			Background
+
+The CMOS (complementary metal oxide semiconductor) memory is actually 
+a 64 or 128 byte battery-backed RAM memory module that is a part of the 
+system clock chip. Some IBM PS/2 models have the capability for a
+2k (2048 byte) CMOS ROM Extension.
+
+First used with clock-calender cards for the IBM PC-XT, when the PC/AT
+(Advanced Technology) was introduced in 1985, the Motorola MC146818 
+became a part of the motherboard. Since the clock only uses fourteen of 
+the RAM bytes, the rest are available for storing system configuration data.
+
+Interestingly, the original IBM-PC/AT (Advanced Technology) standard for 
+the region 10h-3Fh is nearly universal with one notable exception: The 
+IBM PS/2 systems deviate considerably (Note: AMSTRAD 8086 machines were 
+among the first to actively use the CMOS memory available and since they 
+*predate* the AT, do not follow the AT standard).
+
+This is just another example of how IBM created a standard, lost control 
+of it, tried to replace it, failed and lost market share in the process. 
+
+Originally, the IBM PC/AT only made use of a small portion of CMOS memory
+and was defined in the IBM PC/AT Technical Reference Manual, specifically 
+bytes 10h, 12h, 14h-18h, 2Eh-33h. The balance was left undefined but was 
+quickly appropriated by various BIOS manufacturers for such user-selectable 
+options such as wait states, clock speeds, initial boot drive selection, and 
+password storage.
+
+Later, as CMOS memory requirements grew, newer clock chips with 128
+bytes of RAM came into use. However the fact remains that once the AT 
+standard was established, only IBM has tried to change the definitions 
+of that first description.
+
+			Accessing the CMOS
+
+The CMOS memory exists outside of the normal address space and cannot
+contain directly executable code. It is reachable through IN and OUT
+commands at port number 70h (112d) and 71h (113d). To read a CMOS byte,
+an OUT to port 70h is executed with the address of the byte to be read and
+an IN from port 71h will then retrieve the requested information. The 
+following BASIC fragment will read 128 CMOS bytes and print them to the 
+screen in 8 rows of 16 values.
+
+The CMOS RAM space has an upper limit of 128 bytes because of the structure
+of port 70: only bits 0-6 are used for addressing, bit 7 is used to 
+enable (0) or disable (1) Non-Maskable Interrupts (NMI) and explains why
+IBM uses 80h OR <address> to read/write data & follows with  a "throw-away"
+call.
+
+Note that if the CMOS only has 64 bytes available, addressing will 
+generally wrap and addresses from 40h-7Fh will mirror 00h-3Fh. Output will 
+be hexadecimal.
+
+10 CLS
+20 FOR i = 0 TO &H7F 
+30 OUT &H70, i
+40 PRINT USING "\   \"; HEX$(INP(&H71));
+50 NEXT i
+60 PRINT " " 
+
+Note: where not otherwise noted, all data points are expressed as BYTES
+      these are eight bit values and are read from MSB to LSB e.g.
+      0000 0000	    0101 1010 binary would be written as 5Ah
+      7654 3210	    where only some bits are used this is represented with
+		    Xs e.g bits 5-3 would be shown as 00xx x000
+
+Note: the entries for AMI WinBIOS also apply to AMIBIOS with core dates of 
+	12/15/95 or later
+
+
+Newer BIOSes have two checksums in the CMOS RAM, the second one covering
+bytes 40h through 7Ch (or 7Eh).  Unfortunately, the second checksum is at
+a different location in different BIOSes.  The following code from 
+Agapov Vasiliy Pavlovich <arhfond@online.ru> (28 Aug 1996) is designed to
+find the location of the second checksum byte on *any* BIOS (successfully
+tested on various versions of AMI and AWARD BIOSes).
+
+Agapov's instructions for use:
+> Before starting this code make sure to load the 128 bytes of CMOS data
+> to the buffer at CMOS_DATA and assume DS as data area segment register.
+
+START:	CALL	WHAT_CMOS
+	JC	NO_SECOND_CHS
+
+; Checksum location is in word at  CHECKS_ADDRESS
+
+NO_SECOND_CHS:
+
+; There's no second checksum in this CMOS
+
+END:
+
+;******************************* SUBS **********************************
+
+WHAT_CMOS:	MOV	SI,OFFSET CMOS_DATA+40H
+		MOV	DI,OFFSET CMOS_DATA+7EH
+		CALL	FIND_CMOS_CHS
+		JNC	END_WCMOS
+		MOV	SI,OFFSET CMOS_DATA+41H
+		MOV	DI,OFFSET CMOS_DATA+7EH
+		CALL	FIND_CMOS_CHS
+END_WCMOS:	RET
+
+
+FIND_CMOS_CHS:	XOR	DX,DX
+		MOV	AX,DX
+FIND_CMOS_C1:	LODSB			; GET BYTE
+		ADD	DX,AX
+		CMP	SI,OFFSET CMOS_DATA+7CH	; ADDRESS OF CHECKSUM ?
+		JB	FIND_CMOS_C1
+		XCHG	DH,DL
+		CMP	DX,[SI]		; CHECKSUM FOUND ?
+		JZ	END_FCMOS
+		XCHG	DH,DL
+		CMP	SI,DI
+		JB	FIND_CMOS_C1
+		STC
+		RET
+END_FCMOS:	MOV	[CHECKS_ADDRESS],SI	; SAVE CHECKSUM POSITION
+		CLC
+		RET
+
+******************************** DATA *******************************
+
+CHECKS_ADDRESS	DW	0
+
+CMOS_DATA	DB   128 DUP (?)
+
+
+--------------------------------------------------------------------------------
+
+		Organization of CMOS Memory - Clock
+
+00h-0Eh is defined by the clock hardware and all must follow it.  Other 
+manufacturers generally follow the same format as specified for the
+region 10h - 2Fh. Some also follow the IBM format for 30h-33h but not all 
+(Zenith in particular is different).
+
+The first fourteen bytes are dedicated to the MC146818 chip clock functions 
+and consist of ten read/write data registers and four status registers, two 
+of which are read/write and two of which are read only.
+
+The format of the ten clock data registers (bytes 00h-09h) is:
+
+
+--------------------------------------------------------------------------------
+
+		Organization of CMOS Memory - non-Clock
+
+The last two bytes in the first hexadecimal decade (hexade ?) were not 
+specified in the PC/AT but may have the following use on some systems:
+
+--------------------------------------------------------------------------------
+
+
+The second group of values extends from address 10h to 2Dh. The word at
+2Eh-2Fh is a byte-wise summation of the values in these bytes. Most BIOSes
+will generate a CMOS Checksum error if this value is invalid however many 
+programs ignore the checksum and report the apparent value. The current
+version of MSD reports my XT as having 20+ MB of extended memory. 
+
+Where a definiton appears universal, no identification is made. Where
+the definition is thought to be specific to a manufacturer/model (AMI, 
+AMSTRAD, IBM AT, IBM PS/2) the identification is enclosed in parens. The
+AMSTAD definitions appear to relate to 8088/8086 (PC and PC/XT class)
+mchines only. AT class machines appear to adhere to IBM PC/AT fornat.
+
+

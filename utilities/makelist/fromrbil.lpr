@@ -50,16 +50,26 @@ const
     (S:'faq.lst';      D:'FAQ.txt')
   );
 
+type
+
+  TParseStyle = (psIgnore, psHeader, psNormal, psGlossary);
+
 procedure ProcessLST(FileName : String);
+
+const
+  ItemBreak = '--------';
+
 var
   Data : TStringList;
   DT : TDateTime;
   Line : Integer;
   Title : String;
-  Brk : String;
   Dest : String;
   OName : String;
   OData : String;
+  Style : TParseStyle;
+  Brk : boolean;
+  S : String;
 
 begin
   Data:=nil;
@@ -87,24 +97,75 @@ begin
     // Start output with header file.
     Dest:=DST + IncludeTrailingPathDelimiter(Title);
     OName:='_Header.txt';
-    Brk:=StringOf('-', 7);
-    Line:=1;
+    Style:=psHeader;
+    // First Line of file is usually a simple header that we will ignore;
+    // Sometimes it is a reference we will include.
     OData:=Data[0] + CRLF;
     if LowerCase(OData).Contains('release 61') then OData:='';
+
+    // Continue with copying the header and remaining items in the file.
+    // Starting with the second line in the file.
+    Line:=1;
     while Line < Data.Count do begin
       OData:=OData + Data[Line] + CRLF;
       Inc(Line);
-      if (Line = Data.Count) or (Copy(Data[Line], 1, Length(Brk)) = Brk) then begin
-        if (OName <> '') and (OData<>'') then begin
-          Inc(SectCount);
-          if FileExists(Dest + OName) then
-            AppendToFile(Dest + OName, StringOf('-', 80) + CRLF, true);
-          AppendToFile(Dest + OName, OData, true);
-          if FileSetDate(Dest + OName, DateTimeToFileDate(DT)) <> 0 then
-            raise Exception.Create('error writing timestamp: ' + Dest + OName);
+
+      // Test if Item is complete and new Item should be started.
+      Brk:= Line >= Data.Count;
+      if not Brk then
+        case Style of
+          psGlossary : Brk:=Trim(Data[Line]) = '';
+          psHeader : begin
+            if Title = 'Glossary' then
+              Brk:=Trim(Data[Line]) = ''
+            else
+              Brk :=Copy(Data[Line], 1, Length(ItemBreak)) = ItemBreak;
+          end
+        else
+            Brk :=Copy(Data[Line], 1, Length(ItemBreak)) = ItemBreak;
+        end;
+
+      // Write completed item
+      if Brk then begin
+        if Style <> psIgnore then begin
+          if (OName <> '') and (OData<>'') then begin
+            Inc(SectCount);
+            if FileExists(Dest + OName) then
+              AppendToFile(Dest + OName, StringOf('-', 80) + CRLF, true);
+            AppendToFile(Dest + OName, OData, true);
+            if FileSetDate(Dest + OName, DateTimeToFileDate(DT)) <> 0 then
+              raise Exception.Create('error writing timestamp: ' + Dest + OName);
+          end;
         end;
         OName:='';
         OData:='';
+        if Line < Data.Count then begin
+          if Title = 'Glossary' then begin
+            Style:=psGlossary;
+            while (Line < Data.Count) and (Trim(Data[Line]) = '') do Inc(Line);
+            OName:=AlphaNumOnly(Trim(Data[Line]));
+            if OName = 'endoffile' then
+              OName:=''
+            else
+              OName:=OName + '.txt';
+          end else begin
+            Style:=psNormal;
+            S := Copy(Data[Line], 9);
+            if Copy(S,1,2) = '!-' then begin
+              // A comment, note, etc.
+              S:= WordCase(LowerCase(StringReplace(
+                StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
+                [rfReplaceAll])));
+              OName:='_' + S + '.txt';
+              // Sections that are ignored for various reasons. Mostly, because
+              // it is duplicate information or other parsers.
+              if S = 'Filelist' then Style:=psIgnore;
+              if S = 'Section' then Style:=psIgnore;
+
+              Inc(Line);
+            end;
+          end;
+        end;
       end;
     end;
 

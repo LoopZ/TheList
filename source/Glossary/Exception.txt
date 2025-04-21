@@ -1,0 +1,8 @@
+Exception
+	A signal by the CPU that some error condition has been encountered
+that it can not deal with without a program's intervention.  The most commonly
+encountered exceptions on Intel processors are Exceptions 12 and 13 (decimal,
+how Intel specifies exception numbers), which are stack and general problems,
+respectively.  Exception 13 is typically caused by a memory access which wraps
+from the end of a segment back to the beginning.
+

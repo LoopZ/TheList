@@ -1,0 +1,11 @@
+The use of -> instead of = signifies that the indicated register or register
+pair contains a pointer to the specified item, rather than the item itself.
+Register pairs (such as AX:BX) indicate that the item is split across the
+registers, with the high-order half in the first register.
+
+One or more letters may follow the interrupt number; they have the following
+meanings:  U - undocumented function, u - partially documented function,
+P - available only in protected mode, R - available only in real or V86 mode,
+C - callout or callback (usually hooked rather than called),
+O - obsolete (no longer present in current versions)
+

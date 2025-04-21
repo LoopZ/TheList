@@ -1,0 +1,11 @@
+RLL
+	(Run-Length Limited) A method of encoding data as a series of
+magnetic flux reversals on disk or tape.  RLL can achieve higher data
+densities than MFM recording because it encodes the data such that
+(on average), fewer than one flux reversal per data bit is required
+(however, timing becomes more critical).  RLL is actually an entire
+family of encoding methods, specified with two numbers indicating the
+minimum and maximum distances between one bits (flux transitions).  The
+variant normally called RLL is RLL-2,7; RLL-1,7 and RLL-3,9 are also in
+use.  MFM is in effect RLL-1,3.	 See also FM, MFM.
+
