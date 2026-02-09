@@ -27,17 +27,18 @@ const
     'PORTS.A',
     'CMOS.LST',
     'FARCALL.LST',
-    'GLOSSARY.LST',
     'I2C.LST',
     'MEMORY.LST',
     'MSR.LST',
     'OVERVIEW.LST',
-    'SMM.LST'
-    // these need handled differently
+    // these need handled a little differently
+    'GLOSSARY.LST'
     // 'BIBLIO.LST'
     // 'OPCODES.LST'
     // 'TABLES.LST'
     // '86BUGS.LST'
+    // 'SMM.LST'
+
   );
   TXT : array of record
     S, D : String;
