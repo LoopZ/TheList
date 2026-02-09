@@ -1,9 +1,12 @@
-// Copyright 2025, Jerome Shidel
+// Copyright 2025-2026, Jerome Shidel
 // BSD 3-Clause License
 
 program tolist;
 
 {$mode objfpc}{$H+}
+
+{$I patches.pp}  // Various compiler directives to "fix" things.
+{$I version.def} // Version information defines
 
 uses
   {$IFDEF UNIX}
@@ -11,7 +14,7 @@ uses
   {$ENDIF}
   Classes, SysUtils
   { you can add units after this },
-  PasExt;
+  Version, PasExt;
 
 {$R *.res}
 
@@ -20,7 +23,7 @@ begin
   { Program Information Banner }
   WriteLn(APP_PRODUCTNAME, ' v', APP_VERSION, ' (build ', APP_BUILD, ')');
   WriteLn('Copyright ', APP_LEGALCOPYRIGHT);
-  WriteLn(APP_PRODUCTLICENSE);
+  WriteLn('BSD 3-Clause License');
   WriteLn;
 end;
 

@@ -1,9 +1,12 @@
-// Copyright 2025, Jerome Shidel
+// Copyright 2025-2026, Jerome Shidel
 // BSD 3-Clause License
 
 program fromrbil;
 
 {$mode objfpc}{$H+}
+
+{$I patches.pp}  // Various compiler directives to "fix" things.
+{$I version.def} // Version information defines
 
 uses
   {$IFDEF UNIX}
@@ -11,7 +14,7 @@ uses
   {$ENDIF}
   Classes, SysUtils
   { you can add units after this },
-  PasExt;
+  Version, PasExt;
 
 {$R *.res}
 
@@ -55,6 +58,42 @@ type
 
   TParseStyle = (psIgnore, psHeader, psNormal, psGlossary);
 
+function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
+    ): integer;
+  var
+     T : Text;
+     R, E : integer;
+  begin
+    System.Assign(T, AFileName);
+    if FileExists(AFileName) then
+      Append(T)
+    else
+      Rewrite(T);
+    R := IOResult;
+    if R = 0 then begin
+      WriteLn(T, AValue);
+      R := IOResult;
+      Close(T);
+      E := IOResult;
+      if R = 0 then R := E;
+    end;
+    Result := R;
+    if (R <> 0) and ARaise then
+      raise exception.Create('file "' + AFileName + '" save error #' + IntToStr(R));
+  end;
+
+function AlphaNumOnly(AStr: String; Substitute: String =''): String;
+var
+  I : integer;
+begin
+  Result := '';
+  for I := 1 to length(AStr) do
+    if (AStr[I] in [#$30..#$39,#$41..#$5A,#$61..#$7A]) then
+      Result := Result + AStr[I]
+    else
+      Result:=Result + Substitute;
+end;
+
 procedure ProcessLST(FileName : String);
 
 const
@@ -87,7 +126,7 @@ begin
     Title := Trim(PopDelim(Title, SPACE + SPACE));
     if (Title = '') or (Title[1] = '[') then Title:=LowerCase(
       Copy(FileName,1, Length(FileName) - Length(ExtractFileExt(FileName))));
-    Title:=WordCase(Title);
+    Title:=TitleCase(Title);
     WriteLn('Processing: ', FileName, ', ', Data.Count, ' lines, ', Title);
     // create output directory
     if not DirectoryExists(DST + Title) then
@@ -154,7 +193,7 @@ begin
             S := Copy(Data[Line], 9);
             if Copy(S,1,2) = '!-' then begin
               // A comment, note, etc.
-              S:= WordCase(LowerCase(StringReplace(
+              S:= TitleCase(LowerCase(StringReplace(
                 StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
                 [rfReplaceAll])));
               OName:='_' + S + '.txt';
@@ -268,7 +307,7 @@ begin
   { Program Information Banner }
   WriteLn(APP_PRODUCTNAME, ' v', APP_VERSION);
   WriteLn('Copyright ', APP_LEGALCOPYRIGHT);
-  WriteLn(APP_PRODUCTLICENSE);
+  WriteLn('BSD 3-Clause License');
   WriteLn;
 end;
 
