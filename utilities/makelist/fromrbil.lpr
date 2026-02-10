@@ -1,6 +1,12 @@
 // Copyright 2025-2026, Jerome Shidel
 // BSD 3-Clause License
 
+
+// Note: This is a One-Off program to break down the Existing RBIL 61 into
+// a file and directory structure more suitable for group editing using
+// a version control system like Git. Once that conversion has been completed,
+// this program will be retired and no longer maintained.
+
 program fromrbil;
 
 {$mode objfpc}{$H+}
@@ -19,10 +25,12 @@ uses
 {$R *.res}
 
 const
-  SRC='../../rbil61/';
-  DST='../../source/';
+  SRC='../../rbil61/';  // path to original RBIL files
+  DST='../../source/';  // path to output conversion
 
   SectCount: integer= 0;
+
+  // List and order of file (groups) to process
   LST : array of string = (
     'CATEGORY.KEY',
     'INTERRUP.1ST',
@@ -43,6 +51,8 @@ const
     // 'SMM.LST'
 
   );
+
+  // List of files to simply copy
   TXT : array of record
     S, D : String;
   end = (
@@ -58,6 +68,7 @@ type
 
   TParseStyle = (psIgnore, psHeader, psNormal, psGlossary);
 
+{ Appends a String to a text file }
 function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
     ): integer;
   var
@@ -82,6 +93,7 @@ function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
       raise exception.Create('file "' + AFileName + '" save error #' + IntToStr(R));
   end;
 
+{ Filter any character which is not a letter or number out of a string }
 function AlphaNumOnly(AStr: String; Substitute: String =''): String;
 var
   I : integer;
@@ -94,129 +106,7 @@ begin
       Result:=Result + Substitute;
 end;
 
-procedure ProcessLST(FileName : String);
-
-const
-  ItemBreak = '--------';
-
-var
-  Data : TStringList;
-  DT : TDateTime;
-  Line : Integer;
-  Title : String;
-  Dest : String;
-  OName : String;
-  OData : String;
-  Style : TParseStyle;
-  Brk : boolean;
-  S : String;
-
-begin
-  Data:=nil;
-  try
-    if not FileAge(SRC+FileName, DT) then
-      raise Exception.Create('error reading source timestamp');
-    Data := TStringList.Create;
-    Data.LoadFromFile(SRC+FileName);
-
-    // Get Title/Directory Name
-    Title := LowerCase(StringReplace(Data[0], TAB, SPACE, [rfReplaceAll]));
-    Title := StringReplace(Title, 'release 61', SPACE, [rfReplaceAll]);
-    Title := PopDelim(Title, COMMA);
-    Title := Trim(PopDelim(Title, SPACE + SPACE));
-    if (Title = '') or (Title[1] = '[') then Title:=LowerCase(
-      Copy(FileName,1, Length(FileName) - Length(ExtractFileExt(FileName))));
-    Title:=TitleCase(Title);
-    WriteLn('Processing: ', FileName, ', ', Data.Count, ' lines, ', Title);
-    // create output directory
-    if not DirectoryExists(DST + Title) then
-      if not CreateDir(DST + Title) then begin
-        WriteLn('Unable to create "', Title, '" directory.');
-        Halt(1);
-      end;
-    // Start output with header file.
-    Dest:=DST + IncludeTrailingPathDelimiter(Title);
-    OName:='_Header.txt';
-    Style:=psHeader;
-    // First Line of file is usually a simple header that we will ignore;
-    // Sometimes it is a reference we will include.
-    OData:=Data[0] + CRLF;
-    if LowerCase(OData).Contains('release 61') then OData:='';
-
-    // Continue with copying the header and remaining items in the file.
-    // Starting with the second line in the file.
-    Line:=1;
-    while Line < Data.Count do begin
-      OData:=OData + Data[Line] + CRLF;
-      Inc(Line);
-
-      // Test if Item is complete and new Item should be started.
-      Brk:= Line >= Data.Count;
-      if not Brk then
-        case Style of
-          psGlossary : Brk:=Trim(Data[Line]) = '';
-          psHeader : begin
-            if Title = 'Glossary' then
-              Brk:=Trim(Data[Line]) = ''
-            else
-              Brk :=Copy(Data[Line], 1, Length(ItemBreak)) = ItemBreak;
-          end
-        else
-            Brk :=Copy(Data[Line], 1, Length(ItemBreak)) = ItemBreak;
-        end;
-
-      // Write completed item
-      if Brk then begin
-        if Style <> psIgnore then begin
-          if (OName <> '') and (OData<>'') then begin
-            Inc(SectCount);
-            if FileExists(Dest + OName) then
-              AppendToFile(Dest + OName, StringOf('-', 80) + CRLF, true);
-            AppendToFile(Dest + OName, OData, true);
-            if FileSetDate(Dest + OName, DateTimeToFileDate(DT)) <> 0 then
-              raise Exception.Create('error writing timestamp: ' + Dest + OName);
-          end;
-        end;
-        OName:='';
-        OData:='';
-        if Line < Data.Count then begin
-          if Title = 'Glossary' then begin
-            Style:=psGlossary;
-            while (Line < Data.Count) and (Trim(Data[Line]) = '') do Inc(Line);
-            OName:=AlphaNumOnly(Trim(Data[Line]));
-            if OName = 'endoffile' then
-              OName:=''
-            else
-              OName:=OName + '.txt';
-          end else begin
-            Style:=psNormal;
-            S := Copy(Data[Line], 9);
-            if Copy(S,1,2) = '!-' then begin
-              // A comment, note, etc.
-              S:= TitleCase(LowerCase(StringReplace(
-                StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
-                [rfReplaceAll])));
-              OName:='_' + S + '.txt';
-              // Sections that are ignored for various reasons. Mostly, because
-              // it is duplicate information or other parsers.
-              if S = 'Filelist' then Style:=psIgnore;
-              if S = 'Section' then Style:=psIgnore;
-
-              Inc(Line);
-            end;
-          end;
-        end;
-      end;
-    end;
-
-    // for I := 0 to Data.Count - 1 do
-    // if Copy(Data[I], 1, 5) = '-----' then
-    //    WriteLn(Data[I]);
-  finally
-    if Assigned(Data) then FreeAndNil(Data);
-  end;
-end;
-
+{ Simple function to Increment a Character, returns A-Z or b-z }
 function IncAlpha(AValue : String) : String;
 var
   C : Char;
@@ -234,6 +124,161 @@ begin
   IncAlpha := Copy(AValue, 1, Length(AValue) - 1) + Char(Byte(C)+1);
 end;
 
+{ Creates a directory if it does not exist }
+procedure InsureDir(DirName : String);
+begin
+  if not DirectoryExists(DirName) then
+    if not CreateDir(DirName) then
+      raise exception.Create('Unable to create "' + DirName + '" directory.');
+end;
+
+{ Returns the section tite for a file in a TitleCase }
+function GetFileTitle(FileName, S : String) : String;
+var
+  Title : String;
+begin
+  Title := LowerCase(StringReplace(S, TAB, SPACE, [rfReplaceAll]));
+  Title := StringReplace(Title, 'release 61', SPACE, [rfReplaceAll]);
+  Title := PopDelim(Title, COMMA);
+  Title := Trim(PopDelim(Title, SPACE + SPACE));
+  if (Title = '') or (Title[1] = '[') then Title:=LowerCase(
+    Copy(FileName,1, Length(FileName) - Length(ExtractFileExt(FileName))));
+  Result:=TitleCase(Title);
+end;
+
+{ Returns the timestamp for a file }
+function GetFileStamp(FileName : String) : LongInt;
+var
+  DT : TDateTime;
+begin
+  if not FileAge(FileName, DT) then
+    raise Exception.Create(FileName +': error reading source timestamp');
+  Result:=DateTimeToFileDate(DT);
+end;
+
+{ Global variables and constants used during proesing a LST file }
+const
+  ItemBreak = '--------';        // String that separates parts of the LST file
+  OFN_Header = '_Header.txt';    // Startng output "Header" file name
+
+var
+  FileTitle : String;            // Current Input file Title
+  FileStamp : LongInt;           // File stamp of original LST file
+  InStrs  : TStringList;         // Original File Text data
+  OutPath : String;              // Output file path
+  OutFile : String;              // Output file name
+  OutStr  : String;              // Output file String
+  ParseStyle : TParseStyle;      // Type of section that is being parsed
+  Index : integer;               // Current Line position of InStrs
+  SectionBreak : boolean;        // Processing flag for end of a file section
+
+{ determine if a line is the end of a section }
+function EndOfSection(Line : integer) : boolean;
+begin
+  Result:=Line >= InStrs.Count; // Initially set if at end of file
+  if not Result then begin
+    case ParseStyle of
+      psGlossary : Result:=Trim(InStrs[Line]) = '';
+      psHeader : begin
+        if FileTitle = 'Glossary' then // FileTitle is in TitleCase
+          Result:=Trim(InStrs[Line]) = ''
+        else
+          Result :=Copy(InStrs[Line], 1, Length(ItemBreak)) = ItemBreak;
+      end
+    else
+        Result :=Copy(InStrs[Line], 1, Length(ItemBreak)) = ItemBreak;
+    end;
+  end;
+end;
+
+{ Write Section OutData to new file or append to existing file }
+procedure SaveSection;
+begin
+  if ParseStyle <> psIgnore then begin
+    if (OutFile <> '') and (OutStr<>'') then begin
+      Inc(SectCount);
+      if FileExists(OutPath + OutFile) then
+        AppendToFile(OutPath + OutFile, StringOf('-', 80) + CRLF, true);
+      AppendToFile(OutPath + OutFile, OutStr, true);
+      if FileSetDate(OutPath + OutFile, FileStamp) <> 0 then
+        raise Exception.Create('error writing timestamp: ' + OutPath + OutFile);
+    end;
+  end;
+  OutFile:='';
+  OutStr:='';
+end;
+
+procedure NewSection;
+var
+  S : String;
+begin
+  if Index < InStrs.Count then begin
+    if FileTitle = 'Glossary' then begin // FileTitle is TitleCase
+
+      ParseStyle:=psGlossary;
+      while (Index < InStrs.Count) and (Trim(InStrs[Index]) = '') do Inc(Index);
+      OutFile:=AlphaNumOnly(Trim(InStrs[Index]));
+      if OutFile = 'endoffile' then
+        OutFile:=''
+      else
+        Cat(OutFile, '.txt');
+
+    end else begin
+      ParseStyle:=psNormal;
+      S := Copy(InStrs[Index], 9);
+      if Copy(S,1,2) = '!-' then begin
+
+        // A comment, note, etc.
+        S:= TitleCase(LowerCase(StringReplace(
+          StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
+          [rfReplaceAll])));
+        OutFile:='_' + S + '.txt';
+
+        // Sections that are ignored for various reasons. Mostly, because
+        // it is duplicate information or other parsers.
+        if S = 'Filelist' then ParseStyle:=psIgnore;
+        if S = 'Section' then ParseStyle:=psIgnore;
+
+        Inc(Index);
+      end;
+    end;
+  end;
+
+end;
+
+{ Main process to convert a single file }
+procedure ProcessLST(FileName : String);
+begin
+  FileStamp:=GetFileStamp(SRC+FileName);
+  InStrs := TStringList.Create;
+  InStrs.LoadFromFile(SRC+FileName);
+  FileTitle:=GetFileTitle(FileName, InStrs[0]);
+  WriteLn('Processing: ', FileName, ', ', InStrs.Count, ' lines, ', FileTitle);
+  OutPath:=DST + FileTitle;
+  InsureDir(OutPath);
+  OutPath:=IncludeTrailingPathDelimiter(OutPath);
+  OutFile:=OFN_Header;
+  ParseStyle:=psHeader;
+  // First Line of file is usually a simple header that we will ignore;
+  // But, sometimes it is a reference we will  want include.
+  OutStr:=InStrs[0] + CRLF;
+  if LowerCase(OutStr).Contains('release 61') then OutStr:='';
+  // Starting with the second line in the file. Continue processing Header
+  // and other sections.
+  Index:=1;
+  While Index < InStrs.Count do begin
+    Cat(OutStr, InStrs[Index] + CRLF);
+    Inc(Index);
+    SectionBreak:=EndOfSection(Index);
+    if SectionBreak then begin
+      SaveSection;
+      NewSection;
+    end;
+  end;
+  FreeAndNil(InStrs);
+end;
+
+{  Procedure to run through the files that need conversion }
 procedure ConvertLST(FileName : String);
 begin
   if not FileExists(SRC + FileName) then begin
@@ -249,6 +294,7 @@ begin
   end;
 end;
 
+{ Copies the Text files hat are listed in the TXT array }
 procedure CopyTextDocs;
 var
   I : integer;
@@ -275,6 +321,7 @@ begin
 
 end;
 
+{ procedure to call all of the processes for the conversion }
 procedure ConvertAll;
 var
   I : Integer;
@@ -302,6 +349,7 @@ begin
 
 end;
 
+{ Conversion program banner text }
 procedure Banner;
 begin
   { Program Information Banner }
