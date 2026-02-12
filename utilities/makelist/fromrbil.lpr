@@ -83,8 +83,8 @@ const
 
 type
 
-  TParseStyle = (psIgnore, psHeader, psComment, psCategories, psCategoryKeys,
-    psNormal, psGlossary);
+  TParseStyle = (psIgnore, psHeader, psComment, psPlain, psCategories,
+    psCategoryKeys, psAbbreviations, psGlossary);
 
 { Appends a String to a text file }
 function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
@@ -178,7 +178,8 @@ end;
 { Global variables and constants used during processing a LST file }
 const
   ItemBreak = '--------';        // String that separates parts of the LST file
-  OFN_Header = '_Header.txt';    // Startng output "Header" file name
+  TextExt = '.txt';
+  _Header = '_Header' + TextExt; // Startng output "Header" file name
   LineEnding = CRLF;             // Line ending used for text file output
 
 var
@@ -192,6 +193,8 @@ var
   Index : integer;               // Current Line position of InStrs
   SectionBreak : boolean;        // Processing flag for end of a file section
   SectionTitle : String;         // Section Title
+
+procedure SaveSection; forward;
 
 { determine if a line is the end of a section }
 function EndOfSection(Line : integer) : boolean;
@@ -256,21 +259,64 @@ begin
   end;
 end;
 
+procedure PostProcessAbbreviations;
+var
+  HoldPath : String;
+  Lines: TArrayOfRawByteString;
+  I, C : Integer;
+  T : String;
+begin
+  ParseStyle:=psPlain;
+  HoldPath:=OutPath;
+  Outpath:=DST+IncludeTrailingPathDelimiter(Trim(AlphaNumOnly(SectionTitle, '', True)));
+  OutStr:=StringReplace(OutStr, TAB, SPACE8, [rfReplaceAll]);
+  T:=PopDelim(OutStr, LF + SPACE8);
+  if OutStr = '' then
+    Lines:=Trim(Explode(T))
+  else begin
+    Lines:=Trim(Explode(OutStr));
+    OutStr:=T;
+    OutFile:=_Header;
+    SaveSection;
+  end;
+
+  C:=0;
+  for I := 0 to High(Lines) do begin
+    OutStr:=Lines[I];
+    T:=PopDelim(Lines[I], SPACE);
+    if Lines[I] = '' then Continue;
+    OutFile:=Trim(AlphaNumOnly(T)) + TextExt;
+    SaveSection;
+    Inc(C);
+  end;
+  WriteLn('Added ', C, ' abbreviation entries');
+  OutPath:=HoldPath;
+  ParseStyle:=psIgnore;
+end;
+
 { Write Section OutData to new file or append to existing file }
 procedure SaveSection;
+var
+  P : String;
 begin
   if ParseStyle <> psIgnore then begin
     if (OutFile <> '') and (OutStr<>'') then begin
+      Inc(SectCount);
       case ParseStyle of
         psGlossary : PostProcessGlossary;
         psCategories, psCategoryKeys : PostProcessCategories;
+        psAbbreviations : PostProcessAbbreviations;
       end;
-      Inc(SectCount);
-      if FileExists(OutPath + OutFile) then
-        AppendToFile(OutPath + OutFile, StringOf('-', 80) + LineEnding, true);
-      AppendToFile(OutPath + OutFile, NormalizeLineEndings(OutStr, LineEnding), true);
-      if FileSetDate(OutPath + OutFile, FileStamp) <> 0 then
-        raise Exception.Create('error writing timestamp: ' + OutPath + OutFile);
+      if ParseStyle <> psIgnore then begin
+        P:=ExtractFilePath(OutFile);
+        InsureDir(OutPath);
+        if P <> '' then InsureDir(OutPath + P);
+        if FileExists(OutPath + OutFile) then
+          AppendToFile(OutPath + OutFile, StringOf('-', 80) + LineEnding, true);
+        AppendToFile(OutPath + OutFile, NormalizeLineEndings(OutStr, LineEnding), true);
+        if FileSetDate(OutPath + OutFile, FileStamp) <> 0 then
+          raise Exception.Create('error writing timestamp: ' + OutPath + OutFile);
+      end;
     end;
   end else begin
     WriteLn('ignored section: ', SectionTitle);
@@ -285,7 +331,7 @@ procedure ParseSectionHead;
 var
   S: String;
 begin
-  ParseStyle:=psNormal;
+  ParseStyle:=psPlain;
   S := Copy(InStrs[Index], 9);
   if Copy(S,1,2) = '!-' then begin
 
@@ -294,17 +340,22 @@ begin
       StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
       [rfReplaceAll])));
 
-    if SectionTitle = 'Categories' then ParseStyle:=psCategories;
-    if SectionTitle = 'Categorykeys' then begin
-      SectionTitle:='Category Keys';
-      ParseStyle:=psCategoryKeys
+    case SectionTitle of
+      // Sections that are ignored for various reasons. Mostly, because it is
+      // duplicate information, obsolete or created through other means.
+      'Filelist'     : ParseStyle:=psIgnore;
+      // Gets reformated and used for Category names
+      'Categories'   : ParseStyle:=psCategories;
+      // Gets reformated
+      'Categorykeys' : begin
+        SectionTitle:='Category Keys';
+        ParseStyle:=psCategoryKeys
+      end;
+      // Gets Reformated and busted up.
+      'Abbreviations' : ParseStyle:=psAbbreviations;
     end;
 
-    OutFile:='_' + SectionTitle + '.txt';
-
-    // Sections that are ignored for various reasons. Mostly, because it is
-    // duplicate information, obsolete or created through other means.
-    if SectionTitle = 'Filelist' then ParseStyle:=psIgnore;
+    OutFile:='_' + SectionTitle + TextExt;
 
     Inc(Index);
   end else begin
@@ -326,7 +377,7 @@ begin
       if (OutFile = 'end of file') or (OutFile = 'endoffile') then
         OutFile:=''
       else
-        Cat(OutFile, '.txt');
+        Cat(OutFile, TextExt);
 
     end else begin
       ParseSectionHead;
@@ -346,7 +397,7 @@ begin
   OutPath:=DST + FileTitle;
   InsureDir(OutPath);
   OutPath:=IncludeTrailingPathDelimiter(OutPath);
-  OutFile:=OFN_Header;
+  OutFile:=_Header;
   ParseStyle:=psHeader;
   // First Line of file is usually a simple header that we will ignore;
   // But, sometimes it is a reference we will  want include.
