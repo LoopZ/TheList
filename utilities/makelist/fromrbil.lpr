@@ -282,8 +282,8 @@ begin
 
   C:=0;
   for I := 0 to High(Lines) do begin
-    OutStr:=Lines[I];
-    T:=PopDelim(Lines[I], SPACE);
+    T:=Trim(PopDelim(Lines[I], SPACE));
+    OutStr:=T + ' - ' + Trim(Lines[I]);
     if Lines[I] = '' then Continue;
     OutFile:=Trim(AlphaNumOnly(T)) + TextExt;
     SaveSection;
