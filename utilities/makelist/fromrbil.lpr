@@ -64,9 +64,26 @@ const
     (S:'faq.lst';      D:'FAQ.txt')
   );
 
+  FLAGS : array of record
+    F, D : String;
+  end = (
+    (F:'U'; D:'undocumented function'),
+    (F:'u'; D:'partially documented function'),
+    (F:'P'; D:'available only in protected mode'),
+    (F:'R'; D:'available only in real or V86 mode'),
+    (F:'C'; D:'callout or callback (usually hooked rather than called)'),
+    (F:'O'; D:'obsolete (no longer present in current versions)')
+  );
+
+  CATEGORIES : array of record
+    C, D : String;
+  end = (
+    (C:'!'; D:'Notes; Comments; Other information')
+  );
+
 type
 
-  TParseStyle = (psIgnore, psHeader, psNormal, psGlossary);
+  TParseStyle = (psIgnore, psHeader, psComment, psNormal, psGlossary);
 
 { Appends a String to a text file }
 function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
@@ -156,7 +173,7 @@ begin
   Result:=DateTimeToFileDate(DT);
 end;
 
-{ Global variables and constants used during proesing a LST file }
+{ Global variables and constants used during processing a LST file }
 const
   ItemBreak = '--------';        // String that separates parts of the LST file
   OFN_Header = '_Header.txt';    // Startng output "Header" file name
@@ -171,6 +188,7 @@ var
   ParseStyle : TParseStyle;      // Type of section that is being parsed
   Index : integer;               // Current Line position of InStrs
   SectionBreak : boolean;        // Processing flag for end of a file section
+  SectionTitle : String;         // Section Title
 
 { determine if a line is the end of a section }
 function EndOfSection(Line : integer) : boolean;
@@ -191,11 +209,20 @@ begin
   end;
 end;
 
+
+procedure PostProcessGlossary;
+begin
+
+end;
+
 { Write Section OutData to new file or append to existing file }
 procedure SaveSection;
 begin
   if ParseStyle <> psIgnore then begin
     if (OutFile <> '') and (OutStr<>'') then begin
+      case ParseStyle of
+        psGlossary : PostProcessGlossary;
+      end;
       Inc(SectCount);
       if FileExists(OutPath + OutFile) then
         AppendToFile(OutPath + OutFile, StringOf('-', 80) + CRLF, true);
@@ -203,14 +230,41 @@ begin
       if FileSetDate(OutPath + OutFile, FileStamp) <> 0 then
         raise Exception.Create('error writing timestamp: ' + OutPath + OutFile);
     end;
+  end else begin
+    WriteLn('ignored section: ', SectionTitle);
   end;
   OutFile:='';
   OutStr:='';
+  SectionTitle:='';
+end;
+
+procedure ParseSectionHead;
+var
+  S: String;
+begin
+  ParseStyle:=psNormal;
+  S := Copy(InStrs[Index], 9);
+  if Copy(S,1,2) = '!-' then begin
+
+    // A comment, note, etc.
+    SectionTitle:= TitleCase(LowerCase(StringReplace(
+      StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
+      [rfReplaceAll])));
+    OutFile:='_' + SectionTitle + '.txt';
+
+    // Sections that are ignored for various reasons. Mostly, because
+    // it is duplicate information or other parsers.
+    // if S = 'Filelist' then ParseStyle:=psIgnore;
+    // if S = 'Section' then ParseStyle:=psIgnore;
+
+    Inc(Index);
+  end else begin
+    // WriteLn(S);
+  end;
+
 end;
 
 procedure NewSection;
-var
-  S : String;
 begin
   if Index < InStrs.Count then begin
     if FileTitle = 'Glossary' then begin // FileTitle is TitleCase
@@ -218,29 +272,13 @@ begin
       ParseStyle:=psGlossary;
       while (Index < InStrs.Count) and (Trim(InStrs[Index]) = '') do Inc(Index);
       OutFile:=AlphaNumOnly(Trim(InStrs[Index]));
-      if OutFile = 'endoffile' then
+      if OutFile = 'end of file' then
         OutFile:=''
       else
         Cat(OutFile, '.txt');
 
     end else begin
-      ParseStyle:=psNormal;
-      S := Copy(InStrs[Index], 9);
-      if Copy(S,1,2) = '!-' then begin
-
-        // A comment, note, etc.
-        S:= TitleCase(LowerCase(StringReplace(
-          StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
-          [rfReplaceAll])));
-        OutFile:='_' + S + '.txt';
-
-        // Sections that are ignored for various reasons. Mostly, because
-        // it is duplicate information or other parsers.
-        if S = 'Filelist' then ParseStyle:=psIgnore;
-        if S = 'Section' then ParseStyle:=psIgnore;
-
-        Inc(Index);
-      end;
+      ParseSectionHead;
     end;
   end;
 
