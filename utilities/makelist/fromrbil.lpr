@@ -111,13 +111,14 @@ function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
   end;
 
 { Filter any character which is not a letter or number out of a string }
-function AlphaNumOnly(AStr: String; Substitute: String =''): String;
+function AlphaNumOnly(AStr: String; Substitute: String =''; AllowSpace : boolean = false): String;
 var
   I : integer;
 begin
   Result := '';
   for I := 1 to length(AStr) do
-    if (AStr[I] in [#$30..#$39,#$41..#$5A,#$61..#$7A]) then
+    if (AStr[I] in [#$30..#$39,#$41..#$5A,#$61..#$7A])
+    or ((AStr[I]=#$20) and AllowSpace) then
       Result := Result + AStr[I]
     else
       Result:=Result + Substitute;
@@ -271,7 +272,7 @@ begin
 
       ParseStyle:=psGlossary;
       while (Index < InStrs.Count) and (Trim(InStrs[Index]) = '') do Inc(Index);
-      OutFile:=AlphaNumOnly(Trim(InStrs[Index]));
+      OutFile:=AlphaNumOnly(Trim(InStrs[Index]), '', True);
       if OutFile = 'end of file' then
         OutFile:=''
       else
