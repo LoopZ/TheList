@@ -66,14 +66,7 @@ const
 
   FLAGS : array of record
     F, D : String;
-  end = (
-    (F:'U'; D:'undocumented function'),
-    (F:'u'; D:'partially documented function'),
-    (F:'P'; D:'available only in protected mode'),
-    (F:'R'; D:'available only in real or V86 mode'),
-    (F:'C'; D:'callout or callback (usually hooked rather than called)'),
-    (F:'O'; D:'obsolete (no longer present in current versions)')
-  );
+  end = ();
 
   CATEGORIES : array of record
     C, D : String;
@@ -83,7 +76,7 @@ const
 
 type
 
-  TParseStyle = (psIgnore, psHeader, psComment, psPlain, psCategories,
+  TParseStyle = (psIgnore, psHeader, psComment, psPlain, psCategories, psFlags,
     psCategoryKeys, psAbbreviations, psGlossary);
 
 { Appends a String to a text file }
@@ -225,15 +218,25 @@ procedure PostProcessCategories;
 var
   Pre, S, T : String;
   A : TArrayOfString;
-  I, CatStart : Integer;
+  I, CatStart, FlagStart : Integer;
 begin
   CatStart:=Length(CATEGORIES);
-  Pre:=PopDelim(OutStr, COLON + LF);
-  if OutStr = '' then begin
-    OutStr:=Pre;
-    Pre:='';
-  end else
-    Cat(Pre, COLON + LF + LF);
+  FlagStart:=Length(FLAGS);
+  if ParseStyle=psFlags then begin
+    Pre:=PopDelim(OutStr, COLON + SPACE + SPACE);
+    if OutStr = '' then begin
+      OutStr:=Pre;
+      Pre:='';
+    end else
+      Cat(Pre, COLON + LF + LF);
+  end else begin
+    Pre:=PopDelim(OutStr, COLON + LF);
+    if OutStr = '' then begin
+      OutStr:=Pre;
+      Pre:='';
+    end else
+      Cat(Pre, COLON + LF + LF);
+  end;
   OutStr:=StringReplace(OutStr, ', etc', '! etc', [rfReplaceAll]);
   OutStr:=StringReplace(OutStr, COMMA, LF, [rfReplaceAll]);
   OutStr:=StringReplace(OutStr, LF+LF, LF, [rfReplaceAll]);
@@ -253,9 +256,18 @@ begin
       CATEGORIES[High(CATEGORIES)].C:=Trim(S);
       CATEGORIES[High(CATEGORIES)].D:=Trim(T);
     end;
+    if ParseStyle = psFLags then begin
+      S:=PopDelim(T, '-');
+      SetLength(FLAGS, Length(FLAGS) + 1);
+      FLAGS[High(FLAGS)].F:=Trim(S);
+      FLAGS[High(FLAGS)].D:=Trim(T);
+    end;
   end;
   if ParseStyle = psCategories then begin
     WriteLn('Added ', Length(CATEGORIES) - CatStart, ' category classifications');
+  end;
+  if ParseStyle = psFlags then begin
+    WriteLn('Added ', Length(FLAGS) - FlagStart, ' flag classifications');
   end;
 end;
 
@@ -304,6 +316,7 @@ begin
       Inc(SectCount);
       case ParseStyle of
         psGlossary : PostProcessGlossary;
+        psFlags,
         psCategories, psCategoryKeys : PostProcessCategories;
         psAbbreviations : PostProcessAbbreviations;
       end;
@@ -351,6 +364,8 @@ begin
         SectionTitle:='Category Keys';
         ParseStyle:=psCategoryKeys
       end;
+      // Gets reformated
+      'Flags'   : ParseStyle:=psFlags;
       // Gets Reformated and busted up.
       'Abbreviations' : ParseStyle:=psAbbreviations;
     end;
