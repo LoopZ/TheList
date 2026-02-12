@@ -83,7 +83,8 @@ const
 
 type
 
-  TParseStyle = (psIgnore, psHeader, psComment, psNormal, psGlossary);
+  TParseStyle = (psIgnore, psHeader, psComment, psCategories, psCategoryKeys,
+    psNormal, psGlossary);
 
 { Appends a String to a text file }
 function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
@@ -178,6 +179,7 @@ end;
 const
   ItemBreak = '--------';        // String that separates parts of the LST file
   OFN_Header = '_Header.txt';    // Startng output "Header" file name
+  LineEnding = CRLF;             // Line ending used for text file output
 
 var
   FileTitle : String;            // Current Input file Title
@@ -210,10 +212,48 @@ begin
   end;
 end;
 
-
 procedure PostProcessGlossary;
 begin
+  { nothing to do here, move along }
+end;
 
+{ Reformats the category keys }
+procedure PostProcessCategories;
+var
+  Pre, S, T : String;
+  A : TArrayOfString;
+  I, CatStart : Integer;
+begin
+  CatStart:=Length(CATEGORIES);
+  Pre:=PopDelim(OutStr, COLON + LF);
+  if OutStr = '' then begin
+    OutStr:=Pre;
+    Pre:='';
+  end else
+    Cat(Pre, COLON + LF + LF);
+  OutStr:=StringReplace(OutStr, ', etc', '! etc', [rfReplaceAll]);
+  OutStr:=StringReplace(OutStr, COMMA, LF, [rfReplaceAll]);
+  OutStr:=StringReplace(OutStr, LF+LF, LF, [rfReplaceAll]);
+  A:=Explode(OutStr);
+  OutStr:=Pre;
+  for I := 0 to High(A) do begin
+    S:=Trim(StringReplace(A[I], TAB, SPACE, [rfReplaceAll]));
+    S:=StringReplace(S, '! etc', ', etc', [rfReplaceAll]);
+    T:=S;
+    if Pre <> '' then
+      S:=Tab+S;
+    S:=StringReplace(S, ';', LF + WhenTrue(Pre <> '', TAB) + SPACE4, [rfReplaceAll]);
+    Cat(OutStr,S + LF);
+    if ParseStyle = psCategories then begin
+      S:=PopDelim(T, '-');
+      SetLength(CATEGORIES, Length(CATEGORIES) + 1);
+      CATEGORIES[High(CATEGORIES)].C:=Trim(S);
+      CATEGORIES[High(CATEGORIES)].D:=Trim(T);
+    end;
+  end;
+  if ParseStyle = psCategories then begin
+    WriteLn('Added ', Length(CATEGORIES) - CatStart, ' category classifications');
+  end;
 end;
 
 { Write Section OutData to new file or append to existing file }
@@ -223,16 +263,18 @@ begin
     if (OutFile <> '') and (OutStr<>'') then begin
       case ParseStyle of
         psGlossary : PostProcessGlossary;
+        psCategories, psCategoryKeys : PostProcessCategories;
       end;
       Inc(SectCount);
       if FileExists(OutPath + OutFile) then
-        AppendToFile(OutPath + OutFile, StringOf('-', 80) + CRLF, true);
-      AppendToFile(OutPath + OutFile, OutStr, true);
+        AppendToFile(OutPath + OutFile, StringOf('-', 80) + LineEnding, true);
+      AppendToFile(OutPath + OutFile, NormalizeLineEndings(OutStr, LineEnding), true);
       if FileSetDate(OutPath + OutFile, FileStamp) <> 0 then
         raise Exception.Create('error writing timestamp: ' + OutPath + OutFile);
     end;
   end else begin
     WriteLn('ignored section: ', SectionTitle);
+    // WriteLn(OutStr);
   end;
   OutFile:='';
   OutStr:='';
@@ -251,17 +293,25 @@ begin
     SectionTitle:= TitleCase(LowerCase(StringReplace(
       StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
       [rfReplaceAll])));
+
+    if SectionTitle = 'Categories' then ParseStyle:=psCategories;
+    if SectionTitle = 'Categorykeys' then begin
+      SectionTitle:='Category Keys';
+      ParseStyle:=psCategoryKeys
+    end;
+
     OutFile:='_' + SectionTitle + '.txt';
 
-    // Sections that are ignored for various reasons. Mostly, because
-    // it is duplicate information or other parsers.
-    // if S = 'Filelist' then ParseStyle:=psIgnore;
-    // if S = 'Section' then ParseStyle:=psIgnore;
+    // Sections that are ignored for various reasons. Mostly, because it is
+    // duplicate information, obsolete or created through other means.
+    if SectionTitle = 'Filelist' then ParseStyle:=psIgnore;
 
     Inc(Index);
   end else begin
     // WriteLn(S);
   end;
+  if ParseStyle = psIgnore then
+    OutFile:='';
 
 end;
 
@@ -272,8 +322,8 @@ begin
 
       ParseStyle:=psGlossary;
       while (Index < InStrs.Count) and (Trim(InStrs[Index]) = '') do Inc(Index);
-      OutFile:=AlphaNumOnly(Trim(InStrs[Index]), '', True);
-      if OutFile = 'end of file' then
+      OutFile:=Trim(AlphaNumOnly(Trim(InStrs[Index]), '', true));
+      if (OutFile = 'end of file') or (OutFile = 'endoffile') then
         OutFile:=''
       else
         Cat(OutFile, '.txt');
@@ -300,13 +350,13 @@ begin
   ParseStyle:=psHeader;
   // First Line of file is usually a simple header that we will ignore;
   // But, sometimes it is a reference we will  want include.
-  OutStr:=InStrs[0] + CRLF;
+  OutStr:=InStrs[0] + LF;
   if LowerCase(OutStr).Contains('release 61') then OutStr:='';
   // Starting with the second line in the file. Continue processing Header
   // and other sections.
   Index:=1;
   While Index < InStrs.Count do begin
-    Cat(OutStr, InStrs[Index] + CRLF);
+    Cat(OutStr, InStrs[Index] + LF);
     Inc(Index);
     SectionBreak:=EndOfSection(Index);
     if SectionBreak then begin

@@ -359,6 +359,27 @@ var
     If the TArrayOfAnsiString is empty, -1 will be rewturned. }
   function Longest(const S : TArrayOfAnsiString; ReturnIndex : boolean = false) : integer; overload;
 
+  { Trims each line in an array of strings. }
+  function Trim(const Lines : TArrayOfRawByteString) : TArrayOfRawByteString; overload;
+  { Trims each line in an array of strings. }
+  function Trim(const Lines : TArrayOfUnicodeString) : TArrayOfUnicodeString; overload;
+  { Trims each line in an array of strings. }
+  function Trim(const Lines : TArrayOfAnsiString) : TArrayOfAnsiString; overload;
+
+  { Trims leading whitespace for each line in an array of strings. }
+  function TrimLeft(const Lines : TArrayOfRawByteString) : TArrayOfRawByteString; overload;
+  { Trims leading whitespace for each line in an array of strings. }
+  function TrimLeft(const Lines : TArrayOfUnicodeString) : TArrayOfUnicodeString; overload;
+  { Trims leading whitespace for each line in an array of strings. }
+  function TrimLeft(const Lines : TArrayOfAnsiString) : TArrayOfAnsiString; overload;
+
+  { Trims leading whitespace for each line in an array of strings. }
+  function TrimRight(const Lines : TArrayOfRawByteString) : TArrayOfRawByteString; overload;
+  { Trims leading whitespace for each line in an array of strings. }
+  function TrimRight(const Lines : TArrayOfUnicodeString) : TArrayOfUnicodeString; overload;
+  { Trims leading whitespace for each line in an array of strings. }
+  function TrimRight(const Lines : TArrayOfAnsiString) : TArrayOfAnsiString; overload;
+
   { When TF is TRUE, return T. Otherwise, return F as result. }
   function WhenTrue(TF : Boolean; const T : RawByteString;
     const F : RawByteString = '') : RawByteString; overload;
@@ -542,6 +563,7 @@ var
   { return Value as a RawByteString that is at least MinLength by
     inserting 0 in front when needed. }
   function ZeroPad(Value : LongInt; MinLength : integer) : RawByteString; overload;
+  { Left pads a string with zeros }
   function ZeroPad(S : RawByteString; MinLength : integer) : RawByteString; overload;
 
 (* String cutting related functions *)
@@ -615,24 +637,24 @@ var
 
   { glue the elements of a RawByteString array together using Delim and return
     a RawByteString }
-  function Implode(Strs : TArrayOfRawByteString; Delim : RawByteString = CR) : RawByteString; overload;
+  function Implode(Strs : TArrayOfRawByteString; Delim : RawByteString = LF) : RawByteString; overload;
   { glue the elements of a UnicodeString array together using Delim and return
     a UnicodeString }
-  function Implode(Strs : TArrayOfUnicodeString; Delim : UnicodeString = CR) : UnicodeString; overload;
+  function Implode(Strs : TArrayOfUnicodeString; Delim : UnicodeString = LF) : UnicodeString; overload;
   { glue the Items of a TStringList together using Delim and return a RawByteString }
-  function Implode(Strs : TStringList; Delim : RawByteString = CR) : RawByteString; overload;
+  function Implode(Strs : TStringList; Delim : RawByteString = LF) : RawByteString; overload;
 
   { breaks RawByteString into an array of RawByteString at each Delim }
-  function Explode(S : RawByteString; Delim : RawByteString = CR):TArrayOfRawByteString; overload;
+  function Explode(S : RawByteString; Delim : RawByteString = LF):TArrayOfRawByteString; overload;
   { breaks UnicodeString into an array of UnicodeString at each Delim }
-  function Explode(S : UnicodeString; Delim : UnicodeString = CR):TArrayOfUnicodeString; overload;
+  function Explode(S : UnicodeString; Delim : UnicodeString = LF):TArrayOfUnicodeString; overload;
   { breaks RawByteString into a new TStringList at each Delim. Caller must destroy the
     created TStringList. }
-  function Explode(S : RawByteString; Delim : RawByteString = CR):TStringList; overload;
+  function Explode(S : RawByteString; Delim : RawByteString = LF):TStringList; overload;
   { breaks RawByteString into an existing TStringList at each Delim. Any existing
     items in TStringList will be cleared. Caller must Create and Destroy the
     TStringList. }
-  procedure Explode(S : RawByteString; var Strs : TStringList; Delim : RawByteString = CR); overload;
+  procedure Explode(S : RawByteString; var Strs : TStringList; Delim : RawByteString = LF); overload;
 
 (* Miscellaneous string functions *)
 
@@ -1737,6 +1759,96 @@ begin
   end;
   if ReturnIndex then
     Result:=R;
+end;
+
+function Trim(const Lines: TArrayOfRawByteString): TArrayOfRawByteString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=Trim(Lines[I]);
+end;
+
+function Trim(const Lines: TArrayOfUnicodeString): TArrayOfUnicodeString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=Trim(Lines[I]);
+end;
+
+function Trim(const Lines: TArrayOfAnsiString): TArrayOfAnsiString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=Trim(Lines[I]);
+end;
+
+function TrimLeft(const Lines: TArrayOfRawByteString): TArrayOfRawByteString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=TrimLeft(Lines[I]);
+end;
+
+function TrimLeft(const Lines: TArrayOfUnicodeString): TArrayOfUnicodeString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=TrimLeft(Lines[I]);
+end;
+
+function TrimLeft(const Lines: TArrayOfAnsiString): TArrayOfAnsiString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=TrimLeft(Lines[I]);
+end;
+
+function TrimRight(const Lines: TArrayOfRawByteString): TArrayOfRawByteString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=TrimRight(Lines[I]);
+end;
+
+function TrimRight(const Lines: TArrayOfUnicodeString): TArrayOfUnicodeString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=TrimRight(Lines[I]);
+end;
+
+function TrimRight(const Lines: TArrayOfAnsiString): TArrayOfAnsiString;
+var
+  I : Integer;
+begin
+  Result:=[];
+  SetLength(Result, Length(Lines));
+  for I := 0 to High(Lines) do
+    Result[I]:=TrimRight(Lines[I]);
 end;
 
 function WhenTrue(TF: Boolean; const T: RawByteString; const F: RawByteString
