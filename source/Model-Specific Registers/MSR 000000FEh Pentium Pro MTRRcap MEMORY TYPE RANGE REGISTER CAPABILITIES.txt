@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: S000000FE
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 000000FEh - Pentium Pro - "MTRRcap" MEMORY TYPE RANGE REGISTER CAPABILITIES
+Desc:	determine how many and what type of Memory Type Range Registers are
+	  implemented
+SeeAlso: MSR 00000200h,MSR 00000250h,MSR 000002FFh
+
+Bitfields for Pentium Pro "MTRRcap" register:
+Bit(s)	Description	(Table R0037)
+ 63-8	???
+ 7-0	number of Memory Type Range Registers (at MSR 02xxh)
+

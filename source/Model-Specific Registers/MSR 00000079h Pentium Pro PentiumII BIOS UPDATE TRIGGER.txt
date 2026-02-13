@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000079
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000079h - Pentium Pro, PentiumII - BIOS UPDATE TRIGGER
+Size:	32 bits
+Access:	Write
+Desc:	writing the linear address of a microcode update block (see #00533)
+	  to this MSR causes the CPU to initiate a microcode load
+SeeAlso: INT 15/AX=D042h/BL=01h,MSR 0000008Bh
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: S000001E0
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 000001E0h - Pentium Pro - "ROB_CR_BKUPTMPDR6"
+Size:	>= 3 bits
+
+Bitfields for Pentium Pro MSR 000001E0h:
+Bit(s)	Description	(Table R0050)
+ 63-3	???
+ 2	Fast String Enable (default is enabled)
+ 1-0	reserved
+Note:	if bit 2 is set, REP MOVS moves 64 bits each clock cycle if both source
+	  and target are QWORD-aligned
+

@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000005
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000005h - Cyrix 6x86MX - TEST COMMAND/STATUS
+SeeAlso: MSR 00000004h"Cyrix"
+
+Bitfields for 6x86MX Test Command/Status:
+Bit(s)	Description	(Table R0064)
+ 63-32	reserved
+ 31-0	command, similar to Pentium TR5 (see #R0006)
+ 31-24	reserved
+ 23	"SMI" select SMI memory space
+ 22-20	reserved
+ 19	valid data
+ 18-16	"MESI"
+	bits 19-16 together specify state of cache line
+	    1000 modified
+	    1001 shared
+	    1010 exclusive
+	    0011 invalid
+	    1100 locked valid
+	    0111 locked invalid
+ 15-12	reserved
+ 11-8	"MRU" used to determine LRU line
+ 7-6	reserved
+ 5-4	SET
+ 3-2	reserved
+ 1-0	control field
+	00 flush cache without invalidation
+	01 write cache
+	10 read cache
+	11 no cache or test register modification
+SeeAlso: #R0062,#R0063
+

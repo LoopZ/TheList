@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: SC0000081
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR C0000081h - AMD K6 - SYSCALL TARGET ADDRESS
+Size:	64 bits
+Note:	if SYSCALL is supported (as indicated by CPUID; SYSCALL is not
+	  yet implemented in current steppings of the K6), this MSR specifies
+	  the address to which the SYSCALL instruction (opcode 0Fh 05h -- same
+	  as 80286 LOADALL!) transfers control, provided it has also been
+	  enabled via MSR C0000080h
+SeeAlso: MSR C0000080h,MSR C0000082h
+
+Bitfields for AMD K6 SYSCALL Target Address Register:
+Bit(s)	Description	(Table R0060)
+ 63-48	"RET_BASE" CS and SS selector base for SYSRET
+ 47-32	"CALL_BASE" CS and SS selector base for SYSCALL
+ 31-0	"TEIP" target EIP address for SYSCALL
+SeeAlso: #R0059
+

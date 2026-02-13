@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: SC0000080
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR C0000080h - AMD K6 - EXTENDED FEATURE ENABLE REGISTER
+Size:	4 bits
+SeeAlso: MSR C0000081h,MSR C0000082h
+
+Bitfields for AMD K6 Extended Feature Enable Register:
+Bit(s)	Description	(Table R0059)
+ 63-5	reserved
+ 4	disable L2 cache (K6-III)
+ 3      disable GEWBED (global EWBE)
+ 2      disable SEWBED (speculative EWBE)
+ 1      enable data prefetch
+ 0	system call extension (SYSCALL/SYSRET) enabled
+	when disabled, both instructions generate an Undefined Opcode
+	  exception
+Note:	CPUID 80000001h should be checked to determine whether the SYSCALL
+	  extension is implemented by the processor
+SeeAlso: #R0060
+

@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: SC0000089
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR C0000089h - AMD K6-III - L2AAR (Level 2 CACHE ACCESS REGISTER)
+Size:	53 bits
+
+Bitfields for AMD K6-III Level 2 Cache Access Register:
+Bit(s)	Description	(Table R0072)
+ 52	"T/D" select tag or data
+	=1 access cache tag
+	=0 access data
+ 51-50	reserved
+ 49-48	way
+ 47-38	set number
+ 37	line number
+ 36-35	octet within line
+ 34	select high/low DWORD
+ 33-32	reserved
+---T/D=0 ---
+ 31-0	data
+---T/D=1 ---
+ 31-15	tag
+ 14-12	reserved
+ 11-10	Line1 MESI state
+	11 = Modified
+	10 = Exclusive
+	01 = Shared
+	00 = Invalid
+ 9-8	Line2 MESI state (as for bits 11-10)
+ 7-0	LRU states (two bits per way)
+	00 most recently used
+	11 least recently used
+

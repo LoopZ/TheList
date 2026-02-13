@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: S8000001D
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 8000001Dh - Pentium - PROBE MODE CONTROL REGISTER
+Size:	32 bits
+Access:	Read/Write
+
+Bitfields for Probe Mode Control Register:
+Bit(s)	Description	(Table R0058)
+ 31	(read-only) System Management Mode is active
+ 30-3	reserved (0)
+ 2	PB1 monitors breakpoint #1 matches instead of performance counter #1
+ 1	PB0 monitors breakpoint #0 matches instead of performance counter #0
+ 0	ICEBP enabled (every debug exception enters Probe Mode)
+

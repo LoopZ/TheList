@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00001002
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00001002h - IBM 386/486 SLC - PROCESSOR OPERATION REGISTER
+Size:	30 bits
+SeeAlso: MSR 00001000h,MSR 00001001h,MSR 00001004h
+
+Bitfields for IBM 386/486 SLC Processor Operation Register:
+Bit(s)	Description	(Table R0055)
+ 63-30	reserved
+ 29	enable External Dynamic Frequency Shift
+ 28	Dynamic Frequency Shift ready
+ 27	Dynamic Frequency Shift Mode
+ 26-24	clocking mode
+	000 clock x1
+	011 clock doubler
+	100 clock tripler
+ 23-0	reserved
+SeeAlso: #R0053,#R0054
+

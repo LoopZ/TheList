@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000120
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000120h - Centaur (IDT) C6/WinChip2 - Memory Config Register Control
+Size: 25 bits
+Access:	Write-Only on C6, Read-Write on WinChip2
+SeeAlso: MSR 00000107h,MSR 00000110h,MSR 00000117h
+
+Bitfields for Centaur (IDT) C6/WinChip2 Memory Configuration Control Register:
+Bit(s)	Description	(Table R0045)
+ 63-25	reserved
+ 24-20	reserved (1)
+---WinChip2---
+ 19-17	Trait Mode Key (must write this value to bits 8-6 to enable MCRs)
+ 16	MCR7 is in use
+ 15	MCR6 is in use
+ 14	MCR5 is in use
+ 13	MCR4 is in use
+ 12	MCR3 is in use
+ 11	MCR2 is in use
+ 10	MCR1 is in use
+ 9	MCR0 is in use
+ 8-6	Trait Mode Control (memory config registers enabled if these bits equal
+	  bits 19-17)
+---C6---
+ 19-6	reserved
+------
+ 5	reserved
+ 4	enable weak write ordering
+ 3-2	write merging for string writes
+	00 forward combining
+	01 forward/overlapped
+	10 forward/reverse
+	11 forward/reverse/overlap
+ 1-0	write merging for non-stack/non-string writes
+	00 forward combining
+	01 forward/overlapped
+	10 forward/reverse
+	11 forward/reverse/overlap
+SeeAlso: #R0041
+

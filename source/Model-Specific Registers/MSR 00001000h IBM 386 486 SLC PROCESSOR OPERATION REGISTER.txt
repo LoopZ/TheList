@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00001000
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00001000h - IBM 386/486 SLC - PROCESSOR OPERATION REGISTER
+Size:	19 bits
+Access:	Read/Write
+SeeAlso: MSR 00001001h,MSR 00001002h
+
+Bitfields for IBM 386/486 SLC Processor Operation Register:
+Bit(s)	Description	(Table R0053)
+ 63-19	reserved
+ 18	(486SLC only) Low Power PLA
+ 17	(486SLC only) Bus Read
+ 16	(486SLC only) Cache Parity Generate Error
+ 15	enable cacheability of NPX operands
+ 14	enable PWI ADS
+ 13	enable Low Power Halt Mode (HLT instruction stops CPU clock)
+ 12	extended Out instruction (CPU waits for READY after any output)
+ 11	cache reload bit
+ 10	enable internal KEN# signal
+ 9	disable cache lock mode
+ 8	reserved
+ 7	enable cache
+ 6	enable DBCS
+ 5	enable Power Interrupt
+ 4	enable Flush Snooping
+ 3	enable Snoop Input
+ 2	address line A20 mask (see also #02753,#P0415)
+ 1	enable cache parity checking
+ 0	Cache Parity Error occurred
+SeeAlso: #R0054,#R0055
+

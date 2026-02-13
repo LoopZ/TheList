@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000002
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000002h - Pentium - (TR1) PARITY REVERSAL TEST REGISTER
+Size:	14 bits
+Access:	Write
+SeeAlso: MSR 00000004h,MSR 80000002h
+
+Bitfields for Parity Reversal Test Register (TR1):
+Bit(s)	Description	(Table R0002)
+ 63-14	reserved (0)
+ 13	microcode
+ 12	Data TLB data
+ 11	Data TLB tag
+ 10	Data Cache data
+ 9	Data Cache tag
+ 8	Code TLB data
+ 7	Code TLB tag
+ 6	"ID3" data cache odd bits 129-255
+ 5	"ID2" data cache even bits 128-254
+ 4	"ID1" data cache odd bits 1-127
+ 3	"ID0" data cache even bits 0-126
+ 2	instruction cache tag
+ 1	do not go into SHUTDOWN mode on parity error
+ 0	(read/write-clear) "Parity Error Summary" set on any parity error
+Notes:	bits 2-13 indicate that the parity should be reversed for the given
+	  subsystem, thus always forcing a parity error
+	the Centaur (IDT) WinChip C6 supports bit 1 (no shutdown)
+

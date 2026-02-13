@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000110
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000110h - Centaur (IDT) C6/WinChip2 - Memory Configuration Register #0
+Size:	64 bits
+Access:	Write-Only
+SeeAlso: MSR 00000107h,MSR 00000111h,MSR 00000117h"Centaur"
+
+Bitfields for Centaur (IDT) WinChip C6 Memory Configuration Register:
+Bit(s)	Description	(Table R0041)
+ 63-44	base address of memory region
+ 43-32	reserved
+ 31-12	memory region mask
+	(region is hit if (base AND address) == (mask AND address))
+ 11-5	reserved
+ 4-3	memory write order
+	00 strong ordering
+	01 weak for string
+	10 weak for stack
+	11 weak ordering for all writes
+ 2	enable write merging for stack writes
+ 1	enable write merging for string writes
+ 0	enable write merging for other writes
+SeeAlso: #R0045
+

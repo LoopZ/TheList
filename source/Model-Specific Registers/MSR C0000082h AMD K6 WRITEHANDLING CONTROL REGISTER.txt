@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: SC0000082
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR C0000082h - AMD K6 - WRITE-HANDLING CONTROL REGISTER
+Size:	9 bits
+Note:	refer to "AMD-K6(tm) MMX(tm) Enhanced Processor Data Sheet",
+	  order #20695, http://www.amd.com
+SeeAlso: MSR C0000080h,MSR C0000081h
+
+Bitfields for AMD K6 Write-Handling Control Register:
+Bit(s)	Description	(Table R0061)
+---AMD K6 prior to model 8,step 8---
+ 63-9	reserved
+ 8	write cacheability detection enabled
+	Note:	the Intel Triton chipset does not support write cacheability
+		  detection, so this bit should be kept clear
+ 7-1	write allocate enable limit (in 4M units)
+	memory above this limit will not be accessed without a write-allocate
+ 0	write allocate enabled for 15-16M region
+---AMD K6 model 8,step 8 and later---
+ 63-32	reserved
+ 31-22	Write Allocation enable limit, in 4MB units
+ 21-17	reserved
+ 16	enable Write Allocation for 15MB-16MB
+ 15-0	reserved
+

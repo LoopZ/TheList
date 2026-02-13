@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR C0000087h - AMD K6-2 - "PSOR" Processor State Observability Register
+Size:	8 bits
+Access:	Read-Only
+SeeAlso: MSR C0000085h,MSR C0000088h
+
+Bitfields for AMD K6 Processor State Observability Register:
+Bit(s)	Description	(Table R0068)
+ 63-9	reserved
+ 8	"NOL2" (No L2 functionallity)
+ 7-4    CPU stepping
+ 3	reserved
+ 2-0    "BF" Bus Frequency Divisor
+	000 = x4.5	100 = x2.5
+	001 = x5.0	101 = x3.0
+	010 = x4.0	110 = x6.0
+	011 = x5.5	111 = x5.5
+SeeAlso: #R0067,#R0069
+

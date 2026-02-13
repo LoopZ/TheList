@@ -1,0 +1,197 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000011
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000011h - Pentium, Cyrix 6x86MX - EVENT COUNTER SELECTION AND CONTROL
+Size:	26 bits
+Access:	Read/Write
+Note:	also supported by Cyrix 6x86MX and Centaur (IDT) WinChip C6
+SeeAlso: MSR 00000012h,MSR 00000013h,MSR 00000186h,MSR 80000011h
+
+Bitfields for Pentium Event Counter Control:
+Bit(s)	Description	(Table R0015)
+ 63-27	reserved (0)
+ 26	(Cyrix 6x86MX only) "ES1" bit 6 of event type for counter 1
+ 25	external pin PM1 shows counter overflows instead of counter increments
+ 24	counter 1 counts clock cycles instead of events
+ 23	enable counter 1 counting in CPL3
+ 22	enable counter 1 counting in CPL2-0
+ 21-16	event type for counter 1 (see #R0017)
+ 15-11	reserved
+ 10	(Cyrix 6x86MX only) "ES0" bit 6 of event type for counter 0
+ 9	external pin PM0 shows counter overflows instead of counter increments
+ 8	counter 0 counts clock cycles instead of events
+ 7	enable counter 0 counting in CPL3
+ 6	enable counter 0 counting in CPL2-0
+ 5-0	event type for counter 0 (see #R0017)
+SeeAlso: #R0016
+
+Bitfields for IDT WinChip C6 Event Counter Control:
+Bit(s)	Description	(Table R0016)
+ 63-24	reserved
+ 23-16	counter 1 control (see #R0018,#R0065)
+ 15-8	reserved
+ 7-0	counter 0 control (see #R0018,#R0065)
+SeeAlso: #R0015
+
+(Table R0017)
+Values for Pentium/6x86MX Event Counter event type:
+ 00h	data read
+ 01h	data write
+ 02h	data TLB miss
+ 03h	data read miss
+ 04h	data write miss
+ 05h	write hit to Modified/Exclusive cache line
+ 06h	data cache lines written back
+ 07h	external data cache snoops
+ 08h	external data cache snoop hits
+ 09h	simultaneous memory accesses in both pipes
+ 0Ah	data bank access conflict between U and V pipes
+ 0Bh	misaligned data memory or I/O references
+ 0Ch	code read
+ 0Dh	code TLB miss
+ 0Eh	code cache miss
+ 0Fh	any segment register load
+ 10h	(Pentium only) segment descriptor cache accessed
+ 11h	(Pentium only) segment descriptor cache hit
+ 12h	any branch
+ 13h	BTB hit
+ 14h	taken branch / BTB hit
+ 15h	pipeline flushes
+ 16h	total instructions executed
+ 17h	instruction executed in V pipe
+ 18h	bus utilization
+ 19h	pipeline stalled by write backups
+ 1Ah	pipeline stalled by data memory read
+ 1Bh	pipeline stalled by write to Modified/Exclusive cache line
+ 1Ch	locked bus cycle
+ 1Dh	I/O cycle
+ 1Eh	non-cacheable memory references
+ 1Fh	pipeline stalled by Address Generation Interlock
+ 20h	source/destination conflict
+ 21h	(undoc) decoding stalls (could only decode one instruction in a
+	  particular clock cycle, and that instruction was potentially
+	  pairable; i.e. if the following instruction could have executed in
+	  the V pipe, it didn't because it wasn't decoded in time)
+ 22h	floating-point operations
+ 23h	Breakpoint 0 match
+ 24h	Breakpoint 1 match
+ 25h	Breakpoint 2 match
+ 26h	Breakpoint 3 match
+ 27h	hardware interrupt
+ 28h	data read or data write
+ 29h	data read/write miss
+---Pentium---
+ 2Ah-3Fh reserved
+---PentiumMMX---
+ 2Ah	bus ownership latency (counter 0, duration) or
+	bus ownership transfers (counter 1)
+ 2Bh	MMX instructions executed in U pipe (counter 0) or V pipe (counter 1)
+ 2Ch	cache M-state line sharing (counter 0) or
+	cache line sharing (counter 1)
+ 2Dh	EMMS instructions executed (counter 0) or
+	transitions between MMX/FP (counter 1)
+ 2Eh	bus use due to processor activity (counter 0, duration) or
+	writes to non-cacheable memory (counter 1)
+ 2Fh	saturating MMX instructions executed (counter 0) or
+	saturations performed (counter 1)
+ 30h	number of cycles not in HLT state (counter 0) or
+	number of cycles in HLT state (counter 1)
+ 31h	MMX instruction data reads (counter 0) or
+	MMX instruction data read misses
+ 32h	floating-point stalls (counter 0) or taken branches (counter 1)
+ 33h	D1 starvation and FIFO is empty (counter 0) or
+	D1 starvation and only one instruction in FIFO (counter 1)
+ 34h	MMX instruction data writes (counter 0) or
+	MMX instruction data write misses (counter 1)
+ 35h	pipeline flushes due to wrong branch prediction (counter 0) or
+	pl. flushes due to wrong branch pred. resolved in WB stage (counter 1)
+ 36h	misaligned data memory reference on MMX instruction (counter 0) or
+	pipeline stalled waiting for MMX instruction data mem read (counter 1)
+ 37h	returns, predicted incorrectly or not at all (counter 0) or
+	total returns predicted (counter 1)
+ 38h	clocks MMX instruction multiply unit interlock (counter 0) or
+	clocks MOVD/MOVQ store stall (counter 1)
+ 39h	returns (counter 0 only)
+ 3Ah	BTB false entries (counter 0) or
+	BTB prediction miss on not-taken branch (counter 1)
+ 3Bh	clocks MMX instruction stalled due to full write buffers (counter 0) or
+	clocks stalled on MMX instruction write to E or M line (counter 1)
+---6x86MX---
+ 2Ah	reserved
+ 2Bh	MMX instructions executed in X pipe (counter 0) or Y pipe (counter 1)
+ 2Ch	reserved
+ 2Dh	EMMS instructions executed (counter 0) or
+	transitions between MMX/FP (counter 1)
+ 2Eh	reserved
+ 2Fh	saturating MMX instructions executed (counter 0) or
+	saturations performed (counter 1)
+ 30h	reserved
+ 31h	MMX instruction data reads (counter 0 only)
+ 32h	taken branches (counter 1 only)
+ 33h-36h reserved
+ 37h	number of returns predicted incorrectly or not at all (counter 0) or
+	total returns predicted (counter 1)
+ 38h	clocks MMX instruction multiply unit interlock (counter 0) or
+	clocks MOVD/MOVQ store stall (counter 1)
+ 39h	returns (counter 0) or return stack buffer overflows (counter 1)
+ 3Ah	BTB false entries (counter 0) or
+	BTB prediction miss on not-taken branch (counter 1)
+ 3Bh	clocks MMX instruction stalled due to full write buffers (counter 0) or
+	clocks stalled on MMX instruction write to E or M line (counter 1)
+ 3Ch-3Fh reserved
+ 40h	L2 TLB misses (code or data)
+ 41h	L2 TLB data miss
+ 42h	L2 TLB code miss
+ 43h	L1 TLB miss (code or data)
+ 44h	TLB flushes
+ 45h	TLB page invalidations
+ 46h	TLB page invalidations which hit
+ 47h	reserved
+ 48h	instructions decoded
+ 49h-7Fh reserved
+SeeAlso: #R0015,#R0018
+
+(Table R0018)
+Values for IDT WinChip C6 event:
+ 00h	internal clocks
+ 01h	valid cycles reaching writebacks
+ 02h	x86 instructions
+ 47h	data read cache misses
+ 4Ah	data write cache misses
+ 63h	instruction fetch cache miss
+SeeAlso: #R0016,#R0017,#R0065
+
+(Table R0065)
+Values for IDT WinChip2 event:
+ 00h	Data Read
+ 01h	Data Write
+ 02h	Data TLB Miss
+ 03h	Data Read Cache Miss
+ 04h	Data write Cache Miss
+ 06h	Data Cache writebacks
+ 08h	Data Cache Snoop Hits
+ 09h	Push/push pop/pop pairing
+ 0Bh	Misaligned Data Memory
+ 0Ch	Code read
+ 0Dh	Code TLB Miss
+ 0Eh	Instruction Fetch cache miss
+ 13h	BHT hits
+ 14h	BHT candidate
+ 16h	Instruction executed
+ 17h	Instruction in pipe 2 (V-pipe)
+ 18h	Bus Utilization
+ 1Dh	I/O Read or Write cycle
+ 28h	Data Read or Data Write
+ 2Bh	MMX_instruction U-pipe (EC0)
+ 2Bh	MMX_instruction V-pipe (EC1)
+ 37h	Returns predicted incorrectly (EC0)
+ 37h	Returns predicted incorrectly (EC1)
+ 3Fh	Internal Clocks (Default event for CTR0)
+ 47h	data read cache misses
+ 4Ah	data write cache misses
+ 63h	instruction fetch cache miss
+SeeAlso: #R0016,#R0018 
+

@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000107
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000107h - Centaur (IDT) WinChip C6/WinChip2 - Feature Control Register #1
+Size:	30 bits
+SeeAlso: MSR 00000108h,MSR 00000109h
+
+Bitfields for Centaur (IDT) C6/WinChip2 Feature Control Register #1:
+Bit(s)	Description	(Table R0038)
+ 61-31	reserved
+ 30	enable MOV TRx instructions
+ 29	disable CPUID instruction
+ 28	don't use alternative "divide 5 by 2" EFLAGS
+	0 = use Centaur (IDT) flags
+	1 = use Intel flags
+ 27-26	reserved
+ 25-22	stepping ID
+ 21	reserved
+ 20	enable AMD 3DNow! instructions (WinChip2)
+ 19	enable pairing of MMX instructions (WinChip2)
+ 18-17	reserved
+ 16	enable return stack (default)
+ 15	disable bus pipelining #NA response
+ 14	disable data cache
+ 13	disable instruction cache
+ 12	enable branch predictions (WinChip2+)
+ 11	disable page directory cache
+ 10	reserved
+ 9	enable MMX instructions (default)
+ 8	enable data cache updates for PDE/PTE (C6)
+ 8	disable PDE/PTE update locking (WinChip2)
+ 7	disable check for self-modifying code
+ 6	enable linear burst mode
+ 5	disable #STPCLK support
+ 4	disable machine check exception
+ 3	disable power management
+ 2	enable #MC for internal errors
+ 1	set CPUID feature flag for CMPXCHG8 instruction
+ 0	reserved
+SeeAlso: #R0039,#R0040
+

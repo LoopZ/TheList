@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000119
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000119h - PentiumII - "BBL_CR_CTL" - CACHE CONTROL REGISTER
+SeeAlso: MSR 00000118h,MSR 0000011Ah
+
+Bitfields for PentiumII "BBL_CR_CTL":
+Bit(s)	Description	(Table R0043)
+ 63-22	reserved
+ 21	disable processor serial number (Pentium III)
+ 20-19	reserved
+ 18	use supplied ECC
+ 17	reserved
+ 16	L2 hit
+ 15-14	reserved
+ 13-12	state from L2 entry
+	00 invalid
+	01 shared
+	10 exclusive
+	11 modified
+ 11-10	way number from L2 cache
+ 9-8	way number to L2
+ 7	reserved
+ 6-5	state to L2 entry (as for bits 13-12)
+ 4-0	L2 command
+	00010 read L2 control register
+	00011 write L2 control register
+	010mm tag write with data read
+	01100 data read with LRU update
+	01110 tag read with data read
+	01111 tag inquire
+	100mm tag write
+	111mm tag write w/ data write
+	('mm' = MESI state, coded as for bits 13-12)
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000007
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000007h - Pentium - (TR5) CACHE CONTROL
+Size:	15 bits
+Access:	Write
+SeeAlso: MSR 00000006h,MSR 00000008h,MSR 80000007h
+
+Bitfields for Cache Control Test Register (TR5):
+Bit(s)	Description	(Table R0006)
+ 63-20	reserved (0)
+ 19	entry[1] (PentiumMMX only)
+	combined with bit 12, selects Way within cache set
+ 18-15	reserved (0)
+ 14	cache write-back mode (instead of write-through) enabled
+ 13	select data cache instead of code cache
+ 12	select Way within cache set
+ 11-5	cache set number
+ 4-2	buffer select (specify which 32-bit portion of cache line to access)
+ 1-0	control
+	00 normal operation
+	01 test write
+	10 test read
+	11 flush (action controlled by TR7)
+		TR7.CD/TR7.WD	Action
+		 0	x	invalidate code cache line
+		 1	0	invalidate data cache line, but don't writeback
+		 1	1	invalidate data cache line, writeback if dirty
+SeeAlso: #R0004,#R0005,#R0064
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000001
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000001h - Pentium, Pentium Pro - MACHINE CHECK EXCEPTION TYPE
+Size:	6 bits
+Access:	Read
+Desc:	when a Machine Check exception occurs, this register contains the
+	  reason for the exception
+Notes:	also supported by AMD Am5k86, K5, and K6; however, the K6 does not
+	  actually support the machine check -- this register may be written
+	  on the K6 to emulate that functionality
+	this register does not exist on the Pentium Pro/Pentium II, but will
+	  not cause an exception when accessed
+SeeAlso: MSR 00000000h,MSR 80000001h,INT 12"MACHINE CHECK"
+
+Bitfields for Machine Check Exception type (MSR 00000001h):
+Bit(s)	Description	(Table R0001)
+ 63-6	reserved (0)
+ 5	"FERI" Fan Error Indicator (Pentium OverDrive only) -- CPU overheated
+	(once set, this bit remains set even through CPU reset)
+ 4	bus cycle causing exception was locked
+ 3	state of M/IO# pin during bus cycle
+ 2	state of D/C# pin during bus cycle
+ 1	state of W/R# pin during bus cycle
+ 0	Machine Check pending (cleared by reading this MSR)
+

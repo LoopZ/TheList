@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: S000002FF
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 000002FFh - Pentium Pro - "MTRRdefType" - DEFAULT MEMORY TYPE
+Note:	this MSR sets the memory type to use for any range not claimed by one
+	  of the other MTRRs
+SeeAlso: MSR 000000FEh,MSR 00000200h,MSR 00000250h
+
+Bitfields for Pentium Pro MSR 000002FFh:
+Bit(s)	Description	(Table R0051)
+ 63-12	reserved
+ 11	"MTRRenable" enable Memory Type Register registers
+ 10	Fixed MTRR enable
+ 9-3	reserved
+ 2-0	default memory type
+

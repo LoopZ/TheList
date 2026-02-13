@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: S0000001B
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 0000001Bh - Pentium Pro, PentiumII - APIC BASE ADDRESS
+SeeAlso: MEM FEE00000h
+
+Bitfields for Pentium Pro/PentiumII MSR 0000001Bh:
+Bit(s)	Description	(Table R0019)
+ 63-36	reserved
+ 35-32	(P-II) APIC base address bits 35-32
+	(PPro) reserved
+ 31-12	APIC base address bits 31-12
+ 11	APIC global enable (can not be cleared except through hard reset)
+ 10-9	reserved
+ 8	this is the BootStrap Processor
+ 7-0	reserved
+

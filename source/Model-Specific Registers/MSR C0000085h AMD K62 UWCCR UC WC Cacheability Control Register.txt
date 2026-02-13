@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR C0000085h - AMD K6-2 - "UWCCR" UC/WC Cacheability Control Register
+Size:	64 bits
+Access:	Read-Write
+Note:	available on the K6-III and K6-2 Step 8 or higher
+SeeAlso: MSR C0000087h,MSR C0000088h
+
+Bitfields for AMD K6 UC/WC Cacheability Control Register:
+Bit(s)	Description	(Table R0067)
+ 63-49	"PHYS_BASE1" Physical Address Base # 1, 128 KB and range size-aligned
+ 48-34	"PHYS_MASK1" Physical Address Mask # 1, in units of 128KB
+ 33	"WC1" Write Combinbing # 1
+	=1 enabled/uncachable
+	=0 disabled
+ 32	"UC1" Uncacheble #1
+	=1 uncachable
+	=0 disabled
+ 31-17	"PHYS_BASE0"
+ 16-2	"PHYS_MASK0" Physical Address Mask # 1, in units of 128KB
+ 1	"WC0" write combining #0
+ 0	"UC0" uncacheable #0
+SeeAlso: #R0068
+

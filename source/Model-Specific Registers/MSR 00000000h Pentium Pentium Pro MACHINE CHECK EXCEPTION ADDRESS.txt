@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000000
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000000h - Pentium, Pentium Pro - MACHINE CHECK EXCEPTION ADDRESS
+Size:	32-36 bits
+Access:	Read
+Desc:	on any Machine Check exception (INT 12), this MSR contains the physical
+	  address at which the exception occurred
+Notes:	also supported by AMD Am5k86, K5, and K6; however, the K6 does not
+	  actually support the machine check -- this register may be written
+	  on the K6 to emulate that functionality
+	this register does not exist on the Pentium Pro/Pentium II, but will
+	  not cause an exception when accessed
+SeeAlso: MSR 00000001h,MSR 80000000h,INT 12"MACHINE CHECK"
+

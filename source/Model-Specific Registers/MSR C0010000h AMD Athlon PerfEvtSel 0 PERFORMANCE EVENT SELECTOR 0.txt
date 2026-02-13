@@ -1,0 +1,112 @@
+--------------------------------------------------------------------------------
+ Unique ID: SC0010000
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR C0010000h - AMD Athlon - "PerfEvtSel[0]" PERFORMANCE EVENT SELECTOR #0
+Size:	32 bits
+SeeAlso: MSR C0010001h,MSR C0010004h
+
+Bitfields for AMD Athlon Performance Event Selector:
+Bit(s)	Description	(Table R0070)
+ 31-24	counter mask
+ 23	"INV" invert mask
+ 22	"EN" enable counter
+ 21	reserved
+ 20	enable APIC interrupt on counter overflow
+ 19	"PC" Pin Control
+	=1 CPU toggles PMi pins on counter overflow
+ 18	"E" edge detect
+ 17	OS Mode (count when CPL=0)
+ 16	User Mode (count when CPL=1..3)
+ 15-8	unit mask (event-specific)
+ 7-0	event mask (see #R0071)
+
+(Table R0071)
+Values for AMD Athlon performance counter Event Mask:
+	Description			Unit Mask	Note
+ 20h	Load Segment Register		x1xx xxxx	HS
+					xx1x xxxx	GS
+					xxx1 xxxx	FS
+					xxxx 1xxx	DS
+					xxxx x1xx	SS
+					xxxx xx1x	CS
+					xxxx xxx1	ES
+ 21h	Stores to active instruction stream
+ 40h	Data cache accesses
+ 41h	Data cache misses
+ 42h	Data cache refills		xxx1 xxxx	M
+					xxxx 1xxx	O (Owner)
+					xxxx x1xx	E
+					xxxx xx1x	S
+					xxxx xxx1	I
+ 43h	Data cache refills from stream	(-------- see 42h ---------)
+ 44h	Data cache writebacks		(-------- see 42h ---------)
+ 45h	L1 DTLB Misses and L2 DTLB misses
+ 46h	L1 and L2 DTLB misses
+ 47h	Misaligned data reference
+ 64h	DRAM system request
+ 65h	System Request with type:	x1xx xxxx	WB
+					xx1x xxxx	WP
+					xxx1 xxxx	WT
+					xxxx xx1x	Data Cache
+					xxxx xxx1	Instr. cache.
+ 73h	Snoop Hits			xxxx x1xx	L2
+					xxxx xx1x	Data cache
+					xxxx xxx1	Instr cache
+ 74h	Single bit ECC error		xxxx xx1x	L2 error
+					xxxx xxx1	system
+ 75h	Internal cache line invalidates	xxxx 1xxx	I inv D
+					xxxx x1xx	I inv I
+					xxxx xx1x	D inv D
+					xxxx xxxx	D inv I
+ 76h	Cycles Processor running (Not in HLT or STPCLK)
+ 79h	L2 requests			1xxx xxxx	Blk Wrt from L2
+					x1xx xxxx	Blk Wrt from DC
+					xx1x xxxx	Blk Wrt from Sys
+					xxx1 xxxx	Blk Rd Data Store
+					xxxx 1xxx	Blk Rd Data Load
+					xxxx x1xx	Read code (data blk)
+					xxxx xx1x	Tag read
+					xxxx xxx1	Tag Write
+ 7Ah	Cycles that at least one fill request wanted to use L2
+ 80h	Instruction cache fetches
+ 81h	Instruction cache misses				
+ 82h	Instruction cache refill from L2
+ 83h	Instruction cache refill from System
+ 84h	L1 ITLB Miss
+ 85h	(L1 and) L2 ITLB Miss 
+ 86h	Snoop Resync
+ 87h	Instruction fetch stall cycle
+ 88h	Return Stack Hits
+ 89h	Return Stack Overflow
+ C0h	Retired Instruction
+ C1h	Retired Ops
+ C2h	Retired branches
+ C3h	Retired branches mispredict
+ C4h	Retired taken branches
+ C5h	Retired taken branches mispredict
+ C6h	Retired far control transfers
+ C8h	Retired near returns
+ C9h	Retired near returns mispredict
+ CAh	Retired indirect branches with target mispredict
+ CDh	Interrupt masked cycles
+ CEh	Interrupt Masked while pending cycles
+ CFh	Number of taken hardware interrupts
+ D0h	Instruction decoder empty
+ D1h	Dispatch Stall
+ D2h	Branch abort to retire
+ D3h	Serialize
+ D4h	Segment load stall
+ D5h	ICU fill
+ D6h	Reservation station fill
+ D7h	FPU full
+ D8h	LS full
+ D9h	All quiet stall
+ DAh	Far transfer or resync branch pending
+ DCh	Breakpoint matches for DR0
+ DDh	Breakpoint matches for DR1
+ DEh	Breakpoint matches for DR2
+ DFh	Breakpoint matches for DR3
+

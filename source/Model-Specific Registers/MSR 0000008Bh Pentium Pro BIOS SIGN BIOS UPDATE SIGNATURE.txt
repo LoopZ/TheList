@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: S0000008B
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 0000008Bh - Pentium Pro - "BIOS_SIGN" BIOS UPDATE SIGNATURE
+Size:	64 bits
+Access:	Read/Write
+Desc:	used to determine which (if any) microcode update has been loaded into
+	  the CPU
+Notes:	whenever a microcode update is loaded, the PentiumPro modifies the
+	  operation of the CPUID instruction to store both the standard CPUID
+	  model information and a 32-bit microcode update ID into this MSR; if
+	  no microcode update has been loaded, the MSR remains unchanged
+	  (it is normally cleared to 0 before using CPUID to test for updates)
+	the low 32 bits of this register (if modified by CPUID) contains the
+	  standard model/stepping information, while the high 32 bits contain
+	  the microcode update ID
+SeeAlso: MSR 00000079h
+

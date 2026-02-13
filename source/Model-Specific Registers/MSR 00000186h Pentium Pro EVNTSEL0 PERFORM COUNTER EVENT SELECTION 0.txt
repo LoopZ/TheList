@@ -1,0 +1,159 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000186
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000186h - Pentium Pro - "EVNTSEL0" - PERFORM. COUNTER EVENT SELECTION 0
+Size:	32 bits
+Access:	Read/Write
+SeeAlso: MSR 000000C1h,MSR 00000187h,MSR 00000011h,MSR 00000012h
+
+Bitfields for Pentium Pro Event Selection MSR:
+Bit(s)	Description	(Table R0047)
+ 31-24	CMASK (counter mask)
+	compare actual count for event on this clock cycle with mask; only
+	  increment counter if count >= mask (count < mask if bit 23 set)
+ 23	invert result of CMASK condition
+ 22	enable counting of events
+ 21	reserved
+ 20	signal performance counter overflows via APIC input
+ 19	signal performance counter overflows via BP0/BP1 pin
+ 18	count occurrences, not duration
+ 17	OS (enable counting in ring 0)
+ 16	USER (enable counting in rings 1,2,3)
+ 15-8	UMASK (Unit Mask register; set to 0 to enable all count options)
+ 7-0	event type (see #R0048)
+
+(Table R0048)
+Values for Pentium Pro/Pentium II performance event type:
+ 00h-01h	documented as unused
+ 02h	number of store buffer forwards
+ 03h	number of store buffer blocks
+ 04h	number of store buffer drain cycles
+ 05h	misaligned data memory references
+ 06h	segment register loads
+ 07h-0Fh	documented as unused
+ 10h	executed computational FP operations
+ 11h	number of microcode-handled FP exceptions
+ 12h	number of multiplies
+ 13h	number of divisions
+ 14h	divider busy cycles
+ 15h-20h	documented as unused
+ 21h	L2 address strobes
+ 22h	L2 cache data bus wait cycles
+ 23h	L2 cache data bus transfer cycles
+ 24h	allocated L2-cache lines
+ 25h	allocated L2 modified lines
+ 26h	removed L2 lines
+ 27h	removed modified L2 lines
+ 28h	instruction fetches from L2 cache
+ 29h	loads requested from L2 cache
+ 2Ah	stores into L2 cache
+ 2Bh-2Dh	documented as unused
+ 2Eh	total L2 requests
+ 2Fh-3Fh	documented as unused
+ 40h	L1 Data Cache Unit load rquests
+ 41h	L1 DCU store requests
+ 42h	L1 DCU locked requests
+ 43h	total memory references (all types, reads+writes+internal retries)
+ 44h	documented as unused
+ 45h	L1 allocated lines
+ 46h	L1 allocated M-state lines
+ 47h	L1 evicted M-state lines
+ 48h	L1 outstanding miss cycles (weighted)
+ 49h	L1 data TLB misses
+ 4Ah-51h	documented as unused
+ 52h	(P-II) self-modifying code occurrences
+ 53h-5Fh	documented as unused
+ 60h	outstanding bus requests
+ 61h	number of cycles BNR pin driven
+ 62h	DRDY# asserted cycles
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 63h	number of cycles with LOCK asserted
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 64h	CPU receiving data cycles
+ 65h	burst-read transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 66h	read for ownership transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 67h	write-back transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 68h	instruction-fetch transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 69h	invalidate transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 6Ah	partial-write transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 6Bh	partial transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 6Ch	I/O transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 6Dh	deferred transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 6Eh	burst transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 6Fh	memory transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 70h	total of all transactions
+	unit mask 20h to get total counts for ALL CPUs, 00h for this CPU only
+ 71h-78h	documented as unused
+ 79h	processor not-halted cycles
+ 7Ah	cycles in which HIT pin is driven
+ 7Bh	cycles in which HITM pin is driven
+ 7Ch-7Dh	documented as unused
+ 7Eh	bus-snoop stall cycles
+ 7Fh	documented as unused
+ 80h	instruction fetches
+ 81h	instruction fetch misses
+ 82h-84h	documented as unused
+ 85h	L1 instruction TLB misses
+ 86h	instruction-fetch stall cycles
+ 87h	instruction-length decoder stall cycles
+ 88h-A1h	documented as unused
+ A2h	resource-related stall cycles
+ A3h-AFh	documented as unused
+ B0h	(P-II) MMX instructions executed
+ B1h	(P-II) saturated arithmetic instructions executed
+ B2h	(P-II) MMX uOPs executed on Port #0--3
+ B3h	(P-II) MMX instructions
+	unit mask selects type(s): 01h packed multiply, 02h packed shift,
+	  04h pack operations, 08h unpack operations, 10h packed logical,
+	  20h packed arithmetic
+ B4h-BFh	documented as unused
+ C0h	retired instructions
+ C1h	retired FLOPs
+ C2h	retired uOPs
+ C3h	documented as unused
+ C4h	retired branch predictions
+ C5h	retired mispredicted branches
+ C6h	total cycles with interrupts disabled
+ C7h	total cycles with interrupts disabled and interrupt(s) pending
+ C8h	received hardware interrupts
+ C9h	retired taken branches
+ CAh	retired taken mispredicted branches
+ CBh	documented as unused
+ CCh	(P-II) transitions between FP and MMX states
+	unit mask: 00h = from MMX to FP, 01h = from FP to MMX
+ CDh	(P-II) SIMD assists (EMMS instructions executed)
+ CEh	(P-II) MMX instructions retired
+ CFh	(P-II) saturated arithmetic instructions retired
+ D0h	decoded instructions
+ D1h	documented as unused
+ D2h	partial stall cycles or events
+ D3h	documented as unused
+ D4h	(P-II) segment rename stalls
+	set unit mask to sum of: 01h for ES, 02h for DS, 04h for FS, 08h for GS
+ D5h	(P-II) segment renames (unit mask as for D4h)
+ D6h	(P-II) retired segment renames
+ D7h-DFh	documented as unused
+ E0h	decoded branch instructinos
+ E1h	documented as unused
+ E2h	BTB misses
+ E3h	documented as unused
+ E4h	bogus branches (predictions generated for non-branch instructions)
+ E5h	documented as unused
+ E6h	number of times BACLEAR asserted (number of static branch predictions)
+ E7h-FFh	documented as unused
+SeeAlso: #R0047
+

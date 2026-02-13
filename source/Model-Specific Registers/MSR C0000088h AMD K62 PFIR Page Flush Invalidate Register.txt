@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR C0000088h - AMD K6-2 - "PFIR" Page Flush/Invalidate Register
+Size:	32 bits
+SeeAlso: MSR C0000085h,MSR C0000087h
+
+Bitfields for AMD K6-2 Page Flush/Invalidate Register:
+Bit(s)	Description	(Table R0069)
+ 63-32	reserved
+ 31-12	"LINPAGE" linear 4KB page address
+ 11-9	reserved
+ 8      "PF" page fault occured
+ 7-1	reserved
+ 0	"F/I" Flush/Invalidate command (=1 invalidate, =0 flush)
+SeeAlso: #R0068
+

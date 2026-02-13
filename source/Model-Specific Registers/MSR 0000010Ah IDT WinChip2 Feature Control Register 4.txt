@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: S0000010A
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 0000010Ah - IDT WinChip2 - Feature Control Register #4
+Size:	6 bits
+Access:	Read-Only
+SeeAlso: MSR 00000109h
+
+Bitfields for IDT WinChip2 Feature Control Register #4:
+Bit(s)	Description	(Table R0066)
+ 63..6	Reserved
+ 5..2	DIVIDEND (if bus speed > 100MHz)
+	DIVIDEND DIVISOR  multiplier_for_100Mhz_bus
+	0101	    01		x2.33
+	0011	    00		x2.5
+	0110	    01		x2.66
+	0100	    00		x3.0
+	1000	    01		x3.33
+	0101	    00		x3.5
+	0110	    00		x4.0
+	0111	    00		x4.5
+ 1..0	DIVISOR Fractional bus frequency multiplier
+	00 = x2	       (on bus < 100 MHz multiplier based on
+	01 = x3	       FCR4[1..0] only
+	10 = x4
+	11 = x5
+

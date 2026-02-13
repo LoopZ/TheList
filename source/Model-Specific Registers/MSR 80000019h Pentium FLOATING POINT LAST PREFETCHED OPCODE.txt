@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: S80000019
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 80000019h - Pentium - FLOATING POINT - LAST PREFETCHED OPCODE
+Size:	11 bits
+Access:	Read
+Desc:	this register stores the opcode of the last floating-point opcode to
+	  be prefetched by the CPU
+SeeAlso: MSR 8000001Ah,MSR 8000001Bh
+
+Bitfields for Pentium Floating-Point Opcode:
+Bit(s)	Description	(Table R0057)
+ 63-11	reserved (0)
+ 10-8	low three bits of first byte of floating-point instruction
+ 7-0	second byte of floating-point instruction
+Note:	both a standalone FWAIT and the instruction D8h 9Bh are represented
+	  as 09Bh
+

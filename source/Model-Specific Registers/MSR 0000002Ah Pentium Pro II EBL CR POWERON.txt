@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: S0000002A
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 0000002Ah - Pentium Pro/II - "EBL_CR_POWERON"
+Size:	32 bits
+Access:	Read/write
+
+Bitfields for Pentium Pro MSR 0000002Ah:
+Bit(s)	Description	(Table R0020)
+ 31-27	reserved
+ 26	(read-only) Low Power enable
+	allow processor to stop internal clocks in Stop-Grant, Sleep, Deep
+	  Sleep states
+ 25	reserved
+ 24-22	(read-only) clock frequency ratio (see #R0021)
+ 21-20	(read-only) symmetric arbitration ID
+ 19-18	???
+ 17-16	(read-only) APIC cluster ID
+ 15	(read-only) FRC [Funtional Redundancy Checking] mode enabled
+ 14	(read-only) Power-on Reset Vector at 1M instead of 4G
+ 13	(read-only) IN Order Queue depth is 1 instead of 8
+ 12	(read-only) BINIT# observation enabled
+ 11	reserved
+ 10	(read-only) AERR# observation enabled
+ 9	Execute-BIST enabled
+ 8	output tri-state enabled
+ 7	disable BINIT# drive
+ 6	disable BERR# for initiator internal errors
+ 5	reserved
+ 4	disable BERR# for initiator bus requests
+ 3	disable AERR# drive
+ 2	disable response error checking
+ 1	disable data error checking
+ 0	data bus uses ECC instead of parity
+
+(Table R0021)
+Values for Pentium Pro/PentiumII clock multiplier:
+ 0	x2
+ 1	x4
+ 2	x3
+ 4	x2.5
+ 6	x3.5
+ 15	x2
+SeeAlso: #R0020
+

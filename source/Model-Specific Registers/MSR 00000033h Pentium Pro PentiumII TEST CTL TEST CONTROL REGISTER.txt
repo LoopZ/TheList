@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000033
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000033h - Pentium Pro, PentiumII - "TEST_CTL" TEST CONTROL REGISTER
+SeeAlso: 32 bits
+
+Bitfields for Pentium Pro MSR 0033h:
+Bit(s)	Description	(Table R0022)
+ 31	(step sB1 and later) disable LOCK# for locked transactions which
+	  are split across a cache line boundary
+ 30	(step sB1 and later) disable Instruction Streaming buffers
+	--used to work around sB1 errata 58 and 59
+ 29-0	reserved
+

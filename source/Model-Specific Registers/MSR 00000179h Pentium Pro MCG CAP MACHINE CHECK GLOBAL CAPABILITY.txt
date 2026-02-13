@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000179
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000179h - Pentium Pro - "MCG_CAP" MACHINE CHECK GLOBAL CAPABILITY
+Desc:	indicate how many banks of error-reporting MSRs are implemented
+InstallCheck:	CPUID feature bit 14 is set
+SeeAlso: MSR 0000017Ah,MSR 0000017Bh
+
+Bitfields for Pentium Pro "MCG_CAP" register:
+Bit(s)	Description	(Table R0046)
+ 63-8	unused???
+ 7-0	number of MCRs
+

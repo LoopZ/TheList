@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000008
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000008h - Pentium, PentiumMMX - (TR6) TLB COMMAND
+Size:	32 bits
+Access:	Read/Write
+SeeAlso: MSR 00000007h,MSR 00000009h,MSR 80000008h
+
+Bitfields for Pentium TLB Command Test Register:
+Bit(s)	Description	(Table R0007)
+ 63-32	reserved (0)
+ 31-12	linear address
+ 11	TLB entry is valid
+ 10	page is dirty (has been written to)
+ 9	page may only be accessed from Ring 0
+ 8	page may be written
+ 7-3	reserved (0)
+ 2	page is 4M instead of 4K
+ 1	data TLB instead of code TLB
+ 0	operation (0=write, 1=read)
+SeeAlso: #R0008
+

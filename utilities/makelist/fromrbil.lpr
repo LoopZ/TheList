@@ -176,6 +176,8 @@ end;
 { Global variables and constants used during processing a LST file }
 const
   ItemBreak = '--------';        // String that separates parts of the LST file
+  HeadPadding = 12;              // Left Padding of fields shown in some file headers
+  NoneString = 'n/a';            // When no flags or category for LST entry
   TextExt = '.txt';
   _Header = '_Header' + TextExt; // Startng output "Header" file name
   LineEnding = CRLF;             // Line ending used for text file output
@@ -192,7 +194,77 @@ var
   Index : integer;               // Current Line position of InStrs
   SectionBreak : boolean;        // Processing flag for end of a file section
   SectionTitle : String;         // Section Title
+  SectionCategory : String;
   SectionFlags : String;
+
+function FilterFlags(S : String) : String;
+var
+  T : String;
+begin
+  Result:=S;
+  T:=Trim(PopDelim(S, '-'));
+  SectionFlags:=CutDelim(T, SPACE, 3,3);
+  if SectionFlags <> '' then
+    Result:=CutDelim(T, SPACE, 1,2) + ' -' + S;
+end;
+
+function GetCategoryInfo : String;
+var
+  I : Integer;
+  S : String;
+begin
+  Result:='';
+  for I := Low(CATEGORIES) to High(CATEGORIES) do
+    if SectionCategory = CATEGORIES[I].C then begin
+      S:=CATEGORIES[I].D;
+      Break;
+    end;
+  if S = '' then
+    for I := Low(CATEGORIES) to High(CATEGORIES) do
+      if '*' = CATEGORIES[I].C then begin
+        S:=CATEGORIES[I].D;
+        Break;
+      end;
+  if S = '' then S:='Unknown Category';
+  Result:=Leftpad('Category: ',HeadPadding) + SectionCategory + SPACE2 + S + LF;
+end;
+
+function GetFlagInfo : String;
+var
+  I, P : Integer;
+  S : String;
+begin
+  Result:='';
+  if Length(SectionFlags) = 0 then
+    if SectionFlags = '' then begin
+      Result:=LeftPad('Flag: ', HeadPadding) + NoneString + LF;
+      Exit;
+    end;
+  for P := 1 to Length(SectionFlags) do begin
+    S:='';
+    for I := Low(FLAGS) to High(FLAGS) do
+      if SectionFlags[P] = FLAGS[I].F then begin
+        S:=FLAGS[I].D;
+        Break;
+      end;
+    if S = '' then S:='Unknown Flag';
+    Result:=LeftPad('Flag: ', HeadPadding) + SectionFlags[P] + SPACE2 + S + LF;
+  end;
+end;
+
+function MakeHeader(Line : integer) : String;
+begin
+  Result:=Copy(InStrs[Line], 10);
+  While HasLeading(Result, '-') do Result:=ExcludeLeading(Result, '-');
+  While HasTrailing(Result, '-') do Result:=ExcludeTrailing(Result, '-');
+  Result:=StringOf('-', 80) + LF + LeftPad('Unique ID: ', HeadPadding) + Result + LF;
+  Cat(Result, GetCategoryInfo);
+  Cat(Result, GetFlagInfo);
+  case SectionStyle of
+    ssMSR : begin end;
+  end;
+  Result:=Result + StringOf('-', 80) + LF + LF;
+end;
 
 procedure SaveSection; forward;
 
@@ -354,8 +426,10 @@ begin
         P:=ExtractFilePath(OutFile);
         InsureDir(OutPath);
         if P <> '' then InsureDir(OutPath + P);
-        if FileExists(OutPath + OutFile) then
+        if FileExists(OutPath + OutFile) then begin
+          WriteLn('Warning: Appending existing file ' + OutFile);
           AppendToFile(OutPath + OutFile, StringOf('-', 80) + LineEnding, true);
+        end;
         AppendToFile(OutPath + OutFile, NormalizeLineEndings(OutStr, LineEnding), true);
         if FileSetDate(OutPath + OutFile, FileStamp) <> 0 then
           raise Exception.Create('error writing timestamp: ' + OutPath + OutFile);
@@ -370,12 +444,23 @@ begin
   SectionTitle:='';
 end;
 
+function CombineSpaces(const S : RawByteString) : RawByteString; overload;
+var
+  T : RawByteString;
+begin
+  T:=S;
+  repeat
+    Result:=T;
+    T:=StringReplace(T, SPACE + SPACE, SPACE, [rfReplaceAll]);
+  until Result=T;
+end;
+
 { Process a normal or other Section Header. }
 procedure SectionHead;
 var
   S : String;
 begin
-  SectionFlags:=Copy(InStrs[Index], 9, 2);
+  SectionCategory:=ExcludeTrailing(Copy(InStrs[Index], 9, 2), '-');
   // Not a Section Comment, so need to do something else with it.
   case SectionStyle of
     ssGlossary, ssTables : begin
@@ -396,7 +481,21 @@ begin
         Inc(Index);
       end;
     end;
-    ssInterrupts : ParseStyle:=psInterrupts;
+    ssMSR : begin
+      ParseStyle:=psPlain;
+      if (Index < InStrs.Count) then begin
+        // Separate out Flags from Title
+        S:=FilterFlags(InStrs[Index+1]);
+        SectionTitle:=Trim(CombineSpaces(AlphaNumOnly(StringReplace(
+           StringReplace(S, '-', '', [rfReplaceAll]), '_',
+           SPACE, [rfReplaceAll]), ' ', True)));
+        OutFile:=SectionTitle + TextExt;
+        OutStr:=MakeHeader(Index);
+        Inc(Index);
+      end;
+      // WriteLn(SectionTitle);
+    end;
+   ssInterrupts : ParseStyle:=psInterrupts;
   end;
   // if Copy(SectionFlags,2,1) <> '-' then
   //  WriteLn(S);
@@ -455,12 +554,14 @@ begin
   OutStr:='';
   case SectionStyle of
     ssSMM : begin
+      Inc(Index);
       if (Index < InStrs.Count) then begin
         SectionTitle:=StringReplace(
-           StringReplace(InStrs[Index+1], '-', '', [rfReplaceAll]), '_',
+           StringReplace(InStrs[Index], '-', '', [rfReplaceAll]), '_',
            SPACE, [rfReplaceAll]);
         OutFile:=SectionTitle + TextExt;
       end;
+      OutStr:='';
     end;
   else
     SectionHead;

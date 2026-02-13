@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000174
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000174h - Pentium II - "SYSENTER_CS" - SYSENTER target CS
+Desc:	specify the 4GB flat-model Ring0 CS selector to which the SYSENTER
+	  instruction will transfer control
+Notes:	Intel has promised that this MSR will remain at this address in all
+	  x86 processors supporting SYSENTER
+	the SYSEXIT instruction will set CS to 16 more than the value in
+	  this MSR and SS to 24 more than this MSR's value
+	the SYSENTER and SYSEXIT instructions will raise a #GP(0) exception if
+	  this MSR contains the value zero
+SeeAlso: MSR 00000175h,MSR 00000176h
+

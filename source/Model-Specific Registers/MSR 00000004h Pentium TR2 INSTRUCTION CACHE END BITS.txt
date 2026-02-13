@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000004
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000004h - Pentium - (TR2) INSTRUCTION CACHE END BITS
+Size:	4 bits
+Access:	Read/Write
+Note:	documented as reserved on Pentium MMX
+SeeAlso: MSR 00000002h,MSR 00000005h,MSR 80000004h
+
+Bitfields for Instruction Cache End Bits (TR2):
+Bit(s)	Description	(Table R0003)
+ 63-4	reserved (0)
+ 3-0	end bits (each set bit indicates the last byte of an instruction in
+	  TR3 during code cache access)
+Note:	when a new line is written into the code cache, all end bits are set;
+	  the instruction decoder then clears those bits corresponding to
+	  bytes which are not the last byte of an instruction
+SeeAlso: #R0004
+

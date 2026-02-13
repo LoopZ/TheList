@@ -1,0 +1,140 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000082
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000082h - AMD Am5k86 (AMD-K5) - ARRAY ACCESS REGISTER
+Size:	64 bits
+Note:	EDX remains unchanged after an RDMSR to simplify multiple accesses
+SeeAlso: MSR 00000083h
+
+Bitfields for AMD Am5k86 (AMD-K5) Array Access Register:
+Bit(s)	Description	(Table R0023)
+ 63-40	pointer within array specified below
+ 39-32	array identifier (see #R0024)
+ 31-0	array data
+SeeAlso: #R0036
+
+(Table R0024)
+Values for AMD Am5k86 Array Pointer:
+ E0h	data cache (data)
+ E1h	data cache (linear tag) (see #R0025)
+ E4h	code cache (instruction) (see #R0026)
+ E5h	code cache (linear tag) (see #R0027)
+ E6h	code cache (valid bits) (see #R0028)
+ E7h	code cache (branch-prediction bits) (see #R0029)
+ E8h	4K TLB (page) (see #R0030)
+ E9h	4K TLB (linear tag) (see #R0031)
+ EAh	4M TLB (page) (see #R0032)
+ EBh	4M TLB (linear tag) (see #R0033)
+ ECh	data cache (physical tag) (see #R0034)
+ EDh	code cache (physical tag) (see #R0035)
+SeeAlso: #R0023
+
+Bitfields for AMD AmK586 data cache linear tag:
+Bit(s)	Description	(Table R0025)
+ 31-26	reserved (0)
+ 25	cache line is dirty
+ 24	user/supervisor
+ 23	read/write
+ 22	0
+ 21	linear address valid
+ 20-0	tag
+SeeAlso: #R0024,#R0034
+
+Bitfields for AMD Am5k86 code cache instruction:
+Bit(s)	Description	(Table R0026)
+ 31-26	reserved (0)
+ 25	start bit 1
+ 24	end bit 1
+ 23	opcode bit 1
+ 22-21	map (ROPs/MROM) 1
+ 20-13	byte 1
+ 12	start bit 0
+ 11	end bit 0
+ 10	opcode bit 0
+ 9-8	map (ROPs/MROM) 0
+ 7-0	byte 0
+SeeAlso: #R0024,#R0027,#R0035
+
+Bitfields for Am5k86 code cache linear tag:
+Bit(s)	Description	(Table R0027)
+ 31-20	reserved (0)
+ 19-0	bits 31-12 of linear address
+SeeAlso: #R0024,#R0026,#R0028,#R0035
+
+Bitfields for Am5k86 code cache valid bits:
+Bit(s)	Description	(Table R0028)
+ 31-18	reserved (0)
+ 17	linear tag is valid
+ 16	user/supervisor
+ 15-0	bitmask of valid bytes
+SeeAlso: #R0024,#R0026,#R0035
+
+Bitfields for Am5k86 code cache branch prediction bits:
+Bit(s)	Description	(Table R0029)
+ 31-19	reserved (0)
+ 18	predicted branch taken
+ 17-14	offset of last byte of predicted branch instruction within block
+ 13-12	predicted target column
+ 11-4	predicted target index
+ 3-0	target byte
+SeeAlso: #R0024
+
+Bitfields for Am5k86 4K TLB page:
+Bit(s)	Description	(Table R0030)
+ 31-22	reserved (0)
+ 21	page cache disable
+ 20	page write-through
+ 19-0	page frame address
+SeeAlso: #R0024,#R0031,#R0032
+
+Bitfields for Am5k86 4K TLB linear tag:
+Bit(s)	Description	(Table R0031)
+ 31-20	reserved (0)
+ 19	global valid bit
+ 18	TLB entry is dirty
+ 17	user/supervisor
+ 16	read/write
+ 15	entry is valid
+ 14-0	tag (bits 31-17 of address)
+SeeAlso: #R0024,#R0030,#R0033
+
+Bitfields for Am5k86 4M TLB page:
+Bit(s)	Description	(Table R0032)
+ 31-12	reserved (0)
+ 11	page cache disable
+ 10	page write-through
+ 9-0	page frame address
+SeeAlso: #R0024,#R0030,#R0033
+
+Bitfields for Am5k86 4M TLB linear tag:
+Bit(s)	Description	(Table R0033)
+ 31-15	reserved (0)
+ 14	global valid bit
+ 13	TLB entry is dirty
+ 12	user/supervisor
+ 11	read/write
+ 10	entry is valid
+ 9-0	tag (bits 31-22 of address)
+SeeAlso: #R0024,#R0031,#R0032
+
+Bitfields for Am5k86 data cache physical tag:
+Bit(s)	Description	(Table R0034)
+ 31-23	reserved (0)
+ 22-21	MESI status
+	00 invalid
+	01 shared
+	10 modified
+	11 exclusive
+ 20-0	tag (bits 31-11 of physical address)
+SeeAlso: #R0024,#R0035
+
+Bitfields for Am5k86 code cache physical tag:
+Bit(s)	Description	(Table R0035)
+ 31-21	reserved (0)
+ 20	valid
+ 19-0	tag (bits 31-12 of physical address)
+SeeAlso: #R0024,#R0034
+

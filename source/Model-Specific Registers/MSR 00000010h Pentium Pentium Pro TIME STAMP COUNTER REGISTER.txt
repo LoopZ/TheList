@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: S00000010
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 00000010h - Pentium, Pentium Pro - TIME STAMP COUNTER REGISTER
+Size:	64 bits
+Access:	Read/Write
+Desc:	starting at 00000000h:00000000h on reset, this counter increments on
+	  every CPU-core clock cycle
+Notes:	on a Pentium Pro, only the low 32 bits may be written; on writes, the
+	  high 32 bits are cleared to 00000000h
+	also supported by Pentium II/III; AMD Am5k86,K5,K6; Cyrix 6x86MX;
+	  Centaur (IDT) WinChip C6
+SeeAlso: MSR 80000010h
+

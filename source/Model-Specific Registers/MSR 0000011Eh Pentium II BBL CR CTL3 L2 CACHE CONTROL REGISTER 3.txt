@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: S0000011E
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 0000011Eh - Pentium II - "BBL_CR_CTL3" L2 CACHE CONTROL REGISTER 3
+SeeAlso: MSR 00000088h,MSR 00000116h,MSR 0000011Ah,MSR 0000011Bh
+
+Bitfields for Pentium II L2 cache control:
+Bit(s)	Description	(Table R0044)
+ 63-26	reserved
+ 25	(read-only) cache bus fraction
+ 24	reserved
+ 23	(read-only) L2 hardware disable
+ 22-20	supported L2 physical address range
+	000  512M
+	001    1G
+	010    2G
+	011    4G
+	100    8G
+	101   16G
+	110   32G
+	111   64G
+ 19	reserved
+ 18	enable cache state error checking
+ 17-13	cache size per bank
+	00001 256K
+	00010 512K
+	00100	1M
+	01000	2M
+	10000	4M
+ 12-11	(read-only) number of L2 banks
+ 10-9	(read-only) L2 associativity
+	00 direct-mapped
+	01 2-way associative
+	10 4-way associative
+	11 reserved
+ 8	L2 cache enabled
+ 7	CRTN parity checking enabled
+ 6	address parity checking enabled
+ 5	enable ECC testing of L2 cache memory
+ 4-1	L2 cache latency
+ 0	L2 has been configured
+

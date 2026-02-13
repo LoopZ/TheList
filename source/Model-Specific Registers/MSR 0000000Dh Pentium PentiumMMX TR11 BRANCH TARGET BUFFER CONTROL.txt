@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: S0000000D
+  Category: -  reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MSR 0000000Dh - Pentium, PentiumMMX - (TR11) BRANCH TARGET BUFFER CONTROL
+Size:	12 bits
+Access:	Write
+SeeAlso: MSR 0000000Ch,MSR 0000000Eh,MSR 8000000Dh
+
+Bitfields for Pentium Branch Target Buffer Control (TR11):
+Bit(s)	Description	(Table R0013)
+ 63-26	reserved (0)
+ 25-24	branch type (PentiumMMX only)
+	00 conditional branch
+	01 unconditional jump
+	10 call
+	11 return
+ 23-13	reserved (0)
+ 12	bit 2 of test command (PentiumMMX only)
+ 11-8	BTB set number to access (non-MMX)
+ 11-8	BTB set number to access (PentiumMMX only)
+ 7-6	BTB bank (PentiumMMX only)
+ 5-4	reserved (0)
+ 3-2	BTB entry (way) within set
+ 1-0	test command
+	00 normal operation
+	01 test write
+	10 test read
+	11 flush
+	101 test read tag (PentiumMMX only)
+SeeAlso: #R0010,#R0012
+
