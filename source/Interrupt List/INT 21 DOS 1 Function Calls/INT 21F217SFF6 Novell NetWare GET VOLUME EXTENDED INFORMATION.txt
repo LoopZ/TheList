@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFF6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET VOLUME EXTENDED INFORMATION
+	AX = F217h subfn F6h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02275)
+	ES:DI -> reply buffer (see #02276)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=E8h
+
+Format of NetWare "Get Volume Extended Information" request packet:
+Offset	Size	Description	(Table 02275)
+ 00h	WORD	length of following data
+ 02h	BYTE	F6h (subfunction "Get Volume Extended Information")
+ 03h	BYTE	volume number
+ 04h	BYTE	size of reply buffer
+SeeAlso: #02276
+
+Format of NetWare "Get Volume Extended Information" reply packet:
+Offset	Size	Description	(Table 02276)
+ 00h	DWORD	system interval
+		(up-time in clock ticks, wraps to 0 on reaching FFFFFFFFh)
+ 04h	BYTE	volume number
+ 05h	BYTE	logical drive number
+ 06h	WORD	number of 512-byte sectors per disk block
+ 08h	DWORD	starting block number of volume
+ 0Ch	WORD	total number of disk blocks
+ 0Eh	WORD	number of free disk blocks
+ 10h	WORD	total number of directory entries
+ 12h	WORD	number of available directory entries
+ 14h	WORD	maximum directory entries ever used
+ 16h	BYTE	flag: volume is hashed in memory if nonzero
+ 17h	BYTE	flag: volume is cached if nonzero
+ 18h	BYTE	flag: volume is removable if nonzero
+ 19h	BYTE	flag: volume is mounted if nonzero
+ 1Ah 16 BYTEs	volume name (null-padded)
+SeeAlso: #02275
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FF2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - READ RESTRICTED DIRECTORY ENTRY
+	AH = F2h
+	CX = entry number
+	ES:DI -> 64-byte buffer
+Return: CF clear if successful
+	    buffer filled with 63-byte directory info and 1-byte group number
+	CF set on error (invalid entry)
+SeeAlso: AH=F0h,AH=F3h
+

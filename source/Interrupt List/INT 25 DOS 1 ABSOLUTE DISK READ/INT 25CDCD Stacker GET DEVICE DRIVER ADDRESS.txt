@@ -1,0 +1,72 @@
+--------------------------------------------------------------------------------
+ Unique ID: 25CDCD
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 25 - Stacker - GET DEVICE DRIVER ADDRESS
+	AX = CDCDh
+	DS:BX -> buffer for address (see #02549)
+	CX = 0001h
+	DX = 0000h
+Return: AX = CDCDh if Stacker installed
+	    DS:BX buffer filled
+Note:	not supported by Stacker Anywhere; to obtain the Stacker device
+	  driver address and to detect drives controlled by all versions
+	  of Stacker, INT 21/AX=4404h"Stacker" or lookup via the CDS and DPB
+	  should be preferred (see INT 21/AH=52h)
+	Stacker Anywhere does not link its built-in device driver into
+	  the standard device driver chain, but it can be found via CDS/DPB
+SeeAlso: INT 21/AX=4404h"Stacker"
+
+Format of Stacker v2+ driver address buffer:
+Offset	Size	Description	(Table 02549)
+ 00h	WORD	signature CDCDh
+ 02h	WORD	??? 0001h
+ 04h	DWORD	pointer to Stacker signature at device driver offset 1Ah
+		  (see #02550)
+
+Format of Stacker v2+ device driver:
+Offset	Size	Description	(Table 02550)
+ 00h	DWORD	pointer to next driver, offset=FFFFh if last driver
+		FFFFh:FFFFh for Stacker Anywhere
+ 04h	WORD	device attributes (see #01647,#01648)
+ 06h	WORD	device strategy entry point
+ 08h	WORD	device interrupt entry point
+ 0Ah	BYTE	number of subunits (drives) supported by driver
+		0 for Stacker Anywhere
+ 0Bh  7 BYTEs	signature "STAC-CD" for Stacker and Stacker Anywhere
+ 12h  7 BYTEs	???
+ 19h	BYTE	always = 01h ?? (Stacker Anywhere points here)
+ 1Ah	WORD	signature A55Ah (all other Stacker versions point here)
+ 1Ch	WORD	Stacker version * 64h
+		0C8h = 200, 012Ch = 300, 0190h = 400 (also Stacker Anywhere)
+ 1Eh	WORD	offset of volume-specific information offset table
+		(list of WORDs, one per drive, containing offsets to various
+		  information)
+ 20h 56 BYTEs	n/a
+ 58h	BYTE	volume number, set after INT 21/AX=4404h, INT 21/AX=4408h
+		(use to index into volume-specific info offset table,
+		should be set to FFh before and tested for change after)
+ 59h 19 BYTEs	n/a
+ 6Ch  4 BYTEs	ASCII string "SWAP"
+ 70h 26 BYTEs	drive mapping table (one byte for each drive A: through Z:)
+		(only used for drives swapped by SSWAP.COM; other drives
+		compressed by Stacker can be found with the standard device
+		driver header signature (see INT 21/AH=52h)
+---Stacker 4, Stacker Anywhere---
+ 8Ah 40	BYTEs	???
+ B2h  4 BYTEs	ASCII string "SWP2"
+ B6h 26 BYTEs	drive table ???
+ D0h 150 BYTEs	???
+166h 60 BYTEs	LZSINFO structure (see #02808 at INT 2F/AX=4A12h)
+SeeAlso: #02551,#01646 at INT 21/AH=52h
+
+Format of Stacker boot record:
+Offset	Size	Description	(Table 02551)
+1F0h  8 BYTEs	Stacker signature (first byte is CDh)
+1F8h	DWORD	pointer to start of Stacker device driver
+1FCh	WORD	Stacker volume number
+1FEh	WORD	???
+SeeAlso: #02550
+

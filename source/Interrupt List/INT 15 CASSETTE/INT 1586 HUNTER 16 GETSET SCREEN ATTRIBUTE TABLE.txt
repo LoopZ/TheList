@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1586
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET/SET SCREEN ATTRIBUTE TABLE
+	AH = 86h
+	AL = function (00h get, nonzero set)
+	BX = 1234h
+	DS:SI -> 256-byte Attribute buffer
+Note:	In text modes each character has its attribute byte XOR'd with the
+	  corresponding byte in the attribute table.  If the attribute is 15,
+	  15 is XOR'd with Table[15]
+

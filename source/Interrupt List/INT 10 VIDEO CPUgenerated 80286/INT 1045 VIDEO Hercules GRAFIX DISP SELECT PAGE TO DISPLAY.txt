@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1045
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "DISP" - SELECT PAGE TO DISPLAY
+	AH = 45h
+	AL = page number (0,1)
+Return: nothing
+Desc:	specify which of the two pages of video memory is visible on screen
+SeeAlso: AH=05h,AH=42h,AH=43h
+

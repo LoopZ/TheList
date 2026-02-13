@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 490E
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - TTY OUTPUT
+	AH = 0Eh
+	AL = character to write
+Return: nothing
+Desc:	write the character in AL at the current cursor position, advancing
+	  the cursor, and interpreting CR, LF, TAB, and BEL characters
+Note:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+SeeAlso: AH=01h,AH=02h,AH=08h,AH=09h,AH=0Ah,INT 10/AH=0Eh
+

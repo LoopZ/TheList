@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21BE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - CLEAR PHYSICAL RECORD
+	AH = BEh
+	BX = file handle
+	CX:DX = starting offset within file
+	SI:DI = record length in bytes
+Return: AL = status
+	    00h successful
+	    FFh specified record not locked
+Desc:	unlock the physical record and remove it from the log table
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=5Ch,AH=BCh,AH=BDh,AH=C1h,AH=C4h,AH=D4h
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH16
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.20+ - SEND MESSAGE - "GETFLAGS" - GET OBJECT FLAGS
+	AH = 12h
+	BH = 16h
+	BL = object
+	    00h DWORD on top of stack
+		mailbox, keyboard, or pointer only
+	    02h mailbox for task whose handle is on top of stack
+	    03h mailbox for current task
+	    04h keyboard for task whose handle is on top of stack
+	    05h keyboard for current task
+Return: STACK: DWORD current control flags (see #00453,#00454)
+Notes:	only available if the API level has been set to at least 2.20
+	if a mailbox has bits 4 or 5 set, you must use "READINTO" rather than
+	  "READ" (see AH=12h/BH=13h"READINTO") to retrieve messages
+SeeAlso: AH=12h/BH=0Ah,AH=12h/BH=0Bh,AH=12h/BH=13h"READINTO",AH=12h/BH=15h
+

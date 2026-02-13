@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0010
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 3.0 DPMILOAD.EXE - CONVERT SEGMENT TO SELECTOR
+	AX = FB42h
+	BX = 0010h
+	DX = segment number
+Return: CX = status (0000h,0008h) (see also AX=FB42h/BX=0004h)
+	    0000h successful
+		DX = selector number for descriptor
+	    0008h failed
+SeeAlso: AX=FB42h/BX=0023h
+

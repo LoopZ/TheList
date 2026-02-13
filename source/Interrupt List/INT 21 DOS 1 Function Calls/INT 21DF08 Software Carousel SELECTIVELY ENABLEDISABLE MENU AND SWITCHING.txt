@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF08
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - SELECTIVELY ENABLE/DISABLE MENU AND SWITCHING
+	AX = DF08h
+	BL = new state of keyboard (00h disabled, 01h enabled)
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+Program: Software Carousel is a task switcher by SoftLogic Solutions, Inc.
+Note:	when the keyboard is is disabled, the user may neither access the
+	  Carousel menu nor switch to another memory section
+

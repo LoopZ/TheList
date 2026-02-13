@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 22
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 22 - DOS 1+ - PROGRAM TERMINATION ADDRESS
+Desc:	this vector specifies the address of the routine which is to be given
+	  control after a program is terminated; it should never be called
+	  directly, since it does not point at an interrupt handler
+Notes:	this vector is restored from the DWORD at offset 0Ah in the PSP during
+	  termination, and then a FAR JMP is performed to the address in INT 22
+	normally points at the instruction immediately following INT 21/AH=4Bh
+	  call which loaded the current program
+SeeAlso: INT 20,INT 21/AH=00h,INT 21/AH=31h,INT 21/AH=4Ch
+

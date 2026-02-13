@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telopen" - CREATE TELNET CONNECTION (BLOCKING)
+	AH = E0h
+	BX = port number to connect with (default 0017h used if <= 0)
+	CX:DX = Internet address of remote host
+	DS:DI -> 2-byte remote host (session) identifier
+	ES:SI -> 1700-byte buffer for Telnet state record
+	    0000h:0000h to use TelAPI internally-allocated space
+Return: AX = status (0000h-0009h,FED3h,FF37h,FFBDh,FFC0h,FFCDh) (see #00397)
+	ES:SI buffer filled with state record
+	ES:SI -> internally-allocated state record in some versions
+Note:	the remote host identifier may be used to refer to this connection
+SeeAlso: AH=E1h,AH=ECh,AX=FF00h
+
+(Table 00397)
+Values for TelAPI status:
+ 0000h-7FFFh	successful (session number)
+ FED3h	(-301)	no session allocated, or out of TelAPI data space
+ FF37h	(-201)	all sessions in use
+ FFBDh	(-67)	unknown hostname
+ FFC0h	(-64)	host not functioning
+ FFC3h	(-61)	connection attempt refused
+ FFC4h	(-60)	connection attempt timed out
+ FFC8h	(-56)	socket already connected
+ FFCDh	(-51)	network is unreachable
+ FFDDh	(-35)	operation would block
+

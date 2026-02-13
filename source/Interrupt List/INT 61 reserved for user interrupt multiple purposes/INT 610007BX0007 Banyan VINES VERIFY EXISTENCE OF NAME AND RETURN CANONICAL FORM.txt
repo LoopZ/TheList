@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0007
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - VERIFY EXISTENCE OF NAME AND RETURN CANONICAL FORM
+	AX = 0007h
+	BX = 0007h
+	DS:DX -> NiceName block (see #03436)
+Return: AX = status (see #03432)
+SeeAlso: AX=0007h/BX=0005h,AX=0007h/BX=0008h
+
+Format of VINES NiceName block:
+Offset	Size	Description	(Table 03436)
+ 00h	WORD	type of name
+		0064h (100) organization
+		00C8h (200) group
+		012Ch (300) item
+ 02h	WORD	pointer to ASCIZ input name
+ 04h	WORD	pointer to 64-byte buffer for output name
+SeeAlso: #03437
+

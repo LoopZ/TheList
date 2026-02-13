@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0009
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - REBOOT - VxD SERVICES
+	VxD = 0009h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01272)
+Values for REBOOT (VxD ID 0009h) service number:
+ 00h	get REBOOT version???
+ 01h	???
+ 02h	???
+ 03h	...last service for Windows95 SP1
+SeeAlso: #01271,#01273,#02642
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telwrite" - BUFFERED WRITE
+	AH = E3h
+	BX = connection ID
+	CX = length of buffer in bytes
+	ES:SI -> buffer containing data
+Return: AX > 0000h number of characters actually written
+	AX < 0000h error code (see #00397)
+Note:	translates local EOL into CRLF if the connection is in ASCII mode,
+	  sends the appropriate Telnet commands for the characters selected
+	  for IP, AYT, AO, EC, EL, and Break
+SeeAlso: AH=06h"TelAPI",AH=E2h,AH=E6h,AX=FF00h,INT 6B/AH=00h
+

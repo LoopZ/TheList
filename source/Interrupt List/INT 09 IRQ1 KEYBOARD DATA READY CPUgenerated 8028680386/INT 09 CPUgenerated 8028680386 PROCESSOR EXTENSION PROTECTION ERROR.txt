@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 09
+  Category: C 	CPU-generated
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 09 C - CPU-generated (80286,80386) - PROCESSOR EXTENSION PROTECTION ERROR
+Desc:	called if the coprocessor attempts to access memory outside a segment
+	  boundary; it may occur at an arbitrary time after the coprocessor
+	  instruction was issued
+Notes:	until the condition is cleared or the coprocessor is reset, the only
+	  coprocessor instruction which may be used is FNINIT; WAIT or other
+	  coprocessor instructions will cause a deadlock because the
+	  coprocessor is still busy waiting for data
+	for the 486+, a coprocessor protection error generates an INT 0D
+SeeAlso: INT 07"CPU"
+

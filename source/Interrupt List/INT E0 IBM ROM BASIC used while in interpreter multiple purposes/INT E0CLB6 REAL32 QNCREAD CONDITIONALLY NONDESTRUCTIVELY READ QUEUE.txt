@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLB6
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "Q_NCREAD" - CONDITIONALLY NONDESTRUCTIVELY READ QUEUE
+	CL = B6h
+	DS:DX -> Queue Parameter Block (QPB) (see #04045,#04044)
+Return: AX = status
+SeeAlso: INT E0/CL=89h,INT E0/CL=8Ah
+

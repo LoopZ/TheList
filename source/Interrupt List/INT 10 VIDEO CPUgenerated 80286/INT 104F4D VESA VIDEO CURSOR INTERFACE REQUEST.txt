@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F4D
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA - VIDEO CURSOR INTERFACE REQUEST
+	AX = 4F4Dh
+	BX = number of bytes available for VCI use
+	DS:0000h -> buffer for VCI
+	ES:DI -> VCI driver callback function
+Return: AL = 4Fh if supported
+	    AH = status
+		00h successful
+		    BX = number of bytes used by VCI
+		    ES:DI -> VCI request handler
+		01h failed
+Desc:	allow the VESA BIOS Extensions to cooperate with a pointing-device
+	  (typically mouse) driver
+SeeAlso: AX=4F12h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1324
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - SET SECTORS
+	AH = 24h
+	BX = new number of sector buffers in cache
+Return: AX = status
+	    0000h successful
+	    0001h failed--size adjusted
+	    8000h cache cannot be resized while enabled
+SeeAlso: AH=36h
+

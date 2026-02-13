@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF39
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - CREATE PROPERTY
+	AH = E3h subfn 39h
+	DS:SI -> request buffer (see #01934)
+	ES:DI -> reply buffer (see #01935)
+Return: AL = status (see #01933)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=32h,AH=E3h/SF=3Bh,AX=F217h/SF=39h
+
+(Table 01933)
+Values for NetWare function status:
+ 00h	successful
+ 96h	server out of memory
+ EDh	property already exists
+ EFh	invalid name
+ F0h	wildcard not allowed
+ F1h	invalid bindery security level
+ F6h	not permitted to delete properties
+ F7h	not permitted to create properties
+ FBh	no such property
+ FCh	no such object
+ FEh	server bindery locked
+ FFh	bindery failure
+SeeAlso: #01927,#01937
+
+Format of NetWare "Create Property" request buffer:
+Offset	Size	Description	(Table 01934)
+ 00h	WORD	length of following data (max 45h)
+ 02h	BYTE	39h (subfunction "Create Property")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name (01h-2Fh)
+ 06h  N BYTEs	object's name
+	BYTE	property flags
+	BYTE	property security levels
+	BYTE	length of property's name (01h-0Fh)
+      N BYTEs	property's name
+SeeAlso: #01935
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01935)
+ 00h	WORD	(call) 0000h (no data returned)
+SeeAlso: #01932,#01935,#01936
+

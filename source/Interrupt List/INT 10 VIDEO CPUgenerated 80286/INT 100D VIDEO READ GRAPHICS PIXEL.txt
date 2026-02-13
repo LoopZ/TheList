@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100D
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - READ GRAPHICS PIXEL
+	AH = 0Dh
+	BH = page number
+	CX = column
+	DX = row
+Return: AL = pixel color
+Desc:	determine the current color of the specified pixel in grahics modes
+Notes:	valid only in graphics modes
+	BH is ignored if the current video mode supports only one page
+SeeAlso: AH=0Ch,AH=47h
+

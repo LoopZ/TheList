@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100F56BX4756
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VUIMAGE DISPLAY DRIVER (v2.20 and below)
+	AX = 0F56h
+	BX = 4756h
+	CX = 4944h
+	DL = function
+	    01h installation check
+		Return: AX = 5649h
+			BX = 4443h
+			CX = 5647h
+			DH = 01h
+	    02h get first video mode's parameters
+		Return: AX = BIOS mode number
+			BX = width in pixels
+			CX = height in pixels
+			DX = number of colors
+	    03h get next video mode's parameters
+		Return: as for DL=02h
+	    04h display line???
+		ES:DI -> record (see #00016)
+		???
+		Return: ???
+Program: VUIMAGE is a shareware GIF/TIFF image viewer by Offe Enterprises
+Note:	the use of TSR display drivers was discontinued after v2.20
+Index:	installation check;VUIMAGE display driver
+
+Format of record for VUIMAGE Function 04h:
+Offset	Size	Description	(Table 00016)
+ 00h	WORD	row number
+ 02h	WORD	starting column???
+ 04h	WORD	ending column???
+	???
+

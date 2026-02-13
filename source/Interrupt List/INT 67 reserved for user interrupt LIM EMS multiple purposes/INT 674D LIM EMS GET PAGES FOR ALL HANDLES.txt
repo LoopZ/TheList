@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 674D
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - GET PAGES FOR ALL HANDLES
+	AH = 4Dh
+	ES:DI -> array to receive information
+Return: AH = status (00h,80h,81h,84h) (see #03648)
+	---if AH=00h---
+	BX = number of active EMM handles
+	array filled with 2-word entries, consisting of a handle and the
+	  number of pages allocated to that handle
+SeeAlso: AH=4Ch
+

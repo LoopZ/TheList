@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5202
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - JAM.SYS v1.10+ - "Attach" - MOUNT COMPRESSED DRIVE
+	AX = 5202h
+	DL = drive number (0-default, 1-A:, etc.) to attach to the JAM
+	      archive file
+	DS:BX -> pointer to JAMINFO structure (see #02831,#02832), which
+	      contains parameters of the JAM file to mount, and pointer
+	      to the host drive DPB (i.e. DPB of the drive on which the
+	      JAM file is located)
+Return: AH = status (00h,02h,03h,08h,09h,0Dh) (see also #02835)
+	    03h archive file cluster size value is larger than driver's - not
+		  mounted
+	    09h bad entries in JAM descriptor table - file mounted read-only
+	AL = host drive error code (see #02598 at INT 2F/AX=0802h)
+SeeAlso: AX=5203h
+

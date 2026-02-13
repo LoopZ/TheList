@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F13BX0001
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/AI (Audio Interface) - LOCATE DEVICE
+	AX = 4F13h
+	BX = 0001h
+	CX = 0000h ???
+	DX = type of device
+	    0001h Wave device
+	    0002h MIDI device
+	    0003h Volume device
+Return: AL = 4Fh if function supported
+	    AH = status
+		00h successful
+		    CX = handle [returned 1 for DX=1 and 3, and 2 for DX=2]
+		01h failed
+SeeAlso: AX=4F13h/BX=0000h,AX=4F13h/BX=0002h
+

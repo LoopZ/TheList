@@ -1,0 +1,77 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440C
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Greg Shenaut ASPITAPE.SYS - INTERFACE
+	AX = 440Ch
+	BX = device handle
+	CH = category code
+	    07h tape (ASPITAPE.SYS)
+	CL = function
+	    01h "mtop" - perform tape operation
+	    02h "mtget" - get tape status
+	    03h ignore end-of-tape errors
+	    04h enable end-of-tape errors
+	DS:DX -> parameter block (see #01554,#01555)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    DS:DX -> data block
+Notes:	This device driver is a simple DOS interface to the Adaptec Advanced
+	  SCSI Programming Interface (ASPI).  It provides the following device
+	  names as access to the SCSI tape, 'RMTx' (rewind on close) and
+	  'NRMTx' (NO rewind on close) where x can go from 0 to 3.  There may
+	  also be the following names 'MTx' and 'NMTx' which default to 1024
+	  byte blocks.	The names may also have a '$' appended to try and make
+	  them unique from file names of 'RMT0' etc.
+	once opend these devices must be put into RAW mode
+SeeAlso: AX=4402h"ASPI"
+
+Format of ASPITAPE.SYS mtop parameter block:
+Offset	Size	Description	(Table 01554)
+ 00h	WORD	operation code
+		00h "MTWEOF" - write an end-of-file record
+		01h "MTFSF" - forward space file
+		02h "MTBSF" - backward space file
+		03h "MTFSR" - forward space record
+		04h "MTBSR" - backward space record
+		05h "MTREW" - rewind
+		06h "MTOFFL" - rewind and unload
+		07h "MTNOP" - perform TEST UNIT READY
+ 02h	DWORD	repetition count
+
+Format of ASPITAPE.SYS mtget parameter block:
+Offset	Size	Description	(Table 01555)
+ 00h	BYTE	ASPI host ID
+ 01h	BYTE	SCSI target ID
+ 02h	BYTE	SCSI logical unit number
+ 03h	BYTE	device parameters
+		bit 0: drive must use fixed-block read and write
+		bit 7: drive is an ASPI device
+ 04h	BYTE	current device state (see #01556)
+ 05h	BYTE	unit number within driver
+ 06h	WORD	fixed block blocksize
+ 08h	BYTE	last SCSI status
+ 09h	BYTE	last SCSI sense key
+ 0Ah	WORD	last SCSI opcode (packed) (see #01557)
+ 0Ch	WORD	residual bytes from SCSI opcode
+
+Bitfields for ASPITAPE.SYS current device state:
+Bit(s)	Description	(Table 01556)
+ 0	device currently opened in buffered mode
+ 1	drive currently opened in nonbuffered mode
+ 2	rewind drive on last close
+ 3	drive has been written on
+ 4	drive has been read from
+ 5	next read will return 0 bytes
+ 6	EOM will resemble EOF
+ 7	drive may be busy rewinding
+
+Bitfields for SCSI opcode:
+Bit(s)	Description	(Table 01557)
+ 0-7	SCSI operation (SCSI packet byte 0)
+ 8-10	SCSI flags (SCSI packet byte 1)
+ 11-12	ASPI "Direction Bits" (ASPI SRB byte 3)
+

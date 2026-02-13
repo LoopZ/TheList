@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6803--SF2400
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - TP STARTED
+	AH = 03h subfn 2400h
+	DS:DX -> control block (see #03699)
+Return: control block updated
+
+Format of APPC/PC "TP Started" control block:
+Offset	Size	Description	(Table 03699)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	2400h (verb "TP Started")
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h	WORD	00h
+ 1Ah  8 BYTEs	(big-endian) logical unit ID
+ 22h  8 BYTEs	(big-endian) TP ID
+

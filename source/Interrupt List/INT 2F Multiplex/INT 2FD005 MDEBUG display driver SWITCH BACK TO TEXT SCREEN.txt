@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD005
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MDEBUG display driver - SWITCH BACK TO TEXT SCREEN
+	AX = D005h
+Return: CF set on error
+	CF clear if successful
+	    display restored to mode it was in before calling AX=D004h
+Note:	This function needn't save or change the display memory
+SeeAlso: AX=D000h,AX=D004h
+

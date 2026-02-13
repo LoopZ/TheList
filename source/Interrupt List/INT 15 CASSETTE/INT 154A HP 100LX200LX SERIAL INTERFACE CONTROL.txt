@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154A
+  Category: S 	serial I/O
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SERIAL INTERFACE CONTROL
+	AH = 4Ah
+	AL = control
+	    00h deactivate
+	    01h activate
+Note:	interface selected with AH=49h will be (de)activated
+SeeAlso: AH=49h"HP",AH=4Bh"HP"
+

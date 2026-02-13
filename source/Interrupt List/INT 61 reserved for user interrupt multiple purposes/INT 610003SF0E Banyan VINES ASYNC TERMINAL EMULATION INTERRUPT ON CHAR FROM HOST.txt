@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF0E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - INTERRUPT ON CHAR FROM HOST
+	AX = 0003h subfn 0Eh
+	DS:BX -> argument block (see #03389)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h,AX=0003h/SF=14h
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03389)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	0Eh (function "interrupt on character from host")
+ 02h	DWORD	pointer to routine to be called (0000h:0000h = don't call)
+ 06h	DWORD	stack pointer to use when call is made
+

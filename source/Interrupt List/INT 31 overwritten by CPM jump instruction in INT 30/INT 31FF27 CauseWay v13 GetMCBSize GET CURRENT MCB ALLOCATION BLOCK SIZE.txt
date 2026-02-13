@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF27
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay v1.3 - "GetMCBSize" - GET CURRENT MCB ALLOCATION BLOCK SIZE
+	AX = FF27h
+Return: ECX = current threshold
+Desc:	determine the memory allocation size below which CauseWay will use
+	  internal MCB chains rather than allocating full 4K pages via DPMI
+SeeAlso: AX=FF00h,AX=FF28h
+

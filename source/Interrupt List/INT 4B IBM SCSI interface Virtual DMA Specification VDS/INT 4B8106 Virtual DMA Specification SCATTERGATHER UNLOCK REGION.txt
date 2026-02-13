@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B8106
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification - SCATTER/GATHER UNLOCK REGION
+	AX = 8106h
+	DX = flags (see #03225)
+	ES:DI -> Extended DMA descriptor structure (see #03222,#03223) returned
+		  by AX=8105h
+Return: CF clear if successful
+	CF set on error
+	    AL = error code (see #03218)
+Note:	according to the Microsoft version of the VDS specification, the
+	  actual scatter/gather list is ignored, while according to the IBM
+	  version of the specification, "the result of a LOCK operation"
+	  must be provided to this function
+SeeAlso: AX=8104h,AX=8105h
+
+Bitfields for VDS flags:
+Bit(s)	Description	(Table 03225)
+ 0-5	reserved (zero)
+ 6	EDDS contains page table entries
+ 7	EDDS may contain not-present pages (entry = 0000h)
+ 8-15	reserved (zero)
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675BF0
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - MICEMM v4D, RM386 - INSTALLATION CHECK
+	AX = 5BF0h
+Return: AH = 00h if MICEMM or RM386 present
+	    BX = code segment of driver
+Program: MICEMM is the Micronics Expanded Memory Manager; RM386 is the memory
+	  manager included in Helix Software's Netroom
+SeeAlso: AH=3Fh,AX=5BE0h,AX=5BF1h
+

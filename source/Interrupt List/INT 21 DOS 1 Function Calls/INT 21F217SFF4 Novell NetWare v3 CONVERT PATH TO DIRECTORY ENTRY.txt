@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFF4
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - CONVERT PATH TO DIRECTORY ENTRY
+	AX = F217h subfn F4h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02271)
+	ES:DI -> reply buffer (see #02272)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AX=F217h/SF=F3h
+
+Format of NetWare "Convert Path to Directory Entry" request packet:
+Offset	Size	Description	(Table 02271)
+ 00h	WORD	length of following data
+ 02h	BYTE	F4h (subfunction "Convert Path to Directory Entry")
+ 03h	BYTE	directory handle or 00h for none
+ 04h	BYTE	length of directory path
+ 05h  N BYTEs	directory path (must be fully qualified if no handle specified)
+SeeAlso: #02272
+
+Format of NetWare "Convert Path to Directory Entry" reply packet:
+Offset	Size	Description	(Table 02272)
+ 00h	BYTE	volume number
+ 01h	DWORD	directory entry number
+SeeAlso: #02271
+

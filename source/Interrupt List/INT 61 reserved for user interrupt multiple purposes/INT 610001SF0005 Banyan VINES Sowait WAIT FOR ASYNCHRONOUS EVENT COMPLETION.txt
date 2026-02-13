@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610001SF0005
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - "Sowait" - WAIT FOR ASYNCHRONOUS EVENT COMPLETION
+	AX = 0001h subfn 0005h
+	DS:DX -> communications control block (see #03340)
+Return: AX = status (0000h-000Ah,00A2h,00A3h) (see #03339)
+Desc:	returns results for all asynchronous operations invoked from the
+	  data segment used for this call
+Range:	INT 60h to INT 66h
+Notes:	The Banyan interrupt handler is identified by the string "BANV" in
+	  the four bytes immediately preceding the interrupt handler
+SeeAlso: AX=0001h/SF=0002h,AX=0001h/SF=0009h
+
+(Table 03339)
+Values for VINES function status:
+ 0000h	successful
+ 0001h	service not installed
+ 0002h	invalid service ID
+ 0003h-000Ah reserved for BANV interface errors
+ 00A2h	no more buffer space available
+ 00A3h	timeout event
+
+Format of VINES control block for subfunction 0005h:
+Offset	Size	Description	(Table 03340)
+ 00h	WORD	0005h
+ 02h	WORD	pointer to argument block (see #03341)
+ 04h	WORD	error return code
+ 06h  4 BYTEs	reserved
+SeeAlso: #03337,#03342
+
+Format of VINES argument block for subfunction 0005h:
+Offset	Size	Description	(Table 03341)
+ 00h	WORD	pointer to WORD event pointer
+ 02h	WORD	timeout in multiples of 200ms, FFFFh = infinite
+SeeAlso: #03338,#03340
+

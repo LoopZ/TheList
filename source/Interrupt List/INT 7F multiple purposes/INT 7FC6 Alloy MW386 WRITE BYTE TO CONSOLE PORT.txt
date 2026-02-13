@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FC6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - WRITE BYTE TO CONSOLE PORT
+	AH = C6h
+	AL = byte to write
+Return: CF clear if successful
+	CF set on error (caller is not remote user)
+Note:	any terminal driver data translation will be bypassed
+SeeAlso: AH=C3h,AH=C7h
+

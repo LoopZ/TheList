@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAB01
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SRSoft MODAL PC v2+ - GET PROCESS RUN PARAMETER
+	AX = AB01h
+Return: AX = 5253h ('SR' byte-swapped) if installed
+	BL = run parameter
+	    00h normal process
+	    01h run with tracing enabled
+	    02h run initialization process (first thread of main task)
+SeeAlso: AX=AB00h"MODAL",AX=AB02h"MODAL"
+

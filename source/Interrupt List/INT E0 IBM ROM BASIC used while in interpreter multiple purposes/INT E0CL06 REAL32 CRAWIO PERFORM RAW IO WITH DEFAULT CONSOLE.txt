@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL06
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "C_RAWIO" - PERFORM RAW I/O WITH DEFAULT CONSOLE
+	CL = 06h
+	DL = mode describing the operation to be performed
+	    FFh get console input/status
+	    FEh get console status
+	    FDh get console input (blocking)
+	    else output DL to the console as a character
+Return: AX = returned value
+	    for DL = FFh, the character or 00h if none available
+	    for DL = FEh, 00h if no characters available, FFh if any available
+	    for DL = FDh, the character read from the console
+	    else AX = 0000h
+	may destroy SI,DI???
+Notes:	during raw I/O, the special characters ^C, ^O, ^P, and ^S are not
+	  interpreted, but are passed through
+	if the virtual console is in ^S mode and the owning process calls
+	  this function, the ^S state is cleared
+SeeAlso: INT E0/CL=01h,INT E0/CL=02h,INT 21/AH=06h
+

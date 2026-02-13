@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF23
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SCAN DIRECTORY SPACE RESTRICTIONS
+	AX = F216h subfn 23h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02134)
+	ES:DI -> reply buffer (see #02135)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=20h,AX=F216h/SF=21h,AX=F216h/SF=22h
+
+Format of NetWare "Scan Directory Space Restrictions" request packet:
+Offset	Size	Description	(Table 02134)
+ 00h	WORD	length of following data
+ 02h	BYTE	23h (subfunction "Scan Directory Space Restrictions")
+ 03h	BYTE	directory handle
+SeeAlso: #02135
+
+Format of NetWare "Scan Directory Space Restrictions" reply packet:
+Offset	Size	Description	(Table 02135)
+ 00h	BYTE	number of entries returned
+ 01h 10N BYTEs	restrictions [array]
+		Offset	Size	Description
+		 00h	WORD	depth of directory from root
+		 02h	DWORD	maximum space allowed for files in directory
+		 04h	DWORD	current space used by files in directory
+SeeAlso: #02134
+

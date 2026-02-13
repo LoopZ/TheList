@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - SET PALETTE LOCKING STATUS (color EGA,VGA)
+	AX = CD01h
+	CL = palette locking value
+	    00h none
+	    01h text modes only (02h,03h)
+	    FFh all modes (all standard color text and graphics modes)
+Return: nothing
+Notes:	intended for video modes with 16 or fewer colors
+SeeAlso: AX=1000h,AX=1002h,AX=CD00h,AX=CD03h
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09--BX8020
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - SESSION SERVICES
+	AH = 09h
+	BX = 8020h (synchronous request)
+	CX = 0000h
+	DX = ID of session manager (SESSMGR)
+	AL = service (see #03834)
+	ES:DI -> control block
+Return: ???
+
+(Table 03834)
+Values for service:
+ 01h	get session ID
+ 02h	get session info
+ 04h	dettach from session
+ 05h	attach to session
+ 06h	get list of windows available
+ 07h	get environment of window
+ 08h	get 'PIF' (program information file) info
+ 0Ah	get base window ID
+ 0Bh	get cursor info
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62005A
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_HUSHNEXT" - STOP ASYNCHRONOUS SOUND
+	AX = 005Ah
+Program: FGDRIVER is the external video driver for the shareware
+	  Fastgraph/Light by Ted Gruber Software
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function stops any sounds started with "FG_MUSICB", "FG_SOUNDS",
+	  or "FG_VOICES" after the current repetition completes; it is ignored
+	  unless asynchronous sound is continuous
+SeeAlso: AX=0059h,AX=0081h,AX=00BDh,AX=00DCh
+

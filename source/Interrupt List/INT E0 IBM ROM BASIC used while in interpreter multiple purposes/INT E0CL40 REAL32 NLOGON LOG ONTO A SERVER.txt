@@ -1,0 +1,101 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL40
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "N_LOGON" - LOG ONTO A SERVER
+	CL = 40h
+	DS:DX -> LPB (see #04025)
+Return: AX = status (0000h,00FFh,07FFh,0DFFh,0EFFh,FFFFh) (see #04030)
+	may destroy SI,DI,DS???
+SeeAlso: INT E0/CL=41h
+
+Format of REAL/32 Logon/Logoff Parameter Block:
+Offset	Size	Description	(Table 04025)
+ 00h	BYTE	node ID
+ 01h  8 BYTEs	password for server access
+ 09h	DWORD	-> process descriptor of process to be logged on (see #04026)
+
+Format of REAL/32 Process Descriptor:
+Offset	Size	Description	(Table 04026)
+ 00h	WORD	offset of next entry in current descriptor list
+ 02h	WORD	offset of thread list
+ 04h	BYTE	current processor status (see #04027)
+ 05h	BYTE	priority
+ 06h	WORD	runtime flags (see #04028)
+ 08h  8 BYTEs	process name
+ 10h	WORD	segment of User Data Area (UDA) (256 or 352 bytes)
+ 12h	BYTE	current default disk drive
+ 13h	BYTE	drive from which process was loaded
+ 14h	WORD	reserved (0)
+ 16h	WORD	offset of memory descriptor list for memory owned by process
+ 18h  6 BYTEs	reserved
+ 1Eh	WORD	offset of process descriptor for parent process
+		0000h if parent has already terminated
+ 20h	BYTE	number of default console
+ 21h	BYTE	number of default AUX device
+ 22h  2 BYTEs	reserved
+ 24h	BYTE	number of default list device
+ 25h	BYTE	reserved
+ 26h	WORD	flags (see #04029)
+ 28h 12 BYTEs	reserved
+ 34h	WORD	offset of memory page allocation root
+ 36h 22 BYTEs	reserved
+Note:	At least offset 10h (UDA) is also supported by MDOS 5.00, 5.01, 5.10,
+	  as the DR DOS MEM utility retrieves this UDA segment through
+	  INT E0/CL=9Ah when INT 21/AX=4451h returns 1463h, 1465h, or 1466h.
+SeeAlso: #04025
+
+(Table 04027)
+Values for REAL/32 processor status:
+ 00h	process is ready to run
+ 01h	process is polling a device
+ 02h	delaying for a number of ticks
+ 03h	in swap list
+ 04h	terminating
+ 05h	asleep
+ 06h	waiting to read a message from a queue
+ 07h	waiting to write a message
+ 08h	waiting on system flag or semaphore
+ 09h	waiting to attach to an I/O device
+ 0Ah	waiting on sync block
+ 0Bh	waiting for system flag or semaphore with timeout
+ 0Ch	forced dispatch
+SeeAlso: #04026
+
+Bitfields for REAL/32 process flags:
+Bit(s)	Description	(Table 04028)
+ 0	system process
+ 1	do not terminate
+ 2	special rsp process
+ 3	from process descriptor table
+ 14-4	unused???
+ 15	uses math coprocessor
+SeeAlso: #04026,#04029
+
+Bitfields for REAL/32 secondary flags:
+Bit(s)	Description	(Table 04029)
+ 0	suspend when in background
+ 1	???
+ 2	in foreground
+ 3	enable APPEND processing on file opens
+ 4	Ctrl-C was typed
+ 5	Ctrl-C will reset disk system
+ 6	OK to read locked record
+ 7	???
+ 8	do not perform banking
+SeeAlso: #04026,#04028
+
+(Table 04030)
+Values for REAL/32 "N_LOGON" status:
+ 0000h	successful
+ 00FFh	server could not create shadow process
+ 07FFh	incorrect password
+ 0CFFh	not logged into specified server
+ 0DFFh	process already logged onto 16 servers,
+	LPB process not attached to network
+ 0EFFh	physical transmission prevented message or response from getting thru
+	network error during logoff
+ FFFFh	calling process not attached to network
+

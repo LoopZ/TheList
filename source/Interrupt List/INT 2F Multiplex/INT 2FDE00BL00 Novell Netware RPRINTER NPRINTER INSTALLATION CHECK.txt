@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE00BL00
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell Netware - RPRINTER, NPRINTER - INSTALLATION CHECK
+	AX = DE00h
+	BL = 00h
+Return: AL = FFh If Rprinter/Nprinter Installed
+	BX -> Program Segment Prefix N/Rprinter.exe
+

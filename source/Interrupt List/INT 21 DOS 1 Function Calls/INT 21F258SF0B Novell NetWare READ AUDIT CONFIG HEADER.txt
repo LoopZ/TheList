@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F258SF0B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - READ AUDIT CONFIG HEADER
+	AX = F258h subfn 0Bh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02437)
+	ES:DI -> reply buffer (see #02438)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F258h/SF=0Ah,AX=F258h/SF=11h
+
+Format of NetWare "Read Audit Configuration Header" request packet:
+Offset	Size	Description	(Table 02437)
+ 00h	BYTE	0Bh (subfunction "Read Audit Configuration Header")
+	???
+SeeAlso: #02438,#02435
+
+Format of NetWare "Read Audit Configuration Header" reply packet:
+Offset	Size	Description	(Table 02438)
+ 00h	???
+SeeAlso: #02437,#02436
+

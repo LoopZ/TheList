@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F00
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - MultiLink Advanced v1.0+ - ENQUEUE SYSTEM RESOURCE
+	AH = 00h
+	BX = resource identifier
+	AL = wait flag
+Return: AL = status
+	    00h successful
+	    01h resource not available
+	    02h user error
+InstallCheck:	ensure that the interrupt vector is not pointing at segment
+	  0000h, then test whether the byte at offset 0000h in the interrupt
+	  handler's segment is E9h
+Notes:	function will not return until the resource is available if AL is
+	  nonzero on entry
+	a maximum of 100 resources may be enqueued at once
+SeeAlso: AH=01h"MultiLink"
+

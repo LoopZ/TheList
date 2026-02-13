@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF3C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - SCAN PROPERTY
+	AH = E3h subfn 3Ch
+	DS:SI -> request buffer (see #01939)
+	ES:DI -> reply buffer (see #01940)
+Return: AL = status (00h,96h,F1h,FBh,FCh,FEh,FFh) (see #01937)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=37h,AH=E3h/SF=3Bh,AX=F217h/SF=3Ch
+
+Format of NetWare "Scan Property" request buffer:
+Offset	Size	Description	(Table 01939)
+ 00h	WORD	length of following data (max 47h)
+ 02h	BYTE	3Ch (subfunction "Scan Property")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name (01h-2Fh)
+ 06h  N BYTEs	object name
+	DWORD	(big-endian) sequence number
+		FFFFFFFFh for first call
+	BYTE	length of property's name (01h-0Fh)
+      N BYTEs	property's name
+SeeAlso: #01940,#02187
+
+Format of NetWare "Scan Property" reply buffer:
+Offset	Size	Description	(Table 01940)
+ 00h	WORD	(call) 0018h (length of following results buffer)
+ 02h 16 BYTEs	property name
+ 12h	BYTE	property flags
+ 13h	BYTE	property security levels
+ 14h	DWORD	(big-endian) sequence number
+ 18h	BYTE	property value flag (00h no, FFh yes)
+ 19h	BYTE	more properties (00h no, FFh yes)
+SeeAlso: #01939,#02187
+

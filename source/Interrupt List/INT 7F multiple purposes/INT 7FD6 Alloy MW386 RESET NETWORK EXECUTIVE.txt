@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FD6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - RESET NETWORK EXECUTIVE
+	AH = D6h
+	DS:DX -> reset packet (see #03970)
+Return: never if successful
+Note:	all users will be shut down immediately if successful
+SeeAlso: AH=CFh
+
+Format of Alloy MW386 reset packet:
+Offset	Size	Description	(Table 03970)
+ 00h	DWORD	reset code (60606060h)
+ 04h 16 BYTEs	ASCIZ supervisor password padded with nulls
+

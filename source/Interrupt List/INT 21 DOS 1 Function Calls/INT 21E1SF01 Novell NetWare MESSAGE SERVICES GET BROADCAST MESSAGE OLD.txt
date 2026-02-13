@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E1--SF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - MESSAGE SERVICES - GET BROADCAST MESSAGE (OLD)
+	AH = E1h subfn 01h
+	DS:SI -> request buffer (see #01821)
+	ES:DI -> reply buffer (see #01822)
+Return: AL = status
+	    00h successful
+	    FCh full message queue
+	    FEh out of dynamic workspace
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+SeeAlso: AH=DEh/DL=04h,AH=E1h/SF=00h,AH=E1h/SF=05h,AH=E1h/SF=09h
+SeeAlso: AX=F215h/SF=01h,AX=F215h/SF=0Bh
+
+Format of NetWare "Get Broadcast Message" request buffer:
+Offset	Size	Description	(Table 01821)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	01h (subfunction "Get Broadcast Message")
+SeeAlso: #01822,#02109
+
+Format of NetWare "Get Broadcast Message" reply buffer:
+Offset	Size	Description	(Table 01822)
+ 00h	WORD	(call) size of following results buffer (max 38h)
+ 02h	BYTE	length of message (00h-37h)
+		00h if no broadcast messages pending
+ 03h  N BYTEs	message (no control characters or characters > 7Eh)
+SeeAlso: #01821,#02107,#02110
+

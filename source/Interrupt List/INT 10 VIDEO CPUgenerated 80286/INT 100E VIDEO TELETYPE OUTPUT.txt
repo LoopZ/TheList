@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100E
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - TELETYPE OUTPUT
+	AH = 0Eh
+	AL = character to write
+	BH = page number
+	BL = foreground color (graphics modes only)
+Return: nothing
+Desc:	display a character on the screen, advancing the cursor and scrolling
+	  the screen as necessary
+Notes:	characters 07h (BEL), 08h (BS), 0Ah (LF), and 0Dh (CR) are interpreted
+	  and do the expected things
+	IBM PC ROMs dated 1981/4/24 and 1981/10/19 require that BH be the same
+	  as the current active page
+BUG:	if the write causes the screen to scroll, BP is destroyed by BIOSes
+	  for which AH=06h destroys BP
+SeeAlso: AH=02h,AH=06h,AH=0Ah
+

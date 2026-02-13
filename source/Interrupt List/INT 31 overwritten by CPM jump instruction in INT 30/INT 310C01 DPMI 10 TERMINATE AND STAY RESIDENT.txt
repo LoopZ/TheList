@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310C01
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - TERMINATE AND STAY RESIDENT
+	AX = 0C01h
+	BL = return code
+	DX = number of paragraphs of DOS memory to reserve (0 or >= 6)
+Return: never
+Notes:	should only be used if the program will only provide services to
+	  other DPMI programs
+	any protected mode memory remains allocated to the program unless
+	  explicitly freed before this call
+	must first call AX=0C00h or program will simply be terminated
+SeeAlso: AX=0C00h,INT 21/AH=31h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14EB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telname" - GET AVAILABLE/INUSE STATUS FOR ALL SESSIONS
+	AH = EBh
+	ES:SI -> buffer for session statuses (see #00402)
+Return: ES:SI buffer filled
+SeeAlso: AH=E9h,AH=EAh,AX=FF00h
+
+Format of TelAPI session status information [array]:
+Offset	Size	Description	(Table 00402)
+ 00h	BYTE	session state (00h available, 01h connected)
+ 01h  9 BYTEs	session ID if connected
+ 0Ah	WORD	attached COM port if connected, FFFFh if not
+SeeAlso: #00401
+

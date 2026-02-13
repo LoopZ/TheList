@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 157E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL BATTERY CHANGE FACILITIES (APM)
+	AH = 7Eh
+	AL = 00h do not prompt
+	    else prompt
+Desc:	select whether the user is prompted for the battery state if the
+	  battery cap has been off when the system is turned on
+SeeAlso: AH=7Fh
+

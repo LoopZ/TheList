@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2D U - Screen Thief v1.00 - FREE HIGH MEMORY BUFFERS
+	AL = 10h
+	AH = AMIS multiplex number for Screen Thief
+Return: nothing
+Program: Screen Thief is a graphics screen grabber
+Note:	releases any code and data stored in EMS, DOS UMBs, or XMS UMBs, but
+	  does not release the low-memory stub; this may be used to effect a
+	  partial uninstall if INT 2D/AL=02h fails
+SeeAlso: INT D8"Screen Thief"
+

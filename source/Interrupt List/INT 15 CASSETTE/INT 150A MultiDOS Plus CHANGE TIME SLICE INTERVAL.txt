@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150A
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - CHANGE TIME SLICE INTERVAL
+	AH = 0Ah
+	AL = new interval
+	    00h = 55.0 ms (default)
+	    80h = 27.5 ms
+	    40h = 13.75 ms
+	    20h = 6.88 ms
+	    10h = 3.44 ms
+	    08h = 1.72 ms
+SeeAlso: AH=03h"MultiDOS"
+

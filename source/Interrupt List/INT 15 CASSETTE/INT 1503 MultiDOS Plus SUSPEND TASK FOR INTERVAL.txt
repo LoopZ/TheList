@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1503
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - SUSPEND TASK FOR INTERVAL
+	AH = 03h
+	DX = number of time slices to remain suspended
+Return: after specified interval has elapsed
+Note:	when priority-based scheduling is in use, high-priority tasks should
+	  use this function to yield the processor
+SeeAlso: AH=00h"MultiDOS",AH=0Ah"MultiDOS"
+

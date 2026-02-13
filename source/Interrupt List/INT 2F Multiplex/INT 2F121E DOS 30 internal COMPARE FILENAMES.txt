@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F121E
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - COMPARE FILENAMES
+	AX = 121Eh
+	DS:SI -> first ASCIZ filename
+	ES:DI -> second ASCIZ filename
+Return: ZF set if filenames equivalent, ZF clear if not
+Note:	supported by DR DOS 5.0+
+SeeAlso: AX=1211h,AX=1221h
+

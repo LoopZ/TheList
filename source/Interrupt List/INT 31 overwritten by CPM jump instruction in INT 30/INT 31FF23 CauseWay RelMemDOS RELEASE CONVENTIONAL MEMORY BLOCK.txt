@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF23
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "RelMemDOS" - RELEASE CONVENTIONAL MEMORY BLOCK
+	AX = FF23h
+	DX = initial selector for block
+Return: CF clear if successful
+	CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+Note:	all descriptors allocated for the block are freed
+SeeAlso: AX=FF21h,AX=FF22h,INT 21/AH=4Ah
+

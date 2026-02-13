@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6120
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - GET/SET INT 09 REVECTORING
+	AH = 20h
+	AL = function
+	    00h get INT 09 revectoring state
+	    01h set state
+		DL = new state (00h disable, 01h enable)
+Return: if function 00h
+	    DL = new state (00h disabled, 01h enabled)
+Desc:	specify whether INT 09 is automatically revectored to the BIOS,
+	  preventing applications from using their own INT 09 handler on the
+	  incompatible keyboard hardware
+SeeAlso: AH=1Eh"Portfolio",AH=1Fh"Portfolio",AH=24h"Portfolio"
+

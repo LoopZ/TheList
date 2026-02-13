@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 132D
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - SET BUFFERED READ
+	AH = 2Dh
+	AL = new state (00h disabled, 01h enabled)
+Return: AX = status (0000h successful)
+Desc:	specify whether the cache should attempt to read ahead of actual
+	  requests
+Note:	this function enables or disables read-ahead for all drives; use AH=37h
+	  to change a single drive
+SeeAlso: AH=2Ch,AH=37h
+

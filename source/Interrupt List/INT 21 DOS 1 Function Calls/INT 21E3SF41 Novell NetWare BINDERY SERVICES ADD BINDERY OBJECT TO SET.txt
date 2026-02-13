@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF41
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - ADD BINDERY OBJECT TO SET
+	AH = E3h subfn 41h
+	DS:SI -> request buffer (see #01951)
+	ES:DI -> reply buffer (see #01949)
+Return: AL = status (see #01950)
+Desc:	add the specified object to an object's group property
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=40h,AH=E3h/SF=42h,AH=E3h/SF=43h,AX=F217h/SF=41h
+
+(Table 01950)
+Values for NetWare function status:
+ 00h	successful
+ 96h	server out of memory
+ E9h	member already exists
+ EAh	member does not exist
+ EBh	not a group property
+ F0h	wildcard not allowed
+ F8h	can't write property
+ F9h	not permitted to read property
+ FBh	no such property
+ FCh	no such object
+ FEh	server bindery locked
+ FFh	bindery failure
+SeeAlso: #01946,#01961
+
+Format of NetWare "Add Bindery Object to Set" request buffer:
+Offset	Size	Description	(Table 01951)
+ 00h	WORD	length of following data (max 75h)
+ 02h	BYTE	41h (subfunction "Add Bindery Object to Set")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name
+ 06h  N BYTEs	object name
+	BYTE	length of property name (01h-0Fh)
+      N BYTEs	property name
+	WORD	(big-endian) type of member object
+	BYTE	length of member object's name
+      N BYTEs	member object's name
+SeeAlso: #01949
+

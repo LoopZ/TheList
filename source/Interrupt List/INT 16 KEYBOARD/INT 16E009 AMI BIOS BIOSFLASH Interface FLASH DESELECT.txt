@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E009
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface - FLASH DE-SELECT
+	AX = E009h
+Return: CF clear if successful
+	    AL = FAh
+	CF set on error
+Desc:	select the EPROM if the system contains both EPROM and Flash ROM
+Note:	this function performs any delay required to allow the Flash ROM to
+	  stabilize in the de-selected state; if no EPROM is present, this
+	  function always returns successfully
+SeeAlso: AX=E000h,AX=E006h,AX=E008h
+

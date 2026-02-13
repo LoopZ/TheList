@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105049
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SCREENR v1.55+ - API
+	AX = 5049h ('PI')
+	BX = function
+	    0000h installation check
+	    0001h lock mode
+	    0002h unlock mode
+	    0003h lock palette
+	    0004h unlock palette
+Return: AX = 0000h if installed
+	    BX = TSR version (BH=major,BL=minor)
+	    CL = mode locking status
+		00h mode not locked
+		01h mode locked: INT 10/AH=00h disabled
+	    CH = palette locking status
+		00h palette not locked
+		01h palette locked, the following functions are disabled:
+			AX=1000h, AX=1001h, AX=1002h, AX=1010h, AX=1012h
+Program: SCREENR is a TSR supplied with Patrick Ibbetson's SCREEN display
+	  utility.
+Index:	installation check;SCREENR
+

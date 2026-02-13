@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1614
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS-DOS 7 kernel - SET SYSTEM.DAT (REGISTRY FILE) PATHNAME
+	AX = 1614h
+	ES:DI -> ASCIZ pathname to Windows95 SYSTEM.DAT
+Return: AX = status
+	    0000h if successful
+	    1614h not supported
+	    other: maximum length of pathname (004Eh for v4.00.950)
+SeeAlso: AX=160Eh,AX=1611h,AX=1613h,AX=1690h
+

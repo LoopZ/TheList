@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FCC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v4.1+ - GET/SET SERVER CONTROL BITS
+	AX = 5FCCh
+	ES:DI -> ASCIZ server name in form "\\machine"
+	CX = bit values (value of bits you want to set) (see #01745)
+	DX = bit mask (bits you are interested in, 0 = get only) (see #01745)
+Return: CF clear if successful
+	    CX = control bits after call (see #01745)
+	CF set on error
+	    AX = error code
+Note:	you must have the "S" privilege to SET, anyone can GET.
+
+Bitfields for control bits:
+Bit(s)	Description	(Table 01745)
+ 0	disable logins
+

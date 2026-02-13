@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14400D
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - LONGWAIT
+	AX = 400Dh
+	DX:CX = number of 838ns microticks to wait
+	     (0000h:0000h means 4294967296, about one hour)
+Example: To wait 1s you must set DX:CX=(1s/838ns)=1193180
+SeeAlso: AX=4000h,AX=400Ch
+

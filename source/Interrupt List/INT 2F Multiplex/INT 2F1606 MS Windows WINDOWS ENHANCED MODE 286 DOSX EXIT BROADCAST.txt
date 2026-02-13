@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1606
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - WINDOWS ENHANCED MODE & 286 DOSX EXIT BROADCAST
+	AX = 1606h
+	DX = flags
+	    bit 0 = 0 if Windows enhanced-mode exit
+	    bit 0 = 1 if Microsoft 286 DOS extender exit
+	    bits 1-15 reserved (undefined)
+Notes:	if the init broadcast fails (AX=1605h returned CX <> 0), then this
+	  broadcast will be issued immediately.
+	this call will be issued in real mode
+	Novell DOS v7.0 (Update 8 - Update 15) TASKMGR in multitasking mode
+	  uses this broadcast, even if TASKMGR.INI sets WinPresent= to OFF
+SeeAlso: AX=1605h,AX=1609h
+

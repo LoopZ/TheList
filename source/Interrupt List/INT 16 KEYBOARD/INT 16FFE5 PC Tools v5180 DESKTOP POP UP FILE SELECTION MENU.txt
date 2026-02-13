@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFE5
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - POP UP FILE SELECTION MENU
+	AX = FFE5h
+	DS:SI -> ASCIZ wildcard filespec followed by ASCIZ menu title
+	DX = segment of window parameters???
+Return: AX = DOS file handle for file
+		DS:DX -> filename???
+	    FFFFh if function cancelled by user
+Note:	available only when popped up
+SeeAlso: AX=FFDAh
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0016
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - DLI 2.8+ - DRIVER I/O CONTROL
+	AX = 0016h
+	DX = subfunction; bits 14-15 specify direction of I/O:
+		00 no data at all (ES:BX undefined)
+		01 driver -> application (GET)
+		10 application -> driver (SET)
+		11 both directions (GET/SET)
+	ES:BX -> I/O buffer (optional)
+	CX = size of buffer (if ES:BX valid)
+Return: AX = completion code; defined by OEM
+Program: SK-UPPS is the Schneider & Koch Universal Portable Protocol Stack,
+	  which provides an API on top of its Data Link Interface, allowing the
+	  use of any of several network transport layers
+Notes:	not supported by all DLIs (will return AX=FFFFh if not supported)
+	subfunction codes are defined by OEMs
+SeeAlso: AX=0001h
+

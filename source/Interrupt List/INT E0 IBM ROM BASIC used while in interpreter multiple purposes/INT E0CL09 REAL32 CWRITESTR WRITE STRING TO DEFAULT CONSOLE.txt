@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL09
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "C_WRITESTR" - WRITE STRING TO DEFAULT CONSOLE
+	CL = 09h
+	DS:DX -> string
+Return: nothing
+	may destroy SI,DI,DS???
+Note:	the string terminated with a '$' character (24h) by default; the
+	  terminator may be changed with C_DELIMIT
+	tabs are expanded to the next multiple of eight columns
+SeeAlso: INT E0/CL=6Eh
+

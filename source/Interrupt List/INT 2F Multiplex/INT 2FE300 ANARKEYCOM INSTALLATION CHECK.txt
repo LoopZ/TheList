@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE300
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANARKEY.COM - INSTALLATION CHECK
+	AX = E300h
+Return: AL = state
+	    00h not installed
+	    FEh if installed but suspended (v3.0+)
+	    FFh installed
+Program: ANARKEY.COM is a commandline recall program by Steven Calwas
+Range:	AH=C0h to AH=FFh, selected by commandline switch
+SeeAlso: AX=E100h,AX=E301h,AX=E302h,AX=E303h,AX=E304h,AX=E305h,AX=E306h
+SeeAlso: AX=E307h,INT 66"Newkey"
+

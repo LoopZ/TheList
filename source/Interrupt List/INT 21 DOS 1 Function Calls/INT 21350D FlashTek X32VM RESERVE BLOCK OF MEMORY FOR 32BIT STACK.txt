@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21350D
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - FlashTek X-32VM - RESERVE BLOCK OF MEMORY FOR 32-BIT STACK
+	AX = 350Dh
+	EBX = current ESP value
+	ECX = size of block in bytes
+	DS = default DS
+Return: CF clear if successful
+	    EBX = new value for ESP
+	    EDX = suggested new limit for SS
+	CF set on error
+Note:	this function should only be called once during initialization
+SeeAlso: AX=350Bh,AX=350Ch
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F03BL02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - VIDEO SUPPORT CONTROL - GO RAM RESIDENT
+	AX = 7F03h
+	BL = 02h
+	CX = support request
+	ES = destination segment
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		01h failed
+SeeAlso: AX=7F00h"SOLLEX",AX=7F03h/BL=01h
+

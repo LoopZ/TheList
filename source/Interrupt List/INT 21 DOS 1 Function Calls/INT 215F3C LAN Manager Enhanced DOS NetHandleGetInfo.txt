@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F3C
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - NetHandleGetInfo
+	AX = 5F3Ch
+	BX = handle
+	CX = length of handle_info_1 structure
+	DS:DX -> handle_info_1 structure (see #01705)
+	SI = level of information (must be 0001h)
+Return: CF clear if successful
+	    CX = total bytes available
+	CF set if error
+	    AX = error code
+SeeAlso: AX=5F3Bh
+

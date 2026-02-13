@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD0C
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - GET NEXT IMAGE STRIP
+	AX = CD0Ch
+Return: AX = status
+	    0000h OK but not complete
+	    0001h OK and image complete
+	    FFFFh error
+	DS:SI -> buffer (max 4K) for bit map strip
+	CX = start row
+	DX = number of rows
+	BX = offset in bytes between bit planes
+Note:	buffer may be overwritten by subsequent calls
+SeeAlso: AX=CD0Bh
+

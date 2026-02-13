@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1106
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - CLOSE REMOTE FILE
+	AX = 1106h
+	ES:DI -> filled-in SFT (assumed to point at SDA's current SFT field)
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    SFT updated (redirector must decrement open count, which may be
+		  done with INT 2F/AX=1208h)
+	ES:DI must be preserved
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: AX=1116h,AX=1201h,AX=1208h,AX=1227h,INT 21/AH=3Eh
+

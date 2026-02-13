@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 174B01
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Brother P-Touch - UNINSTALL
+	AX = 4B01h
+Return: AX = segment of resident program or 0000h if unable to uninstall
+Note:	the calling program must manually free both the indicated segment
+	  and the environment segment for the TSR with INT 21/AH=49h
+	  (the environment is pointed at by the WORD at AX:002Ch)
+SeeAlso: AX=4B00h,INT 21/AH=49h
+

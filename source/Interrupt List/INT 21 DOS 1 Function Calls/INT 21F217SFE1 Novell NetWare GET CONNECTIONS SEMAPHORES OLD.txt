@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFE1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET CONNECTION'S SEMAPHORES (OLD)
+	AX = F217h subfn E1h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02067 at AH=E3h/SF=E1h)
+	ES:DI -> reply buffer (see #02240)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=E1h,AX=F217h/SF=F1h
+
+Format of NetWare "Get Connection's Semaphores (old)" reply packet:
+Offset	Size	Description	(Table 02240)
+ 00h	WORD	next request record (place in "last record" field on next call)
+ 02h	BYTE	number of records following
+ 03h	var	array of Semaphore Information Records
+		  (see #02069 at AH=E3h/SF=E1h)
+SeeAlso: #02067,#02068 at AH=E3h/SF=E1h
+

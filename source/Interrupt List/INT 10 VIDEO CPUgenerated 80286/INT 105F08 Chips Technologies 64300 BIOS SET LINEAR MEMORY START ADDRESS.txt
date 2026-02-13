@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F08
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies '64300' BIOS - SET LINEAR MEMORY START ADDRESS
+	AX = 5F08h
+	BX = desired start address in megabytes
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F06h
+

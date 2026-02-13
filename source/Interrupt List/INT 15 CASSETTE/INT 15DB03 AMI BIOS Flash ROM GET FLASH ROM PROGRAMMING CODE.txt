@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DB03
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI BIOS - Flash ROM - GET FLASH ROM PROGRAMMING CODE
+	AX = DB03h
+	DS:SI -> ???
+	ES:DI -> buffer for Flash ROM programming code
+	BX = ???
+	DX = ???
+Return: CF clear if successful
+	    AH = ???
+	    BX = ???
+	    DX = ???
+	CF set on error
+	    AH = error code
+Notes:	the entry point for the copied code (which is fully relocatable) is
+	  the very first byte (see #00548)
+	used by FMUP.EXE, Intel's Flash Memory Update utility
+SeeAlso: AX=DB00h,AX=DB02h
+
+(Table 00548)
+Call AMI BIOS ??? code with:
+	AL = function
+	    00h erase Flash ROM block
+		CX = ???
+			bit 8: address line A16 inverted
+		???
+	    01h program new data into Flash ROM
+		???
+	    02h perform cold reboot
+	DS:SI -> ??? (see #00549)
+	ES:DI -> ???
+Return: AH = status
+	    00h successful
+	    01h invalid function
+	    02h ???
+	    03h ???
+	    04h ???
+Note:	DS:SI and ES:DI are ignored for function 02h
+
+Format of AMI BIOS Flash ROM programming parameters:
+Offset	Size	Description	(Table 00549)
+ 00h 32 BYTEs	???
+ 20h	BYTE	BIOS section number
+ 21h	DWORD	length of BIOS code/data in bytes
+ 25h 43 BYTEs	???
+ 50h	DWORD	???
+ 54h 44 BYTEs	???
+SeeAlso: #00548
+

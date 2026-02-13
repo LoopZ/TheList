@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX4321
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - POSTMSG - GET API ENTRY POINT
+	AX = 1684h
+	BX = 4321h (virtual device ID for POSTMSG device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02712,#02714)
+		  0000h:0000h if the VxD does not support an API
+
+(Table 02712)
+Call POSTMSG protected-mode entry point with:
+	AX = window handle
+	CX:BX -> callback procedure (see #02713)
+Return: nothing
+Note:	this call registers a WinApp with the VxD; the callback must be in a
+	  fixed, non-discardable code segment
+SeeAlso: #02714,#02715
+
+(Table 02713)
+Values POSTMSG callback routine is called with:
+	STACK:	DWORD	"lParam" parameter from DOSApp
+		WORD	"wParam" parameter from DOSApp
+		WORD	Windows message number (WM_USER + 100h)
+		WORD	registered HWND
+
+(Table 02714)
+Call POSTMSG V86-mode entry point with:
+	BX = wParam value to pass to protected-mode callback
+	DX:AX = lParam value to pass to protected-mode callback
+Return: CF clear if successful
+	CF set on error (no WinApp registered)
+SeeAlso: #02712
+

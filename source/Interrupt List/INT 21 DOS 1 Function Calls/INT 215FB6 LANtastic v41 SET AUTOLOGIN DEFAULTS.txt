@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FB6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v4.1+ - SET AUTO-LOGIN DEFAULTS
+	AX = 5FB6h
+	ES:DI -> pointer to ASCIZ default user name, immediately followed by
+		ASCIZ password
+	BL = adapter number to use for default login attempt
+	    FFh try all valid adapters
+	    00h-05h try adapter 0-5 explicitly
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Notes:	call with ES:DI -> two nulls to disable auto-login
+SeeAlso: AX=5FB7h
+

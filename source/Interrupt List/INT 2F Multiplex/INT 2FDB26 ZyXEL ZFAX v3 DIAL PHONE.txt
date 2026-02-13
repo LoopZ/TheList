@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB26
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - DIAL PHONE
+	AX = DB26h
+	DS:SI -> remote phone number
+Return: AX = status (see #03096)
+SeeAlso: AX=DB25h
+

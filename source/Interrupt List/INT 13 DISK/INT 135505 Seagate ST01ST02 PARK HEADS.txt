@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 135505
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Seagate ST01/ST02 - PARK HEADS
+	AX = 5505h
+	DL = drive ID (80h, 81h, ...)
+	DH = subfunction
+	    00h park heads (SCSI Stop command)
+	    01h un-park heads (SCSI Start command)
+Return: nothing
+

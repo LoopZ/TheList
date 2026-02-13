@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 674B
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - GET NUMBER OF EMM HANDLES
+	AH = 4Bh
+Return: AH = status (00h,80h,81h,83h,84h) (see #03648)
+	BX = number of EMM handles if AH=00h
+

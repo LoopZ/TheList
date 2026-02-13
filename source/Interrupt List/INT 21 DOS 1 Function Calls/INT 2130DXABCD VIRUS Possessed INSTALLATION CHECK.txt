@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2130--DXABCD
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Possessed" - INSTALLATION CHECK
+	AH = 30h
+	DX = ABCDh
+Return: DX = DCBAh if installed
+SeeAlso: AX=0D20h,AH=30h/SI=1234h,AX=3000h"VIRUS",AX=30F1h
+

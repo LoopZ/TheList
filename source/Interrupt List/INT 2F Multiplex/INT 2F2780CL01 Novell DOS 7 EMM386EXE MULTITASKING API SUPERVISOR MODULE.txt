@@ -1,0 +1,178 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2780CL01
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 - EMM386.EXE - MULTITASKING API - SUPERVISOR MODULE
+	AX = 2780h
+	CL = 01h (module: Supervisor)
+	CH = subfunction
+	    00h unused
+		Return: CX = status (0002h) (see #02739)
+	    01h unused
+		Return: CX = status (0002h) (see #02739)
+	    02h "Z_ModuleReg" register an OS module
+		EBX = module number (0005h-000Fh)
+		DS:EDX -> module descriptor (see #02741)
+		Return: CX = status (0000h,0030h) (see #02739)
+	    03h allocate SYSDAT memory
+		DX = number of ??? to allocate
+		Return: CX = status (0000h,0003h) (see #02739)
+	    04h get selector to SYSDAT
+		Return: CX = 0000h (successful)
+			BX = selector for EMM386 data segment
+			EBX high word cleared
+	    05h "Z_MoveReal" relocate segment into extended memory
+		DS:EDX -> descriptor parameter block
+		Return: ECX = status (00h,03h,31h,32h) (see #02739)
+			---if successful---
+			parameter block filled
+	    06h "Z_Reboot" return to real mode via triple fault
+	    07h debugger break
+		Note:	calls INT 03, then INT 21/AH=02h to output a question
+			  mark
+	    08h "X_ForeCheck" check if domain is in foreground
+		Return: CX = 0000h (successful)
+			EBX = ??? (0 or 2)
+	    09h register VxD with system
+	    0Ah unload VxD hook
+	    0Bh indicate end of initialization phase
+		Return: CX = status (0002h) (see #02739)
+	    0Ch "F_AllocWindow" allocate 4K mapping window
+	    0Dh "F_RegisterBoot" register reboot addresses
+		EBX = ???
+		EDX = ???
+		Return: ???
+	    0Eh "F_EnquireBoot" check if reboot active
+		Return: CX = 0000h (successful)
+			BL = ???     \ or BX = 0000h
+			BH = ???     /
+	    0Fh get debugging level
+		Return: CX = 0000h (successful)
+			EBX = new value for debugging level
+	    10h set debugging level
+		EDX = ???
+		Return: CX = 0000h (successful)
+			EBX = old value of debugging level
+	    11h installation check (documented)
+		Return: CX = status
+			    0000h if multitasker is installed
+				EBX = version (0100h for v1.00)
+			    1101h if multitasker is not present
+	    12h "F_V86BPInstall" install V86 breakpoint
+		DX = ???
+		Return: CX = 0000h (successful)
+			AX = old value of ???
+	    13h "F_V86BPRemove" remove V86 breakpoint
+		Return: CX = status (0000h,003Fh) (see #02739)
+			AX = ???
+	    14h "F_V86BPOffer" indicate INT 03 to be used as V86 breakpoint
+		EDX = linear address ??? of INT 03 instruction for breakpoint
+		Return: CX = status (0000h,003Fh) (see #02739)
+	    15h "F_LoaderCleanup" offer opportunity to clean up
+		BX = segment of ???
+		Return: CX = 0000h (successful)
+			BX = segment of ???
+	    16h "F_RegisterVxDWindow" register VxD mapping window
+	    17h "F_RegisterPNW" register Personal NetWare information
+		EBX = subfunction (0-2)
+		Return: CX = status (0002h if EBX>2) (see #02739)
+			???
+	    18h unused
+		Return: CX = status (0002h) (see #02739)
+Return: CX = status (most subfunctions)
+	(E)AX and/or (E)BX contain return values, depending on function
+Notes:	called by DPMS.EXE and EMM386.EXE
+	this API is only available if AX=12FFh/BX=0EDCh returns successfully;
+	  because the request is handled on the initial trap to the memory
+	  manager caused by INT instructions, this API must be invoked with
+	  an actual INT 2F instruction instead of some simulation such as a
+	  far call to the address in the interrupt vector table
+SeeAlso: AX=12FFh/BX=0EDCh,AX=2780h/CL=02h,AX=2780h/CL=03h,AX=2780h/CL=04h
+
+(Table 02739)
+Values for Novell DOS 7 EMM386 function status:
+ 0000h	successful
+ 0001h	not implemented
+ 0002h	invalid subfunction
+ 0003h	unable to find memory
+ 0004h	invalid flag (semaphore) number
+ 0005h	flag (semaphore) overrun
+ 0006h	flag (semaphore) underrun
+ 0007h	no queue handles available
+ 0009h	no queue buffers available
+ 000Ah	queue is in use
+ 000Bh	invalid process handle
+ 000Ch	no process handles available
+ 000Dh	queue access not permitted
+ 000Eh	queue is empty
+ 000Fh	queue is full
+ 0012h	no memory handles available
+ 0014h	can't find process in process list
+ 001Bh	invalid memory handle
+ 0023h	unable to terminate process
+ 002Ah	flag set ignored
+ 002Dh	no more system flags
+ 002Eh	flag (semaphore) not in idle state
+ 002Fh	flag (semaphore) wait timed out
+ 0030h	bad module number in CL
+ 0031h	bad descriptor
+	invalid value for DESC_PB_SINFO in a descriptor parameter block
+ 0032h	no free descriptors
+ 0033h	error while locking/unlocking a page
+ 0034h	error getting or setting a page
+ 0035h	no pages available
+ 0036h	invalid domain
+ 0037h	process already frozen
+ 0038h	process not frozen
+ 0039h	fork failure (no registered swaplist)
+ 003Ah	page already free
+ 003Bh	page already allocated
+ 003Ch	unable to switch tasks
+ 003Dh	attempted to free critical section which is not active
+ 003Eh	too many active critical sections
+ 003Fh	???
+ 41FFh	current domain is invalid, or no domain in context
+ 42FFh	domain ID is not a valid descriptor
+ 43FFh	domain creation still in progress
+ 44FFh	domain currently being deleted
+ 45FFh	task manager is busy, cannot unload it
+ 46FFh	task manager already loaded
+ 47FFh	task manager not yet loaded
+ 48FFh	cannot save/restore because prior switch not complete
+ 49FFh	console already has owner
+ 4BFFh	unsupported opcode
+ 4CFFh	32-bit address prefix not supported
+ 4FFFh	timeout, but not on timer queue
+ 50FFh	unable to lock timer queue
+ 53FFh	unable to switch while in Global Message Mode
+ 54FFh	error while setting Global Message Mode
+ 55FFh	not in Global Message Mode
+ 56FFh	system already in Domain Message Mode
+ 57FFh	not in Domain Message Mode
+ 58FFh	unable to allocate timeout structure
+ 59FFh	unsupported video type
+ 5AFFh	function not handled by any VM
+ 5BFFh	error in Serial..Set call
+ 5CFFh	error in Parallel..Set call
+ 5DFFh	domain list overflowed
+ 5FFFh	unable to free domain while in nobuffers mode
+
+Format of Novell DOS/OpenDOS EMM386 descriptor parameter block:
+Offset	Size	Description	(Table 02740)
+ 00h	DWORD	"DESC_PB_BASE"
+ 04h	DWORD	"DESC_PB_LIMIT"
+ 08h	WORD	"DESC_PB_SEL"
+ 0Ah	BYTE	"DESC_PB_MINFO"
+ 0Bh	BYTE	"DESC_PB_SINFO"
+SeeAlso: #02741
+
+Format of Novell DOS/OpenDOS EMM386 module descriptor:
+Offset	Size	Description	(Table 02741)
+ 00h 12 BYTEs	descriptor parameter block (see #02740)
+ 0Ch	DWORD	-> module entry point
+Note:	for function "Z_ModuleReg", only DESC_PB_SEL and the module entry point
+	  need to be initialized before calling EMM386
+SeeAlso: #02740
+

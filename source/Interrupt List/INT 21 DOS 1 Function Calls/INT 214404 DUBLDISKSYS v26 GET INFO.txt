@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214404
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DUBLDISK.SYS v2.6 - GET INFO
+	AX = 4404h
+	BL = drive number of DoubleDisk drive (00h = default, 01h = A:, etc.)
+	CX = number of bytes (000Ah-0014h, call ignored otherwise)
+	DS:DX -> data record (see #01530)
+Return: CF clear if successful
+	    AX = number of bytes read
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: DUBLDISK.SYS is the device driver portion of DoubleDisk, a disk
+	  expander by Vertisoft Systems, Inc.
+InstallCheck:	for v2.6, scan memory for the signature "FAT 2.6  byte:",
+	  which is immediately followed by a data table (see #01531)
+BUG:	VOPT (a disk optimizer by Golden Bow Software) assumes that any driver
+	  which returns the "correct" number of bytes when the first word of
+	  the buffer for the data record contains the signature value 4444h is
+	  DoubleDisk; a workaround is for the non-DoubleDisk driver to return
+	  no data if the signature is present
+SeeAlso: AX=440Dh"DOS 3.2+"
+Index:	installation check;DUBLDISK.SYS
+
+Format of DUBLDISK data record:
+Offset	Size	Description	(Table 01530)
+ 00h	WORD	(call) signature 4444h
+ 02h	BYTE	(call) function
+			00h ???
+			01h ???
+---function 00h---
+ 02h	BYTE	(ret) ???
+ 03h	BYTE	(ret) ???
+---function 01h---
+ 02h	WORD	(ret) 4444h
+ 04h	WORD	allocation unit size???
+ 06h	WORD	???
+ 08h	WORD	???
+ 0Ah	BYTE	???
+
+Format of DUBLDISK signature data table:
+Offset	Size	Description	(Table 01531)
+ 00h  5 BYTEs	???
+ 05h	BYTE	first drive number
+ 06h	BYTE	number of drives
+ 07h	???
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx357E
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - DSOUND - VxD SERVICES
+	VxD = 357Eh
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01340)
+Values for DSOUND (VxD ID 357Eh) service number:
+ 00h	get DSOUND version???
+ 01h	???
+ 02h	???
+SeeAlso: #01339,#01341
+

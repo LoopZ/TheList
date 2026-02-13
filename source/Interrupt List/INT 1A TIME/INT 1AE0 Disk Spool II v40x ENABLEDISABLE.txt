@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AE0
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Disk Spool II v4.0x - ENABLE/DISABLE
+	AH = E0h
+	AL = subfunction
+	    01h enable spooler
+	    02h disable spooler
+	    03h enable despooler
+	    04h disable despooler
+	CL = printer port (01h COM1, 02h COM2, 05h LPT1, 06h LPT2)
+Return: AH = status
+	    00h successful
+	    F0h printer port not managed by Disk Spool II
+	    FFH failed
+Note:	this function is also supported by Vertisoft's Emulaser utility ELSPL,
+	  as that is a licensed version of Disk Spool II
+SeeAlso: AH=A0h,AH=E1h,AX=E301h,AX=E401h
+

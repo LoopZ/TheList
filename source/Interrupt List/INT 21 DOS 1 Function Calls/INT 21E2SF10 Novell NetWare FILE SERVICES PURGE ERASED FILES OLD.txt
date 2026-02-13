@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF10
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVICES - PURGE ERASED FILES (OLD)
+	AH = E2h subfn 10h
+	DS:SI -> request buffer (see #01865)
+	ES:DI -> reply buffer (see #01863)
+Return: AL = status (00h,C6h) (see #01866)
+Desc:	purges files marked for deletion on the file server by the calling
+	  workstation
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=13h,AH=41h,AH=E2h/SF=11h,AH=E3h/SF=CEh,AX=F244h,AX=F216h/SF=10h
+
+Format of NetWare "Purge Erased Files" request buffer:
+Offset	Size	Description	(Table 01865)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	10h (subfunction "Purge Erased Files")
+SeeAlso: #01863
+

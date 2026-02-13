@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0480
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VNetSup - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0480h (virtual device ID for VNetSup device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02688)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02688)
+Call VNetSup.VXD entry point with:
+	AX = function number
+	    0000h
+		Return: AX = ???
+	    0001h
+		Return: AX = ???
+	    0002h
+		Return: AX = ???
+	    else
+		Return: CF set
+			AX = 0001h
+SeeAlso: #02687,#02689
+

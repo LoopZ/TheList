@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33000B
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - READ MOTION COUNTERS
+	AX = 000Bh
+Return: CX = number of mickeys mouse moved horizontally since last call
+	DX = number of mickeys mouse moved vertically
+Notes:	a mickey is the smallest increment the mouse can sense
+	positive values indicate down/right
+SeeAlso: AX=0003h,AX=001Bh,AX=0027h
+

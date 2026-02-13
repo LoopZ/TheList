@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61000FSF0001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - OPEN SOCKET
+	AX = 000Fh subfn 0001h
+	CX:BX -> request block (see #03445)
+	DX = application's data segment (should be = CX)
+	ES = DS
+Return: AX = status
+	    0000h successful
+	    00A5h resource not available
+Desc:	Opens a socket and returns a socket handle
+
+Format of request block:
+Offset	Size	Description	(Table 03445)
+ 00h	WORD	0001h
+ 02h	WORD	magic number (FEFEh)
+ 04h	WORD	buffer for return code (set to 0 before calling)
+ 06h	WORD	reserved (will be set to client DS)
+ 08h	WORD	reserved (obviously not used; set to 0 before calling)
+ 0Ah	DWORD	far pointer to parameter block (see #03446)
+ 0Eh	WORD	process handle (see AX=000Fh/SF=0008h)
+
+Format of parameter block:
+Offset	Size	Description	(Table 03446)
+ 00h	WORD	reserved
+ 02h	WORD	address family (0003h = VINES)
+ 04h	WORD	socket type (0001h = IPC, 0002h = SPP)
+ 06h	WORD	protocol number (FFFFh = default protocol)
+ 08h	WORD	reserved
+ 0Ah	WORD	local port number (0 = transient, 1..1FFh = well-known port)
+ 0Ch	DWORD	far pointer to socket handle buffer (2 bytes)
+ 10h	DWORD	far pointer to IPC port buffer (16 bytes)
+SeeAlso: #03445
+

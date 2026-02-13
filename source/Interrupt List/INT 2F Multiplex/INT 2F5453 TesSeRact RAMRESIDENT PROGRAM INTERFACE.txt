@@ -1,0 +1,171 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5453
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - TesSeRact RAM-RESIDENT PROGRAM INTERFACE
+	AX = 5453h
+	BX = subfunction
+	    00h installation check
+		CX = 0000h
+		DS:SI -> 8-char blank-padded name (see #02840)
+		Return: AX = FFFFh installed
+				CX = ID number of already-installed copy
+			AX = anything else, not installed
+				CX = ID number for TSR when installed
+	    01h get user parameters
+		CX = TSR ID number
+		Return: AX = status
+			    0000h successful
+				ES:BX -> user parameter block (see #02841)
+			    nonzero failed
+	    02h check if hotkey in use
+		CL = scan code of hot key (see #00006)
+		Return: AX = FFFFh hot key conflicts with another TSR
+			     otherwise safe to use the hotkey
+	    03h replace default critical error handler
+		CX = TSR ID number
+		DS:SI -> new routine for INT 24h
+		Return: AX = nonzero, unable to install new handler
+	    04h get internal data area
+		CX = TSR ID number
+		Return: AX = status
+			    0000h successful
+				ES:BX -> TSR's internal data area (see #02842)
+			    nonzero, TSR not found
+	    05h set multiple hot keys
+		CX = TSR ID number
+		DL = number of additional hot keys to allocate
+		DS:SI -> table of hot keys
+			BYTE  hotkey scan code (see #00006)
+			BYTE  hotkey shift state
+			BYTE  flag value to pass to TSR (nonzero)
+		Return: AX = nonzero, unable to install hot keys
+	    06h - 0Fh reserved
+	    10h enable TSR
+		CX = TSR ID number
+		Return: AX = nonzero, unable to enable
+	    11h disable TSR
+		CX = TSR ID number
+		Return: AX = nonzero, unable to disable
+	    12h unload TSR
+		CX = TSR ID number
+		Return: AX = nonzero, invalid TSR number
+		Note: if any interrupts used by TSR have been grabbed by
+			another TSR, the TesSeRact routines will wait until
+			it is safe to remove the indicated TSR from memory
+	    13h restart TSR
+		CX = TSR ID number of TSR which was unloaded but is still in
+		     memory
+		Return: AX = nonzero, unable to restart TSR
+	    14h get status word
+		CX = TSR ID number
+		Return: AX = FFFFh invalid ID number
+			   = other, successful
+				BX = bit flags
+	    15h set status word
+		CX = TSR ID number
+		DX = new bit flags
+		Return: AX = nonzero, unable to set status word
+	    16h get INDOS state at popup
+		CX = TSR ID number
+		Return: AX = 0000h successful
+			    BX = value of INDOS flag
+	    17h - 1Fh reserved
+	    20h call user procedure
+		CX = TSR ID number
+		ES:DI -> user-defined data
+		Return: AX = 0000h successful
+	    21h stuff keystrokes into keyboard buffer
+		CX = TSR ID number
+		DL = speed
+		    00h stuff keystrokes only when buffer is empty
+		    01h stuff up to four keystrokes per clock tick
+		    02h stuff up to 15 keystrokes per clock tick
+		DH = scan code flag
+		    if zero, buffer contains alternating ASCII and scan codes
+		    if nonzero, buffer contains only ASCII codes
+		SI = number of keystrokes
+		ES:DI -> buffer to stuff
+		Return: AX = 0000h success
+			     F0F0h user aborted with ^C or ^Break
+			     other unable to stuff keystrokes
+	    22h (v1.10) trigger popup
+		CX = TSR ID number
+		Return: AX = 0000h success, TSR will either pop up or beep to
+				   indicate that it is unable to pop up
+			     nonzero invalid ID number
+	    23h (v1.10) invoke TSR's background function
+		CX = TSR ID number
+		Return: AX = 0000h success
+			     FFFFh not safe to call background function
+			     nonzero invalid ID number
+	    24h - 2Fh reserved
+Notes:	Borland's THELP.COM popup help system for Turbo Pascal and Turbo C
+	  (versions 1.x and 2.x only) fully supports the TesSeRact API, as
+	  do the SWAP?? programs by Innovative Data Concepts.
+	AVATAR.SYS supports functions 00h and 01h (only the first three fields
+	  of the user parameter block) using the name "AVATAR  "
+SeeAlso: AX=CAFEh,INT 16/AX=55FFh,INT 2D"AMIS"
+Index:	installation check;TesSeRact TSR interface|uninstall;TesSeRact
+
+(Table 02840)
+Values for TesSeRact names:
+ "AVATAR  "	AVATAR.SYS
+ "QeditTSR"	TSR version of SemWare's Qedit editor
+ "SCRNBLNK"	Trusted Access screen blanker
+
+Format of TesSeRact User Parameter Block:
+Offset	Size	Description	(Table 02841)
+ 00h  8 BYTEs	blank-padded TSR name
+ 08h	WORD	TSR ID number
+ 0Ah	DWORD	bitmap of supported functions
+ 0Eh	BYTE	scan code of primary hotkey (see #00006)
+		00h = pop up when shift states match
+		FFh = no popup (if shift state also FFh)
+ 0Fh	BYTE	shift state of primary hotkey
+		FFh = no popup (if scan code also FFh)
+ 10h	BYTE	number of secondary hotkeys
+ 11h	DWORD	pointer to extra hotkeys set by func 05h
+ 15h	WORD	current TSR status flags
+ 17h	WORD	PSP segment of TSR
+ 19h	DWORD	DTA for TSR
+ 1Dh	WORD	default DS for TSR
+ 1Fh	DWORD	stack at popup
+ 23h	DWORD	stack at background invocation
+Index:	hotkeys;TesSeRact TSR interface
+
+Format of TSR internal data area:
+Offset	Size	Description	(Table 02842)
+ 00h	BYTE	revision level of TesSeRact library
+ 01h	BYTE	type of popup in effect
+ 02h	BYTE	INT 08 occurred since last invocation
+ 03h	BYTE	INT 13 occurred since last invocation
+ 04h	BYTE	active interrupts
+ 05h	BYTE	active soft interrupts
+ 06h	BYTE	DOS major version
+ 07h	BYTE	how long to wait before popping up
+ 08h	DWORD	pointer to INDOS flag
+ 0CH	DWORD	pointer to DOS critical error flag
+ 10h	WORD	PSP segment of interrupted program
+ 12h	WORD	PSP segment of prog interrupted by INT 28
+ 14h	DWORD	DTA of interrupted program
+ 18h	DWORD	DTA of program interrupted by INT 28
+ 1Ch	WORD	SS of interrupted program
+ 1Eh	WORD	SP of interrupted program
+ 20h	WORD	SS of program interrupted by INT 28
+ 22h	WORD	SP of program interrupted by INT 28
+ 24h	DWORD	INT 24 of interrupted program
+ 28h  3 WORDs	DOS 3.0+ extended error info
+ 2Eh	BYTE	old BREAK setting
+ 2Fh	BYTE	old VERIFY setting
+ 30h	BYTE	were running MS WORD 4.0 before popup
+ 31h	BYTE	MS WORD 4.0 special popup flag
+ 32h	BYTE	enhanced keyboard call in use
+ 33h	BYTE	delay for MS WORD 4.0
+11 times (for INTs 08h,09h,13h,16h,1Ch,21h,28h,2Fh,1Bh,23h, and 24h):
+	DWORD	old interrupt vector
+	BYTE	interrupt number
+	WORD	offset in TesSeRact code segment of new interrupt handler
+

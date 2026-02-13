@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DIMWIT - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    ES:DI -> signature string "DIMDOS" or "DIMWIN"
+Program: DIMWIT is a freeware Windows-aware screen blanker by Larry Board
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+SeeAlso: AX=C000h"AD-DOS",AX=C001h"DIMWIT"
+Index:	screen saver;DIMWIT
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - CLOSE SOCKET
+	BX = 0001h
+	DX = socket number (high byte in DL) (see #03809)
+Notes:	also cancels events set by any Event Control Blocks for the socket
+	the program must close all open sockets before terminating
+	this function is supported by Advanced NetWare 1.02+
+	When the NetWare-specific release of the DR DOS command processor does
+	  a NetWare shutdown sequence on exit, it will close all user sockets
+	  except for socket numbers 4000 and 4001, which seem to be used by IPX
+	  internally.
+SeeAlso: BX=0000h
+

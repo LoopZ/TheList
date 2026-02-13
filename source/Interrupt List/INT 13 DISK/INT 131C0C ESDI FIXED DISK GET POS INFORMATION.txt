@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131C0C
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - ESDI FIXED DISK - GET POS INFORMATION
+	AX = 1C0Ch
+	ES:BX -> buffer for POS Information Status Block (see #00262)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234 at AH=01h)
+SeeAlso: AX=1C0Bh
+
+Format of ESDI POS Information Status Block:
+Offset	Size	Description	(Table 00262)
+ 00h	BYTE	EAh
+ 01h	BYTE	number of words in block (05h)
+ 02h	WORD	magic value FFDDh
+ 04h	BYTE	POS register 3
+ 05h	BYTE	POS register 2
+ 06h	BYTE	POS register 5 (unused, FFh)
+ 07h	BYTE	POS register 4 (unused, FFh)
+ 08h	BYTE	POS register 7 (unused, FFh)
+ 09h	BYTE	POS register 6 (unused, FFh)
+

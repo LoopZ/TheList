@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1514
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_clrwindow" - CLEAR WINDOW
+	AH = 14h
+	STACK:	WORD	top left corner of window (high byte = row, low = col)
+		WORD	bottom right corner of window (high = row, low = col)
+Return: AX = status (SYS_OK)
+Note:	clears window to color set with "sys_setcolors" (AH=18h)
+SeeAlso: AH=15h"VMiX",AH=16h"VMiX",AH=18h"VMiX",AH=1Fh"VMiX"
+

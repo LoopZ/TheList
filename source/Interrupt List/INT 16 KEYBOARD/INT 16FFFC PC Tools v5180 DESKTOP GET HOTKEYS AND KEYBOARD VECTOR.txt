@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFFC
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - GET HOTKEYS AND KEYBOARD VECTOR
+	AX = FFFCh
+Return: ES:BX -> hotkey table (see #00630)
+	DS:DX = original INT 09 vector
+
+Format of PC Tools DESKTOP hotkey table:
+Offset	Size	Description	(Table 00630)
+ 00h  2 BYTEs	scancode/shift state for desktop hotkey
+ 02h  2 BYTEs	scancode/shift state for clipboard paste key
+ 04h  2 BYTEs	scancode/shift state for clipboard copy key
+ 06h  2 BYTEs	scancode/shift state for screen autodial key
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Novell DOS 7+ EMM386.EXE - GET STATE RECORD
+	AX = 4402h
+	BX = file handle for device "EMMXXXX0" or "EMMQXXX0"
+	CX = 003Eh (size of state record)
+	DS:DX -> buffer for state record (see #01511)
+Return: CF clear if successful
+	    buffer filled (see #03603 at INT 67/AH=3Fh)
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Note:	This function is called by the Novell DOS 7+ MEM utility.
+
+Format of Novell DOS 7 - DR-DOS 7.03 EMM386.EXE state record:
+Offset	Size	Description	(Table 01511)
+ 00h	WORD	signature EDC0h
+ 02h 12 BYTEs	(ret) bitmap for include range
+ 0Eh 12 BYTEs	(ret) bitmap for auto range
+ 1Ah 12 BYTEs	(ret) bitmap for BIOS range
+ 26h 12 BYTEs	(ret) bitmap for ROM range
+ 32h 12 BYTEs	(ret) bitmap for map range
+Note:	each bitmap covers the upper-memory address range A000h-FFFFh, where
+	  offset X bit B within the bitmap indicates the state of the 4K page
+	  starting at segment A000h + (8X + B) * 100h
+

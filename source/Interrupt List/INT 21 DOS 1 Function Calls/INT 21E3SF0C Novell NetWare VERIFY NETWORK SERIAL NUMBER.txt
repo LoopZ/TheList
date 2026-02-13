@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF0C
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Novell NetWare - VERIFY NETWORK SERIAL NUMBER
+	AH = E3h subfn 0Ch
+	DS:SI -> request buffer (see #01896)
+	ES:DI -> reply buffer (see #01897)
+Return: AL = status
+	    00h successful
+Note:	if the network serial number to be verified is correct, the reply
+	  buffer will contain the corresponding application number
+SeeAlso: AH=E3h/SF=12h,AX=F217h/SF=0Ch
+
+Format of NetWare "Verify Network Serial Number" request buffer:
+Offset	Size	Description	(Table 01896)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	0Ch (subfunction "Verify Network Serial Number")
+ 03h	DWORD	(big-endian) network serial number to verify
+SeeAlso: #01897,#02163
+
+Format of NetWare "Verify Network Serial Number" reply buffer:
+Offset	Size	Description	(Table 01897)
+ 00h	WORD	(call) 0002h (size of following results buffer)
+ 02h	WORD	(big-endian) application number
+SeeAlso: #01896,#02163
+

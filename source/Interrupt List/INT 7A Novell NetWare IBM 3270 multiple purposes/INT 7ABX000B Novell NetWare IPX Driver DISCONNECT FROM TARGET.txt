@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX000B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - DISCONNECT FROM TARGET
+	BX = 000Bh
+	ES:SI -> internetwork address (see #03824)
+Return: nothing
+Notes:	this function permits the network software on the remote machine to
+	  remove any virtual connection with the calling machine
+	only use in point-to-point networks
+	should never be called from within an Event Service Routine
+	this function is supported by Advanced NetWare 1.02+
+SeeAlso: BX=0002h,BX=0009h
+
+Format of IPX internetwork address:
+Offset	Size	Description	(Table 03824)
+ 00h  4 BYTEs	(big-endian) destination network
+ 04h  6 BYTEs	(big-endian) destination node
+ 0Ah  2 BYTEs	(big-endian) destination socket
+

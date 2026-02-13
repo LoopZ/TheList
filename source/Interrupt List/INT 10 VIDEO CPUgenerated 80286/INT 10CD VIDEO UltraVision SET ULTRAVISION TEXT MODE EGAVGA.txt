@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - SET ULTRAVISION TEXT MODE (EGA,VGA)
+	AH = CDh
+	AL = text mode number (see #00220)
+Return: AX = CDCDh if invalid mode
+SeeAlso: AX=CD04h
+

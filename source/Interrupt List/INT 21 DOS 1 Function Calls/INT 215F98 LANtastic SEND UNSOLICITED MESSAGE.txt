@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F98
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - SEND UNSOLICITED MESSAGE
+	AX = 5F98h
+	DS:SI -> message buffer (see #01730)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Note:	v4.1- return no errors
+SeeAlso: AX=5F99h
+
+Format of LANtastic message buffer:
+Offset	Size	Description	(Table 01730)
+ 00h	BYTE	reserved
+ 01h	BYTE	message type
+		00h general
+		01h server warning
+		02h-7Fh reserved
+		80h-FFh user-defined
+ 02h 16 BYTEs	ASCIZ destination machine name
+ 12h 16 BYTEs	ASCIZ server name which user must be logged into
+ 22h 16 BYTEs	ASCIZ user name
+ 32h 16 BYTEs	ASCIZ originating machine name (filled in when received)
+ 42h 80 BYTEs	message text
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148D
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - WRITE UART REGISTER
+	AH = 8Dh
+	AL = register offset
+	BL = new value for UART register
+	DX = port number
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+SeeAlso: AH=8Ch"COMM-DRV"
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F08
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - STARLITE architecture - REMOVE GLOBAL NETWORK NAME OF OBJECT
+	AX = 5F08h
+	DS:SI -> ASCIZ network name (not local name) of object to unshare
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+SeeAlso: AX=5F07h"STARLITE"
+

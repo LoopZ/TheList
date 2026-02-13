@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDF01BX4448
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - HyperDisk v4.50+ - GET CURRENT CACHE STATE
+	AX = DF01h
+	BX = 4448h ('DH')
+Return: AX = 0000h if function supported
+	    BX = number of cache buffers in use
+	    CX = number of cache buffers which have been modified
+	    DL = caching flags (see #03106)
+Range:	AH=C0h to AH=FFh, selected by scanning AH=DFh, then AH=C0h-FFh
+SeeAlso: AX=DF00h,AX=DF02h
+
+Bitfields for HyperDisk caching flags:
+Bit(s)	Description	(Table 03106)
+ 0	staged writes enabled for floppy disks
+ 1	staged writes enabled for hard disks
+ 2	writes verified on floppy disks
+ 3	writes verified on hard disks
+ 4	reserved (0)
+ 5	reserved (0)
+ 6	floppy caching enabled
+ 7	all caching functions enabled
+

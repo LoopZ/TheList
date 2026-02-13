@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 170D
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - Emulaser ELTSR - GET TRUE ScrlLk STATE
+	AH = 0Dh
+Return: AX = state (0000h off, 0010h on)
+Desc:	determine the actual state of ScrlLk even when Emulaser is controlling
+	  the ScrlLk light as its activity indicator
+SeeAlso: AH=0Ch,INT 16/AH=02h,INT 1A/AH=E5h
+

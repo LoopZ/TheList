@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E902
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - PhysTechSoft PTS ROM-DOS - SET DIAGNOSTIC DOS ERROR FLAG
+	AX = E902h
+	CX = diagnostic flag mask (see #04091,#04092)
+Return: nothing
+Note:	Provided by PhysTechSoft's PTS ROM-DOS and displayed by SETUP.COM.
+	  DOS error flags can be assigned by application software.
+SeeAlso: AX=E901h,INT 14/AH=05h"PTS ROM-DOS", INT 14/AH=06h"PTS ROM-DOS"
+
+Bitfields for PhysTechSoft PTS ROM-DOS BIOS error flags:
+Bit(s)	Description	(Table 04091)
+ ???	Processor test failed.
+	Stack test failed.
+	BIOS code damaged.
+	Conventional memory test failed.
+	SRAM test failed.
+	EMS test failed.
+	Boot-sector damaged.
+	Boot-sector read error.
+	Loader setup damaged.
+	BIOS setup damaged.
+SeeAlso: #04092,#04093
+
+Bitfields for PhysTechSoft PTS ROM-DOS LOADER error flags::
+Bit(s)	Description	(Table 04092)
+ ???	Processor test failed.
+	Loader code damaged.
+	Loader code in RAM damaged.
+	Loader setup in flash-memory damaged.
+	BIOS setup in flash-memory damaged.
+	BIOS offset in flash-memory field damaged.
+	BIOS size in flash-memory field damaged.
+	BIOS in flash-memory damaged.
+	BIOS in ROM damaged.
+	Last operation field damaged.
+	Channel error.
+	Setup in flash-memory damaged.
+	Loading BIOS from control channel failed.
+	Loading DOS from control channel failed.
+SeeAlso: #04091
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE01
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview - UPDATE "OPEN WINDOW" MENU
+	AX = DE01h
+Return: nothing
+Notes:	reads DESQVIEW.DVO, disables Open menu if file not in current directory
+	NOP for DESQview/X
+

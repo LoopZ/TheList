@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4653CX0008
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - F-PROT v2.x - VIRSTOP - INSTALLATION CHECK
+	AX = 4653h ('FS')
+	CX = 0008h
+Return: AX = 5346h if installed
+	    BX = version???
+	    DS:SI -> ASCIZ name of file containing virus signatures
+	    DS:DI -> 80-byte buffer for ???
+

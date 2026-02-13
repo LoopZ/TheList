@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI050A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - FILE SERVICE "M_MATCH"
+	DI = 050Ah
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ??? (see #03289)
+		DWORD	pointer to ???
+Return: ???
+	STACK unchanged
+
+Format of HP 95LX pattern match control block:
+Offset	Size	Description	(Table 03289)
+ 00h 43 BYTEs	FindFirst data block (see #01626 at INT 21/AH=4Eh)
+ 2Bh 80 BYTEs	full path name
+ 7Bh	BYTE	offset of last component of filename
+ 7Ch	BYTE	DOS function number (4Eh or 4Fh)
+

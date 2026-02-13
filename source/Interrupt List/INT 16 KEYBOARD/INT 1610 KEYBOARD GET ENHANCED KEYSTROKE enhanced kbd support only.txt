@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1610
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - GET ENHANCED KEYSTROKE (enhanced kbd support only)
+	AH = 10h
+Return: AH = BIOS scan code
+	AL = ASCII character
+Notes:	if no keystroke is available, this function waits until one is placed
+	  in the keyboard buffer
+	the BIOS scan code is usually, but not always, the same as the hardware
+	  scan code processed by INT 09.  It is the same for ASCII keystrokes
+	  and most unshifted special keys (F-keys, arrow keys, etc.), but
+	  differs for shifted special keys.
+	unlike AH=00h, this function does not discard extended keystrokes
+	INT 16/AH=09h can be used to determine whether this function is
+	  supported, but only on later model PS/2s
+SeeAlso: AH=00h,AH=09h,AH=11h,AH=20h,MEM 0040h:0019h,MEM 0040h:001Eh
+

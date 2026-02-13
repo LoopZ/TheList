@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A9D
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v2.1??? - GET VENDOR INFO
+	AH = 9Dh
+	AL = adapter number
+	BH = EDC generator
+	ES:EDI -> vendor information structure (see #00691)
+Return: CF clear if successful
+	    AH destroyed
+	    DX = vendor release number in BCD
+	    ES:EDI unchanged
+	CF set on error
+	    AH = error code (01h,15h) (see #00656)
+Notes:	this API is supported by recent versions of the AMI BIOS
+	the low-level API described here is hidden by the higher-level
+	  ExCA API once Card Services has been installed
+SeeAlso: AH=9Dh"ExCA"
+
+Format of Vendor Information structure:
+Offset	Size	Description	(Table 00691)
+ 00h	WORD	buffer length (set to size of buffer below)
+ 04h	WORD	(ret) data length
+ 08h  x BYTEs	implementor name (ASCIIZ string)
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 69FF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - 10NET v5.0 - SYSSVC.COM - SIGNAL SYSTEM ERROR
+	AH = FFh
+Return: never???
+Desc:	displays "System Error" message and register dump, then halts system
+InstallCheck:	test for the signature "SYSV" immediately before the interrupt
+	  handler
+Range:	INT 60 to INT 7F, selected by configuration
+SeeAlso: AX=4001h,AH=49h
+

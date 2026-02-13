@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62002F
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FLICMODE" - GET OPTIMAL VIDEO MODE FOR FLI/FLC
+	AX = 002Fh
+	ES:BX -> 128-byte buffer containing FLI/FLC file header (see AX=002Eh)
+Return: AX = optimal 256-color graphics mode number
+	    FFFFh if invalid file header
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=002Eh,AX=0030h
+

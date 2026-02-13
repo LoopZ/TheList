@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7E01
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7E - MaxSBOS v0.21 - ???
+	AH = 01h
+	???
+Return: ???
+Program: MaxSBOS is a SoundBlaster FM synthesis emulator for the Gravis
+	  UltraSound MAX
+Range:	INT 78-INT 7F, selected by commandline parameter
+Note:	the installation check is the same as for 'regular' SBOS (see AX=00FEh)
+	  although the API in v0.21 does not provide the functions present in
+	  the older SBOS
+SeeAlso: AX=00FEh,AH=02h,AH=03h
+

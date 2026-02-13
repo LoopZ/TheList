@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 336F00
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Hewlett Packard - HP MOUSE DRIVER INSTALLATION CHECK
+	AX = 6F00h
+	BX <> 4850h
+Return: BX = 4850h ('HP') if mouse driver written by Hewlett Packard
+SeeAlso: INT 10/AX=6F00h,INT 14/AX=6F00h,INT 16/AX=6F00h,INT 17/AX=6F00h
+

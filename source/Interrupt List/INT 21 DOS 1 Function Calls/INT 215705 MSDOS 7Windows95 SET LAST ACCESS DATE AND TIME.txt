@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215705
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7/Windows95 - SET LAST ACCESS DATE AND TIME
+	AX = 5705h
+	BX = file handle
+	CX = new last-access time (currently not supported, must be 0000h)
+	DX = new last-access date (see #01666)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5700h,AX=5704h"Windows95",AX=5707h
+

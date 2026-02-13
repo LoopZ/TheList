@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - GET CONNECTION NUMBER
+	AH = DCh
+Return: AL = logical connection number
+	    00h if NetWare not loaded or this machine is a non-dedicated server
+	CX = station number in ASCII (CL = first digit)
+Notes:	this function is supported by NetWare 4.0+, Banyan VINES, and Alloy
+	  NTNX
+	station number only unique for those PCs connected to same semaphore
+	  service
+	this function is called with AX=DC00h on entry by the DR DOS (up to
+	  including 7.03) command processor to retrieve the connection number.
+	  Old releases used this call only when INT 21/AX=EF03h failed.
+	  Current versions (probably since one of the Novell DOS 7 updates)
+	  attempt to retrieve the connection number from VLM (INT 2F/AX=7A20h
+	  via GENERAL: 0043h/0006h/0001h and CONN: 0010h/0007h/000Dh) first.
+	  The connection number is only trusted, however, when CF is clear on
+	  return.
+SeeAlso: AH=F2h"NetWare",INT 21/AX=EF03h
+

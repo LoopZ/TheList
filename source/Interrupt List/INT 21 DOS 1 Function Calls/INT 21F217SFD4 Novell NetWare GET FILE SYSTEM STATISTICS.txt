@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFD4
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET FILE SYSTEM STATISTICS
+	AX = F217h subfn D4h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02027 at AH=E3h/SF=D4h)
+	ES:DI -> reply buffer (see #02227)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=D4h,AX=F217h/SF=D6h,AX=F217h/SF=D9h
+
+Format of NetWare "Get File System Statistics" reply packet:
+Offset	Size	Description	(Table 02227)
+ 00h	DWORD	clock ticks since system started
+ 04h	WORD	maximum open files set by configuration
+ 06h	WORD	maximum files open concurrently
+ 08h	WORD	current number of open files
+ 0Ah	DWORD	total files opened
+ 0Eh	DWORD	total file read requests
+ 12h	DWORD	total file write requests
+ 16h	WORD	current changed FATs
+ 18h	WORD	total changed FATs
+ 1Ah	WORD	number of FAT write errors
+ 1Ch	WORD	number of fatal FAT write errors
+ 1Eh	WORD	number of FAT scan errors
+ 20h	WORD	maximum concurrently-indexed files
+ 22h	WORD	current number of indexed files
+ 24h	WORD	number of attached indexed files
+ 26h	WORD	number of indexed files available
+Note:	all fields are big-endian
+SeeAlso: #02027,#02028 at AH=E3h/SF=D4h
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFD1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - SEND CONSOLE BROADCAST
+	AH = E3h subfn D1h
+	DS:SI -> request buffer (see #02022)
+	ES:DI -> reply buffer (see #02024)
+Return: AL = status (00h,C6h) (see #02025)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+	the broadcast message will not be received by workstations which have
+	  disabled broadcasts with AH=E1h/SF=02h
+SeeAlso: AH=E1h/SF=02h,AH=E1h/SF=09h,AH=E3h/SF=C8h,AH=E3h/SF=D3h
+SeeAlso: AX=F217h/SF=D1h
+
+Format of NetWare "Send Console Broadcast" request buffer:
+Offset	Size	Description	(Table 02022)
+ 00h	WORD	length of following data (max A2h)
+ 02h	BYTE	D1h (subfunction "Send Console Broadcast")
+ 03h	BYTE	number of connections to receive message
+		00h = all, else specific list below
+ 04h  N BYTEs	connection list
+	BYTE	length of message (max 3Ch)
+      N BYTEs	message
+SeeAlso: #02024
+

@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1400
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL (Fido/Opus/Seadog Standard Interface Level) - INITIALIZE
+	AH = 00h
+	AL = initializing parameters
+	    7 - 6 - 5	   4 - 3     2	  1 - 0
+	    -BAUD RATE-	   PARITY   STOP   WORD
+				    BITS  LENGTH
+	    000 19200 bd   00 none  0: 1  00: 5
+	    001 38400 bd   01 odd   1: 2  01: 6
+	    010	  300 bd   11 even	  10: 7
+	    011	  600 bd		  11: 8
+	    100	 1200 bd
+	    101	 2400 bd
+	    110	 4800 bd
+	    111	 9600 bd (4800 on PCjr)
+	DX = port number (0-3 or FFh if only performing non-I/O setup)
+Return: AH = RS-232 status code bits (see #00301)
+	AL = modem status bits
+	    bit 3: always 1
+	    bit 7: DCD - carrier detect
+SeeAlso: #00300,AH=05h"FOSSIL",AH=81h"COMM-DRV",AH=82h"COURIERS"
+
+Bitfields for FOSSIL RS-232 status:
+Bit(s)	Description	(Table 00301)
+ 0	RDA - input data is available in buffer
+ 1	OVRN - data has been lost
+ 5	THRE - room is available in output buffer
+ 6	TSRE - output buffer empty
+

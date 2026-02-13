@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F09
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - STARLITE architecture - BIND TO NETWORK DEVICE
+	AX = 5F09h
+	DS:DX -> ASCIZ name of the device driver to attach to
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Note:	the STARLITE distributed file system can attach to multiple networks
+	  simultaneously
+SeeAlso: AX=5F0Ah
+

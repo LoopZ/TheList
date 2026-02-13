@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx002A
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VWIN32 - VxD SERVICES
+	VxD = 002Ah
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01293)
+Values for VWIN32 (VxD ID 002Ah) service number:
+ 0000h	"VWin32_Get_Version"
+ 0001h	"VWin32_Wake_For_Event"
+ 0002h	"_VWIN32_QueueUserApc"
+ 0003h	"_VWIN32_Get_Thread_Context"
+ 0004h	"_VWIN32_Set_Thread_Context"
+ 0005h	"_VWIN32_CopyMem"
+ 0006h	"_VWIN32_BlockForTermination"
+ 0007h	"_VWIN32_Emulate_Npx"
+ 0008h	"_VWIN32_CheckDelayedNpxTrap"
+ 0009h	"VWIN32_EnterCrstR0"
+ 000Ah	"VWIN32_LeaveCrstR0"
+ 000Bh	"_VWIN32_FaultPopup"
+ 000Ch	"VWIN32_GetContextHandle"
+ 000Dh	"VWIN32_GetCurrentProcessHandle"
+ 000Eh	"_VWIN32_SetWin32Event"
+ 000Fh	"_VWIN32_PulseWin32Event"
+ 0010h	"_VWIN32_ResetWin32Event"
+ 0011h	"_VWIN32_WaitSingleObject"
+ 0012h	"_VWIN32_WaitMultipleObjects"
+ 0013h	"_VWIN32_CreateRing0Thread"
+ 0014h	"_VWIN32_CloseVxDHandle"
+ 0015h	"VWIN32_ActiveTimeBiasSet"
+ 0016h	"VWIN32_GetCurrentDirectory"
+ 0017h	"VWIN32_BlueScreenPopup"
+ 0018h	"VWIN32_TerminateApp"
+ 0019h	"_VWIN32_QueueKernelAPC"
+ 001Ah	"VWIN32_SysErrorBox"
+ 001Bh	"_VWIN32_IsClientWin32"
+ 001Ch	"VWIN32_IFSRIPWhenLev2Taken"
+SeeAlso: #01292,#01294
+

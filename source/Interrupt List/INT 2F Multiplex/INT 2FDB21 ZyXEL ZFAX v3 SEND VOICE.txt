@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB21
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - SEND VOICE
+	AX = DB21h
+	DS:SI -> filename including path (max 128 characters)
+	DS:BX -> remote phone number
+Return: AX = status (see #03096)
+SeeAlso: AX=DB11h,AX=DB20h,AX=DB22h,AX=DB23h,AX=DB24h
+

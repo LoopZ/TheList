@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB901
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC Network RECEIVER.COM - GET RECEIVER.COM INT 2F HANDLER ADDRESS
+	AX = B901h
+Return: AL = ???
+	ES:BX -> RECEIVER.COM INT 2F handler
+Desc:	allows more efficient execution by letting the caller bypass any other
+	  INT 2F handlers which have been added since RECEIVER.COM was
+	  installed
+

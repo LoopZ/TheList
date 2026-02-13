@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150F
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - EXECUTE A MULTIDOS PLUS COMMAND
+	AH = 0Fh
+	DS:BX -> ASCIZ command
+Return: after command has been processed
+Notes:	specified string is executed as if it had been typed at the MultiDOS
+	  command prompt
+	the task is placed on a queue which MultiDOS examines periodically and
+	  is suspended until MultiDOS has processed the command
+	all lowercase characters up to the first blank are converted to upper
+	  case within the given buffer
+

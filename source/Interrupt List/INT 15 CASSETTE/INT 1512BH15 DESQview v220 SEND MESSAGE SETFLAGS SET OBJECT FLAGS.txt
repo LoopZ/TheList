@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH15
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.20+ - SEND MESSAGE - "SETFLAGS" - SET OBJECT FLAGS
+	AH = 12h
+	BH = 15h
+	BL = object
+	    00h DWORD on top of stack
+		mailbox, keyboard, or pointer only
+	    02h mailbox for task whose handle is on top of stack
+	    03h mailbox for current task
+	    04h keyboard for task whose handle is on top of stack
+	    05h keyboard for current task
+	STACK: DWORD flags (see #00453,#00454)
+Return: STACK popped
+Notes:	only available if the API level has been set to at least 2.20
+	equivalent to performing SUBFROM and ADDTO calls on the object
+	if a mailbox has bits 4 or 5 set, you must use "READINTO" rather than
+	  "READ" (see AH=12h/BH=13h"READINTO") to retrieve messages
+SeeAlso: AH=12h/BH=0Ah,AH=12h/BH=0Bh,AH=12h/BH=16h
+
+Bitfields for DESQview mailbox object flags:
+Bit(s)	Description	(Table 00453)
+ 0	all mail messages in common memory
+ 1	allow write even if closed
+ 2	don't erase messages when mailbox closed
+ 4	(DV/X) append messages with like status and sender (stream-oriented
+	  mail)
+ 5	(DV/X) store mail in expanded memory (pool grows as needed)
+ 6	(DV/X) make mailbox into non-owned mailbox
+
+Bitfields for DESQview keyboard object flags:
+Bit(s)	Description	(Table 00454)
+ 5	exclusive input when keyboard in use for input
+

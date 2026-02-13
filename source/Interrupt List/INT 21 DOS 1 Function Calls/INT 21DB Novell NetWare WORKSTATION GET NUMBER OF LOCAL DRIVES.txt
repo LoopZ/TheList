@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - GET NUMBER OF LOCAL DRIVES
+	AH = DBh
+Return: AL = number of local disks as set by LASTDRIVE in CONFIG.SYS
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=0Eh
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215E01CH00
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ network - SET MACHINE NAME
+	AX = 5E01h
+	CH = 00h undefine name (make it invalid)
+	   <> 0	 define name
+	CL = name number
+	DS:DX -> 15-character blank-padded ASCIZ name
+SeeAlso: AX=5E00h
+

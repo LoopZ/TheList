@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B8107
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification - REQUEST DMA BUFFER
+	AX = 8107h
+	DX = flags
+	    bit 0: reserved (zero)
+	    bit 1: data should be copied into buffer
+	    bits  2-15 reserved (zero)
+	ES:DI -> DMA descriptor structure (see #03221) with region size set
+		  (also region offset and region segment if DX bit 1 set)
+Return: CF clear if successful
+	    DDS physical address and buffer ID set
+	    DDS region size filled with length of buffer
+	CF set on error
+	    AL = error code (see #03218)
+SeeAlso: AX=8108h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Realtek RTVGA - RETURN CHIP VERSION
+	AX = 5F00h
+Return: AH = 00h, if successful
+	AL = chip version (the same value that VTEST.EXE reads)
+	    00h RTG3103???
+	    01h RTG31030/RTG3105
+	    02h RTG3106???
+	    3Fh non-Realtek chip
+BUG:	in v3.C10, AX=5F00h on return due to improper stack restoration code
+SeeAlso: AX=5F01h"RTVGA"
+

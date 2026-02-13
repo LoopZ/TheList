@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140E--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - SET HARDWARE FLOW STATE
+	AH = 0Eh
+	DX = FFFFh
+	AL = connection ID from AH=04h/DX=FFFFh
+	BL = RTS state (00h off, 01h on)
+Return: AH = return code (00h-03h) (see also #00303 at AH=00h/DX=FFFFh)
+	    03h invalid request (BL not 00h or 01h)
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+SeeAlso: AH=03h/DX=FFFFh,AH=0Ah/DX=FFFFh
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A6308
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_BEGINCONV" - BEGIN CONVERSATION
+	AX = 6308h
+	STACK:	WORD	offset of ASCIZ "guardian"
+		WORD	offset of ASCIZ hostname
+		WORD	offset of ASCIZ server name
+		WORD	offset of ASCIZ userid
+		WORD	offset of ASCIZ password
+		WORD	offset of password length
+		WORD	offset of password type
+		WORD	offset of "Cparms" structure (see #00655)
+Return: ???
+	STACK unchanged
+Note:	all stacked offsets are within the SNAP data segment (use AX=6A01h
+	  to allocate a buffer)
+SeeAlso: AX=6405h,AX=7202h
+
+Format of SNAP.EXE Cparms structure:
+Offset	Size	Description	(Table 00655)
+ 00h	WORD	retry delay in seconds
+ 02h	WORD	timeout delay in seconds
+ 04h	WORD	maximum buffer size
+ 06h	WORD	encryption level
+

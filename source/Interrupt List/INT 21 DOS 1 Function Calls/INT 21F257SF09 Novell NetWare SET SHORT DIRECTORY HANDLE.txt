@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF09
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SET SHORT DIRECTORY HANDLE
+	AX = F257h subfn 09h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02392)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=0Ch
+
+Format of NetWare "Set Short Directory Handle" request packet:
+Offset	Size	Description	(Table 02392)
+ 00h	BYTE	09h (subfunction "Set Short Directory Handle")
+ 01h	BYTE	name space (see #02387)
+ 02h	BYTE	data stream
+ 03h	BYTE	destination directory handle
+ 04h	BYTE	reserved for future use
+ 05h		NetWare Handle/Path structure (see #02376)
+

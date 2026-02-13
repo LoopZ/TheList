@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0002
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 3.0 DPMILOAD.EXE - ALLOCATE MEMORY
+	AX = FB42h
+	BX = 0002h
+	ES:SI -> memory block info (see #03127)
+Return: ???
+Note:	The version of DPMILOAD distributed with BC++ v2.0 identifies itself
+	  as version 1.000, while the version distributed with BC++ 3.0
+	  identifies itself as version 1.0; the former is 10864 bytes, the
+	  latter 22180 bytes.
+SeeAlso: AX=FB42h/BX=0003h,AX=FB42h/BX=0008h,INT 31/AX=0501h
+
+Format of DPMILOAD memory block info:
+Offset	Size	Description	(Table 03127)
+ 00h	WORD	flags (see #03128)
+ 02h	DWORD	block size in bytes
+---DPMI memory block---
+ 06h	DWORD	DPMI memory block handle
+---DOS memory block---
+ 06h	WORD	real-mode segment of memory block
+ 08h	WORD	selector of memory block
+---
+ 0Ah	DWORD	linear address of memory
+ 0Eh	WORD	memory operation error code
+		0008h no more free LDT descriptors
+---if flags bit 0 clear---
+ 10h	WORD	code segment selector for memory block or 0000h or FFFFh
+ 12h	WORD	data alias selector for memory block or 0000h or FFFFh
+---if flags bit 0 set---
+ 10h	WORD	data segment selector for memory block or 0000h or FFFFh
+ 12h	WORD	unused???
+
+Bitfields for DPMILOAD memory block flags:
+Bit(s)	Description	(Table 03128)
+ 0	set if data segment rather than code segment
+ 1	information valid
+ 2	set if DOS memory block rather than DPMI memory block
+ 4	???
+ 15	set if no LDT selectors for memory block???
+SeeAlso: #03127
+

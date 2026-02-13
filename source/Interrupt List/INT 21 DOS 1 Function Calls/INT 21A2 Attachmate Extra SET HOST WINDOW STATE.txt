@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21A2
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Attachmate Extra! - SET HOST WINDOW STATE
+	AH = A2h
+	AL = new host window status byte (see #01798)
+SeeAlso: AH=A1h
+
+Bitfields for Attachmate Extra! host window status:
+Bit(s)	Description	(Table 01798)
+ 7	0=power off, 1=power on
+ 6	0=not installed, 1=installed
+ 5-3	reserved
+ 2-0	window number 1-4=host B-E
+

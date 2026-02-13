@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: E600
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E6 - Linux DOSEMU - INSTALLATION CHECK
+	AH = 00h
+Return: AX = AA55h if installed
+	    BH = major version number
+	    BL = minor version number
+	    CX = patchlevel
+Notes:	check for the BIOS date string "02/25/93" at F000:FFF5 before
+	  calling this function.  In addition, the segment address of this
+	  vector should be F000h (for existing versions of DOSemu, the
+	  vector is F000h:0E60h)
+SeeAlso: AH=FFh
+

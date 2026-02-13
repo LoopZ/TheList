@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - ACKNOWLEDGE EVENT
+	AH = 6Fh
+	AL = event number (see AH=6Dh)
+Return: AH = 00h if successful
+Desc:	Acknowledges the event, so the next similar event can be detected
+SeeAlso: AH=6Dh"HUNTER",AH=6Eh
+

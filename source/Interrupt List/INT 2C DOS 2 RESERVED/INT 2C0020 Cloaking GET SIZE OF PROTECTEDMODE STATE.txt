@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0020
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - GET SIZE OF PROTECTED-MODE STATE
+	AX = 0020h
+Return: EAX = number of bytes required for storing state
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0021h,AX=0022h
+

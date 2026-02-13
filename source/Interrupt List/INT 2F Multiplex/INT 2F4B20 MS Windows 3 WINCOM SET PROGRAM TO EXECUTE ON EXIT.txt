@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4B20
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows 3+ - WIN.COM - SET PROGRAM TO EXECUTE ON EXIT
+	AX = 4B20h
+Return: AX = 0000h if successful
+	    DX:CX -> 256-byte buffer for pathname and commandline (see #02824)
+Notes:	when the Windows function ExitWindows is called with an exit code of
+	  44h, WIN.COM executes the program specified in the returned buffer
+	  and then restarts Windows
+	the returned address is a real-mode segment:offset value
+SeeAlso: AX=4B21h
+
+Format of WIN.COM buffer:
+Offset	Size	Description	(Table 02824)
+ 00h 128 BYTEs	commandline for program (count byte, command tail, 0Dh)
+ 80h 128 BYTEs	ASCIZ pathname of program to execute
+Note:	the order above is for a Windows95 DOS box; it may be reversed under
+	  Windows 3.x
+

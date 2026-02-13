@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4B03
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 5+ TASK SWITCHER - ALLOCATE SWITCHER ID
+	AX = 4B03h
+	ES:DI -> task switcher entry point (see #02819)
+Return: AX = 0000h
+	BX = switcher ID (0001h-000Fh), or 0000h if no more available
+Notes:	if a task switcher has determined that it is the first to be loaded, it
+	  must allocate an identifier for itself and provide this function to
+	  all subsequent task switchers; if it is not the first to be loaded,
+	  it must call this function to allocate an ID.	 The switcher ID is
+	  used as the high four bits of all session identifiers to ensure
+	  unique session IDs.
+	if no more switcher IDs are available, the new task switcher making the
+	  call must terminate or disable itself
+	the task switcher providing the identifiers may call the new task
+	  switcher's entry point as needed
+	this call is available from within DOSSHELL even if the task switcher
+	  is not installed
+	this function is supported by PC Tools v8+ CPTASK, but appears to
+	  always return an ID of 0000h
+SeeAlso: AX=4B02h,AX=4B04h
+

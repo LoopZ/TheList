@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1621
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HUNTER 16 - CONTROL SHIFT KEYS
+	AH = 21h
+	AL = shift keys to control (see #00582)
+	BL = shift state for disabled keys
+Note:	If a bit in AL is set the key is disabled and set to the state of the
+	  corresponding bit in BL
+SeeAlso: AH=20h"HUNTER",AH=22h"HUNTER"
+

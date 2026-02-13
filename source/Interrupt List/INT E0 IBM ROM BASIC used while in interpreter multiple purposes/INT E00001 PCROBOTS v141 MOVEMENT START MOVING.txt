@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00001
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "MOVEMENT" - START MOVING
+	AX = 0001h
+	BX = speed (0-maximum for robot)
+	CX = direction (0-359 degrees)
+Return: nothing
+Notes:	the speed will change to the specified value at the maximum
+	  acceleration the robot is capable of; if the robot is already moving
+	  faster than its maximum maneuverability speed, it will not be able
+	  to change direction
+	this call also terminates the current robot's turn
+SeeAlso: AX=0000h,AX=0002h,AX=0003h
+

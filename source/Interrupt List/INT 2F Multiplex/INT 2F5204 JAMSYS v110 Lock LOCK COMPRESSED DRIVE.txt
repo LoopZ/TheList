@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5204
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - JAM.SYS v1.10+ - "Lock" - LOCK COMPRESSED DRIVE
+	AX = 5204h
+	DL = drive number (0-default, 1-A:, etc.) to lock
+Return: AH = status (00h,01h,04h,05h,08h,09h,0Bh,0Dh) (see #02835)
+	AL = host drive error code (see #02598 at INT 2F/AX=0802h)
+SeeAlso: AX=5205h, AX=5206h, AX=5207h
+

@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101110
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - TEXT-MODE CHARGEN - LOAD USER-SPECIFIED PATTERNS (PS,EGA,VGA)
+	AX = 1110h
+	ES:BP -> user table
+	CX = count of patterns to store
+	DX = character offset into map 2 block
+	BL = block to load in map 2
+	BH = number of bytes per character pattern
+Return: nothing
+Notes:	This function will cause a mode set, completely resetting
+	  the video environment, but without clearing the video buffer
+	This function is designed to be called immediately after a mode set,
+	  it is equivalent to AX=110xh except that:
+	      Page 0 must be active.
+	      Bytes/character is recalculated.
+	      Max character rows is recalculated.
+	      CRT buffer length is recalculated.
+	      CRTC registers are reprogrammed as follows:
+		     R09 = bytes/char-1 ; max scan line (mode 7 only)
+		     R0A = bytes/char-2 ; cursor start
+		     R0B = 0		; cursor end
+		     R12 = ((rows+1)*(bytes/char))-1 ; vertical display end
+		     R14 = bytes/char	; underline loc
+			   (*** BUG: should be 1 less ***)
+	the current block specifiers may be determined with INT 10/AH=1Bh,
+	  looking at offsets 2Bh and 2Ch of the returned data (VGA only)
+	  (see AH=1Bh,#00040)
+SeeAlso: AX=1100h,AX=1111h,AX=1112h,AX=1114h,AH=1Bh,AX=CD10h,MEM 0040h:0084h
+Index:	text mode;font|text mode;screen rows
+

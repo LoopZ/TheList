@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD03
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Intel Image Processing Interface - SELECT SCAN LINE
+	AX = CD03h
+	BX = scan line
+	CX = requested density in dots per inch (300, 600, or 1200)
+Return: AL = status (see also AX=CD04h"Image")
+	    00h successful
+		CX = density at which scan line was mapped
+		ES:DI -> start of scan line
+	    80h unsuccessful
+	    81h scan line out of range
+	    82h unsupported scan line density
+	    83h out of memory
+SeeAlso: AX=CD04h"Image"
+

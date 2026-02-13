@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B14
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - SET/RETRIEVE SERVICE ADDRESS
+	AH = 14h
+	AL = virtual circuit number
+	ES:BX -> buffer for/containing service address
+Return: ???
+Note:	this function is also supported by TelAPI, which only supports
+	  retrieving the address
+SeeAlso: AH=13h,AH=15h,AH=21h
+

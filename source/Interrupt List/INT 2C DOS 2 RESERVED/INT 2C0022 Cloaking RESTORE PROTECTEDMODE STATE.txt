@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0022
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - RESTORE PROTECTED-MODE STATE
+	AX = 0022h
+	DS:ESI -> buffer containing previously-saved protected-mode state
+Return: CF clear if successful
+	    state restored
+	CF set on error (invalid buffer contents)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0020h,AX=0021h
+

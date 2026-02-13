@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE0E
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - DVP START FAILED
+	AX = DE0Eh
+	BX = mapping context of DESQview system task
+	DX = handle of DESQview system task
+	SI = mapping context of failed process (same as for call to AX=DE0Bh)
+Note:	driver should pass this call to previous handler after processing it
+

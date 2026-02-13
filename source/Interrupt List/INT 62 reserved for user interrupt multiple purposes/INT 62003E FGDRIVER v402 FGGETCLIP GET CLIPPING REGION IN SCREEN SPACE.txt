@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62003E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETCLIP" - GET CLIPPING REGION IN SCREEN SPACE
+	AX = 003Eh
+	ES:BX -> GETCLIP variable pointer record (see #03482)
+Return: variables specifed by GETCLIP structure updated
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00CAh
+
+Format of FGDRIVER GETCLIP variable pointer record:
+Offset	Size	Description	(Table 03482)
+ 00h	WORD	segment of WORD buffer for minimum X coordinate (left edge)
+ 02h	WORD	offset of WORD buffer for minimum X coordinate (left edge)
+ 04h	WORD	segment of WORD buffer for maximum X coordinate (right edge)
+ 06h	WORD	offset of WORD buffer for maximum X coordinate (right edge)
+ 08h	WORD	segment of WORD buffer for minimum Y coordinate (top edge)
+ 0Ah	WORD	offset of WORD buffer for minimum Y coordinate (top edge)
+ 0Ch	WORD	segment of WORD buffer for maximum Y coordinate (bottom edge)
+ 0Eh	WORD	offset of WORD buffer for maximum Y coordinate (bottom edge)
+

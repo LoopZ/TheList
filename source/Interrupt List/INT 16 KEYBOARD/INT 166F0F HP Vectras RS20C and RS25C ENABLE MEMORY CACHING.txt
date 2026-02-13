@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F0F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectras RS/20C and RS/25C - ENABLE MEMORY CACHING
+	AX = 6F0Fh
+Return: AH = status
+	    00h successful
+	    FEh cache subsystem is bad
+SeeAlso: AX=6F00h,AX=6F10h,AX=6F11h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF9F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - ENABLE/DISABLE TopTerm SERVICE
+	AX = FF9Fh
+	CL = new state (00h disable [disregard TopTerm packets], 01h enable)
+Return: AL = status (00h successful, FFh failed)
+Note:	this function is only supported by Workstations, not the server
+

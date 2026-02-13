@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: n 	non-traditional input devices
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - PenDOS PENDEV.SYS - ???
+	AX = 4403h
+	BX = file handle for device "$$PENDOS" or "$$PD_REG"
+	CX = size of buffer
+	DS:DX -> buffer containing ???
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: A limited version of PenDOS by Communication Intelligence Corporation,
+	  which provides pen capability to keyboard-based programs, is bundled
+	  with IBM DOS 6.1
+Note:	this call sets the WORD at offset 1Ah into the device driver request
+	  header used to call the driver to 0000h.
+SeeAlso: AX=4402h"PENDEV.SYS"
+

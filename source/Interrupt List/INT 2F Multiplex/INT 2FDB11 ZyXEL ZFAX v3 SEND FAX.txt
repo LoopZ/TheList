@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB11
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - SEND FAX
+	AX = DB11h
+	DS:SI -> filename including path (max 128 characters)
+	DS:BX -> remote FAX number
+Return: AX = status (see #03096)
+SeeAlso: AX=DB00h"ZFAX",AX=DB12h,AX=DB13h,AX=DB14h,AX=DB15h,AX=DB20h,AX=DB21h
+
+(Table 03096)
+Values for ZFAX status:
+ 00h	OK
+ 01h	invalid DOS function
+ 02h	file not found
+ 03h	path not found
+ 04h	no file handle available
+ 05h	access denied by DOS
+ 06h	invalid handle
+ 07h	disk full
+ 10h	printer error
+ 11h	no graphics font
+ 12h	no ZFAX font
+ 20h	DCD dropped while sending
+ 21h	not ZyXEL modem
+ 22h	busy
+ 23h	no response from COM port
+ 24h	no carrier
+ 25h	no dial tone
+ 26h	no answer
+ 27h	no response
+ 28h	failed to send FAX
+ 30h	user aborted
+ 40h	critical error on disk
+ 50h	parameter error
+

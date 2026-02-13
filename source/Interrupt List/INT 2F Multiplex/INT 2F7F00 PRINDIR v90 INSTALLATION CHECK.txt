@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7F00
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PRINDIR v9.0 - INSTALLATION CHECK
+	AX = 7F00h
+Return: AL = FFh if installed
+	    BX = version (BH = major, BL = minor)
+	    CX:DX -> ASCIZ signature "PRINDIR"
+Range:	AH=7Fh is the default, may be changed at installation time
+Note:	prior versions of PRINDIR used INT 7C or INT 7A
+SeeAlso: AX=7F01h"PRINDIR",AX=7F02h"PRINDIR",AX=7F03h"PRINDIR"
+SeeAlso: AX=7F06h"PRINDIR",AX=7F08h,AX=7F0Ah,AX=7F0Ch,AX=7F0Eh,INT 7C"PRINDIR"
+

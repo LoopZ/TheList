@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1607BX0006
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - "V86MMGR" VIRTUAL DEVICE API
+	AX = 1607h
+	BX = 0006h (VxD identifier of "V86MMGR")
+	CX = 0000h
+Return: AX = status
+	    0000h if local A20 state changed
+	    1607h if A20 unchanged
+	    other if global A20 state changed
+SeeAlso: AX=1607h"CALL OUT API"
+

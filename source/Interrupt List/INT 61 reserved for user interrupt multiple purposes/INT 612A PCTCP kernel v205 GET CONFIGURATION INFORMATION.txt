@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 612A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - GET CONFIGURATION INFORMATION
+	AH = 2Ah
+	DS:SI -> 26-byte buffer for configuration information (see #03472)
+Return: CF clear
+	AX = 0000h
+	buffer filled
+Notes:	size of buffer may vary with kernel version; 26 bytes is the size for
+	  versions 2.05 through 2.2
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+
+Format of PC/TCP configuration information:
+Offset	Size	Description	(Table 03472)
+ 00h	BYTE	maximum TCP connections available
+ 01h	BYTE	maximum UDP connections available
+ 02h	BYTE	maximum IP connections available
+ 03h	BYTE	maximum Raw Net connections available
+ 04h	BYTE	number of TCP connections currently in use
+ 05h	BYTE	number of UDP connections currently in use
+ 06h	BYTE	number of IP connections currently in use
+ 07h	BYTE	number of Raw Net connections currently in use
+ 08h	WORD	number of local network descriptors active
+ 0Ah	WORD	number of global network descriptors active
+ 0Ch	BYTE	maximum header size on network
+ 0Dh	BYTE	maximum trailer size on network
+ 0Eh	WORD	size of large packet buffer
+ 10h	WORD	number of network interfaces attached
+ 12h	DWORD	milliseconds since kernel started
+ 16h	DWORD	IP broadcast address
+

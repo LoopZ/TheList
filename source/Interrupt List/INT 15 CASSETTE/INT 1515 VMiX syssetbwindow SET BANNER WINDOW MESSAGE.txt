@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1515
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_setbwindow" - SET BANNER WINDOW MESSAGE
+	AH = 15h
+	STACK:	DWORD	pointer to ASCIZ banner message for top of screen
+Return: AX = status (SYS_OK)
+SeeAlso: AH=14h"VMiX",AH=16h"VMiX"
+

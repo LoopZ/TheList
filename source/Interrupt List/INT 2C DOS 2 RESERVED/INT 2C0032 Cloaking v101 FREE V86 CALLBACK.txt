@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0032
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - FREE V86 CALLBACK
+	AX = 0032h
+	EBX = CS:IP of V86-mode callback handler
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+		0005h invalid callback address
+		0006h callback already free
+SeeAlso: AX=0032h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5758BX4858
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Helix Multimedia Cloaking - CACHECLK - INSTALLATION CHECK
+	AX = 5758h
+	BX = 4858h ('HX')
+	DX = 4443h ('DC')
+	CX <> 5758h
+Return: BX = 6878h if installed
+	DX = 6463h if installed
+	   CX = version (CH=major,CL=minor)
+Program: CACHECLK is a 'Cloaked' disk cache by Helix Software
+Note:	returns with registers unchanged if CX=5758h on entry
+SeeAlso: INT 16/AX=5758h/BX=4858h,INT 2F/AX=4310h"Cloaking"
+

@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E1--SF06
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare - MESSAGE SERVICES - OPEN MESSAGE PIPE
+	AH = E1h subfn 06h
+	DS:SI -> request buffer (see #01830)
+	ES:DI -> reply buffer (see #01831)
+Return: AL = status
+	    00h successful
+	    FEh out of dynamic workspace
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0-2.x
+SeeAlso: AH=E1h/SF=04h,AH=E1h/SF=07h,AH=E1h/SF=08h
+
+Format of NetWare "Open Message Pipe" request buffer:
+Offset	Size	Description	(Table 01830)
+ 00h	WORD	length of following data (max 66h)
+ 02h	BYTE	06h (subfunction "Open Message Pipe")
+ 03h	BYTE	number of pipes to open (01h-64h)
+ 04h  N BYTEs	list of connection numbers
+SeeAlso: #01831,#01832,#01835
+
+Format of NetWare "Open Message Pipe" reply buffer:
+Offset	Size	Description	(Table 01831)
+ 00h	WORD	(call) size of following results buffer (max 65h)
+ 02h	BYTE	number of connections
+ 03h  N BYTEs	list of results
+		00h successful
+		FEh incomplete (target half not yet created)
+		FFh failed
+SeeAlso: #01830,#01833,#01836
+

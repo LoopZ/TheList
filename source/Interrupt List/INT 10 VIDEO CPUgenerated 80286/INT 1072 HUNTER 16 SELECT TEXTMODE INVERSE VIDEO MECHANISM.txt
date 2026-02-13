@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1072
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - SELECT TEXT-MODE INVERSE VIDEO MECHANISM
+	AH = 72h
+	AL = mechanism to use
+	    00h do not use inverse video
+	    01h emulate MDA. Display attribute 07h is normal video and 70h is
+		inverse video.
+	    02h use inverse video if background is non-black.
+	    03h use inverse video for high intensity text.
+	    04h use inverse video for text with background intensity greater
+		than foreground intensity.
+	    05h use inverse video for text with background color other than
+		black or high intensity foreground.
+Return: nothing
+SeeAlso: AH=70h"HUNTER",AH=71h"HUNTER"
+

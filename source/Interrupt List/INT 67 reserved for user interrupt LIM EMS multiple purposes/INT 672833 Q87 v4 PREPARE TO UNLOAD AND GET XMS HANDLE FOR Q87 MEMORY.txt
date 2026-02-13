@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 672833
+  Category: u 	emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Q87 v4+ - PREPARE TO UNLOAD AND GET XMS HANDLE FOR Q87 MEMORY
+	AX = 2833h
+	EAX = 29482833h (entire EAX value required)
+Return: EAX = XMS handle for memory allocated when Q87 was installed
+	EBX = status
+	    00000000h Q87 is in demo mode (countdown running);
+			  Q87 remains active
+	    00000001h Q87 is in registered mode; memory manager's IDT, GDT,
+			  and optionally CR0 (if BL <> 5Fh on entry) have
+			  been restored
+	    00000002h Q87 is in demo mode (demo time has expired);
+			  Q87 remains active
+Note:	this call is used by UNLOAD87 to release the memory used by Q87
+BUG:	v4.00-v4.03 will hang on most machines when run under bare DOS with
+	  no memory manager, because neither Q87 nor UNLOAD87 checks whether
+	  there is a valid INT 67 handler before performing an installation
+	  check via INT 67
+SeeAlso: AX=4321h,INT 21/AX=4321h/BX=0000h
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0007
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - PageSwap - VxD SERVICES
+	VxD = 0007h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01271)
+Values for PageSwap (VxD ID 0007h) service number:
+ 00h	get version
+ 01h	test create
+ 02h	create swap file
+ 03h	destroy swap file
+ 04h	in
+ 05h	out
+ 06h	test if I/O valid
+ 07h	"Read_Or_Write"
+ 08h	"Grow_File"
+ 09h	"Init_File"
+SeeAlso: #01270,#01272,#01273,#02648
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5602
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - INTERLNK - CHECK IF PORT IN USE
+	AX = 5602h
+	DX = magic value FFFFh
+	BL = instance number (00h=any, 01h=first loaded, etc.)
+	CX = base port address of COM / LPT port to check
+Return: (as for AL=00h if port in use for a redirected drive)
+SeeAlso: AX=5600h
+

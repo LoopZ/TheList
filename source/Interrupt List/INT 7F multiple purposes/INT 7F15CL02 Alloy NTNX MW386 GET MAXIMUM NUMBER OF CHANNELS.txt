@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F15--CL02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - GET MAXIMUM NUMBER OF CHANNELS
+	AH = 15h
+	CL = 02h
+Return: AH = number of channels available (40h for MW386)
+Note:	the application may always assume at least 32 channels available
+SeeAlso: AH=15h/CL=03h
+

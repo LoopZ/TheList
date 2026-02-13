@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 611E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_flush" - FLUSH PENDING DATA
+	AH = 1Eh
+	BX = network descriptor
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Range:	INT 20 to INT E0, selected by configuration
+Notes:	bufferred data is transmitted immediately, overriding Nagle's algorithm
+	  if necessary
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+

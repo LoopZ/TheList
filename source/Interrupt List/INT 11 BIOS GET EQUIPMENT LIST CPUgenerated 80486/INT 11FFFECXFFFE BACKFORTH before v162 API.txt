@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 11FFFECXFFFE
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - BACK&FORTH (before v1.62) API
+	AX = FFFEh
+	CX = FFFEh
+	BX = function
+	    00h installation check
+		Return: AX = installation state
+			    0001h BNFHIGH and BNFLOW both loaded
+			    0003h only BNFHIGH loaded
+			    else neither loaded
+	    01h ???
+		Return: DX:AX -> ???
+	    02h ???
+	    03h ???
+	    04h ???
+	    05h ??? switches current PSP segment and stack if BNFLOW has not
+		    yet announced itself installed
+	    06h ???
+		Return: AX = ???
+SeeAlso: INT 12/AX=FFFEh
+Index:	installation check;BACK&FORTH
+

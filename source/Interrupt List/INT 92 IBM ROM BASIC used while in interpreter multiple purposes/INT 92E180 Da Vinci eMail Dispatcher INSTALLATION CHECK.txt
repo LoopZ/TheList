@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E180
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - INSTALLATION CHECK
+	AX = E180h
+Return: AX = 0012h if installed
+	ES:DX -> '$'-terminated driver information string
+SeeAlso: AX=E102h,AX=E105h,AX=E10Fh,AX=E175h
+

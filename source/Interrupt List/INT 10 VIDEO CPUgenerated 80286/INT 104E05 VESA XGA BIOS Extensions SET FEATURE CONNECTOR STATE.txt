@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104E05
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA XGA BIOS Extensions - SET FEATURE CONNECTOR STATE
+	AX = 4E05h
+	BX = Feature Connector State (see #00076)
+	DX = XGA handle
+Return: AL = 4Eh if function supported
+	AH = status
+	    00h	 function successful
+	    else error code
+SeeAlso: AX=4E00h,AX=4E06h
+
+Bitfields for XGA Feature Connector State:
+Bit(s)	Description	(Table 00076)
+ 0	Feature Connector is enabled
+ 1	Feature Connector is in Output Mode rather than Input Mode
+ 2-15	reserved (0)
+

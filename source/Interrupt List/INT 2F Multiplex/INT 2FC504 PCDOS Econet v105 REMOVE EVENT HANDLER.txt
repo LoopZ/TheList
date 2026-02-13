@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC504
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-DOS Econet v1.05 - REMOVE EVENT HANDLER
+	AX = C504h
+	DS:DX -> event handler
+Return: AX = return code (see #03037)
+Note:	the interrupt-enable state will be preserved, but interrupts may be
+	  enabled during processing of this function
+SeeAlso: AX=C500h,AX=C503h,AX=C506h,AX=C508h
+

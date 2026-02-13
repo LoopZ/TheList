@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH12
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - REQUEST ABORT
+	AX = 53B0h
+	BH = 12h
+	BL = protocol (see #00487)
+	CH = device address
+	CL = device command
+Return: CF clear if successful
+	    AH = 00h (SMBus OK)
+	CF set if error
+	    AH = error code (05h,13h,15h,16h,86h) (see #00484)
+Desc:	stop the currently pending SMBus request; usually used to terminate
+	  a request after an SMI Detected error
+

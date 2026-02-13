@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5B8485DL79
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 5B U - SitBack v3.02R - GET DTA
+	AX = 8485h
+	DL = 79h
+Return: CX = 5342h if supported
+	    ES:BX -> DTA set by last INT 21/AH=1Ah
+Note:	this function is provided by SBOS.EXE rather than SB.EXE
+SeeAlso: INT 21/AH=1Ah
+

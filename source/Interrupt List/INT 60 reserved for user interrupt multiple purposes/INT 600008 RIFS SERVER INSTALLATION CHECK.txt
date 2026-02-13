@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600008
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - RIFS - SERVER - INSTALLATION CHECK
+	AX = 0008h
+Return: CF clear if successful
+	CF set on error
+InstallCheck:	test for the signature "RIFS" immediately preceding the
+	  interrupt handler
+Range:	INT 60 to INT 66 and INT 18,selected by scanning for 0000h:0000h vector
+SeeAlso: AX=0000h,AX=0009h,AX=000Ah,AX=000Bh
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FFFC
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - GET INT 14 FLAGS
+	AX = FFFCh
+	DX = port number
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+	    BX = flags (see #00403)
+SeeAlso: AX=FFFDh
+
+Bitfields for INT 14h flags:
+Bit(s)	Description	(Table 00403)
+ 0	port active for INT 14h
+ 1	interface behaving like a FOSSIL driver
+

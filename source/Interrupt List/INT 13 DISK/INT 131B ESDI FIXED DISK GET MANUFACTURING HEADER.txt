@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131B
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - ESDI FIXED DISK - GET MANUFACTURING HEADER
+	AH = 1Bh
+	AL = number of sectors to read
+	DL = drive
+	ES:BX -> buffer for manufacturing header (defect list)
+Return: CF set on error
+	CF clear if successful
+	AH = status
+Note:	manufacturing header format (Defect Map Record format) can be found
+	  in IBM 70MB, 115MB Fixed Disk Drives Technical Reference
+	the first sector read contains the manufacturing header with the number
+	  of defect entries and the beginning of the defect map; the remaining
+	  sectors contain the remainder of the defect map
+

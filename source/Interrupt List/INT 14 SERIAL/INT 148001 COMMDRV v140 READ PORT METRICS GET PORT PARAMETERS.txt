@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148001
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - READ PORT METRICS - GET PORT PARAMETERS
+	AX = 8001h
+	DX = port number
+Return: BX:DI -> Port Control Block (see #00367)
+SeeAlso: AX=8000h"COMM-DRV",AX=8002h"COMM-DRV",AX=8003h"COMM-DRV"
+

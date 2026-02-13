@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A009
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI Mach64 BIOS - GET ???
+	AX = A009h
+	DX:BX -> buffer for ???
+	CL = ??? flags
+	???
+Return: AH = status
+	    00h successful
+		DX:BX buffer filled
+	    01h failed
+	???
+SeeAlso: AX=A000h,AX=A008h
+

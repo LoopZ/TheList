@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10F0
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - EGA Register Interface Library - READ ONE REGISTER
+	AH = F0h
+	BL = register number
+	BH = 00h
+	DX = group index (see #00223)
+Return: BL = data
+Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+	  compatibility box, and others; it is used for software virtualization
+	  of write-only registers on an EGA video adapter, so that multiple
+	  programs may peacefully coexist without clobbering each other's
+	  display settings
+SeeAlso: AH=F1h"EGA",AH=F2h"EGA",AH=FAh"EGA",INT 2F/AX=BC00h
+
+(Table 00223)
+Values for group index:
+ Pointer/data chips
+ 00h	CRT Controller (25 reg) 3B4h mono modes, 3D4h color modes
+ 08h	Sequencer (5 registers) 3C4h
+ 10h	Graphics Controller (9 registers) 3CEh
+ 18h	Attribute Controller (20 registers) 3C0h
+ Single registers
+ 20h	Miscellaneous Output register 3C2h
+ 28h	Feature Control register (3BAh mono modes, 3DAh color modes)
+ 30h	Graphics 1 Position register 3CCh
+ 38h	Graphics 2 Position register 3CAh
+

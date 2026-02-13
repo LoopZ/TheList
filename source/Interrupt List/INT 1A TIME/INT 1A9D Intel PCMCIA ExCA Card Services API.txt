@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A9D
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Intel PCMCIA ExCA Card Services - API
+	AH = 9Dh
+	AL = subfunction (see #00692)
+	???
+Return: ???
+SeeAlso: AH=9Dh"ExCA",#00891
+
+(Table 00692)
+Values for PCMCIA ExCA Card Services subfunction number:
+ 00h	Client Services: Get Number of Sockets
+ 01h	Advanced Client Utilities: Initialize
+ 02h	Client Services: Register Client
+ 03h	Client Services: Deregister Client
+ 04h	Advanced Client Utilities: Enumerate Clients
+ 05h	Client Services: Register SCB
+ 06h	Client Services: Deregister SCB
+ 07h	Advanced Client Utilities: Register MTD
+ 08h	Advanced Client Utilities: Deregister MTD
+ 09h	Advanced Client Utilities: Enumerate MTD
+ 0Ah	Client Services: Get Status
+ 0Bh	Client Services: Reset Card
+ 0Ch	Client Utilities: Get First Tuple
+ 0Dh	Client Utilities: Get Next Tuple
+ 0Eh	Client Utilities: Determine First Region
+ 0Fh	Client Utilities: Determine Next Region
+ 10h	Client Utilities: Get First Region
+ 11h	Client Utilities: Get Next Region
+ 12h	Client Utilities: Get First Partition
+ 13h	Client Utilities: Get Next Partition
+ 14h	Bulk Memory Services: Open Region
+ 15h	Bulk Memory Services: Read Memory
+ 16h	Bulk Memory Services: Write Memory
+ 17h	Bulk Memory Services: Copy Memory
+ 18h	Bulk Memory Services: Erase Memory
+ 19h	Resource Management: Request I/O
+ 1Ah	Resource Management: Release I/O
+ 1Bh	Resource Management: Request Memory
+ 1Ch	Client Services: Modify Window
+ 1Dh	Resource Management: Release Memory
+ 1Eh	Client Services: Map Mem Page
+ 1Fh	Advanced Client Utilities: Return SS Entry
+ 20h	Advanced Client Utilities: Map Log to Phy
+ 21h	Advanced Client Utilities: Map Log Phy to Log
+ 22h	Resource Management: Request IRQ
+ 23h	Resource Management: Release IRQ
+ 24h	Bulk Memory Services: Close Region
+

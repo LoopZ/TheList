@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200DE
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_WAITKEY" - FLUSH KEYBOARD BUFFER AND AWAIT KEY
+	AX = 00DEh
+Return: after next key pressed
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=000Ah,AX=0046h,AX=0063h,AX=0069h,INT 16/AH=00h
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33002A
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.02+ - GET CURSOR HOT SPOT
+	AX = 002Ah
+Return: AX = internal counter controlling cursor visibility
+	BX = cursor hot spot column
+	CX = cursor hot spot row
+	DX = mouse type (see #03179)
+Note:	the hot spot location is relative to the upper left corner of the
+	  cursor block and may range from -128 to +127 both horizontally and
+	  vertically
+SeeAlso: AX=0009h,AX=0012h,AX=0035h
+
+(Table 03179)
+Values for mouse type:
+ 00h	none
+ 01h	bus
+ 02h	serial
+ 03h	InPort
+ 04h	IBM
+ 05h	Hewlett-Packard
+

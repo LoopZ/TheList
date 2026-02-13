@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6129
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_getglobdesc" - ALLOCATE GLOBAL DESCRIPTOR
+	AH = 29h
+Return: CF clear if successful
+	    AX = network descriptor
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	use this function rather than AH=22h to avoid a DOS call by the PC/TCP
+	  kernel; the returned descriptor will be >= 40h and cannot be used
+	  with "net_select" (AH=0Eh)
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=07h"PC/TCP"
+SeeAlso: INT 61/AH=22h
+

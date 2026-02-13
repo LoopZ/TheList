@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0015
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - SPX Driver - GET SPX CONNECTION STATUS
+	BX = 0015h
+	DX = connection ID
+	ES:SI -> status buffer (see #03828)
+Return: AL = return code (00h,EEh) (see also #03825)
+	    00h connection still valid
+		ES:SI -> status buffer filled
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: BX=0010h,BX=0011h
+
+Format of SPX status buffer:
+Offset	Size	Description	(Table 03828)
+ 00h	BYTE	connection state
+		01h waiting to establish connection
+		02h starting (attempting to create connection)
+		03h connection established
+		04h terminating
+ 01h	BYTE	watchdog flag
+		bit 0: used internally by SPX
+		bit 1: SPX watchdog is monitoring connection
+		bits 2-7 used internally by SPX
+ 02h	WORD	(big-endian) source connection ID
+ 04h	WORD	(big-endian) destination connection ID
+ 06h	WORD	(big-endian) sequence number of next packet sent
+ 08h	WORD	(big-endian) acknowledge number, expected sequence number of
+		  next received packet
+ 0Ah	WORD	(big-endian) maximum sequence number remote SPX may send
+		  without ACK from local SPX
+ 0Ch	WORD	(big-endian) remote acknowledge number, next sequence number
+		  remote SPX expects to receive
+ 0Eh	WORD	(big-endian) remote allocation number, maximum sequence number
+		  local SPX may send
+ 10h	WORD	(big-endian) connection socket
+ 12h  6 BYTEs	immediate node address--bridge on local network to destination
+ 18h 10 BYTEs	destination internetwork address (see #03824 at INT 7A/BX=000Bh)
+ 22h	WORD	(big-endian) retransmit count
+ 24h	WORD	(big-endian) estimated roundtrip delay
+ 26h	WORD	(big-endian) retransmitted packets
+ 28h	WORD	(big-endian) suppressed packets
+ 2Ah 12 BYTEs	??? (v2.15)
+

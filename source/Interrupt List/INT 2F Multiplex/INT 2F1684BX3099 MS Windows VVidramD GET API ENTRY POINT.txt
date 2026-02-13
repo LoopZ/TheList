@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX3099
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VVidramD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 3099h (virtual device ID for VVidramD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02701)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02701)
+Call VVidramD (VIDRAM.VXD) virtual-86 entry point with:
+	AX = function number
+	    0000h map page???
+		BX = page number???
+		Return: CF clear if successful
+			CF set on error
+	    0001h ???
+		Return: CF clear if successful
+			CF set on error
+	    else
+		Return: CF set
+SeeAlso: #02700,#02702
+

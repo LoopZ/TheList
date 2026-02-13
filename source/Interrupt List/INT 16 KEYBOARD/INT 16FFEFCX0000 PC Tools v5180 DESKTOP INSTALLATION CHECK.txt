@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFEFCX0000
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - INSTALLATION CHECK
+	AX = FFEFh
+	CX = 0000h
+Return: CX = ABCDh if PC Tools DESKTOP.EXE installed
+	    BX = segment of resident portion
+	    AX = ??? (v5.1/5.5 only)
+SeeAlso: AX=FEEFh,AX=FFC5h,AX=FFF3h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC304
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - SpaceManager - GET PER-DRIVE ENABLEMENT TABLE
+	AX = C304h
+	DX = program identifier (9000h,9001h,9003h) (see #03035)
+Return: ES:BX -> 26-byte drive table (00h disabled for drive, 01h enabled)
+	AX destroyed
+

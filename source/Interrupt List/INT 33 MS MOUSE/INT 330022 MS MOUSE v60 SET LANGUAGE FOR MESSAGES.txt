@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330022
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - SET LANGUAGE FOR MESSAGES
+	AX = 0022h
+	BX = language (see #03177)
+Note:	only available on international versions of the driver; US versions
+	  ignore this call
+SeeAlso: AX=0023h
+
+(Table 03177)
+Values for mouse driver language:
+ 00h	English
+ 01h	French
+ 02h	Dutch
+ 03h	German
+ 04h	Swedish
+ 05h	Finnish
+ 06h	Spanish
+ 07h	Portugese
+ 08h	Italian
+

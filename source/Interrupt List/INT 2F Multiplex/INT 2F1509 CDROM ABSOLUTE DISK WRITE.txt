@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1509
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM - ABSOLUTE DISK WRITE
+	AX = 1509h
+	ES:BX -> buffer
+	CX = drive number (0=A:)
+	SI:DI = starting sector number
+	DX = number of sectors to write
+Note:	corresponds to INT 26h and is currently reserved and nonfunctional,
+	  but could be implemented for CD-R and CD-RW drives
+SeeAlso: AX=1508h
+

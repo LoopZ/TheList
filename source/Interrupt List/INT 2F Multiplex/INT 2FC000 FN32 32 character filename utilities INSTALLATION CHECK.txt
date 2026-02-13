@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - FN32 32 character filename utilities - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	   ES:DI -> signature string "FN32 32CHAR TSR"
+Program: FN32 is a TSR which supports 32 character filenames under PC/MS-DOS
+Note:	the TSR intercepts INT 21 calls and performs filename substitution by
+	  managing dictionary files in each directory which contains long
+	  filenames
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 64FE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 64 - BW-NFS - BWRPC - MAP EMS PAGE FRAME
+	AH = FEh
+	AL = direction
+	    00h map in driver's memory block
+	    01h map out driver's memory block
+Return: CF clear if successful
+	CF set on error
+	    AL = error code
+Range:	INT 4E to INT FD, selected by configuration
+Note:	this call is passed through directly to ETHDEV.SYS (see INT 62/AH=FEh)
+SeeAlso: INT 21/AH=3Fh"BW-TCP",INT 62/AH=FEh,INT 63/AH=03h"BW-TCP"
+SeeAlso: INT 63/AH=24h
+

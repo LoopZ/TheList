@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF01
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - SWITCH TO ANOTHER TASK
+	AX = DF01h
+	BL = task number (00h = next task)
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+	    FFh unsucessful
+		AH = error code (01h,02h) (see #01813)
+
+(Table 01813)
+Values for Software Carousel error code:
+ 00h	invalid subfunction in AL
+ 01h	invalid task number
+ 02h	tried to switch to task with no memory size
+ 03h	tried to kill program in partition with no program running
+ 04h	tried to change size of an active memory partition
+ 05h	invalid memory size
+ 06h	tried to send command to task with a pending previous command
+

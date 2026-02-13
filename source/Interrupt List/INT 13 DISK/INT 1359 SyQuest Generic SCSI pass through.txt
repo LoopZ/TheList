@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1359
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - SyQuest - Generic SCSI pass through
+	AH = 59h
+	CX = HOST_ID, 0-based
+	DX = 80h
+	ES:BX pointer to SCSI structure (see #00286)
+Return: CF clear
+	AH = 95h
+SeeAlso: AH=12h"SyQuest",AH=13h"SyQuest",AH=1Fh"SyQuest"
+
+Format of SyQuest SCSI structure:
+Offset	Size	Description	(Table 00286)
+ 00h	WORD	opcode (see #00287)
+ 02h	BYTE	target's SCSI ID
+ 03h	BYTE	target's logical unit number
+ 04h	BYTE	data direction (00h no data xfer, 01h data in, FFh data out)
+ 05h	BYTE	host status
+		00h successful
+		01h selection time out
+		02h data over-run or under-run
+ 06h	BYTE	target status at command completion
+		00h successful
+		02h check status
+		08h busy
+ 07h	BYTE	command data block length
+ 08h	DWORD	request data length
+ 0Ch	DWORD	result data length (actual length of data transferred)
+ 10h	DWORD	-> CDB (see #03236,#03237,#03238)
+ 14h	DWORD	-> data buffer
+Note:	The handler does not perform a 'Request Sense' command if there was an
+	  error
+
+(Table 00287)
+Values for SCSI opcode:
+ 00h	verify interface
+	clears carry flag and returns if function is available
+ 01h	returns the ID of the INT 13h Handler in a NULL terminated string of
+	length less than 40 byte including the terminator.
+	The string is stored in the buffer pointed by p_buf.
+ 02h	device mapping info. The caller provides a one byte buffer.
+	The handler stores the Int 13h Device ID (80h or above) in the buffer.
+	It stores 0 if that target does not exists.
+ 03h	execute SCSI command
+ 04h	device reset
+ 05h	SCSI bus reset
+SeeAlso: #00286
+

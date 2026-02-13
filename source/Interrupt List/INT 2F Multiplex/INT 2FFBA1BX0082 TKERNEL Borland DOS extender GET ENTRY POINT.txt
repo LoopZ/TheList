@@ -1,0 +1,247 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFBA1BX0082
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - TKERNEL (Borland DOS extender) - GET ENTRY POINT
+	AX = FBA1h
+	BX = 0082h
+	ES:DI -> response buffer (see #03135)
+Return: ES:DI buffer filled
+SeeAlso: AX=FBA1h/BX=0081h,AX=FBA1h/BX=0084h
+
+Format of TKERNEL response buffer:
+Offset	Size	Description	(Table 03135)
+ 00h  4 BYTEs	signature "IABH"
+ 04h	DWORD	pointer to FAR extender entry point (see #03136)
+
+(Table 03136)
+Call TKERNEL entry point with:
+	AX = function number
+	    0000h initialize???
+		STACK:	WORD  ???
+		Return: AX = status???
+			STACK unchanged
+	    0001h get version???
+		Return: AX = 0200h for v2.0.34
+	    0002h get ???
+		Return: AX = ??? (011Eh or 0182h seen)
+	    0003h load protected-mode executable
+		STACK:	DWORD -> ASCIZ filename of executable
+			DWORD	???
+			DWORD -> program arguments (counted string plus CR)
+			DWORD -> environment for protected-mode executable
+				(terminated with two consecutive NULs)
+			DWORD -> WORD buffer for ???
+		Return: AX = status???
+			STACK unchanged
+	    0004h get descriptor
+		STACK:	WORD	selector for which to get descriptor
+			WORD	segment number (when running in real mode)
+			DWORD -> buffer for descriptor
+		Return: CF clear if successful
+			    buffer filled
+			CF set on error
+			    AX destroyed???
+			STACK unchanged
+	    0005h ???
+		STACK:	WORD	selector for ???
+			WORD	subfunction number???
+				0000h run previously-loaded program???
+				0001h ??? (similar to 0000h)
+				0002h
+				0003h
+				0005h ??? (similar to 0000h and 0001h)
+		Return: AX = status???
+			STACK unchanged
+	    0006h ???
+		STACK:	WORD ???
+			DWORD -> WORD (call) max iterations of ???
+				      (ret) remaining iterations
+		Return: AX = ???
+			STACK unchanged
+	    0007h unused
+		Return: AX = 0001h
+	    0008h unused
+		Return: AX = 0001h
+	    0009h copy protected-mode memory into conventional memory
+		STACK:	WORD	selector for source segment
+			WORD	segment of source if in real mode???
+			DWORD	offset of source
+			WORD	number of bytes to copy
+			DWORD -> low-memory destination
+		Return: AX = status
+			STACK unchanged
+	    000Ah copy conventional memory into protected-mode memory
+		STACK:	WORD	selector for destination segment
+			WORD	segment of destination if in real mode???
+			DWORD	offset of destination
+			WORD	number of bytes to copy
+			DWORD -> low-memory source
+		Return: AX = status
+			STACK unchanged
+	    000Bh get ??? pointers
+		STACK:	WORD desired pointer
+				0000h get ???
+				0002h get protected-mode CR3
+				0003h get 4K page table buffer pointer
+				else Return: DX:AX = FFFFh:FFFFh
+		Return: DX:AX = requested pointer
+			STACK unchanged
+	    000Ch set ??? pointers
+		STACK:	WORD desired pointer
+				0000h set ???
+				0002h set protected-mode CR3
+				0003h set 4K page table buffer pointer
+				else ignore
+			DWORD new value for pointer
+		Return: STACK unchanged
+	    000Dh get ??? pointers
+		STACK:	WORD desired pointer
+				0000h get ???
+				0001h get ???
+				0002h get ???
+				0003h get ???
+				0004h get ???
+				0005h get ???
+				0006h get ???
+				0007h get ???
+				else Return: DX:AX = FFFFh:FFFFh
+		Return: DX:AX = desired pointer
+			STACK unchanged
+	    000Eh set ??? pointer
+		STACK:	WORD desired pointer
+				0000h set ???
+				0001h set ???
+				0002h set ???
+				0003h set ???
+				0004h set ???
+				0005h set ???
+				0006h set ???
+				0007h set ???
+				else Return: DX:AX = FFFFh:FFFFh
+		Return: STACK unchanged
+	    000Fh get ???
+		Return: AX = ??? (seen 0008h)
+	    0010h get ???
+		Return: AX = ???
+	    0011h determine whether selector is valid
+		STACK:	WORD	possible selector
+		Return: AX = selector or 0000h if invalid
+			STACK unchanged
+	    0012h get physical address
+		STACK:	WORD	selector for desired segment
+			WORD	segment number if in real mode
+			DWORD	offset within segment
+		Return: DX:AX = 32-bit physical address or 00000000h on error
+			BX destroyed
+			STACK unchanged
+	    0013h ???
+		Note:	normally jumps to code for function 0012h
+	    0014h copy protected-mode memory to conventional memory, with ???
+		STACK:	WORD	selector for source segment
+			WORD	segment of source if in real mode???
+			DWORD	offset of source
+			WORD	number of bytes to copy
+			DWORD -> low-memory destination
+		Return: AX = status???
+			STACK unchanged
+	    0015h copy conventional memory to protected-mode memory, with ???
+		STACK:	WORD	selector for destination segment
+			WORD	segment of destination if in real mode???
+			DWORD	offset of destination
+			WORD	number of bytes to copy
+			DWORD -> low-memory source
+		Return: AX = status???
+			STACK unchanged
+	    0016h set ??? pointer
+		STACK:	WORD	unused
+			DWORD -> ??? or 0000h:0000h
+		Return: AX = 0000h
+			STACK unchanged
+	    0017h allocate real-mode procedure???
+		STACK:	DWORD	ASCIZ name of procedure
+			DWORD ???
+			DWORD	address of subroutine to invoke
+		Return: AX = status
+			    0032h procedure by that name exists
+			    0033h no more real-mode procedures available
+			DX destroyed
+			STACK unchanged
+	    0018h unused
+		Return: AX = 0001h
+	    0019h get parameter block
+		Return: DX:AX -> parameter block (format unknown at this time,
+				  but 92h bytes)
+				  (preceded by signature "!!PARAM-BLOCK!!")
+	    001Ah get ???
+		Return: AX = ??? (0148h seen)
+	    001Bh free real-mode procedure???
+		STACK:	DWORD -> ASCIZ name of procedure
+		Return: ???
+			STACK unchanged
+	    001Ch check whether packets from protected mode task pending
+		Return: AX = 0001h if packets pending, 0000h if not
+	    001Dh set ???
+		STACK:	DWORD ??? or 0000h:0000h
+		Return: AX,BX destroyed
+			STACK unchanged
+	    001Eh ???
+		STACK:	WORD ??? (high byte ignored)
+			DWORD -> data structure (below)
+		Return: AX,BX,CX,DX destroyed
+			data structure updated
+			STACK unchanged
+		Format of data structure:
+		Offset	Size	Description
+		 00h  2 BYTEs	unused
+		 02h	WORD	???
+		 04h	WORD	???
+		 06h	WORD	???
+		 08h  2 BYTEs	unused
+		 0Ah	WORD	???
+		 0Ch	WORD	(call) ???
+				(ret) offset of this data structure (BUG?)
+	    001Fh set ???
+		STACK:	WORD ??? (set to 0001h if zero)
+		Return: AX destroyed
+			STACK unchanged
+	    0020h ???
+		STACK:	DWORD -> ??? (8 bytes of data)
+		Return: AX = ???
+			STACK unchanged
+	    0021h ???
+		STACK:	DWORD -> ??? (8 bytes of data)
+			WORD	???
+			WORD	???
+		Return: AX = ???
+			STACK unchanged
+	    0022h ???
+		STACK:	DWORD -> ??? (8 bytes of data)
+			DWORD -> 4-byte buffer for results
+		Return: AX = ???
+			STACK unchanged
+	    0023h ???
+		STACK:	DWORD -> ??? (8 bytes of data)
+		Return: AX = ???
+			STACK unchanged
+	    0024h set ???
+		STACK:	WORD ???
+		Return: AX destroyed
+			STACK unchanged
+	    0025h get ???
+		Return: AX = ??? (value set with func 0024h)
+	    0026h BUG: jumps to hyperspace due to fencepost error
+	    FFFFh set DOS memory management functions
+		BX:SI -> FAR routine for allocating DOS memory
+			  (called with AH=48h,BX=number of paragraphs to alloc;
+			  returns CF clear, AX=segment of allocated memory, or
+				  CF set on error)
+		CX:DI -> FAR routine for freeing DOS memory
+			  (called with AH=49h,ES=segment of block to free;
+			  returns CF set on error, AX=error code)
+		Note: each of these pointers normally points at INT 21/RETF
+	    other Return: AX = 0001h
+Note:	BX may be destroyed by any of the API calls
+

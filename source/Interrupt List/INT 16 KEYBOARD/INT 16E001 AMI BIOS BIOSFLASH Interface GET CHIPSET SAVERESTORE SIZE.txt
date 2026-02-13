@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E001
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface - GET CHIPSET SAVE/RESTORE SIZE
+	AX = E001h
+Return: CF clear if successful
+	    AL = FAh
+	    BX = number of bytes required to save chipset configuration
+	CF set on error
+SeeAlso: AX=E000h,AX=E002h,AX=E003h
+

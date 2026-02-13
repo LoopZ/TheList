@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE01BX5242
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DESQview v2.26+ XDI - CUSTOM SUBFUNCTION, Ralf Brown's XDI drivers
+	AX = DE01h
+	BX = 5242h ("RB")
+	CX:DX = program identifier
+		656F7000h ("eop",0) for DVeop
+Return: AX = 5242h ("RB") if installed
+	    ES:BX -> data or entry point (see #03100)
+	    CX = version number (CH = major, CL = minor)
+
+(Table 03100)
+Call DVeop entry point with:
+	ES:DI -> callback address or 0000h:0000h to remove callback
+Return: AX = status
+	    0000h failed (callback table full or attempted to remove non-
+		  existent callback)
+	    0001h successful
+		ES:DI -> chaining address
+	BX,CX,DX destroyed
+Notes:	the callback function is called with a simulated interrupt when the
+	  DESQview window containing it is closed; it should perform all
+	  necessary cleanup and then perform a FAR jump to the chaining address
+	  or an IRET if the chaining address is 0000h:0000h
+	if the program wishes to remove itself before the window is closed, it
+	  should call the DVeop entry point with the previously returned
+	  chaining address and ignore the returned chaining address.
+

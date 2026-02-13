@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1621
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - CHECK FOR 122-KEY KEYSTROKE (122-key kbd support only)
+	AH = 21h
+Return: ZF set if no keystroke available
+	ZF clear if keystroke available
+	    AH = BIOS scan code
+	    AL = ASCII character
+Notes:	use AH=09h to determine whether this function is supported
+	some versions of the IBM BIOS Technical Reference erroneously report
+	  that CF is returned instead of ZF
+	K3PLUS v6.00+ supports this function as an alias of AH=11h
+SeeAlso: AH=01h,AH=09h,AH=11h,AH=20h,AH=21h
+

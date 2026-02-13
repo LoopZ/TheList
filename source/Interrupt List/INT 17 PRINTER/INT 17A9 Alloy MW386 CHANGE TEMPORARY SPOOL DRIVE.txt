@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17A9
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy MW386 - CHANGE TEMPORARY SPOOL DRIVE
+	AH = A9h
+	AL = new spool drive (2=C:,3=D:,etc)
+Return: AL = status (see #00642)
+Note:	does not remove previous spooling directory since jobs may be pending
+SeeAlso: AH=A8h
+

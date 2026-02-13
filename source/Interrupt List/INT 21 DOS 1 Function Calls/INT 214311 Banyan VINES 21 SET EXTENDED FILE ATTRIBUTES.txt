@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214311
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Banyan VINES 2.1+ - SET EXTENDED FILE ATTRIBUTES
+	AX = 4311h
+	CH = new attributes (see #01422)
+	DS:DX -> ASCIZ filename
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h,02h,03h,05h) (see #01680 at AH=59h/BX=0000h)
+Note:	the filename may be a directory but must be on a VINES file service
+SeeAlso: AX=4301h,AX=4305h,AX=4310h,INT 2F/AX=110Eh
+
+Bitfields for VINES extended file attributes:
+Bit(s)	Description	(Table 01422)
+ 7	unused
+ 6	shareable
+ 5	execute-only
+ 4-0	unused
+

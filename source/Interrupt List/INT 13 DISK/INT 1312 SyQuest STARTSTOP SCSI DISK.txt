@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1312
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - SyQuest - START/STOP SCSI DISK
+	AH = 12h
+	AL = subfunction
+	    00h start disk
+	    01h stop disk
+	CX = wait flag
+	    00h wait for ready
+	    01h don't wait for ready
+	DL = hard drive ID (bit 7 for hard disks must be set)
+Return: CF set on error
+	CF clear if successful
+	AH = status
+	    00h successful
+	    01h invalid function request
+	    80h timeout
+SeeAlso: AH=12h"Future Domain",AH=13h"SyQuest"
+

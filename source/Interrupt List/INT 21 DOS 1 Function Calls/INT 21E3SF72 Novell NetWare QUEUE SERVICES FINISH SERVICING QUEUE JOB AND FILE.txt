@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF72
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - FINISH SERVICING QUEUE JOB AND FILE
+	AH = E3h subfn 72h
+	DS:SI -> request buffer (see #01987)
+	ES:DI -> reply buffer (see #01989)
+Return: AL = status (00h,96h,D0h,D1h,D6h) (see #01961)
+Desc:	inform the Queue Management System (QMS) that the queue server has
+	  completed a job
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the caller must be a job server which has previously obtained a job
+	  for servicing
+SeeAlso: AH=E3h/SF=6Fh,AH=E3h/SF=71h,AH=E3h/SF=73h,AH=E3h/SF=76h
+SeeAlso: AX=F217h/SF=72h
+
+Format of NetWare "Finish Servicing Queue Job and File (old)" request buffer:
+Offset	Size	Description	(Table 01987)
+ 00h	WORD	000Bh (length of following data)
+ 02h	BYTE	72h (subfunction "Finish Servicing Queue Job and File (old)")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	WORD	(big-endian) job number
+ 09h	DWORD	(big-endian) charge
+SeeAlso: #01989,#01986,#01998
+

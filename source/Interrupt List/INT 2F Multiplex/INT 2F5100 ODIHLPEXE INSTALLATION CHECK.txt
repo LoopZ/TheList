@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5100
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - ODIHLP.EXE - INSTALLATION CHECK
+	AX = 5100h
+Return: AL = FFh if installed
+	    BX = 0000h
+	    DX:SI -> signature string "ODI$HLP$"
+Program: ODIHLP is a real-mode helper allowing the Windows for Workgroups 3.11
+	  protected-mode NDIS3 protocol to work with real-mode ODI drivers
+	  and LSL.COM
+Note:	the returned signature string might be the first field of a structure
+SeeAlso: AX=C000h"LSL.COM"
+

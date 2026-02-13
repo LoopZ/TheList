@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214405
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - IOCTL - WRITE TO BLOCK DEVICE CONTROL CHANNEL
+	AX = 4405h
+	BL = drive number (00h = default, 01h = A:, etc)
+	CX = number of bytes to write
+	DS:DX -> data to write
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	format of data is driver-specific
+	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AX=4403h"DOS",AX=4404h"DOS",INT 2F/AX=122Bh
+

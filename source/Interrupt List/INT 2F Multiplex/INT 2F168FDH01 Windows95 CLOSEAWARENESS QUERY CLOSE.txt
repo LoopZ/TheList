@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F168FDH01
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Windows95 - CLOSE-AWARENESS - QUERY CLOSE
+	AX = 168Fh
+	DH = 01h
+	DL = 00h (reserved)
+Return: AX = status
+	    0000h Close command selected but not yet acknowledged
+	    0001h Close command issued and acknowledged
+	    168Fh Close command not selected -- application should continue
+Desc:	determine whether the user has requested that the application be closed
+	  by selecting the system menu's Close option
+SeeAlso: AX=168Fh/DH=00h,AX=168Fh/DH=02h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH05
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - DISCONNECT
+	AX = 53B0h
+	BH = 05h
+	CX = 6941h ('iA')
+Return: CF clear if successful
+	    AH = 00h (SMBus OK)
+	CF set if error
+	    AH = error code (03h,04h,05h,0Ah,86h) (see #00484)
+Note:	this function is supported in connected mode (far CALL entry point)
+	  only
+SeeAlso: AX=53B0h/BH=01h,AX=53B0h/BH=02h,AX=53B0h/BH=03h,AX=53B0h/BH=04h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2103
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - READ CHARACTER FROM STDAUX
+	AH = 03h
+Return: AL = character read
+Notes:	keyboard checked for ^C/^Break, and INT 23 executed if detected
+	STDAUX is usually the first serial port
+SeeAlso: AH=04h,INT 14/AH=02h,INT E0/CL=03h
+

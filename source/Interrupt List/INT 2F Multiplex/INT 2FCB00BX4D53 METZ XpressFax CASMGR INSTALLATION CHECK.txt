@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB00BX4D53
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - METZ XpressFax CASMGR - INSTALLATION CHECK
+	AX = CB00h
+	BX = 4D53h ('MS')
+	CX = 4949h ('II')
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+		BX = 6D73h ('ms')
+		CX = 6969h ('ii')
+Note:	this function is equivalent to the standard CASMGR installation check,
+	  but uses the additional magic values to identify which CAS is
+	  installed
+SeeAlso: AH=2Ah,AX=8000h"FaxBIOS",AX=C000h/BX=444Bh,AX=CB0Eh,AX=CB16h
+

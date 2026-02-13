@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 134D00
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Bootable CD-ROM - RETURN BOOT CATALOG
+	AX = 4D00h
+	DS:SI -> command packet (see #00283)
+Return: CF clear if successful
+	CF set on error
+	AX = return codes
+SeeAlso: AH=48h,AH=4Ah,AX=4B00h,AH=4Ch
+
+Format of Bootable CD-ROM "get boot catalog" command packet:
+Offset	Size	Description	(Table 00283)
+ 00h	BYTE	size of packet in bytes (08h)
+ 01h	BYTE	number of sectors of boot catalog to read
+ 02h	DWORD	-> buffer for boot catalog
+ 06h	WORD	first sector in boot catalog to transfer
+SeeAlso: #00281
+

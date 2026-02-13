@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - SELECT EXTERNAL MONITOR
+	AX = BF00h
+Return: nothing
+Desc:	specify that the external monitor become the active monitor
+Note:	all registers preserved and the internal monitor is blanked
+SeeAlso: AX=BF01h,AX=BF12h,AH=12h/BL=35h
+

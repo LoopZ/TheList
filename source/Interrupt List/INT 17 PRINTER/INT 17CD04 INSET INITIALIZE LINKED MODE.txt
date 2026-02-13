@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD04
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - INITIALIZE LINKED MODE
+	AX = CD04h
+	ES:SI -> FAR routine for linked mode (see #00647)
+Return: CX = 07C2h
+SeeAlso: AX=CD02h,AX=CD08h
+
+(Table 00647)
+Values INSET linked-mode routine is called with:
+	AL = function
+	    00h send character to printer
+		BL = character to send
+	    01h send string to printer
+		CX = number of bytes to send
+		DS:DX -> buffer containing data
+	    02h move print head to horizontal starting position of image
+Return: AX = status
+	    0000h success
+	    0001h failure
+

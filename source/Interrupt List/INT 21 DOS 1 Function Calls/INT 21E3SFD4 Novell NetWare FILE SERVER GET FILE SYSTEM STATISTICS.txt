@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFD4
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET FILE SYSTEM STATISTICS
+	AH = E3h subfn D4h
+	DS:SI -> request buffer (see #02027)
+	ES:DI -> reply buffer (see #02028)
+Return: AL = status (00h,C6h) (see #02025)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=0Eh,AH=E3h/SF=C8h,AH=E3h/SF=D9h,AH=E3h/SF=E7h,AH=E3h/SF=E8h
+SeeAlso: AX=F217h/SF=D4h
+
+Format of NetWare "Get File System Statistics" request buffer:
+Offset	Size	Description	(Table 02027)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	D4h (subfunction "Get File System Statistics")
+SeeAlso: #02028,#02227 at AX=F217h/SF=D4h
+
+Format of NetWare "Get File System Statistics" reply buffer:
+Offset	Size	Description	(Table 02028)
+ 00h	WORD	(call) 0028h (size of following results buffer)
+ 02h	DWORD	clock ticks since system started
+ 06h	WORD	maximum open files set by configuration
+ 08h	WORD	maximum files open concurrently
+ 0Ah	WORD	current number of open files
+ 0Ch	DWORD	total files opened
+ 10h	DWORD	total file read requests
+ 14h	DWORD	total file write requests
+ 18h	WORD	current changed FATs
+ 1Ah	WORD	total changed FATs
+ 1Ch	WORD	number of FAT write errors
+ 1Eh	WORD	number of fatal FAT write errors
+ 20h	WORD	number of FAT scan errors
+ 22h	WORD	maximum concurrently-indexed files
+ 24h	WORD	current number of indexed files
+ 26h	WORD	number of attached indexed files
+ 28h	WORD	number of indexed files available
+Note:	all fields except the first are big-endian
+SeeAlso: #02027,#02227 at AX=F217h/SF=D4h
+

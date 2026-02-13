@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8204
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Nanosoft, Inc. CAPDOS - GET QUEUE PARAMETERS
+	AX = 8204h
+Return: AH = flag: queue wrapped if nonzero
+	BX = index of current start of queue
+	CX = size of queue in entries
+SeeAlso: AX=8200h"CAPDOS",AX=8202h"CAPDOS",AX=8205h"CAPDOS"
+

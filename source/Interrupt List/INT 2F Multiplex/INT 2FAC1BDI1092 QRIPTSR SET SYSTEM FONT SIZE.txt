@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC1BDI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - SET SYSTEM FONT SIZE
+	AX = AC1Bh
+	DI = 1092h
+	BX = font size (see #02970)
+Return: nothing
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC04h,AX=ACF0h
+
+(Table 02970)
+Values for QRIP font size specifier:
+ 00h	8x8 font, 80x43 screen
+ 01h	7x8 font, 90x43 screen
+ 02h	8x14 font, 80x25 screen
+ 03h	7x14 font, 90x25 screen
+ 04h	16x14 font, 40x25 screen
+

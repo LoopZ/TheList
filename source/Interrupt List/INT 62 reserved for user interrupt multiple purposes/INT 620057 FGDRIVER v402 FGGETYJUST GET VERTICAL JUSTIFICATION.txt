@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620057
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETYJUST" - GET VERTICAL JUSTIFICATION
+	AX = 0057h
+Return: AX = string justification
+	    0000h strings are centered around current graphics Y position
+	    0001h strings have top edge at current graphics Y position
+	    FFFFh strings have bottom edge at current graphics Y position
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0053h,AX=0065h
+

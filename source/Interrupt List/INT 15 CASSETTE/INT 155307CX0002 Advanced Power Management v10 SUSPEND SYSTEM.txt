@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155307CX0002
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - SUSPEND SYSTEM
+	AX = 5307h
+	CX = 0002h
+	BX = 0001h (device ID for all power-managed devices)
+Return: after system is resumed
+	CF clear
+Notes:	puts the entire system into a low-power suspended state; normally
+	  called in response to a Suspend System Request notification after
+	  any necessary processing, but may also be invoked at the caller's
+	  discretion
+	should not be called from within a hardware interrupt handler to avoid
+	  reentrance problems
+	the caller may need to update its date and time values because the
+	  system could have been suspended for a long period of time
+SeeAlso: AX=5307h/CX=0001h"STAND-BY",AX=530Bh
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440DCX084B
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7.0+ - GENERIC IOCTL - LOCK PHYSICAL VOLUME
+	AX = 440Dh
+	CX = 084Bh / 484Bh
+	    (category code 08h for FAT12/16, 48h for FAT32; minor code 4Bh)
+	BH = logical drive number (00h = default, 01h = A:, etc.)
+	BL = lock level (00h-03h)
+	DX = drive permissions (see #01575) for Level 1 lock or second
+	    Level 0 lock when formatting
+Return: CF set on error
+	    AX = error code (01h,02h,etc.) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Desc:	lock all logical volumes on the same physical volume as the indicated
+	  drive
+Note:	the physical volume must be locked before direct disk writes via
+	  INT 13 are permitted by Windows95
+SeeAlso: AX=440Dh"DOS 3.2+",AX=440Dh/CX=084Ah,AX=440Dh/CX=086Bh
+SeeAlso: AX=440Dh/CX=086Ch
+

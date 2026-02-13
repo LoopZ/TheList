@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SET PORTS FOR A SERVICE
+	AX = 0007h
+	BX = 0004h
+	DS:DX -> StreetTalk name of service (max 64 bytes)
+	DS:DI -> port record block (see #03435)
+Return: AX = status (see #03432)
+SeeAlso: AX=0007h/BX=0002h,AX=0007h/BX=0003h,AX=0007h/BX=000Ah
+
+Format of VINES port record block:
+Offset	Size	Description	(Table 03435)
+ 00h	WORD	number of 17-byte elements
+ 02h	BYTE	port type for first port
+ 03h 16 BYTEs	first IPC port (see #03328)
+ 13h	BYTE	port type for second port
+ 14h 16 BYTEs	second IPC port (see #03328)
+ 24h	BYTE	port type for third port
+ 25h 16 BYTEs	third IPC port (see #03328)
+ 35h	BYTE	port type for fourth port
+ 36h 16 BYTEs	fourth IPC port (see #03328)
+ 46h	BYTE	port type for fifth port
+ 47h 16 BYTEs	fifth IPC port (see #03328)
+ 57h	BYTE	reserved
+SeeAlso: #03433
+

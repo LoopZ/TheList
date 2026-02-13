@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF13
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP GET MACINTOSH INFORMATION ON DELETED FILE
+	AX = F223h subfn 13h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02341)
+	ES:DI -> reply buffer (see #02342)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=04h,AX=F223h/SF=05h,AX=F223h/SF=09h
+
+Format of NetWare "AFP Get Macintosh Info on Deleted File" request packet:
+Offset	Size	Description	(Table 02341)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	13h (subfunction "AFP Get Macintosh Info on Deleted File")
+ 03h	BYTE	volume number
+ 04h	DWORD	server's DOS directory entry index
+SeeAlso: #02342
+
+Format of NetWare "AFP Get Macintosh Info on Deleted File" reply packet:
+Offset	Size	Description	(Table 02342)
+ 00h 32 BYTEs	Finder information
+ 20h  6 BYTEs	ProDOS information
+ 26h	DWORD	size of resource fork
+ 2Ah	BYTE	length of filename
+ 2Bh  N BYTEs	filename
+SeeAlso: #02341
+

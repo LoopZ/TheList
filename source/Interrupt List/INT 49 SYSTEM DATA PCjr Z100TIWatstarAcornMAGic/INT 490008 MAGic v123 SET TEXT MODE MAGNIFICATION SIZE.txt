@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 490008
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - MAGic v1.23+ - SET TEXT MODE MAGNIFICATION SIZE
+	AX = 0008h
+	BX = scaling factor (01h=1.4 times, 02h, 04h, 06h, 08h, 09h=12 times)
+Return: AX = status
+	    0000h successful
+	    FFFBh scaling factor only available in MAGic Deluxe
+	    FFFCh already in magnified state, can't set size
+Notes:	this call specifies the amount a subsequent call to AX=0001h should
+	  magnify the display
+	scaling factors greater than 2 are only available in MAGic Deluxe
+SeeAlso: AX=0001h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0300
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - DISPLAY STRING
+	DI = 0300h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	starting row (-3 is topmost, 0 is first user line)
+		WORD	starting column
+		DWORD	pointer to string
+		WORD	length of string
+		WORD	display style: 0000h normal, 0001h reverse video
+		WORD	"OSTYLE"
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0F03h,INT 60/DI=1005h
+

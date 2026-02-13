@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6A0010
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 6A U - Super-TCP DOS TSR Kernel v3.57 - UNINSTALL
+	AX = 0010h
+Return: AX = status
+	    0000h successful
+	    0002h can't uninstall, interrupt vector hooked by another program
+Program: Super-TCP is a TCP/IP protocol stack by Frontier Technologies Corp.
+Note:	if AX is not one of the values listed here on entry, Super-TCP
+	  returns AX=FFFEh
+SeeAlso: AX=0000h
+

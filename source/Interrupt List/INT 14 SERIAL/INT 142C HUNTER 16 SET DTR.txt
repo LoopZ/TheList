@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 142C
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - SET DTR
+	AH = 2Ch
+	AL nonzero
+	BL = new state
+	    00h	 normal operation
+	    else force DTR high
+Return: AH = 00h
+Desc:	determine whether the DTR signal on COM1 should be forced high
+SeeAlso: AX=2C00h
+

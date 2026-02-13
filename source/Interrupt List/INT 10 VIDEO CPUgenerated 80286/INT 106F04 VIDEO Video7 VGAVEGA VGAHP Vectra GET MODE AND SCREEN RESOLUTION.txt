@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106F04
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Video7 VGA,VEGA VGA,HP Vectra - GET MODE AND SCREEN RESOLUTION
+	AX = 6F04h
+Return: AL = current video mode (see #00191)
+	BX = horizontal columns (text) or pixels (graphics)
+	CX = vertical columns (text) or pixels (graphics)
+SeeAlso: AX=6F05h
+

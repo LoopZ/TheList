@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C7
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - later PS/2s - RETURN MEMORY-MAP INFORMATION
+	AH = C7h
+	DS:SI -> user supplied memory map table (see #00526)
+Return: CF set on error
+	CF clear if successful
+Notes:	call AH=C0h and examine bit 4 of feature byte 2 to check if this
+	  function is supported
+	IBM classifies this function as optional
+	Windows95 OSR2 reportedly does not support this function even though
+	  INT 15/AH=C0h indicates that it is available (observed on several
+	  different systems)
+SeeAlso: AH=C0h,AH=C9h,AH=D1h,AX=E820h
+
+Format of memory-map table structure:
+Offset	Size	Description	(Table 00526)
+ 00h	WORD	length of table (excluding this word)
+ 02h	DWORD	local memory between 1M and 16M, in 1K blocks
+ 06h	DWORD	local memory between 16M and 4G, in 1K blocks
+ 0Ah	DWORD	system memory between 1M and 16M, in 1K blocks
+ 0Eh	DWORD	system memory between 16M and 4G, in 1K blocks
+ 12h	DWORD	cacheable memory between 1M and 16M, in 1K blocks
+ 16h	DWORD	cacheable memory between 16M and 4G, in 1K blocks
+ 1Ah	DWORD	1K blocks before start of non-system memory between 1M and 16M
+ 1Eh	DWORD	1K blocks before start of non-system memory between 16M and 4G
+ 22h	WORD	start segment of largest free block from C0000h-DFFFFh
+ 24h	WORD	size of largest free block
+ 26h	DWORD	reserved
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6152
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "nm_domain" - RESOLVE NAME USING DNS
+	AH = 52h
+	CX = size of destination buffer
+	DS:DX -> ASCIZ host name (max 127 chars)
+	ES:DI -> destination buffer or 0000h:0000h
+Return: CF clear if successful
+	    DX:AX -> IP address of host
+	    destination buffer filled with canonical host name
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	this function will poll all configured domain name servers if necessary
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=54h
+

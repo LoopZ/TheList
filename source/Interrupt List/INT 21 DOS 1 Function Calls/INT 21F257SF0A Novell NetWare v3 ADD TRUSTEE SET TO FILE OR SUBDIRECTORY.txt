@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - ADD TRUSTEE SET TO FILE OR SUBDIRECTORY
+	AX = F257h subfn 0Ah
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02393)
+	ES:DI ignored
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AX=F257h/SF=0Bh
+
+Format of NetWare "Add Trustee Set" request packet:
+Offset	Size	Description	(Table 02393)
+ 00h	BYTE	0Ah (subfunction "Add Trustee Set to File or Subdirectory")
+ 01h	BYTE	name space (see #02387)
+ 02h  2 BYTEs	reserved
+ 04h	WORD	trustee rights (see #02141)
+ 06h	WORD	object ID count
+ 08h		NetWare Handle/Path structure (see #02376)
+      6 BYTEs	trustee structure (see #02394)
+
+Format of NetWare trustee structure:
+Offset	Size	Description	(Table 02394)
+ 00h	DWORD	object ID
+ 04h	WORD	trustee rights
+SeeAlso: #02393
+

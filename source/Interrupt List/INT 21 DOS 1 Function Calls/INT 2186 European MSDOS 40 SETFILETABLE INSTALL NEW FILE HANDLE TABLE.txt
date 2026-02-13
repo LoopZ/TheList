@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2186
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "SETFILETABLE" - INSTALL NEW FILE HANDLE TABLE
+	AH = 86h
+	BX = total number of file handles in new table
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (06h,08h) (see #01680 at AH=59h/BX=0000h)
+Desc:	adjust the size of the per-process open file table, thus raising or
+	  lowering the limit on the number of files the caller can open
+	  simultaneously
+Notes:	any currently-open files are copied to the new table
+	if the table is increased beyond the default 20 handles, only the
+	  first 20 will be inherited by child processes
+	error 06h is returned if the requested number of handles exceeds
+	  system limits or would require closing currently-open files
+SeeAlso: AH=26h,AH=67h
+

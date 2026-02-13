@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0003
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET NETWORK DRIVE MAP
+	AX = 0004h subfn 0003h
+	DS:DX -> request block (see #03404)
+Return: AX = status
+	    0000h drive map returned in request block
+Desc:	Returns a bit map indicating which drive numbers are connected to a
+	  file service
+Note:	Only bits 0-25 are significant
+SeeAlso: AX=0004h/SF=0002h
+
+Format of VINES Function 0004h/Subfunction 0003h request block:
+Offset	Size	Description	(Table 03404)
+ 00h	WORD	0003h
+ 02h	DWORD	buffer for drive map (bit0=A, bit1=B, ...)
+

@@ -1,0 +1,75 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6801--SF1B00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - NETWORK DEVICE CONTROL - DISPLAY
+	AH = 01h subfn 1B00h
+	DS:DX -> control block (see #03667)
+Return: control block updated
+SeeAlso: AH=01h/SF=2000h,AH=01h/SF=2B00h,INT 68"Novell"
+
+Format of APPC/PC "DISPLAY" control block:
+Offset	Size	Description	(Table 03667)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	1B00h (verb "DISPLAY")
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h	WORD	00h
+ 1Ah  8 BYTEs	(big-endian) logical unit ID
+ 22h  8 BYTEs	(big-endian) partner logical unit name
+ 2Ah  8 BYTEs	(big-endian) mode name
+ 32h	BYTE	logical unit session limit
+ 33h	BYTE	partner logical unit session limit
+ 34h	BYTE	node maximum negotiable session limit
+ 35h	BYTE	current session limit
+ 36h	BYTE	minimum negotiated winner limit
+ 37h	BYTE	maximum negotiated loser limit
+ 38h	BYTE	active session count
+ 39h	BYTE	active CONWINNER session count
+ 3Ah	BYTE	active CONLOSER session count
+ 3Bh	BYTE	session termination count
+ 3Ch	BYTE	bit 7: SESSION_TERMINATION_TARGET_DRAIN
+		bit 6: SESSION_TERMINATION_SOURCE_DRAIN
+
+(Table 03668)
+Values for APPC/PC return code:
+ 0000h	successful
+ 0001h	BAD_TP_ID
+ 0002h	BAD_CONV_ID
+ 0003h	bad logical unit ID
+ 0008h	no physical unit attached
+ 0110h	bad state
+ 01B1h	BAD_PART_LUNAME
+ 01B2h	bad mode name
+ 0201h	physical unit already active
+ 0211h	logical unit already active
+ 0212h	BAD_PART_SESS
+ 0213h	BAD_RU_SIZES
+ 0214h	BAD_MODE_SESS
+ 0216h	BAD_PACING_CNT
+ 0219h	EXTREME_RUS
+ 021Ah	SNASVCMG_1
+ 0223h	SSCP_CONNECTED_LU
+ 0230h	invalid change
+ 0243h	too many TPs
+ 0272h	adapter close failure
+ 0281h	GET_ALLOC_BAD_TYPE
+ 0282h	unsuccessful
+ 0283h	DLC failure
+ 0284h	unrecognized DLC
+ 0286h	duplicate DLC
+ 0301h	SSCP_PU_SESSION_NOT_ACTIVE
+ 0302h	data exceeds RU size
+ 0401h	invalid direction
+ 0402h	invalid type
+ 0403h	segment overlap
+ 0404h	invalid first character
+ 0405h	table error
+ 0406h	conversion error
+ F0010000h	APPC disabled
+ F0020000h	APPC busy
+ F0030000h	APPC abended
+ F0040000h	incomplete
+

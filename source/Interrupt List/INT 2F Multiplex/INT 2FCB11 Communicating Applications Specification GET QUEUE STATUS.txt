@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB11
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - GET QUEUE STATUS
+	AX = CB11h
+	DL = queue to get status of
+	    00h task queue
+	    01h receive queue
+	    02h log queue
+	    03h send events (v1.2+)
+	    04h receive events (v1.2+)
+Return: AX >= 0	 total number of changes made to queue, modulo 32768
+	    BX = number of control files currently in queue
+	    CX = number of received files (zero for task and log queues)
+	AX < 0	error code (see #03048)
+SeeAlso: AX=CB12h
+

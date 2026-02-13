@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620016
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DASH" - DRAW DASHED LINE TO ABSOLUTE POSITION
+	AX = 0016h
+	BX = endpoint column
+	CX = endpoint row
+	DX = dash pattern (set bits cause drawn pixels)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes
+	The starting point is the current graphics cursor position; the cursor
+	  position is updated
+SeeAlso: AX=0017h,AX=001Dh,AX=008Fh
+

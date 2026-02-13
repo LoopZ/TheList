@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 11FF--SI6A6A
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - WD7000 SDLP interface - EXECUTE GENERIC SCSI COMMAND
+	AH = FFh
+	SI = 6A6Ah
+	AL = SCSI Addressing (see #00230)
+	CX = bytes of data to be transmitted (max FFF0h)
+	DH = 00h
+	DL = length of SCSI Command Descriptor Block
+	DS:DI -> SCSI Command Descriptor Block
+	ES:BX -> data buffer
+Return: CF set on error
+	    AL = error code
+	CF clear if successful
+Note:	because of busmaster operations with WD7000FASST avoid accessing
+	  video memory directly; check 386 memory manager for VDS support.
+	  The WD7000XTAT works with programmed IO and does not have this
+	  limitation.
+SeeAlso: INT 21/AX=4402h"ASPI",INT 2F/AX=7F01h
+
+Bitfields for SDLP SCSI addressing:
+Bit(s)	Description	(Table 00230)
+ 2-0	SCSI Target LUN (logical unit number)
+ 5-3	SCSI Target ID
+ 7	write flag, set for write operations, clear otherwise
+

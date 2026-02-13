@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--DX0004
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - GET SIZE OF PTDA JFT
+	AH = 64h
+	DX = 0004h (function number)
+	CX = 636Ch (magic value, "cl")
+	BX = 0000h (indicates special request)
+Return: AX = number of entries in OS/2 JFT for VDM
+Notes:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
+	in an OS/2 VDM, the DOS Job File Table in the PSP contains an index
+	  into the OS/2 JFT in the Per-Task Data Area rather than an SFT index
+	  because the OS/2 SFT can contain more than 255 entries
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A86
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - SET ADAPTER
+	AH = 86h
+	AL = adapter number
+	DH = new adapter attributes (see #00672)
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (01h) (see #00656)
+SeeAlso: AH=84h"PCMCIA",AH=85h"PCMCIA"
+

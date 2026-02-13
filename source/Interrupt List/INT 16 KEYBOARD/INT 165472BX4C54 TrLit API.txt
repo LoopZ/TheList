@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 165472BX4C54
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - TrLit - API
+	AX = 5472h ('Tr')
+	BX = 4C54h ('Lt')
+	CL = function
+	    00h installation check
+		Return:	DX = 1234h if installed
+			    AX = 100*version (binary, 00E9h = v2.33)
+			    CX = resident code segment
+	    01h get original INT 09 vector
+		Return: ES:BX -> previous handler
+	    02h get original INT 16 vector
+		Return: ES:BX -> previous handler
+	    else chained
+	CH = 00h (for backward compatibility with versions before 2.30)
+Program: TrLit is a Russian keyboard transliterator by Rostislav Krasny
+Index:	installation check;TrLit
+

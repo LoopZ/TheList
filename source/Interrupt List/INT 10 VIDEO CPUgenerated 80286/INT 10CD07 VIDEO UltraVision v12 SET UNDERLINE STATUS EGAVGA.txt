@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD07
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision v1.2+ - SET UNDERLINE STATUS (EGA,VGA)
+	AX = CD07h
+	CL = hardware underline status (see #00221)
+	BL = foreground color for normal text (FFh = current)
+	BH = foreground color for bright text (FFh = current)
+Return: CL = hardware underline status
+	BL = current foreground color for normal text
+	BH = current foreground color for bright text
+Notes:	when underline or strikeout is enabled in color text modes, the
+	  specified colors will be assigned temporarily to colors 01h and 09h,
+	  allowing affected text to match non-underlined text.	The color
+	  remapping uses values from the current onscreen palette regardless
+	  of the palette locking status (see AX=CD01h)
+	specify the standard colors (BL=01h,BH=09h) to enable underline or
+	  strikeout without color remapping
+SeeAlso: AX=CD08h
+
+(Table 00221)
+Values for hardware underline status:
+ 00h	off (color systems only)
+ 01h	underline below characters
+ 02h	strike through characters
+

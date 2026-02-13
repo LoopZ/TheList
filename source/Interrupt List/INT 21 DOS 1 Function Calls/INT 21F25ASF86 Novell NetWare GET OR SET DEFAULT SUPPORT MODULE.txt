@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F25ASF86
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET OR SET DEFAULT SUPPORT MODULE
+	AX = F25Ah subfn 86h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02462)
+	ES:DI -> reply buffer (see #02463)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F25Ah/SF=01h,AX=F25Ah/SF=80h,AX=F25Ah/SF=84h
+
+Format of NetWare "Get or Set Default Support Module" request packet:
+Offset	Size	Description	(Table 02462)
+ 00h	WORD	length of following data
+ 02h	BYTE	86h (subfunction "Get or Set Default Support Module")
+ 03h	DWORD	direction
+		00h get default support module
+		01h set default support module
+ 07h	DWORD	new module ID if setting
+SeeAlso: #02463
+
+Format of NetWare "Get or Set Default Support Module" request packet:
+Offset	Size	Description	(Table 02463)
+ 00h	DWORD	support module ID
+SeeAlso: #02462
+

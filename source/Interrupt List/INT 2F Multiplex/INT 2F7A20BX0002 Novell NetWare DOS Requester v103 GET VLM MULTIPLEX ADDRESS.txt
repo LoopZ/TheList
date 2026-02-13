@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A20BX0002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare - DOS Requester v1.03+ - GET VLM MULTIPLEX ADDRESS
+	AX = 7A20h
+	BX = 0002h
+Return: AX = 0000h
+	ES:BX -> VLM multiplex entry point (see #02895)
+Note:	for v1.10, this function is only available while VLM.EXE is loading
+	  the .VLM modules, because ES is destroyed on return
+SeeAlso: AX=7A20h/BX=0000h,AX=7A20h/BX=0001h,AX=7A20h/BX=0003h
+
+(Table 02895)
+Call DOS Requester entry point with:
+	BX = function???
+	    0000h
+		DX = ???
+		DI = ???
+		BP = ???
+	    0002h
+		CX = ???
+	    0003h
+		DX = ???
+		BP = ???
+	    0006h
+		AH = subfunction???
+		AL = ???
+		STACK: variable (0, 4, 10, 14 bytes seen)
+

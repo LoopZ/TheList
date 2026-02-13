@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF3D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - READ PROPERTY VALUE
+	AH = E3h subfn 3Dh
+	DS:SI -> request buffer (see #01942)
+	ES:DI -> reply buffer (see #01943)
+Return: AL = status (see #01941)
+Desc:	retrieve one 128-byte segment of the specified property's value
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=39h,AH=E3h/SF=3Ch,AH=E3h/SF=3Eh,AX=F217h/SF=3Dh
+
+(Table 01941)
+Values for NetWare function status:
+ 00h	successful
+ 96h	server out of memory
+ E8h	not item property
+ ECh	no such segment
+ F0h	wildcard not allowed
+ F1h	invalid bindery security level
+ F8h	not permitted to write property
+ F9h	not permitted to read property
+ FBh	no such property
+ FCh	no such object
+ FEh	server bindery locked
+ FFh	bindery failure
+SeeAlso: #01937,#01946
+
+Format of NetWare "Read Property Value" request buffer:
+Offset	Size	Description	(Table 01942)
+ 00h	WORD	length of following data (max 44h)
+ 02h	BYTE	3Dh (subfunction "Read Property Value")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name (01h-2Fh)
+ 06h  N BYTEs	object name
+	BYTE	segment number (01h on first call, increment until done)
+	BYTE	length of property's name (01h-0Fh)
+      N BYTEs	property name
+SeeAlso: #01943,#02188
+
+Format of NetWare "Read Property Value" reply buffer:
+Offset	Size	Description	(Table 01943)
+ 00h	WORD	(call) 0082h (length of following results buffer)
+ 02h 128 BYTEs	property's value
+ 82h	BYTE	more segments (00h no, FFh yes)
+ 83h	BYTE	property's flags
+SeeAlso: #01942,#02188
+

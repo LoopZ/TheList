@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE77EBX0000
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CTDEMN - INSTALLATION CHECK
+	AX = E77Eh
+	BX = 0000h
+	CX = 4F4Dh ('OM')
+	DX = 5453h ('TS')
+Return: AX = 7EE7h if installed
+	    BX = resident code segment
+	    CX = 6F6Dh ('om')
+	    DX = 7473h ('ts')
+Program: CTDEMN is a file daemon TSR by Simultan AG
+

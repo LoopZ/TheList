@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0001E
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "BUY_ARMOUR" - BUY OR SELL ARMOR FOR ROBOT
+	AX = 001Eh
+	BX = number of armor units to buy (negative to sell)
+Return: nothing
+Note:	each armor unit is worth 50 battery units; the robot's armor rating
+	  will not go above its initial rating, so attempts to purchase more
+	  will waste battery units
+SeeAlso: AX=001Fh
+

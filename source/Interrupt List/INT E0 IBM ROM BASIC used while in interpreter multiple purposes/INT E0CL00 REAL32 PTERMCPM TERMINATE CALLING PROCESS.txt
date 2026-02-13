@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL00
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_TERMCPM" - TERMINATE CALLING PROCESS
+	CL = 00h
+Return: AX = error code
+	    FFFFh on failure
+	may destroy SI,DI???
+Program: REAL/32 is the descendant of IMS Multiuser DOS, which in turn is
+	  derived from DR Multiuser DOS and its predecessors (Concurrent DOS,
+	  etc.)
+Notes:	sets the exit code (ERRORLEVEL) to 00h
+	INT E0h is officially reserved for Digital Research by Intel.
+	Apparently some Borland products also used this interrupt, which forced
+	  Digital Research to indirect calls through other interrupt entry
+	  points.
+	This is also supported by IMS Multiuser DOS and IMS REAL/32.
+SeeAlso: INT 21/AH=00h
+

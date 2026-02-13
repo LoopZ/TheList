@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 49
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - SYSTEM DATA - NON-KEYBOARD SCAN-CODE TRANSLATION TABLE (PCjr)
+SeeAlso: #03208,INT 48"PCjr"
+
+Format of PCjr scan-code translation table:
+Offset	Size	Description	(Table 03208)
+ 00h	BYTE	number of non-keyboard scancodes in the table
+ 01h  N WORDs	high byte 00h (NUL) byte scancode with low order byte
+		  representing the scancode mapped values relative to their
+		  input values within the range of 56h through 7Eh
+

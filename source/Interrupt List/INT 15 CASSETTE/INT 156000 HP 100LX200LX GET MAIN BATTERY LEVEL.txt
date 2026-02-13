@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156000
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - GET MAIN BATTERY LEVEL
+	AX = 6000h
+Return: AX = battery level
+Note:	multiply the returned value with 1Bh and add 622h to get millivolts
+SeeAlso: AX=6001h,AX=6002h,AX=6003h,AX=6004h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17F1
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - NorthNet Jetstream API - PRINT DATA BUFFER
+	AH = F1h
+	CX = data buffer length
+	DX = printer port (0-3)
+	DS:SI -> data buffer
+Return: AX = status
+	    0000h printer not ready (see also AH=02h)
+	    other printing started
+SeeAlso: AH=00h,AH=F2h,AH=F3h,AH=F5h
+

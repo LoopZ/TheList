@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7802
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - TARGA.DEV - SET DMA CHANNEL
+	AH = 02h
+	AL = interface board DMA channel
+Return: CF set on error
+	AL = error code (see #03786)
+Note:	if this routine is not called, the DMA channel is the driver's default
+	  (usually 3)
+SeeAlso: AH=00h,AH=03h"TARGA"
+

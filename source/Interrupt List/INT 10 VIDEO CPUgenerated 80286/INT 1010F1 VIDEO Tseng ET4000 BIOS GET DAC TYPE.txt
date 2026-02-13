@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1010F1
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Tseng ET-4000 BIOS - GET DAC TYPE
+	AX = 10F1h
+Return: AL = 10h if supported
+	BL = type of digital/analog converter (see #00019)
+Desc:	determine which type of digital-to-analog converter is installed on the
+	  display board
+SeeAlso: AX=10F0h,AX=10F2h
+
+(Table 00019)
+Values for type of DAC:
+ 00h normal VGA DAC
+ 01h Sierra SC1148x HiColor DAC
+ ---Diamond SpeedStar 24---
+ 02h new Sierra SS24 DAC (24-bit)
+ ---generic Tseng BIOS v8+ ---
+ 02h Sierra Mark2 (15-bit) or Mark3 (15/16-bit) DAC
+ 03h ATT20c490/1/2 (15/16/24-bit)
+ 04h AcuMos ADAC1 (15/16/24-bit)
+ 05h unknown 15/16/24-bit DAC
+ 06h Cirrus Internal 15/16/24-bit (CL-GD54xx series adapters)
+ 07h Diamond SS2410 (15/24-bit)
+ 08h unknown 15/16/24-bit DAC
+ 09h unknown 15/16/24-bit DAC
+ else other HiColor DAC
+

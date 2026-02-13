@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF7B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2.1+ - CHANGE QUEUE JOB ENTRY
+	AX = F217h subfn 7Bh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02209)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=6Dh,AX=F217h/SF=79h,AX=F217h/SF=7Dh
+
+Format of NetWare "Change Queue Job Entry" request packet:
+Offset	Size	Description	(Table 02209)
+ 00h	WORD	length of following data
+ 02h	BYTE	7Bh (subfunction "Change Queue Job Entry")
+ 03h	DWORD	queue ID
+ 07h 280 BYTEs	job structure (see #02210)
+SeeAlso: #02205,#02207
+
+Format of NetWare v3.11+ job structure:
+Offset	Size	Description	(Table 02210)
+ 00h	WORD	record-in-use flag
+ 02h	DWORD	-> previous record
+ 06h	DWORD	-> next record
+ 0Ah	DWORD	client station connection number
+ 0Eh	DWORD	client task number
+		(set by queue manager)
+ 12h	DWORD	client object ID
+ 16h	DWORD	target server object ID
+ 1Ah  6 BYTEs	target execution time year,month,day,hour,minute,second
+		(FFFFFFFFFFFFh = first opportunity)
+ 20h  6 BYTEs	job entry time
+		(set by queue manager)
+ 26h	DWORD	job number (1-999) assigned by queue manager
+ 2Ah	WORD	job type
+ 2Ch	WORD	position of job in queue (0001h = first, etc.)
+ 2Eh	WORD	job control flags (see #01980 at AH=E3h/SF=6Ch)
+ 30h 14 BYTEs	ASCIZ job file name
+ 3Eh	DWORD	job file handle	(set by queue manager)
+ 42h	DWORD	server station (set by queue manager)
+ 46h	DWORD	server task number (set by queue manager)
+ 4Ah	DWORD	server object ID (set by queue manager)
+ 4Eh 50 BYTEs	ASCIZ job description string
+ 80h 152 BYTEs	client record area
+SeeAlso: #02209,#01971
+

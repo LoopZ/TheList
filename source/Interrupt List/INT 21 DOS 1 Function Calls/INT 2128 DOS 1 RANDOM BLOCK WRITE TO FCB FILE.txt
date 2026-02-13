@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2128
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - RANDOM BLOCK WRITE TO FCB FILE
+	AH = 28h
+	CX = number of records to write
+	DS:DX -> opened FCB (see #01345)
+	Disk Transfer Area contains records to be written
+Return: AL = status
+	    00h successful
+	    01h disk full or file read-only
+	    02h segment wrap in DTA
+	CX = number of records written
+Notes:	write begins at current file position as specified in FCB; the file
+	  position is updated after writing
+	if CX = 0000h on entry, no data is written; instead the file size is
+	  adjusted to be the same as the file position specified by the random
+	  record and record size fields of the FCB
+	if the data to be written is less than a disk sector, it is copied into
+	  a DOS disk buffer, to be written out to disk at a later time
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+SeeAlso: AH=22h,AH=27h,AH=40h,AH=59h/BX=0000h
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF3D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - READ PROPERTY VALUE
+	AX = F217h subfn 3Dh
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01942 at AH=E3h/SF=3Dh)
+	ES:DI -> reply buffer (see #02188)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=3Dh,AX=F217h/SF=39h,AX=F217h/SF=3Eh
+
+Format of NetWare "Read Property Value" request packet:
+Offset	Size	Description	(Table 02188)
+ 00h
+SeeAlso: #01942
+

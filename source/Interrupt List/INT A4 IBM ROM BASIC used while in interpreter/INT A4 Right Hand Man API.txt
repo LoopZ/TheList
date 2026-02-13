@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: A4
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT A4 U - Right Hand Man - API
+	AH = function number (v3.3 supports functions 00h-52h)
+Return: CF set on error
+	CF clear if successful
+Program: Right Hand Man is a TSR desk-top utility originally by Red E Products
+	  which has evolved into Futurus Team
+Note:	this interrupt is only hooked while popped up
+SeeAlso: INT 2F/AX=A4E0h
+

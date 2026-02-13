@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E908
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - PhysTechSoft PTS ROM-DOS - SET BREAKPOINT
+	AX = E908h
+	CL = flags
+	    bit 1: =0 operate in one-fold mode
+		   =1 operate in many-fold mode
+	    bit 0: =0 send debug information to control channel
+		   =1 activate handler
+	ES:SI = breakpoint address
+	DX:DI = handler address
+Return: AH = error code
+	    00h no error
+	    01h incorrect parameter
+	    02h no room in breakpoint table
+SeeAlso: AX=E909h,INT 14/AH=05h"PTS ROM-DOS",INT 14/AH=06h"PTS ROM-DOS"
+

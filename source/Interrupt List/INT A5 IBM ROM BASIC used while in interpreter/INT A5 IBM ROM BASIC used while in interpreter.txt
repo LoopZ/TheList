@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: A5
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT A5 - IBM ROM BASIC - used while in interpreter
+Notes:	called by ROM BASIC, but pointed at IRET by BASIC.COM/BASICA.COM
+	BASIC.COM/BASICA.COM do not restore vector on termination
+SeeAlso: INT 80"BASIC",INT A4"BASIC",INT A6"BASIC"
+

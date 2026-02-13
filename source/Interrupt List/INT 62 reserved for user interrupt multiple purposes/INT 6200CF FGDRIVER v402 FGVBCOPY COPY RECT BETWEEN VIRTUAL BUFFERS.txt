@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200CF
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBCOPY" - COPY RECT BETWEEN VIRTUAL BUFFERS
+	AX = 00CFh
+	ES:BX -> variable record (see #03510)
+	CX = handle for source virtual buffer
+	DX = handle for destination virtual buffer
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	if the destination buffer is the same as the source buffer, the regions
+	  must not overlap
+SeeAlso: AX=00D0h,AX=00D1h,AX=00D4h,AX=00D6h,AX=00D7h
+
+Format of FGDRIVER VBCOPY variable record:
+Offset	Size	Description	(Table 03510)
+ 00h	WORD	source region's left edge
+ 02h	WORD	source region's right edge
+ 04h	WORD	source region's top edge
+ 06h	WORD	source region's bottom edge
+ 08h	WORD	X coordinate of destination's upper left corner
+ 0Ah	WORD	Y coordinate of destination's upper left corner
+

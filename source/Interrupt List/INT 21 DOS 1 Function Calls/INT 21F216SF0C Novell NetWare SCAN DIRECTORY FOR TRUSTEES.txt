@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF0C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SCAN DIRECTORY FOR TRUSTEES
+	AX = F216h subfn 0Ch
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #01859 at AH=E2h/SF=0Ch)
+	ES:DI -> reply buffer (see #02115)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=0Ch,AX=F216h/SF=0Dh
+
+Format of NetWare "Scan Directory For Trustees" reply packet:
+Offset	Size	Description	(Table 02115)
+ 02h 16 BYTEs	directory name
+ 12h  4 BYTEs	date and time of creation
+ 16h	DWORD	(big-endian) object ID of owner
+ 1Ah  5 DWORDs	(big-endian) object IDs of Trustees 0 through 4
+		00000000h = end of group
+ 2Eh  5 BYTEs	directory rights for Trustees 0 through 4 (see #01849)
+SeeAlso: #01859 at AH=E2h/SF=0Ch
+

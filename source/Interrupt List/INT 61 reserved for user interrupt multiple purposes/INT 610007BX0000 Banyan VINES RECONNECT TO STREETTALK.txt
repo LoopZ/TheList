@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - RECONNECT TO STREETTALK
+	AX = 0007h
+	BX = 0000h
+Return: AX = status (see #03432)
+SeeAlso: AX=0007h/BX=0002h
+
+(Table 03432)
+Values for VINES function status:
+ 0000h	successful
+ 0001h	requested handler not installed or incompatible
+ 000Bh	service busy
+ 000Ch	invalid request ID
+ 03E9h	incorrect name syntax
+ 03EAh	organization name too long
+ 03EBh	group name too long
+ 03ECh	item name too long
+ 03EDh	StreetTalk name too long
+ 03F3h	organization not found
+ 03F4h	group not found
+ 03F5h	StreetTalk name not found
+ 03F8h	not a StreetTalk name
+ 0409h	modify access denied
+ 040Dh	appropriate StreetTalk name unavailable
+ 0411h	all matching names have been returned
+ 0412h	some groups unavailable, all available matches returned
+

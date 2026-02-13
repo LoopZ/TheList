@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--DX0005
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - GET SECOND SFT FLAGS WORD
+	AH = 64h
+	DX = 0005h (function number)
+	CX = 636Ch (magic value, "cl")
+	BX = 0000h (indicates special request)
+	DI = DOS file handle
+Return: AX = value of second flags word from OS/2 SFT entry for file
+Notes:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
+	the OS/2 SFT has two flags words rather than DOS's one word, and this
+	  function provides access to the word which is not present in DOS
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0201
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - DISPLAY OR REDISPLAY MENU
+	DI = 0201h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to menu data (see #03281)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0200h,INT 60/DI=0202h,INT 60/DI=0206h
+

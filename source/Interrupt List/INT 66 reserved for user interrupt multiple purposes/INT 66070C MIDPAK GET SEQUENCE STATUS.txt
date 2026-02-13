@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66070C
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - MIDPAK - GET SEQUENCE STATUS
+	AX = 070Ch
+Return: AX = status
+	    0000h sequence stopped
+	    0001h sequence playing
+	    0002h sequence done
+SeeAlso: AX=070Bh
+

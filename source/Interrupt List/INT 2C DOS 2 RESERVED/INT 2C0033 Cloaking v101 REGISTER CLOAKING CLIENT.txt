@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0033
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - REGISTER CLOAKING CLIENT
+	AX = 0033h
+	DS:EDX -> client registration structure (see #02567)
+Return: CF clear if successful
+	CF set on error (linked list corrupt)
+SeeAlso: AX=0034h,#02778 at INT 2F/AX=4310h"Cloaking"
+
+Format of client registration structure:
+Offset	Size	Description	(Table 02567)
+ 00h	PWORD	link to next structure
+ 06h	PWORD	link to previous structure
+ 0Ch  2 BYTEs	client version (major, minor)
+ 0Eh 20 BYTEs	client name
+ 22h	DWORD	physical address of client start
+ 26h	DWORD	client's total size in bytes
+Note:	the link area should not be modified once the structure has been
+	  used for the registration call
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0206
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - DISPLAY/REDISPLAY FILE SELECTION MENU
+	DI = 0206h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file menu structure (see #03282)
+		DWORD	pointer to edit record (see #03285 at INT 60/DI=0400h)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0205h
+

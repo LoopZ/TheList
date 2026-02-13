@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500005
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - Vanderaart TEXT WINDOWS - CHANGE ATTRIBUTE
+	AX = 0005h
+	BL = new attribute
+	CH,CL = row,column of upper left corner
+	DH,DL = row,column of lower right corner
+	DI = window handle
+

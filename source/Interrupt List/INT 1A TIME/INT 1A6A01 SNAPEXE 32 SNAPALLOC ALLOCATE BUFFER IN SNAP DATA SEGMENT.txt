@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A6A01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_ALLOC" - ALLOCATE BUFFER IN SNAP DATA SEGMENT
+	AX = 6A01h
+	STACK:	WORD	number of bytes to allocate
+Return: AX = offset of allocated buffer or 0000h if out of memory
+	STACK unchanged
+Program: SNAP.EXE is a TSR written by IBM and Carnegie Mellon University
+	  which implements the Simple Network Application Protocol
+SeeAlso: AX=6B01h
+

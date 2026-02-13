@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137D6BX899D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DIET v1.43e - GET TEMPORARY DIRECTORY NAMES
+	AX = 37D6h
+	BX = 899Dh ('DI' + 'ET')
+Return: AX = 0000h
+	DS:DX -> name of temporary directory or 0000h:0000h for current dir
+SeeAlso: AX=37D0h,AX=37D7h
+

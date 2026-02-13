@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21252BBH04
+  Category: E 	DOS extenders
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 Pu - Phar Lap 386/DOS-Extender - GET PAGE TYPES
+	AX = 252Bh
+	BH = 04h
+	???
+Return: ???
+Note:	returns one word per page
+SeeAlso: #01372
+
+Bitfields for Phar Lap page information:
+Bit(s)	Description	(Table 01372)
+ 7	mapped to read/write data file
+ 6	mapped to read-only data file
+ 5	swapped to disk
+ 4	locked
+ 3-0	page type
+	0 unmapped
+	1 allocated
+	2 physical device page
+

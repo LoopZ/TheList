@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200C7
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_TESTMODE" - CHECK IF VIDEO MODE AVAILABLE
+	AX = 00C7h
+	BX = desired video mode (00h-17h, also 18h-1Dh after "FG_SVGAINIT")
+	CX = required number of video pages (ignore memory size if <= 0)
+Return: AX = status
+	    0000h mode not available with requested number of pages
+	    0001h mode is available
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0005h,AX=00B0h
+

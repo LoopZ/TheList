@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1614
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - DOS/V - SHIFT STATUS DISPLAY CONTROL
+	AH = 14h
+	AL = function
+	    00h enable display
+	    01h disable display
+	    02h get display state
+		Return: AL = current state (00h enabled, 01h disabled)
+Desc:	control the screen-bottom shift status row(s) for the Japanese
+	  Front-End Processor
+SeeAlso: AH=13h,INT 10/AH=19h,INT 10/AH=1Dh
+

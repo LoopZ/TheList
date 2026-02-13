@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: s 	sound/speech
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Creative Technology CTMMSYS.SYS v1.00.01 - API
+	AX = 4402h
+	BX = file handle for device "CTMMSYS$"
+	CX = 0004h (size of data)
+	DS:DX -> buffer for entry point (see #01507)
+Return: CF clear if successful
+	    buffer updated
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: CTMMSYS.SYS is the Creative DOS Multimedia Architecture Integration
+	  driver
+SeeAlso: AX=4402h"CTSB2",INT 80/BX=0000h"SBFM"
+
+Format of CTMMSYS.SYS entry point record:
+Offset	Size	Description	(Table 01507)
+ 00h	DWORD	(call) signature 4D6D7443h (ASCII "CtmM")
+		(ret) pointer to CTMMSYS entry point (see #01508)
+SeeAlso: #01509
+
+(Table 01508)
+Call CTMMSYS.SYS entry point with:
+	AX = ???
+	STACK:	WORD	???
+		WORD	???
+		WORD	??? (0001h,0002h,0005h,0006h)
+		WORD	???
+		DWORD	-> ???
+		WORD	???
+		WORD	???
+Return: DX:AX = ??? or error code
+		0000h:000Bh invalid value for ???
+		0000h:000Fh API call already in progress
+SeeAlso: #01507
+

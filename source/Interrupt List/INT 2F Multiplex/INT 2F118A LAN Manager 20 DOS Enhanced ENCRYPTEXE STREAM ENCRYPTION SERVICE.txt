@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F118A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - LAN Manager 2.0+ DOS Enhanced ENCRYPT.EXE - STREAM ENCRYPTION SERVICE
+	AX = 118Ah
+	BX = function (0000h or 0001h)
+Return: CF clear if successful
+	    AX = 1100h success
+	CF set if error
+	    AX = 0001h, etc.
+SeeAlso: AX=1186h,AH=41h,AH=42h,AH=4Bh
+

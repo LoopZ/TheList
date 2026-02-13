@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1680
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows, DPMI, various - RELEASE CURRENT VIRTUAL MACHINE TIME-SLICE
+	AX = 1680h
+Return: AL = status
+	    00h if the call is supported
+	    80h (unchanged) if the call is not supported
+Notes:	programs can use this function in idle loops to enhance performance
+	  under multitaskers; this call is supported by MS Windows 3+, DOS 5+,
+	  DPMI 1.0+, and in OS/2 2.0+ for multitasking DOS applications
+	does not block the program; it just gives up the remainder of the time
+	  slice
+	should not be used by Windows-specific programs
+	when called very often without intermediate screen output under
+	  MS Windows 3.x, the VM will go into an idle-state and will not
+	  receive the next slice before 8 seconds have elapsed. This time can
+	  be changed in SYSTEM.INI through "IdleVMWakeUpTime=<seconds>".
+	  Setting it to zero results in a long wait.
+	this function has no effect under OS/2 2.10-4.0 if the DOS box has an
+	  "Idle Sensitivity" setting of 100
+SeeAlso: AX=1689h,INT 15/AX=1000h,INT 15/AX=5305h,INT 21/AH=89h,INT 7A/BX=000Ah
+

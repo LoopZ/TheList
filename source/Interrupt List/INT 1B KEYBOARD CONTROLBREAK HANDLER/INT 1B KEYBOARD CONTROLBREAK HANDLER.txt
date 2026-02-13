@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1B
+  Category: B 	BIOS
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 1B C - KEYBOARD - CONTROL-BREAK HANDLER
+Desc:	this interrupt is automatically called when INT 09 determines that
+	  Control-Break has been pressed
+Note:	normally points to a short routine in DOS which sets the Ctrl-C flag,
+	  thus invoking INT 23h the next time DOS checks for Ctrl-C.
+SeeAlso: INT 23,MEM 0040h:0071h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6006
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - BASIC FUNC - GET ADDRESS
+	AH = 06h
+	BX = handle (optional for v1.10+)
+	ES:DI -> buffer
+	CX = length
+Return: CF set on error
+	    DH = error code (see #03305)
+	CF clear if successful
+	    CX = length
+Note:	copies the local net address associated with the handle into the buffer
+

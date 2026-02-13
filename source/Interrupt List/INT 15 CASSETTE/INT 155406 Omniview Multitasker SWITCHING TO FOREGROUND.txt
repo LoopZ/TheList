@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155406
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - Omniview Multitasker - SWITCHING TO FOREGROUND
+	AX = 5406h
+	ES:DX = process swapping in
+Note:	called by OmniView to notify programs loaded before OmniView of state
+	  changes inside OmniView
+SeeAlso: AX=5405h
+

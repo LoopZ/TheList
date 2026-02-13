@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F0A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - SET REPLACEMENT RULE
+	AH = 0Ah
+	AL = new replacement rule
+	    00h force
+	    01h AND
+	    02h OR
+	    03h XOR
+	    ---100LX/200LX---
+	    04h InvForce
+	    05h InvAND
+	    06h	InvOR
+	    07h InvXOR
+	    08h Txt
+SeeAlso: AH=01h,AH=09h,AH=0Bh
+

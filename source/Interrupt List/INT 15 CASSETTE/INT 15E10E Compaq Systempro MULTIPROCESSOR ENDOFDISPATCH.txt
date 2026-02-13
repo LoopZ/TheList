@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E10E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq Systempro - MULTIPROCESSOR END-OF-DISPATCH
+	AX = E10Eh
+	ES:BX -> start of 2nd processor's execution
+Return: AL = status
+	    0Fh successful (halted)
+	    00h failure (not halted)
+SeeAlso: AX=E00Fh,AX=E200h
+

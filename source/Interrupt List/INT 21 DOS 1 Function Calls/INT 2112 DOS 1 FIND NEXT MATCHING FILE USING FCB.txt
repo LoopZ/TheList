@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2112
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - FIND NEXT MATCHING FILE USING FCB
+	AH = 12h
+	DS:DX -> unopened FCB (see #01345)
+Return: AL = status
+	    00h successful
+		Disk Transfer Area filled with unopened FCB
+	    FFh no more matching filenames
+Note:	(see AH=11h)
+	assumes that successful FindFirst executed on search FCB before call
+SeeAlso: AH=1Ah,AH=4Fh,INT 2F/AX=111Ch
+

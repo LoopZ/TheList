@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A0
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - CONNECT TO PORT
+	AH = A0h
+	ES:BX -> ASCIZ internet host name
+	CX = length of name
+Return: AH = return code (00h,04h-06h,08h,0Ah-0Ch) (see #00394)
+	CL = session ID
+Program: the Bridge Application Program Interface is a set of functions which
+	  makes many of the details of LAN communications transparent
+Note:	Novell TELAPI.EXE returns AH=09h (not supported) and CL=00h
+SeeAlso: AH=A1h"BAPI",AH=A2h"BAPI",AH=A5h"BAPI",AX=AF00h
+
+(Table 00394)
+Values for 3com BAPI return code:
+ 00h	successful
+ 01h	no characters written
+ 02h	no characters read
+ 03h	no such session
+ 04h	clearinghouse name not found
+ 05h	no response from host
+ 06h	no more sessions available
+ 07h	session aborted
+ 08h	invalid clearinghouse name
+ 09h	not supported
+ 0Ah	internal (general) network error
+ 0Bh	out of memory
+ 0Ch	invalid IP address
+

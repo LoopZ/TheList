@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10F4
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - EGA Register Interface Library - READ REGISTER SET
+	AH = F4h
+	CX = number of registers to read (>1)
+	ES:BX -> table of register records (see #00224)
+Return: register values in table filled in
+Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+	  compatibility box, and others
+SeeAlso: AH=F0h"EGA",AH=F2h"EGA",AH=F5h"EGA"
+
+Format of EGA RIL entries in table of register records:
+Offset	Size	Description	(Table 00224)
+ 00h	WORD	group index
+		Pointer/data chips
+		   00h CRTC (3B4h mono modes, 3D4h color modes)
+		   08h Sequencer 3C4h
+		   10h Graphics Controller 3CEh
+		   18h Attribute Controller 3C0h
+		Single registers
+		   20h Miscellaneous Output register 3C2h
+		   28h Feature Control register (3BAh mono modes, 3DAh color)
+		   30h Graphics 1 Position register 3CCh
+		   38h Graphics 2 Position register 3CAh
+ 02h	BYTE	register number (0 for single registers)
+ 03h	BYTE	register value
+

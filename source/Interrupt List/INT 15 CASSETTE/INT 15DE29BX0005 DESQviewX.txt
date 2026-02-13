@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE29BX0005
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - DESQview/X - ???
+	AX = DE29h
+	BX = 0005h
+	???
+Return: CF clear if successful
+	    ???
+	CF set on error
+Note:	under DESQview 2.60, this function and all other subfunctions of
+	  AX=DE29h always return CF set, as they are unique to DESQview/X
+

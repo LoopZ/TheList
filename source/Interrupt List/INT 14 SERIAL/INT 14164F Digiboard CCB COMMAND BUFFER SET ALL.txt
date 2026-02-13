@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14164F
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard - CCB COMMAND - BUFFER SET ALL
+	AX = 164Fh
+	BL = size
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AH = status
+	    00h successful
+	    80h error
+	    FFh error
+SeeAlso: AH=16h"Digiboard",AX=164Dh
+

@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--BX0025
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - OS/2 API DOS32StartSession
+	AH = 64h
+	BX = 0025h (API ordinal)
+	CX = 636Ch ("cl")
+	DS:SI -> STARTDATA structure (see #01748)
+Return: AX = return code
+SeeAlso: AH=64h/CX=636Ch,AH=64h/BX=00B6h
+
+Format of OS/2 Virtual DOS Machine STARTDATA structure:
+Offset	Size	Description	(Table 01748)
+ 00h	WORD	length of structure (must be 0018h,001Eh,0020h,0032h,or 003Ch)
+ 02h	WORD	relation of new process to caller (00h independent, 01h child)
+ 04h	WORD	fore/background (00h foreground, 01h background)
+ 06h	WORD	trace options (00h-02h, 00h = no trace)
+ 08h	DWORD	pointer to ASCIZ program title (max 62 chars) or 0000h:0000h
+ 0Ch	DWORD	pointer to ASCIZ program name (max 128 chars) or 0000h:0000h
+ 10h	DWORD	pointer to ASCIZ program args (max 144 chars) or 0000h:0000h
+ 14h	DWORD	"TermQ" (currently reserved, must be 00000000h)
+ 18h	DWORD	pointer to environment (max 486 bytes) or 0000h:0000h
+ 1Ch	WORD	inheritance (00h or 01h)
+ 1Eh	WORD	session type
+		00h OS/2 session manager determines type (default)
+		01h OS/2 full-screen
+		02h OS/2 window
+		03h PM
+		04h VDM full-screen
+		07h VDM window
+ 20h	DWORD	pointer to ASCIZ icon filename (max 128 chars) or 0000h:0000h
+ 24h	DWORD	"PgmHandle" (currently reserved, must be 00000000h)
+ 28h	WORD	"PgmControl"
+ 2Ah	WORD	initial column
+ 2Ch	WORD	initial row
+ 2Eh	WORD	initial width
+ 30h	WORD	initial height
+ 32h	WORD	reserved (0)
+ 34h	DWORD	"ObjectBuffer" (currently reserved, must be 00000000h)
+ 38h	DWORD	"ObjectBufferLen" (currently reserved, must be 00000000h)
+

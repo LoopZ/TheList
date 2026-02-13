@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F15--CL03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - GET MAXIMUM PACKET SIZE
+	AH = 15h
+	CL = 03h
+	DX:DI -> WORD for return value
+Return: buffer WORD filled with maximum packet size (4096 for MW386)
+SeeAlso: AH=15h/CL=02h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD01
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Intel Image Processing Interface - SET DEVICE NAME
+	AX = CD01h
+	CX:BX -> ASCIZ character device name ("LPTn", "COMn", "PRN")
+Return: AL = status
+	    00h successful
+		CX:BX -> internal character device name
+	    80h error
+

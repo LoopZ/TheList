@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F8A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - CHAT
+	AH = 8Ah
+	DS:BX -> chat parameters (see #03777)
+	DS:DX -> chat message (see #03778)
+Return: CF clear if successful
+	CF set on error
+	    AX = status (see #03740)
+SeeAlso: AH=0Ah"10NET"
+
+Format of 10NET chat parameters:
+Offset	Size	Description	(Table 03777)
+ 00h  8 BYTEs	sender's user name
+ 08h  8 BYTEs	destination user name
+ 10h 15 BYTEs	destination node (0 if broadcast-style chat)
+
+Format of 10NET chat message:
+Offset	Size	Description	(Table 03778)
+ 00h	WORD	message length
+ 02h  N BYTEs	chat message contents
+

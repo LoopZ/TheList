@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL SLOW MODE
+	AH = 6Ah
+	AL = mode
+	    00h inhibit Slow mode
+	    01h allow Slow mode
+Return: AH = status
+SeeAlso: AH=69h
+

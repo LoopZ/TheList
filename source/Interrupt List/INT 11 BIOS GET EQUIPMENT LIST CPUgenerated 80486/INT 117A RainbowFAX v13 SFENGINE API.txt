@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 117A
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - RainbowFAX v1.3 - SFENGINE API - ???
+	AH = 7Ah
+	AL = subfunction
+	    01h set ??? flag
+		Return: AX = previous state (0000h already set, 0001h clear)
+	    02h clear ??? flag
+		Return: AX = 0001h
+	    03h set ??? flag (different from subfn 02h)
+		Return: AX = 0001h
+	    else
+		Return: AX = FFFFh (invalid subfunction)
+SeeAlso: AH=77h,AH=78h,AH=79h,AH=7Ch
+

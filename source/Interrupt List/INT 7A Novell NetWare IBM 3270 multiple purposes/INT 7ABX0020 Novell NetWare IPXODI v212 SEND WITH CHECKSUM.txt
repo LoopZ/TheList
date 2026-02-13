@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0020
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPXODI v2.12+ - SEND WITH CHECKSUM
+	BX = 0020h
+	ES:SI -> ECB (see #03810 at INT 7A/BX=0003h)
+Return: DS,FLAGS preserved
+	BX,BP corrupted (documented as potentially destroying all other regs)
+Desc:	generate a checksum for the packet data and store it in the IPX
+	  checksum field before transmitting the packet
+SeeAlso: BX=001Fh,BX=0021h,BX=0022h,INT 2F/AX=7A2Fh
+

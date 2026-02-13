@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBL06
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 - EMM386.EXE - ???
+	AX = 12FFh
+	BL = 06h
+	BH = function (06h-09h)
+	???
+Return: CF clear if successful
+	CF set on error
+	    AX = function status
+		0000h function supported
+		    CX error code
+	        0001h (AX > 0) function not supported
+		    CX undefined
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FA9
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v4.1+ - SET EXTENDED QUEUE ENTRY
+	AX = 5FA9h
+	BX = handle of opened queue entry
+	DS:SI -> queue entry (see #01732)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Note:	functions exactly the same as AX=5FA1h except the spooled filename is
+	  also set.  This call supports direct despooling.
+SeeAlso: AX=5FA1h
+

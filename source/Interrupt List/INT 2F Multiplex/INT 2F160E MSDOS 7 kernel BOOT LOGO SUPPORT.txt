@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F160E
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS-DOS 7 kernel - BOOT LOGO SUPPORT???
+	AX = 160Eh
+	BL = subfunction
+	    00h get ???
+		AX = state of flag manipulated by subfn 04h and 05h
+		    0000h clear
+		    FFFFh set
+		DX = ??? (0000h)
+	    01h link in INT 10h??? handlers
+	    02h unlink INT 10h??? handlers
+	    03h ???
+	    04h set ??? flag
+	    05h clear ??? flag
+Return: AX = 0000h if supported
+	    ???
+SeeAlso: AX=160Fh,AX=1611h,AX=1614h
+

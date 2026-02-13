@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2145
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "DUP" - DUPLICATE FILE HANDLE
+	AH = 45h
+	BX = file handle
+Return: CF clear if successful
+	    AX = new handle
+	CF set on error
+	    AX = error code (04h,06h) (see #01680 at AH=59h/BX=0000h)
+Notes:	moving file pointer for either handle will also move it for the other,
+	  because both will refer to the same system file table
+	for DOS versions prior to 3.3, file writes may be forced to disk by
+	  duplicating the file handle and closing the duplicate
+SeeAlso: AH=3Dh,AH=46h
+

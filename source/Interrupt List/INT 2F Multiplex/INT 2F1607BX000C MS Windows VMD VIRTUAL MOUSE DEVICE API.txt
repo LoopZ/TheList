@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1607BX000C
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - "VMD" VIRTUAL MOUSE DEVICE API
+	AX = 1607h
+	BX = 000Ch (VxD identifier of "VMD")
+Return: CX = nonzero if mouse driver already virtualized
+Note:	VMD (Virtual Mouse Driver) calls this and then checks whether CX is
+	  nonzero; if yes, it will not automatically virtualize the mouse
+	  driver.  This would be used if MOUSE.COM already virtualizes
+	  itself using the Windows API.
+SeeAlso: AX=1607h/BX=0014h,AX=1607h/BX=0015h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0505
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - HP 95LX System Manager - WRITE TO FILE
+	DI = 0505h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file state record (see #03287)
+		DWORD	pointer to data
+		WORD	length of data
+Return: AX = status
+	STACK unchanged
+SeeAlso: INT 60/DI=0504h
+

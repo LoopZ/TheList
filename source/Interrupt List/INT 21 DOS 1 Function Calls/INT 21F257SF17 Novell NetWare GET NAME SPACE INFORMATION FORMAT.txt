@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF17
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET NAME SPACE INFORMATION FORMAT
+	AX = F257h subfn 17h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02409)
+	ES:DI -> reply buffer (see #02410)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=18h,AX=F257h/SF=19h
+
+Format of NetWare "Get Name Space Information Format" request packet:
+Offset	Size	Description	(Table 02409)
+ 00h	BYTE	17h (subfunction "Get Name Space Information Format")
+ 01h	BYTE	name space (see #02387)
+ 02h	BYTE	volume number
+SeeAlso: #02410
+
+Format of NetWare "Get Name Space Information Format" reply packet:
+Offset	Size	Description	(Table 02410)
+ 00h	DWORD	fixed bitmask
+ 04h	DWORD	variable bitmask
+ 08h	DWORD	huge bitmask
+ 0Ch	WORD	fixed bits defined
+ 0Eh	WORD	variable bits defined
+ 10h	WORD	huge bits defined
+ 12h 128 BYTEs	field lengths
+SeeAlso: #02409
+

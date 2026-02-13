@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2AD851
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2A U - Novell NetWare Lite - CLIENT - END SERVER CRITICAL SECTION
+	AX = D851h
+Return: nothing
+Desc:	resets an internal byte-sized counter to zero
+Note:	this function is intercepted by DV/X 1.10 PEERSERV.DVR and the
+	  Advanced NetWare 4.0 DOS Requester
+SeeAlso: AX=D850h
+

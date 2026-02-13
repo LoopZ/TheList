@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137D1BX899D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DIET v1.43e - GET DIET.EXE RESIDENT SEGMENT
+	AX = 37D1h
+	BX = 899Dh ('DI' + 'ET')
+Return: AX = 0000h
+	CX = code segment of TSR part of DIET.EXE
+	DX = memory block segment of TSR DIET.EXE
+		(0000h if installed as device driver)
+SeeAlso: AX=37D0h,AX=37DFh
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200A2
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SAVE" - COPY REGION FROM VISIBLE TO HIDDEN PAGE
+	AX = 00A2h
+	BX = left edge column
+	CX = right edge column
+	DX = top edge row
+	SI = bottom edge row
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The left and right edges are adjusted to byte boundaries if necessary
+SeeAlso: AX=009Eh,AX=00C6h
+

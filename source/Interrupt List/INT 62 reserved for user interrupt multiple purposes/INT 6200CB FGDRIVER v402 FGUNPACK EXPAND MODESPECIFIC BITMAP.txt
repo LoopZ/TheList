@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200CB
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_UNPACK" - EXPAND MODE-SPECIFIC BITMAP
+	AX = 00CBh
+	ES:BX -> variable pointer record (see #03509)
+	CX = size of source bitmap in bytes
+Return: result buffer filled
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=0083h
+
+Format of FGDRIVER UNPACK variable pointer record:
+Offset	Size	Description	(Table 03509)
+ 00h	WORD	segment of source bitmap
+ 02h	WORD	offset of source bitmap
+ 04h	WORD	segment of buffer for resulting bitmap
+ 06h	WORD	offset of buffer for resulting bitmap
+

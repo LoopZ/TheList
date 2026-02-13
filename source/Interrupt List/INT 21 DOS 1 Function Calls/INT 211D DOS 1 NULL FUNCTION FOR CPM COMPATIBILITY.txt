@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 211D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - NULL FUNCTION FOR CP/M COMPATIBILITY
+	AH = 1Dh
+Return: AL = 00h
+Note:	corresponds to the CP/M BDOS function "get bit map of read-only
+	  drives", which is meaningless under MS-DOS
+SeeAlso: AH=18h,AH=1Eh,AH=20h,AX=4459h
+

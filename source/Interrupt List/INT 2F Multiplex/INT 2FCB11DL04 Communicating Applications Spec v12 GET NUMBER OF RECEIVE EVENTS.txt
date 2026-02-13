@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB11DL04
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Spec v1.2+ - GET NUMBER OF RECEIVE EVENTS
+	AX = CB11h
+	DL = 04h
+Return: AX = number of received file events since resident manager started
+	BX = number of received FAX events
+SeeAlso: AX=CB11h/DL=03h
+

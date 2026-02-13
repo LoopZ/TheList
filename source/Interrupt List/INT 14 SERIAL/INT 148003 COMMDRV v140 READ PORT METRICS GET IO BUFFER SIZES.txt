@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148003
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - READ PORT METRICS - GET I/O BUFFER SIZES
+	AX = 8003h
+	DX = port number
+Return: AX = number of characters in input buffer
+	BX = input buffer size
+	CX = number of characters in output buffer
+	DX = output buffer size
+SeeAlso: AX=8000h"COMM-DRV",AX=8001h"COMM-DRV",AX=8002h"COMM-DRV"
+

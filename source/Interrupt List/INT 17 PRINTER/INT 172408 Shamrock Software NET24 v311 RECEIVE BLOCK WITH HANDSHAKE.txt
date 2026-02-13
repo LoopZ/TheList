@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 172408
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Shamrock Software NET.24 v3.11+ - RECEIVE BLOCK, WITH HANDSHAKE
+	AX = 2408h
+Return: AL = status (see also #00640)
+	    06h end of data
+	CX = number of bytes in receive buffer
+	DX:SI -> receive buffer
+SeeAlso: AX=2401h,AX=2405h,AX=2409h
+

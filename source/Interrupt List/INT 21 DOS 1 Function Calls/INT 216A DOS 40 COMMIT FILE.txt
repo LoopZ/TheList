@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216A
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 4.0+ - COMMIT FILE
+	AH = 6Ah
+	BX = file handle
+Return: CF clear if successful
+	    AH = 68h
+	CF set on error
+	    AX = error code (06h) (see #01680 at AH=59h/BX=0000h)
+Note:	identical to AH=68h in DOS 5.0-6.0; not known whether this is the case
+	  in DOS 4.x
+SeeAlso: AH=68h
+

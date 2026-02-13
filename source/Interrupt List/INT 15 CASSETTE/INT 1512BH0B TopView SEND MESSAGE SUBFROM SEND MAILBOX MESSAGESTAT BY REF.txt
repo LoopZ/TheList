@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "SUBFROM" - SEND MAILBOX MESSAGE/STAT BY REF
+	AH = 12h
+	BH = 0Bh
+	BL = mailbox to write to
+	    00h handle is DWORD on top of stack
+	    02h default mailbox of task whose handle is on top of stack
+	    03h current task's default mailbox
+	STACK:	DWORD	status (low byte)
+		DWORD	length of message
+		DWORD	address of message
+Return: STACK popped
+Notes:	only a pointer to the message is stored, but the write may still fail
+	  due to insufficient memory
+	under DV 2.2+, failed mailbox writes may return CF set (see AX=DE15h)
+SeeAlso: AH=12h/BH=0Ah"MAILBOX"
+

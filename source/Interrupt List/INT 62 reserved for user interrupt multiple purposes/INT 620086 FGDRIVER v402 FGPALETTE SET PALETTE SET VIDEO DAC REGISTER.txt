@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620086
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PALETTE" - SET PALETTE / SET VIDEO DAC REGISTER
+	AX = 0086h
+---CGA 4-color graphics---
+	BX = CGA paletee number
+	CX = background color
+---CGA 2-color graphics---
+	BX ignored
+	CX = foreground color
+---16-color graphics---
+	BX = palette register number
+	CX = palette value
+---256-color graphics---
+	BX = DAC register number
+	CX =  DAC value
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function is ignored in text modes and Hercules graphics modes
+	Few EGA/VGA adapters correctly set the foreground color in CGA mode 6
+SeeAlso: AX=0041h,AX=004Eh,AX=0087h,AX=00ABh
+

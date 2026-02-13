@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4680
+  Category: W 	MS Windows
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS Windows v3.0 - INSTALLATION CHECK
+	AX = 4680h
+Return: AX = result
+	    0000h MS Windows 3.0 running in real (/R) or standard (/S) mode,
+		  or DOS 5 DOSSHELL active
+	    nonzero  no Windows, Windows prior to 3.0, or Windows3 in enhanced
+		  mode
+Note:	Windows 3.1 finally provides an installation check which works in all
+	  modes (see AX=160Ah)
+SeeAlso: AX=1600h,AX=160Ah
+

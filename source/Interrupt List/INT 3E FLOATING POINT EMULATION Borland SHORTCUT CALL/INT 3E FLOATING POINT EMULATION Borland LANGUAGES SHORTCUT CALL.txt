@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 3E
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 3E - FLOATING POINT EMULATION - Borland LANGUAGES "SHORTCUT" CALL
+Notes:	the two bytes following the INT 3E instruction are the subcode
+	  (see #03195) and a NOP (90h), except for subcodes DCh and DEh, where
+	  the second byte is a register count (01h-08h)
+	this vector is modified but not restored by Direct Access v4.0, and
+	  may be left dangling by other programs written with the same version
+	  of compiled BASIC
+SeeAlso: INT 3D
+
+(Table 03195)
+Values for Borland floating-point shortcut subcode:
+Subcode		Function
+ DCh	load 8086 stack with 8087 registers; overwrites the 10*N bytes at the
+	  top of the stack prior to the INT 3E with the 8087 register contents
+ DEh	load 8087 registers from top of 8086 stack; ST0 is furthest from top
+	  of 8086 stack
+ E0h	round TOS and R1 to single precision, compare, pop twice
+	  returns AX=8087 status word, FLAGS=8087 condition bits
+ E2h	round TOS and R1 to double precision, compare, pop twice
+	  returns AX=8087 status word, FLAGS=8087 condition bits
+	Note: buggy in TPas5.5, because it sets the 8087 precision control
+	  field to the undocumented value 01h; this results in actually
+	  rounding to single precision
+ E4h	compare TOS/R1 with two POP's
+	  returns FLAGS=8087 condition bits
+ E6h	compare TOS/R1 with POP
+	  returns FLAGS=8087 condition bits
+ E8h	FTST (check TOS value)
+	  returns FLAGS=8087 condition bits
+ EAh	FXAM (check TOS value)
+	  returns AX=8087 status word
+ ECh	sine(ST0)
+ EEh	cosine(ST0)
+ F0h	tangent(ST0)
+ F2h	arctangent(ST0)
+ F4h	ST0 = ln(ST0)
+ F6h	ST0 = log2(ST0)
+ F8h	ST0 = log10(ST0)
+ FAh	ST0 = e**ST0
+ FCh	ST0 = 2**ST0
+ FEh	ST0 = 10**ST0
+

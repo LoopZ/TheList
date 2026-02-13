@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0401
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - EDIT ON TOP LINE
+	DI = 0401h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to edit record (see #03285)
+		DWORD	pointer to string to edit
+		WORD	initial length of string being edited
+		WORD	maximum length of edited string
+		DWORD	pointer to first line of prompt
+		WORD	length of first line
+		DWORD	pointer to second line of prompt
+		WORD	length of second line
+Return: ???
+	STACK unchanged
+

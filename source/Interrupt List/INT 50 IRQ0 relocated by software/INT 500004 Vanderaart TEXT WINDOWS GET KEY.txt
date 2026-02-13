@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500004
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - Vanderaart TEXT WINDOWS - GET KEY
+	AX = 0004h
+	CH = type
+	    00h any key
+	    01h 'J' or 'N' (Dutch for yes/no)
+Return: AX = key
+SeeAlso: INT 16/AH=00h
+

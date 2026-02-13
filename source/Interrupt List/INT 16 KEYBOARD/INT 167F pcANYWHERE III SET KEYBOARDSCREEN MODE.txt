@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 167F
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - pcANYWHERE III - SET KEYBOARD/SCREEN MODE
+	AH = 7Fh
+	AL = subfunction
+	    00h enable remote keyboard only
+	    01h enable host keyboard only
+	    02h enable both keyboards
+	    08h display top 24 lines
+	    09h display bottom 24 lines
+	    10h Hayes modem
+	    11h other modem
+	    12h direct connect
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--16
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - FREEVER - GET TSR STATUS
+	AL = 16h
+	AH = AMIS multiplex number for FREEVER
+Return: AL = FFh if successful
+	    BL = status
+		01h resident and active
+		02h resident and inactive
+SeeAlso: INT 2D/AL=12h"FREEVER",INT 2D/AL=15h"FREEVER",INT 2D/AL=17h"FREEVER"
+

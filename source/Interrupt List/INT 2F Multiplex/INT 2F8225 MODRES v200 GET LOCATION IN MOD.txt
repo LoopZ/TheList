@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8225
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MODRES v2.00+ - GET LOCATION IN MOD
+	AX = 8225h
+Return: AL = status
+	   00h playing
+	   01h reached end or stopped
+	AH = speed of MOD
+	BX = position within pattern 0000h-0400h
+	CL = position within the song (track number)
+SeeAlso: AX=8220h,AX=8221h,AX=8223h,AX=8226h
+

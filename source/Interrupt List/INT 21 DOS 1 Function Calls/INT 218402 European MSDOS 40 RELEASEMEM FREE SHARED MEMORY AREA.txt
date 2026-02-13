@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 218402
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "RELEASEMEM" - FREE SHARED MEMORY AREA
+	AX = 8402h
+	BX = handle (segment address of shared memory object)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (no such name)
+Desc:	indicate that the specified area of shared memory will no longer be
+	  used by the caller
+Note:	the reference count is decremented and the shared memory area is
+	  deallocated if the new reference count is zero
+SeeAlso: AX=8400h,AX=8401h,INT 15/AX=DE19h
+

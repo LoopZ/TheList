@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21AF
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Attachmate Extra! - GET TRANSLATE TABLE ADDRESS
+	AH = AFh
+Return: DS:BX -> translate tables (see #01800)
+
+Format of Attachmate Extra! translate tables:
+Offset	Size	Description	(Table 01800)
+ 00h 256 BYTEs	ASCII to 3270 buffer code translate table
+100h 256 BYTEs	3270 buffer code to ASCII translate table
+200h 256 BYTEs	3270 buffer code to EBCDIC translate table
+300h 256 BYTEs	EBCDIC to 3270 buffer code translate table
+

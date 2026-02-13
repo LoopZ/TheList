@@ -1,0 +1,249 @@
+--------------------------------------------------------------------------------
+ Unique ID: 170200BX5050
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Enhanced Parallel Port (EPP) BIOS - INSTALLATION CHECK
+	AX = 0200h
+	BX = 5050h ('PP')
+	CH = 45h   ('E')
+	DX = printer port number (00h-02h)
+Return: AH = status
+	    00h if installed and port is an enhanced parallel port
+		CX:AL = installed BIOS type
+		    5050h:45h ('PPE') if EPP v3.0+ BIOS installed
+		    4550h:50h ('EPP') if EPP v1.0 BIOS installed
+		---EPP 1.0, 3.0---
+		DX:BX -> far entry point to Advanced BIOS (see #00632)
+		---EPP Revision 7---
+		DX = EPP I/O base address
+		ES:BX -> far entry point to EPP BIOS (see #00632,#00633)
+	    03h if installed but specified port not supported
+		CF set
+Program: The Enhanced Parallel Port BIOS provides support for parallel
+	  port peripherals using the enhanced modes of the IEEE 1284.
+SeeAlso: AH=E0h,MEM 0040h:0008h,MEM 0040h:00DCh
+
+(Table 00632)
+Call EPP BIOS entry point with:
+	DL = port number (v1.0,v3.0)
+	DX = (Revision 7) EPP port I/O base address
+	AH = function
+	    00h Query Configuration
+		Return: AH = 00h if successful
+			    AL = IRQ number used by port or FFh if no IRQ
+			    BH = EPP BIOS revision (major in high nybble,
+				  minor in low nybble)
+			    BL = I/O capabilities (see #00635)
+			    ES:DI -> ASCIZ driver information/version text
+			    ---v1.0,v3.0---
+			    CX = I/O port base address for parallel port
+			    ---Revision 7---
+			    CL = EPP chipset code (see #00636)
+			    CH = hardware manufacturer's product code
+	    01h Set Mode
+		AL = mode bits (see #00637)
+		Return: AX,BX destroyed
+	    02h Get Mode
+		Return: AL = mode bits (see also #00637)
+				bit 7: EPP port interrupts enabled
+			AH = 00h
+			CF clear
+			BX destroyed
+	    03h Interrupt Control
+		AL = subfunction
+		    00h enable parallel port interrupts
+		    01h disable parallel port interrupts
+		Return: AH = status (00h,05h,06h) (see also #00634)
+	    04h EPP Reset
+		Return: AH = 00h if successful
+			AL destroyed
+	    05h perform Address-Write/Device-Select I/O cycle
+		AL = device address
+		Return: AH = status
+			AL destroyed
+	    06h perform Address-Read I/O cycle
+		Return: AL = returned address/device data
+			AH = status
+	    07h write byte
+		AL = data byte to write
+		Return: AH = status
+	    08h output block of data
+		DS:SI -> block of data to be sent to parallel port
+		CX = number of bytes to output
+		Return: AH = status (see #00634)
+			CX = number of unsent bytes
+	    09h read byte of data
+		Return: AH = status (see #00634)
+			AL = byte read from parallel port
+	    0Ah read block of data
+		ES:DI -> buffer for received data
+		CX = number of bytes to read from paralle port
+		Return: AH = status (see #00634)
+			ES:DI buffer filled if successful
+			CX = number of bytes not transferred
+	    0Bh Address/Byte-Read
+		AL = device address
+		Return: AH = status (see #00634)
+			AL = byte read if successful
+	    0Ch Address/Byte-Write
+		AL = device address
+		DH = data byte (v1.0,v3.0)
+		CL = data byte (Revision 7)
+		Return: AH = status (see #00634)
+	    0Dh Address/Block-Read
+		AL = device address
+		ES:DI -> buffer for received data
+		CX = number of bytes to read
+		Return: AH = status (see #00634)
+			CX = number of bytes NOT transferred
+	    0Eh Address/Block-Write
+		AL = device address
+		ES:DI -> data to be sent (v1.0,v3.0)
+		DS:SI -> data to be send (Revision 7)
+		CX = number of bytes to write
+		Return: AH = status (see #00634)
+			CX = number of bytes NOT transferred
+	    0Fh Lock Port
+		AL = multiplexor port number
+			bits 7-4: daisy chain port number (1-8)
+			bits 3-0: mux device port number (1-8, 0 if no mux)
+		Return: AH = status (00h,03h,05h) (see #00634)
+	    10h Unlock Port
+		AL = multiplexor port number
+			bits 7-4: daisy chain port number (1-8)
+			bits 3-0: mux device port number (1-8, 0 if no mux)
+		Return: AH = status (00h,03h,05h) (see #00634)
+	    11h Device Interrupt
+		BL = multiplexor port number
+			00h if no multiplexor, else mux device port (01h-08h)
+		AL = subfunction
+		    00h disable device interrupts
+		    01h enable device interrupt
+			ES:DI -> interrupt event handler
+		Return: AH = status (00h,03h,05h,06h) (see #00634)
+		Note:	AMI BIOS v1.00.12.AX1T ignores the multiplexor port
+			  number; it also always sets INT 0F to the address
+			  specified in ES:DI
+	    12h Real-Time Mode
+		AL = subfunction
+		    00h check whether any real-time devices present
+		    01h add (advertise) real-time device
+		    02h remove real-time device
+		Return: AH = status (00h,05h,06h,07h) (see #00634)
+			AL = real-time devices present? (00h no, 01h yes)
+		Note:	unlike all other functions, this one does not use DL/DX
+Return: AH = status (see #00634)
+	CF clear if successful
+	CF set on error
+	BX destroyed
+SeeAlso: #00633
+
+(Table 00633)
+Call EPP BIOS (Revision 7) entry point multiplexor functions with:
+	DX = EPP port base I/O address
+	AH = function
+	    40h Query Mux
+		Return: AH = status (see #00634)
+			AL = currently-selected port
+			CH = status flags
+				bit 0: channel locked
+				bit 1: interrupt pending
+			BH destroyed
+		Note:	the PhoenixBIOS v4.0 documentation lists BL as the
+			  currently-selected port and AL as the status flags
+	    41h Query Device Port
+		AL = EPP multiplex device port (1-8)
+		Return: AH = status (see #00634)
+			CH = status flags (see #00638)
+			BX = EPP product/device ID (0000h if undefined)
+		Note:	the PhoenixBIOS v4.0 documentation lists AL as the
+			  status flags and CX as the device ID
+	    42h Set Product ID
+		AL = EPP multiplex device port (1-8)
+		CX = EPP product ID
+		Return: AH = status (see #00634)
+			BX destroyed
+	    50h Query Daisy Chain
+		AL = EPP multiplexor device port (1-8)
+		Return: AH = status (see #00634)
+			CH = status flags
+				bit 0: channel locked
+				bit 1: interrupt pending
+			BL = currently-selected device
+			BH = EPP daisy chain revision (high nybble = major)
+			CL = daisy-chain depth (00h if no daisy chain)
+			ES:DI -> ASCIZ driver vendor identification string
+		Note:	the PhoenixBIOS v4.0 documentation lists AH=51h as
+			  "Query Daisy Chain" and BL as the multiplexor port;
+			  it also lists AL as status flags on return
+	    51h Rescan Daisy Chain (dynamically reassign port numbers)
+		AL = EPP multiplexor device port (1-8)
+		Return: AH = status (see #00634)
+			BX destroyed
+		Note:	the PhoenixBIOS v4.0 documentation lists AH=50h as
+			  "Rescan Daisy Chain" and BL as the multiplexor port
+Notes:	these functions are only valid if a port multiplexor or daisy chain
+	  is present
+	PhoenixBIOS 4.0 documents function 50h as "Rescan" and 51h as
+	  "Query Daisy Chain"
+SeeAlso: #00632,INT 2D/AL=DCh
+
+(Table 00634)
+Values for EPP BIOS function status:
+ 00h	successful
+ 02h	unsupported command/feature
+ 03h	unsupported parallel port
+ 05h	unsupported in current mode
+ 06h	invalid subfunction
+ 07h	already ???
+ 20h	multiplexor not present (AMI)
+ 40h	multiplexor not present
+ 41h	multiplexor currently locked
+ 80h	I/O timeout
+ FFh	invalid/unsupported function
+SeeAlso: #00632,#00633
+
+Bitfields for EPP (v3.0, Revision 7) I/O capabilities:
+Bit(s)	Description	(Table 00635)
+ 0	multiplexor present
+ 1	PS/2 bi-directional capable
+ 2	daisy chain present
+ 3	ECP capable
+ 4	EPP software emulation supported
+ 5	EPP capable
+ 6	fast Centronics supported
+ 7	standard EPP I/O map
+SeeAlso: #00632
+
+(Table 00636)
+Values for EPP (Revision 7) chipset code:
+ 00h	Intel SL
+ 01h	FarPoint Communications
+ 02h	SMC
+ 03h	Chips&Technologies
+ 04h	Western Digital
+ 05h	National Semiconductor
+SeeAlso: #00632
+
+Bitfields for EPP BIOS mode bits:
+Bit(s)	Description	(Table 00637)
+ 0	set compatibility mode
+ 1	set bi-directional mode
+ 2	set EPP mode
+---Revision 7,v3.0---
+ 3	set ECP mode
+ 4	set EPP software emulation
+ 5	set fast Centronics mode
+ 6-7 reserved (0)
+SeeAlso: #00632,#M0053
+
+Bitfields for EPP BIOS multiplex status flags:
+Bit(s)	Description	(Table 00638)
+ 0	port is selected
+ 1	port is locked
+ 2	interrupts are enabled
+ 3	interrupt pending
+SeeAlso: #00633
+

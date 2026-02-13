@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF0B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - DELETE DIRECTORY
+	AH = E2h subfn 0Bh
+	DS:SI -> request buffer (see #01858)
+	ES:DI -> reply buffer (see #01857)
+Return: AL = status (00h,8Ah,98h,9Bh,9Ch,9Fh,A0h) (see #01839)
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=3Ah,AH=E2h/SF=0Ah,AH=E2h/SF=0Fh,AX=F216h/SF=0Bh
+
+Format of NetWare "Delete Directory" request buffer:
+Offset	Size	Description	(Table 01858)
+ 00h	WORD	length of following data (max 103h)
+ 02h	BYTE	0Bh (subfunction "Delete Directory")
+ 03h	BYTE	directory handle
+ 04h	BYTE	unused
+ 05h	BYTE	length of directory path (00h-FFh)
+ 06h  N BYTEs	directory path
+SeeAlso: #01856,#01857
+

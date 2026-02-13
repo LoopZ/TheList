@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150B
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - FORCE DISPLAY OUTPUT TO PHYSICAL SCREEN MEMORY
+	AH = 0Bh
+Return: nothing
+Notes:	sets calling task's screen pointer to actual screen memory; the pointer
+	  may be restored with AH=0Ch
+	caller's video mode must be same as foreground task's video mode
+	any text written while in the background will be saved to the
+	  foreground task's virtual screen when it switches to the background
+	useful if a background task wants to display a message on the
+	  foreground screen
+SeeAlso: AH=0Ch"MultiDOS"
+

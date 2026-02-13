@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF17
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "ResMemNear" - RESIZE APPLICATION-RELATIVE MEMORY BLOCK
+	AX = FF17h
+	EBX = size in bytes of block to allocate
+	ESI = application-relative linear address of block
+Return: CF clear if successful
+	    ESI = new application-relative linear address of block
+	CF set on error
+SeeAlso: AX=FF16h,AX=FF18h,AX=FF19h
+

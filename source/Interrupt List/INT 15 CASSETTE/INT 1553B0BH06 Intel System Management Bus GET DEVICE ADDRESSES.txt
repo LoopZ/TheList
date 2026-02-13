@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH06
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - GET DEVICE ADDRESSES
+	AX = 53B0h
+	BH = 06h
+	BL = position in list to report
+	CH = 6941h ('iA')
+Return: CF clear if successful
+	    AH = 00h (SMBus OK)
+	    BH = number of SMBus devices
+	    BL = SMBus Device Address of device at position BL in list
+		(see #00486)
+	CF set if error
+	    AH = error code (06h,0Ah,86h) (see #00484)
+Desc:	retrieves already assigned SMBus device addresses
+Notes:	this function is supported in INT 15h mode only
+	bit 0 of the device address indicates read/write, so a device may
+	  be listed at both xxxxxxx0b and xxxxxxx1b
+SeeAlso: I2C A0h [and I2C.LST in general]
+
+(Table 00486)
+Values for System Management Bus predefined device addresses:
+ 10h	SMBus host
+ 12h	Smart Battery charger
+ 14h	Smart Battery selector
+ 16h	Smart Battery
+ 18h	SMBus Alert response
+ 50h	ACCESS.bus host
+ 58h	LCD contrast controller
+ 5Ah	CCFL backlight driver
+ 6Eh	ACCESS.bus default address
+ 80h-86h PCMCIA socket controllers
+ 88h	VGA graphics controller
+ 90h-96h unrestricted addresses
+ 82h	SMBus device default address
+

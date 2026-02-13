@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 164501
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Shamrock Software EMAIL - GET ELAPSED ONLINE TIME AND MAXIMUM TIME
+	AX = 4501h
+	DL = port number (01h = COM1)
+Return: AX = 4D00h if EMAIL installed on specified port
+	    BX = maximum connect time in clock ticks
+	    CX = maximum connect time for guests (without name) in clock ticks
+	    DX = elapsed connect time of current user in clock ticks
+SeeAlso: AX=4500h
+

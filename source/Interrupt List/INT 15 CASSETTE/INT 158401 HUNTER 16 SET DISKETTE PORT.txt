@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 158401
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SET DISKETTE PORT
+	AX = 8401h
+	BH = Drive (0: A:, 1: B:)
+	BL = Port (0: COM1, >0: COM2)
+Desc:	set the COM port used for the floppy drive
+SeeAlso: AX=8400h
+

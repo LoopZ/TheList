@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC01DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - CHANGE INTERNAL FLAGS
+	AX = AC01h
+	DI = 1092h
+	BX = flags to be turned on (see #02966)
+	CX = flags to be turned off (see #02966)
+Return: AX = 9142h if installed
+	    DX = DOS-takeover flag (nonzero if QRIP able to take over DOS)
+	    ---if DX nonzero---
+	    BX = QRIP version number in hex (BH = major, BL = minor)
+	    CX = new flags (see #02966)
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC00h/DI=1092h,AX=ACF0h
+
+Bitfields for QRIP internal flags:
+Bit(s)	Description	(Table 02966)
+ 0	ANSI emulation enabled (default on)
+ 1	RIP emulation enabled (default on)
+ 2	graphical commands allowed (default on)
+ 3	TTY text allowed (default on)
+ 4	disable @ variables (default off in TSR mode)
+ 5	wait for key on RIP "end scene" command (default off)
+ 6	anti-stripping (default off in TSR mode)
+ 7	sound enabled (default on)
+ 8	automatic message filter (default off in TSR mode)
+ 9	display-only mode (no user prompts)
+ 10	TTY text suppression (default off in TSR mode)
+ 11-15	reserved
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A13
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DBLSPACE.BIN - DBLSPACE/MRCI STEALTH PACKET API
+	AX = 4A13h
+Return: AX = 134Ah if supported
+	    ES:BX -> entry point record (see #02814)
+SeeAlso: AX=4A11h/BX=0000h,AX=4A12h/CX=4D52h"MRCI"
+
+Format of DBLSPACE entry point record:
+Offset	Size	Description	(Table 02814)
+ 00h	DWORD	pointer to FAR function for ???
+ 04h  5 BYTEs	FAR JUMP instruction to ???
+

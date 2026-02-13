@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - IOCTL - WRITE TO CHARACTER DEVICE CONTROL CHANNEL
+	AX = 4403h
+	BX = file handle referencing character device
+	CX = number of bytes to write
+	DS:DX -> data to write
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	format of data is driver-specific
+	  (also see separate entries below for some specific cases)
+	if the file handle refers to "4DOSSTAK", the 4DOS (v2.x-3.03)
+	  KEYSTACK.SYS driver will push the specified characters on the
+	  keyboard stack; similarly for "NDOSSTAK", the NDOS KEYSTACK.SYS
+	  driver will push the characters onto the keyboard stack
+	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AX=4400h,AX=4402h"DOS 2+",AX=4405h"DOS",INT 2F/AX=122Bh
+SeeAlso: INT 2F/AX=D44Dh,INT 2F/AX=D44Fh
+

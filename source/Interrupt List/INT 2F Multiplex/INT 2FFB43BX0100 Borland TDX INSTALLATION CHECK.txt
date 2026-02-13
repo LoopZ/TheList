@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB43BX0100
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland TDX - INSTALLATION CHECK
+	AX = FB43h
+	BX = 0100h
+Return: BX = FB43h if loaded
+Program: TDX is Borland's Turbo Debugger variant for DPMI programs
+Note:	Borland Pascal 7 DPMI programs use this call to check whether they
+	  should install their own stack and general protection exception
+	  handlers, or allow TDX to handle those exceptions
+

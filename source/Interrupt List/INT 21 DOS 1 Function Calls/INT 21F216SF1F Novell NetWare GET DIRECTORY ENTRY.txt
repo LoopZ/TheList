@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF1F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET DIRECTORY ENTRY
+	AX = F216h subfn 1Fh
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02129)
+	ES:DI -> reply buffer
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=1Eh
+
+Format of NetWare "Get Directory Entry" request packet:
+Offset	Size	Description	(Table 02129)
+ 00h	WORD	length of following data
+ 02h	BYTE	1Fh (subfunction "Get Directory Entry")
+	???
+

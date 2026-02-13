@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212C00CX534B
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - SKUDO - INSTALLATION CHECK
+	AX = 2C00h
+	CX = 534Bh ('SK')
+	DX = 5544h ('UD')
+	BX = 4F21h ('O!')
+Return: AX = 5349h ('SI') if installed
+	    CH = version number
+	    CL = subversion
+Program: SKUDO is an antivirus TSR by Jordi Mas
+

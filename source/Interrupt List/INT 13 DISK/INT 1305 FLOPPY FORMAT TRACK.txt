@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1305
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - FLOPPY - FORMAT TRACK
+	AH = 05h
+	AL = number of sectors to format
+	CH = track number
+	DH = head number
+	DL = drive number
+	ES:BX -> address field buffer (see #00235)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234)
+Notes:	on AT or higher, call AH=17h first
+	the number of sectors per track is read from the diskette parameter
+	  table pointed at by INT 1E
+BUG:	some old Compaq BIOSes have a bug when attempting to call this function
+	  from Windows Standard Mode with EMM386 loaded.  A possible workaround
+	  is to call this function from Real Mode e.g. through DPMI function
+	  "Call Real Mode function with FAR return" (see INT 31/AX=0301h).
+SeeAlso: AH=05h"FIXED",AH=17h,AH=18h,INT 1E
+
+Format of floppy format address field buffer entry (one per sector in track):
+Offset	Size	Description	(Table 00235)
+ 00h	BYTE	track number
+ 01h	BYTE	head number (0-based)
+ 02h	BYTE	sector number
+ 03h	BYTE	sector size (00h=128 bytes, 01h=256 bytes, 02h=512, 03h=1024)
+

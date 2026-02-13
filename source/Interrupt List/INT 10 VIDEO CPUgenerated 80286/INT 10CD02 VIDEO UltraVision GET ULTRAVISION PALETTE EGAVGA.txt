@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - GET ULTRAVISION PALETTE (EGA,VGA)
+	AX = CD02h
+Return: CL = palette table number
+	DS:DX -> 17-byte palette register list (see #00217)
+	DS:SI -> current font names table (see #00218,#00219)
+Note:	only the font names are valid on monochrome EGA systems
+SeeAlso: AX=1009h,AX=CD00h
+
+Format of UltraVision palette register list:
+Offset	Size	Description	(Table 00217)
+ 00h 16 BYTEs	colors for palette registers 00h through 0Fh
+ 10h	BYTE	border color
+
+Format of UltraVision v2+ current font names table:
+Offset	Size	standard EGA	HiRes EGA	VGA	(Table 00218)
+ 00h  8 BYTEs	N/A		F19 font	F20 font
+ 08h  8 BYTEs	F14 font	F14 font	F14 font
+ 10h  8 BYTEs	N/A		F11 font	F10 font
+ 18h  8 BYTEs	F8 font		F8 font		F8 font
+
+Format of UltraVision v1.x current font names table:
+Offset	Size	HiRes EGA	(Table 00219)
+ 00h  8 BYTEs	F19/F14 font
+ 08h  8 BYTEs	F11/F8 font
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21252BBH09
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender v4.1 - GET PAGETABLE ENTRY/PAGE TABLE INFO
+	AX = 252Bh
+	BH = 09h
+	BL = subfunction
+	    00h get page table entry by linear address
+		ECX = linear address for which to get page table entry
+	    01h get page table entry by logical address
+		ES:ECX = address for which to get page table entry
+Return: CF clear if successful
+	    EAX = page table entry
+	    EBX = additional page table information
+	CF set on error
+	    EAX = error code
+		0009h invalid address
+		0082h running under DPMI
+SeeAlso: AX=251Dh,AX=252Bh/BH=0Ah
+

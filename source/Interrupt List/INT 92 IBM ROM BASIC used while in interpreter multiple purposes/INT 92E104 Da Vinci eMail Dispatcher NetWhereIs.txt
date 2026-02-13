@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E104
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - "NetWhereIs"
+	AX = E104h
+	BX = size of parameter block in words (0006h)
+	CX:DX -> parameter block (see #03981)
+Return: AX = status (see #03979)
+Desc:	this function is used to verify node address for usernames
+SeeAlso: AX=E180h
+
+Format of Da Vinci eMail "NetWhereIs" parameter block:
+Offset	Size	Description	(Table 03981)
+ 00h	WORD	segment of node address buffer
+ 02h	WORD	offset of node address buffer
+ 04h	WORD	segment of uppercase username
+ 06h	WORD	offset of uppercase username
+ 08h	WORD	segment of "DVSEMAIL"
+ 0Ah	WORD	offset of "DVSEMAIL"
+

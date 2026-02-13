@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1215
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - FLUSH BUFFER
+	AX = 1215h
+	DS:DI -> disk buffer
+	SS = DOS DS (must be using a DOS internal stack)
+	STACK: WORD drives for which to skip buffer
+		ignore buffer if drive same as high byte, or bytes differ and
+		  the buffer is for a drive OTHER than that given in low byte
+Return: STACK unchanged
+Note:	can be called only from within DOS
+SeeAlso: AX=1209h
+

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6605
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - BitFax Scheduler - CONVERT FILE AND SEND FAX
+	AH = 05h
+	BX:CX -> command block (see #03518)
+	???
+Return: ???
+SeeAlso: AH=03h
+
+Format of BitFax command block:
+Offset	Size	Description	(Table 03518)
+ 00h 18 BYTEs	configuration bytes???
+ 12h	BYTEs	ASCIZ temporary file name to place converted fax
+ 52h	BYTEs	ASCIZ directory containing BitFax executables
+ 92h	BYTEs	ASCIZ telephone number
+ C2h	BYTE	cover page control (00h don't send, 01h do send cover page)
+ C3h 15 BYTEs	configuration bytes???
+ E2h	BYTEs	ASCIZ path of BITFAX.TRA file (containing additional
+		  configuration information???)
+122h	BYTEs	configuration bytes???
+12Ch	BYTE	00h don't send cover page
+		01h send cover page
+12Dh  7 BYTEs	configuration bytes???
+134h	BYTEs	ASCIZ path of file to send
+174h	BYTEs	more configuration bytes???
+	???
+

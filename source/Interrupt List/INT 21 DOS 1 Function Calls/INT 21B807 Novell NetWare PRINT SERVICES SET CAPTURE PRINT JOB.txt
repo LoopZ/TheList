@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B807
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - SET CAPTURE PRINT JOB
+	AX = B807h
+	DH = LPT port (00h-02h)
+	BX = job number (see AH=E3h/SF=68h)
+	SI:DI:CX = NetWare file handle (see AH=E3h/SF=68h)
+Return: AL = status
+	    00h successful
+	    FFh job already queued
+Desc:	specify the capture file and print job to be used for subsequent
+	  output to the given printer port
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AX=B801h,AX=B806h,AH=E0h/SF=09h,AH=E3h/SF=68h
+

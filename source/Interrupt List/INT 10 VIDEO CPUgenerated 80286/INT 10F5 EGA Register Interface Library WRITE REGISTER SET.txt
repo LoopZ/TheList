@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10F5
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - EGA Register Interface Library - WRITE REGISTER SET
+	AH = F5h
+	CX = number of registers to write (>1)
+	ES:BX -> table of records (see #00224)
+Return: nothing
+Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+	  compatibility box, and others
+SeeAlso: AX=7F05h,AH=F1h"EGA",AH=F3h"EGA",AH=F4h"EGA"
+

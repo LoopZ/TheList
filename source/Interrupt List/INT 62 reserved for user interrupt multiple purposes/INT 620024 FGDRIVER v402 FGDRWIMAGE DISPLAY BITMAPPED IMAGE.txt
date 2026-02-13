@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620024
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DRWIMAGE" - DISPLAY BITMAPPED IMAGE
+	AX = 0024h
+	ES:BX -> video mode-specific bitmap
+	CX = width of bitmap in bytes
+	DX = height of bitmap in pixel rows
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The image will be drawn with its lower left corner at the current
+	  cursor position (either text or graphics)
+SeeAlso: AX=0011h,AX=0036h,AX=0044h,AX=0099h,AX=00A0h
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1609
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - GET KEYBOARD FUNCTIONALITY
+	AH = 09h
+Return: AL = supported keyboard functions (see #00585)
+	AH destroyed by many BIOSes
+Note:	this function is only available if bit 6 of the second feature byte
+	  returned by INT 15/AH=C0h is set (see #00509)
+SeeAlso: AH=03h,AH=0Ah,AH=10h,AH=11h,AH=12h,AH=20h,AH=21h,AH=22h,INT 15/AH=C0h
+
+Bitfields for supported keyboard functions:
+Bit(s)	Description	(Table 00585)
+ 7	reserved
+ 6	INT 16/AH=20h-22h supported (122-key keyboard support)
+ 5	INT 16/AH=10h-12h supported (enhanced keyboard support)
+ 4	INT 16/AH=0Ah supported
+ 3	INT 16/AX=0306h supported
+ 2	INT 16/AX=0305h supported
+ 1	INT 16/AX=0304h supported
+ 0	INT 16/AX=0300h supported
+SeeAlso: #00511
+

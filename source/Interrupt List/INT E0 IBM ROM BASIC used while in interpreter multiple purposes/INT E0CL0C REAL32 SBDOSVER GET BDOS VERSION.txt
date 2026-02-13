@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL0C
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "S_BDOSVER" - GET BDOS VERSION
+	CL = 0Ch
+Return: AX = version (see #04023)
+	may destroy SI,DI???
+SeeAlso: INT E0/CL=A3h,INT 21/AX=4451h
+
+(Table 04023)
+Values for REAL/32 BDOS version:
+ 1432h	- DR Concurrent PC DOS Version 3.2
+ 1441h	- DR Concurrent DOS Version 4.1
+ 1450h	- DR Concurrent DOS/XM Version 5.0
+ 1463h	- DR Multiuser DOS Release 5.0
+ 1465h	- DR Multiuser DOS Release 5.01
+ 1466h	- DR Multiuser DOS Release 5.1, IMS Multiuser DOS Enhanced Release 5.1
+ 1467h	- IMS Multiuser DOS Version 7.0, 7.1
+ 1468h	- IMS REAL/32 Version 7.50, 7.51
+ 1469h	- IMS REAL/32 Version 7.52, 7.53
+ 14??h	- IMS REAL/32 Version 7.6
+SeeAlso: #01579,#01580,#01581
+

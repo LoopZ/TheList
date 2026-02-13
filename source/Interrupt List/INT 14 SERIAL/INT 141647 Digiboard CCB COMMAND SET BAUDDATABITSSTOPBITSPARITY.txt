@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141647
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard - CCB COMMAND - SET BAUD/DATABITS/STOPBITS/PARITY
+	AX = 1647h
+	BL = baud
+	BH = datatype
+	CL = byte 1
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AH = status
+	    00h successful
+	    80h error
+	    FFh error
+SeeAlso: AH=16h"Digiboard",AX=1646h,AX=1649h
+

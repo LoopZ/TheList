@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675B
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - ALTERNATE MAP REGISTER SET
+	AH = 5Bh
+	AL = subfunction
+	    00h get alternate map register set
+		Return: BL = current active alternate map register set number
+			ES:DI -> map register context save area if BL=00h
+	    01h set alternate map register set
+		BL = new alternate map register set number
+		ES:DI -> map register context save area if BL=0
+	    02h get alternate map save array size
+		Return: DX = array size in bytes
+	    03h allocate alternate map register set
+		Return: BL = number of map register set; 00h = not supported
+	    04h deallocate alternate map register set
+		BL = number of alternate map register set
+Return: AH = status (00h,80h,81h,84h,8Fh,9Ah-9Dh,A3h,A4h) (see #03656)
+Note:	this function is for use by operating systems only, and can be
+	  enabled or disabled at any time by the operating system
+
+(Table 03656)
+Values for EMS function status:
+ 00h	successful
+ 80h	internal error
+ 81h	hardware malfunction
+ 84h	undefined function requested
+ 8Fh	undefined subfunction
+ 9Ah	specified alternate map register or DMA register set not supported
+ 9Bh	all alternate map register or DMA register sets currently allocated
+ 9Ch	alternate map register or DMA register sets not supported
+ 9Dh	undefined or unallocated alternate map register/DMA register set
+ 9Eh	dedicated DMA channels not supported
+ 9Fh	specified dedicated DMA channel not supported
+ A3h	source array corrupted
+ A4h	operating system denied access
+

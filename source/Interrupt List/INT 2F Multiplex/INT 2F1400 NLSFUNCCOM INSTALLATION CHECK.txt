@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1400
+  Category: U 	resident utilities
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - NLSFUNC.COM - INSTALLATION CHECK
+	AX = 1400h
+	BX <> 0EDCh
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+Notes:	this function is called by the DOS v3.3+ kernel
+	supported by OS/2 v1.3+ compatibility box, which always returns AL=FFh
+	supported by DR DOS 5.0+ NLSFUNC v3.0+
+	documented for MS-DOS 5+, but undocumented in prior versions
+	DR DOS 5.0+ NLSFUNC 3.00+ returns CF set and AX=0001h, if AL was not
+	  00h, FEh, or FFh on entry.
+SeeAlso: AX=1400h/BX=0EDCh,AX=1401h"NLSFUNC",AX=1402h"NLSFUNC"
+

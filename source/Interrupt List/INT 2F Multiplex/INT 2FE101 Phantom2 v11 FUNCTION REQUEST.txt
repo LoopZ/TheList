@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE101
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Phantom2 v1.1+ - FUNCTION REQUEST
+	AX = E101h
+	BX = function mask (see #03107)
+	CX = code for hotkey (as returned by INT 16/AH=00h) if BX bit 6 set
+	DS:DX -> ASCIZ filespec if BX bit 7 set
+SeeAlso: AX=E100h
+Index:	hotkeys;Phantom2
+
+Bitfields for Phantom2 function mask:
+Bit(s)	Description	(Table 03107)
+ 0	record
+ 1	play
+ 2	QuickPlay
+ 3	loop
+ 4	mode display toggle
+ 5	sound toggle
+ 6	set hotkey
+ 7	set filespec
+

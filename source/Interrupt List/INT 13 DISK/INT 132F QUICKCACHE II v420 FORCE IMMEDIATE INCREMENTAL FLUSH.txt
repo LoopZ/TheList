@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 132F
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - QUICKCACHE II v4.20 - FORCE IMMEDIATE INCREMENTAL FLUSH
+	AH = 2Fh
+Return: AX = status (0000h successful)
+Desc:	immediately flush up to "flushcount" dirty sectors to disk as if the
+	  flush interval had expired
+SeeAlso: AH=21h"QUICKCACHE"
+

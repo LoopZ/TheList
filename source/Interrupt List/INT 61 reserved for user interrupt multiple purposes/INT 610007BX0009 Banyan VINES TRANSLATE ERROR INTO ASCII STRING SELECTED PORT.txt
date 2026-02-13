@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0009
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - TRANSLATE ERROR INTO ASCII STRING (SELECTED PORT)
+	AX = 0007h
+	BX = 0009h
+	SI = error code
+	DS:DX -> 80-byte buffer for error text
+	DS:DI -> IPC port (16 bytes; see AX=0001h#"Sosock" for port format)
+Return: AX = status (see AX=0007h/BX=0000h)
+Note:	Same as AX=0007h/BX=0006h, except IPC port is specified explicitly
+SeeAlso: AX=0007h/BX=0006h
+

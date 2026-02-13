@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: FF
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT FF U - QEMM-386.SYS v6.0+ - internal
+Notes:	requires that a byte in the conventional-memory stub be set to the
+	  desired function number (00h through 0Ch)
+SeeAlso: #04081
+
+(Table 04081)
+Values for QEMM internal functions:
+ 00h	reflect back to Virtual86-mode interrupt handler (default)
+ 01h	???
+ 02h	access DR7???
+ 03h	QPI upcall (see INT 67/AH=3Fh)
+ 04h	???
+ 05h	???
+ 06h	INT 15/AH=87h
+ 07h	EMS services (see INT 67/AH=40h,INT 67/AH=5Dh)
+ 08h	???
+ 09h	QEMM exception handler
+ 0Ah	XMS services (see INT 2F/AX=4310h"XMS")
+ 0Bh	Virtual DMA Services (see INT 4B/AX=8102h)
+ 0Ch	???
+

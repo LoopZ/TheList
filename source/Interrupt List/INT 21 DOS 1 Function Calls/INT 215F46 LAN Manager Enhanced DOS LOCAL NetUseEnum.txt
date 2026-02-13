@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F46
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - LOCAL NetUseEnum
+	AX = 5F46h
+	BX = level (0000h or 0001h)
+	CX = size of buffer
+	ES:DI -> buffer of use_info_0 or use_info_1 structures
+		  (see #01717,#01718)
+Return: CF clear if successful
+	    CX = entries read
+	    DX = total available entries
+	CF set if error
+	    AX = error code
+SeeAlso: AX=5F47h,AX=5F48h,AX=5F4Ch
+
+Format of LAN Manager use_info_0 structure:
+Offset	Size	Description	(Table 01717)
+ 00h  9 BYTEs	local device name
+ 09h	BYTE	padding
+ 0Ah	DWORD	-> remote device name in UNC form \\server\share
+SeeAlso: #01718
+
+Format of LAN Manager use_info_1 structure:
+Offset	Size	Description	(Table 01718)
+ 00h  9 BYTEs	Local device name
+ 09h	BYTE	padding
+ 0Ah	DWORD	-> remote device name in UNC form \\server\share
+ 0Eh	DWORD	-> password
+ 12h	WORD	network link status
+		(00h OK, 02h disconnected, else unsure)
+ 14h	WORD	use type (-1 wildcard, 0 disk, 1 print, 2 com, 3 ipc)
+ 16h	WORD	ignored
+ 18h	WORD	ignored
+SeeAlso: #01717
+

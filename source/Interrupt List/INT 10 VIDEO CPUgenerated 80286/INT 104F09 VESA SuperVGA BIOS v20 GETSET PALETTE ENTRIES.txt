@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F09
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v2.0+ - GET/SET PALETTE ENTRIES
+	AX = 4F09h
+	BL = subfunction
+	    00h set (primary) palette
+	    01h get (primary) palette
+	    02h set secondary palette data
+	    03h get secondary palette data
+	    80h set palette during vertical retrace
+	CX = number of entries to change
+	DX = starting palette index
+	ES:DI -> palette buffer, array of DAC entries (see #00086)
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+	    01h failed
+SeeAlso: AX=4F0Ah,AX=D000h"S3VBE"
+
+Format of VESA VBE palette entry:
+Offset	Size	Description	(Table 00086)
+ 00h	BYTE	red
+ 01h	BYTE	green
+ 02h	BYTE	blue
+ 03h	BYTE	alpha or alignment byte
+

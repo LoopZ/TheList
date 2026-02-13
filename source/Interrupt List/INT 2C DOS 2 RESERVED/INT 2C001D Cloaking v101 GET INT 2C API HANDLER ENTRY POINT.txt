@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C001D
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - GET INT 2C API HANDLER ENTRY POINT
+	AX = 001Dh
+Return: CF clear
+	DX:EBX = selector:offset of Cloaking host INT 2C handler
+Desc:	get the Cloaking host's entry point to bypass any other programs
+	  which may have hooked INT 2C in protected mode
+Note:	the returned entry point must be called with a simulated INT, i.e.
+	  a PUSHD must precede the far call to the handler
+SeeAlso: INT 2F/AX=4310h"Cloaking"
+

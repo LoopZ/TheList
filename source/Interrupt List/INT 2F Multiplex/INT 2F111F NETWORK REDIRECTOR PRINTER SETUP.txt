@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F111F
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - PRINTER SETUP
+	AX = 111Fh
+	STACK: WORD function
+		5E02h  set printer setup
+		5E03h  get printer setup
+		5E04h  set printer mode
+		5E05h  get printer mode
+Return: CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	STACK unchanged
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: INT 21/AX=5E02h,INT 21/AX=5E03h,INT 21/AX=5E04h,INT 21/AX=5E05h
+

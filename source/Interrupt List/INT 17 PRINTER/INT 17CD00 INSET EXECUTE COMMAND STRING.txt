@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD00
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - EXECUTE COMMAND STRING
+	AX = CD00h
+	DS:DX -> ASCIZ command string (max 80 bytes)
+Return: CX = 07C2h (1986d)
+Note:	user interface menus pop up after last command, unless that command
+	exits INSET
+

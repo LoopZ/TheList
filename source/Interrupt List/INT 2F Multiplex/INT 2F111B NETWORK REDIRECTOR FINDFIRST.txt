@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F111B
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - FINDFIRST
+	AX = 111Bh
+	SS = DS = DOS DS
+	[DTA] = uninitialized 21-byte findfirst search data
+	      (see #01626 at INT 21/AH=4Eh)
+	SDA first filename pointer -> fully-qualified search template
+	SDA CDS pointer -> current directory structure for drive with file
+	SDA search attribute = attribute mask for search
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    [DTA] = updated findfirst search data
+		    (bit 7 of first byte must be set)
+	    [DTA+15h] = standard directory entry for file (see #01352)
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: AX=1119h,AX=111Ch,INT 21/AH=1Ah,INT 21/AH=4Eh,INT 21/AH=60h
+

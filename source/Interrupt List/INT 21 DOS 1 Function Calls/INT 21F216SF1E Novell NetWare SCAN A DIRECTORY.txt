@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF1E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SCAN A DIRECTORY
+	AX = F216h subfn 1Eh
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02127)
+	ES:DI -> reply buffer (see #02128)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=02h,AX=F216h/SF=1Fh
+
+Format of NetWare "Scan A Directory" request packet:
+Offset	Size	Description	(Table 02127)
+ 00h	WORD	length of following data
+ 02h	BYTE	1Eh (subfunction "Scan A Directory")
+ 03h	BYTE	directory handle
+ 04h	BYTE	search attributes
+ 05h	DWORD	sequence number
+ 09h	BYTE	length of search filespec
+ 0Ah  N BYTEs	search filespec
+SeeAlso: #02128
+
+Format of NetWare "Scan A Directory" reply packet:
+Offset	Size	Description	(Table 02128)
+ 00h	DWORD	sequence number (copy into next request packet)
+ 04h	DWORD	subdirectory
+ 08h	DWORD	attributes
+ 0Ch	BYTE	unique ID
+ 0Dh	BYTE	flags
+ 0Eh	BYTE	name space
+ 0Fh	BYTE	length of filename
+---DOS file---
+ 10h 12 BYTEs	DOS filename
+ 1Ch	DWORD	creation date and time
+ 20h	DWORD	owner ID
+ 24h	DWORD	last-archived date and time
+ 28h	DWORD	last-archived ID
+ 2Ch	DWORD	last-updated date and time
+ 30h	DWORD	last-updated ID
+ 34h	DWORD	file size
+ 38h 44 BYTEs	reserved
+ 64h	WORD	inherited rights mask
+ 66h	WORD	last-accessed date
+ 68h 28 BYTEs	reserved
+---DOS subdirectory---
+ 10h 12 BYTEs	DOS directory name
+ 1Ch	DWORD	creation date and time
+ 20h	DWORD	owner ID
+ 24h	DWORD	last-archived date and time
+ 28h	DWORD	last-archived ID
+ 2Ch	DWORD	last-updated date and time
+ 30h	DWORD	next trustee entry
+ 34h 48 BYTEs	reserved
+ 64h	DWORD	maximum space
+ 68h	WORD	inherited rights mask
+ 6Ah 26 BYTEs	unused
+SeeAlso: #02127
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telclose" - TERMINATE TELNET CONNECTION
+	AH = E1h
+	BX = connection ID
+Return: AX = status (0000h,FFF7h,maybe others) (see #00397)
+Note:	flushes and releases all buffers and data space used by the connection
+SeeAlso: AH=E0h,AH=E6h,AX=FF00h
+

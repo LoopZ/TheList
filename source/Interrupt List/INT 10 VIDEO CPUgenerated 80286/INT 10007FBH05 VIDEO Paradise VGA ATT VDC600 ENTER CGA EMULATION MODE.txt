@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10007FBH05
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Paradise VGA, AT&T VDC600 - ENTER CGA EMULATION MODE
+	AX = 007Fh
+	BH = 05h
+Return: AL = 7Fh if successful (AT&T VDC600)
+	BH = status (Paradise/Dell)
+	    00h invalid function
+	    7Fh successful
+SeeAlso: AX=007Eh,AX=007Fh/BH=03h,AX=007Fh/BH=04h,AH=FFh"Oak"
+

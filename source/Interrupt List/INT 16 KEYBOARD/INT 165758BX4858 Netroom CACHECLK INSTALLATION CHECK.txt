@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 165758BX4858
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - Netroom CACHECLK - INSTALLATION CHECK
+	AX = 5758h
+	BX = 4858h ('HX')
+	DX = 4443h ('DC')
+	CX <> 5758h
+Return: BX = 6878h if installed
+	CX = 6463h if installed
+	    AX = code segment of TSR
+	    CX = internal version??? (v3.00 returns 0100h)
+Program: CACHECLK is a "cloaked" disk cache included with Netroom
+Notes:	if CX=5758h on entry, CACHECLK returns with all registers unchanged
+	the cache statistics are located early in the segment pointed at by
+	  AX on return
+SeeAlso: INT 2F/AX=5758h
+

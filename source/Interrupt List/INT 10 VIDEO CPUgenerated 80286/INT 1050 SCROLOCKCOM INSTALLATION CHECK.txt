@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1050
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SCROLOCK.COM - INSTALLATION CHECK
+	AH = 50h
+Return: BX = 1954h if installed
+	    AL = 00h if inactive, nonzero if active
+Program: SCROLOCK is a utility supplied with System Enhancement Associates'
+	  ARC archiver
+SeeAlso: AH=51h
+

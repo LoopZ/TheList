@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17A0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy MW386 - SPOOL COPY OF FILE
+	AH = A0h
+	AL = mode
+	    00h NTNX compatibility
+		DX = ??? (NTNX, MW386 v1.x only)
+	    02h MW386 v2+
+		BX = logical device number
+		    00h-03h = LPT1-LPT4
+		    04h-07h = COM1-COM4
+	CX:SI -> ASCIZ pathname
+Return: AL = status (see #00642)
+Notes:	makes a copy of the specified file in the spooler's directory, allowing
+	  the original file to be modified or deleted while the copy is printed
+	in mode 00h, the file is printed on logical LPT1
+SeeAlso: AH=90h
+

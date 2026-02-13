@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212508
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - GET SEGMENT LINEAR BASE ADDRESS
+	AX = 2508h
+	BX = segment selector
+Return: CF clear if successful
+	    ECX = linear base address of segment
+	CF set if invalid segment selector
+Note:	this function is also supported by FlashTek X-32VM
+SeeAlso: AX=2509h
+

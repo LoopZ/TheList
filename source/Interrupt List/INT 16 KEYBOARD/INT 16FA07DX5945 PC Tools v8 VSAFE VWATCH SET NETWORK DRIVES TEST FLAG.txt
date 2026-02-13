@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FA07DX5945
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ VSAFE, VWATCH - SET NETWORK DRIVES TEST FLAG
+	AX = FA07h
+	DX = 5945h
+	BL = new state
+	    00h don't monitor
+	    01h monitor network drives
+Return: CF clear
+	DI = 4559h
+Note:	VWATCH v2.1 (from PC Tools 9.0) returns CF set instead
+SeeAlso: AX=FA00h,AX=FA06h
+

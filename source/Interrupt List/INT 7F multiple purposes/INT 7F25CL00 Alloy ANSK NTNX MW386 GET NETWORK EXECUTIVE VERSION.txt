@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F25--CL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy ANSK, NTNX, MW386 - GET NETWORK EXECUTIVE VERSION
+	AH = 25h
+	CL = 00h
+Return: AH = version suffix letter
+	CH = major version number
+	CL = minor version number
+SeeAlso: AH=25h/CL=01h
+

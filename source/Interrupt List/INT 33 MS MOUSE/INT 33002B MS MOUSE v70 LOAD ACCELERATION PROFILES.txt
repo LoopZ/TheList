@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33002B
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.0+ - LOAD ACCELERATION PROFILES
+	AX = 002Bh
+	BX = active acceleration profile
+	    0001h-0004h or FFFFh to restore default curves
+	ES:SI -> buffer containing acceleration profile data (see #03180)
+Return: AX = success flag
+SeeAlso: AX=002Ch,AX=002Dh,AX=0033h
+
+Format of acceleration profile data:
+Offset	Size	Description	(Table 03180)
+ 00h	BYTE	length of acceleration profile 1
+ 01h	BYTE	length of acceleration profile 2
+ 02h	BYTE	length of acceleration profile 3
+ 03h	BYTE	length of acceleration profile 4
+ 04h 32 BYTEs	threshold speeds for acceleration profile 1
+ 24h 32 BYTEs	threshold speeds for acceleration profile 2
+ 44h 32 BYTEs	threshold speeds for acceleration profile 3
+ 64h 32 BYTEs	threshold speeds for acceleration profile 4
+ 84h 32 BYTEs	speedup factor for acceleration profile 1
+		(10h = 1.0, 14h = 1.25, 20h = 2.0, etc)
+ A4h 32 BYTEs	speedup factor for acceleration profile 2
+		(10h = 1.0, 14h = 1.25, 20h = 2.0, etc)
+ C4h 32 BYTEs	speedup factor for acceleration profile 3
+		(10h = 1.0, 14h = 1.25, 20h = 2.0, etc)
+ E4h 32 BYTEs	speedup factor for acceleration profile 4
+		(10h = 1.0, 14h = 1.25, 20h = 2.0, etc)
+104h 16 BYTEs	name of acceleration profile 1 (blank-padded)
+114h 16 BYTEs	name of acceleration profile 2 (blank-padded)
+124h 16 BYTEs	name of acceleration profile 3 (blank-padded)
+134h 16 BYTEs	name of acceleration profile 4 (blank-padded)
+Note:	unused bytes in the threshold speed fields are filled with 7Fh and
+	  unused bytes in the speedup factor fields are filled with 10h
+

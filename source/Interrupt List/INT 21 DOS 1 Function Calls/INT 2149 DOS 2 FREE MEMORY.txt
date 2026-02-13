@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2149
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - FREE MEMORY
+	AH = 49h
+	ES = segment of block to free
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (07h,09h) (see #01680 at AH=59h/BX=0000h)
+Notes:	apparently never returns an error 07h, despite official docs; DOS 2.1+
+	  code contains only an error 09h exit
+	DOS 2.1-6.0 does not coalesce adjacent free blocks when a block is
+	  freed, only when a block is allocated or resized
+	the code for this function is identical in DOS 2.1-6.0 except for
+	  calls to start/end a critical section in DOS 3.0+
+SeeAlso: AH=48h,AH=4Ah
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH11
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - REQUEST CONTINUATION
+	AX = 53B0h
+	BH = 11h
+	BL = protocol (see #00487)
+	CH = device address
+	CL = number of valid bytes in DX (1 or 2)
+	DH = MSB Data (CL = 1 or 2)
+	DL = LSB Data (CL = 2)
+Return: CF clear if successful
+	    AH = 00h (SMBus OK)
+	    CL = SMBus status
+		00h SMBus hardware not ready for more data
+		01h SMBus hardware ready for 2 more data bytes
+	CF set if error
+	    AH = error code (05h,11h,13h,15h,16h,18h,1Bh,86h) (see #00484)
+Desc:	continue WriteBlock protocol started with function 10h
+SeeAlso: AX=53B0h/BH=10h, AX=53B0h/BH=13h
+

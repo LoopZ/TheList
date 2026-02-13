@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200DA
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VGASTATE" - SAVE/RESTORE VGA CONTROLLER STATE
+	AX = 00DAh
+	BX = direction (0000h save, else restore)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	this function is only meaningful in modes 0Dh and above
+

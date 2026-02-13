@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A05
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 5+ DOSSHELL - TASK SWITCHING API???
+	AX = 4A05h
+	SI = function
+	    0000h reset???
+	    0001h ???
+		ES:BP -> 80-byte buffer containing ???
+	    0002h ???
+	    0003h ???
+	    0004h ???
+		BL = ???
+	    0005h ???
+	    0006h get ???
+		Return: ES:SI -> ???
+	    0007h get ???
+		Return: AX = ???
+	    0008h get ???
+		Return: DX:AX -> ??? (internal control data of some kind)
+	    0009h get ???
+		Return: ES:SI -> ??? (apparently identical to function 0006h)
+	    000Ah ???
+		BL = length of buffer
+		ES:BP -> buffer containing ???
+	    000Bh get ???
+		Return: AX = ???
+	    000Ch ???
+		BL = ???
+		Return: if BL nonzero on entry
+			    DX:AX -> ???
+			if BL = 00h on entry
+			    ES:SI -> ???
+Notes:	DOSSHELL chains to the previous handler if SI is not one of the values
+	  listed above
+	the DOSSWAP.EXE module calls functions 03h,04h,05h,07h,08h,09h,0Ch
+	the Windows 3.1 DSWAP.EXE and WSWAP.EXE task switchers use these calls
+SeeAlso: AX=4B01h
+

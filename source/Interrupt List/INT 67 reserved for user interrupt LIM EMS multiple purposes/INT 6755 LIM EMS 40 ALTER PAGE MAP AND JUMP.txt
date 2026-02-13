@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6755
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - ALTER PAGE MAP AND JUMP
+	AH = 55h
+	AL = subfunction
+	    00h physical page numbers provided by caller
+	    01h segment addresses provided by caller
+	DX = handle
+	DS:SI -> structure containing map and jump address
+Return: (at target address unless error)
+	AH = status (00h,80h,81h,83h,84h,8Ah,8Bh,8Fh) (see #03648)
+SeeAlso: AH=56h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: B377
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - PLAY BACK EXIT KEY FOR ENTRY WITH GIVEN ZIPCODE
+	AH = 77h
+	DX = zipcode region (0-999)
+	CH = last two digits of zipcode (0-99)
+	BX = 16-bit BIOS keycode for a defined ZIPKEY alternate exit key
+Return: CF set on error
+	    AX destroyed
+	CF clear if successful
+	    zipcode specification as defined by the BX keystroke is placed in
+	      keyboard buffer, as if the user had popped up ZIPKEY and exited
+	      by pressing the key specified by BX
+

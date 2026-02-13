@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2171
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME FUNCTIONS
+	AH = 71h
+	AL = function
+	    0Dh reset drive (see AX=710Dh)
+	    39h create directory (see AX=7139h)
+	    3Ah remove directory (see AX=713Ah)
+	    3Bh set current directory (see AX=713Bh)
+	    41h delete file (see AX=7141h)
+	    43h get/set file attributes (see AX=7143h)
+	    47h get current directory (see AX=7147h)
+	    4Eh find first file (see AX=714Eh)
+	    4Fh find next file (see AX=714Fh)
+	    56h move (rename) file (see AX=7156h)
+	    60h truename (see AX=7160h/CL=00h,AX=7160h/CL=02h)
+	    6Ch create/open file (see AX=716Ch)
+	    A0h get volume information (see AX=71A0h)
+	    A1h terminate FindFirst/FindNext (see AX=71A1h)
+	    A6h get file information (see AX=71A6h)
+	    A7h time conversion (see AX=71A7h/BL=00h,AX=71A7h/BL=01h)
+	    A8h generate short filename (see AX=71A8h)
+	    A9h server create/open file (see AX=71A9h)
+	    AAh create/terminate SUBST (see AX=71AAh/BH=00h,AX=71AAh/BH=02h)
+Return: CF set on error
+	    AX = error code (see #01680)
+		7100h if function not supported
+	CF clear if successful
+	    other registers as for corresponding "old" DOS function
+Notes:	if error 7100h is returned, the old-style function should be called
+	AX=714Eh returns a "search handle" which must be passed to AX=714Fh;
+	  when the search is complete, AX=71A1h must be called to terminate
+	  the search
+	for compatibility with DOS versions prior to v7.00, the carry flag
+	  should be set on call to ensure that it is set on exit
+	Caldera's DPMS-enabled LONGNAME.EXE BETA 1 extension for DR-DOS 7
+	  supports the following sub-set of LFN functions: 39h, 3Ah, 3Bh, 41h,
+	  43h (BL = 0, 1 only), 47h, 4Eh, 4Fh, 56h, 60h (CL = 0, 1, 2), 6Ch,
+	  A0h, A1h, A8h. BETA 2 fixes LFN directory entry checksums, which
+	  were causing wrong LFNs to be attached to a file. The 8.3 short
+	  names for filenames with exactly 8 chars are no longer abbreviated
+	  (e.g. LONGNAME.TXT -> LONGNAME.TXT, not LONGNA~1.TXT). BETA 3 has
+	  A7h (BL=0, 1) functions added, and 4Eh/4Fh can return file times
+	  in both DOS and 64 bit formats, BETA 4 has support added for
+	  Caldera's DRFAT32 redirector extension (see INT 2F/AX=15xxh).
+	Caldera's DR-OpenDOS 7.02+ COMMAND.COM utilizes the LFN API as soon
+	  as it detects it (mind, that LONGNAME.EXE can be dynamically loaded
+	  and unloaded at runtime). This COMMAND.COM shell also works under
+	  MS-DOS/PC DOS and in DOS boxes of Windows9x, NT, 2000, and OS/2.
+	For 4DOS 6.02+ to work with 3rd party LFN providers, the Win95LFN=Yes
+	  directive should be inserted into the 4DOS.INI file.
+	Mike Podanoffsky's RxDOS 7.2 provides most of this API natively,
+	  including functions 39h, 3Ah, 3Bh, 41h, 43h (BL = ???), 47h, 4Bh,
+	  4Eh, 4Fh, 56h, 60h (CL = 0, 1, 2, no CH), 6Ch, A0h, A1h and A7h.
+	  However, not all sub-functions seem to be supported yet.
+SeeAlso: AH=39h,AH=3Ah,AH=3Bh,AH=41h,AX=4300h,AX=4301h,AX=4304h,AX=4306h
+SeeAlso: AX=4307h,AH=47h,AH=4Eh,AH=4Fh,AH=56h,AH=6Ch,AX=714Eh,AX=714Fh
+

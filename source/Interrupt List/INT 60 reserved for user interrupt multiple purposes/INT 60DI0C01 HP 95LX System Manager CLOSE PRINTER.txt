@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0C01
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CLOSE PRINTER
+	DI = 0C01h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+Return: ???
+	STACK unchanged
+Note:	relinquishes control of printer
+SeeAlso: INT 60/DI=0C00h
+

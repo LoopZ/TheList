@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148B
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - SET USER INTERRUPT ROUTINE
+	AH = 8Bh
+	CX = bitmask of interrupt to process
+	    00h = deinstall
+	BX:DI -> DWORD containing address of function to be called
+Return: AH bit 7 clear if successful
+	AH bit 7 set on error
+

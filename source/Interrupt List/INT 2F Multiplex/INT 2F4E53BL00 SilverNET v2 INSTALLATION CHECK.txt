@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4E53BL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SilverNET v2+ - INSTALLATION CHECK
+	AX = 4E53h ("NS")
+	BL = 00h (function "installation check")
+	BH = module ID (see #02826)
+Return: AX = 0000h if specified module installed
+	BX = 4E53h if installed
+Program: SilverNET is an SMB-compatible peer-to-peer NOS for DOS or
+	  Windows systems, by Net-Source, Inc. of Santa Clara, CA.
+SeeAlso: AX=4E53h/BL=01h,AX=4E53h/BL=02h,AX=B800h,AX=B809h
+
+(Table 02826)
+Values for SilverNET module ID:
+ 01h	SilverCACHE
+ 02h	Workstation
+ 03h	NetBIOS
+ 04h	Peer
+ 20h	NS Share
+ 80h	NetWare help TSR
+

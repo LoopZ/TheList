@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: D41E
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - GET CURRENT USERNAME AND SECURITY CLASS
+	AH = 1Eh
+	BX = task ID (FFFFh for current task)
+	ES:DI -> 4-byte buffer for username
+Return: CF clear if successful
+	    CL = security class
+		20h (' ') none
+		41h-5Ah ('A'-'Z') security level
+	    ES:DI buffer filled
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+SeeAlso: AH=19h,AH=1Dh
+

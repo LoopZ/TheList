@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF04
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - GET PARTITION NAME
+	AX = DF04h
+	BL = task number
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+		CX = length of name (00h if default partition name)
+		ES:BX -> partition name (if CX nonzero)
+	    FFh unsucessful
+		AH = error code (01h) (see #01813)
+SeeAlso: AX=DF06h
+

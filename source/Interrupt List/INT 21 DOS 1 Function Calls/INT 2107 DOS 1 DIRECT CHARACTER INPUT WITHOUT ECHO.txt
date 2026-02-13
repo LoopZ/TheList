@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2107
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - DIRECT CHARACTER INPUT, WITHOUT ECHO
+	AH = 07h
+Return: AL = character read from standard input
+Notes:	does not check ^C/^Break
+	standard input is always the keyboard under DOS 1.x, but may be
+	  redirected under DOS 2+
+	if the interim console flag is set (see AX=6301h), partially-formed
+	  double-byte characters may be returned
+SeeAlso: AH=01h,AH=06h,AH=08h,AH=0Ah
+

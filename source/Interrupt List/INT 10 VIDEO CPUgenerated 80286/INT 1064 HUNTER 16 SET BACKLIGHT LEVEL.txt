@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1064
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - SET BACKLIGHT LEVEL
+	AH = 64h
+	AL = level (0..15)
+Return: nothing
+Desc:	set the LCD backlight level to improve visibility in bad lighting
+SeeAlso: AH=63h,AH=65h,AH=74h,AH=78h"HUNTER",INT 15/AH=74h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1540
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - READ/MODIFY PROFILES (CONVERTIBLE)
+	AH = 40h
+	AL = subfunction
+	    00h get system profile in CX and BX
+	    01h set system profile from CX and BX
+	    02h get internal modem profile in BX
+	    03h set internal modem profile from BX
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = status (80h = profile execution failed)
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10C001
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - S3 SpeedUp v3.00+ - GET ACTIVE OPTIONS
+	AX = C001h
+Return: AX = FFFFh if function supported
+	    BX = currently active options (see #00216)
+SeeAlso: AX=C000h,AX=C002h,AX=C003h
+
+Bitfields for S3SpeedUp options:
+Bit(s)	Description	(Table 00216)
+ 0	speed up banked VESA modes
+ 1	speed up 320x200 VGA mode 13
+SeeAlso: #00222
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1603
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - SET TYPEMATIC RATE AND DELAY
+	AH = 03h
+	AL = subfunction
+	    00h set default delay and rate (PCjr and some PS/2)
+	    01h increase delay before repeat (PCjr)
+	    02h decrease repeat rate by factor of 2 (PCjr)
+	    03h increase delay and decrease repeat rate (PCjr)
+	    04h turn off typematic repeat (PCjr and some PS/2)
+	    05h set repeat rate and delay (AT,PS)
+		BH = delay value (00h = 250ms to 03h = 1000ms)
+		BL = repeat rate (00h=30/sec to 0Ch=10/sec [def] to 1Fh=2/sec)
+	    06h get current typematic rate and delay (newer PS/2s)
+		Return: BL = repeat rate (above)
+			BH = delay (above)
+Return: AH destroyed by many BIOSes
+Note:	use INT 16/AH=09h to determine whether some of the subfunctions are
+	  supported
+SeeAlso: INT 16/AH=09h,AH=29h"HUNTER",AH=2Ah"HUNTER"
+

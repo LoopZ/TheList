@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A000
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI BIOS Extensions - ???
+	AX = A000h
+	CL = ??? (bits 2-0 may not be 000)
+	CH = ??? (81h or ???)
+	DX = segment of ??? (if CH=81h)
+	???
+Return: AX = ???
+Program: the ATI BIOS extensions are supported by ATI graphics cards containing
+	  the Mach64 or newer graphics chips (Rage Pro, Rage 128, etc.)
+SeeAlso: AX=4F10h/BL=00h,AX=A001h
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AFF01
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SND - PAUSE
+	AX = FF01h
+	DX = number of clock ticks to delay
+Return: AH = status
+	    00h successful
+	    01h SND busy
+Notes:	if successful, execution returns to the caller after the delay expires;
+	  if SND is busy, execution returns immediately
+	the IC v2.0 implementation of this API makes no special allowance for
+	  time rollover at midnight, which can cause the delay to be over one
+	  hour if this function is called just before the BIOS time count
+	  rolls over and the delay extends into the next day
+SeeAlso: AX=FF00h,INT 15/AH=86h,INT 62/AX=0096h,INT 7F/AH=E8h,INT 80/BX=0009h
+SeeAlso: INT E0/CL=BDh
+

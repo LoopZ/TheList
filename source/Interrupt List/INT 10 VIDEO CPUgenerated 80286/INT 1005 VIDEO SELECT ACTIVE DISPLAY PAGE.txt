@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1005
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO -  SELECT ACTIVE DISPLAY PAGE
+	AH = 05h
+	AL = new page number (00h to number of pages - 1) (see #00010)
+Return: nothing
+Desc:	specify which of possibly multiple display pages will be visible
+Note:	to determine whether the requested page actually exists, use AH=0Fh
+	  to query the current page after making this call
+SeeAlso: AH=0Fh,AH=43h,AH=45h,MEM 0040h:0062h,MEM 0040h:004Eh
+

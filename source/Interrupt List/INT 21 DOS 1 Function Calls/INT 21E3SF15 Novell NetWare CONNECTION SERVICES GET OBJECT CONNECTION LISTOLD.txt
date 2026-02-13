@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF15
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - GET OBJECT CONNECTION LIST(OLD)
+	AH = E3h subfn 15h
+	DS:SI -> request buffer (see #01915)
+	ES:DI -> reply buffer (see #01916)
+Return: AL = status
+	    00h successful
+Desc:	this function retrieves a list indicating the connection numbers under
+	  which a bindery object is logged into the default file server
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=DCh"NetWare",AH=E3h/SF=16h,AX=F217h/SF=15h
+
+Format of NetWare "Get Object Connection Numbers" request buffer:
+Offset	Size	Description	(Table 01915)
+ 00h	WORD	length of following data (max 33h)
+ 02h	BYTE	15h (subfunction "Get Object Connection Numbers")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name (01h-2Fh)
+ 06h  N BYTEs	object's name
+SeeAlso: #01916,#02169
+
+Format of NetWare "Get Object Connection Numbers" reply buffer:
+Offset	Size	Description	(Table 01916)
+ 00h	WORD	(call) length of following results buffer (max 65h)
+ 02h	BYTE	number of connections
+ 03h  N BYTEs	connection list
+SeeAlso: #01915,#02169
+

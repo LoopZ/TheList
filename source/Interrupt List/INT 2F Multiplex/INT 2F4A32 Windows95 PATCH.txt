@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A32
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Windows95 - PATCH ???
+	AX = 4A32h
+	BL = subfunction
+	    00h get ???
+		Return: AX = flag: subfunction 04h has been used (0000h/FFFFh)
+			DX = ??? (0000h/?)
+	    01h	patch ??? in IO.SYS (segment 0070h)
+	    02h unpatch ??? in IO.SYS
+	    03h ???
+	    04h set ???, then do subfunction 01h
+	    05h unset ???, then do subfunction 02h
+	    else
+		Return: nothing
+

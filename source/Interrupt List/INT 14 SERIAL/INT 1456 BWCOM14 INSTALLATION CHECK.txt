@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1456
+  Category: S 	serial I/O
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 14 U - BWCOM14 - INSTALLATION CHECK
+	AH = 56h
+Return: CX = 0001h if installed
+Program: BWCOM14 is a network serial port emulator (simulating a Hayes modem
+	  connected to the serial port) distributed as part of the
+	  Beame&Whiteside BW-NFS package
+SeeAlso: AH=57h,AH=58h,INT 2F/AX=DF00h/BX=5445h
+

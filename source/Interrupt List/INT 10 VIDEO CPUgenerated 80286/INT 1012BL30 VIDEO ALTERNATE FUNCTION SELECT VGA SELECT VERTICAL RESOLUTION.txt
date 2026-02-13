@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL30
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (VGA) - SELECT VERTICAL RESOLUTION
+	AH = 12h
+	BL = 30h
+	AL = vertical resolution
+	     00h 200 scan lines
+	     01h 350 scan lines
+	     02h 400 scan lines
+Return: AL = 12h if function supported
+Desc:	specify the number of scan lines used to display text modes
+Note:	the specified resolution will take effect on the next mode set
+SeeAlso: AH=00h
+

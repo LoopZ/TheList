@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF14
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - GET ASSIGN VALUE
+	AX = AF14h
+	BL = drive number (00h = A:)
+Return: DL = drive number which is actually accessed by drive number BL
+Desc:	determine the current mapping for a drive
+SeeAlso: AX=AF00h"WinDOS",AX=AF13h"WinDOS",AX=0601h
+

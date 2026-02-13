@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFDE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET PHYSICAL RECORD LOCKS BY FILE
+	AH = E3h subfn DEh
+	DS:SI -> request buffer (see #02058)
+	ES:DI -> reply buffer (see #02059)
+Return: AL = status (00h,C6h,FFh) (see #02053)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=DDh,AH=E3h/SF=DFh,AX=F217h/SF=DEh
+
+Format of NetWare "Get Physical Record Locks by File" request buffer:
+Offset	Size	Description	(Table 02058)
+ 00h	WORD	length of following data (max 104h)
+ 02h	BYTE	DEh (subfunction "Get Physical Record Locks by File")
+ 03h	WORD	(big-endian) last record seen (0000h on first call)
+ 05h	BYTE	directory handle
+ 06h	BYTE	length of filename
+ 07h  N BYTEs	ASCIZ filename
+SeeAlso: #02059,#02237 at AX=F217h/SF=DEh
+
+Format of NetWare "Get Physical Record Locks by File" reply buffer:
+Offset	Size	Description	(Table 02059)
+ 00h	WORD	(call) size of following results record (max 1FEh)
+ 02h	WORD	next request record (place in "last record" on next call)
+		0000h if no more records
+ 04h	BYTE	number of physical record locks
+ 05h	BYTE	number of records following
+ 06h	var	array of Physical Record Lock Info records (see #02060)
+SeeAlso: #02058,#02237 at AX=F217h/SF=DEh
+
+Format of NetWare Physical Record Lock Info:
+Offset	Size	Description	(Table 02060)
+ 00h	WORD	(big-endian) number of tasks logging record
+ 02h	WORD	(big-endian) number of tasks with shareable lock
+ 04h	DWORD	(big-endian) starting offset of record in file
+ 08h	DWORD	(big-endian) ending offset of record in file
+ 0Ch	WORD	(big-endian) logical connection number
+ 0Eh	BYTE	task number
+ 0Fh	BYTE	lock type
+		00h none
+		FEh file lock
+		FFh Begin Share File Set lock
+SeeAlso: #02059
+

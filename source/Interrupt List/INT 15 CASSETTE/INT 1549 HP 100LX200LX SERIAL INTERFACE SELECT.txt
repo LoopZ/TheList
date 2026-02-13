@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1549
+  Category: S 	serial I/O
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SERIAL INTERFACE SELECT
+	AH = 49h
+	AL = serial interface
+	    00h wired (COM1)
+	    01h infrared
+Note:	interface should only be changed in deactivated state (see AH=4Ah)
+SeeAlso: AH=4Ah"HP"
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5A - TI Professional PC - SYSTEM TIMER 100ms HOOK
+Desc:	called from the hardware timer tick interrupt, after executing the
+	  first four BIOS timing events, updating the system clock, saving
+	  registers, and switching to a temporary stack (the one reserved
+	  for IRQ3), but before calling INT 58
+	no details available
+Notes:	this interrupt is invoked on every fourth timer interrupt
+	the handler for this interrupt may destroy AX,BX,DI,ES but must
+	  preserve all other registers; 8 WORDs of stack space are available,
+	  of which at most 4 may be used if the handler enables interrupts
+	if the handler switches stacks (because more than 4/8 WORDs are
+	  required), the original stack must be restored before chaining to
+	  the previous handler
+SeeAlso: INT 43"TI Professional",INT 4C"TI Professional"
+SeeAlso: INT 58"TI Professional"
+

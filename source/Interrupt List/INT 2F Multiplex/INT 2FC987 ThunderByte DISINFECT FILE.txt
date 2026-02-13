@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC987
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - ThunderByte??? - DISINFECT FILE???
+	AX = C987h
+	BX:DX -> filename
+	BX:CX -> virus name
+Return: AX = status
+	    0000h successful???
+Note:	called by TBSCANX
+SeeAlso: AX=CA00h
+

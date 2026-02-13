@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFE5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET CONNECTION'S USAGE STATISTICS
+	AX = F217h subfn E5h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02075 at AH=E3h/SF=E5h)
+	ES:DI -> reply buffer (see #02243)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=E5h,AX=F217h/SF=EAh
+
+Format of NetWare "Get Connection's Usage Statistics" reply packet:
+Offset	Size	Description	(Table 02243)
+ 00h	DWORD	(big-endian) clock ticks since server started
+ 04h  6 BYTEs	bytes read
+ 0Ah  6 BYTEs	bytes written
+ 10h	DWORD	(big-endian) total request packets
+SeeAlso: #02075,#02076 at AH=E3h/SF=E5h
+

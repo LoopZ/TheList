@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - GET FILE SERVER NAME TABLE
+	AX = EF04h
+Return: ES:SI -> network shell's file server name table (see #02093)
+	AX = 0000h
+Note:	this function is supported by Advanced NetWare 1.0+
+SeeAlso: AX=EF03h
+
+Format of file server name table:
+Offset	Size	Description	(Table 02093)
+ 00h 48 BYTEs	ASCIZ server name for first entry in connection ID table
+ 30h 48 BYTEs	ASCIZ server name for second entry in connection ID table
+	...
+150h 48 BYTEs	ASCIZ server name for eighth entry in connection ID table
+

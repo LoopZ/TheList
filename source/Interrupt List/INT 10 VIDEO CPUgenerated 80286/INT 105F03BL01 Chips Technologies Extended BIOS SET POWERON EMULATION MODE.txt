@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F03BL01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - SET POWER-ON EMULATION MODE
+	AX = 5F03h
+	BL = 01h
+	CL = emulation mode (see #00181)
+	CH = permanence
+	    bit 7 persistence (0 reset on next boot, 1 until changed)
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F02h,AX=5F03h/BL=00h"Chips",AX=5F90h
+

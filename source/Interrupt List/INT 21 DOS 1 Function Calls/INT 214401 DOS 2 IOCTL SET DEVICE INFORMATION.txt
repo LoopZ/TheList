@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214401
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - IOCTL - SET DEVICE INFORMATION
+	AX = 4401h
+	BX = handle (must refer to character device)
+	DX = device information word (see #01423)
+	    (DH must be zero for DOS version prior to 6.x)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Note:	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AX=4400h,INT 2F/AX=122Bh
+

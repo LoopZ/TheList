@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131C0B
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - ESDI FIXED DISK - GET ADAPTER CONFIGURATION
+	AX = 1C0Bh
+	ES:BX -> buffer for Controller Configuration Status Block (see #00261)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234 at AH=01h)
+SeeAlso: AX=1C0Ch
+
+Format of ESDI Controller Configuration Status Block:
+Offset	Size	Description	(Table 00261)
+ 00h	BYTE	E9h
+ 01h	BYTE	number of words in block (06h)
+ 02h	WORD	unused (0000h)
+ 04h	DWORD	controller microcode revision level
+ 08h  2 WORDs	unused (0000h)
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF08
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq SLT/286 - WRITE COLOR MIX REGISTERS
+	AX = BF08h
+	CH = bits 7-4 green weight
+	     bits 3-0 blue weight
+	CL = bits 7-4 unused
+	     bits 3-0 red weight
+Return: nothing
+SeeAlso: AH=12h/BL=33h,AX=BF07h
+

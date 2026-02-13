@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF81
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET QUEUE JOB LIST
+	AX = F217h subfn 81h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02216)
+	ES:DI -> reply buffer (see #02217)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=6Bh
+
+Format of NetWare "Get Queue Job List" request packet:
+Offset	Size	Description	(Table 02216)
+ 00h	WORD	length of following data
+ 02h	BYTE	81h (subfunction "Get Queue Job List")
+ 03h	DWORD	queue ID
+ 07h	DWORD	address of next job in queue
+SeeAlso: #02217
+
+Format of NetWare "Get Queue Job List" reply packet:
+Offset	Size	Description	(Table 02217)
+ 00h	DWORD	total jobs in queue
+ 04h	DWORD	length of job number list (max 125)
+ 08h  N DWORDs	list of job numbers in queue
+SeeAlso: #02216
+

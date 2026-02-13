@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1100
+  Category: N 	network
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - NETWORK REDIRECTOR - INSTALLATION CHECK
+	AX = 1100h
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+		AH = product identifier (ad hoc by various manufacturers)
+		    00h if PC Tools v8 DRIVEMAP
+		    42h ('B') for Beame&Whiteside BWNFS v3.0a
+		    6Eh ('n') for NetWare Lite v1.1 CLIENT
+Notes:	this function is called by the DOS 3.1+ kernel
+	in DOS 4.x only, the 11xx calls are all in IFSFUNC.EXE, not in the
+	  PC LAN Program redirector; DOS 5+ moves the calls back into the
+	  redirector
+	the PC Network 1.00 redirector (renamed to PC LAN Program in 1.1-1.3)
+	  only supports AL=00h-27h
+

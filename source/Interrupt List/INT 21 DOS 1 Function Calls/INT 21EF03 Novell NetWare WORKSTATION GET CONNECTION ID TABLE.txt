@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EF03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - GET CONNECTION ID TABLE
+	AX = EF03h
+Return: ES:SI -> network shell's connection ID table (see #02092)
+	AX = 0000h
+Note:	this function is supported by Advanced NetWare 1.0+
+SeeAlso: AX=EF00h,AX=EF02h,AX=EF04h,AX=F002h
+
+Format of NetWare connection ID table [one entry of eight-element array]:
+Offset	Size	Description	(Table 02092)
+ 00h	BYTE	in-use flag
+		E0h AES temporary
+		F8h IPX in critical section
+		FAh processing
+		FBh holding
+		FCh AES waiting
+		FDh waiting
+		FEh receiving
+		FFh sending
+ 01h	BYTE	order number assigned to server (1-8)
+ 02h	DWORD	(big-endian) file server's network address
+ 06h  6 BYTEs	(big-endian) file server's node address
+ 0Ch	WORD	(big-endian) socket number
+ 0Eh	WORD	(big-endian) base receive timeout in clock ticks
+ 10h  6 BYTEs	(big-endian) preferred routing node
+ 16h	BYTE	packet sequence number
+ 17h	BYTE	connection number (FFh = no connection)
+ 18h	BYTE	connection status (00h if active)
+ 19h	WORD	(big-endian) maximum receive timeout in clock ticks
+ 1Bh	WORD	connection number (if > FAh)
+ 1Dh	BYTE	major version of NetWare
+ 1Eh	BYTE	minor version of NetWare
+ 1Fh	BYTE	server flags
+		bit 0: server is burst enabled
+

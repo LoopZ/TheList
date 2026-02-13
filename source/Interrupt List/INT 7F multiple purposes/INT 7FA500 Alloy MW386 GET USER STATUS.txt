@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FA500
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET USER STATUS
+	AX = A500h
+	DI = machine number and user number
+Return: CF clear if successful
+	    BX = user flags
+		bit 5: allow messages
+	    CL = scan code for task manager hotkey
+	    CH = scan code for spooler hotkey
+	    DL = scan code for task swapper hotkey
+	    DH = modifier key status
+	CF set if invalid user number
+SeeAlso: AX=A501h
+Index:	hotkeys;Alloy MW386
+

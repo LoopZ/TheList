@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6D - DECnet DOS (before 2.1) - DATA LINK LAYER PROGRAM
+	AH = function
+	???
+Return: ???
+InstallCheck:	test for a signature area immediately preceding the interrupt
+	  handler (see #03734)
+SeeAlso: INT 69/AH=0Ah,INT 6C"DECnet",INT 6E"DECnet"
+Index:	installation check;DECnet DOS Data Link Layer
+
+Format of DECnet DOS signature area:
+Offset	Size	Description	(Table 03734)
+ -5	BYTE	major version number
+ -4	BYTE	minor version number
+ -3   3 BYTEs	signature (ASCII "DLL")
+

@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0C
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 0C - IBM SYSTEM 36/38 WORKSTATION EMULATION - API POINTER
+Desc:	the IBM System 36/38 emulator may be invoked through a private API,
+	  whose entry point address (see #00007) is offset 100h in the segment
+	  pointed at by this vector
+
+(Table 00007)
+Call the System 36/38 emulator API entry point with:
+	AH = function
+	    03h update screen
+	    05h select next session
+		AL = session number (00h-03h)
+		Return: AL = session type code
+			    00h not active
+			    01h display session
+			    02h printer session
+			    FEh invalid session number
+			DS = requested session's data segment (0 if not active)
+			    (see #00008)
+Return: ???
+
+Format of System 36/38 emulator's data area:
+Offset	Size	Description	(Table 00008)
+13Eh	BYTE	bit flags for status line indicators turned on since this byte
+		last zerod
+13Fh	BYTE	bit flags for status line indicators turned off since this
+		byte last set to FFh
+140h	WORD	offset of EBCDIC to ASCII translation
+146h	WORD	offset of EBCDIC screen buffer
+148h	WORD	offset of EC (engineering change) level signature
+150h	BYTE	"KEYI"
+151h	BYTE	5250 key scan code to be sent to remote
+15Bh	BYTE	"SYSAV"
+15Dh	BYTE	5250 cursor column
+15Eh	BYTE	5250 cursor row
+167h	BYTE	"DVCTAD"
+178h	BYTE	"FLAGS"
+184h	BYTE	"SESSNOAD"
+193h	BYTE	"STNAD"
+198h	BYTE	"NSDS"
+Note:	offsets are from the interrupt handler's segment
+

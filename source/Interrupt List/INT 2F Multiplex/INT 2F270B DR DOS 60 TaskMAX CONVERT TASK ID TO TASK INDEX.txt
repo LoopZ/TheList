@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F270B
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - CONVERT TASK ID TO TASK INDEX
+	AX = 270Bh
+	DX = task ID
+Return: DX = task index (FFFFh if task not active)
+Note:	the TaskMAX API is also supported by Novell DOS 7 TASKMGR in both
+	  taskswitching and multitasking modes
+SeeAlso: AX=270Ah
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6801--SF2700
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - NETWORK DEVICE CONTROL - DETACH PHYSICAL UNIT
+	AH = 01h subfn 2700h
+	DS:DX -> control block (see #03678)
+Return: control block updated
+SeeAlso: AH=01h/SF=2000h,AH=01h/SF=2100h,AH=01h/SF=2200h
+
+Format of APPC/PC "Detach Physical Unit" control block:
+Offset	Size	Description	(Table 03678)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	2700h (verb "Detach Physical Unit")
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h	BYTE	00h  type: hard
+		01h  type: soft
+

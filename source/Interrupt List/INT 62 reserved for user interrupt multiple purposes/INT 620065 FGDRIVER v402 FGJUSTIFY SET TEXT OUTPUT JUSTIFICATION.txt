@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620065
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_JUSTIFY" - SET TEXT OUTPUT JUSTIFICATION
+	AX = 0065h
+	BX = horizontal justification
+	      (00h centered, 01h right-justified, FFh left-justified)
+	CX = vertical justification
+	      (00h centered, 01h top of characters, FFh bottom of chars)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=000Ch,AX=0037h,AX=0053h,AX=0057h,AX=0096h
+

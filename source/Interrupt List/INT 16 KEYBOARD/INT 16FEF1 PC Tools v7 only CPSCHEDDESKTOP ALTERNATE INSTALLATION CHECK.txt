@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FEF1
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v7 only CPSCHED/DESKTOP - ALTERNATE INSTALLATION CHECK
+	AX = FEF1h
+	BX = ???
+Return: CX = 5555h if PC Tools scheduler (CPSCHED or DESKTOP) installed
+	DX = 5555h
+Note:	this function is identical to AX=FFD3h, and is implemented by the same
+	  code in DESKTOP
+SeeAlso: AX=FFF1h
+

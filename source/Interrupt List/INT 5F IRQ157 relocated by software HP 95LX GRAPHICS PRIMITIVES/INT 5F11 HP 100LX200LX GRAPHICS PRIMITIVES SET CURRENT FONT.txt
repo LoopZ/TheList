@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F11
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 100LX/200LX GRAPHICS PRIMITIVES - SET CURRENT FONT
+	AH = 11h
+	ES:DI -> ptr to font or 0000h:fontID# for built-in font
+Note:	this function should be called immediately after AH=10h with the
+	  pointer supplied by that call
+SeeAlso: AH=10h
+

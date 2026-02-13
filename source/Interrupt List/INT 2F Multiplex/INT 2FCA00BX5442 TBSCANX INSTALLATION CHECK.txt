@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCA00BX5442
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - TBSCANX - INSTALLATION CHECK
+	AX = CA00h
+	BX = 5442h ('TB')
+Return: AL = state
+	    00h not installed
+	    FFh installed
+		BX = 7462h ('tb') if BX was 5442h on entry
+Program: TBSCANX is a resident virus scanning module by Frans Veldman.
+Notes:	programs may perform virus checks on themselves, other program files,
+	  or their data files by invoking the TBSCANX API.
+	current versions of TBScanX don't actually check the value of BX
+SeeAlso: AX=4653h/CX=0002h,AX=4653h/CX=0007h,AX=C900h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62003A
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETATTR" - GET CHARACTER ATTRIB FOR POSITION
+	AX = 003Ah
+	BX = row
+	CX = column
+Return: AX = character attribute at specified location on active video page
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in graphics modes
+SeeAlso: AX=000Bh,AX=003Dh,AX=0040h,AX=00A6h
+

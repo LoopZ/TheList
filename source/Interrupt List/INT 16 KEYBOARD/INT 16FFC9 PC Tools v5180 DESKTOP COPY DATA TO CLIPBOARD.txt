@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFC9
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - COPY DATA TO CLIPBOARD
+	AX = FFC9h
+	DS:SI -> characters to store in clipboard
+	CX = size in bytes
+Return: CF set on error
+Notes:	available only when popped up
+	while copying, bytes of 00h and 0Ah are skipped
+

@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET USER INFORMATION
+	AX = F27Bh subfn 04h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02494)
+	ES:DI -> reply buffer (see #02495)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Get User Information" request buffer:
+Offset	Size	Description	(Table 02494)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	04h (subfunction "Get User Information")
+ 03h	DWORD	connection number
+SeeAlso: #02495
+
+Format of NetWare "Get User Information" reply buffer:
+Offset	Size	Description	(Table 02495)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	DWORD	connection number
+ 0Ch	DWORD	use count
+ 10h	BYTE	connection service type
+ 11h  7 BYTEs	login time
+ 18h	DWORD	status
+ 1Ch	DWORD	expiration time
+ 20h	DWORD	object type
+ 24h	BYTE	transaction flag
+ 25h	BYTE	logical lock threshold
+ 26h	BYTE	record lock threshold
+ 27h	BYTE	file write flags
+ 28h	BYTE	file write state
+ 29h	BYTE	(filler)
+ 2Ah	WORD	file lock count
+ 2Ch	WORD	record lock count
+ 2Eh  6 BYTEs	total number of bytes read
+ 34h  6 BYTEs	total number of bytes written
+ 3Ah	DWORD	total requests
+ 3Eh	DWORD	held requests
+ 42h  6 BYTEs	held bytes read
+ 48h  6 BYTEs	held bytes written
+ 4Eh	BYTE	length of user name
+ 4Fh  N BYTEs	user name
+SeeAlso: #02494
+

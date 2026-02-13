@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2705
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - ENABLE/DISABLE DIRECT SWITCHING
+	AX = 2705h
+	DL = subfunction
+	    00h disable keystrokes for switching to next/prev/specified task
+	    01h enable
+Return: nothing
+Note:	should only be called by a registered task manager (see AX=2704h)
+SeeAlso: AX=2704h,AX=2706h
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: B376
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - LOOK UP CITY AND STATE FOR ZIPCODE
+	AH = 76h
+	DX = zipcode region (0-999)
+	CH = last two digits of zipcode (0-99)
+	ES:DI -> buffer for name
+Return: CF set on error
+	    AL = suggested state code, FFh if none
+	    ES:DI buffer filled with suggested city name
+	CF clear if successful
+	    AL = ZIPKEY state code
+	    BX = area code (v2.0+)
+	    ES:DI points one byte beyond end of name
+SeeAlso: AH=75h,AH=78h,AH=7Eh
+

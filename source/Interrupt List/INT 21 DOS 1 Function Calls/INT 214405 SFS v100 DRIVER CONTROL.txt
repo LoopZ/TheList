@@ -1,0 +1,86 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214405
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - SFS v1.00 - DRIVER CONTROL
+	AX = 4405h
+	BL = drive number (00h = default, 01h = A:, etc)
+	CX = number of bytes to write
+	DS:DX -> data to write (see #01543)
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: SFS (Secure FileSystem) is a shareware encrypting disk driver by
+	  Peter C. Gutmann
+SeeAlso: AX=4404h"SFS"
+
+(Table 01542)
+Values for SFS control function:
+ 00h	"PACKET_SET_DISKINFO"	 set disk parameters
+ 01h	"PACKET_SET_KEYINFO"	 set keying information
+ 02h	"PACKET_SET_READONLY"	 select read/write or read-only
+ 03h	"PACKET_SET_DRIVENO"	 set drive number to mount
+ 04h	"PACKET_SET_MOUNTSTATUS" set mount status
+ 05h	"PACKET_SET_UNMOUNT"	 set/clear quick-unmount hotkey
+ 06h	"PACKET_SET_TIMEOUT"	 set/clear auto-unmount timeout
+
+Format of SFS control data packet:
+Offset	Size	Description	(Table 01543)
+ 00h	WORD	signature 4330h ('C0')
+ 02h	WORD	function (see #01542)
+---function 00h---
+ 04h	WORD	sector size in bytes
+ 06h	BYTE	sectors per cluster
+ 07h	WORD	number of boot sectors
+ 09h	BYTE	number of copies of FAT
+ 0Ah	WORD	size of root directory in entries
+ 0Ch	WORD	number of sectors on disk, 16-bit
+ 0Eh	BYTE	media descriptor byte
+ 0Fh	WORD	sectors per FAT
+ 11h	WORD	sectors per track
+ 13h	WORD	number of heads
+ 15h	DWORD	number of hidden sectors
+ 19h	DWORD	number of sectors on disk, 32-bit
+---function 01h---
+ 04h 20 BYTEs	master IV for encrypted disk
+ 18h 64 BYTEs	NDC/SHS keying information
+---function 02h---
+ 04h	WORD	read-only state: 00h read-only, 01h read/write
+---function 03h---
+ 04h	WORD	drive number (see #01544)
+ 06h	DWORD	sector offset of logical volume from start of physical volume
+		0 if logical volume = physical volume
+---function 04h---
+ 04h	WORD	mount status (00h unmounted, 01h mounted)
+---function 05h---
+ 04h	WORD	hotkey (high byte = shift state, low byte = scan code or 00h)
+		(see #00006)
+		0000h to disable hotkey
+---function 06h---
+ 04h	WORD	timeout in minutes before automatic unmount
+		0000h to disable auto-unmount
+Notes:	the data for function 00h corresponds to a DOS BPB (see AH=53h)
+	functions 00h, 01h, and 03h automatically unmount the encrypted drive
+	unmounting a drive with function 04h also destroys the encryption
+	  information in the driver and forces all dirty buffers to be flushed
+
+Bitfields for SFS drive number:
+Bit(s)	Description	(Table 01544)
+ 15-12	drive access mode
+	0000 BIOS access
+	0001 direct IDE access
+	0010 direct SCSI access
+---if BIOS access---
+ 11-8	unused (0)
+ 7-0	BIOS drive number
+---if IDE access---
+ 11-8	unused (0)
+ 7-0	IDE drive number
+---if SCSI access---
+ 11-8	SCSI host number
+ 7-4	SCSI target ID
+ 3-0	SCSI logical unit number
+

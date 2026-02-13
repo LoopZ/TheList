@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FC7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - READ CONSOLE DATA BYTE
+	AH = C7h
+Return: CF clear if successful
+	    AL = byte read
+	CF set on error (no data available or caller is not remote user)
+Note:	used to read data after placing console in mode 2 or 3 (see AH=C5h)
+SeeAlso: AH=C5h,AH=C6h,AH=C8h
+

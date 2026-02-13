@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 157002
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - Tandy 1000 Model ??? - GET ROM PAGE
+	AX = 7002h
+Return: AL = ROM page mapped at 0E0000h (0-6 (13?))
+Note:	some Tandy machines have DOS and DeskMate in a 512k paged ROM.	The
+	  BIOS uses this call to determine what ROM page is mapped in the 64k
+	  segment at 0E0000h.
+	the 1000TL has 8 64k ROM pages; page 7 is permanently mapped at
+	  0F0000h.  There may be 16 32k ROM pages on other systems.
+SeeAlso: AX=7003h,INT E0"DeskMate"
+

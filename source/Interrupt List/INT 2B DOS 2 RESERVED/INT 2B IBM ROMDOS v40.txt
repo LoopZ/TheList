@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2B
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2B - IBM ROM-DOS v4.0 - ???
+	AH = function
+	    00h ??? (modifies data in IBMBIO.COM)
+	    01h internal operations
+	    02h ???
+		AL = index (00h-0Ch)
+		Return: AX = ??? or (CMOS 2Dh and CMOS 2Eh)
+	    03h get ??? data
+		Return: AX = (CMOS 2Dh and CMOS 2Eh)
+			BX = FFFFh
+	    other does nothing
+Note:	function 03h is called by ROMSHELL.COM; if BX != 0, then the ES:DI from
+	  INT 2F/AX=1982h points at valid data
+SeeAlso: INT 2F/AX=1982h
+

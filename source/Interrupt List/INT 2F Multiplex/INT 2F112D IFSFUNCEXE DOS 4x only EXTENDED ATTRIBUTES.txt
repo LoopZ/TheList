@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F112D
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - IFSFUNC.EXE (DOS 4.x only) - EXTENDED ATTRIBUTES
+	AX = 112Dh
+	BL = subfunction (value of AL on INT 21)
+	    02h get extended attributes
+	    03h get extended attribute properties
+	    04h set extended attributes
+		Return: CF clear
+	    else ???
+		Return: CX = ??? (00h or 02h for DOS 4.01)
+	ES:DI -> SFT for file
+	SS = DOS DS
+Return: DS = DOS DS
+Note:	this function is called by the DOS 4.0 kernel on INT 21/AX=5702h,
+	  INT 21/AX=5703h, and INT 21/AX=5704h
+SeeAlso: INT 21/AX=5702h,INT 21/AX=5703h,INT 21/AX=5704h,INT 21/AH=6Eh
+

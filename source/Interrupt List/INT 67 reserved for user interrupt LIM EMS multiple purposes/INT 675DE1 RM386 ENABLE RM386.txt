@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675DE1
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 - ENABLE RM386
+	AX = 5DE1h
+Note:	RM386 traps this function on the initial transition to protected
+	  mode caused by the INT instruction, which means it can not be
+	  overridden simply by hooking the interrupt
+SeeAlso: AX=5DE0h
+

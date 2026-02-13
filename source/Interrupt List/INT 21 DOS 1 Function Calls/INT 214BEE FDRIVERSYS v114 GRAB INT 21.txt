@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214BEE
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - F-DRIVER.SYS v1.14+ - GRAB INT 21
+	AX = 4BEEh
+Return: AX = status
+	    1234h grab was successful
+	    2345h failed (INT 21 grabbed previously)
+Program: F-DRIVER.SYS is part of the shareware F-PROT virus/trojan protection
+	  package by Fridrik Skulason
+Note:	when called the first time, this function moves the INT 21 monitoring
+	  code from its original location in the INT 21 chain to be the first
+	  thing called by INT 21.  This is the mechanism used by F-NET.
+SeeAlso: INT 2F/AX=4653h/CX=0002h,INT 2F/AX=4653h/CX=0007h
+

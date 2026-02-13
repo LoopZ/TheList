@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A82
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Tandy 2500???, Tandy 1000SL/TL - DIGITAL SOUND - RECORD SOUND
+	AH = 82h
+	ES:BX -> buffer for sound samples
+	CX = length of buffer
+	DX = transfer rate (1-4095, 1 is fastest)
+Return: AH = 00h
+	CF set if sound busy
+	CF clear if sound chip free
+Note:	the value in DX should be 1/10 the corresponding value for
+	  INT 1A/AH=83h on the 1000TL, 1/11.5 on the 1000SL.  Call
+	  INT 1A/AX=8100h and INT 1A/AH=84h before invoking this function.
+	The BIOS issues an INT 15/AX=91FBh when the input is complete
+	DMA across a 64K boundary is masked by the BIOS
+

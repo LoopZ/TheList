@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140D03
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS - SET HANDSHAKE BYTE
+	AX = 0D03h
+	CL = new handshake byte
+Return: CL = previous handshake byte
+Note:	this function lowers DTR, RTS, etc.
+

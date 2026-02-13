@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: B4
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B4 - StackMan - REQUEST NEW STACK
+Return: SS:SP -> new stack
+Program: StackMan is a freeware stack manager by Franz Veldman of ESaSS B.V.
+	  which functions as a replacement for the DOS STACK= command as well
+	  as permitting multiple TSRs to share a pool of stack space
+InstallCheck:	test for the string "STACKXXX" at offset 0Ah from the
+	  interrupt handler
+SeeAlso: INT 2F/AX=C9FFh,INT B5"STACKMAN"
+Index:	installation check;STACKMAN
+

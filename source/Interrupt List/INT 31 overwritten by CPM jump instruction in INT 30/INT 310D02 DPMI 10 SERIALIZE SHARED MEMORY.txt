@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310D02
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - SERIALIZE SHARED MEMORY
+	AX = 0D02h
+	SI:DI = shared memory block handle
+	DX = flags
+	    bit 0: return immediately rather than suspending if serialization
+		  unavailable
+	    bit 1: shared rather than exclusive serialization
+	    bits 2-15 reserved (0)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8004h,8005h,8017h-8019h,8023h) (see #03143)
+Notes:	an exclusive serialization blocks any other serialization attempts for
+	  the same block by another virtual machine; a shared serialization
+	  blocks attempts at exclusive serialization by another virtual machine
+	hosts are not required to detect deadlock
+	a client's interrupt handler can cancel a serialization call which
+	  caused it to block by calling AX=0D03h
+SeeAlso: AX=0D00h,AX=0D03h
+

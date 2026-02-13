@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E113
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - "NetSetAltRoute"
+	AX = E113h
+	BX = size of parameter block in words (0008h)
+	CX:DX -> parameter block (see #03996)
+Return: AX = 0001h
+SeeAlso: AX=E110h,AX=E111h
+
+Format of Da Vinci eMail "NetSetAltRoute" parameter block:
+Offset	Size	Description	(Table 03996)
+ 00h  8 WORDs	???
+

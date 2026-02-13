@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 690106
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - DECnet DOS CTERM - CLOSE SESSION
+	AX = 0106h
+	DX = session handle
+Return: AH = status
+	    00h good close
+	    other error code (see #03711)
+SeeAlso: AX=0103h,AX=0105h
+

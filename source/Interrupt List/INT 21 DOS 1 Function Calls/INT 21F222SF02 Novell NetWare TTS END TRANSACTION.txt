@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F222SF02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TTS END TRANSACTION
+	AX = F222h subfn 02h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02289)
+	ES:DI -> reply buffer (see #02290)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=C701h,AX=F222h/SF=01h,AX=F222h/SF=04h
+
+Format of NetWare "TTS End Transaction" request packet:
+Offset	Size	Description	(Table 02289)
+ 00h	BYTE	02h (subfunction "TTS End Transaction")
+SeeAlso: #02290,#02288
+
+Format of NetWare "TTS End Transaction" reply packet:
+Offset	Size	Description	(Table 02290)
+ 00h	DWORD	transaction number
+SeeAlso: #02289,#02292
+

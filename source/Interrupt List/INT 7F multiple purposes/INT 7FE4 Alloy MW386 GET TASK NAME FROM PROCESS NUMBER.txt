@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FE4
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET TASK NAME FROM PROCESS NUMBER
+	AH = E4h
+	ES:DI -> buffer for task name
+---v1.x---
+	AL = user number
+---v2+---
+	BH = user number
+	BL = task number
+Return: CF clear if successful
+	    CL = memory size (00h=128K, 01h=256K, 02h=384K, 03h=512K, 04h=640K)
+	    DX = task flags
+		bit 7: MS-DOS process
+	    ES:DI buffer filled
+	CF set on error (invalid process number)
+SeeAlso: AH=E3h,AH=E5h
+

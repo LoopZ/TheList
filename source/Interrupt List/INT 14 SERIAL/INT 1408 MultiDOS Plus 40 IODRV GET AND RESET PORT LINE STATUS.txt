@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1408
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus 4.0 IODRV - GET AND RESET PORT LINE STATUS
+	AH = 08h
+Return: AL = line status (see #00304)
+	AH destroyed
+Notes:	the port number is stored at offset BEh in the Task Control Block
+	on every line status change, the line status is ORed with the line
+	  status accumulator; this function returns the accumulator and clears
+	  it
+SeeAlso: AH=03h,AH=04h"MultiDOS",AH=07h"MultiDOS",INT 15/AH=13h"MultiDOS"
+

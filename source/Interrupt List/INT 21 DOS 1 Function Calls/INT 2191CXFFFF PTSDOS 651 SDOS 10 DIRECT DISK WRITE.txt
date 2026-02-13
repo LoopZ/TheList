@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2191--CXFFFF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - PTS-DOS 6.51 & S/DOS 1.0 - DIRECT DISK WRITE
+	AH = 91h
+	CX = FFFFh (for partitions > 32 Mb)
+	    DS:BX -> request block (see #04094)
+	CX = sector count (for partitions < 32 Mb)
+	    DX = starting sector number
+	    DS:BX -> buffer
+Return: CF set on error
+	    AX error code
+	CF clear on success
+Note:	This function is supported by Paragon Technology Systems S/DOS 1.0
+	  (and most probably by PTS-DOS 6.51, maybe even earlier).
+	To access big partitions (> 32 Mb), CX != FFFFh is not allowed and
+	  the buffer must always be used. Otherwise, the system will return
+	  error code 0207h.
+	It is currently unknown if this function is also supported by
+	  PhysTechSoft PTS-DOS 6.60, 6.70, or 2000.
+SeeAlso: INT 21/Ah=90h"PTS",INT 25h,INT 26h
+

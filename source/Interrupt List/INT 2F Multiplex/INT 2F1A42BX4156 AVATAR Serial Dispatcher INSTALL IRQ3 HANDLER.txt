@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A42BX4156
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AVATAR Serial Dispatcher - INSTALL IRQ3 HANDLER
+	AX = 1A42h
+	BX = 4156h ('AV')
+	ES:DI -> FAR handler for serial port using IRQ3
+	DS = data segment needed by handler
+Return: AX = status/return value
+	    0000h if no more room
+	    1A42h if ASD not installed
+	    else handle to use when uninstalling
+Notes:	the handler need not save/restore registers or signal EOI to the
+	  interrupt controller
+	the handler should return AX=0000h if the interrupt was meant for it,
+	  and either leave AX unchanged or return a non-zero value otherwise
+	the most recently installed handler will be called first, continuing
+	  to earlier handlers until one returns AX=0000h
+SeeAlso: AX=1A43h,AX=1A62h
+

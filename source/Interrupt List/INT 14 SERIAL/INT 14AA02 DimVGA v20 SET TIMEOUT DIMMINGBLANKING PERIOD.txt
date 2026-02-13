@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14AA02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - DimVGA v2.0+ - SET TIME-OUT (DIMMING/BLANKING) PERIOD
+	AX = AA02h
+	BX = number of clock ticks
+Return: AX = FFFFh
+Note:	on screen modes with 256 or less colors DimVGA will dim the screen,
+	  when more than 256 colors can be used DimVGA will blank the screen.
+SeeAlso: AX=AA01h,AX=AA03h,AX=AA04h,AX=AA06h
+Index:	screen saver;DimVGA
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1607BX0018
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - "VMPoll" VIRTUAL DEVICE - IDLE CALLOUT
+	AX = 1607h
+	BX = 0018h (VMPoll VxD ID) (see #02642)
+	CX = 0000h
+Return: AX = status
+	    0000h if timeslice used
+	    nonzero if timeslice not needed
+Note:	when VMPoll makes this callout, all virtual machines are idle, and any
+	  interested TSR can use the opportunity to perform background
+	  processing
+SeeAlso: AX=1607h"CALL OUT API",AX=1689h
+

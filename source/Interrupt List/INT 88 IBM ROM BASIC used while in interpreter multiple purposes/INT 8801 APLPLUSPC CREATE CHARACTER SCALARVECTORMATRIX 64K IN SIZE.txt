@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 88--01
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 88 - APL*PLUS/PC - CREATE CHARACTER SCALAR/VECTOR/MATRIX <64K IN SIZE
+	AL = 01h
+	AH = rank
+	BX = STPTR of the variable to be assigned
+	CX = first dimension (if any)
+	DX = second dimension (if any)
+Return: ES:DI -> object
+	CX = number of elements in the object
+Note:	each dimension must be 32767 or smaller
+SeeAlso: AL=00h,AL=02h,AL=08h,INT C8"APL"
+

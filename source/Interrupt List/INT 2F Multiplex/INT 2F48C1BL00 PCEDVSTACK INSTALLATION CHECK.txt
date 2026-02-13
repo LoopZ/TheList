@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F48C1BL00
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PCED/VSTACK - INSTALLATION CHECK
+	AX = 48C1h
+	BL = 00h
+Return: AX = 0000h if installed
+	    BX = VSTACK resident segment
+Program: VSTACK is a resident backscroll utility included as part of the PCED
+	  package by Cove Software
+Note:	chains if BL <> 00h on entry
+SeeAlso: AX=48C0h,AX=48C2h
+

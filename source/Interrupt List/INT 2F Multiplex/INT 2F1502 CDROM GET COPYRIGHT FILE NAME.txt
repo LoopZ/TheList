@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1502
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM - GET COPYRIGHT FILE NAME
+	AX = 1502h
+	ES:BX -> 38-byte buffer for name of copyright file
+	CX = drive number (0=A:)
+Return: CF set if drive is not a CD-ROM drive
+	    AX = 000Fh (invalid drive)
+	CF clear if successful
+SeeAlso: AX=1503h
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1799
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - GET/SET PRINTER MODE
+	AH = 99h
+	AL = mode
+	    00h NTNX compatibility
+		DL = NTNX printer number (see #00643)
+			(FFh = task's current logical LPT1)
+		DH = mode (see #00644)
+	    01h MW386
+		DX = MW386 printer number
+		CL = mode (as for DH above)
+Return: AL = status (see #00642)
+	DH = mode (bits 1 and 2 set as above)
+	DL = printer owner's user number if not spooled
+
+Bitfields for Alloy printer mode:
+ 0	get mode if 1, set mode if 0	(Table 00644)
+ 1	private ("attached")
+ 2	direct instead of spooled
+ 3-7	reserved (0)
+

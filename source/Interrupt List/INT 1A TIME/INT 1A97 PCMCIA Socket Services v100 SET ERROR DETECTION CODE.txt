@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A97
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - SET ERROR DETECTION CODE
+	AH = 97h
+	AL = adapter number
+	BH = EDC generator
+	BL = socket number
+	DH = EDC attributes (see #00690)
+	DL = EDC type (see #00689) (only one bit may be set)
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (01h,02h,04h,0Bh) (see #00656)
+SeeAlso: AH=96h,AH=9Ch
+

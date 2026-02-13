@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1F19
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - ENABLE AUTO WAKEUP AND SET TIME AND DATE
+	AH = 19h
+	AL = hour in BCD
+	BH = minutes in BCD
+	BL = seconds in BCD
+	CH = year century in BCD (must be 19h)
+	CL = year low in BCD
+	DH = month in BCD
+	DL = date in BCD
+Return: CF clear
+

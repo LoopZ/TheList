@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB182
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - FIND PCI DEVICE (32-bit)
+	AX = B182h
+	CX = device ID (see #00735,#00742,#00743,#00873,#00875)
+	DX = vendor ID (see #00732 at AX=B102h)
+	SI = device index (0-n)
+Return: as for AX=B102h
+SeeAlso: AX=B102h
+

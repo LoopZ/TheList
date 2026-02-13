@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8005
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - QPC Software PKTINT.COM - GET RECEIVE STATISTICS
+	AH = 05h
+Return: AX = amount of buffer currently in use
+	BX = current offset in buffer
+	CX = number of times receive has been called
+SeeAlso: AH=02h
+

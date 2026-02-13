@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1620
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HUNTER 16 - SET TEMPORARY SHIFT
+	AH = 20h
+	AL = shift status (see #00590)
+Notes:	the Husky Hunter 16 is an 8088-based ruggedized laptop.	 Other family
+	  members are the Husky Hunter, Husky Hunter 16/80, and Husky Hawk.
+	the user can override the specified settings by pressing the keys
+
+Bitfields for HUNTER 16 shift status:
+Bit(s)	Description	(Table 00590)
+ 4	Scroll Lock on
+ 5	Num Lock on
+ 6	Caps Lock on
+

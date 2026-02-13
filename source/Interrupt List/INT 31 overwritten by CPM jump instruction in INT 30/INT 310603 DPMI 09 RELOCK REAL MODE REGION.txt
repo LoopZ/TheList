@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310603
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - RELOCK REAL MODE REGION
+	AX = 0603h
+	BX:CX = starting linear address
+	SI:DI = size of region in bytes
+Return: CF clear if successful
+	CF set on error
+	    none of the memory is relocked
+	    AX = error code (DPMI 1.0+) (8002h,8013h,8025h) (see #03143)
+Notes:	pages at beginning and end will be relocked if the region overlaps them
+	pageability of real mode pages is binary, not a count
+SeeAlso: AX=0602h
+

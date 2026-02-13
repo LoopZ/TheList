@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0E
+  Category: C 	CPU-generated
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 0E C - CPU-generated (80386+ native mode) - PAGE FAULT
+Desc:	this interrupt is generated in protected and virtual-86 modes on
+	  attempting to access a 4K memory page whose page table entry has
+	  the "present" bit cleared
+Notes:	used to implement virtual memory--when the page fault occurs, the
+	  operating system can load the appropriate page from disk
+	a protected-mode program written in the Flat memory model will often
+	  generate this interrupt (typically reported as an Exception #14 or
+	  Exception 0E with a register dump) when dereferencing an
+	  uninitialized or corrupted pointer
+SeeAlso: INT 0B"CPU"
+

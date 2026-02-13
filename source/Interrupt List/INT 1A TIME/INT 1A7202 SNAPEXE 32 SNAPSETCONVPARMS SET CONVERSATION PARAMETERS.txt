@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A7202
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_SETCONVPARMS" - SET CONVERSATION PARAMETERS
+	AX = 7202h
+	STACK:	WORD	conversation ID (0000h-0009h)
+		WORD	offset within resident data segment of "Cparms"
+			  structure (see #00655)
+Return: AX = status???
+	STACK unchanged
+SeeAlso: AX=6308h
+

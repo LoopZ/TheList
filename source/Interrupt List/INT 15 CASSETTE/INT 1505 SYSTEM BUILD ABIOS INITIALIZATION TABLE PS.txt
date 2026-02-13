@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1505
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - BUILD ABIOS INITIALIZATION TABLE (PS)
+	AH = 05h
+	ES:DI -> results buffer of length 18h * Number_of_Entries (see #00411)
+	DS = segment containing ABIOS RAM extensions (zero if none)
+Return: CF clear if successful
+	    AH = 00h success
+	    ES:DI buffer filled
+	    AL destroyed
+	CF set on failure
+	    AX destroyed
+	    AH = 80h/86h if not supported
+SeeAlso: AH=04h"ABIOS",AH=C1h
+
+Format of one entry of ABIOS Initialization Table:
+Offset	Size	Description	(Table 00411)
+ 00h	WORD	device ID (see #00412)
+ 02h	WORD	number of Logical IDs
+ 04h	WORD	Device Block length (zero for ABIOS patch or extension)
+ 06h	DWORD	-> init routine for Device Block and Function Transfer Table
+ 0Ah	WORD	request block length
+ 0Ch	WORD	Function Transfer Table length (zero for a patch)
+ 0Eh	WORD	Data Pointers length (in Common Data Area)
+ 10h	BYTE	secondary device ID (hardware level this ABIOS ver supports)
+ 11h	BYTE	revision (device driver revision level this ABIOS supports)
+ 12h  6 BYTEs	reserved
+
+(Table 00412)
+Values for ABIOS device ID:
+ 00h	ABIOS internal calls
+ 01h	floppy disk
+ 02h	hard disk
+ 03h	video
+ 04h	keyboard
+ 05h	parallel port
+ 06h	serial port
+ 07h	system timer
+ 08h	real-time clock
+ 09h	system services
+ 0Ah	NMI
+ 0Bh	mouse
+ 0Eh	CMOS RAM
+ 0Fh	DMA
+ 10h	Programmable Option Select (POS)
+ 16h	keyboard password
+

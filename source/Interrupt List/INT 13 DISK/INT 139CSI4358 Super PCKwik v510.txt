@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 139C--SI4358
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Super PC-Kwik v5.10+ - ???
+	AH = 9Ch
+	SI = 4358h
+	???
+Return: ???
+Note:	functions 9Ch and 9Dh are the only ones which are fully reentrant; all
+	  other PC-Kwik API calls (INT 13/81h-B0h) return AX=0200h and CF clear
+	  if a previous call is still in progress
+

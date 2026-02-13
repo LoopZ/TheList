@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0A
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "ADDTO" - SEND MAILBOX MESSAGE/STAT BY VALUE
+	AH = 12h
+	BH = 0Ah
+	BL = mailbox to write to
+	    00h handle is DWORD on top of stack
+	    02h default mailbox of task whose handle is on top of stack
+	    03h current task's default mailbox
+	STACK:	DWORD	status (low byte)
+		DWORD	length of message
+		DWORD	address of message
+Return: STACK popped
+Notes:	the message is copied into either system or common memory
+	insufficient memory normally causes the process to be aborted; under
+	  DESQview 2.2+, failed writes may return CF set instead (see AX=DE15h)
+SeeAlso: AH=12h/BH=0Bh"MAILBOX"
+

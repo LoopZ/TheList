@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0B
+  Category: C 	CPU-generated
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 0B CP - CPU-generated (80286+) - SEGMENT NOT PRESENT
+Desc:	generated when loading a segment register if the segment descriptor
+	  indicates that the segment is not currently in memory, unless the
+	  segment is an LDT (see INT 0A"CPU") or stack segment (see
+	  INT 0C"CPU") needed by a task switch
+Note:	may be used to implement virtual memory by loading in segments as they
+	  are accessed, clearing the "not present" bit after loading
+SeeAlso: INT 0A"CPU",INT 0E"CPU"
+

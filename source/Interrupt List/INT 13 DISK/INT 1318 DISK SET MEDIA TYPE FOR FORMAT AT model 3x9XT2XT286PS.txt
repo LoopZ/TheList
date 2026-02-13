@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1318
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - DISK - SET MEDIA TYPE FOR FORMAT (AT model 3x9,XT2,XT286,PS)
+	AH = 18h
+	DL = drive number
+	CH = lower 8 bits of highest cylinder number (number of cylinders - 1)
+	CL = sectors per track (bits 0-5)
+	     top 2 bits of highest cylinder number (bits 6,7)
+Return: AH = status
+	    00h requested combination supported
+	    01h function not available
+	    0Ch not supported or drive type unknown
+	    80h there is no disk in the drive
+	ES:DI -> 11-byte parameter table (see #01264 at INT 1E)
+Note:	this function does not set the INT 1E vector to point at the returned
+	  parameter table; it is the caller's responsibility to do so
+SeeAlso: AH=05h,AH=07h,AH=17h,INT 1E
+

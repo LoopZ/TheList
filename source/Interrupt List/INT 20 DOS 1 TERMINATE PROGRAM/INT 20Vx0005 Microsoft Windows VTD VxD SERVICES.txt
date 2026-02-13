@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0005
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VTD - VxD SERVICES
+	VxD = 0005h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01269)
+Values for VTD (VxD ID 0005h) service number:
+ 0000h	get version
+ 0001h	update system clock
+ 0002h	get interrupt period
+ 0003h	begin minimum interrupt period
+ 0004h	end minimum interrupt period
+ 0005h	disable trapping
+ 0006h	enable trapping
+ 0007h	get real time
+	Return: EDX:EAX = time in 840ns units since Windows was started
+ 0008h	"VTD_Get_Date_And_Time"
+ 0009h	"VTD_Adjust_VM_Count"
+ 000Ah	"VTD_Delay"
+SeeAlso: #02646 at INT 2F/AX=1684h/BX=0005h
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F50
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - GET LAPTOP DISPLAY STATUS
+	AX = 5F50h
+Return: DL = display status (see #00183)
+Note:	this call can be used on Toshiba laptops since ~1995 instead of
+	  INT 42/AX=7503h which is no longer supported with the F655xx chips
+SeeAlso: INT 42/AX=7503h
+
+Bitfields for display status:
+Bit(s)	Description	(Table 00183)
+ 7-4	always 0 ???
+ 3	1: both displays active (bit 1 also set)
+ 2	1: normal (monochrome display only), 0: inverse or color
+ 1	1: internal display active, 0: external only
+ 0	always set ???
+

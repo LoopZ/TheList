@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0028
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - GET ESP0 FROM TSS
+	AX = 0028h
+Return: CF clear
+	EAX = TSS's ESP0
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00, the
+	  memory manager included in Helix Software's Netroom
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AAE
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v2.1 - API
+	AH = AEh
+	SI = function
+	    0002h ???
+	    0100h ???
+	    0101h ???
+	    8000h ???
+	    8001h ???
+	details not yet available
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (02h,0Bh,11h,15h,17h) (see #00656)
+SeeAlso: AH=9Eh
+

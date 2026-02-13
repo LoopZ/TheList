@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1427
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - GET INSTALLED PROTOCOLS COUNT
+	AH = 27h
+	AL = number of extended protocols installed (since last call)
+Return: AL = total number installed, including new ones
+Desc:	Returns the number of extended communication protocols installed
+SeeAlso: AH=25h"HUNTER",AH=28h"HUNTER"
+

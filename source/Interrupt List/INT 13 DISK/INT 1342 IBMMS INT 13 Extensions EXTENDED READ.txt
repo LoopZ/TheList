@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1342
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - IBM/MS INT 13 Extensions - EXTENDED READ
+	AH = 42h
+	DL = drive number
+	DS:SI -> disk address packet (see #00272)
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code (see #00234)
+	    disk address packet's block count field set to number of blocks
+	      successfully transferred
+SeeAlso: AH=02h,AH=41h"INT 13 Ext",AH=43h"INT 13 Ext"
+
+Format of disk address packet:
+Offset	Size	Description	(Table 00272)
+ 00h	BYTE	size of packet (10h or 18h)
+ 01h	BYTE	reserved (0)
+ 02h	WORD	number of blocks to transfer (max 007Fh for Phoenix EDD)
+ 04h	DWORD	-> transfer buffer
+ 08h	QWORD	starting absolute block number
+		(for non-LBA devices, compute as
+		  (Cylinder*NumHeads + SelectedHead) * SectorPerTrack +
+		  SelectedSector - 1
+ 10h	QWORD	(EDD-3.0, optional) 64-bit flat address of transfer buffer;
+		  used if DWORD at 04h is FFFFh:FFFFh
+

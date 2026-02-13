@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14AF00BXAAAA
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - INSTALLATION CHECK
+	AX = AF00h
+	BX = AAAAh
+Return: AX = AF01h if installed
+	    BH = protocol type (if BX=AAAAh on entry)
+		01h NetManage TCP/IP
+	    BL = version for protocol type (if BX=AAAAh on entry)
+Note:	early versions of the BAPI and the ROM BIOS simply destroy AX; this
+	  behavior is used to determine whether the newer functions (AH=B0h,
+	  AH=B1h,etc) are available
+SeeAlso: AH=A0h"BAPI"
+

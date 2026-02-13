@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C200
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE (PS) - ENABLE/DISABLE
+	AX = C200h
+	BH = new state
+	    00h disabled
+	    01h enabled
+Return: CF set on error
+	AH = status (see #00522)
+Note:	IBM classifies this function as required
+SeeAlso: AX=C201h,AX=C207h,AX=C208h
+
+(Table 00522)
+Values for pointing device function status:
+ 00h	successful
+ 01h	invalid function
+ 02h	invalid input
+ 03h	interface error
+ 04h	need to resend
+ 05h	no device handler installed
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF0C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - VERIFY SERIALIZATION
+	AX = F217h subfn 0Ch
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01896 at AH=E3h/SF=0Ch)
+	ES:DI -> reply buffer (see #02163)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=0Ch,AX=F217h/SF=12h
+
+Format of NetWare "Verify Serialization" reply packet:
+Offset	Size	Description	(Table 02163)
+ 00h	WORD	server application number
+SeeAlso: #01896
+

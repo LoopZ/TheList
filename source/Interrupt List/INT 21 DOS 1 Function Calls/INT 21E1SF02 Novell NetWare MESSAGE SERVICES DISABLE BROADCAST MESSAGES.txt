@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E1--SF02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - MESSAGE SERVICES - DISABLE BROADCAST MESSAGES
+	AH = E1h subfn 02h
+	DS:SI -> request buffer (see #01824)
+	ES:DI -> reply buffer (see #01825)
+Return: AL = error code
+Note:	these functions are supported by NetWare 4.0+ but are not listed in
+	  _NetWare_System_Calls--DOS_; they may be obsolete
+SeeAlso: AH=E1h/SF=00h,AH=E1h/SF=03h,AH=E1h/SF=04h,AH=E1h/SF=09h
+SeeAlso: AX=F215h/SF=02h
+
+Format of NetWare "Disable Broadcasts" request packet:
+Offset	Size	Description	(Table 01823)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	02h (subfunction "Enable Broadcast Messages")
+SeeAlso: #01824,#01825
+

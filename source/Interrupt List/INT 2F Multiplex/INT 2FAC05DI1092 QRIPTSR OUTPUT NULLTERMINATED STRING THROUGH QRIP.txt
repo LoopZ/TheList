@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC05DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - OUTPUT NULL-TERMINATED STRING THROUGH QRIP
+	AX = AC05h
+	DI = 1092h
+	DX:BX -> ASCIZ string
+Return: nothing
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC04h,AX=AC06h,AX=AC09h,AX=AC0Ah,AX=ACF0h
+

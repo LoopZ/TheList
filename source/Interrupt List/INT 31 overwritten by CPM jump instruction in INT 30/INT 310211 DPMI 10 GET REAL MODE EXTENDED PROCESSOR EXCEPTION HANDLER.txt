@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310211
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - GET REAL MODE EXTENDED PROCESSOR EXCEPTION HANDLER
+	AX = 0211h
+	BL = exception number (00h-1Fh)
+Return: CF clear if successful
+	    CX:(E)DX = selector:offset of exception handler
+	CF set on error
+	    AX = error code (8021h) (see #03143)
+Notes:	returns address of protected-mode handler for real-mode exception
+	DPMI host performs a switch to protected mode, reflects the exception
+	  to the virtual machine's primary client, and returns to real mode
+	  on the handler's completion
+SeeAlso: AX=0202h,AX=0210h,AX=0213h
+

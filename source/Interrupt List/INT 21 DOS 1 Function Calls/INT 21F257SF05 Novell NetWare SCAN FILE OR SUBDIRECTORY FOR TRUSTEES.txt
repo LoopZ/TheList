@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SCAN FILE OR SUBDIRECTORY FOR TRUSTEES
+	AX = F257h subfn 05h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02383)
+	ES:DI -> reply buffer (see #02384)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=04h,AX=F257h/SF=06h
+
+Format of NetWare "Scan File or Subdirectory for Trustees" request packet:
+Offset	Size	Description	(Table 02383)
+ 00h	BYTE	05h (subfunction "Scan File or Subdirectory for Trustees")
+ 01h	BYTE	name space (see #02387)
+ 02h	BYTE	reserved for future use
+ 03h	DWORD	scan sequence (set to 00000000h before first call)
+ 07h		NetWare Handle/Path structure (see #02376)
+SeeAlso: #02384
+
+Format of NetWare "Scan File or Subdirectory for Trustees" reply packet:
+Offset	Size	Description	(Table 02384)
+ 00h	DWORD	next scan sequence or FFFFFFFFh if no more
+ 04h	WORD	number of trustee object IDs returned
+ 06h		trustee structure
+SeeAlso: #02383
+

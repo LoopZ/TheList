@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F06
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_PUT_BYTE" - WRITE A BYTE OF DATA TO DEVICE
+	AH = 06h
+	BP = driver ID (see #03741) for V_HPHIL, others
+	AL = value to output
+	---if driver is V_HPHIL---
+	BX = device address indicator (see #03760)
+	DH = HP HIL device major address
+	DL = HP-HIL device register (00h-7Fh)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	output a byte to a specific HP-HIL device register
+Note:	this function is only available if the driver is in the open state
+	  (see AX=020Eh"SF_OPEN")
+SeeAlso: AH=04h"HP Vectra",AH=08h"F_GET_BYTE",AH=0Ah"F_PUT_BUFFER"
+

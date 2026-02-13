@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F0BBL00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v3.0 - GET NEAREST PIXEL CLOCK
+	AX = 4F0Bh
+	BL = 00h get closest pixel clock
+	ECX = requested clock frequency in Hz
+	DX = video mode number
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+		ECX = nearest clock rate
+	    01h failed
+

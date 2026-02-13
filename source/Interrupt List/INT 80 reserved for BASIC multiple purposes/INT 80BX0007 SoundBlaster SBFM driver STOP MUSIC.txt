@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0007
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SoundBlaster SBFM driver - STOP MUSIC
+	BX = 0007h
+Return: AX = status
+	    0000h successful
+	    0001h music not active
+SeeAlso: BX=0000h"SBFM",BX=0006h"SBFM",BX=0009h"SBFM",INT 1A/AX=FF05h
+

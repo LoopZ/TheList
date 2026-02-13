@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 157B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL HOT KEY
+	AH = 7Bh
+	AL = 00h prevent HOT key
+	    else allow HOT key
+Desc:	Allow or prevent the HOT key function which is used to examine and
+	  change the Hunter setup
+SeeAlso: AH=71h,AH=7Ah,AH=7Ch
+

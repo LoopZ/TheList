@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 164503
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Shamrock Software EMAIL - SPECIFY COMMAND-WORD FOR USER FUNCTION
+	AX = 4503h
+	DL = port number (01h = COM1)
+	DH = maximum execution time in clock ticks (00h = 5 seconds)
+	ES:BX -> ASCIZ string with new user command-word
+Return: AX = 4D00h if EMAIL installed on specified port
+Notes:	a single user command (consisting of only uppercase letters and digits)
+	  may be defined, and remains valid until it is overwritten or the
+	  EMAIL program terminates; the user command must be activated by
+	  calling AX=4504h at least once.
+	an existing command word may be redefined with this function
+SeeAlso: AX=4504h,AX=4505h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D07
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - GET DATA
+	AH = 07h
+	CX = number of bytes to retrieve (0001h-0100h)
+	ES:BX -> buffer for data
+Return: CF clear if successful
+	CF set on error
+	    AL = error code (01h = too much data)
+Note:	retrieve data previously stored with AH=06h
+SeeAlso: AH=06h
+

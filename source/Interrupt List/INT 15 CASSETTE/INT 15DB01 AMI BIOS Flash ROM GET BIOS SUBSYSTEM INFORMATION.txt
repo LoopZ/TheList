@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DB01
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI BIOS - Flash ROM - GET BIOS SUBSYSTEM INFORMATION
+	AX = DB01h
+	CL = BIOS subsystem information identifier (see #00545)
+Return: CF clear if successful
+	    AX = 0000h
+	    ES:DI -> 56-byte record describing subsystem (see #00546)
+	CF set on error
+	    AH = status
+		01h nonexistent subsystem
+		86h function not supported
+	    AL = 00h
+Note:	used by FMUP.EXE, Intel's Flash Memory Update utility
+SeeAlso: AX=DB00h,AX=DB02h
+
+(Table 00545)
+Values for AMI BIOS subsystem identifier:
+ 00h	recovery code
+ 01h	system BIOS
+ 02h	PCI configuration data
+ 03h	OEM logo data area (see #00547)
+ 04h	system BIOS/Language Set (one system)
+	configuration utility (another system)
+SeeAlso: #00546
+
+Format of AMI BIOS subsystem information:
+Offset	Size	Description	(Table 00546)
+ 00h	BYTE	subsystem identifier/logical area type (see #00545)
+ 01h	DWORD	subsystem (FlashROM page) size in bytes
+ 05h	BYTE	flag: loadable from file (FFh=yes)
+ 06h	BYTE	flag: reboot after update (FFh=yes)
+ 07h	BYTE	flag: update entire image (FFh=yes)
+ 08h 24 BYTEs	subsystem/logical area name
+ 20h	BYTE	subsystem identifier???
+ 21h	BYTE	flag: reprogrammable if FFh
+ 22h	BYTE	??? (01h,02h seen)
+ 23h  5 BYTEs	??? (apparently always 00h)
+ 28h 16 BYTEs	BIOS reserved string (usually version number)
+SeeAlso: #00544
+
+Format of AMI OEM Logo data area:
+Offset	Size	Description	(Table 00547)
+ 00h  8 BYTEs	signature
+		"TEXTLOGO" if text-mode OEM logo
+		8 DUP (FFh) if unused
+ 08h	WORD	offset of logo font definition table
+ 0Ah	WORD	offset of logo data
+ 0Ch	WORD	size of logo font table in words
+ 0Eh	WORD	offset of upper left corner of logo in video page
+ 10h	WORD	width of logo
+ 12h	WORD	height of logo
+ 14h	BYTE	reserved???
+ var	var	logo font definition (16 bytes per character)
+ var	var	logo data as character/attribute pairs
+Note:	the attribute for the logo characters specifies which font will be used
+	  for that character.  If bit 3 is cleared, the normal system font is
+	  used; if bit 3 is set, the logo font is used, with screen colors
+	  adjusted to match the corresponding non-bright attribute for the
+	  system font
+SeeAlso: #00545,#00546
+

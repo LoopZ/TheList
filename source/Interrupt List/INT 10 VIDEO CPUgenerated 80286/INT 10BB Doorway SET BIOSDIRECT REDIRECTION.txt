@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BB
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 10 U - Doorway - SET BIOS/DIRECT REDIRECTION
+	AH = BBh
+	AL = new redirection mode
+	    00h BIOS (hook and redirect INT 10h,etc.)
+	    01h DIRECT (scan video memory for changes)
+Return: ???
+SeeAlso: INT 16/AH=67h"Doorway"
+

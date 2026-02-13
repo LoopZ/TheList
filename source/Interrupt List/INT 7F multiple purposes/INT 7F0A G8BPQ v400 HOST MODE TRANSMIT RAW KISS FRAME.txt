@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.00+ - HOST MODE - TRANSMIT RAW (KISS) FRAME
+	AH = 0Ah
+	AL = radio port
+	ES:SI -> buffer containing data to be sent
+	CX = number of bytes to send
+SeeAlso: AH=02h"G8BPQ",AH=08h"G8BPQ",AH=0Bh"G8BPQ"
+

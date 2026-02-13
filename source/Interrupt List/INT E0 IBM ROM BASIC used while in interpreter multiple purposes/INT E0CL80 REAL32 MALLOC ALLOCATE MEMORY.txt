@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL80
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "M_ALLOC" - ALLOCATE MEMORY
+	CL = 80h
+	DS:DX -> Memory Parameter Block (MPB) (see #04040)
+Return: AX = status (0000h success, else error code)
+SeeAlso: INT E0/CL=81h
+
+Format of REAL/32 Memory Parameter Block (MPB):
+Offset	Size	Description	(Table 04040)
+ 00h	WORD	(call) desired starting paragraph of block, or
+		  0000h for anywhere
+		(ret) starting paragraph of allocated block
+ 02h	WORD	(call) minimum number of paragraphs required
+		(ret) actual number of paragraphs allocated
+ 04h	WORD	(call) maximum number of paragraphs to allocate
+		(ret) actual number of paragraphs allocated
+ 06h	WORD	process descriptor (see #04026) of memory's owner or 0000h
+ 08h	WORD	flags (normally set to 0000h on call)
+SeeAlso: #04041
+

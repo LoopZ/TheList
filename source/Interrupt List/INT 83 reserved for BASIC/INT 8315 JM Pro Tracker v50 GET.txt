@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8315
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 83 - JM Pro Tracker v5.0 - GET ???
+	AH = 15h
+	BX = what to get (zero/nonzero)
+Return: CF clear if successful
+	    BX = ???
+	    DX = ???
+	CF set on error
+	    AX = error code (see #03976)
+

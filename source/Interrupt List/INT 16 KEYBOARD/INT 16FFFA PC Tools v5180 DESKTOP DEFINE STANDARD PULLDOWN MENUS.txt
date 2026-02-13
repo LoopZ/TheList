@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFFA
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - DEFINE STANDARD PULLDOWN MENUS
+	AX = FFFAh
+Notes:	available only when popped up
+	adds the "Window" option to the "Desktop" option which is the only one
+	  available when no accessories are active.  Unlike AX=FFEEh, no
+	  additional menu items are added between "Desktop" and "Window"
+SeeAlso: AX=FFEEh,AX=FFFBh
+

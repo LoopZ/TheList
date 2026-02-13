@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310507
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - MODIFY PAGE ATTRIBUTES
+	AX = 0507h
+	ESI = memory block handle
+	EBX = offset in memory block of first page
+	ECX = number of pages
+	ES:EDX -> array of WORDs with new page attributes (see #03156)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8001h,8002h,8013h,8014h,8021h,8023h,8025h)
+		(see #03143)
+	    ECX = number of pages which have been set
+Notes:	only supported by 32-bit DPMI hosts, but may be used by 16-bit clients
+	if EBX is not page-aligned, it will be rounded down
+SeeAlso: AX=0504h,AX=0506h,INT 21/AX=251Eh
+

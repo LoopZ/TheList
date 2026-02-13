@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: E1
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E1 - MP/M-86, - ALTERNATE CP/M-86 FUNCTION CALLS
+	CL = function number (see #04019,#04020)
+	DS,DX = parameters
+Return: as appropriate for function
+	CX is often the error code (see #04021)
+Desc:	used by some applications which alter CP/M functions while running a
+	  child program, to store the original INT E0 vector before
+	  intercepting INT E0
+Notes:	This is the debugger entry to the operating system.
+	This function is also supported by IMS Multiuser DOS and IMS REAL/32.
+SeeAlso: #04019 at INT E0"CP/M"
+

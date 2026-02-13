@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telunload" - UNINSTALL
+	AH = E6h
+Return: AX = status
+	    0000h successful
+	    FFFFh unable to uninstall
+Notes:	TelAPI also supports the NASI/NACS and NCSI APIs on INT 6B
+	this function invokes AH=E5h internally
+SeeAlso: AH=E5h,AX=FF00h,INT 6B/AH=00h,INT 6B/AH=10h
+

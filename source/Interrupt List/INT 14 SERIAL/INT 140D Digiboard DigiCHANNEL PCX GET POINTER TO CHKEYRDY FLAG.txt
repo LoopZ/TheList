@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140D
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - GET POINTER TO CH_KEY_RDY FLAG
+	AH = 0Dh
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: ES:BX -> CH_KEY_RDY flag (see #00339)
+SeeAlso: AH=0Ah"Digiboard"
+
+(Table 00339)
+Values for Digiboard CH_KEY_RDY flag:
+ 00h	receive buffer empty
+ FFh	characters available
+

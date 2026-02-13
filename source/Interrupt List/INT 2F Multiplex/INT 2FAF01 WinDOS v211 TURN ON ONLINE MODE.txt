@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF01
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - TURN ON ONLINE MODE
+	AX = AF01h
+Return: nothing
+Desc:	indicate that the user will not exchange floppy disks, allowing WinDOS
+	  to cache disk sectors in memory and avoid writing modified sectors
+	  back out to the floppy disk
+SeeAlso: AX=AF00h"WinDOS",AX=AF02h"WinDOS"
+

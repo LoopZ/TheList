@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1071
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - DRAW LINE/BOX
+	AH = 71h
+	DS:BX -> control block (see #00199)
+Return: nothing
+Desc:	Draws a line or box. Only valid in graphics modes.
+SeeAlso: AH=70h"HUNTER"
+
+Format of HUNTER 16 control block:
+Offset	Size	Description	(Table 00199)
+ 00h	WORD	left edge X co-ordinate
+ 02h	BYTE	lower edge Y co-ordinate
+ 03h	WORD	right edge X co-ordinate
+ 05h	BYTE	upper edge Y co-ordinate
+ 06h	BYTE	color (00h white, 01h black, FFh invert)
+ 07h	BYTE	type (00h line, 01h box)
+ 08h	BYTE	if non-zero (and type is BOX) fill with color
+

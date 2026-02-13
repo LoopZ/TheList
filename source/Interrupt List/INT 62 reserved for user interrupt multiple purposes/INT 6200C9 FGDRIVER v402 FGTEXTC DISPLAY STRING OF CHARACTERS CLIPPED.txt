@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200C9
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_TEXTC" - DISPLAY STRING OF CHARACTERS (CLIPPED)
+	AX = 00C9h
+	CX = length of string
+	ES:BX -> string
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	The string is displayed starting at the text cursor position using the
+	  current text attribute (text modes) or color index (graphics modes),
+	  showing only the portion within the current clipping window
+	The text cursor position is updated after this call
+SeeAlso: AX=00C8h
+

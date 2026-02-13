@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1692
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYB.COM KEYBOARD CAPABILITIES CHECK (not an actual function!)
+	AH = 92h
+Return: AH <= 80h if enhanced keyboard functions (AH=10h-12h) supported
+Desc:	this function is called by the DOS 3.2 KEYBxx.COM and DOS 5+ KEYB.COM
+	  to determine the highest supported keyboard function
+Note:	many BIOSes (including at least some versions of Phoenix and AMI) will
+	  destroy AH on return from functions higher than AH=12h, returning
+	  12h less than was in AH on entry (due to a chain of DEC/JZ
+	  instructions)
+SeeAlso: AH=05h"PCjr",AH=A2h,INT 2F/AX=AD80h
+

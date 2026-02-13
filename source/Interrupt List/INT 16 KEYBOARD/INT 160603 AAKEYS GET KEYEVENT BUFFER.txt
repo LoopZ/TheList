@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 160603
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AAKEYS - GET KEY-EVENT BUFFER
+	AX = 0603h
+Return:	ES:BX -> 256-byte circular key-event buffer
+	ES:[AX] = offset of head of buffer
+	ES:[AX+1] = offset of tail of buffer
+SeeAlso: AX=0600h,AX=0601h,AX=0602h,AX=0604h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET MM PORT FOR A SERVICE
+	AX = 0007h
+	BX = 0001h
+	DS:DX -> StreetTalk service name (64 bytes)
+	DS:DI -> 16-byte buffer for IPC port (see #03328 at AX=0001h"Sosock")
+Return: AX = status (see #03432)
+Notes:	This function calls AX=0007/BX=0002h with the port count set to 1 and
+	  the port type set to 00h
+SeeAlso: AX=0007h/BX=0002h,AX=0007h/BX=0004h,AX=0007h/BX=000Ah
+

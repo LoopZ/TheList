@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33001C
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - SET INTERRUPT RATE
+	AX = 001Ch
+	BX = rate (see #03176)
+Notes:	only available on InPort mouse
+	values greater than 4 may cause unpredictable driver behavior
+
+(Table 03176)
+Values for mouse interrupt rate:
+ 00h	no interrupts allowed
+ 01h	30 per second
+ 02h	50 per second
+ 03h	100 per second
+ 04h	200 per second
+

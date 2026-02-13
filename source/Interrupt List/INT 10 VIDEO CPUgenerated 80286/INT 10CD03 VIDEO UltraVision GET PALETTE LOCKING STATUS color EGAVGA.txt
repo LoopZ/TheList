@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - GET PALETTE LOCKING STATUS (color EGA,VGA)
+	AX = CD03h
+Return: CL = palette locking value
+	    00h none
+	    01h text modes only
+	    FFh all modes
+SeeAlso: AX=CD01h
+

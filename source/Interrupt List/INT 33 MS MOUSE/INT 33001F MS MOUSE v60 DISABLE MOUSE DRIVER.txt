@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33001F
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - DISABLE MOUSE DRIVER
+	AX = 001Fh
+Return: AX = status
+	    001Fh successful
+		ES:BX = INT 33 vector before mouse driver was first installed
+	    FFFFh unsuccessful
+Notes:	restores vectors for INT 10 and INT 71 (8086) or INT 74 (286/386)
+	if you restore INT 33 to ES:BX, driver will be completely disabled
+	many drivers return AX=001Fh even though the driver has been disabled
+SeeAlso: AX=0020h
+

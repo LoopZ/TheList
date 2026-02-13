@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC0AE
+  Category: K 	keyboard enhancers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - HP 100LX/200LX - PUSHKEYS - INSTALLATION CHECK
+	AX = C0AEh
+Return: AX = 4453h if installed
+	CX = 5259h if installed
+Range:	AH=C0h to AH=FFh, selected by scanning for signature
+SeeAlso: AX=C000h"HP 100LX",AX=C001h"HP 100LX",AX=C0AFh"HP 100LX"
+

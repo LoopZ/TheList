@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6DBD6F
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 6D U - Matrox Multiple Monitor Support v1.0 - INSTALLATION CHECK
+	AX = BD6Fh
+	BL = subfunction
+	    00h installation check
+	    01h disable TSR
+	    02h enable TSR (see AX=BD60h)
+Return: AX = 00BDh if installed
+SeeAlso: AX=BD60h,AX=BD61h,AX=BDFFh
+

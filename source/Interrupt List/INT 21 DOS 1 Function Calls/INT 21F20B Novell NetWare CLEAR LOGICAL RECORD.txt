@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F20B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CLEAR LOGICAL RECORD
+	AX = F20Bh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02099)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=D4h"NetWare",AH=F2h"NetWare",AX=F207h,AX=F20Eh
+
+Format of NetWare "Clear Logical Record" request packet:
+Offset	Size	Description	(Table 02099)
+ 00h	BYTE	length of record name (max 128)
+ 01h  N BYTEs	logical record name
+SeeAlso: #02100
+

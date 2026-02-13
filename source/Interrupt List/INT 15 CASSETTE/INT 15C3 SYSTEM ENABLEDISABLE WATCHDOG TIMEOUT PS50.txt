@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C3
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - ENABLE/DISABLE WATCHDOG TIMEOUT (PS50+)
+	AH = C3h
+	AL = function
+	    00h disable PS/2 watchdog timer
+	    01h enable PS/2 watchdog timer
+		BX = timer counter (0001h-00FFh)
+	    02h disable Gearbox system
+	    03h enable Gearbox system
+Return: CF set on error
+	CF clear if successful
+Note:	the watchdog timer generates an NMI
+SeeAlso: INT 21/AH=2Bh/CX=6269h"WDTSR"
+

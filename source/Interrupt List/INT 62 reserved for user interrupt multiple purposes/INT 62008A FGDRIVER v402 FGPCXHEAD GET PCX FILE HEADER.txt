@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62008A
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PCXHEAD" - GET PCX FILE HEADER
+	AX = 008Ah
+	ES:BX -> variable pointer record (see #03493)
+Return: AX = status
+	    0000h successful
+	    FFFEh not a PCX file
+	    FFFFh file does not exist
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=008Bh,AX=00B9h
+
+Format of FGDRIVER PCXHEAD variable pointer record:
+Offset	Size	Description	(Table 03493)
+ 00h	WORD	segment of ASCIZ filename
+ 02h	WORD	offset of ASCIZ filename
+ 04h	WORD	segment of 128-byte buffer for PCX header
+ 06h	WORD	offset of 128-byte buffer for PCX header
+

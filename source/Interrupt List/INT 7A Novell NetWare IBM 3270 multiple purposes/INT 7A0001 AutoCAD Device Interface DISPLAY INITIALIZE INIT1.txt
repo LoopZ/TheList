@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A0001
+  Category: A 	applications
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 7A R - AutoCAD Device Interface - DISPLAY - INITIALIZE (INIT1)
+	AX = 0001h
+	BX = configuration
+	CX = interface level (0001h)
+Return: AX = status
+	    0000h initialization failed
+	    0001h pre-v4.0 driver initialized successfully
+	    0003h post-v3.1 driver initialized successfully (driver truncates
+		  excessivly long packets)
+	BX = width of graphics area in pixels, or 0000h if using packet
+		  communication
+	DX:CX -> packet-mode entry point (see #03832)
+SeeAlso: AX=0001h,AX=0200h,AX=07D0h,INT 61/AX=0007h"OPTIMA",INT 78"AutoCAD"
+SeeAlso: INT 79/AX=0001h,INT 7B/AX=8001h"AutoCAD",INT 7C"AutoShade"
+
+(Table 03832)
+Call packet-mode entry point with:
+STACK:	DWORD	pointer to request packet (see #03833)
+	WORD	length of packet
+
+Format of request packet:
+Offset	Size	Description	(Table 03833)
+ 00h	WORD	function number (00h-45h for Compaq VGADI41.EXE)
+

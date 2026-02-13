@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD03
+  Category: s 	sound/speech
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - InterWave Game API - SUSPEND PROGRAM
+	AX = CD03h
+	BX = installed program identifier
+	CX = InterWave section to be released
+	    0000h all
+	    0001h synthesizer
+	    0002h Codec
+Return: AL = status
+	    00h successful
+		BX = base port
+		CL = IRQ
+		CH = DMA channel (Codec only)
+	    else failed
+SeeAlso: AX=CD00h"InterWave",AX=CD01h"InterWave",AX=CD02h"InterWave"
+SeeAlso: AX=CD04h"InterWave",AX=CD21h"InterWave",AX=CD80h"InterWave"
+

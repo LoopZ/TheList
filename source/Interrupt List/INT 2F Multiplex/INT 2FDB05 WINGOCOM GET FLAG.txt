@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB05
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - WINGO.COM - GET ??? FLAG
+	AX = DB05h
+Return: AX = 0000h
+	DX = unknown flag - 0 or 1
+Program: WINGO.COM is TSR for starting Windows programs from DOS
+	  prompt (together with companion Windows program
+	  WINSTART.EXE) written by Douglas Boling, contributing editor of
+	  PC Magazine
+SeeAlso: AX=DB00h"WINGO",AX=DB03h"WINGO",AX=DB04h"WINGO"
+

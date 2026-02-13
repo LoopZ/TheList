@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8006
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - QPC Software PKTINT.COM - REMOVE RECEIVED PACKET
+	AH = 06h
+Return: BX = next packet offset
+	CX = number of bytes still buffered
+	DX = size of packet released back into buffer pool
+SeeAlso: AH=03h
+

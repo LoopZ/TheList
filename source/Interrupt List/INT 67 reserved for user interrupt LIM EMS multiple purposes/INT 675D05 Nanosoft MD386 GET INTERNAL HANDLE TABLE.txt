@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675D05
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Nanosoft MD386 - GET INTERNAL HANDLE TABLE
+	AX = 5D05h
+	BX = handle number
+	ES:DI -> 1024-byte buffer for handle table
+Return: AH = status (see #03648)
+	buffer filled if AH=00h
+Note:	used for debugging purposes
+SeeAlso: AX=5D04h
+

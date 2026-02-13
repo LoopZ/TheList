@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155300
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - INSTALLATION CHECK
+	AX = 5300h
+	BX = device ID of system BIOS (0000h)
+Return: CF clear if successful
+	    AH = major version (BCD)
+	    AL = minor version (BCD)
+	    BX = 504Dh ("PM")
+	    CX = flags (see #00472)
+	CF set on error
+	    AH = error code (06h,09h,86h) (see #00473)
+BUG:	early versions of the Award Modular BIOS with built-in APM support
+	  reportedly do not set BX on return
+
+Bitfields for APM flags:
+Bit(s)	Description	(Table 00472)
+ 0	16-bit protected mode interface supported
+ 1	32-bit protected mode interface supported
+ 2	CPU idle call reduces processor speed
+ 3	BIOS power management disabled
+ 4	BIOS power management disengaged (APM v1.1)
+ 5-7	reserved
+
+(Table 00473)
+Values for APM error code:
+ 01h	power management functionality disabled
+ 02h	interface connection already in effect
+ 03h	interface not connected
+ 04h	real-mode interface not connected
+ 05h	16-bit protected-mode interface already connected
+ 06h	16-bit protected-mode interface not supported
+ 07h	32-bit protected-mode interface already connected
+ 08h	32-bit protected-mode interface not supported
+ 09h	unrecognized device ID
+ 0Ah	invalid parameter value in CX
+ 0Bh	(APM v1.1) interface not engaged
+ 0Ch	(APM v1.2) function not supported
+ 0Dh	(APM v1.2) Resume Timer disabled
+ 0Eh-1Fh reserved for other interface and general errors
+ 20h-3Fh reserved for CPU errors
+ 40h-5Fh reserved for device errors
+ 60h	can't enter requested state
+ 61h-7Fh reserved for other system errors
+ 80h	no power management events pending
+ 81h-85h reserved for other power management event errors
+ 86h	APM not present
+ 87h-9Fh reserved for other power management event errors
+ A0h-FEh reserved
+ FFh	undefined
+

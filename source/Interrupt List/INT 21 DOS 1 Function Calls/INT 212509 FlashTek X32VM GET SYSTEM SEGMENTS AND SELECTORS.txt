@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212509
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - FlashTek X-32VM - GET SYSTEM SEGMENTS AND SELECTORS
+	AX = 2509h
+Return: CF clear
+	EAX high word = default DS
+	AX = alias for 16-bit data segment
+	BX = real mode code segment
+	EDX high word = selector covering full 4GB address space
+	DX = default SS
+	ESI high word = PSP selector
+	SI = environment selector
+

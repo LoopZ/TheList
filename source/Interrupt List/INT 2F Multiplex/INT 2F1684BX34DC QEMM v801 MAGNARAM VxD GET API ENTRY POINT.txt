@@ -1,0 +1,92 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX34DC
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QEMM v8.01 - MAGNARAM VxD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 34DCh (virtual device ID for MAGNARAM) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02707)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02707)
+Call MAGNARAM MAGNA95.VXD protected-mode entry point with:
+	AX = function number
+	    0000h get version and ???
+		Return: AX = version (AH = major, AL = minor)
+			CX = ???
+			    bit 0: ???
+			    bit 1: ???
+	    0001h get ???
+		Return: CF clear
+			DX:AX = ??? SHL 2
+	    0002h
+		Return: CF clear if successful
+			    AX = ???
+			    DX = ???
+			CF set on error
+	    0003h get ???
+		Return: CF clear
+			DX:AX = ??? SHL 2
+	    0004h ???
+		Return: CF clear
+			DX:AX = ???
+	    0005h ???
+		Return: CF clear
+			DX:AX = ???
+	    0006h ???
+		Return: CF clear
+			DX:AX = ???
+	    0007h ???
+		Return: CF clear
+			DX:AX = ???
+	    0008h ???
+		Return: CF clear
+			DX:AX = ???
+	    0009h ???
+		Return: CF clear
+			DX:AX = ???
+	    000Ah ???
+		Return: CF clear
+			DX:AX = ???
+	    000Bh get ???
+		Return: CF clear
+			DX:AX = ??? SHL 2
+	    000Ch get ???
+		Return: CF clear
+			DX:AX = ??? SHL 2
+	    000Dh get ???
+		Return: CF clear
+			DX:AX = ??? SHL 2
+	    000Eh get ???
+		Return: CF clear
+			AX = ???
+			DX = ???
+	    000Fh get ???
+		Return: CF clear
+			DX:AX = ???
+	    0010h get ???
+		Return: CF clear
+			DX:AX = ???
+	    0011h get ???
+		Return: CF clear
+			DX:AX = ???
+	    0012h get ???
+		Return: CF clear
+			DX:AX = ???
+	    0013h get ???
+		Return: CF clear
+			DX:AX = ???
+	    0014h get ???
+		Return: CF clear
+			DX:AX = ???
+	    0015h get ???
+		Return: CF clear
+			DX:AX = ???
+	    else
+		Return: CF set
+SeeAlso: #02706,#02708
+

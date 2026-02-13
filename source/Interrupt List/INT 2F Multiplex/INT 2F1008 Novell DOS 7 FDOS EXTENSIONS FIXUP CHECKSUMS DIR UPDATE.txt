@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1008
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - Novell DOS 7+ FDOS EXTENSIONS - FIXUP CHECKSUMS / DIR UPDATE???
+	AX = 1008h
+	BX = segment of directory buffer
+	CX = cluster to fixup (0 = root)
+	DI = directory entry index (truncated to cluster if subdirectory)
+	BX:SI -> directory entry (single entry for hashing)
+Return:	nothing
+Notes:	This private function is called internally by the OS kernel to
+	  ask the FDOS to fixup hashing/checksums.  By using the
+	  INT 2F/AX=1001h FDOS hook, the call can be intercepted by external
+	  system components such as the DELWATCH TSR.
+	This function must under no circumstances be called by applications!
+SeeAlso: INT 2F/AX=1001h,AX=1007h,AX=1009h,AX=10FEh
+

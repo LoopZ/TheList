@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP GET ENTRY ID FROM NETWARE HANDLE
+	AX = F223h subfn 06h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02314)
+	ES:DI -> reply buffer (see #02315)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=04h,AX=F223h/SF=0Ch,AX=F223h/SF=12h
+
+Format of NetWare "AFP Get Entry ID from NetWare Handle" request packet:
+Offset	Size	Description	(Table 02314)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	06h (subfunction "AFP Get Entry ID from NetWare Handle")
+ 03h  6 BYTEs	NetWare file handle
+SeeAlso: #02315,#02307
+
+Format of NetWare "AFP Get Entry ID from NetWare Handle" reply packet:
+Offset	Size	Description	(Table 02315)
+ 00h	BYTE	volume number
+ 01h	DWORD	AFP entry ID corresponding to same file as NetWare handle
+ 05h	BYTE	fork indicator (00h data fork, 01h resource fork)
+SeeAlso: #02314,#02308
+

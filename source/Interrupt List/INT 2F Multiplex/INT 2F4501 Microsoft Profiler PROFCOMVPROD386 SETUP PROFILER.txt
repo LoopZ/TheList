@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4501
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Microsoft Profiler (PROF.COM/VPROD.386) - SETUP PROFILER
+	AX = 4501h
+	BX = CSIPS buffer size in KB (first parameter for ProfSetup)
+	CX = output limit in KB (second parameter for ProfSetup)
+Note:	this call is not supported by PROF.COM
+SeeAlso: AX=4502h,AX=4503h
+

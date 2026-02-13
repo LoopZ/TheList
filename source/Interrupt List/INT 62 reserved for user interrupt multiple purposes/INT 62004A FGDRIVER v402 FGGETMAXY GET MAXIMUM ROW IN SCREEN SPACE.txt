@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62004A
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETMAXY" - GET MAXIMUM ROW IN SCREEN SPACE
+	AX = 004Ah
+Return: AX = maximum Y coordinate in screen space
+		(or character space if in text mode)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0049h,AX=00C1h
+

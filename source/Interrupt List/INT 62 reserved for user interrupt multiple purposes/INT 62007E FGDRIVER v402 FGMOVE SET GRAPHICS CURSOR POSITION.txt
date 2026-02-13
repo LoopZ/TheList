@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62007E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOVE" - SET GRAPHICS CURSOR POSITION
+	AX = 007Eh
+	BX = new column
+	CX = new row
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+SeeAlso: AX=0054h,AX=0058h,AX=006Bh,AX=0079h,AX=007Fh,AX=00E0h
+

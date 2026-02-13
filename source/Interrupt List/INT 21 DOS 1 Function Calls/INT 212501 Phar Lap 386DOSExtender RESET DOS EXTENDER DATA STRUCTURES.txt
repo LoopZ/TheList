@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212501
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - RESET DOS EXTENDER DATA STRUCTURES
+	AX = 2501h
+	SS = application's original SS or DS (FlashTek X-32VM)
+Return: CF clear if successful
+	CF set on error
+	    caller is operating on X-32 stack (FlashTek X-32VM)
+Notes:	Phar Lap uses INT 21/AH=25h as the entry point for all 386/DOS-Extender
+	  system calls.	 Only available when directly using 386/DOS-Extender or
+	  a compatible DOS extender, or when using a product that was created
+	  using 386-DOS/Extender or a compatible
+	this function is also supported by FlashTek X-32VM
+SeeAlso: AH=30h"Phar Lap"
+

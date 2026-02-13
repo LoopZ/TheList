@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1420
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Alloy MW386 - ATTACH LOGICAL COMMUNICATIONS PORT TO PHYSICAL PORT
+	AH = 20h
+	AL = logical port (01h COM1, 02h COM2)
+	DX = physical port number
+Return: AX = status
+	    0000h successful
+	    FFFFh failed
+SeeAlso: AH=21h"Alloy",AH=22h"Alloy",AH=23h"Alloy",INT 17/AH=8Bh"Alloy"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F9503
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - DELETE SHARED DEVICE
+	AX = 9503h
+	BX = zero-based index
+	DS:SI -> server's node ID
+Return: CF clear if successful
+	CF set on error
+	    AX = status (see #03740)
+SeeAlso: AX=1503h,AX=9501h,AX=9502h,AX=9504h
+

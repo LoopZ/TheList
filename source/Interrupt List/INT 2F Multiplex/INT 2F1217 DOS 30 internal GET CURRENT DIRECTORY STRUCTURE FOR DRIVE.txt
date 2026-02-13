@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1217
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - GET CURRENT DIRECTORY STRUCTURE FOR DRIVE
+	AX = 1217h
+	SS = DOS DS (must be using a DOS internal stack)
+	STACK: WORD drive (0 = A:, 1 = B:, etc)
+Return: CF set on error
+	    (drive > LASTDRIVE)
+	CF clear if successful
+	    DS:SI -> current directory structure for specified drive
+	STACK unchanged
+SeeAlso: AX=1219h
+

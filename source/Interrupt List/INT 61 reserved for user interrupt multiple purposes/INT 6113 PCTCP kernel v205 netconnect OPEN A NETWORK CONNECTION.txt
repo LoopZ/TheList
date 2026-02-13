@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6113
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05 - "net_connect" - OPEN A NETWORK CONNECTION
+	AH = 13h
+	BX = network descriptor (FFFFh for automatic net_getdesc)
+	DX = protocol (see #03461)
+	DS:SI -> buffer for "addr" structure (see #03462)
+Return: CF clear if successful
+	    AX = network descriptor used or allocated
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Notes:	resets the connection with AH=19h in various cases
+	will wait for protocol on stream connections unless non-blocking was
+	  set with AH=20h
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=18h,INT 61/AH=23h
+SeeAlso: INT 63/AH=14h"BW-TCP"
+
+(Table 03461)
+Values for PC/TCP protocol:
+ 0001h	raw net (undocumented)
+ 0002h	raw IP
+ 0003h	datagram (UDP)
+ 0004h	stream (TCP)
+ 0005h	raw ICMP
+
+Format of structure "addr":
+Offset	Size	Description	(Table 03462)
+ 00h	DWORD	Internet address (network order)
+ 04h	WORD	remote socket number (network order)
+ 06h	WORD	local socket number (network order) 0000h means "you choose"
+ 08h	BYTE	protocol (see #03461)
+

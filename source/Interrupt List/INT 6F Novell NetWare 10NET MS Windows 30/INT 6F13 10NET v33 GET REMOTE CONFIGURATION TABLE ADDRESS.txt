@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F13
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v3.3+ - GET REMOTE CONFIGURATION TABLE ADDRESS
+	AH = 13h
+	DS:DX -> node ID, 12 bytes blank-padded
+Return: CF clear if successful
+	    ES:BX = configuration table address on given machine
+	CF set on error
+	    AX = error code (see #03740)
+SeeAlso: AH=03h
+

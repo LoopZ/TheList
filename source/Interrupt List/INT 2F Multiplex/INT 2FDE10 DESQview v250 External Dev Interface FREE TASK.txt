@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE10
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.50+ External Dev Interface - FREE TASK
+	AX = DE10h
+	BX = mapping context of process (see #00416 at INT 15/AX=1016h)
+	DX = task handle of process
+Note:	DESQview 2.50+ calls this function before it frees the task; it is
+	  similar to AX=DE07h but allows the XDI handler to make calls which
+	  cause context switches
+SeeAlso: AX=DE06h,AX=DE07h
+

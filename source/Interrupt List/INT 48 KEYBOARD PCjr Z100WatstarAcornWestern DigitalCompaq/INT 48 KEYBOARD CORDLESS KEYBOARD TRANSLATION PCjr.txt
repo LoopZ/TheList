@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 48
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 48 - KEYBOARD - CORDLESS KEYBOARD TRANSLATION (PCjr)
+	AL = scan code???
+Note:	This interrupt may be un-initialized (0000h:0000h) on old machines.
+	  This should be checked before calling or hooking this vector.
+	MS-DOS/PC DOS 3.3x-4.x KEYB hooked the INT 48h handler. For AL <= 80h
+	  it checked that either ALT and neither CTRL key was pressed,
+	  and in that case, it cleared the CTRL flag in the BIOS variable at
+	  0040:0017h and stored its contents in an internal variable,
+	  before continuing with the previous (non-zero) INT 48h handler.
+SeeAlso: INT 49"PCjr"
+

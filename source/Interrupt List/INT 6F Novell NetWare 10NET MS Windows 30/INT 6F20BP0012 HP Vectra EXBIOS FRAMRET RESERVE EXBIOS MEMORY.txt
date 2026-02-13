@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F20--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_RAM_RET" - RESERVE EX-BIOS MEMORY
+	AH = 20h
+	BP = 0012h (driver ID for V_SYSTEM)
+	BX = new value for "last-used DS"
+	DX = new value for "maximum DS"
+Return: AH = status (00h) (see #03744 at INT 6F/AH=00h"HP Vectra")
+	BP,DS destroyed
+Note:	the F_INS_FIXGETDS and F_INS_FREEGETDS functions
+	  (see AH=0Eh/BP=0012h,AH=14h/BP=0012h) also modify the values returned
+	  by this call, requiring care if both methods are used to allocate
+	  memory
+SeeAlso: AH=00h"HP Vectra",AH=0Eh/BP=0012h,AH=14h/BP=0012h,AH=1Eh/BP=0012h
+

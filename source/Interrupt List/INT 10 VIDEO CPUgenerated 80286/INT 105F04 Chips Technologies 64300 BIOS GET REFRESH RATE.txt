@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F04
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies '64300' BIOS - GET REFRESH RATE
+	AX = 5F04h
+	BL = video mode number
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+		    BH = available refresh rates (see #00182)
+		    BL = currently-set refresh rate (see #00182)
+SeeAlso: AX=5F03h"64300",AX=5F05h"64300"
+
+Bitfields for C&T 64300 refresh rates:
+Bit(s)	Description	(Table 00182)
+ 5	75 Hz
+ 4	72 Hz
+ 3	70 Hz
+ 2	60 Hz
+ 1	56 Hz
+ 0	interlaced
+

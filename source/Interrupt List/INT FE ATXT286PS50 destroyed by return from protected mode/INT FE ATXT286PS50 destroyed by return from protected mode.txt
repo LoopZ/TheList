@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: FE
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT FE - AT/XT286/PS50+ - destroyed by return from protected mode
+Note:	the ROM BIOS uses 0030h:0100h as the initial stack on startup, which
+	  is the last fourth of the interrupt vector table.  If the processor
+	  is returned to real mode via a hardware reset (the only possibility
+	  on an 80286, though there are a number of ways of generating one),
+	  then the BIOS startup code stacks three words on its scratch stack
+	  before determining that a return to real mode has been requested.
+	  As a result, INT FE and INT FF are corrupted.
+SeeAlso: INT FF"XT286"
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0014
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - SPX Driver - ABORT SPX CONNECTION
+	BX = 0014h
+	DX = connection ID to terminate
+Return: nothing
+Notes:	this function is supported by Advanced NetWare 2.1+
+	this function does not tell the other side that the connection has been
+	  terminated
+	also aborts any outstanding Establish Connection, Terminate Connection,
+	  and Send Sequenced Packet commands
+SeeAlso: BX=0011h,BX=0013h
+

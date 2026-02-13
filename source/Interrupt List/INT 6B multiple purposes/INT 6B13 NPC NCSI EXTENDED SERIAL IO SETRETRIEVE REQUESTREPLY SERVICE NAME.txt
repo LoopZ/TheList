@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B13
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - SET/RETRIEVE REQUEST/REPLY SERVICE NAME
+	AH = 13h
+	AL = virtual circuit number
+	CL = direction (00h get, nonzero set)
+	ES:BX -> buffer for/containing service name
+Return: ???
+Note:	this function is also supported by TelAPI
+SeeAlso: AH=14h,AH=15h
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F258SF15
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DELETE OLD AUDITING FILE
+	AX = F258h subfn 15h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02447)
+	ES:DI -> reply buffer
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F258h/SF=14h
+
+Format of NetWare "Delete Old Auditing File" request packet:
+Offset	Size	Description	(Table 02447)
+ 00h	BYTE	15h (subfunction "Delete Old Auditing File")
+	???
+SeeAlso: #02446
+

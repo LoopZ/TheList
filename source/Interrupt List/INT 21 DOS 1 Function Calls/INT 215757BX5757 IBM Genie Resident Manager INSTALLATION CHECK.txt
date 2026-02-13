@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215757BX5757
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - IBM Genie - Resident Manager - INSTALLATION CHECK
+	AX = 5757h
+	BX = 5757h
+Return: AX = 0000h if installed
+	    BX = ???
+	    DX = ???
+	    DS:SI -> list of 27 DWORD entry point addresses
+Program: IBM Genie is a set of utility TSRs by Helix Software
+Note:	other functions possible if BX <> 5757h, but details not yet available
+

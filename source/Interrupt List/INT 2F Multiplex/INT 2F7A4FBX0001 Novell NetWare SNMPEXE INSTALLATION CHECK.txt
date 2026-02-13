@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A4FBX0001
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - SNMP.EXE - INSTALLATION CHECK
+	AX = 7A4Fh
+	BX = 0001h
+Return: AX = 7AFFh if installed
+Note:	this call conflicts with RARPD.EXE (both SNMP and RARPD are supplied
+	  with LAN Workplace for DOS!), such that running SNMP will uninstall
+	  RARPD as SNMP checks whether it is already installed!
+SeeAlso: AX=7A4Fh"RARPD",AX=7A4Fh/BX=0002h
+

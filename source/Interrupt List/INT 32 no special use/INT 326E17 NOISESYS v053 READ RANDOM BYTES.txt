@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 326E17
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 32 - NOISE.SYS v0.53+ - READ RANDOM BYTES
+	AX = 6E17h
+	CX = number of bytes
+	ES:DI -> buffer
+Return: CF set on error
+	    AL = error code (FBh,FDh,FEh) (see #03166)
+	CF clear if successful
+	    CX = number of random bytes read
+SeeAlso: AX=6E00h,AX=6E16h
+

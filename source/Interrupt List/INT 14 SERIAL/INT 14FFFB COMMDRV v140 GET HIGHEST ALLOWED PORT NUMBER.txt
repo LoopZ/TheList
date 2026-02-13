@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FFFB
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - GET HIGHEST ALLOWED PORT NUMBER
+	AX = FFFBh
+	DX = port number
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+	    BX = highest port number
+

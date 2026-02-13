@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F07
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 5+ - ENABLE DRIVE
+	AX = 5F07h
+	DL = drive number (0=A:)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (0Fh) (see #01680 at AH=59h/BX=0000h)
+Notes:	simply sets the "valid" bit in the drive's CDS
+	this function is not supported by Novell DOS 7 through at least
+	  Update 4, but support was added by Update 13
+SeeAlso: AH=52h,AX=5F08h"DOS"
+

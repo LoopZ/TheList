@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DF
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Juko UNIQUE UX BIOS - TURBO MODE CONTROL
+	AH = DFh
+	AL = function
+	    00h turn on Turbo mode
+	    01h turn off Turbo mode
+	    02h set Turbo mode according to hardware switch
+SeeAlso: INT 13/AX=FFFFh
+

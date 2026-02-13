@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6005
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - BASIC FUNC - TERMINATE DRIVER FOR HANDLE
+	AH = 05h
+	BX = handle (optional for v1.10+)
+Return: CF set on error
+	   DH = error code (see #03305)
+	CF clear if successful
+

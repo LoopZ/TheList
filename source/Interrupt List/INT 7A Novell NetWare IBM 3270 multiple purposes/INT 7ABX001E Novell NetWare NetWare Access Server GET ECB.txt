@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX001E
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 7A U - Novell NetWare - NetWare Access Server - GET ??? ECB
+	BX = 001Eh
+Return: ES:SI -> ECB
+	BX corrupted
+Notes:	these functions are NOPs for standard IPX drivers such as IPXODI v2.12
+SeeAlso: INT 2F/AX=7AF1h,INT 7A/BX=001Ch,INT 7A/BX=001Dh
+

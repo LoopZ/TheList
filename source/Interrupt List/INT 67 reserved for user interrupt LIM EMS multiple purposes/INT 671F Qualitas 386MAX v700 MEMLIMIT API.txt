@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 671F
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 67 U - Qualitas 386MAX v7.00 - MEMLIMIT - API
+	AH = 1Fh
+	DS:SI -> request packet (see #03523)
+Return: AH = status (00h successful, 84h invalid function code, etc.)
+SeeAlso: AH=1Eh
+
+Format of 386MAX MEMLIMIT request packet:
+Offset	Size	Description	(Table 03523)
+ 00h	WORD	function code (00h-0Fh)
+ 02h	WORD	return code (see #03524)
+ 04h  4 BYTEs	???
+ 08h	WORD	???
+	???
+
+(Table 03524)
+Values for 386MAX MEMLIMIT return code:
+ 00h	unknown request
+ 01h	invalid parameter for VCPI limit
+ 02h	VCPI limit set
+ 03h	invalid parameter for EMS limit
+ 04h	EMS limit set
+ 05h	DPMI disabled
+ 06h	XMS disabled
+ 07h	XMS limit set
+ 08h	unable to uninstall
+ 09h	unloaded
+

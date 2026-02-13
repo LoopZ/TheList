@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213A
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "RMDIR" - REMOVE SUBDIRECTORY
+	AH = 3Ah
+	DS:DX -> ASCIZ pathname of directory to be removed
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (03h,05h,06h,10h) (see #01680 at AH=59h/BX=0000h)
+Notes:	directory must be empty (contain only '.' and '..' entries)
+	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+SeeAlso: AH=39h,AH=3Bh,AX=713Ah,AH=E2h/SF=0Bh,INT 2F/AX=1101h,INT 60/DI=0512h
+

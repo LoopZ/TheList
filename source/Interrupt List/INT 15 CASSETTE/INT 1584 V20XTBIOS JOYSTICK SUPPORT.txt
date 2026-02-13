@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1584
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - V20-XT-BIOS - JOYSTICK SUPPORT
+	AH = 84h
+	DX = subfunction
+	    0000h read joystick switches
+		Return: AL bits 7-4 = switch settings
+	    other: read positions of joysticks as indicated by bits 0-3
+		Return: AX = X position of joystick A (if DX bit 0 set)
+			BX = Y position of joystick A (if DX bit 1 set)
+			CX = X position of joystick B (if DX bit 2 set)
+			DX = Y position of joystick B (if DX bit 3 set)
+Return: CF set on error
+	    AH = status (see #00496)
+	CF clear if successful
+Program: V20-XT-BIOS is a ROM BIOS replacement with extensions by Peter
+	   Koehlmann / c't magazine
+SeeAlso: AH=84h"PS",INT 10/AH=0Eh/CX=ABCDh
+

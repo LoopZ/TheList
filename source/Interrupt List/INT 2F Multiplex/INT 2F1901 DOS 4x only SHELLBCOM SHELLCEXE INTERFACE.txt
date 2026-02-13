@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1901
+  Category: l 	shells/command interpreters
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4.x only SHELLB.COM - SHELLC.EXE INTERFACE
+	AX = 1901h
+	BL = SHELLC type
+	    00h transient
+	    01h resident
+	DS:DX -> far call entry point for resident SHELLC.EXE
+Return: ES:DI -> SHELLC.EXE workspace within SHELLB.COM
+Note:	SHELLB.COM and SHELLC.EXE are parts of the DOS 4.x shell
+

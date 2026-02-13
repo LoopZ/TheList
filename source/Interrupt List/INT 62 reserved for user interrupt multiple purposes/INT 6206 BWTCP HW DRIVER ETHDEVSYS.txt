@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6206
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - BW-TCP - HW DRIVER (ETHDEV.SYS) - ???
+	AH = 06h
+	???
+Return: CF clear if successful
+	CF set on error
+	    AL = error code
+Range:	INT 4C to INT FB, selected by configuration
+Note:	the Beame&Whiteside TCP/IP protocol stack uses two consecutive
+	  interrupts (62h and 63h by default); the BW-NFS client uses a third
+	  consecutive interrupt (64h by default) if it is loaded
+SeeAlso: AH=FEh,INT 21/AH=3Fh"BW-TCP",INT 63/AH=24h"BW-TCP"
+SeeAlso: INT 64/AH=01h"BW-NFS"
+

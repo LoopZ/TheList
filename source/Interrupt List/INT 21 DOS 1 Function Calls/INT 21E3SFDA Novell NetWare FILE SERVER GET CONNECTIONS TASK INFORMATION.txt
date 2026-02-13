@@ -1,0 +1,73 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFDA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET CONNECTION'S TASK INFORMATION
+	AH = E3h subfn DAh
+	DS:SI -> request buffer (see #02041)
+	ES:DI -> reply buffer (see #02042)
+Return: AL = status (00h,C6h) (see #02053)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=DBh,AH=E3h/SF=DFh,AH=E3h/SF=E1h,AH=E3h/SF=E5h
+SeeAlso: AX=F217h/SF=DAh
+
+Format of NetWare "Get Connection's Task Information" request buffer:
+Offset	Size	Description	(Table 02041)
+ 00h	WORD	0003h (length of following data)
+ 02h	BYTE	DAh (subfunction "Get Connection's Task Information")
+ 03h	WORD	(big-endian) logical connection number
+SeeAlso: #02042,#02233 at AX=F217h/SF=DAh
+
+Format of NetWare "Get Connection's Task Information" reply buffer:
+Offset	Size	Description	(Table 02042)
+ 00h	WORD	(call) size of following results record (max 1FEh)
+ 02h	BYTE	lock status of connection (see #02043)
+ 03h	var	Lock Status Information (see #02044)
+ N	BYTE	number of records following
+ N+1	Active Task Information Records [array]
+	Offset	Size	Description
+	 00h	BYTE	task number (01h-FFh)
+	 01h	BYTE	task state
+			01h in TTS explicit transaction
+			02h in TTS implicit transaction
+			04h shared fileset lock active
+SeeAlso: #02041,#02233 at AX=F217h/SF=DAh
+
+(Table 02043)
+Values for lock status of connection:
+ 00h	no locks
+ 01h	waiting on physical record lock
+ 02h	waiting on file lock
+ 03h	waiting on logical record lock
+ 04h	waiting on semaphore
+SeeAlso: #02042,#02044
+
+Format of Lock Status Information:
+Offset	Size	Description	(Table 02044)
+---lock status 00h---
+ no fields
+---lock status 01h---
+ 00h	BYTE	number of waiting task
+ 01h	DWORD	start address
+ 05h	DWORD	end address
+ 09h	BYTE	volume number
+ 0Ah	WORD	directory entry number
+ 0Ch 14 BYTEs	ASCIZ filename
+---lock status 02h---
+ 00h	BYTE	number of waiting task
+ 01h	BYTE	volume number
+ 02h	WORD	directory entry number
+ 04h 14 BYTEs	ASCIZ filename
+---lock status 03h---
+ 00h	BYTE	number of waiting task
+ 01h	BYTE	length of record name
+ 02h  N BYTEs	ASCIZ record name
+---lock status 04h---
+ 00h	BYTE	number of waiting task
+ 01h	BYTE	length of semaphore's name
+ 02h  N BYTEs	ASCIZ semaphore name
+SeeAlso: #02042,#02043
+

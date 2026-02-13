@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 08
+  Category: C 	CPU-generated
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 08 C - CPU-generated (80286+) - DOUBLE EXCEPTION DETECTED
+Desc:	called when multiple exceptions occur on one instruction, or an
+	  exception occurs in an exception handler
+Notes:	called in protected mode if an interrupt above the defined limit of
+	  the interrupt vector table occurs
+	return address points at beginning of instruction with errors or the
+	  beginning of the instruction which was about to execute when the
+	  external interrupt caused the exception
+	if an exception occurs in the double fault handler, the CPU goes into
+	  SHUTDOWN mode (which circuitry in the PC/AT converts to a reset);
+	  this "triple fault" is a faster way of returning to real mode on
+	  many 80286 machines than the standard keyboard controller reset
+

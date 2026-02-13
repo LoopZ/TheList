@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155310
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.2 - GET CAPABILITIES
+	AX = 5310h
+	BX = device ID (see #00474)
+	    0000h (APM BIOS)
+	    other reserved
+Return: CF clear if successful
+	    BL = number of battery units supported (00h if no system batteries)
+	    CX = capabilities flags (see #00480)
+	CF set on error
+	    AH = error code (01h,09h,86h) (see #00473)
+Notes:	this function is supported via the INT 15, 16-bit protected mode, and
+	  32-bit protected mode interfaces; it does not require that a
+	  connection be established prior to use
+	this function will return the capabilities currently in effect, not
+	  any new settings which have been made but do not take effect until
+	  a system restart
+SeeAlso: AX=5300h,AX=530Fh,AX=5311h,AX=5312h,AX=5313h
+
+Bitfields for APM v1.2 capabilities flags:
+Bit(s)	Description	(Table 00480)
+ 15-8	reserved
+ 7	PCMCIA Ring Indicator will wake up system from suspend mode
+ 6	PCMCIA Ring Indicator will wake up system from standby mode
+ 5	Resume on Ring Indicator will wake up system from suspend mode
+ 4	Resume on Ring Indicator will wake up system from standby mode
+ 3	resume timer will wake up system from suspend mode
+ 2	resume timer will wake up system from standby mode
+ 1	can enter global suspend state
+ 0	can enter global standby state
+

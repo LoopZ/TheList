@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 26----CXFFFF
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 26 - DOS 3.31+ - ABSOLUTE DISK WRITE (32M-2047M hard-disk partition)
+	CX = FFFFh
+	AL = drive number (0=A, 1=B, etc)
+	DS:BX -> disk write packet (see #02552)
+Return: CF clear if successful
+	CF set on error
+	    AH = status (see #02547)
+	    AL = error code (same as passed to INT 24 in DI)
+	may destroy all other registers except segment registers
+Notes:	partition is potentially >32M (and requires this form of the call) if
+	  bit 1 of the device attribute word in the device driver is set
+	original flags are left on stack, and must be removed by caller
+	this call bypasses the DOS filesystem, though DOS 5+ invalidates any
+	  disk buffers referencing sectors which are written with this call
+	for FAT32 drives (which may be up to 2TB in size), use INT 21/AX=7305h
+	Windows98 will display an error message and deliberately hang the
+	  system on attempted write to any hard disk if neither bit 7 of the
+	  Extended Drive Info byte nor bit 6 of "DOS_FLAG" (List-of-Lists+60h)
+	  is set
+SeeAlso: INT 13/AH=03h,INT 25/CX=FFFFh,INT 26,INT 21/AX=7305h
+
+Format of disk write packet:
+Offset	Size	Description	(Table 02552)
+ 00h	DWORD	sector number
+ 04h	WORD	number of sectors to read
+ 06h	DWORD	transfer address
+SeeAlso: #02548
+

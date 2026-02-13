@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620006
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_BOX" - DRAW UNFILLED RECTANGLE
+	AX = 0006h
+	BX = left column
+	CX = right column
+	DX = top row
+	SI = bottom row
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	The rectangle is drawn in screen space, respecting the clipping region,
+	  with edges of the width specified with "FG_BOXDEPTH" (see AX=0007h)
+	  (default = 1 is set by "FG_SETMODE")
+	This function has no effect in text modes
+SeeAlso: AX=0007h,AX=0008h,AX=000Ch,AX=0016h,AX=001Dh,AX=0026h,AX=0051h
+SeeAlso: AX=0055h,AX=008Fh
+

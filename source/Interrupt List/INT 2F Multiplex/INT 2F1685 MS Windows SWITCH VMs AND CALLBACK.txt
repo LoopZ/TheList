@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1685
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - SWITCH VMs AND CALLBACK
+	AX = 1685h
+	BX = VM ID of virtual machine to switch to
+	CX = flags (see #02717)
+	DX:SI = priority boost (refer to VMM.INC)
+	ES:DI -> FAR procedure to callback
+Return: CF set on error
+	    AX = error code
+		01h invalid VM ID
+		02h invalid priority boost
+		03h invalid flags
+	CF clear if successful
+	    event will be or has been called
+Notes:	some DOS devices, such as networks, need to call functions in a
+	  specific VM. This call forces the appropriate VM to be installed.
+	the callback procedure must preserve all registers and return with IRET
+SeeAlso: AX=1683h,INT 15/AX=1117h,AX=DB06h"WINGO"
+
+Bitfields for VM switching flags:
+Bit(s)	Description	(Table 02717)
+ 0	wait until interrupts enabled
+ 1	wait until critical section unowned
+ 2-15	reserved (zero)
+

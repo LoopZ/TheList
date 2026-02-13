@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE0A
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - GET 8259 INTERRUPT VECTOR MAPPINGS
+	AX = DE0Ah
+Return: AH = 00h successful
+	    BX = first vector used by master 8259 (IRQ0)
+	    CX = first vector used by slave 8259 (IRQ8)
+	AH nonzero: failed
+Note:	CX is undefined in systems without a slave 8259
+SeeAlso: AX=DE0Bh,INT 21/AX=250Ch,INT 31/AX=0400h
+

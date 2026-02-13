@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1044
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "LEVEL" - SELECT DRAWING FUNCTION
+	AH = 44h
+	AL = drawing function
+	    00h clear pixels
+	    01h set pixels
+	    02h invert pixels
+Return: nothing
+Desc:	specify how graphics output will change the display
+SeeAlso: AH=40h,AH=45h,AH=46h,AH=4Bh,AH=4Ch,AH=4Dh
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A88
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - GET WINDOW
+	AH = 88h
+	AL = adapter number
+	BH = window number
+Return: CF clear if successful
+	    AH destroyed
+	    BL = socket number (0-16) (0 = not assigned)
+	    CX = window size (bytes for I/O window, 4K units for memory window)
+	    DH = window attributes (see #00678)
+	    DL = access speed (only one bit set) (see #00674)
+	    SI = window base address (bytes if I/O, 4K units if memory)
+	    DI = card offset address (memory only, 4K units)
+	CF set on error
+	    AH = error code (01h,11h) (see #00656)
+SeeAlso: AH=87h,AH=89h,AH=8Ah
+
+Bitfields for PCMCIA window attributes:
+Bit(s)	Description	(Table 00678)
+ 0	memory-mapped rather than I/O-mapped
+ 1	attribute memory rather than common (memory-mapped)
+	EISA mapped (I/O)
+ 2	enabled
+ 3	16-data path
+ 4	subdivided into pages (memory-mapped only)
+ 5	non-specific access slot enable (EISA-mapped only)
+ 6-7	reserved (0)
+

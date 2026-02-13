@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200A7
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETBANKS" - SET SVGA READ AND WRITE BANKS
+	AX = 00A7h
+	BX = memory bank from which to read (FFFFh leave unchanged)
+	CX = memory bank to which to write (FFFFh leave unchanged)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=003Bh
+

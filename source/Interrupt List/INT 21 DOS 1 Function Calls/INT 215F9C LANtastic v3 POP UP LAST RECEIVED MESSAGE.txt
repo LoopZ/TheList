@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F9C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v3+ - POP UP LAST RECEIVED MESSAGE
+	AX = 5F9Ch
+	CX = time to leave on screen in clock ticks
+	DH = 0-based screen line on which to place message
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (0Bh)
+Notes:	the original screen contents are restored when the message is removed
+	the message will not appear, and an error will be returned, if the
+	  screen is in a graphics mode
+SeeAlso: AX=5F9Ah
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F214CX0000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET FILE SERVER DATE AND TIME
+	AX = F214h
+	CX = 0000h (no request packet)
+	DX = length of reply packet in bytes
+	ES:DI -> buffer for reply packet (see #02106)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"NetWare",AH=E3h/SF=CAh,AH=E7h"NetWare"
+
+Format of NetWare "Get File Server Date and Time" reply packet:
+Offset	Size	Description	(Table 02106)
+ 00h	BYTE	year-1900 (80-179)
+ 01h	BYTE	month (1-12)
+ 02h	BYTE	day (1-31)
+ 03h	BYTE	hour
+ 04h	BYTE	minute
+ 05h	BYTE	second
+ 06h	BYTE	day of week
+SeeAlso: #02012 at AH=E3h/SF=CAh,#02087 at AH=E7h
+

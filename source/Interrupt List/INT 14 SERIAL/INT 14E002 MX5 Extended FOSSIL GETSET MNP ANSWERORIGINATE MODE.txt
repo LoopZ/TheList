@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E002
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MX5 Extended FOSSIL - GET/SET MNP ANSWER/ORIGINATE MODE
+	AX = E002h
+	BH = function
+	    00h get answer/originate mode
+	    01h set mode
+		BL = new mode (00h originate [default], 01h answer)
+	DX = port number (0-3)
+Return: BL = answer/originate mode
+SeeAlso: AX=E001h,AX=E003h,AX=E006h
+

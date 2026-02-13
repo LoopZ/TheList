@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F34
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - Named Pipes - LOCAL DosSetNmPHandState
+	AX = 5F34h
+	BX = handle
+	CX = pipe mode bit mask
+	    bit 15: set if nonblocking, clear if blocking
+	    bit	 8: set if read in message mode, clear if read in byte mode
+Return: CF clear if successful
+	CF set if error
+	    AX = error code
+Note:	this function was introduced by LAN Manager but is also supported by
+	  the Novell DOS Named Pipe Extender, Banyan VINES, OS/2 Virtual DOS
+	  Machines, and others
+SeeAlso: AX=5F32h,AX=5F33h,AX=5F36h
+

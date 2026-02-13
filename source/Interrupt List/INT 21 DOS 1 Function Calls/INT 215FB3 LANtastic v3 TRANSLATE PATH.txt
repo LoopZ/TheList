@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FB3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v3+ - TRANSLATE PATH
+	AX = 5FB3h
+	DS:SI -> 128-byte buffer for ASCIZ result
+	ES:DI -> full ASCIZ path, including server name
+	DX = types of translation to be performed
+	    bit 0: expand last component as indirect file
+	    bit 1: return actual path relative to server's physical disk
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Note:	always expands any indirect files along the path
+SeeALso: AX=5FB4h,INT 21/AH=60h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A6
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - SEND SHORT BREAK
+	AH = A6h
+	DH = session ID (00h for external session managment)
+Return: AH = return code (00h,03h,07h,0Ah,0Bh) (see #00394)
+Desc:	generate a short break signal; if data delivery was turned off by the
+	  break, wait for the host to turn it on again
+SeeAlso: AH=1Ah,AH=8Ah,AH=FAh,AH=A0h"BAPI"
+

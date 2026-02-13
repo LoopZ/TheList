@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - OPEN/CREATE FILE OR SUBDIRECTORY
+	AX = F257h subfn 01h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02374)
+	ES:DI -> reply buffer (see #02375)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=6C00h,AX=F257h/SF=02h,AX=F257h/SF=04h
+
+Format of NetWare "Open/Create File or Subdirectory" request packet:
+Offset	Size	Description	(Table 02374)
+ 00h	BYTE	01h (subfunction "Open/Create File or Subdirectory")
+ 01h	BYTE	name space (see #02387)
+ 02h	BYTE	open/create mode
+ 03h	WORD	search attributes
+ 05h	DWORD	return information mask
+ 09h	DWORD	create attributes
+ 0Dh	WORD	desired access rights (see #02377)
+ 0Fh		NetWare handle/path structure
+SeeAlso: #02375
+
+Format of NetWare "Open/Create File or Subdirectory" reply packet:
+Offset	Size	Description	(Table 02375)
+ 00h	DWORD	file handle
+ 04h	BYTE	open/create action
+		00h open
+		01h replace
+		03h create
+ 05h	BYTE	reserved
+SeeAlso: #02374
+
+Format of NetWare Handle/Path structure:
+Offset	Size	Description	(Table 02376)
+ 00h	BYTE	volume number
+ 01h	DWORD	directory base or short handle
+ 05h	BYTE	handle flag
+		00h short directory handle
+		01h directory base
+		FFh no handle
+ 06h	BYTE	path component count
+ 07h  N BYTEs	path component
+
+Bitfields for NetWare desired access rights:
+Bit(s)	Description	(Table 02377)
+ 0	read-only mode
+ 1	write-only
+ 2	deny read
+ 3	deny write
+ 4	compatibility mode
+ 6	write-through mode
+SeeAlso: #02374
+

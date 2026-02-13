@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: F707
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F7 - FSBBS 2.0 - DUMP FUNCTIONS
+	AH = 07h
+	AL = function
+	    00h get current dump mode
+		Return: DL = mode
+	    01h set dump mode
+		DL = mode
+SeeAlso: AH=06h
+

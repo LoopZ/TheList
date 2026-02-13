@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15530F
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.1+ - ENGAGE/DISENGAGE POWER MANAGEMENT
+	AX = 530Fh
+	BX = device ID (see #00474)
+	CX = function
+	    0000h disengage power management
+	    0001h engage power management
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (01h,09h) (see #00473)
+Notes:	unlike AX=5308h, this call does not affect the functioning of the APM
+	  BIOS
+	when cooperative power management is disengaged, the APM BIOS performs
+	  automatic power management of the system or device
+SeeAlso: AX=5308h,AX=530Dh
+

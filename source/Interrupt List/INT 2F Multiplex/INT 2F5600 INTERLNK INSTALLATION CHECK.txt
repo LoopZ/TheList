@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5600
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - INTERLNK - INSTALLATION CHECK
+	AX = 5600h
+	DX = magic value FFFFh
+	BL = instance number (00h = any, 01h = first loaded, etc.)
+	(BH = 00h and CX = 0000h, see note)
+Return: AL = FFh if installed
+	    BL = instance number
+	    CX = version number (CL = major, CH = minor)
+	    DX = resident CS of driver, DX:0000h -> header (see #02845)
+Notes:	INTERLNK was derived from Sewell Development Corporation's FASTLYNX.
+	Some Microsoft software explicitly clears the BH and CX registers
+	  before calling this function.
+BUG:	reportedly, the MS-DOS INTERSRV program (though not INTERLNK) causes
+	  serious FAT corruption and data loss when run under Novell DOS 7.
+	  INTERSRV apparently checks for DR-DOS by testing the "OS"
+	  environment variable for the value "DRDOS", which is no longer
+	  correct for PalmDOS, Novell DOS, or OpenDOS.  A workaround may be
+	  to explicitly set the OS variable to "DRDOS".
+SeeAlso: AX=5601h,AX=5602h,INT 60/AX=0000h
+
+Format of Interlnk device driver header:
+Offset	Size	Description	(Table 02845)
+ 00h	DWORD	pointer to next driver, offset=FFFFh if last driver
+ 04h	WORD	device attributes (see #01647,#01648)
+ 06h	WORD	device strategy entry point
+ 08h	WORD	device interrupt entry point
+ 0Ah  8 BYTEs	character device name "NUL2    "
+ 12h 165 BYTEs	???
+ B7h 67 BYTEs	fully qualified Interlnk filename
+ FAh  6 BYTEs	???
+100h	DWORD	pointer back to Interlnk filename at offset B7h
+104h  8 BYTEs	???
+10Ch	BYTE	total number of redirected drives
+10Dh	BYTE	first local drive number (0=A:)
+10Eh	BYTE	printer redirection (0=no, 1=yes)
+10Fh	BYTE	???
+110h  3	BYTEs	LPT1...3 status (0FFh=invalid)
+113h 26 BYTEs	remote drive number (0=A:, 0FEh=unused) (refer to note below)
+12Dh 26 BYTEs	always 0FEh ???
+147h 26 BYTEs	always 0FFh ???
+Note:	to obtain the remote drive number, subtract the value at offset 10Ch
+	  from the local drive number before indexing into the table at 113h
+	  (example: if local drives F, G, H are remote drives C, F, E then
+	  the first three bytes at offset 113h are 02h, 05h, 04h)
+	for each instance of Interlnk, an extra device driver is loaded, but
+	  all have the same device name NUL2
+SeeAlso: #01646 at INT 21/AH=52h
+

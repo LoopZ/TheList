@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6116
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_peer" - GET DATA ON REMOTE PEER
+	AH = 16h
+	BX = network descriptor
+	DS:DX -> 9-byte buffer for "addr" structure (see #03462)
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Range:	INT 20 to INT E0, selected by configuration
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+

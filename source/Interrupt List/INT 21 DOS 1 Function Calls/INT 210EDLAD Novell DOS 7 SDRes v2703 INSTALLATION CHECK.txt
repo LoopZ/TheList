@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 210E--DLAD
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Novell DOS 7 - SDRes v27.03 - INSTALLATION CHECK
+	AH = 0Eh
+	DL = ADh
+Return: AL = BAh if installed
+Program: SDRes is the resident portion of the Search&Destroy antiviral by
+	  Fifth Generation Systems, as bundled with Novell DOS 7
+Note:	SDRes will terminate programs which test for the presence of viruses
+	  using interrupt-based installation calls, saying that the program
+	  may be infected
+SeeAlso: AH=0Eh/DL=AEh,AH=0Eh/DL=AFh,AH=4Ah/BX=00B6h,INT 13/AX=A759h
+

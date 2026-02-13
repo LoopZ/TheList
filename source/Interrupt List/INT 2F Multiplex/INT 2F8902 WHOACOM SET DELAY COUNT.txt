@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8902
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WHOA!.COM - SET DELAY COUNT
+	AX = 8902h
+	BX = delay count (larger values slow system down more)
+Return: AL = status
+	    FDh successful
+	    FEh error
+Program: WHOA!.COM is a system slow-down utility by Brad D Crandall
+SeeAlso: AX=8900h
+

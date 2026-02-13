@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD0F
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - LaserPort Interface - EXECUTE FUNCTION
+	AX = CD0Fh
+	BL = function
+		01h enable
+		02h disable
+		03h ???
+Return: AL = status
+	    00h success
+SeeAlso: AX=CD00h"LaserPort"
+

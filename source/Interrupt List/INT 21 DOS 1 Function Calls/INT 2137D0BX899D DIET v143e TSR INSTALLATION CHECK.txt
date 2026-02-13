@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137D0BX899D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DIET v1.43e - TSR INSTALLATION CHECK
+	AX = 37D0h
+	BX = 899Dh ('DI' + 'ET')
+Return: AL = FFh if not present as TSR (default return value from DOS)
+	AX = 0000h if installed as a TSR
+	    CX = 899Dh
+	    DX = version ID
+Program: DIET is a transparent file compressor/decompressor by Teddy Matsumoto
+SeeAlso: AX=37D1h,AX=37D2h,AX=37D4h,AX=37D6h,AX=37DFh,AX=4BF0h,AX=4BF1h
+

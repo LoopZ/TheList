@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F47
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - LOCAL NetUseAdd
+	AX = 5F47h
+	BX = level (0001h)
+	CX = size of use_info_1 structure
+	ES:DI -> use_info_1 structure (see #01718)
+Return: CF clear on success
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F46h,AX=5F48h
+

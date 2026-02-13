@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1125
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - REDIRECTED PRINTER MODE
+	AX = 1125h
+	STACK: WORD subfunction
+		5D07h get print stream state
+			Return: DL = current state
+		5D08h set print stream state
+			DL = new state
+		5D09h finish print job
+Return: CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	STACK unchanged
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: INT 21/AX=5D07h,INT 21/AX=5D08h,INT 21/AX=5D09h
+

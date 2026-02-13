@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF0C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - SET SCROLL LOCK CHECKING
+	AX = 0003h subfn 0Ch
+	DS:BX -> argument block (see #03387)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03387)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	0Ch (function "set state of scroll lock checking")
+ 02h	BYTE	check_scroll_lock flag
+		00h off
+		01h on (display of host data stopped while ScrollLock on)
+

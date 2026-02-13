@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD200BX5144
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Quarterdeck RPCI - INSTALLATION CHECK
+	AX = D200h
+	BX = 5144h ("QD")
+	CX = 4D45h ("ME")
+	DX = 4D30h ("M0")
+Return: AL = FFh installed
+	if BX,CX,DX registers were as specified on entry:
+	    BX = 4D45h ("ME")
+	    CX = 4D44h ("MD")
+	    DX = 5652h ("VR")
+Range:	AH=C0h to AH=FFh, selected by scanning AH=D2h-FFh, then AH=C0h-D1h
+Notes:	the Quarterdeck RPCI (Resident Program Communication Interface) is
+	  supported by QEMM v5.0+, QRAM, MANIFEST, VIDRAM, etc.
+	for AL <> 0, if the BX/CX/DX values don't match the identifier of a
+	  Quarterdeck product, it just chains to the previous INT 2F handler
+SeeAlso: AX=D201h/BX=4849h,AX=D201h/BX=4D41h,AX=D201h/BX=4D45h
+SeeAlso: AX=D201h/BX=5145h,AX=D201h/BX=5649h
+

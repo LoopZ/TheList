@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1501
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_chanreq" - I/O CHANNEL OBJECT MANAGER
+	AH = 01h
+	STACK:	WORD	object ID of requestor
+		DWORD	pointer to ASCIZ name of requested method
+			"assign" assign channel to object
+			"deassign" deassign channel
+			"cursor" set cursor on/off
+			"init" initialize comm port
+			"open" open I/O channel
+			"position" set cursor position
+			"receive" get buffered packet from comm port
+			"send" send buffered packet to comm port
+			"vio" set current virtual I/O to specified channel
+			"window" make window at cursor position
+		---if "assign"---
+		 WORD	object UID
+		 WORD	caller UID/PID
+		 DWORD	CSL with port
+		---if "deassign"---
+		 WORD	channel ID
+		---if "cursor"---
+		 WORD	channel ID (must be a SRCSINK)
+		 WORD	new state (0000h off, 0001h on)
+		---if "init"---
+		 WORD	channel ID (must be a SRCSINK)
+		 WORD	comm port number (00h-03h)
+		 WORD	UART init code
+		---if "open"---
+		 WORD	channel ID
+		---if "position"---
+		 WORD	channel ID (must be a SRCSINK)
+		 WORD	position (high byte = row, low byte = column)
+		---if "receive"---
+		 DWORD	pointer to buffer
+		---if "send"---
+		 WORD	length of buffer
+		 DWORD	pointer to buffer
+		---if "vio"---
+		 WORD	channel ID (must be a SRCSINK)
+		---if "window"---
+		 WORD	top left (high byte = row, low byte = column)
+		 WORD	bottom right (high byte = row, low byte = column)
+Return: DX:AX -> IRP structure or 0000h:0000h
+SeeAlso: AH=00h"VMiX",AH=02h"VMiX"
+

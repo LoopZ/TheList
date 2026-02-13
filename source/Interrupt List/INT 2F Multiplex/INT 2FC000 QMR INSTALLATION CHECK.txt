@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QMR - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    ES:DI -> signature string "QMR1!"
+Program: QMR (Cove Software, Quick Mouse Reset) monitors the mouse
+	  service interrupt (int 33h) and substitutes a fast software
+	  reset (mouse fn 21h) for the slow hardware reset (mouse fn 0).
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+SeeAlso: AX=C001h"QMR",AX=C002h"QMR",AX=C003h"QMR"
+

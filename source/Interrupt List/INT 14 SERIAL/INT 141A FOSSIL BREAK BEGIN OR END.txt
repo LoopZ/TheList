@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141A
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - BREAK BEGIN OR END
+	AH = 1Ah
+	AL = 00h stop sending 'break'
+	     01h start sending 'break'
+	DX = port number
+Return: nothing
+SeeAlso: AH=06h"FOSSIL",AH=8Ah,AH=FAh
+

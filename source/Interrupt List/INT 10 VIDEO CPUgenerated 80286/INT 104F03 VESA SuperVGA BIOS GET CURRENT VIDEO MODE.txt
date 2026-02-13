@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS - GET CURRENT VIDEO MODE
+	AX = 4F03h
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+		BX = video mode (see #00083,#00084)
+		    bit 13: VBE/AF v1.0P accelerated video mode
+		    bit 14: linear frame buffer enabled (VBE v2.0+)
+		    bit 15: don't clear video memory
+	    01h failed
+SeeAlso: AH=0Fh,AX=4E04h,AX=4F02h
+

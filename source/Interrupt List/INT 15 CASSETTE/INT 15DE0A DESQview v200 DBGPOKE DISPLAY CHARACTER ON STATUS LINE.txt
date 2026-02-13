@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE0A
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.00+ - "DBGPOKE" - DISPLAY CHARACTER ON STATUS LINE
+	AX = DE0Ah
+	BL = character
+Return: character displayed, next call will display in next position (which
+	wraps back to the start of the line if off the right edge of screen)
+Notes:	displays character on bottom line of *physical* screen, regardless
+	  of current size of window (even entirely hidden)
+	does not know about graphics display modes, just pokes the characters
+	  into display memory
+	this API call may be made from a hardware interrupt handler
+SeeAlso: AX=1003h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FE1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET DOS TASK PID FROM CREATE ID
+	AH = E1h
+	AL = create ID (from AH=E0h)
+Return: AL = DOS process number
+	CL = memory size (00h=128K, 01h=256K, 02h=384K, 03h=512K, 04h=640K)
+Note:	this function should not be called immediately after creating a new
+	  DOS task, since the new task is being initialized by a concurrent
+	  process
+SeeAlso: AH=E0h,AH=E2h
+

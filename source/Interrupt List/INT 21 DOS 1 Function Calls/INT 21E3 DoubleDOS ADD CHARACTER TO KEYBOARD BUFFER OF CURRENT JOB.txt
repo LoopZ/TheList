@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - ADD CHARACTER TO KEYBOARD BUFFER OF CURRENT JOB
+	AH = E3h
+	AL = character
+Return: AL = status
+	    00h successful
+	    01h buffer full (128 characters)
+SeeAlso: AH=E1h"DoubleDOS",AH=E2h"DoubleDOS",AH=E8h"DoubleDOS"
+SeeAlso: AH=F3h"DoubleDOS"
+

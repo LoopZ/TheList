@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE01BX7474
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DESQview v2.26+ XDI - CUSTOM SUBFUNCTION, DVTXDI.COM
+	AX = DE01h
+	BX = 7474h
+	CL = function
+	    00h installation check
+		Return: AL = FFh
+	    01h get process handle
+		DX = keys on Open Window menu (DL = first, DH = second)
+		Return: AX = process handle or 0000h if not running
+	    02h (v1.3+) set TMAN handle
+		DX = TMAN process handle
+	    03h (v1.3+) set open keys to ignore on next CL=01h call
+		DX = keys on Open Window menu (DL = first, DH = second)
+Return: BX = 4F4Bh ("OK")
+	DL destroyed
+Note:	DVTXDI is distributed as part of the shareware products DVTree (DOS
+	 shell/DESQview process manager) and DVTMAN by Mike Weaver
+Index:	installation check;DVTXDI
+

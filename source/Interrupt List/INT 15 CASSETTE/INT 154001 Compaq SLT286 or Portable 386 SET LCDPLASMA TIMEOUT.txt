@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154001
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq SLT/286 or Portable 386 - SET LCD/PLASMA TIMEOUT
+	AX = 4001h
+	CL = timeout in minutes, 00h to disable
+Return: AL = status
+	    00h timeout modified
+	    01h timeout cannot be modified
+	    40h timeout cannot be modified
+	CL = timeout in minutes, 00h if disabled
+SeeAlso: AX=4000h,AX=4601h
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200B5
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETVIEW" - DEFINE VIEWPORT
+	AX = 00B5h
+	ES:BX -> variable record (see #03501)
+	CX = viewport's top edge in screen space
+	DX = viewport's bottom edge in screen space
+Return: nothing
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=004Fh
+
+Format of FGDRIVER SETVIEW variable record:
+Offset	Size	Description	(Table 03501)
+ 00h	WORD	viewport's left edge in viewport units
+ 02h	WORD	viewport's right edge in viewport units
+ 04h	WORD	viewport's top edge in viewport units
+ 06h	WORD	viewport's bottom edge in viewport units
+ 08h	WORD	viewport's left edge in screen space
+ 0Ah	WORD	viewport's right edge in screen space
+

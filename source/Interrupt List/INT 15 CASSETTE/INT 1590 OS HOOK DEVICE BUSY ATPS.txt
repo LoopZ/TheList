@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1590
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - OS HOOK - DEVICE BUSY (AT,PS)
+	AH = 90h
+	AL = device type (see #00507)
+	ES:BX -> request block for type codes 80h through BFh
+	CF clear
+Return: CF set if wait time satisfied
+	CF clear if driver must perform wait
+	    AH = 00h
+Notes:	type codes are allocated as follows:
+	  00-7F non-reentrant devices; OS must arbitrate access
+	  80-BF reentrant devices; ES:BX points to a unique control block
+	  C0-FF wait-only calls, no complementary INT 15/AH=91h call
+	floppy and hard disk BIOS code uses this call to implement a timeout;
+	  for device types 00h and 01h, a return of CF set means that the
+	  timeout expired before the disk responded.
+	this function should be hooked by a multitasker to allow other tasks
+	  to execute while the BIOS is waiting for I/O completion; the default
+	  handler merely returns with AH=00h and CF clear
+SeeAlso: AH=91h,INT 13/AH=00h,INT 17/AH=00h,INT 1A/AH=83h
+
+(Table 00507)
+Values for device type:
+ 00h	disk
+ 01h	diskette
+ 02h	keyboard
+ 03h	PS/2 pointing device
+ 21h	waiting for keyboard input (Phoenix BIOS)
+ 80h	network
+ FBh	digital sound (Tandy)
+ FCh	disk reset (PS)
+ FDh	diskette motor start
+ FEh	printer
+

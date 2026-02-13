@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2AFF97
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - PC/TCP PREDIR.EXE - GET PRINT JOB TERMINATION CONFIGURATION
+	AX = FF97h
+	CX = what to get
+	    0000h ???
+	    0001h print-on-hotkey state
+	    0002h print-on-exit state
+	    0003h print job timeout in clock ticks
+	    0004h print-on-EOF state
+Return: AX = status
+	    0000h successful
+	BX = old value (0000h disabled, 0001 enabled except for timeout)
+SeeAlso: AX=FF96h
+

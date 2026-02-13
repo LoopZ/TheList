@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE27
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.50+ - "ADDINSTANCEDATA" - ADD PER-TASK SAVE/RESTORE AREA
+	AX = DE27h
+	BX = type
+	    0000h process
+	    0001h task
+	ES:DI -> list of Instance Item Structures (see #00553)
+Return: CF clear if successful
+	    AX = ???
+	    BX = ???
+	CF set on error
+	    AX = error code???
+		0004h invalid BX value
+Note:	DESQview 2.50-2.52 are distributed as part of DESQview/X v1.0x.
+SeeAlso: INT 2F/AX=DE08h,INT 2F/AX=DE09h
+
+Format of DESQview Instance Item Structure [one element of list]:
+Offset	Size	Description	(Table 00553)
+ 00h	WORD	length of data area DESQview should save and restore on context
+		  switches (0000h = end of list)
+ 02h	DWORD	pointer to area to be saved/restored
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF0B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - RESUME SUSPENDED SESSION
+	AX = 0003h subfn 0Bh
+	DS:BX -> argument block (see #03386)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=09h,AX=0003h/SF=0Ah
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03386)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	0Bh (function "restore previously suspended session")
+ 02h	WORD	size of buffer into which session info is restored
+ 04h	WORD	pointer to buffer in caller's DS
+

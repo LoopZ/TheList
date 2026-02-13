@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH05
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - SET AUTO POWER OFF TIMER
+	AX = 5380h
+	BH = 05h
+	SI:DI = timer count in seconds (actually 1.024 seconds)
+Return: CF clear if successful
+Desc:	sets the value of 82360SL APWR_TMRH & APWR_TMRL registers
+Note:	the maximum timer count is 134213 seconds
+SeeAlso: AX=5380h/BH=04h,AX=5380h/BH=7Fh
+

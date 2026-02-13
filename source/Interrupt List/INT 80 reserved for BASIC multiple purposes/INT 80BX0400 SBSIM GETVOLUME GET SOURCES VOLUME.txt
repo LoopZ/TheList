@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0400
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SBSIM - "GETVOLUME" - GET SOURCE'S VOLUME
+	BX = 0400h
+	AX = sound source (see #03974)
+Return: CF clear if successful
+	    AX = volume
+	CF set on error
+	    AX = error code (see #03972 at INT 80/BL=00h)
+SeeAlso: BX=0401h"SBSIM"
+
+(Table 03974)
+Values for SBSIM sound source:
+ 00h	master volume
+ 01h	voice
+ 02h	FM
+ 03h	CD
+ 04h	line in
+ 05h	microphone
+

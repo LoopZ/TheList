@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AAC
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v3.00+ - LOAD CHARACTER GENERATOR
+	AX = 1AACh
+	BH = number of bytes per character pattern
+	BL = VGA/EGA character table to be loaded
+	CX = number of characters to load
+	DX = starting character code (offset into Map2 block)
+	ES:BP -> user character table to be loaded
+Return: AX = 1100h
+Desc:	load the EGA/VGA character generator without the BIOS function's
+	  side effects of resetting the video mode and color palette
+SeeAlso: AX=1A00h/BX=414Eh,AX=1AABh,AX=1AADh"ANSIPLUS",INT 10/AX=1100h
+

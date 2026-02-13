@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 172403
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Shamrock Software NET.24 v3.11+ - GET STATUS AND TRANSMISSION BUFFER
+	AX = 2403h
+Return: AL = status (see #00640)
+	CX = number of characters in receive ring buffer
+	DX:BX -> transmit buffer
+SeeAlso: AX=2400h,AX=2402h
+

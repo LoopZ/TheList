@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200E3
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_XVIEW" - CONVERT VIEWPORT COORDINATE
+	AX = 00E3h
+	BX = horizontal viewport coordinate
+Return: AX = screen space X coordinate corresponding to supplied coordinate
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	if no viewport has been defined, the returned coordinate will be the
+	  same as the viewport coordinate
+SeeAlso: AX=00E2h,AX=00E6h
+

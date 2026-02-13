@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF800CX4455
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - SuperStor PRO 2XON.COM - INSTALLATION CHECK
+	AX = F800h
+	CX = 4455h ("DU")
+	DL = 45h ("E")
+Return: AL = FFh if installed
+	    ES:BX -> ASCII signature "Universal Data Exchange"
+Program: SuperStor is a disk-compression program by Addstor.
+Note:	returns AX=0001h if AL is not 00h or 01h
+SeeAlso: AX=1001h,AX=F801h
+

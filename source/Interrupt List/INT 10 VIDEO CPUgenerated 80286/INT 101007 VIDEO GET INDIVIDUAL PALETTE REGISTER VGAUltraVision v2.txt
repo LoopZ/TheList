@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101007
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GET INDIVIDUAL PALETTE REGISTER (VGA,UltraVision v2+)
+	AX = 1007h
+	BL = palette or attribute (undoc) register number (see #00017)
+Return: BH = palette or attribute register value
+Note:	UltraVision v2+ supports this function even on color EGA systems in
+	  video modes 00h-03h, 10h, and 12h; direct programming of the palette
+	  registers will cause incorrect results because the EGA registers are
+	  write-only.  To guard against older versions or unsupported video
+	  modes, programs which expect to use this function on EGA systems
+	  should set BH to FFh on entry.
+SeeAlso: AX=1000h,AX=1009h
+

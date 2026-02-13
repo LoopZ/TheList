@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF15
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "RelMemLinear32" - RELEASE LINEAR MEMORY BLOCK (32-bit)
+	AX = FF15h
+	ESI = linear address of block to be released
+Return: CF clear if successful
+	CF set on error
+SeeAlso: AX=FF0Fh,AX=FF11h,AX=FF15h
+

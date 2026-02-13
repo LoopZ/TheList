@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFE6
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - CHECK FOR AND GET KEYSTROKE
+	AX = FFE6h
+Return: AX = 0000h if no key available
+	     else  BIOS keycode
+Notes:	available only when popped up
+	invokes INT 28 idle interrupt before checking for key
+

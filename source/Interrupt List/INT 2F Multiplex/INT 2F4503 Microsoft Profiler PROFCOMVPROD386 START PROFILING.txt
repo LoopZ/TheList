@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4503
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Microsoft Profiler (PROF.COM/VPROD.386) - START PROFILING
+	AX = 4503h
+Notes:	Profiling is also turned on by the key combinations
+	  LeftShift + RightShift + Alt and LeftShift + RightShift + Ctrl
+	for PROF.COM, this call programs the CMOS clock by reading register
+	  0Ch, and setting bit 6 of register 0Bh.  It then makes sure that IRQ8
+	  is unmasked
+SeeAlso: AX=4504h
+

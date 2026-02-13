@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D02
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - SEND COMMAND
+	AH = 02h
+	ES:BX -> parameter block (see #03863)
+Return: CF clear if successful
+	CF set on error
+	    AL = initiator error
+	    AH = target error
+Desc:	send the specified command block to the target device and perform any
+	  related I/O
+
+Format of SCSILink parameter block:
+Offset	Size	Description	(Table 03863)
+ 00h	DWORD	size of command block
+ 04h	DWORD	address of command block (see #03864)
+ 08h	DWORD	size of buffer
+ 0Ch	DWORD	address of buffer
+
+Format of SCSILink command block:
+Offset	Size	Description	(Table 03864)
+ 00h		info not yet available
+

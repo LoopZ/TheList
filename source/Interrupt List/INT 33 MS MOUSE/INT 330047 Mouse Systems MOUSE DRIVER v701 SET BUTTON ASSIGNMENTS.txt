@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330047
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Mouse Systems MOUSE DRIVER v7.01+ - SET BUTTON ASSIGNMENTS
+	AX = 0047h
+	ES:BX -> button assignments (3 bytes, combinations of "L", "M", "R")
+Return: ???
+Note:	also supported by Genius Mouse 9.06 driver
+SeeAlso: AX=0067h
+

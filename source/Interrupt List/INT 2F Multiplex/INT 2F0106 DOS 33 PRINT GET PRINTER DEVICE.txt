@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0106
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.3+ PRINT - GET PRINTER DEVICE
+	AX = 0106h
+Return: CF set if files in print queue
+	    AX = error code 0008h (queue full)
+	    DS:SI -> device driver header (see #01646)
+	CF clear if print queue empty
+	    AX = 0000h
+Desc:	determine which device, if any, PRINT is currently using for output
+Notes:	undocumented prior to the release of MS-DOS 5.0
+	this function can be used to allow a program to avoid printing to the
+	  printer on which PRINT is currently performing output
+SeeAlso: AX=0104h
+

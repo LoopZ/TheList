@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F35
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - Named Pipes - LOCAL DosPeekNmPipe
+	AX = 5F35h
+	BX = handle
+	CX = buffer length
+	DS:SI -> buffer
+Return: CF set on error
+	    AX = error code
+	CF clear if successful (LAN Manager v1-v2)
+	AX = 0000h if successful (LAN Manager 3.x)
+	---if successful---
+	    CX = bytes read
+	    SI = bytes left in the pipe
+	    DX = bytes left in the current message
+	    AX = pipe status (v1-v2) (see #01703)
+	    DI = pipe status (v3.x)
+Note:	this function was introduced by LAN Manager but is also supported by
+	  the Novell DOS Named Pipe Extender, Banyan VINES, OS/2 Virtual DOS
+	  Machines, and others
+SeeAlso: AX=5F38h,AX=5F39h,AX=5F51h
+
+(Table 01703)
+Values for pipe status:
+ 0001h	disconnected
+ 0002h	listening
+ 0003h	connected
+ 0004h	closing
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1503
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_pinput" - PROMPTED CONSOLE INPUT
+	AH = 03h
+	STACK:	DWORD	pointer to ASCII prompt
+		WORD	field outline character
+		WORD	length of input field (max 7Fh)
+		DWORD	address of pointer to input buffer
+Return: AX = length of input (input buffer is padded with blanks)
+SeeAlso: AH=04h"VMiX"
+

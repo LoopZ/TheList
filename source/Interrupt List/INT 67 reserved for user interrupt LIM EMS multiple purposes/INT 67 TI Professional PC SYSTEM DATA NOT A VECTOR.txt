@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - TI Professional PC - SYSTEM DATA (NOT A VECTOR!)
+Desc:	this vector contains the TI Pro's system configuration words
+	  (see #03521)
+SeeAlso: INT 66"TI Professional PC"
+
+Bitfields for TI Professional PC System Configuration doubleword:
+Bit(s)	Description	(Table 03521)
+ 0	8087 present
+ 31-1	reserved (0)
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF09
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - TURN ON REVERSE VIDEO
+	AX = BF09h
+Return: CF clear
+Notes:	sets bit 6 of port 03CEh index 81h; in some cases also sets index 84h
+	  to 6Fh and index 83h to 04h
+	supported by at least the QVision board and the LTE Lite ROM BIOS
+SeeAlso: AX=BF0Ah,AX=BF0Bh
+

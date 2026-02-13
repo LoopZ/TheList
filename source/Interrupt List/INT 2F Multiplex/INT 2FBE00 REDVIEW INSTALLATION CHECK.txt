@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBE00
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - REDVIEW - INSTALLATION CHECK
+	AX = BE00h
+Return: AL = FFh if installed
+Program: REDVIEW is a public-domain TSR by Alexandr Novy and Petr Horak which
+	  copies data sent to standard output to standard error when the
+	  former has been redirected to a file, thus allowing the data to
+	  be seen on the screen at the same time it is captured in a file
+

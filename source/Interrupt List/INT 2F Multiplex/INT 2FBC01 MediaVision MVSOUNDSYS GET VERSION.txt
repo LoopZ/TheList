@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC01
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MediaVision MVSOUND.SYS - GET VERSION
+	AX = BC01h
+	BX = magic value 6D20h ('m ')
+	CX = magic value 2076h (' v')
+	DX = magic value 2020h ('  ')
+Return: BX = ASCII major version (leading zeros significant)
+	CX = ASCII minor version (leading zeros significant)
+SeeAlso: AX=BC00h/BX=3F3Fh
+

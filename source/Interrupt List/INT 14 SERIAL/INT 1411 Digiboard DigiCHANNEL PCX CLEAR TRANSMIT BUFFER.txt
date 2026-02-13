@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1411
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - CLEAR TRANSMIT BUFFER
+	AH = 11h
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AH = status
+	    00h successful
+	    FFh error
+SeeAlso: AH=09h"Digiboard",AH=10h"Digiboard"
+

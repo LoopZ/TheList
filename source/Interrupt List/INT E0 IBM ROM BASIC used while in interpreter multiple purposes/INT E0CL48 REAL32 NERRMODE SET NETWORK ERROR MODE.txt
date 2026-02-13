@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL48
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "N_ERRMODE" - SET NETWORK ERROR MODE
+	CL = 48h
+	DL = new error mode
+	    FFh return error in registers AX,BX,CX
+	    FEh display message and return error
+	    FDh display message and abort (default)
+Return: CX = error code (0000h successful, FFFFh failed)
+	may destroy SI,DI???
+Desc:	specify how the REAL/32 Net Server responds to error numbers 0CFFh,
+	  0DFFh, and 0EFFh (see #04030)
+

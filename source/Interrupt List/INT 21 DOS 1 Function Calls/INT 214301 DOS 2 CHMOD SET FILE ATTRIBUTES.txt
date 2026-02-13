@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214301
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "CHMOD" - SET FILE ATTRIBUTES
+	AX = 4301h
+	CX = new file attributes (see #01420)
+	DS:DX -> ASCIZ filename
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (01h,02h,03h,05h) (see #01680 at AH=59h)
+Notes:	will not change volume label or directory attribute bits, but will
+	  change the other attribute bits of a directory (the directory
+	  bit must be cleared to successfully change the other attributes of a
+	  directory, but the directory will not be changed to a normal file as
+	  a result)
+	MS-DOS 4.01 reportedly closes the file if it is currently open
+	for security reasons, the Novell NetWare execute-only bit can never
+	  be cleared; the file must be deleted and recreated
+	under the FlashTek X-32 DOS extender, the filename pointer is in DS:EDX
+	DOS 5.0 SHARE will close the file if it is currently open in sharing-
+	  compatibility mode, otherwise a sharing violation critical error is
+	  generated if the file is currently open
+	DR DOS 3.41/5.0 will silently ignore attempts to change the 'directory'
+	  attribute bit
+SeeAlso: AX=4300h,AX=4311h,AX=7143h,INT 2F/AX=110Eh
+
+Bitfields for file attributes:
+Bit(s)	Description	(Table 01420)
+ 7	shareable (Novell NetWare)
+ 7	pending deleted files (Novell DOS, OpenDOS)
+ 6	unused
+ 5	archive
+ 4	directory
+ 3	volume label
+	execute-only (Novell NetWare)
+ 2	system
+ 1	hidden
+ 0	read-only
+

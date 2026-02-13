@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: F1--F2
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v2.0 - "CAPI_GET_SERIAL_NUMBER"
+	AL = F2h
+	AH = CAPI version number * 10 (14h for v2.0)
+	ES:BX -> 64-byte buffer for CAPI serial number
+Return: ES:BX buffer filled with ASCIZ serial number (seven digits), empty
+	      string if no serial number
+Notes:	the caller is required to provide at least 512 bytes of stack space
+SeeAlso: AH=F2h,INT F1/AL=01h,INT F1/AL=F0h,INT F1/AL=F1h,INT F1/AL=F3h
+

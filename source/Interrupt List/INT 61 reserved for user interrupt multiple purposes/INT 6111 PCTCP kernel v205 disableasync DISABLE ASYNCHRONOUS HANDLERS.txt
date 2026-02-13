@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6111
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "disable_async" - DISABLE ASYNCHRONOUS HANDLERS
+	AH = 11h
+Return: CF clear
+	AX = previous state
+	    0000h async calls were already disabled
+	    else  async calls were enabled
+SeeAlso: INT 61"FTP Software",INT 61/AH=12h
+

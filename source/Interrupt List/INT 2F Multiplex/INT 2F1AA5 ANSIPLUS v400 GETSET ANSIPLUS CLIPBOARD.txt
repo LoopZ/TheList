@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AA5
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v4.00+ - GET/SET ANSIPLUS CLIPBOARD
+	AX = 1AA5h
+	DH = subfunction
+	    00h get clipboard information
+	    01h get clipboard text
+	    02h set clipboard text
+	    03h append text to clipboard
+	    04h clear clipboard
+	    05h paste clipboard to keyboard
+	ES:BX -> data area for subfunctions 01h, 02h, and 03h
+	CX = size of data area (maximum size for subfunction 01h, actual size
+	    to add to clipboard for subfunctions 02h and 03h)
+Return: AL = status
+	    00h successful
+	    01h unsupported subfunction (reduced capability driver)
+	    02h insufficient space
+	    A5h unsupported function (ANSIPLUS before v4.00)
+	ES:BX -> ANSIPLUS local clipboard data
+	CX = number of bytes currently in local clipboard
+	DX = maximum size of local clipboard
+SeeAlso: AX=1A00h/BX=414Eh,AX=1AA4h,AX=1AA6h
+

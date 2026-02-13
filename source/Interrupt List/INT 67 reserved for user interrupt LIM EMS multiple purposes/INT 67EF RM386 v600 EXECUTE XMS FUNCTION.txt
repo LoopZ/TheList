@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67EF
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 v6.00+ - EXECUTE XMS FUNCTION
+	AH = EFh
+	AL = function (00h-12h,80h-8Fh)
+	other register as appropriate for XMS function
+Return: varies by function (see INT 2F/AX=4310h"XMS")
+Note:	these functions appear to be equivalent to the XMS functions with the
+	  same numbers
+SeeAlso: AX=5DFFh"RM386",INT 2F/AX=4310h"XMS"
+

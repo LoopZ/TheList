@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214404
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - COMBI-disk v1.13 - GET DATA RECORD
+	AX = 4404h
+	BL = drive number (00h = default, 01h = A:, etc)
+	CX = 0032h (length of data packet)
+	DS:DX -> buffer for data packet (see #01535)
+Return: CF clear if successful
+	    AX = number of bytes actually transferred
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: COMBI-disk is a shareware combination cache and RAMdisk sharing a
+	  single pool of memory by Vadim V. Vlasov
+InstallCheck:	scan the valid drives for one which returns a correctly-sized
+	  data packet with the proper signature in the first field
+SeeAlso: AX=4405h"COMBI"
+Index:	installation check;COMBI-disk
+
+Format of COMBI-disk data packet:
+Offset	Size	Description	(Table 01535)
+ 00h  6 BYTEs	ASCIZ signature "COMBI"
+ 06h	WORD	version (high byte = major, low = decimal minor version)
+ 08h	BYTE	current options
+ 09h	BYTE	sectors per allocation block
+ 0Ah	WORD	maximum buffer in KB
+ 0Ch	WORD	current buffer in KB (less than max if XMS memory being lent)
+ 0Eh	WORD	total number of allocation blocks
+ 10h	WORD	current number of allocation blocks
+ 12h	WORD	number of blocks being used by RAM disk
+ 14h	WORD	number of blocks being used by cache or unused
+ 16h	WORD	number of dirty cache blocks
+ 18h	WORD	number of blocks which could not be written out due to errors
+ 1Ah	WORD	total number of read requests
+ 1Ch	WORD	total number of sectors read
+ 1Eh	WORD	number of BIOS read requests (cache misses)
+ 20h	WORD	number of sectors read via BIOS (cache misses)
+ 22h	WORD	total number of write requests
+ 24h	WORD	total number of sectors written
+ 26h	WORD	number of BIOS write requests
+ 28h	WORD	number of sectors written via BIOS
+ 2Ah	WORD	number of RAM disk read requests
+ 2Ch	WORD	number of sectors read from RAM disk
+ 2Eh	WORD	number of RAM disk write requests
+ 30h	WORD	number of sectors written to RAM disk
+

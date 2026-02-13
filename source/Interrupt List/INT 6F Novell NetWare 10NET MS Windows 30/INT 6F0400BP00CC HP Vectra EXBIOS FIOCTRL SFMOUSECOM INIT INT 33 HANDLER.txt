@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0400BP00CC
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_MOUSE_COM" - INIT INT 33 HANDLER
+	AX = 0400h
+	BP = 00CCh (driver ID for V_LHPMOUSE)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=0402h/BP=00CCh
+

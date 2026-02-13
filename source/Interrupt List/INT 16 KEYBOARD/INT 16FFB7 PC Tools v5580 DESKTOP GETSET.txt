@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFB7
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.5-8.0 DESKTOP - GET/SET ???
+	AX = FFB7h
+	BX = direction
+	    0000h copy to buffer
+	    else  copy from buffer
+	DS:SI -> 70-byte buffer with ???
+Return: data copied
+Note:	available only when popped up under v6.0+
+

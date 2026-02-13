@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137DCBX899D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DIET v1.43e - SET ADDRESS OF EXTERNAL PROCEDURE
+	AX = 37DCh
+	BX = 899Dh ('DI' + 'ET')
+	DS:DX -> external procedure (see #01397)
+Return: AX = 0000h
+Note:	the resident code will call the specified external procedure at the
+	  beginning of decompression and when compression is exited on failure
+SeeAlso: AX=37DDh
+
+(Table 01397)
+Values DIET external procedure is called with:
+	STACK:	WORD	class
+			FFFDh creation failed for unknown reasons
+			FFFEh creation failed due to lack of space
+			FFFFh file creation error
+			else file handle of DIETed file to be decompressed
+		DWORD	-> compressed filename
+		DWORD	-> decompressed or temporary filename
+Return: SI,DI,BP,DS,ES must be preserved by external procedure
+

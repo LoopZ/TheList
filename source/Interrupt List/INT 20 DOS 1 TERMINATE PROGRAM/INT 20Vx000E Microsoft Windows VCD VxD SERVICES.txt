@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx000E
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VCD - VxD SERVICES
+	VxD = 000Eh
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01277)
+Values for VCD (VxD ID 000Eh) service number:
+ 0000h	get version
+ 0001h	set port global
+ 0002h	get focus
+ 0003h	virtualize port
+ 0004h	"VCD_Acquire_Port"
+ 0005h	"VCD_Free_Port"
+ 0006h	"VCD_Acquire_Port_Windows_Style"
+ 0007h	"VCD_Free_Port_Windows_Style"
+ 0008h	"VCD_Steal_Port_Windows_Style"
+ 0009h	"VCD_Find_COM_Index"
+ 000Ah	"VCD_Set_Port_Global_Special"
+ 000Bh	"VCD_Virtualize_Port_Dynamic"
+ 000Ch	"VCD_Unvirtualize_Port_Dynamic"
+	...last service for Windows95 SP1
+SeeAlso: #01276,#01278
+

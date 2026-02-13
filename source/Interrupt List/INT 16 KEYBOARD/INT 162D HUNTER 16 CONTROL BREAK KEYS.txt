@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 162D
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HUNTER 16 - CONTROL BREAK KEYS
+	AH = 2Dh
+	AL = enabled break keys
+	    bit 0 Ctrl-C
+	    bit 1 Ctrl-Break
+	BX = 0708h
+	CX = 0910h
+	DX = 1112h
+Return: AL = status (00h success, FFh failed)
+SeeAlso: AH=21h"HUNTER"
+

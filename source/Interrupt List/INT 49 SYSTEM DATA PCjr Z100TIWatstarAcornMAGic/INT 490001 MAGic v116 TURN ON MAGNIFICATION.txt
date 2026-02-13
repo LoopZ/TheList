@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 490001
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - MAGic v1.16+ - TURN ON MAGNIFICATION
+	AX = 0001h
+Return: AX = status (see #03209)
+	BX,CX,DX destroyed
+Program: MAGic (MAGnification In Color) is a TSR by Microsystems Software, Inc.
+	  providing 2x2 text and graphics magnification on VGA, XGA, and SVGA
+Note:	INT 49 is the default, but may be overridden on the commandline.  The
+	  actual interrupt in use may be found by searching for the signature
+	  "MAGic" or "xMAGic" (for the deluxe version) immediately preceding
+	  the interrupt handler (this is also the installation check).	MAGic
+	  uses CodeRunneR, which places the signature "RT" at offset 0000h in
+	  the interrupt handler's segment, followed by MAGic's TSR ID of
+	  "VMAG".
+SeeAlso: AX=0002h,AX=0003h,AX=0004h,AX=0008h
+Index:	installation check;MAGic
+
+(Table 03209)
+Values for MAGic status:
+ 0000h	cannot magnify current video mode
+ 0002h	magnified (text mode)
+ 0003h	magnified (graphics mode)
+ FFFDh	function works only in magnified mode
+ FFFFh	MAGic busy, retry later
+

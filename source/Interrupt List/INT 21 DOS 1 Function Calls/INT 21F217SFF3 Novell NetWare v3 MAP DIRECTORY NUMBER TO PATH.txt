@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFF3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - MAP DIRECTORY NUMBER TO PATH
+	AX = F217h subfn F3h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02269)
+	ES:DI -> reply buffer (see #02270)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AX=F217h/SF=F4h
+
+Format of NetWare "Map Directory Number to Path" request buffer:
+Offset	Size	Description	(Table 02269)
+ 00h	WORD	0007h (length of following data)
+ 02h	BYTE	F3h (subfunction "Map Directory Number to Path")
+ 03h	BYTE	volume number
+ 04h	DWORD	directory entry number
+ 08h	BYTE	name space type
+SeeAlso: #02270
+
+Format of NetWare "Map Directory Number to Path" reply buffer:
+Offset	Size	Description	(Table 02270)
+ 00h	BYTE	directory path length
+ 01h  N BYTEs	directory path (NetWare style, separated by length descriptors
+		  rather than slashes or backslashes)
+SeeAlso: #02269
+

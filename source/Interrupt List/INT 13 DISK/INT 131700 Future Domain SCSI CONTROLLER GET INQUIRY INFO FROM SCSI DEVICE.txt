@@ -1,0 +1,99 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131700
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Future Domain SCSI CONTROLLER - GET INQUIRY INFO FROM SCSI DEVICE
+	AX = 1700h
+	CL = length of buffer
+	DL = hard drive ID
+	ES:BX -> buffer for info (see #00243)
+Return: CF clear if successful
+	    CH = number of bytes returned in buffer???
+	CF set on error
+	    AH = status code (see #00234 at AH=01h)
+Notes:	this function is not available with 8-bit controller ROM versions < 7.0
+	information block bytes 5-n are vendor-specific in older SCSI devices
+	the TMC-950 does not support any Future Domain BIOS calls; instead,
+	  it provides a full CAM implementation (see INT 4F/AX=8100h)
+SeeAlso: AH=18h"SCSI",AH=1Bh"SCSI"
+
+Format of Future Domain SCSI inquiry information block:
+Offset	Size	Description	(Table 00243)
+ 00h	BYTE	device type
+		bits 0-4: peripheral device type (see #00244)
+		bits 5-7: peripheral qualifier (see #00245)
+ 01h	BYTE	device type modifier
+		bits 0-6: device type modifier
+		bit 7: removable medium
+ 02h	BYTE	SCSI version (see #00246)
+ 03h	BYTE	data format/capabilities (see #00247)
+ 04h	BYTE	additional data length (total remaining bytes)
+ 05h  2 BYTEs	reserved
+ 07h	BYTE	device capabilities (see #00248)
+ 08h  8 BYTEs	vendor identification (space-padded ASCII)
+ 10h  8 BYTEs	product identification (space-padded ASCII)
+ 20h  4 BYTEs	product revision level (space-padded ASCII)
+ 24h 20 BYTEs	vendor specific
+ 38h 40 BYTEs	reserved
+ 60h	var	vendor specific parameters
+
+(Table 00244)
+Values for Future Domain SCSI peripheral device type:
+ 00h	direct-access device (e.g., magnetic disk)
+ 01h	sequential-access device (e.g., magnetic tape)
+ 02h	printer device
+ 03h	processor device
+ 04h	write-once device (e.g., some optical disks)
+ 05h	CD-ROM device
+ 06h	scanner device
+ 07h	optical memory device (e.g., some optical disks)
+ 08h	medium changer device (e.g., jukeboxes)
+ 09h	communications device
+ 0Ah	(defined by ASC IT8)
+ 0Bh	(defined by ASC IT8)
+ 0Ch-1Eh reserved
+ 1Fh	unknown or no device type
+
+(Table 00245)
+Values for Future Domain SCSI peripheral qualifier:
+ 000b	device is currently connected to this logical unit and available
+ 001b	target is capable of supporting the specified peripheral, but the
+	  physical device is not currently connected to this logical unit
+ 010b	reserved
+ 011b	target can't support a physical device on this logical unit
+ 1xxb	vendor specific
+
+Bitfields for Future Domain SCSI version:
+Bit(s)	Description	(Table 00246)
+ 0-2	ANSI-approved version
+	000 device might or might not comply to ANSI standard
+	001 device complies to ANSI SCSI-1
+	010 device complies to ANSI SCSI-2
+	other reserved
+ 3-5	ECMA version
+ 6-7	ISO version
+
+Bitfields for Future Domain SCSI data format/capabilities:
+Bit(s)	Description	(Table 00247)
+ 0-2	response data format
+	000 information block is as specified in SCSI-1
+	001 information block is as specified in CCS
+	010 information block is as specified in SCSI-2
+	other reserved
+ 4-5	reserved
+ 6	terminate I/O process supported
+ 7	asynchronous event notification supported
+
+Bitfields for Future Domain SCSI device capabilities:
+Bit(s)	Description	(Table 00248)
+ 0	device responds to RESET with a hard RESET
+ 1	tagged command queuing supported
+ 2	reserved
+ 3	linked commands supported
+ 4	synchronous data transfer supported
+ 5	16-transfers supported
+ 6	32-transfers supported
+ 7	relative addressing supported
+

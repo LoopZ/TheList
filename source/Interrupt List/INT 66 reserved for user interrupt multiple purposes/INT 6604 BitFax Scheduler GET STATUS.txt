@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6604
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - BitFax Scheduler - GET STATUS???
+	AH = 04h
+Return: AX = ??? (0000h or 0001h)
+	DX = BitSched version???  (for versions >= 3.00)
+	    9796h (ver. 3.00)
+	    97E6h (ver. 3.02)
+	    92D0h (ver. 3.04.06)
+	    9510h (ver. 3.06.02)
+SeeAlso: AH=06h,AX=3345h,INT 2F/AX=8000h"FaxBIOS"
+

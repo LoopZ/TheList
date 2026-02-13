@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 132A
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - SET BUFFER SIZE
+	AH = 2Ah
+	AL = buffer size (1-30)
+Return: AX = status (0000h successful)
+Desc:	specify the number of cache sector buffers to dedicate to buffered read
+	  and write operations
+SeeAlso: AH=2Ch,AH=2Dh,AH=39h,AH=3Ah
+

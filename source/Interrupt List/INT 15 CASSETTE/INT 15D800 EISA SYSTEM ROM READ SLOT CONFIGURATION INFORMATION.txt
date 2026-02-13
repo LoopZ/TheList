@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D800
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - EISA SYSTEM ROM - READ SLOT CONFIGURATION INFORMATION
+	AX = D800h
+	CL = slot number (including embedded and virtual)
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code (80h,82h,83h,86h,87h)(see #00539)
+	AL = bit flags (see #00538)
+	BH = major revision level of configuration utility
+	BL = minor revision level of configuration utility
+	CX = checksum of configuration file
+	DH = number of device functions
+	DL = combined function information byte (see #00540)
+	SI:DI = 4-byte compressed ID (DI = bytes 0&1, SI = bytes 2&3)
+Note:	call with AL=80h if using 32-bit CS addressing mode instead of 16-bit
+SeeAlso: AX=D801h,AX=D804h
+
+Bitfields for EISA AL bit flags:
+Bit(s)	Description	(Table 00538)
+ 7	set if duplicate IDs
+ 6	set if product ID readable
+ 4,5	slot type (00=expansion, 01=embedded, 10=virtual device)
+ 0-3	duplicate ID number if bit 7 set
+SeeAlso: #00540
+
+(Table 00539)
+Values for EISA error code:
+ 80h	invalid slot number
+ 81h	invalid function number
+ 82h	EISA CMOS corrupt
+ 83h	empty slot
+ 84h	error clearing CMOS
+ 85h	EISA CMOS is full
+ 86h	invalid BIOS-FW function call
+ 87h	invalid system configuration
+ 88h	config utility version not supported
+
+Bitfields for EISA combined function information byte:
+Bit(s)	Description	(Table 00540)
+ 7	reserved
+ 6	slot has free-form data entries
+ 5	slot has port initialization entries
+ 4	slot has port-range entries
+ 3	slot has DMA entries
+ 2	slot has IRQ entries
+ 1	slot has memory entries
+ 0	slot has function type entries
+SeeAlso: #00538
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212529
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - LOAD FLAT MODEL .EXP or .REX FILE
+	AX = 2529h
+	???
+Return: ES:EBX -> parameter block (see #01369)
+	???
+Note:	details not available at this time
+SeeAlso: AX=252Ah
+
+Format of Phar Lap program load parameter block:
+Offset	Size	Description	(Table 01369)
+ 00h	DWORD	initial EIP
+ 04h	WORD	initial CS
+ 06h	DWORD	initial ESP
+ 0Ah	WORD	initial SS
+ 0Ch  4 WORDs	initial DS, ES, FS, GS
+ 14h	DWORD	minimum size in bytes of program segment
+ 18h	DWORD	bytes of additional memory allocated
+ 1Ch	DWORD	flags
+		bit 0: child linked with -UNPRIVILEGED
+		---v6.0+ ---
+		bit 1: child is PE file instead of .EXP
+		bit 2: loaded file is a DLL
+		bits 3-31 reserved
+---v6.0+ ---
+ 20h	DWORD	module handles (PE files only)
+ 24h  7 DWORDs	reserved (0)
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A02
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 5+ - ALLOCATE HMA SPACE
+	AX = 4A02h
+	BX = number of bytes
+Return: ES:DI -> start of allocated HMA block or FFFFh:FFFFh
+	BX = number of bytes actually allocated (rounded up to next paragraph
+	      for DOS 5.0 and 6.0)
+Notes:	this call is not valid unless DOS is loaded in the HMA (DOS=HIGH)
+	called by Windows 3.1 DOSX.EXE
+	supported by Novell DOS 7
+SeeAlso: AX=4A01h,AX=4A03h
+

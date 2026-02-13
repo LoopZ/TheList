@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A43BX4156
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AVATAR Serial Dispatcher - INSTALL IRQ4 HANDLER
+	AX = 1A43h
+	BX = 4156h ('AV')
+	ES:DI -> FAR handler for serial port using IRQ4
+	DS = data segment needed by handler
+Return: AX = status/return value
+	    0000h if no more room
+	    1A43h if ASD not installed
+	    else handle to use when uninstalling
+Notes:	(see AX=1A42h)
+SeeAlso: AX=1A42h,AX=1A63h
+

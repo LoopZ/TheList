@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFE6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET BINDERY OBJECT DISK SPACE LEFT
+	AH = E3h subfn E6h
+	DS:SI -> request buffer (see #02077)
+	ES:DI -> reply buffer (see #02078)
+Return: AL = status (00h,C6h) (see #02053)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	one must have console operator privileges to get the free space for
+	  other bindery objects
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=E8h,AH=E3h/SF=E9h
+
+Format of NetWare "Get Bindery Object Disk Space Left" request buffer:
+Offset	Size	Description	(Table 02077)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	E6h (subfunction "Get Bindery Object Disk Space Left")
+ 03h	DWORD	(big-endian) object ID
+SeeAlso: #02078,#02244 at AX=F217h/SF=E6h
+
+Format of NetWare "Get Bindery Object Disk Space Left" reply buffer:
+Offset	Size	Description	(Table 02078)
+ 00h	WORD	(call) 000Fh (size of following results buffer)
+ 02h	DWORD	(big-endian) clock ticks elapsed since server started
+ 06h	DWORD	(big-endian) object ID
+ 0Ah	DWORD	(big-endian) 4K disk blocks available to user
+ 0Eh	BYTE	restrictions (00h enforced, FFh not enforced)
+SeeAlso: #02077,#02244 at AX=F217h/SF=E6h
+

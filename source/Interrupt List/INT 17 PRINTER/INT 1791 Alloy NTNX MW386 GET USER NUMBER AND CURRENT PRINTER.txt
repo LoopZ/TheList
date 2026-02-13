@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1791
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - GET USER NUMBER AND CURRENT PRINTER
+	AH = 91h
+	AL = mode
+	    00h NTNX compatibility
+		Return: CX = user number (00h = host)
+			DX = currently selected printer number (00h-08h)
+	    01h MW386
+		Return: CX = user number
+			DX = physical dev number of currently selected printer
+	    02h MW386 v2+
+		BX = logical device number
+		    00h-03h = LPT1-LPT4
+		    04h-07h = COM1-COM4
+		Return: CX = user number
+			DX = physical device number
+Return: AL = status (see #00642)
+SeeAlso: AH=8Ch
+

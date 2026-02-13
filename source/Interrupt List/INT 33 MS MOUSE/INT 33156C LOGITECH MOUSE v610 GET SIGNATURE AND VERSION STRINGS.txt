@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33156C
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - LOGITECH MOUSE v6.10+ - GET SIGNATURE AND VERSION STRINGS
+	AX = 156Ch
+Return: ES:DI -> signature "LOGITECH MOUSE DRIVER"
+	ES:SI -> version string, terminated with CRLF
+

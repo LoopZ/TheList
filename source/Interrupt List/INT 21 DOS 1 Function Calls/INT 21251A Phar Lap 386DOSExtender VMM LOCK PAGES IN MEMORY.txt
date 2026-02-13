@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21251A
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender VMM - LOCK PAGES IN MEMORY
+	AX = 251Ah
+	EDX = number of 4k pages to lock
+	if BL = 00h
+	    ECX = linear address of first page to lock
+	if BL = 01h
+	    ES:ECX -> pointer to first page to lock
+Return: CF clear if successful
+	CF set on error
+	    EAX = error code
+		08h insufficient memory
+		09h invalid address range
+SeeAlso: AX=251Bh,AX=EB06h,INT 31/AX=0600h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4915
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - SET PROTECTED STATUS AREA
+	AH = 15h
+	CL = row at which to start status area, or 00h to cancel
+	CH = 00h
+Return: nothing
+Desc:	set a protected area of the screen which will not be affected by TTY
+	  writes or the scrolls they may generate
+Notes:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+	the current cursor position must be above the status area in order to
+	  set the protected area
+SeeAlso: AH=01h,AH=02h
+

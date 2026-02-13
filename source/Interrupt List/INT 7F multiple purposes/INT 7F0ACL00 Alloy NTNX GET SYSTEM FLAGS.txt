@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F0A--CL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX - GET SYSTEM FLAGS
+	AH = 0Ah
+	CL = 00h
+	ES:DI -> buffer for system flags (see #03949)
+Return: ES:DI buffer filled
+Notes:	on a slave, only the NX_Busy flag is returned
+	all three flags are at fixed positions, so this function only needs to
+	  be called once
+	an interrupt handler should only perform DOS or device accesses when
+	  all three flags are 00h
+
+Format of Alloy system flags:
+Offset	Size	Description	(Table 03949)
+ 00h	DWORD	pointer to NX_Busy flag (nonzero when communicating with users)
+ 04h	DWORD	pointer to device driver busy flag
+ 08h	DWORD	pointer to InTimer flag
+

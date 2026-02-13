@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0203
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - REMOVE MENU
+	DI = 0203h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to menu data (see #03281)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0201h,INT 60/DI=0202h,INT 60/DI=0204h,INT 60/DI=0208h
+

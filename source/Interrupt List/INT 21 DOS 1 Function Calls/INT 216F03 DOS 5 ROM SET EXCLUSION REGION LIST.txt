@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216F03
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 5+ ROM - SET EXCLUSION REGION LIST
+	AX = 6F03h
+	DS:DX -> new exclusion region list (see #01773)
+Return: CF clear
+	AL = 00h
+Notes:	DOS saves only the pointer and assumes that the contents of the list
+	  are never changed, and that regions do not overlap
+	if AL > 03h on entry, DOS returns CF set/AL=01h
+SeeAlso: AX=6F01h,AX=6F02h
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675DE6
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 - MAP LOGICAL 4K PAGE TO PHYSICAL SEGMENT
+	AX = 5DE6h
+	BX = logical page number in 4K pages from beginning of memory for EMS
+	      handle
+	CX = segment in first megabyte to be remapped
+	DX = previously-allocated EMS handle
+Return: AH = status
+	    00h successful
+	    83h invalid handle
+	    8Ah invalid logical page (out of handle's range)
+	    8Bh invalid destination page (not in first megabyte)
+Note:	RM386 traps this function on the initial transition to protected
+	  mode caused by the INT instruction, which means it can not be
+	  overridden simply by hooking the interrupt
+SeeAlso: AX=5DE5h
+

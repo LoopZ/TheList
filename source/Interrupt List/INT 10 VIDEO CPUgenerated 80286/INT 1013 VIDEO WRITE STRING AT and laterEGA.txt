@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1013
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - WRITE STRING (AT and later,EGA)
+	AH = 13h
+	AL = write mode
+	   bit 0: update cursor after writing
+	   bit 1: string contains alternating characters and attributes
+	   bits 2-7: reserved (0)
+	BH = page number
+	BL = attribute if string contains only characters
+	CX = number of characters in string
+	DH,DL = row,column at which to start writing
+	ES:BP -> string to write
+Return: nothing
+Notes:	recognizes CR, LF, BS, and bell; for the ET4000 BIOS, scrolling,
+	  backspace, and CR only take place in the active page
+	also available PC or XT with EGA or higher
+	HP 95LX only supports write mode 00h
+	IBM documents AL=10h,11h,20h,21h as "private" rather than "reserved"
+	with PhysTechSoft's PTS ROM-DOS the AL,BH,BL,DH, and DL values are
+	  ignored on entry.
+BUG:	on the IBM VGA Adapter, any scrolling which may occur is performed on
+	  the active page rather than the requested page
+SeeAlso: AH=09h,AH=0Ah,AH=13h"DOS/V"
+

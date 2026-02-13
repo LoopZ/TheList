@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - QUERY ZOOM INTERRUPT
+	AH = FFh
+Return: AL = interrupt number to which BIOS keyboard handler has been relocated
+	AL+1 = Zoom interrupt number
+	BX = hotkey
+Notes:	the default interrupts are 60h for keyboard and 61h for Zoom interrupt;
+	  the default hot key is F10
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: INT 61/AX=0000h"OPTIMA",INT 61/AX=0005h"OPTIMA"
+Index:	hotkeys;OPTIMA 1024 VGA
+

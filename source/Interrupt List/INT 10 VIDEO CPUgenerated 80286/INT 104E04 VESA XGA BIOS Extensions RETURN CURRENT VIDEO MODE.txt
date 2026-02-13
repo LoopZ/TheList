@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104E04
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA XGA BIOS Extensions - RETURN CURRENT VIDEO MODE
+	AX = 4E04h
+	DX = XGA handle
+Return: AL = 4Eh if function supported
+	AH = status
+	    00h	 function successful
+		BX??? = current mode
+	    else error code
+SeeAlso: AH=0Fh,AX=4E03h,AX=4F03h
+

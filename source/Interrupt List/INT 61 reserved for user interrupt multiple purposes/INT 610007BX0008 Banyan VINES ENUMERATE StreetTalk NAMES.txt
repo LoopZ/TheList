@@ -1,0 +1,82 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0008
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ENUMERATE StreetTalk NAMES
+	AX = 0007h
+	BX = 0008h
+	DS:DX -> enumerate block (see #03437)
+Return: AX = status (see also #03432)
+	    0000h successful
+	    0411h all matching names have been returned
+	    0412h some groups unavailable, all available matches returned
+Note:	each program using this call should continue until a nonzero status
+	  is returned; otherwise, some resources will not be freed for several
+	  hours
+SeeAlso: AX=0007h/BX=0005h,AX=0007h/BX=0007h,AX=0007h/BX=0009h
+
+Format of VINES enumerate block:
+Offset	Size	Description	(Table 03437)
+ 00h	WORD	return code
+ 02h	WORD	pointer to pattern string
+ 04h	WORD	enumerate type
+		0064h (100) organization
+		00C8h (200) group
+		012Ch (300) item
+ 06h	WORD	enumerate class
+		0000h unspecified (return all matching items)
+		0001h user names
+		0002h service names
+		0003h list names
+		0004h nicknames
+ 08h	WORD	pointer to category criteria block (see #03438) or 0
+ 0Ah	WORD	pointer to array of 64-byte returned names
+ 0Ch	WORD	number of names returned
+ 0Eh  6 BYTEs	reserved for subsequent enumerated calls (set to zeros on first
+		  call)
+SeeAlso: #03436
+
+Format of category criteria block:
+Offset	Size	Description	(Table 03438)
+ 00h	WORD	exclude flag
+		0000h return only items with the specified categories
+		0001h return all items except those with the given categories
+ 02h	WORD	number of categories (max 5, 0000h = match all categories)
+ 04h	WORD	category 1 value (see #03439)
+ 06h	WORD	category 2 value
+ 08h	WORD	category 3 value
+ 0Ah	WORD	category 4 value
+ 0Ch	WORD	category 5 value
+SeeAlso: #03437
+
+(Table 03439)
+Values for common VINES service categories:
+ 0001h	server service
+ 0002h	file service
+ 0003h	print service
+ 0004h	mail service
+ 0005h	StreetTalk
+ 0006h	time service
+ 0007h	FTP service
+ 0008h	semaphore service
+ 0009h	3270/SNA service
+ 000Ah	terminal emulation service
+ 000Bh	asynchronous terminal service
+ 000Ch	NETBIOS service
+ 000Dh	PC-based service
+ 000Eh	BSC service
+ 000Fh	APPC service
+ 0010h	NM service
+ 0011h	VS service
+ 0012h	POP service
+ 0013h	AFP service
+ 0014h	VCS service
+ 0015h	EMS service
+ 0016h	LN service
+ 0017h	BS service
+ 0023h	RIPL service
+ 0064h	ADM service
+SeeAlso: #03438
+

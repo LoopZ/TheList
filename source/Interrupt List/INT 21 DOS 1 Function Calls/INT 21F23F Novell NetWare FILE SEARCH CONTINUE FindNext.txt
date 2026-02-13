@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F23F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SEARCH CONTINUE (FindNext)
+	AX = F23Fh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02345)
+	ES:DI -> reply buffer (see #02346)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=4Eh,AH=F2h"Novell",AX=F23Eh,AX=F242h
+
+Format of NetWare "File Search Continue" request packet:
+Offset	Size	Description	(Table 02345)
+ 00h	BYTE	volume number
+ 02h	WORD	directory ID from File Search Initialize
+ 04h	WORD	search sequence (set to FFFFh before first call)
+ 06h	BYTE	search attributes
+ 07h	BYTE	length of search directory path
+ 08h  N BYTEs	name of search directory in VOLUME:DIRECTORY/.../DIR format
+SeeAlso: #02346
+
+Format of NetWare "File Search Continue" reply packet:
+Offset	Size	Description	(Table 02346)
+ 00h	WORD	next search sequence
+ 02h	WORD	directory ID from File Search Initialize
+ 04h	WORD	reserved for future use
+ 06h 14 BYTEs	filename
+ 14h	BYTE	file attributes
+ 15h	BYTE	file mode
+ 16h	DWORD	file length
+ 2Ah	WORD	creation date
+ 2Ch	WORD	last-access date
+ 2Eh	WORD	last-modification date
+ 30h	WORD	last-modification time
+SeeAlso: #02345
+

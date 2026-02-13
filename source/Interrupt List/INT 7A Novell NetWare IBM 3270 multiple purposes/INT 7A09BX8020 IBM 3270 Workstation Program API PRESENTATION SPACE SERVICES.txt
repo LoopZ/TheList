@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09--BX8020
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - PRESENTATION SPACE SERVICES
+	AH = 09h
+	BX = 8020h
+	CX = 00FFh
+	DX = ID of PCPSM
+	AL = service
+	    01h define presentation space
+	    02h delete presentation space
+	    03h display presentation space
+	    04h position cursor in presentation space
+	    05h change default presentation space
+	ES:DI -> control block
+Return: ???
+

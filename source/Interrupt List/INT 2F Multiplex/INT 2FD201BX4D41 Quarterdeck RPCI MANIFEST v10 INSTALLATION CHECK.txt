@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD201BX4D41
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Quarterdeck RPCI - MANIFEST v1.0+ - INSTALLATION CHECK
+	AX = D201h
+	BX = 4D41h ("MA")
+	CX = 4E49h ("NI")
+	DX = 4645h ("FE")
+Return: BX = 5354h ("ST") if installed
+Range:	AH=C0h to AH=FFh, selected by scanning AH=D2h-FFh, then AH=C0h-D1h
+SeeAlso: AX=D200h
+

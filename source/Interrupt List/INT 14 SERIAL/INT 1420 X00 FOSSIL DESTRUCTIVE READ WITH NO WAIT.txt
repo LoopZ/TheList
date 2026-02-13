@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1420
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - X00 FOSSIL - DESTRUCTIVE READ WITH NO WAIT
+	AH = 20h
+	DX = port number
+Return: AH = 00h if character was available
+	    AL = next character (removed from receive buffer)
+	AX = FFFFh if no character available
+SeeAlso: AH=0Ch,AH=21h"X00"
+

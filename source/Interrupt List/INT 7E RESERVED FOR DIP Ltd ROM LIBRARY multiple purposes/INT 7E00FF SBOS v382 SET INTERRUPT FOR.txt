@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7E00FF
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7E - SBOS v3.82 - SET INTERRUPT FOR ???
+	AX = 00FFh
+	BL = new interrupt vector to hook
+Return: BX = 03CDh if supported
+Desc:	unhooks the current interrupt handler for ???, and reconnects it to the
+	  specified new interrupt number
+SeeAlso: AX=00F7h,AX=00F9h,AX=00FEh
+

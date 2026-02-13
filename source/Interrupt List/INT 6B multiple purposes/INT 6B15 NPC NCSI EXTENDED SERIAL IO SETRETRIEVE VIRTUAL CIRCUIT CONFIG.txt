@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B15
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - SET/RETRIEVE VIRTUAL CIRCUIT CONFIG
+	AH = 15h
+	AL = virtual circuit number
+	CL = direction (00h get, nonzero set)
+	ES:BX -> buffer for/containing virtual circuit config (see #03731)
+Return: ES:BX buffer filled
+Note:	this function is also supported by TelAPI
+SeeAlso: AH=13h"NCSI",AH=14h"NCSI"
+
+Format of virtual circuit configuration:
+Offset	Size	Description	(Table 03731)
+ 00h	WORD	buffer length
+ 02h	WORD	port ID
+ 04h	WORD	receive rate
+ 06h	WORD	receive word length
+ 08h	WORD	receive stop bits
+ 0Ah	WORD	receive parity
+ 0Ch	WORD	transmit rate
+ 0Eh	WORD	transmit word length
+ 10h	WORD	transmit stop bits
+ 12h	WORD	transmit parity
+ 14h	WORD	DTR
+ 16h	WORD	RTS
+

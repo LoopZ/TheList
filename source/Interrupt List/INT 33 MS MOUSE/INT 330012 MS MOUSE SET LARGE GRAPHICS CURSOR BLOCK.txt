@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330012
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE - SET LARGE GRAPHICS CURSOR BLOCK
+	AX = 0012h
+	BH = cursor width in words
+	CH = rows in cursor
+	BL = horizontal hot spot (-16 to 16)
+	CL = vertical hot spot (-16 to 16)
+	ES:DX -> bit map of screen and cursor maps
+Return: AX = FFFFh if successful
+SeeAlso: AX=0009h,AX=002Ah,AX=0035h
+

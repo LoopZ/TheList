@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13FFFFBHAA
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - UNIQUE UX Turbo Utility - SET TURBO MODE
+	AX = FFFFh
+	BH = AAh
+	BL = subfunction
+	    00h installation check
+		Return: AX = 1234h if installed
+	    01h turn on Turbo mode
+	    02h turn off Turbo mode
+	    03h set Turbo mode according to hardware switch
+	    04h set disk access to Turbo mode
+	    05h set disk access to Normal mode
+Return: nothing
+SeeAlso: INT 15/AH=DFh
+Index:	installation check;UNIQUE UX Turbo Utility
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF0E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DELETE TRUSTEE FROM DIRECTORY
+	AX = F216h subfn 0Eh
+	CX = length of request buffer in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet	(see #01862 at AH=E2h/SF=0Eh)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=0Eh,AX=F216h/SF=0Ch,AX=F216h/SF=0Dh
+

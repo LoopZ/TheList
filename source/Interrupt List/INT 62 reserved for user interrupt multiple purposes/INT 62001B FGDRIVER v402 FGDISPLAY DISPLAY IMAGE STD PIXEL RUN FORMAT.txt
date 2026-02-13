@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62001B
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DISPLAY" - DISPLAY IMAGE (STD PIXEL RUN FORMAT)
+	AX = 001Bh
+	ES:BX -> pixel run map (pairs of bytes: color index, count)
+	CX = number of pixel runs to display
+	DX = width of image in pixels (> 0)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes
+	The image is displayed with its lower left corner at the current
+	  graphics cursor position
+SeeAlso: AX=001Ah,AX=001Ch,AX=00B9h,AX=00BAh,AX=00BBh
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1126
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - REMOTE PRINTER ECHO ON/OFF
+	AX = 1126h
+	ES:DI -> SFT for file handle 4???
+	SS = DOS DS???
+	???
+Return: CF set on error
+Notes:	this function is called by the DOS 3.1+ kernel
+	called when print echoing (^P, ^PrtSc) changes state and STDPRN has
+	  bit 11 of the device information word in the SFT set
+SeeAlso: AX=1124h
+

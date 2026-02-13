@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0080
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.1+ PRINT - GIVE PRINT A TIME SLICE
+	AX = 0080h
+Return: after PRINT executes
+Notes:	PRINT returns AL=01h if AH=00h but AL is not 80h on entry
+	this function is not supported by the Novell DOS 7 PRINT.COM
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 44
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 44 - Acorn BBC Master 512 - "OSARGS" - GET/SET FILE PARAMS FOR OPEN FILE
+	AH = nonzero file handle
+	AL = function
+	    00h get sequential pointer for file
+	    01h set sequential pointer for file
+	    02h get length of file
+	BX -> 4-byte data buffer
+Return: BX buffer updated if appropriate
+SeeAlso: INT 40"Acorn",INT 41"Acorn",INT 44/AH=00h,INT 45"Acorn",INT 4A"Acorn"
+

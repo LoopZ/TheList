@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - KBUF extensions - ADD KEY TO TAIL OF KEYBOARD BUFFER
+	AH = FFh
+	DX = scan code
+Return: AL = status
+	    00h success
+	    01h failure
+Program: KBUF is a keyboard buffer expander by Mark Adler
+SeeAlso: AH=05h
+

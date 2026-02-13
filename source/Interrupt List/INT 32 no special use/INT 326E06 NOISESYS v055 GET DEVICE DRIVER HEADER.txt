@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 326E06
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 32 - NOISE.SYS v0.55+ - GET DEVICE DRIVER HEADER
+	AX = 6E06h
+Return: AL = number of device drivers in NOISE.SYS chain
+	    02h = default (for RANDOM and URANDOM devices)
+	AH = AMIS device driver flags (set to 00h for now)
+	DX:BX -> first device in chain (see #01646)
+SeeAlso: INT 2D/AL=06h
+

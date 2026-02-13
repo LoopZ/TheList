@@ -1,0 +1,217 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FEE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WEB v4.02 - WEB MODULE INSTALLATION CHECK
+	AH = EEh
+	AL = module ID (see #03114)
+Return: AX = 0000h if installed
+	    ES:DI -> far entry point for module-specific API calls
+		  (see #03115,#03116,#03117,#03118,#03119)
+Program: WEB is an IPX-based peer-to-peer network by Webcorp.
+SeeAlso: AX=EE00h"WEB"
+
+(Table 03114)
+Values for WEB module ID:
+ 10h	server module (SERVER.EXE)
+ 20h	client module (CLIENT.EXE)
+ 30h	mail module (MAIL.EXE)
+ 40h	spooler (PCSPOOL.EXE)
+ 50h	kernel module (KERNEL.EXE)
+ 60h	SAP module (KERNEL.EXE)
+ 70h	resident station manager (SM.EXE)
+ 90h	router module (ROUTER.EXE)
+
+(Table 03115)
+Call server module entry point with:
+	BX = function
+	    0000h remove server module
+		Return: AX = status (0000h if successful, else WEB error code)
+	    0001h create SYSINFO file
+		Note:	the SYSINFO file is used by the station manager when
+			  displaying info for a particular station
+	    0002h get server object table
+		Return: CX = number of server objects
+			ES:DI -> server object table
+		Note:	server objects include drives and devices that the
+			  server module controls
+	    0003h get server variables
+		Return: ES:DI -> server variables
+
+(Table 03116)
+Call client module entry point with:
+	BX = function
+	    0000h remove client module
+		Return: AX = status (0000h if successful, else WEB error code)
+	    0001h decrement client-only flag
+	    0002h increment client-only flag
+	    0005h set device capture
+		Note:	decrements DeviceOutput flag, telling the spooler that
+			  it may trap device output again
+	    0006h clear device capture
+		Note:	increments DeviceOutput flag, telling the spooler that
+			  it should not trap device output (this is used
+			  internally by the spooler to prevent it from trapping
+			  its own output)
+	    0007h get client debug pointer
+		Return: ES:DI -> client debug data structure (see #03120)
+	    0008h get root drive
+		Return: AL = WEB startup drive
+	    0009h get maximum possible drive/device redirections
+		Return: AL = maximum drive redirections
+			CH = maximum LPTx redirections
+			CL = maximum COMx redirections
+	    000Ah suspend client
+		Return: AX = previous value of Suspend flag
+	    000Bh resume client
+		Return: AX = previous value of Suspend flag
+	    000Ch get instance data
+		CX = maximum number of structures in array
+		ES:DI -> buffer for array of WIN_INSTANCE_DATA structures
+			  (see #03121)
+		Return: CX = number of structures actually returned
+		Note:	used internally by WEB4WIN
+
+(Table 03117)
+Call mail module entry point with:
+	BX = function
+	    0000h remove mail module
+		Return: AX = status (0000h successful, else WEB error code)
+	    0001h set mail poll
+		Note:	schedules the WEB mail module
+	    0002h set mail notify
+		Note:	sets the Notify flag, which determines whether the
+			  user will be notified when mail is received
+	    0003h clear mail notify
+		Note:	clears the Notify flag, which determines whether the
+			  user will be notified when mail is received
+	    0004h check whether new mail has arrived
+		Return: AL = new mail status
+			    00h no new mail since last call
+			    else new mail has arrived
+		Note:	also clears the new-mail flag after retrieving it
+	    0005h send notify
+		ES:DI -> name of WEB user to be notified
+	    0006h get post office
+		Return: ES:DI -> full network path of Post Office subdirectory
+
+(Table 03118)
+Call spooler entry point with:
+	BX = function
+	    0000h remove PCSpool module
+		Return: AX = status (0000h successful, else WEB error code)
+	    0001h set spooler poll
+		Note:	schedules the WEB spooler
+	    0002h check spooler changed
+		Return:	AX = 0000h
+		Note:	this call is a NOP in current versions of WEB
+
+(Table 03119)
+Call kernel entry point with:
+	BX = function
+	    0000h remove kernel module
+		Return: AX = status (0000h successful, else WEB error code)
+	    0001h set kernel ^S filter
+		DL = new state (00h don't filter ^S, nonzero do filter)
+	    0002h get kernel data area
+		Return: ES:DI -> kernel data area
+	    0003h display dialog box
+		CL = dialog box type
+		    00h password
+		    01h E-Note received notification
+		    02h Novell login
+		    03h general notification
+		DL = number of rows to display
+		ES:SI -> array of far pointers to rows to be displayed
+		ES:DI -> Pascal-style input buffer
+		Return: AX = status (0000h successful, else error code)
+	    0004h kernel service events
+	    0005h get kernel's in-critical-section flag
+		Return: ES:DI -> kernel InCriticalSection flag
+	    0006h schedule DOS event
+		AL = directive
+		    00h do not ignore WEB ExtraBusy flag
+		    01h ignore ExtraBusy flag
+		    02h (WEB4WIN) check that current Windows VM is foregrnd VM
+		ES:SI -> WEB AES Event Control Block (ECB) (see #03122)
+		Notes:	the WEB Asynchronous Event Scheduler is similar to the
+			  one used by IPX; this call schedules a special ECB
+			  to be executed at a later time.  Unlike IPX ECBs,
+			  the timeout must be set explicitly by the caller
+			this function also calls function 0004h
+	    0007h check busy
+		AL = directive
+		    00h do not ignore WEB ExtraBusy flag
+		    01h ignore ExtraBusy flag
+		    02h (WEB4WIN) check that current Windows VM is foregrnd VM
+		Return: AX = status (0000h not busy, else busy)
+	    0008h set keyboard intercept
+		Note:	currently a NOP which returns immediately
+	    0009h get keyboard intercept
+		Note:	currently a NOP which returns immediately
+	    000Ah get dialog flags
+		Return: ES:DI -> kernel dialog flags (see #03123)
+	    000Bh get network path
+		Return: ES:DI -> fully-qualified network path of file where
+				the screen is stored on Dialog calls
+	    000Ch kernel alternate dialog
+		CL = dialog box type
+		    00h password
+		    01h E-Note received notification
+		    02h Novell login
+		    03h general notification
+		DL = number of rows to display
+		ES:SI -> array of far pointers to rows to be displayed
+		ES:DI -> Pascal-style input buffer
+		Return: AX = status (0000h successful, else error code)
+		Note:	this function is identical to function 0003h except
+			  that it does not notify WEB4WIN of the impending
+			  dialog request
+	    000Dh get machine/operating system type
+		Return: AX = machine/operating system type
+			    01h IBM PC, MS-DOS
+			    02h IBM PC, DOSV (Japanese)
+			    03h NEC PC-9800, JDOS (Japanese)
+			    04h IBM PC, Korean DBC DOS
+
+Format of client debug data structure:
+Offset	Size	Description	(Table 03120)
+ 00h	WORD	total files
+ 02h	WORD	files free
+ 04h	WORD	no files
+ 06h	WORD	minimum files
+ 08h	WORD	total FCBs
+ 0Ah	WORD	total safe FCBs
+ 0Ch	WORD	FCBs in use
+ 0Eh	WORD	wrong FCB
+ 10h	WORD	compressed
+ 12h	WORD	retransmits
+
+Format of WIN_INSTANCE_DATA structure:
+Offset	Size	Description	(Table 03121)
+ 00h	DWORD	real-mode pointer to data to be instanced
+ 04h	WORD	size of data to be instanced
+
+Format of WEB AES Event Control Block:
+Offset	Size	Description	(Table 03122)
+ 00h	DWORD	link address
+ 04h	WORD	ESR address
+ 08h	BYTE	InUse flag
+ 09h	BYTE	completion code
+ 0Ah  3 BYTEs	reserved
+ 0Dh	WORD	timeout
+ 0Fh	BYTE	IgnoreExtra flag
+ 10h	WORD	PSP
+ 12h	DWORD	DTA
+ 16h	WORD	AX value for DOS critical information
+ 18h	WORD	BX value for DOS critical information
+ 1Ah	WORD	CX value for DOS critical information
+ 1Ch	WORD	DX value for DOS critical information
+
+(Table 03123)
+Values for kernel dialog flags:
+ 01h	dialog will timeout
+ 02h	display stars instead of entered keystrokes
+

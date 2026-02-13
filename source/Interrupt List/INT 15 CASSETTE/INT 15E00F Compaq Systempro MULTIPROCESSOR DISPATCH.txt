@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E00F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq Systempro - MULTIPROCESSOR DISPATCH
+	AX = E00Fh
+	ES:BX -> start of 2nd processor's execution
+Return: AL = status
+	    0Fh successful
+	    00h failure
+SeeAlso: AX=E10Eh,AX=E200h
+

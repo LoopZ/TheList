@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 662F
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - PenDOS - PINK - INITIALIZE
+	AH = 2Fh
+	???
+Return: AX = status
+	    0000h failed
+	    FFFFh successful
+	???
+Note:	this function sets ??? flag or counter to FFFFh and hooks INT 1Ch
+

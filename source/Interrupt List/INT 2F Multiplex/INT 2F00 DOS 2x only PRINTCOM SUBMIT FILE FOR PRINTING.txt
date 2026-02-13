@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F00
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 2.x only PRINT.COM - SUBMIT FILE FOR PRINTING
+	AH = 00h
+	DS:DX -> opened FCB (see #01345 at INT 21/AX=0Fh)
+Return: AH = number of files currently in print queue
+	AL = status
+	    00h file successfully added
+	    01h queue is full
+	ES:BX -> print queue (10 FCBs; first byte of FFh indicates unused)
+	ES:DX -> currently-printing FCB (if DX=FFFFh, none printing)
+Notes:	DOS 2.x PRINT.COM does not chain to previous INT 2F handler
+	values in AH other than 00h or 01h cause PRINT to return the number of
+	  files in the queue in AH
+SeeAlso: AH=01h"PRINT",AX=0102h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FF9
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - REMOVE USER FROM GROUP
+	AH = F9h
+	AL = group number
+	DL = user number
+	DH = machine number (currently 00h)
+Return: CF clear if successful
+	CF set if failed
+SeeAlso: AH=F8h,AH=FAh
+

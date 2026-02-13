@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610001SF0004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - "Soclose" - CLOSE A SOCKET
+	AX = 0001h subfn 0004h
+	DS:DX -> communications control block (function 0004h) (see #03337)
+Return: AX = status (0000h-000Ah,0097h) (see #03325)
+Range:	INT 60h to INT 66h
+Note:	The Banyan interrupt handler is identified by the string "BANV" in
+	  the four bytes immediately preceding the interrupt handler
+SeeAlso: AX=0001h/SF=0001h,INT 15/AX=DE2Eh
+
+Format of VINES control block to close socket:
+Offset	Size	Description	(Table 03337)
+ 00h	WORD	0004h
+ 02h	WORD	pointer to argument block (see #03338)
+ 04h	WORD	error return code (see #03325)
+ 06h  4 BYTEs	reserved
+SeeAlso: #03334,#03340
+
+Format of VINES argument block for closing socket:
+Offset	Size	Description	(Table 03338)
+ 00h	WORD	socket identifier
+SeeAlso: #03335,#03337,#03341
+

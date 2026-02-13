@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0021
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPXODI v2.12+ - IPX GENERATE CHECKSUM
+	BX = 0021h
+	ES:SI -> ECB data (see #03810 at INT 7A/BX=0003h)
+Return: ES,DS,SI preserved
+	BX,BP corrupted, all other registers potentially destroyed
+Notes:	the checksum and TransportControl fields of the IPX packet are updated
+	this function enables interrupts and is fully reentrant
+SeeAlso: BX=001Fh,BX=0020h,BX=0022h,INT 2F/AX=7A2Fh
+

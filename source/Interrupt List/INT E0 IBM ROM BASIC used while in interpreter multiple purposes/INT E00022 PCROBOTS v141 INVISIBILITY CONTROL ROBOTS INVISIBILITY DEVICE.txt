@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00022
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "INVISIBILITY" - CONTROL ROBOT'S INVISIBILITY DEVICE
+	AX = 0022h
+	BX = new state (0000h become visible, 0001h become invisible)
+Return: nothing
+Notes:	this function has no effect if the robot is not capable of invisibility
+	the robot can only stay invisible for 100 turns, after which it will
+	  automatically become visible; it must also be remain visible for
+	  as many turns as it was invisible before it can turn invisible
+	  again
+SeeAlso: AX=0024h,AX=0080h
+

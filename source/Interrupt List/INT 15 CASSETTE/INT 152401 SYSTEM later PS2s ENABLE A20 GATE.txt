@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152401
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - later PS/2s - ENABLE A20 GATE
+	AX = 2401h
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = status
+		01h keyboard controller is in secure mode
+		86h function not supported
+Notes:	also supported by AMI PCI BIOS and Qualitas 386MAX v6.01+
+	IBM classifies this function as optional
+SeeAlso: AX=2400h,AX=2402h,PORT 0092h
+

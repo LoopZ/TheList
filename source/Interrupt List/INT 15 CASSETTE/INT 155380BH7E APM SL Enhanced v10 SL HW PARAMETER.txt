@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH7E
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - SL HW PARAMETER
+	AX = 5380h
+	BH = 7Eh
+Return: AL = ???
+	    03h on A-Step 386SL BIOSes
+	    12h on later steps
+	BX = Control port (00B0h)
+SeeAlso: AX=5380h/BH=00h,AX=5380h/BH=7Fh
+

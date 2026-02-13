@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0601
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ ASSIGN - GET DRIVE ASSIGNMENT TABLE
+	AX = 0601h
+Return: ES = segment of ASSIGN work area and assignment table
+Note:	the 26 bytes starting at ES:0103h specify which drive each of A: to Z:
+	  is mapped to.	 Initially set to 01h 02h 03h....
+SeeAlso: AX=0600h,AX=AF14h"WinDOS"
+

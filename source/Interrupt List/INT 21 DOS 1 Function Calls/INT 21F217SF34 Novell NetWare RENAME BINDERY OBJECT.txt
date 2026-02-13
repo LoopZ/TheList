@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF34
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - RENAME BINDERY OBJECT
+	AX = F217h subfn 34h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet	(see #01924 at AH=E3h/SF=34h)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=34h,AX=F217h/SF=32h,AX=F217h/SF=33h
+

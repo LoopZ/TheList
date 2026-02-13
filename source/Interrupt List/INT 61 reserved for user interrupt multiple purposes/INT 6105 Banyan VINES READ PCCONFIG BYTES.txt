@@ -1,0 +1,86 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6105
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - READ PCCONFIG BYTES
+	AH = 05h
+	CX = number of bytes to copy
+	    (max. 0175h for VINES 4.00, max. 017Fh for VINES 4.10+)
+	SI = offset of area to be copied (see #03452,#03453)
+Return: AX = status
+	    0000h successful
+	    0004h out of range
+Notes:	The PCCONFIG area is located in the code segment of the BANV handler
+	To find out which PCCONFIG structure applies, call this function first
+	  with CX=0006h to get the VINES revision number
+SeeAlso: AH=02h"VINES",AH=04h"VINES",AH=06h"VINES",AH=0Bh"VINES"
+
+Format of PCCONFIG area (VINES 4.00):
+Offset	Size	Description	(Table 03452)
+ 00h  6	BYTEs	VINES revision (ASCII, zero-padded)
+ 06h  2	BYTEs	NEWREV-number (ASCII, two digits)
+ 08h	WORD	hardware interrupt level
+ 0Ah	WORD	DMA channel
+ 0Ch	WORD	I/O address
+ 0Eh	DWORD	adapter ROM address (linear)
+ 12h	DWORD	adapter RAM address (linear)
+ 16h	WORD	BANV interrupt
+ 18h 32	BYTEs	default login group #1
+ 38h 32	BYTEs	default login group #2
+ 58h 32	BYTEs	default login group #3
+ 78h	WORD	semaphore locking support flag
+ 7Ah	WORD	extended StreetTalk flag
+ 7Ch	WORD	maximum number of file volumes
+ 7Eh	WORD	NetBIOS flag
+ 80h 60	BYTEs	default network adapter
+ BCh 60	BYTEs	default communications driver
+ F8h	WORD	maximum number of SPP connections
+ FAh	WORD	maximum number of open sockets
+ FCh	WORD	communications buffer size (10..60 KB)
+ FEh 20	BYTEs	location directory on drive Z:
+112h 33	BYTEs	auxiliary configuration area #1 (see #03454)
+133h 33	BYTEs	auxiliary configuration area #2
+154h 33	BYTEs	auxiliary configuration area #3
+SeeAlso: #03453
+
+Format of PCCONFIG area (VINES 4.10+):
+Offset	Size	Description	(Table 03453)
+ 00h  6	BYTEs	VINES revision (ASCII, zero-padded)
+ 06h  2	BYTEs	NEWREV-number (ASCII, two digits)
+ 08h	WORD	hardware interrupt level
+ 0Ah	WORD	DMA channel
+ 0Ch	WORD	I/O address
+ 0Eh	DWORD	adapter ROM address (linear)
+ 12h	DWORD	adapter RAM address (linear)
+ 16h	WORD	BANV interrupt
+ 18h 32	BYTEs	default login group #1
+ 38h 32	BYTEs	default login group #2
+ 58h 32	BYTEs	default login group #3
+ 78h	WORD	semaphore locking support flag
+ 7Ah	WORD	extended StreetTalk flag
+ 7Ch	WORD	named pipes support flag
+ 7Eh	WORD	maximum number of file volumes
+ 80h	WORD	NetBIOS flag
+ 82h 60	BYTEs	default network adapter
+ BEh 60	BYTEs	default communications driver
+ FAh	WORD	maximum number of SPP connections
+ FCh	WORD	maximum number of open sockets
+ FEh	WORD	communications buffer size (10..60 KB)
+100h	WORD	number of mailslots
+102h	WORD	maximum number of open files
+104h	WORD	maximum number of NetBIOS sessions
+106h	WORD	maximum number of NetBIOS commands
+108h 20	BYTEs	location directory on drive Z:
+11Ch 33	BYTEs	auxiliary configuration area #1 (see #03454)
+13Dh 33	BYTEs	auxiliary configuration area #2
+15Eh 33	BYTEs	auxiliary configuration area #3
+
+Format of auxiliary configuration area:
+Offset	Size	Description	(Table 03454)
+ 00h 16	BYTEs	item name (no zero terminator if length = 16)
+ 10h	BYTE	item value type (1=text, else numeric)
+ 11h 16	BYTEs	item value (string if type 1, else DWORD)
+SeeAlso: #03452,#03453
+

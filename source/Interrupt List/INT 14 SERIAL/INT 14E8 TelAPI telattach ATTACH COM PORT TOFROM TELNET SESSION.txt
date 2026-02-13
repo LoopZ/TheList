@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telattach" - ATTACH COM PORT TO/FROM TELNET SESSION
+	AH = E8h
+	BX = connection ID (see AH=E0h"TelAPI")
+	CX = serial port number (0000h-0003h = COM1-COM4)
+Return: AX = status
+	    0000h successful
+	    FFFFh failed
+SeeAlso: AH=E0h,AH=E9h,AX=FF00h
+

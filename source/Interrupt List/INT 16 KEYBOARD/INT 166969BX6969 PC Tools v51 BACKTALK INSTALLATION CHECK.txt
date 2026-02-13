@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166969BX6969
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - PC Tools v5.1+ BACKTALK - INSTALLATION CHECK
+	AX = 6969h
+	BX = 6969h
+	DX = 0000h
+Return: DX nonzero if installed
+	    BX = CS of resident code
+	    DX = PSP segment of resident code
+	    DS:SI -> ASCIZ identification string "CPoint Talk"
+

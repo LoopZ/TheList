@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF--DL05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - END SPECIFIC LPT CAPTURE
+	AH = DFh
+	DL = 05h
+	DH = LPT port (00h-02h)
+Return: AL = status
+	    00h successful
+Desc:	stop redirecting the specified LPT, close the capture file, and release
+	  the job in the print queue for printing
+Notes:	this function is supported by Advanced NetWare 2.1+
+	after this call, the specified LPT defaults to local printing
+SeeAlso: AH=DFh/DL=01h,AH=DFh/DL=04h,AH=DFh/DL=06h,AH=DFh/DL=07h
+

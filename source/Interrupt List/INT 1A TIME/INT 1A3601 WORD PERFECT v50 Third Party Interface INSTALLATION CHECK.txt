@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A3601
+  Category: A 	applications
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - WORD PERFECT v5.0 Third Party Interface - INSTALLATION CHECK
+	AX = 3601h
+Return: DS:SI = routine to monitor keyboard input, immediately preceded by the
+		ASCIZ string "WPCORP\0"
+Notes:	WordPerfect 5.0 will call this interrupt at start up to determine if a
+	  third party product wants to interface with it.  The third party
+	  product must intercept this interrupt and return the address of a
+	  keyboard monitor routine.
+	Before checking for keyboard input, and after every key entered by the
+	  user, Word Perfect will call the routine whose address was provided
+	  in DS:SI with the following parameters:
+		Entry:	AX = key code or 0
+			BX = WordPerfect state flag
+		Exit:	AX = 0 or key code
+			BX = 0 or segment address of buffer with key codes
+	See the "WordPerfect 5.0 Developer's Toolkit" for further information.
+SeeAlso: INT 16/AX=5500h
+

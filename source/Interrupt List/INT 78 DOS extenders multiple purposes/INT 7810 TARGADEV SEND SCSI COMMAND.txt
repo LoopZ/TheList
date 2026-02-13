@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7810
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - TARGA.DEV - SEND SCSI COMMAND
+	AH = 10h
+	DS:SI -> command bytes (see #03804)
+Return: AH = SCSI status byte
+	CF clear if successful
+	    AL = SCSI message byte
+	CF set on error
+	    AL = error code (see #03786)
+SeeAlso: AH=11h,INT 21/AX=4403h"ST-01"
+
+Format of SCSI Command:
+Offset	Size	Description	(Table 03804)
+ 00h	BYTE	length of command
+ 01h	???	command bytes
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - TI Professional PC - PARALLEL PORT - GET PRINTER STATUS
+	AH = 02h
+	DL = printer number (00h)
+Return: AH = printer status (see #03216)
+Note:	on the TI Pro, the BIOS only supports DL=00h; MS-DOS versions for the
+	  TI hook INT 4B and handle requests for DL<>00h
+SeeAlso: AH=00h,AH=01h,INT 17/AH=02h
+

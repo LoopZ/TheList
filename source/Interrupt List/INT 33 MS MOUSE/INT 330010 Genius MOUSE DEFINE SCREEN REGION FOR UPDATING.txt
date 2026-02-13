@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330010
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Genius MOUSE - DEFINE SCREEN REGION FOR UPDATING
+	AX = 0010h
+	ES:DX -> update region list (see #03173)
+Notes:	mouse cursor is hidden in the specified region, and needs to be
+	  explicitly turned on again
+	this version of the call is described in an August 1988 version of the
+	  Genius Mouse programmer's reference; it has been changed to conform
+	  to the Microsoft version shown above by version 9.06 (and possibly
+	  earlier versions)
+SeeAlso: AX=0001h,AX=0002h,AX=0007h,AX=0010h"MS MOUSE"
+
+Format of Genius Mouse update region list:
+Offset	Size	Description	(Table 03173)
+ 00h	WORD	left-most column
+ 02h	WORD	top-most row
+ 04h	WORD	right-most column
+ 06h	WORD	bottom-most row
+

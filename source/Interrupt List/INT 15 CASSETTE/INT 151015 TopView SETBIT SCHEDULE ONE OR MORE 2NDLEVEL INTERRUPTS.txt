@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151015
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "SETBIT" - SCHEDULE ONE OR MORE 2ND-LEVEL INTERRUPTS
+	AX = 1015h
+	BX = bit mask for interrupts to post
+Return: indicated routines will be called: (DV 2.0x) at next task switch
+					   (DV 2.2x) immediately on return from
+						     hardware interrupt
+Notes:	this is one of the few TopView calls which are allowed from a hardware
+	  interrupt handler
+	the handler will be called with ES containing the segment of the handle
+	  of the next task to be executed; on return, ES must be the segment of
+	  a task handle
+SeeAlso: AX=1013h,AX=1014h
+

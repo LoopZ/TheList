@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200C4
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_TCDEFINE" - DEFINE TRANSPARENCY OF COLOR INDEX
+	AX = 00C4h
+	BX = color index
+	CX = transparency (00h opaque, other transparent)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function is ignored in text modes
+SeeAlso: AX=00C5h,AX=00C6h
+

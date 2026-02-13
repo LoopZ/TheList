@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21710D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - RESET DRIVE
+	AX = 710Dh
+	CX = action (see #01777)
+	DX = drive number
+Return: CF clear
+Note:	for compatibility with DOS versions prior to v7.00, the carry flag
+	  should be set on call to ensure that it is set on exit
+SeeAlso: AH=0Dh
+
+(Table 01777)
+Values for drive reset action:
+ 0000h	flush filesystem buffers for drive, and reset drive
+ 0001h	flush filesystem buffers and cache for drive, and reset drive
+ 0002h	remount DriveSpace volume
+

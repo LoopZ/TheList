@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1569
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL POWER DOWN AVAILABILITY
+	AH = 69h
+	AL = mode
+	    00h inhibit power down
+	    01h allow power down
+Return: AH = status
+SeeAlso: AH=67h,AH=68h,AH=6Ah
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC06
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MediaVision MVSOUND.SYS - GET STATUS STRING
+	AX = BC06h
+Return: AX = 4D56h ('MV')
+	DX:BX -> status string (first byte 0Ch if no status message to display)
+SeeAlso: AX=BC00h/BX=3F3Fh,AX=BC01h"MVSOUND",AX=BC0Bh"MVSOUND"
+

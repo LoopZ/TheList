@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140A--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - MODIFY ACTIVE CONNECTION PARAMETERS
+	AH = 0Ah
+	DX = FFFFh
+	ES:DI -> vector string containing new parameters (see #00311)
+Return: AH = return code (00h-03h,06h) (see #00303)
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+Note:	any subvectors valid for the Change Parameters command replace the
+	  existing values in the current set
+SeeAlso: AH=00h/DX=FFFFh,AH=0Fh/DX=FFFFh
+

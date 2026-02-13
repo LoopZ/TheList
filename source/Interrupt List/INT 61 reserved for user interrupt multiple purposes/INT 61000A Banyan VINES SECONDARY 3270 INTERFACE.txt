@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61000A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SECONDARY 3270 INTERFACE
+	AX = 000Ah
+Note:	either 3270/SNA or 3270/BSC interface will use AX=000Ah, depending on
+	  which is loaded second.  The first interface loaded will use AX=0002h
+SeeAlso: INT 61/AX=0002h
+

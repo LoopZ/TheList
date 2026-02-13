@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F0F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - WRITE TEXT
+	AH = 0Fh
+	AL = rotate flag (if nonzero, rotate 90 degrees counter-clockwise)
+	DX,CX = row,column of first character's top left corner
+	ES:DI -> ASCIZ text
+

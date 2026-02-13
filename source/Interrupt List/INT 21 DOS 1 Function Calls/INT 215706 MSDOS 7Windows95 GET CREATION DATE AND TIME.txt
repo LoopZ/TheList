@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215706
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7/Windows95 - GET CREATION DATE AND TIME
+	AX = 5706h
+	BX = file handle
+Return: CF clear if successful
+	    CX = creation time (see #01665)
+	    DX = creation date (see #01666)
+	    SI = number of 10-millisecond units past time in CX (0-199)
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5701h,AX=5704h"Windows95",AX=5707h
+

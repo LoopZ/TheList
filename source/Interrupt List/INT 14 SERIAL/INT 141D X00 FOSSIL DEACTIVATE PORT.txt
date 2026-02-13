@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141D
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - X00 FOSSIL - DEACTIVATE PORT
+	AH = 1Dh
+	DX = port number
+Return: none
+Notes:	this is a duplicate of AH=05h, so that AH=05h may be made compatible
+	  with the PS/2 BIOS in a future release
+	ignored if the port was never activated with AH=04h or AH=1Ch
+SeeAlso: AH=05h"FOSSIL",AH=1Ch
+

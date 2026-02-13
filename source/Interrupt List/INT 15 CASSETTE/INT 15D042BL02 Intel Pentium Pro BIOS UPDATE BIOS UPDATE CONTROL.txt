@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D042BL02
+  Category: - 	reserved (and not otherwise classified)
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 15 R - Intel Pentium Pro BIOS UPDATE - BIOS UPDATE CONTROL
+	AX = D042h
+	BL = 02h
+	BH = function
+	    01h enable update loading at initialization time
+	    02h check whether update loading is enabled
+	CX,DX,SI = segments of three 64K scratchpad areas for BIOS use
+Return: CF clear if successful
+	CF set on error
+	AH = status (see #00532)
+	    00h successful
+		BL = enabled/disabled flag
+	    86h not implemented
+	AL = OEM error (if AH is not 00h or 86h, otherwise undefined)
+	    00h successful
+Notes:	this API must be called from actual real mode, not V86 mode
+	at least 32K stack space must be available when this function is called
+	there is no call to disable update loading due to security risks; the
+	  BIOS setup can disable loading
+SeeAlso: AX=D042h/BL=00h,AX=D042h/BL=02h,AX=D042h/BL=03h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E5
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare - UPDATE FILE SIZE (FCB)
+	AH = E5h
+	DS:DX -> FCB (see #01345 at AH=0Fh)
+Return: AL = (unreliable) return code
+Notes:	this function was added in NetWare 4.0, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+	on success, NetWare sets AL to zero; on errors it restores AL
+

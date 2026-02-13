@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F38
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - Named Pipes - LOCAL DosWaitNmPipe - AWAIT AVAIL. OF PIPE INSTANCE
+	AX = 5F38h
+	DS:DX -> pipe name
+	BX:CX = timeout value
+Return: CF clear if successful
+	CF set if error
+	    AX = error code
+Notes:	when a client gets a return code of ERROR_PIPE_BUSY on attempting to
+	  open a pipe, it should issue this call to wait until the pipe
+	  instance becomes available again; on return from this call, the
+	  client must attempt to open the pipe once again
+	this function was introduced by LAN Manager but is also supported by
+	  the Novell DOS Named Pipe Extender, Banyan VINES, OS/2 Virtual DOS
+	  Machines, and others
+SeeAlso: AX=5F37h,AX=5F39h
+

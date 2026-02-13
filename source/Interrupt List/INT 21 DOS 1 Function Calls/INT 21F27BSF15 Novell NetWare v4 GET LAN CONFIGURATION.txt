@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF15
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET LAN CONFIGURATION
+	AX = F27Bh subfn 15h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02511)
+	ES:DI -> reply buffer (see #02512)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AX=F27Bh/SF=16h
+
+Format of NetWare "Get LAN Configuration" request buffer:
+Offset	Size	Description	(Table 02511)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	15h (subfunction "Get LAN Configuration")
+ 03h	DWORD	LAN board number
+SeeAlso: #02512
+
+Format of NetWare "Get LAN Configuration" reply buffer:
+Offset	Size	Description	(Table 02512)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	BYTE	driver configuration major version
+ 09h	BYTE	driver configuration minor version
+ 0Ah  6 BYTEs	driver node address
+ 10h	WORD	driver mode flags
+ 12h	WORD	driver board number
+ 14h	WORD	driver board instance
+ 16h	DWORD	driver maximum size
+ 1Ah	DWORD	driver maximum receive size
+ 1Eh	DWORD	driver receive size
+ 22h  3 DWORDs	reserved
+ 2Eh	WORD	driver card ID
+ 30h	WORD	driver transport time
+ 32h	DWORD	driver source routing
+ 36h	WORD	driver line speed
+ 38h	WORD	driver reserved
+ 3Ah	BYTE	driver major version
+ 3Bh	BYTE	driver minor version
+ 3Ch	WORD	driver flags
+ 3Eh	WORD	driver send retries
+ 40h	DWORD	driver link
+ 44h	WORD	driver sharing flags
+ 46h	WORD	driver slot
+ 48h  4 WORDs	driver I/O port and lengths
+ 50h	DWORD	driver memory decode 0
+ 54h	WORD	driver length 0
+ 56h	DWORD	driver memory decode 1
+ 5Ah	WORD	driver length 1
+ 5Ch  2 BYTEs	driver's interrupts
+ 5Eh  2 BYTEs	driver's DMA usage
+ 60h 18 BYTEs	driver's logical name
+ 72h 14 BYTEs	driver I/O reserved
+ 80h 128 BYTEs	driver card name
+100h 40 BYTEs	driver media type
+128h 180 BYTEs	driver custom variables
+SeeAlso: #02511
+

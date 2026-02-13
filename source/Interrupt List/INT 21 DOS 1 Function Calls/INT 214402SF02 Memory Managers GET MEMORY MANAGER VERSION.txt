@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402SF02
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Memory Managers - GET MEMORY MANAGER VERSION
+	AX = 4402h subfn 02h
+	BX = file handle for device "EMMXXXX0"
+	CX = 0002h (size of buffer in bytes)
+	DS:DX -> buffer for memory manager version (see #01520)
+		first byte must be 02h on entry
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Note:	this function is supported by Microsoft EMM386.EXE v4.45+ and
+	  CEMM v5.10+, and is intended for use by MS Windows as it starts up
+SeeAlso: AX=4402h/SF=00h,AX=4402h"EMM386",INT 67/AH=3Fh
+
+Format of memory manager version:
+Offset	Size	Description	(Table 01520)
+ 00h	BYTE	major version
+ 01h	BYTE	minor version (binary)
+

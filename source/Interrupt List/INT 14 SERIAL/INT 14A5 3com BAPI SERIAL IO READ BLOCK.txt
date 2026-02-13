@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A5
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - READ BLOCK
+	AH = A5h
+	CX = length of buffer
+	DH = session ID (00h for external session managment)
+	ES:BX -> buffer for data
+Return: AH = return code (00h,02h,03h,07h,0Ah,0Bh) (see #00394)
+	CX = number of bytes actually read
+SeeAlso: AH=18h,AH=83h"COURIERS",AH=A0h"BAPI",AH=A3h"BAPI",AH=A4h"BAPI"
+SeeAlso: AH=A7h"BAPI",AX=FF02h
+

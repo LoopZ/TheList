@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155312
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.2 - ENABLE/DISABLE RESUME ON RING
+	AX = 5312h
+	BX = device ID (see #00474)
+	    0000h (APM BIOS)
+	    other reserved
+	CL = function
+	    00h disable Resume on Ring Indicator
+	    01h enable Resume on Ring Indicator
+	    02h get Resume on Ring Indicator status
+Return: CF clear if successful
+	    CX = resume status (0000h disabled, 0001h enabled)
+	CF set on error
+	    AH = error code (03h,09h,0Ah,0Bh,0Ch,86h) (see #00473)
+Notes:	this function is supported via the INT 15, 16-bit protected mode, and
+	  32-bit protected mode interfaces
+SeeAlso: AX=5300h,AX=5310h,AX=5311h,AX=5313h
+

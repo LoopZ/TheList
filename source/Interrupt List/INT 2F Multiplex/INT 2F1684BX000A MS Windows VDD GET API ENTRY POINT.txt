@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX000A
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - VDD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 000Ah (virtual device ID for VDD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02649)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02649)
+Call VDD entry point with:
+	EAX = function
+	    0000h get VDD version
+		Return: CF clear
+			AH = major version
+			AL = minor version
+		Note:	also performs an internal initialization
+	    0001h ???
+		Return: ECX = ???
+			???
+	    0002h
+	    0003h
+	    0004h
+	    0005h
+	    0006h
+	    0007h
+	    0008h
+	    0009h
+	    0080h
+	    0081h
+	    0082h
+	    0083h
+	    0084h
+	    0085h
+	    0086h
+	    0087h
+	    0088h
+	    0089h
+	    else
+		Return: nothing
+

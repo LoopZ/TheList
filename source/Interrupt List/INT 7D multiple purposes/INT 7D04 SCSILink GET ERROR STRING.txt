@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D04
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - GET ERROR STRING
+	AH = 04h
+	AL = error number
+Return: ES:BX -> ASCIZ error string for error number
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX002D
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - W32S - GET API ENTRY POINT
+	AX = 1684h
+	BX = 002Dh (virtual device ID for W32S device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+

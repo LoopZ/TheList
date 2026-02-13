@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610001
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - CENTER ZOOM WINDOW
+	AX = 0001h
+	BX = X coordinate to center
+	CX = Y coordinate to center
+Desc:	Positions the zoom window such that the specified window-relative
+	  coordinates appear as close as possible to the center of the
+	  display.  Useful for scrolling and panning.
+Range:	unknown
+Notes:	INT 61h is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0000h"OPTIMA",AX=0002h"OPTIMA",AX=0005h"OPTIMA"
+SeeAlso: INT 16/AH=FFh"OPTIMA"
+

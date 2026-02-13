@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F168EDX0002
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Windows95 - TITLE - GET APPLICATION TITLE
+	AX = 168Eh
+	DX = 0002h
+	ES:DI -> buffer for ASCIZ application title
+	CX = size of buffer in bytes
+Return: AX = status
+	    0000h failed
+	    0001h successful
+Desc:	copy as much of the application's window title as possible to the given
+	  buffer, appending a terminating NUL to the buffer
+SeeAlso: AX=168Eh/DX=0000h,AX=168Eh/DX=0003h
+

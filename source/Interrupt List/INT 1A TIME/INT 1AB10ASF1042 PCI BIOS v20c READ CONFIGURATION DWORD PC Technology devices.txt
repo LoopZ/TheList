@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB10ASF1042
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - READ CONFIGURATION DWORD (PC Technology devices)
+	AX = B10Ah subfn 1042h
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (0000h-00FFh) (see #00878)
+Return: CF clear if successful
+	    ECX = dword read
+	CF set on error
+	AH = status (00h,87h) (see #00729)
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	the meanings of BL and BH on entry were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B10Ah,AX=B10Ah/SF=1022h,AX=B10Ah/SF=1045h,AX=B10Ah/SF=8086h
+
+Format of PCI Configuration data for PC Technology RZ-1000 EIDE controller:
+Offset	Size	Description	(Table 00928)
+ 00h 64 BYTEs	header (see #00878)
+		(vendor ID 1042h, device ID 1000h)
+ 10h	DWORD	base address for controller I/O registers
+		(set to 01F1h for primary controller, 0171h for secondary)
+ 14h	DWORD	base address for controller digital I/O port
+		(set to 03F5h for primary, 0375h for secondary)
+ 40h	DWORD	???
+		bits 7-1: ???
+		bit 13: read-ahead mode enabled
+			(Read-Ahead is buggy on original RZ-1000, and is
+			  thus typically disabled by clearing this bit)
+		bit 16: ???
+ 44h	DWORD	???
+ 48h  8 BYTEs	???
+ 50h 176 BYTEs	unused???
+

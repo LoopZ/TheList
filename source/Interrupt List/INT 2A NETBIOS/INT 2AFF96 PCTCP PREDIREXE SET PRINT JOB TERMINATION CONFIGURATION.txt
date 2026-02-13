@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2AFF96
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - PC/TCP PREDIR.EXE - SET PRINT JOB TERMINATION CONFIGURATION
+	AX = FF96h
+	CX = what to set
+	    0000h ???
+	    0001h print-on-hotkey state
+	    0002h print-on-exit state
+	    0003h print job timeout in clock ticks
+	    0004h print-on-EOF state
+	BX = new value (0000h disabled, 0001h enabled except for timeout)
+Return: AX = ???
+SeeAlso: AX=FF97h
+Note:	PREDIR.EXE is the network printer redirector included as part of the
+	  PC/TCP system by FTP Software, Inc.
+

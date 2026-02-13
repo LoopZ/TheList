@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF401CX5121
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - FINDIRQ.COM - GET HOOKED INTERRUPTS
+	AX = F401h
+	CX = 5121h ('Q!')
+Return: AX:DX -> hooked interrupt table (see #03126)
+SeeAlso: AX=F400h
+
+Format of FINDIRQ hooked interrupt table:
+Offset	Size	Description	(Table 03126)
+ 00h	BYTE	1Ch
+ 01h	DWORD	FINDIRQ's INT 1C handler
+ 05h	DWORD	original INT 1C handler
+ 09h	BYTE	28h
+ 0Ah	DWORD	FINDIRQ's INT 28 handler
+ 0Eh	DWORD	original INT 28 handler
+ 12h	BYTE	2Fh
+ 13h	DWORD	FINDIRQ's INT 2F handler
+ 17h	DWORD	original INT 2F handler
+

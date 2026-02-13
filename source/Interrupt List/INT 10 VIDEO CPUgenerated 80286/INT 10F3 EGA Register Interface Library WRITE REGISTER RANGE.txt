@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10F3
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - EGA Register Interface Library - WRITE REGISTER RANGE
+	AH = F3h
+	CH = starting register
+	CL = number of registers (>1)
+	DX = group index (00h,08h,10h,18h) (see #00223)
+	ES:BX -> buffer, CL bytes
+Return: nothing
+Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+	  compatibility box, and others
+SeeAlso: AX=7F05h,AH=F1h"EGA",AH=F2h"EGA",AH=F4h"EGA"
+

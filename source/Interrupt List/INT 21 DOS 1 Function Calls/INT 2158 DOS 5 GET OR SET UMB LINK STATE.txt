@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2158
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 5+ - GET OR SET UMB LINK STATE
+	AH = 58h
+	AL = subfunction
+	    02h get UMB link state
+		Return: AL = current link state
+			    00h UMBs not part of DOS memory chain
+			    01h UMBs in DOS memory chain
+	    03h set UMB link state
+		BX = new link state
+		    0000h remove UMBs from DOS memory chain
+		    0001h add UMBs to DOS memory chain
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h) (see #01680)
+Notes:	a program which changes the UMB link state should restore it before
+	  terminating
+	UMBs will only be available if CONFIG.SYS contains the line DOS=UMB,
+	  the UMBs have been linked into the memory chain with AX=5803h, and
+	  the allocation strategy has been set to include high memory with
+	  AX=5801h
+SeeAlso: #01687,#02766 at INT 2F/AX=4310h
+

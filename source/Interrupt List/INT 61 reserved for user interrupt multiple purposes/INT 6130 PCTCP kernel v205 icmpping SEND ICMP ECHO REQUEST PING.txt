@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6130
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "icmp_ping" - SEND ICMP ECHO REQUEST (PING)
+	AH = 30h
+	BX,DX = IP address of host
+	CX = length of data to send
+Return: CF clear if successful (i.e. reply received)
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F9E01
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - INTMON v2.1 - RESET
+	AX = 9E01h
+Return: ???
+Desc:	this function specifies that INTMON should assume that any interrupts
+	  on which it is currently awaiting a return have completed (i.e.
+	  interrupts which never return such as INT 20 and INT 27)
+SeeAlso: AX=9E00h,AX=9E03h
+

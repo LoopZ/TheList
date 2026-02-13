@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212525
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender VMM - LIMIT PROGRAM'S CONVENT'L MEM USAGE
+	AX = 2525h
+	EBX = limit in 4k pages of physical conventional memory which program
+	      may use
+Return: CF clear if successful
+	    EBX = maximum limit in pages
+	    ECX = minimum limit in pages
+	CF set on error
+	    EAX = error code
+		08h insufficient memory or -nopage switch used
+SeeAlso: AX=2521h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675DE5
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 - MAP PHYSICAL PAGE TO PHYSICAL SEGMENT
+	AX = 5DE5h
+	EBX = physical page number
+	DX = page number in first megabyte to be remapped (linear-addr SHR 12)
+Return: AH = status
+	    00h successful
+	    8Bh invalid destination page (not in first megabyte)
+Note:	RM386 traps this function on the initial transition to protected
+	  mode caused by the INT instruction, which means it can not be
+	  overridden simply by hooking the interrupt
+SeeAlso: AX=5DE6h
+

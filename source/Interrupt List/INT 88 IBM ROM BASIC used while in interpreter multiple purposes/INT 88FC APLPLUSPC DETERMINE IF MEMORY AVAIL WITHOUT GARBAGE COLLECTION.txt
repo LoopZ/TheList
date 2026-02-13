@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 88--FC
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 88 - APL*PLUS/PC - DETERMINE IF MEMORY AVAIL WITHOUT GARBAGE COLLECTION
+	AL = FCh
+	BX = amount of memory needed (paragraphs)
+Return: CF clear if memory available
+	CF set if a workspace compaction is required
+SeeAlso: AL=FDh,INT C8"APL"
+

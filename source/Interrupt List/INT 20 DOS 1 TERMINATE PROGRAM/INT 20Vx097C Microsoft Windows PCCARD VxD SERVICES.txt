@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx097C
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - PCCARD - VxD SERVICES
+	VxD = 097Ch
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier (see #02642)
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01334,#01340
+
+(Table 01334)
+Values for PCCARD (VxD ID 097Ch) service number:
+ 0000h	"PCCARD_Get_Version"
+ 0001h	"PCCARD_Card_Services"
+SeeAlso: #01333,#01337
+

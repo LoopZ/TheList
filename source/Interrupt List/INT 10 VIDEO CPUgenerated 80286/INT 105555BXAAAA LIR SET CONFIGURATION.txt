@@ -1,0 +1,63 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105555BXAAAA
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - LIR - SET CONFIGURATION
+	AX = 5555h
+	BX = AAAAh
+	CL = new configuration flags (see #04118)
+	CH > 0 new video adapter configuration (see #04121)
+	   = 0 do not update video adapter configuration
+	DL = new keyboard layout flags (see #04119)
+	DH = new alphabet flags (see #04120)
+Return: AX = A55Ah if installed
+Program: LIR is a DOS/Windows 3.xx codepage support package develoved by
+	  LABAS u.a.b. It supports several screen and printer codepages as
+	  well as various keyboard layouts used in Lithuania.
+	  Download at: ftp://ftp.labas.com/pub/drivers/language/lir422.zip
+SeeAlso: AX=5555h/BX=BBBBh,INT 17/AX=5555h/BX=AAAAh
+
+Bitfields for LIR configuration flags:
+Bit(s)	Description	(Table 04118)
+ 7	program is active
+ 6	???
+ 5-3	code page
+ 2	Lithuanian???
+ 1	Russian???
+ 0	enable beeps
+SeeAlso: #04119
+
+Bitfields for LIR keyboard layout flags:
+Bit(s)	Description	(Table 04119)
+ 7-5	keyboard layout
+	100 QWERTY
+	010 Lithuanian AZERTY
+	001 Lithuanian ergonomic FZVPUJ
+ 4-3	reserved (0)
+ 2	Lithuanian keyboard???
+ 1	Russian keyboard???
+ 0	???
+SeeAlso: #04118,#04120
+
+Bitfields for LIR Alphabet flags:
+Bit(s)	Description	(Table 04120)
+ 7-3	reserved (0)
+ 2	Lithuanian alphabetic symbol table???
+ 1	Russian alphabetic symbol table???
+ 0	reserved (0)
+SeeAlso: #04118,#04119,#04121
+
+Bitfields for LIR video adapter configuration:
+Bit(s)	Description	(Table 04121)
+ 7	Hercules Graphics Card (HGC)
+ 6-5	reserved (0)
+ 4	VGA
+ 3	MCGA
+ 2	EGA
+ 1	CGA
+ 0	reserved (0)
+Note:	multiple bits may be set if more than one video adapter is installed
+SeeAlso: #04118
+

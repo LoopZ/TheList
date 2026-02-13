@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: D428
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - GET CONTROL BLOCK DATA FROM SCB OR TCB
+	AH = 28h
+	BX = offset into control block at which to start reading
+	CX = number of bytes to read
+	DX = segment/selector of control block obtained via AH=26h or AH=27h
+	ES:DI -> buffer for data
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see also #01680 at INT 21/AH=59h/BX=0000h)
+		05h access denied due to an invalid segment/selector
+SeeAlso: AH=26h,AH=27h,AH=29h,AH=2Ah
+

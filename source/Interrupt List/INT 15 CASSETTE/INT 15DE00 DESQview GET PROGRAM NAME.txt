@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE00
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview - GET PROGRAM NAME
+	AX = DE00h
+Return: AX = offset into DESQVIEW.DVO of program most recently selected from
+	      the "Switch Windows" menu (see #00550)
+Note:	always returns AX=0000h under DESQview/X
+SeeAlso: AX=DE07h
+
+Format of program entry in DESQVIEW.DVO:
+Offset	Size	Description	(Table 00550)
+ 00h	BYTE	length of name (FFh if end of file)
+ 01h  N BYTEs	name
+      2 BYTEs	keys to invoke program (second = 00h if only one key used)
+	BYTE	program type
+		00h normal program
+		04h divider
+		80h Delete a Program
+		81h Change a Program
+	WORD	??? apparently always 0000h
+

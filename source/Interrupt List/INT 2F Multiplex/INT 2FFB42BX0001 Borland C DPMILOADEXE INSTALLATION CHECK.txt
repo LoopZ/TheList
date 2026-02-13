@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0001
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ DPMILOAD.EXE - INSTALLATION CHECK???
+	AX = FB42h
+	BX = 0001h
+Return: AX = version number??? (AL=major, AH=minor)
+	CX = next-selector increment
+---BC2.0---
+	ES:BX -> 80-byte buffer for ???
+	DX = DPMI version
+---BC3.0---
+	BX = ??? (0000h)
+	DX = ???
+	ES:SI -> list of valid selectors ???
+Notes:	The version of DPMILOAD distributed with BC++ v2.0 identifies itself
+	  as version 1.000, while the version distributed with BC++ 3.0
+	  identifies itself as version 1.0; the former is 10864 bytes, the
+	  latter 22180 bytes.  The BC2.0 version is a DPMI loader, while
+	  the BC3.0 version also adds a DPMI host and DOS extender
+	the BC++ 2.0 version displays an error message if called with BX
+	  values other than 0001h-0008h
+SeeAlso: AX=1687h,AX=FB42h/BX=1001h,AX=FB43h
+

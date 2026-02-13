@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6744
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - MAP MEMORY
+	AH = 44h
+	AL = physical page number (0-3)
+	BX = logical page number
+	    or FFFFh to unmap (QEMM)
+	DX = handle
+Return: AH = status (00h,80h,81h,83h,84h,8Ah,8Bh) (see #03648)
+SeeAlso: AH=69h
+

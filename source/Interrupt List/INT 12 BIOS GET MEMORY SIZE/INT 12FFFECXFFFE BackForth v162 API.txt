@@ -1,0 +1,120 @@
+--------------------------------------------------------------------------------
+ Unique ID: 12FFFECXFFFE
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 12 - Back&Forth v1.62+ - API
+	AX = FFFEh
+	CX = FFFEh
+	BX = function
+	    00h installation check
+		Return: AX = 0001h installed
+			     else  not loaded
+	    01h (reserved)
+	    02h build program ID list (shareware Back&Forth)
+		ES:DI -> buffer of at least 100 bytes, to be filled with words
+		Return: AX = number of programs defined
+			ES:DI buffer filled with AX words
+	    02h get memory statistics (Back&Forth Professional)
+		Return: AX = available swap memory, KBytes
+			BX = maximum task size, KBytes
+			DX = fixed overhead per task, excluding video/macro
+			      storage
+	    03h switch to specified task (task need not be open yet)
+		DX = two-letter program ID
+		Return: AX = status
+			    0000h if task undefined
+			    0001h task switch will occur when safe
+	    04h (reserved)
+	    05h (reserved)
+	    06h get version (documented only for Back&Forth Professional)
+		Return: AX = version * 100 (v1.71 = 00ABh)
+	    07h spawn program (Back&Forth Professional only???)
+		ES:DI -> BF_SPAWN record (see #00232)
+		Return: AX = status
+			    0000h if no task handles free
+			    0001h spawn will occur when safe
+	    08h get open tasks (documented only for Back&Forth Professional)
+		ES:DI -> task info buffer (see #00231,#00233)
+		Return: AX = number of open tasks (max 20)
+		Note:	the supplied buffer must be large enough to hold 21
+			  task entries
+	    09h (reserved)
+	    ---Back&Forth Professional---
+	    0Ah get active clipboard filename
+		Return: DX:AX -> ASCIZ clipboard filename
+	    0Bh get active task number
+		AX = active task number (00h-13h)
+		BX = number of tasks allocated
+		DX = maximum number of tasks
+	    0Ch (reserved)
+	    0Dh (reserved)
+	    0Eh (reserved)
+	    0Fh stuff string into keyboard buffer
+		ES:DI -> ASCIZ string to be stuffed
+		Return: nothing
+	    10h check if in graphics mode
+		Return: AX = state
+			    0000h color text mode
+			    0004h mono text mode
+			    FFFFh graphics mode
+	    11h get Back&Forth Professional user number
+		Return: AX = user number (0000h-00FFh)
+	    12h switch task by task number
+		DX = task number
+		Return: AX = status
+			    0000h attempted to switch to active task
+			    0001h task switch will occur when safe
+			    FFFFh invalid task number
+	    13h delete (kill) task
+		DX = task number
+		Return: AX = status
+			    0000h attempted to delete the active task
+			    0001h successfully deleted
+			    FFFFh invalid task number
+		Note:	the active task number will change if the deleted task
+			  was lower in the task list than the active task
+	    14h get next available task handle
+		Return:	AX = next available task handle
+			    FFFFh if task table is full
+Program: Back & Forth is a task switcher by Progressive Solutions, Inc.
+SeeAlso: INT 11/AX=FFFEh
+Index:	installation check;BACK&FORTH
+
+Format of Back&Forth task info buffer:
+Offset	Size	Description	(Table 00231)
+ 00h 21 BYTEs	ASCIZ task name
+ 15h	BYTE	hotkey shift state (as for INT 16/AH=02h)
+ 16h	WORD	hotkey scan code (see also #00006)
+ 18h	WORD	program ID
+Index:	hotkeys;Back&Forth
+SeeAlso: #00232,#00233
+
+Format of Back&Forth Professional BF_SPAWN record:
+Offset	Size	Description	(Table 00232)
+ 00h 21 BYTEs	task description
+ 15h	BYTE	flag: disable hotkeys
+ 16h	WORD	environment size in bytes
+ 18h	BYTE	hotkey shift flags
+ 19h	WORD	hotkey scancode
+ 1Bh	WORD	maximum number of EMS pages
+ 1Dh	WORD	required memory in KBytes
+ 1Fh  3 BYTEs	DESQview-style two-letter program ID
+ 22h 13 BYTEs	base name of program to be run (no path or extension)
+ 2Fh 66 BYTEs	directory from which to start program
+ 71h 66 BYTEs	initial current directory for program
+SeeAlso: #00231,#00233
+
+Format of Back&Forth Professional BF_TASK record:
+Offset	Size	Description	(Table 00233)
+ 00h	DWORD	Unix-style task start time (seconds since 1970/1/1)
+ 04h 21 BYTEs	task description
+ 19h	DWORD	elapsed time in task (seconds)
+ 1Dh	WORD	task ID
+ 1Fh	BYTE	task hotkey keyboard flags
+ 20h	WORD	task hotkey scan code (see also #00006)
+ 22h	DWORD	time task was suspended/exited
+ 26h	WORD	task handle
+SeeAlso: #00231,#00232
+

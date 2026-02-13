@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212B--CX6269
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - WDTSR.COM - INSTALLATION CHECK
+	AH = 2Bh
+	CX = 6269h ('bi')
+	DX = 742Dh ('t-')
+Return: AL = FFh if not installed
+	AL = 77h ('w') if WDTSR is installed
+	    CX = 6174h ('at')
+	    DX = 6368h ('ch')
+	    ES = resident code segment
+	    ES:DI -> identification and configuration data
+Program: WDTSR is a driver for the bitWatch watchdog hardware by bit-design
+	  GmbH
+SeeAlso: AH=2Bh/CX=6269h"bitFOSSI",INT 14/AH=14h"FOSSIL",INT 15/AH=C3h
+

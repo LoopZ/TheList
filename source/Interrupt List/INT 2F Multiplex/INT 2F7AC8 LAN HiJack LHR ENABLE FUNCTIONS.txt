@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7AC8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - LAN HiJack - LHR - ENABLE FUNCTIONS
+	AX = 7AC8h
+	BL = function(s) to enable (see #02909)
+SeeAlso: AX=7AC1h,AX=7AC9h,AX=7ACFh
+
+Bitfields for LAN HiJack function(s) to enable/disable:
+Bit(s)	Description	(Table 02909)
+ 0	???
+ 1	remote keyboard enabled
+ 2	support remote's mouse
+ 3-7	unused
+

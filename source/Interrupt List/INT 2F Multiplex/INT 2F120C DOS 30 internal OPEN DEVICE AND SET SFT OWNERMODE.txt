@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F120C
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - OPEN DEVICE AND SET SFT OWNER/MODE
+	AX = 120Ch
+	SDA current SFT pointer -> SFT for file
+	DS = DOS DS
+	SS = DOS DS (must be using a DOS internal stack)
+Return: ES, DI, AX destroyed
+Notes:	invokes "device open" call on device driver for SFT
+	changes owner of last-accessed SFT to calling process if it was opened
+	  via FCB
+	called by network redirectors such as MSCDEX
+

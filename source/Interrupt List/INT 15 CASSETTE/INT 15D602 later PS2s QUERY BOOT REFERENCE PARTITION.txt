@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D602
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - QUERY BOOT REFERENCE PARTITION
+	AX = D602h
+Return: CF clear on success
+	    AH = 00h
+	    AL = status of reference-partition boot request
+		00h boot not requested
+		01h boot requested
+	CF set on error
+	    AH = status (86h for function not supported)
+SeeAlso: AX=D601h/BL=00h
+

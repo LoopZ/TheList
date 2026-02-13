@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFBE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - SET AUTOPRINT TIME
+	AX = FFBEh
+	CH = printer number (00h LPT1, 01h LPT2, 02h LPT3)
+	BX = timeout in clock ticks
+SeeAlso: AX=FFBDh
+

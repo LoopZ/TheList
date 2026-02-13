@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00002
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "SCAN" - SCAN FOR OTHER ROBOTS IN THE GIVEN DIRECTION
+	AX = 0002h
+	BX = direction (0-359 degrees)
+	CX = resolution (0-45 degrees)
+Return: AX = status
+	    FFFFh if nothing detected
+	    else robot ID (0-19)
+		BX = range to detected robot
+Notes:	the scan searches within CX degrees to either side of the specified
+	  direction
+	the scanner will see right through walls, but shells will not pass
+	  through walls
+	this call also terminates the current robot's turn
+SeeAlso: AX=0000h,AX=0001h,AX=0003h
+

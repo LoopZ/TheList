@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137A1BX6A6D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - XPACK v1.52+ - UNINSTALL
+	AX = 37A1h
+	BX = 6A6Dh ('jm')
+Return: AX = status
+	    0000h successful
+	    FFFFh failed
+Program: XPACK is a transparent file compressor/decompressor by JauMing Tseng
+SeeAlso: AX=37A0h/BX=6A6Dh
+

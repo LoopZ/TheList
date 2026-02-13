@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F09--CL02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX - SWITCH HOST TO DEDICATED MODE
+	AH = 09h
+	CL = 02h
+Note:	in dedicated mode, the host will only poll for I/O requests from the
+	  slave processors, and not provide workstation services
+

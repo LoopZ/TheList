@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D821
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq LTE Lite - SET ???
+	AX = D821h
+	DS:SI -> counted string (should not be more than 16 bytes)
+Return: AH = 00h
+Note:	this function is also supported by Compaq's EISA System ROM, Contura
+	  486/486c/486cx and recent DESKPRO/i ROMs
+SeeAlso: AX=D820h
+

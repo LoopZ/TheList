@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1502
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Amstrad PC1512 - READ DATA FROM NON-VOLATILE RAM
+	AH = 02h
+	AL = NVRAM location (00h to 3Fh)
+Return: AH = return code
+	    00h OK
+	    01h address bad
+	    02h checksum error
+	AL = NVRAM data value
+SeeAlso: AH=01h"Amstrad"
+

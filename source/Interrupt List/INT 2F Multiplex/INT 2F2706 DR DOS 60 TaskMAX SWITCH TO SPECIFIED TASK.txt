@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2706
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - SWITCH TO SPECIFIED TASK
+	AX = 2706h
+	DX = task index (see AX=2701h) of task to be activated
+Return: DX = task index of previously-active task
+Note:	the TaskMAX API is also supported by Novell DOS 7 TASKMGR in
+	  both taskswitching and multitasking modes
+SeeAlso: AX=2705h,AX=2707h,AX=2715h
+

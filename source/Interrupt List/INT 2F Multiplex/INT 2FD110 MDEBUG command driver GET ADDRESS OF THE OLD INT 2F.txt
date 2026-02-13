@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD110
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MDEBUG command driver - GET ADDRESS OF THE OLD INT 2F
+	AX = D110h
+Return: DL = FFh
+	ES:BX -> next program in the chain for INT 2F
+	CX = code segment of this driver
+	DI = offset of driver identification table (see #03079) (v1.60+)
+Notes:	only called by the transient part of the driver
+	must be reentrant and the driver must not chain this function to the
+	  old INT 2F
+
+Format of the MDEBUG driver identification table:
+Offset	Size	Description	(Table 03079)
+ 00h  26 BYTEs	 signature "Kommandotreiber fÅr MDEBUG"
+					     ^- Note: ASCII 129,German U-umlaut
+ 27h  12 BYTEs	 name of driver, e.g. "MDHISDRV.COM"
+		 each driver must have a unique name
+

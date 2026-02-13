@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE13
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.20+ - "GETCRIT" - GET CRITICAL NESTING COUNT
+	AX = DE13h
+Return: BX = number of calls to BEGINC or ENTERC
+	      (see INT 15/AX=101Bh,INT 15/AX=DE1Ch) without matching ENDC
+	      (see INT 15/AX=101Ch)
+Note:	this API call may be made from within a hardware interrupt handler
+SeeAlso: AX=101Bh,AX=101Ch,AX=DE1Bh,AX=DE1Ch
+

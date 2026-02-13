@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: F1
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - AQUEDUCT, PIPELINE - GET DATA AREA ADDRESS
+Return: AX:BX -> data area
+Program: AQUEDUCT and PIPELINE are TSRs by James W. Birdsall to connect COM1
+	  and COM2 in software
+Note:	The installation check consists of testing for the following signature
+	  immediately preceding the interrupt handler: "JWBtvv" where 't' is
+	  either "A" for AQUEDUCT or "P" for PIPELINE and "vv" is a two-digit
+	  version number
+Index:	installation check;AQUEDUCT|installation check;PIPELINE
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33246C
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - LOGITECH MOUSE - GET PARAMETERS AND RESET SERIAL MOUSE
+	AX = 246Ch
+	ES:DX -> parameter table buffer (see #03190)
+Return: AX = FFFFh if driver installed for serial mouse
+SeeAlso: AX=0000h,AX=256Ch/BX=0000h,AX=256Ch/BX=0001h,AX=256Ch/BX=0003h
+
+Format of Logitech Mouse parameter table:
+Offset	Size	Description	(Table 03190)
+ 00h	WORD	baud rate divided by 100  (serial mouse only)
+ 02h	WORD	emulation		  (serial mouse only)
+ 04h	WORD	report rate		  (serial mouse only)
+ 06h	WORD	firmware revision	  (serial mouse only)
+ 08h	WORD	00h			  (serial mouse only)
+ 0Ah	WORD	port			  (serial mouse only)
+ 0Ch	WORD	physical buttons
+ 0Eh	WORD	logical buttons
+

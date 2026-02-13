@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330027
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.01+ - GET SCREEN/CURSOR MASKS AND MICKEY COUNTS
+	AX = 0027h
+Return: AX = screen-mask value (or hardware cursor scan-line start for v7.02+)
+	BX = cursor-mask value (or hardware cursor scan-line stop for v7.02+)
+	CX = horizontal mickeys moved since last call
+	DX = vertical mickeys moved since last call
+SeeAlso: AX=000Bh
+

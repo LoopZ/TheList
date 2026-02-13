@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: CC
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT CC - APL*PLUS/PC - CLEAR SCREEN MEMORY
+	AX = flag
+	    0000h do not save display attributes
+	    0001h save attributes
+Note:	STSC moved its interrupts from 86h-8Ch to C6h-CCh, but did not delete
+	  the older interrupts
+SeeAlso: INT 8C"APL"
+

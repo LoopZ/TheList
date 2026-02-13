@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF80BX0004
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ CPTASK - SET ???
+	AX = FF80h
+	BX = 0004h
+	CX = new value of ???
+Return: ???
+Note:	this function also sets bit 14 of the flags word returned by
+	  AX=FF80h/BX=0003h
+

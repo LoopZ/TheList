@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telread" - BUFFERED READ
+	AH = E2h
+	BX = connection ID (see AH=E0h"TelAPI")
+	CX = length of buffer in bytes
+	ES:SI -> buffer for data
+Return: AX > 0000h number of characters actually read
+	AX = 0000h host has closed connection
+	AX < 0000h error code (see #00397)
+Note:	translates CRLF into local EOL if the connection is in ASCII mode,
+	  negotiates various Telnet options, and immediately executes several
+	  different Telnet action commands
+SeeAlso: AH=07h"TelAPI",AH=E3h,AH=E6h,AX=FF00h,INT 6B/AH=01h
+

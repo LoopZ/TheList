@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF47
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SCAN BINDERY OBJECT TRUSTEE PATHS
+	AX = F217h subfn 47h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01959 at AH=E3h/SF=47h)
+	ES:DI -> reply buffer (see #02190)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=47h,AX=F216h/SF=0Ch,AX=F217h/SF=48h
+
+Format of NetWare "Scan Bindery Object Trustee Paths" reply packet:
+Offset	Size	Description	(Table 02190)
+ 00h	WORD	(big-endian) next sequence number
+ 02h	DWORD	(big-endian) object ID
+ 06h	BYTE	trustee directory rights (see #01849 at AH=E2h/SF=03h)
+ 07h	BYTE	length of trustee path
+ 08h  N BYTEs	trustee path
+SeeAlso: #01959,#01960 at AH=E3h/SF=47h
+

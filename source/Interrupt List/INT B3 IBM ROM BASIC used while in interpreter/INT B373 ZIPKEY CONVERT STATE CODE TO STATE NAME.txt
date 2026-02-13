@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: B373
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - CONVERT STATE CODE TO STATE NAME
+	AH = 73h
+	BL = ZIPKEY state code
+	ES:DI -> buffer for name
+Return: CF set on error
+	    AX destroyed
+	CF clear if successful
+	    ES:DI points one byte beyond end of name
+SeeAlso: AH=72h
+

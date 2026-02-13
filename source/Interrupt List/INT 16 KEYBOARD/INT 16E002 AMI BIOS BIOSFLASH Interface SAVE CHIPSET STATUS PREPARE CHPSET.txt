@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E002
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface - SAVE CHIPSET STATUS & PREPARE CHPSET
+	AX = E002h
+	ES:DI -> buffer for storing chipset status
+Return: CF clear if successful
+	    AL = FAh
+	CF set on error
+SeeAlso: AX=E000h,AX=E001h,AX=E003h
+

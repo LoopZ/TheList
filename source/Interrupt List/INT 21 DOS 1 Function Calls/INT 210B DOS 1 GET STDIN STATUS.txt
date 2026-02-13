@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 210B
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - GET STDIN STATUS
+	AH = 0Bh
+Return: AL = status
+	    00h if no character available
+	    FFh if character is available
+Notes:	^C/^Break are checked, and INT 23 is called if either pressed
+	standard input is always the keyboard under DOS 1.x, but may be
+	  redirected under DOS 2+
+	if the interim console flag is set (see AX=6301h), this function
+	  returns AL=FFh if a partially-formed double-byte character is
+	  available
+SeeAlso: AH=06h"INPUT",AX=4406h
+

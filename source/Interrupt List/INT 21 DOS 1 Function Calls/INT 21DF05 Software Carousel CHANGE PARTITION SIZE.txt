@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF05
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - CHANGE PARTITION SIZE
+	AX = DF05h
+	BL = task number
+	DX = new size in KB
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+	    FFh unsucessful
+		AH = error code (01h,04h,05h) (see #01813)
+	BX = minimum size allowed
+	CX = maximum size available
+SeeAlso: AX=DF03h
+

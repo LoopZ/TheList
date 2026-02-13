@@ -1,0 +1,70 @@
+--------------------------------------------------------------------------------
+ Unique ID: F1--F3
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v2.0 - "CAPI_GET_PROFILE" - GET CAPABILITIES
+	AL = F3h
+	AH = CAPI version number * 10 (14h for v2.0)
+	ES:BX -> 64-byte buffer for CAPI capabilities (see #04074)
+	CX = controller number (01h-06h) or 0000h to get number of controllers
+Return: AX = status (0000h,11xxh) (see #04070)
+	ES:BX buffer filled if successful
+Notes:	the caller is required to provide at least 512 bytes of stack space
+SeeAlso: INT F1/AL=01h,INT F1/AL=F0h,INT F1/AL=F2h,INT F1/AH=FFh
+
+Format of CAPI v2.0 capabilities:
+Offset	Size	Description	(Table 04074)
+ 00h	WORD	number of installed controllers
+ 02h	WORD	number of supported B channels
+ 04h	DWORD	global options (see #04075)
+ 08h	DWORD	B1 protocol support flags (see #04076)
+ 0Ch	DWORD	B2 protocol support flags (see #04077)
+ 10h	DWORD	B3 protocol support flags (see #04078)
+ 14h 24 BYTEs	reserved for CAPI use
+ 2Ch 20 BYTEs	vendor-specific information
+
+Bitfields for CAPI v2.0 global options:
+Bit(s)	Description	(Table 04075)
+ 0	internal controller supported
+ 1	external controller supported
+ 2	handset supported (only if bit 1 also set)
+ 3	DTMF supported
+ 4-31	reserved (0)
+SeeAlso: #04074
+
+Bitfields for CAPI v2.0 B1 protocol support:
+Bit(s)	Description	(Table 04076)
+ 0	64k bps with HDLC framing (required, always set)
+ 1	64k bps bit-transparent operation with network byte framing
+ 2	V.110 asynchronous with start/stop byte framing
+ 3	V.110 synchronous with HDLC framing
+ 4	T.30 modem for group 3 FAX
+ 5	64k bps inverted with HDLC framing
+ 6	56k bps bit-transparent operation with network byte framing
+ 7-31	reserved (0)
+SeeAlso: #04074
+
+Bitfields for CAPI v2.0 B2 protocol support:
+Bit(s)	Description	(Table 04077)
+ 0	ISO 7776 (X.75 SLP) (required, always set)
+ 1	transparent
+ 2	SDLC
+ 3	Q.921 LAPD (D-channel X.25)
+ 4	T.30 for group 3 FAX
+ 5	point-to-point protocol (PPP)
+ 6	transparent (ignoring B1 framing errors)
+ 7-31	reserved (0)
+SeeAlso: #04074
+
+Bitfields for CAPI v2.0 B3 protocol support:
+Bit(s)	Description	(Table 04078)
+ 0	transparent (required, always set)
+ 1	T.90NL with T.70NL compatibility
+ 2	ISO 8208 (X.25 DTE-DTE)
+ 3	X.25 DCE
+ 4	T.30 for group 3 FAX
+ 5-31	reserved (0)
+SeeAlso: #04074
+

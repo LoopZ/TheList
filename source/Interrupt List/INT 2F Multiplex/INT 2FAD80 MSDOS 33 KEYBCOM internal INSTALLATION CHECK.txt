@@ -1,0 +1,142 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD80
+  Category: K 	keyboard enhancers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 2F u - MS-DOS 3.3+ KEYB.COM internal - INSTALLATION CHECK
+	AX = AD80h
+Return: AL = FFh if installed
+	    BX = version number (BH = major, BL = minor)
+	    ES:DI -> internal data (see #02972)
+	    AH destroyed (set to FFh by some implementations/versions)
+Notes:	MS-DOS 3.30, PC-DOS 4.01, MS-DOS 5.00, and MS-DOS 6.22 all report
+	  version 1.00.
+	this function was undocumented prior to the release of DOS 5.0
+	most versions of KEYB completely replace the BIOS INT 09 handler, but
+	  Novell DOS's KEYB partially uses the BIOS code and thus continues
+	  to chain to the original INT 09 at times
+	some utilities check for AX=FFFFh on return
+SeeAlso: AX=AD80h"Novell",AX=AD81h,AX=AD82h,AX=AD83h
+
+Format of KEYB internal data:
+Offset	Size	Description	(Table 02972)
+ 00h	DWORD	original INT 09
+ 04h	DWORD	original INT 2F
+ 08h	DWORD	unused (0) original INT 16 in older KEYB versions???
+ 0Ch	WORD	flags A (see #02973)
+ 0Eh	WORD	flags B (see #02974)
+ 10h	BYTE	flags??? (bit1 used)
+ 11h	BYTE	???
+ 12h  4 BYTEs	???
+ 16h  2 BYTEs	country ID letters, default is "US"
+ 18h	WORD	current code page (see #01757 at INT 21/AX=6602h)
+---DOS 3.3---
+ 1Ah	WORD	pointer to first item in list of code page tables???
+ 1Ch	WORD	pointer to ??? item in list of code page tables
+ 1Eh  2 BYTEs	unused???
+ 20h	WORD	pointer to key translation data (see #02976)
+ 22h	WORD	pointer to last item in code page table list (see #02975)
+ 24h  9 BYTEs	???
+---DOS 4.01---
+ 1Ah  2 BYTEs	???
+ 1Ch	WORD	pointer to first item in list of code page tables???
+ 1Eh	WORD	pointer to ??? item in list of code page tables
+ 20h 2 BYTEs	unused???
+ 22h	WORD	pointer to key translation data (see #02976)
+ 24h	WORD	pointer to last item in code page table list (see #02975)
+ 26h  9 BYTEs	???
+---DOS 6.22--- (checked out with 6.22, but might be earlier)
+ 1Ah  2 BYTEs	???
+ 1Ch	WORD	pointer to current (first???) item in list of code page tables
+		(corresponding to codepage indicated at offset 18h)
+		(initial value is FFFFh)
+ 1Eh	WORD	pointer to (entry to) list of code page tables (see #02975)
+		If not FFFFh, INT 2F/AX=AD81h scans this list of code page
+		  tables until the requested code page was found in list or
+		  end of table was reached (FFFFh). If found, offsets 18h and
+		  1Ch will be changed to requested new code page. If not found,
+		  it returns with AX=0001h 'code page not supported').
+ 20h	WORD	unused??? (initial value: FFFFh)
+ 22h	WORD	pointer to key translation data (see #02455)
+ 24h	WORD	pointer to last item in code page table list (see #02454)
+ 26h	WORD	CAPSLock/ShiftLock management flags??? (0)
+		Note:	It appears that none of the bits is ever set inside
+			  KEYBs code!
+			  The following is guesswork:
+		bit15: =1: With country specific keyboard mapping (<Ctrl>+
+			  <Alt>+<F2>) active, <CapsLock> works as CAPSLock
+			  instead of ShiftLock??? Pressing a key in first row
+			  resets CapsLock???
+			  (Effective only on PC Convertible or with Enhanced
+			  keyboard).
+		bit14-10:  unused (0)
+		bit 9: =1: With country specific keyboard mapping active:
+			  some kind of temporary (table) shift???
+		bit 8-0: unused (0)
+ 28h	BYTE	unused (0)
+ 29h	BYTE	make code xx for <Ctrl>+<Alt>+<xx> to set keyboard mapping
+		  to US-layout (default is 3Bh=<F1>???)
+		  (see INT 2F/AX=AD82h,INT 2F/AX=AD83h)
+ 2Ah	BYTE	make code yy for <Ctrl>+<Alt>+<yy> to set keyboard mapping
+		  to country specific layout (default is 3Ch=<F2>???),
+		  (see INT 2F/AX=AD82h,INT 2F/AX=AD83h)
+ 2Bh 16 BYTEs	unused (0) ???
+Note:	at least in MS-DOS v6.22, the signature "SHARED DATA" immediately
+	  precedes this structure
+
+Bitfields for MS-DOS v6.22 KEYB flags A:
+Bit(s)	Description	(Table 02973)
+ 15	unused??? (0)
+ 14	set on machine with BIOS machine type FBh or FEh/FFh without enh kbd
+ 13	not FAh: ???
+ 12	set on start of machine detection, cleared on machine types F9h, FBh,
+	  FEh, FFh
+ 11	not FAh: ???
+	(on ATs: override bit12 NOT to set NumLock on)
+ 10	set on machine type F9h
+ 9	unused??? (0)
+ 8	unused??? (0)
+ 7	used by INT 09, but never set!
+	=1: after keyboard self test resulting AAh, INT 09 handler will (re)set
+	      keyboard code-set 1 and temporarily disable a PS/2 mouseport.
+ 6	used by INT09, but never set!
+	=1: after keyboard self test resulting AAh, INT 09 handler will (re)set
+	      keyboard code-set 1 and temporarily disable a PS/2 mouseport.
+ 5	set for JP, KO, PR, TA layouts during installation???
+	=1: some special codepage (>932???) management???
+ 4-0	unused??? (0)
+SeeAlso: #02974,MEM F000h:FFFEh,INT 15/AH=C0h
+
+Bitfields for MS-DOS v6.22 KEYB flags B:
+Bit(s)	Description	(Table 02974)
+ 15	INT 16/AH=1xh supported (INT 16h/AH=92h call returns AH<=80h)
+	if clear, extended keyboard scan codes are immediately discarded
+ 14	INT 16/AH=2xh supported (INT 16h/AH=A2h call returns AH<=80h)
+ 13	unused (0)
+ 12	network installed (INT 2F/AX=B800h)
+ 11	original IBM PC (BIOS date 1981)
+ 10	PC or PC/XT (BIOS machine type byte of FBh or FEh)
+ 9	PC Convertible (BIOS machine type byte of F9h); use INT 15/AX=4104h
+ 8	unused (0)
+ 7	IBM PS/2 model 30 (BIOS machine type byte of FAh)
+ 6	IBM AT (BIOS machine type FCh)
+ 5	IBM PS/2 (BIOS machine type F8h)
+ 4	PS/2 and unknown only: non-standard 8042 reported by INT 15/AH=C0h
+	=1: after keyboard self test resulting AAh, INT 09 handler will (re)set
+	      keyboard code-set 1 and temporarily disable a PS/2 mouseport.
+ 3	temporary flag???
+ 2-0	???
+SeeAlso: #02972,#02973
+
+Format of code page table list entries:
+Offset	Size	Description	(Table 02975)
+ 00h	WORD	pointer to next item, FFFFh = last
+ 02h	WORD	code page (see #01757 at INT 21/AX=6602h)
+ 04h  2 BYTEs	???
+
+Format of KEYB translation data:
+Offset	Size	Description	(Table 02976)
+ 00h	WORD	size of data in bytes, including this word
+ 02h N-2 BYTEs	???
+

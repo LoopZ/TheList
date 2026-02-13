@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6803--SF2800
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - GET ALLOCATE
+	AH = 03h subfn 2800h
+	DS:DX -> control block (see #03700)
+Return: control block updated
+
+Format of APPC/PC "Get ALLOCATE" control block:
+Offset	Size	Description	(Table 03700)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	2800h (verb "Get ALLOCATE")
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h	WORD	00h
+ 1Ah  8 BYTEs	(big-endian) logical unit ID
+ 22h	BYTE	type (00h dequeue, 01h test)
+ 23h	DWORD	pointer to CREATE_TP record
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F48C3BL00
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PCED/KEYDEF - INSTALLATION CHECK
+	AX = 48C3h
+	BL = 00h
+Return: AX = 0000h if installed
+	    BX = KEYDEF resident segment
+Program: KEYDEF is a resident keyboard redefinition utility included as part
+	  of the PCED package by Cove Software
+Note:	chains if BL <> 00h on entry
+SeeAlso: AX=48C0h,AX=48C2h,AX=48C4h
+

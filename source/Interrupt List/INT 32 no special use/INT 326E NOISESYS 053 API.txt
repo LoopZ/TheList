@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 326E
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 32 - NOISE.SYS 0.53 - API
+	AH = 6Eh (function ID)
+	AL = subfunction (see INT 32/AX=6E00h)
+Return: CF set on error
+	    AL = error code (see #03166)
+	CF clear if successful
+Notes:	INT 32 is only a proposed interface for NOISE.SYS. Use the IOCTL READ
+	  from the RANDOM device to determine the interrupt and function ID
+	  used by the driver, since future versions may use the Alternate
+	  Multiplex Interrupt (AMIS) at INT 2Dh.
+	the beta v0.51 had a substantially different API on INT 32/AH=6Eh
+
+(Table 03166)
+Values for NOISE.SYS error codes:
+ 00h	subfunction not supported
+ FBh	random pool is empty
+ FCh	quality of sample is too low
+ FDh	too many processes using the API or driver
+ FEh	subfunction is disabled in the current build
+ FFh	successful
+

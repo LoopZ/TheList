@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F70
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Avance Logic - GET ADAPTER INFORMATION
+	AX = 4F70h
+Return:	AX = 004Fh if successful
+	    BL = board information (see #00174)
+	    BH = board type???
+		00h on ALG2101
+		FFh otherwise
+SeeAlso: AX=4F00h
+
+Bitfields for Avance Logic board information:
+Bit(s)	Description	(Table 00174)
+ 0-1	video RAM size
+	00 256K
+	01 512K
+	10 1M
+	11 2M
+ 2	???
+ 3	slot size???
+	=0 8-bit slot
+	=1 16-bit slot
+ 4	unused
+ 5	set on ALG2228/AL2301
+ 6-7	unused
+

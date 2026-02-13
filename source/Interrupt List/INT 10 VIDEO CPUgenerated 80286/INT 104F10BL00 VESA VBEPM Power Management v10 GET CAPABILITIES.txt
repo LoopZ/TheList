@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F10BL00
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/PM (Power Management) v1.0+ - GET CAPABILITIES
+	AX = 4F10h
+	BL = 00h
+	ES:DI = 0000h:0000h (reserved for future use as pointer to info block)
+Return: AL = 4Fh if function supported (installed)
+	AH = call status
+	    00h successful
+	    else failed
+	---if successful---
+	BL = VBE/PM version (bits 7-4: major, bits 3-0: minor)
+	BH = supported states (see #00110)
+	ES:DI unchanged
+Index:	installation check;VESA VBE/Power Management|VESA DPMS
+SeeAlso: AX=4F10h/BL=01h,AX=4F10h/BL=02h
+
+Bitfields for VESA VBE/PM supported power states:
+Bit(s)	Description	(Table 00110)
+ 0	standby
+ 1	suspend
+ 2	off
+ 3	reduced on
+

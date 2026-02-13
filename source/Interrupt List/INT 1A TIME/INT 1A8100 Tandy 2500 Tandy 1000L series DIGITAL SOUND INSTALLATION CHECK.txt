@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A8100
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Tandy 2500, Tandy 1000L series - DIGITAL SOUND - INSTALLATION CHECK
+	AX = 8100h
+Return: AL > 80h if supported
+	AX = 00C4h if supported (1000SL/TL)
+	    CF set if sound chip is busy
+	    CF clear  if sound chip is free
+Note:	the value of CF is not definitive; call this function until CF is
+	  clear on return, then call AH=84h"Tandy"
+

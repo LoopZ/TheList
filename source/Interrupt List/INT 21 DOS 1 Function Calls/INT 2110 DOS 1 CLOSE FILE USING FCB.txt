@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2110
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - CLOSE FILE USING FCB
+	AH = 10h
+	DS:DX -> File Control Block (see #01345)
+Return: AL = status
+	    00h successful
+	    FFh failed
+Notes:	a successful close forces all disk buffers used by the file to be
+	  written and the directory entry to be updated
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+SeeAlso: AH=0Fh,AH=16h,AH=3Eh
+

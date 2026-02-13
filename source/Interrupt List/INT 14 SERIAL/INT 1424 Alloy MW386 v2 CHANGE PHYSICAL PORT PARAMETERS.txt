@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1424
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Alloy MW386 v2+ - CHANGE PHYSICAL PORT PARAMETERS
+	AH = 24h
+	CX = physical I/O port number
+	DS:DX -> configuration table (see #00352)
+Return: AH = 00h
+Note:	invalid port numbers are merely ignored
+SeeAlso: INT 17/AH=96h
+
+Format of Alloy MW386 configuration table:
+Offset	Size	Description	(Table 00352)
+ 00h	BYTE	baud rate (see #00353)
+ 01h	BYTE	data bits (00h=5, 01h=6, 02h=7, 03h=8)
+ 02h	BYTE	parity (00h none, 01h odd, 02h even)
+ 03h	BYTE	stop bits (00h=1, 01h=2)
+ 04h	BYTE	receive flow control
+		00h none, 01h XON/XOFF, 02h DTR/DSR, 03h XPC, 04h RTS/CTS
+ 05h	BYTE	transmit flow control (as for receive)
+
+(Table 00353)
+Values for Alloy MW386 baud rate:
+ 00h	38400
+ 01h	19200
+ 02h	9600
+ 03h	7200
+ 04h	4800
+ 05h	3600
+ 06h	2400
+ 07h	2000
+ 08h	1200
+ 09h	600
+ 0Ah	300
+ 0Bh	150
+ 0Ch	134.5
+SeeAlso: #00309
+

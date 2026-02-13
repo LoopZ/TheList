@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC501
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-DOS Econet v1.05 - RESET BOARD AND DRIVER
+	AX = C501h
+Return:	AX = return code (see #03037)
+Desc:	reset both the network board and the driver software
+Notes:	use this function with caution, as it will affect any other resident
+	  software using the network board
+	the interrupt-enable state will be preserved, but interrupts may be
+	  enabled during processing of this function
+SeeAlso: AX=C500h
+

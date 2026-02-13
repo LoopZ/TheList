@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1127BX4E57
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - NetWare 4.0 - REMOTE FILE COPY
+	AX = 1127h
+	BX = 4E57h ('NW') (signature identifying this as a NetWare call)
+	SI = source file handle
+	DI = destination file handle
+	DX:CX = number of bytes to copy, starting at current file position
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (05h,06h,0Bh,11h,3Bh) (see #01680)
+	DX:CX = number of bytes successfully copied (file position updated)
+Notes:	this is the only call which may be made directly to the NetWare
+	  redirector from an application
+	COMMAND.COM's COPY and DOS's XCOPY reportedly call INT 21/AX=1127h in
+	  order to speed up copies between files on the same network server;
+	  if error code 11h (not same device) is returned, the copy is
+	  performed in the usual manner.  However, no such calls appear to
+	  be present in MS-DOS 6.22.
+	From the DR DOS "Panther" BETA COMMAND.COM (1992/06/22) up to some of
+	  the Novell DOS 7 COMMAND.COM updates (1994/09/12), the shell made
+	  calls to INT 2F/AX=11F0h to attempt "remote server COPYing". However,
+	  this was removed from later releases of the shell because it stopped
+	  Performance Technologies' PowerLAN 3.1 working. (A successor of
+	  the DR-DOS 7.03 COMMAND.COM may possibly reintroduce this remote
+	  copy feature.	 Probably it would then try both INT 2F/AX=1127h and
+	  INT 2F/AX=11F0h.)
+SeeAlso: INT 2F/AX=11F0h
+

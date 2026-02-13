@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2105
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - WRITE CHARACTER TO PRINTER
+	AH = 05h
+	DL = character to print
+Notes:	keyboard checked for ^C/^Break, and INT 23 executed if detected
+	STDPRN is usually the first parallel port, but may be redirected under
+	  DOS 2+
+	if the printer is busy, this function will wait
+SeeAlso: INT 17/AH=00h
+

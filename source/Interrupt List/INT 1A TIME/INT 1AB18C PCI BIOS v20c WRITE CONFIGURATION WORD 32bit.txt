@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB18C
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - WRITE CONFIGURATION WORD (32-bit)
+	AX = B18Ch
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (multiple of 2 less than 0100h)
+	CX = word to write
+Return: as for AX=B10Ch
+Note:	the meanings of BL and BH on return were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B10Ch,AX=B18Bh,AX=B18Dh
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - MS-DOS 7.0+ - CONFIG$ device - SET??? CONFIGURATION INFORMATION
+	AX = 4403h
+	BX = file handle for character device "CONFIG$"
+	CX = number of bytes to write
+	DS:DX -> buffer containing ???
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Note:	IOCTL Output to CONFIG$ is only available while IO.SYS is booting
+	  the system; once CONFIG.SYS has been processed, this call always
+	  succeeds, ignoring any input
+SeeAlso: AX=4403h"CONFIG$"
+

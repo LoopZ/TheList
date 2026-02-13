@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F05
+  Category: l 	shells/command interpreters
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - DOS 3.0+ CRITICAL ERROR HANDLER - EXPAND ERROR INTO STRING
+	AH = 05h
+---DOS 3.x---
+	AL = extended error code (not zero)
+---DOS 4.0+ ---
+	AL = error type
+	    01h DOS extended error code
+	    02h parameter error
+	BX = error code
+Return: CF clear if successful
+	    ES:DI -> ASCIZ error message (read-only)
+	    AL = completion state
+		00h message requires completion with device name, drive, etc.
+		01h message is complete as returned
+	CF set if error code can't be converted to string
+	    AX,DI,ES destroyed
+	other flags corrupted
+Notes:	called at start of COMMAND.COM's default critical error handler if
+	  installed by a user program, allowing partial or complete overriding
+	  of the default error messages
+	subfunction 02h is called by many DOS 4 external programs
+	DR DOS's COMMAND.COM appends additional info ("0 files copied") to the
+	  returned string
+SeeAlso: AX=0500h,AX=122Eh,INT 24
+

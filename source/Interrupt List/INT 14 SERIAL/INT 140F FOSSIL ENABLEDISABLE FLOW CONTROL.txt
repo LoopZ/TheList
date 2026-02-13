@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140F
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - ENABLE/DISABLE FLOW CONTROL
+	AH = 0Fh
+	AL = bit mask describing requested flow control (see #00340)
+	DX = port number
+Return: nothing
+SeeAlso: AH=09h"MBBIOS",AH=10h"FOSSIL"
+
+Bitfields for FOSSIL requested flow control:
+Bit(s)	Description	(Table 00340)
+ 0	XON/XOFF on transmit (watch for XOFF while sending)
+ 1	CTS/RTS (CTS on transmit/RTS on receive)
+ 2	reserved
+ 3	XON/XOFF on receive (send XOFF when buffer near full)
+ 4-7	all 1
+

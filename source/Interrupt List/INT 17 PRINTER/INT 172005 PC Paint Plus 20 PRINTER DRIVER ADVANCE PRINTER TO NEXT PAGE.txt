@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 172005
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PC Paint Plus 2.0 - PRINTER DRIVER - ADVANCE PRINTER TO NEXT PAGE
+	AX = 2005h
+	BL = printer number???
+Return: AX = status (see #00639)
+Note:	this function also clears the flag set by AX=2001h
+SeeAlso: AX=2000h,AX=2001h,AX=2006h
+

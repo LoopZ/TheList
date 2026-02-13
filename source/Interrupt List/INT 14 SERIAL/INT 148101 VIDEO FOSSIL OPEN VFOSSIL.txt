@@ -1,0 +1,282 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148101
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - VIDEO FOSSIL - OPEN VFOSSIL
+	AX = 8101h
+	ES:DI -> buffer for application function table (see #00369)
+	CX = length of buffer in bytes
+Return: AX = 1954h if installed
+	    BH = highest VFOSSIL application function supported
+Note:	the number of initialized pointers in the application function table
+	  will never exceed CX/4; if the buffer is large enough, BH+1 pointers
+	  will be initialized
+SeeAlso: AX=8102h
+
+Format of VFOSSIL application function table:
+Offset	Size	Description	(Table 00369)
+ 00h	DWORD	-> function to query current video mode (VioGetMode)(see #00374)
+ 04h	DWORD	-> function to set video mode (VioSetMode) (see #00375)
+ 08h	DWORD	-> function to query hardware config (VioGetConfig) (see #00376)
+ 0Ch	DWORD	-> function to write data in TTY mode (VioWrtTTY) (see #00377)
+ 10h	DWORD	-> function to get current ANSI state (VioGetANSI) (see #00378)
+ 14h	DWORD	-> function to set new ANSI state (VioSetANSI) (see #00379)
+ 18h	DWORD	-> function to get curr cursor position (VioGetCurPos)
+		  (see #00380)
+ 1Ch	DWORD	-> function to set cursor position (VioSetCurPos) (see #00381)
+ 20h	DWORD	-> function to get cursor shape (VioGetCurType) (see #00382)
+ 24h	DWORD	-> function to set cursor shape (VioSetCurType) (see #00383)
+ 28h	DWORD	-> function to scroll screen up (VioScrollUp) (see #00384)
+ 2Ch	DWORD	-> function to scroll screen down (VioScrollDn) (see #00385)
+ 30h	DWORD	-> function to read cell string from screen (VioReadCellStr)
+		  (see #00386)
+ 34h	DWORD	-> function to read char string from screen (VioReadCharStr)
+		  (see #00387)
+ 38h	DWORD	-> function to write a cell string (VioWrtCellStr)
+		  (see #00388)
+ 3Ch	DWORD	-> function to write char string, leaving attr (VioWrtCharStr)
+		  (see #00389)
+ 40h	DWORD	-> function to write char string,const attr (VioWrtCharStrAttr)
+		  (see #00390)
+ 44h	DWORD	-> function to replicate an attribute (VioWrtNAttr)
+		  (see #00391)
+ 48h	DWORD	-> function to replicate a cell (VioWrtNCell)
+		  (see #00392)
+ 4Ch	DWORD	-> function to replicate a character (VioWrtNChar)
+		  (see #00393)
+
+Format of VFOSSIL video mode data structure:
+Offset	Size	Description	(Table 00370)
+ 00h	WORD	length of structure including this field
+ 02h	BYTE	mode characteristics
+		bit 0: clear if MDA, set otherwise
+		bit 1: graphics mode
+		bit 2: color disabled (black-and-white)
+ 03h	BYTE	number of colors supported (1=2 colors, 4=16 colors, etc)
+ 04h	WORD	number of text columns
+ 06h	WORD	number of text rows
+ 08h	WORD	reserved
+ 0Ah	WORD	reserved
+ 0Ch	DWORD	reserved
+SeeAlso: #00374,#00375
+
+Format of VFOSSIL video configuration data:
+Offset	Size	Description	(Table 00371)
+ 00h	WORD	structure length including this field
+ 02h	WORD	adapter type
+		00h monochrome/printer
+		01h CGA
+		02h EGA
+		03h VGA
+		07h 8514/A
+ 04h	WORD	display type
+		00h monochrome
+		01h color
+		02h enhanced color
+		09h 8514
+ 06h	DWORD	adapter memory size
+SeeAlso: #00376
+
+Format of VFOSSIL cursor type record:
+Offset	Size	Description	(Table 00372)
+ 00h	WORD	cursor start line
+ 02h	WORD	cursor end line
+ 04h	WORD	cursor width (always 01h)
+ 06h	WORD	cursor attribute (FFFFh = hidden)
+
+(Table 00373)
+Values for VFOSSIL error code:
+ 0000h	successful
+ 0074h	internal VIO failure
+ 0163h	unsupported mode
+ 0166h	invalid row value
+ 0167h	invalid column value
+ 017Eh	buffer too small
+ 01A5h	invalid VIO parameter
+ 01B4h	invalid VIO handle
+
+(Table 00374)
+Call VioGetMode with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to video mode data structure (see #00370)
+Return: AX = error code (00h, 74h, 17Eh, 1B4h) (see #00373)
+SeeAlso: #00375
+
+(Table 00375)
+Call VioSetMode with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to video mode data structure (see #00370)
+Return: AX = error code (00h, 74h, 163h, 17Eh, 1A5h, 1B4h) (see #00373)
+SeeAlso: #00374
+
+(Table 00376)
+Call VioGetConfig with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to video configuration data buffer (see #00371)
+Return: AX = error code (00h, 74h, 17Eh, 1B4h) (see #00373)
+
+(Table 00377)
+Call VioWrtTTY with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	length of string
+		DWORD	pointer to character string to be written to screen
+Return: AX = error code (00h, 74h, 1B4h) (see #00373)
+Notes:	write wraps at end of line and terminates if it reaches end of screen
+	in ANSI mode, ANSI control sequences are interpreted, and this func is
+	  not required to be reentrant; in non-ANSI mode, the function is
+	  reentrant and may be called from within an MS-DOS function call
+
+(Table 00378)
+Call VioGetANSI with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to WORD which will be set to 00h if ANSI is off
+			or 01h if ANSI is on
+Return: AX = error code (00h, 74h, 1B4h) (see #00373)
+SeeAlso: #00379
+
+(Table 00379)
+Call VioSetANSI with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to WORD indicating new state of ANSI
+			00h off, 01h on
+Return: AX = error code (00h, 74h, 1A4h, 1B4h) (see #00373)
+SeeAlso: #00378
+
+(Table 00380)
+Call VioGetCurPos with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to WORD to hold current cursor column (0-based)
+		DWORD	pointer to WORD to hold current cursor row (0-based)
+Return: AX = error code (00h, 74h, 1B4h) (see #00373)
+SeeAlso: #00381
+
+(Table 00381)
+Call VioSetCurPos with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	cursor column
+		WORD	cursor row
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+Note:	if either coordinate is invalid, the cursor is not moved
+SeeAlso: #00380
+
+(Table 00382)
+Call VioGetCurType with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to cursor type record (see #00372)
+Return: AX = error code (00h, 74h, 1B4h) (see #00373)
+SeeAlso: #00383
+
+(Table 00383)
+Call VioSetCurType with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to cursor type record (see #00372)
+Return: AX = error code (00h, 74h, 1A4h, 1B4h) (see #00373)
+SeeAlso: #00384
+
+(Table 00384)
+Call VioScrollUp with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to char/attr cell for filling emptied rows
+		WORD	number or rows to scroll (FFFFh = clear area)
+		WORD	right column of scroll area
+		WORD	bottom row of scroll area
+		WORD	left column of scroll area
+		WORD	top row of scroll area
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+SeeAlso: #00385,INT 10/AH=06h
+
+(Table 00385)
+Call VioScrollDn with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to char/attr cell for filling emptied rows
+		WORD	number or rows to scroll (FFFFh = clear area)
+		WORD	right column of scroll area
+		WORD	bottom row of scroll area
+		WORD	left column of scroll area
+		WORD	top row of scroll area
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+SeeAlso: #00384,INT 10/AH=07h
+
+(Table 00386)
+Call VioReadCellStr with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	column at which to start reading
+		WORD	row at which to start reading
+		DWORD	pointer to WORD containing length of buffer in bytes
+			on return, WORD contains number of bytes actually read
+		DWORD	pointer to buffer for cell string
+Return: AX = error code (00h, 74h, 166h ,167h, 1B4h) (see #00373)
+
+(Table 00387)
+Call VioReadCharStr with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	column at which to start reading
+		WORD	row at which to start reading
+		DWORD	pointer to WORD containing length of buffer in bytes
+			on return, WORD contains number of bytes actually read
+		DWORD	pointer to buffer for character string
+Return: AX = error code (00h, 74h, 166h ,167h, 1B4h) (see #00373)
+
+(Table 00388)
+Call VioWrtCellStr with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	column at which to start writing
+		WORD	row at which to start writing
+		WORD	length of cell string in bytes
+		DWORD	pointer to cell string to write
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+Note:	write wraps at end of line and terminates if it reaches end of screen
+
+(Table 00389)
+Call VioWrtCharStr with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	column at which to start writing
+		WORD	row at which to start writing
+		WORD	length of character string
+		DWORD	pointer to character string to write
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+Note:	write wraps at end of line and terminates if it reaches end of screen
+
+(Table 00390)
+Call VioWrtCharStrAttr with:
+	STACK:	WORD	VIO handle (must be 00h)
+		DWORD	pointer to attribute to be applied to each character
+		WORD	column at which to start writing
+		WORD	row at which to start writing
+		WORD	length of character string
+		DWORD	pointer to character string to write
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+Note:	write wraps at end of line and terminates if it reaches end of screen
+
+(Table 00391)
+Call VioWrtNAttr with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	column at which to start writing
+		WORD	row at which to start writing
+		WORD	number of times to write attribute
+		DWORD	pointer to display attribute to replicate
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+Note:	write wraps at end of line and terminates if it reaches end of screen
+
+(Table 00392)
+Call VioWrtNCell with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	column at which to start writing
+		WORD	row at which to start writing
+		WORD	number of times to write cell
+		DWORD	pointer to cell to replicate
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+Note:	write wraps at end of line and terminates if it reaches end of screen
+
+(Table 00393)
+Call VioWrtNChar with:
+	STACK:	WORD	VIO handle (must be 00h)
+		WORD	column at which to start writing
+		WORD	row at which to start writing
+		WORD	number of times to write character
+		DWORD	pointer to character to replicate
+Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
+Note:	write wraps at end of line and terminates if it reaches end of screen
+

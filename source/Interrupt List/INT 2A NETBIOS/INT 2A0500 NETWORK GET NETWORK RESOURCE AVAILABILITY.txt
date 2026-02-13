@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A0500
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - NETWORK - GET NETWORK RESOURCE AVAILABILITY
+	AX = 0500h
+Return: AX reserved
+	BX = number of network names available
+	CX = number of network control blocks available
+	DX = number of network sessions available
+Notes:	supported by PC LAN Program, LAN Manager, LANtastic, NetWare, 10NET,
+	  etc.
+	the application should call this function before using any network
+	  resources, and maintain its own count to avoid exceeding the
+	  network's resource limits
+SeeAlso: AH=00h,AH=01h,AH=04h,INT 5C"NetBIOS"
+

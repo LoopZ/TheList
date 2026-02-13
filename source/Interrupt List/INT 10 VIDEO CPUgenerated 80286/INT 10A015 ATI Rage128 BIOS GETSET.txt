@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A015
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI Rage128 BIOS - GET/SET ???
+	AX = A015h
+	CH = subfunction
+	    00h get ???	
+	    01h set ???
+	       CL = ??? (only bits 0,1 used on All-in-Wonder 128)
+	    other NOP
+Return: AH = status
+	    00h successful
+	    01h failed
+	???
+SeeAlso: AX=A014h,AX=A017h
+

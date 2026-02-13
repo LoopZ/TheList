@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1211
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - NORMALIZE ASCIZ FILENAME
+	AX = 1211h
+	DS:SI -> ASCIZ filename to normalize
+	ES:DI -> buffer for normalized filename
+Return: destination buffer filled with uppercase filename, with slashes turned
+	to backslashes
+SeeAlso: AX=121Eh,AX=1221h
+

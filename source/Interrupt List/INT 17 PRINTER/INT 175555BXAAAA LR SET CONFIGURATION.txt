@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 175555BXAAAA
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - LR - SET CONFIGURATION
+	AX = 5555h
+	BX = AAAAh
+	CL = configuration flags (see #04117)
+	DX = LPT number
+Return: AX = A55Ah
+	BX = BBBBh
+Program: LR_xxxx.COM files are a set of printer-hardware dependent printer
+	  drivers found in the LIR DOS/Windows 3.xx codepage support package
+	  develoved by LABAS u.a.b.  LIR supports several different screen and
+	  printer codepages and various keyboard layouts used in Lithuania.
+	  Download at: ftp://ftp.labas.com/pub/drivers/language/lir422.zip
+SeeAlso: AX=5555h/BX=BBBBh,INT 10/AX=5555h/BX=AAAAh
+
+Bitfields for LR_xxxx.COM configuration flags:
+Bit(s)	Description	(Table 04117)
+ 7	ESC sequence???
+ 6	ESC sequence???
+ 5-3	printer code page
+ 2	Lithuanian alphabet???
+ 1	Russian alphabet???
+ 0	???
+

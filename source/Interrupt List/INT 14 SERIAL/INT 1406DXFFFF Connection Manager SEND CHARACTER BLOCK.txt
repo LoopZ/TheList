@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1406--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - SEND CHARACTER BLOCK
+	AH = 06h
+	DX = FFFFh
+	AL = connection ID
+	CX = number of characters to send
+	ES:DI -> buffer containing data to be sent
+Return: AH = return code (see #00303)
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+SeeAlso: AH=04h/DX=FFFFh,AH=07h/DX=FFFFh,AH=09h/DX=FFFFh
+

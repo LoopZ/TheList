@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440DCXEDC1
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DR PalmDOS - GENERIC IOCTL - LOGIN SECURITY
+	AX = 440Dh
+	CX = EDC1h (category code EDh, minor code C1h)
+	BL = boot drive number (01h=A:,02h=B:,etc)
+Return: AL = 0 if already logged in
+	AL <> 0 if system is still secured (not logged in)
+	ES:DI -> ???
+Notes:	This function is called by DR PalmDOS IBMBIO.COM after CONFIG.SYS
+	  processing has finished and it has launched the LOGIN.SYS utility
+	  (if this is not in the root of the boot drive, the undocumented
+	  CONFIG.SYS LOGIN directive can be used to change the path and the
+	  moment when the login prompt will be displayed).
+	If security is active and the user has still not logged in,
+	  IBMBIO.COM will display an error message and halt the system.
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FACF0DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - INSTALLATION CHECK
+	AX = ACF0h
+	DI = 1092h
+Return: AX = 9142h if installed
+	    DX = DOS-takeover flag (nonzero if QRIP able to take over DOS)
+	    ---if DX nonzero---
+	    BX = QRIP version number in hex (BH = major, BL = minor)
+	    CX = current flags (see AX=AC01h)
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC00h/DI=1092h,AX=AC01h,AX=AC04h,AX=AC06h,AX=AC1Ah,AX=ACFFh
+

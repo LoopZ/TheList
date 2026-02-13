@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 61 u - PC/TCP kernel v2.05 - NOP for SLIP kernel
+	AH = function
+	    31h "net_add_route"
+	    32h "net_del_route"
+	    33h "net_dump_routes"
+Notes:	these functions are described as "unused" in the v2.2 documentation
+	router configuration can be altered using INT 61/AH=01h
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+

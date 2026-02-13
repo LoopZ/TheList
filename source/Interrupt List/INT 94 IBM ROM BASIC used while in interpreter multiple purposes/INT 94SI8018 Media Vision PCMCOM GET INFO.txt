@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI8018
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - GET INFO
+	SI = 8018h
+	AL = what to get
+	    00h "F92state"
+	    01h "F92bkgd"
+	    02h "I10timer"
+	    03h "I08state"
+Return: DX:AX -> desired information
+

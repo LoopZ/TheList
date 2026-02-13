@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D102
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - RETURN DEVICE DESCRIPTOR TABLE (DDT) ENTRY BY I/O ADDRSS
+	AX = D102h
+	BX = entry number at which to start searching
+	CX = requested I/O port address
+	DX = 0000h (reserved, must be set to 0)
+	ES:DI -> buffer to contain DDT entry (see #00535)
+Return: AH = return code (see #00534)
+	BX = DDT entry number where I/O port was found, or total entries
+	     plus 1 if port was not found.
+	CF set on error
+	CF clear on success
+	    ES:DI buffer filled with DDT entry
+Desc:	the DDT is searched from the specified entry for the I/O port in CX,
+	  and the first entry in which it is found is returned
+SeeAlso: AH=C0h,AH=C7h,AH=C9h,AX=D100h,AX=D101h,AX=D103h,AX=D104h
+

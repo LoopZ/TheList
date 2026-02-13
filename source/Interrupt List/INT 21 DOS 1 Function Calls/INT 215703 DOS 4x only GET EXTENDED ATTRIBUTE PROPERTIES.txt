@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215703
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 4.x only - GET EXTENDED ATTRIBUTE PROPERTIES
+	AX = 5703h
+	BX = file handle
+	CX = size of result buffer or 0000h
+	ES:DI -> result buffer
+Return: CF clear if successful
+	    CX = size of returned data
+	CF set on error
+	    AX = error code (see #01680)
+	ES:DI -> zero word (DOS 4.0) if CX >= 2 on entry
+Desc:	get a list of the extended attributes which are defined for the
+	  specified file
+Notes:	if CX=0000h on entry, ES:DI is ignored and no data is actually
+	  returned, only the amount of data which is available
+	the default DOS 4 behavior is to return a trivial EAP list consisting
+	  of the single word 0000h (no EAP structures) if CX>=0002h on entry;
+	  this functionality was apparently never released to the public
+SeeAlso: AX=5702h,AX=5704h,AH=6Eh,INT 2F/AX=112Dh
+

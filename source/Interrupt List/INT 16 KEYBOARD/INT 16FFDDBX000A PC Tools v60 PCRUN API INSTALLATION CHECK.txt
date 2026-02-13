@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFDDBX000A
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v6.0+ PCRUN API - INSTALLATION CHECK
+	AX = FFDDh
+	BX = 000Ah
+Return: CX = 5555h if running
+	DX = 5555h
+Note:	also sets a flag
+

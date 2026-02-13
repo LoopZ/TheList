@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1320
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - Compaq, ATAPI Removable Media Device - GET CURRENT MEDIA FORMAT
+	AH = 20h
+	DL = drive number (00h,01h)
+Return: CF clear if successful
+	    AL = media type (see #00265)
+	    AH = 00h
+	CF set on error
+	    AH = error code
+		01h invalid request
+		30h drive does not support media sense
+		31h no such drive / media not present
+		32h non-default media / drive does not support media type
+Notes:	this function is supported by the 1993/3/8 Compaq ROM BIOS, but only
+	  partially (AL is always 00h when successful) by the 1993/8/3 version
+	this function is also supported by some recent versions of the Phoenix
+	  486 BIOS
+	this function does not seem to be supported by some Toshiba BIOSes
+	  (at least before 1995, maybe some laptops??? with 1.44 MB floppies),
+	  because S/DOS 1.0 contains code to bypass a call to this function,
+	  always assuming the drive would not support media sense.
+SeeAlso: AH=15h
+
+(Table 00265)
+Values for Compaq/ATAPI diskette media type:
+ 03h	720K  (1M unformatted)
+ 04h	1.44M (2M unformatted)
+ 06h	2.88M (4M unformatted)
+ 0Ch	360K
+ 0Dh	1.2M
+ 0Eh	Toshiba 3mode
+ 0Fh	NEC 3mode (1024-byte sectors)
+ 10h	ATAPI Removable Media Device
+

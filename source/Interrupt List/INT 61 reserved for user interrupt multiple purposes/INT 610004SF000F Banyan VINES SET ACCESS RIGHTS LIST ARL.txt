@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF000F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SET ACCESS RIGHTS LIST (ARL)
+	AX = 0004h subfn 000Fh
+	DS:DX -> request block (see #03419)
+Return: AX = status (see also #03400)
+	    0000h request has been processed
+Desc:	Sets the owner, group, and extended access rights for the specified
+	  file or directory
+Note:	A status of 0000h does not necessarily indicate a successful request;
+	  check the status word at offset 000Eh of the request block too
+	If the number of ARL entries is less than 1 or greater than 5, error
+	  0057h (invalid number of entries) is returned
+SeeAlso: AX=0004h/SF=000Eh
+
+Format of VINES Function 0004h/Subfunction 000Fh request block:
+Offset	Size	Description	(Table 03419)
+ 00h	WORD	000Fh
+ 02h	BYTE	drive number (0=default, 1=A, ...)
+ 03h	BYTE	reserved
+ 04h	DWORD	pointer to path specification (drive letter ignored)
+ 08h	DWORD	pointer to ARL control block (see #03417)
+ 0Ch	WORD	number of ARL entries (1..5)
+ 0Eh	WORD	buffer for status (see #03418)
+

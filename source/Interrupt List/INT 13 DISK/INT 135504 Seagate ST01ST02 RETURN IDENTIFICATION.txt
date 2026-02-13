@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 135504
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Seagate ST01/ST02 - RETURN IDENTIFICATION
+	AX = 5504h
+	DL = drive ID (80h, 81h, ...)
+Return: AX = 4321h
+	BL = selected drive number (00h, 01h)
+	BH = number of drives attached to Host Adapter (max. 2)
+

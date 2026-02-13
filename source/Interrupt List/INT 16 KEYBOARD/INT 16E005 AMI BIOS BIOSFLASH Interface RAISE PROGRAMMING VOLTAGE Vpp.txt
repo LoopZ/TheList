@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E005
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface - RAISE PROGRAMMING VOLTAGE Vpp
+	AX = E005h
+Return: CF clear if successful
+	    AL = FAh
+	CF set on error
+Note:	this function does not return until the voltage level stabilizes
+SeeAlso: AX=E000h,AX=E004h,AX=E007h
+

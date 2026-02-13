@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLA7
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_CATTACH" - CONDITIONALLY ATTACH TO AUX DEVICE
+	CL = A7h
+Return: AX = status
+	    0000h attached
+	    FFFFh unable to attach
+Desc:	attaches the default auxiliary device to the calling process if it is
+	  available
+Notes:	does not block if the device is already in use
+	also supported by REAL/32
+SeeAlso: INT E0/CL=A5h,INT E0/CL=A6h,INT E0/CL=A8h,INT E0/CL=B0h
+

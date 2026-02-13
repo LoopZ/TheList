@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1789
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - ADD PRINTER TO SPOOLER
+	AH = 89h
+	AL = mode
+	    00h NTNX compatibility
+		DX = NTNX printer number (see #00643)
+	    01h MW386
+		DX = MW386 printer number
+Return: AL = status (see #00642)
+Note:	the specified printer is added to the spooler's list of available
+	  printers
+SeeAlso: AH=88h,AH=8Bh
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1601
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - CHECK FOR KEYSTROKE
+	AH = 01h
+Return: ZF set if no keystroke available
+	ZF clear if keystroke available
+	    AH = BIOS scan code
+	    AL = ASCII character
+Note:	if a keystroke is present, it is not removed from the keyboard buffer;
+	  however, any extended keystrokes which are not compatible with 83/84-
+	  key keyboards are removed by IBM and most fully-compatible BIOSes in
+	  the process of checking whether a non-extended keystroke is available
+	some (older) clone BIOSes do not discard extended keystrokes and manage
+	  function AH=00h and AH=10h the same
+	the K3PLUS v6.00+ INT 16 BIOS replacement doesn't discard extended
+	  keystrokes (same as with functions 10h and 20h), but will always
+	  translate prefix E0h to 00h. This allows old programs to use extended
+	  keystrokes and should not cause compatibility problems
+SeeAlso: AH=00h,AH=11h,AH=21h,INT 18/AH=01h,INT 09,INT 15/AH=4Fh
+

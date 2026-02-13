@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A1A
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - TASKID v1.0 - GET INT 2F HANDLERS
+	AX = 7A1Ah
+Return: AL = FFh
+	DX:DX -> TASKID INT 2F handler
+	ES:BX -> original INT 2F handler
+SeeAlso: AX=7A11h,AX=7A19h
+

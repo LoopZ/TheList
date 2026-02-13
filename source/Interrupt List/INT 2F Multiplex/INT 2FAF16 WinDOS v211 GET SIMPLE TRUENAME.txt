@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF16
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - GET SIMPLE TRUENAME
+	AX = AF16h
+	DS:SI -> path to be canonicalized
+	ES:DI -> buffer for canonicalized filename/pathname
+Return: CF clear if successful
+	    AX = 0000h
+	CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+Desc:	partially canonicalize a path, omitting SUBST, JOIN, ASSIGN, and
+	  network redirections
+SeeAlso: AX=AF00h"WinDOS",INT 21/AH=60h
+

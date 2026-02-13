@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4100
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS Enhanced LAN Manager 2.0+ MINIPOP/NETPOPUP - INSTALLATION CHECK
+	AX = 4100h
+Return: CF clear if successful
+	    AL = FFh
+	CF set on error
+	    AX = ???
+Notes:	MINIPOP and NETPOPUP provide a network message popup service
+	LAN Manager enhanced mode adds features beyond the standard redirector
+	  file/printer services
+SeeAlso: AX=118Ah,AX=4103h,AX=4104h,AH=42h,AH=4Bh
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFF6
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - INVOKE NOTEPAD EDITOR
+	AX = FFF6h
+	DS = segment of editor buffer structure (see #00629)
+	BX = ???
+	DX = segment of window parameters structure (see #00622)
+Return: ???
+Note:	available only when popped up
+SeeAlso: AX=FFF4h
+
+Format of PC Tools DESKTOP editor buffer structure:
+Offset	Size	Description	(Table 00629)
+ 00h	WORD	offset of current cursor position in buffer segment
+ 02h  2 BYTEs	???
+ 04h	WORD	offset of beginning of file data in buffer segment
+ 06h 10 BYTEs	???
+ 10h  N BYTEs	ASCIZ name of file being edited
+

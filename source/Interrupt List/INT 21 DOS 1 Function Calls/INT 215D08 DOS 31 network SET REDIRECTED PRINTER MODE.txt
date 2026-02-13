@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215D08
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 3.1+ network - SET REDIRECTED PRINTER MODE
+	AX = 5D08h
+	DL = mode
+	    00h redirected output is combined
+	    01h redirected output placed in separate jobs, start new print job
+		now
+Return:	nothing
+Note:	MS-DOS and DR DOS 3.41/5.0 simply push AX on the stack and call
+	  INT 2F/AX=1125h
+SeeAlso: AX=5D07h,AX=5D09h,INT 2F/AX=1125h
+

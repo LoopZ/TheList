@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A80
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCjr, Tandy 2500???, Tandy 1000SL/TL - SET UP SOUND MULTIPLEXOR
+	AH = 80h
+	AL = 00h source is 8253 channel 2
+	     01h source is cassette input
+	     02h source is I/O channel "Audio IN"
+	     03h source is sound generator chip
+Note:	although documented in the 1000TL Technical Reference, the 1000TL
+	  BIOS has just an IRET for this call
+SeeAlso: AH=7Fh,AH=83h
+

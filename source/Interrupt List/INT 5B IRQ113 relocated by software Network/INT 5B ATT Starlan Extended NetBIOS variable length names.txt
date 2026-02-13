@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5B - AT&T Starlan Extended NetBIOS (variable length names)
+	ES:BX -> Network Control Block (see #03245)
+Return: AL = status (see #03248)
+SeeAlso: INT 5C"NetBIOS"
+
+Format of Starlan Network Control Block:
+Offset	Size	Description	(Table 03245)
+ 00h	BYTE	ncb_command (see also #03250)
+		70h send net Break
+ 01h	BYTE	ncb_retcode
+ 02h	BYTE	ncb_lsn
+ 03h	BYTE	ncb_num
+ 04h	DWORD	-> ncb_buffer
+ 08h	WORD	ncb_length
+ 0Ah 16 BYTEs	ncb_callname
+ 1Ah 16 BYTEs	ncb_name
+ 2Ah	BYTE	ncb_rto
+ 2Bh	BYTE	ncb_sto
+ 2Ch	DWORD	-> ncb_post	/* int (far *ncb_post)(); */
+ 30h	BYTE	ncb_lana_num
+ 31h	BYTE	ncb_cmd_cplt
+ 32h	DWORD	-> ncb_vname
+ 36h	BYTE	ncb_vnamelen
+ 37h  9 BYTEs	ncb_reserve
+Note:	fields 00h-31h are the same as for a standard NetBIOS NCB (see #03249)
+

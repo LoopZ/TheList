@@ -1,0 +1,177 @@
+--------------------------------------------------------------------------------
+ Unique ID: 780001
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - HugeRealMode Driver - GET ENTRY POINT
+	AX = 0001h
+Return: ES:BX -> far call entry point (see #03788,#03803)
+SeeAlso: AX=0000h
+
+(Table 03787)
+Values for HugeRealMode Server error code:
+ 00h	successful
+ 01h	unknown function
+ 02h	A20 disabled
+ 03h	A20 enabled
+ 04h	memory allocation error
+ 05h	memory not fixeable (LOCK)
+ 06h	memory not deallocaable
+ 07h	memory not moveable (UNLOCK)
+ 08h	change in memory allocation size not possible
+ 09h	file error (with .XMF-file)
+ 0Ah	memory error (with .XMF-file)
+ 0Bh	unknown procedure (currently Turbo Pascal unit only)
+
+(Table 03788)
+Call HugeRealMode Server "Enable A20" function with:
+	AL = 00h
+Return: AX = error code (see #03787)
+Note:	The HugeRealMode Server requires an XMS-driver like HIMEM.SYS loaded
+	  before HUGEREAL (for XMS-memory allocation and A20 control). It
+	  utilizes some undocumented 386+ features to enable 4G code and data
+	  segments (flat memory model) in the CPUs real-mode. It is not
+	  compatible with V86-mode (as with most EMM386). For maximum speed
+	  and compatibility with DOS it uses a two stage interrupt model
+	  (see #03791)
+SeeAlso: #03789,#03790,#03791
+
+(Table 03789)
+Call HugeRealMode Server "Disable A20" function with:
+	AL = 01h
+Return: AX = error code (see #03787)
+SeeAlso: #03788,#03790
+
+(Table 03790)
+Call HugeRealMode Server "Query A20 State" function with:
+	AL = 02h
+Return: AX = A20 state (0000h disabled, 0001h enabled)
+SeeAlso: #03788,#03789
+
+(Table 03791)
+Call HugeRealMode Server "Enable Two-Stage Interrupt Model" function with:
+	AL = 03h
+Return: AX = error code (see #03787)
+Notes:	If the two stage interrupt model is disabled, the IP must stay below
+	  1MB, because the high word of EIP is not saved correctly by the
+	  standard interrupt management in real mode.  Routines in extended
+	  memory may only be called with interrupts disabled (only usable for
+	  very short routines).
+	If the two stage interupt model is enabled, these conventions are not
+	  required.  The outer (transparent) ISRs save the higher word of EIP
+	  in the high word of CR3 (possible modification: in memory, if this
+	  is not safe) and then invoke the standard ISRs.
+	Because of this handling, one should use pseudo segmented code even in
+	  extended memory (64K blocks located on 64K boundaries) to avoid the
+	  misalignment of the saved EIP (in CR3). Another way is to track and
+	  realign CR3 each time when jumping over a 64K boundary in extended
+	  memory
+SeeAlso: #03788,#03792
+
+(Table 03792)
+Call HugeRealMode Server "Disable Two-Stage Interrupt Model" function with:
+	AL = 04h
+Return: AX = error code (see #03787)
+SeeAlso: #03788,#03791
+
+(Table 03793)
+Call HugeRealMode Server "Get Segment Address Of Server-Management Range" with:
+	AL = 05h
+Return: AX = error code (see #03787)
+	ES = segment address
+SeeAlso: #03803
+
+(Table 03794)
+Call HugeRealMode Server "Allocate Memory" function with:
+	AL = 06h
+	DX = length in KB
+Return: AX = error code (see #03787)
+	DX = handle
+	EBX = start address of allocated block
+SeeAlso: #03795,#03796
+
+(Table 03795)
+Call HugeRealMode Server "Deallocate Memory" function with:
+	AL = 07h
+	DX = handle
+Return: AX = error code (see #03787)
+SeeAlso: #03794,#03796
+
+(Table 03796)
+Call HugeRealMode Server "Modify Allocated Memory Size" function with:
+	AL = 08h
+	DX = handle
+	BX = new size in KB
+Return: AX = error code (see #03787)
+	EBX = new address
+SeeAlso: #03794,#03795
+
+(Table 03797)
+Call HugeRealMode Server "Load .XMF-file" function with:
+	AL = 09h
+	ES:BX -> filename (see #03798)
+Return: AX = error code (see #03787)
+	ECX = target address
+Notes:	memory must be allocated before loading
+	.XMF file format (eXtended Memory executable File format) is supported
+	  by the HugeRealMode server for easier handling of XMS-code.
+	The utility CONFXMF converts .OBJ-files (.COM 'tiny' model) to
+	  .XMF-format
+SeeAlso: #03794
+
+Format of .XMF program file header:
+Offset	Size	Description	(Table 03798)
+ 00h	DWORD	signature "XMF_"
+ 04h	WORD	length of programs code
+ 06h	WORD	count of 32bit addresses to relocate
+ 08h	WORD	offset to code start (releative to file start) (see #03799)
+ 0Ah	WORD	relocation table
+Note:	each word contains a 16bit address, where a relocation has to be
+	  performed
+SeeAlso: #03797,#03799
+
+Format of .XMF-file code header:
+Offset	Size	Description	(Table 03799)
+ 00h	WORD	count of exported functions
+ 02h  N PWORDs	48bit pointers (16bit segment+32bit offset) to each function
+		(16bit segment is always zero)
+ var		start of program's code
+SeeAlso: #03797,#03798
+
+(Table 03800)
+Call HugeRealMode Server "Set Segment Limits" function with:
+	AL = 0Ah
+	BL = segment limits (see #03801)
+Return: AX = error code (see #03787)
+SeeAlso: #03793
+
+Bitfields for HugeRealMode Server segment limits:
+Bit(s)	Description	(Table 03801)
+ 7	CS size: 1=4GB, 0=64KB
+ 6-5	not used
+ 4	SS size: 1=4GB, 0=64KB
+ 3	GS size
+ 2	FS size
+ 1	ES size
+ 0	DS size
+SeeAlso: #03800
+
+(Table 03802)
+Call HugeRealMode Server "Transfer Memory From DOS To XMS" function with:
+	AL = 0Bh
+	ES:SI = source address
+	EDI = target address
+	ECX = length
+Return: AX = error code
+SeeAlso: #03803
+
+(Table 03803)
+Call HugeRealMode Server "Transfer Memory From XMS To DOS" function with:
+	AL = 0Ch
+	ESI = source address
+	ES:DI = target address
+	ECX = length
+Return: AX = error code
+SeeAlso: #03802
+

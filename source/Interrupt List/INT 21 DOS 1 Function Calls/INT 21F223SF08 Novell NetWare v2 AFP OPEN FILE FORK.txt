@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF08
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP OPEN FILE FORK
+	AX = F223h subfn 08h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02317)
+	ES:DI -> reply buffer (see #02318)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=01h,AX=F223h/SF=05h,AX=F223h/SF=09h
+
+Format of NetWare "AFP Open File Fork" request packet:
+Offset	Size	Description	(Table 02317)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	08h (subfunction "AFP Open File Fork")
+ 03h	BYTE	volume number
+ 04h	DWORD	AFP entry ID
+ 08h	BYTE	fork indicator (00h = data fork, 01h = resource fork)
+ 09h	BYTE	access mode
+		bit 0: read
+		bit 1: write
+		bit 2: deny read access to others
+		bit 3: deny write access to others
+		bit 4: compatibility mode (should be set)
+ 0Ah	BYTE	path length
+ 0Bh  N BYTEs	AFP-style pathname (relative to AFP entry ID)
+SeeAlso: #02318
+
+Format of NetWare "AFP Open File Fork" reply packet:
+Offset	Size	Description	(Table 02318)
+ 00h	DWORD	AFP entry ID for newly-opened file fork
+ 04h	DWORD	length of opened fork
+ 08h  6 BYTEs	NetWare file handle
+SeeAlso: #02317
+

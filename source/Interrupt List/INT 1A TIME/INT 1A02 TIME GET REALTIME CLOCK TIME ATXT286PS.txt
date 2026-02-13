@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A02
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - GET REAL-TIME CLOCK TIME (AT,XT286,PS)
+	AH = 02h
+	CF clear to avoid bug (see below)
+Return: CF clear if successful
+	    CH = hour (BCD)
+	    CL = minutes (BCD)
+	    DH = seconds (BCD)
+	    DL = daylight savings flag (00h standard time, 01h daylight time)
+	CF set on error (i.e. clock not running or in middle of update)
+Notes:	this function is also supported by the Sperry PC, which predates the
+	  IBM AT; the data is returned in binary rather than BCD on the Sperry,
+	  and DL is always 00h
+	MS-DOS/PC DOS IO.SYS/IBMBIO.COM use this function to detect if a RTC
+	  is preset by checking if the returned values are non-zero. If they
+	  are, this function is called one more time, before it is assumed
+	  that no RTC is present.
+BUG:	some BIOSes leave CF unchanged if successful, so CF should be cleared
+	  before calling this function
+SeeAlso: AH=00h,AH=03h,AH=04h,INT 21/AH=2Ch
+

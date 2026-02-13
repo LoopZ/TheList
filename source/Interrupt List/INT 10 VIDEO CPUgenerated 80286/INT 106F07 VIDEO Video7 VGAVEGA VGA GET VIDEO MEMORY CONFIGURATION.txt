@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106F07
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO -  Video7 VGA,VEGA VGA - GET VIDEO MEMORY CONFIGURATION
+	AX = 6F07h
+Return: AL = 6Fh
+	AH = memory configuration
+	    bits 0-6 = number of 256K blocks of video memory
+	    bit 7    = DRAM/VRAM (0: DRAM, 1: VRAM)
+	BH = chip revision (SR8F) (S/C Chip in VEGA VGA)
+	BL = chip revision (SR8E) (G/A Chip in VEGA VGA)
+	CX = 0000h
+SeeAlso: AH=12h/BL=10h
+

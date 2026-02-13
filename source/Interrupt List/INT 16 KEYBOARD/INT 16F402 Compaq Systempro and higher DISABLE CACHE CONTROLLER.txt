@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16F402
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Compaq Systempro and higher - DISABLE CACHE CONTROLLER
+	AX = F402h
+Return: AX = E202h
+Notes:	also supported by some versions of AMI BIOS dated June 1992 or later
+	many (most) BIOSes return a modified AH when called for an unsupported
+	  or non-keyboard function (typically, the highest supported keyboard
+	  function [normally 12h] is subtracted from the original AH)
+SeeAlso: AX=F400h,AX=F401h
+

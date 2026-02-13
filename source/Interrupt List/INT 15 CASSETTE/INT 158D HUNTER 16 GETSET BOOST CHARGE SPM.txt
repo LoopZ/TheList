@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 158D
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET/SET BOOST CHARGE (SPM)
+	AH = 8Dh
+	AL = function
+	    00h get
+		Return: AL = Fast Charge state (00h prevented, else allowed)
+	    nonzero set
+		BH = Fast Charge state (00h prevent, nonzero allow)
+Return: AH = status
+	    00h success
+	    FFh failure
+Desc:	control whether Fast Charging (200ma rather than 70ma) is allowed
+SeeAlso: AH=8Ch
+

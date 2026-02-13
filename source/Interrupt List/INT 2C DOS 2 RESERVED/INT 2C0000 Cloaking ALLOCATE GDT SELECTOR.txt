@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0000
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - ALLOCATE GDT SELECTOR
+	AX = 0000h
+	EBX = base address
+	CL = access mode byte
+	CH = extended access mode byte (omit limit field)
+	EDX = segment limit
+Return: CF clear if successful
+	    AX = selector
+	CF set on error
+	    AX = error code (see #02556)
+Notes:	this INT 2C interface is used by Netroom's DPMI.EXE v3.00
+	to access extended memory, set the base address to the desired
+	  physical address plus 400000h (4M)
+	this function was first introduced with RM386 (RAM-MAN/386) v6.00, the
+	  memory manager included in Helix Software's Netroom
+SeeAlso: AX=0001h,AX=0002h,AX=0003h,AX=0004h,AX=0005h,INT 31/AH=57h,#00501
+
+(Table 02556)
+Values for Cloaking error code:
+ 0001h	no more selectors
+ 0002h	not a GDT ring 0 selector
+ 0003h	invalid selector (out of range, not user selector)
+ 0004h	selector not allocated
+

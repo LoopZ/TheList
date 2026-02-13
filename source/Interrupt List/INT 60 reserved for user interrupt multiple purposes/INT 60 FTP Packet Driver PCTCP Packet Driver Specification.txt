@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - PC/TCP Packet Driver Specification
+Range:	INT 20 to INT FF
+Notes:	The handler for the interrupt will start with a 3-byte jump
+	  instruction, followed by the ASCIZ string "PKT DRVR" (the
+	  terminating NUL is significant).
+	To find the interrupt being used by the driver, an application should
+	  scan through interrupt vectors 20h to FFh (60h through 80h for
+	  v1.09- of the specification) until it finds one with the "PKT DRVR"
+	  string.
+	AH values of 80h to FFh have been reserved for user-defined additions.
+

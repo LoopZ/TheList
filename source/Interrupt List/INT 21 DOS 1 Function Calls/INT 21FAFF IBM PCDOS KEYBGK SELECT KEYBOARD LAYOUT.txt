@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FAFF
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - IBM PC-DOS - KEYBGK - SELECT KEYBOARD LAYOUT
+	AX = FAFFh
+	CL = keyboard layout
+	    31h keyboard 319
+	    32h keyboard 220
+	BX = code page (869 or 813 decimal)
+Return: AL = F1h if installed
+	DX destroyed
+

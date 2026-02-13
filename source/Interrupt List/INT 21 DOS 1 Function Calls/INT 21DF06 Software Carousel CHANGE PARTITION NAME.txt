@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF06
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - CHANGE PARTITION NAME
+	AX = DF06h
+	BL = task number
+	CX = length of new name (00h to use default, max 18h)
+	DS:SI -> new name
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+	    FFh unsucessful
+		AH = error code (01h) (see #01813)
+SeeAlso: AX=DF04h
+

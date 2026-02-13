@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FEE03
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - XVIEW - POP UP GIVING FILENAME AND SEARCH TOPIC OR PAGE NUMBER
+	AX = EE03h
+	DS:DX -> data packet (see #03113)
+Return: AX = status (see #03111)
+SeeAlso: AX=EE00h"XVIEW",AX=EE01h,AX=EE02h,AX=EE06h
+
+Format of XVIEW data packet:
+Offset	Size	Description	(Table 03113)
+ 00h	DWORD	-> ASCIZ database filespec (0000h:0000h for current database)
+ 04h	DWORD	-> ASCIZ text to look up or 0000h:0000h
+ 08h	WORD	page number (0000h if keyword used)
+ 0Ah  6 BYTEs	reserved
+

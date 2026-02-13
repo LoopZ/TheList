@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F81
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - LOGIN TO SERVER
+	AX = 5F81h
+	ES:DI -> ASCIZ login path followed immediately by ASCIZ password
+	BL = adapter number
+	    FFh try all valid adapters
+	    00h-07h try only specified adapter
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Notes:	login path is of form "\\machine\username"
+	if no password is used, the string at ES:DI must be terminated with
+	  three NULs for compatibility with LANtastic v3.0.
+SeeAlso: AX=5F82h,AX=5F84h
+

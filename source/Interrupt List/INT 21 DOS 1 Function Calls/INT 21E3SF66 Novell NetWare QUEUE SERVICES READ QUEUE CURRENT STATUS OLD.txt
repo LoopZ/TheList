@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF66
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - READ QUEUE CURRENT STATUS (OLD)
+	AH = E3h subfn 66h
+	DS:SI -> request buffer (see #01965)
+	ES:DI -> reply buffer (see #01966)
+Return: AL = status (00h,96h,9Ch,D1h-D3h,F1h,FCh,FEh,FFh) (see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be on a workstation which is security-equivalent to a
+	  member of the queue's Q_USERS or Q_OPERATORS properties
+SeeAlso: AH=E3h/SF=64h,AH=E3h/SF=67h,AH=E3h/SF=6Fh,AH=E3h/SF=76h
+SeeAlso: AX=F217h/SF=66h
+
+Format of NetWare "Read Queue Current Status (old)" request buffer:
+Offset	Size	Description	(Table 01965)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	66h (subfunction "Read Queue Current Status")
+ 03h	DWORD	(big-endian) object ID of queue
+SeeAlso: #01966,#02199 at AX=F217h/SF=66h
+
+Format of NetWare "Read Queue Current Status (old)" reply buffer:
+Offset	Size	Description	(Table 01966)
+ 00h	WORD	(call) 0085h (size of following results)
+ 02h	DWORD	(big-endian) object ID of queue
+ 06h	BYTE	status of queue (see #01967)
+ 07h	BYTE	number of jobs in queue (00h-FAh)
+ 08h	BYTE	number of servers attached to queue (00h-19h)
+ 09h 25 DWORDs	list of object IDs of attached servers
+ 6Dh 25 BYTEs	list of attached servers' stations
+ 86h	BYTE	(call) maximum number of servers to return
+SeeAlso: #01965,#02199 at AX=F217h/SF=66h
+
+Bitfields for NetWare queue status:
+Bit(s)	Description	(Table 01967)
+ 0	operator disabled addition of new jobs
+ 1	operator refuses additional job servers attaching
+ 2	operator disabled job servicing
+SeeAlso: #01966,#01968
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62004C
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETPAGE" - GET ACTIVE VIDEO PAGE NUMBER
+	AX = 004Ch
+Return: AX = active video page (0000h-003Fh)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0039h,AX=0042h,AX=0043h,AX=0050h,AX=00B2h
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2127
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - RANDOM BLOCK READ FROM FCB FILE
+	AH = 27h
+	CX = number of records to read
+	DS:DX -> opened FCB (see #01345)
+Return: AL = status
+	    00h successful, all records read
+	    01h end of file, no data read
+	    02h segment wrap in DTA, no data read
+	    03h end of file, partial read
+	Disk Transfer Area filled with records read from file
+	CX = number of records read (return AL = 00h or 03h)
+Notes:	read begins at current file position as specified in FCB; the file
+	  position is updated after reading
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+SeeAlso: AH=21h,AH=28h,AH=3Fh"DOS"
+

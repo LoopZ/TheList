@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14AA08
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - DimVGA v2.0+ - DIM SCREEN 'MANUALLY'
+	AX = AA08h
+Return: AX = FFFFh
+Note:	this function will dim the screen immediately, even if DimVGA is
+	  currently disabled
+SeeAlso: AX=AA01h,AX=AA02h,AX=AA09h
+Index:	screen saver;DimVGA
+

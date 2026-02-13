@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1484
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COURIERS.COM - READ CHARACTER
+	AH = 84h
+Return: ZF set if no characters available
+	ZF clear
+	   AL = character
+	   AH = modem status bits
+		bit 7: set on input buffer overflow
+SeeAlso: AH=02h,AH=86h,AH=89h
+

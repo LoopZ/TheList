@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214B04
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "MG", "699"/"Thirteen Minutes" - INSTALLATION CHECK
+	AX = 4B04h
+Return: CF clear if "MG" resident
+	AX = 044Bh if "699"/"Thirteen Minutes" resident
+SeeAlso: AX=4243h,AH=4Ah/BX=FFFFh,AX=4B21h
+

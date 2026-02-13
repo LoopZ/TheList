@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31050A
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - GET MEMORY BLOCK SIZE AND BASE
+	AX = 050Ah
+	SI:DI = memory block handle
+Return: CF clear if successful
+	    SI:DI = size in bytes
+	    BX:CX = base address
+	CF set on error
+	    AX = error code (8023h) (see #03143)
+SeeAlso: AX=0501h,AX=0504h
+

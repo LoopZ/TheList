@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F05
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 4.0+ network - GET EXTENDED REDIRECTION LIST ENTRY
+	AX = 5F05h
+	BX = redirection list index
+	DS:SI -> buffer for ASCIZ source device name
+	ES:DI -> buffer for destination ASCIZ network path
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = server's network process ID handle (10NET)
+	    BH = device status flag (bit 0 clear if valid)
+	    BL = device type (03h if printer, 04h if drive)
+	    CX = stored parameter value (user data) from AX=5F03h
+	    BP = NETBIOS local session number
+	    DS:SI buffer filled
+	    ES:DI buffer filled
+Notes:	the local session number allows sharing the redirector's session number
+	if an error is caused on the NETBIOS LSN, the redirector may be unable
+	  to correctly recover from errors
+	the DOS kernel calls INT 2F/AX=111Eh with AX on top of the stack
+	supported by DR DOS 5.0
+	also supported by 10NET v5.0
+SeeAlso: AX=5F06h"Network",INT 2F/AX=111Eh
+

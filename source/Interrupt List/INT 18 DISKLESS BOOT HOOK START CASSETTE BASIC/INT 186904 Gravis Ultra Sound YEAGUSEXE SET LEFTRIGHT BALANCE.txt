@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 186904
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - SET LEFT/RIGHT BALANCE
+	AX = 6904h
+	BX = voice number (00h-1Fh)
+	CX = balance (0 = left, 7 = even, 15 = right)
+Return: nothing
+SeeAlso: AX=6902h,AX=6903h
+

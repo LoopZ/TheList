@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4504
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Microsoft Profiler (PROF.COM/VPROD.386) - STOP PROFILING
+	AX = 4504h
+Notes:	profiling is also turned off by the key combination
+	  LeftShift + RightShift
+	for PROF.COM, this programs the CMOS clock by reading register 0Ch
+	  and clearing bit 6 of register 0Bh.  It then masks IRQ8.
+SeeAlso: AX=4503h,AX=4505h,AX=4506h,AX=4507h
+

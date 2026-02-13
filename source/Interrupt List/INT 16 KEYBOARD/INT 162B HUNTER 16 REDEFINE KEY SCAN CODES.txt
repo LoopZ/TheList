@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 162B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HUNTER 16 - REDEFINE KEY SCAN CODES
+	AH = 2Bh
+	AL = which key table to redefine
+	    00h unshifted
+	    01h shifted
+	    02h Numlock
+	BH = standard scan code of key (00h-80h)
+	BL = new scan code
+Desc:	redefine the generated scan code from BH to BL
+SeeAlso: AH=24h,AH=2Ah,AH=2Ch
+

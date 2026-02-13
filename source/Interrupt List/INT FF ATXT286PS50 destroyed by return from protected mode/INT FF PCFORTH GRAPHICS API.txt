@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: FF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT FF - PC/FORTH - GRAPHICS API
+	BX = function number
+	    0001h function REDRAW
+	    0002h function !PEL
+	    0003h function @PEL
+	    0004h function LINE
+	    0005h function ARC
+	    0006h function @BLOCK
+	    0007h function !BLOCK
+	    0008h function FLOOD
+	DS:SI -> FORTH program counter
+	SS:BP -> FORTH parameter stack
+	SS:SP -> FORTH return stack
+	details of parameters not available
+Return:	AX,BX,CX,DX,ES,DI may be destroyed
+Note:	these functions all display an error message if the graphics routines
+	  are not resident
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62006E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MAKESPR" - CREATE STANDARD PIXEL RUN FILE
+	AX = 006Eh
+	BX = left edge in screen space units
+	CX = right edge in screen space units
+	DX = top edge in screen space units
+	SI = bottom edge in screen space units
+	ES:DI -> ASCIZ filename of SPR file to create
+Return: AX = status
+	    0000h successful
+	    0001h file not created
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The SPR file is created from the specified region of the active video
+	  page; the left and right edges are adjusted to byte boundaries if
+	  necessary
+	If the specified file already exists, it is overwritten
+	This call is ignored in text modes
+SeeAlso: AX=005Bh,AX=006Ch,AX=006Dh,AX=00B9h,AX=00BAh,AX=00BBh
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF11
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - FREE XMS BLOCKS
+	AX = AF11h
+Return: nothing
+Desc:	free all XMS blocks whose XMS identification value (see AX=AF12h)
+	  equals the current PSP
+SeeAlso: AX=AF00h"WinDOS",AX=AF12h"WinDOS",INT 21/AH=50h
+

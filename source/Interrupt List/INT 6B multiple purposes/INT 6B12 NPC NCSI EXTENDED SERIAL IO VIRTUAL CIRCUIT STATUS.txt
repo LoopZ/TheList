@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B12
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - VIRTUAL CIRCUIT STATUS
+	AH = 12h
+	AL = virtual circuit number (0-8)
+Return: CF clear if successful
+	    AL = virtual circuit number
+	    CL = virtual circuit's state
+		00h idle
+		01h Telnet session, in command state
+		02h Telnet session, connected to host
+		03h-06h ??? (not returned by TelAPI)
+	CF set on error
+	    AL = error code
+		E2h invalid virtual circuit number
+		E4h specified virtual circuit not allocated
+Note:	this function is also supported by TelAPI
+SeeAlso: AH=10h,AH=15h,AH=1Ah,AH=1Bh,AH=1Fh
+

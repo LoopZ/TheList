@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1436
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ComShare - INSTALLATION CHECK
+	AH = 36h
+Return: AX = 4353h ('CS') if installed
+	    BX = bitmap of installed ports (bit 0: COM1 is gateway, etc.)
+	    CX reserved for future use
+	    WORD DX:[0100h] = ComShare version number
+Program: The ComShare System is a modem-sharing program for NetBIOS and
+	  NetWare-based networks by NashaKala Corporation
+Note:	ComShare supports the standard BIOS INT 14h calls with a slight
+	  change in the interpretation of speed values
+	  (see #00309 at AH=04h"SERIAL")
+SeeAlso: AH=00h"SERIAL",AH=04h"SERIAL",AX=F4FFh
+

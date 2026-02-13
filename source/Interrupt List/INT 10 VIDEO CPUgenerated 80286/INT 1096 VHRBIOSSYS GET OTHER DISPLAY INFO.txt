@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1096
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VHRBIOS.SYS - GET OTHER DISPLAY INFO
+	AH = 96h
+Return: AL = display type (see AH=1Ah)
+	AH = ??? (possibly related to Micro Channel support)
+Program: VHRBIOS.SYS is a driver for the Micro Display Systems "TheGenius"
+	  black&white A4/portrait monitor
+Desc:	returns info on any non-Genius video adapter in the system
+SeeAlso: AX=9508h"VHRBIOS.SYS",AH=F0h"VHRBIOS.SYS"
+

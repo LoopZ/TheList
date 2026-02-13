@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AA3
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v4.03+ - GET/SET ANSIPLUS INTERNAL VARIABLES
+	AX = 1AA3h
+	BH = function
+	    00h get current/default colors
+		Return: CH = default colors
+			CL = current colors
+	    01h set current/default colors
+		CH = default colors (00h = leave unchanged)
+		CL = current colors
+	    02h get current subscreen region
+		Return: BH,BL = true screen rows,columns
+			CH,CL = top left row,column of region
+			DH,DL = bottom right row,column of region
+	    03h set subscreen region
+		CH,CL = top left row,column of region
+		DH,DL = bottom right row,column of region
+	    04h get driver features (bits 0-31)
+		Return: DX:CX = current feature bits
+	    05h set driver features (bits 0-31)
+		DX:CX = feature bits
+	    06h get driver features (bits 32-63)
+		Return: DX:CX = current feature bits
+	    07h set driver features (bits 32-63)
+		DX:CX = feature bits
+	    other: reserved for future use
+SeeAlso: AX=1AA4h,AX=1AA5h
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1186
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - LAN Manager Enhanced DOS - DosReadAsynchNmPipe
+	AX = 1186h
+	DS:SI -> stack frame (see #02607)
+Return: CF clear if successful
+	CF set if error
+	    AX = error code
+Note:	LAN Manager enhance mode adds features beyond the standard redirector
+	  file/printer services
+SeeAlso: AX=118Fh,AX=1190h,AX=1191h,INT 21/AX=5F39h
+
+Format of LAN Manager DosReadAsynchNmPipe stack frame:
+Offset	Size	Description	(Table 02607)
+ 00h	DWORD	-> number of bytes read
+ 04h	WORD	size of buffer
+ 06h	DWORD	-> buffer
+ 0Ah	DWORD	-> return code
+ 0Eh	DWORD	function to call on completion as function( char far *buffer )
+ 12h	WORD	handle
+

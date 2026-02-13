@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC16DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - REPORT MODE CHANGE TO QRIP
+	AX = AC16h
+	DI = 1092h
+	BL = new mode
+	    00h terminate key wait
+	    01h status bar on
+	    02h status bar off
+	    03h VT-102 mode on
+	    04h VT-102 mode off
+	    05h doorway mode on
+	    06h doorway mode off
+	    07h hotkeys mode on
+	    08h hotkeys mode off
+	    09h tabkey mode on
+	    0Ah tabkey mode off
+Return: nothing
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	all modes default to OFF when QRIP is first installed
+

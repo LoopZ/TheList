@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0021
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - PAGEFILE - VxD SERVICES
+	VxD = 0021h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01289)
+Values for PAGEFILE (VxD ID 0021h) service number:
+ 00h	get version
+ 01h	init file
+ 02h	clean up
+ 03h	grow file
+ 04h	read or write
+ 05h	cancel
+ 06h	test I/O valid
+ 07h	"Get_Size_Info"
+ 08h	"Set_Async_Manager"
+ 09h	"Call_Async_Manager"
+SeeAlso: #01288,#02661 at INT 2F/AX=1684h/BX=0021h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF1B
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "LockMem" - LOCK REGION OF MEMORY
+	AX = FF1Bh
+	BX:CX = starting linear address
+	SI:DI = size of region in bytes
+Return: CF clear if successful
+	CF set on error
+Desc:	prevent memory from being swapped out by the virtual memory manager
+Note:	locks are applied on 4K page boundaries, so memory above and below
+	  the specified region may be locked as well
+SeeAlso: AX=FF1Ch,AX=FF1Dh
+

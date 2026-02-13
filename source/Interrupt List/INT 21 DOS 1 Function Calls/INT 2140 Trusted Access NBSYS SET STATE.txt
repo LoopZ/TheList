@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2140
+  Category: y 	security
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Trusted Access - NB.SYS - SET STATE
+	AH = 40h
+	BX = handle for character device "$$NB$$NB"
+	DS:DX -> state record (see #01414)
+	CX ignored
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (05h,06h) (see #01680 at AH=59h/BX=0000h)
+Program: Trusted Access is a security and access-control package by Lassen
+	  Software, Inc.; NB.SYS is a device driver to prevent the user from
+	  terminating CONFIG.SYS or AUTOEXEC.BAT with Ctrl-Break
+SeeAlso: AH=3Fh"NB.SYS"
+

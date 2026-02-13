@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies '65530' BIOS - SET CLOCK
+	AX = 5F02h
+	BH = what to set
+	    02h dot clock
+		BL = new clock speed (see #00180)
+	    03h memory clock
+		BL = new clock speed (see #00180)
+	    04h set power-down register
+		BL = new value for power-down register (bits 3-0 only)
+	    06h (404 clock chip) set control register
+		BL = new vlaue for control register (bits 5-0 only)
+	    06h (404A/B/B-ES clock chips) set control register PWRDN1
+		BL = new value for control register
+	    07h (404A/B/B-ES clock chips) set control register PWRDN1
+		BL = new value for control register
+	    FFh default dot and memory clocks
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F01h,AX=5F02h"64300",AX=5FA0h,#00184
+
+(Table 00180)
+Values for C&T '65530' BIOS clock speed:
+ 00h	12 MHz
+ 01h	14 MHz
+ 02h	16 MHz
+ 03h	18 MHz
+ 04h	20 MHz
+ 05h	25 MHz
+ 06h	28 MHz
+ 07h	32 MHz
+ 08h	36 MHz
+ 09h	40 MHz
+ 0Ah	45 MHz
+ 0Bh	50 MHz
+ 0Ch	56 MHz
+ 0Dh	60 MHz
+ 0Eh	65 MHz
+ 0Fh	66 MHz
+ 15h	34 MHz
+

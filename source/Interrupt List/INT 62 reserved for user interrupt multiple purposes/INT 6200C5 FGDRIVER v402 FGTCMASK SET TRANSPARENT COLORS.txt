@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200C5
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_TCMASK" - SET TRANSPARENT COLORS
+	AX = 00C5h
+	BX = colors to consider transparent (bit 0 = color 0, etc)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+	The specified colors are considered transparent by "FG_TCXFER"
+SeeAlso: AX=00C4h,AX=00C6h
+

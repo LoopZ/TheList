@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 134E
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - IBM/MS INT 13 Extensions v2.1+ - SET HARDWARE CONFIGURATION
+	AH = 4Eh
+	AL = function
+	    00h enable prefetch
+	    01h disable prefetch
+	    02h set maximum PIO transfer mode
+	    03h set PIO mode 0
+	    04h set default PIO transfer mode
+	    05h enable INT 13h DMA maximum mode
+	    06h disable INT 13h DMA
+	DL = drive number
+Return: CF clear if successful
+	    AH = 00h
+	    AL = status
+		00h command was safe (only affected specified drive)
+		01h other devices are affected
+	CF set on error
+	    AH = error code (see #00234)
+Note:	DMA and PIO modes are mutually exclusive, so selecting DMA disables
+	  PIO (for either the specified device or all devices on that
+	  controller), and selecting PIO disables DMA
+SeeAlso: AH=41h"INT 13 Extensions",AX=5001h"Enhanced Disk Drive"
+

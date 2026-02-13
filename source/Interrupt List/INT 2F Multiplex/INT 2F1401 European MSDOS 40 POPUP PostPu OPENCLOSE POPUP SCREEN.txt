@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1401
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - European MS-DOS 4.0 POPUP - "PostPu" - OPEN/CLOSE POPUP SCREEN
+	AX = 1401h
+	DL = function (00h open, 01h close)
+	DH = wait flag
+	    00h block until screen opens
+	    01h return error if screen is not available
+	    02h urgent--always open screen immediately
+Return: CF clear if successful
+	    BX = amount of memory needed to save screen and keyboard info,
+		0000h if default save location can be used (only if DH was 02h)
+	CF set on error
+Note:	the application using the screen is frozen until the popup screen is
+	  closed
+SeeAlso: AX=1400h"POPUP",AX=1402h"POPUP",AX=1403h"POPUP"
+

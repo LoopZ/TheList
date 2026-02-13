@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310002
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - SEGMENT TO DESCRIPTOR
+	AX = 0002h
+	BX = real mode segment
+Return: CF clear if successful
+	    AX = selector corresponding to real mode segment (64K limit)
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8011h) (see #03143)
+Notes:	multiple calls for the same real mode segment return the same selector
+	the returned descriptor can never be modified or freed
+	not supported by MS Windows 3.0 in Standard mode
+

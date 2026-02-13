@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1551
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX v2.???+ - "sys_vm_func" - EXECUTE FUNCTION IN PROTECTED MODE
+	AH = 51h
+	STACK:	DWORD	selector:offset of function
+Return: registers as returned by function
+Note:	executes function with privilege level 0 (highest privilege)
+SeeAlso: AH=10h"VMiX",AH=52h"VMiX"
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21713A
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - REMOVE DIRECTORY
+	AX = 713Ah
+	DS:DX -> ASCIZ long name of directory to remove
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680)
+		7100h if function not supported
+Note:	for compatibility with DOS versions prior to v7.00, the carry flag
+	  should be set on call to ensure that it is set on exit
+SeeAlso: AH=3Ah,AX=7139h
+

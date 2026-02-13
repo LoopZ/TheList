@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 211C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - GET ALLOCATION INFORMATION FOR SPECIFIC DRIVE
+	AH = 1Ch
+	DL = drive (00h = default, 01h = A:, etc)
+Return: AL = sectors per cluster (allocation unit), or FFh if invalid drive
+	CX = bytes per sector
+	DX = total number of clusters
+	DS:BX -> media ID byte (see #01356)
+Notes:	under DOS 1.x, DS:BX points at an actual copy of the FAT; later
+	  versions return a pointer to a copy of the FAT's ID byte
+	on a DBLSPACE drive, the total number of clusters is based on the
+	  estimated compression ratio
+	this function may not be properly supported on CD-ROMs and other
+	  installable file systems (use AX=4402h"CD-ROM" for CD-ROMs
+	  instead)
+BUG:	DOS 7.10 (Win95B/Win98) reportedly returns incorrect values in AL and
+	  DX for FAT12/FAT16 drives, even though it manages correct results
+	  for FAT32 drives (DOS windows are not affected, only real-mode
+	  DOS)
+SeeAlso: AH=1Bh,AH=36h
+

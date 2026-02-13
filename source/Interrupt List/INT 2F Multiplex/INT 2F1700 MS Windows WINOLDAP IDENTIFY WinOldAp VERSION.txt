@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1700
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows "WINOLDAP" - IDENTIFY WinOldAp VERSION
+	AX = 1700h
+Return: AX = 1700h if this version of WINOLDAP doesn't support clipboard
+	AX <> 1700h
+	    AL = WINOLDAP major version
+	    AH = WINOLDAP minor version
+Program: WinOldAp (WINOLDAP.MOD) is a Microsoft Windows extension supporting
+	  "old" (character-mode) application access to Dynamic Data Exchange,
+	  menus, and the Windows clipboard.
+Note:	this installation check DOES NOT follow the format used by other
+	  software of returning AL=FFh
+SeeAlso: AX=1701h,AX=4601h
+Index:	installation check;WINOLDAP
+

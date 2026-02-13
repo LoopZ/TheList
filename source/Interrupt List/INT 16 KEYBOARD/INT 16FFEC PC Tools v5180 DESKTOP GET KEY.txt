@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFEC
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - GET KEY
+	AX = FFECh
+	DS:SI -> FAR routine to ???
+	BX = ???
+	???
+Return: AX = keystroke
+	    FFFFh if F10 pressed to go to menu
+Notes:	available only when popped up
+	invokes INT 28 while waiting for keystroke
+	F10 is hotkey to Desktop menu
+Index:	hotkeys;PC Tools DESKTOP
+

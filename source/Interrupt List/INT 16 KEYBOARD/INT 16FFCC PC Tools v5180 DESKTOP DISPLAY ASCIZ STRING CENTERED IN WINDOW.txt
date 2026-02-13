@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFCC
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - DISPLAY ASCIZ STRING CENTERED IN WINDOW
+	AX = FFCCh
+	DS:SI -> ASCIZ string
+Return: AX = ???
+	CX = ???
+	ES:DI -> address past last character displayed (v5.1/5.5)
+	      -> ??? on menu bar (v6.0)
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F83
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET USERNAME ENTRY
+	AX = 5F83h
+	BX = login entry index (0-based)
+	ES:DI -> 16-byte buffer for username currently logged into
+Return: CF clear if successful
+	    DL = adapter number (v3+)
+	CF set on error
+	    AX = error code
+Note:	the login entry index corresponds to the value BX used in AX=5F80h
+SeeAlso: AX=5F80h
+

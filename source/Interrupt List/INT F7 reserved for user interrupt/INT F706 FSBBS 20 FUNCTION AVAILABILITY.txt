@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: F706
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F7 - FSBBS 2.0 - FUNCTION AVAILABILITY
+	AH = 06h
+	AL = function
+	    00h determine whether function is available
+		DX = index of function
+	    01h set function availability
+		DX = index of function
+		???
+Return: nothing
+SeeAlso: AH=05h,AH=07h
+

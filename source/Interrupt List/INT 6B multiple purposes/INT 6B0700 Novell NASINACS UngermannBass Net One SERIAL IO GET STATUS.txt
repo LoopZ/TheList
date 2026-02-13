@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B0700
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - Novell NASI/NACS, Ungermann-Bass Net One SERIAL I/O - GET STATUS
+	AX = 0700h
+Return: CH <> 00h if connection active
+Notes:	this function is also supported by TelAPI and NPC NCSI
+	Novell TelAPI returns CX=FF01h and CF clear
+SeeAlso: AH=02h,AH=10h
+

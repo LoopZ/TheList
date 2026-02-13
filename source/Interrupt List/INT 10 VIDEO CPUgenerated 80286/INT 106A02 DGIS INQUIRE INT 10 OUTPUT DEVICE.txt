@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106A02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - DGIS - INQUIRE INT 10 OUTPUT DEVICE
+	AX = 6A02h
+	ES:DI = 0000h:0000h
+Return: ES:DI = 0000h:0000h  if current display is non-DGIS
+		else address of the current DGIS INT 10 display
+SeeAlso: AX=6A00h,AX=6A01h
+

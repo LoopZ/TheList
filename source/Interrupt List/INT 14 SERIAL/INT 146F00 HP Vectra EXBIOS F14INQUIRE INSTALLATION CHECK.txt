@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 146F00
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HP Vectra EX-BIOS - "F14_INQUIRE" - INSTALLATION CHECK
+	AX = 6F00h
+	BX <> 4850h (usually set to 0000h for simplicity)
+Return: BX = 4850h ("HP") if HP Extended BIOS serial port extensions available
+	AX destroyed
+Note:	supported by original HP Vectra AT and by ES/QS/RS series Vectras
+SeeAlso: AX=6F01h,AX=6F02h,AX=6F03h,AX=6F04h,INT 10/AX=6F00h,INT 14/AX=6F00h
+SeeAlso: INT 17/AX=6F00h,INT 33/AX=6F00h
+

@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFED
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - GET PHYSICAL RECORD LOCKS BY CONNECTION AND FILE
+	AX = F217h subfn EDh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02255)
+	ES:DI -> reply buffer (see #02256)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=DDh,AX=F217h/SF=EEh
+
+Format of NetWare "Get Phys Record Locks By Conn And File" request packet:
+Offset	Size	Description	(Table 02255)
+ 00h	WORD	length of following data
+ 02h	BYTE	EDh (subfunction "Get Physical Record Locks By Connection
+		  And File")
+ 03h	WORD	target connection number
+ 05h	BYTE	last record seen (set to 00h before first call)
+ 06h	BYTE	volume number
+ 07h	DWORD	directory entry number
+ 0Bh  N BYTEs	filename
+SeeAlso: #02256
+
+Format of NetWare "Get Physical Record Locks By Connect And File" reply packet:
+Offset	Size	Description	(Table 02256)
+ 00h	WORD	next record (place in last-seen field on next call)
+ 02h	WORD	number of locks returned
+ 04h 11N BYTEs	lock records
+		Offset	Size	Description
+		 00h	WORD	(big-endian) task number
+		 02h	BYTE	lock status
+		 03h	DWORD	(big-endian) record start offset
+		 07h	DWORD	(big-endian) record end offset
+SeeAlso: #02255
+

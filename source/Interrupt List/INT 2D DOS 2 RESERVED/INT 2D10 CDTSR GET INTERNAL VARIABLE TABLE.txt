@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - CDTSR - GET INTERNAL VARIABLE TABLE
+	AL = 10h
+	AH = AMIS multiplex number for CDTSR
+Return: CX:DX -> CDTSR internal variable structure (see #02583)
+Program: CDTSR is a resident audio CD player by Colin Hill
+SeeAlso: INT 2D/AL=11h"CDTSR",INT 2D/AL=12h"CDTSR",INT 2D/AL=13h"CDTSR"
+
+Format of CDTSR internal variable structure:
+Offset	Size	Description	(Table 02583)
+ 00h	BYTE	hotkey scan code (see #00006)
+ 01h	BYTE	hotkey shift states
+ 02h	BYTE	flag: repeat
+ 03h	BYTE	flag: custom repeat
+ 04h	BYTE	flag: background polling
+ 05h	DWORD	(read-only) internal timing variable
+ 09h	DWORD	current track play position, in frames
+ 0Dh	DWORD	current disk play position, in frames
+ 11h	BYTE	number of entries in track program
+ 12h	BYTE	index into track program currently playing (FFh if not playing)
+ 13h 100 BYTEs	track program (each byte contains one track number)
+ 77h	BYTE	saved cursor end scan line
+ 78h	BYTE	saved cursor start scan line
+ 79h	BYTE	currently playing track
+ 7Ah	BYTE	CD driver media-change flag
+ 7Bh	WORD	video base segment during last popup
+ 7Dh	WORD	video page offset during last popup
+ 7Fh	BYTE	currently-selected track
+ 80h	DWORD	begin of custom repeat, in frames
+ 84h	DWORD	end of custom repeat, in frames
+ 88h	WORD	track program index of top list item
+

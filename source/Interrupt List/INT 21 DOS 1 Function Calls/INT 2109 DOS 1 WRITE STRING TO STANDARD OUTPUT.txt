@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2109
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - WRITE STRING TO STANDARD OUTPUT
+	AH = 09h
+	DS:DX -> '$'-terminated string
+Return: AL = 24h (the '$' terminating the string, despite official docs which
+		state that nothing is returned) (at least DOS 2.1-7.0 and
+		NWDOS)
+Notes:	^C/^Break are checked, and INT 23 is called if either pressed
+	standard output is always the screen under DOS 1.x, but may be
+	  redirected under DOS 2+
+	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+SeeAlso: AH=02h,AH=06h"OUTPUT"
+

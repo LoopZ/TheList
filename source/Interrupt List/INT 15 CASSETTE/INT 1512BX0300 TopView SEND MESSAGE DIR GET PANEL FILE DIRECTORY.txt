@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BX0300
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "DIR" - GET PANEL FILE DIRECTORY
+	AH = 12h
+	BX = 0300h
+	STACK: DWORD handle of panel object (see #00436)
+Return: STACK: DWORD length of directory (always multiple of 14 bytes)
+	       DWORD address of directory
+Note:	a null string is returned if the object is not open
+SeeAlso: AH=12h/BX=0400h"APPLY",AH=12h/BH=83h
+
+Format of TopView panel file:
+Offset	Size	Description	(Table 00436)
+ 00h  2 BYTEs	C0h C3h
+ 02h	BYTE	number of panels in file
+ 03h	for each panel in file:
+	    8 BYTEs  blank-padded panel name
+	      DWORD  panel offset in file
+	      WORD   panel length
+	data for panels (each consists of one or more window/query/manager
+	  streams); first byte of each panel must be 1Bh, fifth byte must be
+	  E5h
+

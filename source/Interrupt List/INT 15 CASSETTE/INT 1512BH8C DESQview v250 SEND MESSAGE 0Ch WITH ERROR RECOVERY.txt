@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH8C
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.50+ - SEND MESSAGE 0Ch WITH ERROR RECOVERY
+	AH = 12h
+	BH = 8Ch
+Note:	this function is identical to AH=12h/BH=0Ch, except that DESQview will
+	  not pop up a "Programming Error" window, instead returning an error
+	  code in AL (see #00455)
+SeeAlso: AH=12h/BH=0Ch
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10007FBH03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Paradise VGA, AT&T VDC600 - LOCK CURRENT MODE
+	AX = 007Fh
+	BH = 03h
+Return: AL = 7Fh if successful (AT&T VDC600)
+	BH = status (Paradise/Dell)
+	    00h invalid function
+	    7Fh successful
+Desc:	allows current mode (VGA or non-VGA) to survive re-boot
+SeeAlso: AX=007Eh,AX=007Fh/BH=04h,AX=007Fh/BH=06h,AH=FFh"Oak"
+

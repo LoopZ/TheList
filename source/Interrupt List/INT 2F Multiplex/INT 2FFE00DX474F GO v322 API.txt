@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFE00DX474F
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - GO! v3.22+ - API
+	AX = FE00h
+	DX = 474Fh ('GO')
+	SI = function number
+	    0063h (BCD for '?') installation check
+	    0078h (BCD for 'N') non-registered search (two levels only)
+	    0082h (BCD for 'R') reserved for registered version
+	    0083h (BCD for 'S') reserved for registered version
+	    0085h (BCD for 'U') uninstall
+	BX:CX -> buffer (for search functions)
+		buffer filled with search spec, i.e. "APL" to get first
+		  directory containing the substring APL, ":\APL" to find
+		  the first top-level directory beginning with the letters
+		  APL
+Return: BX:CX buffer filled with result (search functions only)
+		result is counted ASCIZ directory name, empty string if
+		no matches (i.e. first byte is length of name, followed by
+		name)
+Program: GO! is a shareware directory locator TSR by Steve Ryckman
+Note:	the application-supplied buffer for the requests and results which
+	  BX:CX points at must lie outside the conventional (low-640K)
+	  memory, since the TSR swaps memory on pop-up; a common location is
+	  the last 96 bytes of the video memory or a UMB
+

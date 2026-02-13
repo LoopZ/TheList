@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--01
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - AMIS v3.0+ - GET PRIVATE ENTRY POINT
+	AL = 01h
+	AH = multiplex number for program
+Return: AL = 00h if all API calls via INT 2D
+	AL = FFh if entry point supported
+	    DX:BX -> entry point for bypassing interrupt chain
+Note:	this function is not valid unless a program is installed on the
+	  specified multiplex number; use INT 2D/AL=00h to check
+SeeAlso: INT 2D/AL=00h,INT 2D/AL=02h,INT 2D/AL=03h,INT 2D/AL=04h,INT 2D/AL=05h
+SeeAlso: INT 2D/AL=06h
+Index:	entry point;Alternate Multiplex Interrupt|entry point;AMIS
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2118
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - NULL FUNCTION FOR CP/M COMPATIBILITY
+	AH = 18h
+Return: AL = 00h
+Note:	corresponds to the CP/M BDOS function "get bit map of logged drives",
+	  which is meaningless under MS-DOS
+SeeAlso: AH=1Dh,AH=1Eh,AH=20h,AX=4459h,INT 60/DI=0513h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX000A
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN v6.2 - SET AUTOMOUNT DRIVES
+	AX = 4A11h
+	BX = 000Ah
+	CX:DX = bitmask of drives on which to enable AutoMount
+		(DX bit 0 = A:, CX bit 0 = P:, etc.)
+Return: AX = 0000h if supported
+	    CX:DX = old mask or 0000h:0000h on error
+	BX destroyed
+SeeAlso: AX=4A11h/BX=000Bh
+

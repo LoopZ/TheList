@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDD--BX7844
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - xDISK v3.32+ - INSTALLATION CHECK
+	AH = DDh
+	BX = 7844h ('xD')
+	CX = 4953h ('IS')
+	DX = 4B3Fh ('K?')
+	AL = desired drive (01h-1Ah) or 00h to check for xDISK on any drive
+	ES:DI -> 25-byte data buffer (see #03099)
+Return: AX = DDFFh if installed (on specified drive if AL nonzero on entry)
+	   BX = 87BBh
+	   DX = B4C0h
+	   ES:DI buffer filled
+	CX,CF destroyed
+SeeAlso: INT 21/AX=4404h"xDISK",INT 21/AX=4405h"xDISK"
+
+Format of xDISK data buffer:
+Offset	Size	Description	(Table 03099)
+ 00h	DWORD	pointer to ASCIZ driver signature "xDISK unit: X"
+ 04h	BYTE	flag: 01h if disk linked to DOS, 00h if unlinked
+ 05h	BYTE	flag: 01h if write protected, 00h if not
+ 06h	BYTE	flag: 01h if root directory full, 00h if not
+ 07h	BYTE	flag: 01h if free space uncompacted, 00h if compacted
+ 08h	BYTE	resizing state: 00h not resizable, 01h resized, 80h resizable
+ 09h	BYTE	flag: 01h inelastic resizable disk, 00h elastic
+ 0Ah  2 BYTEs	reserved
+ 0Ch	BYTE	flag: 01h collapsed disk, 00h not collapsed
+ 0Dh	BYTE	flag: 01h using all EMS, 00h some EMS free
+ 0Eh	BYTE	flag: 01h password enabled, 00h disabled
+ 0Fh	BYTE	flag: 01h password audio feedback, 00h no feedback
+ 10h	BYTE	flag: 01h password video feedback, 00h no feedback
+ 11h	BYTE	flag: 01h confirm changes, 00h no confirmation
+ 12h	BYTE	flag: 01h terse display, 00h verbose display
+ 13h	BYTE	flag: 01h click speaker on disk access, 00h no click
+ 14h	BYTE	flag: 01h flash icon on disk access, 00h no icon flash
+ 15h	BYTE	FAT entry size: 00h 12-bit, FFh 16-bit
+ 16h	WORD	count of open files in RAM disk
+ 18h	BYTE	unused
+

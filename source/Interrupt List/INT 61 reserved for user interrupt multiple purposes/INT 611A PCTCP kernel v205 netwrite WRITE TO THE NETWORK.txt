@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 611A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_write" - WRITE TO THE NETWORK
+	AH = 1Ah
+	BX = network descriptor
+	CX = number of bytes to transmit (0000h allowed)
+	DX = send options (see #03464)
+	DS:SI -> data to be written
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	    DX = ???
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+InstallCheck:	test for the signature "TCPTSR" three bytes beyond the start
+	  of the interrupt handler
+Range:	INT 20h to INT E0h, selected by configuration
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=1Bh,INT 61/AH=1Ch
+SeeAlso: INT 63/AH=19h"BW-TCP",INT 63/AH=1Bh"BW-TCP"
+
+Bitfields for PC/TCP send options:
+Bit(s)	Description	(Table 03464)
+ 0	signal "URG"ent data
+ 3	attempt rerouting on non-stream calls if first attempt fails
+ 4	send data with PUSH flag (no override of Nagle)
+ 5	fail rather than truncating datagram
+ 6	fail rather than blocking
+ 7	broadcast packet
+

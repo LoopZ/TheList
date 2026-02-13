@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675A
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - ALLOCATE STANDARD/RAW PAGES
+	AH = 5Ah
+	AL = subfunction
+	    00h allocate standard pages
+	    01h allocate raw pages
+	BX = number of pages to allocate
+Return: DX = handle
+	AH = status (00h,80h,81h,84h,85h,87h,88h,8Fh) (see #03648)
+

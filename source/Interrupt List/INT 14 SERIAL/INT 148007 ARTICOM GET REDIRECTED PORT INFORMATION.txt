@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148007
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - GET REDIRECTED PORT INFORMATION
+	AX = 8007h
+	DX = port index (COM1=0, COM2=1, ...)
+	ES:DI -> buffer for port information structure (see #00363)
+Return: CF clear if redirection info returned and port is redirected
+	CF set if not a redirected port
+	AX = error code, if error (see #00360)
+SeeAlso: AX=8000h,AX=8003h,AX=8006h,AX=8008h
+
+Format of ARTICOM port information structure:
+Offset	Size	Description	(Table 00363)
+ 00h 16 BYTEs	server name resource is on
+ 10h	BYTE	adapter number server is on
+ 11h 16 BYTEs	resource name
+ 21h	WORD	remote port index, use to get additional information
+ 23h	WORD	buffer size
+ 25h	WORD	baud rate (see #00364)
+ 26h	BYTE	modem status register
+ 27h	BYTE	modem control register
+ 28h	BYTE	line status register
+ 29h	BYTE	line control register
+ 2Ah	BYTE	flow control in use: 0 - NONE, 1 - XON/XOFF, 2 - RTS/CTS
+ 2Bh	WORD	send timeout in ticks
+ 2Dh	WORD	receive timeout in ticks
+ 2Fh	WORD	time used on remote port
+ 31h	WORD	time left before timeout
+ 33h	BYTE	if server changes allowed?
+ 34h	WORD	FFFFh (-1) if connection ok, else old port index
+
+(Table 00364)
+Values for ARTICOM baud rate:
+ 00h	110
+ 01h	150
+ 02h	300
+ 03h	600
+ 04h	1200
+ 05h	2400
+ 06h	4800
+ 07h	9600
+ 08h	19200
+ 09h	38400
+ 0Ah	57600
+ 0Bh	115200
+ 0Ch	134.5
+ 0Dh	1800
+ 0Eh	2000
+ 0Fh	3600
+ 10h	7200
+SeeAlso: #00309
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6114
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 61 Ou - PC/TCP kernel v2.05 - "net_recv" - NO LONGER SUPPORTED
+	AH = 14h
+	BX = network descriptor
+Return: CF set
+	    AX = 0018h (see #03319 at INT 61"FTP Software")
+Notes:	displays error message "Illegal system call!  Please upgrade your
+	  PCserver software" to standard output
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=0Ah,INT 61/AH=15h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F5
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - OTHER PROGRAM STATUS
+	AH = F5h
+Return: AL = program status
+	    00h no program in other partition
+	    01h program in other partition is running
+	    02h program in other partition is suspended
+SeeAlso: AH=E5h"DoubleDOS",AX=F400h"DoubleDOS"
+

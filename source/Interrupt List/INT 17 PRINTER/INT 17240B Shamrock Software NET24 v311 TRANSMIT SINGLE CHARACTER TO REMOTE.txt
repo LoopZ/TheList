@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17240B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Shamrock Software NET.24 v3.11+ - TRANSMIT SINGLE CHARACTER TO REMOTE
+	AX = 240Bh
+	DL = character to send
+Return: AL = status (see also AX=2400h)
+	    03h transmission error
+	    06h write error
+SeeAlso: AX=2407h,AX=240Ah,AX=240Ch
+

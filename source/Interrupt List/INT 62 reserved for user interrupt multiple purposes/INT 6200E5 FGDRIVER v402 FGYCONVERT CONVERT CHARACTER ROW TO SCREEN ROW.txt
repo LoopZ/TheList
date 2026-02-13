@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200E5
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_YCONVERT" - CONVERT CHARACTER ROW TO SCREEN ROW
+	AX = 00E5h
+	BX = character space row
+Return: AX = screen space row of topmost pixel in specified character row
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00E2h,AX=00E4h,AX=00E6h
+

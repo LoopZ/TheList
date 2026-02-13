@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620042
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETENTRY" - GET PAGE TYPE AND ADDRESS
+	AX = 0042h
+	ES:BX -> variable pointer record (see #03483)
+	CX = page number (00h-3Fh)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	Page addresses are segments for pages stored in conventional memory
+	  (including physical and virtual pages), and EMS or XMS handles for
+	  pages stored in EMS or XMS
+SeeAlso: AX=0000h,AX=00ACh
+
+Format of FGDRIVER GETENTRY variable pointer record:
+Offset	Size	Description	(Table 03483)
+ 00h	WORD	segment of WORD buffer for page address
+ 02h	WORD	offset of WORD buffer for page address
+ 04h	WORD	segment of WORD buffer for page type (se #03484)
+ 06h	WORD	offset of WORD buffer for page type
+
+(Table 03484)
+Values for FGDRIVER page type:
+ 0000h	unallocated
+ 0001h	physical
+ 0002h	virtual
+ 0003h	logical page, stored in expanded memory (EMS)
+ 0004h	logical page, stored in extended memory (XMS)
+ 0005h	logical page, stored in conventional memory
+

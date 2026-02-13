@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0014
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SET VALUE OF GLOBAL VARIABLE
+	AX = 0004h subfn 0014h
+	DS:DX -> request block (see #03423)
+Return: AX = status
+	    0000h successful
+	    0033h invalid request ID (returned if variable index out of range)
+Desc:	Assigns a new value to the specified global variable
+Note:	If the specified number of bytes to copy exceeds the size of the
+	  destination variable, nothing will be copied.
+SeeAlso: AX=0004h/SF=0013h,AX=0006h
+
+Format of request block:
+Offset	Size	Description	(Table 03423)
+ 00h	WORD	0014h
+ 02h	WORD	variable index (0000h-001Fh) (see #03422)
+ 04h	WORD	number of bytes to copy
+ 06h	DWORD	far pointer to new value
+SeeAlso: #03421
+

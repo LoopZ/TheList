@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10101B
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - PERFORM GRAY-SCALE SUMMING (VGA/MCGA)
+	AX = 101Bh
+	BX = starting palette register
+	CX = number of registers to convert
+Return: nothing
+Desc:	convert the RGB values of one or more palette registers such that the
+	  resulting values are grays with the same intensities as the original
+	  colors
+SeeAlso: AH=12h/BL=33h
+

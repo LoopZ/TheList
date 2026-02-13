@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FFC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET GROUP NAME
+	AH = FCh
+	CL = group number
+	ES:DI -> 17-byte buffer for ASCIZ name
+Return: ES:DI buffer filled
+Note:	if the group has not been named, "(unnamed)" is returned
+SeeAlso: AH=FBh
+

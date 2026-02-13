@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10EF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - MSHERC.COM - GET VIDEO ADAPTER TYPE AND MODE
+	AH = EFh
+Return: DL = video adapter type
+	    00h original Hercules
+	    01h Hercules Plus	 (port 03BAh reads x001xxxxx)
+	    02h Hercules InColor (port 03BAh reads x101xxxxx)
+	    FFh not a Hercules-compatible card (port 03BAh bit 7 not pulsing)
+	DH = memory mode byte
+	    00h "half" mode
+	    01h "full" mode
+	    FFh not a Hercules-compatible card
+Program: MSHERC.COM/QBHERC.COM is a support program for the Microsoft Quick
+	  languages which makes their graphics libraries compatible with a
+	  Hercules card by adding video modes 08h and 88h, and supporting
+	  text in the new graphics modes.
+Notes:	while in mode 08h or 88h, INT 10 supports the Hercules card much like
+	  a CGA.
+	MSHERC performs an installation check by setting DL=FFh and testing
+	  whether it has been changed on return, which causes it to reinstall
+	  itself when no HGC is present (or HGC emulation has temporarily been
+	  disabled); a better installation check would be to use DX=80FFh and
+	  check whether DX has been changed
+	reportedly returns DH=00h on some not-entirely-Hercules-compatible
+	  cards
+Index:	installation check;MSHERC
+

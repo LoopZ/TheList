@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFC9
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER DESCRIPTION STRINGS
+	AH = E3h subfn C9h
+	DS:SI -> request buffer (see #02010)
+	ES:DI -> reply buffer (see #02011)
+Return: AL = status
+	    00h successful
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must be attached to the file server
+SeeAlso: AH=E3h/SF=11h,AH=E3h/SF=CDh,AH=E3h/SF=E8h,AX=F217h/SF=C9h
+
+Format of NetWare "Get File Server Description Strings" request buffer:
+Offset	Size	Description	(Table 02010)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	C9h (subfunction "Get File Server Description Strings")
+SeeAlso: #02011,#02225 at AX=F217h/SF=C9h
+
+Format of NetWare "Get File Server Description Strings" reply buffer:
+Offset	Size	Description	(Table 02011)
+ 00h	WORD	(call) 0200h (size of following results buffer)
+ 02h	var	ASCIZ name of company distributing this copy of NetWare
+	var	ASCIZ version and revision
+      9 BYTEs	ASCIZ revision date (mm/dd/yy)
+	var	ASCIZ copyright notice
+SeeAlso: #02010,#02225 at AX=F217h/SF=C9h
+

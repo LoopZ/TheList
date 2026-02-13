@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF0B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DELETE DIRECTORY
+	AX = F216h subfn 0Bh
+	CX = length of request buffer in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #01858 at AH=E2h/SF=0Bh)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=3Ah,AH=F2h"Novell",AH=E2h/SF=0Bh,AX=F216h/SF=0Ah
+

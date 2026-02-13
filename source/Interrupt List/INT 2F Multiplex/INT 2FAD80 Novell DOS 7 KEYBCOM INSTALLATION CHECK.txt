@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD80
+  Category: K 	keyboard enhancers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 2F u - Novell DOS 7 KEYB.COM - INSTALLATION CHECK
+	AX = AD80h
+Return: AX = FFFFh if installed
+	    CX = Novell DOS KEYB version number (CL = major, CH = minor)
+	    DX = current keyboard codepage
+	    ES:DI -> internal data and tables (ES=FFFEh if KEYB in HMA)
+	flags destroyed
+Notes:	versions: v2.08 (original ship 4/94), v2.09 (Update 10, 11/18/94),
+	  v2.10 (Update 12, 2/22/95), v2.11 (Update 13, 5/8/95),
+	  v2.12 (Update 14, 7/31/95)
+	although the installation check is via this INT 2F call, Novell DOS 7's
+	  KEYB has no known INT 2F entry point!	 Presumably, the handler is
+	  either coded in the kernel or reached via a FAR JMP from the kernel
+SeeAlso: AX=AD80h"MS-DOS"
+

@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F16
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - DIRECT MEMORY TRANSFER
+	AH = 16h
+	DX:SI -> transfer structure (see #03961)
+Return: AL = status
+	    00h successful
+	    0Ah source or destination out of range
+	    0Bh transfer kernel busy--try again
+Notes:	this call transfers memory contents directly between users; both source
+	  and destination user IDs may differ from the caller's ID
+	no segment wrap is allowed
+
+Format of Alloy transfer structure:
+Offset	Size	Description	(Table 03961)
+ 00h	WORD	bytes to transfer
+ 02h	BYTE	source ID
+		FEh = caller
+ 03h	DWORD	source address
+ 07h	BYTE	destination ID
+		FFh = all slaves except caller
+		FEh = caller
+ 08h	DWORD	destination address
+

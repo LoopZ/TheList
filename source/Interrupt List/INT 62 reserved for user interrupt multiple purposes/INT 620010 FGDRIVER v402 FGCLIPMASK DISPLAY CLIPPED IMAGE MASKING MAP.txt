@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620010
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_CLIPMASK" - DISPLAY CLIPPED IMAGE (MASKING MAP)
+	AX = 0010h
+	ES:BX -> array containing image stored as a masking map (see #03475)
+	CX = number of pixel runs in masking map
+	DX = width of masking map in pixels
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes and in native EGA and VGA graphics
+	  modes
+	The image is drawn with its lower left corner at the current graphics
+	  cursor position
+SeeAlso: AX=0011h,AX=001Fh,AX=0034h,AX=00A1h,AX=00A9h,AX=00C5h
+

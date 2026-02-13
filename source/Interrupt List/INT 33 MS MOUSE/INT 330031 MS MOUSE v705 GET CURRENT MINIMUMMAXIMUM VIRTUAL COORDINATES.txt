@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330031
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.05+ - GET CURRENT MINIMUM/MAXIMUM VIRTUAL COORDINATES
+	AX = 0031h
+Return: AX = virtual X minimum
+	BX = virtual Y minimum
+	CX = virtual X maximum
+	DX = virtual Y maximum
+Note:	the minimum and maximum values are those set by AX=0007h and AX=0008h;
+	  the default is minimum = 0 and maximum = absolute maximum
+	  (see AX=0026h)
+SeeAlso: AX=0007h,AX=0008h,AX=0010h,AX=0026h
+

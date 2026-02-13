@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLB4
+  Category: O 	other operating systems
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT E0 R - REAL/32 - "MP_FREE" - DEALLOCATE PHYSICAL MEMORY
+	CL = B4h
+	DX = number of the physical page to free
+Return: AX = status (0000h successful, FFFFh error)
+SeeAlso: INT E0/CL=B3h
+

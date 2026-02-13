@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C701
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TRANSACTION TRACKING SYSTEM - END TRANSACTION
+	AX = C701h
+Return: AL = status (00h,FDh-FFh) (see #01809)
+	    00h successful
+		CX:DX = transaction number
+	CF clear except when AL=FFh
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+SeeAlso: AX=C700h"NetWare",AX=C703h,AX=F222h/SF=02h
+
+(Table 01809)
+Values for NetWare TTS status:
+ 00h	successful
+ FDh	transaction tracking disabled
+ FEh	transaction ended records locked
+ FFh	no explicit transaction active
+

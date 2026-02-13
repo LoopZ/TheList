@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D042BL00
+  Category: - 	reserved (and not otherwise classified)
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 15 R - Intel Pentium Pro BIOS UPDATE - INSTALLATION CHECK
+	AX = D042h
+	BL = 00h
+Return: CF clear if successful
+	CF set on error
+	AH = status
+	    00h successful
+		EBX:ECX = signature "INTELPEP"
+		EDX = BIOS update loader version
+		SI = number of 2K update blocks which can be recorded in NVRAM
+	    86h not implemented
+	AL = OEM error (if AH is not 00h or 86h, otherwise undefined)
+	    00h successful
+Program: the Pentium Pro BIOS update allows the system BIOS or other software
+	  to install a microcode patch into the Pentium Pro processor
+Notes:	this API must be called from actual real mode, not V86 mode
+	at least 32K stack space must be available when this function is called
+SeeAlso: AX=D042h/BL=01h,AX=D042h/BL=02h,AX=D042h/BL=03h
+SeeAlso: @xxxxh:xxxxh"Intel BIOS Upgrade",MSR 00000079h
+

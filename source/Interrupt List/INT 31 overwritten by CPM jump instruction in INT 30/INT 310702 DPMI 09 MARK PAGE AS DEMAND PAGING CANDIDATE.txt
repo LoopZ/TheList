@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310702
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - MARK PAGE AS DEMAND PAGING CANDIDATE
+	AX = 0702h
+	BX:CX = starting linear address
+	SI:DI = number of bytes to mark as paging candidates
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8025h) (see #03143)
+Notes:	this function is advisory, and does not force immediate paging
+	partial pages will not be discarded
+SeeAlso: AX=0700h,AX=0703h
+

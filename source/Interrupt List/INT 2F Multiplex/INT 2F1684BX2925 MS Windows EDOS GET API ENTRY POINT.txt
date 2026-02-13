@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX2925
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - EDOS - GET API ENTRY POINT
+	AX = 1684h
+	BX = 2925h (virtual device ID for EDOS device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02699)
+		  0000h:0000h if the VxD does not support an API
+
+(Table 02699)
+Call EDOS entry point with:
+	AX = 0000h get EDOS version number
+	    Return: AH = major version
+		    AL = minor version
+	AX = 0001h display message
+	    CX = 0
+	    DX:BX -> ASCIZ Message
+	AX = 0002h get EDOS error coded
+	    Return: EAX = time in milliseconds that Windows has been running
+	AX = 0003h execute windows program
+	    Return: EAX = cumulative amount of time the virtual machine has
+			been active, in milliseconds
+	AX = 0008h get/set priority
+	    BX = 0000h??? foreground
+		 0001h background
+	    DI = 0000h get
+		 0001h set
+	    DX = priority setting
+	    Return: CX = foreground priority
+		    DX = background priority
+		    BX:AX = flags
+			00000001h exclusive ON
+			00000010h background ON
+		    SI = CPU percentage
+

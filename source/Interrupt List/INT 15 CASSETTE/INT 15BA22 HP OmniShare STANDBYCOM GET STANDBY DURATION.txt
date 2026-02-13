@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA22
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - STANDBY.COM - GET STANDBY DURATION
+	AX = BA22h
+Return: CF clear if successful
+	   BL = standy duration in minutes (01h-0Fh), or 00h if disabled
+	CF set on error (function not supported)
+Note:	The actual timeout with a GD6205 controller is ((N*64)-32) seconds,
+	  instead of (N*60) seconds as documented.
+SeeAlso: AX=BA20h,AX=BA21h
+

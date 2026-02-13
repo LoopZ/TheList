@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620027
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_ELLIPSEF" - DRAW FILLED ELLIPSE IN SCREEN SPACE
+	AX = 0027h
+	BX = horizontal semi-axis length in screen space units
+	CX = vertical semi-axis length in screen space units
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+	The ellipse is centered at the current graphics cursor position
+SeeAlso: AX=0006h,AX=000Eh,AX=0026h,AX=008Fh,AX=0092h
+

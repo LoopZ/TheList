@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4010
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - OS/2 v2.0+ - INSTALLATION CHECK / GET VERSION
+	AX = 4010h
+Return: AX = 4010h if OS/2 not installed
+	AX = 0000h for OS/2 Warp 3.0
+	BX = OS/2 version if installed
+Note:	OS/2 Warp 3.0
+SeeAlso: INT 21/AH=30h,INT 21/AX=3306h
+

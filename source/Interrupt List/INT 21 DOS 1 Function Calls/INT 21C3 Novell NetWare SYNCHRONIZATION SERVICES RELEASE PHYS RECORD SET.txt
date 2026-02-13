@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - RELEASE PHYS RECORD SET
+	AH = C3h
+Desc:	unlock all currently-locked physical records in the log table, but do
+	  not remove them from the table
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=BDh,AH=C0h,AH=C2h"NetWare",AH=C4h,AH=D3h
+

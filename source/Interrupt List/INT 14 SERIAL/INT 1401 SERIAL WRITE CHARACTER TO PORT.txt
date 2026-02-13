@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1401
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - SERIAL - WRITE CHARACTER TO PORT
+	AH = 01h
+	AL = character to write
+	DX = port number (00h-03h) (04h-43h for Digiboard XAPCM232.SYS)
+Return: AH bit 7 clear if successful
+	AH bit 7 set on error
+	AH bits 6-0 = port status (see #00304)
+Notes:	various network and serial-port drivers support the standard BIOS
+	  functions with interrupt-driven I/O instead of the BIOS's polled I/O
+	the 1993/04/08 Compaq system ROM uses only the low two bits of DX
+SeeAlso: AH=02h,AH=0Bh"FOSSIL",AX=8000h"ARTICOM",AH=89h,MEM 0040h:007Ch
+

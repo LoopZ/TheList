@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF32
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - CREATE BINDERY OBJECT
+	AH = E3h subfn 32h
+	DS:SI -> request buffer (see #01921)
+	ES:DI -> reply buffer (see #01922)
+Return: AL = status (see #01920)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=33h,AH=E3h/SF=34h,AH=E3h/SF=38h,AH=E3h/SF=39h
+SeeAlso: AX=F217h/SF=32h
+
+(Table 01920)
+Values for NetWare function status:
+ 00h	successful
+ 96h	server out of memory
+ EEh	object already exists
+ EFh	invalid name
+ F0h	wildcard not allowed
+ F1h	invalid bindery security level
+ F3h	not permitted to rename object
+ F4h	not permitted to delete objects
+ F5h	not permitted to create objects
+ FCh	no such object
+ FEh	server bindery locked
+ FFh	bindery failure
+SeeAlso: #01902,#01927
+
+Format of NetWare "Create Bindery Object" request buffer:
+Offset	Size	Description	(Table 01921)
+ 00h	WORD	length of following data (max 35h)
+ 02h	BYTE	32h (subfunction "Create Bindery Object")
+ 03h	BYTE	object flag (00h static, 01h dynamic)
+ 04h	BYTE	object security levels
+ 05h	WORD	(big-endian) type of object
+ 07h	BYTE	length of object's name
+ 08h  N BYTEs	object's name
+SeeAlso: #01922
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01922)
+ 00h	WORD	0000h (no data returned)
+SeeAlso: #01921,#01923,#01924
+

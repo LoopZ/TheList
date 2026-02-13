@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310504
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - ALLOCATE LINEAR MEMORY BLOCK
+	AX = 0504h
+	EBX = page-aligned linear address of memory block (00000000h if any
+	      address is acceptable)
+	ECX = size in bytes (nonzero)
+	EDX = flags
+	    bit 0: set to create committed pages instead of uncommitted pages
+	    bits 1-31 reserved (0)
+Return: CF clear if successful
+	    EBX = linear address of memory block
+	    ESI = memory block handle
+	CF set on error
+	    AX = error code (8001h,8012h-8014h,8016h,8021h,8025h)(see #03143)
+Note:	only supported by 32-bit DPMI hosts, but may be used by 16-bit clients
+SeeAlso: AX=0501h,AX=0505h
+

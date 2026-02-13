@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1FFC--BL01
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - SET ALARM STATUS
+	AH = FCh
+	BL = 01h
+	AL = new alarm state (00h = disabled, 01h = enabled)
+SeeAlso: AH=FCh/BL=00h,AH=FCh/BL=03h
+

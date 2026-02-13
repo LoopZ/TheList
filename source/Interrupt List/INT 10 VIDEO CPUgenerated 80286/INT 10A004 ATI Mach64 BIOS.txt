@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A004
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI Mach64 BIOS - ???
+	AX = A004h
+	BX = video mode??? (0000-00FFh)
+	DX = ??? (sent to some port [66ECh???] one bit at a time, high to low)
+	???
+Return: AH = status
+	    00h successful
+	    01h failed
+	???
+SeeAlso: AX=A000h,AX=A002h
+

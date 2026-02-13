@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660689
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - IBMSND driver, DIGPAK - REPORT SOUND DRIVER STATUS
+	AX = 0689h
+Return: AX = status
+	    0000h no sound playing
+	    0001h sound effect is currently playing
+	---DIGPAK---
+	BX = version number (v3.1+)
+	DX = looping status
+	    0000h no sound looping
+	    0001h sound effect is currently looping
+SeeAlso: AX=0688h,AX=068Bh,AX=068Ch
+Index:	version check;DIGPAK
+

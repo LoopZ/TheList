@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH07
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - SET RESUME CONDITION
+	AX = 5380h
+	BH = 07h
+	BL = resume condition (see #00482)
+Return: CF clear if successful
+Desc:	sets the value of 82360SL RESUME_MASK register
+SeeAlso: AX=5380h/BH=06h,AX=5380h/BH=7Fh
+

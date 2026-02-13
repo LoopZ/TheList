@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0037
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - ENABLE.VXD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0037h (virtual device ID for ENABLE device) (see #02677)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02676)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02677)
+Call Windows95 ENABLE.VXD entry point with:
+	AX = function number
+	    0000h get ENABLE version
+		Return:	CF clear
+			AX = version (AH = major, AL = minor)
+	    0001h
+		EBX = ???
+		Return: ???
+	    0002h get ???
+		Return: CF clear
+			DX:AX = ???
+	    0003h get ???
+		Return: CF clear
+			DX:AX = ???
+	    0004h ???
+		EBX = ???
+		ECX = ???
+		EDX = ???
+		Return: CF clear if successful
+			CF set on error
+	    else
+		Return: CF set
+SeeAlso: #02676,#02678
+

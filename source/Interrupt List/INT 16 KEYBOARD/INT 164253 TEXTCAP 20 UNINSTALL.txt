@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 164253
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - TEXTCAP 2.0 - UNINSTALL
+	AX = 4253h
+Return: AX = segment of resident code
+Notes:	the uninstall code does not check whether interrupt vectors have been
+	  chained by other programs
+	the caller must free the main memory block (using the returned segment)
+SeeAlso: AX=4252h,AX=4254h
+

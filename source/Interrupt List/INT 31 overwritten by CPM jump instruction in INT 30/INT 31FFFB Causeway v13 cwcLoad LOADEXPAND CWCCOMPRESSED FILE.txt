@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FFFB
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - Causeway v1.3 - "cwcLoad" - LOAD/EXPAND CWC-COMPRESSED FILE
+	AX = FFFBh
+	BX = source file handle
+	ES:EDI -> memory buffer into which to expand file
+Return: CF clear if successful
+	    ECX = expanded data length
+	CF set on error
+	    EAX = error code (01h file error, 02h bad data, 03h not CWC file)
+Note:	the provided file may consist of the concatenation of several CWC
+	  files; the one beginning at the current file position will be
+	  expanded
+SeeAlso: AX=FF2Bh
+

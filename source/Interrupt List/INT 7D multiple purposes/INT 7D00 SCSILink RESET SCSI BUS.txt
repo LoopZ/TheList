@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D00
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - RESET SCSI BUS
+	AH = 00h
+Program: SCSILink is a TSR by Cross Products Ltd which allows its PC-hosted
+	  cross assemblers and similar products to communicate with Cross
+	  Products hardware debuggers
+Desc:	reset all devices on the SCSI bus
+InstallCheck:	test for the signature "SCSILINK" immediately prior to the
+	  interrupt handler
+Index:	installation check;SCSILink
+

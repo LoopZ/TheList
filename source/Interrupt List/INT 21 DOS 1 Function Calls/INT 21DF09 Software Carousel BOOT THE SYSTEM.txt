@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF09
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - BOOT THE SYSTEM
+	AX = DF09h
+Return: AL = status
+	    00h Carousel not running
+	    FFh unsucessful
+		AH = error code (01h,03h) (see #01813)
+Note:	this function never returns if successful
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDF01
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Quarterdeck TELTSR.COM - CLOSE CONNECTION
+	AX = DF01h
+Return: nothing???
+Note:	invokes the DESQview/X socket API (see INT 15/AX=DE2Eh) function 0006h
+	  to close the socket corresponding to the file handle set with
+	  AX=DF02h; NOP if no file handle was ever set
+SeeAlso: AX=DF00h"TELTSR",AX=DF02h"TELTSR"
+

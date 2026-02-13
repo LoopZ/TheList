@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F122C
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ internal - GET DEVICE CHAIN
+	AX = 122Ch
+Return: BX:AX -> header of second device driver (NUL is first) in driver chain
+Note:	although this function exists in DR DOS 5.0 and Novell DOS 7, it
+	  always returns 0000h:0000h prior to Novell DOS 7 Update 15
+SeeAlso: INT 21/AH=52h
+

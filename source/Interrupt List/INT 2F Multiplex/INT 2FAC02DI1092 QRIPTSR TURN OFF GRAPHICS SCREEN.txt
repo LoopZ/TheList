@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC02DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - TURN OFF GRAPHICS SCREEN
+	AX = AC02h
+	DI = 1092h
+Return: nothing
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC03h,AX=ACF0h
+

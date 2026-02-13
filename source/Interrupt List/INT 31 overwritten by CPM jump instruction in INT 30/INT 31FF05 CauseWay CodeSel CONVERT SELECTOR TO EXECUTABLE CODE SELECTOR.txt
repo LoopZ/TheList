@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF05
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "CodeSel" - CONVERT SELECTOR TO EXECUTABLE CODE SELECTOR
+	AX = FF05h
+	BX = selector
+	CL = default operation size (00h = 16-bit, 01h = 32-bit)
+Return: CF clear if successful
+	CF set on error
+SeeAlso: AX=FF03h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F3C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - ENABLE/DISABLE AUTOBAUD DETECT
+	AH = 3Ch
+	AL = new state (00h disabled, 01h enabled)
+	DL = user number (FFh = caller)
+	DH = machine number for user
+Return: CF set if invalid user number
+Note:	only available to supervisors
+SeeAlso: AH=3Dh
+

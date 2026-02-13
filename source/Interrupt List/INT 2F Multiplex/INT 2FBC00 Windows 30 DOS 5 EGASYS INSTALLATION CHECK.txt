@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Windows 3.0, DOS 5+ EGA.SYS - INSTALLATION CHECK
+	AX = BC00h
+Return: AL = state
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+		BX = 5456h ("TV")
+Range:	AH=80h to AH=FFh, selected by commandline switch
+SeeAlso: AX=BC06h"EGA",INT 10/AH=FAh"EGA"
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--DX0008
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - GET LOADING MESSAGE
+	AH = 64h
+	DX = 0008h (function number)
+	CX = 636Ch (magic value, "cl")
+	BX = 0000h (indicates special request)
+Return: DS:DX -> '$'-terminated message "Loading.  Please wait."
+Notes:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
+	this function permits National Language Support for the initial message
+	  displayed while WinOS2 starts a full-screen session
+

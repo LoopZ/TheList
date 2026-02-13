@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310D01
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - FREE SHARED MEMORY
+	AX = 0D01h
+	SI:DI = shared memory block handle
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8023h) (see #03143)
+Notes:	handle becomes invalid after this call
+	DPMI maintains separate global and virtual machine use counts for each
+	  shared memory block; when the global use counts reaches zero, the
+	  block is finally destroyed
+SeeAlso: AX=0502h,AX=0D00h
+

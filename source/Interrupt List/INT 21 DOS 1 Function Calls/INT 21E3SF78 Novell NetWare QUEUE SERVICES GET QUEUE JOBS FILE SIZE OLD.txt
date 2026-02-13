@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF78
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - GET QUEUE JOB'S FILE SIZE (OLD)
+	AH = E3h subfn 78h
+	DS:SI -> request buffer (see #01996)
+	ES:DI -> reply buffer (see #01997)
+Return: AL = status (see also #01961)
+	    00h successful
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be on a workstation which is security-equivalent to a
+	  member of the queue's Q_USERS, Q_OPERATORS, or Q_SERVERS properties
+SeeAlso: AH=E3h/SF=68h,AH=E3h/SF=6Ch,AH=E3h/SF=71h,AX=F217h/SF=78h
+
+Format of NetWare "Get Queue Job's File Size (old)" request buffer:
+Offset	Size	Description	(Table 01996)
+ 00h	WORD	0007h (length of following data)
+ 02h	BYTE	78h (subfunction "Get Queue Job's File Size (old)")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	WORD	(big-endian) job number
+SeeAlso: #01997,#02204 at AX=F217h/SF=78h
+
+Format of NetWare "Get Queue Job's File Size (old)" reply buffer:
+Offset	Size	Description	(Table 01997)
+ 00h	WORD	(call) 000Ah (size of following results)
+ 02h	DWORD	(big-endian) object ID of queue
+ 06h	WORD	(big-endian) job number
+ 08h	DWORD	(big-endian) size of job file in bytes
+SeeAlso: #01996,#02204 at AX=F217h/SF=78h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1573
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET ORACLE GT POWER LEVEL
+	AH = 73h
+	AL = drive (0: A:, 1: B:)
+Return: AH = status
+	    00h successful
+	    FFh Oracle GT drive not connected
+	AL = power level in percent of maximum (0..100)
+Desc:	get the power remaining in the Oracle GT batteries
+SeeAlso: AH=61h
+

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6803--SF2A00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - CHANGE LOGICAL UNIT
+	AH = 03h subfn 2A00h
+	DS:DX -> control block (see #03701)
+Return: control block updated
+
+Format of APPC/PC "Change Logical Unit" control block:
+Offset	Size	Description	(Table 03701)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	2A00h (verb "Change Logical Unit")
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h	WORD	00h
+ 1Ah  8 BYTEs	(big-endian) logical unit ID
+ 22h	DWORD	pointer to CREATE_TP_EXIT routine
+		00000000h queue ALLOCATEs
+		FFFFFFFFh reject incoming ALLOCATEs
+ 26h	DWORD	00000000h
+ 2Ah	DWORD	pointer to SYSTEM_LOG_EXIT routine, FFFFFFFFh= don't log errors
+ 2Eh	DWORD	00000000h
+ 32h	BYTE	maximum TPs
+ 33h	BYTE	00h stop QUEUE_ALLOCATEs
+		01h resume QUEUE_ALLOCATEs
+ 34h	DWORD	pointer to LU_LU_PASSWORD_EXIT routine, FFFFFFFFh = no exit
+ 38h	DWORD	00000000h
+

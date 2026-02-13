@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F41
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - LOCK SEMAPHORE FOR USER
+	AH = 41h
+	AL = user ID
+	DS:DX -> ASCIZ semaphore name
+Return: AL = status (see #03966)
+SeeAlso: AH=00h,AH=42h"MW386"
+

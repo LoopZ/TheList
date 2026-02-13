@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET RETURN CODE (ERRORLEVEL)
+	AH = 4Dh
+Return: AH = termination type
+	    00h normal (INT 20,INT 21/AH=00h, or INT 21/AH=4Ch)
+	    01h control-C abort
+	    02h critical error abort
+	    03h terminate and stay resident (INT 21/AH=31h or INT 27)
+	AL = return code
+	CF clear
+Notes:	the word in which DOS stores the return code is cleared after being
+	  read by this function, so the return code can only be retrieved once
+	COMMAND.COM stores the return code of the last external command it
+	  executed as ERRORLEVEL
+	this call should not be used if the child was started with AX=4B04h;
+	  use AH=8Ah instead
+	the following sequence will close a Virtual DOS Machine under OS/2 2.0
+	  through OS/2 Merlin (but may change in the future):
+	    MOV	AH,4Dh
+	    INT	21h
+	    HLT
+	    DB	02h,0FDh
+	  This sequence is the only way to close a specific VDM which was
+	  booted from floppy or a disk image.
+SeeAlso: AH=4Bh,AH=4Ch,AH=8Ah
+

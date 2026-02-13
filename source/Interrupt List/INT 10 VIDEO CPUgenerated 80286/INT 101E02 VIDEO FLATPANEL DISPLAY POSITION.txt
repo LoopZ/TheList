@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101E02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - FLAT-PANEL - DISPLAY POSITION
+	AX = 1E02h
+	BH = function
+	    bit 7: =1 set display position, =0 query position
+	    bits 6-0: reserved (0)
+	---if BH bit 7 set---
+	BL = new position setting (see #00055)
+Return: AL = 1Eh if function supported
+	    BH = results
+		bit 7: query/set (copied from input)
+		bits 6-4: reserved (0)
+		bit 3: positioning to top is supported by hardware
+		bit 2: positioning to center is supported by hardware
+		bit 1: positioning to bottom is supported by hardware
+		bit 0: set operation was successful (always clear on get)
+	    BL = active position setting (see #00055)
+SeeAlso: AX=1E00h,AX=1E01h
+
+Bitfields for Flat-Panel position setting:
+Bit(s)	Description	(Table 00055)
+ 7-2	reserved (0)
+ 1-0	position
+	00 center
+	01 top
+	10 bottom
+	11 reserved
+SeeAlso: #00054,#00056
+

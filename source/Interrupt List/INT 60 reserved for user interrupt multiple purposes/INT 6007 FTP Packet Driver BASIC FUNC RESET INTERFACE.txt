@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6007
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - BASIC FUNC - RESET INTERFACE
+	AH = 07h
+	BX = handle (optional for v1.10+)
+Return: CF set on error
+	    DH = error code (see #03305)
+	CF clear if successful
+

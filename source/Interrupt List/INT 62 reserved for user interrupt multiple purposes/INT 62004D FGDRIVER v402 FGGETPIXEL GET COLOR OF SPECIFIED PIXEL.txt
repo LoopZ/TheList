@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62004D
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETPIXEL" - GET COLOR OF SPECIFIED PIXEL
+	AX = 004Dh
+	BX = column in screen space
+	CX = row in screen space
+Return: AX = color value of pixel (0 to num_colors-1)
+	    0000h in text modes
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=003Ah,AX=003Dh,AX=008Fh,AX=0090h
+

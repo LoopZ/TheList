@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155313
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.2 - ENABLE/DISABLE TIMER-BASED REQUESTS
+	AX = 5313h
+	BX = device ID (see #00474)
+	    0000h (APM BIOS)
+	    other reserved
+	CL = function
+	    00h disable timer-based requests
+	    01h enable timer-based requests
+	    02h get timer-based requests status
+Return: CF clear if successful
+	    CX = timer-based requests status (0000h disabled, 0001h enabled)
+	CF set on error
+	    AH = error code (03h,09h,0Ah,0Bh,86h) (see #00473)
+Notes:	this function is supported via the INT 15, 16-bit protected mode, and
+	  32-bit protected mode interfaces
+	some BIOSes set AH on return even when successful
+SeeAlso: AX=5300h,AX=5310h,AX=5311h,AX=5312h
+

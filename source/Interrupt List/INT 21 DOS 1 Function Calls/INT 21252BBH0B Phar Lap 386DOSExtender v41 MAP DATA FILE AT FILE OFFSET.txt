@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21252BBH0B
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender v4.1+ - MAP DATA FILE AT FILE OFFSET
+	AX = 252Bh
+	BH = 0Bh
+	BL = subfunction
+	    00h by linear address
+		ECX = linear address at which to map data file
+	    01h by logical address
+		ES:ECX = logical address at which to map data file
+	EDX = number of bytes to map
+	DS:ESI -> mapping structure (see #01373)
+	DS:EDI -> ASCIZ filename
+Return: CF clear if successful
+	CF set on error
+	    EAX = error code
+		0002h file error
+		    ECX = phase (01h opening file, 02h seeking, 03h reading)
+		    EDX = error code returned by DOS
+		0009h invalid address
+		0081h invalid parameters or 386|VMM not present
+		0086h all 386|VMM file handles already in use
+SeeAlso: AX=252Bh/BH=03h,AX=252Bh/BH=09h
+
+Format of Phar Lap mapping structure:
+Offset	Size	Description	(Table 01373)
+ 00h	DWORD	starting file offset to be mapped
+ 04h	DWORD	DOS file access and sharing modes (see #01403 at INT 21/AH=3Dh)
+

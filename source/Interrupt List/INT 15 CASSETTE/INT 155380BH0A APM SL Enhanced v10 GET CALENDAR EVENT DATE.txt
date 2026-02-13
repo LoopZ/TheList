@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH0A
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - GET CALENDAR EVENT DATE
+	AX = 5380h
+	BH = 0Ah
+Return: CF clear if successful
+	    SI = century
+	    DI = year
+	    CH = month
+	    CL = day
+	CF set on error
+	    AH = error code (see #00483)
+Desc:	reads calendar event date from Extended CMOS ram
+SeeAlso: AX=5380h/BH=08h,AX=5380h/BH=0Bh,AX=5380h/BH=0Ch,AX=5380h/BH=7Fh
+

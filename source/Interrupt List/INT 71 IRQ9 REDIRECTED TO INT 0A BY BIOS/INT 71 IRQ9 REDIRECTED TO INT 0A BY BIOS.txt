@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 71
+  Category: H 	hardware
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 71 C - IRQ9 - REDIRECTED TO INT 0A BY BIOS
+Notes:	may be masked by setting bit 1 on I/O port A1h
+	the default BIOS handler invokes INT 0A for compatibility, since the
+	  pin for IRQ2 on the PC expansion bus became the pin for IRQ9 on the
+	  AT expansion bus.
+	under DESQview, only the INT 15h vector and BASIC segment address (the
+	  word at 0000h:0510h) may be assumed to be valid for the handler's
+	  process
+SeeAlso: INT 0A"IRQ2",INT 59"IRQ9",MEM 0040h:006Bh
+

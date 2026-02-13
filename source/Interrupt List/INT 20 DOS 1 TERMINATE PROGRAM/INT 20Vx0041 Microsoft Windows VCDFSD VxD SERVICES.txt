@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0041
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VCDFSD - VxD SERVICES
+	VxD = 0041h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01307)
+Values for VCDFSD (VxD ID 0041h) service number:
+ 00h	get VCDFSD version???
+ 01h	???
+ 02h	???
+ 03h	???
+SeeAlso: #01306,#01308
+

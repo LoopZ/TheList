@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16F400
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Compaq Systempro and higher - CACHE CONTROLLER STATUS
+	AX = F400h
+Return: AH = E2h (*)
+	AL = status
+	    00h not present
+	    01h enabled
+	    02h disabled
+	CX = cache memory size
+	    bit 15:	cache size information is NOT valid
+	    bits 14-0:	cache memory size in kilobytes
+	DH = cache write technology
+	    bit 7:	cache write information is NOT valid
+	    bits 6-1:	reserved (0)
+	    bit 0:	0 = Write-through caching
+			1 = Write-back caching
+	DL = cache type
+	    bit 7:	cache type information is NOT valid
+	    bits 6-1:	reserved (0)
+	    bit 0:	0 = Direct mapped
+			1 = Two-way set-associative
+Notes:	also supported by some versions of AMI BIOS dated June 1992 or later
+	many (most) BIOSes return a modified AH when called for an unsupported
+	  or non-keyboard function (typically, the highest supported keyboard
+	  function [normally 12h] is subtracted from the original AH)
+SeeAlso: AX=F401h,AX=F402h
+

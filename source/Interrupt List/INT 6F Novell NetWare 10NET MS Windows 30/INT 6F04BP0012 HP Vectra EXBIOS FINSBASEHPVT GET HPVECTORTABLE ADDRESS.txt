@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F04--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_INS_BASEHPVT" - GET HP_VECTOR_TABLE ADDRESS
+	AH = 04h
+	BP = 0012h (driver ID for V_SYSTEM)
+Return: AH = status (see #03744)
+	ES = segment of HP_VECTOR_TABLE (see also AH=00h"HP Vectra")
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AH=06h"F_INS_XCHGFIX",AH=08h"F_INS_XCHGRSVD"
+

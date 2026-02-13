@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F02BL01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - DISPLAY OUTPUT CONTROL - GET DISPLAY OUTPUT
+	AX = 7F02h
+	BL = 01h
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		    BX = display output setting (see #00207)
+		    CX = displays attached (see #00208)
+		01h failed
+SeeAlso: AX=7F00h"SOLLEX",AX=7F02h/BL=00h
+
+Bitfields for SOLLEX SuperVGA displays attached:
+Bit(s)	Description	(Table 00208)
+ 0	PS/2 display on analog output
+ 1	multi-frequency monitor on analog output
+ 2	LCD panel attached
+ 3	plasma/electroluminescent panel attached
+ 4	multi-frequency monitor on digital output
+ 5	Enhanced Color Display attached to digital outpt
+ 6	alternate display
+ 15-7	reserved
+

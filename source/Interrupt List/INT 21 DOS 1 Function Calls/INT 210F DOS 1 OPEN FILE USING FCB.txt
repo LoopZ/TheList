@@ -1,0 +1,138 @@
+--------------------------------------------------------------------------------
+ Unique ID: 210F
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - OPEN FILE USING FCB
+	AH = 0Fh
+	DS:DX -> unopened File Control Block (see #01345,#01346)
+Return: AL = status
+	    00h successful
+	    FFh file not found or access denied
+Notes:	(DOS 3.1+) file opened for read/write in compatibility mode
+	an unopened FCB has the drive, filename, and extension fields filled
+	  in and all other bytes cleared
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+	DR DOS checks password attached with AX=4303h
+	(FAT32 drive) this function will only succeed for creating a volume
+	  label; FAT32 does not support FCBs for file I/O
+BUG:	APPEND for DOS 3.3+ corrupts DX if the file is not found
+SeeAlso: AH=10h,AH=16h,AH=3Dh,AX=4303h
+
+Format of File Control Block:
+Offset	Size	Description	(Table 01345)
+ 00h	BYTE	drive number (0 = default, 1 = A, etc)
+		FFh is not allowed (signals extended FCB, see #01346)
+ 01h  8 BYTEs	blank-padded file name
+ 09h  3 BYTEs	blank-padded file extension
+ 0Ch	WORD	current block number
+ 0Eh	WORD	logical record size
+ 10h	DWORD	file size
+ 14h	WORD	date of last write (see #01666 at AX=5700h)
+ 16h	WORD	time of last write (see #01665 at AX=5700h) (DOS 1.1+)
+ 18h  8 BYTEs	reserved (see #01347,#01348,#01349,#01350,#01351)
+ 20h	BYTE	record within current block
+ 21h	DWORD	random access record number (if record size is > 64 bytes, high
+		  byte is omitted)
+SeeAlso: #01346
+
+Format of Extended File Control Block (XFCB):
+Offset	Size	Description	(Table 01346)
+ 00h	BYTE	FFh signature for extended FCB
+ 01h  5 BYTEs	reserved
+ 06h	BYTE	file attribute if extended FCB
+ 07h 36 BYTEs	standard FCB (all offsets are shifted by seven bytes)
+SeeAlso: #01246
+
+Format of FCB reserved field for DOS 1.0:
+Offset	Size	Description	(Table 01347)
+ 16h	WORD	location in directory (if high byte = FFh, low byte is device
+		  ID)
+ 18h	WORD	number of first cluster in file
+ 1Ah	WORD	current absolute cluster number on disk
+ 1Ch	WORD	current relative cluster number within file
+		(0 = first cluster of file, 1 = second cluster, etc.)
+ 1Eh	BYTE	dirty flag (00h = not dirty)
+ 1Fh	BYTE	unused
+
+Format of FCB reserved field for DOS 1.10-1.25:
+Offset	Size	Description	(Table 01348)
+ 18h	BYTE	bit 7: set if logical device
+		bit 6: not dirty
+		bits 5-0: disk number or logical device ID
+ 19h	WORD	starting cluster number on disk
+ 1Bh	WORD	current absolute cluster number on disk
+ 1Dh	WORD	current relative cluster number within file
+ 1Fh	BYTE	unused
+
+Format of FCB reserved field for DOS 2.x:
+Offset	Size	Description	(Table 01349)
+ 18h	BYTE	bit 7: set if logical device
+		bit 6: set if open???
+		bits 5-0: ???
+ 19h	WORD	starting cluster number on disk
+ 1Bh	WORD	???
+ 1Dh	BYTE	???
+ 1Eh	BYTE	???
+ 1Fh	BYTE	???
+
+Format of FCB reserved field for DOS 3.x:
+Offset	Size	Description	(Table 01350)
+ 18h	BYTE	number of system file table entry for file
+ 19h	BYTE	attributes
+		bits 7,6: 00 = SHARE.EXE not loaded, disk file
+			  01 = SHARE.EXE not loaded, character device
+			  10 = SHARE.EXE loaded, remote file
+			  11 = SHARE.EXE loaded, local file or device
+		bits 5-0: low six bits of device attribute word
+---SHARE.EXE loaded, local file---
+ 1Ah	WORD	starting cluster of file on disk
+ 1Ch	WORD	(DOS 3.x) offset within SHARE of sharing record
+		  (see #01637 at AH=52h)
+ 1Eh	BYTE	file attribute
+ 1Fh	BYTE	???
+---SHARE.EXE loaded, remote file---
+ 1Ah	WORD	number of sector containing directory entry (see #01352)
+ 1Ch	WORD	relative cluster within file of last cluster accessed
+ 1Eh	BYTE	absolute cluster number of last cluster accessed
+ 1Fh	BYTE	???
+---SHARE.EXE not loaded---
+ 1Ah	BYTE	(low byte of device attribute word AND 0Ch) OR open mode
+ 1Bh	WORD	starting cluster of file
+ 1Dh	WORD	number of sector containing directory entry (see #01352)
+ 1Fh	BYTE	number of directory entry within sector
+Note:	if FCB opened on character device, DWORD at 1Ah is set to the address
+	  of the device driver header, then the BYTE at 1Ah is overwritten.
+SeeAlso: #01646
+
+Format of FCB reserved field for DOS 5.0:
+Offset	Size	Description	(Table 01351)
+ 18h	BYTE	number of system file table entry for file
+ 19h	BYTE	attributes
+		bits 7,6: 00 = SHARE.EXE not loaded, disk file
+			  01 = SHARE.EXE not loaded, character device
+			  10 = SHARE.EXE loaded, remote file
+			  11 = SHARE.EXE loaded, local file or device
+		bits 5-0: low six bits of device attribute word
+---SHARE.EXE loaded, local file---
+ 1Ah	WORD	starting cluster of file on disk
+ 1Ch	WORD	unique sequence number of sharing record
+ 1Eh	BYTE	file attributes
+ 1Fh	BYTE	unused???
+---SHARE.EXE loaded, remote file---
+ 1Ah	WORD	network handle
+ 1Ch	DWORD	network ID
+---SHARE not loaded, local device---
+ 1Ah	DWORD	pointer to device driver header (see #01646)
+ 1Eh  2 BYTEs	unused???
+---SHARE not loaded, local file---
+ 1Ah	BYTE	extra info
+		bit 7: read-only attribute from SFT
+		bit 6: archive attribute from SFT
+		bits 5-0: high bits of sector number
+ 1Bh	WORD	starting cluster of file
+ 1Dh	WORD	low word of sector number containing directory entry
+		(see #01352)
+ 1Fh	BYTE	number of directory entry within sector
+

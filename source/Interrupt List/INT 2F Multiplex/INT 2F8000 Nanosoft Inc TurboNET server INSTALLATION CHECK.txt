@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Nanosoft, Inc. TurboNET server - INSTALLATION CHECK
+	AX = 8000h
+Return: AL = FFh if installed
+	    BX = CS of resident code
+	    CX = ??? (03FCh)
+Program: TurboNET is a NetBIOS-based file redirector and server; a
+	  demonstration version may be downloaded from Nanosoft's BBS
+SeeAlso: AX=8100h
+

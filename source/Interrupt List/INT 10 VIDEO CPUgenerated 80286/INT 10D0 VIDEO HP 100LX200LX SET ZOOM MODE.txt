@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10D0
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 10 U - VIDEO - HP 100LX/200LX - SET ZOOM MODE
+	AH = D0h
+	AL = zoom mode
+	    02h 80x25 mono
+	    03h 80x25 color
+	    80h 64x18 mono
+	    81h 64x18 color
+	    82h 40x25 mono
+	    83h 40x25 color
+	    84h 40x16 mono
+	    85h 40x16 color
+Return: nothing
+Note:	zoom mode can only be changed within zoom modes of the same color
+	  scheme; if needed, set to mono/color with AH=00h,AL=02h/03h; with
+	  mono video modes AL=07h or AL=21h only 80x25 and 40x16 will work
+	the current zoom mode is stored in the BIOS data area at 0040h:009Fh
+SeeAlso: AH=D1h,AH=D4h
+

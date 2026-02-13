@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A00
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - GET SYSTEM TIME
+	AH = 00h
+Return: CX:DX = number of clock ticks since midnight
+	AL = midnight flag, nonzero if midnight passed since time last read
+Notes:	there are approximately 18.2 clock ticks per second, 1800B0h per 24 hrs
+	  (except on Tandy 2000, where the clock runs at 20 ticks per second)
+	IBM and many clone BIOSes set the flag for AL rather than incrementing
+	  it, leading to loss of a day if two consecutive midnights pass
+	  without a request for the time (e.g. if the system is on but idle)
+	since the midnight flag is cleared, if an application calls this
+	  function after midnight before DOS does, DOS will not receive the
+	  midnight flag and will fail to advance the date
+	Modern releases of MS-DOS/PC DOS (5.0+???) assume that AL is a day
+	  rollover counter rather than a flag, as expected by older releases.
+	  DOS 5 - 7.10 (Windows 98 SE) provide an undocumented CONFIG.SYS
+	  SWITCHES=/T option to force the old behaviour of the day advancing
+	  code, that is using a flag instead of a counter.
+	DR DOS 3.31 - DR-DOS 7.03 handle AL as a flag.
+SeeAlso: AH=01h,AH=02h,INT 21/AH=2Ch,INT 55"Tandy 2000",INT 4E/AH=02h"TI"
+SeeAlso: INT 62/AX=0099h,MEM 0040h:006Ch,MEM 0040h:0070h
+

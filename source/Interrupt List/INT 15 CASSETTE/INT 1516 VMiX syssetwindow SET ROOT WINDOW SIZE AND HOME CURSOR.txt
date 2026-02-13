@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1516
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_setwindow" - SET ROOT WINDOW SIZE AND HOME CURSOR
+	AH = 16h
+	STACK:	DWORD	pointer to I/O Request Packet
+		WORD	top left corner of window (high byte = row, low = col)
+		WORD	bottom right corner of window (high = row, low = col)
+Return: AX = status (SYS_OK or SYS_ERROR)
+SeeAlso: AH=14h"VMiX",AH=17h"VMiX"
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7814
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - TARGA.DEV - SEND SCSI COMMAND AND DATA (DMA)
+	AH = 14h
+	DS:SI -> command bytes (see #03808)
+	ES:BX -> data storage area
+	DX:CX = number of data bytes to transfer
+Return: AH = SCSI status byte (if early return mode is clear)
+	CF clear if successful
+	    AL = SCSI message byte (if early return mode is clear)
+	CF set on error
+	    AL = error code (see #03786)
+Note:	this command sends data using DMA
+SeeAlso: AH=12h,AH=13h
+
+Format of TARGA.DEV SCSI Command:
+Offset	Size	Description	(Table 03808)
+ 00h	BYTE	length of command
+ 01h	???	command bytes
+

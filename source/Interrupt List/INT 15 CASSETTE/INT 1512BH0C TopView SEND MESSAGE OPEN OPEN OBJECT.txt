@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0C
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "OPEN" - OPEN OBJECT
+	AH = 12h
+	BH = 0Ch
+	BL = object
+	    00h handle is DWORD on top of stack
+		window:	  fill with given character from scroll origin to end
+		keyboard: attach to a window
+		timer:	  open
+		pointer:  start taking input for window
+		panel:	  associate with a panel file
+	    01h fill task's default window with given char from scrl org to end
+	    02h open given task's mailbox for input (task's handle on stack)
+	    03h open current task's mailbox
+	    04h attach a KEYBOARD to a window (handle on top of stack)
+	    05h attach task's default KEYBOARD to a window
+	    06h open a task's OBJECTQ (task's handle on top of stack)
+	    07h open current task's OBJECTQ
+	    0Ch (DV 2.26+) fill def window of task owning handle on top of stck
+	    0Dh (DV 2.26+) fill default window of parent of current task
+	 STACK: (if window)   DWORD character to fill with
+		(if keyboard) DWORD handle of window to attach to
+		(if pointer)  DWORD handle of window to attach to
+		(if panel)    DWORD length of filename or resident panel
+			      DWORD address of filename or resident panel
+		(otherwise)   nothing
+Return: STACK popped
+Notes:	if first byte of panel file name is 1Bh, then the "name" IS a panel
+	if first two bytes of panel file "name" are C0hC3h, then the "name" IS
+	  the panel file
+	result code of open may be retrieved with STATUS message
+	logical cursor is left at scroll origin after filling window
+	the task opening a mailbox becomes its owner, and the only task allowed
+	  to read the mailbox
+	messages are only sent to a pointer object when the mouse is positioned
+	  in the window to which the pointer has been attached
+	there is no need to explicitly open a timer object, as ADDTO and WRITE
+	  messages automatically open the timer
+SeeAlso: AH=12h/BH=0Dh,AH=12h/BH=14h"LOCK"
+

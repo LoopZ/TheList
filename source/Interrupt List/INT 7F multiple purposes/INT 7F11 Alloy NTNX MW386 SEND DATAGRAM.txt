@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F11
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - SEND DATAGRAM
+	AH = 11h
+	DX:SI -> request block (see #03953)
+Return: AL = status (see #03952)
+Note:	if wildcard channel FFh used, actual channel number will be filled in
+SeeAlso: AH=12h
+
+(Table 03952)
+Values for Alloy function status:
+ 00h	successful
+ 01h	busy
+ 02h	channel range error (not 00h-3Fh)
+ 03h	invalid subfunction
+ 0Ah	packet too large (or <2 bytes if NTNX)
+ 0Bh	can't send packet to itself
+ 0Ch	invalid number of destinations
+ 0Dh	destination channel number out of range
+ 0Eh	destination user is busy
+ 0Fh	destination user has locked channel
+ 10h	channel not open
+ 11h	no datagram server on destination (NTNX)
+
+Format of Alloy request block:
+Offset	Size	Description	(Table 03953)
+ 00h	DWORD	pointer to packet to send
+ 04h	WORD	packet size in bytes (1-4096)
+ 06h	BYTE	number of destinations for packet (max 1Fh)
+ 07h 31 BYTEs	destination user IDs (FFh = broadcast to all except sender)
+ 26h 31 BYTEs	destination channels (FFh = first available channel)
+ 45h 31 BYTEs	return destination statuses
+

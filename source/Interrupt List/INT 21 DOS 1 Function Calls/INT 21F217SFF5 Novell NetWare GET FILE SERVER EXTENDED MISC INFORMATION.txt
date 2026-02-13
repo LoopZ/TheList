@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFF5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET FILE SERVER EXTENDED MISC INFORMATION
+	AX = F217h subfn F5h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02273)
+	ES:DI -> reply buffer (see #02274)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=11h,AX=F217h/SF=C9h,AX=F217h/SF=E8h
+
+Format of NetWare "Get File Server Extended Misc Information" request packet:
+Offset	Size	Description	(Table 02273)
+ 00h	WORD	length of following data
+ 02h	BYTE	F5h (subfunction "Get File Server Extended Misc Information")
+ 03h	BYTE	length of reply buffer
+SeeAlso: #02274
+
+Format of NetWare "Get File Server Extended Misc Information" reply packet:
+Offset	Size	Description	(Table 02274)
+ 00h	DWORD	system interval marker
+		(up-time in clock ticks, wraps to 0 on reaching FFFFFFFFh)
+ 04h	BYTE	processor type
+		00h Motorola 680x0
+		01h Intel 8088/8086
+		02h 80286
+ 05h	BYTE	reserved for future use
+ 06h	BYTE	number of service processes
+ 07h	BYTE	server utilization percentage
+ 08h	WORD	maximum bindery objects set by configuration
+ 0Ah	WORD	actual maximum bindery objects
+ 0Ch	WORD	current number of bindery objects
+ 0Eh	WORD	(big-endian) total server memory
+ 10h	WORD	(big-endian) wasted server memory
+ 12h	WORD	(big-endian) number of dynamic memory areas
+ 14h	DWORD	(big-endian) total space in dynamic memory area
+ 18h	DWORD	maximum dynamic space used
+ 1Ch	DWORD	dynamic space currently used
+SeeAlso: #02273
+

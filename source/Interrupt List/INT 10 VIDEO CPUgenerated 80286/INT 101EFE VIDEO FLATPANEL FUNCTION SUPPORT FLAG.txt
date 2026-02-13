@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101EFE
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - FLAT-PANEL - FUNCTION SUPPORT FLAG
+	AX = 1EFEh
+	ES:DI -> DWORD buffer for bitmap of supported functions
+		(set to all zeros before calling)
+Return: ES:DI buffer updated with mask of supported functions
+Index:	installation check;flat-panel display support
+SeeAlso: AX=1E00h,AX=1E06h
+

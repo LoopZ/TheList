@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D4
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - GET PHYSICAL FIXED DISK DRIVE NUMBER (SELECTABLE BOOT)
+	AH = D4h
+	DL = logical fixed disk drive number
+Return: AH = return code (see #00537)
+	CF set on error
+	CF clear on success
+	    AL = physical fixed disk drive number
+
+(Table 00537)
+Values for return code:
+ 00h	success
+ 01h	specified logical drive number is invalid
+ 80h	function not supported (on PCjr and PC)
+ 86h	function not supported
+

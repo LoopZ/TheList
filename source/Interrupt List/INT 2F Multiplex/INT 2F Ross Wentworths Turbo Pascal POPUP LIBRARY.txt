@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Ross Wentworth's Turbo Pascal POPUP LIBRARY
+	AH = programmer-selected multiplex number
+	AL = function
+	    00h installation check
+		Return: AL = FFh if installed
+	    01h get TSR interrupt vectors
+		Return: DX:AX -> vector table (see #02587)
+	    02h get TSR code segment
+		Return: AX = code segment for all interrupt handlers
+	    03h call user exit routine and release TSR's memory
+	    04h get signature string
+		Return: DX:AX -> counted string containing signature
+	    05h get TSR's INT 2F handler
+		Return: DX:AX -> INT 2F handler
+	    06h enable/disable TSR
+		BL = new state (00h disabled, 01h enabled)
+	    07h activate TSR (popup if not disabled)
+	    08h get hotkeys
+		BL = which hotkey (00h = hotkey 1, 01h = hotkey 2)
+		Return: AX = hotkey (AH = keyflags, AL = scancode)
+	    09h set hotkey
+		BL = which hotkey (00h = hotkey 1, 01h = hotkey 2)
+		CX = new hotkey (CH = keyflags, CL = scancode)
+	    0Ah-1Fh reserved
+Index:	installation check;Ross Wentworth POPUP library
+Index:	hotkeys;Ross Wentworth POPUP library
+
+Format of POPUP vector table entry:
+Offset	Size	Description	(Table 02587)
+ 00h	BYTE	vector number (00h = end of table)
+ 01h	DWORD	original vector
+ 05h	WORD	offset of interrupt handler in TSR's code segment
+

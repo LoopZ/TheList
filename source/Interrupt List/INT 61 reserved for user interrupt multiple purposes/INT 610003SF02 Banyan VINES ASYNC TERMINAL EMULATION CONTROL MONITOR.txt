@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - "CONTROL MONITOR"
+	AX = 0003h subfn 02h
+	DS:BX -> argument block (see #03376)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=03h,AX=0003h/SF=05h
+
+Format of VINES argument block for Function 0003h subfunction 02h:
+Offset	Size	Description	(Table 03376)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	02h (function "control monitor")
+ 02h	BYTE	display flag
+		00h don't display data received from host
+		01h display data
+

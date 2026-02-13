@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0002C
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "GET_ASHELL_STATUS" - FIND OUT WHAT HAPPENED TO SHELL
+	AX = 002Ch
+	BX = shell ID
+Return: AX = status
+	    0000h missed completely
+	    0001h hit a wall
+	    0002h hit a robot within a 50-square radius
+	    0003h hit a robot within a 25-square radius
+	    0004h hit a robot within a 5-square radius
+	    0005h shell not known (too old or not yet fired)
+	    0006h shell still in flight
+SeeAlso: AX=0003h
+

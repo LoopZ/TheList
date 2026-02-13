@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6802--SF0800
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - CONNECTION CONTROL - GET CONVERSATION TYPE
+	AH = 02h subfn 0800h
+	DS:DX -> control block (see #03688)
+Return: control block updated
+SeeAlso: AH=02h/SF=0300h
+
+Format of APPC/PC "Get_Type" control block:
+Offset	Size	Description	(Table 03688)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	0800h (verb "Get_Type")
+ 0Eh	BYTE	1 if MC_ (mapped conversation) form of verb
+		0 if basic verb
+ 0Fh  5 BYTEs	reserved (0)
+ 14h	WORD	(big-endian) primary return code (see #03681)
+ 16h	DWORD	(big-endian) error code (see #03682)
+ 1Ah  8 BYTEs	(big-endian) TP_ID
+ 22h	DWORD	(big-endian) conversation ID
+ 26h	BYTE	(ret) type (0=basic conversation, 1=mapped conversation)
+

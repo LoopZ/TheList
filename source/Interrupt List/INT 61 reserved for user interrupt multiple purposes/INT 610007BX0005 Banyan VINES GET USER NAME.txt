@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0005
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET USER NAME
+	AX = 0007h
+	BX = 0005h
+	DS:DX -> 64-byte buffer for user's StreetTalk name
+Return: AX = status (see also #03432)
+	    0000h successful
+	    0001h network software not installed or incompatible
+Note:	if no user logged in, first byte of returned name will be 00h
+SeeAlso: AX=0007h/BX=0007h
+

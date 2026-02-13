@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--50
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - DTown Utilities v1.40+ - MEMORY VIEW SET ADDRESS
+	AL = 50h
+	CX:DX = new address for start of memory view utility's display
+Note:	this function is only available if the extended API has been installed
+	  in the resident portion
+Return: AL = FFh if supported
+SeeAlso: INT 2D/AL=10h"DTown",INT 2D/AL=20h,INT 2D/AL=21h,INT 2D/AL=51h
+

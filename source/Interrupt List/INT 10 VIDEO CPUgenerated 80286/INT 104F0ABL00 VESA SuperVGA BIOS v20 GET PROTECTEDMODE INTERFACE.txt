@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F0ABL00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v2.0+ - GET PROTECTED-MODE INTERFACE
+	AX = 4F0Ah
+	BL = 00h
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+		ES:DI -> protected-mode table (see #00087)
+		CX = length of table in bytes, included protected-mode code
+	    01h failed
+SeeAlso: AX=4F00h,AX=4F05h,AX=4F07h,AX=4F09h
+
+Format of VESA VBE 2.0 protected-mode table:
+Offset	Size	Description	(Table 00087)
+ 00h	WORD	offset (within table) of protected-mode code for Function 5
+		  (Set Window)
+ 02h	WORD	offset of protected-mode code for Function 7 (Set Disp Start)
+ 04h	WORD	offset of protected-mode code for Function 9 (Set Primary
+		  Palette)
+ 06h	WORD	offset (within table) of list of I/O ports and memory locations
+		  for which I/O privilege may be required in protected mode
+		  (0000h if no list) (see #04085)
+ 08h	var	code and optional port/memory list
+
+Format of VESA VBE 2.0+ protected-mode port/memory list:
+Offset	Size	Description	(Table 04085)
+ 00h	WORD	I/O port number
+	...
+	WORD	FFFFh marking end of I/O port list
+	DWORD	memory region base address
+	WORD	memory region limit (one less than length)
+	WORD	FFFFh marking end of memory region list
+Note:	the memory region is optional; if not present, there will be a word
+	  of FFFFh immediately following the FFFFh marking the end of the I/O
+	  port list
+SeeAlso: #00087
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 23
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 23 - COMTROL HOSTESS i/ISA DEBUGGER - GET CONFIGURATION INFORMATION
+	AL = query type
+	    00h get old config map
+		Return: AX = old config map
+	    01h get dual-ported RAM map
+		Return: BX:AX = dual-ported RAM map
+	    02h get SCC port map
+		Return: BX:AX = SCC port map
+SeeAlso: INT 22"COMTROL",INT 26"COMTROL"
+

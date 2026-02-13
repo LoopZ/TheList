@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F13BX0000
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/AI (Audio Interface) - INSTALLATION CHECK
+	AX = 4F13h
+	BX = 0000h
+Return: AL = 4Fh if function supported
+	    AH = status
+		00h successful
+		    BX = version (0010h for 1.00 -- note nonstandard value!)
+		01h failed
+SeeAlso: AX=4F13h/BX=0001h,AX=4F13h/BX=0005h
+

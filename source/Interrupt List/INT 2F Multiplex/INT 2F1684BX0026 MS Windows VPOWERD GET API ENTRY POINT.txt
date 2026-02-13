@@ -1,0 +1,75 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0026
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - VPOWERD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0026h (virtual device ID for VPOWERD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02664)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02664)
+Call VPOWERD.VXD entry point with:
+	AX = function number
+	    0000h get VPOWERD version
+		Return: DX = 0000h
+			AX = version (AH = major, AL = minor)
+	    0001h get APM BIOS version
+		Return: DX:AX = APM BIOS version
+	    0002h get current power management level
+		Return: DX:AX = power management level
+	    0003h enable/disable power management (see INT 15/AX=5308h)
+		??? = new state of power management
+		Return: DX:AX = 0000h:0000h if successful
+			   else error code (see #02665)
+	    0004h set power state (see INT 15/AX=5307h)
+		Return: DX:AX = 0000h:0000h if successful
+			   else error code (see #02665)
+	    0005h set system power status
+		Return: DX:AX = 0000h:0000h if successful
+			   else error code (see #02665)
+	    0006h restore APM power-on defaults (see INT 15/AX=5309h)
+		Return: DX:AX = 0000h:0000h if successful
+			   else error code (see #02665)
+	    0007h get power status (see INT 15/AX=530Ah)
+		Return: ???
+	    0008h get APM 1.1 power state (see INT 15/AX=530Ch)
+		Return: ???
+	    0009h invoke OEM APM function
+		??? -> buffer containing parameters for INT 15/AX=5380h
+		Return: DX:AX = 0000h:0000h or error code (see #02665)
+			buffer updated if successful
+	    000Ah register power handler
+		???
+		Return: DX:AX = 0000h:0000h or error code
+	    000Bh deregister power handler
+		???
+		Return: DX:AX = 0000h:0000h or error code (see #02665)
+	    000Ch Win32 get system power status
+	    000Dh Win32 set system power status
+	    else
+		Return: DX = 0000h
+			AX = 00FFh
+SeeAlso: #02663,#02666
+
+(Table 02665)
+Values for VPOWERD.VXD error code:
+ 000000xxh	APM error code
+ 000000FFh	function number out of range
+ 80000001h	??? (service 05h)
+ 80000002h	??? (service 0Dh)
+ 80000003h	specified NULL buffer pointer (service 07h,08h,09h)
+ 80000005h	??? (service 03h)
+ 80000006h	??? (service 04h)
+ 80000007h	??? (service 05h)
+ 80000008h	??? (service 05h)
+ 80000009h	out of memory (service 0Ah)
+ 8000000Ah	??? (service 0Ah)
+ 8000000Bh	invalid power handler (service 0Bh)
+ 8000000Ch	unsupported/disabled??? function
+SeeAlso: #02664,#01290
+

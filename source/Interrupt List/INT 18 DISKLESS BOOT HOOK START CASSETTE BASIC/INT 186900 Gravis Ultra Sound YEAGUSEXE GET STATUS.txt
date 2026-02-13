@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 186900
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - GET STATUS
+	AX = 6900h
+Return: AX = amount of DRAM on card or 0000h if GUS not available
+Program: YEA_GUS is a driver for the Graphics Ultra Sound which hooks INT 18h
+	  and then shells out the the program requiring its services
+SeeAlso: AX=6901h,AX=690Ah,AX=690Bh
+

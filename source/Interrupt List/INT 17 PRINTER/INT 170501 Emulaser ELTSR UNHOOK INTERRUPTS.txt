@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 170501
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - Emulaser ELTSR - UNHOOK INTERRUPTS
+	AX = 0501h
+Return: (see AX=0500h)
+Note:	restores interrupt vectors without checking whether they have been
+	  hooked by later programs; should only be called if ELTSR reports
+	  that it is safe to unload
+SeeAlso: AH=04h,AX=0500h,AX=0503h,INT 1A/AH=E5h
+Index:	uninstall;Emulaser ELTSR
+

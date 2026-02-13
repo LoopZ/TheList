@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB900
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC Network RECEIVER.COM - INSTALLATION CHECK
+	AX = B900h
+Return: AL = state
+	    00h if not installed
+	    FFh if installed
+

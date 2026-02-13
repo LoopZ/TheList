@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 70
+  Category: H 	hardware
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 70 C - IRQ8 - CMOS REAL-TIME CLOCK
+Desc:	this interrupt is called when the real-time clock chip generates an
+	  alarm or periodic interrupt, among others (see CMOS 0Bh).  The
+	  periodic interrupt by default occurs 1024 times per second.
+Notes:	many BIOSes turn off the periodic interrupt in the INT 70h handler
+	  unless in an event wait (see INT 15/AH=83h,INT 15/AH=86h).
+	may be masked by setting bit 0 on I/O port A1h
+SeeAlso: INT 08,INT 0F"HP 95LX",INT 15/AH=01h"Amstrad",INT 15/AH=83h
+SeeAlso: INT 15/AH=86h,INT 1A/AH=02h,INT 58"DESQview",MEM FEE00320h
+SeeAlso: MEM 0040h:006Bh
+

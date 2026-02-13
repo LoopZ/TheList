@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BF02DX0000
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Rational Systems DOS/16M - INSTALLATION CHECK
+	AX = BF02h
+	DX = 0000h
+Return: DX = nonzero if installed
+	    DX:SI -> XBRK structure (see #00508)
+Note:	this function is also supported by DOS/4G
+SeeAlso: AX=BF01h,AX=BFDCh,AX=BFDEh/BX=0000h
+SeeAlso: INT 21/AH=FFh/DH=0Eh,INT 2F/AH=A1h,INT 2F/AX=F100h,INT 2F/AX=FBA1h
+
+Format of DOS/16M XBRK structure:
+Offset	Size	Description	(Table 00508)
+ 00h	DWORD	linear address of first available byte
+ 04h	DWORD	linear address of last available byte + 1 ???
+ 08h	DWORD	real-mode address of XBRK structure???
+ 0Ch	DWORD	???
+ 10h  2 BYTEs	???
+ 12h	WORD	segment of ???
+ 14h  8 BYTEs	???
+ 1Ch 512 BYTEs	protected-mode IDT
+21Ch  N BYTEs	protected-mode GDT
+

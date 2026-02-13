@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610008BX0000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - TALKPORT SERVICE - GET HANDLER ADDRESS
+	AX = 0008h
+	BX = 0000h
+Return: AX = status
+	    0000h successful
+	ES:DX = far pointer to handler
+Desc:	The TalkPort is a facility to display event messages (e.g. mail
+	  received, printing on a local printer, ...) on the screen
+Note:	This service is handled by the redirector
+SeeAlso: AX=0008h/BX=0001h,AX=0008h/BX=0002h
+

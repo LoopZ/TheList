@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1423
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - CONTROL HANDSHAKE LINES
+	AH = 23h
+	BH = handshake line to set (00h RTS, 01h DTR)
+	BL = new level (00h low, 01h high)
+Return: nothing
+Desc:	sets the handshake lines of COM1 to the desired level
+SeeAlso: AH=21h"HUNTER",AH=24h"HUNTER"
+

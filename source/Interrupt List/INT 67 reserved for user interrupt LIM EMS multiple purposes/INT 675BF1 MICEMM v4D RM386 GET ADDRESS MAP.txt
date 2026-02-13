@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675BF1
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - MICEMM v4D, RM386 - GET ADDRESS MAP
+	AX = 5BF1h
+	ES:BX -> 256-byte (MICEMM) or 512-byte (RM386) buffer for memory types
+Return: AH = 00h
+	ES:BX buffer filled (see #03658)
+Note:	each byte in the buffer specifies the type of a 4K page of memory
+SeeAlso: AX=5BE0h,AX=5BF0h
+
+(Table 03658)
+Values for MICEMM/RM386 memory type:
+ 00h	unused (MICEMM), RAM/available (RM386)
+ 02h	DOS extension (XMS UMB)
+ 04h	shadowed ROM
+ 08h	mappable EMS
+ 10h	page frame
+ 20h	ROM
+ 40h	reserved (video memory, etc)
+ 80h	RAM (MICEMM), Windows UMB (RM386)
+

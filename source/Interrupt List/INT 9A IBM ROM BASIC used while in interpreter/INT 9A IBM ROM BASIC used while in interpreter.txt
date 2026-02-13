@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 9A
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 9A - IBM ROM BASIC - used while in interpreter
+Notes:	called by ROM BASIC, but pointed at IRET by BASIC.COM/BASICA.COM
+	BASIC.COM/BASICA.COM do not restore vector on termination
+SeeAlso: INT 80"BASIC",INT 99,INT 9B
+

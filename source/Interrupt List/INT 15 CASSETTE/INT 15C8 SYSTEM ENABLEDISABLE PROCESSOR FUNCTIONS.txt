@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C8
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - ENABLE/DISABLE PROCESSOR FUNCTIONS
+	AH = C8h
+	AL = function
+	    00h disable L1 cache
+	    01h enable L1 cache
+	    ---models 90 and 95 only---
+	    02h disable L2 cache
+	    03h enable L2 cache
+	    04h disable both caches
+	    05h enable both caches
+	    06h return status of both caches
+	    07h-FFh Reserved
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00527)
+	For subfunction 06h only:
+	    BL = status of L1 cache
+		00h enabled
+		01h disabled or not installed
+		02h disabled due to test error (can not be enabled)
+	    BH = status of L2 cache (same codes as BL)
+Notes:	 supported by at least PS/2 70, 70/486, 80-A21, 90, 95
+	call AH=C0h and examine bit 3 of feature byte 2 to check if this
+	  function is supported.
+	on a 486 system, any external caches must be disabled when the
+	  on-chip cache (L1) is disabled.
+SeeAlso: AH=C0h
+
+(Table 00527)
+Values for status:
+ 00h	operation successful
+ 01h	function choice (in AL) is invalid
+ 02h	NVRAM data is invalid
+ 03h	cache test error
+ 04h	(90 and 95 only) cannot perform operation requested due to state of
+	  other cache (also see note above)
+ 05h	no L2 cache is present
+ 07h	invalid input values
+ 09h	CPU in protected mode
+

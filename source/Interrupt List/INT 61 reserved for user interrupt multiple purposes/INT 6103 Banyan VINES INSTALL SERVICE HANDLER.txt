@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6103
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - INSTALL SERVICE HANDLER
+	AH = 03h
+	AL = service ID (see #03451)
+	DS:DX -> new service handler
+Return: AX = 0000h successful
+SeeAlso: AH=00h,AH=01h"VINES",AH=02h"VINES",AH=05h"VINES"
+

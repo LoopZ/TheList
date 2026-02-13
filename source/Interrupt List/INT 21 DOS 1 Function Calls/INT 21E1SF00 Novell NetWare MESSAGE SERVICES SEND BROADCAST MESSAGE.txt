@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E1--SF00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - MESSAGE SERVICES - SEND BROADCAST MESSAGE
+	AH = E1h subfn 00h
+	DS:SI -> request buffer (see #01819)
+	ES:DI -> reply buffer (see #01820)
+Return: AL = status
+	    00h successful
+	    FEh I/O error or out of dynamic workspace
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+SeeAlso: AH=DEh"NetWare",AH=DEh/DL=04h,AH=E1h/SF=01h,AH=E1h/SF=04h
+SeeAlso: AH=E1h/SF=09h
+
+Format of NetWare "Send Broadcast Message" request buffer:
+Offset	Size	Description	(Table 01819)
+ 00h	WORD	length of following data (max 9Eh)
+ 02h	BYTE	00h (subfunction "Send Broadcast Message")
+ 03h	BYTE	number of connections (01h-64h)
+ 04h  N BYTEs	list of connections to receive broadcast message
+	BYTE	length of message (01h-37h)
+      N BYTEs	broadcast message (no control characters or characters > 7Eh)
+SeeAlso: #01820
+
+Format of NetWare "Send Broadcast Message" reply buffer:
+Offset	Size	Description	(Table 01820)
+ 00h	WORD	(call) size of following results buffer (max 65h)
+ 02h	BYTE	number of connections
+ 03h  N BYTEs	list of per-connection results
+		00h successful
+		FCh message rejected due to lack of buffer space
+		FDh invalid connection number
+		FFh blocked (see also AH=E1h/SF=02h)
+SeeAlso: #01819
+

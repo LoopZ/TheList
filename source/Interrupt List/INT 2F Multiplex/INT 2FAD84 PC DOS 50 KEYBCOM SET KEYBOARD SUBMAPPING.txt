@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD84
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC DOS 5.0+ KEYB.COM - SET KEYBOARD SUB-MAPPING
+	AX = AD84h
+Return: if KEYB is in foreign mode:
+	    AL = current layout
+		00h primary layout
+		01h secondary layout
+Note:	This function is not supported by MS-DOS 5 - 7.10.
+SeeAlso: AX=AD85h,AX=AD82h
+

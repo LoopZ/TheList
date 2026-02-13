@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216C00
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 4.0+ - EXTENDED OPEN/CREATE
+	AX = 6C00h
+	BL = open mode as in AL for normal open (see also AH=3Dh)
+	    bit 7: inheritance
+	    bits 4-6: sharing mode
+	    bit 3 reserved
+	    bits 0-2: access mode
+		100 read-only, do not modify file's last-access time (DOS 7.0)
+	BH = flags
+	    bit 6 = auto commit on every write (see also AH=68h)
+	    bit 5 = return error rather than doing INT 24h
+	    bit 4 = (FAT32) extended size (allow 4GB files instead of 2GB)
+	CX = create attribute (see #01769)
+	DL = action if file exists/does not exist (see #01770)
+	DH = 00h (reserved)
+	DS:SI -> ASCIZ file name
+Return: CF set on error
+	   AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	   AX = file handle
+	   CX = status (see #01768)
+Notes:	the PC LAN Program only supports existence actions (in DL) of 01h,
+	  10h with sharing=compatibility, and 12h
+	DR DOS reportedly does not support this function and does not return
+	  an "invalid function call" error when this function is used.
+	the documented bits of BX are stored in the SFT when the file is opened
+	  (see #01641,#01642)
+BUG:	this function has bugs (at least in DOS 5.0 and 6.2) when used with
+	  drives handled via the network redirector (INT 2F/AX=112Eh):
+	    - CX (attribute) is not passed to the redirector if DL=11h,
+	    - CX does not return the status, it is returned unchanged because
+	      DOS does a PUSH CX/POP CX when calling the redirector.
+SeeAlso: AH=3Ch,AH=3Dh,AX=6C01h,AX=7160h/CL=00h,INT 2F/AX=112Eh
+
+(Table 01768)
+Values for extended open function status:
+ 01h	file opened
+ 02h	file created
+ 03h	file replaced
+
+Bitfields for file create attribute:
+Bit(s)	Description	(Table 01769)
+ 6-15	reserved
+ 5	archive
+ 4	reserved
+ 3	volume label
+ 2	system
+ 1	hidden
+ 0	readonly
+
+Bitfields for action:
+Bit(s)	Description	(Table 01770)
+ 7-4	action if file does not exist
+	0000 fail
+	0001 create
+ 3-0	action if file exists
+	0000 fail
+	0001 open
+	0010 replace/open
+

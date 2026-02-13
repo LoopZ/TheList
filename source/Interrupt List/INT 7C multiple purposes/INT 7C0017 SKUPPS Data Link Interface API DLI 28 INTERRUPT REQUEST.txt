@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0017
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - DLI 2.8+ - INTERRUPT REQUEST
+	AX = 0017h
+Return: AX = completion code (see #03846)
+Notes:	not supported by all DLIs (will return AX=FFFFh, if not supported).
+	must be called with interrupts disabled; when the client re-enables
+	  interrupts, an interrupt will be generated and reported to the client
+	  through an Event Upcall (see #03853 [EV_ISR_START/EV_ISR_END])
+SeeAlso: AX=0007h
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF3E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - WRITE PROPERTY VALUE
+	AH = E3h subfn 3Eh
+	DS:SI -> request buffer (see #01944)
+	ES:DI -> reply buffer (see #01945)
+Return: AL = status (see #01941)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=39h,AH=E3h/SF=3Ch,AH=E3h/SF=3Dh,AX=F217h/SF=3Eh
+
+Format of NetWare "Write Property Value" request buffer:
+Offset	Size	Description	(Table 01944)
+ 00h	WORD	length of following data (max C5h)
+ 02h	BYTE	3Eh (subfunction "Write Property Value")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name (01h-2Fh)
+ 06h  N BYTEs	object name
+	BYTE	segment number (01h on first call, increment until done)
+	BYTE	erase remaining segments (00h no, FFh yes)
+	BYTE	length of property's name (01h-0Fh)
+      N BYTEs	property name
+    128 BYTEs	property value segment
+SeeAlso: #01945
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01945)
+ 00h	WORD	(call) 0000h (no data returned)
+SeeAlso: #01944,#01947
+

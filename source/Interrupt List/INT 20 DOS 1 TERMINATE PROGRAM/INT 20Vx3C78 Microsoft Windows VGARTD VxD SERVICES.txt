@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx3C78
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VGARTD - VxD SERVICES
+	VxD = 3C78h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01343)
+Values for VGARTD (VxD ID 3C78h) service number:
+ 00h	get version???
+ ...
+ 05h	??? (highest service defined)
+SeeAlso: #01342,#02642
+

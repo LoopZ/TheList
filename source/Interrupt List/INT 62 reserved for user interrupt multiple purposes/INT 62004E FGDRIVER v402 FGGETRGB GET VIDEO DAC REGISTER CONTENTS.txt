@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62004E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETRGB" - GET VIDEO DAC REGISTER CONTENTS
+	AX = 004Eh
+	ES:BX -> variable pointer record (see #03486)
+	CX = DAC register number
+Return: variables updated
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes and CGA/EGA video modes (since
+	  they do not use DAC registers)
+SeeAlso: AX=0041h,AX=0086h,AX=00ABh
+
+Format of FGDRIVER GETRGB variable pointer record:
+Offset	Size	Description	(Table 03486)
+ 00h	WORD	segment of WORD buffer for red component of DAC register
+ 02h	WORD	offset of WORD buffer for red component
+ 04h	WORD	segment of WORD buffer for green component of DAC register
+ 06h	WORD	offset of WORD buffer for green component
+ 08h	WORD	segment of WORD buffer for blue component of DAC register
+ 0Ah	WORD	offset of WORD buffer for blue component
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1419
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - WRITE BLOCK
+	AH = 19h
+	CX = maximum number of characters to transfer
+	DX = port number
+	ES:DI -> user buffer
+Return: AX = number of characters transferred
+SeeAlso: AH=18h"FOSSIL",AH=86h,INT 6B/AX=0000h
+

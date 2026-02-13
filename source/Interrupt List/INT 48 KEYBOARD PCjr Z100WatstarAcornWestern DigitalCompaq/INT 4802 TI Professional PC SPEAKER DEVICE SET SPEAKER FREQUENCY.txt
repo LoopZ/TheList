@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4802
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 48 - TI Professional PC - SPEAKER DEVICE - SET SPEAKER FREQUENCY
+	AH = 02h
+	CX = frequency divisor (freq = 1250000 / CX)
+Return: nothing
+SeeAlso: AH=00h,AH=01h,AH=03h,AH=04h,AH=06h,AH=08h,AH=0Ah,AH=0Bh
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFE02DI4E55
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - NORTON UTILITIES 5.0+ TSRs - DISABLE
+	AX = FE02h
+	DI = 4E55h ("NU")
+	SI = TSR identifier (see #03140)
+Return: SI = TSR reply (lowercase version of entry SI, i.e. SI OR 2020h)
+	AX = status
+	    0004h successful (DISKMON, FILESAVE)
+	    FE00h successful (NCACHE-x, DISKREET)
+Notes:	(see also AX=FE01h)
+	this function appears to be unsafe, as the cache buffers are not
+	  flushed
+SeeAlso: AX=FE00h,AX=FE01h
+

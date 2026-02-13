@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0488
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VTDI - VxD SERVICES
+	VxD = 0488h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01318)
+Values for VTDI (VxD ID 0488h) service number:
+ 00h	get VTDI version???
+ 01h	???
+ 08h	get ???
+	seen called with DWORD -> ASCIZ "MSTCP" on stack, returning EAX=???
+ 0Dh	...last service for Windows95 SP1
+SeeAlso: #01317,#01319
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BFDEBX000E
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview/X 1.02+ - DVDOS4GX.DVR - ???
+	AX = BFDEh
+	BX = 000Eh
+	DX:CX -> ???
+Return: AX = segment of handle for calling task
+	BX = ??? (probably destroyed)
+	DX:CX -> ???
+SeeAlso: AX=BFDEh/BX=0000h,AX=BFDEh/BX=000Fh,AX=BFDEh/BX=0013h
+

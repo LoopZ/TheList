@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF1A
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "Near2Linear" - CONVERT APP-RELATIVE TO LINEAR ADDRESS
+	AX = FF1Ah
+	ESI = application-relative linear address
+Return: ESI = linear address
+SeeAlso: AX=FF19h
+

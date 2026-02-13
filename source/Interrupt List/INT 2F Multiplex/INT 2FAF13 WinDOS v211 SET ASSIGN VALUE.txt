@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF13
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - SET ASSIGN VALUE
+	AX = AF13h
+	BL = number of drive to remap (00h = A:)
+	DL = number of drive to be accessed via drive number BL
+Return: nothing
+Desc:	remap a drive letter
+Note:	the remapping can be canceled by specifying DL=BL
+SeeAlso: AX=AF00h"WinDOS",AX=AF14h"WinDOS",AX=0601h
+

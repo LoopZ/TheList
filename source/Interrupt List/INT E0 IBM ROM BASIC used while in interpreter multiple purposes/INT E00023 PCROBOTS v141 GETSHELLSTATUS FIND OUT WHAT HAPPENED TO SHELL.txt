@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00023
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "GET_SHELL_STATUS" - FIND OUT WHAT HAPPENED TO SHELL
+	AX = 0023h
+Return: BX = status of last shell to land
+	    0000h missed completely
+	    0001h hit a wall
+	    0002h hit a robot within 50-square radius
+	    0003h hit a robot within 25-square radius
+	    0004h hit a robot within 5-square radius
+

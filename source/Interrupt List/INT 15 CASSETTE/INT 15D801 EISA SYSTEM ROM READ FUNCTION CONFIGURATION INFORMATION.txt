@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D801
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - EISA SYSTEM ROM - READ FUNCTION CONFIGURATION INFORMATION
+	AX = D801h
+	CH = function number to read
+	CL = slot number (including embedded and virtual)
+	DS:SI -> 320-byte buffer for standard configuration data block
+Return: CF clear if successful
+	    AH = 00h
+	    DS:SI buffer filled
+	CF set on error
+	    AH = error code (80h-83h,86h,87h) (see #00539)
+	BX destroyed
+Note:	call with AL=81h if using 32-bit CS addressing mode instead of 16-bit
+	this function is also supported by the Compaq SystemPro 486, but it
+	  uses more than 1297 bytes of stack.
+BUG:	some implementations appear to destroy the DF direction flag;
+	  the Novell DOS 7+ memory managers explicitly clear it afterwards.
+

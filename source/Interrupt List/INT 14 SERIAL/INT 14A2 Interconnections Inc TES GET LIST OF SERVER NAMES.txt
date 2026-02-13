@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A2
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Interconnections Inc. TES - GET LIST OF SERVER NAMES
+	AH = A2h
+Return: CX = number of servers
+	ES:SI -> array of offsets from ES for server names
+SeeAlso: AH=A1h"TES"
+

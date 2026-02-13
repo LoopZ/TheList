@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8002
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CS_TSR specification - GET PROCESS BLOCK BY PROCESS HANDLE
+	AX = 8002h
+	BX = process handle for TSR (see AX=8001h"CS_TSR")
+Return: ES:DI -> process block for specified TSR (see #02928)
+		unchanged if no match for process handle
+Note:	This function is used to allocate a process handle when the TSR
+	  installs itself, by setting ES:DI to point at something other than
+	  a CS_TSR process block's signature string and iterating through the
+	  possible process handles (0001h to FFFFh) until ES:DI is returned
+	  unchanged
+SeeAlso: AX=8000h"CS_TSR",AX=8001h"CS_TSR",AX=8003h"CS_TSR"
+

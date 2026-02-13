@@ -1,0 +1,79 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1501
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Amstrad PC1512 - WRITE DATA TO NON-VOLATILE RAM
+	AH = 01h
+	AL = NVRAM location (00h to 3Fh) (see #00405)
+	BL = NVRAM data value
+Return: AH = return code
+	    00h OK
+	    01h address bad
+	    02h write error
+SeeAlso: AH=02h"Amstrad"
+
+Format of Amstrad NVRAM:
+Offset	Size	Description	(Table 00405)
+ 00h	BYTE	time of day: seconds
+ 01h	BYTE	alarm time: seconds
+ 02h	BYTE	time of day: minutes
+ 03h	BYTE	alarm time: minutes
+ 04h	BYTE	time of day: hours
+ 05h	BYTE	alarm time: hours
+ 06h	BYTE	day of week, 1 = Sunday
+ 07h	BYTE	day of month
+ 08h	BYTE	month
+ 09h	BYTE	year mod 100
+ 0Ah	BYTE	RTC status register A (see #00406)
+ 0Bh	BYTE	RTC status register B (see #00407)
+ 0Ch	BYTE	RTC status register C (read-only) (see #00408)
+ 0Dh	BYTE	RTC status register D
+		bit 7: battery good
+ 0Eh  6 BYTEs	time and date machine last used
+ 14h	BYTE	user RAM checksum
+ 15h	WORD	Enter key scancode/ASCII code
+ 17h	WORD	Forward delete key scancode/ASCII code
+ 19h	WORD	Joystick fire button 1 scancode/ASCII code
+ 1Bh	WORD	Joystick fire button 2 scancode/ASCII code
+ 1Dh	WORD	mouse button 1 scancode/ASCII code
+ 1Fh	WORD	mouse button 2 scancode/ASCII code
+ 21h	BYTE	mouse X scaling factor
+ 22h	BYTE	mouse Y scaling factor
+ 23h	BYTE	initial VDU mode and drive count
+ 24h	BYTE	initial VDU character attribute
+ 25h	BYTE	size of RAM disk in 2K blocks
+ 26h	BYTE	initial system UART setup byte
+ 27h	BYTE	initial external UART setup byte
+ 28h 24 BYTEs	available for user application
+Note:	bytes 00h-0Dh are the same on the IBM AT as they are used/updated by
+	  the clock chip
+
+Bitfields for RTC status register A:
+Bit(s)	Description	(Table 00406)
+ 7	set if date/time being updated
+ 6-4	time base speed, default 010 = 32768 Hz
+ 3-0	interrupt rate selection, default 0110 = 1024 Hz
+SeeAlso: #00405
+
+Bitfields for RTC status register B:
+Bit(s)	Description	(Table 00407)
+ 7	clear if normal update, set if abort update
+ 6	periodic interrupt enable
+ 5	alarm interrupt enable
+ 4	update end interrupt enable
+ 3	square wave enable
+ 2	date mode (clear = BCD, set = binary)
+ 1	24-hour format
+ 0	daylight saving time enable
+SeeAlso: #00405
+
+Bitfields for RTC status register C:
+Bit(s)	Description	(Table 00408)
+ 7	IRQF flag
+ 6	PF flag
+ 5	AF flag
+ 4	UF flag
+SeeAlso: #00405
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD602
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - VEDIT VSWAP - EXEC PROGRAM WITH SWAP
+	AX = D602h
+	other registers set as for INT 21/AX=4B00h
+Return: CF set on error
+	    AL = error code
+		82h = failure due to ???
+	CF clear on success
+SeeAlso: AX=D600h"VSWAP",INT 21/AH=4Bh"EXEC"
+

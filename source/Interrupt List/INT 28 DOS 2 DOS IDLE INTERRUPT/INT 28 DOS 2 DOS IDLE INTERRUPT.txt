@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 28
+  Category: D 	DOS kernel
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 28 C - DOS 2+ - DOS IDLE INTERRUPT
+	SS:SP = top of MS-DOS stack for I/O functions
+Return: all registers preserved
+Desc:	This interrupt is invoked each time one of the DOS character input
+	  functions loops while waiting for input.  Since a DOS call is in
+	  progress even though DOS is actually idle during such input waits,
+	  hooking this function is necessary to allow a TSR to perform DOS
+	  calls while the foreground program is waiting for user input.	 The
+	  INT 28h handler may invoke any INT 21h function except functions
+	  00h through 0Ch.
+Notes:	under DOS 2.x, the critical error flag (the byte immediately after the
+	  InDOS flag) must be set in order to call DOS functions 50h/51h from
+	  the INT 28h handler without destroying the DOS stacks.
+	calls to INT 21/AH=3Fh,40h from within an INT 28 handler may not use a
+	  handle which refers to CON
+	at the time of the call, the InDOS flag (see INT 21/AH=34h) is normally
+	  set to 01h; if larger, DOS is truly busy and should not be reentered
+	the default handler is an IRET instruction
+	supported in OS/2 compatibility box
+	the _MS-DOS_Programmer's_Reference_ for DOS 5.0 incorrectly documents
+	  this interrupt as superseded
+	the performance of NetWare Lite servers (and probably other peer-to-
+	  peer networks) can be dramatically improved by calling INT 28
+	  frequently from an application's idle loop
+SeeAlso: INT 21/AH=34h,INT 2A/AH=84h,INT 2F/AX=1680h
+

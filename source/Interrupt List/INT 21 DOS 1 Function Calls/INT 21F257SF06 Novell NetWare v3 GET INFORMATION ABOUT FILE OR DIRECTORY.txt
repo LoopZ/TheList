@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - GET INFORMATION ABOUT FILE OR DIRECTORY
+	AX = F257h subfn 06h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02385)
+	ES:DI -> reply buffer (see #02388)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=02h,AX=F257h/SF=05h,AX=F257h/SF=07h
+
+Format of NetWare "Get NS Entry Info" request buffer:
+Offset	Size	Description	(Table 02385)
+ 00h	BYTE	06h (subfunction "Get NS Entry Info")
+ 01h	BYTE	name space (see #02387)
+ 02h	BYTE	destination name space
+ 03h	WORD	search attributes
+ 05h	DWORD	return information mask (see #02386)
+ 09h	BYTE	volume number
+ 0Ah	DWORD	directory base
+ 0Eh	BYTE	handle flag
+		00h first byte of dir base is dir handle; ignore volume number
+		01h dir base = unique ID, volume number set
+		FFh volume number and dir base ignored, volume part of path
+ 0Fh	BYTE	number of path components
+ 10h  N BYTEs	list of path components (each a counted string)
+SeeAlso: #02388
+
+Bitfields for return information mask:
+Bit(s)	Description	(Table 02386)
+ 0	include filename
+ 1	data stream space allocated info
+ 2	attributes info
+ 3	data stream size info
+ 4	total space allocated for all data streams
+ 5	extended attributes info
+ 6	archive info
+ 7	modify info
+ 8	create info
+ 9	name space info
+ 10	directory info
+ 11	rights info
+
+(Table 02387)
+Values for NetWare name space:
+ 00h	DOS
+ 01h	Macintosh
+ 02h	NFS
+ 03h	FTAM
+ 04h	OS/2
+SeeAlso: #02385,#02393
+
+Format of NetWare "Get NS Entry Info" reply buffer:
+Offset	Size	Description	(Table 02388)
+ 00h 72 BYTEs	reserved
+ 48h	DWORD	creator's name space number
+ 4Ch 257 BYTEs	reserved
+SeeAlso: #02385
+

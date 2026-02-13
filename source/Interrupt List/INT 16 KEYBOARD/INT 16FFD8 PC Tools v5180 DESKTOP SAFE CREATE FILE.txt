@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFD8
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - SAFE CREATE FILE
+	AX = FFD8h
+	DS:BX -> ASCIZ filename
+Return: BX = file handle
+	    0000h on error
+Note:	pops up confirmation menu if file already exists
+	only available when popped up???
+

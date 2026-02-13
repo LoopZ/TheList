@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 40
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 40 - Acorn BBC Master 512 - "OSFIND" - OPEN FILE
+	AL = operation
+	    00h close file
+	    40h open file for reading
+	    80h open file for writing
+	    C0h open file for random access
+	DS:BX -> CR-terminated filename
+Return: AL = file handle (00h if file closed or could not be opened)
+Note:	the Acorn BBC Master 512 is an 80186-based add-on board for the
+	  6502-based Master 128 which uses the original CPU as an I/O processor
+SeeAlso: INT 41"Acorn",INT 42"Acorn",INT 43"Acorn",INT 44"Acorn",INT 4C"Acorn"
+

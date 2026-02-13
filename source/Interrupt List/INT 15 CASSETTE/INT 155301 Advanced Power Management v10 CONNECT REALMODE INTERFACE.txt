@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155301
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - CONNECT REAL-MODE INTERFACE
+	AX = 5301h
+	BX = device ID of system BIOS (0000h)
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (02h,05h,07h,09h) (see #00473)
+Note:	on connection, an APM v1.1 or v1.2 BIOS switches to APM v1.0
+	  compatibility mode until it is informed that the user supports a
+	  newer version of APM (see AX=530Eh)
+SeeAlso: AX=5302h,AX=5303h,AX=5304h
+

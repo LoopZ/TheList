@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1000
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SHARE - INSTALLATION CHECK
+	AX = 1000h
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+Notes:	supported by OS/2 v1.3+ compatibility box, which always returns AL=FFh
+	if DOS 4.01 SHARE was automatically loaded, file sharing is in an
+	  inactive state (due to the undocumented /NC flag used by the autoload
+	  code) until this call is made
+	DR DOS 5.0 SHARE 1.00 only checks for AH=10h and in this case does not
+	  chain to a previous handler, DR DOS 6.0 SHARE 1.02+ properly chains
+	  for any values other than AX=1000h and the private FDOS hook
+	  AX=1001h.  However, under DR PalmDOS and Novell DOS 7+, the
+	  SHARE 2.00+ only tests for the AX=1000h install check, since it no
+	  longer uses AX=1001h to hook into the system.
+	DOS 5+ chains to the previous handler if AL <> 00h on entry
+	Windows Enhanced mode hooks this call and reports that SHARE is
+	  installed even when it is not
+BUGS:	values of AL other than 00h put DOS 3.x SHARE into an infinite loop
+	  (08E9: OR  AL,AL
+	   08EB: JNZ 08EB) <- the buggy instruction (DOS 3.3)
+	values of AL other than described here put PC-DOS 4.00 into the same
+	  loop (the buggy instructions are the same)
+SeeAlso: AX=1080h,INT 21/AH=52h,INT 21/AX=4457h/DX=FFFFh
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - SBS WinRun 1.00 - TRANSMITTER ENTRY POINT
+	DS:SI -> WinRun control block (WCB) (see #03870)
+Return: WinRun receiver status returned in WCB
+Program: WinRun is a DOS/Windows utility written by Sven B. Schreiber to start
+	  Windows applications from a virtual DOS machine under Windows
+Note:	The WinRun transmitter (WINRUN-T.COM) and receiver (WINRUN-R.EXE) need
+	  to be up and running
+
+Format of the WinRun control block (WCB):
+Offset	Size	Description	(Table 03870)
+ 00h	DWORD	pointer to ASCIZ command string
+ 04h	WORD	(ret) WinRun receiver status
+		0000h-001Fh WinExec() error
+		0020h-FFFEh WinExec() instance handle
+		FFFFh	    Windows not running or WinRun receiver not
+				  installed
+

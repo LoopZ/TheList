@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F040EBP0114
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_CRV_DISABLE_REPEAT" - KEY REPT OFF
+	AX = 040Eh
+	BP = 0114h (driver ID for V_HPHIL)
+	BX = device address indicator (see #03760)
+	DH = HP HIL device major address
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Note:	this function is only available if the driver is in the open state
+	  (see AX=020Eh"SF_OPEN")
+SeeAlso: AH=00h"HP Vectra",AX=040Ch/BP=0114h,AX=0410h/BP=0114h
+SeeAlso: AX=0416h/BP=0114h
+

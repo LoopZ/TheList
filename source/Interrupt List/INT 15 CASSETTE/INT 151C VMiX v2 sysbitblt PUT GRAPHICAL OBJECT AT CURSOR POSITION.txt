@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151C
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX v2+ - "sys_bitblt" - PUT GRAPHICAL OBJECT AT CURSOR POSITION
+	AH = 1Ch
+	STACK:	WORD	AND/OR pixel with background (00h = OR, 01h = AND)
+		DWORD	pointer to object bitmap
+		WORD	object width in pixels
+		WORD	object height in pixels
+Return: nothing
+SeeAlso: AH=1Dh"VMiX"
+

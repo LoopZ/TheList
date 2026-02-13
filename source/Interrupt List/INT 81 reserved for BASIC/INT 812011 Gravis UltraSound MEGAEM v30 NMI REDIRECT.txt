@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 812011
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 81 - Gravis UltraSound - MEGA_EM v3.0+ - NMI REDIRECT
+	AX = 2011h
+	???
+Return: ???
+Note:	MegaEm calls this function from its NMI (INT 02) handler, and then
+	  immediately returns; this permits it to operate while hooking only
+	  one interrupt through the memory manager in protected mode
+SeeAlso: AX=2010h,AX=2012h
+

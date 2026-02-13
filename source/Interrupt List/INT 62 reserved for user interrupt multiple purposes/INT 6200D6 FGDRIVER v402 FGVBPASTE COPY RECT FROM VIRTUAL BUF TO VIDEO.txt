@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200D6
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBPASTE" - COPY RECT FROM VIRTUAL BUF TO VIDEO
+	AX = 00D6h
+	BX = source region's left edge
+	CX = source region's right edge
+	DX = source region's top edge
+	SI = source region's bottom edge
+	DI = X coordinate of destination's upper left corner
+	ES = Y coordinate of destination's upper left corner
+Desc:	copy a rectangle from the active virtual buffer to the active video
+	  page
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=00CFh,AX=00D0h,AX=00D4h,AX=00D7h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101111
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Realtek RTVGA - SET ROM 8x14 GRAPHICS CHARACTERS
+	AX = 1111h
+	BL = row specifier (see AX=1121h)
+Return: nothing
+Note:	this function is meant to be called immediately after a mode set;
+	  results are unpredictable at other times
+SeeAlso: AX=110Fh"Realtek",AX=1110h"Realtek",AX=1122h
+

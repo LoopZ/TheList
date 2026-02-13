@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 78
+  Category: A 	applications
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 78 R - AutoCAD Device Interface - PLOTTER - SEND COMMAND
+	AX = function
+	    0001h begin plot
+		BX = file level
+		    0000h ASCII file
+		    0001h binary file
+		    0002h AutoCAD DXB file
+		    0003h installed ADI driver
+	    0002h end plot (close plotter)
+	    0003h move (pen up)
+		BX = new X position
+		CX = new Y position
+	    0004h move (pen down)
+		BX = new X position
+		CX = new Y position
+	    0005h select pen
+		BX = pen number
+	    0006h select drawing speed
+		BX = drawing speed N
+	    0007h select line style
+		BX = line style N
+	    0008h raise pen
+	    0009h abort plot
+Return: AX = 0000h (may be used for driver status in future releases)
+SeeAlso: INT 79"AutoCAD",INT 7A/AX=0001h"AutoCAD",INT 7B/AX=8001h"AutoCAD"
+

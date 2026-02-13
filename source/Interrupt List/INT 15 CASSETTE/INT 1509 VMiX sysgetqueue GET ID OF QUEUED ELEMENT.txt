@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1509
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_getqueue" - GET ID OF QUEUED ELEMENT
+	AH = 09h
+	STACK:	WORD	queue ID (0 = process queue, 1 = object, 3 = type)
+		WORD	subqueue ID
+Return: AX = queue ID
+SeeAlso: AH=0Ah"VMiX"
+

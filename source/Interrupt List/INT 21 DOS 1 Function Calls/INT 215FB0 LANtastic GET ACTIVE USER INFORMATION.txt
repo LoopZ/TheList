@@ -1,0 +1,97 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FB0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET ACTIVE USER INFORMATION
+	AX = 5FB0h
+	BX = server login entry index
+	DS:SI -> buffer for active user entry (see #01739)
+	ES:DI -> ASCIZ machine name in form "\\server"
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+	BX = next login index
+SeeAlso: AX=5FB2h
+
+Format of LANtastic active user entry:
+Offset	Size	Description	(Table 01739)
+ 00h	WORD	virtual circuit number
+ 02h	BYTE	login state (see #01740)
+ 03h	BYTE	last command issued (see #01741)
+ 04h  5 BYTEs	number of I/O bytes (40-bit unsigned number)
+ 09h  3 BYTEs	number of server requests (24-bit unsigned)
+ 0Ch 16 BYTEs	name of user who is logged in
+ 1Ch 16 BYTEs	name of remote logged in machine
+ 2Ch	BYTE	extended privileges (v4+???)
+		bit 0: user cannot change his password
+ 2Dh	WORD	time left in minutes (0000h = unlimited) (v4+???)
+
+Bitfields for login state:
+Bit(s)	Description	(Table 01740)
+ 0	fully logged in
+ 1	remote program load login
+ 2	user has system manager privileges
+ 3	user can create audit entries
+ 4	bypass mail protection
+ 5	treat as local process
+ 6	bypass queue protection
+ 7	bypass access control lists
+
+(Table 01741)
+Values for last LANtastic command:
+ 00h	login
+ 01h	process termination
+ 02h	open file
+ 03h	close file
+ 04h	create file
+ 05h	create new file
+ 06h	create unique file
+ 07h	commit data to disk
+ 08h	read file
+ 09h	write file
+ 0Ah	delete file
+ 0Bh	set file attributes
+ 0Ch	lock byte range
+ 0Dh	unlock byte range
+ 0Eh	create subdirectory
+ 0Fh	remove subdirectory
+ 10h	rename file
+ 11h	find first matching file
+ 12h	find next matching file
+ 13h	get disk free space
+ 14h	get a queue entry
+ 15h	set a queue entry
+ 16h	control the queue
+ 17h	return login information
+ 18h	return link description
+ 19h	seek on file
+ 1Ah	get server's time
+ 1Bh	create audit entry
+ 1Ch	open file in multitude of modes
+ 1Dh	change password
+ 1Eh	disable account
+ 1Fh	local server file copy
+---v3+---
+ 20h	get username from account file
+ 21h	translate server's logical path
+ 22h	make indirect file
+ 23h	get indirect file contents
+ 24h	get physical printer status
+ 25h	get logical print stream info
+ 26h	set logical print stream info
+ 27h	get user's account record
+---v4+---
+ 28h	request server shutdown
+ 29h	cancel server shutdown
+ 2Ah	stuff server's keyboard
+ 2Bh	write then commit data to disk
+ 2Ch	set extended queue entry
+ 2Dh	terminate user from server
+ 2Eh	enable/disable logins
+ 2Fh	flush server caches
+ 30h	change username
+ 31h	get extended queue entry
+	(same as get queue, but can return named fields blanked)
+

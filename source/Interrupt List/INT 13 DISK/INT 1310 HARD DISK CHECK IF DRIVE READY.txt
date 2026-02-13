@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1310
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - CHECK IF DRIVE READY
+	AH = 10h
+	DL = drive number (80h = first, 81h = second hard disk)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234 at AH=01h)
+SeeAlso: AH=11h
+

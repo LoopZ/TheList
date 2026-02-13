@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F91
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - SAVE SUPERVGA STATE
+	AX = 5F91h
+	CX = state mask (see #00185)
+	ES:BX -> save buffer
+Return: AL = 5Fh if function supported
+	    buffer at ES:BX filled
+SeeAlso: AH=1Ch,AX=5F03h,AX=5F90h,AX=5F92h,AX=5FA1h
+

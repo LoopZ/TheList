@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A9B
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - STOP ERROR DETECTION CODE
+	AH = 9Bh
+	AL = adapter number
+	BH = EDC generator
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (see #00656)
+SeeAlso: AH=98h,AH=99h,AH=9Ch
+

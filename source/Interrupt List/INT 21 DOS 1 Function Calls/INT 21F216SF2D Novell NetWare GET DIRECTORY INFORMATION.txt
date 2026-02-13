@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF2D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET DIRECTORY INFORMATION
+	AX = F216h subfn 2Dh
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02149)
+	ES:DI -> reply buffer (see #02150)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=2Ch,AX=F216h/SF=2Eh
+
+Format of NetWare "Get Directory Information" request packet:
+Offset	Size	Description	(Table 02149)
+ 00h	WORD	length of following data
+ 02h	BYTE	2Dh (subfunction "Get Directory Information")
+ 03h	BYTE	directory handle
+SeeAlso: #02150
+
+Format of NetWare "Get Directory Information" reply packet:
+Offset	Size	Description	(Table 02150)
+ 00h	DWORD	total blocks
+ 04h	DWORD	available blocks
+ 08h	DWORD	total number of directory entries
+ 0Ch	DWORD	number of available directory entries
+ 10h  4 BYTEs	reserved
+ 14h	BYTE	sectors per block
+ 15h	BYTE	length of volume name
+ 16h  N BYTEs	volume name
+SeeAlso: #02149
+

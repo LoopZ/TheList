@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB0C
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - GET EVENT TIME
+	AX = CB0Ch
+	BX = event handle
+	DL = queue
+	    00h task queue
+	    01h receive queue
+	    02h log queue
+Return: AX = 0000h successful
+	    CH = hour
+	    CL = minute
+	    DH = second
+	    DL = 00h
+	AX < 0	   error code (see #03048)
+SeeAlso: AX=CB0Ah,AX=CB0Dh
+

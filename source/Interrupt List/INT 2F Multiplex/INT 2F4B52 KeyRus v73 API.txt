@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4B52
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - KeyRus v7.3 - API
+	AX = 4B52h ('KR')
+	BL = function number
+	    00h installation check
+		Return: AL = 82h if installed
+			    BH = major version number
+			    BL = minor version number
+			    ES destroyed
+	    01h get driver status
+		Return: AL??? = current status (see #02825)
+	    02h set driver state
+		AL = new driver state (see #02825)
+	    03h blank screen (if blanking enabled when TSR was loaded)
+	    04h unblank screen
+	    4Ch switch to English keyboard mode
+	    90h switch to Russian keyboard mode
+Return:
+
+Bitfields for KeyRus driver status:
+Bit(s)	Description	(Table 02825)
+ 1-0	language mode
+	00 Latin
+	01 Russian
+	10 Alternative
+	11 unused
+ 2	allow character loading (if disabled, use ROM fonts)
+ 3	English keyboard support
+ 7-4	used internally (read-only)
+

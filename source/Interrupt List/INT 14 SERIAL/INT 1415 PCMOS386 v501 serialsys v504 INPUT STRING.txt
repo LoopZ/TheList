@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1415
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - INPUT STRING
+	AH = 15h
+	CX = size of buffer
+	DX = port number
+	ES:BX -> buffer for received characters
+	SI = timeout in clock ticks or 0000h for default
+Return: AX = number of characters actually read
+	ZF set on timeout (no data available)
+SeeAlso: AH=02h,AH=14h"PC-MOS",AH=16h"PC-MOS"
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 103800
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Tinytalk Personal v1.09f+ - GET CONFIGURATION INFO
+	AX = 3800h
+Return: ES:DI -> configuration info (see #00066)
+Program: Tinytalk is a shareware screen reader by OMS Development/Eric Bohlman
+Notes:	this call is also used as the installation check by verifying that the
+	  returned ES:DI points at valid configuration info
+	Tinytalk v1.09f ignores AL and always returns the configuration info;
+	  v1.10 adds several subfunctions selected with AL
+SeeAlso: AX=3801h,AX=3803h,AX=3806h,AH=39h,INT 14/AX=F0F1h
+SeeAlso: INT 2F/AX=FB00h"AutoBraille"
+Index:	installation check;Tinytalk Personal
+
+Format of Tinytalk Personal configuration info:
+Offset	Size	Description	(Table 00066)
+ 00h  8 BYTEs	signature "TTCONFIG"
+ 08h	WORD	size of configuration data, not counting signature, this WORD,
+		  or the following byte
+ 0Ah	BYTE	???
+ 0Bh	???	configuration data
+

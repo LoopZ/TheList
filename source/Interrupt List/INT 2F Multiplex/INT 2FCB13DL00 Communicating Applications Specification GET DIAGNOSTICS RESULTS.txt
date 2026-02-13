@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB13DL00
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - GET DIAGNOSTICS RESULTS
+	AX = CB13h
+	DL = 00h
+Return: AX = 0040h in progress
+	   >= 0	   passed
+	   < 0	   hardware-dependent failure code (see #03064,#03065)
+SeeAlso: AX=CB13h/DL=01h
+
+Bitfields for Intel Connection CoProcessor failure codes:
+Bit(s)	Description	(Table 03064)
+ 3	9600 bps FAX modem module failed
+ 2	SDLC chip failed
+ 1	RAM failed
+ 0	ROM checksum failed
+
+Bitfields for Intel SatisFAXtion failure codes:
+Bit(s)	Description	(Table 03065)
+ 1	2400 bps data modem failed
+ 0	9600 bps FAX modem failed
+

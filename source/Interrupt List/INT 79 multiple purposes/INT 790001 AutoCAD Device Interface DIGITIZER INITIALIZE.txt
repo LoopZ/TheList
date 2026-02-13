@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 790001
+  Category: A 	applications
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 79 R - AutoCAD Device Interface - DIGITIZER - INITIALIZE
+	AX = 0001h
+	BX = interface level (0001h)
+Return: AX = status (0000h initialization failed, 0001h init successful)
+	BX = digitizer type
+	    0000h relative pointing device (mouse, etc.)
+	    0001h digitizing tablet
+	CX = digitizer dataflow type
+	    0000h continuous
+	    0001h pauses between packets
+SeeAlso: AX=0002h,AX=0003h,INT 7A/AX=0001h"AutoCAD"
+

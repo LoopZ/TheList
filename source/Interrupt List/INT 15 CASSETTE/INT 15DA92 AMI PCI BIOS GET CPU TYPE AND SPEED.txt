@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DA92
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI PCI BIOS - GET CPU TYPE AND SPEED
+	AX = DA92h
+Return: CF clear (successful)
+	AL = CPU stepping (see also #00529 at INT 15/AH=C9h)
+	AH = CPU model
+	BL = CPU family (05h = Pentium, etc.)
+	CX = external clock speed in MHz (BCD)
+	    (0040h,0050h,0060h,0066h are possible return values on my
+	      Pentium with the Intel "Neptune" chipset)
+	EAX high word destroyed
+Note:	90 MHz and faster Pentium CPUs can be configured to run at varying
+	  multiples of the external clock speed, i.e. a typical 90 MHz Pentium
+	  system will run the motherboard at 60 MHz (my 90 MHz Pentium returns
+	  0060h in CX)
+SeeAlso: AH=C9h
+

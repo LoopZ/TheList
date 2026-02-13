@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214321BX0001
+  Category: u 	emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Q87, Q387 - ENABLE EMULATOR
+	AX = 4321h
+	BX = 0001h
+	EAX = 87654321h (entire EAX value is required, not just AX)
+Desc:	enable the emulator by setting the CPU MSW's EM bit and updating
+	  the BIOS equipment list
+Note:	this function is available only in virtual-86 mode in older versions;
+	  newer versions also provide it in MS Windows 16- and 32-bit protected
+	  mode
+SeeAlso: AX=4321h/BX=0000h,AX=4321h/BX=0002h
+

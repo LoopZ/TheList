@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AD-DOS - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    BX = 4144h ('AD')
+	    CX = 2D44h ('-D')
+	    DX = 4F53h ('OS')
+Program: AD-DOS is the DOS version of the After Dark screen blanker for
+	  MS Windows
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+SeeAlso: AX=C001h"AD-DOS",AX=C003h"AD-DOS",AX=C005h"AD-DOS",AX=C007h"AD-DOS"
+SeeAlso: AX=C009h"AD-DOS",AX=C020h"AD-DOS",INT 14/AX=AA01h
+Index:	screen saver;AD-DOS
+

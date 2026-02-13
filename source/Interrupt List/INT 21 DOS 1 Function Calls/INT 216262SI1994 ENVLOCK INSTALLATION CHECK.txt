@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216262SI1994
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - ENVLOCK - INSTALLATION CHECK
+	AX = 6262h
+	SI = 1994h
+Return: AX = 1994h if installed
+	    ES = ENVLOCK's resident segment
+Notes:	to deactivate ENVLOCK, zero out the byte at ES:[0102h]
+Program: ENVLOCK is a TSR by Alexander Yanovsky that forces other TSRs to
+	  deallocate their environment when they stay resident
+

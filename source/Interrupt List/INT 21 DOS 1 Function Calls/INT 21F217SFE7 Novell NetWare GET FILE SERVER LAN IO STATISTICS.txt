@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFE7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET FILE SERVER LAN I/O STATISTICS
+	AX = F217h subfn E7h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02079 at AH=E3h/SF=E7h)
+	ES:DI -> reply buffer (see #02245)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=E7h,AX=F217h/SF=11h,AX=F217h/SF=F5h
+
+Format of NetWare "Get File Server Lan I/O Statistics" reply packet:
+Offset	Size	Description	(Table 02245)
+ 00h	DWORD	clock ticks since system started
+ 04h	WORD	total routing buffers
+ 06h	WORD	maximum routing buffers used
+ 08h	WORD	current routing buffers used
+ 0Ah	DWORD	total file service packets
+ 0Eh	WORD	number of file service packets buffered
+ 10h	WORD	number of invalid connection packets
+ 12h	WORD	packets with bad logical connection numbers
+ 14h	WORD	number of packets received during processing
+ 16h	WORD	number of requests reprocessed
+ 18h	WORD	packets with bad sequence numbers
+ 1Ah	WORD	number of duplicate replies sent
+ 1Ch	WORD	number of acknowledgements sent
+ 1Eh	WORD	number of packets with bad request types
+ 20h	WORD	requests to attach to ws for which a request is being processed
+ 22h	WORD	requests to attach from ws which is already attaching
+ 24h	WORD	number of forged detach requests
+ 26h	WORD	detach requests with bad connection number
+ 28h	WORD	requests to detach from ws for which requests pending
+ 2Ah	WORD	number of cancelled replies
+ 2Ch	WORD	packets discarded due to excessive hop count
+ 2Eh	WORD	packets discarded due to unknown net
+ 30h	WORD	incoming packets discarded for lack of DGroup buffer
+ 32h	WORD	outgoing packets discarded due to lack of buffer
+ 34h	WORD	received packets destined for B,C, or D side drivers
+ 36h	DWORD	number of NetBIOS packets propagated through net
+ 3Ah	DWORD	total number of non-file-service packets
+ 3Eh	DWORD	total number of routed packets
+Note:	all fields are big-endian
+SeeAlso: #02079,#02080 at AH=E3h/SF=E7h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13A6--SI4358
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 CU - Super PC-Kwik v5.10+ - PROGRAM LOAD NOTIFICATION
+	AH = A6h
+	SI = 4358h
+	DS:DX -> ASCIZ program name
+	ES:BX -> EXEC data block (see #01590 at INT 21/AH=4Bh)
+Return: ???
+Note:	called and used internally by Super PC-Kwik when a program is loaded
+	  with INT 21/AX=4B00h
+SeeAlso: AH=A5h,AH=A9h,INT 21/AH=4Bh
+

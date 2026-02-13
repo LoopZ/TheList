@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE000
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SETDRVER.COM v2.10+ - INSTALLATION CHECK
+	AX = E000h
+Return: AX = 4A52h ("JR") if present
+Program: SETDRVER is a public domain TSR by Jacob Rieper which sets the
+	  apparent DOS version analogously to MS-DOS SETVER
+Notes:	this installation check differs from the usual one of returning AL=FFh
+	the SETDRVER API is fully emulated by Matthias Paul's FREEVER
+SeeAlso: AX=E000h/DX=4D50h,AX=E001h,INT 21/AH=52h
+

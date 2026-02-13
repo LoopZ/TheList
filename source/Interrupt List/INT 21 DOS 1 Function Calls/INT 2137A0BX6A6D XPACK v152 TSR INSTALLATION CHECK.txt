@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137A0BX6A6D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - XPACK v1.52+ - TSR INSTALLATION CHECK
+	AX = 37A0h
+	BX = 6A6Dh ('jm')
+Return: AL = FFh if not present as TSR (default return value from DOS)
+	AX = 0000h if installed as a TSR
+	    CX = 6A6Dh ('jm')
+	    DX = version ID (0152h)
+Program: XPACK is a transparent file compressor/decompressor by JauMing Tseng
+SeeAlso: AX=37A1h/BX=6A6Dh,AX=37A3h/BX=6A6Dh
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140C
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - NON-DESTRUCTIVE READ AHEAD
+	AH = 0Ch
+	DX = port number
+Return: AX = FFFFh character not available
+	AX = 00xxh character xx available
+SeeAlso: AH=08h"MBBIOS",AH=20h"FOSSIL"
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA10
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - Pen Driver - REPORT PEN CONTROL AREA EVENT
+	AX = BA10h
+	BL = event
+	   00h the pen left control areas
+	   01h the pen entered the Brightness- area
+	   02h the pen entered the Brightness+ area
+	   03h the pen entered the Contrast- area
+	   04h the pen entered the Contrast+ area
+Return: CF clear if successfully processed
+	CF set on error (function not supported, ie. not an OmniShare BIOS)
+Note:	The pen driver is responsible for detecting when the pen enters and
+	  leaves control areas of the OmniShare tablet, and notifying the BIOS.
+	The BIOS manages the events, including the autorepetition, and sets
+	  the status LEDs.
+SeeAlso: AX=BA20h,AX=BA13h
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216302
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2.25, DOS 3.2+ - GET KOREAN (HANGEUL) INPUT MODE
+	AX = 6302h
+Return: AL = status
+	    00h successful
+		DL = current input mode
+		    00h return only full characters (clears interim flag)
+		    01h return partial characters (sets interim flag)
+	    FFh not supported
+Notes:	Novell DOS 7 simply reads the value out of the caller's PSP, so it
+	  can return values other than 00h or 01h if the last call to AX=6301h
+	  used another value
+	the US version of MS-DOS 3.30 treats this as an unused function,
+	  setting AL=00h and returning immediately, WITHOUT setting DL; only
+	  the Far East versions of MS-DOS 3.2 and 3.3 supported this call
+SeeAlso: AH=07h,AH=08h,AH=0Bh,AX=6300h,AX=6301h
+

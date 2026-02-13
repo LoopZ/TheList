@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7AFE
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - DOSNP.EXE - INSTALLATION CHECK
+	AX = 7AFEh
+Return: AL = FFh if present
+	    ES = (data???) segment of DOSNP
+Program: DOSNP.EXE provides "named pipes" support for DOS workstations running
+	   NetWare
+Note:	the NetWare shell calls this function and refuses to load if DOSNP is
+	  present
+SeeAlso: AX=7A90h
+

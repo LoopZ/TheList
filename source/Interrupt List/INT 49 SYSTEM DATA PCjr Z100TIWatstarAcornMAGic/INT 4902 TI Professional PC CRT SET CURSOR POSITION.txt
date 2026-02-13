@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4902
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - SET CURSOR POSITION
+	AH = 02h
+	DH = column
+	DL = row
+Return: DX destroyed
+Notes:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+	the TI swaps the row and column compared to the equivalent IBM call
+SeeAlso: AH=01h,AH=03h
+

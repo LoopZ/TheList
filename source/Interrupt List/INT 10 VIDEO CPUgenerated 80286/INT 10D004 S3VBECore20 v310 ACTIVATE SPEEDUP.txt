@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10D004
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 10 U - S3VBE/Core2.0 v3.10+ - ACTIVATE SPEED-UP
+	AX = D004h
+Return: AX = FFFFh if supported
+	BX = status
+	    0000h SpeedUp activated
+	    0001h SpeedUp not possible (wrong memory organization for mode)
+	    0002h SpeedUp not possible (linear frame buffer active)
+Note:	called by S3 SpeedUp (see AX=C000h)
+SeeAlso: AX=C000h"SpeedUp",AX=D000h"S3VBE",AX=D003h"S3VBE",AX=D005h"S3VBE"
+

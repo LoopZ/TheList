@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF80BX0001
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ CPTASK - GET ???
+	AX = FF80h
+	BX = 0001h
+	???
+Return: DX:SI -> task list??? (ten entries of 70h bytes in v9.0)
+	BX = ??? (PSP segment of resident code???)
+

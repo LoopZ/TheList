@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6756
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - ALTER PAGE MAP AND CALL
+	AH = 56h
+	AL = subfunction
+	    00h physical page numbers provided by caller
+		DX = handle
+		DS:SI -> structure containing page map and call address
+	    01h segment addresses provided by caller
+		DX = handle
+		DS:SI -> structure containing page map and call address
+	    02h get page map stack space required
+		Return: BX = stack space required
+Return: (if successful, the target address is called.  Use a RETF to return
+	 and restore mapping context)
+	AH = status (00h,80h,81h,83h,84h,8Ah,8Bh,8Fh) (see #03648)
+SeeAlso: AH=55h
+

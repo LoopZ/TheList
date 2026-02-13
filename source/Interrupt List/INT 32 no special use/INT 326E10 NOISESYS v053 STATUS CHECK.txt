@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 326E10
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 32 - NOISE.SYS v0.53+ - STATUS CHECK
+	AX = 6E10h
+Return: CF set on error
+	    AL = error code (FDh) (see #03166)
+	CF clear if successful
+	    AL = status
+		FFh successful
+	    BH = number of processes using the API
+	    CX = number of random bytes waiting
+	    DX = maximum possible bytes waiting
+		(if CX=DX, the pool is full)
+Note:	this subfunction is a convenient way to check the driver if any
+	  fresh bytes are waiting in the output pool.
+SeeAlso: INT 32/AH=6Eh,AX=6E00h,AX=6E11h
+

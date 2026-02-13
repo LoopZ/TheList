@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105555BXBBBB
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - LIR - GET CONFIGURATION
+	AX = 5555h
+	BX = BBBBh
+Return: AX = magic signature A55Ah
+	BX = version number (BH = major version, BL = minor version),
+	      e.g. BX = 0410h for LIR v4.10, or BX = 0422h for LIR v4.22)
+	CL = configuration flags (see #04118)
+	CH = video adapter configuration (see #04121)
+	DL = keyboard layout flags(see #04119)
+	DH = alphabet flags (see #04120)
+SeeAlso: AX=5555h/BX=AAAAh,INT 17/AX=5555h/BX=BBBBh
+

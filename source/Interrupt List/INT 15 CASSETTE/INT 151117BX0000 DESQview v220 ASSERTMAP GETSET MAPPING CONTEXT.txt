@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151117BX0000
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.20+ - "ASSERTMAP" - GET/SET MAPPING CONTEXT
+	AX = 1117h
+	BX = 0000h	get current mapping context without setting
+	     nonzero	set new mapping context
+Return: BX = mapping context in effect before call
+	interrupts enabled
+Notes:	this function differs from AX = DE17h for DESQview v2.20 through 2.25
+	mapping contexts determine conventional-memory addressability; setting
+	  a mapping context ensures that the associated program and data areas
+	  are in memory for access.  Usable by drivers, TSRs and shared
+	  programs.
+	caller need not be running under DESQview, but must ensure that the
+	  stack in use will not be mapped out by the call
+SeeAlso: AX=DE17h,INT 2F/AX=1685h
+

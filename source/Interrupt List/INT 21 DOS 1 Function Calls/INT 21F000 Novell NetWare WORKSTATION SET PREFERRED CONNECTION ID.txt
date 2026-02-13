@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - SET PREFERRED CONNECTION ID
+	AX = F000h
+	DL = connection ID of prefered file server (1-8) or 00h for none
+Notes:	this function is supported by Advanced NetWare 1.0+
+	the preferred connection ID is set to 00h by the shell on EOJ
+SeeAlso: AH=D6h,AX=EF03h,AX=F001h,AX=F002h,AX=F005h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D8
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - EISA SYSTEM ROM - 32-bit CS ADDRESSING MODE CALLS
+	AH = D8h
+	AL = 80h to 84h
+	other registers as appropriate for AL=00h to 04h
+Return: as appropriate for AL=00h to 04h
+Note:	these functions are identical to AX=D800h to D804h, except that they
+	  should be called when using 32-bit CS addressing mode (pointers use
+	  ESI rather than SI as offset) instead of 16-bit addressing mode
+SeeAlso: AX=D800h,AX=D801h,AX=D802h,AX=D803h,AX=D804h
+

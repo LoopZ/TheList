@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6101
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - CHECK SERVICE
+	AH = 01h
+	AL = service ID (see #03451)
+Return: AX = status
+	    0000h installed
+	    0001h not installed
+	    0002h invalid ID
+	    0003h invalid function
+Note:	Only the offset part of the service pointer is checked for a nonzero
+	  value
+SeeAlso: AH=00h,AH=02h"VINES",AH=03h"VINES"
+
+(Table 03451)
+Values for VINES service ID:
+ 01h	communications
+ 02h	primary 3270 emulation
+ 03h	async terminal emulation
+ 04h	file deflection
+ 05h	print service control
+ 06h	get address of something
+ 07h	StreetTalk access service
+ 08h	environment
+ 09h	NETBIOS client service
+ 0Ah	secondary 3270 emulation
+ 0Bh	semaphore service
+ 0Ch	3270 emulation active status
+ 0Dh	T3270 keyboard interrupt simulator
+ 0Eh	enhanced 3270 service
+ 0Fh	comm Windows entry point
+ 10h	interface to NBNS
+

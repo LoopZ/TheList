@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF2C
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay v1.3 - "GetMemSO" - ALLOCATE MEMORY AND RETURN SEL:OFFSET
+	AX = FF2Ch
+	CX:DX = block size in bytes
+Return: CF clear if successful
+	   SI:DI = selector:offset of allocated memory
+	CF set on error
+Note:	unlike "GetMem" (AX=FF0Bh), this function will reuse selectors until a
+	  segment is full, rather than allocating a new selector for each
+	  memory block
+SeeAlso: AX=FF00h,AX=FF2Dh,AX=FF2Eh
+

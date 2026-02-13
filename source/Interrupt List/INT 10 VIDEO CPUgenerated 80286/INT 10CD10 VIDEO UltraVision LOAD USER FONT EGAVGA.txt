@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD10
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - LOAD USER FONT (EGA,VGA)
+	AX = CD10h
+	BH = bytes per character (08h,0Ah,0Bh,0Eh,13h,14h)
+	CX = ABCDh load 9xN alternate font (v2+)
+	   else number of characters to load
+		DX = character offset into font table
+		DS:SI -> 8-byte ASCII font name
+	ES:BP -> font definitions
+Return: AX = FFFFh if invalid font parameters
+Notes:	loads the designated characters into UltraVision's resident font area
+	should be followed by a video mode set to reload character generator
+SeeAlso: AX=1100h,AX=1103h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBF00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC LAN PROGRAM REDIRIFS.EXE internal - INSTALLATION CHECK
+	AX = BF00h
+Return: AL = FFh if installed
+Note:	this function is also supported by NetSoft's DOS-NET v1.20+; however,
+	  none of the remaining BFxxh calls are supported
+SeeAlso: AX=BF01h,AX=BF80h,INT 2A/AX=4147h
+

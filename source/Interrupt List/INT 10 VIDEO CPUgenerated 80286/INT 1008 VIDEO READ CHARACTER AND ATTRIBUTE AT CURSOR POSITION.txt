@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1008
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - READ CHARACTER AND ATTRIBUTE AT CURSOR POSITION
+	AH = 08h
+	BH = page number (00h to number of pages - 1) (see #00010)
+Return: AH = character's attribute (text mode only) (see #00014)
+	AH = character's color (Tandy 2000 graphics mode only)
+	AL = character
+Notes:	for monochrome displays, a foreground of 1 with background 0 is
+	  underlined
+	the blink bit may be reprogrammed to enable intense background colors
+	  using AX=1003h or by programming the CRT controller
+	the foreground intensity bit (3) can be programmed to switch between
+	  character sets A and B on EGA and VGA cards, thus enabling 512
+	  simultaneous characters on screen.  In this case the bit's usual
+	  function (intensity) is regularly turned off.
+	in graphics modes, only characters drawn with white foreground pixels
+	  are matched by the pattern-comparison routine
+	on the Tandy 2000, BH=FFh specifies that the current page should be
+	  used
+	because of the IBM BIOS specifications, there may exist some clone
+	  BIOSes which do not preserve SI or DI; the Novell DOS kernel
+	  preserves SI, DI, and BP before many INT 10h calls to avoid problems
+	  due to those registers not being preserved by the BIOS.
+BUG:	some IBM PC ROM BIOSes destroy BP when in graphics modes
+SeeAlso: AH=09h,AX=1003h,AX=1103h,AH=12h/BL=37h,AX=5001h
+
+Bitfields for character's display attribute:
+Bit(s)	Description	(Table 00014)
+ 7	foreground blink or (alternate) background bright (see also AX=1003h)
+ 6-4	background color (see #00015)
+ 3	foreground bright or (alternate) alternate character set (see AX=1103h)
+ 2-0	foreground color (see #00015)
+SeeAlso: #00026
+
+(Table 00015)
+Values for character color:
+	Normal		Bright
+ 000b	black		dark gray
+ 001b	blue		light blue
+ 010b	green		light green
+ 011b	cyan		light cyan
+ 100b	red		light red
+ 101b	magenta		light magenta
+ 110b	brown		yellow
+ 111b	light gray	white
+

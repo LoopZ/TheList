@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500015
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - GET MEMORY HANDLE
+	AX = 0015h
+	BL = handle size
+	    00h 65536 bytes (64K)
+	    01h 65535 bytes (64K-1)
+	    02h 32768 bytes (32K)
+	    03h 32767 bytes (32K-1)
+Return: AX = segment
+Program: The PC Thuis Organizer Shell was written by John Vanderaart and
+	  published in the June/July 1990 issue of PC Thuis Power magazine
+SeeAlso: INT 21/AH=48h
+

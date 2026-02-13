@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFEA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3.11+ - GET CONNECTION'S TASK INFORMATION
+	AX = F217h subfn EAh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02248)
+	ES:DI -> reply buffer (see #02233)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=DAh
+
+Format of NetWare "Get Connection's Task Information" request packet:
+Offset	Size	Description	(Table 02248)
+ 00h	WORD	length of following data
+ 02h	BYTE	EAh (subfunction "Get Connection's Task Information")
+ 03h	WORD	connection number
+SeeAlso: #02233,#02041 at AH=E3h/SF=DAh
+

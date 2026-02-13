@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215E04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - 10NET v5.0 - INITIATE PRINT JOB
+	AX = 5E04h
+	BX = zero-based redirection list index (see AX=5F02h)
+	DS:DX -> extended workstation printer setup structure (see #01698)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=5E05h"10NET",AX=5E06h"10NET"
+
+Format of 10NET extended workstation printer setup structure:
+Offset	Size	Description	(Table 01698)
+ 00h	BYTE	notification flags (see #01699)
+ 01h	BYTE	job control mask (see #01700)
+ 02h	WORD	days to retain file
+ 04h	WORD	test print length
+ 06h	BYTE	number of copies to print
+ 07h	BYTE	compression algorithm
+ 08h	BYTE	tab width (00h = don't expand)
+ 09h	BYTE	initiation type (00h normal, 01h non-spooled)
+ 0Ah 38 BYTEs	job start operation notification instructions
+ 30h 32 BYTEs	comment for job
+ 50h 64 BYTEs	output filename or non-spooled file
+
+Bitfields for 10NET notification flags:
+Bit(s)	Description	(Table 01699)
+ 0	user at print start
+ 1	operator at start, with reply
+ 2	user at print completion
+ 3	operator at completion, with reply
+ 4	user on queue switch
+ 5	operator on queue switch, with reply
+ 6	user on print error
+
+Bitfields for 10NET job control mask:
+Bit(s)	Description	(Table 01700)
+ 0	print banner page
+ 1	eject page at end of job
+ 2	mark as "held" (queue but don't print)
+ 3	rush job (queue at top)
+ 4	overwrite file with zeros before deletion
+ 5	hyperspool if possible
+

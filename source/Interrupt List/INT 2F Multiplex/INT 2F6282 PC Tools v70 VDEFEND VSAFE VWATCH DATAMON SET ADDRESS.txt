@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F6282
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v7.0+ VDEFEND, VSAFE, VWATCH, DATAMON - SET ??? ADDRESS
+	AX = 6282h
+	CX:DX -> ??? or 0000h:0000h
+	DI = segment of ??? record (see #02846) or 0000h/FFFFh to ignore
+Return: BX = 0062h
+Note:	if CX:DX = 0000h:0000h on entry, the ??? address is not changed
+	  (DATAMON only)
+SeeAlso: INT 13/AH=FAh"VSAFE",INT 21/AH=FAh"VDEFEND"
+
+Format of VSAFE/VWATCH record:
+Offset	Size	Description	(Table 02846)
+ 00h	DWORD	???
+ 04h	WORD	offset of ??? in record's segment
+		VSAFE 2.0 sets byte at +01h to 56h or 58h
+		VWATCH 2.1 sets byte at +02h to 56h or 58h
+ 06h  2 BYTEs	???
+ 08h	BYTE	??? (01h/other)
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC700CX434C
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 2F u - COLAP - INSTALLATION CHECK
+	AX = C700h
+	CX = 434Ch  "CL"
+Return: AL = FFh if installed
+Program: colap.com is a freeware TSR by Eric Meyer which controls contrast
+	  and brightness of color laptops by changing the VGA palette colors;
+	  for Toshiba laptops there are more hotkeys for shutting off display
+	  and harddisk.
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310502
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - FREE MEMORY BLOCK
+	AX = 0502h
+	SI:DI = handle of memory block
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8023h) (see #03143)
+Note:	any selectors allocated for the memory block must also be freed,
+	  preferably before freeing the memory block
+SeeAlso: AX=0001h,AX=0101h,AX=0501h,AX=0D01h
+

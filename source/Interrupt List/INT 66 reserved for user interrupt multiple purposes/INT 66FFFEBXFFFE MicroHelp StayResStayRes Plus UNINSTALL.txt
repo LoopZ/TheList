@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66FFFEBXFFFE
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - MicroHelp Stay-Res/Stay-Res Plus - UNINSTALL
+	AX = FFFEh
+	BX = FFFEh
+Return: only if unsuccessful
+InstallCheck:	test whether the interrupt handler begins with the bytes
+	  FBh 9Ch or 9Ch FAh, and the program name (not case-sensitive) appears
+	  at offset 0005h (older versions) or the offset returned by
+	  AX=FFFFh/BX=FFF0h in the interrupt handler segment
+Note:	Programs which use Stay-Res include ThesPlus (program name "THESPLUS")
+	  and Personal Calendar (program name "CAL") by Paul Mun~oz-Colman.
+SeeAlso: AX=FFFBh,AX=FFFFh,INT 2D"AMIS"
+Index:	installation check;MicroHelp Stay-Res|installation check;ThesPlus
+Index:	installation check;Personal Calendar|installation check;CAL
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10D003
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 10 U - S3VBE/Core2.0 v3.10+ - GET VBE/Core CAPABILITIES
+	AX = D003h
+Return: AX = FFFFh if supported
+	    BX = capabilities
+		bit 0: SpeedUp = activate/deactivate linear addressing at
+			A0000h for VBE functions 04h/05h
+SeeAlso: AX=D000h"S3VBE",AX=D001h"S3VBE",AX=D004h"S3VBE",AX=D005h"S3VBE"
+

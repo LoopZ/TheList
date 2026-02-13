@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1543
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - READ SYSTEM STATUS (CONVERTIBLE)
+	AH = 43h
+Return: AL = status bits (see #00464)
+
+Bitfields for Convertible system status:
+Bit(s)	Description	(Table 00464)
+ 7	power low
+ 6	external power in use
+ 5	standby power lost
+ 4	power activated by alarm
+ 3	internal modem powered on
+ 2	RS232/parallel adapter powered on
+ 1	reserved
+ 0	LCD detached
+

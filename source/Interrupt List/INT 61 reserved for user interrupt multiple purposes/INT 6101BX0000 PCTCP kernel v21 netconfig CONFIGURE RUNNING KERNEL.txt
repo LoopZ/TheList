@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6101--BX0000
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 61 u - PC/TCP kernel v2.1+ - "net_config" - CONFIGURE RUNNING KERNEL
+	AH = 01h
+	BX = 0000h
+	DH = tag number
+	DL = device number
+	DS:SI -> buffer to send to kernel
+	ES:DI -> integer containing size of buffer
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Range:	INT 20 to INT E0, selected by configuration
+Notes:	there are a large number of tags available; the items returned
+	  all refer to local kernel configuration, and are not needed in
+	  normal use.
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=02h"PC/TCP"
+

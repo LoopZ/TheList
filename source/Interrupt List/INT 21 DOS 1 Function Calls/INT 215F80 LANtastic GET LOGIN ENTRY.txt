@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F80
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET LOGIN ENTRY
+	AX = 5F80h
+	BX = login entry index (0-based)
+	ES:DI -> 16-byte buffer for machine name
+Return: CF clear if successful
+	    buffer filled with machine name ("\\" prefix removed)
+	    DL = adapter number (v3+)
+	CF set on error
+	    AX = error code
+Note:	the login entry index corresponds to the value BX used in AX=5F83h
+SeeAlso: AX=5F83h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB43
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 3.0 DPMILOAD.EXE - NULL FUNCTION
+	AX = FB43h
+	BX = subfunction (at least 0000h-000Eh)
+Notes:	this function is only present in protected mode; it does nothing but
+	  an immediate IRET
+	DPMILOAD.EXE itself calls various subfunctions:
+	    subfunction 0004h is called with CX=selector of ???, DI=selector
+		  of DPMILOAD data
+	    subfunction 0008h is called with CX=selector of DPMILOAD data
+SeeAlso: AX=FB42h/BX=0001h
+

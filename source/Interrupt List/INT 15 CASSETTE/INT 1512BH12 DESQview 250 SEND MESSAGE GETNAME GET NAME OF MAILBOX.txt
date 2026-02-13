@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH12
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview 2.50+ - SEND MESSAGE - "GETNAME" - GET NAME OF MAILBOX
+	AH = 12h
+	BH = 12h
+	BL = mailbox for which to retrieve name
+	    00h DWORD on top of stack is mailbox handle
+	    02h use given task's mailbox (task's handle on top of stack)
+	    03h use current task's default mailbox
+	STACK: DWORD length of buffer for name
+	       DWORD pointer to buffer
+Return: STACK: DWORD length of returned name (or size of buffer, if less)
+Program: DESQview 2.5x is distributed as part of DESQview/X 1.0x
+Note:	the returned name is not NUL-terminated
+SeeAlso: AH=12h/BH=11h"SETNAME",AX=DE0Eh
+

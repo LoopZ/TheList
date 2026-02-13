@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F168A
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DPMI 0.9+ - GET VENDOR-SPECIFIC API ENTRY POINT
+	AX = 168Ah
+	DS:(E)SI = selector:offset of ASCIZ vendor name (see #02719)
+Return: AL = status
+	    00h successful
+	       ES:(E)DI -> extended API entry point
+	    8Ah unsuccessful
+Notes:	the vendor name is used to determine which entry point to return; it is
+	  case-sensitive
+	available in protected mode only
+	32-bit applications use ESI and EDI, 16-bit applications use SI and DI
+	this call is present but not documented for DPMI 0.9
+	the Borland C++ 3.1 DPMILOAD does not handle requests for entry points
+	  other than the MS-DOS one gracefully, producing an unhandled
+	  exception report; this has been fixed in the Borland Pascal 7 version
+SeeAlso: AX=1687h,INT 31/AX=0A00h,INT 31/AH=57h
+
+(Table 02719)
+Values for DPMI vendor-specific API names:
+ "MS-DOS"	MS Windows and 386MAX v6.00+ (see #02720)
+ "386MAX"	386MAX v6.00+
+ "HELIX_DPMI"	Helix Netroom's DPMI server
+ "Phar Lap"	Phar Lap 286|DOS-Extender RUN286 (see #02721)
+ "RATIONAL DOS/4G"  DOS/4G, DOS/4GW
+ "VIRTUAL SUPPORT"  Borland 32RTM
+
+(Table 02720)
+Call Windows-support ("MS-DOS") entry point with:
+	AX = 0100h get LDT alias selector
+Return: CF clear if successful
+	    AX = alias selector
+	CF set on error
+SeeAlso: #02719,AX=1688h/BX=0BADh
+
+(Table 02721)
+Call Phar Lap RUN286 entry point with:
+	AX = 0000h (function "load MSW")
+	BX = new value for MSW register (low word of CR0)
+Return: ???
+SeeAlso: #02719
+

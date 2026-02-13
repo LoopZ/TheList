@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2100
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - TERMINATE PROGRAM
+	AH = 00h
+	CS = PSP segment
+Notes:	Microsoft recommends using INT 21/AH=4Ch for DOS 2+
+	this function sets the program's return code (ERRORLEVEL) to 00h
+	execution continues at the address stored in INT 22 after DOS performs
+	  whatever cleanup it needs to do (restoring the INT 22,INT 23,INT 24
+	  vectors from the PSP assumed to be located at offset 0000h in the
+	  segment indicated by the stack copy of CS, etc.)
+	if the PSP is its own parent, the process's memory is not freed; if
+	  INT 22 additionally points into the terminating program, the
+	  process is effectively NOT terminated
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+SeeAlso: AH=26h,AH=31h,AH=4Ch,INT 20,INT 22
+

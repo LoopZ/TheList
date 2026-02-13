@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215D03
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 3.1+ internal - SHARE.EXE - CLOSE ALL FILES FOR GIVEN COMPUTER
+	AX = 5D03h
+	DS:DX -> DOS parameter list (see #01686), only computer ID used
+Return: CF set on error
+	    AX = error code (see #01680)
+	CF clear if successful
+Notes:	error unless SHARE is loaded (calls [SysFileTable-30h])
+	  (see #01636 at AH=52h)
+	not supported by DR DOS 3.41 and 5.0; returns error code 01h
+	not supported by Novell DOS 7 (at least through Update 4; may be
+	  supported in Update 15)
+SeeAlso: AX=5D02h,AX=5D04h
+

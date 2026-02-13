@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF0F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - START A SESSION
+	AX = 0003h subfn 0Fh
+	DS:BX -> argument block (see #03390)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=04h,AX=0003h/SF=0Bh
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03390)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	0Fh (function "start a session")
+ 02h	WORD	pointer to information area in caller's current DS (see #03391)
+
+Format of VINES information area:
+Offset	Size	Description	(Table 03391)
+ 00h	WORD	length of service name
+ 02h	WORD	pointer to service name in caller's DS
+ 04h	BYTE	type of connection (00h=connection name, 01h=dialout)
+ 05h	WORD	length of connection name/telephone number
+ 07h	WORD	pointer to connection name/telephone number
+

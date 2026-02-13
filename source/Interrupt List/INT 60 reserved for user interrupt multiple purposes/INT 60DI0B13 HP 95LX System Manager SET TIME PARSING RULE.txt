@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0B13
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - SET TIME PARSING RULE
+	DI = 0B13h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	new parsing rule (see #03300)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0B12h
+
+(Table 03300)
+Values for HP 95LX time parsing rule:
+ 01h	HH:MM:SS (am/pm)
+ 02h	HH:MM:SS (24hr)
+ 03h	HHMM:SS (24hr)
+ 04h	HH:MM:SS.hh (24hr)
+ 05h	HH:MM (am/pm)
+ 06h	HH:MM (24hr)
+ 07h	HHMM (24hr)
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1408--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - RETURN DEFAULT CONNECTION PARAMETERS
+	AH = 08h
+	DX = FFFFh
+	CX = size of buffer for parameters or 0000h to get length
+	ES:DI -> buffer for parameter vector (see #00311)
+Return: AH = return code
+	    00h successful
+		CX = number of bytes required (if CX=0000h on entry)
+		CX = number of bytes omitted for lack of space (if CX nonzero)
+	    nonzero invalid request
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+SeeAlso: AH=00h/DX=FFFFh,AH=0Fh/DX=FFFFh
+

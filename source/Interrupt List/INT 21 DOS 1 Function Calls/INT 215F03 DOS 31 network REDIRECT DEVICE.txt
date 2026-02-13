@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F03
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ network - REDIRECT DEVICE
+	AX = 5F03h
+	BL = device type
+	    03h printer
+	    04h disk drive
+	CX = user data to save
+		0000h for LANtastic
+		4E57h ("NW") for NetWare 4.0 requester
+	DS:SI -> ASCIZ local device name (16 bytes max)
+	ES:DI -> ASCIZ network name + ASCIZ password (128 bytes max total)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h,03h,05h,08h,0Fh,12h) (see #01680 at AH=59h)
+Notes:	if device type is disk drive, DS:SI must point at either a null string
+	  or a string consisting the drive letter followed by a colon; if a
+	  null string, the network attempts to access the destination without
+	  redirecting a local drive
+	the DOS kernel calls INT 2F/AX=111Eh with AX on top of the stack
+	also supported by Banyan VINES, LANtastic, and 10NET
+SeeAlso: AX=5F02h,AX=5F04h,INT 2F/AX=111Eh,INT 60/AX=0002h
+

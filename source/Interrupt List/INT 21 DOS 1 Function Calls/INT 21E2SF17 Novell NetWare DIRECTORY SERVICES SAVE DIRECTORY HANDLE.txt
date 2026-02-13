@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF17
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - SAVE DIRECTORY HANDLE
+	AH = E2h subfn 17h
+	DS:SI -> request buffer (see #01877)
+	ES:DI -> reply buffer (see #01878)
+Return: AL = status
+	    00h successful
+	    else network error code
+Note:	this function is supported by Advanced NetWare 2.0+ and Alloy NTNX
+SeeAlso: AH=E2h/SF=12h,AH=E2h/SF=17h,AX=F216h/SF=17h
+
+Format of NetWare "Save Directory Handle" request buffer:
+Offset	Size	Description	(Table 01877)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	17h (subfunction "Save Directory Handle")
+ 03h	BYTE	directory handle
+SeeAlso: #01878,#01879
+
+Format of NetWare "Save Directory Handle" reply buffer:
+Offset	Size	Description	(Table 01878)
+ 00h	WORD	(call) 0010h (length of following results buffer)
+ 02h 16 BYTEs	save buffer
+SeeAlso: #01877,#01880
+

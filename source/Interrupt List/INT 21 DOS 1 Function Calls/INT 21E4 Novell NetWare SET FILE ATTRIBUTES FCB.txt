@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E4
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare - SET FILE ATTRIBUTES (FCB)
+	AH = E4h
+	CL = file attributes (see #02086)
+	DX:DX -> FCB (see #01345 at AH=0Fh)
+Return: AL = error code
+Note:	this function was added in NetWare 4.0, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+SeeAlso: AX=4301h
+
+Bitfields for NetWare file attributes:
+Bit(s)	Description	(Table 02086)
+ 0	read only
+ 1	hidden
+ 2	system
+ 7	shareable
+

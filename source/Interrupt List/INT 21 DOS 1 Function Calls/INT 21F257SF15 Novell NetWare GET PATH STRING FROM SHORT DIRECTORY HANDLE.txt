@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF15
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET PATH STRING FROM SHORT DIRECTORY HANDLE
+	AX = F257h subfn 15h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02405)
+	ES:DI -> reply buffer (see #02406)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=13h,AX=F257h/SF=16h
+
+Format of NetWare "Get Path String from Short Directory Handle" request packet:
+Offset	Size	Description	(Table 02405)
+ 00h	BYTE	15h (subfunction "Get Path String from Short Directory Handle")
+ 01h	BYTE	name space (see #02387)
+ 02h	BYTE	short directory handle
+SeeAlso: #02406
+
+Format of NetWare "Get Path String from Short Directory Handle" reply packet:
+Offset	Size	Description	(Table 02406)
+ 00h	BYTE	length of path
+ 01h  N BYTEs	full directory path
+SeeAlso: #02405
+

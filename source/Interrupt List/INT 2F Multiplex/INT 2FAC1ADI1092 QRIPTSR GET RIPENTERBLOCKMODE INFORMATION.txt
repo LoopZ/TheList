@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC1ADI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - GET RIP_ENTER_BLOCK_MODE INFORMATION
+	AX = AC1Ah
+	DI = 1092h
+Return: AH = requested protocol (see #02968)
+	AL = file type (see #02969)
+	DX:BX -> ASCIZ filename or 0000h:0000h
+	CX = length of filename
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=ACF0h
+
+(Table 02968)
+Values for QRIP protocol identifier:
+ 00h	Xmodem (checksum)
+ 01h	Xmodem-CRC
+ 02h	Xmodem-1K
+ 03h	Xmodem-1K-G
+ 04h	Kermit
+ 05h	Ymodem
+ 06h	Ymodem-G
+ 07h	Zmodem with crash recovery
+ 08h-0Fh same as 00h-07h, but for uploading instead of downloading
+SeeAlso: #02969
+
+(Table 02969)
+Values for QRIP file type:
+ 00h	RIP file sequence to be displayed
+ 01h	RIP file sequence to be stored in icon directory
+ 02h	ICN file sequence to be stored in icon directory
+ 03h	HLP file sequence to be stored, then auto-loaded if needed
+ 04h	COMPOSITE DYNAMIC file sequence (batch protocols only)
+ 05h	ACTIVE DYNAMIC file sequence (batch protocols only)
+Note:	for file types 04h and 05h, any .RIP or .ICN files are stored in
+	  the icon directory; in mode 05h, any .RIP files are also played
+	  back as they are received
+SeeAlso: #02968
+

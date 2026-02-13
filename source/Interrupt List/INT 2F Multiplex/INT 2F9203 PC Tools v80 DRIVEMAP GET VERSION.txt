@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F9203
+  Category: R 	remote control/file access
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v8.0 DRIVEMAP - GET VERSION
+	AX = 9203h
+Return: AH = major version
+	AL = minor version
+	CX = segment of resident code
+Note:	the DRIVEMAP included with PC Tools v8.0 is version 1.00
+SeeAlso: AX=9204h,INT 16/AX=FF70h
+

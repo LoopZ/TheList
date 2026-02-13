@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFD9
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET DISK CHANNEL STATISTICS
+	AX = F217h subfn D9h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02037 at AH=E3h/SF=D9h)
+	ES:DI -> reply buffer (see #02232)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=D9h,AX=F217h/SF=D8h
+
+Format of NetWare "Get Disk Channel Statistics" reply packet:
+Offset	Size	Description	(Table 02232)
+ 00h	DWORD	(big-endian) clock ticks since system started
+ 04h	WORD	(big-endian) channel run state (see #02039)
+ 06h	WORD	(big-endian) channel synchronization state (see #02040)
+ 08h	BYTE	driver type
+ 09h	BYTE	major version of driver
+ 0Ah	BYTE	minor version of driver
+ 0Bh 65 BYTEs	ASCIZ driver description
+ 4Ch	WORD	(big-endian) first I/O address used
+ 4Eh	WORD	(big-endian) length of first I/O address
+ 50h	WORD	(big-endian) second I/O address used
+ 52h	WORD	(big-endian) length of second I/O address
+ 54h  3 BYTEs	first shared memory address
+ 57h  2 BYTEs	length of first shared memory address
+ 59h  3 BYTEs	second shared memory address
+ 5Ch  2 BYTEs	length of second shared memory address
+ 5Eh	BYTE	first interrupt number in-use flag
+ 5Fh	BYTE	first interrupt number used
+ 60h	BYTE	second interrupt number in-use flag
+ 61h	BYTE	second interrupt number used
+ 62h	BYTE	first DMA channel in-use flag
+ 63h	BYTE	first DMA channel used
+ 64h	BYTE	second DMA channel in-use flag
+ 65h	BYTE	second DMA channel used
+ 66h	BYTE	flags
+ 67h	BYTE	reserved
+ 68h 80 BYTEs	ASCIZ configuration description
+SeeAlso: #02037,#02038 at AH=E3h/SF=D9h
+

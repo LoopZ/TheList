@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 170E
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - Emulaser ELTSR - BACKGROUND PROCESSING
+	AH = 0Eh
+Program: ELTSR is the resident portion of the Emulaser PostScript emulator by
+	  Vertisoft Systems, Inc.
+Note:	this function is called by ELTSR on every INT 08 to allow data to be
+	  processed in the background, but may also be called by applications
+	  to give Emulaser additional CPU time
+SeeAlso: AH=0Dh,INT 1A/AH=E5h
+

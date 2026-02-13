@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F121C
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - CHECKSUM MEMORY
+	AX = 121Ch
+	DS:SI -> start of memory to checksum
+	CX = number of bytes
+	DX = initial checksum
+	SS = DOS DS (must be using a DOS internal stack)
+Return: AX, CX destroyed
+	DX = checksum
+	DS:SI -> first byte after checksummed range
+Notes:	used by DOS to determine day count since 1980/1/1 given a date
+	supported by DR DOS 5.0+
+SeeAlso: AX=121Dh
+

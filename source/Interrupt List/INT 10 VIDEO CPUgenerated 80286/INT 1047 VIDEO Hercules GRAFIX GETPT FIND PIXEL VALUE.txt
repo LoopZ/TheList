@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1047
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "GETPT" - FIND PIXEL VALUE
+	AH = 47h
+	DI = x (0-719)
+	BP = y (0-347)
+Return: AL = 00h pixel clear
+	AL = 01h pixel set
+Note:	function 43h specifies which page is used
+SeeAlso: AH=0Dh,AH=46h
+

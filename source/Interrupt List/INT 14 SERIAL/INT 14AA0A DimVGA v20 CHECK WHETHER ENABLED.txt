@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14AA0A
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - DimVGA v2.0+ - CHECK WHETHER ENABLED
+	AX = AA0Ah
+Return: AX = FFFFh
+	BX = current state (0000h disabled, 0001h enabled)
+SeeAlso: AX=AA01h,AX=AA06h,AX=AA07h
+Index:	screen saver;DimVGA
+

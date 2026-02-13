@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F10BL02
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/PM (Power Management) v1.0+ - GET DISPLAY POWER STATE
+	AX = 4F10h
+	BL = 02h
+Return: AL = 4Fh if function supported
+	AH = call status
+	    00h successful
+	       BH = current power state (see #00111)
+	    else failed
+SeeAlso: AX=4F10h/BL=00h,AX=4F10h/BL=01h,AX=A00Dh
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F120D
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - GET DATE AND TIME
+	AX = 120Dh
+	SS = DOS DS (must be using a DOS internal stack)
+Return: AX = current date in packed format (see #01666 at INT 21/AX=5700h)
+	DX = current time in packed format (see #01665 at INT 21/AX=5700h)
+SeeAlso: INT 21/AH=2Ah,INT 21/AH=2Ch
+

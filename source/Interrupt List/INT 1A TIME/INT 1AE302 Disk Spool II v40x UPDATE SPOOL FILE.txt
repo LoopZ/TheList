@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AE302
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Disk Spool II v4.0x - UPDATE SPOOL FILE
+	AX = E302h
+	ES:BX -> ASCIZ filename (max 32 chars)
+	ES:SI -> spool file status record (see #01262)
+Return: AH = status
+	    00h successful
+	    F0h not a spool file
+	    FFh failed
+Note:	this function is also supported by Vertisoft's Emulaser utility ELSPL,
+	  as that is a licensed version of Disk Spool II
+SeeAlso: AH=E0h,AX=E301h,AX=E401h
+

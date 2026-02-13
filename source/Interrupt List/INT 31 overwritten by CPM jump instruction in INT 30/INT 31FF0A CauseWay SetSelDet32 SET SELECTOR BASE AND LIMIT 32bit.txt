@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF0A
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "SetSelDet32" - SET SELECTOR BASE AND LIMIT (32-bit)
+	AX = FF0Ah
+	BX = selector
+	EDX = new base address
+	ECX = new byte-granular limit
+Return: CF clear if successful
+	CF set on error
+SeeAlso: AX=FF08h,AX=FF09h
+

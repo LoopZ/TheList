@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: B374
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - CONVERT ZIPCODE TO ASCII DIGITS
+	AH = 74h
+	DX = zipcode region (0-999)
+	CH = last two digits of zipcode (0-99)
+	ES:DI -> buffer
+Return: CF set on error
+	    AX destroyed
+	CF clear if successful
+	    ES:DI points one byte beyond end of digit string
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FC8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - READ CONSOLE DATA INTO BUFFER
+	AH = C8h
+	AL = maximum bytes to read
+	ES:DI -> buffer for console data
+Return: CF clear if successful
+	    CX = number of bytes read
+	CF set on error (caller is not remote user)
+SeeAlso: AH=C7h
+

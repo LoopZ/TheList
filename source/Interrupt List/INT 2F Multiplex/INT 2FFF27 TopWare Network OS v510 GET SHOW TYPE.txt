@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFF27
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - TopWare Network OS v5.10+ - GET "SHOW" TYPE
+	AX = FF27h
+Return: AL = type (00h complete version, 01h simple version)
+	BL = "show" functions flag (00h disabled, 01h enabled)
+SeeAlso: AX=FF16h,AX=FF18h
+

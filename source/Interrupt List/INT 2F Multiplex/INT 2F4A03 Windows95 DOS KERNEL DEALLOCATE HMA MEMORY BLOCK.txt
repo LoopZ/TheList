@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A03
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Windows95 - DOS KERNEL - (DE)ALLOCATE HMA MEMORY BLOCK
+	AX = 4A03h
+	CX = segment of block's owner???
+	DL = subfunction
+	    00h allocate block
+		BX = number of bytes
+		Return: DI=FFFFh if unable to allocate
+			ES:DI -> allocated block
+	    01h resize block
+		ES:DI -> previously-allocated block
+		BX = new size in bytes (must be less than original size???)
+		Return: DI=FFFFh if unable to allocate
+			ES:DI -> reallocated block
+		Note:	the contents of the original block are NOT copied
+	    02h free block???
+		ES:DI -> block to be freed
+Note:	in MS-DOS 7.x, function 4A02h is implemented by calling this function
+	  with DL=00h
+SeeAlso: AX=4A02h
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - NETWORK - EXECUTE NetBIOS REQUEST
+	AH = 04h
+	AL = error retry
+	    00h automatically retry request on errors 09h, 12h, and 21h
+		  (see #03248 at INT 5C"NetBIOS")
+	    01h no retry
+	    02h ???
+	ES:BX -> Network Control Block (see #03249 at INT 5C"NetBIOS")
+Return: AX = 0000h if successful
+	AH = 01h on error
+	    AL = error code
+Notes:	invokes either INT 5B or INT 5C as appropriate
+	supported by PC LAN Program, LANtastic, LAN Manager, NetWare, 10NET,
+	  etc.
+	NetWare 2.15 NetBIOS emulator returns CF clear if successful, CF set
+	  on error
+	PC LAN Program defines any non-zero return value in AH as an error
+	  indicator for subfunction 00h, and any non-zero return value in AX
+	  as an error indicator for subfunction 01h
+SeeAlso: AH=00h,AH=01h,AX=0500h,INT 5B"Extended NetBIOS",INT 5C"NetBIOS"
+

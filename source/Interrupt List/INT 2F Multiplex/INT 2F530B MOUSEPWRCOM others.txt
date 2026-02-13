@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F530B
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - ??? (MOUSEPWR.COM, others) - ???
+	AX = 530Bh
+	BX = subfunction
+	    0003h ???
+	    0004h ???
+	???
+Return: ???
+Note:	it appears that subfunction 0003h reads or restores the current mouse
+	  settings (the MS Mouse driver hooks AX=530Bh), and 0004h might be
+	  the converse
+

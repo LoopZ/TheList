@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E10D
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - "NetSubmitName"
+	AX = E10Dh
+	BX = size of parameter block in words (0006h)
+	CX:DX -> parameter block (see #03991)
+Return: AX = status (see #03979)
+Desc:	this function is used to verify username/password
+SeeAlso: AX=E10Eh
+
+Format of Da Vinci eMail "NetSubmitName" parameter block:
+Offset	Size	Description	(Table 03991)
+ 00h	WORD	segment of uppercase password string
+ 02h	WORD	offset of uppercase password string
+ 04h	WORD	segment of uppercase username string
+ 06h	WORD	offset of uppercase username string
+ 08h	WORD	segment of "DVSEMAIL"
+ 0Ah	WORD	offset of "DVSEMAIL"
+

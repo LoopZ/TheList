@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1425
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus - CLEAR BUFFERS
+	AH = 25h
+	AL = function
+	    00h only clear buffers
+	    01h clear buffers and deactivate
+	DX = port number
+Return: AH = status
+	    00h successful
+	    3Ah invalid function
+	    41h no such port
+	    42h monitor mode not active
+SeeAlso: AH=20h"MultiDOS",AH=24h"MultiDOS"
+

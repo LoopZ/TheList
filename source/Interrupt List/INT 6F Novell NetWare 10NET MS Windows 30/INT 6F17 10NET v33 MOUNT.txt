@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F17
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v3.3+ - MOUNT
+	AH = 17h
+	AL = local drive number (0=A:)
+	BL = remote drive letter or '1'..'3' for LPTn or '4' or '5' for COMx
+	DS:DX -> node ID, 12 bytes blank-padded
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03740)
+SeeAlso: AH=18h
+

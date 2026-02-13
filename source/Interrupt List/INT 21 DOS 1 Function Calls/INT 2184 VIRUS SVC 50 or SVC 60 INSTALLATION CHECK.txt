@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2184
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "SVC 5.0" or "SVC 6.0" - INSTALLATION CHECK
+	AH = 84h
+Return: DX = 1990h if resident
+	    BH = version number (major in high nybble, minor in low)
+SeeAlso: AH=83h"VIRUS",AH=89h"VIRUS"
+

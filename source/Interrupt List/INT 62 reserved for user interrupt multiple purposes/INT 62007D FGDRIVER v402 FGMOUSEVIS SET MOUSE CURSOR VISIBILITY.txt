@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62007D
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOUSEVIS" - SET MOUSE CURSOR VISIBILITY
+	AX = 007Dh
+	BX = new state (0000h invisible, 0001h visible)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0077h,INT 33/AX=0001h,INT 33/AX=0002h
+

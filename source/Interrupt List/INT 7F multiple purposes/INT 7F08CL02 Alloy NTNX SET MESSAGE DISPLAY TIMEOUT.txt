@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F08--CL02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX - SET MESSAGE DISPLAY TIMEOUT
+	AH = 08h
+	CL = 02h
+	DX = timeout in seconds
+Return: AL = status
+	    00h successful
+	    02h invalid subfunction
+

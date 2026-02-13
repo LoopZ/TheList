@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF10
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - GET HIGH ADDRESS MAP REGISTER
+	AX = BF10h
+Return: CF clear
+	AX = current value of high address map register
+Notes:	supported by at least the QVision board and the SystemPro XL and LTE
+	  Lite ROM BIOSes
+	the Compaq QVision documentation (October 1993) says the value is
+	  returned in BX, but this appears to be one of many typos
+SeeAlso: AX=BF0Fh
+

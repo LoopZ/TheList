@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A44BX4156
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AVATAR.SYS v0.11+ - GET DATA SEGMENT
+	AX = 1A44h
+	BX = 4156h ('AV')
+Return: AX = 0000h
+	DS = data segment
+	CX = size of data segment
+Note:	AVATAR.SYS calls this function whenever it is invoked.	If each
+	  process under a multitasker hooks this function and provides a
+	  separate data segment, AVATAR.SYS becomes fully reentrant.
+SeeAlso: AX=1A21h,AX=1A3Fh,AX=1A52h
+

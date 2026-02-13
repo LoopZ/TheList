@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6100
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - SERVICE INITIALIZATION
+	AH = 00h
+Return: nothing
+Note:	applications using any Portfolio INT 61 calls should call this function
+	  exactly once at startup
+SeeAlso: AH=07h"Portfolio",AH=09h"Portfolio",AH=0Dh"Portfolio"
+SeeAlso: AH=11h"Portfolio",AH=15h"Portfolio",AH=19h"Portfolio"
+SeeAlso: AH=1Bh"Portfolio",AH=24h"Portfolio",AH=2Ch"Portfolio"
+SeeAlso: AH=30h"Portfolio"
+

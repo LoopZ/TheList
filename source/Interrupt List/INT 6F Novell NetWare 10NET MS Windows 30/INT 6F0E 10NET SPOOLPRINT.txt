@@ -1,0 +1,97 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - SPOOL/PRINT
+	AH = 0Eh
+	DS:DX -> spool/print record (see #03771)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see also #03740)
+		17FFh device not mounted
+		18FFh already spooling to named device
+
+(Table 03770)
+Values for 10NET spooler operation code:
+ 0000h	initiate spool
+ 0001h	abort print
+ 0002h	close spool
+ 0003h	delete spool
+ 0004h	print
+ 0005h	get report info
+ 0006h	set chat template
+ 0007h	queue
+ 0008h	return queue
+ 0009h	queue non-spooled file for printing
+
+Format of 10NET Spool/Print record:
+Offset	Size	Description	(Table 03771)
+ 00h	WORD	operation code (see #03770)
+ 02h 11 BYTEs	file name in FCB format
+---if operation code = 00h or 06h---
+ 0Dh	BYTE	notification flags (see #03772)
+ 0Eh	BYTE	days to keep (FFh=forever)
+ 0Fh	BYTE	bits 0,1: device (1=LPT1)
+		bits 4-7: remote drive to store spool file (1=A,...)
+ 10h	WORD	length of following data area
+ 12h  N BYTEs	up to 64 bytes of description
+---if operation code = 03h---
+ 0Dh  8 BYTEs	user ID to associate with filename
+---if operation code = 04h---
+ 0Dh	WORD	block number
+ 0Fh  8 BYTEs	user ID to associate with filename
+---if operation code = 05h---
+ 0Dh	BYTE	RRN to start retrieve
+ 0Eh	BYTE	bits 0,1: local print device (LPTx)
+		bit 3: if set, return entries for all users
+ 0Fh	WORD	length of following area
+ 11h  N BYTEs	up to 1500 bytes to receive $SCNTL records returned
+---if operation code = 07h---
+ 0Dh	BYTE	queue number
+ 0Eh	BYTE	bits 0,1: local print device (LPTx)
+ 0Fh	WORD	number of bytes of test print to be done
+ 11h	BYTE	code:
+		01h print device
+		02h test print count
+		03h prn
+---if operation code = 08h---
+ 0Dh	BYTE	queue location or $SCNTL location to start access
+		returns next item for access:
+		    00h-7Fh queued items
+		    80h-FEh non-queued, non-printed items
+		    FFh	no more items
+ 0Eh	WORD	unused
+ 10h	WORD	length of following area
+ 12h  N BYTEs	up to 64 bytes to receive $SCNTL records (see #03773)
+---if operation code = 09h---
+ 0Dh  3 BYTEs	unused
+ 10h  N BYTEs	path to non-spooled file to be queued for printing
+
+Bitfields for notification flags:
+Bit(s)	Description	(Table 03772)
+ 7	queue to top
+ 6	do ID page
+ 5	no form feed
+ 4	reserved
+ 3	explicit queuing only
+ 2	notify at print completion
+ 1	notify server operator, with reply
+ 0	notify at print start
+
+Format of 10NET $SCNTL record:
+Offset	Size	Description	(Table 03773)
+ 00h  8 BYTEs	user ID
+ 08h 11 BYTEs	filename in FCB format
+ 13h  6 BYTEs	node ID
+ 19h  3 BYTEs	creation date
+ 1Ch	BYTE	notification flags (see #03772)
+ 1Dh	BYTE	retention time in days
+ 1Eh	BYTE	printing device (LPTx)
+ 1Fh  3 BYTEs	date last printed (0 = never)
+ 22h	BYTE	device containing spoolfile
+ 23h	WORD	bytes to print for test print
+ 25h	WORD	block number to start print
+ 27h	BYTE	reserved
+

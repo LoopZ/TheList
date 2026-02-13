@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1790
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - SPOOL FILE BY NAME
+	AH = 90h
+	AL = mode
+	    00h NTNX compatibility
+		DL = printer code (FFh=current) (NTNX, MW386 v1.x only)
+		DH = number of copies (FFh=current) (NTNX, MW386 v1.x only)
+	    02h MW386 v2+
+		BX = logical device number
+		    00h-03h = LPT1-LPT4
+		    04h-07h = COM1-COM4
+	CX:SI -> ASCIZ pathname
+Return: AL = status (see #00642)
+Note:	in mode 00h, the file is always sent to logical LPT1
+SeeAlso: AH=A0h
+

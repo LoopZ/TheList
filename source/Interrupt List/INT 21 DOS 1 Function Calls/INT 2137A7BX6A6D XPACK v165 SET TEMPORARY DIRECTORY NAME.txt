@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137A7BX6A6D
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - XPACK v1.65 - SET TEMPORARY DIRECTORY NAME
+	AX = 37A7h
+	BX = 6A6Dh ('jm')
+	DS:DX -> ASCIZ name of temporary directory (max 64 chars)
+Return: AX = 0000h
+Note:	the specified directory name must include a drive letter and end with
+	  a backslash (e.g. 'c:\dos\',0)
+SeeAlso: AX=37A0h/BX=6A6Dh,AX=37A6h/BX=6A6Dh
+

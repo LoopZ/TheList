@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620003
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_ALLOCXMS" - CREATE LOGICAL VIDEO PAGE (XMS)
+	AX = 0003h
+	BX = page number (0001h-003Fh)
+Return: AX = status (0000h,FFFCh,FFFDh,FFFEh) (see #03473)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	You must first call "FG_INITXMS" (see AX=0060h) before using this
+	  function
+	The only operation which is allowed on logical pages is "FG_COPYPAGE"
+	  (see AX=0014h)
+SeeAlso: AX=0000h,AX=0001h,AX=0002h,AX=0014h,AX=0038h,AX=0060h
+

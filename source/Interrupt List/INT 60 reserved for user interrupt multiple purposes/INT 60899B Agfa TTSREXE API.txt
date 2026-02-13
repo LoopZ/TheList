@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60899B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 60 U - Agfa TTSR.EXE - API
+	AX = 899Bh
+	BX = function
+	    0001h installation check
+		Return: BX = 899Bh if installed
+	    0002h ???
+	    0003h ???
+	???
+Return: ???
+Note:	TTSR.EXE is found in FotoLook 2.09 (16-bit), which is available from
+	  agfa.com; it appears to provide DOS ASPI support
+!!!
+

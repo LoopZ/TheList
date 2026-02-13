@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - FTPSOFT.DOS v3.1 - GET ???
+	AX = 4402h
+	BX = file handle for device "FTPSOFT$"
+	CX = size of buffer
+	DS:DX -> buffer for data (see #01499)
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: FTPSOFT.DOS is a device driver for Protocol Manager support from
+	   FTP Software, Inc.
+SeeAlso: AH=3Fh"PC/TCP",AX=4402h"NDIS"
+
+Format of FTPSOFT.DOS data:
+Offset	Size	Description	(Table 01499)
+ 00h	WORD	(call) BA98h (if different, no data returned)
+ 02h	DWORD	-> NDIS common characteristics table
+		  (see #01435 at AX=4402h"NDIS")
+ 06h	DWORD	(call) -> new dispatch table (see #01437 at AX=4402h"NDIS")
+ 0Ah	DWORD	-> 28-byte buffer for ??? data
+ 0Eh	DWORD	???
+ 12h	DWORD	-> FAR function to reset dispatch jump table to defaults
+ 16h	BYTE	???
+Note:	the addresses in the new dispatch table are copied into an internal
+	  jump table which may be reset by calling the function pointed at by
+	  offset 12h
+

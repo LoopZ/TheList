@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154900
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Far East MS-DOS - GET BIOS TYPE
+	AX = 4900h
+Return: CF clear if successful
+	    AH = 00h
+	    BL = BIOS mode
+		00h DOS/V
+		01h standard DBCS DOS (hardware DBCS support)
+	CF set on error
+	    AH = 86h (function not supported)
+Note:	in practice, DOS/J returns AH=86h; AX DOS does not support this call
+SeeAlso: AH=50h,INT 21/AH=30h
+

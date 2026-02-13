@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB20
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - POLL FAX
+	AX = DB20h
+	DS:SI -> remote FAX number
+Return: AX = status (see #03096)
+SeeAlso: AX=DB11h,AX=DB21h
+

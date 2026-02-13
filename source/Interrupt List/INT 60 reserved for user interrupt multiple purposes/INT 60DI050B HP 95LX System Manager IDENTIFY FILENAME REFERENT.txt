@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI050B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - IDENTIFY FILENAME REFERENT
+	DI = 050Bh
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ???
+		WORD	???
+		WORD	???
+		DWORD	pointer to ???
+Return: ??? = result (see #03290)
+	???
+	STACK unchanged
+
+(Table 03290)
+Values returned by HP 95LX System Manager:
+ 0000h	nonexistent
+ 0001h	file
+ 0002h	directory
+ 0003h	character device
+

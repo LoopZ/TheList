@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLB2
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_BREAK" - SEND BREAK TO AUX DEVICE
+	CL = B2h
+	DX = duration of break in system ticks (0001h-FFFFh)
+Return: AX = status
+	    0000h successful
+		break signal completed
+	    FFFFh failed
+		CX = error code
+Notes:	if the AUX device is currently owned by another process, this call will
+	  block until the device becomes available
+	also supported by REAL/32
+SeeAlso: INT E0/CL=A5h,INT E0/CL=B1h
+

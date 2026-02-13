@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101401
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - LOAD SYSTEM ROM DEFAULT LCD CHARACTER FONT (CONV,CP386)
+	AX = 1401h
+	BL = font to load
+	    00h main font (block 0)
+	    01h alternate font (block 1)
+Return: nothing
+SeeAlso: AX=1100h,AX=1102h,AX=1400h
+

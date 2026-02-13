@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB700
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - APPEND - INSTALLATION CHECK
+	AX = B700h
+Return: AL = status
+	    00h not installed
+	    FFh installed
+Note:	MS-DOS 3.30 APPEND refuses to install itself when run inside TopView or
+	  a TopView-compatible environment
+SeeAlso: AX=B702h
+

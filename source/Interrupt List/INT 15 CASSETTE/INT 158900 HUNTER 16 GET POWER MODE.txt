@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 158900
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET POWER MODE
+	AX = 8900h
+Return: AH = 00h
+	BL = current power mode
+	    00h Standard Power Mode (SPM)
+	    01h Advanced Power Mode (APM)
+SeeAlso: AX=8901h
+

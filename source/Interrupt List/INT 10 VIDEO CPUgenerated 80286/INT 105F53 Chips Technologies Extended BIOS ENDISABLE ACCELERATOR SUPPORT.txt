@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F53
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - EN/DISABLE ACCELERATOR SUPPORT
+	AX = 5F53h
+	BL = new support state
+	    00h disable buffer/accelerator
+	    01h enable buffer/acelerator
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F50h,AX=5F51h,AX=5F54h
+

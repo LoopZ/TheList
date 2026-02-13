@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F39
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - SET TERMINAL DRIVER FOR ANOTHER USER
+	AH = 39h
+	AL = new terminal driver number
+	    FFh dummy driver
+	    FEh current driver
+	    FDh load new driver
+		DS:SI -> new driver
+	DL = user number (FFh = caller)
+	DH = machine number if DL <> FFh
+Return: CF set if invalid user number
+	CF clear if successful
+Notes:	only available to supervisors
+	the new driver number will not take effect until the user is rebooted
+SeeAlso: AH=38h
+

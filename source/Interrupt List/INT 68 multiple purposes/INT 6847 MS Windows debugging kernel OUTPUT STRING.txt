@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6847
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - MS Windows debugging kernel - OUTPUT STRING
+	AH = 47h
+	ES:SI -> string
+Notes:	output a string (to inform a debugger of some events)
+	KERNEL outputs "Windows Kernel Entry\r\n" on startup
+SeeAlso: INT 41/AX=0012h
+

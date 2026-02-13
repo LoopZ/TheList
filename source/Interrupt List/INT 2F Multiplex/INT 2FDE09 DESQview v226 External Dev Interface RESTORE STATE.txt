@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE09
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - RESTORE STATE
+	AX = DE09h
+	BX = mapping context of task being switched to
+	      (see #00416 at INT 15/AX=1016h)
+	DX = handle of task being switched to
+Notes:	state is restored except for interrupts
+	driver should pass this call to previous handler before processing it
+SeeAlso: AX=DE08h,INT 15/AX=5404h,INT 15/AX=DE27h
+

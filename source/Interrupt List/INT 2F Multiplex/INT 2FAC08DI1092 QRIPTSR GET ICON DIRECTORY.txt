@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC08DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - GET ICON DIRECTORY
+	AX = AC08h
+	DI = 1092h
+Return: DX:BX -> 80-byte internal buffer containing ASCIZ icon directory name
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	the application may change the icon directory by overwriting the
+	  returned buffer, ensuring that it does not exceed 80 bytes incl. NUL,
+	  and includes a trailing backslash
+	if changed, the new path becomes effective immediately
+SeeAlso: AX=AC07h,AX=ACF0h
+

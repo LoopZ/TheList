@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6AD400DHFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6A - DECnet DOS LOCAL AREA TRANSPORT - COPY LAT COUNTERS
+	AX = D400h
+	DH = FFh
+	CX = buffer size
+	ES:BX -> buffer for LAT counters
+Return: AX = status
+	    0000h counters copied into buffer
+	    FFFFh buffer too small
+SeeAlso: AX=D300h
+

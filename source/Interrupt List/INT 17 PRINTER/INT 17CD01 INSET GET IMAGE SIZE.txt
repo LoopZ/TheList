@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD01
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - GET IMAGE SIZE
+	AX = CD01h
+	DS:DX -> ASCIZ name of image file
+Return: AX = height in 1/720th inch
+	BX = width in 1/720th inch
+	CX = 07C2h (1986d)
+

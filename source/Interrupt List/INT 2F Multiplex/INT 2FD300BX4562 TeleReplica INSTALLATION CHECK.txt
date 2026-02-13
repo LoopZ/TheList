@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD300BX4562
+  Category: R 	remote control/file access
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - TeleReplica - INSTALLATION CHECK
+	AX = D300h
+	BX = 4562h
+	CX = 2745h
+	DX = serial port I/O base address??? (03F8h for v3.9)
+Return: SI = segment of resident code
+	AX = 251Dh
+	BX = DF21h
+	CX = F321h
+	DX = ???
+

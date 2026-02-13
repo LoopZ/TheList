@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF10
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - SET HISTORY SEGMENT
+	AX = AF10h
+	BX = segment of new buffer for input history
+Return: nothing
+Note:	the buffer must have been allocated with INT 21/AH=48h
+SeeAlso: AX=AF00h"WinDOS",AX=AF0Fh"WinDOS"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F150B
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM v2.00+ - DRIVE CHECK
+	AX = 150Bh
+	CX = drive number (0=A:)
+Return: BX = ADADh if MSCDEX.EXE installed
+	    AX = support status
+		0000h if drive not supported
+		nonzero if supported
+SeeAlso: AX=150Dh
+

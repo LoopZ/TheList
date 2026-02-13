@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212F
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET DISK TRANSFER AREA ADDRESS
+	AH = 2Fh
+Return: ES:BX -> current DTA
+Note:	under the FlashTek X-32 DOS extender, the pointer is in ES:EBX
+SeeAlso: AH=1Ah
+

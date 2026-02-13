@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310604
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET PAGE SIZE
+	AX = 0604h
+Return: CF clear if successful
+	    BX:CX = page size in bytes
+	CF set on error
+	    AX = error code (DPMI 1.0+) (see also #03143)
+		8001h unsupported, 16-bit host
+BUG:	the Borland C++ 3.1 DPMILOAD returns with CF clear but BX and CX
+	  unchanged
+

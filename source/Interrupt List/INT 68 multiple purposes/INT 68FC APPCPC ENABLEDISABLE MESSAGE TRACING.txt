@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 68FC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - ENABLE/DISABLE MESSAGE TRACING
+	AH = FCh
+	AL = new state
+	    00h disable tracing
+	    01h enable tracing
+		DX = number of bytes to keep (0=all)
+SeeAlso: AH=FDh,AH=FEh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62C0
+  Category: s 	sound/speech
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 62 U - GWBTSR - API
+	AH = C0h
+	AL = function
+	    00h installation check
+		Return: AX = 00FFh if installed
+	    01h ???
+Program: GWBTSR is a huge (48K) resident mixer controller for the Gateway 2000
+	  sound card (OEM version of Aztech Sound Galaxy)
+Index:	installation check;GWBTSR
+

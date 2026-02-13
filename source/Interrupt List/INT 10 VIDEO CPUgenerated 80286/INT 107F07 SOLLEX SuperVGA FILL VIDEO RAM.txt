@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F07
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - FILL VIDEO RAM
+	AX = 7F07h
+	BL = how much to fill
+	   00h regen size
+	   01h all video memory
+	CX = pattern to write (normally 0720h for text modes and 0000h for gr)
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		01h failed
+SeeAlso: AH=06h
+

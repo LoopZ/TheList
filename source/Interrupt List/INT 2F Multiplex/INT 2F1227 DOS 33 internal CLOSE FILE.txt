@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1227
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ internal - CLOSE FILE
+	AX = 1227h
+	BX = file handle
+	SS = DOS DS (must be using a DOS internal stack)
+Return: CF set on error
+	    AL = 06h invalid file handle
+	CF clear if successful
+Notes:	can only be called from within DOS
+	equivalent to INT 21/AH=3Eh
+	used by NLSFUNC to access COUNTRY.SYS when invoked by the DOS kernel
+SeeAlso: AX=1106h,AX=1201h,AX=1226h,INT 21/AH=3Eh
+

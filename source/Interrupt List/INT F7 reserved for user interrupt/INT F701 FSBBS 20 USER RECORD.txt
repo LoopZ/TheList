@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: F701
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F7 - FSBBS 2.0 - USER RECORD
+	AH = 01h
+	AL = function
+	    00h get user record for user currently online
+		Return: DS:DX -> user record
+	    01h set user record
+		DS:DX -> user record
+		Return: nothing
+SeeAlso: AH=00h,AH=02h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC052
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Explosiv v2.00+ - UNINSTALL
+	AX = C052h
+	DX:BX = address to return to on successful uninstall
+Return: at specified address if successful
+	AL = 53h on error
+Note:	specified return address must have the segment of the caller's PSP
+SeeAlso: AX=C050h
+Index:	screen saver;Explosiv
+

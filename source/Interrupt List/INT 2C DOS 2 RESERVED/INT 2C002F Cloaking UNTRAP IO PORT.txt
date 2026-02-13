@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C002F
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2C PU - Cloaking - UNTRAP I/O PORT
+	AX = 002Fh
+	DX = port number for which to cancel trapping
+Return: CF clear if successful
+	CF set on error (port out of range or reserved)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=002Eh,AX=0030h
+

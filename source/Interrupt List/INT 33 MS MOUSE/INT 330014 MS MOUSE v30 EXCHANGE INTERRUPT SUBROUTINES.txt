@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330014
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v3.0+ - EXCHANGE INTERRUPT SUBROUTINES
+	AX = 0014h
+	CX = call mask (see #03171)
+	ES:DX -> FAR routine
+Return: CX = call mask of previous interrupt routine
+	ES:DX = FAR address of previous interrupt routine
+SeeAlso: AX=000Ch,AX=0018h
+

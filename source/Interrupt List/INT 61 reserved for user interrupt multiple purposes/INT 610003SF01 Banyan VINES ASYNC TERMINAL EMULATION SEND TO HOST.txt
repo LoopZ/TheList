@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - SEND TO HOST
+	AX = 0003h subfn 01h
+	DS:BX -> argument block (see #03374)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h,AX=0003h/SF=02h,AX=0003h/SF=14h
+
+Format of VINES argument block for Function 0003h subfunction 01h:
+Offset	Size	Description	(Table 03374)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	01h (function "send to host")
+ 02h	BYTE	type
+		00h ASCII byte
+		01h ASCII string
+		02h terminal function code
+		03h up arrow
+		04h down arrow
+		05h left arrow
+		06h right arrow
+		07h break
+ 03h  N BYTEs	type-specific info (see #03375)
+
+Format of type-specific info:
+Offset	Size	Description	(Table 03375)
+---ASCII byte---
+ 03h	BYTE	byte to send to host
+---ASCII string---
+ 03h	WORD	length of string
+ 05h	WORD	pointer to string
+---terminal function code (VT52/VT100)---
+ 03h	BYTE	function code
+		00h keypad 0
+		01h keypad 1
+		...
+		09h keypad 9
+		0Ah keypad -
+		0Bh keypad ,
+		0Ch keypad .
+		0Dh keypad ENTER
+		0Eh PF1
+		0Fh PF2
+		10h PF3
+		11h PF4
+---terminal function code (IBM3101)---
+ 03h	BYTE	function code
+		00h PF1
+		...
+		07h PF8
+		08h Home
+SeeAlso: #03374
+

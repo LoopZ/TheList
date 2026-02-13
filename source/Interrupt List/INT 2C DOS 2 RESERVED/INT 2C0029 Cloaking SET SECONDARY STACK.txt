@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0029
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - SET SECONDARY STACK
+	AX = 0029h
+	DX:EBX = new value for SS:ESP of ring 3 secondary stack
+Return: CF clear
+Desc:	inform RM386 of the ring 3 interrupt stack location
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+

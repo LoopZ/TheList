@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200D9
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBUNDEF" - RELEASE HANDLE FOR VIRTUAL BUFFER
+	AX = 00D9h
+	BX = virtual buffer handle
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	the specified handle must not reference the currently-active virtual
+	  buffer
+SeeAlso: AX=00D1h,AX=00D5h
+

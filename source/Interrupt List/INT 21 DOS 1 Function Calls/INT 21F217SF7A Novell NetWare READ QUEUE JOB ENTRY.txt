@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF7A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - READ QUEUE JOB ENTRY
+	AX = F217h subfn 7Ah
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02207)
+	ES:DI -> reply buffer (see #02208)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=79h,AX=F217h/SF=7Bh
+
+Format of NetWare "Read Queue Job Entry" request packet:
+Offset	Size	Description	(Table 02207)
+ 00h	WORD	length of following data
+ 02h	BYTE	7Ah (subfunction "Read Queue Job Entry")
+ 03h	DWORD	queue ID
+ 07h	DWORD	job entry number
+SeeAlso: #02208,#02205,#02209
+
+Format of NetWare "Read Queue Job Entry" reply packet:
+Offset	Size	Description	(Table 02208)
+ 00h 280 BYTEs	job structure (see #02210)
+SeeAlso: #02207
+

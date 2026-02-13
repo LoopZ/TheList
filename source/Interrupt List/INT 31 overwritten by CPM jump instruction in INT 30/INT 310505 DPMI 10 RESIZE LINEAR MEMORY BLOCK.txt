@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310505
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - RESIZE LINEAR MEMORY BLOCK
+	AX = 0505h
+	ESI = memory block handle
+	ECX = new size in bytes (nonzero)
+	EDX = flags
+	    bit 0: create committed pages rather than uncommitted pages
+	    bit 1: segment descriptor update required
+		ES:EBX -> buffer containing array of WORDs with selectors
+		EDI = number of selectors in array
+	    bits 2-31 reserved (0)
+Return: CF clear if successful
+	    EBX = new linear base address
+	    ESI = new memory block handle
+	CF set on error
+	    AX = error code (8001h,8012h-8014h,8016h,8021h,8023h)(see #03143)
+Notes:	only supported by 32-bit DPMI hosts, but may be used by 16-bit clients
+	the old memory block handle becomes invalid
+	if EDX bit 1 set and the block's base address is changed, DPMI updates
+	  all descriptors for selectors in the update buffer which fall within
+	  the memory block
+SeeAlso: AX=0503h,AX=0504h
+

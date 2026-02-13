@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F110F
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - GET REMOTE FILE'S ATTRIBUTES AND SIZE
+	AX = 110Fh
+	SS = DOS DS
+	SDA first filename pointer -> fully-qualified name of file
+	SDA CDS pointer -> current directory structure for drive with file
+		(offset = FFFFh if null CDS [net direct request])
+	SDA search attributes = mask of attributes which may be included in
+		  search for file
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = file attributes
+	    BX:DI = file size
+	    CX = time stamp of file
+	    DX = date stamp of file
+Notes:	this function is called by the DOS 3.1+ kernel
+	wildcards and device names are not permitted
+SeeAlso: AX=110Eh,INT 21/AX=4300h,INT 21/AH=60h
+

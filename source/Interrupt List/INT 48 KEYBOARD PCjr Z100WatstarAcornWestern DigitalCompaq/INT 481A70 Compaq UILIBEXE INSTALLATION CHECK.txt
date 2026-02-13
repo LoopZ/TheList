@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 481A70
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 48 U - Compaq UILIB.EXE - INSTALLATION CHECK
+	AX = 1A70h
+	BX = call type (see #03207)
+Return: CX = 5649h ('VI') if installed
+	DX = 4557h ('EW') if installed
+	    AX = version??? (0106h)
+
+(Table 03207)
+Values for UILIB call type:
+ 0000h	near
+ 0001h	far
+ 0002h	INT (only valid call type when using INT 48)
+ 0003h	near
+

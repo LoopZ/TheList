@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0F03
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - DISPLAY TWO-LINE MESSAGE BOX
+	DI = 0F03h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to first line of message
+		WORD	length of first line
+		DWORD	pointer to second line of message
+		WORD	length of second line
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0300h,INT 60/DI=0F04h,INT 60/DI=0F09h
+

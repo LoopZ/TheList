@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1344
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - IBM/MS INT 13 Extensions - VERIFY SECTORS
+	AH = 44h
+	DL = drive number
+	DS:SI -> disk address packet (see #00272)
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code (see #00234)
+	    disk address packet's block count field set to number of blocks
+	      successfully verified
+SeeAlso: AH=04h,AH=41h"INT 13 Ext",AH=42h"INT 13 Ext",AH=47h
+

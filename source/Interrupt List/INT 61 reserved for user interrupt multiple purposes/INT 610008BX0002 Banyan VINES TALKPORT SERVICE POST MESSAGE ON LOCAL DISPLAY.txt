@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610008BX0002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - TALKPORT SERVICE - POST MESSAGE ON LOCAL DISPLAY
+	AX = 0008h
+	BX = 0002h
+	CX = message display flags (see #03441)
+	DS:DX -> ASCIZ string to display (only first 80 chars used)
+Return: AX = status
+	    0000h successful
+	    000Bh message display function currently busy
+	    000Ch message queue full
+Notes:	queues up to three messages to be displayed on the bottom line
+	This service is handled by the redirector
+	In a DOS session, TalkPort messages are displayed on display line 25;
+	  in a Windows session, TalkPort messages are displayed in dialog boxes
+SeeAlso: AX=0008h/BX=0000h,AX=0008h/BX=0003h
+
+Bitfields for VINES message display flags:
+Bit(s)	Description	(Table 03441)
+ 0	message will remain on screen until user presses ^X
+ 1	ring bell after displaying message
+ 2	blink
+

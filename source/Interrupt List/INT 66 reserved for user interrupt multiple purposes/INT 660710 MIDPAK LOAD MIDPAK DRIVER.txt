@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660710
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - MIDPAK - LOAD MIDPAK DRIVER
+	AX = 0710h
+	BX = segment of .ADV driver
+	CX = 0000h (offset must be zero)
+	DX:SI -> .AD driver
+SeeAlso: AX=070Dh
+

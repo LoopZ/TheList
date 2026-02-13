@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200B7
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SHEAR" - SHEAR UNPACKED BITMAP
+	AX = 00B7h
+	ES:BX -> variable pointer record (see #03502)
+	CX = bitmap width (0 < width <= 1024)
+	DX = bitmap height (0 < height <= 1024)
+	SI = size of resulting image (width for horiz. shear, height for vert.)
+	DI = shear type
+	    0000h horizontal shear to left
+	    0001h horizontal shear to right
+	    0002h vertical shear to left (left edge stretched up)
+	    0003h vertical shear to right (right edge stretched up)
+Return: nothing
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=00A3h
+
+Format of FGDRIVER SHEAR variable pointer record:
+Offset	Size	Description	(Table 03502)
+ 00h	WORD	segment of source bitmap
+ 02h	WORD	offset of source bitmap
+ 04h	WORD	segment of buffer for resulting bitmap
+ 06h	WORD	offset of buffer for resulting bitmap
+

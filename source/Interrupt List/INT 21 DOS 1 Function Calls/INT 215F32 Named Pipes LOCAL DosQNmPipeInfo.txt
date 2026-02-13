@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F32
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - Named Pipes - LOCAL DosQNmPipeInfo
+	AX = 5F32h
+	BX = handle
+	CX = size of _PIPEINFO structure
+	DX = level (must be 0001h)
+	DS:SI -> _PIPEINFO structure (see #01701)
+Return: CF clear if successful
+	    _PIPEINFO structure filled in
+	CF set on error
+	    AX = error code
+Note:	this function was introduced by LAN Manager but is also supported by
+	  the Novell DOS Named Pipe Extender, Banyan VINES, OS/2 Virtual DOS
+	  Machines, and others
+SeeAlso: AX=5F33h,AX=5F34h
+
+Format of Named Pipes _PIPEINFO structure:
+Offset	Size	Description	(Table 01701)
+ 00h	WORD	size of outgoing buffer
+ 02h	WORD	size of incoming buffer
+ 04h	BYTE	maximum number of instances allowed
+ 05h	BYTE	current number of instances
+ 06h	BYTE	length of the name (including terminating NUL)
+ 07h  N BYTEs	name
+

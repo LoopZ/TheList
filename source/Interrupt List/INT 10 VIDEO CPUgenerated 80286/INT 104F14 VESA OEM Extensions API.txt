@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F14
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA OEM Extensions - API
+	AX = 4F14h
+	BL = function
+	    00h installation check / get capabilities
+	other registers vary by function
+Return: varies by function
+Note:	this function is provided for OEMs to implement system-specific
+	  functionality in a VESA-compatible manner
+

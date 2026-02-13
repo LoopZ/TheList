@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 146F--BXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - INSTALLATION CHECK
+	AH = 6Fh
+	BX = FFFFh
+Return: DX:BX -> Connection Manager Communication Table if installed
+	BX = FFFFh if not installed
+SeeAlso: AH=0Dh/DX=FFFFh
+

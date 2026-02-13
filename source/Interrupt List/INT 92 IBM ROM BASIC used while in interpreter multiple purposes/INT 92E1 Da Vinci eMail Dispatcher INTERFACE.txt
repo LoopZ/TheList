@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E1
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher INTERFACE
+	AH = E1h
+	AL = function
+	BX = stack count (number of words to push)
+	CX:DX -> stack data (in word-reversed order ready to push)
+Return: AX = status (see #03979)
+Note:	preserves BP, DS, SI, DI; other registers may be destroyed
+
+(Table 03979)
+Values for Da Vinci eMail function status:
+ 0001h	success
+ FF97h	"ERS_NOT_AVAILABLE"
+ FF99h	"ERS_TOO_MANY_NAMES"
+ FF9Ah	"ERS_BAD_NAME_PASSWORD"
+ FFE3h	"ERS_NAME_NOT_FOUND"
+ FFF8h	"ERS_USE_STRING" (call NetGetError to get error string)
+ FFFFh	"ERS_NO_SUCH_FILE"
+

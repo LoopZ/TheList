@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F04
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectra EX-BIOS - "F16_DEF_MAPPING" - GET DEFAULT KEY MAPPINGS
+	AX = 6F04h
+	ES:SI -> mapping buffer (see #00600)
+Return: AH = 00h (successful)
+	CX = 001Eh (number of bytes in buffer)
+	ES:SI buffer filled
+Notes:	supported by the original HP Vectra AT and ES/QS/RS series HP Vectras
+	the HIL input system translates the HIL keyboard events to simulate
+	  an IBM-compatible keyboard; the translation can be altered
+	  dynamically by applications
+SeeAlso: AX=6F00h,AX=6F05h,AX=6F06h
+
+Format of HP Vectra EX-BIOS keyboard mapping info:
+Offset	Size	Description	(Table 00600)
+ 00h  3 WORDs	entry for V_QWERTY driver (IP, CS, DS)
+ 06h  3 WORDs	entry for V_SOFTKEY driver (IP, CS, DS)
+ 0Ch  3 WORDs	entry for V_FUNCTION driver
+ 12h  3 WORDs	entry for V_NUMPAD driver
+ 18h  3 WORDs	entry for V_CCP driver
+

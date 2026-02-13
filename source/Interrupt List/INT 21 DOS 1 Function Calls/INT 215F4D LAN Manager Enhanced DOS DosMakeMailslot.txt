@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F4D
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - DosMakeMailslot
+	AX = 5F4Dh
+	BX = message size
+	CX = mailslot size (must be bigger than message size by at least 1)
+			   (minimum 1000h, maximum FFF6h)
+			   (buffer must be 9 bytes bigger than this)
+	DS:SI -> name
+	ES:DI -> memory buffer
+Return: CF clear if successful
+	    AX = handle
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F4Eh,AX=5F4Fh,AX=5F50h,AX=5F51h
+

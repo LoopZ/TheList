@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F24E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - ALLOW TASK ACCESS TO FILE
+	AX = F24Eh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02358)
+	ES:DI -> reply buffer (see #02359)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+Desc:	allow calling task to gain access to an already-open file belonging
+	  to another task of the same client
+Note:	the caller receives the same access rights as the owning task, and
+	  must use the returned new handle to access the file
+SeeAlso: AH=F2h"NetWare",AX=F244h
+
+Format of NetWare "Allow Task Access to File" request packet:
+Offset	Size	Description	(Table 02358)
+ 00h	BYTE	reserved for future use
+ 01h  6 BYTEs	NetWare file handle
+SeeAlso: #02359
+
+Format of NetWare "Allow Task Access to File" reply packet:
+Offset	Size	Description	(Table 02359)
+ 00h  6 BYTEs	new file handle
+SeeAlso: #02358
+

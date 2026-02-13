@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104E00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA XGA BIOS Extensions - GET XGA ENVIRONMENT INFORMATION
+	AX = 4E00h
+	ES:DI -> 256-byte buffer for XGA information (see #00069)
+Return: AL = 4Eh if function supported
+	    AH = status
+		00h successful
+		else error code
+Desc:	determine whether VESA XGA extensions are present and the capabilities
+	  supported by the display adapter
+SeeAlso: AX=4E01h,AX=4E02h,AX=4F00h
+Index:	installation check;VESA XGA
+
+Format of XGA information buffer:
+Offset	Size	Description	(Table 00069)
+ 00h  4 BYTEs	signature ("VESA")
+ 04h	WORD	VESA version number
+ 06h	DWORD	pointer to ASCIZ OEM string
+ 0Ah	DWORD	environment flags (see #00070)
+ 0Eh	WORD	number of XGA adapters installed (other VESA XGA functions
+		  require a handle indicating which adapter to use)
+ 10h 240 BYTEs	reserved
+
+Bitfields for XGA environment flags:
+Bit(s)	Description	(Table 00070)
+ 0-1	system bus (00 = MCA, 01 = ISA, 10 = EISA)
+ 2	bus mastering available
+ 3-31	reserved
+

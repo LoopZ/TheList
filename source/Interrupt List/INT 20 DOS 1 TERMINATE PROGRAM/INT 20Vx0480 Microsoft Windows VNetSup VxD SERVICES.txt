@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0480
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VNetSup - VxD SERVICES
+	VxD = 0480h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01314)
+Values for VNetSup (VxD ID 0480h) service number:
+ 00h	get VNetSup version???
+ 01h	???
+ 02h	???
+ 03h	???
+ 04h	???
+ 05h	???
+ 06h	???
+SeeAlso: #01313,#01315
+

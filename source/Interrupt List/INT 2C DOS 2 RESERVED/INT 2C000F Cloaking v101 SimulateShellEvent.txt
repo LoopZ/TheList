@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C000F
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - "Simulate_Shell_Event"
+	AX = 000Fh
+	ECX = event code (see #02560)
+	DX = subfunction for event
+	EDX high word = boost value (see #02561)
+	SI:EDI -> completion procedure
+Return: CF clear if successful (event scheduled)
+	CF set on error
+Note:	this function is only available while MS Windows is running
+SeeAlso: AX=0011h,AX=0012h,INT 2F/AX=1605h,INT 2F/AX=4310h"Cloaking"
+
+(Table 02560)
+Values for Cloaking shell event code:
+ 0414h	Hot key event
+	subevent 0000h: Alt-Space
+	subevent 0001h: Alt-Enter
+	subevent 0002h: Dir-VM
+ 0415h	Switch context
+	subevent 0000h for DOS VM context, nonzero for System VM context
+ 0416h	Clipboard event
+ 0417h	Termination event
+	subevent 0000h for normal termination, nonzero for error
+ 0418h	Display message
+	subevent 0000h for normal message, nonzero for system model ASAP
+ 0419h	Crash
+ 041Ah	Paste complete
+	subevent 0000h: normal
+	subevent 0001h: cancelled by user
+	subevent 0002h: cancelled
+ 041Bh	Contention event
+ 041Ch	Screen switch
+	subevent 0000h: forward
+	subevent 0001h: back
+ 041Dh	Filesystem change
+ 041Eh	Check Focus
+ 041Fh	Panic
+
+Bitfields for boost value:
+Bit(s)	Description	(Table 02561)
+ 0	boost system VM until focus changes
+ 1	boost system VM on Switcher screen
+ 2	boost system VM until response
+ 3	boost system VM during clipboard activity
+ 4	boost system VM during print screen
+ 5	boost system VM during update
+

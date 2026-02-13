@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BLA4
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - SET MONITOR TYPE
+	AH = 12h
+	BL = A4h
+	AL = options 1
+	    bits 7-4 = vertical refresh at 640x480
+		(0 = 60Hz, 1 = 72Hz, other reserved)
+	    bits 3-0 = maximum vertical resolution
+		(0 = 480 scanlines, 1 = 600, 2 = 768, 3 = 1024, other reserved)
+	BH = options 2
+	    bits 7-4 = vertical refresh at 1024x768
+		(0=87Hz-int, 1=60Hz, 2=70Hz, 3=72Hz, 4=76Hz, other reserved)
+	    bits 3-0 = vertical refresh at 800x600
+		(0 = 56Hz, 1 = 60Hz, 2 = 72Hz, other reserved)
+	CH = options 3
+	    bits 7-4 = vertical refresh at 1280x1024
+		(0=87Hz-int, 1=60Hz, 2=70Hz, other reserved)
+	    bits 3-0: reserved
+	CL,DX reserved
+Return: nothing
+SeeAlso: AH=12h/BL=9Ah,AH=12h/BL=A3h
+

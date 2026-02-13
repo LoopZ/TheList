@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 65
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 65 - Ad Lib SOUND.COM - INTERFACE
+	SI = function number (also see separate entries below)
+	    0000h Init
+	    0002h RelTimeStart
+	    0003h SetState
+	    0004h GetState
+	    0005h Flush
+	    0006h SetMode
+	    0007h GetMode
+	    0008h SetRelVolume
+	    0009h SetTempo
+	    000Ah SetTranspose
+	    000Bh GetTranspose
+	    000Ch SetActVoice
+	    000Dh GetActVoice
+	    000Eh PlayNoteDel
+	    000Fh PlayNote
+	    0010h SetTimbre
+	    0011h SetPitch
+	    0012h SetTickBeat
+	    0013h NoteOn
+	    0014h NoteOff
+	    0015h Timbre
+	    0016h SetPitchBend
+	    0017h WaveForm
+	ES:BX -> arguments
+InstallCheck:	test for the signature block immediately preceding the
+	  interrupt handler (see #03516)
+SeeAlso: SI=8000h
+Index:	installation check;Ad Lib SOUND.COM
+
+Format of AdLib signature block:
+Offset	Size	Description	(Table 03516)
+ 00h	WORD	version number
+ 02h 19 BYTEs	"SOUND-DRIVER-AD-LIB"
+ 15h	BYTE	01h
+ 16h	BYTE	01h
+ 17h	BYTE	00h
+

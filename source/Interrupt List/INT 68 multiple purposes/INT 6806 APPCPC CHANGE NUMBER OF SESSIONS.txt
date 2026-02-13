@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6806
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - CHANGE NUMBER OF SESSIONS
+	AH = 06h
+	DS:DX -> control block (see #03705)
+Return: control block updated
+
+Format of APPC/PC "Change Number of Sessions" control block:
+Offset	Size	Description	(Table 03705)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	1500h (verb "Change Number of Sessions")
+ 0Eh  6 BYTEs	00h
+ 14h	WORD	(big-endian) primary return code (see #03681)
+ 16h	DWORD	(big-endian) secondary return code (see #03668,#03706)
+ 1Ah  8 BYTEs	(big-endian) logical unit ID
+ 22h  8 BYTEs	blanks
+ 2Ah  8 BYTEs	(big-endian) partner logical unit name
+ 32h  8 BYTEs	(big-endian) mode name
+ 3Ah	BYTE	bit 7: use MODE_NAME_SELECT_ALL rather than MODE_NAME
+		bit 6: set negotiable values
+ 3Bh	BYTE	partner logical unit mode session limit
+ 3Ch	BYTE	minimum CONWINNERS_SOURCE
+ 3Dh	BYTE	maximum CONWINNERS_TARGET
+ 3Eh	BYTE	automatic activation
+ 3Fh	BYTE	00h
+ 40h	BYTE	flags
+		bit 7: drain target
+		bit 6: drain source
+		bit 5: target responsible, not source
+
+(Table 03706)
+Values for secondary return code (see also AH=01h/SF=1B00h):
+ 0000h	accepted
+ 0001h	negotiated
+ 0003h	bad logical unit ID
+ 0004h	allocation failure, no retry
+ 0005h	allocation failure, retry
+ 0151h	can't raise limits
+ 0153h	all modes must reset
+ 0154h	bad SNASVCMG limits
+ 0155h	minimum greater than total
+ 0156h	mode closed (primary return code = 1)
+	CNOS mode closed (primary return code = 18h)
+ 0157h	bad mode name (primary return code = 1)
+	CNOS bad mode name (primary return code = 18h)
+ 0159h	reset SNA drains
+ 015Ah	single not SRC response
+ 015Bh	bad partner logical unit
+ 015Ch	exceeds maximum allowed
+ 015Dh	change SRC drains
+ 015Eh	logical unit detached
+ 015Fh	CNOS command race reject
+

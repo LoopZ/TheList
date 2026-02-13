@@ -1,0 +1,123 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "OPEN" - OPEN EXISTING FILE
+	AH = 3Dh
+	AL = access and sharing modes (see #01402)
+	DS:DX -> ASCIZ filename
+	CL = attribute mask of files to look for (server call only)
+Return: CF clear if successful
+	    AX = file handle
+	CF set on error
+	    AX = error code (01h,02h,03h,04h,05h,0Ch,56h) (see #01680 at AH=59h)
+Notes:	file pointer is set to start of file
+	if SHARE or a network is loaded, the file open may fail if the file
+	  is already open, depending on the combination of sharing modes
+	  (see #01403,#01404)
+	file handles which are inherited from a parent also inherit sharing
+	  and access restrictions
+	files may be opened even if given the hidden or system attributes
+	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+	DR DOS checks the system password or explicitly supplied password at
+	  the end of the filename (following a semicolon) against the reserved
+	  field in the directory entry before allowing access
+	sharing modes are only effective on local drives if SHARE is loaded
+BUG:	Novell DOS 7 SHARE v1.00 would refuse file access in the cases in
+	  #01403 marked with [1] (read-only open of a read-only file
+	  which had previously been opened in compatibility mode); this was
+	  fixed in SHARE v1.01 of 09/29/94
+SeeAlso: AH=0Fh,AH=3Ch,AX=4301h,AX=5D00h,INT 2F/AX=1116h,INT 2F/AX=1226h
+
+Bitfields for access and sharing modes:
+Bit(s)	Description	(Table 01402)
+ 2-0	access mode
+	000 read only
+	001 write only
+	010 read/write
+	011 (DOS 5+ internal) passed to redirector on EXEC to allow
+		case-sensitive filenames
+ 3	reserved (0)
+ 6-4	sharing mode (DOS 3.0+) (see #01403)
+	000 compatibility mode
+	001 "DENYALL" prohibit both read and write access by others
+	010 "DENYWRITE" prohibit write access by others
+	011 "DENYREAD" prohibit read access by others
+	100 "DENYNONE" allow full access by others
+	111 network FCB (only available during server call)
+ 7	inheritance
+	if set, file is private to current process and will not be inherited
+	  by child processes
+SeeAlso: #01782,#01403
+
+(Table 01403)
+Values of DOS 2-6.22 file sharing behavior:
+	  |	Second and subsequent Opens
+ First	  |Compat  Deny	  Deny	 Deny	Deny
+ Open	  |	   All	  Write	 Read	None
+	  |R W RW R W RW R W RW R W RW R W RW
+ - - - - -| - - - - - - - - - - - - - - - - -
+ Compat R |Y Y Y  N N N	 1 N N	N N N  1 N N
+	W |Y Y Y  N N N	 N N N	N N N  N N N
+	RW|Y Y Y  N N N	 N N N	N N N  N N N
+ - - - - -|
+ Deny	R |C C C  N N N	 N N N	N N N  N N N
+ All	W |C C C  N N N	 N N N	N N N  N N N
+	RW|C C C  N N N	 N N N	N N N  N N N
+ - - - - -|
+ Deny	R |2 C C  N N N	 Y N N	N N N  Y N N
+ Write	W |C C C  N N N	 N N N	Y N N  Y N N
+	RW|C C C  N N N	 N N N	N N N  Y N N
+ - - - - -|
+ Deny	R |C C C  N N N	 N Y N	N N N  N Y N
+ Read	W |C C C  N N N	 N N N	N Y N  N Y N
+	RW|C C C  N N N	 N N N	N N N  N Y N
+ - - - - -|
+ Deny	R |2 C C  N N N	 Y Y Y	N N N  Y Y Y
+ None	W |C C C  N N N	 N N N	Y Y Y  Y Y Y
+	RW|C C C  N N N	 N N N	N N N  Y Y Y
+Legend: Y = open succeeds, N = open fails with error code 05h
+	C = open fails, INT 24 generated
+	1 = open succeeds if file read-only, else fails with error code
+	2 = open succeeds if file read-only, else fails with INT 24
+SeeAlso: #01636,#01404
+
+(Table 01404)
+Values for DOS 7.x file sharing behavior:
+	  |	Second and subsequent Opens
+ First	  |Compat    Deny      Deny	 Deny	   Deny
+ Open	  |	     All       Write	 Read	   None
+	  |R W RW A  R W RW A  R W RW A	 R W RW A  R W RW A
+ - - - - -| - - - - - - - - - - - - - - - - - - - - - - - -
+ Compat R |Y Y Y Y   N N N N   Y N N Y	 N N N Y   Y N N Y
+	W |Y Y Y C   N N N N   N N N N	 N N N Y   Y N N Y
+	RW|Y Y Y C   N N N N   N N N N	 N N N Y   Y N N Y
+	NA|Y C C Y   N N N N   Y N N Y	 N N N Y   Y N N Y
+ - - - - -|
+ Deny	R |C C C C   N N N N   N N N N	 N N N N   N N N N
+ All	W |C C C C   N N N N   N N N N	 N N N N   N N N N
+	RW|C C C C   N N N N   N N N N	 N N N N   N N N N
+	NA|C C C C   N N N N   N N N N	 N N N N   N N N N
+ - - - - -|
+ Deny	R |Y C C Y   N N N N   Y N N Y	 N N N Y   Y N N Y
+ Write	W |C C C C   N N N N   N N N N	 Y N N Y   Y N N Y
+	RW|C C C C   N N N N   N N N N	 N N N Y   Y N N Y
+	NA|Y C C Y   N N N N   Y N N Y	 N N N Y   Y N N Y
+ - - - - -|
+ Deny	R |C C C C   N N N N   N Y N N	 N N N N   N Y N N
+ Read	W |C C C C   N N N N   N N N N	 N Y N N   N Y N N
+	RW|C C C C   N N N N   N N N N	 N N N N   N Y N N
+	NA|Y Y Y Y   N N N N   Y Y Y Y	 N N N Y   Y Y Y Y
+ - - - - -|
+ Deny	R |Y Y Y Y   N N N N   Y Y Y Y	 N N N Y   Y Y Y Y
+ None	W |C C C C   N N N N   N N N N	 Y Y Y Y   Y Y Y Y
+	RW|C C C C   N N N N   N N N N	 N N N Y   Y Y Y Y
+	NA|Y Y Y Y   N N N N   Y Y Y Y	 N N N Y   Y Y Y Y
+Legend: R -> reading, W -> writing, RW -> both reading & writing,
+	A/NA -> reading without access time update
+	Y = open succeeds, N = open fails with error code 05h
+	C = open fails, INT 24 generated
+SeeAlso: #01403,#01636
+

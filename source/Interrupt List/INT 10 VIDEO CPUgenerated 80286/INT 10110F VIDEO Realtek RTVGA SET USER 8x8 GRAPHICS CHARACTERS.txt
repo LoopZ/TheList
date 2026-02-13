@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10110F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Realtek RTVGA - SET USER 8x8 GRAPHICS CHARACTERS
+	AX = 110Fh
+	ES:BP -> user table for INT 1F
+Return: nothing
+Note:	this function is meant to be called immediately after a mode set;
+	  results are unpredictable at other times
+SeeAlso: AX=1110h"Realtek",AX=1111h"Realtek",AX=1112h"Realtek",AX=1120h
+

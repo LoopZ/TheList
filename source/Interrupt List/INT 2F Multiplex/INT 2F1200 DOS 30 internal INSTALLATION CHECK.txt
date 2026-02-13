@@ -1,0 +1,10 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1200
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - INSTALLATION CHECK
+	AX = 1200h
+Return: AL = FFh (for compatibility with other INT 2F functions)
+

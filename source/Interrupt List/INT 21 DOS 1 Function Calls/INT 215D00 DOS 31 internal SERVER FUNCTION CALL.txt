@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215D00
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 3.1+ internal - SERVER FUNCTION CALL
+	AX = 5D00h
+	DS:DX -> DOS parameter list (see #01686)
+	DPL contains all register values for a call to INT 21h
+Return: as appropriate for function being called
+Notes:	does not check AH.  Out of range values will crash the system
+	executes using specified computer ID and process ID
+	sharing delay loops skipped
+	a special sharing mode is enabled to handle FCBs opened across network
+	wildcards are enabled for DELETE (AH=41h) and RENAME (AH=56h) under
+	  MS-DOS; under DR DOS 3.41, wildcards corrupt the filesystem; and
+	  under DR DOS 5.0-6.0, the call returns error code 03h due to improper
+	  support for the server function call (refer to BUGS: section below)
+	an extra file attribute parameter is enabled for OPEN (AH=3Dh),
+	  DELETE (AH=41h), and RENAME (AH=56h)
+	functions which take filenames require canonical names (as returned
+	  by AH=60h); this is apparently to prevent multi-hop file forwarding
+BUGS:	the OS/2 2.0 DOS Boot Session incorrectly maps DOS drive letters,
+	  seemingly ignoring HPFS drives
+	DR DOS 5.0-6.0 merely recursively call INT 21 after loading the
+	  registers from the DPL, leading to problems for peer-to-peer
+	  networks
+SeeAlso: AH=3Dh,AH=41h,AH=56h,AH=60h
+
+Format of DOS parameter list:
+Offset	Size	Description	(Table 01686)
+ 00h	WORD	AX
+ 02h	WORD	BX
+ 04h	WORD	CX
+ 06h	WORD	DX
+ 08h	WORD	SI
+ 0Ah	WORD	DI
+ 0Ch	WORD	DS
+ 0Eh	WORD	ES
+ 10h	WORD	reserved (0)
+ 12h	WORD	computer ID (0 = current system)
+ 14h	WORD	process ID (PSP segment on specified computer)
+Note:	under Windows Enhanced mode, the computer ID is normally the virtual
+	  machine ID (see INT 2F/AX=1683h), though this can reportedly be
+	  changed by setting UniqueDOSPSP= in SYSTEM.INI
+

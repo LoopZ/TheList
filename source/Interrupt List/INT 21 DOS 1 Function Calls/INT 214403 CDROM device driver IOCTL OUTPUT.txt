@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - CD-ROM device driver - IOCTL OUTPUT
+	AX = 4403h
+	BX = file handle referencing character device for CD-ROM driver
+	CX = number of bytes to write
+	DS:DX -> control block (see #01524)
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	some device drivers support several subunits (that is more than one
+	  drive) but it is not possible to distinguish between them with this
+	  function; use INT 2F/AX=1510h or INT 2F/AX=0802h instead
+	under Windows95, the "mscd$$$$" device cannot be opened so you cannot
+	  obtain the handle required by this function: use INT 2F/AX=1510h
+	  or INT 2F/AX=0802h instead
+SeeAlso: AX=4402h"CD-ROM",INT 2F/AX=0802h,INT 2F/AX=1510h
+
+Format of CR-ROM control block:
+Offset	Size	Description	(Table 01524)
+ 00h	BYTE	function code
+		00h eject disk
+		01h lock/unlock door
+		02h reset drive
+		03h control audio channel
+		04h write device control string
+		05h close tray
+---functions 00h,02h,05h---
+ no further fields
+---function 01h---
+ 01h	BYTE	lock function
+		00h unlock door
+		01h lock door
+---function 03h---
+ 01h	BYTE	input channel (0-3) for output channel 0
+ 02h	BYTE	volume for output channel 0
+ 03h	BYTE	input channel (0-3) for output channel 1
+ 04h	BYTE	volume for output channel 1
+ 05h	BYTE	input channel (0-3) for output channel 2
+ 06h	BYTE	volume for output channel 2
+ 07h	BYTE	input channel (0-3) for output channel 3
+ 08h	BYTE	volume for output channel 3
+Note:	output channels 0 and 1 are left and right, 2 and 3 are left prime and
+	  right prime; a volume of 00h is off
+---function 04h---
+ 01h  N BYTEs	bytes to send directly to the CD-ROM drive without
+		  interpretation
+

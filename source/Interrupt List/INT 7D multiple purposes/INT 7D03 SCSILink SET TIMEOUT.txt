@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D03
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - SET TIMEOUT
+	AH = 03h
+	AL = timeout selector (see #03865)
+	BX = new value in 55ms ticks
+Desc:	change an internal timeout value to allow communication with very
+	  slow targets
+
+(Table 03865)
+Values for SCSILink timeout selector:
+ 00h	time to wait for bus (default 18)
+ 01h	time to wait for new phase (default 5)
+ 02h	maximum time to send/receive block (default 18)
+ 03h	time to wait for reselect (default 180)
+

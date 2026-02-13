@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0026
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VPOWERD - VxD SERVICES
+	VxD = 0026h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01290)
+Values for VPOWERD (VxD ID 0026h) service number:
+ 00h	get version
+	Return:	CF clear
+		EAX = version (AH = major, AL = minor)
+ 01h	get APM BIOS version
+	Return: CF clear
+		EAX = APM BIOS version
+ 02h	get current power management level
+	Return: CF clear
+		EAX = power management level
+ 03h	enable/disable power management (see INT 15/AX=5308h)
+	Return: EAX = error code (see #02665) or 00000000h if successful
+ 04h	set power state (see INT 15/AX=5307h)
+	???
+	Return: EAX = error code (see #02665) or 00000000h if successful
+ 05h	set system power status
+	Return: EAX = error code (see #02665) or 00000000h if successful
+ 06h	restore APM power-on defaults (see INT 15/AX=5309h)
+	Return: EAX = error code (see #02665) or 00000000h if successful
+ 07h	get power status (see INT 15/AX=530Ah)
+	Return: ???
+ 08h	get APM 1.1 power state (see INT 15/AX=530Ch)
+	Return: ???
+ 09h	invoke OEM APM function
+	??? -> bufer containing parameters for INT 15/AX=5380h
+	Return: EAX = error code (see #02665) or 00000000h if successful
+		buffer updated if successful
+ 0Ah	register power handler
+	???
+	Return: EAX = error code (see #02665) or 00000000h if successful
+ 0Bh	deregister power handler
+	???
+	Return: EAX = error code (see #02665) or 00000000h if successful
+ 0Ch	Win32 get system power status
+ 0Dh	Win32 set system power status
+SeeAlso: #01289,#01291,INT 2F/AX=1684h/BX=0026h
+

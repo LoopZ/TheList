@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F168FDH03
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Windows95 - CLOSE-AWARENESS - CANCEL CLOSE
+	AX = 168Fh
+	DH = 03h
+	DL = 00h (reserved)
+Return: AX = status
+	    0000h successful
+	    else failed
+Desc:	cancels a close request which has already been acknowledged if the
+	  application determines that it will not exit at this time
+SeeAlso: AX=168Fh/DH=00h,AX=168Fh/DH=03h
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 164502
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Shamrock Software EMAIL - GET CURRENT COMMUNICATIONS PARAMETERS
+	AX = 4502h
+	DL = port number (01h = COM1)
+Return: AX = 4D00h if EMAIL installed on specified port
+	    BL = current value of serial port's Line Control Register
+	    BH = flags (see #00593)
+	    CX = selected country code (33 = France, 49 = Germany, etc)
+	    DX = baudrate divisor (115200/DX = baudrate)
+SeeAlso: AX=4500h
+
+Bitfields for Shamrock Software EMAIL flags:
+Bit(s)	Description	(Table 00593)
+ 0	ISO code
+ 1	pause
+ 2	linefeed
+ 3	ANSI sequences
+

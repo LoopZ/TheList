@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FFF8
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - SET BAUD RATE DIVISOR
+	AX = FFF8h
+	BX = card type (sub-device number)
+	CX = new baudrate divisor
+	DX = index to baud rate
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+Program: COMM-DRV is a universal serial communications driver by Willies'
+	  Computer Software Company, which supports standard INT 14 and
+	  FOSSIL calls as well as its own interfaces
+SeeAlso: AX=8000h"COMM-DRV"
+

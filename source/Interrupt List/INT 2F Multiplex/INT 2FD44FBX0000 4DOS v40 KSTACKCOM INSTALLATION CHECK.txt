@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD44FBX0000
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - 4DOS v4.0+ - KSTACK.COM - INSTALLATION CHECK
+	AX = D44Fh
+	BX = 0000h
+Return: AX = 44DDh if installed
+Note:	this function is also supported by ANSIPLUS v3.01+ and K3PLUS v6.20+,
+	  which emulate the 4DOS and NDOS keystack
+SeeAlso: AX=D44Dh,AX=D44Fh/BX=0001h,AX=E44Fh/BX=0000h
+

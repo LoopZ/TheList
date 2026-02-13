@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 631A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - READ FROM THE NETWORK
+	AH = 1Ah
+	CX = maximum number of bytes to read
+	ES:BP -> ???
+	???
+Return: CX = number of bytes actually read
+	???
+SeeAlso: AH=12h,AH=14h,AH=19h,INT 61/AH=1Bh"PC/TCP"
+

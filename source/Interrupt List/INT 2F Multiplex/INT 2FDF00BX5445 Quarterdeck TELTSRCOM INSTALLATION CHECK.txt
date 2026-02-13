@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDF00BX5445
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Quarterdeck TELTSR.COM - INSTALLATION CHECK
+	AX = DF00h
+	BX = 5445h ('TE')
+	CX = 4C54h ('LT')
+	DX = 5352h ('SR')
+Return: BX = 5454h ('TT') if installed
+	CX = 494Eh ('IN') if installed
+	DX = 5454h ('ST') if installed
+Program: TELTSR is a Telnet TSR included with Quarterdeck's DESQview/X v2.00
+	  which provides an INT 14h interface to the network
+Range:	AH=DEh to AH=FFh and AH=C0h to AH=DDh, selected by scanning
+SeeAlso: AX=DF01h"TELTSR",AX=DF02h"TELTSR",INT 14/AH=56h
+

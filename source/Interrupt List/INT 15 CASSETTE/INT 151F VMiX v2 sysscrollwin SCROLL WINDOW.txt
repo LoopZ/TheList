@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151F
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX v2.???+ - "sys_scrollwin" - SCROLL WINDOW
+	AH = 1Fh
+	STACK:	WORD	top left corner of window (high byte = row, low = col)
+		WORD	bottom right corner of window
+Return: AX = status (SYS_OK)
+SeeAlso: AH=14h"VMiX",AH=18h"VMiX"
+

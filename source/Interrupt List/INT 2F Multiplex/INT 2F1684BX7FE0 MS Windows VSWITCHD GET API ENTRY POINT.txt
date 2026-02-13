@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX7FE0
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VSWITCHD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 7FE0h (virtual device ID for VSWITCHD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02715)
+		  0000h:0000h if the VxD does not support an API
+
+(Table 02715)
+Call VSWITCHD entry point with:
+	AX = function
+	    0000h toggle windowed mode (simulate Alt-Enter keypress)
+		Return: nothing
+	    0001h get windowed mode
+		Return: CF clear if VM is windowed
+			CF set if VM is full-screen
+SeeAlso: #02712,#02716
+

@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0010
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - BlockDev / IOS - VxD SERVICES
+	VxD = 0010h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01278)
+Values for BlockDev/IOS (VxD ID 0010h) service number:
+ 0000h	get version
+ 0001h	register device
+ 0002h	find INT 13 drive
+ 0003h	get device list
+ 0004h	send command
+ 0005h	command complete
+ 0006h	synchronous command
+ 0007h	"IOS_Register"
+ 0008h	"IOS_Requestor_Service"
+ 0009h	"IOS_Exclusive_Access"
+ 000Ah	"IOS_Send_Next_Command"
+ 000Bh	"IOS_Set_Async_Time_Out"
+ 000Ch	"IOS_Signal_Semaphore_No_Switch"
+ 000Dh	"IOSIdleStatus"
+ 000Eh	"IOSMapIORSToI24"
+ 000Fh	"IOSMapIORSToI21"
+ 0010h	"PrintLog"
+SeeAlso: #01277,#01279
+

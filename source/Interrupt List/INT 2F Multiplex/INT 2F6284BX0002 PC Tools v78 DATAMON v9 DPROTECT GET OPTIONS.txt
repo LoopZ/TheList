@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F6284BX0002
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v7-8 DATAMON, v9+ DPROTECT - GET OPTIONS
+	AX = 6284h
+	BX = 0002h
+	CX = 0002h
+Return: AX = options (see #02848)
+	BX = ??? (0000h for v9)
+	CX = AX
+	DX = BX
+Note:	also supported by DOS 6 UNDELETE which is licensed from PC Tools
+SeeAlso: AX=6284h/BX=0000h,AX=6284h/BX=0003h
+
+Bitfields for DATAMON/DPROTECT options:
+Bit(s)	Description	(Table 02848)
+ 1	???
+ 12	disabled
+ 13	using Delete Sentry
+ 14	using Delete Tracker
+

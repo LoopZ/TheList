@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FCD
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v4.1+ - FLUSH SERVER CACHES
+	AX = 5FCDh
+	ES:DI -> ASCIZ server name in form "\\machine"
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Note:	you must have the "S" privilege to use this call.
+

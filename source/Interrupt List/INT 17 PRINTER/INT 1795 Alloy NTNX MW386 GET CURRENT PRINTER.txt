@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1795
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - GET CURRENT PRINTER
+	AH = 95h
+	AL = mode
+	    00h NTNX compatibility
+		Return: DX = NTNX printer number (see #00643)
+			    (FFFFh if current printer not compatible with NTNX)
+	    01h MW386
+		Return: DX = MW386 printer number
+	    02h MW386 v2+
+		BX = logical device number
+		    00h-03h = LPT1-LPT4
+		    04h-07h = COM1-COM4
+		Return: DX = MW386 printer number (FFFFh = none)
+Return: AL = status (see #00642)
+Note:	modes 00h and 01h return the printer number of logical LPT1 only
+SeeAlso: AH=94h
+

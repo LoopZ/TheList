@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 178D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX,MW386 - RESET SPOOLER
+	AH = 8Dh
+	AL = 00h
+Return: AL = status (see #00642)
+Notes:	clears all buffers and resets spooler to boot-up values
+	MW386 supports this function for compatibility only; it is a NOP
+

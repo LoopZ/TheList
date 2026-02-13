@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1764
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - T2PS v1.0 - GET PARAMETERS
+	AH = 64h
+	ES:SI -> buffer for settings (see #00641)
+Return: ES:SI buffer filled
+SeeAlso: AH=62h,AH=63h,INT 05/AX=5053h
+

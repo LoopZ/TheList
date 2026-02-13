@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--11
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - CDTSR - REPROGRAM CDTSR
+	AL = 11h
+	AH = AMIS multiplex number for CDTSR
+Return: nothing
+Program: CDTSR is a resident audio CD player by Colin Hill
+Desc:	reprograms CDTSR based on the values in the internal variable
+	  structure (see #02583), which may have been changed by an application
+SeeAlso: INT 2D/AL=10h"CDTSR",INT 2D/AL=12h"CDTSR",INT 2D/AL=13h"CDTSR"
+

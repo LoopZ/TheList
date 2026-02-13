@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15CA
+  Category: B 	BIOS
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - PS/2 Model 95 - READ/WRITE CMOS MEMORY
+	AH = CAh
+	AL = function
+	    00h read CMOS
+		Return: CL = value of CMOS location
+	    01h write CMOS
+		CL = new value for CMOS location
+	BL = CMOS location (0Eh-3Fh)
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code (see #00530)
+Note:	writes do not update the CMOS checksum
+
+(Table 00530)
+Values for CMOS read/write error code:
+ 01h	CMOS lost power or has invalid checksum
+ 03h	specified location out of range (too high)
+ 04h	specified location out of range (too low)
+ 80h	unsupported function (PC)
+ 86h	unsupported function (XT)
+

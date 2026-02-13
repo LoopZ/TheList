@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1413
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - SINGLE CHARACTER ANSI WRITE TO SCREEN
+	AH = 13h
+	AL = character
+Return: nothing
+Note:	should not be called if it is unsafe to call DOS
+SeeAlso: AH=15h
+

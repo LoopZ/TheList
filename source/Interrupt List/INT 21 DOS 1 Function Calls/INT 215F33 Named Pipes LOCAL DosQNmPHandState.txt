@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F33
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - Named Pipes - LOCAL DosQNmPHandState
+	AX = 5F33h
+	BX = handle
+Return: CF clear if successful
+	    AH = pipe mode bit mask (see #01702)
+	    AL = maximum number of instances
+	CF set on error
+	    AX = error code
+Note:	this function was introduced by LAN Manager but is also supported by
+	  the Novell DOS Named Pipe Extender, Banyan VINES, OS/2 Virtual DOS
+	  Machines, and others
+SeeAlso: AX=5F32h,AX=5F34h
+
+Bitfields for Named Pipes pipe mode:
+Bit(s)	Description	(Table 01702)
+ 7	set if nonblocking, clear if blocking
+ 6	set if server end, clear if client end
+ 2	set if write in message mode, clear if write in byte mode
+ 0	set if read in message mode, clear if read in byte mode
+

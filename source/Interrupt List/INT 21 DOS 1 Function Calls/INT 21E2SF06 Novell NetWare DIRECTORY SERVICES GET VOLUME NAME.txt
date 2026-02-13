@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - GET VOLUME NAME
+	AH = E2h subfn 06h
+	DS:SI -> request buffer (see #01854)
+	ES:DI -> reply buffer (see #01855)
+Return: AL = status (00h,98h) (see #01839)
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=DAh,AH=E2h/SF=02h,AH=E2h/SF=05h,AH=E2h/SF=15h,AH=E2h/SF=1Ah
+SeeAlso: AH=E3h/SF=E9h,AX=F216h/SF=06h
+
+Format of NetWare "Get Volume Name" request buffer:
+Offset	Size	Description	(Table 01854)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	06h (subfunction "Get Volume Name")
+ 03h	BYTE	volume number
+SeeAlso: #01855,#02114 at AX=F216h/SF=06h
+
+Format of NetWare "Get Volume Name" reply buffer:
+Offset	Size	Description	(Table 01855)
+ 00h	WORD	(call) 0011h (length of following results buffer)
+ 02h	BYTE	length of volume name
+ 03h 16 BYTEs	NUL-padded volume name
+SeeAlso: #01854,#02114 at AX=F216h/SF=06h
+

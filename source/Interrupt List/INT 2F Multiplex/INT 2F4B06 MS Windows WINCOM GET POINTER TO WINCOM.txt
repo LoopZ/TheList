@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4B06
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - WIN.COM - GET ??? POINTER TO WIN.COM
+	AX = 4B06h
+Return: AX = 0000h
+	ES:BX -> ??? function in WIN.COM
+Note:	the entry point is called with
+	    AX = 0001h or 0003h
+	    BX = ???
+SeeAlso: AX=4B80h
+

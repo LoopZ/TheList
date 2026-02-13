@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: B370
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - GET VERSION
+	AH = 70h
+Return: AH = major version
+	AL = minor version
+	CL = number of states and territories in current database
+	DH = year of current database - 1900
+	DL = month of current database's file date
+Program: ZIPKEY is a resident ZIPCODE database by Eric Isaacson
+Note:	if installed, the string "ZIPKEY" is present at offset 75h in the
+	  interrupt handler's segment, and the byte at 7Bh contains the API
+	  version number (00h for v1.x, 01h for v2.0)
+

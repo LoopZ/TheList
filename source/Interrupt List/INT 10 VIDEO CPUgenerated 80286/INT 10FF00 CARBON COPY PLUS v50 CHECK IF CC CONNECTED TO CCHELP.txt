@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10FF00
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - CARBON COPY PLUS v5.0 - CHECK IF CC CONNECTED TO CCHELP
+	AX = FF00h
+Return: BL = state
+	    00h not connected
+	    01h connected
+SeeAlso: AX=FF01h,AX=FF02h
+

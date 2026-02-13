@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17F4
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - NorthNet Jetstream API - SET COMPLETION (POST) ADDRESS
+	AH = F4h
+	DX = printer port (0-3)
+	DS:DS -> FAR post address (called with interrupts on)
+SeeAlso: AH=F1h,AH=F3h
+

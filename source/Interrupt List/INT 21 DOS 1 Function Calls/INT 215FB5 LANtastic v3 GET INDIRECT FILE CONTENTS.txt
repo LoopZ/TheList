@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FB5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v3+ - GET INDIRECT FILE CONTENTS
+	AX = 5FB5h
+	DS:SI -> 128-byte buffer for ASCIZ indirect file contents
+	ES:DI -> full ASCIZ path of indirect file
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5FB4h
+

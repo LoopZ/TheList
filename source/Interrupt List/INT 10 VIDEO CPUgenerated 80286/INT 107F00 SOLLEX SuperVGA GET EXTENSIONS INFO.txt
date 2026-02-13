@@ -1,0 +1,95 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - GET EXTENSIONS INFO
+	AX = 7F00h
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		    ES:DI -> info structure (see #00201)
+		01h failed
+Program: the SOLLEX (Smos videO controLLer EXtensions) SuperVGA functions are
+	  an extension to the VESA SuperVGA BIOS Extensions (see AX=4F00h) by
+	  Seiko Epson Corporation intended to provided a standardized interface
+	  to SuperVGA functionality not addressed by the VESA standard
+SeeAlso: AX=4F00h
+
+Format of SOLLEX SuperVGA info structure:
+Offset	Size	Description	(Table 00201)
+ 00h	DWORD	pointer to VESA function dispatch table
+ 04h	DWORD	pointer to SOLLEX function dispatch table
+ 08h	DWORD	pointer to VESA SuperVGA info (see #00077 at AX=4F00h)
+ 0Ch	DWORD	pointer to mode info structure table, consisting of
+		  alternating ResInfo (see #00202) and VESA mode information
+		  (see #00079 at AX=4F01h) blocks, terminated with an FFFFh word
+ 10h	DWORD	pointer to font info structure table (see #00203)
+ 14h	WORD	high resolution crystal frequency in Hz (0000h = not present)
+ 16h	DWORD	pointer to ASCIZ ID string
+ 1Ah	DWORD	pointer to timeout reset table
+		array of bytes, each a multiple of the minimum time increment
+ 1Eh	WORD	minimum time increment in timer ticks
+ 20h	BYTE	inverse options supported
+		bit 0: inverse supported
+		bits 1-7: reserved
+ 21h	BYTE	normal color value
+ 22h	BYTE	inverse color value
+ 23h	WORD	port to be accessed for normal/inverse settings
+ 25h	WORD	type of interface chip (currently undefined)
+ 27h	WORD	program operational mode
+		bits 1-0: 00 no preference
+			  01 terse (minimum detail in program messages)
+			  10 verbose
+			  11 use menus if supported, verbose mode otherwise
+		bits 7-2: reserved
+ 29h	WORD	SOLLEX specification version
+ 2Bh	WORD	version of VESA/SOLLEX implementation
+ 2Dh	DWORD	offset to relocatable portion of SOLLEX extensions (for CONFIG)
+ 2Eh	DWORD	offset to unused section of the extensions ROM
+ 31h 16 BYTEs	reserved
+Note:	all DWORD pointers initially require segment fixups; if the segment
+	  is 0000h, it should be changed to the returned ES, otherwise it
+	  may be assumed to be correct
+
+Format of SOLLEX SuperVGA ResInfo:
+Offset	Size	Description	(Table 00202)
+ 00h	WORD	16-bit mode number
+ 02h	WORD	adapter type (00h VGA, 01h EGA, 02h CGA, 03h MDA)
+ 04h	WORD	display info (see #00206)
+ 06h	DWORD	pointer to video parameter table
+ 0Ah	BYTE	replacement entry in master Video Parameter
+ 0Bh	BYTE	mode requested for mode set by BIOS
+ 0Ch	DWORD	pointer to LoadReg table
+ 10h	BYTE	index into table of clock values (see #00204)
+SeeAlso: #00201
+
+Format of SOLLEX SuperVGA font info table [array] entry:
+Offset	Size	Description	(Table 00203)
+ 00h	BYTE	required font height
+ 01h	BYTE	parameter to load text mode font
+ 02h	BYTE	parameter to load graphics mode font
+SeeAlso: #00201
+
+(Table 00204)
+Values for SOLLEX SuperVGA clock value index:
+ 00h	25 MHz
+ 01h	28 MHz
+ 02h	PCLK
+ 03h	31.5 MHz (VESA 640x480)
+ 04h	reserved
+ 05h	16 MHz (EGA)
+ 06h	PCLK
+ 07h	24 MHz (EGA)
+ 08h	25 MHz
+ 09h	28 MHz
+ 0Ah	36 MHz
+ 0Bh	45 MHz (for 1024x768)
+ 0Ch	80 MHz
+ 0Dh	40 MHz
+ 0Eh	65 MHz
+ 0Fh	 1 MHz (for powerdown)
+SeeAlso: #00201
+

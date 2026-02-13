@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0002
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "Swap Drive" - SWAP DRIVE LETTERS OF CVF AND HOST DRIVE
+	AX = 4A11h
+	BX = 0002h
+	DL = drive number (0=A:) of compressed drive to swap with its host
+Return: AX = status (0000h,0101h,0102h,0103h) (see #02804)
+Note:	this function is intended for use by DBLSPACE.EXE only
+SeeAlso: AX=4A11h/BX=0000h
+

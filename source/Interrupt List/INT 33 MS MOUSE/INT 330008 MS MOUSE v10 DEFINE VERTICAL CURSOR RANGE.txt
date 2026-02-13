@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330008
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - DEFINE VERTICAL CURSOR RANGE
+	AX = 0008h
+	CX = minimum row
+	DX = maximum row
+Note:	in text modes, the minimum and maximum rows are truncated to the
+	  next lower multiple of the cell size, typically 8x8 pixels
+SeeAlso: AX=0007h,AX=0010h,AX=0031h,INT 62/AX=0080h
+SeeAlso: INT 6F/AH=0Eh"F_SET_LIMITS_Y"
+

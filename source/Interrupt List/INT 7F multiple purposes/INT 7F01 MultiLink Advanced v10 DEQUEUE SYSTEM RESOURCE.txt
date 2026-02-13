@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F01
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - MultiLink Advanced v1.0+ - DEQUEUE SYSTEM RESOURCE
+	AH = 01h
+	BX = resource identifier
+Return: AL = status
+	    00h successful
+	    02h user error
+Note:	the indicated resource may be dequeued even if it was enqueued by
+	  another task
+SeeAlso: AH=00h"MultiLink",AH=02h"MultiLink"
+

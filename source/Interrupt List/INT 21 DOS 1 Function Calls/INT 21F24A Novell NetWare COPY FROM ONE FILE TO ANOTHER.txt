@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F24A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - COPY FROM ONE FILE TO ANOTHER
+	AX = F24Ah
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02354)
+	ES:DI -> reply buffer (see #02355)
+Return: AX = status (see #02350)
+Note:	this function only marks the file for deletion; use AH=E2h/SF=CEh to
+	  actually delete all marked files
+SeeAlso: AH=F2h"Novell",AX=F243h,AX=F247h,AH=F3h"NetWare"
+
+Format of NetWare "Copy from One File to Another" request packet:
+Offset	Size	Description	(Table 02354)
+ 00h	BYTE	reserved for future use
+ 01h  6 BYTEs	source NetWare file handle
+ 07h  6 BYTEs	destination NetWare file handle
+ 0Dh	DWORD	source file offset
+ 11h	DWORD	destination file offset
+ 15h	DWORD	number of bytes to copy
+SeeAlso: #02355
+
+Format of NetWare "Copy from One File to Another" reply packet:
+Offset	Size	Description	(Table 02355)
+ 00h	DWORD	number of bytes actually copied
+SeeAlso: #02354
+

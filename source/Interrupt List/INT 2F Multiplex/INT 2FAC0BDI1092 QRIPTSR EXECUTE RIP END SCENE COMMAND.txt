@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC0BDI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - EXECUTE RIP "END SCENE" COMMAND
+	AX = AC0Bh
+	DI = 1092h
+Return: nothing
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	enables all mouse buttons and cancels the RIP timeout
+SeeAlso: AX=AC01h,AX=AC04h,AX=ACF0h
+

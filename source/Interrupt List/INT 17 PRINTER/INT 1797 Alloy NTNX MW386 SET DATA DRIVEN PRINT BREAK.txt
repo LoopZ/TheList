@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1797
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - SET DATA DRIVEN PRINT BREAK
+	AH = 97h
+	AL = mode
+	    00h NTNX compatibility
+	    02h MW386 v2+
+		BX = logical device number
+		    00h-03h = LPT1-LPT4
+		    04h-07h = COM1-COM4
+	CH,CL,DH = three character break sequence
+	DL = subfunction
+	    00h set break string
+	    else reset break
+Return: AL = status (see #00642)
+Notes:	mode 00h affects only logical LPT1
+	when the break string is encountered, the spool file will be closed and
+	  queued for printing automatically
+	the break string is not permanently saved, and will be reset each time
+	  MW386 or the user is rebooted
+SeeAlso: AH=9Bh
+

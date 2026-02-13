@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140D--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - TERMINATE CONNECTION CLIENT ACTIVITY
+	AH = 0Dh
+	DX = FFFFh
+Return: AH = return code
+	    00h successful
+	    nonzero operation not terminated
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+Desc:	end all Connection Client TSR activity to allow it to be removed from
+	  memory
+SeeAlso: AH=05h/DX=FFFFh,AH=6Fh/BX=FFFFh
+

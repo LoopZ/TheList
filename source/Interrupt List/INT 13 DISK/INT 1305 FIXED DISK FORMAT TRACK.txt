@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1305
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - FIXED DISK - FORMAT TRACK
+	AH = 05h
+	AL = interleave value (XT-type controllers only)
+	ES:BX -> 512-byte format buffer
+		the first 2*(sectors/track) bytes contain F,N for each sector
+		   F = sector type
+			00h for good sector
+			20h to unassign from alternate location
+			40h to assign to alternate location
+			80h for bad sector
+		   N = sector number
+	CH = cylinder number (bits 8,9 in high bits of CL)
+	CL = high bits of cylinder number (bits 7,6)
+	DH = head
+	DL = drive
+Return: CF set on error
+	CF clear if successful
+	AH = status code (see #00234)
+Notes:	AWARD AT BIOS and AMI 386sx BIOS have been extended to handle more
+	  than 1024 cylinders by placing bits 10 and 11 of the cylinder number
+	  into bits 6 and 7 of DH
+	for XT-type controllers on an AT or higher, AH=0Fh should be called
+	  first
+	the IBM AT BIOS and many other BIOSes use only the low four bits of
+	  DH (head number) since the WD-1003 controller which is the standard
+	  AT controller (and the controller that IDE emulates) only supports
+	  16 heads
+	not all controller support sector types 20h and 40h
+	under Windows95, an application must issue a physical volume lock on
+	  the drive via INT 21/AX=440Dh before it can successfully write to
+	  the disk with this function
+SeeAlso: AH=05h"FLOPPY",AH=06h"FIXED",AH=07h"FIXED",AH=0Fh,AH=18h,AH=1Ah
+

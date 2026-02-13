@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1201
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - CLOSE CURRENT FILE
+	AX = 1201h
+	SS = DOS DS = DOS kernel data seg (must be using a DOS internal stack)
+	SDA current SFT pointer -> SFT of file to close
+Return: CF set on error
+	ES:DI -> SFT for file
+	CX undefined (new reference count of SFT in many versions)
+	BX destroyed
+SeeAlso: AX=1106h,AX=1227h,INT 21/AH=3Eh
+

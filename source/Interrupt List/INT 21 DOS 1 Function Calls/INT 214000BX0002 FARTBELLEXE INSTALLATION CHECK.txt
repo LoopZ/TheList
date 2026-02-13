@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214000BX0002
+  Category: j 	joke programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - FARTBELL.EXE - INSTALLATION CHECK
+	AX = 4000h
+	BX = 0002h
+	CX = 0000h
+	DS:DX = 0000h:0000h
+Return: CF clear if installed
+	    AX = CS of resident code
+Program: FARTBELL is a joke program by Guenther Thiele which makes various
+	  noises when programs output a bell
+SeeAlso: AX=4001h
+

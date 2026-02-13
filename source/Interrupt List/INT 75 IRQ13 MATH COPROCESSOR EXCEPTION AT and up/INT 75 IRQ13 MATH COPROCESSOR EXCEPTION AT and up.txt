@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 75
+  Category: H 	hardware
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 75 C - IRQ13 - MATH COPROCESSOR EXCEPTION (AT and up)
+Desc:	redirected to INT 02 by the BIOS, for compatibility with the PC
+Notes:	may be masked by setting bit 5 on I/O port A1h
+	not all clones wire the coprocessor to generate this IRQ; some systems
+	  generate an NMI (see INT 02) or assert the -ERROR pin on the CPU
+	  (see INT 10"COPROCESSOR")
+	under DESQview, only the INT 15h vector and BASIC segment address (the
+	  word at 0000h:0510h) may be assumed to be valid for the handler's
+	  process
+SeeAlso: INT 10"COPROCESSOR",INT 5D"IRQ13",MEM 0040h:006Bh
+

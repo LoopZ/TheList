@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB406
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Intel Plug-and-Play AUTO-CONFIGURATION - GET PCI IRQ ROUTING TABLE
+	AX = B406h
+	ES:DI -> IRQ routing table header (see #01259)
+Return: CF clear if successful
+	    AX = 0000h
+	    WORD ES:[DI] = size of returned data
+	CF set on error
+	    AX = error code (0059h) (see #01243)
+	    WORD ES:[DI] = required size of buffer
+SeeAlso: AX=B400h,AX=B404h,AX=B10Eh,INT 2F/AX=1684h/BX=304Ch
+
+Format of Intel Plug-and-Play AUTO-CONFIGURATION PCI IRQ routing header:
+Offset	Size	Description	(Table 01259)
+ 00h	WORD	length of IRQ routing table buffer
+ 02h	DWORD	-> IRQ routing table array buffer (see #01260)
+
+Format of Intel Plug-and-Play ACFG PCI IRQ routing table entry [array]:
+Offset	Size	Description	(Table 01260)
+ 00h	BYTE	PCI bus number
+ 01h	BYTE	PCI device number (bits 7-3)
+ 02h	BYTE	link value for INTA#
+		(if non-zero, wire-ORed together with any other PCI interrupts
+		  with same link value)
+ 03h	WORD	IRQ connectivity bit map for INTA#
+		(standard AT IRQs to which PCI interrupt can be routed)
+ 05h	BYTE	link value for INTB#
+ 06h	WORD	IRQ connectivity bit map for INTB#
+ 08h	BYTE	link value for INTC#
+ 09h	WORD	IRQ connectivity bit map for INTC#
+ 0Bh	BYTE	link value for INTD#
+ 0Ch	WORD	IRQ connectivity bit map for INTD#
+ 0Eh	BYTE	(PCI BIOS v2.1+) device slot number (00h = motherboard)
+ 0Fh	BYTE	reserved
+Note:	each item in the routing table corresponds to a motherboard PCI
+	  device or PCI slot
+SeeAlso: #01259,#M0091
+

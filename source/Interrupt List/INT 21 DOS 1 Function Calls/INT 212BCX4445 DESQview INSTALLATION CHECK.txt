@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212B--CX4445
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DESQview - INSTALLATION CHECK
+	AH = 2Bh
+	CX = 4445h ('DE')
+	DX = 5351h ('SQ')
+	AL = subfunction (DV v2.00+)
+	    01h get version
+		Return: BX = version (BH = major, BL = minor)
+		Note: early copies of v2.00 return 0002h
+	    02h get shadow buffer info, and start shadowing
+		Return: BH = rows in shadow buffer
+			BL = columns in shadow buffer
+			DX = segment of shadow buffer
+	    04h get shadow buffer info
+		Return: BH = rows in shadow buffer
+			BL = columns in shadow buffer
+			DX = segment of shadow buffer
+	    05h stop shadowing
+Return: AL = FFh if DESQview not installed
+Notes:	in DESQview v1.x, there were no subfunctions; this call only identified
+	  whether or not DESQview was loaded.  DESQview v2.52 performs function
+	  01h for all subfunction requests 0Ch and higher and appears to ignore
+	  all lower-numbered functions not listed here.
+	DESQview versions 2.50-2.52 are part of DESQview/X v1.0x; version 2.53
+	  is part of DESQview/X v1.10; and version 2.63 is part of DESQview/X
+	  v2.00.
+BUG:	subfunction 05h does not appear to work correctly in DESQview 2.52
+SeeAlso: INT 10/AH=FEh,INT 10/AH=FFh,INT 15/AX=1024h,INT 15/AX=DE30h
+

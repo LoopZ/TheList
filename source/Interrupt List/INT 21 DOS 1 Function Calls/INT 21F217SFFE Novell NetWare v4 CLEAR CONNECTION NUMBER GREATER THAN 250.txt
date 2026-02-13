@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFFE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4 - CLEAR CONNECTION NUMBER GREATER THAN 250
+	AX = F217h subfn FEh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02277)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=E3h/SF=D2h,AX=F217h/SF=D2h
+
+Format of NetWare "Clear Connection Number" request buffer:
+Offset	Size	Description	(Table 02277)
+ 00h	WORD	length of following data
+ 02h	BYTE	FEh (subfunction "Clear Connection Number")
+ 03h	DWORD	connection number
+SeeAlso: #02023
+

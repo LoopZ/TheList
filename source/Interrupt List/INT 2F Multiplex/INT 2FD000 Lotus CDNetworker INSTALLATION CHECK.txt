@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Lotus CD/Networker - INSTALLATION CHECK
+	AX = D000h
+Return: AL = FFh if CD/Networker TSR is loaded
+	BX = 4D44h ("MD") signature
+	CX = Windows mode word (from INT 2F/AX=1600h) at time of TSR load
+	DX = bitmap identifying all loaded CD/Networker TSRs.
+Notes:	INT 2F/AH=D0h is used by CD/Networker to communicate between a
+	  resident redirector TSR and a transient program that controls the
+	  TSR's CD-ROM drive emulation (volume attachments, caching, etc).
+	At present there is only one CD/Networker TSR; the bitmap always = 4.
+SeeAlso: AX=D002h"Lotus",INT 2F/AX=1500h"CD-ROM"
+

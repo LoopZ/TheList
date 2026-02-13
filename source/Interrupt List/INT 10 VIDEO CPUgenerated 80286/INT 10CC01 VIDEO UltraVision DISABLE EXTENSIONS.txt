@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CC01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - DISABLE EXTENSIONS
+	AX = CC01h
+Return: nothing
+Notes:	subsequent BIOS calls will be passed through to previous handler
+	should be followed immediately by mode set to restore normal EGA/VGA
+	  state
+SeeAlso: AX=CC02h
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F07
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v3.0+ - ENABLE/DISABLE STEREOSCOPIC MODE
+	AX = 4F07h
+	BL = subfunction
+	    05h enable stereoscopic mode
+	    06h	disable stereoscopic mode
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+	    01h failed
+Note:	when stereoscopic mode is enabled, the display start address will
+	  automatically alternate between the left and right images on every
+	  vertical retrace
+SeeAlso: AX=4F07h"DISPLAY START",AX=4F07h"SCHEDULED"
+

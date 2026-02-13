@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F10
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - ATTACH/DETACH PRINTER
+	AH = 10h
+	AL = subfunction
+	    00h initiate spooling if LPT1 is mounted
+	    01h terminate spooling if LPT1 is mounted
+SeeAlso: INT 21/AX=5D08h
+

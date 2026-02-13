@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675E00
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Nanosoft MD386 - SET HARDWARE BREAKPOINT
+	AX = 5E00h
+	DH = breakpoint number (0-3)
+	DL = breakpoint attributes (used to set DR7)
+	CX:BX = linear address of breakpoint
+SeeAlso: AX=5D03h,AX=5E01h
+

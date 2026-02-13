@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0032
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VSERVER - VxD SERVICES
+	VxD = 0032h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01296)
+Values for VSERVER (VxD ID 0032h) service number:
+ 00h	get VSERVER version
+	Return: CF clear
+		EAX = version (AH = major, AL = minor)
+		EBX = ??? (00000000h)
+ 01h	allocate ???
+	AX = ???
+	ESI = ???
+	Return: CF clear if successful
+		CF set on error (table full)
+ 02h	NOP???
+	Return: EBX = 00000000h
+ 03h	???
+	Return: ZF clear
+SeeAlso: #01295,#01297,INT 2F/AX=1684h/BX=0032h
+

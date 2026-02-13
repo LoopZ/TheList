@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA20
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - STANDBY.COM - INSTALLATION CHECK
+	AX = BA20h
+Return: CF clear if successful (installed)
+	CF set on error (not installed)
+Notes:	The display controller can enter a standby mode after a given timeout,
+	  to conserve power or (for the OmniShare) to increase the life of
+	  the backlight.
+	A side effect of standby mode is that the communications LED turns on
+	  automatically when the display is in standby mode.  This is done in
+	  hardware, and is intended to show that the unit is still on.
+SeeAlso: AX=BA10h,AX=BA20h,AX=BA22h,AX=BA24h,AX=BA26h
+

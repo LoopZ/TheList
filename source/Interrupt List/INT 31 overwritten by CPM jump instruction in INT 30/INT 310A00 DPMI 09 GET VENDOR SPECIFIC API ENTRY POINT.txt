@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310A00
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET VENDOR SPECIFIC API ENTRY POINT
+	AX = 0A00h
+	DS:(E)SI -> case-sensitive ASCIZ vendor name or identifier
+Return: CF clear if successful
+	    ES:(E)DI -> FAR extended API entry point
+	    DS, FS, GS, EAX, EBX, ECX, EDX, ESI, EBP destroyed
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8001h) (see #03143)
+Notes:	extended API parameters are vendor-specific
+	DPMI 1.0+ supports this function solely for backward compatibility; use
+	  INT 2F/AX=168Ah instead
+	this function is not supported by MS Windows 3.10, BC++ 3.1 DPMILOAD,
+	  or QDPMI v1.0x; use INT 2F/AX=168Ah instead.	It is supported by
+	  386MAX v7.01.
+SeeAlso: INT 2F/AX=168Ah
+

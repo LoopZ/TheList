@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB703
+  Category: f 	file manipulation
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3, DOS 5.0 APPEND - HOOK INT 21
+	AX = B703h
+	ES:DI -> INT 21 handler APPEND should chain to
+Return: ES:DI -> APPEND's INT 21 handler
+Note:	each invocation of this function toggles a flag which APPEND uses to
+	  determine whether to chain to the user handler or the original
+	  INT 21
+SeeAlso: AX=B700h,AX=B706h
+

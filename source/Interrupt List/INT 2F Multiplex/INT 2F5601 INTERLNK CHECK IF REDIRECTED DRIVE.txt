@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5601
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - INTERLNK - CHECK IF REDIRECTED DRIVE
+	AX = 5601h
+	DX = magic value FFFFh
+	BH = drive number (0=A:)
+	BL = instance number (00h=any, 01h=first loaded, etc.)
+	(CX = 0000h, see note)
+Return: (as for AL=00h if redirected drive)
+Note:	some Microsoft software explicitly clears the CX register before
+	  calling this function.
+SeeAlso: AX=5600h,AX=5601h
+

@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 480A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 48 - TI Professional PC - GET EXTRA SYSTEM CONFIGURATION INFO ADDRESS
+	AH = 0Ah
+Return: ES:BX -> configuration information (see #03205)
+SeeAlso: AH=00h,AH=01h,AH=02h,AH=03h,AH=04h,AH=06h,AH=08h,AH=0Bh
+
+Format of TI Professional PC extra system configuration information:
+Offset	Size	Description	(Table 03205)
+ -3	WORD	memory size in paragraphs
+ 00h	BYTE	drive type byte (see #03206)
+ 01h	WORD	extra system configuration word 1
+		bit 0: 8087 is present
+		bits 15-1: reserved (0)
+ 03h	WORD	extra system configuration word 2
+		bits 15-0: reserved (0)
+
+Bitfields for TI Professional PC drive type byte:
+Bit(s)	Description	(Table 03206)
+ 0	drive A is double-sided
+ 1	drive A has 80 tracks instead of 40
+ 2	drive B is double-sided
+ 3	drive B has 80 tracks instead of 40
+ 4	drive C is double-sided
+ 5	drive C has 80 tracks instead of 40
+ 6	drive D is double-sided
+ 7	drive D has 80 tracks instead of 40
+Note:	the type for drive A is determined by motherboard switches; the
+	  remaining drives' types are set from a table in IO.SYS
+SeeAlso: #03205
+

@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8000
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CS_TSR specification - TSR INSTALLATION CHECK
+	AX = 8000h
+	DS:SI -> 4-byte CS_TSR signature (11h 43h 53h 10h)
+Return: AL = status
+	    00h no CS_TSR-compliant TSRs installed
+	    01h installed, but signature did not match
+	    FFh installed, signature matches
+		ES:DI -> resident process block (see #02928) of last installed
+			  TSR (if DS:SI pointed at signature on entry)
+Program: the CS_TSR specification is a standardized TSR interface by Compact
+	  Soft group in Kiev, Ukraine
+Desc:	determine whether any CS_TSR-compliant TSRs are installed on the
+	  selected multiplex number
+Range:	AH=80h to AH=FFh
+SeeAlso: AX=8001h"CS_TSR",AX=8002h"CS_TSR",AX=8003h"CS_TSR"
+
+Format of CS_TSR process block:
+Offset	Size	Description	(Table 02928)
+ 00h  4 BYTEs	CS_TSR signature 11h 43h 53h 10h
+ 04h	BYTE	INT 2F multiplex number
+ 05h	WORD	virtual process handle (unique among loaded TSRs)
+ 07h  2 BYTEs	version (binary minor version, then major version)
+ 09h	WORD	PSP segment of TSR
+ 0Bh	DWORD	pointer to ASCIZ program name
+ 0Fh  3 BYTEs	program creation date (day, month, year)
+ 12h  3 BYTEs	process start time (seconds, minutes, hours)
+ 15h  3 BYTEs	process start date (day, month, year)
+

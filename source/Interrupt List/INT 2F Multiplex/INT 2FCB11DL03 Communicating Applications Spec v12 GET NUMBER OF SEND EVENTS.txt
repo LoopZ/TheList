@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB11DL03
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Spec v1.2+ - GET NUMBER OF SEND EVENTS
+	AX = CB11h
+	DL = 03h
+Return: AX = number of successful sends since resident manager started
+	BX = number of unsuccessful sends, including warnings
+SeeAlso: AX=CB11h/DL=04h
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - GET DIRECTORY PATH
+	AH = E2h subfn 01h
+	DS:SI -> request buffer (see #01842)
+	ES:DI -> reply buffer (see #01843)
+Return: AL = status (00h,9Bh) (see #01839)
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=02h,AH=E2h/SF=03h,AH=E2h/SF=1Ah,AH=E9h,AX=F216h/SF=01h
+
+Format of NetWare "Get Directory Path" request buffer:
+Offset	Size	Description	(Table 01842)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	01h (subfunction "Get Directory Path")
+ 03h	BYTE	directory handle
+SeeAlso: #01843,#01844
+
+Format of NetWare "Get Directory Path" reply buffer:
+Offset	Size	Description	(Table 01843)
+ 00h	WORD	(call) length of following data buffer
+ 02h	BYTE	length of directory path (01h-FFh)
+ 03h  N BYTEs	full directory path including volume
+SeeAlso: #01842,#01845
+

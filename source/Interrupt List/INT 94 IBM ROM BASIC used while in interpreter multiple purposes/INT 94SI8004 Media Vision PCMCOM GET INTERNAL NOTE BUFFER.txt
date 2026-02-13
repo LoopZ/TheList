@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI8004
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - GET INTERNAL NOTE BUFFER
+	SI = 8004h
+Return: AX = offset of note buffer (segment = segment of internal DMA buffer)
+	DX = size of buffer in note structures
+SeeAlso: SI=8000h
+

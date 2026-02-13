@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200DD
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_WAITFOR" - DELAY FOR SPECIFIED DURATION
+	AX = 00DDh
+	BX = duration in clock ticks
+Return: after delay elapses
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00BFh,INT 1A/AX=FF01h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0008
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "GetFileFragmentSpace" - GET SIZE OF FRAGMENT HEAP
+	AX = 4A11h
+	BX = 0008h
+	DL = compressed drive number (0=A:)
+Return: AX = status (0000h,0102h) (see also #02804)
+	    0000h successful
+		BX = maximum entries in File Fragment heap
+		CX = available entries in File Fragment heap
+SeeAlso: AX=4A11h/BX=0000h,AX=4A11h/BX=0007h,AX=4A11h/BX=0009h
+

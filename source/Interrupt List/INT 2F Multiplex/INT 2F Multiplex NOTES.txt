@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Multiplex - NOTES
+	AH = identifier of program which is to handle the interrupt
+	   00h-3Fh reserved for IBM (for DOS)
+	   40h-7Fh reserved for Microsoft (for DOS)
+	   80h-B7h reserved for IBM
+	   B8h-BFh reserved for networks
+	   C0h-FFh reserved for applications
+	AL is the function code
+   This is a general mechanism for verifying the presence of a TSR and
+   communicating with it.  When searching for a free identifier code for AH
+   using the installation check (AL=00h), the calling program should set
+   BX/CX/DX to 0000h and must not depend on any registers other than CS:IP
+   and SS:SP to be valid on return, since numerous programs now use additional
+   registers on input and/or output for the installation check.
+Notes:	Since the multiplex chain is growing so long, and beginning to
+	  experience multiplex number collisions, I have proposed an alternate
+	  multiplex interrupt on INT 2D.  If you decide to use the alternate
+	  multiplex, please let me know.
+	DOS and some other programs return values in the flags register, so
+	  any TSR which chains by calling the previous handler rather than
+	  jumping to it should ensure that the returned flags are preserved
+	  and passed back to the original caller
+SeeAlso: INT 2D"ALTERNATE MULTIPLEX"
+

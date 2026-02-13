@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21251D
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 OP - Phar Lap 386/DOS-Extender VMM v2.1c - READ PAGE-TABLE ENTRY
+	AX = 251Dh
+	BL = address type
+	    00h linear address
+		ECX = linear address of page table entry to read
+	    01h pointer
+		ES:ECX -> page table entry to read
+Return: CF clear if successful
+	    EAX = contents of page table entry
+	CF set on error
+	    EAX = error code
+		09h invalid address or NOPAGE option set
+		78h invalid under DPMI
+Note:	this function is obsolete; use AX=252Bh/BH=09h instead
+SeeAlso: AX=251Eh,AX=252Bh/BH=09h,AX=EB00h,INT 31/AX=0506h
+

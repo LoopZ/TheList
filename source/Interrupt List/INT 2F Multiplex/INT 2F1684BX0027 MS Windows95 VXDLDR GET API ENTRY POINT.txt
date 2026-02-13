@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0027
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows95 - VXDLDR - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0027h (virtual device ID for VXDLDR device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02666)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02666)
+Call VXDLDR entry point with:
+	EAX = function number
+	    0000h get VXDLDR version
+		Return: CF clear
+			AX = 0000h (successful)
+			DH = major version
+			DL = minor version
+	    0001h load device
+		DS(???):DX -> ASCIZ path name of dynamically-loadable VxD
+			(driver must reside in current directory or Windows
+			  system directory???)
+		ES:DI = 0000h:0000h
+		Return: CF clear if successful
+			    AX = 0000h
+			    ES:DI -> VxD API entry point
+			CF set on error
+			    AX = error code (see #02667)
+	    0002h unload device
+		EBX = device ID or FFFFFFFFh (Undefined_Device_ID)
+		---if EBX=FFFFFFFFh ---
+		(DS???):DX -> ASCIZ name of dynamically-loadable device
+			  (case-sensitive)
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set on error
+			    AX = error code (see #02667)
+	    else
+		Return: CF set
+			AX = 000Bh
+SeeAlso: #02664,#02668
+
+(Table 02667)
+Values for VXDLDR error code:
+ 0000h	successful
+ 000Bh	invalid function number
+SeeAlso: #02666
+

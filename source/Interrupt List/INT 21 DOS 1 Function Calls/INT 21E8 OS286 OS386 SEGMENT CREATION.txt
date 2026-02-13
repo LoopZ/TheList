@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E8
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - OS/286, OS/386 - SEGMENT CREATION
+	AH = E8h
+	AL = type
+	    00h data segment
+	    01h data window/alias
+	    02h real segment
+	    03h real window/alias
+		CX:DX = size in bytes
+		SI:BX -> start of desired memory block
+		Return:	AX = selector
+	    06h shareable segment
+	???
+Return: ???
+SeeAlso: AH=E7h"OS/286",AH=E9h"OS/286"
+

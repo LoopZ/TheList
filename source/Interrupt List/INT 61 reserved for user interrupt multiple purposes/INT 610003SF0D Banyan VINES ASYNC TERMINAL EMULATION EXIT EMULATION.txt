@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF0D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - EXIT EMULATION
+	AX = 0003h subfn 0Dh
+	DS:BX -> argument block (see #03388)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=04h,AX=0003h/SF=0Ah
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03388)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	0Dh (function "exit emulation")
+

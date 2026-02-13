@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1105
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - CHDIR
+	AX = 1105h
+	SS = DOS DS
+	SDA first filename pointer -> fully-qualified directory name
+	SDA CDS pointer -> current directory structure for drive with dir
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    CDS updated with new path
+Notes:	this function is called by the DOS 3.1+ kernel
+	directory string in CDS should not have a terminating backslash unless
+	  the current directory is the root
+SeeAlso: AX=1101h,AX=1103h,INT 21/AH=3Bh,INT 21/AH=60h
+

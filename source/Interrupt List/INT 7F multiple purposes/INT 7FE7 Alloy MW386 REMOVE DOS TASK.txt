@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FE7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - REMOVE DOS TASK
+	AH = E7h
+	AL = DOS process number
+Return: CF clear if successful
+	CF set on error (invalid process number or first process)
+Note:	can only be called by a foreground task
+SeeAlso: AH=E0h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectra EX-BIOS - "F16_INQUIRE" - Extended BIOS INSTALLATION CHECK
+	AX = 6F00h
+	BX <> 4850h (usually set to 0000h for simplicity)
+Return: BX = 4850h ("HP") if present
+Notes:	called by recent MS Mouse drivers looking for an HP-HIL mouse
+	supported by the original HP Vectra AT and ES/QS/RS series HP Vectras
+SeeAlso: AX=6F01h,AX=6F04h,AX=6F07h,AX=6F09h,AX=6F0Dh,AX=6F11h,AX=6F12h
+SeeAlso: INT 14/AX=6F00h,INT 17/AX=6F00h,INT 33/AX=6F00h
+SeeAlso: INT 6F/AH=00h"HP Vectra"
+

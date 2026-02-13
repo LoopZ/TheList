@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL37
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - XGA - MAINFRAME INTERACTIVE SUPPORT
+	AH = 12h
+	BL = 37h
+	AL = text attribute type (00h normal VGA, 01h mainframe type)
+Return: AL = 12h if supported
+SeeAlso: #00026,AH=08h,#00042
+
+Bitfields for XGA mainframe type character attributes:
+Bit(s)	Description	(Table 00026)
+ 7	blink double rate (75% ON time) or use color 8 as background
+	(see AX=1003h)
+ 6	reverse video
+ 5	underlined
+ 4	left-most and right-most dots of underline area inverted
+ 3	foreground intensity/character font select
+ 2-0	foreground color
+SeeAlso: #00014,#00036
+

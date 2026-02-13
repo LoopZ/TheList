@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F120F
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - MAKE BUFFER MOST RECENTLY USED
+	AX = 120Fh
+	DS:DI -> disk buffer
+	SS = DOS DS (must be using a DOS internal stack)
+Return: DS:DI -> next buffer in buffer list
+Desc:	move the indicated buffer to the end of the disk buffer chain (least-
+	  recently used is first); under DOS 3.3, the buffer is then moved to
+	  the start of the disk buffer chain if it was marked unused
+Note:	this function is the same as AX=1207h except that it returns a
+	  pointer to the buffer following the specified buffer in the buffer
+	  chain
+SeeAlso: AX=1207h
+

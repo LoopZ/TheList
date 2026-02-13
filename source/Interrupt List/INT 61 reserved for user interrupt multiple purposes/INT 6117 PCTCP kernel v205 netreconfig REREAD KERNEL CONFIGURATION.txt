@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6117
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_reconfig" - RE-READ KERNEL CONFIGURATION
+	AH = 17h
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Notes:	this routine is deprecated in v2.1+ and will eventually be withdrawn;
+	  in v2.1+, this function calls AH=01h which should be used instead
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=01h"PC/TCP"
+

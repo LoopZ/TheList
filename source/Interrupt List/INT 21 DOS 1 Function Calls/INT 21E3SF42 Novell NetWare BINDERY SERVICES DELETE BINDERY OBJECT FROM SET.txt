@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF42
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - DELETE BINDERY OBJECT FROM SET
+	AH = E3h subfn 42h
+	DS:SI -> request buffer (see #01952)
+	ES:DI -> reply buffer (see #01953)
+Return: AL = status (see #01950)
+Desc:	delete the specified object from a set property
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=40h,AH=E3h/SF=42h,AH=E3h/SF=43h,AX=F217h/SF=42h
+
+Format of NetWare "Delete Bindery Object from Set" request buffer:
+Offset	Size	Description	(Table 01952)
+ 00h	WORD	length of following data (max 75h)
+ 02h	BYTE	42h (subfunction "Delete Bindery Object from Set")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name
+ 06h  N BYTEs	object name
+	BYTE	length of property name (01h-0Fh)
+      N BYTEs	property name
+	WORD	(big-endian) type of member object
+	BYTE	length of member object's name
+      N BYTEs	member object's name
+SeeAlso: #01953
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01953)
+ 00h	WORD	(call) 0000h (no data returned)
+SeeAlso: #01952,#01954,#01955,#01956
+

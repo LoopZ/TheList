@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62007C
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOUSESPD" - SET MOUSE CURSOR SPEED
+	AX = 007Ch
+	BX = horizontal mickeys per eight pixels of movement (default 16)
+	CX = vertical mickeys per eight pixels of movement (default 16)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: INT 33/AX=000Fh,INT 33/AX=001Ah
+

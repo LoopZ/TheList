@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151B
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX v2+ - "sys_blkmov" - MOVE MEMORY BLOCK
+	AH = 1Bh
+	STACK:	DWORD	source address
+		DWORD	destination address
+		WORD	number of words to move
+Return: nothing
+

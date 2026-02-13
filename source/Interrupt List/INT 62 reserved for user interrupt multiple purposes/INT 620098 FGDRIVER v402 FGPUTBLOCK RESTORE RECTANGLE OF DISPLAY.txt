@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620098
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PUTBLOCK" - RESTORE RECTANGLE OF DISPLAY
+	AX = 0098h
+	ES:BX -> buffer containing previously-saved image
+	CX = left edge
+	DX = right edge
+	SI = top edge
+	DI = bottom edge
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	In text modes, coordinates are character positions; in graphics modes,
+	  they are defined in screen space, and the left and right edges are
+	  adjusted to a byte boundary if necessary
+SeeAlso: AX=003Ch,AX=0099h
+

@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: y 	security
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - PC Tools 9 CPRLOW.EXE - GET CODE AND DATA ADDRESSES
+	AX = 4402h
+	BX = file handle referencing device "RECLOWLD"
+	DS:DX -> buffer for address list (see #01505)
+	CX ignored
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+
+Format of CPRLOW address list:
+Offset	Size	Description	(Table 01505)
+ 00h	WORD	segment of CPRLOW code
+ 02h	WORD	offset in code segment of ??? entry point
+		(switches into protected mode)
+ 04h	WORD	offset in code segment of jump array (see #01506)
+ 06h	WORD	segment of copy of interrupt vector table at CPRLOW load time
+Note:	neither the entry point nor the jump array is valid until after a
+	  CPR /LOAD, because CPR.EXE installs the code into CPRLOW at runtime.
+
+Format of CPRLOW jump array:
+Offset	Size	Description	(Table 01506)
+ 00h  3 BYTEs	initialize CPRLOW interrupt hooks
+ 03h  3 BYTEs	reset timers and enable CPR (hotkey enable)
+ 06h  3 BYTEs	disable CPR (hotkey disable)
+ 09h  3 BYTEs	clear ??? flag, hotkey disable, and ???
+ 0Ch  3 BYTEs	initialize delay loop counter (destroys AX,BX,CX,DX)
+ 0Fh  3 BYTEs	disable CPR completely (commandline /DISABLE)
+ 12h  3 BYTEs	enable ??? if CPR enabled by both cmdline and hotkey
+ 15h  3 BYTEs	enable CPR (commandline /ENABLE)
+

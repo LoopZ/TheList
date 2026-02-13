@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX000C
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VMD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 000Ch (virtual device ID for VMD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02650)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02650)
+Call VMOUSE entry point with:
+	EAX = function number
+	    0000h get VMOUSE version
+		Return: CF clear
+			AH = major version
+			AL = minor version
+	    0001h
+		EBX = ???
+		ECX = ???
+		Return: CF clear if successful
+			CF set on error (e.g. fn 0003h not yet called)
+	    0002h ??? (calls "test system VM handle")
+		Return: CF clear if successful (in system VM)
+			CF set on error
+	    0003h ???
+		ECX = ???
+		DX = ???
+		Return: CF clear
+	    0004h ???
+		Note: invokes Call_Priority_VM_Event
+	    0005h get mouse port data
+		Return: CF clear
+			AL = ??? (04h)
+			AH = mouse IRQ interrupt number (IRQ4=0Ch,etc.)
+			CX = mouse I/O port address (e.g. 03F8h)
+			DX = COM port number??? (0001h for mouse on COM1)
+	    0100h NOP???
+		Return: CF clear
+	    0101h init???
+		Return: CF clear
+		Note:	appears to be the same as fn 0005h, but returns no data
+	    0102h unimplemented
+		Return: CF set
+	    0103h check ???
+		Return: AX = status (0000h/0001h)
+		Note:	checks flag set by fn 0003h
+	    else
+		Return: CF set
+SeeAlso: #02649,#02651
+

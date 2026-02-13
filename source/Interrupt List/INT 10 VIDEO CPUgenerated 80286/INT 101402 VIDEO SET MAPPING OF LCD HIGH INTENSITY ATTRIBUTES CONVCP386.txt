@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101402
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET MAPPING OF LCD HIGH INTENSITY ATTRIBUTES (CONV,CP386)
+	AX = 1402h
+	BL = subfunction
+	    00h ignore high intensity attribute
+	    01h map high intensity to reverse video
+	    02h map high intensity to underscore
+	    03h map high intensity to selected alternate font
+	    B0h half intensity (Compaq)
+	    B1h toggle active intensity bit interpretation (CP386)
+Return: nothing
+

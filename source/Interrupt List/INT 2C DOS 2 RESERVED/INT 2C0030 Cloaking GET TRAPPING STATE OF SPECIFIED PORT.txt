@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0030
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2C PU - Cloaking - GET TRAPPING STATE OF SPECIFIED PORT
+	AX = 0030h
+	DX = port number
+Return: CF clear if successful
+	   BX = current state (0000h not trapped, 0001h trapped)
+	CF set on error (port out of range or reserved)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=002Eh,AX=002Fh
+

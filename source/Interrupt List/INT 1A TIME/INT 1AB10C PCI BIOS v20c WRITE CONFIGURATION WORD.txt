@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB10C
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - WRITE CONFIGURATION WORD
+	AX = B10Ch
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (multiple of 2 less than 0100h)
+	CX = word to write
+Return: CF clear if successful
+	CF set on error
+	AH = status (00h,87h) (see #00729)
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	the meanings of BL and BH on entry were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B109h,AX=B10Bh,AX=B10Dh,AX=B18Ch,INT 2F/AX=1684h/BX=304Ch
+

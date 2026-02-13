@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - GET VOLUME INFO WITH NUMBER
+	AH = DAh
+	DL = volume number
+	ES:DI -> reply buffer (see #01812)
+Return: AL = 00h
+Notes:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+	operator console rights are not required to make this call
+	reported total blocks and total unused blocks include the Hot Fix
+	  Table; the NetWare shell's implementation of INT 21/AH=36h will
+	  report values larger than 268MB as 268MB.
+SeeAlso: AH=36h,AH=E2h/SF=15h,AH=E3h/SF=E9h
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01812)
+ 00h	WORD	sectors/block
+ 02h	WORD	total blocks on volume
+ 04h	WORD	unused blocks
+ 06h	WORD	total directory entries
+ 08h	WORD	unused directory entries
+ 0Ah 16 BYTEs	volume name, null padded
+ 1Ah	WORD	removable flag, 0000h = not removable
+Note:	all words are big-endian
+

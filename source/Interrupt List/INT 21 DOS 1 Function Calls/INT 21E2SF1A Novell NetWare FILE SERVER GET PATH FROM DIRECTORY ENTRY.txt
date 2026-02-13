@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF1A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET PATH FROM DIRECTORY ENTRY
+	AH = E2h subfn 1Ah
+	DS:SI -> request buffer (see #01883)
+	ES:DI -> reply buffer (see #01884)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=01h,AH=E2h/SF=06h,AH=E3h/SF=D7h,AX=F216h/SF=1Ah
+
+Format of NetWare "Get Path from Directory Entry" request buffer:
+Offset	Size	Description	(Table 01883)
+ 00h	WORD	0004h (length of following data)
+ 02h	BYTE	1Ah (subfunction "Get Path From Directory Entry")
+ 03h	BYTE	volume number (00h-1Fh)
+ 04h	WORD	(big-endian) directory entry number
+SeeAlso: #01884,#02122
+
+Format of NetWare "Get Path from Directory Entry" reply buffer:
+Offset	Size	Description	(Table 01884)
+ 00h	WORD	(call) size of following results record (max 200h)
+ 02h 256 BYTEs	path
+SeeAlso: #01883,#02122
+

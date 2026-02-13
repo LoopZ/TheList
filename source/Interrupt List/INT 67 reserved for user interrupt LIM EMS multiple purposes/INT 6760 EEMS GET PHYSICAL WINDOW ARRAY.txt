@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6760
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - EEMS - GET PHYSICAL WINDOW ARRAY
+	AH = 60h
+	ES:DI -> buffer
+Return: AH = status (see also AH=40h)
+	AL = number of entries
+	buffer at ES:DI filled
+

@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E1--SF08
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare - MESSAGE SERVICES - CHECK PIPE STATUS
+	AH = E1h subfn 08h
+	DS:SI -> request buffer (see #01835)
+	ES:DI -> reply buffer (see #01836)
+Return: AL = status (see #01834)
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0-2.x
+SeeAlso: AH=E1h/SF=05h,AH=E1h/SF=06h,AH=E1h/SF=07h,AX=F215h/SF=08h
+
+(Table 01834)
+Values for NetWare function status:
+ 00h	successful
+ FCh	full message queue
+ FEh	out of dynamic workspace
+SeeAlso: #01839
+
+Format of NetWare "Check Pipe Status" request buffer:
+Offset	Size	Description	(Table 01835)
+ 00h	WORD	length of following data (max 66h)
+ 02h	BYTE	08h (subfunction "Check Pipe Status")
+ 03h	BYTE	number of pipes to monitor (01h-64h)
+ 04h  N BYTEs	list of connection numbers
+SeeAlso: #01830,#01836
+
+Format of NetWare "Check Pipe Status" reply buffer:
+Offset	Size	Description	(Table 01836)
+ 00h	WORD	(call) size of following results buffer (max 65h)
+ 02h	BYTE	number of connections
+ 03h  N BYTEs	list of pipe statuses
+		00h open
+		FEh incomplete
+		FFh closed
+SeeAlso: #01831,#01835,#02108
+

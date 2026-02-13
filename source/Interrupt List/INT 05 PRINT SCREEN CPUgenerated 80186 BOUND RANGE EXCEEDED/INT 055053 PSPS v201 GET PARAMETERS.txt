@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 055053
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 05 U - PSPS v2.01 - GET PARAMETERS
+	AX = 5053h ('PS')
+	ES:SI -> 11-byte buffer for settings
+Return: buffer filled
+SeeAlso: AX=4E57h,AX=554Eh,INT 17/AH=64h
+

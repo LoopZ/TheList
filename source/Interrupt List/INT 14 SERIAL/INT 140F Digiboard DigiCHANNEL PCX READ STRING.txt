@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140F
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - READ STRING
+	AH = 0Fh
+	CX = number of characters to read
+	ES:BX -> buffer
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AX = number of characters read
+	ZF clear if successful
+	ZF set on error (line status or wrong number of characters)
+SeeAlso: AH=0Eh"Digiboard"
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX001F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPXODI v2.12+ - GET IPX INFORMATION
+	BX = 001Fh
+	DX = 0000h
+Return: AX = ???
+	BX:CX -> ??? entry point (see #03830) (undocumented)
+	DX = feature flags
+	    bit 0: IPXODI rather than dedicated IPX
+	    bit 1: checksumming functions 0020h-0022h supported
+	ES:SI -> array of words containing used socket number (undocumented);
+		0000h ends array
+	all other registers except DS and FLAGS may be destroyed
+Note:	IPXODI v2.12 is distributed as part of the Personal NetWare system
+	  bundled with Novell DOS 7
+SeeAlso: BX=0020h,INT 2F/AX=7A2Fh
+
+(Table 03830)
+Call IPXODI entry point with:
+	ES:SI -> ECB??? (offset 24h is far pointer to ??? data)
+

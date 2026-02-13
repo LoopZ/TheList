@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155101
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - later PS/2s - EXPANSION UNIT, RETURN CONFIGURATION NUMBER
+	AX = 5101h
+Return: CF set if successful
+	    AH = 00h
+	    AL = current configuration number
+		00h system unit only
+		FFh configuration not recognized
+	    BX = status flag
+		bits 0-14: reserved
+		bit 15: additional data is available (location TBD)
+	CF clear on error
+	    AH = status
+		01h expansion unit is not present
+		86h function not supported
+Note:	CF convention is the reverse of the standard convention for this
+	  interrupt.  (Perhaps a typo in the IBM BIOS Tech Ref?)
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215704
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7/Windows95 - GET LAST ACCESS DATE AND TIME
+	AX = 5704h
+	BX = file handle
+Return: CF clear if successful
+	    DX = last access date (see #01666)
+	    CX = last access time (currently always 0000h)
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5701h,AX=5705h,AX=5706h
+

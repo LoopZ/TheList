@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 165758BX5858
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - Netroom PRENET - GET OLD INTERRUPT VECTORS
+	AX = 5758h
+	BX = 5858h
+Return: CF clear
+	DX:BX -> saved copy of interrupt vector table
+InstallCheck:	call this function and compare BX against 5858h on return; if
+	  it has changed, PRENET is installed
+SeeAlso: AX=5758h/BX=5859h
+Index:	installation check;Netroom PRENET
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FD12BX3457
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Gravis UltraSound - MegaEm/MEGA_EM - INSTALLATION CHECK
+	AX = FD12h
+	BX = 3457h
+Return: AX = 5678h if installed
+	BX = 1235h if v1.x or v2.x installed
+	    CL = interrupt vector used by MegaEm (default 81h)
+	BX = 1237h if v3.x installed
+	    CL = interrupt vector used by MegaEm (default 81h)
+	    DX = version number
+Program: MegaEm is a protected-mode SoundBlaster, SoundCanvas, and MT-32
+	  emulator for the Gravis UltraSound
+SeeAlso: INT 2F/AX=CD00h/BX=464Fh,INT 7E/AX=00FEh"SBOS",INT 81/AX=0200h
+

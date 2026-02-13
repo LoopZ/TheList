@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX (Slave) - ALLOCATE FREE CLUSTER ON SHARED DRIVE
+	AH = 06h
+	DL = drive number (1=A:,2=B:,etc)
+	CX = number of clusters to allocate
+Return: AH = status
+	    00h successful
+		CX = number of clusters still free
+	    10h invalid shared drive request
+		CL = first and second shared drives
+	    11h invalid cluster count (must be 01h-FFh)
+

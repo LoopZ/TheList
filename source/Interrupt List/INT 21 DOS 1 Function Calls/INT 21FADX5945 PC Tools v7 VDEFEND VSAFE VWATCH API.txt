@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FA--DX5945
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - PC Tools v7+ VDEFEND, VSAFE, VWATCH - API
+	AH = FAh
+	DX = 5945h
+	AL = function (00h-02h for VDEFEND, 00h-07h for VSAFE and VWATCH)
+Return: varies by function
+Note:	this API is identical to the API on INT 13/AH=FAh and INT 16/AH=FAh,
+	  so it is listed in its entirety only under INT 16/AX=FA00h and
+	  following
+SeeAlso: INT 13/AX=FA00h,INT 16/AX=FA00h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF80BX4350
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ CPTASK - UNINSTALL
+	AX = FF80h
+	BX = 4350h ('CP')
+	CX = 5354h ('ST')
+Return: never returns; terminates all tasks and exits to program originally
+	  calling CPTASK
+

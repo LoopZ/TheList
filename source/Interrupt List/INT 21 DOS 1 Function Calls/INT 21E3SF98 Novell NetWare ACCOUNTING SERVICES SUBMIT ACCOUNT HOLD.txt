@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF98
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - ACCOUNTING SERVICES - SUBMIT ACCOUNT HOLD
+	AH = E3h subfn 98h
+	DS:SI -> request buffer (see #02006)
+	ES:DI -> reply buffer (see #02007)
+Return: AL = status (00h,C0h-C3h) (see #02002)
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AH=E3h/SF=96h,AH=E3h/SF=97h,AX=F217h/SF=98h
+
+Format of NetWare "Submit Account Hold" request buffer:
+Offset	Size	Description	(Table 02006)
+ 00h	WORD	length of following data (max 37h)
+ 02h	BYTE	98h (subfunction "Submit Account Hold")
+ 03h	DWORD	(big-endian) amount of account balance to reserve
+ 07h	WORD	(big-endian) type of bindery object
+ 09h	BYTE	length of object's name
+ 0Ah  N BYTEs	object name
+SeeAlso: #02007
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 02007)
+ 00h	WORD	0000h (no data returned)
+SeeAlso: #02005,#02006,#02008,#02009
+

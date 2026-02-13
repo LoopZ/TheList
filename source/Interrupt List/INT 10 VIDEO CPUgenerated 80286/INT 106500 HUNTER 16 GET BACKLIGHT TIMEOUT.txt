@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106500
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - GET BACKLIGHT TIMEOUT
+	AX = 6500h
+Return: BX = timeout in seconds (0-300)
+Desc:	returns the time after which the backlight will turn off
+SeeAlso: AH=63h,AH=64h,AX=6501h,INT 15/AH=74h
+

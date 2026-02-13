@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC001
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QMR - REQUEST HARDWARE RESET
+	AX = C001h
+Return: ES = QMR code segment
+	AL destroyed
+Desc:	this function is used to force a full mouse reset when QMR is installed
+SeeAlso: AX=C000h"QMR",AX=C002h"QMR"
+

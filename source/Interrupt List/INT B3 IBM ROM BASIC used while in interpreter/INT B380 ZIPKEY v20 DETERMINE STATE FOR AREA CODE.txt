@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: B380
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY v2.0+ - DETERMINE STATE FOR AREA CODE
+	AH = 80h
+	BX = telephone area code (decimal)
+Return: CF clear if successful
+	    AL = ZIPKEY state code
+	    DX = first ZIP region for state (03E8h if Canada)
+	    CX = number of ZIP regions in state
+	CF set on error
+	    AL = FFh
+	    DX = 03E9h
+

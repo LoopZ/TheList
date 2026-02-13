@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0012
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - "Query_Current_VM"
+	AX = 0012h
+Return: CF clear
+	EBX = handle of active VM
+	ESI = handle of system VM
+	ECX = VM status flags (see #02562)
+	EDX = shell flags (see #02563)
+Note:	this function is only available while MS Windows is running in enhanced
+	  mode
+SeeAlso: AX=000Fh,AX=0011h,AX=0013h
+
+Bitfields for VM status flags:
+Bit(s)	Description	(Table 02562)
+ 0	in exclusive mode
+ 1	runs in background
+ 2	being created
+ 3	suspended
+ 4	not executable
+ 5	executing in protected mode
+ 6	contains PM application
+ 7	32-bit PM application
+ 8	called from VxD
+ 9	high priority background
+ 10	blocked on semaphore
+ 11	awakening
+ 12	has pageable V86
+ 13	has locked V86
+ 14	is scheduled
+ 15	idle
+ 16	closing
+
+Bitfields for shell flags:
+Bit(s)	Description	(Table 02563)
+ 2	windowed
+ 5	Alt-Tab reserved
+ 6	Alt-Esc reserved
+ 7	Alt-Space reserved
+ 8	Alt-PrtSc reserved
+ 9	Alt-Enter reserved
+ 10	Alt-PrtSc reserved
+ 11	PrtSc reserved
+ 12	polling enabled
+ 13	no HMA
+ 14	has shortcut key
+ 15	locked EMS handles
+ 16	locked XMS handles
+ 17	fast paste enabled
+ 18	locked V86 memory
+ 30	close-on-exit enabled
+

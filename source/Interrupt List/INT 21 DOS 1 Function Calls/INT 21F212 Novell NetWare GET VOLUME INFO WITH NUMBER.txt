@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F212
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET VOLUME INFO WITH NUMBER
+	AX = F212h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02104)
+	ES:DI -> reply buffer (see #02105)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=15h,AX=F217h/SF=E9h
+
+Format of NetWare "Get Volume Info with Number" request packet:
+Offset	Size	Description	(Table 02104)
+ 00h	BYTE	volume number
+SeeAlso: #02105
+
+Format of NetWare "Get Volume Info with Number" reply packet:
+Offset	Size	Description	(Table 02105)
+ 00h	WORD	sectors per cluster
+ 02h	WORD	total clusters in volume
+ 04h	WORD	free clusters
+ 06h	WORD	total directory entries for volume (FFFFh if not relevant)
+ 08h	WORD	available directory entries (FFFFh if not relevant)
+ 0Ah 16 BYTEs	volume name
+ 1Ah	WORD	removability
+		0000h fixed media
+		FFFFh removable
+SeeAlso: #02104
+

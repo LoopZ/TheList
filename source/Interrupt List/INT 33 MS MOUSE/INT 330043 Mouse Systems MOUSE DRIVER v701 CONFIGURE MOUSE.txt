@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330043
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Mouse Systems MOUSE DRIVER v7.01+ - CONFIGURE MOUSE???
+	AX = 0043h
+	CX:BX -> configuration buffer (see #03185)
+	DL = ???
+Return: ???
+Notes:	also calls routines for INT 33/AX=0053h and INT 33/AX=004Fh
+	this function is also supported by the Genius Mouse 9.06 driver
+
+Format of Mouse Systems configuration buffer:
+Offset	Size	Description	(Table 03185)
+ 00h	WORD	I/O port address
+ 02h	BYTE	???
+ 03h	BYTE	interrupt number
+ 04h	BYTE	interrupt mask for interrupt controller
+ 05h  5 BYTEs	???
+

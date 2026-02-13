@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4E01
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4E - TI Professional PC - TIME-OF-DAY CLOCK - SET BIOS TIME
+	AH = 01h
+	CH = hours
+	CL = minutes
+	DH = seconds
+	DL = hundredths
+Return: nothing
+Note:	the BIOS does not validate the data passed to this function
+SeeAlso: AH=00h,AH=02h
+

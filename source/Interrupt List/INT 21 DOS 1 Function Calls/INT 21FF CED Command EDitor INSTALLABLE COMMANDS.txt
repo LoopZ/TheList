@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - CED (Command EDitor) - INSTALLABLE COMMANDS
+	AH = FFh
+	AL = subfunction
+	    00h add installable command
+		BL = mode
+		    bit 0 = 1 callable from DOS prompt
+		    bit 1 = 1 callable from application
+		DS:SI -> CR-terminated command name
+		ES:DI -> FAR routine entry point
+	    01h remove installable command
+		DS:SI -> CR-terminated command name
+	    02h reserved, may be used to test for CED installation
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+		01h invalid function
+		02h command not found (subfunction 01h only)
+		08h insufficient memory (subfunction 00h only)
+		0Eh bad data (subfunction 00h only)
+	AH = FFh if CED not installed
+Program: CED is a shareware DOS command-line enhancer by Christopher J. Dunford
+SeeAlso: AX=0A00h
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1603
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows/386 - GET INSTANCE DATA
+	AX = 1603h
+Return: AX = 5248h ('RH') if supported
+	    DS:SI -> Windows/386 instance data (see #02630)
+Notes:	reportedly supported by RM Nimbus MS-DOS 3.3 kernel
+	this function is called by DOSMGR when AX=1607h/BX=0015h is not
+	  supported, as is the case in DOS versions prior to 5.0
+	see Geoff Chappell's book _DOS_Internals_ for additional discussions of
+	  this function, DOSMGR's behavior, and instancing in general
+SeeAlso: AX=1607h/BX=0015h
+
+Format of Windows/386 instance data:
+Offset	Size	Description	(Table 02630)
+ 00h	WORD	segment of IO.SYS (0000h = default 0070h)
+ 02h	WORD	offset in IO.SYS of STACKS data structure (DOS 3.2x)
+		0000h if not applicable
+ 04h	WORD	number of instance data entries (max 32)
+ 06h	Array of instance data entries
+	Offset	Size	Description
+	 00h	WORD	segment (0002h = DOS kernel)
+	 02h	WORD	offset
+	 04h	WORD	size
+

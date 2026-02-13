@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD3CB
+  Category: R 	remote control/file access
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - LapLink Quick Connect v6 - API
+	AX = D3CBh
+	CX = function
+	    0002h get ???
+		Return: BX:AX -> ???
+			CL = ???
+			CH = ???
+			DX = ???
+			DI = COM1 I/O port???
+			SI = COM2 I/O port???
+	    0003h initialization???
+	    0004h ???
+	    0005h initialization???
+	    0006h reset/clear ???
+		Return: AX = 0000h
+			ES:DI -> next byte after ??? cleared by this call
+	    0007h initialization???
+	    0008h uninstall
+		Return: BX = status
+			    0000h successful
+			    FFFFh incomplete, stub remains in memory
+Return: CX = 534Bh (except function 0002h)
+Index:	uninstall;LapLink Quick Connect
+

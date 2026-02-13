@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31EE42
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - DOS32 v3.0+ - ALLOCATE MEMORY BLOCK
+	AX = EE42h
+	EDX = size in bytes
+Return: CF clear if successful
+	    EAX = size in bytes
+	    EDX -> memory block
+	CF set on error
+Note:	size is rounded off to the next 4KB boundary
+SeeAlso: AX=EE40h,AX=EE41h
+

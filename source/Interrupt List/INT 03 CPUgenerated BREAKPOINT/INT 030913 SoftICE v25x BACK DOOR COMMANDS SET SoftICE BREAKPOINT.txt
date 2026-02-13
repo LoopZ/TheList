@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+ Unique ID: 030913
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 03 - Soft-ICE v2.5x - BACK DOOR COMMANDS - SET Soft-ICE BREAKPOINT
+	AX = 0913h
+	SI = magic value 4647h ('FG')
+	DI = magic value 4A4Dh ('JM')
+	DS:DX -> breakpoint structure (see #00003)
+Return: AX = status
+	    00h successful
+		BX = breakpoint number
+	    03h breakpoint table full
+	    06h memory limit error
+	    07h I/O limit error
+	    09h range limit error
+	    16h duplicate breakpoint
+SeeAlso: AX=0911h,AX=0912h,AX=0914h
+
+Format of Soft-ICE breakpoint structure:
+Offset	Size	Description	(Table 00003)
+ 00h	BYTE	breakpoint type (see #00004)
+ 01h	DWORD	breakpoint address 1
+		(lower range limit for memory BPs,
+		interrupt number for interrupt BPs,
+		address of BP for execution BPs,
+		I/O address (only word)	for I/O BPs)
+ 05h	DWORD	breakpoint address 2
+		(upper range limit for memory BPs,
+		optional value to check for for interrupt BPs,
+		overlay number (0 = root) for execution BPs)
+ 09h	DWORD	breakpoint address 3
+ 0Dh	BYTE	breakpoint mode 1 (see #00005)
+		(for interrupt BPs = register to check
+		    00h	 no value checking
+		    01h	 check AL
+		    02h	 check AH
+		    03h	 check AX)
+ 0Eh	BYTE	breakpoint mode 2 (see #00005)
+ 0Fh	BYTE	breakpoint size (00h byte, 01h word, 03h dword)
+ 10h	BYTE	breakpoint pass count before program stop
+ 11h	BYTE	breakpoint state
+Note:	all unused fields should contain zeros
+
+(Table 00004)
+Values for Soft-ICE breakpoint type:
+ 00h	memory location
+ 01h	memory range
+ 03h	I/O
+ 04h	interrupt
+ 05h	execution break
+
+(Table 00005)
+Values for Soft-ICE breakpoint mode:
+ 01h	read
+ 02h	write
+ 04h	execution
+

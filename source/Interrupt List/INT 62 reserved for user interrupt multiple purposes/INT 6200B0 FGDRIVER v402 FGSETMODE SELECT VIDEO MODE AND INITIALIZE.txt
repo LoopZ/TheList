@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200B0
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETMODE" - SELECT VIDEO MODE AND INITIALIZE
+	AX = 00B0h
+	BX = new video mode or FFFFh for current mode (see #03500)
+	ES:DX -> WORD shareware splash screen flag
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call resets the active video page to page 0000h, the clipping
+	  region to the entire screen, text rows to 25, etc.
+	in the shareware version, FGDRIVER sets the word pointed at by ES:DX
+	  to 9090h after it shows the shareware announcement to the user
+SeeAlso: AX=004Bh,INT 10/AH=00h
+
+(Table 03500)
+Values for FGDRIVER video mode:
+ 00h-07h standard BIOS modes
+ 09h	PCjr/Tandy1000 320x200x16
+ 0Bh	Hercules graphics 720x348
+ 0Ch	Hercules graphics 320x200
+ 0Dh-13h standard BIOS modes
+ 14h	VGA graphics 320x200x256
+ 15h	VGA graphics 320x400x256
+ 16h	VGA graphics 320x240x256
+ 17h	VGA graphics 320x480x256
+ 18h	SVGA graphics 640x400x256
+ 19h	SVGA graphics 640x480x256
+ 1Ah	SVGA graphics 800x600x256
+ 1Bh	SVGA graphics 1024x768x256
+ 1Ch	SVGA graphics 800x600x16
+ 1Dh	SVGA graphics 1024x768x16
+

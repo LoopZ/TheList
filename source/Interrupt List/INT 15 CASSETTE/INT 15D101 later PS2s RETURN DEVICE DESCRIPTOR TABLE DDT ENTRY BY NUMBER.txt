@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D101
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - RETURN DEVICE DESCRIPTOR TABLE (DDT) ENTRY BY NUMBER
+	AX = D101h
+	BX = number of requested entry (starting with 1)
+	DX = 0000h (reserved, must be set to 0)
+	ES:DI -> buffer to contain DDT entry (see #00535)
+Return: AH = return code (see #00534)
+	CF set on error
+	CF clear on success
+	    ES:DI buffer filled with DDT entry
+SeeAlso: AH=C0h,AH=C7h,AH=C9h,AX=D100h,AX=D102h,AX=D104h
+
+Format of Device Descriptor Table (DDT):
+Offset	Size	Description	(Table 00535)
+ 00h	BYTE	bits 7-4: reserved (set to 0)
+		bits 3-0: slot of device (0 = system board)
+ 01h	BYTE	bits 7-4: second interrupt for this device (0 = none)
+		bits 3-0: first interrupt for this device (0 = none)
+ 02h	BYTE	bits 7-4: second arbitration level for this device
+		bits 3-0: first arbitration level for this device
+ 03h	WORD	DDT indicators (see #00536)
+ 05h	BYTE	reserved (0)
+ 06h	WORD	device ID (0 = none)
+ 08h	WORD	starting address of first  I/O block (0 = none)
+ 0Ah	WORD	starting address of second I/O block (0 = none)
+ OCh	WORD	starting address of third  I/O block (0 = none)
+ OEh	DWORD	start of first non-system memory block (0 = none)
+ 12h	WORD	size of first non-system memory block (in kilobytes)
+ 14h	DWORD	start of second non-system memory block (0 = none)
+ 18h	WORD	size of second non-system memory block (in kilobytes)
+ 1Ah	BYTE	implementation identifier of the device
+ 1Bh	BYTE	implementation revision level of the device
+Note:	I/O block addresses and non-system memory addresses are listed in
+	  ascending order in each DDT entry.
+
+Bitfields for DDT indicators:
+Bit(s)	Description	(Table 00536)
+ 15	reserved (0)
+ 14	second arbitration level exists
+ 13	first arbitration level exists
+ 12	serial interface is RS-422
+ 11	not address limited
+ 10	DMA channel used
+ 9	second arbitration level can be shared
+ 8	first arbitration level can be shared
+ 7-0	reserved (0)
+

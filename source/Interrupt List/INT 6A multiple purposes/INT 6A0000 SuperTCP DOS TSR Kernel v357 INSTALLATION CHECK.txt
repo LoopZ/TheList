@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6A0000
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 6A U - Super-TCP DOS TSR Kernel v3.57 - INSTALLATION CHECK
+	AX = 0000h
+Return: AX = 4357h ('CW')
+Program: Super-TCP is a TCP/IP protocol stack by Frontier Technologies Corp.
+Note:	an alternate installation check is to test for the ASCIZ signature
+	  "FTC Super-TCP" three bytes past the interrupt handler
+SeeAlso: AX=0001h,AX=0002h,AX=000Fh,AX=0010h,INT 21/AH=3Fh"BW-TCP"
+SeeAlso: INT 61"FTP Software",INT 62/AH=00h"ETHDEV"
+

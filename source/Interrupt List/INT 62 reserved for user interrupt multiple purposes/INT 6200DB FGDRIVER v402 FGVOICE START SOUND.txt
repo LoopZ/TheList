@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200DB
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VOICE" - START SOUND
+	AX = 00DBh
+	BX = channel on TI sound chip
+	    1-3 = channels 1-3, 4 = channel 4 with periodic noise,
+	    5 = channel 4 with white noise
+	CX = frequency in Hz (18-32767 for channels 1-3; 0=512 Hz, 1=1024 Hz,
+	      2=2048 Hz for channels 4 and 5)
+	DX = volume
+	SI = duration in clock ticks (continuous if <= 0)
+Program: FGDRIVER is the external video driver for the shareware
+	  Fastgraph/Light by Ted Gruber Software
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function is only available on the PCjr and Tandy 1000 machines
+SeeAlso: AX=0080h,AX=00BCh,AX=00DCh
+

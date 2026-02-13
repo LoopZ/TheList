@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC13DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - END POPUP-WINDOW MODE
+	AX = AC13h
+	DI = 1092h
+Return: nothing
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	restores screen
+SeeAlso: AX=AC12h,AX=ACF0h
+

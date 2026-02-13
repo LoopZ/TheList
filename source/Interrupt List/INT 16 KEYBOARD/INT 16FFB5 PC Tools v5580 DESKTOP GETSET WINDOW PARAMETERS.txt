@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFB5
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.5-8.0 DESKTOP - GET/SET WINDOW PARAMETERS
+	AX = FFB5h
+	BX = window specifier (000Fh to 0019h) (see #00621)
+	DX = 0000h get, nonzero = set
+	ES:DI -> window parameter buffer (see #00622)
+SeeAlso: AX=FFCBh
+
+(Table 00621)
+Values for PC Tools DESKTOP window specifier:
+ 000Fh	comm/FAX
+ 0014h	hotkey selection
+ 0015h	ASCII table
+ 0016h	system colors menu
+
+Format of PC Tools DESKTOP window parameters:
+Offset	Size	Description	(Table 00622)
+ 00h	BYTE	rows in window, not counting frame
+ 01h	BYTE	columns in window, not counting frame
+ 02h	BYTE	row number of top of window
+ 03h	BYTE	2*column number of left of window
+ 04h	BYTE	character attribute for ???
+ 05h	BYTE	character attribute for background/border
+ 06h	BYTE	character attribute for ???
+ 07h	DWORD	pointer to ??? on screen
+ 0Bh  4 BYTEs	???
+ 0Fh	BYTE	nonzero if window may be resized
+Note:	if running in monochrome mode, character attributes at offsets 04h to
+	  06h are stored unchanged, but attributes other than 07h, 0Fh, or 70h
+	  are changed to 07h on reading
+

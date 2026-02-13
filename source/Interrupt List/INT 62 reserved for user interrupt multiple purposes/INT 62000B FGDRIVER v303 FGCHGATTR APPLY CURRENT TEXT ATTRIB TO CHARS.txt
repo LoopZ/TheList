@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62000B
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_CHGATTR" - APPLY CURRENT TEXT ATTRIB TO CHARS
+	AX = 000Bh
+	BX = number of characters to recolor
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in graphics modes
+	Starting at the current text cursor position, the specified number of
+	  characters have their attributes to the current text attribute
+SeeAlso: AX=000Ch,AX=003Ah,AX=00A6h
+

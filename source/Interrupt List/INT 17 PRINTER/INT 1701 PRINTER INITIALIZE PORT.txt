@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1701
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PRINTER - INITIALIZE PORT
+	AH = 01h
+	DX = printer number (00h-02h)
+Return: AH = printer status (see #00631)
+Note:	some printers report that they are ready immediately after
+	  initialization when they actually are not; a more reliable result may
+	  be obtained by calling AH=02h after a brief delay
+SeeAlso: AH=02h,AH=FFh"PC-MOS",INT 1A/AH=10h"NEC",INT 4B/AH=01h
+

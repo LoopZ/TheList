@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600007
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - RIFS - CLIENT - GET PORT TRANSLATION TABLE
+	AX = 0007h
+Return: CF clear if successful
+	    CX = number of entries
+	    ES:BX -> port mapping table
+	CF set on error
+SeeAlso: AX=0000h,AX=0005h
+

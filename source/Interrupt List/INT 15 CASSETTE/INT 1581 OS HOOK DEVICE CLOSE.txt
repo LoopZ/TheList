@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1581
+  Category: B 	BIOS
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - OS HOOK - DEVICE CLOSE
+	AH = 81h
+	BX = device ID
+	CX = process ID
+	CF clear
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = status (see #00496)
+Note:	this function should be hooked by a multitasker which wishes to keep
+	  track of device ownership; the default BIOS handler merely returns
+	  successfully
+SeeAlso: AH=80h,AH=82h
+

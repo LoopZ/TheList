@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4A04
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4A - TI Professional PC - KEYBOARD - SEND COMMAND TO KEYBOARD
+	AH = 04h
+	AL = command
+	    00h reset to default states
+	    01h enable auto-repeat (default)
+	    02h disable auto-repeat
+	    03h lock keyboard
+	    04h unlock keyboard (default)
+	    05h enable keyclick (requires hardware modification to work)
+	    06h disable keyclick (default)
+Return: nothing
+SeeAlso: AH=00h,AH=02h,AH=03h,AH=04h,AH=05h
+

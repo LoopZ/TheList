@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SET DRIVE CONNECTION
+	AX = 0004h subfn 0001h
+	DS:DX -> request block (see #03402)
+Return: AX = status (0000h,0037h,0038h,0055h) (see #03400)
+Desc:	Maps the specified file service to a DOS drive letter
+Note:	If an empty service name is specified, an existing connection will
+	  be removed
+SeeAlso: AX=0004h/SF=0002h
+
+Format of VINES Function 0004h/Subfunction 0001h request block:
+Offset	Size	Description	(Table 03402)
+ 00h	WORD	0001h
+ 02h	BYTE	drive number (0=default, 1=A, ...)
+ 03h 16	BYTEs	reserved
+ 13h 64	BYTEs	null-terminated file service name
+ 53h  5	BYTEs	reserved
+

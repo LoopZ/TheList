@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330100CX4752
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - GRTMOUSE v1.00+ - INSTALLATION CHECK
+	AX = 0100h
+	CX = 4752h ('GR')
+	DX = 544Dh ('TM')
+Return: AX = 474Dh ('GM') if installed
+	    CX = version number (CH = major, CL = minor)
+Program: GRTMOUSE is a graphical-cursor driver for textmode by Tommer Leyvand
+SeeAlso: AX=0101h,AX=0102h,AX=0103h,AX=0104h
+

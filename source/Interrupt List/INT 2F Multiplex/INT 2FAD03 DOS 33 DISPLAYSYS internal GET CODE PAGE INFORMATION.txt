@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD03
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ DISPLAY.SYS internal - GET CODE PAGE INFORMATION
+	AX = AD03h
+	ES:DI -> buffer for code page information (see #02971)
+	CX = size of buffer in bytes
+Return: CF set if buffer too small
+	CF clear if successful
+	    ES:DI buffer filled
+SeeAlso: AX=AD01h,AX=AD02h
+
+Format of DOS 5.0-6.0 DISPLAY.SYS code page information:
+Offset	Size	Description	(Table 02971)
+ 00h	WORD	number of software code pages
+ 02h	WORD	??? (0003h)
+ 04h	WORD	number of hardware code pages
+ 06h  N WORDs	hardware code page numbers (see #01757 at INT 21/AX=6602h)
+      N WORDs	software (prepared) code pages (FFFFh if not yet prepared)
+

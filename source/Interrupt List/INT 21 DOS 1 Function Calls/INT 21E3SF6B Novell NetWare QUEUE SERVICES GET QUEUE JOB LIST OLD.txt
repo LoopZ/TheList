@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF6B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - GET QUEUE JOB LIST (OLD)
+	AH = E3h subfn 6Bh
+	DS:SI -> request buffer (see #01976)
+	ES:DI -> reply buffer (see #01977)
+Return: AL = status (00h,96h,9Ch,D0h-D3h,FCh,FEh,FFh) (see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be on a workstation which is security-equivalent to a
+	  member of the Q_USERS or Q_OPERATORS properties
+SeeAlso: AH=E3h/SF=68h,AH=E3h/SF=6Ah,AH=E3h/SF=6Eh,AX=F217h/SF=6Bh
+
+Format of NetWare "Get Queue Job List (old)" request buffer:
+Offset	Size	Description	(Table 01976)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	6Bh (subfunction "Get Queue Job List (old)")
+ 03h	DWORD	(big-endian) object ID of queue
+SeeAlso: #01977
+
+Format of NetWare "Get Queue Job List (old)" reply buffer:
+Offset	Size	Description	(Table 01977)
+ 00h	WORD	(call) size of following results buffer (max 1F6h)
+ 02h	WORD	(big-endian) job count
+ 04h  N WORDs	(big-endian) list of job numbers by position in queue
+	WORD	maximum job numbers
+SeeAlso: #01976
+

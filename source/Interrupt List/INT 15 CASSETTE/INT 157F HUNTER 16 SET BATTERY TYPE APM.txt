@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 157F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SET BATTERY TYPE (APM)
+	AH = 7Fh
+	AL = battery type
+	    00h	 non-rechargeable
+	    else rechargeable
+SeeAlso: AH=7Eh
+

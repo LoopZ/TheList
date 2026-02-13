@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL41
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "N_LOGON" - LOG OFF A SERVER
+	CL = 41h
+	DS:DX -> LPB (see #04025)
+Return: AX = status (0000h,0CFFh,0DFFh,0EFFh,FFFFh) (see #04030)
+	may destroy SI,DI,DS???
+SeeAlso: INT E0/CL=40h
+

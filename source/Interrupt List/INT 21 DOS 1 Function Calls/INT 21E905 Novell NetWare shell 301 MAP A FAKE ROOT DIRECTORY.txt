@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E905
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare shell 3.01 - MAP A FAKE ROOT DIRECTORY
+	AX = E905h
+	BL = drive number (0=default, 1=A:, ...)
+	DS:DX -> ASCIZ path for fake root (may include server name or be empty)
+Return: CF set on error
+	    AL = error code (03h,0Fh,11h) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Note:	if drive is not currently mapped, a drive mapping will be created
+SeeAlso: AX=E906h
+

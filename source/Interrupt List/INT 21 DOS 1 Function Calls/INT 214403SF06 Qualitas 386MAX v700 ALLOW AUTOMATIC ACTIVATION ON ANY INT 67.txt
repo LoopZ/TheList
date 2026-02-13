@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403SF06
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Qualitas 386MAX v7.00+ - ALLOW AUTOMATIC ACTIVATION ON ANY INT 67
+	AX = 4403h subfn 06h
+	BX = handle for device "386MAX$$"
+	DS:DX -> BYTE 06h
+	CX ignored
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Desc:	specified that 386MAX should shift from AUTO to ON mode on any INT 67
+	  call other than INT 67/AH=3Fh
+SeeAlso: AX=4403h/SF=01h,AX=4403h/SF=03h,AX=4403h/SF=05h
+

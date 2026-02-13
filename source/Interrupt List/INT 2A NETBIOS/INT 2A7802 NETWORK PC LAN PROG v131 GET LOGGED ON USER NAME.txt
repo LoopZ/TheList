@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A7802
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - NETWORK - PC LAN PROG v1.31+ - GET LOGGED ON USER NAME
+	AX = 7802h
+	ES:DI -> 8-byte buffer to be filled
+Return: AL = 00h if no user logged on to Extended Services
+	AL <> 00h if user logged on to Extended Services
+	    buffer at ES:DI filled with name, padded to 8 chars with blanks.
+

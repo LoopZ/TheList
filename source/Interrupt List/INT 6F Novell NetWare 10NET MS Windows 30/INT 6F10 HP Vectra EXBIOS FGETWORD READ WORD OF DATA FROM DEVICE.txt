@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F10
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_GET_WORD" - READ WORD OF DATA FROM DEVICE
+	AH = 10h
+	BP = driver ID (see #03741)
+Return: AH = status (see #03744 at AH=00h"HP Vectra")
+	DX = data word
+	BP,DS destroyed
+SeeAlso: AH=08h"F_GET_BYTE",AH=0Ch"F_GET_BUFFER",AH=0Eh"F_PUT_WORD"
+

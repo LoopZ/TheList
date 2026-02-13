@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFCD
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER LOGIN STATUS
+	AH = E3h subfn CDh
+	DS:SI -> request buffer (see #02016)
+	ES:DI -> reply buffer (see #02017)
+Return: AL = status (00h,C6h) (see #02002)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=CBh,AH=E3h/SF=CCh
+
+Format of NetWare "Get File Server Login Status" request buffer:
+Offset	Size	Description	(Table 02016)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	CDh (subfunction "Get File Server Login Status")
+SeeAlso: #02017,#02226 at AX=F217h/SF=CDh
+
+Format of NetWare "Get File Server Login Status" reply buffer:
+Offset	Size	Description	(Table 02017)
+ 00h	WORD	(call) 0001h (size of following results buffer)
+ 02h	BYTE	login state (00h disabled, 01h enabled)
+SeeAlso: #02016,#02226 at AX=F217h/SF=CDh
+

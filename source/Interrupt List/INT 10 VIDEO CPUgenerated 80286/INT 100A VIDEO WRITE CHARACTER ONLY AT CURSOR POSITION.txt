@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100A
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - WRITE CHARACTER ONLY AT CURSOR POSITION
+	AH = 0Ah
+	AL = character to display
+	BH = page number (00h to number of pages - 1) (see #00010)
+	    background color in 256-color graphics modes (ET4000)
+	BL = attribute (PCjr, Tandy 1000 only) or color (graphics mode)
+	    if bit 7 set in <256-color graphics mode, character is XOR'ed
+	      onto screen
+	CX = number of times to write character
+Return: nothing
+Notes:	all characters are displayed, including CR, LF, and BS
+	replication count in CX may produce an unpredictable result in graphics
+	  modes if it is greater than the number of positions remaining in the
+	  current row
+	With PhysTechSoft's PTS ROM-DOS the BH and CX values are ignored
+	  on entry.
+SeeAlso: AH=08h,AH=09h,AH=11h"Tandy 2000",AH=4Bh,INT 17/AH=60h
+SeeAlso: INT 1F"SYSTEM DATA",INT 43"VIDEO DATA",INT 44"VIDEO DATA"
+

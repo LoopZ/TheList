@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0902
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - FREE REGULAR MEMORY BLOCK
+	DI = 0902h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	offset of memory block???
+Return: ???
+	STACK unchanged
+Note:	System Manager-compliant applications are always small-model (64K code,
+	  64K data)
+SeeAlso: INT 60/DI=0900h,INT 60/DI=0904h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144009
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - SEND UNTALK SIGNAL
+	AX = 4009h
+Return: CF clear if successful
+	CF set on error
+	   AL = error number (see #00354)
+SeeAlso: AX=4007h,AX=4008h
+

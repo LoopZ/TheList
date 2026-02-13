@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE0C
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.00+ - "GETMEM" - ALLOCATE "SYSTEM" MEMORY
+	AX = DE0Ch
+	BX = number of bytes
+Return: ES:DI -> allocated block or 0000h:0000h (DV 2.26+)
+Note:	use SETERROR (AX=DE15h) to avoid a user prompt if there is insufficient
+	  system memory
+SeeAlso: AX=1001h,AX=102Eh,AX=DE0Dh,AX=DE15h,AX=DE19h
+

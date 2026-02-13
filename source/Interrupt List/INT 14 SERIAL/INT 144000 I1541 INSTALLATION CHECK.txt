@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144000
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - INSTALLATION CHECK
+	AX = 4000h
+Return: AX = 1541h if installed
+	    BH = I1541 major version (BCD)
+	    BL = I1541 minor version (BCD)
+	    CX = 0000h
+

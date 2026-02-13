@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E0--SF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - GET PRINTER STATUS
+	AH = E0h subfn 06h
+	DS:SI -> request buffer (see #01815)
+	ES:DI -> reply buffer (see #01816)
+Return: AL = status
+	    00h successful
+	    FFh no such printer
+Desc:	get current state of specified printer attached to the server
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+
+Format of NetWare "Get Printer Status" request buffer:
+Offset	Size	Description	(Table 01815)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	06h (subfunction "Get Printer Status")
+ 03h	BYTE	printer number (00h-04h)
+SeeAlso: #01816
+
+Format of NetWare "Get Printer Status" reply buffer:
+Offset	Size	Description	(Table 01816)
+ 00h	WORD	(call) 0004h (size of following results buffer)
+ 02h	BYTE	flag: 00h printer active, FFh printer halted
+ 03h	BYTE	flag: 00h printer online, 01h printer offline
+ 04h	BYTE	current form type
+ 05h	BYTE	target printer number (00h-04h)
+		same as number in request buffer unless rerouted by server
+		  console
+SeeAlso: #01815
+

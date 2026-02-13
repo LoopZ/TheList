@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL33
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (VGA, MCGA) - GRAY-SCALE SUMMING
+	AH = 12h
+	BL = 33h
+	AL = new state
+	    00h enable gray scale summing
+	    01h disable gray scale summing
+Return: AL = 12h if function supported
+Desc:	specify whether or not colors should be converted to gray scale when
+	  palette or color registers are loaded
+SeeAlso: AX=101Bh,AX=BF06h,AX=BF08h
+

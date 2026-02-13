@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 175001
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - AX (Japanese AT) PRINTER - GET PRINTER COUNTRY CODE
+	AX = 5001h
+Return: AL = status
+	    00h successful
+		BX = country code
+	    02h error
+SeeAlso: AX=5000h,AH=51h,INT 10/AX=5001h,INT 16/AX=5001h
+

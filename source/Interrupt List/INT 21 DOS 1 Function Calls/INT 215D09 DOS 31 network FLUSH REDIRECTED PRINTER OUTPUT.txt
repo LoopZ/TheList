@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215D09
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 3.1+ network - FLUSH REDIRECTED PRINTER OUTPUT
+	AX = 5D09h
+Return:	nothing
+Desc:	forces redirected printer output to be printed, and starts a new print
+	  job
+Notes:	MS-DOS and DR DOS 3.41/5.0 simply push AX on the stack and call
+	  INT 2F/AX=1125h
+	this function is also supported by 10Net, which calls it Terminate All
+	  Spool Jobs, and does not flush if in "combine" mode
+SeeAlso: AX=5D07h,AX=5D08h,INT 2F/AX=1125h
+

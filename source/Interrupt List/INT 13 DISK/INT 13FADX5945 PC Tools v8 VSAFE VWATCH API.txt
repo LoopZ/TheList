@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13FA--DX5945
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - PC Tools v8+ VSAFE, VWATCH - API
+	AH = FAh
+	DX = 5945h
+	AL = function (00h-07h)
+Return: varies by function
+	if not installed:
+	    CF set
+		AH = 01h
+Note:	this API is identical to the ones on INT 16/AH=FAh and INT 21/AH=FAh,
+	  so it is listed in its entirety under INT 16/AX=FA00h and following
+SeeAlso: INT 16/AX=FA00h
+

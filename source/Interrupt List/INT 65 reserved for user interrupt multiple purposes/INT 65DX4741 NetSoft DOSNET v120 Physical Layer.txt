@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 65----DX4741
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 65 U - NetSoft DOS-NET v1.20+ - Physical Layer - ???
+	DX = 4741h
+	BH = 02h
+	BL = function number (01h-04h)
+	???
+Return: ???
+	---function 02h---
+	DS:SI -> ??? data area
+Range:	INT ?? to INT ??, selected by configuration option; actual interrupt
+	  number may be retrieved via INT 2A/AX=4147h
+Note:	this API is supported by PARALLEL.COM, SERIAL.COM, ARCNET.COM,
+	  ETHERNET.COM, NDIS.COM, ODI.COM, SMC.COM, and FTP.COM
+SeeAlso: DX=4147h"INSTALLATION",INT 2A/AX=4147h
+

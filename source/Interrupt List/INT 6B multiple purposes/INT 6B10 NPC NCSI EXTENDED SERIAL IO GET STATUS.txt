@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B10
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - GET STATUS
+	AH = 10h
+	AL = connection ID (Novell TELAPI.EXE)
+	CX = ???
+	ES:BX -> buffer for status (see #03730)
+Return: CF clear if successful
+	    CL = ???
+	    CH = ???
+	CF set on error
+	???
+Notes:	this function is also supported by TelAPI
+	when shelled out to an external protocol from Novell NASI, the circuit
+	  whose status indicates that it is connected is the currently active
+	  circuit
+SeeAlso: AX=0700h,AH=12h,AH=1Fh
+
+Format of NASI status:
+Offset	Size	Description	(Table 03730)
+ 00h	BYTE	number of allocated virtual circuits
+ 01h	BYTE	reserved
+ 02h  9 BYTEs	states of emulated circuits 0-8
+		00h idle
+		01h attached Telnet session, in command state
+		02h attached Telnet session, connected with host
+		03h-06h ??? (not returned by TelAPI)
+Note:	this description is derived from the Novell TelAPI emulation of NASI
+

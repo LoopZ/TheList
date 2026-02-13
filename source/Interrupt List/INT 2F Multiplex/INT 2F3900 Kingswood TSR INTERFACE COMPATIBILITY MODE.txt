@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F3900
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood TSR INTERFACE - COMPATIBILITY MODE
+	AX = 3900h
+Return: AL = status
+	    00h not installed
+	    FFh one or more TSRs using this interface is installed
+		DX may be destroyed
+Note:	this function is provided to that the multiplex number will appear used
+	  to other programs
+SeeAlso: AH=39h/BL=00h
+

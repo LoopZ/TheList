@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0106
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7+ - MEMORYMAX INSTALLATION CHECK
+	AX = 12FFh
+	BX = 0106h
+Return: CF clear if successful
+	    AX = 0000h (successful)
+	    BX = EDC0h (signature "European Development Centre")
+	    CL = memory manager variant
+		00h if HIMEM.SYS present
+		01h if EMMXMA.SYS present
+		02h if EMM386.EXE present (DPMI/VCPI disabled)
+		03h if multitasking EMM386.EXE present (DPMI/VCPI loaded)
+	    CH = ??? (00h)
+	    DX = binary driver version, DH is major, DL is minor
+	    ES = segment of EMM386 device driver header (low-memory stub)
+	CF set on error
+	    AX = 0001h
+Notes:	BL specifies which program handles the call, BH is the function number
+	if the word at ES:0012h is nonzero, if contains the offset within
+	  segment ES of the CEMM-compatible entry point (see #02617)
+	if no other program has hooked INT 67, an alternate installation
+	  check is to test for the string
+	  "NOVELL EXPANDED MEMORY MANAGER 386" at offset 14h in the INT 67
+	  handler's segment; the word immediately preceding this string
+	  contains the offset of the API entry point if it is nonzero
+Index:	entry point;Novell EMM386
+
+(Table 02617)
+Call Novell EMM386.EXE entry point with:
+	AH = 00h get memory manager's status???
+	    ???
+	AH = 01h set memory manager's status???
+	    ???
+	AH = 02h Weitek coprocessor support???
+	    AL = subfunction???
+	more functions???
+SeeAlso: #01513 at INT 21/AX=4402h/SF=02h,#03666 at INT 67/AX=FFA5h
+

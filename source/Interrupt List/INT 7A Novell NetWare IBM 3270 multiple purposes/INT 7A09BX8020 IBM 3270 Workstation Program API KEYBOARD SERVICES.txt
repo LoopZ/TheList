@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09--BX8020
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - KEYBOARD SERVICES
+	AH = 09h
+	BX = 8020h (synchronous request)
+	CX = 0000h
+	DX = ID of keyboard manager
+	AL = service number (see #03835)
+	ES:DI -> control block
+Return: ???
+
+(Table 03835)
+Values for 3270 Workstation Program keyboard service:
+ 01h	connect to keyboard
+ 02h	disconnect from keyboard
+ 03h	read from keyboard
+ 04h	send keystroke to session
+ 05h	disable input
+ 06h	enable input
+ 07h	update status code
+

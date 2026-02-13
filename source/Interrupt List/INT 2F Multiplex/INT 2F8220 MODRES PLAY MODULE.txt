@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8220
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MODRES - PLAY MODULE
+	AX = 8220h
+	DX:CX -> MODPARM structure (see #02960)
+Return: AX = status
+	    5722h succesful
+	    2000h parameters out of range
+	    other MODRES not installed
+SeeAlso: AX=8221h,AX=8223h,AX=8225h,AX=8227h,AX=8200h"RESPLAY"
+
+Format of MODPARM Structure:
+Offset	Size	Description	(Table 02960)
+ 00h	WORD	signature 504Dh ("MP" = Modparm)
+ 02h	BYTE	output device (see #02962 at INT 2F/AX=8221h)
+ 03h	WORD	segment of start of main module (pattern) data
+ 05h 31	WORDs	segment of start of sample numbers 1-31
+ 43h	BYTE	pattern at which to start playing (00h to 7Fh)
+ 44h	BYTE	function
+		00h play from pattern [offset 43h] until end of the song
+		01h play indicated pattern [offset 43h] only
+ 45h	BYTE	Machine speed
+		00h 10-12Mhz
+		01h 12-25Mhz (default)
+		02h 25Mhz+
+		03h mix speed 10kHz (fast 8Mhz machines)
+		04h mix speed 12kHz (10Mhz machines)
+		05h mix speed 13kHz
+		06h mix speed 8kHz (test for 8Mhz machines)
+ 46h	BYTE	allow >64k sample playing
+		80h MOD has samples >64k in it
+		else all samples in MOD are <64k
+Notes:	Main module data and all samples must start on segment boundaries.
+	In version 2.00 (ONLY) this function carries on playing (works in
+	  the background)
+SeeAlso: #02961
+

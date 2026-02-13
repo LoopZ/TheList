@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0400BP002A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_DEF_LINKS" - SET DEFAULT PARENTS
+	AX = 0400h
+	BP = 002Ah (driver ID for V_SINPUT)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	set the parent vectors in the physical device driver headers to their
+	  system defaults
+SeeAlso: AH=00h"HP Vectra",AX=0402h/BP=002Ah,AX=0404h/BP=002Ah
+SeeAlso: AH=06h"F_INQUIRE"
+

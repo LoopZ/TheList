@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17FF--BX0000
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - PC-MOS/386 v5.01 - PRINT SPOOLER - CLOSE SPOOL FILE
+	AH = FFh
+	BX = 0000h
+	CX = 0000h
+	DX = printer port number
+Return: AH = printer status (see #00631 at AH=00h)
+Program: PC-MOS/386 v5.01 is a multitasking, multiuser MS-DOS 5.0-compatible
+	  operating system by The Software Link, Inc.
+Desc:	close the spool file immediately instead of waiting for the close time
+	  to elapse
+SeeAlso: AH=01h,AH=03h"PC-MOS"
+

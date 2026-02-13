@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106E00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Paradise VGA internal - GET ???
+	AX = 6E00h
+Return: BX = 5744h ('WD') if supported
+	    DH:AH:AL = last three ASCII digits of ROM serial number
+	    CL = ???
+	    CH = ???
+SeeAlso: AX=6E04h,AX=6E05h
+

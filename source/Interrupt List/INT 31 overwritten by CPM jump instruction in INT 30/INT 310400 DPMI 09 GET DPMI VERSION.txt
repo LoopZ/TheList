@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310400
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET DPMI VERSION
+	AX = 0400h
+Return: CF clear
+	AH = major version of DPMI spec supported
+	AL = two-digit minor version of DPMI spec supported
+	BX = DPMI host flags (see #03152)
+	CL = processor type (02h=80286, 03h=80386, 04h=80486)
+	DH = curr value of virtual master interrupt controller base interrupt
+	DL = curr value of virtual slave interrupt controller base interrupt
+BUG:	Windows NT versions from the March 1993 beta to at least the Final
+	  release with fixes to CSD002 report version 0090h (0.144); this has
+	  reportedly been corrected in the Windows NT 3.5 beta
+SeeAlso: AX=0401h,INT 21/AX=250Ch,INT 2F/AX=1687h,INT 4B/AX=8102h/DX=0000h
+SeeAlso: INT 67/AX=DE0Ah
+
+Bitfields for DPMI host flags:
+Bit(s)	Description	(Table 03152)
+ 0	running under an 80386 (32-bit) implementation
+ 1	processor returns to real mode for reflected interrupts instead of V86
+	  mode
+ 2	virtual memory supported
+ 3	reserved (undefined)
+ 4-15	reserved (zero)
+

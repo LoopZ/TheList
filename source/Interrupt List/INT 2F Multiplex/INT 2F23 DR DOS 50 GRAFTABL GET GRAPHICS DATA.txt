@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F23
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 5.0 GRAFTABL - GET GRAPHICS DATA
+	AH = 23h
+	AL nonzero
+Return: AH = FFh
+	ES:BX -> graphics data (8 bytes for each character from 80h to FFh)
+SeeAlso: AX=2300h,AX=2E00h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620045
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETINDEX" - GET COLOR VALUE FOR COLOR INDEX
+	AX = 0045h
+	BX = color index (0000h to 00FFh)
+Return: AX = color value for specified color index
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call returns the value passed to it in text and 256-color
+	  graphics modes
+SeeAlso: AX=0018h,AX=0040h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 672763CL05
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - VIDEMS.SYS v1.31+ - RETURN PHYSICAL PAGE SIZE
+	AX = 2763h
+	CL = 05h
+	BX = signature AAFFh
+Return: AH = 00h
+	DX = size in bytes
+Desc:	Used by Conea products to determine if addressing mode has changed.
+	  Normally, all VIDEMS versions beginning from 1.15 use 4K "physical"
+	  pages.
+Notes:	this function will probably become raw page size in future releases of
+	  VIDEMS, which	will support the LIM 4.0 standard.
+SeeAlso: AX=2763h/CL=01h,AX=2763h/CL=02h
+

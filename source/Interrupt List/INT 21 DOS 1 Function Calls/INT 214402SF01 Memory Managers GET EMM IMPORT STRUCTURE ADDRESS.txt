@@ -1,0 +1,117 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402SF01
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Memory Managers - GET EMM IMPORT STRUCTURE ADDRESS
+	AX = 4402h subfn 01h
+	BX = file handle for device "EMMXXXX0"
+	CX = 0006h (size of buffer in bytes)
+	DS:DX -> buffer for EMM import structure record (see #01514)
+		first byte must be 01h on entry
+Return: CF clear if successful
+	    buffer filled (see also #03603 at INT 67/AH=3Fh)
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	this function is supported by Microsoft EMM386.EXE v4.45+,
+	  QEMM-386 v6+, and CEMM v5.10+, and is intended for use by MS Windows
+	  as it starts up
+	for QEMM-386, this call always returns an error if Windows3 support
+	  has been disabled with the NW3 switch
+SeeAlso: AX=4402h/SF=00h,AX=4402h"EMM386",INT 2F/AX=D201h/BX=5145h
+SeeAlso: INT 67/AH=3Fh
+
+Format of EMM import structure record:
+Offset	Size	Description	(Table 01514)
+ 00h	DWORD	physical address of EMM import structure (see #01515)
+ 04h	BYTE	EMM import structure major version
+ 05h	BYTE	EMM import structure minor version
+Note:	vession 1.00 contains only EMS information (Windows 3.0+)
+	version 1.10 contains UMB/XMS/HMA/EMS information (Windows 3.1)
+	version 1.11 is version 1.10 plus memory manager maker/product name
+SeeAlso: #03643
+
+Format of Global EMM Import record:
+Offset	Size	Description	(Table 01515)
+ 00h	BYTE	bit flags
+		bit 2: ???
+		bit 3: free EMM386 virtual HMA only if hma_page_table_paddr!=0
+		bit 4: no UMB???
+ 01h	BYTE	reserved (0)
+ 02h	WORD	size of structure in bytes
+ 04h	WORD	structure version
+ 06h	DWORD	reserved
+ 0Ah 384 BYTEs	64 EMS frame status records (see #01516), one per 16K of
+		  real-mode 1M address space
+18Ah	BYTE	??? (must be at least 3*number_of_EMS_frames+4)
+18Bh	BYTE	number of UMB frame descriptors following
+18Ch 4N DWORDs	UMB frame descriptors
+		each is 4 DWORDs giving physical page numbers for the four
+		  4K pages of a 16K EMS frame (00000000h if non-UMB page)
+var	BYTE	number of EMS handle info records following
+    16N BYTEs	EMS handle info records (see #01518)
+---version 1.10+ ---
+	DWORD	realmode INT 67 vector (used by Windows to set breakpoints)
+	DWORD	physical address of HMA page table values
+	BYTE	number of free page entries following
+     2N DWORDs	free page entries
+		each is:
+		    DWORD	physical page number
+		    DWORD	number of consecutive physical pages
+	BYTE	number of XMS handle info records following
+		00h if memory manager does not emulate XMS or has real mode
+		  XMS code which can execute in the Windows environment
+    12N BYTEs	XMS handle info records (see #01519)
+	BYTE	number of free UMB info records following
+     2N WORDs	free UMB info records
+		each is:
+		    WORD	real mode start segment
+		    WORD	size in paragraphs
+---version 1.11---
+     20 BYTEs	blank-padded maker name
+     20 BYTEs	blank-padded product name
+
+Format of EMS frame status record:
+Offset	Size	Description	(Table 01516)
+ 00h	BYTE	frame type (see #01517)
+ 01h	BYTE	owner handle (00h/FFh = none) from frame including UMB
+		index to UMB frame descriptors
+ 02h	WORD	logical page for frame, 7FFFh if none, FFFFh if non-EMS frame
+ 04h	BYTE	EMS physical page number (FFh for non-EMS = don't care???)
+ 05h	BYTE	flags for non-EMS frames (00h for EMS frame)
+		bits 0,1 for first 4K, bits 2,3 for second 4K, etc:
+		  10: direct mapping (linear address = physical address)
+		  01: UMB mapping
+
+Bitfields for EMS frame type:
+Bit(s)	Description	(Table 01517)
+ 0	EMS frame
+ 1	(if EMS frame) in standard 64K page frame
+ 2	first 4K of frame is UMB
+ 3	second 4K of frame is UMB
+ 4	third 4K of frame is UMB
+ 5	last 4K of frame is UMB
+
+Format of EMS handle info record:
+Offset	Size	Description	(Table 01518)
+ 00h	BYTE	handle number (00h = system handle)
+ 01h	BYTE	flags
+		bit 0: normal handle rather than system handle
+		bit 2: ??? (set by some EMS managers)
+ 02h  8 BYTEs	EMS handle's name
+ 0Ah	WORD	number of 16K pages for handle
+ 0Ch	DWORD	physical address of page table entries forming page map
+Note:	all values should be zero for the system handle if no large frame
+	  support is present
+
+Format of XMS handle info record:
+Offset	Size	Description	(Table 01519)
+ 00h	WORD	handle
+ 02h	WORD	flags
+		bit 0: handle usable by Windows
+			(already in use when Windows started if clear)
+		bit 1: reserved (0)
+ 04h	DWORD	size in KB (may be zero, used only if flags bit 0 set)
+ 08h	DWORD	physical address (only if flags bit 0 set)
+

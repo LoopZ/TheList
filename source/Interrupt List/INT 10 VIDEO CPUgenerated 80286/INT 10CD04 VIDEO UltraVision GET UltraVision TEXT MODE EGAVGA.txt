@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD04
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - GET UltraVision TEXT MODE (EGA,VGA)
+	AX = CD04h
+Return: AL = mode number (see #00220)
+SeeAlso: AH=0Fh,AX=CC00h,AH=CDh
+
+(Table 00220)
+Values for UltraVision video mode number:
+ 11h	80x25
+ 12h	80x43, 80x50
+ 13h	80x34, 80x36
+ 14h	80x60, 80x63
+ 19h	94x25
+ 1Ah	94x43, 94x50
+ 1Bh	94x36
+ 1Ch	94x63
+ 21h	108x25
+ 22h	108x43, 108x50
+ 23h	107x34, 108x36
+ 24h	108x60, 108x63
+ 31h	120x25
+ 32h	120x43, 120x50
+ 33h	132x25
+ 34h	132x44, 132x50
+ 39h	120x36
+ 3Ah	120x63
+ 3Bh	132x36
+ 3Ch	132x60
+Index:	video modes;UltraVision
+

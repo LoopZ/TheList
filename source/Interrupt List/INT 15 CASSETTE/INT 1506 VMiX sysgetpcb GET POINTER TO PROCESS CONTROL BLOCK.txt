@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1506
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_getpcb" - GET POINTER TO PROCESS CONTROL BLOCK
+	AH = 06h
+	STACK:	WORD	process ID
+Return: DX:AX -> process control block
+SeeAlso: AH=05h"VMiX",AH=07h"VMiX",AH=08h"VMiX"
+

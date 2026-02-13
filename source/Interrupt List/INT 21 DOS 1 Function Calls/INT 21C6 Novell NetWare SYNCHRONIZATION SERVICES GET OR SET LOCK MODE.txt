@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - GET OR SET LOCK MODE
+	AH = C6h
+	AL = subfunction
+	    00h set old "compatibility" mode (default)
+	    01h set new extended locks mode
+	    02h get lock mode
+Return: AL = current lock mode
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+	the locking mode should be 01h for NetWare 4.61+ and Advanced
+	  NetWare 1.0+ locking calls, and 00h for all older calls
+SeeAlso: AH=BCh,AH=C4h,AH=D0h
+

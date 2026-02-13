@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F06--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_INS_XCHGFIX" - EXCH VALUES WITH FIXED VECTOR
+	AH = 06h
+	BP = 0012h (driver ID for V_SYSTEM)
+	BX = vector address
+	DX = new value for DS
+	ES:DI -> new CS:IP entry point
+Return: AH = status (see #03744)
+	DX = old value for DS
+	ES:DI -> old CS:IP entry point
+	BP,DS destroyed
+Desc:	replace an existing EX-BIOS driver at a fixed HPVT location without
+	  initialization
+SeeAlso: AH=00h"HP Vectra",AH=04h"F_INS_BASEHPVT",AH=08h"F_INS_XCHGRSVD"
+SeeAlso: AH=0Ah"F_INS_XCHGFREE",AH=0Ch"F_INS_FIXOWNDS"
+

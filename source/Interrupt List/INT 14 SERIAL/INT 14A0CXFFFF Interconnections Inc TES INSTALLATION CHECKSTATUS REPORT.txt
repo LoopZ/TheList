@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A0--CXFFFF
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Interconnections Inc. TES - INSTALLATION CHECK/STATUS REPORT
+	AH = A0h
+	CX = FFFFh
+Return: CF clear if successful
+	    AX = 5445h ('TE')
+	    CX <> FFFFh
+	    DX = port number
+	CF set on error
+Program: TES is a network serial port emulation program
+SeeAlso: AH=A1h"TES"
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 611D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_readfrom" - READ A DATAGRAM
+	AH = 1Dh
+	BX = network descriptor
+	CX = maximum number of bytes to read
+	DX = receive options (see #03464)
+	DS:SI -> buffer for received data
+	ES:DI -> 9-byte buffer containing "addr" structure (see #03462)
+Return: CF clear if successful
+	    AX = number of bytes read
+	    DX = ???
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Notes:	this function can read from any host or a designated host depending
+	  on settings in the "addr" structure
+	only for use with datagram or Raw descriptors
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=1Bh,INT 61/AH=1Ch
+

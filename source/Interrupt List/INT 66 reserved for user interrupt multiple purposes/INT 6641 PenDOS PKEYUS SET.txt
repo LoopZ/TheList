@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6641
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - PenDOS - PKEYUS - SET ???
+	AH = 41h
+	BX = ???
+	CL = ??? (08h-20h)
+	DL = screen column??? (<= 50h)
+	DH = screen row???  (<= 3Ch)
+Return: AX = status (0000h successful, 0001h error)
+Note:	this function also sets an internal flag
+SeeAlso: AH=42h,AH=43h
+

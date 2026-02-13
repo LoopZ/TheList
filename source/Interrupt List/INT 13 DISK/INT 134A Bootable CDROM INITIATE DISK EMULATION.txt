@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 134A
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Bootable CD-ROM - INITIATE DISK EMULATION
+	AH = 4Ah
+	AL = 00h
+	DS:SI -> specification packet (see #00281)
+Return: CF clear if successful
+	CF set on error (drive will not be in emulation mode)
+	AX = return codes
+SeeAlso: AH=48h,AX=4B00h,AH=4Ch,AH=4Dh
+
+Format of Bootable CD-ROM Specification Packet:
+Offset	Size	Description	(Table 00281)
+ 00h	BYTE	size of packet in bytes (13h)
+ 01h	BYTE	boot media type (see #00282)
+ 02h	BYTE	drive number
+		00h floppy image
+		80h bootable hard disk
+		81h-FFh nonbootable or no emulation
+ 03h	BYTE	CD-ROM controller number
+ 04h	DWORD	Logical Block Address of disk image to emulate
+ 08h	WORD	device specification (see also #00282)
+		(IDE) bit 0: drive is slave instead of master
+		(SCSI)	bits 7-0: LUN and PUN
+			bits 15-8: bus number
+ 0Ah	WORD	segment of 3K buffer for caching CD-ROM reads
+ 0Ch	WORD	load segment for initial boot image
+		if 0000h, load at segment 07C0h
+ 0Eh	WORD	number of 512-byte virtual sectors to load
+		(only valid for AH=4Ch)
+ 10h	BYTE	low byte of cylinder count (for INT 13/AH=08h)
+ 11h	BYTE	sector count, high bits of cylinder count (for INT 13/AH=08h)
+ 12h	BYTE	head count (for INT 13/AH=08h)
+SeeAlso: #00283,AH=08h
+
+Bitfields for Bootable CD-ROM boot media type:
+Bit(s)	Description	(Table 00282)
+ 3-0	media type
+	0000 no emulation
+	0001 1.2M diskette
+	0010 1.44M diskette
+	0011 2.88M diskette
+	0100 hard disk (drive C:)
+	other reserved
+ 5-4	reserved (0)
+ 6	image contains ATAPI driver
+ 7	image contains SCSI driver(s)
+SeeAlso: #00281
+

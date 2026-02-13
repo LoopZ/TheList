@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1004
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - READ LIGHT PEN POSITION (except VGA)
+	AH = 04h
+Return: AH = light pen trigger flag
+	    00h not down/triggered
+	    01h down/triggered
+		DH,DL = row,column of character light pen is on
+		CH = pixel row (graphics modes 04h-06h)
+		CX = pixel row (graphics modes with >200 rows)
+		BX = pixel column
+Desc:	determine the current position and status of the light pen (if
+	  present)
+Notes:	on a CGA, returned column numbers are always multiples of 2 (320-
+	  column modes) or 4 (640-column modes)
+	returned row numbers are only accurate to two lines
+

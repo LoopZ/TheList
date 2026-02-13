@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310503
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - RESIZE MEMORY BLOCK
+	AX = 0503h
+	BX:CX = new size in bytes (nonzero)
+	SI:DI = handle of memory block
+Return: CF clear if successful
+	    BX:CX = new linear address
+	    SI:DI = new handle of memory block
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8012h-8014h,8016h,8021h,8023h)
+		(see #03143)
+Notes:	any selectors pointing at the block must be updated
+	the previous memory block handle becomes invalid
+	an error is returned if the new size is 0
+SeeAlso: AX=0102h,AX=0501h,AX=0505h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1607
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - VIRTUAL DEVICE CALL OUT API
+	AX = 1607h
+	BX = virtual device ID (see #02642)
+	CX = (usually) callout subfunction
+Return: (usually) AX,BX,CX,DX,ES contain results
+Notes:	more of a convention than an API, this call specifies a standard
+	  mechanism for Windows enhanced-mode virtual devices (VxD's) to talk
+	  to DOS device drivers and TSRs
+	see below for details on several virtual devices
+SeeAlso: AX=1605h,AX=1607h/BX=000Ch,AX=1607h/BX=0014h,AX=1607h/BX=0015h
+SeeAlso: AX=1607h/BX=0018h,AX=1684h"DEVICE API",AX=C020h
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFBFBES0000
+  Category: s 	sound/speech
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - SoundBlaster speech driver - INSTALLATION CHECK
+	AX = FBFBh
+	ES = 0000h
+Return: ES nonzero if installed
+	    ES:BX -> entry point data structure (see #03138)
+SeeAlso: INT 80/BX=0000h,INT F3"SoundBlaster"
+
+Format of SoundBlaster entry point data structure:
+Offset	Size	Description	(Table 03138)
+ 00h  3 BYTEs	signature "FB "
+ 03h	BYTE	driver major version number???
+ 04h	DWORD	speech driver entry point (see #03139)
+ 08h 24 BYTEs	???
+ 20h  ? BYTEs	data buffer for calling speech driver
+		  (can be 117 bytes or more)
+
+(Table 03139)
+Call SoundBlaster speech driver entry point with:
+	AL = function
+	    07h speak a string
+		data buffer (see #03138) contains:
+			BYTE  length of string
+		      N BYTEs string to speak
+

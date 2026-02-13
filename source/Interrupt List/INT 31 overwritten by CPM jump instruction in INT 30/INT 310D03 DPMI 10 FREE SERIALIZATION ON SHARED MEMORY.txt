@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310D03
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - FREE SERIALIZATION ON SHARED MEMORY
+	AX = 0D03h
+	SI:DI = shared memory block handle
+	DX = flags
+	    bit 0: release shared serialization rather than exclusive serialztn
+	    bit 1: free pending serialization
+	    bits 2-15 reserved (0)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8002h,8023h) (see #03143 at AX=0000h)
+SeeAlso: AX=0D00h,AX=0D02h
+

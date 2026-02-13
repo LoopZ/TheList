@@ -1,0 +1,91 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5200
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - JAM.SYS v1.10+ - "GetVersion" - INSTALLATION CHECK
+	AX = 5200h
+Return: AH = 80h (successful) if installed
+	BX = internal JAM.SYS version number
+	CX = size of JAMINFO structure (see #02831,#02832)
+	DX = JAM.SYS segment address
+Program: JAM.SYS is a main component of the JAM Real-Time Data Compression
+	  Utilities by George A. Reznik and friends (JAM Software).
+SeeAlso: AX=5201h
+
+Format of JAMINFO v1.10 structure:
+Offset	Size	Description	(Table 02831)
+ 00h 25 BYTEs	extended BIOS parameter block (BPB)
+ 19h 11 BYTEs	???
+ 25h	DWORD	total number of sectors in JAM archive file
+		(size of compressed data area)
+ 29h	BYTE	flags (see #02833)
+ 2Ah 127 BYTEs	full JAM archive file name
+ A9h	WORD	the number of fragments in archive file
+ ABh 96 BYTEs	archive file fragmentation list -
+		array of 16 FRAGMENT structures (see #02834)
+10Bh	DWORD	address of the host-drive DPB (Drive Parameter Block)
+10Fh	DWORD	number of free sectors in JAM archive file
+113h	WORD	device status word (see #02835)
+SeeAlso: #02832
+
+Format of JAMINFO v1.20 structure:
+Offset	Size	Description	(Table 02832)
+ 00h 25 BYTEs	extended BIOS parameter block (BPB)
+ 19h	BYTE	physical driver number
+ 1Ah	BYTE	reserved
+ 1Bh	BYTE	extended boot record signature
+ 1Ch	DWORD	volume serial number
+ 20h 11 BYTEs	volume label
+ 2Bh  8 BYTEs	file system ID
+ 33h	DWORD	total number of sectors in JAM archive file
+		(size of compressed data area)
+ 37h	BYTE	flags (see #02833)
+ 38h 128 BYTEs	full JAM archive file name
+ B8h	WORD	the number of fragments in archive file
+ BAh 96 BYTEs	archive file fragmentation list -
+		array of 16 FRAGMENT structures (see #02834)
+11Ah	DWORD	address of the host-drive DPB (Drive Parameter Block)
+11Eh	DWORD	number of free sectors in JAM archive file
+122h	WORD	device status word (see #02835)
+Note:	the first 33h bytes are copied from the archive file's boot sector
+SeeAlso: #02831
+
+Bitfields for JAMINFO flags:
+Bit(s)	Description	(Table 02833)
+ 2-0	reserved
+ 3	(v1.20+)
+ 4	enable direct write requests (Int 26h, non-DOS requests, etc.)
+ 5	read-only mode
+ 6	no write-behind caching
+ 7	full undelete-compatible allocation strategy
+SeeAlso: #02831,#02832
+
+Format of JAM FRAGMENT structure:
+Offset	Size	Description	(Table 02834)
+ 00h	WORD	starting sector (low word)
+ 02h	BYTE	starting sector (high byte)
+ 03h	WORD	size of fragment (low word)
+ 05h	BYTE	size of fragment (high byte)
+SeeAlso: #02831,#02832
+
+(Table 02835)
+Values for JAM.SYS status (high byte):
+ 00h	successful
+ 01h	drive is not a JAM drive
+ 02h	drive is already attached
+ 03h	archive file cluster size value is larger than driver's one
+ 04h	drive is not attached
+ 05h	drive is locked
+ 06h	drive is not locked
+ 07h	bad physical-level request
+ 08h	host drive reading/writing error
+ 09h	bad entries in JAM descriptor table
+ 0Ah	compressed data integrity error
+ 0Bh	archive file overflow
+ 0Ch	bad DOS request
+ 0Dh	incorrect parameters in JAMINFO structure
+Note:	the low byte of the status is the DOS error code for the Host drive
+SeeAlso: #02598 at INT 2F/AX=0802h
+

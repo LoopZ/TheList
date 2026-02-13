@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+ Unique ID: 64
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 64 - Extended Batch Language v3.14+
+	AH = function
+	    00h to 5Fh chained to previous handler
+	    60h to 6Ch reserved, return immediately
+	    80h to FFh chained to previous handler
+	    6Dh (v4.01+) insert tone in queue
+		AL = ???
+		CX = frequency in Hertz
+		DL = duration in clock ticks
+		Return: AL = 00h if note stored
+			   = 01h if no room to store
+	    6Eh clear ??? counter/flag
+	    6Fh return counter/flag that AH=6Eh clears
+	    70h ???
+		AL = ???
+	    71h ???
+		AL = ???
+	    72h ???
+	    73h insert byte at end of keyboard buffer
+		AL = byte to insert
+		Return: AL = 00h if byte inserted
+			   = 01h if no room to store
+	    74h insert byte at front of keyboard buffer
+		AL = byte to insert
+		Return: AL = 00h if byte inserted
+			   = 01h if no room to store
+	    75h ???
+	    76h get keyboard "stack" status
+		AL = 'K' if kbd read will read physical keyboard
+		     'S' if it will read EBL internal keyboard buffer
+		AH = ???
+	    77h clear internal keyboard buffer
+	    78h ???
+		AL = ???
+	    79h ???
+	    7Ah ???
+		AL = ???
+	    7Bh ???
+		AL = ???
+	    7Ch ???
+		AL = ???
+	    7Dh ???
+		AL = ???
+	    7Eh clear buffer for ???
+	    7Fh installation check
+		Return: CX = version in BCD
+			DI = segment of ???
+			BX = segment of next program's PSP???
+Program: Extended Batch Language is a batch-file enhancer by Seaware
+Notes:	the chaining does not check whether the interrupt had been hooked
+	  before, so if you try to chain when the previous vector was
+	  0000h:0000h, you'll be in trouble
+	functions 72h and 7Ah-7Dh appear to be interfaces to the optional
+	  floating-point and extended function packages
+Index:	installation check;EBL|installation check;Extended Batch Language
+

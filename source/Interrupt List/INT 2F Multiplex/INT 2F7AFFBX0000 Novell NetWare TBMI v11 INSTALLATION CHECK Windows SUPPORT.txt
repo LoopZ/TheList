@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7AFFBX0000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare - TBMI v1.1+ - INSTALLATION CHECK / Windows SUPPORT
+	AX = 7AFFh
+	BX = 0000h
+	CX = 4E65h ("Ne")
+	DX = 7457h ("tW")
+	ES:DI -> Windows support procedure (see #02926)
+Return: AL = FFh if installed
+	    CX = configured sockets (14h)
+	    DS:SI -> data table ???
+	    ES:DI -> IPX far call handler
+Notes:	for IPX/SPX this call reportedly returns DS:SI pointing to the table
+	  of pointers to service events queue head and tail
+	this function is also supported by IPXODI; v2.12 does not change DS,
+	  but does set SI to an internal address
+SeeAlso: AX=7AFFh/BX=0001h
+
+(Table 02926)
+Values Windows support procedure called with:
+	BP = function
+	    0001h Get ECB
+		BX = socket number
+		Return: ES:SI -> ECB or 0000h:0000h if none available
+	    0002h Count Listen ECBs
+		AX = BX = socket
+		Return: CX = number of listen ECBs for socket
+				(must be >= 2 for SPX to work)
+	    0003h ???
+	    0004h Inform task switcher of ECB locations
+		Note:	registers other than those listed above are equal
+			  to the values when IPX was called
+Note:	the support function will not be called if IPX is called with BX
+	  bit 15 set
+

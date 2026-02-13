@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14400E
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - GET INFO
+	AX = 400Eh
+Return: AX = LPT port I/O address in use (0000h if no cable in use)
+	BL = LPT number (1..3) in use (00h if no cable in use)
+	CF set if the cable is auto-detectable
+	CF clear if cable could not be auto-detected or is not present
+SeeAlso: AX=4000h
+

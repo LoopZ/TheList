@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD44D
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - 4DOS.COM v2.1+ - API
+	AX = D44Dh
+	BH = function
+	    00h installation check
+		Return: AX = 44DDh
+			BL = major version number
+			BH = minor version number
+			CX = PSP segment address for current invocation
+			DL = 4DOS shell number (0 for the first (root) shell,
+			      updated each time a new copy is loaded)
+	    01h (internal, v2.1-3.03) terminate current copy of 4DOS
+		Return: nothing
+		(internal, v4.0+) ???
+		Return: AX = 44DDh
+			ES:BX -> data area (see #03086)
+	    02h ???
+		DX = ???
+		Note:	v5.52 signals "unrecoverable error" and then terminates
+			  with INT 21/AH=4Ch or enters a deliberate infinite
+			  loop if ???
+	---v2.1-3.03 only---
+	    03h EXEC program
+		CX:DX -> EXEC record (see #03087)
+	    FEh deallocate shell number (passed through to root shell)
+		???
+	    FFh allocate shell number (passed through to root shell)
+	---v5.52---
+	    03h get ???
+		BL = ??? (00h/01h)
+		Return: DX = current value of ???
+	    04h set ???
+		BL = ??? (00h/01h)
+		DX = new value for ???
+Note:	a bug in v3.00 will crash the system if unrecognized value in BH
+SeeAlso: AX=D44Eh,AX=D44Fh/BX=0000h,AX=E44Dh,INT 21/AX=4403h"DOS"
+SeeAlso: INT 14/AX=7000h
+Index:	installation check;4DOS|installation check;NDOS
+
+Format of 4DOS v4.0 data area:
+Offset	Size	Description	(Table 03086)
+ 00h  2 BYTEs	???
+ 06h	WORD	XMS handle for swapping
+	???
+SeeAlso: #03087
+
+Format of 4DOS EXEC v2.1-v3.03 record:
+Offset	Size	Description	(Table 03087)
+ 00h	WORD	offset of ASCIZ program name in same segment as EXEC record
+ 02h	WORD	offset of DOS commandline in same segment as EXEC record
+ 04h	WORD	segment of environment for child process (see INT 21/AH=26h)
+SeeAlso: #03086
+

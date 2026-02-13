@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1122
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - PROCESS TERMINATION HOOK
+	AX = 1122h
+	SS = DOS DS
+	DS = PSP of process about to terminate
+Return: ???
+Notes:	this function is called by the DOS 3.1+ kernel
+	after calling this function, the kernel calls INT 2F/AX=111Dh
+SeeAlso: AX=111Dh,INT 21/AH=4Ch,INT 60/DI=0601h
+

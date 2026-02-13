@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0200
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - SETUP MENU
+	DI = 0200h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to menu data (see #03281)
+		DWORD	pointer to ???
+		WORD	number of items on menu???
+		WORD	???
+		DWORD	pointer to ???
+		WORD	???
+		DWORD	pointer to ???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 15/AX=4DD4h,INT 60/DI=0201h,INT 60/DI=0203h,INT 60/DI=0205h
+
+Format of HP 95LX menu data:
+Offset	Size	Description	(Table 03281)
+ 00h 80 BYTEs	first line of menu text
+ 50h 80 BYTEs	second line of menu text
+ A0h 80 BYTEs	third line of menu text
+ F0h	WORD	number of keywords
+ F2h	WORD	index of currently highlighted keyword or FFFFh
+ F4h	WORD	single prompt on top line if nonzero
+ F6h 20 BYTEs	which line each of 20 keywords is located on
+10Ah 20 BYTEs	offset of each of 20 keywords within its line
+11Eh 20 BYTEs	length of each of 20 keywords
+132h 20 BYTEs	first letter of each of 20 keywords
+146h 20 WORDs	offsets of long prompts for each of 20 keywords
+

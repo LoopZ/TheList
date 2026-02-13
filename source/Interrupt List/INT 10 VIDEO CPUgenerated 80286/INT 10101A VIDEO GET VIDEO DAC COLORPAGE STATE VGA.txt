@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10101A
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GET VIDEO DAC COLOR-PAGE STATE (VGA)
+	AX = 101Ah
+Return: BL = paging mode
+	    00h four pages of 64
+	    01h sixteen pages of 16
+	BH = current page
+SeeAlso: AX=1013h
+

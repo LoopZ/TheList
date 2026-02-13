@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1581
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL POWER OUTPUT
+	AH = 81h
+	AL = new state of power output (00h off, nonzero on)
+Desc:	turn the +5V low power output on or off
+SeeAlso: AH=80h"HUNTER"
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE700BX4158
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Multiplex - ??? - INSTALLATION CHECK???
+	AX = E700h
+	BX = 4158h ("AX")
+	CX = 4953h ("IS")
+	DX = 4845h ("HE")
+Return: AL = FFh if installed
+	    BX = 4C4Fh ("LO") if ??? installed
+	    CX = 4F4Bh ("OK")
+	    DX = 4F55h ("OU")
+		ES:DI -> ???
+Range:	AH=C0h to AH=FFh, selected by scanning AH=E7-FFh, then AH=C0h-E6h
+Note:	called by QDPMI when its Real to Protected Mode Switch Entry Point
+	  is called
+

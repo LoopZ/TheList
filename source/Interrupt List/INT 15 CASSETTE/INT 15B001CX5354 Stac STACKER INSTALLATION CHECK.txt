@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15B001CX5354
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Stac STACKER - INSTALLATION CHECK
+	AX = B001h
+	CX = 5354h ('ST')
+	DX = 4143h ('AC')
+Return: AX = 4F4Bh ('OK') if installed
+Note:	this function is encapsulated in Stac's STACKER.LIB C library; it is
+	  called by Novell DOS 7+ NWCACHE v1.01, which makes use of this
+	  library
+

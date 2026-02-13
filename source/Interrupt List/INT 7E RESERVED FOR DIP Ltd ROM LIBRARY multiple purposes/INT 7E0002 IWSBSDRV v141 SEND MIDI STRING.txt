@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7E0002
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7E - IWSBSDRV v1.41 - SEND MIDI STRING
+	AX = 0002h
+	DX = game device handle
+	ES:EDI -> buffer containing MIDI string to be sent
+	ECX = length of buffer in bytes
+Return: EAX = status
+	    00000000h if successful
+	    FFFFFFFFh on error (function disabled)
+Note:	this function is only supported if the MIDISIMPLE device has been
+	  opened via the InterWave Game API (see INT 2F/AX=CD21h)
+SeeAlso: AX=0001h,INT 2F/AX=CD21h,#03074
+

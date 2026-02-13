@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62009D
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_RESIZE" - SET GRAPHICS MODE VIDEO PAGE SIZE
+	AX = 009Dh
+	BX = new page width in pixels
+	CX = new page height in pixels
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The visible page must be set to 0000h before making this call
+	The mouse, joysticks, expanded memory, and extended memory must be
+	  reinitialized after this call
+SeeAlso: AX=0084h,AX=00ACh
+

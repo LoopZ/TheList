@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33005A
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Mouse Systems MOUSE DRIVER v7.01+ - SET ULTRARES ACCELERATIONS
+	AX = 005Ah
+	CX = number of WORDs to copy (max 0014h, but not range-checked)
+	DX:SI -> buffer containing thresholds??? (CX words)
+	DX:BX -> buffer containing acceleration values???
+		(9*14h words, only first CX of each 14h used)
+	???
+Return: CF clear
+	???
+Note:	this function is also supported by Genius Mouse 9.06
+SeeAlso: AX=0054h
+

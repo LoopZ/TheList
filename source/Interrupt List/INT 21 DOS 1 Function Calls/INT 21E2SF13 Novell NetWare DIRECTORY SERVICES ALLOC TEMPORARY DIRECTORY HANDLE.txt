@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF13
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - ALLOC TEMPORARY DIRECTORY HANDLE
+	AH = E2h subfn 13h
+	DS:SI -> request buffer (see #01871)
+	ES:DI -> reply buffer (see #01870)
+Return: AL = status (00h,98h,9Ch) (see #01866)
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+	this call is the same as AH=E2h/SF=12h except that the directory handle
+	  will be automatically deallocated when the calling application
+	  executes an End of Job call (AH=D6h) or terminates
+SeeAlso: AH=D6h,AH=E2h/SF=00h,AH=E2h/SF=12h,AH=E2h/SF=14h,AH=E2h/SF=16h
+SeeAlso: AX=F216h/SF=13h
+
+Format of NetWare "Allocate Temporary Directory Handle" request buffer:
+Offset	Size	Description	(Table 01871)
+ 00h	WORD	length of following data (max 103h)
+ 02h	BYTE	13h (subfunction "Allocate Temporary Directory Handle")
+ 03h	BYTE	directory handle
+ 04h	BYTE	drive ('A'-'Z')
+ 05h	BYTE	length of directory path
+ 06h  N BYTEs	directory path
+SeeAlso: #01869,#01872
+

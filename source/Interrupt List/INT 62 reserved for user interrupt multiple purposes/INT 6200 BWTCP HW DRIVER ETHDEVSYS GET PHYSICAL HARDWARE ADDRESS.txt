@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - BW-TCP - HW DRIVER (ETHDEV.SYS) - GET PHYSICAL HARDWARE ADDRESS
+	AH = 00h
+	DS:DX -> 6-byte buffer for address
+Return: AX = length of hardware address???
+Range:	INT 4C to INT FB, selected by configuration
+Note:	the Beame&Whiteside TCP/IP protocol stack uses two consecutive
+	  interrupts (62h and 63h by default); the BW-NFS client uses a third
+	  consecutive interrupt (64h by default) if it is loaded
+SeeAlso: AH=01h"ETHDEV",AH=04h"ETHDEV",AH=09h"ETHDEV",AH=0Eh"ETHDEV"
+SeeAlso: AH=14h"ETHDEV",AH=18h"ETHDEV",AH=FEh,INT 21/AH=3Fh"BW-TCP"
+SeeAlso: INT 63/AH=03h"BW-TCP",INT 63/AH=24h"BW-TCP",INT 64/AH=01h"BW-NFS"
+

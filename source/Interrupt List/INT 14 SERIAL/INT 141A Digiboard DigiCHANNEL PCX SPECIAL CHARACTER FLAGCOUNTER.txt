@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141A
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X - SPECIAL CHARACTER FLAG/COUNTER
+	AH = 1Ah
+	BX = subfunction
+	    00h return pointer to special character flag byte
+	    01h return pointer to special character counter word
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: ES:BX -> special character flag or counter
+Notes:	flag is FFh if one or more special characters are in the receive
+	  buffer; it is 00h and the counter is invalid if no special characters
+	  are in the receive buffer
+	counter (if valid) contains the number of characters in the receive
+	  buffer up to and including the last-received special character
+

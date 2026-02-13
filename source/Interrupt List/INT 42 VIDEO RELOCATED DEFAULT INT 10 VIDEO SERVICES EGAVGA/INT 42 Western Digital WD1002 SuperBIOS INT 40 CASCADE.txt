@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 42
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 42 - Western Digital WD1002 SuperBIOS - INT 40 CASCADE
+Note:	if the second WD1002 controller in the system finds INT 40 already in
+	  use, it uses this vector to cascade to the first controller's BIOS
+SeeAlso: INT 40"DISKETTE",INT 47"SuperBIOS"
+

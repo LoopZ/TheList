@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL5D
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_EXEC" - EXECUTE CHILD PROCESS
+	CL = 5Dh
+	DS:DX -> Exec Parameter Block (EPB) (see #04035)
+Return:	AX = status
+	    FFFEh file not found
+	    FFFDh path not found
+	    FFFCh too many handles open
+	    FFFBh access denied
+	    FFF6h invalid environment
+	    FFDCh sharing conflict
+	    FFAAh invalid password
+	EPB updated (if successful)
+	may destroy SI,DI,DS
+SeeAlso: INT E0/CL=5Ch,INT E0/CL=5Eh,INT 21/AH=4Bh
+

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330070BXABCD
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Mouse Systems MOUSE DRIVER - POPUP.COM - INSTALLATION CHECK
+	AX = 0070h
+	BX = ABCDh
+Return: AX = ABCDh if installed
+	    BX:CX -> data structure (see #03188)
+Notes:	this function is also supported by the Genius Mouse 9.06 driver
+	the v7.01 POPUP.COM and menu drivers also check for the signature
+	  CDh ABh BAh DCh at offset -2Ch from the interrupt handler
+	if POPUP is not loaded, the returned data structure contains the proper
+	  signature at offset 00h, but not at offset 08h
+
+Format of Mouse Systems POPUP.COM data structure:
+Offset	Size	Description	(Table 03188)
+ 00h	WORD	signature ABCDh
+ 02h	DWORD	pointer to info structure??? (see #03189)
+ 06h  2 BYTEs	???
+ 08h	WORD	signature ABCDh
+
+Format of Mouse Systems POPUP.COM info structure:
+Offset	Size	Description	(Table 03189)
+ 00h	WORD	driver version
+ 02h  8 BYTEs	???
+ 0Ah	WORD	segment of ???
+	???
+

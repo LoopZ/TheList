@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL32
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (VGA, MCGA) - VIDEO ADDRESSING
+	AH = 12h
+	BL = 32h
+	AL = new state
+	    00h enable video addressing
+	    01h disable video addressing
+Return: AL = 12h if function supported
+Desc:	specify whether the CPU should have access to video memory and the
+	  display adapters I/O registers
+

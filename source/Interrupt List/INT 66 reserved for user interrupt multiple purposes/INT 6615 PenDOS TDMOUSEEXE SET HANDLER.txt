@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6615
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - PenDOS - TDMOUSE.EXE - SET ??? HANDLER
+	AH = 15h
+	DX:BX -> new handler for ???
+Return: CF clear
+	AX = 0000h
+	DX:BX -> old handler (points at RETF by default)
+

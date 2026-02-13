@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1015
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GET PHYSICAL DISPLAY PARAMETERS (CONVERTIBLE)
+	AH = 15h
+Return: AX = alternate display adapter type (see #00037)
+	ES:DI -> parameter table (see #00038)
+SeeAlso: AH=1Bh
+
+(Table 00037)
+Values for PC Convertible alternate display adapter type:
+ 0000h	none
+ 5140h	LCD
+ 5153h	CGA
+ 5151h	mono
+
+Format of PC Convertible display parameter table:
+Offset	Size	Description	(Table 00038)
+ 00h	WORD	monitor model number
+ 02h	WORD	vertical pixels per meter
+ 04h	WORD	horizontal pixels per meter
+ 06h	WORD	total vertical pixels
+ 08h	WORD	total horizontal pixels
+ 0Ah	WORD	horizontal pixel separation in micrometers
+		(width, center-to-center)
+ 0Ch	WORD	vertical pixel separation in micrometers
+		(height, center-to-center)
+

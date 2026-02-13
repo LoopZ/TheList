@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE44FBX0000
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - NDOS v4.0+ - KSTACK.COM - INSTALLATION CHECK
+	AX = E44Fh
+	BX = 0000h
+Return: AX = 44EEh if installed
+Program: NDOS is a version of 4DOS licensed to Symantec for inclusion in the
+	  Norton Utilities
+Note:	this function is also supported by ANSIPLUS v3.01+ and K3PLUS v6.20+,
+	  which emulate the 4DOS and NDOS keystack
+SeeAlso: AX=D44Fh/BX=0000h,AX=E44Fh/BX=0001h
+

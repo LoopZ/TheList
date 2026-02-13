@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B8103
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification - LOCK DMA REGION
+	AX = 8103h
+	DX = flags (see #03220)
+	ES:DI -> DMA descriptor structure (see #03221,#03222,#03223)
+Return: CF clear if successful
+	    DDS physical address field filled in
+	    DDS buffer ID field filled (0000h if no buffer allocated)
+	CF set on error
+	    AL = error code (see #03218)
+	    DDS region size field filled wth maximum contiguous length in bytes
+BUGS:	Windows 3.0 does not correctly support automatic remapping or copying
+	  in enhanced mode
+	Windows 3.0 in enhanced mode does not return a correct code on error
+SeeAlso: AX=8104h,AX=8105h
+
+Bitfields for VDS flags:
+Bit(s)	Description	(Table 03220)
+ 0	reserved (zero)
+ 1	data should be copied into buffer (ignored if 2 set)
+ 2	buffer should not be allocated if region noncontiguous or crosses
+	  physical alignment boundary specified by 4-5
+ 3	don't attempt automatic remap
+ 4	region must not cross 64K physical alignment boundary
+ 5	region must not cross 128K physical alignment boundary
+ 6-15	reserved (zero)
+
+Format of DMA descriptor structure (DDS):
+Offset	Size	Description	(Table 03221)
+ 00h	DWORD	region size
+ 04h	DWORD	offset
+ 08h	WORD	segment/selector
+ 0Ah	WORD	buffer ID
+ 0Ch	DWORD	physical address
+
+Format of Extended DMA descriptor structure (EDDS):
+Offset	Size	Description	(Table 03222)
+ 00h	DWORD	region size
+ 04h	DWORD	offset
+ 08h	WORD	segment/selector
+ 0Ah	WORD	reserved
+ 0Ch	WORD	number available
+ 0Eh	WORD	number used
+ 10h	DWORD	region 0 physical address
+ 14h	DWORD	region 0 size in bytes
+ 18h	DWORD	region 1 physical address
+ 1Ch	DWORD	region 1 size in bytes
+	...
+
+Format of Extended DMA descriptor structure (EDDS) with page table entries:
+Offset	Size	Description	(Table 03223)
+ 00h	DWORD	region size
+ 04h	DWORD	offset
+ 08h	WORD	segment/selector
+ 0Ah	WORD	reserved
+ 0Ch	WORD	number available
+ 0Eh	WORD	number used
+ 10h	DWORD	page table entry 0 (same as 80386 page table entry)
+ 14h	DWORD	page table entry 1
+	...
+Note:	bits 1-11 of the page table entries should be zero; bit 0 set if page
+	  is present and locked
+

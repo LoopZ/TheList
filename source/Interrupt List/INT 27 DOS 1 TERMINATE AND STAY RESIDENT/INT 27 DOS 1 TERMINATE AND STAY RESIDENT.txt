@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 27
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 27 - DOS 1+ - TERMINATE AND STAY RESIDENT
+	DX = number of bytes to keep resident (max FFF0h)
+	CS = segment of PSP
+Return: never
+Notes:	this is an obsolete call
+	INT 22, INT 23, and INT 24 are restored from the PSP
+	does not close any open files
+	the minimum number of bytes which will remain resident is 110h for
+	  DOS 2.x and 60h for DOS 3.0+; there is no minimum for DOS 1.x, which
+	  implements this service in COMMAND.COM rather than the DOS kernel
+SeeAlso: INT 21/AH=31h
+

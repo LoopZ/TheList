@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21252B
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - VIRTUAL MEMORY MANAGEMENT - PAGE LOCKING
+	AX = 252Bh
+	BH = function
+	    05h lock pages
+	    06h unlock pages
+	BL = address type
+	    00h linear address
+		ECX = linear start address of memory region
+	    01h segmented address
+		ES:ECX -> start of memory region
+	EDX = size of memory region in bytes
+Return: CF clear if successful
+	CF set on error
+Note:	this function is also supported by FlashTek X-32VM; if X-32 is not
+	  using virtual memory, this function always succeeds
+

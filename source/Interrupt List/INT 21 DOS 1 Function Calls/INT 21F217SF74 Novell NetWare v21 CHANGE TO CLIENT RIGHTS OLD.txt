@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF74
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2.1+ - CHANGE TO CLIENT RIGHTS (OLD)
+	AX = F217h subfn 74h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #01990 at AH=E3h/SF=74h)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+Desc:	temporarily assume the login identity of the client submitting the
+	  job being serviced
+SeeAlso: AH=F2h"NetWare",AH=E3h/SF=74h,AX=F217h/SF=85h
+

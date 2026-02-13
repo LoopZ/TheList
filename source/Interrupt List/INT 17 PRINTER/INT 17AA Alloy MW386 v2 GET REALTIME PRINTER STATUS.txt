@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17AA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy MW386 v2+ - GET REAL-TIME PRINTER STATUS
+	AH = AAh
+	AL = mode
+	    00h NTNX
+		DX = NTNX printer number (see #00643)
+	    01h MW386
+		DX = MW386 printer number
+Return: AH = instantaneous printer status
+	    00h printer ready
+	    01h not ready
+	    12h off line
+	    13h out of paper
+	    14h general device failure
+	    15h device timeout
+	    16h bad device number
+

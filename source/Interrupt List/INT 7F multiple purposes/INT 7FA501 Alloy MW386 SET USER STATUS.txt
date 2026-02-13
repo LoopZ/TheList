@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FA501
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - SET USER STATUS
+	AX = A501h
+	BX = user flags (see AX=A500h)
+	CL = scan code for task manager hotkey
+	CH = scan code for spooler hotkey
+	DL = scan code for task swapper hotkey
+	DH = modifier key status
+	DI = machine number and user number
+Return: CF set if invalid user number
+Note:	must have supervisor privilege to set another user's status
+SeeAlso: AX=A500h
+Index:	hotkeys;Alloy MW386
+

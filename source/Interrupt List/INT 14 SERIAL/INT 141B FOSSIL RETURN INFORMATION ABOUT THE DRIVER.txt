@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141B
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - RETURN INFORMATION ABOUT THE DRIVER
+	AH = 1Bh
+	DX = port number
+	CX = size of user buffer
+	ES:DI -> user buffer for driver info (see #00343)
+Return: AX = number of characters transferred
+	CX = 3058h ("0X") (X00 FOSSIL only)
+	DX = 2030h (" 0") (X00 FOSSIL only)
+
+Format of FOSSIL driver info:
+Offset	Size	Description	(Table 00343)
+ 00h	WORD	size of structure in bytes
+ 02h	BYTE	FOSSIL spec driver conforms to
+ 03h	BYTE	revision level of this specific driver
+ 04h	DWORD	pointer to ASCIZ identification string
+ 08h	WORD	size of the input buffer
+ 0Ah	WORD	number of bytes left in buffer
+ 0Ch	WORD	size of the output buffer
+ 0Eh	WORD	number of bytes left in buffer
+ 10h	BYTE	width of screen
+ 11h	BYTE	length of screen
+ 12h	BYTE	actual baud rate, computer to modem
+

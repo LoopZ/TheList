@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F93
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - InnerMission v1.7+ - INSTALLATION CHECK
+	AH = 93h
+	BX = CX = AX
+Return: AL = state
+	    FFh if installed and BX=CX=AX on entry
+		BX = segment of resident code
+	    01h if installed but BX or CX differ from AX (multiplex number not
+		  available)
+Program: InnerMission is a shareware graphical screen blanker by Kevin Stokes
+SeeAlso: INT 14/AX=AA01h,INT 2F/AX=6400h
+Index:	screen saver;InnerMission
+

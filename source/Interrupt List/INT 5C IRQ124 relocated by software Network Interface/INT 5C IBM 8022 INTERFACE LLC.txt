@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5C - IBM 802.2 INTERFACE (LLC)
+	ES:BX -> CCB (see #03259)
+Return: none
+
+Format of IBM 802.2 CCB:
+Offset	Size	Description	(Table 03259)
+ 00h	BYTE	adapter
+ 01h	BYTE	command code
+ 02h	BYTE	return code
+ 03h	BYTE	work
+ 04h	DWORD	pointer to ???
+ 08h	DWORD	pointer to completion function???
+ 0Ch	DWORD	pointer to parameters???
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200B2
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETPAGE" - SET ACTIVE VIDEO PAGE
+	AX = 00B2h
+	BX = new video page (0000h to 003Fh)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The specified page must be a physical or virtual page
+SeeAlso: AX=0039h,AX=0042h,AX=0043h,AX=0050h,AX=0088h
+

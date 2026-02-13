@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE2F
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.50+ - "VIDEONOTIFY" - HAS DIRECT WINDOW BEEN ACTIVE?
+	AX = DE2Fh
+Return: BX = status
+	    0001h keyboard focus has been given to a direct window since the
+		last call
+	    0000h if not
+Notes:	DESQview 2.50-2.53 are distributed as part of DESQview/X v1.00-1.10.
+	Quarterdeck stated that this call would not be available under future
+	  versions of DESQview Classic, but it is still present in v2.60
+

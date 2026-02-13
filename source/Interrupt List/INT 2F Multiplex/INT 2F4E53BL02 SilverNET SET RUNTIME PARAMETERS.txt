@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4E53BL02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SilverNET - SET RUNTIME PARAMETERS
+	AX = 4E53h ("NS")
+	BL = 02h (function "set runtime parameters")
+	BH = module ID (see #02826)
+	CX = parameter index (see #02829,#02830)
+	DX = new value for specified parameter
+Desc:	set a WORD value in the specified SilverNET module
+Note:	not all indexed parameters are writable; modifying a read-only
+	  parameter can result in system crashes
+SeeAlso: AX=4E53h/BL=00h,AX=4E53h/BL=01h
+

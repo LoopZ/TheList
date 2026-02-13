@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF4C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - LIST RELATIONS OF AN OBJECT
+	AX = F217h subfn 4Ch
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02196)
+	ES:DI -> reply buffer (see #02197)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=39h
+
+Format of NetWare "List Relations Of An Object" request packet:
+Offset	Size	Description	(Table 02196)
+ 00h	WORD	length of following data
+ 02h	BYTE	4Ch (subfunction "List Relations Of An Object")
+ 03h	DWORD	last bindery ID seen (set to FFFFFFFFh on first call)
+ 07h	WORD	object type
+ 09h	BYTE	length of object's name
+ 0Ah  N BYTEs	object's name
+	BYTE	length of property name
+      N BYTEs	property name
+SeeAlso: #02197
+
+Format of NetWare "List Relations Of An Object" reply packet:
+Offset	Size	Description	(Table 02197)
+ 00h	WORD	number of relations returned
+ 02h	var	relations
+SeeAlso: #02196
+

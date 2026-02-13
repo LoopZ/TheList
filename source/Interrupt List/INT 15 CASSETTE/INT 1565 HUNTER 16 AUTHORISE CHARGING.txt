@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1565
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - AUTHORISE CHARGING
+	AH = 65h
+	AL = charging level
+	    01h charging not allowed
+	    02h charging allowed until power down
+	    03h charging allowed until batteries changed or fail.
+		Ask user if charging is still allowed on next poweron
+	    04h charging allowed indefinitely
+	BX = 0203h
+	CX = 0405h
+	DX = 0607h
+Return: AH = status
+SeeAlso: AH=66h,AH=68h
+

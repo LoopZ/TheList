@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8318
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 83 - JM Pro Tracker v5.0 - SET BUFFERS
+	AH = 18h
+	ES:DI -> buffer-pointer structure (see #03977)
+Return: nothing
+SeeAlso: AH=05h,AH=06h,AH=07h,AH=10h
+
+Format of JM Pro Tracker buffer-pointer structure:
+Offset	Size	Description	(Table 03977)
+ 00h	WORD	length of ??? buffer (see AH=05h)
+ 02h	DWORD	-> ??? buffer (see AH=05h)
+ 06h	WORD	length of ??? buffer (see AH=06h)
+ 08h	DWORD	-> ??? buffer (see AH=06h)
+ 0Ch	WORD	length of ??? buffer (see AH=07h)
+ 0Eh	DWORD	-> ??? buffer (see AH=07h)
+ 12h	WORD	??? (see AH=07h)
+ 14h	WORD	??? (see AH=10h) (subfunction 01h)
+ 16h	WORD	??? (see AH=10h) (subfunction 01h)
+ 18h	WORD	??? (see AH=10h) (subfunction 00h)
+ 1Ah	WORD	??? (see AH=10h) (subfunction 01h)
+

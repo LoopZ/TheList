@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 57
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 57 C - TI Professional PC - CRT MAPPING HOOK
+	AX/BX/CX/DX/BP/SI/DI same as on entry to CRT subroutine (e.g. INT 49)
+	DS = BIOS system segment
+	ES = DE00h
+Return: DF/IF flags must be preserved
+	ES,DS,BP preserved
+	AX,BX,CX,DX,SI,DI may be changed as necessary to modify the original
+	  call
+Desc:	hooking this vector permits programs to intercept or modify all
+	  screen output, including both application calls to INT 49 and
+	  calls generated internally by the BIOS which bypass INT 49
+Note:	by default, this vector points at an IRET instruction
+SeeAlso: INT 49/AH=01h"TI",INT 50"TI Professional"
+

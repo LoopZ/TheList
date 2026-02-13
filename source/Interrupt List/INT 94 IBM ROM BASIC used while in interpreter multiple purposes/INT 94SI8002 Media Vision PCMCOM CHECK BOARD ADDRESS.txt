@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI8002
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - CHECK BOARD ADDRESS
+	SI = 8002h
+Return: AX = status
+	    0000h if board not at specified I/O address
+	    other if board found
+Note:	the I/O address is specified by ORing the base I/O port shifted left
+	  four bits into SI before calling INT 94
+SeeAlso: SI=8000h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154280
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq SLT/286 - ENTER STANDBY
+	AX = 4280h
+Return: AH = 42h
+	CF clear if successful
+	CF set if unable to enter standby
+SeeAlso: AX=4600h,AX=5307h/CX=0001h"STAND-BY"
+

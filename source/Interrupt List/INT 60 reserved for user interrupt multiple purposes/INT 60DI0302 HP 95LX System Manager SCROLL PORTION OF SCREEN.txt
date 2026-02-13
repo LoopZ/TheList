@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0302
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - SCROLL PORTION OF SCREEN
+	DI = 0302h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	starting row???
+		WORD	starting column???
+		WORD	height of scroll region???
+		WORD	width of scroll region???
+		WORD	number of lines to scroll region???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0301h
+

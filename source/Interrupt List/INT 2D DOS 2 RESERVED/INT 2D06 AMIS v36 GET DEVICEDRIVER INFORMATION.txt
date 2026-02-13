@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--06
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - AMIS v3.6 - GET DEVICE-DRIVER INFORMATION
+	AL = 06h
+	AH = multiplex number for program
+Return: AL = number of device driver headers supplied by prog.
+	AH = device-driver flags (see #02576)
+	DX:BX -> first device driver header (see #01646)
+Program: AMIS is the Alternate Multiplex Interrupt Specification promulgated
+	  by Ralf Brown
+Notes:	if AL=00h, AH,BX,DX are meaningless and may be destroyed
+	this function is not valid unless a program is installed on the
+	  specified multiplex number; use INT 2D/AL=00h to check
+	programs which provide device drivers are required to support this
+	  function to be considered fully compliant with v3.6+ of the
+	  specification
+SeeAlso: INT 2D/AL=00h,INT 2D/AL=01h,INT 2D/AL=02h,INT 2D/AL=03h,INT 2D/AL=04h
+SeeAlso: INT 2D/AL=05h
+
+Bitfields for AMIS device-driver information flags:
+Bit(s)	Description	(Table 02576)
+ 0	program loaded from CONFIG.SYS, and thus can not be removed from memory
+	(leave clear if unable to determine)
+ 1	device driver headers have not been linked into DOS device chain
+ 2	reentrant device driver(s)
+

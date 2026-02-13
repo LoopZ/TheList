@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F53
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - POWER.EXE - APM event broadcasting???
+	AH = 53h
+	AL = event???
+	    05h CPU idle
+	    0Bh PM event broadcast API
+Return: ???
+Note:	called by MS Windows 3.1 POWER.DRV; hooked by MS Mouse driver v8.20+
+	  and PC-Cache v8.0
+SeeAlso: AX=530Bh,AX=5400h,INT 33/AX=002Fh
+

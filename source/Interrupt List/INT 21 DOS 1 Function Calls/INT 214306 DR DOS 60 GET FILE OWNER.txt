@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214306
+  Category: O 	other operating systems
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - DR DOS 6.0 - GET FILE OWNER
+	AX = 4306h
+	DS:DX -> ASCIZ filename
+Return: CF clear if successful
+	    AX = CX = value set with AX=4307h
+	CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+Note:	no longer supported by Novell DOS 7 / OpenDOS
+SeeAlso: AX=4307h
+

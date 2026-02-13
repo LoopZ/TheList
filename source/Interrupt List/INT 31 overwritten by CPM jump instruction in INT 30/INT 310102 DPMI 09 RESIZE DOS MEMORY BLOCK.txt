@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310102
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - RESIZE DOS MEMORY BLOCK
+	AX = 0102h
+	BX = new block size in paragraphs
+	DX = selector of block
+Return: CF clear if successful
+	CF set on error
+	    AX = DOS error code (07h,08h,09h)
+		  (see #01680 at INT 21/AH=59h/BX=0000h)
+		(DPMI 1.0+) DPMI error code (8011h,8022h) (see #03143)
+	    BX = maximum block size (in paragraphs) possible
+Notes:	increasing the size of a block past a 64K boundary will fail if the
+	  next descriptor in the LDT is already in use
+	shrinking a block past a 64K boundary will cause some selectors to be
+	  freed; DPMI 1.0+ automatically zeros any segment registers containing
+	  a selector freed by this function
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0100h
+

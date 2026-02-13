@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F34--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SND_CLICK" - GENERATE KEYCLICK
+	AH = 34h
+	BP = 0012h (driver ID of V_SYSTEM)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	generate a keyclick if fewer than four clicks are already pending
+Note:	if keyclicks are already pending, the remaining click count is
+	  incremented and the function returns immediately
+SeeAlso: AH=00h"HP Vectra",AH=30h/BP=0012h,AH=36h/BP=0012h,AH=3Ah/BP=0012h
+

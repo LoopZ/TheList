@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FA901
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - METZTSR.COM - GET TIME OF LAST KEYBOARD ACTIVITY
+	AX = A901h
+	CF set
+Return: CF clear if successful
+	    AX:DX = BIOS time at which INT 09 was last invoked
+	CF set if not present
+SeeAlso: INT 09,INT 1A/AH=00h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - VIRUS - "Vacsina" series - INSTALLATION CHECK (NOT A VECTOR!)
+Note:	if one of the Vacsina viruses is resident, the low byte of this
+	  interrupt still contains the last byte of the INT 30 CP/M JMP
+	  instruction, but the remaining three bytes are 7Fh 39h followed
+	  by the Vacsina version number
+SeeAlso: INT 21/AX=FFFFh"VIRUS",INT 32"VIRUS"
+

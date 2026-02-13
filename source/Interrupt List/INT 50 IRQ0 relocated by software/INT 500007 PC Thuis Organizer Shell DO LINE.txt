@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500007
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - DO LINE
+	AX = 0007h
+	ES:BX -> text string
+	CX = string length in bytes (0000h if NUL-terminated)
+	DL = FFh to center string, else flush left
+	DH = upper left row
+	DI = window handle
+Return: AX = status
+	    0000h successful
+	    FFFFh error
+Program: The PC Thuis Organizer Shell was written by John Vanderaart and
+	  published in the June/July 1990 issue of PC Thuis Power magazine
+SeeAlso: AX=0008h
+

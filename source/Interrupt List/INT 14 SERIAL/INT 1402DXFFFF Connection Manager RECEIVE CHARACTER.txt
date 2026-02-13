@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1402--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - RECEIVE CHARACTER
+	AH = 02h
+	DX = FFFFh
+	BH = character to send
+Return: AH = return code (00h-02h,04h,FFh) (see #00303)
+	BH = line status (see #00304)
+	AL = received character (if any)
+Notes:	if DX is 0-3 on entry, Connection Manager emulates the standard BIOS
+	  function, but redirects the port over the network; if DX is any other
+	  value, the call is chained
+	this function is provided primarily for compatibility; AH=07h/DX=FFFFh
+	  is the preferred function because it provides better performance
+SeeAlso: AH=02h/DX=FFFFh,AH=03h/DX=FFFFh,AH=06h/DX=FFFFh
+

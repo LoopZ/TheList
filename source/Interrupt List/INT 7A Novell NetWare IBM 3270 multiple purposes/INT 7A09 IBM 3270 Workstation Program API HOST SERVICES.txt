@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - HOST SERVICES
+	AH = 09h
+	BX = request type (4000h async, 8028h synchronous)
+	CX = 0000h
+	DX = ID of MFIC
+	AL = service (see #03837)
+	ES:DI -> control block
+
+(Table 03837)
+Values for 3270 Workstation Program host service:
+ 01h	connect to host
+ 02h	disconnect from host
+ 03h	read DFT structured data from host
+ 04h	write DFT structured data to host
+ 05h	create a host buffer
+

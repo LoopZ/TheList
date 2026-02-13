@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F10--CL05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - CHANNEL CONTROL - CLOSE ALL CHANNELS
+	AH = 10h
+	CL = 05h
+Return: AL = status (00h-03h) (see #03951)
+Notes:	clears all pending datagrams and clears buffer pointers before closing
+	  the channels
+	may not be invoked from within a hardware interrupt handler
+SeeAlso: AH=10h/CL=01h
+

@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1318--CXD2C9
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - XDF.COM - API
+	AH = 18h
+	CX = D2C9h ("R"+80h, "I"+80h = Roger Ivey)
+	DX = 0000h
+	BX = function
+	    0000h installation check
+		  Return: AH = 0Ch
+			  CX = 7269h ("ri" = Roger Ivey)
+			  ES = segment of driver
+			  CF set
+	    2F64h ("/d") disable the driver
+		  Return: AH = 0Ch
+			  ES:BX = pointer to activation flag (it is set to 0:
+				  set it to 1 to enable the driver again)
+			  CX = 7269h
+			  CF set
+	    2F75h ("/u") unload the driver (restore interrupts & free memory)
+		  Return: AH = 0Ch
+			  DL = 55h ("U") if successful
+			     = 00h	   if fails
+			  CX = 7269h
+			  ES = segment of driver
+			  CF set
+			  AL, BX, DH, and DI destroyed
+Program: XDF is a TSR provided with PC-DOS 7.0 to support XDF 1.84M disks,
+	  developed by Roger D. Ivey
+Note:	After disabling or enabling the driver, a disk change must be performed
+	  or simulated to reset the driver.
+

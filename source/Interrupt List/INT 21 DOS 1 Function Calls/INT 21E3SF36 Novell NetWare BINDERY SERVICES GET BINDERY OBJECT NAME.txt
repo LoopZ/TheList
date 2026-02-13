@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF36
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - GET BINDERY OBJECT NAME
+	AH = E3h subfn 36h
+	DS:SI -> request buffer (see #01928)
+	ES:DI -> reply buffer (see #01929)
+Return: AL = status (see #01927)
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+	the requesting workstation must be logged into the file server with
+	  read access to the bindery object
+SeeAlso: AH=E3h/SF=35h,AH=E3h/SF=44h,AX=F217h/SF=36h
+
+(Table 01927)
+Values for NetWare function status:
+ 00h	successful
+ 96h	server out of memory
+ EFh	invalid name
+ F0h	wildcard not allowed
+ FCh	no such object
+ FEh	server bindery locked
+ FFh	bindery failure
+SeeAlso: #01920,#01933
+
+Format of NetWare "Get Bindery Object Name" request buffer:
+Offset	Size	Description	(Table 01928)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	36h (subfunction "Get Bindery Object Name")
+ 03h	DWORD	(big-endian) object ID
+SeeAlso: #01929,#02185 at AX=F217h/SF=36h
+
+Format of NetWare "Get Bindery Object Name" reply buffer:
+Offset	Size	Description	(Table 01929)
+ 00h	WORD	(call) 0036h (length of following buffer space)
+ 02h	DWORD	(big-endian) object ID
+ 06h	WORD	(big-endian) type of object
+ 08h 48 BYTEs	object name
+SeeAlso: #01928,#02185
+

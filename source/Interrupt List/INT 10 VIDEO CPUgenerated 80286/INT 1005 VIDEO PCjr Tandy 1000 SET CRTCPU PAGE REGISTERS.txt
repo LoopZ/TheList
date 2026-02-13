@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1005
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - PCjr, Tandy 1000 - SET CRT/CPU PAGE REGISTERS
+	AH = 05h
+	AL = subfunction
+	    81h set CPU page register
+		BL = CPU page
+	    82h set CRT page register
+		BH = CRT page
+	    83h set both CPU and CRT page registers
+		BL = CPU page
+		BH = CRT page
+Return: nothing
+Notes:	the CPU page determines which 16K block of the first 128K of physical
+	  memory will be mapped at B800h by the hardware
+	the CRT page determines the start address of the memory used by the
+	  video controller
+SeeAlso: AX=0580h
+

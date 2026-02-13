@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 672763CL01
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - VIDEMS.SYS v1.31+ - INSTALLATION CHECK
+	AX = 2763h
+	CL = 01h
+	BX = signature AAFFh
+Return: AH = 00h if VIDEMS is installed
+	    CH = 00h if optimization for 80286 is used, 01h otherwise
+	    CL = internal revision number (typically 00h to 03h)
+	    DX = driver version (DH=major, DL=minor; not a BCD!)
+	AH = 84h if not installed but EMS manager is present
+Program: VIDEMS is an expanded memory manager from Conea Software Corp. It
+	 converts video adapter RAM to LIM 3.2 EMS.
+SeeAlso: AX=2763h/CL=02h,AX=2763h/CL=03h
+

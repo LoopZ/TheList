@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE00
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - INSTALLATION CHECK
+	AX = DE00h
+Return: AH = status
+	    00h VCPI is present
+		BH = major version number
+		BL = minor version number
+	    nonzero  VCPI not present
+BUG:	MS Windows 3.00 is reported to "object violently" to this call.
+SeeAlso: INT 2F/AX=1687h
+

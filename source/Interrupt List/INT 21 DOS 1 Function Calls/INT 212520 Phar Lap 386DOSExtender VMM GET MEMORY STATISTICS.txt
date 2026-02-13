@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212520
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender VMM - GET MEMORY STATISTICS
+	AX = 2520h
+	DS:EDX -> pointer to buffer at least 100 bytes in size (see #01364)
+	BL = 0 (don't reset VM stats), 1 (reset VM stats)
+Return: carry flag clear
+
+Format of Phar Lap VM statistics buffer:
+Offset	Size	Description	(Table 01364)
+ 00h	DWORD	VM status
+		0001h VM subsystem is present
+		0000h VM not present
+ 04h	DWORD	"nconvpg" number of conventional memory pages available
+ 08h	DWORD	"nbimpg" number of Compaq built-in memory pages available
+ 0Ch	DWORD	"nextpg" total number of extended memory pages
+ 10h	DWORD	"extlim" extender memory pages limit
+ 14h	DWORD	"aphyspg" number of physical memory pages allocated to appl
+ 18h	DWORD	"alockpg" number of locked pages owned by application
+ 1Ch	DWORD	"sysphyspg" number physical memory pages allocated to system
+ 20h	DWORD	"nfreepg" number of free physical pages; approx if EMS VCPI
+ 24h	DWORD	linear address of beginning of application address space
+ 28h	DWORD	linear address of end of application address space
+ 2Ch	DWORD	number of seconds since last time VM stats were reset
+ 30h	DWORD	number of page faults since last time
+ 34h	DWORD	number of pages written to swap file since last time
+ 38h	DWORD	number of reclaimed pages (page faults on swapped pages)
+ 3Ch	DWORD	number of virtual pages allocated to the application
+ 40h	DWORD	size in pages of swap file
+ 44h	DWORD	number of system pages allocated with EMS calls
+ 48h	DWORD	minimum number of conventional memory pages
+ 4Ch	DWORD	maximum size in pages to which swap file can be increased
+ 50h	DWORD	"vmflags"
+		bit 0 = 1 if page fault in progress
+---v4.0+ ---
+ 54h	DWORD	number of physical pages guaranteed to be free
+ 58h	DWORD	number of free physical pages currently available
+ 5Ch	DWORD	size in pages of largest free block of memory (including disk
+		  swap space)
+ 60h	DWORD	reserved
+

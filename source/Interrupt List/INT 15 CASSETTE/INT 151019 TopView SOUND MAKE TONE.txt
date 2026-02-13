@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151019
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "SOUND" - MAKE TONE
+	AX = 1019h
+	BX = frequency in Hertz (0000h = silence)
+	CX = duration in clock ticks (18.2 ticks/sec)
+Return: immediately, tone continues to completion
+Notes:	if another tone is already playing, the new tone does not start until
+	  completion of the previous one.  Up to 32 tones may be queued before
+	  the process is blocked until a note completes.
+	in DV 2.00, the lowest tone allowed is 20 Hz
+	if CX = 0, the current note is cancelled; if BX = 0 as well, all queued
+	  notes are also cancelled
+SeeAlso: AH=82h"HUNTER",INT 16/AH=73h
+

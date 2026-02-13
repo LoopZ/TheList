@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4300
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - EXTENDED MEMORY SPECIFICATION (XMS) v2+ - INSTALLATION CHECK
+	AX = 4300h
+Return: AL = 80h XMS driver installed
+	AL <> 80h no driver
+Notes:	XMS gives access to extended memory and noncontiguous/nonEMS memory
+	  above 640K
+	this installation check DOES NOT follow the format used by other
+	  software
+SeeAlso: AX=4310h,AX=1687h,INT 67/AH=40h,@xxxxh:xxxxh"PMM"
+Index:	installation check;XMS version 2+
+

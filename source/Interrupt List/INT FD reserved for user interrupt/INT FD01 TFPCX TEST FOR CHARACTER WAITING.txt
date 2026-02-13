@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: FD01
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT FD - TFPCX - TEST FOR CHARACTER WAITING
+	AH = 01h
+Return: AX = status
+	    0000h no characters waiting
+	    0001h character available for input
+Program: TFPCX is an interface between modem and terminal program for packet-
+	  radio communications
+SeeAlso: AH=02h
+

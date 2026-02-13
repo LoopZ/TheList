@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBB00BX0002
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CATC USB4DOS Host Controller - EXECUTE USB REQUEST
+	AX = BB00h
+	BX = 0002h
+	CX:DX -> request packet (see #04097)
+Return: AX = destroyed
+
+Format of USB4DOS Host Controller request packet:
+Offset	Size	Description	(Table 04097)
+ 00h	WORD	command number
+ 02h	WORD	(ret) major status
+ 04h	WORD	(ret) minor status
+ 06h	DWORD	-> callback function
+ 0Ah 25 BYTEs	data for command (varies by command number)
+ 23h 12 BYTEs	reserved for future use
+

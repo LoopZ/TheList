@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 168765BX4321
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AT.COM version 8/26/87 - API
+	AX = 8765h
+	BX = 4321h
+	CX = ??? or FFFFh
+	if CX = FFFFh
+		DX = number of event to remove or FFFFh
+Return: ES:BX -> event record array (see #00607)
+Program: AT.COM is a resident scheduler by Bill Frolik
+
+Format of AT.COM event record:
+Offset	Size	Description	(Table 00607)
+ 00h	BYTE	in-use flag (00h free, 01h in use, FFh end of array)
+ 01h	BYTE	day of date on which to trigger
+ 02h	BYTE	month of date on which to trigger
+ 03h	BYTE	trigger time, minute
+ 04h	BYTE	trigger time, hour
+ 05h	WORD	offset of command to be executed
+

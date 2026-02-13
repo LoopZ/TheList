@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 147000
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - NEWCOM - INSTALLATION CHECK
+	AX = 7000h
+Return: AX = 4E43h ('NC') if installed
+	BX = 4F4Dh ('OM') if installed
+	    CH = major version number
+	    CL = minor version number
+	    DH = patch level
+	    DL = language (currently: 00h English, 01h French)
+Program: Newcom is a DOS commandline-enhancer by kilobug@kali.isicom.fr
+SeeAlso: INT 2F/AX=D44Dh
+

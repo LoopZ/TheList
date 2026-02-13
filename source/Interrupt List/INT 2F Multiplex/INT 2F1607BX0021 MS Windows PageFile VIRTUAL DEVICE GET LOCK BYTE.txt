@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1607BX0021
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - "PageFile" VIRTUAL DEVICE - GET LOCK BYTE
+	AX = 1607h
+	BX = 0021h (PageFile VxD ID)
+	CX = 0000h
+Return: AX = status
+	    0000h success
+		ES:DI -> cache lock byte in disk cacher
+	    other no disk cache or unsupported
+Notes:	PageFile issues this call on real-mode initialization in order to allow
+	  disk caches to provide it with a byte which it can use to temporarily
+	  lock the disk cache; VMPOLL also issues this call, so it is made
+	  twice each time Windows starts up
+	if this call fails, PageFile falls back to other techniques for locking
+	  the disk cache
+SeeAlso: AX=1607h"CALL OUT API"
+

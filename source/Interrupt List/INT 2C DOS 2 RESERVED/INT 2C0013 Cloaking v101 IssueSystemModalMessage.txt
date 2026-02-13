@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0013
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - "Issue_System_Modal_Message"
+	AX = 0013h
+	EDX = message box flags (see #02564)
+	DS:ECX -> ASCIZ message text
+	DS:EDI -> ASCIZ caption
+Return: CF clear
+	EAX = response code
+Note:	this function is only available while MS Windows is running in enhanced
+	  mode
+SeeAlso: AX=000Fh,AX=0012h
+
+Bitfields for message box flags:
+Bit(s)	Description	(Table 02564)
+ 3-0	response codes (see #02565)
+ 7-4	icon codes
+	1 = Warning hand
+	2 = exclamation mark
+	4 = asterisk
+ 9-8	default response (0 = first button, 1 = second, 2 = third)
+ 12	message is system model
+ 15	don't change focus
+ 29	hang with interrupts enabled
+ 30	do not window
+ 31	execute ASAP
+
+(Table 02565)
+Values for response codes:
+ 00h	OK
+ 01h	OK, Cancel
+ 02h	Abort, Retry, Ignore
+ 03h	Yes, No, Cancel
+ 04h	Yes, No
+ 05h	Retry, Cancel
+

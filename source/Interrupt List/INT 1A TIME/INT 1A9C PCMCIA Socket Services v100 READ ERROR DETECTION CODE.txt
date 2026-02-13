@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A9C
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - READ ERROR DETECTION CODE
+	AH = 9Ch
+	AL = adapter number
+	BH = EDC generator
+Return: CF clear if successful
+	    AH destroyed
+	    DL/DX = computed checksum or CRC
+	CF set on error
+	    AH = error code (01h,04h) (see #00656)
+SeeAlso: AH=95h,AH=96h,AH=98h,AH=99h,AH=9Bh
+

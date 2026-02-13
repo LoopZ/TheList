@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21714F
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - FIND NEXT MATCHING FILE
+	AX = 714Fh
+	BX = filefind handle (from AX=714Eh)
+	SI = date/time format (see #01778)
+	ES:DI -> buffer for FindData record (see #01779)
+Return: CF clear if successful
+	    AH = 4Fh (undocumented)
+	    AL destroyed (becomes low byte of filefind handle in Win95B)
+	    CX = Unicode conversion flags (see #01780)
+	CF set on error
+	    AX = error code
+		7100h if function not supported
+Notes:	this function is only available when IFSMgr is running, not under bare
+	  MS-DOS 7
+	for compatibility with DOS versions prior to v7.00, the carry flag
+	  should be set on call to ensure that it is set on exit
+SeeAlso: AH=4Eh,AX=714Eh,AX=71A1h,AX=71A2h
+

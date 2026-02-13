@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F4B
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - LOCAL NetRemoteMove
+	AX = 5F4Bh
+	DS:DX -> NetRemoteMove parameter structure (see #01722)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F4Ah
+
+Format of LAN Manager NetRemoteMove parameter structure:
+Offset	Size	Description	(Table 01722)
+ 00h	DWORD	-> source name as UNC
+ 04h	DWORD	-> destination name as UNC
+ 08h	DWORD	-> source password
+ 0Ch	DWORD	-> destination password
+ 10h	WORD	destination open bitmap
+		if destination path exists
+		    0000h open fails
+		    0001h file is appended
+		    0002h file is overwritten
+		if destination path doesn't exist
+		    0000h open fails
+		    0010h file is created
+ 12h	WORD	move control bitmap
+		    0001h destination must be a file
+		    0002h destination must be a directory
+ 14h	DWORD	-> move_info buffer
+ 18h	WORD	length of move_info buffer
+

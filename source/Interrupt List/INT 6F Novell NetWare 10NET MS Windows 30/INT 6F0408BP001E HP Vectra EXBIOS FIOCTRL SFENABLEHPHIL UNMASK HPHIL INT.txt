@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0408BP001E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_ENABLE_HPHIL" - UNMASK HP-HIL INT
+	AX = 0408h
+	BP = 001Eh (driver ID for V_S8259)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=0400h/BP=001Eh,AX=0404h/BP=001Eh
+SeeAlso: AX=040Ah/BP=001Eh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "SUBFROM" - REMOVE OBJECT FROM OBJECTQ
+	AH = 12h
+	BH = 0Bh
+	BL = OBJECTQ from which to remove all copies of a particular object
+	    06h OBJECTQ of task whose handle is on top of stack
+	    07h task's default OBJECTQ
+	STACK:	DWORD	handle of object to remove
+Return: STACK popped
+Note:	should be sent whenever an object is erased or closed
+

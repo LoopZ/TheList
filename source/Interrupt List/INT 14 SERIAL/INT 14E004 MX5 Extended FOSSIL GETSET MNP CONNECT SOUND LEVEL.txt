@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E004
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MX5 Extended FOSSIL - GET/SET MNP CONNECT SOUND LEVEL
+	AX = E004h
+	BH = function
+	    00h get sound level
+	    01h set sound level
+		BL = new sound level (00h off, 01h on [default])
+	DX = port number
+Return: BL = sound state
+Desc:	specify whether MX5 should generate beeps after an MNP connection
+	  (three high beeps if successful, high then low on connection failure)
+SeeAlso: AX=E002h,AX=E006h
+

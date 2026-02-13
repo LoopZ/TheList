@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FE2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET MESSAGE SERVICE VECTOR
+	AX = 5FE2h
+Return: CF clear if successful
+	    ES:BX -> current FAR message service routine
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5FE0h,AX=5FE3h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F09
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ - proposed addition - GET NODE/APPLICATION CALLSIGN AND ALIAS
+	AH = 09h
+	AL = application
+	    00h node
+	    01h BBS
+	    02h HOST
+	    03h SYSOP
+	BL = what to get (00h callsign, 01h application name)
+	ES:SI -> buffer for callsign/name string
+Return: CX = length of returned string
+SeeAlso: AH=00h"G8BPQ",AH=01h"G8BPQ",AH=0Ch"G8BPQ"
+

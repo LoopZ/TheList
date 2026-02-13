@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F15FFBX0000
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM - CORELCDX - INSTALLATION CHECK
+	AX = 15FFh
+	BX = 0000h
+Return: BX = ABCDh if CORELCDX loaded
+Note:	Corel's CORELCDX.COM is a replacement for MSCDEX.EXE; it also supports
+	  the standard MSCDEX installation check calls AX=1500h and AX=150Ch
+SeeAlso: AX=1500h"CD-ROM",AX=150Ch
+

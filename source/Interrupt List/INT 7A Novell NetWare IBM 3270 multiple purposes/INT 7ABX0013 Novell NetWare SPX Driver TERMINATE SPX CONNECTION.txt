@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0013
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - SPX Driver - TERMINATE SPX CONNECTION
+	BX = 0013h
+	DX = connection ID to terminate
+	ES:SI -> Event Control Block (see #03810 at BX=0003h)
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: BX=0011h,BX=0012h,BX=0014h
+

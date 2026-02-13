@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF0F
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "RelMem" - RELEASE PREVIOUSLY ALLOCATED MEMORY
+	AX = FF0Fh
+	BX = selector for block to be released
+Return: CF clear if successful
+	CF set on error
+SeeAlso: AX=FF0Bh,AX=FF0Ch,AX=FF14h
+

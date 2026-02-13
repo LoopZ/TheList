@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D08
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - TERMINATE SESSION
+	AH = 08h
+Desc:	indicate to any other programs that intercept INT 7D that the program
+	  has finished with the link
+Note:	the program should call this function even if a SCSI error caused its
+	  termination
+

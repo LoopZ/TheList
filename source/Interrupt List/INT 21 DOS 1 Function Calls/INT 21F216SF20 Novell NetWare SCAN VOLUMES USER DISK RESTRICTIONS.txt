@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF20
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SCAN VOLUME'S USER DISK RESTRICTIONS
+	AX = F216h subfn 20h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02130)
+	ES:DI -> reply buffer (see #02131)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=23h,AX=F216h/SF=29h
+
+Format of NetWare "Scan Volume's User Disk Restrictions" request packet:
+Offset	Size	Description	(Table 02130)
+ 00h	WORD	length of following data
+ 02h	BYTE	20h (subfunction "Scan Volume's User Disk Restrictions")
+ 03h	BYTE	volume number
+ 04h	DWORD	sequence number (set to 00000000h before first call)
+SeeAlso: #02131
+
+Format of NetWare "Scan Volume's User Disk Restrictions" reply packet:
+Offset	Size	Description	(Table 02131)
+ 00h	BYTE	number of entries returned (max 12)
+ 01h 2N DWORDs	restriction entries [array]
+		Offset	Size	Description
+		 00h	DWORD	object ID
+		 04h	DWORD	maximum usage allowed (in 4K blocks)
+SeeAlso: #02130
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB14
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - VIEW FAX
+	AX = DB14h
+	DS:SI -> source filename, including path (max 128 characters)
+Return: AX = status (see #03096)
+SeeAlso: AX=DB11h,AX=DB12h,AX=DB14h
+

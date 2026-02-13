@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E906
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare shell 3.01 - DELETE FAKE ROOT DIRECTORY
+	AX = E906h
+	BL = drive number (0=default, 1=A:, ...)
+Return: AL = completion code
+Note:	drive remains mapped
+SeeAlso: AX=E905h
+

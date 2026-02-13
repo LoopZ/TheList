@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155F35
+  Category: V 	video
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - Chips & Technologies '65530' BIOS - MONITOR SENSING HOOK
+	AX = 5F35h
+Return:	DL = boot display
+	    00h CRT
+	    01h flat panel (LCD)
+	    02h both simultaneously
+	    leave unchanged to boot according to BIOS settings
+SeeAlso: AX=5F31h,AX=5F33h,INT 10/AX=5F50h
+

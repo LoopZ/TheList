@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2151
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ internal - GET CURRENT PROCESS ID (GET PSP ADDRESS)
+	AH = 51h
+Return: BX = segment of PSP for current process
+Notes:	DOS uses the current PSP address to determine which processes own files
+	  and memory; it corresponds to process identifiers used by other OSs
+	under DOS 2.x, this function cannot be invoked inside an INT 28h
+	  handler without setting the Critical Error flag
+	under DOS 3.0+, this function does not use any of the DOS-internal
+	  stacks and may thus be called at any time, even during another
+	  INT 21h call
+	supported by OS/2 compatibility box
+	identical to the documented AH=62h
+	this call was undocumented prior to the release of DOS 5.0
+SeeAlso: AH=26h,AH=50h,AH=62h
+

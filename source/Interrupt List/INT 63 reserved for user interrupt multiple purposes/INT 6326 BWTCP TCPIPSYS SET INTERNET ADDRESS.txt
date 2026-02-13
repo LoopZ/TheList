@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6326
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - SET INTERNET ADDRESS???
+	AH = 26h
+	CL:CH:DL:DH = Internet address
+Return: nothing
+Range:	INT 4D to INT FC, selected by configuration
+Note:	this function sets a different variable than AH=25h returns
+SeeAlso: AH=03h,AH=25h
+

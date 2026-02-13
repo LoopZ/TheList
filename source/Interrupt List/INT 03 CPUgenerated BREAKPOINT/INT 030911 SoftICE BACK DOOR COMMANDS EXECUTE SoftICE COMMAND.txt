@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 030911
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 03 - Soft-ICE - BACK DOOR COMMANDS - EXECUTE Soft-ICE COMMAND
+	AX = 0911h
+	SI = magic value 4647h ('FG')
+	DI = magic value 4A4Dh ('JM')
+	DS:DX -> ASCIZ command string (max 100 bytes, 0Dh OK)
+Return: nothing
+SeeAlso: AX=0912h,AX=0913h
+

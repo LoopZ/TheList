@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--20
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - DTown Utilities v1.40+ - GET POP-UP HANDLER ADDRESS
+	AL = 20h
+Return: AL = FFh if available
+	    DX:DI -> DTU popup-handler
+Program: DTown Utilities is a freeware programmer's utility TSR by Jeroen van
+	  Disseldorp
+Note:	this function is only available if the extended API has been installed
+	  in the resident portion
+SeeAlso: INT 2D/AL=10h"DTown",INT 2D/AL=21h,INT 2D/AL=50h,INT 2D/AL=51h
+SeeAlso: INT 03"DTown"
+

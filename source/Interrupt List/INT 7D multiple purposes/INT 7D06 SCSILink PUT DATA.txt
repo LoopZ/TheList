@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D06
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - PUT DATA
+	AH = 06h
+	CX = number of bytes to store (0001h-0100h)
+	ES:BX -> data to be saved
+Return: CF clear if successful
+	CF set on error
+	    AL = error code (01h = too much data)
+Note:	the specified data is stored in SCSILink's PSP
+SeeAlso: AH=07h
+

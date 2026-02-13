@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0024
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 3.0 DPMILOAD.EXE - GET PROTECTED-MODE INTERRUPT VECTOR
+	AX = FB42h
+	BX = 0024h
+	CL = interrupt number
+Return: DX = status (0000h) (see also AX=FB42h/BX=0004h)
+	AX:BX = selector:offset of handler
+SeeAlso: AX=FB42h/BX=0025h,INT 31/AX=0204h
+

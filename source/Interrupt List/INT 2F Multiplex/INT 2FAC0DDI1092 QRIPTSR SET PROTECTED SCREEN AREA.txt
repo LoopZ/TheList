@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC0DDI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - SET PROTECTED SCREEN AREA
+	AX = AC0Dh
+	DI = 1092h
+	CL = number of text lines at bottom of screen to protect (00h = off)
+	BL = attribute with which to fill area (bit 7 = high-int. background)
+Return: nothing
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC0Eh,AX=AC0Fh,AX=AC10h,AX=ACF0h
+

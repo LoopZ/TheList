@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F9204
+  Category: R 	remote control/file access
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v8.0 DRIVEMAP - INSTALLATION CHECK
+	AX = 9204h
+Return: AX = 9200h if installed
+	   BL = ???
+	   CX = segment of resident code
+Program: DRIVEMAP is a redirector which allows drives on computers connected
+	  over the parallel or serial ports to appear as local drives
+SeeAlso: AX=9201h,AX=9202h,AX=9203h
+

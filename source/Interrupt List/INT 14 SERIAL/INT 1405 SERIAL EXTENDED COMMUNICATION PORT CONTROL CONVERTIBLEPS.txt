@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1405
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - SERIAL - EXTENDED COMMUNICATION PORT CONTROL (CONVERTIBLE,PS)
+	AH = 05h
+	AL = function
+	    00h read modem control register
+	      Return: BL = modem control register (see #00334)
+		      AH = status
+	    01h write modem control register
+	      BL = modem control register (see #00334)
+	      Return: AX = status
+	DX = port number
+Note:	also supported by ArtiCom
+SeeAlso: AH=00h,AH=1Fh,AX=8000h"ARTICOM",AH=FBh
+
+Bitfields for modem control register:
+Bit(s)	Description	(Table 00334)
+ 0	data terminal ready
+ 1	request to send
+ 2	OUT1
+ 3	OUT2
+ 4	LOOP
+ 5-7	reserved
+

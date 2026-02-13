@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6741
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - GET PAGE FRAME SEGMENT
+	AH = 41h
+Return: AH = status (see also AH=40h)
+	    00h function successful
+		BX = segment of page frame
+SeeAlso: AH=58h,AH=68h
+

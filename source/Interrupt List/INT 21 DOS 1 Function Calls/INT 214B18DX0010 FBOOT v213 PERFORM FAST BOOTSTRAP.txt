@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214B18DX0010
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - FBOOT v2.13 - PERFORM FAST BOOTSTRAP
+	AX = 4B18h
+	DX = 0010h
+	BX = disk selector
+	    0000h boot from floppy
+	    0080h boot from hard disk
+Return: never if FastBoot installed
+Program: CyberWare FastBoot allows fast warm boots by skipping CMOS
+	  checking, ROM scan, RAM & peripheral components test
+InstallCheck:	search for a character device driver called "FBOOT$$$"
+

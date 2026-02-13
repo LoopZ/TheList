@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F122F
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4.x internal - SET DOS VERSION NUMBER TO RETURN
+	AX = 122Fh
+	DX = DOS version number (0000h = return true DOS version)
+Notes:	not available under DR DOS 5.0 or 6.0, or Novell DOS 7
+	supported by FREEVER.COM, a freeware DOS version faking TSR by Matthias
+	  Paul
+SeeAlso: INT 21/AH=30h,INT 21/AX=3306h,INT 2F/AX=E000h"SETDRVER"
+

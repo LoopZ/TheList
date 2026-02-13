@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AAD
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v2.00+ - ANSIPLUS DEVICE STATUS REPORT
+	AX = 1AADh
+	BL = report request code (81h-96h for v4.00)
+	CX = color selector or key code, if required by request
+Return: AX = first reported result
+	BX = second result
+	CX = third result, if applicable (unchanged otherwise)
+	DX = fourth result, if applicable (unchanged otherwise)
+Desc:	get device status reports equivalent to those for Esc [#n sequences
+	  while bypassing any device redirection and avoiding the need to
+	  parse the returned result
+Note:	the report request code in BL is identical to the number in the
+	  corresponding Esc [#n sequence
+SeeAlso: AX=1A00h/BX=414Eh,AX=1AACh
+

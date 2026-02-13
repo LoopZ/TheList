@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1208
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - DECREMENT SFT REFERENCE COUNT
+	AX = 1208h
+	ES:DI -> SFT
+Return: AX = original value of reference count
+Notes:	if the reference count was 1, it is set to FFFFh ("busy", since 0
+	  indicates that the SFT is not in use).  It is the caller's
+	  responsibility to set the reference count to zero after cleaning up.
+	used by network redirectors such as MSCDEX
+SeeAlso: AX=1106h
+

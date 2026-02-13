@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF801CX4455
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - SuperStor PRO 2XON.COM - UNINSTALL
+	AX = F801h
+	CX = 4455h ("DU")
+	DL = 45h ("E")
+	ES:BX = return address if successful
+Return: at specified address if successfully removed from memory
+	else
+	    AL = error code
+	    ???
+Program: SuperStor is a disk-compression program by Addstor.
+Note:	returns AX=0001h if AL is not 00h or 01h
+SeeAlso: AX=1001h,AX=F800h
+

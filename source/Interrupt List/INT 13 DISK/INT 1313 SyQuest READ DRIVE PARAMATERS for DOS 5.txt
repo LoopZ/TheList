@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1313
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - SyQuest - READ DRIVE PARAMATERS (for DOS 5+)
+	AH = 13h
+	DL = drive ID (bit 7 set for hard disks)
+Return: CF set on error
+	    AH = status (07h) (see #00234 at AH=01h)
+	CF clear if successful
+	    AH = 00h
+	    BL = drive type (AT/PS2 floppies only) (see #00242)
+	    CH = low eight bits of maximum cylinder number
+	    CL = maximum sector number (bits 5-0)
+		 high two bits of maximum cylinder number (bits 7-6)
+	    DH = maximum head number
+	    DL = number of drives
+	    ES:DI -> drive parameter table (floppies only)
+Notes:	the return values are identical to the standard INT 13/AH=08h, but the
+	  number of drives is not limited to 2, so
+	scanning all possible drive numbers with the Read DASD Type call
+	  (AH=15h) should generally be preferred to determine the number of
+	  drives attached to the system.
+SeeAlso: AH=08h"PC",AH=12h"SyQuest",AH=15h,AH=59h"SyQuest"
+

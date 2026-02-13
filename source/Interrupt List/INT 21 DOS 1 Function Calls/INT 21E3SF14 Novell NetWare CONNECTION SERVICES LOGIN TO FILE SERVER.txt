@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF14
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - LOGIN TO FILE SERVER
+	AH = E3h subfn 14h
+	DS:SI -> request buffer (see #01913)
+	ES:DI -> reply buffer (see #01914)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=D7h"NetWare",AH=F1h"NetWare",AX=F217h/SF=14h
+
+Format of NetWare "Login to File Server" request buffer:
+Offset	Size	Description	(Table 01913)
+ 00h	WORD	length of following data (max B3h)
+ 02h	BYTE	14h (subfunction "Login To File Server")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name (01h-2Fh)
+ 06h  N BYTEs	object's name
+	BYTE	length of password
+      N BYTEs	password
+SeeAlso: #01914
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01914)
+ 00h	WORD	(call) 0000h (no data returned)
+SeeAlso: #01913
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: F1F1
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v1.1 - "API-GET-VERSION"
+	AH = F1h
+	ES:BX -> 64-byte buffer for CAPI version number
+Return: ES:BX buffer filled with ASCIZ version string
+Notes:	the caller is required to provide at least 512 bytes of stack space
+SeeAlso: AH=01h,AH=F0h,AH=F2h,AH=FFh
+

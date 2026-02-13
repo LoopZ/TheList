@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4810
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 5+ DOSKEY, PCED v2.1 - READ INPUT LINE FROM CONSOLE
+	AX = 4810h
+	DS:DX -> line buffer (see #01344 at INT 21/AH=0Ah)
+Return: AX = 0000h if successful
+Notes:	the first byte (length) of the buffer MUST be 80h, or MS-DOS's DOSKEY
+	  chains to the previous handler; PCED and Novell DOS allow sizes
+	  other than 80h
+	if the user's input is a macro name, no text is placed in the buffer
+	  even though AX=0000h on return; the program must immediately issue
+	  this call again to retrieve the expansion of the macro.  Similarly,
+	  if the user enters a special parameter such as $*, this call must
+	  be repeated to retrieve the expansion; on the second call, DOSKEY
+	  overwrites the macro name on the screen with its expansion.
+	unlike DOSKEY, PCED expands all macros on the first call, so it is
+	  not necessary to make two calls; since the buffer is not empty on
+	  return, DOSKEY-aware programs will not make the second call
+	DOSKEY chains if AL is not 00h or 10h on entry
+	this function is supported by Novell DOS 7 DOSKEY
+SeeAlso: AX=4800h,INT 21/AH=0Ah
+

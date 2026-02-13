@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Sunday", "Tumen 0.5", "Hero" - INSTALLATION CHECK
+	AH = FFh
+Return: AH = 00h if "Tumen 0.5" or "Hero" resident
+	AX = 0400h if "Sunday" resident
+SeeAlso: AX=FEDCh"VIRUS",AX=FF01h"VIRUS"
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE10
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.00+ - "PUSHKEY" - PUT KEY INTO KEYBOARD INPUT STREAM
+	AX = DE10h
+	BH = scan code
+	BL = character
+Return: nothing
+Notes:	a later read will get the keystroke as if it had been typed by the user
+	multiple pushes are read last-in first-out
+	if a script exists for the pushed key in the current application, the
+	  script will be executed
+	early copies of DV 2.00 destroy AX, BX, ES, and DI
+SeeAlso: INT 16/AH=05h
+

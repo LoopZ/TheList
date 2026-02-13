@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21250A
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - MAP PHYSICAL MEMORY AT END OF SEGMENT
+	AX = 250Ah
+	ES = segment selector in the Local Descriptor Table (LDT) of segment
+	     to modify
+	EBX = physical base address of memory to map (multiple of 4K)
+	ECX = number of physical 4K pages to map
+Return: CF clear if successful
+	    EAX = 32-bit offset in segment of mapped memory
+	CF set on error
+	    EAX = error code
+		08h insufficient memory to create page tables
+		09h invalid segment selector
+SeeAlso: INT 31/AX=0800h
+

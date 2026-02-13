@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLA0
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "L_SET" - SET DEFAULT LIST DEVICE
+	CL = A0h
+	DX = ID of list (printer) device
+Return: AX = status (0000h success, FFFFh if invalid printer number)
+	may destroy SI,DI
+SeeAlso: INT E0/CL=92h,INT E0/CL=9Eh,INT E0/CL=A4h
+

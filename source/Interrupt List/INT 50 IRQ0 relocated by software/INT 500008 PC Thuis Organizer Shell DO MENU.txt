@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500008
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - DO MENU
+	AX = 0008h
+	ES:BX -> menu structure
+Return: AL = index 1 or FFh if not selected
+	AH = index 2 or FFh if not selected
+	BL = index 3 or FFh if not selected
+	BH = index 4 or FFh if not selected
+SeeAlso: AX=0005h"PC Thuis",AX=0007h,AX=000Ch
+

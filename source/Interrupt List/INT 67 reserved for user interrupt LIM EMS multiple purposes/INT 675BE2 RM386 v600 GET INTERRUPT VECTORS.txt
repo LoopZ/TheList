@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675BE2
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 v6.00+ - GET INTERRUPT VECTORS
+	AX = 5BE2h
+Return: DS:SI -> V86-mode table (see #03657)
+	ES:BX -> ??? (undoc, middle of device driver interrupt routine!)
+SeeAlso: AX=5BE0h,AX=5BE1h
+
+Format of RM386 V86-mode table:
+Offset	Size	Description	(Table 03657)
+ 00h	DWORD	original INT 13 vector
+ 04h	DWORD	original INT 15 vector
+ 08h	DWORD	original INT 19 vector
+ 0Ch	DWORD	original INT 21 vector
+ 10h	DWORD	original INT 4B vector
+ 14h	DWORD	original INT 67 vector
+

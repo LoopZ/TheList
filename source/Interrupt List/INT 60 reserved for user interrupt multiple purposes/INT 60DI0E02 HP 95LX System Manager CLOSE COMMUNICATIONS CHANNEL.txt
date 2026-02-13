@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0E02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CLOSE COMMUNICATIONS CHANNEL
+	DI = 0E02h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	comm channel handle
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0E00h,INT 60/DI=0E01h
+

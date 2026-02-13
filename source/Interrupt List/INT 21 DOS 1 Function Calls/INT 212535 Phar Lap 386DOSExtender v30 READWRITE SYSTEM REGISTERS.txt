@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212535
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender v3.0+ - READ/WRITE SYSTEM REGISTERS
+	AX = 2535h
+	EBX = direction (00h read registers, 01h write)
+	DS:EDX -> system register record (see #01375)
+Return: CF clear
+Note:	this call is only available under MS Windows if PHARLAP.386 VDD is
+	  installed
+
+Format of Phar Lap system register record:
+Offset	Size	Description	(Table 01375)
+ 00h	DWORD	CR0
+ 04h  4 DWORDs	DR0,DR1,DR2,DR3
+ 14h  2 DWORDs	reserved
+ 1Ch  2 DWORDs	DR6,DR7
+ 24h  3 DWORDs	reserved
+

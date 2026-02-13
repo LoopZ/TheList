@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6002
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - MDEBUG - SET STATUS
+	AH = 02h
+	DS:SI -> password or a null byte
+	ES = new value for the register SE
+	DI = new value for the register OF
+	CH = new monitor color if nonzero
+	CL = new interpreter color if nonzero
+	BH = new monitor start line if nonzero
+	BL = new interpreter start line if nonzero
+	AL = new ASCII code for the hotkey ('A'..'Z', 'a'..'z') if nonzero
+	DL = new status of the special keys (SHIFT, ALT, CTRL) for the hotkey
+	      if nonzero
+	DH = if nonzero, new basic process number for communication with the
+	      drivers (DH = multiplex number for the display driver,
+	      DH+1 = multiplex number for the command driver or drivers)
+Return: AX = return code
+	    FFFFh call not allowed
+	    FFFEh password is invalid
+	    FFFDh display mode is invalid
+	    0000h successful, status changed
+	    else AL = error reasons (see #03307)
+Note:	the values of the registers SE and OF are always changed, the other
+	  values are only changed if they are valid
+SeeAlso: AH=00h"MDEBUG"
+Index:	hotkeys;MDEBUG
+
+Bitfields for MDEBUG error reasons:
+Bit(s)	Description	(Table 03307)
+ 0	invalid monitor start line
+ 1	invalid interpreter start line
+ 2	invalid hotkey
+ 3	invalid process number
+ 4-7	reserved
+

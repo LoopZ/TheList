@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000BX444B
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - METZ XpressFax Hardware TSR (CLASS2) - INSTALLATION CHECK
+	AX = C000h
+	BX = 444Bh ('DK')
+	CX = 4A4Eh ('AN')
+Return: AL = status
+	    00h not installed, OK to install
+	    FFh installed
+		BX = 646Bh ('dk')
+		CX = 6A6Eh ('an')
+Range:	AH=C0h to AH=FFh, selected automatically
+SeeAlso: AH=C0h"METZ"
+

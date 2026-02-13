@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0D
+  Category: C 	CPU-generated
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 0D C - CPU-generated (80286+) - GENERAL PROTECTION VIOLATION
+Desc:	the CPU generates this interrupt when it detects a protection violation
+	  which does not fit under any other category having a separate
+	  interrupt
+Notes:	called in real mode when
+	    an instruction accesses a memory operand extending beyond offset
+	      FFFFh (i.e. WORD at FFFFh or DWORD at FFFDh or higher) in segment
+	      CS, DS, ES, FG, or GS
+	    a PUSH MEM or POP MEM instruction contains an invalid bit encoding
+	      in the second byte
+	    an instruction exceeds the maximum length allowed (10 bytes for
+	      80286, 15 bytes for 80386/80486)
+	    an instruction wraps from offset FFFFh to offset 0000h
+	called in protected mode on protection violations not covered by INT 06
+	  through INT 0C, including
+	    segment limit violations
+	    write to read-only segments
+	    accesses using null DS or ES selectors
+	    accesses to segments with privilege greater than CPL
+	    wrong descriptor type
+	called on 80486 protected-mode floating-point protection fault
+SeeAlso: INT 09"80486",INT 0C"STACK"
+

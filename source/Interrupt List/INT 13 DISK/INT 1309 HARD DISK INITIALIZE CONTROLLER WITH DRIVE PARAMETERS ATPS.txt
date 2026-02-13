@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1309
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - INITIALIZE CONTROLLER WITH DRIVE PARAMETERS (AT,PS)
+	AH = 09h
+	DL = drive (80h for first, 81h for second)
+Return: CF clear if successful
+	CF set on error
+	AH = status (see #00234)
+Notes:	on the PC and XT, this function uses the parameter table pointed at by
+	  INT 41
+	on the AT and later, this function uses the parameter table pointed at
+	  by INT 41 if DL=80h, and the parameter table pointed at by INT 46 if
+	  DL=81h
+SeeAlso: INT 41"HARD DISK 0",INT 46"HARD DISK 1"
+

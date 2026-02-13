@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1330
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - GET INFO
+	AH = 30h
+	AL = what to get
+	    00h system info (see #00269)
+	    01h drive info (see #00270)
+	    02h access frequency (array of 30 words)
+	    03h drive index
+		(array of 32 bytes indicating BIOS drive for DOS drive)
+	DS:DX -> buffer for info
+Return: AX = status (0000h successful, 8000h invalid info specifier)
+Program: QUICKCACHE II is a shareware disk cache by P.R. Glassel and
+	  Associates, Inc.
+
+Format of QUICKCACHE II system info:
+Offset	Size	Description	(Table 00269)
+ 00h	BYTE	flag: cache enabled
+ 01h	BYTE	flag: buffered writes enabled
+ 02h	BYTE	flag: buffered reads enabled
+ 03h	BYTE	flag: sounds enabled
+ 04h	BYTE	flag: autodismount enabled
+ 05h	BYTE	???
+ 06h	BYTE	flag: ???
+ 07h	BYTE	flag: ???
+ 08h	BYTE	flag: "em_assigned"
+ 09h	BYTE	flag: emulated EMS
+ 0Ah	BYTE	single sector bonus
+ 0Bh	BYTE	"sticky_max"
+ 0Ch	BYTE	write sector bonus
+ 0Dh	BYTE	bonus threshold
+ 0Eh	WORD	flush interval
+ 10h	WORD	flush count
+ 12h	WORD	reserve pool size
+ 14h	WORD	remaining space in reserve pool
+ 16h	WORD	required free memory
+ 18h	WORD	total cache sectors
+ 1Ah	WORD	dirty cache sectors
+ 1Ch	BYTE	trace buffer size
+ 1Dh	BYTE	reserved (padding)
+SeeAlso: #00270
+
+Format of QUICKCACHE II drive info [16-element array, one element]:
+Offset	Size	Description	(Table 00270)
+ 00h	BYTE	DOS drive number
+ 01h	BYTE	BIOS drive number
+ 02h	BYTE	maximum sector number
+ 03h	BYTE	maximum head number
+ 04h	BYTE	read buffer size
+ 05h	BYTE	write buffer size
+ 06h	BYTE	last status
+ 07h	BYTE	flag: enabled
+ 08h	BYTE	flag: buffered write enabled
+ 09h	BYTE	flag: buffered read enabled
+ 0Ah	BYTE	flag: in use (drive info is valid)
+ 0Bh	BYTE	flag: cylinder flush
+ 0Ch	BYTE	reserved (padding)
+ 0Dh	BYTE	sectors per track
+ 0Eh	WORD	sector size
+ 10h	WORD	sectors assigned
+ 12h	WORD	dirty sectors
+ 14h	WORD	reserved sectors
+ 16h	WORD	number of read errors
+ 18h	WORD	number of write errors
+ 1Ah	DWORD	"rio_count"
+ 1Eh	DWORD	number of cache misses
+ 22h	DWORD	"wio_count"
+ 26h	DWORD	"dio_count"
+SeeAlso: #00269
+

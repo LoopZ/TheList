@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX310E
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - WPS - GET API ENTRY POINT
+	AX = 1684h
+	BX = 310Eh (virtual device ID for WPS device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02703)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02703)
+Call WPS protected-mode entry point with:
+	DX = function
+	    0000h get WPS.386 version
+		Return: CF clear
+			AX = version (AH = major, AL = minor)
+	    0001h get number of installed VxDs
+		Return: CF clear
+			AX = number of installed VxDs
+	    0002h get VxD characteristics
+		AX = number of VxD
+		ES:BX -> buffer for VxD characteristics structure (see #02704)
+		Return: CF clear
+			ES:BX buffer filled
+SeeAlso: #02702,#02706
+
+Format of WPS.386 VxD characteristics structure:
+Offset	Size	Description	(Table 02704)
+ 00h	WORD	VxD ID number
+ 02h	BYTE	VxD minor version
+ 03h	BYTE	VxD major version
+ 04h	BYTE	DDK minor version
+ 05h	BYTE	DDK major version
+ 06h	WORD	flags
+		bit 0: V86 API supported
+		bit 1: PM API supported
+		bit 2: services supported
+ 08h	DWORD	start order
+ 0Ch  9 BYTEs	ASCIZ VxD name
+SeeAlso: #02703
+

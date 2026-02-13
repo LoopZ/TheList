@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21CE
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare, Alloy NTNX - CLEAR FILE (FCB)
+	AH = CEh
+	DS:DX -> FCB (see #01345 at AH=0Fh)
+Return: AL = error code
+Desc:	unlocks file and removes it from log table, then closes all opened and
+	  logged occurrences
+Note:	this function was added in NetWare 4.0, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+SeeAlso: AH=CAh,AH=CFh,AH=EDh"NetWare"
+

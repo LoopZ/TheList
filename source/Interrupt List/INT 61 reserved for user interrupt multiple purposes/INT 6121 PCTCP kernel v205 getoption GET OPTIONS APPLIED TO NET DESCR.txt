@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6121
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "get_option" - GET OPTIONS APPLIED TO NET DESCR
+	AH = 21h
+	BX = network descriptor
+	CX = length of buffer
+	DS:DX -> buffer for return values
+	SI = 0004h (ignored by v2.2-)
+	DI = option (see #03468)
+Return: CF clear if successful
+	    DS:DX -> value (usually 32 bits) returned by selected option
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Notes:	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+	v2.11 reportedly stores the actual 32-bit value of an option in DS:DX
+	  rather than using a buffer in memory
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=20h
+

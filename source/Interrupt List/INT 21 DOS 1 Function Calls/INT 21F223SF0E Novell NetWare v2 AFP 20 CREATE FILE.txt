@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF0E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP 2.0 CREATE FILE
+	AX = F223h subfn 0Eh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02332)
+	ES:DI -> reply buffer (see #02333)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=0Dh
+
+Format of NetWare "AFP 2.0 Create File" request packet:
+Offset	Size	Description	(Table 02332)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	0Eh (function "AFP 2.0 Create File")
+ 03h	BYTE	volume number
+ 04h	DWORD	AFP entry ID
+ 08h	BYTE	flag: delete existing file? (00h no, 01h yes)
+ 09h 32 BYTEs	Finder information
+ 29h  6 BYTEs	ProDOS information
+ 2Fh	BYTE	path length
+ 30h	var	AFP-style pathname (relative to AFP entry ID)
+SeeAlso: #02333,#02304
+
+Format of NetWare "AFP 2.0 Create File" reply packet:
+Offset	Size	Description	(Table 02333)
+ 00h	DWORD	new file ID
+SeeAlso: #02332,#02305
+

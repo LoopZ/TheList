@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310509
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - MAP CONVENTIONAL MEMORY IN MEMORY BLOCK
+	AX = 0509h
+	ESI = memory block handle
+	EBX = page-aligned offset within memory block of page(s) to map
+	ECX = number of pages to map
+	EDX = page-aligned linear address of conventional (below 1M) memory
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8001h,8003h,8023h,8025h) (see #03143)
+Notes:	only supported by 32-bit DPMI hosts, but may be used by 16-bit clients
+	support of this function is optional
+SeeAlso: AX=0504h,AX=0508h,AX=0801h
+

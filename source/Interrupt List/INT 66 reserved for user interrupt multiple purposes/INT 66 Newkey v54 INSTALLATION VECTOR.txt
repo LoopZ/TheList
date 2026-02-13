@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - Newkey v5.4 - INSTALLATION VECTOR
+Return: immediately (IRET)
+Program: Newkey is a shareware keyboard macro program by Frank A. Bell
+InstallCheck:	test for the signature bytes FDh FCh FFh FEh at offset 03h in
+	  the interrupt handlers segment
+Range:	INT 60h to INT 67h, selected by scanning for highest unused vector
+BUG:	the code obviously intends to use INT F0-FE, INT 70-77, and INT 68-6F
+	  before falling back to INT 60-67, but only uses the last of these
+	  ranges in v5.4
+SeeAlso: INT 2F/AX=E300h
+Index: installation checks;Newkey|Newkey;installation check
+

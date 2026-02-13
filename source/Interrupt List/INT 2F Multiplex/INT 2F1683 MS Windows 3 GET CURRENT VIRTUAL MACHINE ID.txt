@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1683
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows 3+ - GET CURRENT VIRTUAL MACHINE ID
+	AX = 1683h
+Return: BX = current virtual machine (VM) ID
+Notes:	Windows itself currently runs in VM 1, but this can't be relied upon
+	VM IDs are reused when VMs are destroyed
+	an ID of 0 will never be returned
+SeeAlso: AX=1684h"DEVICE API",AX=1685h,AX=168Bh
+

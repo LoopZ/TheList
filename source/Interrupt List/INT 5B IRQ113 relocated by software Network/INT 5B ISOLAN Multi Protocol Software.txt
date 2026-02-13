@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5B - ISOLAN Multi Protocol Software
+	ES:BX -> Transfer Control Block (see #03246)
+Return: AL = status
+Note:	this software interface allows multiple protocols/software packages
+	  to access a BICC 411x network card
+
+Format of ISOLAN Transfer Control Block:
+Offset	Type	Description	(Table 03246)
+ 00h	BYTE	command code
+		B3h Status
+		F2h Activate
+		F3h Deactivate
+		F4h Send Data
+ 01h	BYTE	command identity
+ 02h	BYTE	virtual circuit ID
+ 03h	WORD	buffer length
+ 05h	DWORD	buffer pointer
+ 09h	BYTE	expedited data flag
+ 0Ah	BYTE	cancelable flag
+ 0Bh 16 BYTEs	local network address
+ 1Bh 16 BYTEs	remote network address
+ 2Bh	DWORD	asynchronous notification routine
+ 30h	DWORD	local network number
+ 34h	DWORD	remote network number
+ 38h	BYTE	call timeout
+ 39h	BYTE	not used
+ 3Ah  8 BYTEs	reserved
+ 42h	BYTE	command code extension
+ 43h	WORD	Blue Book MAC type
+

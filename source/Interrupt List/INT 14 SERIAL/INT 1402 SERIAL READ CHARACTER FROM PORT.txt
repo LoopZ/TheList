@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1402
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - SERIAL - READ CHARACTER FROM PORT
+	AH = 02h
+	AL = 00h (ArtiCom)
+	DX = port number (00h-03h (04h-43h for Digiboard XAPCM232.SYS))
+Return: AH = line status (see #00304)
+	AL = received character if AH bit 7 clear
+Notes:	will timeout if DSR is not asserted, even if function 03h returns
+	  data ready
+	various network and serial-port drivers support the standard BIOS
+	  functions with interrupt-driven I/O instead of the BIOS's polled I/O
+	the 1993/04/08 Compaq system ROM uses only the low two bits of DX
+SeeAlso: AH=01h,AH=02h"FOSSIL",AH=84h,AH=FCh
+

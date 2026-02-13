@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - SUSPEND SESSION TEMPORARILY
+	AX = 0003h subfn 0Ah
+	DS:BX -> argument block (see #03385)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=04h,AX=0003h/SF=09h,AX=0003h/SF=0Bh,AX=0003h/SF=0Dh
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03385)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	0Ah (function "suspend session temporarily")
+ 02h	WORD	size of session information to be saved
+ 04h	WORD	pointer to buffer in caller's DS
+

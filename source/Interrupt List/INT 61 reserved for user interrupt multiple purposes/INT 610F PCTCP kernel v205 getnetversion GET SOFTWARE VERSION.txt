@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "get_netversion" - GET SOFTWARE VERSION
+	AH = 0Fh
+Return: CF clear
+	AX = version (AH = major, AL = minor)
+	BX = patch level
+Notes:	patch levels are no longer used starting with version 2.10; instead,
+	  the minor version level is incremented.
+	Beame&Whiteside's BWPCTCP v3.0a shim reports version 2.05, but does not
+	  set BX
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+

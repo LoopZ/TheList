@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F258SF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - REMOVE AUDIT PROPERTY
+	AX = F258h subfn 06h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02431)
+	ES:DI -> reply buffer
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F258h/SF=02h,AX=F258h/SF=05h
+
+Format of NetWare "Remove Audit Property" request packet:
+Offset	Size	Description	(Table 02431)
+ 00h	BYTE	06h (subfunction "Remove Audit Property")
+	???
+

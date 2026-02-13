@@ -1,0 +1,63 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215702
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 4.x only - GET EXTENDED ATTRIBUTES FOR FILE
+	AX = 5702h
+	BX = file handle
+	CX = size of result buffer or 0000h
+	DS:SI -> EAP list (see #01667)
+	ES:DI -> buffer for returned EAV list (see #01670)
+Return: CF clear if successful
+	    CX = size of returned data
+	CF set on error
+	    AX = error code (see #01680)
+Desc:	get the current value of one or more extended attributes
+Notes:	if CX=0000h on entry, ES:DI is ignored and no data is actually
+	  returned, only the amount of data which is available
+	the default DOS 4 behavior is to return a single word of 0000h (no
+	  structures) in the result buffer if CX>=0002h on entry; this
+	  functionality was apparently never released to the public
+SeeAlso: AX=5703h,AX=5704h,AH=6Eh,INT 2F/AX=112Dh
+
+Format of EAP (extended attribute properties) list:
+Offset	Size	Description	(Table 01667)
+ 00h	WORD	number of EAP structures following
+ 02h	var	array of EAP structures (see #01668)
+SeeAlso: #01670
+
+Format of EAP (extended attribute property) structure:
+Offset	Size	Description	(Table 01668)
+ 00h	BYTE	attribute type
+		01h boolean (either 00h or 01h)
+		02h number (BYTE, WORD, or DWORD)
+		03h string
+		04h date stamp
+		05h time stamp
+ 01h	WORD	EAP flags (see #01669)
+ 03h	BYTE	size of reference string (name)
+ 04h  N BYTEs	reference string
+
+Bitfields for EAP flags:
+Bit(s)	Description	(Table 01669)
+ 12	unchangeable
+ 13	ignore
+ 14	unchangeable
+ 15	used by COMMAND.COM for code page, but not understood by ATTRIB
+
+Format of EAV (extended attribute value) list:
+Offset	Size	Description	(Table 01670)
+ 00h	WORD	number of EAV structures following
+ 02h	var	array of Extended Attribute Value structures (see #01671)
+SeeAlso: #01667
+
+Format of Extended Attribute Value structures:
+Offset	Size	Description	(Table 01671)
+ 00h  4 BYTEs	???
+ 04h	BYTE	size of reference string
+ 05h	WORD	size of value
+ 07h	var	reference string
+	var	value
+

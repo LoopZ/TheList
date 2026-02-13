@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1400
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Tandy 2000 - SERIAL - RESET COMM PORT
+	AH = 00h
+	AL = RS-232C parameters (see #00302)
+	DL = port number
+	DH = protocol
+	    bit 0: use XON/XOFF on received data
+	    bit 1: use XON/XOFF when transmitting
+Return: AH = line status (see #00304)
+	AL = modem status (see #00305)
+Note:	this interrupt is identical to INT 53 on the Tandy 2000
+SeeAlso: AH=04h"Tandy 2000",INT 53"Tandy 2000"
+

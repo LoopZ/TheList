@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1412
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - GET TRANSMIT BUFFER FREE SPACE
+	AH = 12h
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AX = number of bytes free
+SeeAlso: AH=0Ah"Digiboard",AH=14h"Digiboard"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC0FDI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - SCROLL PROTECTED AREA
+	AX = AC0Fh
+	DI = 1092h
+	BH,BL = row,column of upper-left corner in protected area
+	DH,DL = row,column of lower-right corner
+	CL = number of lines to scroll up
+Return: nothing
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC0Dh,AX=AC0Eh,AX=AC10h,AX=ACF0h
+

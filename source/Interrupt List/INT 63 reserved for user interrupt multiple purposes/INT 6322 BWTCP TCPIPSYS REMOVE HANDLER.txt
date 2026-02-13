@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6322
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - REMOVE ??? HANDLER
+	AH = 22h
+Return: CF clear
+Range:	INT 4D to INT FC, selected by configuration
+Note:	decrements a counter if not already zero, and calls AH=0Ah with BL=11h
+	  if the counter reaches zero
+

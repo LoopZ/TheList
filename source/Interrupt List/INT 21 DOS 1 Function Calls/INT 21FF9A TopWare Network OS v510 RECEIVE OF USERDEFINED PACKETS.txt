@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF9A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - RECEIVE OF USER-DEFINED PACKETS
+	AX = FF9Ah
+	ES:BX -> buffer for user-defined packet (see #02532)
+Return: nothing
+
+Format of TopWare user-defined packet:
+Offset	Size	Description	(Table 02532)
+ 00h	BYTE	FFh
+ 01h	WORD	(call) length of data field plus 3
+		(ret) length of received message (0000h if none received)
+ 03h	BYTE	destination ID (FFh for broadcast message)
+ 04h	BYTE	sending station ID
+ 05h	BYTE	type code (11h; all other codes reserved for TopWare)
+ 06h  N BYTEs	received message
+

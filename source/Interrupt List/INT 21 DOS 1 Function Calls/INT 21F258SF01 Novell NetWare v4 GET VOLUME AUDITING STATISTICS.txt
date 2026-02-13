@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F258SF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET VOLUME AUDITING STATISTICS
+	AX = F258h subfn 01h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02423)
+	ES:DI -> reply buffer (see #02424)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AX=F268h/SF=C8h
+
+Format of NetWare "Get Volume Auditing Statistics" request buffer:
+Offset	Size	Description	(Table 02423)
+ 00h	BYTE	01h (function "Get Volume Auditing Statistics")
+ 01h	DWORD	volume
+SeeAlso: #02424
+
+Format of NetWare "Get Volume Auditing Statistics" reply buffer:
+Offset	Size	Description	(Table 02424)
+ 00h	WORD	auditing version (date)
+ 02h	WORD	audit file version (date)
+ 04h	DWORD	auditing enabled flag
+ 08h	DWORD	audit file's size
+ 0Ch	DWORD	audit configuration file's size
+ 10h	DWORD	maximum audit file size
+ 14h	DWORD	audit file size threshold
+ 18h	DWORD	number of audit records
+ 1Ch	DWORD	number of history records
+SeeAlso: #02423,#02476
+

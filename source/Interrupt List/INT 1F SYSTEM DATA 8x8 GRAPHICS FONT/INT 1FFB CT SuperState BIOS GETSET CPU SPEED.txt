@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1FFB
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - GET/SET CPU SPEED
+	AH = FBh
+	BL = function
+	    00h get CPU speed
+		Return: AL = current CPU speed (00h = fast, 01h = slow)
+	    01h set CPU speed
+		AL = new CPU speed (00h = fast, 01h = slow)
+SeeAlso: AH=FCh/BL=00h
+

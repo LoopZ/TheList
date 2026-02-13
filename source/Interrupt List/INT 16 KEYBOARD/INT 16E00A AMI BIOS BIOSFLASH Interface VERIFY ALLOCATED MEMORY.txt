@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E00A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface - VERIFY ALLOCATED MEMORY
+	AX = E00Ah
+	BX = number of paragraphs
+	ES = starting segment of memory
+Return: CF clear if successful
+	    AL = FAh
+	CF set on error
+Desc:	determine whether the specified memory may be used for flash
+	  programming
+Note:	always returns error if BX is zero on entry
+SeeAlso: AX=E000h,AX=E00Bh
+

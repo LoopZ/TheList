@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 490007
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - MAGic v1.16+ - GET SIZE OF MAGNIFICATION WINDOW
+	AX = 0007h
+Return: AX = status
+	    0000h successful
+		BX = vertical size (char rows or pixel rows)
+		DX = horizontal size (char cols or 8-pixel units)
+	    FFFEh invalid function
+	    FFFFh MAGic busy, retry later
+		BX,DX destroyed
+	CX destroyed
+BUG:	in v1.16 and v1.17, this function is not recognized as valid, but
+	  AX=0000h is accepted and will branch into hyperspace
+SeeAlso: AX=0001h,AX=0006h
+

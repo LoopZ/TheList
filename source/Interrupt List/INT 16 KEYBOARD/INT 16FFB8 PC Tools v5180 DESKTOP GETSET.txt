@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFB8
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - GET/SET???
+	AX = FFB8h
+	BH = subfunction
+	    00h get
+		Return: BL = old value of ???
+			CL = old value of ??? (v6.0+)
+			CH = old value of ??? (v6.0+)
+	    nonzero set
+		BL = new value for ???
+		CL = new value for ??? (v6.0+)
+		CH = new value for ??? (v6.0+)
+		DH = ???
+		Return: AL = old value replaced by CL (v6.0+)
+			AH = old value replaced by CH (v6.0+)
+

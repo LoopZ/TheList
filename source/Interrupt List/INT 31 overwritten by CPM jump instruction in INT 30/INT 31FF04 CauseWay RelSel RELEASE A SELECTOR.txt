@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF04
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "RelSel" - RELEASE A SELECTOR
+	AX = FF04h
+	BX = selector
+Return: CF clear if successful
+	CF set on error
+SeeAlso: AX=FF03h,AX=FF06h
+

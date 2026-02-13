@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151002
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "PUTMEM" - DEALLOCATE "SYSTEM" MEMORY
+	AX = 1002h
+	ES:DI -> previously allocated block
+Return: block freed
+SeeAlso: AX=1001h,AX=DE0Dh
+

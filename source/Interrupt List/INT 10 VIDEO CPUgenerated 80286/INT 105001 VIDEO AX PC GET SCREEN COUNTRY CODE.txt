@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105001
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - AX PC - GET SCREEN COUNTRY CODE
+	AX = 5001h
+Return: AL = status
+	    00h successful
+		BX = country code
+	    02h error
+SeeAlso: AH=00h,AX=5000h,INT 16/AX=5001h,INT 21/AH=38h
+

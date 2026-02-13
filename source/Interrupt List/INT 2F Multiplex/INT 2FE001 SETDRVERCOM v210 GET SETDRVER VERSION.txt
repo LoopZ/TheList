@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE001
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SETDRVER.COM v2.10+ - GET SETDRVER VERSION
+	AX = E001h
+Return: AH = major version
+	AL = minor version
+Note:	the SETDRVER API is fully emulated by Matthias Paul's FREEVER, which
+	  returns version 2.10 for this call; use AX=E000h/DX=45D0h to get
+	  FREEVER's version number
+SeeAlso: AX=E000h,AX=E000h/DX=45D0h
+

@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF31
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - OPEN DATA STREAM
+	AX = F216h subfn 31h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02156)
+	ES:DI -> reply buffer (see #02157)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=30h
+
+Format of NetWare "Open Data Stream" request packet:
+Offset	Size	Description	(Table 02156)
+ 00h	WORD	length of following data
+ 02h	BYTE	31h (subfunction "Open Data Stream")
+ 03h	BYTE	data stream
+ 04h	BYTE	directory handle
+ 05h	BYTE	file attributes
+ 06h	BYTE	open rights
+ 07h	BYTE	length of filename
+ 08h  N BYTEs	filename (8.3)
+SeeAlso: #02157
+
+Format of NetWare "Open Data Stream" reply packet:
+Offset	Size	Description	(Table 02157)
+ 00h	DWORD	file handle
+SeeAlso: #02156
+

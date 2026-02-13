@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 694001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - 10NET v5.0 - SYSSVC.COM - ???
+	AX = 4001h
+Return: CF clear
+	AX = 0000h
+	ES:SI -> ???
+InstallCheck:	test for the signature "SYSV" immediately before the interrupt
+	  handler
+Range:	INT 60 to INT 7F, selected by configuration
+SeeAlso: AX=4002h
+Index:	installation check;10NET SYSSVC
+

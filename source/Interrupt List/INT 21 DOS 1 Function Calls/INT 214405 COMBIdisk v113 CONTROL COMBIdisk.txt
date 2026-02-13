@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214405
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - COMBI-disk v1.13 - CONTROL COMBI-disk
+	AX = 4405h
+	BL = drive number (00h = default, 01h = A:, etc) for RAM disk
+	CX = number of bytes to write
+	DS:DX -> buffer containing command packet (see #01539)
+Return: CF clear if successful
+	    AX = number of bytes actually transferred
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4404h"COMBI"
+
+(Table 01538)
+Values for COMBI-disk command code:
+ 80h	flush cache
+ 81h	change options byte
+ 82h	shrink memory
+ 83h	expand memory
+ 84h	get dirty block information
+ 85h	reset write errors
+ 86h	reset counters
+
+Format of COMBI-disk command packet:
+Offset	Size	Description	(Table 01539)
+ 00h	WORD	version
+ 02h	BYTE	command code (see #01538)
+---command code 80h---
+ no additional fields
+---command code 81h---
+ 03h	BYTE	new options byte (see #01540)
+---command code 82h---
+ 03h	WORD	number of KB to release
+---command code 83h---
+ 03h	WORD	number of KB to expand
+---command code 84h---
+ 03h	DWORD	-> buffer for block info (see #01541)
+---command code 85h---
+ 03h	DWORD	block ID
+---command code 86h---
+ 03h	BYTE	which counters to reset
+		bit 0: hard disk read counts
+		bit 1: hard disk write counts
+		bit 2: RAM disk read/write counts
+Note:	multiple commands may be placed in a single packet by stringing
+	  together as many command/argument pairs as desired
+
+Bitfields for COMBI-disk options byte:
+Bit(s)	Description	(Table 01540)
+ 0	cache off
+ 1	cache frozen
+ 2	write caching enabled
+ 3	delayed writing disabled
+ 5	fix memory allocation (no XMS lending)
+ 6	no 'sector not found' error
+
+Format of COMBI-disk block info:
+Offset	Size	Description	(Table 01541)
+ 00h	DWORD	block ID
+ 04h	BYTE	bitmask of valid sectors in block
+ 05h	BYTE	bitmask of dirty sectors in block
+ 06h	BYTE	last error returned by BIOS
+ 07h	BYTE	number of errors
+

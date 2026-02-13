@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0021
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 3.0 DPMILOAD.EXE - GET PROCESSOR EXCEPTION HANDLER VECT
+	AX = FB42h
+	BX = 0021h
+	CL = exception number (00h-1Fh)
+Return: DX = status (see also AX=FB42h/BX=0004h)
+	    0000h successful
+		AX:BX = selector:offset of handler
+	    FFF2h unable to get exception handler vector
+SeeAlso: AX=FB42h/BX=0022h,AX=FB42h/BX=0024h,INT 31/AX=0202h
+

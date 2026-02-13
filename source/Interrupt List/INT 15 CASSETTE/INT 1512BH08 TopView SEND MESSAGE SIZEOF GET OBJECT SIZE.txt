@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH08
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "SIZEOF" - GET OBJECT SIZE
+	AH = 12h
+	BH = 08h
+	BL = object
+	    00h handle in DWORD on top of stack
+		window: total character positions in window
+		timer: elapsed time since timer started
+		pointer: number of messages queued to pointer object
+		panel: number of panels in panel file
+		keyboard: number of input buffers queued
+	    01h total chars in current task's default window
+	    02h number of messages in task's mailbox (task's handle on stack)
+	    03h number of messages in current task's mailbox
+	    04h number of input buffers queued in task's kbd (handle on stack)
+	    05h number of input buffers queued for current task's default kbd
+	    06h number of objects queued in OBJECTQ (task's handle on stack)
+	    07h number of objects queued in current task's OBJECTQ
+	    0Ch (DV 2.26+) total chars in window owning handle on top of stack
+	    0Dh (DV 2.26+) total chars in parent task's window
+Return: DWORD on top of stack is result (any handle on stack has been popped)
+Note:	for panel objects, a count of zero is returned if no panel file is open
+	  for the object
+SeeAlso: AH=12h/BH=04h,AH=12h/BH=09h
+

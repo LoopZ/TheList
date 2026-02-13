@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F01
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ network - SET REDIRECTION MODE
+	AX = 5F01h
+	BL = redirection type
+	    03h printer
+	    04h disk drive
+	BH = redirection state
+	    00h off
+	    01h on
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Notes:	when redirection is off, the local device (if any) rather than the
+	  remote device is used
+	calls INT 2F/AX=111Eh with AX on top of the stack
+SeeAlso: AX=5F00h,INT 2F/AX=111Eh,INT 60/AX=0002h
+

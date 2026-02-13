@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE07
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview - "APPNUM" - GET CURRENT PROGRAM'S NUMBER
+	AX = DE07h
+Return: AX = number of program as it appears on the "Switch Windows" menu
+Note:	this API call may be made from a hardware interrupt handler
+SeeAlso: AX=DE00h
+

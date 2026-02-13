@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0700
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - OPEN CLIPBOARD
+	DI = 0700h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+Return: ??? = error code (see #03291)
+	???
+	STACK unchanged
+SeeAlso: INT 60/DI=0701h,INT 60/DI=0702h
+
+(Table 03291)
+Values for HP 95LX error code:
+ 0000h	successful
+ FFF8h	transfer request out of bounds
+ FFF9h	no such representation
+ FFFAh	no representation open
+ FFFBh	a representation is already open
+ FFFCh	representation already exists
+ FFFDh	heap allocation failure
+ FFFEh	clipboard not open
+ FFFFh	clipboard access denied
+

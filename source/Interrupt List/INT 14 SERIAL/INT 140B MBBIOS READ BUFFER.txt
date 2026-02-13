@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140B
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS - READ BUFFER
+	AH = 0Bh
+	CX = size of buffer
+	ES:DI -> buffer
+Return: AH = composite line status (see #00304) formed by ORing all statuses
+		  on receive interrupts; bit 0 set if additional characters
+		  available
+	AL = composite modem status (see #00305) formed by ORing all statuses
+	CX = number of characters actually read
+	DI updated
+Note:	the PACCOM version of MBBIOS does not use CX or ES:DI on call,
+	  instead returning ES set to the segment of the buffer containing a
+	  received packet, or 0000h if no packets available; the buffer may
+	  be freed with AH=0Ch"MBBIOS"
+SeeAlso: AH=02h,AH=08h"MBBIOS",AH=0Ah"MBBIOS",AH=0Ch"MBBIOS",AH=18h"FOSSIL"
+

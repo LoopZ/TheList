@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AA1
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v2.1 - GET ACCESS OFFSETS
+	AH = A1h
+	AL = adapter number
+	BH = Mode
+	     00h = Real Mode
+	     01h = 16:16 Protected Mode
+	     02h = 16:32 Protected Mode
+	     03h = 00:32 Protected Mode
+	CX = Number of access offsets
+	ES:EDI -> buffer supplied by caller, CX words long (see #00696)
+Return: CF clear if successful
+	    AH destroyed
+	    DX = number of access offsets supported
+	    ES:EDI unchanged
+	CF set on error
+	    AH = error code (01h,15h,16h) (see #00656)
+Desc:	Returns an array of low-level adapter-specific optimized
+	PC Card access routines for adapters that use registers
+	or I/O ports to access PC Card memory.	Adapters that access
+	PC Card memory through windows mapped to host system memory
+	do not support this function.
+Note:	offsets returned are 16-bit offsets into the
+	Socket Services code segment.  They must be called
+	appropriately for the processor mode selected.
+	(Real, 16:16 and 16:32 modes use FAR CALL,
+	Flat 00:32 mode uses a 32-bit NEAR CALL).
+SeeAlso: AH=AEh
+
+Format of Offset Table structure:
+Offset	Size	Description	(Table 00696)
+ 00h	WORD	Set Address
+ 02h	WORD	Set Auto Increment
+ 04h	WORD	Read Byte
+ 06h	WORD	Read Word
+ 08h	WORD	Read Byte with Auto Increment
+ 0Ah	WORD	Read Word with Auto Increment
+ 0Ch	WORD	Read Words
+ 0Eh	WORD	Read Words with Auto Increment
+ 10h	WORD	Write Byte
+ 12h	WORD	Write Word
+ 14h	WORD	Write Byte with Auto Increment
+ 16h	WORD	Write Word with Auto Increment
+ 18h	WORD	Write Words
+ 1Ah	WORD	Write Words with Auto Increment
+ 1Ch	WORD	Compare Byte
+ 1Eh	WORD	Compare Byte with Auto Increment
+ 20h	WORD	Compare Words
+ 22h	WORD	Compare Words with Auto Increment
+

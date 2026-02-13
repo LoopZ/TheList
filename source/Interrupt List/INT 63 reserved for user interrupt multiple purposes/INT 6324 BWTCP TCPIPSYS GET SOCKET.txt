@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6324
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - GET SOCKET
+	AH = 24h
+Return: AX = socket number (0400h-FFFFh)
+Range:	INT 4D to INT FC, selected by configuration
+Note:	the Beame&Whiteside TCP/IP protocol stack uses two consecutive
+	  interrupts (62h and 63h by default); the BW-NFS client uses a third
+	  consecutive interrupt (64h by default) if it is loaded
+SeeAlso: AH=12h,AH=14h,INT 62/AH=12h"ETHDEV",INT 64/AH=01h"BW-NFS"
+

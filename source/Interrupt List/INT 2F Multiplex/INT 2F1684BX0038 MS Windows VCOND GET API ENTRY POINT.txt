@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0038
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VCOND - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0038h (virtual device ID for VCOND device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02678)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02678)
+Call VCOND.VXD virtual-86 entry point with:
+	AX = function number
+	    0202h
+	    0203h
+	    0204h
+	    0205h
+	    0206h
+	    0207h
+	    0208h
+	    0209h
+	    020Ah
+	    020Bh
+	    020Dh
+	    020Eh
+	    020Fh
+	    0210h
+	    0401h
+	    0402h
+	    0403h
+	    0404h
+	    0405h
+	    else
+		NOP
+SeeAlso: #02679,#02677
+
+(Table 02679)
+Call VCOND.VXD protected-mode entry point with:
+	AX = function number
+	    0301h
+	    0302h
+	    0303h
+	    0304h
+	    0305h
+	    0306h
+	    0307h
+	    0308h
+	    else
+		NOP
+SeeAlso: #02678,#02676
+

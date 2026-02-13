@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216D
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v1.x FAPI - "DosMkDir2"
+	AH = 6Dh
+	???
+Return: ???
+Desc:	create a new directory, with extended attribute information
+Note:	also supported by OS/2 v2.0+ Virtual DOS Machines
+BUG:	does not work under OS/2 v2.0 because MVDM does not translate the
+	  real-mode segment pointer in the Extended Attribute structure
+	  (see #01673) into a protected-mode selector; use AH=39h followed by
+	  AX=5703h instead
+SeeAlso: AH=39h,AX=5702h"OS/2",AX=5703h"OS/2"
+

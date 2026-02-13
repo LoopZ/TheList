@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1271
+  Category: O 	other operating systems
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - PTS-DOS, S/DOS - RESERVED FOR BEEP
+	AX = 1271h
+Return: ???
+Note:	According to the Paragon Technology Systems S/DOS 1.0 sources,
+	  which derived from PTS-DOS 6.51, this is reserved for a "BEEP"
+	  function. However, S/DOS 1.0 does not handle this function by
+	  itself.
+SeeAlso: AX=1270h
+

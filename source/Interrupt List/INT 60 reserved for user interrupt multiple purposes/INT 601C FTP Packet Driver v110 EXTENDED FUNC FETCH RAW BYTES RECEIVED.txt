@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 601C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver v1.10+ - EXTENDED FUNC - FETCH RAW BYTES RECEIVED
+	AH = 1Ch
+	DS:SI -> buffer
+	CX = length of buffer
+	DX = timeout in clock ticks
+Return: CF set on error
+	    DH = error code (see #03305 at AX=01FFh)
+	CF clear if successful
+	    CX = number of bytes transferred to buffer
+SeeAlso: AH=1Ah,AH=1Bh
+

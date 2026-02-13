@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F10--CL06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - CHANNEL CONTROL - LOCK ALL OPEN CHANNELS
+	AH = 10h
+	CL = 06h
+Return: AL = status (00h-03h) (see #03951)
+Note:	may not be invoked from within a hardware interrupt handler
+SeeAlso: AH=10h/CL=02h,AH=10h/CL=08h
+

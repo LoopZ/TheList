@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 53
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 53 - WEB??? - API
+	BX = function
+	    0000h ???
+		AX = ???
+		Return: AX = ???
+	    0004h ???
+	    0009h ???
+	    0015h
+		AX = ???
+		DX = ???
+	    0017h
+Return: ???
+InstallCheck:	check for the signature "WEBCO" immediately prior to the
+	  interrupt handler
+Note:	the above calls are made by Show Partner F/X v3.6 (see INT 10/AH=53h)
+Index:	installation check;unknown|installation check;WEBCO
+

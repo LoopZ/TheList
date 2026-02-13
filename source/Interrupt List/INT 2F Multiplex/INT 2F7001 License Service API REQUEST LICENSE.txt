@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - License Service API - REQUEST LICENSE
+	AX = 7001h
+	CX = license server index (0000h to 001Fh)
+	DS:DX -> SLSREQUEST structure (see #02850)
+Return: AX = status
+	    0000h success
+	    else  provider error code
+	ES:BX = provider specific handle for the license context
+SeeAlso: AX=7002h,AX=7004h,AX=7005h
+
+Format of License Service SLSREQUEST structure:
+Offset	Size	Description	(Table 02850)
+ 00h	DWORD	(ret) status code
+ 04h	DWORD	(ret) handle identifying context
+ 08h	DWORD	(call) address of Publisher string
+ 0Ch	DWORD	(call) address of Product string
+ 10h	DWORD	(call) address of Version string
+ 14h	DWORD	units required
+ 18h	DWORD	address of comment string
+ 1Ch	DWORD	address of SLSCHALLENGE structure (see #02851)
+
+Format of License Service SLSCHALLENGE structure:
+Offset	Size	Description	(Table 02851)
+ 00h	DWORD	algorithm (currently always 1)
+ 04h	DWORD	secret to be challenged (1-255)
+ 08h	DWORD	size of challenge in bytes (1-255)
+ 0Ch  N BYTEs	challenge data
+

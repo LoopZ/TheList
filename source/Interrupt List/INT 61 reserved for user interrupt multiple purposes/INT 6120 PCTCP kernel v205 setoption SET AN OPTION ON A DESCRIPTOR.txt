@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6120
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "set_option" - SET AN OPTION ON A DESCRIPTOR
+	AH = 20h
+	BX = network descriptor
+	CX = length of buffer (usually 04h)
+	DS:DX -> buffer containing option
+	SI = (ignored by v2.2-)
+	DI = option to set (see #03468)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Notes:	Beame&Whiteside's BWPCTCP shim only supports options 01h and 0Bh; all
+	  others return CF clear
+	v2.11 reportedly stores the actual 32-bit value of an option in DS:DX
+	  rather than using a buffer in memory
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=21h
+
+(Table 03468)
+Values for PC/TCP option to get or set:
+ 01h	set non-blocking mode if non-zero
+ 02h	timeout of call in milliseconds
+ 03h	user-defined 4-byte magic cookie (not used by kernel)
+ 04h	TCP window or UDP buffer count (WORD, unsigned)
+ 06h	do TCP keep-alives if non-zero
+ 09h	(v2.1+) set IP precedence
+ 0Ah	(v2.1+) set IP type of service
+ 0Bh	use a privileged port if port = 0
+ 0Ch	turn off TCP PUSH bit and don't flush buffer every write (see AH=1Ah)
+Note:	use "C" true or false values for boolean options
+

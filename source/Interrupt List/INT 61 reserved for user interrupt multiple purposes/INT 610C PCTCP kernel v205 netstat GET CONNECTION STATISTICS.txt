@@ -1,0 +1,91 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610C
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 61 u - PC/TCP kernel v2.05+ - "net_stat" - GET CONNECTION STATISTICS
+	AH = 0Ch
+	BX = network descriptor or one of the following:
+	    FFFCh for kernel ICMP statistics (see #03459)
+	    FFFDh for kernel UDP statistics (see #03458)
+	    FFFEh for kernel IP statistics (see #03457)
+	    FFFFh for kernel TCP statistics (see #03456)
+	DS:DX -> 64-byte buffer
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (see #03319)
+Notes:	the fields filled in for a network descriptor depend on the protocol
+	  family used by that descriptor's connection
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+
+Format of PC/TCP kernel TCP statistics:
+Offset	Size	Description	(Table 03456)
+ 00h 16 BYTEs	unused
+ 10h	DWORD	bytes sent
+ 14h	DWORD	bytes received
+ 18h  8 BYTEs	unused
+ 20h	DWORD	packets sent
+ 24h	DWORD	packets received
+ 28h	DWORD	bad checksums
+ 2Ch	DWORD	count of window ignored by remote
+ 30h	DWORD	timeouts
+ 34h	DWORD	resets
+ 38h	DWORD	duplicate packets
+ 3Ch	DWORD	retransmits
+SeeAlso: #03457,#03458,#03459
+
+Format of PC/TCP kernel IP statistics:
+Offset	Size	Description	(Table 03457)
+ 00h  8 BYTEs	unused
+ 08h	DWORD	invalid IP header length errors
+ 0Ch	DWORD	protocol errors (unwanted packets)
+ 10h	DWORD	duplicate fragments received
+ 14h	DWORD	bad fragments received
+ 18h	DWORD	security errors
+ 1Ch	DWORD	count of bad IP addresses received
+ 20h	DWORD	packets sent
+ 24h	DWORD	packets received
+ 28h	DWORD	bad checksums received
+ 2Ch	DWORD	total IP protocol errors
+ 30h	DWORD	fragmentation errors
+ 34h	DWORD	IP packets discarded + bad security + bad fragments
+ 38h	DWORD	fragments received
+ 3Ch  4 BYTEs	unused
+SeeAlso: #03456,#03458,#03459
+
+Format of PC/TCP kernel UDP statistics:
+Offset	Size	Description	(Table 03458)
+ 00h 28 BYTEs	unused
+ 1Ch	DWORD	packets dropped for lack of buffers
+ 20h	DWORD	packets sent
+ 24h	DWORD	packets received
+ 28h	DWORD	bad checksums
+ 2Ch	DWORD	port not listening errors
+ 30h  4 BYTEs	unused
+ 34h	DWORD	truncated receives
+ 38h  8 BYTEs	unused
+SeeAlso: #03456,#03457,#03459
+
+Format of PC/TCP kernel ICMP statistics:
+Offset	Size	Description	(Table 03459)
+ 00h	DWORD	"TimeEx" sent
+ 04h	DWORD	"TimeEx" received
+ 08h	DWORD	"ParamProb" sent
+ 0Ch	DWORD	"ParamProb" received
+ 10h	DWORD	redirects received
+ 14h	DWORD	source quenches received
+ 18h	DWORD	ICMP Echo Requests ("ping") sent
+ 1Ch	DWORD	ICMP Echo Requests received
+ 20h	DWORD	packets sent
+ 24h	DWORD	packets received
+ 28h	DWORD	bad packets received
+ 2Ch	DWORD	"DestUn" received
+ 30h	DWORD	packet send errors
+ 34h	DWORD	"DestUn" sent
+ 38h	DWORD	ICMP Echo replies received
+ 3Ch	DWORD	ICMP Echo replies sent
+SeeAlso: #03456,#03457,#03458
+

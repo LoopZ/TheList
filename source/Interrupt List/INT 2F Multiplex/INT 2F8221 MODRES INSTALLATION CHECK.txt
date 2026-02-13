@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8221
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MODRES - INSTALLATION CHECK
+	AX = 8221h
+Return: AX = status
+	    5722h successful
+	    other MODRES not installed
+	BX = BCD version number (BH = major, BL = minor)
+	DX:CX -> Output Device structure (read-only) (see #02961)
+SeeAlso: AX=8220h,AX=8222h,AX=8225h,AX=8227h
+
+Format of Output Device structure [array]:
+Offset	Size	Description	(Table 02961)
+ 00h 20 BYTEs	ASCIZ name of the output device
+		(end of list if first char is FFh)
+ 14h	WORD	apparently always FFFFh
+ 16h	WORD	0000h if output device not available
+		else first I/O port for the output device
+ 18h	WORD	second I/O port for the output device (for example
+		  if it is stereo)
+		000oh if only one port used or device is not available
+ 1Ah  7 BYTEs	???
+SeeAlso: #02960,#02962
+
+(Table 02962)
+Values for MODRES v1.52 output device index:
+ 00h	PC speaker
+ 01h	D/A Converter on LPT1
+ 02h	D/A Converter on LPT2
+ 03h	D/A Converter on LPT3
+ 04h	D/A Converter on LPT4
+ 05h	D/A Converter on LPT1&LPT2 (stereo)
+ 06h	D/A Converter on LPT1&LPT2 (mono)
+ 07h	Sound Blaster (port 02x0h)
+ 08h	User Defined D/A (mono)
+ 09h	User Defined D/A (stereo)
+ 0Ah	Stereo-on-1
+ 0Bh	Disney SS su LPT1
+ 0Ch	Disney SS su LPT2
+ 0Dh	Disney SS su LPT3
+ 0Eh	Disney SS su LPT4
+Note:	this list may vary between versions of MODRES
+

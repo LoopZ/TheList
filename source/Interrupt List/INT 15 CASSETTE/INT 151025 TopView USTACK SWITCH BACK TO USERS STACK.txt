@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151025
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "USTACK" - SWITCH BACK TO USER'S STACK
+	AX = 1025h
+Return: stack switched back
+Notes:	call only after having switched to internal stack with AX=101Ah
+	while TopView requires many API calls to be executed while on the
+	  task's private stack, DESQview allows those calls to be executed
+	  regardless of the current stack
+SeeAlso: AX=101Ah
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFC0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET DEFAULT END-OF-JOB FORMFEED STATUS
+	AX = FFC0h
+Return: AL = ending formfeed status (see #02536)
+SeeAlso: AX=FFB3h,AX=FFC1h
+
+Bitfields for TopWare printer end-of-job formfeed status:
+Bit(s)	Description	(Table 02536)
+ 2	LPT3 has formfeed enabled
+ 1	LPT2 has formfeed enabled
+ 0	LPT1 has formfeed enabled
+

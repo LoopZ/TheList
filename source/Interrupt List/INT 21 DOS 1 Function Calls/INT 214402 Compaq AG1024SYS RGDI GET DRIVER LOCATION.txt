@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Compaq AG1024.SYS - RGDI - GET DRIVER LOCATION
+	AX = 4402h
+	BX = file handle for device "$$$$RGDI"
+	CX = 0006h (size of returned data)
+	DS:DX -> location record (see #01498)
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: AG1024.SYS is a device driver for the Advanced Graphics 1024 adapter
+SeeAlso: AX=4403h"RGDI"
+
+Format of Compaq AG1024.SYS location record:
+Offset	Size	Description	(Table 01498)
+ 00h	WORD	signature 55AAh
+ 02h	WORD	segment of ???
+ 04h	WORD	segment of device driver's code
+

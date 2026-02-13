@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF11
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - GET FILE TRANSFER PARAMETERS
+	AX = 0003h subfn 11h
+	DS:BX -> argument block (see #03393)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h,AX=0003h/SF=12h
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03393)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	11h (function "get file transfer parameters")
+ 02h	WORD	pointer to info area in caller's current DS (see #03394)
+
+Format of VINES info area:
+Offset	Size	Description	(Table 03394)
+ 00h	BYTE	protocol flag (00h none, 01h Kermit)
+ 01h	BYTE	direction flag (00h send, 01h receive)
+ 02h	BYTE	length of null-terminated PC filename
+ 03h	DWORD	pointer to null-terminated PC filename
+ 07h	BYTE	length of null-terminated host filename
+ 08h	DWORD	pointer to null-terminated host filename
+

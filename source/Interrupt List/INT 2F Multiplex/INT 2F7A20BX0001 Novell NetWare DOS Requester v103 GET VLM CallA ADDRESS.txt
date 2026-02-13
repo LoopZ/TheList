@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A20BX0001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare - DOS Requester v1.03+ - GET VLM CallA ADDRESS
+	AX = 7A20h
+	BX = 0001h
+Return: AX = 0000h if request was handled
+	    ES:BX -> CallA entry point (see #02893)
+SeeAlso: AX=7A20h/BX=0000h
+
+(Table 02893)
+Call VLM CallA entry point with:
+	AX = function
+	    0000h submit
+	    0001h cancel (not implemented)
+	ES:DI -> Overlay Asynchronous Control Block structure (see #02894)
+Return: DI, DS, ES preserved; all other registers may be destroyed
+	interrupts disabled
+Desc:	asychronously call the specified VLM and then return to caller, which
+	  might be another VLM
+
+Format of Overlay Asynchronous Control Block (OACB):
+Offset	Size	Description	(Table 02894)
+ 00h	DWORD	link to next OACB, 0000h:0000h if last (filled by VLM.EXE)
+ 04h	DWORD	callback address or 0000h:0000h
+ 08h	BYTE	InUse flag (00h if complete) (set by VLM.EXE)
+ 09h	BYTE	flag, reserved for VLM use
+ 0Ah	WORD	destination VLM
+ 0Ch	WORD	destination function
+ 0Eh	WORD	temporary storage for VLM.EXE
+ 10h  6 BYTEs	reserved
+ 16h  6 DWORDs	EAX,EBX,ECX,EDX,ESI,EDI
+ 2Eh  4 WORDs	DS,ES,FS,GS (FS and GS not used)
+

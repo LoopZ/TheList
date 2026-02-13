@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF0B
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - SET TASK SWITCH CALLBACK
+	AX = DF0Bh
+	BH = interrupt number or 00h
+	BL = function number to invoke on partition switch
+	CL = function number to call when it is safe for resident programs
+		to perform DOS calls
+	DS:DX -> FAR function to call if BH=00h
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+	    FFh unsucessful
+		AH = error code (01h,03h) (see #01813)
+Notes:	the specified interrupt or FAR function is called with AH set to the
+	  appropriate one of the values specified in BL and CL, and BL set to
+	  the new task number
+	the function specified by CL will not be called until the notification
+	  is enabled with AX=DF0Ch
+SeeAlso: AX=DF0Ch
+

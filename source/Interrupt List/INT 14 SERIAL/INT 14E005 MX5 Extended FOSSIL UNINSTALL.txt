@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E005
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MX5 Extended FOSSIL - UNINSTALL
+	AX = E005h
+Return: BX = segment of MX5's memory block or 0000h on failure
+Note:	caller must free the returned memory block to complete the uninstall
+SeeAlso: AX=E006h
+

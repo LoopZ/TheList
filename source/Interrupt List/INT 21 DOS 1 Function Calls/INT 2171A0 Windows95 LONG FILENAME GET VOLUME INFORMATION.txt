@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2171A0
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - GET VOLUME INFORMATION
+	AX = 71A0h
+	DS:DX -> ASCIZ root name (e.g. "C:\")
+	ES:DI -> buffer for file system name
+	CX = size of ES:DI buffer
+Return: CF clear if successful
+	    AX destroyed (0000h and 0200h seen)
+	    BX = file system flags (see #01783)
+	    CX = maximum length of file name [usually 255]
+	    DX = maximum length of path [usually 260]
+	    ES:DI buffer filled (ASCIZ, e.g. "FAT","NTFS","CDFS")
+	CF set on error
+	    AX = error code
+		7100h if function not supported
+Notes:	for the file system name buffer, 32 bytes should be sufficient; that's
+	 what is used in some sample code by Walter Oney from Microsoft.
+	this function accesses the disk the first time it is called
+BUG:	this function returns DX=0000h for CD-ROM drives under Win95 SP1
+SeeAlso: AX=714Eh,AX=7160h/CL=00h
+
+Bitfields for long filename volume information flags:
+Bit(s)	Description	(Table 01783)
+ 0	searches are case sensitive
+ 1	preserves case in directory entries
+ 2	uses Unicode characters in file and directory names
+ 3-13	reserved (0)
+ 14	supports DOS long filename functions
+ 15	volume is compressed
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215701
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - SET FILE'S LAST-WRITTEN DATE AND TIME
+	AX = 5701h
+	BX = file handle
+	CX = new time (see #01665)
+	DX = new date (see #01666)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h,06h) (see #01680)
+SeeAlso: AX=5700h,AX=5705h"Windows95",AX=5707h"Windows95"
+

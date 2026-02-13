@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620F
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - LOAD AND RUN PROGRAM FROM DISK
+	AH = 0Fh
+	ES:BX -> command line
+	CX = priority (1-10)
+	DX = background flag (nonzero allows loading to EMS)
+Return: AX = status
+	    0000h task loader queue is full
+	    0001h  no error
+SeeAlso: AH=07h"Cswitch",AH=10h"Cswitch",AH=13h"Cswitch"
+

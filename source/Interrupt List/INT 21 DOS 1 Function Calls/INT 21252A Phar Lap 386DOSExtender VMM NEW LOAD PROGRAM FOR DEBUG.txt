@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21252A
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender VMM - NEW LOAD PROGRAM FOR DEBUG
+	AX = 252Ah
+	DS:EDX -> ASCIZ program name
+	ES:EBX -> parameter block (see #01363)
+	ECX = size of LDT buffer in bytes
+	ESI = bit flags
+	    bit 0: allow demand paging rather than loading entire program
+	    bit 1: demand page from swap file rather than from .EXP
+Return: CF clear if successful
+	    EAX = VMM handle or FFFFFFFFh if none
+	    ECX = number of descriptors in LDT buffer
+	CF set on error
+	    EAX = error code
+		02h file error
+		    EBX = file error code (see #01370)
+		    ECX = DOS error code if EBX=1,2,3, or 8
+		08h insufficient memory
+		    EBX = memory error code (see #01371)
+		80h LDT buffer too small
+		87h called twice without intervening call to AX=2531h
+SeeAlso: AX=2512h,AX=2517h,AX=2529h,AX=2531h
+
+(Table 01370)
+Values for Phar Lap file error code:
+ 01h	DOS open error
+ 02h	DOS seek error
+ 03h	DOS read error
+ 04h	not an .EXP or .REX file
+ 05h	invalid file format
+ 06h	-OFFSET is not a multiple of 64K
+ 07h	-NOPAGE incompatible with -REALBREAK/-OFFSET
+ 08h	DOS error loading .EXE file
+
+(Table 01371)
+Values for Phar Lap memory error code:
+ 01h	out of physical memory
+ 02h	out of swap space
+ 04h	unable to change extended memory allocation
+ 05h	-MAXPGMMEM exceeded
+ 06h	insufficient low memory to REALBREAK value
+ 07h	insufficient low memory for PSP and environment
+

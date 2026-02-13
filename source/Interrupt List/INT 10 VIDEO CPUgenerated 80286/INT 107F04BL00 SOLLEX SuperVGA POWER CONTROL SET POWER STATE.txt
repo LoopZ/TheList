@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F04BL00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - POWER CONTROL - SET POWER STATE
+	AX = 7F04h
+	BL = 00h
+	CX = new power state
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		01h failed
+Note:	higher values progressively reduce the operations available on the
+	  video adapter while yielding increasing power savings
+SeeAlso: AX=7F00h"SOLLEX",AX=7F04h/BL=01h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FA2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET USER PRIVILEGE LEVEL
+	AH = A2h
+	DL = user number (FFh = caller)
+	DH = machine number for user
+Return: CF clear if successful
+	    AL = privilege level
+		00h supervisor
+		01h high
+		02h medium
+		03h low
+	CF set if invalid user number
+SeeAlso: AH=A1h,AH=A3h
+

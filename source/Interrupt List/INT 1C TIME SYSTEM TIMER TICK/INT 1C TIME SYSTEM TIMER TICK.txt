@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1C
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1C - TIME - SYSTEM TIMER TICK
+Desc:	this interrupt is automatically called on each clock tick by the INT 08
+	  handler
+Notes:	this is the preferred interrupt to chain when a program needs to be
+	  invoked regularly
+	not available on NEC 9800-series PCs
+SeeAlso: INT 08,INT E2"PC Cluster"
+

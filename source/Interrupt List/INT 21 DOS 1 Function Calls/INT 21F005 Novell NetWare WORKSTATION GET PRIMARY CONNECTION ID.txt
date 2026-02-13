@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F005
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - GET PRIMARY CONNECTION ID
+	AX = F005h
+Return: AL = connection ID of primary file server (1-8), 00h if not set
+Notes:	this function is supported by Advanced NetWare 2.0+
+	by default, the primary file server is the one from which the login
+	  script executed; it is set to 00h if the workstation is not logged in
+	  and when it detaches from its primary file server
+SeeAlso: AH=D6h,AX=EF03h,AX=F000h,AX=F002h,AX=F004h
+

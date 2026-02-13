@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX000D
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 3.0 DPMILOAD.EXE - SIMULATE REAL MODE INTERRUPT
+	AX = FB42h
+	BX = 000Dh
+	CX = number of words to copy from protected-mode to real mode stack
+	DL = interrupt number
+	DH = flags
+	    bit 0: reset the interrupt controller and A20 line
+	ES:DI -> real-mode call structure (see #03148 at INT 31/AX=0300h)
+Return: CX = status
+	    0000h successful
+	    0001h failed
+SeeAlso: INT 31/AX=0300h
+

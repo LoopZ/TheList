@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F15--CL01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - GET NEXT FULL CHANNEL
+	AH = 15h
+	CL = 01h
+	DX:DI -> full-channel structure (see #03959)
+Return: AL = status
+	    00h successful
+	    01h busy
+	    0Ah no datagrams available
+Note:	MW386 v1.0 returns the lowest channel with a datagram; newer versions
+	  and NTNX return the oldest datagram
+SeeAlso: AH=15h/CL=00h
+
+Format of Alloy full-channel structure:
+Offset	Size	Description	(Table 03959)
+ 00h	BYTE	number of channel with oldest datagram
+ 01h	BYTE	sender ID
+

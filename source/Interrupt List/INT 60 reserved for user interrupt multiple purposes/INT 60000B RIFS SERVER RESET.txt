@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60000B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - RIFS - SERVER - RESET
+	AX = 000Bh
+Return: CF clear if successful
+	CF set on error
+Note:	closes all open files
+SeeAlso: AX=0008h,AX=0009h
+

@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330034
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v8.0+ - GET INITIALIZATION FILE
+	AX = 0034h
+Return: AX = status (0000h successful)
+	ES:DX -> ASCIZ initialization (.INI) file name
+

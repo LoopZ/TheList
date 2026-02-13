@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF16
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GENERATE DIRECTORY BASE AND VOLUME NUMBER
+	AX = F257h subfn 16h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02407)
+	ES:DI -> reply buffer (see #02408)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=15h,AX=F257h/SF=17h
+
+Format of NetWare "Generate Directory Base and Volume Number" request packet:
+Offset	Size	Description	(Table 02407)
+ 00h	BYTE	16h (subfunction "Generate Directory Base and Volume Number")
+ 01h	BYTE	name space (#02802)
+ 02h  3 BYTEs	reserved for future use
+ 05h		NetWare Handle/Path structure (see #02376)
+SeeAlso: #02408
+
+Format of NetWare "Generate Directory Base and Volume Number" reply packet:
+Offset	Size	Description	(Table 02408)
+ 00h	DWORD	namespace directory base
+ 04h	DWORD	DOS directory base
+ 08h	BYTE	volume number
+SeeAlso: #02407
+

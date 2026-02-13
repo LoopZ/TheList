@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BFDEBX0014
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview/X 1.02+ - DVDOS4GX.DVR - LOCK ??? MAILBOX
+	AX = BFDEh
+	BX = 0014h
+	CX = index of ??? mailbox
+		(0000h-0004h valid, but no range checking done)
+Return: AX,BX destroyed
+SeeAlso: AX=BFDEh/BX=0015h,AX=BFDEh/BX=0017h
+

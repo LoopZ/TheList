@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F110C
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - GET DISK INFORMATION
+	AX = 110Ch
+	ES:DI -> current directory structure for desired drive
+Return: CF clear if data valid
+	    AL = sectors per cluster
+	    AH = media ID byte
+	    BX = total clusters
+	    CX = bytes per sector
+	    DX = number of available clusters
+	CF set if data invalid
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: INT 21/AH=36h
+

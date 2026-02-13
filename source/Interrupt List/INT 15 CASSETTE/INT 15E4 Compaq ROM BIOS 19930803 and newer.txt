@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E4
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq ROM BIOS 1993/08/03 and newer - ???
+	AH = E4h
+	AL = subfunction
+	    00h get advanced system info
+		Return: CF clear
+			AH = 00h
+			CX = 0000h
+			BX = advanced system info flags (read from [XBDA:0094h])
+			     bit 4: "mode 2" (dual harddisk controller) enabled
+	    01h,02h unsupported by this ROM version
+		Return: CF set, AH = 86h
+	    80h set advanced system info
+		BX = advanced system info flags
+		     bit 4: enable "mode 2" (dual harddisk controller)
+		???
+		Return: ???
+		Note:	On Compaq machines with "COMPAQ" signature at
+			  F000h:FFEAh (see also MEM F000h:FFE0h), MS-DOS/PC DOS
+			  IO.SYS/IBMBIO.COM use	this function to set bit 4
+			  before calling INT 13h/AH=08h to retrieve the number
+			  of hard disks installed (DL).
+	    90h,A0h,B0h,C0h,D0h,E0h,F0h set ???
+		Return: CF clear
+			AH = 00h
+			CX = 0000h
+			BX = ???
+	    81h,91h,A1h,B1h,C1h,D1h,E1h,F1h unsupported by 3/8/93&4/8/93 ROMs
+		Return: CF set, AH = 86h
+Notes:	functions 80h/90h/etc. are not supported by the 4/8/93 EISA System ROM
+	these functions are not supported by the 7/26/93 LTE Lite 386 ROM
+

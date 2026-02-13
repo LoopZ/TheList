@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61000FSF0008
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET PROCESS HANDLE
+	AX = 000Fh subfn 0008h
+	CX:BX -> request block (see #03450)
+	DX = application's data segment (should be = CX)
+	ES = DS
+Return: AX = status
+	    0000h successful
+	    00A5h resource not available
+Desc:	Returns a process handle to be used in other request blocks
+Notes:	This function is a prerequisite to all AX=000Fh subfunctions which
+	  expect a process handle in the request block
+	Although subsequent calls from the same application return different
+	  process handles, there seem to be no restrictions on how many times
+	  an application may call this function (in fact, the code in the VINES
+	  toolkit library always calls it before issueing other AX=000Fh calls)
+
+Format of request block:
+Offset	Size	Description	(Table 03450)
+ 00h	WORD	0008h
+ 02h	WORD	magic number (FEFEh)
+ 04h	WORD	buffer for return code (set to 0 before calling)
+ 06h	WORD	reserved
+ 08h	WORD	reserved (obviously not used; set to 0 before calling)
+ 0Ah	DWORD	process type (1 = transient, 2 = resident; destroyed on exit)
+ 0Eh	WORD	buffer for process handle
+

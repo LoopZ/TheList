@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE09
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - SET DEBUG REGISTERS
+	AX = DE09h
+	ES:DI -> array of 8 DWORDs holding new values of debug registers
+Return: AH = 00h
+Note:	values for DR4 and DR5 ignored
+SeeAlso: AH=3Fh,AX=DE08h
+

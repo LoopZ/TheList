@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - HyperPAD v2.2 - API ACCESS
+Note:	this vector is hooked but immediately passed on (without checking
+	  whether the previous handler was 0000h:0000h).  The sole purpose of
+	  this vector is to provide the address of the data area described
+	  below (see #03862).
+
+Format of HyperPAD data area:
+Offset	Size	Description	(Table 03862)
+ -16h	DWORD	pointer to ??? FAR function
+ -12h	DWORD	pointer to callback setting function
+		[C calling conventions, (*callback)(int (_loadds far *)()) ]
+ -0Eh 6 BYTEs	signature "BRC001"
+ -08h	DWORD	pointer to previous INT 7D handler
+ -04h	DWORD	pointer to ??? data
+ 00h		HyperPAD INT 7D handler
+

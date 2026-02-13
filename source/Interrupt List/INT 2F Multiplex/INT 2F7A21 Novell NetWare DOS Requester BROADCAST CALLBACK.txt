@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A21
+  Category: N 	network
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - Novell NetWare - DOS Requester - BROADCAST CALLBACK
+	AX = 7A21h
+	CX = server connection (FFFFh if message from Personal NetWare user)
+	interrupts disabled
+Return: CX = 0000h if broadcast handled
+	interrupts disabled
+Note:	this function is only linked into INT 2F when INT 21/AH=DEh/DL=05h
+	  has been issued
+SeeAlso: AX=7A22h,AX=7A85h,INT 21/AH=DEh
+

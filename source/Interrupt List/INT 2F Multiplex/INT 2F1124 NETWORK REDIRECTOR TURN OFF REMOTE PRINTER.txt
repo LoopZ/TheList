@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1124
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - TURN OFF REMOTE PRINTER
+	AX = 1124h
+	ES:DI -> SFT
+	SS = DOS DS
+	???
+Return: CX = ???
+Note:	this function is called by the DOS 3.1+ kernel if AX=1126h
+	  returns CF set
+SeeAlso: AX=1126h
+

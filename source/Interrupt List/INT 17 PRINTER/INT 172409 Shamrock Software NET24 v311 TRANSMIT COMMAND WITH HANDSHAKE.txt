@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 172409
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Shamrock Software NET.24 v3.11+ - TRANSMIT COMMAND, WITH HANDSHAKE
+	AX = 2409h
+	BX = target address
+	CX = number of data bytes
+	DL = command code to send
+	DS:SI -> data bytes for command
+Return: AL = status (see also #00640)
+	    03h no response
+	    06h remote currently unable to perform command
+SeeAlso: AX=2405h,AX=2408h
+

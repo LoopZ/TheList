@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101001
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET BORDER (OVERSCAN) COLOR (PCjr,Tandy,EGA,VGA)
+	AX = 1001h
+	BH = border color (00h-3Fh)
+Return: nothing
+BUG:	the original IBM VGA BIOS incorrectly updates the parameter save area
+	  and places the border color at offset 11h of the palette table
+	  rather than offset 10h
+Note:	under UltraVision, the palette locking status (see AX=CD01h)
+	  determines the outcome
+SeeAlso: AX=1002h,AX=1008h,AX=CD01h
+

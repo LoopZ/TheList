@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - LOGOFF
+	AH = 01h
+	DS:DX -> superstation ID or nulls (12 bytes)
+Return: CX = number of files closed
+	AX = status (see also #03740)
+	    08FFh superstation ID not already logged in
+SeeAlso: AH=00h"10NET",AH=81h
+

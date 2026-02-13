@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF69
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - CLOSE FILE AND START QUEUE JOB (OLD)
+	AH = E3h subfn 69h
+	DS:SI -> request buffer (see #01973)
+	ES:DI -> reply buffer (see #01974)
+Return: AL = status (00h,96h,D0h,D1h,D3h,D5h,D6h,FEh,FFh) (see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be on the workstation which created the job
+SeeAlso: AH=E3h/SF=68h,AH=E3h/SF=6Ah,AH=E3h/SF=6Eh,AX=F217h/SF=69h
+
+Format of NetWare "Close File and Start Queue Job (old)" request buffer:
+Offset	Size	Description	(Table 01973)
+ 00h	WORD	0007h (length of following data)
+ 02h	BYTE	69h (subfunction "Close File and Start Queue Job")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	WORD	(big-endian) job number
+SeeAlso: #01974
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01974)
+ 00h	WORD	(call) 0000h (no results returned)
+SeeAlso: #01973,#01975
+

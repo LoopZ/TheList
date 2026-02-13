@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F03BH00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies '64300' BIOS - GET CLOCK SPEED
+	AX = 5F03h
+	BH = 00h (get default memory clock)
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+		    BL = clock speed in MHz
+SeeAlso: AX=5F02h"64300",AX=5F04h"64300"
+

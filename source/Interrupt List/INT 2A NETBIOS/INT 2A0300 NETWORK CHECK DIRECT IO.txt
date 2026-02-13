@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A0300
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - NETWORK - CHECK DIRECT I/O
+	AX = 0300h
+	DS:SI -> ASCIZ device name (may be full path or only drive specifier--
+		  must include the colon)
+Return: CF clear if direct physical addressing (INT 13,INT 25) permissible
+	CF set if access via files only
+Notes:	do not use direct disk accesses if this function returns CF set or the
+	  device is redirected (INT 21/AX=5F02h)
+	use AH=00h to determine whether the network is installed; if not,
+	  direct physical access is allowed
+	may take some time to execute, so programs which need to check
+	  frequently should save the result of the first call
+	this function is called by the DOS kernel on INT 25 and INT 26
+	supported by PC LAN Program, LAN Manage, LANtastic, NetWare, 10NET,
+	  etc.
+SeeAlso: INT 13/AH=02h,INT 13/AH=03h,INT 25,INT 26,INT 21/AX=5F02h
+

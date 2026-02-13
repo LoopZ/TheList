@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F9B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - SET MESSAGE PROCESSING FLAGS
+	AX = 5F9Bh
+	DL = bits describing processing for received unsolicited messages
+	     (see #01731)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F9Ah,AX=5F9Eh
+

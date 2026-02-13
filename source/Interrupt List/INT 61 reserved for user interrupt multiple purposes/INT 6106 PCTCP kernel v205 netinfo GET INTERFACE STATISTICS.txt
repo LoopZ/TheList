@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6106
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05 - "net_info" - GET INTERFACE STATISTICS
+	AH = 06h
+	BX = network descriptor (must be allocated and open)
+	DS:SI -> 38-byte buffer for interface statistics (see #03455)
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (see #03319)
+Desc:	returns the statistics relevant to the particular network interface
+	   used by the specified network descriptor
+Range:	INT 20 to INT E0, selected by configuration
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=05h"PC/TCP"
+
+Format of PC/TCP interface statistics:
+Offset	Size	Description	(Table 03455)
+ 00h	WORD	interface class (e.g. 802.3)
+ 02h	WORD	type (manufacturer) of interface
+ 04h	WORD	interface number
+ 06h	DWORD	(big-endian) IP address of interface
+ 0Ah	DWORD	subnet mask
+ 0Eh	WORD	0001h if interface is up
+ 10h	DWORD	total packets received
+ 14h	DWORD	total packets sent
+ 18h	DWORD	receive errors
+ 1Ch	DWORD	send errors
+ 20h	WORD	length of local net address (e.g. 0006h for Ethernet)
+ 22h	DWORD	pointer to local net address
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310101
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - FREE DOS MEMORY BLOCK
+	AX = 0101h
+	DX = selector of block
+Return: CF set if successful
+	CF set on error
+	    AX = DOS error code (07h,09h) (see #01680 at INT 21/AH=59h/BX=0000h)
+Notes:	all descriptors allocated for the block are automatically freed
+	DPMI 1.0+ automatically zeros any segment registers containing a
+	  selector freed by this function
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0100h,AX=0102h,AX=0502h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1203
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - GET DOS DATA SEGMENT
+	AX = 1203h
+Return: DS = data segment of IBMDOS.COM/MSDOS.SYS
+Note:	for DOS prior to version 5.0, the data segment is the same as the code
+	  segment
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2704
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - REGISTER/UNREGISTER TASK MANAGER
+	AX = 2704h
+	DL = subfunction
+	    00h unregister task manager
+	    01h register task manager
+Return: DL = status
+	    00h registered
+	    01h unregistered
+Notes:	a task manager replaces TaskMAX's menu system with its own user
+	  interface; while one is registered, the TaskMAX hotkeys and
+	  Ctrl-Alt-Del invoke the manager rather than the built-in menu system
+	unregister the task manager before terminating it
+SeeAlso: AX=2705h
+Index:	hotkeys;TaskMAX
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCAFEBX0000
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - THELP v3.0 - INSTALLATION CHECK
+	AX = CAFEh
+	BX = 0000h
+Return: BX = segment of resident code if installed
+	    0000h if not installed
+SeeAlso: AX=5453h,INT 2D"AMIS"
+

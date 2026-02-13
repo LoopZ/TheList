@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 315702
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - Netroom3 DPMI.EXE v3.00 - SWITCH TO PROTECTED MODE
+	AX = 5702h
+	DX = PSP segment of caller
+	STACK: WORD	???
+	       WORD	flags (bit 0 set if 32-bit program)
+Return: as for DPMI mode-switch entry point (see #02718 at INT 2F/AX=1687h)
+Note:	this function is called by the real-mode DPMI mode-switch entry point
+SeeAlso: INT 2F/AX=1687h
+

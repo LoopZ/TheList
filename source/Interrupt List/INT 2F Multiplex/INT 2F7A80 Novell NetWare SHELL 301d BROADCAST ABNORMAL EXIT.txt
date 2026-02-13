@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A80
+  Category: N 	network
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - Novell NetWare - SHELL 3.01d BROADCAST - ABNORMAL EXIT
+	AX = 7A80h
+Return: nothing
+Notes:	called on abnormal exit of the NetWare shell to notify other Novell
+	  TSRs that it is unsafe to call the shell in the future; also called
+	  by NETX.VLM when it is unloaded
+	must be passed through so that all interested programs see the exit
+	on receiving this call, IPXODI clears an internal pointer to a
+	  default value; Novell's NETBIOS.EXE clears its INT 21h pointer to
+	  0000h:0000h and stops calling it
+SeeAlso: AX=7A81h
+

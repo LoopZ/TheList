@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144006
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - SEND UNLISTEN SIGNAL
+	AX = 4006h
+Return: CF clear if successful
+	CF set on error
+	    AL = error number (see #00354)
+SeeAlso: AX=4004h,AX=4005h
+

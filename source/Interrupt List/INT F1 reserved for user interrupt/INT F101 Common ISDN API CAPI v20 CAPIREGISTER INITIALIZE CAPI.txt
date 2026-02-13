@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: F1--01
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v2.0 - "CAPI_REGISTER" - INITIALIZE CAPI
+	AL = 01h
+	AH = CAPI version number * 10 (14h for v2.0)
+	ES:BX -> buffer for CAPI's use (refer to note below)
+	CX = number of bytes for message buffer
+	DX = maximum simultaneous logical (Level 3) connections
+	SI = maximum concurrent received B3 data blocks (min. 2)
+	DI = maximum B3 data block size (up to 2048 bytes)
+Return: AX = CAPI-assigned application ID
+	    0000h on error
+		BX = error number
+		    1001h registration error
+Range:	INT 00 to INT FF, selectable by program parameter
+Notes:	the caller is required to provide at least 512 bytes of stack space
+	the CAPI interrupt handler begins with a header (see #04068) which is
+	  nearly identical to the IBM Interrupt Sharing Protocol header
+	  (see #02568 at INT 2D"AMIS"), except that the short jump instruction
+	  to a hardware reset handler at offset 09h is zeroed out and the
+	  entire header is inexplicably shortened by one byte
+	the standard document suggests using 1024 + (1024*DX) bytes for the
+	  message buffer for typical applications
+	the total size of the application-provided buffer must be at least
+	  CX + DX*SI*DI bytes
+SeeAlso: AH=01h,INT F1/AL=02h
+Index:	installation check;Common ISDN API
+
+Format of CAPI v2.0 interrupt handler entry point:
+Offset	Size	Description	(Table 04068)
+ 00h  2 BYTEs	short jump to actual start of interrupt handler, immediately
+		  following this data block (EBh 0Fh)
+ 02h	DWORD	address of next handler in chain
+ 06h	WORD	signature 424Bh
+ 08h	BYTE	EOI flag (80h)
+		80h primary hardware interrupt handler (will issue EOI)
+ 09h  2 BYTEs	reserved (0)
+		(is short jump to hardware reset routine in ISP header)
+ 0Bh  4 BYTEs	signature "CAPI"
+ 0Fh  2 BYTEs	two-digit CAPI version number in ASCII ('20')
+SeeAlso: #02568 at INT 2D
+

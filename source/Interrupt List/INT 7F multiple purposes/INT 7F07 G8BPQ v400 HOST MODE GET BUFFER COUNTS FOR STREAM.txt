@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F07
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.00+ - HOST MODE - GET BUFFER COUNTS FOR STREAM
+	AH = 07h
+	AL = stream number (01h-40h)
+Return: BX = number of pending receive frames
+	CX = number of unacknowledged sent frames
+	DX = number of buffers available
+SeeAlso: AH=02h"G8BPQ",AH=03h"G8BPQ"
+

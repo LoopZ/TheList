@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F01BL01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - ADAPTER CONTROL - GET ADAPTER
+	AX = 7F01h
+	BL = 01h
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		01h failed
+	    BX = adapter type (see #00205)
+	    DX = display type (see #00206)
+SeeAlso: AX=7F00h"SOLLEX",AX=7F01h/BL=00h,AX=7F01h/BL=02h
+
+Bitfields for SOLLEX SuperVGA display type:
+Bit(s)	Description	(Table 00206)
+ 15-9	reserved
+ 8	alternate display active
+ 7	Enhanced Color Display monitor active
+ 6	multi-frequency digital monitor active
+ 5	PS/2-type monitor active
+ 4	plasma/electroluminescent panel active
+ 3	LCD panel active
+ 2	multi-frequency analog monitor active
+ 1-0	monitor sense (00 none, 01 color, 10 mono, 11=8514)
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C1
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare, Alloy NTNX - CLEAR RECORD (FCB)
+	AH = C1h
+	DS:DX -> opened FCB (see #01345 at AH=0Fh)
+	BX:CX = offset
+Return: AL = error code (see #01807)
+Note:	unlocks record and removes it from log table
+	this function was added in NetWare 4.6, but was removed some time prior
+	  to Advanced NetWare, and is no longer listed in current Novell
+	  documentation
+SeeAlso: AH=BEh,AH=C0h"NetWare",AH=C4h
+

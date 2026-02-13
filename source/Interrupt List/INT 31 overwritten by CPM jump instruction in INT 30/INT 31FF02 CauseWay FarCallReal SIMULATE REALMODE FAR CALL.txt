@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF02
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "FarCallReal" - SIMULATE REAL-MODE FAR CALL
+	AX = FF02h
+	ES:(E)DI -> real-mode register list (see #03148 at AX=0300h)
+Return: register list updated
+SeeAlso: AX=0301h,AX=FF01h
+

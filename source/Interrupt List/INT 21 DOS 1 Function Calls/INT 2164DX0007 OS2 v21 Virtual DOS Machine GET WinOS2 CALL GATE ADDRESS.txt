@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--DX0007
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - GET WinOS2 CALL GATE ADDRESS
+	AH = 64h
+	DX = 0007h (function number)
+	CX = 636Ch (magic value, "cl")
+	BX = 0000h (indicates special request)
+Return: AX = call gate address
+Notes:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
+	used by WinOS2 to make direct calls to OS2KRNL, bypassing the overhead
+	  of DOSKRNL
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620067
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_KBLAST" - GET MOST RECENT SCANCODE PROCESSED
+	AX = 0067h
+Return: AX = scancode for keypress most recently processed by FastGraph's
+	      low-level keyboard handler, or 0000h if no keys since FG_KBINIT
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0066h,AX=0068h,AX=0069h
+

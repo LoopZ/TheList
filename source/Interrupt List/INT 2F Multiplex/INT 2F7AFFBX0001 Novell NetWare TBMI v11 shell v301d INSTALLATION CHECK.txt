@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7AFFBX0001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare - TBMI v1.1+, shell v3.01d - INSTALLATION CHECK???
+	AX = 7AFFh
+	BX = 0001h
+	CX = 4E65h ("Ne")
+	DX = 7457h ("tW")
+Return: AL = FFh if installed
+	    CX = ???  (8000h)
+	    SI = ??? (or -> ???) (0002h and 0007h seen)
+	    ES:DI -> IPX far call handler
+	    ES:DX -> 6-byte data area ???
+Note:	this function is also supported by IPXODI, but IPXODI v2.12 does not
+	  return ES:DX
+SeeAlso: AX=7AFFh/BX=0000h
+

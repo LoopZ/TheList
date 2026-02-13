@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4B05
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DOS 5+ TASK SWITCHER - IDENTIFY INSTANCE DATA
+	AX = 4B05h
+	ES:BX = 0000h:0000h
+	CX:DX -> task switcher entry point (see #02819)
+Return: ES:BX -> startup info structure (see #02822) or 0000h:0000h
+Notes:	called by task switcher
+	clients with instance data should hook this call, pass it through to
+	  the previous handler with unchanged registers using a simulated
+	  interrupt.  On return, the client should create a startup info
+	  structure (see #02822), store the returned ES:BX in the "next"
+	  field, and return the address of the created structure in ES:BX
+	all MS-DOS function calls are available from within this call
+	this function is supported by Novell DOS 7 DOSKEY, with structure v3.00
+SeeAlso: AX=1605h,AX=160Bh,AX=4B02h
+
+Format of task switcher startup info structure:
+Offset	Size	Description	(Table 02822)
+ 00h  2 BYTEs	major, minor version of info structure (03h,00h)
+ 02h	DWORD	pointer to next startup info structure or 0000h:0000h
+ 06h	DWORD	0000h:0000h (ignored)
+ 0Ah	DWORD	ignored
+ 0Eh	DWORD	pointer to instance data records (see #02823)
+
+Format of one instance data record in array:
+Offset	Size	Description	(Table 02823)
+ 00h	DWORD	address of instance data (end of array if 0000h:0000h)
+ 04h	WORD	size of instance data
+

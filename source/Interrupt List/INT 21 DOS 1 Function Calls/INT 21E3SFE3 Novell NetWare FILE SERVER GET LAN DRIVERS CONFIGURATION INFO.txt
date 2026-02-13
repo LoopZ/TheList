@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFE3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET LAN DRIVER'S CONFIGURATION INFO
+	AH = E3h subfn E3h
+	DS:SI -> request buffer (see #02073)
+	ES:DI -> reply buffer (see #02074)
+Return: AL = status (00h,C6h) (see #02053)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=E7h,AH=E3h/SF=E8h,AX=F217h/SF=E3h
+
+Format of NetWare "Get LAN Driver's Configuration Info" request buffer:
+Offset	Size	Description	(Table 02073)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	E3h (subfunction "Get LAN Driver's Configuration Information")
+ 03h	BYTE	LAN board (00h-03h)
+SeeAlso: #02074,#02242 at AX=F217h/SF=E3h
+
+Format of NetWare "Get LAN Driver's Configuration Info" reply buffer:
+Offset	Size	Description	(Table 02074)
+ 00h	WORD	(call) 00ACh (size of following results buffer)
+ 02h  4 BYTEs	network number
+ 06h  6 BYTEs	node number
+ 0Ch	BYTE	LAN driver installed (00h no--remaining fields invalid)
+ 0Dh	BYTE	option number selected at configuration time
+ 0Eh 160 BYTEs	configuration text
+		ASCIZ hardware type
+		ASCIZ hardware settings
+SeeAlso: #02073,#02242 at AX=F217h/SF=E3h
+

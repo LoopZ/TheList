@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFB1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - SET SPOOLER PRINTING PRIORITY
+	AX = FFB1h
+	CH = printer number (00h LPT1, 01h LPT2, 02h LPT3)
+	CH = new priority (00h normal, 01h high)
+Return: nothing
+SeeAlso: AX=FFB0h
+

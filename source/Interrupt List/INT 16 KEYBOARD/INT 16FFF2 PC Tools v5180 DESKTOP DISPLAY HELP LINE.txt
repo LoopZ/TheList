@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFF2
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - DISPLAY HELP LINE
+	AX = FFF2h
+	DS:SI -> ASCIZ function key label string (each label preceded by '[')
+		or help text
+Return: AX destroyed
+Notes:	available only when popped up
+	if the specified string does not start with '[', it is displayed
+	  centered on the bottom line, else the function key labels are shown
+

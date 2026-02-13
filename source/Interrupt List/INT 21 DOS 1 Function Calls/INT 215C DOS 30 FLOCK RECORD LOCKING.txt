@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.0+ - "FLOCK" - RECORD LOCKING
+	AH = 5Ch
+	AL = subfunction
+	    00h lock region of file
+	    01h unlock region of file
+	BX = file handle
+	CX:DX = start offset of region within file
+	SI:DI = length of region in bytes
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h,06h,21h,24h) (see #01680)
+Notes:	error returned unless SHARE or network installed
+	an unlock call must specify the same region as some prior lock call
+	locked regions become entirely inaccessible to other processes
+	duplicate handles created with AH=45h or AH=46h inherit locks, but
+	  handles inherited by child processes (see AH=4Bh) do not
+	under DR DOS 3.41 and 5.0, if a process opens a file without the no-
+	  inherit flag and then starts a child, any locks set by the parent
+	  are ignored, and the child will only get an error if it tries to
+	  lock an area previously locked by the parent process.	 Under Novell
+	  DOS 7, this function is fully supported as in MS-DOS.
+SeeAlso: AX=440Bh,AH=BCh,AH=BEh,INT 2F/AX=110Ah,INT 2F/AX=110Bh
+

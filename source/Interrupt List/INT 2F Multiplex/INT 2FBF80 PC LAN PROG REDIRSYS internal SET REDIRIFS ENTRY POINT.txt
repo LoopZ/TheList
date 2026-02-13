@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBF80
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC LAN PROG REDIR.SYS internal - SET REDIRIFS ENTRY POINT
+	AX = BF80h
+	ES:DI -> FAR entry point to IFS handler in REDIRIFS
+Return: AL = FFh if installed
+	    ES:DI -> internal workspace
+Note:	all future IFS calls to REDIR.SYS are passed to the ES:DI entry point
+SeeAlso: AX=BF00h
+

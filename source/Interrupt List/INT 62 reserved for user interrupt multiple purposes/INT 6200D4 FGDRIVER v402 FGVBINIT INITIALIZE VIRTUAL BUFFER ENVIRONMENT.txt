@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200D4
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBINIT" - INITIALIZE VIRTUAL BUFFER ENVIRONMENT
+	AX = 00D4h
+Return: nothing
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	this function must be called before any other virtual buffer functions
+	  are used
+SeeAlso: AX=00CDh,AX=00D5h
+

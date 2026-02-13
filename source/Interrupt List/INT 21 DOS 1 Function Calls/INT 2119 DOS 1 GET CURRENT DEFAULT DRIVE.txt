@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2119
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - GET CURRENT DEFAULT DRIVE
+	AH = 19h
+Return: AL = drive (00h = A:, 01h = B:, etc)
+Note:	Novell NetWare uses the fact that DOS 2.x COMMAND.COM issues this call
+	  from a particular location every time it starts a command to
+	  determine when to issue an automatic EOJ
+SeeAlso: AH=0Eh,AH=47h,AH=BBh
+

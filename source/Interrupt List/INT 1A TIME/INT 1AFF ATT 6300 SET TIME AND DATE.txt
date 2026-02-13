@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AFF
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - AT&T 6300 - SET TIME AND DATE
+	AH = FFh
+	BX = day count (0 = Jan 1, 1984)
+	CH = hour
+	CL = minute
+	DH = second
+	DL = hundredths
+Return: ???
+SeeAlso: AX=CCCCh/BX=CCCCh,AH=FEh,INT 21/AH=2Bh"DATE",INT 21/AH=2Dh
+

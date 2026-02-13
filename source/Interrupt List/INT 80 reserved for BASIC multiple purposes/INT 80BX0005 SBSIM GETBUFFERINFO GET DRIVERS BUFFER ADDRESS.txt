@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0005
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SBSIM - "GETBUFFERINFO" - GET DRIVER'S BUFFER ADDRESS
+	BX = 0005h
+	AX = driver (00h = FM, 01h = DDB Voice, 04h = MIDI)
+Return: CF clear if successful
+	    DX:AX -> buffer
+	    CX = buffer size in K
+	CF set on error
+Program: SBSIM is Creative Labs' SoundBlaster Simplified Interface Module,
+	  which provides access to multiple drivers for the SoundBlaster
+	  board through a single interface
+Range:	INT 80h to INT BFh, selected automatically
+Note:	the SBSIM installation check consists of testing for the signature
+	  "SBSIM" at offset 103h in the interrupt handler's segment.
+SeeAlso: BX=0000h"SBSIM",BX=0001h"SBSIM",BX=0002h"SBSIM",INT 80/BL=00h"SBSIM"
+

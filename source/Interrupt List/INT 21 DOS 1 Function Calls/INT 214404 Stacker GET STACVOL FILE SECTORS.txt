@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214404
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Stacker - GET STACVOL FILE SECTORS
+	AX = 4404h
+	BL = drive number (0 is current drive)
+	CX = byte count (i.e., 200h = 1 sector)
+	DS:DX -> buffer (see #01529)
+Return: Data Buffer contains the number of sectors requested from the
+	  STACVOL physical file for the drive specified.
+
+Format of Stacker buffer:
+Offset	Size	Description	(Table 01529)
+ 00h	WORD	01CDh
+ 02h	WORD	sector count
+ 04h	DWORD	number of starting sector
+ 08h	DWORD	far pointer to Data Buffer
+

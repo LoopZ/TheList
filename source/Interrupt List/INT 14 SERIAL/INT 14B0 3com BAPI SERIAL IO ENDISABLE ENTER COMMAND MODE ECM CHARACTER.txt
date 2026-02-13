@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14B0
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - EN/DISABLE "ENTER COMMAND MODE" (ECM) CHARACTER
+	AH = B0h
+	AL = new state (00h disabled, 01h enabled)
+Return: AH = return code (00h,07h,0Ah) (see #00394)
+Note:	disabling the ECM character allows applications to send data which
+	  includes the ECM character
+SeeAlso: AX=AF00h"BAPI",AH=B1h,AH=B2h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AA4
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v4.02+ - GET/SET ANSIPLUS SMOOTH SCROLLING RATE
+	AX = 1AA4h
+	BL = function
+	    00h get scrolling rate
+	    01h set scrolling rate
+		BH = new minimum scrolling rate in scan lines per retrace
+Return: BH = smooth scrolling rate
+SeeAlso: AX=1AA3h,AX=1AA5h
+

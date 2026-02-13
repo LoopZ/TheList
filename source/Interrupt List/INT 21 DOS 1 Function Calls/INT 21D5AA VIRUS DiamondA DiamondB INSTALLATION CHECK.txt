@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D5AA
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Diamond-A", "Diamond-B" - INSTALLATION CHECK
+	AX = D5AAh
+Return: AX = 2A55h if "Diamond-A" resident
+	AX = 2A03h if "Diamond-B"-family virus resident
+SeeAlso: AX=D000h,AH=D5h"VIRUS",AX=D5AAh/BP=DEAAh
+

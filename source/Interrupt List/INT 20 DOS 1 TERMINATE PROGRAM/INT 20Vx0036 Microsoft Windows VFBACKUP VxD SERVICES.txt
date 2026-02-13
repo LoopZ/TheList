@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0036
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VFBACKUP - VxD SERVICES
+	VxD = 0036h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01299)
+Values for VFBACKUP (VxD ID 0036h) service number:
+ 0000h	get version
+	Return: CF clear
+		EAX = version (AH = major, AL = minor)
+ 0001h	"VFBACKUP_Lock_NEC"
+ 0002h	"VFBACKUP_UnLock_NEC"
+ 0003h	"VFBACKUP_Register_NEC"
+ 0004h	"VFBACKUP_Register_VFD"
+ 0005h	"VFBACKUP_Lock_All_Ports"
+SeeAlso: #01297,#01300
+

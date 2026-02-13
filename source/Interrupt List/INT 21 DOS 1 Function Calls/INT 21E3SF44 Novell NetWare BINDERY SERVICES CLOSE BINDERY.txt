@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF44
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - CLOSE BINDERY
+	AH = E3h subfn 44h
+	DS:SI -> request buffer (see #01955)
+	ES:DI -> reply buffer (see #01953)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=45h,AX=F217h/SF=44h
+
+Format of NetWare "Close Bindery" request buffer:
+Offset	Size	Description	(Table 01955)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	44h (subfunction "Close Bindery")
+SeeAlso: #01953,#01956
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC18DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - SEND USER KEY TO QRIP
+	AX = AC18h
+	DI = 1092h
+	BX = key (00xxh is normal ASCII, xx00h is an extended key)
+Return: nothing
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC06h,AX=ACF0h
+

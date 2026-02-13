@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14B2
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - GET ECM WATCH STATE
+	AH = B2h
+Return: AH = return code (00h,07h,0Ah) (see #00394)
+	AL = watch flag (00h disabled, 01h enabled)
+Desc:	determine whether the ECM character is enabled
+SeeAlso: AH=B0h,AH=B1h
+

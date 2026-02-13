@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 88
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 88h - WANG PC - GET CONFIGURATION
+	 AL = get info type
+	     01h Get System Console
+		Return: ES:BX -> Configuration structure (see #04089)
+	     else: ???
+SeeAlso: PORT 1010h"Wang",MEM F000h:0000h,MEM FC00h:3FC2h,INT 21/AX=4402h
+
+Format of Wang PC System Console configuration structure:
+Offset	Size	Description	(Table 04089)
+ 00h	WORD	version
+ 02h	WORD	memory size
+ 04h  2 WORDs	reserved
+ 08h	WORD	number of screens (1..4)
+ 0Ah  4 WORDs	offset of console screen info structure 1..4 within
+		  configuration structure's segment (ES) (see #04090)
+
+Format of Wang PC Screen Info structure:
+Offset	Size	Description	(Table 04090)
+ 00h	BYTE	state
+		(bit 7 set appears to indicate the active console that is
+		  currently attached to the screen)
+ 01h	BYTE	scanoff
+ 02h	WORD	buffer segment
+ 04h	BYTE	colors
+ 05h	BYTE	row
+ 06h	BYTE	column
+ 07h	BYTE	attribute
+		00h = ???
+		02h = ???
+		0Fh = white on black
+ 08h	BYTE	auxiliary mode
+ 09h	BYTE	auxiliary mode 2
+SeeAlso: #04089
+

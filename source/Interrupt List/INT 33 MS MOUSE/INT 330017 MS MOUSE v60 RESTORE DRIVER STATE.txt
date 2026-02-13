@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330017
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - RESTORE DRIVER STATE
+	AX = 0017h
+	BX = size of buffer (see AX=0015h)
+	ES:DX -> buffer containing saved state
+Notes:	although not documented (since the Microsoft driver does not use it),
+	  many drivers appear to require BX on input
+	some mouse drivers range-check the values in the saved state based on
+	  the current video mode; thus, the video mode should be restored
+	  before the mouse driver's state is restored
+SeeAlso: AX=0015h,AX=0016h
+

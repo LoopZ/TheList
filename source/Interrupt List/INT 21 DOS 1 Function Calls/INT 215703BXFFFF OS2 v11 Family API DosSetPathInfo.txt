@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215703BXFFFF
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - OS/2 v1.1+ Family API - DosSetPathInfo
+	AX = 5703h
+	BX = FFFFh
+	CX = size of information buffer
+	DX = level of information
+	DS:SI -> filename
+	ES:DI -> information buffer
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5702h/BX=FFFFh,AX=5703h"OS/2"
+

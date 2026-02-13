@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200A0
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_REVIMAGE" - DISPLAY REVERSED IMAGE (BITMAP)
+	AX = 00A0h
+	ES:BX -> mode-specific bitmap
+	CX = width of bitmap in bytes
+	DX = height of bitmap in pixel rows
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+	The image is drawn with its lower left corner at the current graphics
+	  cursor position
+SeeAlso: AX=0011h,AX=0024h,AX=0036h,AX=0044h,AX=00A1h,AX=00A9h,AX=00B9h
+

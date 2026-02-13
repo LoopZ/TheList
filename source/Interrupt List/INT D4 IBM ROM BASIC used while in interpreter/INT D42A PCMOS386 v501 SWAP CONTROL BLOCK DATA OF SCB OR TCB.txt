@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: D42A
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - SWAP CONTROL BLOCK DATA OF SCB OR TCB
+	AH = 2Ah
+	BX = offset into control block at which to start swap
+	CX = number of bytes to swap
+	DX = segment/selector of control block obtained via AH=26h or AH=27h
+	DS:SI -> buffer containing new data and to receive current data
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see also #01680 at INT 21/AH=59h/BX=0000h)
+		05h access denied due to an invalid segment/selector
+Note:	the interrupts are disabled during the swap to prevent corruption
+SeeAlso: AH=26h,AH=27h,AH=28h,AH=29h
+

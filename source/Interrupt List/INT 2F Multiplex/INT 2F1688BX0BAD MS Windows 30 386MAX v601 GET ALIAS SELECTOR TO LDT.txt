@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1688BX0BAD
+  Category: W 	MS Windows
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS Windows 3.0, 386MAX v6.01 - GET ALIAS SELECTOR TO LDT
+	AX = 1688h
+	BX = 0BADh
+Return: AX = 0000h if supported
+	    BX = alias selector for LDT
+Note:	use the LSL instruction or GetSelectorLimit() to find LDT size
+	this call should be considered obsolete for Windows 3.1+, as the
+	  alias selector can be retrieved via the API entry point for
+	  "MS-DOS" retrieved from INT 2F/AX=168Ah (see #02720)
+SeeAlso: AX=1687h,#02720
+

@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107000BX0000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Everex Extended Video BIOS - RETURN EMULATION STATUS
+	AX = 7000h
+	BX = 0000h
+Return: AL = 70h if Trident-based Everex card
+	CL = monitor type (see #00193)
+	CH = feature bits (see #00194)
+	DX = video board info
+	    bits 4-15: board ID model (see #00195)
+	    bits 0-3:  board ID revision
+	DI = BCD BIOS version number
+SeeAlso: AX=5F01h,AH=FFh"Oak"
+
+(Table 00193)
+Values for Everex monitor type:
+ 00h	mono
+ 01h	CGA
+ 02h	EGA
+ 03h	digital multifrequency
+ 04h	IBM PS/2
+ 05h	IBM 8514
+ 06h	SuperVGA
+ 07h	analog multifrequency
+ 08h	super multifrequency
+
+Bitfields for Everex feature bits:
+Bit(s)	Description	(Table 00194)
+ 7-6	memory size
+	00 = 256K
+	01 = 512K
+	10 = 1024K
+	11 = 2048K
+ 5	special oscillator present
+ 4	VGA protect enabled
+ 0	6845 emulation
+
+(Table 00195)
+Values for board model for Trident-based Everex cards:
+ 0236h	Ultragraphics II
+ 0620h	Vision VGA
+ 0673h	EVGA
+ 0678h	Viewpoint
+

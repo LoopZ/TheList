@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C207
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE (PS) - SET DEVICE HANDLER ADDR
+	AX = C207h
+	ES:BX -> FAR user device handler or 0000h:0000h to cancel
+Return: CF set on error
+	    AH = status (see #00522)
+Note:	when the subroutine is called, it is passed the following values on
+	  the stack; the handler should return with a FAR return without
+	  popping the stack:
+		WORD 1: status (see #00525)
+		WORD 2: X data (high byte = 00h)
+		WORD 3: Y data (high byte = 00h)
+		WORD 4: 0000h
+SeeAlso: INT 33/AX=000Ch
+
+Bitfields for pointing device status:
+Bit(s)	Description	(Table 00525)
+ 15-8	reserved (0)
+ 7	Y data overflowed
+ 6	X data overflowed
+ 5	Y data is negative
+ 4	X data is negative
+ 3	reserved (1)
+ 2	reserved (0)
+ 1	right button pressed
+ 0	left button pressed
+

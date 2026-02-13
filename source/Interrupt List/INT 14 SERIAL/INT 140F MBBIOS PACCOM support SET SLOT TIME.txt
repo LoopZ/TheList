@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140F
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS PACCOM support - SET SLOT TIME
+	AH = 0Fh
+	AL = new setting in clock ticks
+Return: nothing
+Desc:	specify the time from end of DCD to RTS
+SeeAlso: AH=0Dh"MBBIOS",AH=0Eh"MBBIOS",AH=10h"MBBIOS"
+

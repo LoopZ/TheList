@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0001C
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "SET_PATTERN" - SPECIFY ROBOT'S DISPLAY IMAGE
+	AX = 001Ch
+	BX:CX -> pattern array
+Return: nothing
+Note:	the pattern array consists of five bytes, the low five bits of each
+	  specifying the bit pattern for one line of the robot's screen display
+

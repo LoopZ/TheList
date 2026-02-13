@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL31
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (VGA, MCGA) - PALETTE LOADING
+	AH = 12h
+	BL = 31h
+	AL = new state
+	    00h enable default palette loading
+	    01h disable default palette loading
+Return: AL = 12h if function supported
+Desc:	specify whether a default palette should be loaded when the display
+	  mode is set
+SeeAlso: AH=00h
+

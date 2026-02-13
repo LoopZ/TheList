@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F6284BX0000
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v7-8 DATAMON, v9+ DPROTECT	- INSTALLATION CHECK
+	AX = 6284h
+	BX = 0000h
+	CX = 0000h
+Return: AX = segment of resident code
+	BX = 5555h
+	CX = 5555h
+Note:	also supported by DOS 6 UNDELETE which is licensed from PC Tools
+SeeAlso: AX=6284h/BX=0001h,INT 16/AX=FFA3h/BX=0000h
+

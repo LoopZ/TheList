@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB702
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - APPEND - GET VERSION
+	AX = B702h
+Return: AX = FFFFh if not DOS 4.0 APPEND (also if DOS 5.0 APPEND)
+	AL = major version number
+	AH = minor version number, otherwise
+SeeAlso: AX=B700h,AX=B710h
+

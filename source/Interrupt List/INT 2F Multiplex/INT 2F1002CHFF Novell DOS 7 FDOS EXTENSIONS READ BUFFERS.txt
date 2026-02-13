@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1002CHFF
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - Novell DOS 7+ FDOS EXTENSIONS - READ BUFFERS
+	AX = 1002h
+	CH = FFh (pre-read required)
+	CL = buffer type (here FAT, DIR, or DATA, see below)
+	AH:DX = 24 bit sector number
+Return:	ES:SI -> buffer control block
+Notes:	This private function is called internally by the OS kernel to
+	  ask the FDOS to find the corresponding buffer.  By using the
+	  INT 2F/AX=1001h FDOS hook, the call can be intercepted by external
+	  system components such as the DELWATCH TSR.
+	This function must under no circumstances be called by applications!
+SeeAlso: INT 2F/AX=1001h,AX=1003h,AX=1008h,AX=1009h,AX=10FEh
+
+Bitfields for Novell DOS 7 FDOS buffer type:
+Bit(s)	Description	(Table 04099)
+ 7	remote (on a network drive)
+ 6	dirty (modified)
+ 3	data sector
+ 2	directory sector
+ 1	FAT sector
+

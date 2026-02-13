@@ -1,0 +1,95 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1589
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - SWITCH TO PROTECTED MODE
+	AH = 89h
+	BL = interrupt number of IRQ0 (IRQ1-7 use next 7 interrupts)
+	BH = interrupt number of IRQ8 (IRQ9-F use next 7 interrupts)
+	ES:SI -> GDT for protected mode (see #00500)
+Return: CF set on error
+	   AH = FFh  error enabling address line 20
+	CF clear if successful
+	   AH = 00h
+	   in protected mode at specified address
+	   BP may be destroyed; all segment registers change
+Notes:	BL and BH must be multiples of 8
+	the protected-mode CS must reference the same memory as the CS this
+	  function is called from because execution continues with the address
+	  following the interrupt call
+SeeAlso: AH=87h,AH=88h,INT 67/AX=DE0Ch
+
+Format of BIOS switch-to-protected-mode Global Descriptor Table:
+Offset	Size	Description	(Table 00500)
+ 00h  8 BYTEs	null descriptor (initialize to zeros)
+ 08h  8 BYTEs	GDT descriptor (see #00501)
+ 10h  8 BYTEs	IDT descriptor
+ 18h  8 BYTEs	DS descriptor
+ 20h  8 BYTEs	ES
+ 28h  8 BYTEs	SS
+ 30h  8 BYTEs	CS
+ 38h  8 BYTEs	uninitialized, used to build descriptor for BIOS CS
+
+Format of segment descriptor table entry:
+Offset	Size	Description	(Table 00501)
+ 00h	WORD	segment limit, low word
+ 02h  3 BYTEs	segment base address, low 24 bits
+ 05h	BYTE	access mode (see #00502)
+ 06h	BYTE	386+ extended access mode (see #00505)
+ 07h	BYTE	386+ segment base address, high 8 bits
+SeeAlso: #00500,INT 2C/AX=0002h,INT 31/AX=0009h
+
+Bitfields for segment descriptor table access mode field:
+Bit(s)	Description	(Table 00502)
+ 3-0	segment type (see #00503,#00504)
+ 4	descriptor type (1 = application, 0 = system)
+ 6-5	descriptor privilege level
+ 7	segment is present in RAM
+SeeAlso: #00501,#00505
+
+(Table 00503)
+Values for system segment descriptor type:
+ 0	reserved
+ 1	available 16-bit TSS
+ 2	LDT
+ 3	busy 16-bit TSS
+ 4	16-bit call gate
+ 5	task gate
+ 6	16-bit interrupt gate
+ 7	16-bit trap gate
+ 8	reserved
+ 9	available 32-bit TSS
+ 10	reserved
+ 11	busy 32-bit TSS
+ 12	32-bit call gate
+ 13	reserved
+ 14	32-bit interrupt gate
+ 15	32-bit trap gate
+SeeAlso: #00502,#00504
+
+Bitfields for application segment descriptor type:
+Bit(s)	Description	(Table 00504)
+ 3	code/data
+	0 date
+	1 code
+---data segments---
+ 2	expand down
+ 1	writeable
+---code segments---
+ 2	conforming
+ 1	readable
+------
+ 0	accessed
+SeeAlso: #00502,#00503
+
+Bitfields for 386+ segment descriptor table extended access mode field:
+Bit(s)	Description	(Table 00505)
+ 3-0	high 4 bits of segment limit
+ 4	available
+ 5	reserved (0)
+ 6	default operation size (1 = 32 bits, 0 = 16 bits)
+ 7	granularity (1 = 4K, 0 = byte)
+SeeAlso: #00501,#00502,#02557
+

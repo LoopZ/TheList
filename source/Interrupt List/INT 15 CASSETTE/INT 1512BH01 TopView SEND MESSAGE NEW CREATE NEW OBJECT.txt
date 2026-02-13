@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH01
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "NEW" - CREATE NEW OBJECT
+	AH = 12h
+	BH = 01h
+	BL = object type to create (see #00435)
+	STACK: (only if window object or WINDOW class)
+	       DWORD address to jump to (no new task if high word == 0)
+	       DWORD (reserved) 0 = non-task window, FFFFh = task window
+	       DWORD bytes for task's private stack (FFFFh == default of 0100h)
+	       DWORD bytes system memory for input buffer for READ/READN
+			(0 == none, -1 == default--same as logical window size)
+	       DWORD window size, columns
+	       DWORD window size, rows
+	       DWORD length of window title
+	       DWORD address of window title
+Return: DWORD on top of stack is new object handle
+Notes:	if a new task is created, it is started with
+	  AX = BX = SI = DI = BP = 0
+	  DX:CX = handle of parent task
+	  DS = ES = SS = segment of private stack (and new task's handle)
+	new windows are orphans, inherit the colors/hidden status of the
+	  creating task's window, and are placed in the upper left hand corner
+	  of the screen but not automatically redrawn
+	new keyboards are closed, and have all object bits cleared except for
+	  the hardware cursor bit
+SeeAlso: AH=12h/BH=02h,AH=12h/BH=81h
+
+(Table 00435)
+Values for TopView/DESQview object type (for creation):
+ 00h	(DV 2.0x only) handle is DWORD on top of stack
+ 01h	(DV 2.0x only) use task's window handle
+ 02h	(DV 2.0x only) given task's mailbox (task's handle on stack)
+ 03h	(DV 2.0x only) current task's mailbox
+ 04h	(DV 2.0x only) given task's keyboard (task's handle on stack)
+ 05h	(DV 2.0x only) current task's keyboard object
+ 08h	WINDOW class
+ 09h	MAILBOX class
+ 0Ah	KEYBOARD class
+ 0Bh	TIMER object (counts down 32-bit time in 10ms increments)
+ 0Fh	POINTER object
+ 10h	PANEL object
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1407
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus IODRV - GET PORT STATUS
+	AH = 07h
+Return: CL = modem status (see #00305)
+	CH = character at head of input queue (if any)
+	DX = number of characters in input queue
+Note:	the port number is stored at offset BEh in the Task Control Block
+SeeAlso: AH=03h,AH=05h"MultiDOS",AH=08h"MultiDOS",AH=09h"MultiDOS"
+SeeAlso: AH=23h"MultiDOS",INT 15/AH=13h"MultiDOS"
+

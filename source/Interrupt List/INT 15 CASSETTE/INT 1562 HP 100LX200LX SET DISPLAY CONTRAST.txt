@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1562
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SET DISPLAY CONTRAST
+	AH = 62h
+	BL = contrast (00h-1Fh, 1Fh is the darkest)
+SeeAlso: AH=47h"HP",AH=61h"HP"
+

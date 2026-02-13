@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F11
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - LOCK FCB
+	AH = 11h
+	AL = mode
+	    01h sequential
+	    02h random
+	    03h random block
+		CX = number of records
+	DS:DX -> FCB (see #01345 at INT 21/AH=0Fh)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see also #03740)
+		0002h file not found
+SeeAlso: AH=12h,INT 21/AH=0Fh
+

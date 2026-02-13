@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD100
+  Category: G 	debuggers/debugging tools
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MDEBUG command driver - GET STATUS
+	AX = D100h
+	BX = version of MDEBUG (BH = major, BL = minor)
+	CX = command driver counter
+---v1.60+---
+	DS:SI -> MDEBUG identification table (see #03076)
+	ES = segment of display memory used by MDEBUG
+	DI = size of video mode used by MDEBUG
+	    (high byte = lines, low byte = columns)
+Return: DL = FFh
+	BX = version number of the driver if it is less than the version in BX,
+	      else unchanged
+	CX incremented
+Program: MDEBUG is a shareware memory-resident debugging tool by Bernd
+	  Schemmer, including a memory monitor, an interpreter, and a
+	  disassembler
+Range:	AH=C0h to AH=FFh, selected by switch or programmatically
+Notes:	called by MDEBUG at start of popup session; if the version number
+	  returned in BX is less than 1.52 (1.60 for MDEBUG v1.70), MDEBUG will
+	  not call any of the other functions during this popup session
+	MDEBUG can use any two consecutive multiplex numbers between C0h and
+	  FFh; the default is D0h for the display driver and D1h for the
+	  command driver (call INT 60/AH=00h"MDEBUG" for the multiplex numbers
+	  actually used)
+	this function must end with a far call to the old INT 2F handler after
+	  changing the registers
+	this function MUST be reentrant
+	command drivers must also declare the following data at the given
+	  offsets in the code segment
+		100h  3 BYTEs	JMP-command in .COM-files
+		103h	BYTE	NOP-command (90h)
+		104h 26 BYTEs	signature "Kommandotreiber fÅr MDEBUG"
+		11Eh 12 BYTEs	name of driver, e.g. "MDHISDRV.COM"
+				each driver must have a unique name
+	MDEBUG will pass every key and command to the command driver(s) before
+	  checking for a valid internal command
+SeeAlso: AX=D000h,AX=D101h
+
+Format of MDEBUG identification table:
+Offset	Size	Description	(Table 03076)
+ -2	WORD	entry offset
+ 00h	WORD	CS of MDEBUG
+ 02h	DWORD	old INT 08h vector
+ 06h	DWORD	old INT 09h vector
+ 0Ah	DWORD	address INT 16h routine used by MDEBUG
+ 0Eh	BYTE	length of version string
+ 0Fh  N BYTEs	version string
+

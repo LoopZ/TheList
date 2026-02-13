@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1FFC--BL04
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - GET ALARM DATE
+	AH = FCh
+	BL = 04h
+Return: CH = year century by BCD
+	CL = year low by BCD
+	DH = month by BCD
+	DL = date by BCD
+SeeAlso: AH=FCh/BL=02h,AH=FCh/BL=05h
+

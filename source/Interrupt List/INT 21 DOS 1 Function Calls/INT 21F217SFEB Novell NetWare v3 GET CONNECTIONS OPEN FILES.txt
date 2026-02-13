@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFEB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - GET CONNECTION'S OPEN FILES
+	AX = F217h subfn EBh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02249)
+	ES:DI -> reply buffer (see #02250)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=DBh
+
+Format of NetWare "Get Connection's Open Files" request buffer:
+Offset	Size	Description	(Table 02249)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	EBh (subfunction "Get Connection's Open Files")
+ 03h	WORD	target connection number
+ 05h	WORD	last record seen (set to 0000h for first call)
+Note:	connection numbers greater than the maximum supported by the server
+	  can cause ABENDs
+SeeAlso: #02250
+
+Format of NetWare "Get Connection's Open Files" reply buffer:
+Offset	Size	Description	(Table 02250)
+ 00h	WORD	next request record
+ 02h	WORD	number of records returned (max 28)
+ 04h 29N BYTEs	array of connection records (see #02251)
+SeeAlso: #02249
+
+Format of NetWare connection record:
+Offset	Size	Description	(Table 02251)
+ 00h	WORD	task number
+ 02h	BYTE	lock type
+ 03h	BYTE	access control
+ 04h	BYTE	lock flag
+ 05h	BYTE	volume number
+ 06h	DWORD	parent directory entry number
+ 0Ah	DWORD	directory entry number
+ 0Eh	BYTE	fork count
+ 0Fh	BYTE	data stream type / name space (see #02387)
+ 10h	BYTE	file name length
+ 11h 12 BYTEs	file name
+SeeAlso: #02250
+

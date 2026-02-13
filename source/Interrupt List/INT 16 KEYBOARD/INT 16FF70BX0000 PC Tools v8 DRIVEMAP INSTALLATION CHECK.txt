@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF70BX0000
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ DRIVEMAP - INSTALLATION CHECK
+	AX = FF70h
+	BX = 0000h
+	CX = 4C69h ('Li')
+	DX = 6E6Bh ('nk')
+Return: AX = 0000h
+	CX = 4350h ('CP')
+	DH = major version
+	DL = minor version
+Program: DRIVEMAP is a redirector which allows drives on computers connected
+	  over the parallel or serial ports to appear as local drives
+SeeAlso: AX=FF70h/BX=0001h,AX=FF70h/BX=0002h
+

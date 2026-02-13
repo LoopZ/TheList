@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F6284BX0001
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v7-8 DATAMON, v9+ DPROTECT - GET ???
+	AX = 6284h
+	BX = 0001h
+	CX = 0001h
+Return: AX:BX -> ??? data (see #02847)
+	CX = BX
+SeeAlso: AX=6284h/BX=0000h
+
+Format of DPROTECT data for v9.0:
+Offset	Size	Description	(Table 02847)
+ 00h  5 BYTEs	???
+ 05h	WORD	resident code segment (may be segment of DWORD at +03h)
+ 07h	DWORD	-> FAR function to sound alert tone
+	???
+

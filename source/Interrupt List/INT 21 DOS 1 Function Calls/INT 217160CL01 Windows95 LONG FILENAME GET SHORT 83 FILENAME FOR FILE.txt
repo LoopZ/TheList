@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217160CL01
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - GET SHORT (8.3) FILENAME FOR FILE
+	AX = 7160h
+	CL = 01h
+	CH = SUBST expansion flag
+	    00h return a path containing true path for a SUBSTed drive letter
+	    80h return a path containing the SUBSTed drive letter
+	DS:SI -> ASCIZ long filename or path
+	ES:DI -> 67-byte (possibly 128-byte) buffer for short filename
+Return: CF set on error
+	    AX = error code
+		02h invalid component in directory path or drive letter only
+		03h malformed path or invalid drive letter
+	    ES:DI buffer unchanged
+	CF clear if successful
+	    ES:DI buffer filled with equivalent short filename (full path,
+		  even if relative path given, and all uppercase)
+Note:	this call returns the short name for any long-filename portions of
+	  the provided pathname or filename
+SeeAlso: AH=60h,AX=7160h/CL=00h,AX=7160h/CL=02h
+

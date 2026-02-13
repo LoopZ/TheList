@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE06
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - CREATE TASK
+	AX = DE06h
+	BX = mapping context of process containing task
+	DX = handle of new task
+Notes:	driver should pass this call to previous handler after processing it
+	all DOS, BIOS, and DV API calls are valid in handler
+

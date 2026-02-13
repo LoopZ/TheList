@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 165500
+  Category: A 	applications
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 16 C - Microsoft Word internal - MICROSOFT WORD COOPERATION WITH TSR
+	AX = 5500h
+Return: AX = 4D53h ('MS') if keyboard TSR present
+Notes:	during startup, Microsoft Word tries to communicate with any TSRs
+	  that are present through this call.
+	if the return is not 4D53h, Word installs its own INT 09 and INT 16
+	  handlers; otherwise it assumes that the TSR will handle the keyboard
+SeeAlso: AX=55FFh,INT 1A/AX=3601h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16CB02
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - PUPClip v1.12+ - SET CLIPBOARD CURSOR POSITION
+	AX = CB02h
+	BL = column (0-79)
+	BH = row (0-49)
+Return: CF clear if successful
+	CF set on error (invalid position)
+SeeAlso: AX=CB00h,AX=CB01h,AX=CB04h
+

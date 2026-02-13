@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF0A
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - GET MEMORY SIZE/PARTITION NUMBER OF CURRENT TASK
+	AX = DF0Ah
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+		BL = task number
+		DX = memory size in KB
+	    FFh unsucessful
+		AH = error code (01h,03h) (see #01813)
+

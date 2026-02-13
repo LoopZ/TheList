@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1121
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - SEEK FROM END OF REMOTE FILE
+	AX = 1121h
+	CX:DX = offset (in bytes) from end
+	ES:DI -> SFT
+	    SFT DPB field -> DPB of drive with file
+	SS = DOS DS
+Return: CF set on error
+	    AL = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    DX:AX = new file position
+Note:	this function is called by the DOS 3.1+ kernel, but only when seeking
+	  from the end of a file opened with sharing modes set in such a
+	  manner that another process is able to change the size of the file
+	  while it is already open
+SeeAlso: AX=1228h,INT 21/AH=42h
+

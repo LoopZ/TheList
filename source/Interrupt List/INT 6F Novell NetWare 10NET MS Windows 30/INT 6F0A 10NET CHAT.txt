@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - CHAT
+	AH = 0Ah
+	DS:BX -> control parameters (see #03764)
+	DS:DX -> chat message (see #03765)
+SeeAlso: AH=04h"10NET",AH=8Ah
+
+Format of 10NET chat control parameters:
+Offset	Size	Description	(Table 03764)
+ 00h  8 BYTEs	sender ID, defaults to node's userID if nulls
+ 08h  8 BYTEs	destination user ID, 'EVERYONE' may be used
+ 10h 12 BYTEs	destination node ID
+
+Format of 10NET chat message:
+Offset	Size	Description	(Table 03765)
+ 00h	WORD	length+2 of following text
+ 02h  N BYTEs	text, max 101 bytes
+

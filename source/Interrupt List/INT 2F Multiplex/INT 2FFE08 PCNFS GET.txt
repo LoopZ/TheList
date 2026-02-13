@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFE08
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-NFS ??? - GET ???
+	AX = FE08h
+Return: ES:BX -> ???
+Notes:	DV/X 1.10 DVPCNFS.DVR searches AH=FEh,FFh,C0h-FDh for a valid response
+	both the driver responding to AX=FE00h/DX=4E4Dh and the one responding
+	  to AX=FE00h/DX=544Dh support this function
+SeeAlso: AX=FE00h/BX=4454h
+

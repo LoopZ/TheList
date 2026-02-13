@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1486
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - SET INPUT/OUTPUT TIMEOUTS
+	AH = 86h
+	BL = maximum clock ticks to wait before signalling error on input func
+	BH = maximum clock ticks to wait before signalling error on output
+	DX = port number
+	SI = input timeout in clock ticks if BL=FFh and BH=FFh
+	DI = output timeout in clock ticks if BL=FFh and BH=FFh
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+Note:	functions 02h, 85h, and 8Eh will wait for the input timeout before
+	  returning an error when no data is available; functions 01h and 84h
+	  will wait for the output timeout before returning an error if there
+	  is no space to output the data
+SeeAlso: AH=01h,AH=02h,AH=84h"COMM-DRV",AH=85h"COMM-DRV",AH=8Eh"COMM-DRV"
+

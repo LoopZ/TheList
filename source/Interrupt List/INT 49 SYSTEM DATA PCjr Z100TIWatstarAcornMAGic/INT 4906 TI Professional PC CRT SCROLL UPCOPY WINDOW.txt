@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4906
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - SCROLL UP/COPY WINDOW
+	AH = 06h
+	AL = source blanking
+	    00h blank source region (move/scroll)
+	    nonzero do not blank source region (copy)
+	DH,DL = source start column,row
+	BH,BL = destination start column,row
+	CH = width of region to move/copy
+	CL = height of region to move/copy
+Return: nothing
+Notes:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+	the specified region may be wider than the screen, but reliable
+	  operation then requires that the height be exactly one row
+SeeAlso: AH=01h,AH=02h,AH=07h,AH=13h,AH=14h
+

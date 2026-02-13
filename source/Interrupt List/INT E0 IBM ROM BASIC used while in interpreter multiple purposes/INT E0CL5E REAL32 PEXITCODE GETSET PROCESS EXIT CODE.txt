@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL5E
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_EXITCODE" - GET/SET PROCESS EXIT CODE
+	CL = 5Eh
+	DX = exit code or FFFFh to get
+	    DH ignored when setting code
+	    DL = process exit code
+Return: AX = status (FFFFh on error)
+	if getting:
+	    AH = termination reason
+		00h normal
+		01h external termination via Ctrl-C or P_ABORT
+		02h hardware (critical) error abort
+		03h child did not terminate
+		FFh illegal request (no child, or exit code already retrieved)
+	    AL = process exit code
+SeeAlso: INT E0/CL=5Dh,INT 21/AH=4Ch
+

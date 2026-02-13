@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE303
+  Category: K 	keyboard enhancers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - ANARKEY.COM v3+ - ANARKMD API
+	AX = E303h
+	BL = function
+	    01h toggle insert mode
+	    02h display contents of history buffer
+	    03h write history buffer to file
+		ES:DX -> file name
+	    04h clear history buffer
+	    05h undefine all aliases
+	    06h show aliases
+	    07h list programs using Unix switchar
+	    08h jump to bottom of history buffer
+	    09h (v4.0) add string to history buffer
+		ES:DX -> ASCIZ string
+	    0Ah (v4.0) ???
+		ES:DX -> ???
+	    0Bh (v4.0) copy string to edit buffer for use as next input line
+		ES:DX -> ASCIZ string
+	    0Ch (v4.0) ???
+	    0Dh (v4.0) copy ??? to ???
+	    0Eh (v4.0) ???
+	    0Fh (v4.0) ???
+	    10h (v4.0) set ??? flag
+	    11h (v4.0) display error message about running in EMS under Windows
+Return: ???
+SeeAlso: AX=E300h
+

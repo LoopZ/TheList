@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F222SF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TTS TRANSACTION STATUS
+	AX = F222h subfn 04h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02292)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=C704h,AX=F222h/SF=02h,AX=F222h/SF=03h
+
+Format of NetWare "TTS Transaction Status" request packet:
+Offset	Size	Description	(Table 02292)
+ 00h	BYTE	04h (subfunction "TTS Transaction Status")
+ 01h	DWORD	transaction number
+SeeAlso: #02289,#02290
+

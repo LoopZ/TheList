@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD00
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SWELL.EXE - INSTALLATION CHECK
+	AX = CD00h
+Return: AX = 00FFh installed
+	    BH = major version
+	    BL = minor version
+Program: SWELL.EXE is a TSR which swaps programs to disk when they EXEC a
+	  child process with INT 21/AH=4Bh
+

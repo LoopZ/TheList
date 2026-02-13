@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0603
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - "M_UNLOCK" - ALLOW TASK SWITCHES
+	DI = 0603h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 15/AX=101Ch,INT 2F/AX=1682h,INT 60/DI=0602h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF203
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WINX - EXECUTE COMMAND
+	AX = F203h
+	BX:CX -> command
+Return: AX = status
+	    0000h if successful
+	    FFFFh if WINX is busy processing a different request
+SeeAlso: AX=F200h,AX=F202h
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - SEMAPHORE LOCK AND WAIT
+	AH = 00h
+	DS:DX -> ASCIZ semaphore name (max 64 bytes)
+Return: AL = status (see #03871)
+	AH = semaphore owner if status=02h
+SeeAlso: AH=01h,AH=02h,AH=41h,INT 67/AH=00h
+
+(Table 03871)
+Values for Alloy function status:
+ 00h	successful
+ 01h	invalid function
+ 02h	semaphore already locked
+ 03h	unable to lock/unlock semaphore
+ 04h	semaphore space exhausted
+ 05h	host/target PC did not respond (NTNX)
+

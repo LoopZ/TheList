@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F0B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - SET LINE TYPE
+	AH = 0Bh
+	CX = new line type
+Note:	the line type specifies 16 bits which are repeated over and over while
+	  drawing the pixels of a line
+SeeAlso: AH=09h,AH=0Ah
+

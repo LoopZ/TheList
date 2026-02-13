@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A80
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2A CU - NETWORK - BEGIN DOS CRITICAL SECTION
+	AH = 80h
+	AL = critical section number (00h-0Fh) (see #02555)
+Notes:	normally hooked to avoid interrupting a critical section, rather than
+	  called
+	the handler should ensure that none of the critical sections are
+	  reentered, usually by suspending a task which attempts to reenter
+	  an active critical section
+	the DOS kernel does not invoke critical sections 01h and 02h unless it
+	  is patched.  DOS 3.1+ contains a zero-terminated list of words
+	  beginning at offset -11 from the Swappable Data Area
+	  (see #01687 at INT 21/AX=5D06h); each word contains the offset within
+	  the DOS data segment of a byte which must be changed from C3h (RET)
+	  to 50h (PUSH AX) under DOS 3.x or from 00h to a nonzero value under
+	  DOS 4.0+ to enable use of critical sections.	For DOS 4.0+, all
+	  words in this list point at the byte at offset 0D0Ch.
+	MS Windows patches the DOS kernel's calls to INT 2A/AH=80h-81h into
+	  far calls to its own handler, and does not reflect the calls back
+	  to INT 2A unless SYSTEM.INI contains ReflectDOSInt2A=1 or
+	  ModifyDOSInt2A=0 in the [386Enh] section
+	Novell NETX does not issue INT 2A/AH=80h and INT 2A/AH=81h calls when
+	  it intercepts INT 21 calls and processes them itself
+SeeAlso: AH=81h,AH=82h,AX=8700h,INT 21/AX=5D06h,INT 21/AX=5D0Bh
+
+(Table 02555)
+Values for DOS critical section number:
+ 01h	DOS kernel, SHARE.EXE, DOSMGR
+	apparently for maintaining the integrity of DOS/SHARE/NET
+	  data structures
+ 02h	DOS kernel, DOSMGR
+	ensures that no multitasking occurs while DOS is calling an
+	  installable device driver
+ 05h	network redirector
+ 06h	DOS 4.x only IFSFUNC
+ 08h	ASSIGN.COM
+ 0Ah	MSCDEX, CORELCDX
+ 0Fh	IBM PC LAN server (while intercepting INT 10/AH=06h,07h,0Eh)
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - RIFS - CLIENT - REMAP DRIVE
+	AX = 0002h
+	BH = local drive number
+	BL = remote drive number
+Return: CF clear if successful
+	CF set on error
+SeeAlso: AX=0000h,AX=0003h,AX=0004h,INT 21/AX=5F03h,INT 21/AX=5F05h"STARLITE"
+

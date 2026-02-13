@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD0A
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Intel Image Processing Interface - LOAD PALETTE
+	AX = CD0Ah
+	CX:BX -> palette structure (see #03073)
+Return: AL = status (00h,80h) (see #03068)
+SeeAlso: AX=CD09h"Image Processing"
+
+Format of IPI palette structure:
+Offset	Size	Description	(Table 03073)
+ 00h	BYTE	bits per pixel for which palette is to be used (1,2,4,6, or 8)
+ 01h	2**N	palette translation values, one per possible pixel value
+

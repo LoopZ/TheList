@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A83
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Tandy 2500, Tandy 1000L series - START PLAYING DIGITAL SOUND
+	AH = 83h
+	AL = volume (0=silence, 7=highest)
+	CX = number of bytes to play
+	DX = time between sound samples (multiples of 273 nanoseconds)
+	    only bits 11-0 used
+	ES:BX -> sound data (array of 8-bit unsigned PCM samples)
+Return: AH = 00h
+	CF set if sound is busy
+	CF clear if sound chip is free
+Notes:	this call returns immediately while the sound plays in the
+	  background; the sound chip is clocked at 3.57 MHz, with the low 12
+	  bits of DX specifying the clock divisor
+	The BIOS appears to call INT 15/AX=91FBh when the sound device
+	  underflows to allow another INT 1A/AH=83h for seamless playing of
+	  long sounds.
+SeeAlso: AH=84h"Tandy",INT 15/AH=91h
+

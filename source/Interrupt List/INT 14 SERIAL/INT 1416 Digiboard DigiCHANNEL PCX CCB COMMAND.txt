@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1416
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - CCB COMMAND
+	AH = 16h
+	AL = CCB command number (see #00342) (see also following entries)
+	BL = byte 2
+	BH = byte 3
+	CL = byte 1 (for all channel functions except 4Eh and 4Fh)
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AH = status
+	    00h successful
+	    80h error
+	    FFh error
+SeeAlso: AX=1646h,AH=18h"Digiboard"
+
+(Table 00342)
+Values for Digiboard CCB command number:
+ 40h	Set Receive Mid Water Mark
+ 41h	Set Receive High Water Mark
+ 42h	Flush Receive Buffer
+ 43h	Flush Transmit Buffer
+ 44h	Transmit Pause
+ 45h	Transmit Resume
+ 46h	Set Interrupt to Host Mask
+ 47h	Set Baud, Data, Stop and Parity
+ 48h	Send Break
+ 49h	Set Modem Lines
+ 4Ah	Set Break Count
+ 4Bh	Set Handshake
+ 4Ch	Set Xon/Xoff Characters
+ 4Dh	Set Transmit Mid Water Mark
+ 4Eh	IRQ Polling Timer to Host
+ 4Fh	Buffer Set All
+ 50h	Port On
+ 51h	Port Off
+ 52h	Receive Pause
+ 53h	Special Character Interrupt
+ 54h	RS-422 Enable
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620019
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DEFPAGES" - DEF SRC/DEST PAGES FOR BLOCK XFERS
+	AX = 0019h
+	BX = source page
+	CX = destination page
+Desc:	specify the source and destination SVGA banks for block transfers on
+	  extended video pages
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This function is ignored if the video controller does not support
+	  extended pages or the current video mode does not allow them
+SeeAlso: AX=0014h,AX=00CAh
+

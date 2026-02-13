@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6154
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "nm_res_name" - RESOLVE HOST NAME
+	AH = 54h
+	CX = size of destination buffer
+	DS:DX -> ASCIZ host name (max 127 chars)
+	ES:DI -> destination buffer or 0000h:0000h
+Return: CF clear if successful
+	    DX:AX -> IP address of host
+	    destination buffer filled with canonical host name
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	this function uses all configured methods in turn to resolve the
+	  name (numerical, then host table, then DNS, then IEN116)
+BUG:	the SLIP kernel for v2.05 bounds-checks the wrong register, so values
+	  greater than 54h in AH may crash the system.	Other kernels may have
+	  this bug as well; it has been fixed in the v2.2 SLIPDRV kernel.
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=50h,INT 61/AH=51h
+SeeAlso: INT 61/AH=52h,INT 61/AH=53h
+

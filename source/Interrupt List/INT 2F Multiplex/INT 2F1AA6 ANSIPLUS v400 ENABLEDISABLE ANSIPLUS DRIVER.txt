@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AA6
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v4.00+ - ENABLE/DISABLE ANSIPLUS DRIVER
+	AX = 1AA6h
+	BH = function
+	    00h get hooked interrupts
+	    01h set hooked interrupts mask
+		BL = new interrupts mask (see #02737)
+Return: BL = previous interrupts mask (see #02737)
+SeeAlso: AX=1A00h/BX=414Eh,AX=1AA7h
+
+Desc:	used to temporarily disable any prior copies of ANSIPLUS when a new
+	  copy is installed, such as in a multitasking system like DESQview
+Note:	only the most-recently loaded copy of ANSIPLUS on the current INT 2F
+	  chain responds to this call
+
+Bitfields for ANSIPLUS hooked interrupts mask:
+Bit(s)	Description	(Table 02737)
+ 0	INT 09 hook disabled
+ 1	INT 10 hook disabled
+ 2	INT 15 hook disabled
+ 3	INT 16 hook disabled
+ 4	INT 1C hook disabled
+ 5	reset all bits when INT 29 called
+ 6	INT 29 hook disabled
+ 7	INT 33, INT 74, or other mouse event hook disabled
+

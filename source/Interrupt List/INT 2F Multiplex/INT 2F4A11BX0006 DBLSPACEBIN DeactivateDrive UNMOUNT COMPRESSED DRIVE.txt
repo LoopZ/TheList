@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0006
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "DeactivateDrive" - UNMOUNT COMPRESSED DRIVE
+	AX = 4A11h
+	BX = 0006h
+	DL = drive number (0=A:) to unmount
+Return: AX = status (0000h,0102h) (see #02804)
+SeeAlso: AX=4A11h/BX=0000h,AX=4A11h/BX=0005h
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF11
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - GET EXTENDED ENVIRONMENT
+	AX = BF11h
+Return: AL = BFh if supported
+	    CF clear
+	    ES:DI -> ASCII signature "COMPAQ"
+	    ES:SI -> advanced functionality table (see #00214)
+Note:	supported by at least the QVision board and the LTE Lite and ProSignia
+	  ROM BIOSes
+SeeAlso: AX=1A00h,AX=BF03h
+
+Bitfields for Compaq advanced video functionality:
+Bit(s)	Description	(Table 00214)
+ 31	future graphics extensions (reserved, set to 0)
+ 30-16	reserved
+ 15-12	available video memory in 256K blocks, less one (0000 = 256K, etc.)
+ 11-8	reserved
+ 7	QVision modes supported
+ 6	Advanced VGA modes supported
+ 5	Accelerated VGA modes supported
+ 4	standard VGA modes supported
+ 3-2	reserved
+ 1	132-column modes supported
+ 0	reserved
+

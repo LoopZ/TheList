@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216D
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 5+ ROM - FIND FIRST ROM PROGRAM
+	AH = 6Dh
+	DS:DX -> ASCIZ program name (may contain wildcrds)
+Return: CF clear if found
+	    Disk Transfer Area filled with ROM search structure (see #01771)
+	CF set if not found
+	    AX = error code
+		0002h name not found in ROM
+		0003h name contains colon or backslash
+	---if not supported (DOS <5, MS-DOS 5+ non-ROM versions)---
+	AL = 00h
+Notes:	the '*' wildcard matches all remaining characters in a ROM program's
+	  name; any following characters in the search mask are ignored up to
+	  another asterisk, which must be matched by an asterisk in the
+	  found program's name.
+	the search mask and program names may contain multiple periods
+SeeAlso: AH=1Ah,AH=4Eh,AH=6Eh,AX=6F00h,AX=6F02h,INT 2F/AX=160Ch
+
+Format of ROM search structure:
+Offset	Size	Description	(Table 01771)
+ 00h 13 BYTEs	ASCIZ name of found ROM program
+ 0Dh	DWORD	address at which to resume search (do not modify)
+ 11h	var	ASCIZ search mask passed in (do not modify)
+

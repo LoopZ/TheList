@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C6
+  Category: B 	BIOS
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - later PS/2 models - GET POS DATA
+	AH = C6h
+	???
+Return: ???
+Notes:	this function is referenced by name and number in some IBM BIOS manuals
+	IBM reports that "there are a number of problems with this call" and
+	  does not recommend its use.
+SeeAlso: AH=C4h
+

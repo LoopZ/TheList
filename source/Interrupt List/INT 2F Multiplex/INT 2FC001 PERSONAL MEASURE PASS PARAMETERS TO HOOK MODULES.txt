@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC001
+  Category: i 	system info/monitoring
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PERSONAL MEASURE - PASS PARAMETERS TO HOOK MODULE(S)
+	AX = C001h
+	DX = segment of PMEASURE.EXE or 0000h
+	BX = offset in PMEASURE.EXE or 0000h
+	CX = offset in PMEASURE.EXE or 0000h
+Return: None
+Program: PMEASURE.EXE is a TSR for monitoring system hardware activity which
+	  is part of the Personal Measure system activity monitor from Spirit
+	  of Performance, Inc.	PMEASURE uses this call to inform its hook
+	  modules whether or not it is running and to pass information about
+	  shared data and procedures.
+Warning: This information documents a function that is private to Personal
+	  Measure and is provided as information only.	It should NOT be called
+	  by any software other than Personal Measure.
+SeeAlso: AX=C000h"PERSONAL MEASURE"
+

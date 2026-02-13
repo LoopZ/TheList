@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60AD
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - AccessDOS - API
+	AH = ADh
+	AL = function
+	    E1h ???
+		Return: AX = ???
+	    E2h get configuration
+		Return: BX:AX -> configuration data
+Program: AccessDOS is a public domain TSR developed at The Trace Research and
+	  Development Center which provides extensions for keyboard, mouse,
+	  and sound access by the visually, hearing, or motor-control
+	  impaired.
+InstallCheck:	test for the signature "ACCESSv1.00" beginning three bytes
+	  past the start of the interrupt handler (this same signature is also
+	  present in v1.10)
+Range:	INT 60 to INT 66, selected by scanning for 0000h:0000h vector
+

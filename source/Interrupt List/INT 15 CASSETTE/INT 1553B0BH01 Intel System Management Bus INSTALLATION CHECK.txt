@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH01
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - INSTALLATION CHECK
+	AX = 53B0h
+	BH = 01h
+	BL = 72h ('r')
+	CX = 6164h ('ad')
+Return: CF clear if installed
+	    AH = SMBus BIOS Interface Specification major version (01h)
+	    AL = SMBus BIOS Interface Specification minor version (00h)
+	    BL = number of SMBus devices present
+	    CX = 6941h ('iA')
+	    DX = vendor-specified SMBus hardware code
+		0000h means undefined hardware type
+	CF set if error
+	    AH = Error code 0Ah, 86h (see #00484)
+Note:	this function is only supported in INT 15h mode
+SeeAlso: AX=53B0h/BH=02h,AX=53B0h/BH=03h,AX=53B0h/BH=04h,AX=53B0h/BH=06h
+SeeAlso: #01105 at INT 1A/AX=B10Ah/SF=8086h
+
+(Table 00484)
+Values for Intel System Management Bus error codes:
+ 00h	SMBus OK
+ 01h	SMBus connect failed
+ 02h	SMBus already connected (see also #00485)
+ 03h	SMBus disconnect failed
+ 04h	SMBus not connected
+ 05h	SMBus INT 15 interface disabled
+ 06h	SMBus device address request out of range
+ 07h	SMBus unknown failure
+ 08h	SMBus message list empty
+ 09h	SMBus message list overflow
+ 0Ah	SMBus invalid signature
+ 10h	SMBus device address not acknowledged
+ 11h	SMBus device error detected
+ 12h	SMBus device command access denied
+ 13h	SMBus unknown error
+ 14h	SMBus transaction pending
+ 15h	SMBus no transaction pending
+ 16h	SMBus request does not match pending transaction
+ 17h	SMBus device access denied
+ 18h	SMBus timeout
+ 19h	SMBus protocol not supported
+ 1Ah	SMBus busy
+ 1Bh	SMBus SMI detected
+ 80h	SMBus OK (previously unreported SMI occurred)
+ 86h	SMBus not supported
+
+(Table 00485)
+Values for Intel System Management Bus Already Connected sub-error codes:
+ 01h	real mode connect already established
+ 02h	16-bit PMode connect already established
+ 03h	32-bit PMode connect already established
+SeeAlso: #00484
+

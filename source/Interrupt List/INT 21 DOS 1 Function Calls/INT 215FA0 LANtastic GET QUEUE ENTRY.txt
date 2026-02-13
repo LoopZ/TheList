@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FA0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET QUEUE ENTRY
+	AX = 5FA0h
+	BX = queue entry index (0000h is first entry)
+	DS:SI -> buffer for queue entry (see #01732)
+	ES:DI -> ASCIZ server name in form "\\name"
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+	BX = entry index for next queue entry (BX-1 is current index)
+SeeAlso: AX=5FA1h,AX=5FA2h
+
+Format of LANtastic queue entry:
+Offset	Size	Description	(Table 01732)
+ 00h	BYTE	status of entry (see #01733)
+ 01h	DWORD	size of spooled file
+ 05h	BYTE	type of entry (see #01734)
+ 06h	BYTE	output control (see #01735)
+ 07h	WORD	number of copies
+ 09h	DWORD	sequence number of queue entry
+ 0Dh 48 BYTEs	pathname of spooled file
+ 3Dh 16 BYTEs	user who spooled file
+ 4Dh 16 BYTEs	name of machine from which file was spooled
+ 5Dh	WORD	date file was spooled (see #01666 at AX=5700h)
+ 5Fh	WORD	time file was spooled (see #01665 at AX=5700h)
+ 61h 17 BYTEs	ASCIZ destination device or user name
+ 72h 48 BYTEs	comment field
+
+(Table 01733)
+Values for status of LANtastic queue entry:
+ 00h	empty
+ 01h	being updated
+ 02h	being held
+ 03h	waiting for despool
+ 04h	being despooled
+ 05h	canceled
+ 06h	spooled file could not be accessed
+ 07h	destination could not be accessed
+ 08h	rush job
+
+(Table 01734)
+Values for type of LANtastic queue entry:
+ 00h	printer queue file
+ 01h	message
+ 02h	local file
+ 03h	remote file
+ 04h	to remote modem
+ 05h	batch processor file
+
+Bitfields for output control:
+Bit(s)	Description	(Table 01735)
+ 6	don't delete (for mail)
+ 5	mail file contains voice mail (v3+)
+ 4	mail message has been read
+ 3	response has been requested for this mail
+

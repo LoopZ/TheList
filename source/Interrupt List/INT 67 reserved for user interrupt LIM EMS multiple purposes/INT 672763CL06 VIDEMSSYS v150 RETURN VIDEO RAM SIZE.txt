@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 672763CL06
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - VIDEMS.SYS v1.50+ - RETURN VIDEO RAM SIZE
+	AX = 2763h
+	CL = 06h
+	BX = signature AAFFh
+Return: AH = 00h
+	DX = total amount of video RAM
+Desc:	beginning with version 1.50, VIDEMS can use more adapter memory on
+	  some chipsets, and is no longer limited to the first 240K.
+Notes:	this call is not officially documented, and Conea programmers use it
+	  mainly for debugging purposes.
+

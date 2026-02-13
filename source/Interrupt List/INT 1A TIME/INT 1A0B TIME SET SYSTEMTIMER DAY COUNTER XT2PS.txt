@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A0B
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - SET SYSTEM-TIMER DAY COUNTER (XT2,PS)
+	AH = 0Bh
+	CX = count of days since Jan 1,1980
+Return: CF set on error
+	CF clear if successful
+SeeAlso: AH=05h,AH=0Ah
+

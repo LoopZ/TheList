@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104A
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "BLKFIL" - BLOCK FILL
+	AH = 4Ah
+	DI = x coordinate of lower left corner
+	BP = y coordinate of lower left corner
+	BX = height in pixels
+	CX = width in pixels
+Return: nothing
+Desc:	draw a solid rectangle of the specified size at the given location
+SeeAlso: AH=4Eh
+

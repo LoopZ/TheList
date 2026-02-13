@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154F
+  Category: B 	BIOS
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - KEYBOARD - KEYBOARD INTERCEPT (AT model 3x9,XT2,XT286,CONV,PS)
+	AH = 4Fh
+	AL = hardware scan code (see #00006)
+	CF set
+Return: CF set to continue processing scan code
+	   AL = possibly-altered hardware scan code (see #00006)
+	CF clear
+	   scan code should be ignored
+Notes:	called by INT 09 handler to translate scan codes; the INT 09 code does
+	  not examine the scan code it reads from the keyboard until after
+	  this function returns.  This permits software to rearrange the
+	  keyboard; for example, swapping the CapsLock and Control keys, or
+	  turning the right Shift key into Enter.
+	DOS 6 KEYB.COM will not pass through this function if Ctrl-Alt-Del is
+	  pressed and a SmartDrive v4-compatible cache is installed which has
+	  dirty cache buffers; some other disk caches such as HyperDisk
+	  operate similarly in order to prevent loss of cached data which has
+	  not yet been written to disk
+	IBM classifies this function as required
+SeeAlso: INT 09,INT 15/AH=C0h
+

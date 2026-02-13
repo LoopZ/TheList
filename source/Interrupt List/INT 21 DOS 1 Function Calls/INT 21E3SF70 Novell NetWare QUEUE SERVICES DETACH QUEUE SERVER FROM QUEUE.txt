@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF70
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - DETACH QUEUE SERVER FROM QUEUE
+	AH = E3h subfn 70h
+	DS:SI -> request buffer (see #01985)
+	ES:DI -> reply buffer (see #01983)
+Return: AL = status (00h,96h,9Ch,D0h,D1h,D2h,FEh,FFh) (see #01961)
+Desc:	remove the calling job server from the specified queue's list of
+	  servers
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the caller must have previously attached itself to the queue
+SeeAlso: AH=E3h/SF=6Fh,AH=E3h/SF=72h,AH=E3h/SF=73h,AH=E3h/SF=76h
+SeeAlso: AX=F217h/SF=70h
+
+Format of NetWare "Detach Queue Server From Queue" request buffer:
+Offset	Size	Description	(Table 01985)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	70h (subfunction "Detach Queue Server From Queue")
+ 03h	DWORD	(big-endian) object ID of queue
+SeeAlso: #01983,#01984
+

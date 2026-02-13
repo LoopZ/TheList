@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0028
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - NDIS - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0028h (virtual device ID for NDIS device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02668)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02668)
+Call NDIS.VXD entry point with:
+	??? = function number
+	    0000h set ??? to ???
+		??? = new ???
+		Return: DX:AX = 0000h:0001h
+	    0002h ???
+		???
+		Return: DX:AX -> ???
+	    0003h reset ??? to default
+		Return: DX:AX = 0000h:0001h
+	    else
+		Return: DX:AX = 0000h:0000h
+SeeAlso: #02666,#02669
+

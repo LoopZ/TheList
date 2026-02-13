@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101A00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GET DISPLAY COMBINATION CODE (PS,VGA/MCGA)
+	AX = 1A00h
+Return: AL = 1Ah if function was supported
+	    BL = active display code (see #00039)
+	    BH = alternate display code (see #00039)
+Notes:	this function is commonly used to check for the presence of a VGA
+	this function is supported on the ATI EGA Wonder with certain
+	  undocumented configuration switch settings, even though the EGA
+	  Wonder does not support VGA graphics; to distinguish this case,
+	  call AX=1C00h with CX nonzero, which the EGA Wonder does not support
+SeeAlso: AH=12h/BL=35h,AX=1A01h,AH=1Bh,AH=1Ch,MEM 0040h:008Ah
+Index:	installation check;VGA
+
+(Table 00039)
+Values for display combination code:
+ 00h	no display
+ 01h	monochrome adapter w/ monochrome display
+ 02h	CGA w/ color display
+ 03h	reserved
+ 04h	EGA w/ color display
+ 05h	EGA w/ monochrome display
+ 06h	PGA w/ color display
+ 07h	VGA w/ monochrome analog display
+ 08h	VGA w/ color analog display
+ 09h	reserved
+ 0Ah	MCGA w/ digital color display
+ 0Bh	MCGA w/ monochrome analog display
+ 0Ch	MCGA w/ color analog display
+ FFh	unknown display type
+

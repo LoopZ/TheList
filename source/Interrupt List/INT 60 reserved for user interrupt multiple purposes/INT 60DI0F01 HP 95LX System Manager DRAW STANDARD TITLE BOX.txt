@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0F01
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - DRAW STANDARD TITLE BOX
+	DI = 0F01h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ASCIZ title string
+Return: ???
+	STACK unchanged
+

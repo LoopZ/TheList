@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF83
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - FINISH SERVICING QUEUE JOB
+	AH = E3h subfn 83h
+	DS:SI -> request buffer (see #01998)
+	ES:DI -> reply buffer (see #01999)
+Return: AL = status (00h,96h,D0h,D1h,D6h,D9h) (see #01961)
+Desc:	inform the Queue Management System (QMS) that the queue server has
+	 completed servicing a previously-accepted job
+Notes:	this function is supported by Advanced NetWare 3.1+
+	this variant of Abort Servicing Queue Job allows use of the high
+	  connection byte in the NCP packet header, unlike AH=E3h/SF=73h
+SeeAlso: AH=E3h/SF=6Fh,AH=E3h/SF=71h,AH=E3h/SF=72h,AH=E3h/SF=73h,AH=E3h/SF=84h
+SeeAlso: AX=F217h/SF=83h
+
+Format of NetWare "Finish Servicing Queue Job" request buffer:
+Offset	Size	Description	(Table 01998)
+ 00h	WORD	0007h (length of following data)
+ 02h	BYTE	84h (subfunction "Abort Servicing Queue Job")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	WORD	(big-endian) job number
+ 09h	DWORD	(big-endian) charge for job
+SeeAlso: #01999,#01987
+
+Format of NetWare "Finish Servicing Queue Job" reply buffer:
+Offset	Size	Description	(Table 01999)
+ 00h	WORD	(call) 0000h (no results returned)
+SeeAlso: #01998
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4918
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - PRINT TTY STRING
+	AH = 18h
+	CS:BX -> counted string (count byte with length followed by string)
+Return: nothing
+Notes:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+	the string must be located in the caller's code segment; any TSRs
+	  which want to hook INT 49 must check for this function and emulate
+	  it, because the BIOS retrieves the caller's CS from the stack
+SeeAlso: AH=01h,AH=02h,AH=0Eh
+

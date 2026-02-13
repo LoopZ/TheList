@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFC2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET DEFAULT COPIES OF SPOOLING FILE
+	AX = FFC2h
+	CH = printer number (00h LPT1, 01h LPT2, 02h LPT3)
+Return: AL = default number of copies printed
+SeeAlso: AX=FFC7h
+

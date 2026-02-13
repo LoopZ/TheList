@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10D001
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - S3VBE/Core2.0 v3.00+ - GET ACTIVE OPTIONS
+	AX = D001h
+Return: AX = FFFFh if supported
+	    BX = currently active options (see #00222)
+SeeAlso: AX=D000h"S3VBE",AX=D002h"S3VBE"
+
+Bitfields for S3VBE options:
+Bit(s)	Description	(Table 00222)
+ 0	VESA VBE v2.0 extensions enabled
+ 1	linear frame buffer enabled
+ 2	low-resolution video mode support enabled
+ 8	never clear video memory during VBE mode set (v3.10+)
+---debug options---
+ 12	report VBE version 1.2 (v3.10+)
+ 13	always fail AX=4F0Ah (v3.10+)
+ 14	don't copy video mode list (v3.12+)
+SeeAlso: #00216
+

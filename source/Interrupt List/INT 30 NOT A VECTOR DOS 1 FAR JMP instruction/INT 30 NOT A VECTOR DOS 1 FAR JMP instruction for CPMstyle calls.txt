@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 30
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 30 - (NOT A VECTOR!) - DOS 1+ - FAR JMP instruction for CP/M-style calls
+   the CALL 5 entry point does a FAR jump to here
+Note:	under DOS 2+, the instruction at PSP:0005 points two bytes too low in
+	  memory
+SeeAlso: INT 21/AH=26h
+

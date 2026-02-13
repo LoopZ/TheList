@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE0F
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.50+ External Dev Interface - INITIALIZE DV
+	AX = DE0Fh
+Note:	DESQview 2.50+ calls this function just before it completes its
+	  initialization.  At the time of the call, DESQview has not yet
+	  changed any interrupt vectors
+SeeAlso: AX=DE02h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1483
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COURIERS.COM - START INPUT
+	AH = 83h
+	ES:BX -> circular input buffer
+	CX = length of buffer
+		(should be at least 128 bytes if input flow control enabled)
+Return: nothing
+SeeAlso: AH=18h,AH=87h,AH=8Dh,AH=A5h"BAPI"
+

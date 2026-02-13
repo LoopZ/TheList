@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1982
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - IBM ROM-DOS v4.0 - GET ??? TABLE
+	AX = 1982h
+Return: AL = FFh if supported
+	    ES:DI -> ??? table (see #02734)
+Note:	called by ROMSHELL.COM
+SeeAlso: AX=1980h,AX=1981h
+
+Format of ROM-DOS v4.0 ??? table:
+Offset	Size	Description	(Table 02734)
+ 00h	BYTE	??? (00h)
+ 01h	BYTE	??? (41h) (ROMSHELL.COM checks if =00h)
+ 02h	BYTE	??? (00h) (ROMSHELL.COM checks if =01h)
+ 03h	WORD	??? (0001h) (ROMSHELL.COM checks if =0001h)
+ 05h	BYTE	??? (00h)
+ 06h	WORD	??? (04D5h)
+

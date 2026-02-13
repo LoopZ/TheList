@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E9
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - OS/286, OS/386 - CHANGE SEGMENTS
+	AH = E9h
+	AL = function
+	    01h change code segment parameters
+	    02h change data segment parameters
+	    05h adjust segment limit
+	    06h change segment base address
+	???
+Return: ???
+SeeAlso: AH=E7h"OS/286",AH=E8h"OS/286",AH=EAh"OS/286",AH=EDh"OS/286"
+SeeAlso: INT 31/AX=0007h,INT 31/AX=0008h
+

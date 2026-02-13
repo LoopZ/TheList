@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610001SF0008
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - "Sosession" - REGISTER APPLICATION WITH COMM SERVICE
+	AX = 0001h subfn 0008h
+	DS:DX -> communications control block (function 0008h) (see #03342)
+Return: AX = status
+	    0000h  successful
+	    00A2h  no more buffer space available
+Range:	INT 60h to INT 66h
+Note:	The Banyan interrupt handler is identified by the string "BANV" in
+	  the four bytes immediately preceding the interrupt handler
+SeeAlso: AX=0001h/SF=0001h,AX=0001h/SF=0009h
+
+Format of VINES control block for subfunction 0006h:
+Offset	Size	Description	(Table 03342)
+ 00h	WORD	0008h
+ 02h	WORD	process type
+		0001h transient process
+		0002h resident process
+ 04h	WORD	error return code
+ 06h  4 BYTEs	reserved
+SeeAlso: #03340,#03343
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00021
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "GET LOCAL MAP"
+	AX = 0021h
+	BX:CX -> 81-byte buffer for map (see #04060)
+Return: buffer filled with 9x9 area of map centered on robot's position
+
+(Table 04060)
+Values for PCROBOTS map squares:
+ 2Eh '.' empty square
+ 44h 'D' damaging trap
+ 52h 'R' refueling point
+ 58h 'X' wall
+

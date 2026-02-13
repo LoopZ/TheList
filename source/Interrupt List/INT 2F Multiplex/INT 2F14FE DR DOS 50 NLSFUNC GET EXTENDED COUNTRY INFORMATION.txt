@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F14FE
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DR DOS 5.0 NLSFUNC - GET EXTENDED COUNTRY INFORMATION
+	AX = 14FEh
+	BX = code page (FFFFh=global code page) (see #01757 at INT 21/AX=6602h)
+	DX = country ID (FFFFh=current country) (see #01400 at INT 21/AH=38h)
+	ES:DI -> country information buffer
+	CL = info ID
+	    01h get general internationalization info
+	    02h get pointer to uppercase table
+	    04h get pointer to filename uppercase table
+	    05h get pointer to filename terminator table
+	    06h get pointer to collating sequence table
+	    07h get pointer to Double-Byte Character Set table
+	CF set (used to return error if not installed)
+Return: CF clear if successful
+	    DS:SI -> requested information
+	CF set on error
+Notes:	DR DOS 5.0 NLSFUNC returns CF set and AX=0001h if AL was not 00h, FEh,
+	  or FFh on entry.
+	the DR DOS kernel calls this function on INT 21/AX=6501h
+	the value in CL is not range-checked by the DR DOS 5.0 NLSFUNC
+SeeAlso: #02626,AX=14FFh,INT 21/AH=65h
+
+Format of DR DOS COUNTRY.SYS file:
+Offset	Size	Description	(Table 02626)
+ 00h 126 BYTEs	copyright notice (terminated with Ctrl-Z, padded with NULs)
+ 7Eh	WORD	signature EDC1h
+ 80h	var	country pointer records
+	Offset	Size	Description
+	 00h	WORD	country code (0000h if end of array)
+	 02h	WORD	code page (see #01757 at INT 21/AX=6602h)
+	 04h	WORD	??? (0000h)
+	 06h  7 WORDs	offsets in file for data tables for subfunctions
+			  01h-07h
+ var	var	country information
+

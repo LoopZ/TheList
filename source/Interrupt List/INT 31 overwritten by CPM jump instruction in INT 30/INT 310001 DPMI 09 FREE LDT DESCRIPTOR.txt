@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310001
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - FREE LDT DESCRIPTOR
+	AX = 0001h
+	BX = selector to free
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8022h) (see #03143)
+Notes:	only one descriptor is freed per call
+	the program's initial CS, DS, and SS descriptors may be freed
+	(DPMI 1.0+) any segment registers containing the freed selector are
+	  set to 0000h
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0000h,AX=000Ah,AX=000Dh,INT 21/AX=3502h
+

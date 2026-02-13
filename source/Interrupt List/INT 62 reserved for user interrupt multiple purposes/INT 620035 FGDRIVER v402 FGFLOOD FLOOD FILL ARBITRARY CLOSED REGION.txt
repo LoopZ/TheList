@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620035
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FLOOD" - FLOOD FILL ARBITRARY CLOSED REGION
+	AX = 0035h
+	BX = starting column
+	CX = starting row
+Desc:	fill the bounded region around the specified point (respecting clipping
+	  region) with the currrent color
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function is ignored in text modes
+SeeAlso: AX=0028h,AX=0085h
+

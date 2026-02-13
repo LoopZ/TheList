@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8226
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MODRES v2.00+ - STOP PLAYING
+	AX = 8226h
+Return: AX = status
+	    5722h succesful
+	    other MODRES not installed
+Desc:	stops playing the MOD file before performing critical operations such
+	  as disk accesses
+SeeAlso: AX=8220h,AX=8221h,AX=8223h,AX=8225h,AX=8227h
+

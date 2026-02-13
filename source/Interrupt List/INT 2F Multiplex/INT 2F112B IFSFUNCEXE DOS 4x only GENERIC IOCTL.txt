@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F112B
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - IFSFUNC.EXE (DOS 4.x only) - GENERIC IOCTL
+	AX = 112Bh
+	SS = DOS DS
+	CX = function/category
+	DS:DX -> parameter block
+	STACK: WORD value of AX on entry to INT 21 (440Ch or 440Dh)
+	???
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+Note:	this function is called by the DOS 4.0 kernel
+

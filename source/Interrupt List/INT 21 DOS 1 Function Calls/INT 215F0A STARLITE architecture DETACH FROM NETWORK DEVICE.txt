@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F0A
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - STARLITE architecture - DETACH FROM NETWORK DEVICE
+	AX = 5F0Ah
+	DS:DX -> ASCIZ name of device driver to detach from
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+SeeAlso: AX=5F09h
+

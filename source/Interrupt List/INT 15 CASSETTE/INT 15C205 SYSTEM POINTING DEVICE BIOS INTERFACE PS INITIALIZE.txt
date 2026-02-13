@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C205
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE (PS) - INITIALIZE
+	AX = C205h
+	BH = data package size (1 - 8 bytes)
+Return: CF set on error
+	    AH = status (see #00522)
+Note:	the pointing device is set as follows: disabled, 100 Hz sample rate,
+	  resolution 4 counts/mm, scaling 1:1
+SeeAlso: AX=C201h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBL00
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - FreeDOS - FDAK-DDT - INSTALLATION CHECK / STATUS CHECK
+	AX = 12FFh
+	BL = 00h
+Return: AL = DDh if installed
+	    BH = state (00h disabled, nonzero enabled)
+	    BL = readonly flag (00h writable, nonzero read-only)
+Program: FDAK-DDT is the FreeDOS Alternative Kernel Device Drivers Testing
+	  release by Yury A. Semenov
+SeeAlso: AX=12FFh/BL=07h
+

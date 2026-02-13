@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE22
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.26+ - "PROCESSMEM" - GET TASK MEMORY STATUS
+	AX = DE22h
+	DX = segment of task handle
+Return: DX = total amount of memory in paragraphs
+	BX = amount of system memory in paragraphs
+	CX = largest block of system memory available in paragraphs
+	AX = memory flags (see #00552)
+Notes:	if the task handle is a child task, the returned values will be for the
+	  process containing the task, rather than the task itself
+	if the process's system memory is swapped out, BX,CX,DX remain
+	  unchanged, because the memory usage cannot be determined
+SeeAlso: AX=DE04h,AX=DE05h,AX=DE06h
+
+Bitfields for DESQview process memory flags:
+Bit(s)	Description	(Table 00552)
+ 0	system memory resides in shared memory
+ 1	process's memory is swapped out
+ 2	process's system memory is swapped out
+

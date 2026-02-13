@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF27
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - ADD EXTENDED TRUSTEE TO DIRECTORY OR FILE
+	AX = F216h subfn 27h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02140)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+
+Format of NetWare "Add Extended Trustee to Directory or File" request buffer:
+Offset	Size	Description	(Table 02140)
+ 00h	WORD	length of following data
+ 02h	BYTE	27h (subfunction "Add Extended Trustee to Directory or File")
+ 03h	BYTE	directory handle
+ 04h	DWORD	(big-endian) object ID
+ 08h	WORD	trustee rights (see #02141)
+ 0Ah	BYTE	path length
+ 0Bh  N BYTEs	path name
+
+Bitfields for NetWare trustee rights:
+Bit(s)	Description	(Table 02141)
+ 0	read
+ 1	write
+ 3	create
+ 4	delete
+ 5	access
+ 6	file
+ 7	modify
+ 8	supervisor
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214412BXFFFF
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - NewSpace - INSTALLATION CHECK???
+	AX = 4412h
+	BX = FFFFh
+Return: AX = PSP segment of NewRes (resident driver for NewSpace)
+	BX:DX -> ???
+	CX = ???
+SeeAlso: AX=4411h/BX=FFFFh
+

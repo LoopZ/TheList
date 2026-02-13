@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL91
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - ConcCP/M,DR Multiuser DOS - "P_PRIORITY" - SET PROCESS PRIORITY
+	CL = 91h
+	DL = new priority (00h highest to FFh lowest)
+Return: nothing
+Notes:	sets priority of calling process; transient processes are initialized
+	  to priority C8h
+	also supported by REAL/32
+SeeAlso: INT E0/CL=8Eh
+

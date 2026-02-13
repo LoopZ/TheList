@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2171A9
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - SERVER CREATE OR OPEN FILE
+	AX = 71A9h
+	BX = access mode and sharing flags (see #01782,also AX=6C00h)
+	CX = attributes
+	DX = action (see #01781)
+	DS:SI -> ASCIZ filename
+	DI = alias hint (number to append to short filename for disambiguation)
+Return: CF clear if successful
+	    AX = global file handle
+	    CX = action taken
+		0001h file opened
+		0002h file created
+		0003h file replaced
+	CF set on error
+	    AX = error code (see #01680)
+		7100h if function not supported
+Note:	for use by real-mode servers only
+SeeAlso: AX=6C00h,AX=716Ch
+

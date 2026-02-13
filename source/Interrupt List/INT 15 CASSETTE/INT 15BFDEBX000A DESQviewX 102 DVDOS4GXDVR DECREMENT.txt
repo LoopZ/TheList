@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BFDEBX000A
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview/X 1.02+ - DVDOS4GX.DVR - DECREMENT ???
+	AX = BFDEh
+	BX = 000Ah
+Return: BX = 0000h (success)
+	AX = new value of ??? counter
+Notes:	also resets a variety of values if the counter goes negative
+	called by DOS4GW.EXE
+SeeAlso: AX=BFDEh/BX=0000h,AX=BFDEh/BX=000Bh
+

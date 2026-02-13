@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1405
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus IODRV - READ CHARACTER FROM PORT
+	AH = 05h
+	AL = timeout in seconds (00h = never)
+Return: AL = status
+	    00h successful
+		AH = character read
+	    01h read error
+	    02h timed out
+	    other modem status (CTS, DSR) changed
+Note:	the port number is stored at offset BEh in the Task Control Block
+SeeAlso: AH=02h,AH=04h"MultiDOS",AH=06h"MultiDOS",AH=22h"MultiDOS"
+SeeAlso: INT 15/AH=13h"MultiDOS"
+

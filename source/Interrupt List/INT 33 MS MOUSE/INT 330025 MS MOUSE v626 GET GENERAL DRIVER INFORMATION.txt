@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330025
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.26+ - GET GENERAL DRIVER INFORMATION
+	AX = 0025h
+Return: AX = general information (see #03178)
+	BX = cursor lock flag for OS/2 to prevent reentrancy problems
+	CX = mouse code active flag (for OS/2)
+	DX = mouse driver busy flag (for OS/2)
+
+Bitfields for general mouse driver information:
+Bit(s)	Description	(Table 03178)
+ 15	driver loaded as device driver rather than TSR
+ 14	driver is newer integrated type
+ 13,12	current cursor type
+	00 software text cursor
+	01 hardware text cursor (CRT Controller's cursor)
+	1X graphics cursor
+ 11-8	interrupt rate (see #03176)
+ 7-0	count of currently-active Mouse Display Drivers (MDD), the newer
+	  integrated driver type
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A10BX0006
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - SMARTDRV v4.00+ - CHECK IF DRIVE CACHEABLE
+	AX = 4A10h
+	BX = 0006h
+	CL = drive number (01h = A:)
+Return: AX = 0006h if drive should not be cached by SMARTDRV
+Note:	called by SMARTDRV at startup to determine whether it should cache
+	  a particular drive
+SeeAlso: AX=4A10h/BX=0000h
+

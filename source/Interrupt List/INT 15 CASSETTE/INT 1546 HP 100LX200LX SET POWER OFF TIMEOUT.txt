@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1546
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SET POWER OFF TIMEOUT
+	AH = 46h
+	BX = timeout value in ticks
+	    0000h inhibit auto power off
+Note:	the 200LX default timeout is 0CCDh = 3277 ticks = approx. 3 min.
+SeeAlso: AH=45h"HP",AH=47h"HP"
+

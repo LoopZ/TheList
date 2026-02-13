@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFF5
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - GET SCREEN ATTRIBUTE ARRAY
+	AX = FFF5h
+Return: ES:BX -> screen attributes data structure (see #00628)
+	AL = ??? (v6.0+)
+
+Format of PC Tools DESKTOP attribute data structure:
+Offset	Size	Description	(Table 00628)
+ -1	BYTE	attribute for desktop background
+ 00h	BYTE	attribute for normal characters on desktop menu
+ 01h	BYTE	attribute for highlighted characters on desktop menu
+ 02h  5 BYTEs	???
+ 07h	BYTE	attribute for dialog boxes
+ 08h 15 BYTEs	???
+ 17h	BYTE	attribute for message boxes
+

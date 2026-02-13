@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 18690D
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - RESTART VOICE
+	AX = 690Dh
+	BX = voice
+	CX = sample type (0 = 8-bit, 1 = 16-bit)
+	DX = looping type (0 = none, 1 = forward, 2 = back and forth)
+Return: CX = balance value
+SeeAlso: AX=6907h,AX=6908h
+

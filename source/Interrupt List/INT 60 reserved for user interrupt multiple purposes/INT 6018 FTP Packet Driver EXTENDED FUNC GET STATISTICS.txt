@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6018
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - EXTENDED FUNC - GET STATISTICS
+	AH = 18h
+	BX = handle (optional for v1.10+)
+Return: CF set on error
+	    DH = error code (01h) (see #03305)
+	CF clear if successful
+	    DS:SI -> statistics (see #03316)
+
+Format of packet driver statistics:
+Offset	Size	Description	(Table 03316)
+ 00h	DWORD	packets in
+ 04h	DWORD	packets out
+ 08h	DWORD	bytes in
+ 0Ch	DWORD	bytes out
+ 10h	DWORD	errors in
+ 14h	DWORD	errors out
+ 18h	DWORD	packets dropped
+

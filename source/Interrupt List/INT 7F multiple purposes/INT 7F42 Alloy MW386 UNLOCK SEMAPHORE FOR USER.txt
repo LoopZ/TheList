@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F42
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - UNLOCK SEMAPHORE FOR USER
+	AH = 42h
+	AL = user ID
+	DS:DX -> ASCIZ semaphore name
+Return: AL = status
+	    00h successful
+	    01h invalid function
+	    03h unable to unlock semaphore
+SeeAlso: AH=02h,AH=41h"MW386",AH=42h"NTNX"
+

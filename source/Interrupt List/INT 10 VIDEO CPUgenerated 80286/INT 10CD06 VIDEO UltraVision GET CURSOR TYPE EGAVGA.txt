@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD06
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - GET CURSOR TYPE (EGA,VGA)
+	AX = CD06h
+Return: CL = type
+	    00h line cursor
+	    FFh box cursor
+SeeAlso: AH=03h,AX=CD05h
+

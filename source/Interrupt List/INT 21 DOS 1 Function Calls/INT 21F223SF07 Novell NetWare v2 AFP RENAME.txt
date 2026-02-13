@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF07
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP RENAME
+	AX = F223h subfn 07h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02316)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=01h,AX=F223h/SF=03h,AX=F223h/SF=08h
+
+Format of NetWare "AFP Rename" request packet:
+Offset	Size	Description	(Table 02316)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	07h (subfunction "AFP Rename")
+ 03h	BYTE	volume number
+ 04h	DWORD	source AFP entry ID
+ 08h	DWORD	destination AFP entry ID
+ 0Ch	BYTE	source path length
+ 0Dh  N BYTEs	AFP-style source path (relative to source AFP entry ID)
+	BYTE	destination path length
+      N BYTEs	AFP-style destination path (relative to destination entry ID)
+Note:	the file may be moved from one directory to another without being
+	  renamed by setting the destination path to the empty string
+

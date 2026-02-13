@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144005
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - SEND SECONDARY ADDRESS FOR LISTEN
+	AX = 4005h
+	BL = channel number and mode (see #00355)
+Return: CF clear if successful
+	CF set on error
+	    AL = error number (see #00354)
+SeeAlso: AX=4004h,AX=4006h
+
+Bitfields for I1541 channel number and mode:
+Bit(s)	Description	(Table 00355)
+ 7-4	mode
+	0110 read/write
+	1110 close channel
+	1111 open channel
+ 3-0	channel number
+

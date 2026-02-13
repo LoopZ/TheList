@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62001D
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DRAW" - DRAW SOLID LINE TO ABSOLUTE POSITION
+	AX = 001Dh
+	BX = endpoint column
+	CX = endpoint row
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes
+	The starting point is the current graphics cursor position; the cursor
+	  position is updated
+SeeAlso: AX=0016h,AX=0020h,AX=0021h,AX=0026h,AX=008Fh,AX=0090h
+

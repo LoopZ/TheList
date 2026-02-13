@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF16
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET LAN COMMON COUNTERS
+	AX = F27Bh subfn 16h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02513)
+	ES:DI -> reply buffer (see #02514)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AX=F27Bh/SF=15h
+
+Format of NetWare "Get LAN Common Counters" request buffer:
+Offset	Size	Description	(Table 02513)
+ 00h	WORD	0009h (length of following data)
+ 02h	BYTE	16h (subfunction "Get LAN Common Counters")
+ 03h	DWORD	LAN board number
+ 07h	DWORD	starting block number (set to 00000000h for first call)
+SeeAlso: #02514
+
+Format of NetWare "Get LAN Common Counters" reply buffer:
+Offset	Size	Description	(Table 02514)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	BYTE	statistics major version
+ 09h	BYTE	statistics minor version
+ 0Ah	DWORD	number of generic counters
+ 0Eh	DWORD	number of counter blocks
+ 12h	DWORD	number of custom variables
+ 16h	DWORD	next counter block number
+ 1Ah	DWORD	"notSupportedMask"
+ 1Eh	DWORD	total number of packets tranmitted
+ 22h	DWORD	total number of packets received
+ 26h	DWORD	number of times no ECBs were available
+ 2Ah	DWORD	number of transmitted packets which were too large
+ 2Eh	DWORD	number of transmitted packets which were too small
+ 32h	DWORD	number of packet receive overflows
+ 36h	DWORD	number of received packets which were too large
+ 3Ah	DWORD	number of received packets which were too small
+ 3Eh	DWORD	number of miscellaneous transmitted-packet errors
+ 42h	DWORD	number of miscellaneous received-packet errors
+ 46h	DWORD	number of times transmission retried
+ 4Ah	DWORD	number of checksum errors
+ 4Eh	DWORD	number of hardware receive mismatches
+ 52h 50 BYTEs	reserved
+SeeAlso: #02513
+

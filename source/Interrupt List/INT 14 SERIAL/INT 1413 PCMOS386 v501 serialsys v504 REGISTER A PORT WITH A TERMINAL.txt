@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1413
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - REGISTER A PORT WITH A TERMINAL
+	AH = 13h
+	DX = port number
+Return: AH = status
+	    FFh port number invalid
+	    else
+		ES:BX -> BYTE flag (00h buffer empty, FFh buffer contains data)
+SeeAlso: AH=17h"PC-MOS"
+

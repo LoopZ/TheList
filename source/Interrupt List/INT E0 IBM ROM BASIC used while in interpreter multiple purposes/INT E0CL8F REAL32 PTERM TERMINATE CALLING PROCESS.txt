@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL8F
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_TERM" - TERMINATE CALLING PROCESS
+	CL = 8Fh
+	DX = termination code
+Return: never if successful
+	AX = FFFFh on failure
+Note:	this function can not terminate processes whose KEEP flag is set
+	if the termination code is FFh, this function can terminate the process
+	  even if its SYSTEM flag is on; otherwise, only user processes can
+	  terminate themselves
+SeeAlso: INT E0/CL=90h,INT 21/AH=4Ch
+

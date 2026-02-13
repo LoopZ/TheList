@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5401
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - POWER.EXE - GET/SET POWER STATUS
+	AX = 5401h
+	BH = function
+	    00h get status
+		Return: BL = current power management status (see #02837)
+	    01h set status
+		BL = new power managment status (see #02837)
+Return: AX = function status (see #02838)
+Note:	called by MS Windows 3.1 POWER.DRV
+SeeAlso: AH=53h,AX=5400h,AX=5402h,AX=5403h
+
+Bitfields for power management status:
+Bit(s)	Description	(Table 02837)
+ 0	POWER.EXE power management enabled
+ 1	APM firmware power management enabled
+ 2-7	reserved (0)
+Notes:	bit 1 is ignored if there is no APM firmware
+	bits 1-0: 00 = POWER OFF, 10 = POWER STD, 11 = POWER ADV
+
+(Table 02838)
+Values for POWER.EXE function status:
+ 0000h	successful
+ 0002h	"ERROR_PM_ALREADY_CONNECTED"
+ 0003h	"ERROR_PM_NOT_CONNECTED"
+ 0087h	"ERROR_PM_INVALID_PARAMETER"
+

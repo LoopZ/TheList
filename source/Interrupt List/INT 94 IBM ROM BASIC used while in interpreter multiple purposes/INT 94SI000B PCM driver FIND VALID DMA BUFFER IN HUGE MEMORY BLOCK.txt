@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI000B
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - PCM driver - FIND VALID DMA BUFFER IN HUGE MEMORY BLOCK
+	SI = 000Bh
+	ES:BX -> parameters (see #04000)
+Return: ???
+SeeAlso: SI=0003h
+
+Format of PCM driver functio 000Bh parameters:
+Offset	Size	Description	(Table 04000)
+ 00h	DWORD	-> memory block to contain DMA buffer
+ 04h	WORD	desired size of DMA buffer
+

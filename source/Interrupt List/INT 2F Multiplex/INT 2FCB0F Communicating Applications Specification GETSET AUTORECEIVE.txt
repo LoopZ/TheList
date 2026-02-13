@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB0F
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - GET/SET AUTORECEIVE
+	AX = CB0Fh
+	DL = subfunction
+	    00h get current autoreceive state
+	    01h set autoreceive state
+		DH = number of rings before answer, 00h = never
+Return: AX = 0000h autoreceive disabled
+	AX = N	   number of rings before answer
+	AX < 0	   error code (see #03048)
+

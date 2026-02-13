@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10D000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - S3VBE/Core2.0 v3.00+ - INSTALLATION CHECK
+	AX = D000h
+Return: AX = FFFFh if installed
+	    BX = resident code segment
+	    DX = version (binary, DH = major, DL = minor)
+Program: S3VBE/Core2.0 is a freeware TSR by Dietmar Meschede to provide
+	  VESA 2.0 services on S3-based video cards with VESA 1.2 BIOS
+SeeAlso: AX=D001h"S3VBE",AX=D002h"S3VBE",AX=D003h"S3VBE",AX=D005h"S3VBE"
+

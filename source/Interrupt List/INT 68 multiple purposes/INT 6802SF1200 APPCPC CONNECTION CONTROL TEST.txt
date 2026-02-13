@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6802--SF1200
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - CONNECTION CONTROL - TEST
+	AH = 02h subfn 1200h
+	DS:DX -> control block (see #03697)
+Return: control block updated
+SeeAlso: AH=02h/SF=1300h
+
+Format of APPC/PC "Test" control block:
+Offset	Size	Description	(Table 03697)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	1200h (verb "Test" or "MC_Test")
+ 0Eh	BYTE	1 if MC_ (mapped conversation) form of verb
+		0 if basic verb
+ 0Fh  5 BYTEs	reserved (0)
+ 14h	WORD	(big-endian) primary return code (see #03681)
+ 16h	DWORD	(big-endian) error code (see #03682)
+ 1Ah  8 BYTEs	(big-endian) TP_ID
+ 22h	DWORD	(big-endian) conversation ID
+ 26h	BYTE	(MC_Test only) test (0=posted, 1=request_to_send received)
+Note:	error code has different interpretations for:
+	0 posted data
+	1 posted not data (primary return code = 0)
+	1 bad TP_ID (primary return code = 1)
+

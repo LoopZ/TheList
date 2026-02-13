@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330021
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - SOFTWARE RESET
+	AX = 0021h
+Return: AX = status
+	    FFFFh if mouse driver installed
+		BX = number of buttons (FFFFh = two buttons)
+	    0021h if mouse driver not installed
+Note:	this call is identical to funtion 00h, but does not reset the mouse
+SeeAlso: AX=0000h
+

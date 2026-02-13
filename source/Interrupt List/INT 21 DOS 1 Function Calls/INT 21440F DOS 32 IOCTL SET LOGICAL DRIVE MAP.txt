@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440F
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.2+ - IOCTL - SET LOGICAL DRIVE MAP
+	AX = 440Fh
+	BL = physical drive number (00h=default,01h=A:,etc))
+Return: CF set on error
+	    AX = error code (01h,0Fh) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    drive now responds to next logical drive number
+Notes:	maps logical drives to physical drives, similar to DOS's treatment of
+	  a single physical floppy drive as both A: and B:
+	DR DOS 3.41-5.0 DRIVER.SYS does not support drive mapping and thus
+	  always returns an error on this function
+SeeAlso: AX=440Eh,INT 2F/AX=122Bh
+

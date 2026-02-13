@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - Vanderaart TEXT WINDOWS, PC Thuis Shell - OPEN TEXT WINDOW
+	AX = 0000h
+	ES:BX -> name string or ES:0000h if none
+	CH,CL = row,column of upper left corner
+	DH,DL = row,column of lower right corner
+Return: AX = window handle or
+	    0000h if not installed
+	    FFFFh on error
+SeeAlso: AX=0001h,AX=0002h"TEXT WINDOWS"
+

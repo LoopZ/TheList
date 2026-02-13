@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: F101
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v1.1 - "API-REGISTER" - INITIALIZE CAPI
+	AH = 01h
+	ES:BX -> buffer for CAPI's use (refer to note below)
+	CX = minimum number of pending messages
+	DX = maximum simultaneous Level 3 connections
+	SI = maximum concurrent received B3 data blocks
+	DI = maximum B3 data block size
+Return: AX = CAPI-assigned application ID
+	    0000h on error
+		BX = error number
+		    1001h registration error
+Range:	INT 00 to INT FF, selectable by program parameter
+Notes:	the caller is required to provide at least 512 bytes of stack space
+	the CAPI interrupt handler begins with a header which is nearly
+	  identical to the IBM Interrupt Sharing Protocol header
+	  (see #02568 at INT 2D"AMIS"), except that the short jump instruction
+	  to a hardware reset handler at offset 09h is replaced by the
+	  signature bytes "IA"
+	the maximum length of a message is fixed at 180 bytes; the standard
+	  document suggests using CX=10, DI=1, SI=7, and DI=130 for
+	  applications which use only a single connection and standard
+	  protocols
+	the total size of the application-provided buffer must be at least
+	  180*CX + DX*SI*DI bytes
+SeeAlso: AH=02h,INT F1/AL=01h
+Index:	installation check;Common ISDN API
+

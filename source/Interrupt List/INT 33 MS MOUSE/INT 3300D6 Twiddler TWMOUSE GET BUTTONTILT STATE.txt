@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 3300D6
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Twiddler TWMOUSE - GET BUTTON/TILT STATE
+	AX = 00D6h
+Return: AX = current button bitmap
+	BX = current X tilt (approximately -200..+200 = -90degrees..+90deg.)
+	CX = current Y tilt
+Program: the Twiddler is a chording keyboard/mouse combination by Handykey
+	  Corporation
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC00DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - GIVE CPU TO QRIP
+	AX = AC00h
+	DI = 1092h
+Return: nothing
+Program: QRIP/TSR is a shareware TSR by Shane Hathaway implementing the Remote
+	  Imaging Protocol (RIP, RIPscrip) used by several BBS systems to
+	  provide a graphical user interface
+Desc:	give QRIP some CPU time to update music and flashing timers
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	this function should be called regularly whenever the terminal program
+	  is otherwise idle; the updates are automatically performed on any
+	  other QRIP call
+SeeAlso: AX=AC01h,AX=ACF0h
+

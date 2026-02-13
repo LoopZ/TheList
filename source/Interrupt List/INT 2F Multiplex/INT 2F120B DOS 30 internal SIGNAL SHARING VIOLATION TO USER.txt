@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F120B
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - SIGNAL SHARING VIOLATION TO USER
+	AX = 120Bh
+	ES:DI -> system file table entry for previous open of file
+	STACK: WORD extended error code (should be 20h--sharing violation)
+Return: CF clear if operation should be retried
+	CF set if operation should not be retried
+	    AX = error code (20h) (see #01680 at INT 21/AH=59h/BX=0000h)
+	STACK unchanged
+Notes:	can only be called during a DOS function call
+	should only be called if an attempt was made to open an already-open
+	  file contrary to the sharing rules
+	invokes INT 24 if SFT file opened via FCB or in compatibility mode with
+	  inheritance allowed
+

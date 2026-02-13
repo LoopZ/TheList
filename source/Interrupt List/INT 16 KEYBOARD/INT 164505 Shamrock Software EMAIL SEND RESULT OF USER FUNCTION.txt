@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 164505
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Shamrock Software EMAIL - SEND RESULT OF USER FUNCTION
+	AX = 4505h
+	DL = port number (01h = COM1)
+	DH = error flag
+	    bit 3: set on error
+	ES:BX -> ASCIZ text to return to user, max 1024 bytes
+Return: AH = 4Dh if EMAIL installed on specified port
+	AL = status
+	    00h successful
+	    02h unable to perform function (timeout, prev call not complete)
+	    other error
+Notes:	if the error flag in DH is set, the string is not sent and an error
+	  message is generated instead; if this function is not called within
+	  five seconds of AX=4504h, EMAIL automatically generates an error
+	  message
+	the string is copied into an internal buffer, allowing this function's
+	  caller to continue immediately
+SeeAlso: AX=4503h,AX=4504h,INT 17/AX=2400h
+

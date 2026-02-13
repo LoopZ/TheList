@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62000F
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_CLIPMAP" - DISPLAY CLIPPED IMAGE (MODE-INDEP)
+	AX = 000Fh
+	ES:BX -> bitmap
+	CX = width
+	DX = height
+Desc:	display a mode-independent bitmap, showing only the portion within
+	  the current clipping limits
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes and in native EGA and VGA graphics
+	  modes
+	The image is drawn with its lower left corner at the current graphics
+	  cursor position
+SeeAlso: AX=0011h,AX=001Fh,AX=0034h,AX=0086h,AX=00A9h,AX=00C5h
+

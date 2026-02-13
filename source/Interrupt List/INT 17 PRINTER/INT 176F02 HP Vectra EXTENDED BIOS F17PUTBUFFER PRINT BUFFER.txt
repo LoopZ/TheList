@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 176F02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - HP Vectra - EXTENDED BIOS - "F17_PUT_BUFFER" - PRINT BUFFER
+	AX = 6F02h
+	CX = size of buffer in bytes
+	DX = port number (0-3)
+	ES:DI -> buffer containing characters to be printed
+Return: AH = printer status (see #00631)
+	CX = number of bytes successfully printed
+	---on error (AH bit 0 set)---
+	    ES:DI -> next byte to be sent
+	---if successful---
+	    ES:DI unchanged
+SeeAlso: AH=00h,AX=6F00h,INT 14/AX=6F02h
+

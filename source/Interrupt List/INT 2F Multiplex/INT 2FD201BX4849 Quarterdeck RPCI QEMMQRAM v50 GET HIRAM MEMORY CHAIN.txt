@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD201BX4849
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Quarterdeck RPCI - QEMM/QRAM v5.0+ - GET HIRAM MEMORY CHAIN
+	AX = D201h
+	BX = 4849h ("HI")
+	CX = 5241h ("RA")
+	DX = 4D30h ("M0")
+Return: BX = 4F4Bh ("OK")
+	CX = segment of start of HIRAM chain
+	DX = reserved block owner (QEMM/QRAM code segment)
+Range:	AH=C0h to AH=FFh, selected by scanning AH=D2h-FFh, then AH=C0h-D1h
+Note:	the HIRAM memory chain has the same format as the regular DOS 4.0
+	  memory chain (see #01628 at INT 21/AH=52h), except that XMS Upper
+	  Memory Blocks have the block header program name field set to
+	  "UMB"; blocks whose "owner" field is set to the reserved segment
+	  returned in DX are locked-out regions such as video memory and ROMs.
+SeeAlso: AX=12FFh/BX=0006h,AX=D200h
+

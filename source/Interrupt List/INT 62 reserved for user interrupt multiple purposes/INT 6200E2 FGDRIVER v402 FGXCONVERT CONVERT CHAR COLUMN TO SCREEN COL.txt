@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200E2
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_XCONVERT" - CONVERT CHAR COLUMN TO SCREEN COL
+	AX = 00E2h
+	BX = character space column
+Return: AX = screen space column of leftmost pixel in specified character col
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00E2h,AX=00E5h
+

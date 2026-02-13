@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE26
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.40+ - "GETFOREGROUND" - GET KEYBOARD FOCUS
+	AX = DE26h
+Return: BX = segment of handle for task with keyboard focus
+Note:	under DESQview/X, the X server always has the keyboard focus unless a
+	  "direct" window is active
+SeeAlso: AX=DE2Fh,INT 2F/AX=DE0Ah
+

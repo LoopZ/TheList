@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151023
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "POSWIN" - POSITION WINDOW
+	AX = 1023h
+	BX = segment of object handle for parent window within which to
+	       position the window (0 = full screen)
+	ES = segment of object handle for window to be positioned
+	DL = general window position (see #00426)
+	CH = number of columns to offset from position specified by DL
+	CL = number of rows to offset from position specified by DL
+Return: nothing
+
+Bitfields for TopView general window position:
+Bit(s)	Description	(Table 00426)
+ 0,1	horizontal position
+	00 = current, 01 = center, 10 = left, 11 = right
+ 2,3	vertical position
+	00 = current, 01 = center, 10 = top, 11 = bottom
+ 4	don't redraw screen if set
+ 5-7	not used
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4330
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - HIMEM.SYS v2.77+ - GET EXTERNAL A20 HANDLER ADDRESS
+	AX = 4330h
+Return: AL = 80h if external A20 handler provided
+	    ES:BX -> external A20 handler (see #02790)
+	    CL = A20 detection support
+		00h handler is unable to report A20 state
+		01h handler supports function 0002h to report A20 state
+Note:	HIMEM.SYS calls this function to allow an external program to provide
+	  an A20 handler (i.e. to support a machine not supported by HIMEM
+	  itself)
+SeeAlso: AX=4308h,AX=4310h
+
+(Table 02790)
+Call parameters for external A20 handler are:
+	AX = function
+	    0000h disable A20
+	    0001h enable A20
+	    0002h get A20 state
+Return: AX = status (functions 0000h and 0001h)
+	    0000h failure
+	    0001h successful
+	AX = A20 state (function 0002h)
+	    0000h disabled
+	    0001h enabled
+Note:	HIMEM.SYS only calls function 0002h if the returned CL indicated that
+	  the handler supports the call
+

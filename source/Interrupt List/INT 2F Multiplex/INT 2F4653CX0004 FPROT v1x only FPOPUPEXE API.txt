@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4653CX0004
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - F-PROT v1.x only - F-POPUP.EXE - API
+	AX = 4653h ('FS')
+	CX = 0004h
+	BX = subfunction
+	    0000h  installation check
+		Return: AX = FFFFh
+	    0001h  uninstall
+		Return: AX,BX,ES destroyed
+	    0002h  disable (v1.08 and below only)
+		   display message (v1.14+)
+			other registers: ???
+	    0003h  enable (v1.08 and below only)
+		   display message (v1.14+)
+			other registers: ???
+			Return: AX = key pressed by user
+Program: F-POPUP is part of the shareware F-PROT virus/trojan protection
+	  package by Fridrik Skulason
+SeeAlso: AX=4653h/CX=0003h,AX=4653h/CX=0005h,AX=CA00h
+Index:	installation check;F-POPUP|uninstall;F-POPUP
+

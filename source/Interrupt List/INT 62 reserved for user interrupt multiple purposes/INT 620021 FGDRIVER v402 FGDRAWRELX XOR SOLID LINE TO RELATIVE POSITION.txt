@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620021
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DRAWRELX" - XOR SOLID LINE TO RELATIVE POSITION
+	AX = 0021h
+	BX = endpoint column offset
+	CX = endpoint row offset
+Desc:	draw a solid line, XORing each pixel onto the screen
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+	The starting point is the current graphics cursor position; the cursor
+	  position is updated
+SeeAlso: AX=0006h,AX=000Dh,AX=001Dh,AX=0020h,AX=0026h,AX=0090h
+

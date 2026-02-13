@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131C
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - ESDI FIXED DISK - ???
+	AH = 1Ch
+	AL = subfunction (01h-06h)
+	DL = drive (80h,81h)
+	???
+Return: ???
+Note:	these functions perform a controller command 0612h without DMA
+SeeAlso: AX=1C08h,PORT 3510h"ESDI"
+

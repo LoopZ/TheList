@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 210A00
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - WCED v1.6+ - INSTALLATION CHECK
+	AX = 0A00h
+	DS:DX -> 6-byte buffer whose first two bytes must be 00h
+Return: buffer offset 02h-05h filled with "Wced" if installed
+Program: WCED is a free command-line editor and history utility by Stuart
+	  Russell
+SeeAlso: AH=FFh"CED"
+

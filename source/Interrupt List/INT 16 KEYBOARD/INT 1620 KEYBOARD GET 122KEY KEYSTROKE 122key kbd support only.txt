@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1620
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - GET 122-KEY KEYSTROKE (122-key kbd support only)
+	AH = 20h
+Return: AH = BIOS scan code (see AH=10h)
+	AL = ASCII character
+Note:	use AH=09h to determine whether this function is supported
+SeeAlso: AH=00h,AH=09h,AH=10h,AH=21h,AH=22h
+

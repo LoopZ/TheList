@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F4150BHC1
+  Category: s 	sound/speech
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 7F U - Voyetra - AAPISG - API
+	AX = 4150h ('AP')
+	BH = C1h
+	BL = function (00h-13h)
+	    00h initialize (fails except first time called)
+	???
+Return: AX = status???
+	    0000h successful
+	    0001h failed
+Program: AAPISG is a driver by Voyetra for the Aztech Sound Galaxy sound board
+BUG:	the function range check uses JL instead of JB, so it will cause a
+	  crash if BL >= 80h on entry
+SeeAlso: AX=4331h,AX=564Dh,AX=5658h
+

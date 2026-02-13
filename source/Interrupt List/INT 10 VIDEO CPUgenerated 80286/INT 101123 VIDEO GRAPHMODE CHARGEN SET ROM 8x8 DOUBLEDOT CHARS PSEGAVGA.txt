@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101123
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GRAPH-MODE CHARGEN - SET ROM 8x8 DOUBLE-DOT CHARS (PS,EGA,VGA)
+	AX = 1123h
+	BL = row specifier (see AX=1121h)
+Return: nothing
+Notes:	this function is meant to be called immediately after a mode set;
+	  results are unpredictable at other times
+	UltraVision v2+ sets INT 43 to the appropriate font on this call
+SeeAlso: AX=1112h,AX=1120h,AX=1121h,AX=1122h,AX=1124h,AX=1129h
+SeeAlso: INT 1F"SYSTEM DATA",INT 43"VIDEO DATA"
+

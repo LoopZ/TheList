@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF33
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET ROUTER INFO
+	AX = F27Bh subfn 33h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02517)
+	ES:DI -> reply buffer (see #02518)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AX=F27Bh/SF=35h
+
+Format of NetWare "Get Router Info" request buffer:
+Offset	Size	Description	(Table 02517)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	33h (function "Get Router Info")
+ 03h	DWORD	network number
+SeeAlso: #02518
+
+Format of NetWare "Get Router Info" reply buffer:
+Offset	Size	Description	(Table 02518)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	DWORD	network number
+ 0Ch	WORD	hops to net
+ 0Eh	WORD	network status
+ 10h	WORD	time to net
+SeeAlso: #02517,#02519
+

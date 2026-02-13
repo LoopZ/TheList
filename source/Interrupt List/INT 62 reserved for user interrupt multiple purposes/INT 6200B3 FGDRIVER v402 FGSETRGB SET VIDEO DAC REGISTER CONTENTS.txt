@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200B3
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETRGB" - SET VIDEO DAC REGISTER CONTENTS
+	AX = 00B3h
+	BX = palette or DAC register number
+	CX = red color component
+	DX = green component
+	SI = blue component
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The register number may be negative for Tandy, PCjr, and 200-line
+	  EGA graphics modes to specify an intense color
+	This call has no effect in text, CGA graphics, and Hercules graphics
+	  modes
+SeeAlso: AX=004Eh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F22--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_CMOS_GET" - READ CMOS MEMORY
+	AH = 22h
+	BP = 0012h (driver ID of V_SYSTEM)
+	BL = address of CMOS byte to read
+Return: AH = status (see #03744 at AH=00h"HP Vectra")
+	AL = byte read
+	BP,DS destroyed
+Note:	supported by ES, QS, and RS series HP Vectras
+SeeAlso: AH=00h"HP Vectra",AH=1Eh/BP=0012h,AH=24h/BP=0012h
+

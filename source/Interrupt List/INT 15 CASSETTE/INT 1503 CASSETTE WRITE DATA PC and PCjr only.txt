@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1503
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - CASSETTE - WRITE DATA (PC and PCjr only)
+	AH = 03h
+	CX = number of bytes to write
+	ES:BX -> data buffer
+Return: CF clear if successful
+	    ES:BX -> byte following last byte written
+	CF set on error
+	AH = status (see #00409)
+	CX = 0000h
+SeeAlso: AH=00h"CASSETTE",AH=02h"CASSETTE"
+

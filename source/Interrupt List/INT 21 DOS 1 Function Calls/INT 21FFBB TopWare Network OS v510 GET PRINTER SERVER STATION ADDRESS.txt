@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFBB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET PRINTER SERVER STATION ADDRESS
+	AX = FFBBh
+	CH = printer number (00h LPT1, 01h LPT2, 02h LPT3)
+Return: AL = current mapping printer server station number
+	    00h if local
+SeeAlso: AX=FFBCh
+

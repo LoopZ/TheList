@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A1
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Interconnections Inc. TES - GET LIST OF SESSIONS WITH STATUS
+	AH = A1h
+Return: CX = number of active sessions
+	ES:SI -> status array (see #00395)
+SeeAlso: AH=A2h"TES",AH=A3h"TES"
+
+Format of Interconnections TES status array entry:
+Offset	Size	Description	(Table 00395)
+ 00h	BYTE	status
+ 01h	WORD	offset of name
+

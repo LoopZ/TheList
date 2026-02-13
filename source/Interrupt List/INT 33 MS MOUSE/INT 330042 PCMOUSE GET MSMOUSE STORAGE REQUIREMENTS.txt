@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330042
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - PCMOUSE - GET MSMOUSE STORAGE REQUIREMENTS
+	AX = 0042h
+Return: AX = status
+	    0000h MSMOUSE not installed
+	    0042h functions 42h, 50h, and 52h not supported
+	    FFFFh successful
+		BX = buffer size in bytes for functions 50h and 52h
+Note:	this function is also supported by the Genius Mouse 9.06 driver
+SeeAlso: AX=0015h,AX=0050h,AX=0052h
+

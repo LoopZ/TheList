@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLA6
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_DETACH" - DETACH FROM AUX DEVICE
+	CL = A6h
+Return: AX = status
+	    0000h successfully detached
+	    FFFFh detach failed
+	CX = error code
+Note:	also supported by REAL/32
+SeeAlso: INT E0/CL=93h,INT E0/CL=A5h,INT E0/CL=A7h
+

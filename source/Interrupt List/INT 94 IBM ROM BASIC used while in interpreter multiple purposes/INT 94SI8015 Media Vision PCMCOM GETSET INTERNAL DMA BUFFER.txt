@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI8015
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - GET/SET INTERNAL DMA BUFFER
+	SI = 8015h
+	ES:BX -> DMA info structure (see #04002)
+Return: ???
+
+Format of PCM.COM DMA info structure:
+Offset	Size	Description	(Table 04002)
+ 00h	DWORD	-> DMA buffer (offset FFFFh = return current buffer info)
+ 04h	WORD	DMA buffer size
+ 06h	WORD	divisions
+

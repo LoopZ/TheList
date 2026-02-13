@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21250E
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - CALL REAL-MODE PROCEDURE
+	AX = 250Eh
+	EBX = CS:IP of real-mode procedure to call
+	ECX = number of two-byte words to copy from protected-mode stack
+	      to real-mode stack
+Return: CF clear if successful
+	    all segment registers unchanged
+	    all general registers contain values set by real-mode procedure
+	    all other flags set as they were left by real-mode procedure
+	    stack unchanged
+	CF set on error
+	    EAX = error code
+		01h not enough real-mode stack space
+Note:	this function is also supported by FlashTek X-32VM; under X-32VM, the
+	  call will fail if ECX > 0000003Fh
+SeeAlso: AX=250Dh,AX=2510h,AH=E1h"OS/286",INT 31/AX=0301h
+

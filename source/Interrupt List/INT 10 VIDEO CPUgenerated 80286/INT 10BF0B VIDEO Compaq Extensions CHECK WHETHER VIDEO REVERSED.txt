@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF0B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - CHECK WHETHER VIDEO REVERSED
+	AX = BF0Bh
+Return: CF clear
+	AX = state (0000h normal video, 0001h reverse video)
+Note:	supported by at least the QVision board and the LTE Lite ROM BIOS
+SeeAlso: AX=BF09h,AX=BF0Ah
+

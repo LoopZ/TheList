@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620049
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETMAXX" - GET MAXIMUM COLUMN IN SCREEN SPACE
+	AX = 0049h
+Return: AX = maximum X coordinate in screen space
+	    (or character space if in text mode)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=004Ah,AX=00C1h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500003
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - WRITE FILE
+	AX = 0003h
+	ES:BX -> data to be written
+	CX = number of bytes to write
+	DS:SI -> filename
+Return: AX = status
+	    0000h successful
+	    FFFFh error
+SeeAlso: AX=0004h"Shell"
+

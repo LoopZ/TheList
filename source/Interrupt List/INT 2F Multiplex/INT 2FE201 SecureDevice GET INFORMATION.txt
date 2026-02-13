@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE201
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SecureDevice - GET INFORMATION
+	AX = E201h
+	DX = driver index (0000h = first loaded)
+Return: AL = number of volumes handled by driver
+	DL = drive number of first volume (00h = A:)
+SeeAlso: AX=E200h,AX=E203h,AX=E209h
+

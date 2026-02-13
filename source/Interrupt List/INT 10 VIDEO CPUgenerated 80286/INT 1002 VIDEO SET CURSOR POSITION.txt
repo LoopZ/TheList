@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1002
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET CURSOR POSITION
+	AH = 02h
+	BH = page number
+	    0-3 in modes 2&3
+	    0-7 in modes 0&1
+	    0 in graphics modes
+	DH = row (00h is top)
+	DL = column (00h is left)
+Return: nothing
+SeeAlso: AH=03h,AH=05h,INT 60/DI=030Bh,MEM 0040h:0050h
+

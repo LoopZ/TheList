@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0216
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SYSTEM SF_TEST" - PERFORM HARDWARE TEST
+	AX = 0216h
+	BP = driver ID (see #03741)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+	---on failure---
+	CX = length of reason string
+	ES:DI -> string describing error
+SeeAlso: AH=00h"HP Vectra",AX=0200h,AX=0208h,AX=020Eh,AX=0212h,AX=0214h
+

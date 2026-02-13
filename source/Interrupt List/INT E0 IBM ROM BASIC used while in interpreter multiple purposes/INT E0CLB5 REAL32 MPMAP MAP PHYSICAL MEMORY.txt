@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLB5
+  Category: O 	other operating systems
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT E0 R - REAL/32 - "MP_MAP" - MAP PHYSICAL MEMORY
+	CL = B5h
+	DS:DX -> Memory Physical Parameter Block (see #04057)
+Return: AX = status (0000h successful, FFFFh error)
+	may destroy SI,DI,DS
+SeeAlso: INT E0/CL=B3h
+
+Format of REAL/32 Memory Physical Parameter Block:
+Offset	Size	Description	(Table 04057)
+ 00h	WORD	4K page number in first megabyte to be mapped
+ 02h	WORD	number of page to map into above page, or 0000h to unmap
+ 04h	WORD	window number (0000h, as only one window currently supported)
+ 06h	WORD	reserved
+Note:	all users of the system share the window, so applications should not
+	  use it for arguments to system calls, attempt to read/write to/from
+	  files via the window, etc.
+

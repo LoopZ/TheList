@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 210D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - DISK RESET
+	AH = 0Dh
+Return: (DOS 6 only) CF clear (earlier versions preserve CF)
+Notes:	This function writes all modified disk buffers to disk, but does not
+	  update the directory information (that is only done when files are
+	  closed or a SYNC call is issued)
+SeeAlso: AX=5D01h,AX=710Dh,INT 13/AH=00h,INT 2F/AX=1120h
+

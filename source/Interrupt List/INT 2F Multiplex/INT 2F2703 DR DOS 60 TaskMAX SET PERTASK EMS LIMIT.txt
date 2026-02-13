@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2703
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - SET PER-TASK EMS LIMIT
+	AX = 2703h
+	DX = maximum pages INT 67/AH=42h should report available
+Return: DX = new maximum for reporting
+Note:	the TaskMAX API is also supported by Novell DOS 7 TASKMGR in
+	  both taskswitching and multitasking modes
+SeeAlso: AX=2702h,INT 67/AH=42h
+

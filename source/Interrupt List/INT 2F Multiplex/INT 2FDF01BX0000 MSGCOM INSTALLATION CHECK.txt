@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDF01BX0000
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MSG.COM - INSTALLATION CHECK
+	AX = DF01h
+	BX = 0000h
+Return: AX = FDFFh if installed
+	   BX = segment of resident code
+Program: MSG.COM is a TSR for intercepting incoming Novell broadcast
+	  messages written by Gary Dobbins (Dobbins@Arizona.Edu)
+

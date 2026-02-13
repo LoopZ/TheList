@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE15
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.20+ - SET ERROR HANDLING
+	AX = DE15h
+	BL = error handling mode
+	    00h post system error on all error conditions
+	    01h return carry flag set on calls to ADDTO, SUBFROM, and WRITE
+		messages sent to mailboxes which fail due to lack of system
+		or common memory
+	    02h (v2.26+) same as 01h, but also return null pointer for GETMEM
+		calls which fail due to lack of system memory
+Return: nothing
+SeeAlso: AX=DE0Ch,AX=DE16h
+

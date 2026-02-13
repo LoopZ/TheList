@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F040ABP0114
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_CRV_WR_ACK" - ACKNOWLEDGE DEVICE
+	AX = 040Ah
+	BP = 0114h (driver ID for V_HPHIL)
+	BX = device address indicator (see #03760)
+	DH = HP HIL device major address
+	DL = acknowledge number (specific if 01h-07h, generic otherwise)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=0406h/BP=0114h,AX=040Ch/BP=0114h
+

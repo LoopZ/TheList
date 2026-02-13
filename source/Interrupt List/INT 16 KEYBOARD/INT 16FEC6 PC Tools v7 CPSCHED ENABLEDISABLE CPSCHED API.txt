@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FEC6
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v7+ CPSCHED - ENABLE/DISABLE CPSCHED API
+	AX = FEC6h
+	BL = new state (00h enabled, nonzero disabled)
+Return: nothing
+Desc:	specify whether CPSCHED API calls other than this one and AX=FE55h will
+	  be honored
+

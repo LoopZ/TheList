@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB05
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - FIND FIRST QUEUE ENTRY
+	AX = CB05h
+	CX = status of events to find
+	    0000h successful completion
+	    0001h waiting to be processed
+	    0002h number has been dialed
+	    0003h connection established, sending
+	    0004h connection established, receiving
+	    0005h event aborted
+	    FFFFh find any event, regardless of status
+	    other negative values, match error code
+	DH = direction
+	    00h chronological order, earliest to latest
+	    01h reverse chronological order, latest to earliest
+	DL = queue to search
+	    00h task queue
+	    01h receive queue
+	    02h log queue
+Return: AX = 0000h successful
+	    BX = event handle for found event
+	AX < 0	   error code (see #03048)
+SeeAlso: AX=CB06h,AX=CB07h
+

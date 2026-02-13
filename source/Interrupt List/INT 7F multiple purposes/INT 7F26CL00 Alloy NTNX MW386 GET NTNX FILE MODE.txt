@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F26--CL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - GET NTNX FILE MODE
+	AH = 26h
+	CL = 00h
+Return: AX = file mode bits (see #03965)
+Note:	MW386 does not support file modes, and always returns AX=001Fh
+SeeAlso: AH=26h,AH=26h/CL=06h
+
+Bitfields for Alloy file mode bits:
+Bit(s)	Description	(Table 03965)
+ 0	directory protection enabled
+ 1	extended open enabled
+ 2	flush on every disk write
+ 3	flush on every disk write in locked interval
+ 4	flush on reads from simultaneously opened file
+

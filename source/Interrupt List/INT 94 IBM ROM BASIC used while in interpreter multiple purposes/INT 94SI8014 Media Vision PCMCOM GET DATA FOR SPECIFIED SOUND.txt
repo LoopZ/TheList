@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI8014
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - GET DATA FOR SPECIFIED SOUND
+	SI = 8014h
+	ES:BX -> "i94f92buf" structure to be filled in
+		sound number field set to desired sound
+Return: AX = status
+	    0000h successful
+	    FFFFh sound number out of range
+SeeAlso: SI=8012h,SI=8013h
+

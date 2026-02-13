@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - SET SESSION PARAMETER
+	AX = 0003h subfn 05h
+	DS:BX -> argument block (see #03379)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h,AX=0003h/SF=06h,AX=0003h/SF=08h
+
+Format of VINES argument block for setting session parameters:
+Offset	Size	Description	(Table 03379)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	05h (function "set session parameter")
+ 02h	BYTE	parameter number (see #03380)
+ 03h	BYTE	new parameter value
+
+(Table 03380)
+Values for parameter number:
+ 00h	line speed (00h=any, 01h=50, 02h=110, 03h=134.5, 04h=150,
+		  05h=300, 06h=600, 07h=1200, 08h=2400, 09h=4800, 0Ah=9600)
+ 01h	parity (00h=none, 01h=odd, 02h=even)
+ 02h	duplex (00h=full, 01h=half)
+ 03h	character size (00h=7 bits, 01h=8 bits)
+ 04h	stop bits (00h=1, 01h=2)
+ 05h	XON/XOFF flow control (00h=no, 01h=yes)
+ 07h	intercharacter delay in tenths of a second
+ 08h	interline delay in tenths of a second
+ 09h	auto linefeed (00h=no, 01h=yes)
+ 0Ah	filter control characters (00h=no, 01h=yes)
+ 0Bh	terminal type (00h=VT100,01h=glassTTY,02h=VT52,03h=IBM3101)
+ 0Ch	auto wrap (00h=no, 01h=yes)
+ 0Dh	cursor shape (00h=underscore, 01h=block)
+ 0Eh	character set (00h=UK, 01h=US ASCII)
+ 0Fh	printer port (00h=LPT1, 01h=LPT2, 02h=LPT3)
+SeeAlso: #03379
+

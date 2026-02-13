@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94--08SI8017
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - NO ACTIVITY FEATURE
+	AL = 08h
+	SI = 8017h
+	AH = new state
+	    00h off
+	    01h on
+		DX:CX = delay
+Return: ???
+SeeAlso: AL=10h/SI=8017h
+

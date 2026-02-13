@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX048E
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - NWREDIR - GET API ENTRY POINT
+	AX = 1684h
+	BX = 048Eh (virtual device ID for NWREDIR device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02691)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02691)
+Call Windows95 NWREDIR.VXD entry point with:
+	Return:	CF set
+		EAX = FFFFFFFFh
+SeeAlso: #02690
+

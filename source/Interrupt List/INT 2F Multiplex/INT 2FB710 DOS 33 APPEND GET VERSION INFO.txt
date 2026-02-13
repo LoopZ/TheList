@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB710
+  Category: f 	file manipulation
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ APPEND - GET VERSION INFO
+	AX = B710h
+Return: AX = current APPEND state (see #02980)
+	BX = ??? (0000h in MS-DOS 3.30 and 5.00)
+	CX = ??? (0000h in MS-DOS 3.30 and 5.00)
+	DL = major version
+	DH = minor version
+SeeAlso: AX=B700h,AX=B702h
+

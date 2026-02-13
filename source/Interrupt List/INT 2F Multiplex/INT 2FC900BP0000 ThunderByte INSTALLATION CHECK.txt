@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC900BP0000
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - ThunderByte??? - INSTALLATION CHECK
+	AX = C900h
+	BP = 0000h
+Return: AL = FFh if installed
+	    BP >= 0014h
+Note:	called by TBSCANX
+SeeAlso: AX=C987h,AX=CA00h
+

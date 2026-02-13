@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH05
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "WRITE" - WRITE TO OBJECT
+	AH = 12h
+	BH = 05h
+	BL = object
+	    00h handle is DWORD on top of stack
+		timer: start timer to end at a specified time
+		keyboard: add input buffer to queue
+		pointer: move pointer icon to specified position
+	    02h send message by value/status=0 to mbox (task's handle on stack)
+	    03h send message by value/status=0 to current task's mailbox
+	    04h add input buffer to KEYBOARD queue (handle on top of stack)
+	    05h add input buffer to task's default KEYBOARD queue
+	    06h add an object to OBJECTQ (handle on top of stack)
+	    07h add an object to task's default OBJECTQ
+	STACK: (if mailbox)  DWORD length
+			     DWORD address
+	       (if keyboard) DWORD status (scan code in keystroke mode)
+			     DWORD length (should be 1 in keystroke mode)
+			     DWORD address
+	       (if objectq)  DWORD handle of object to add
+	       (if timer)    DWORD 1/100ths seconds since midnight (actually
+				   only accurate to 1/18 sec)
+	       (if pointer)  DWORD column relative to origin of window
+			     DWORD row relative to origin of window
+Return: STACK popped
+Notes:	under DV 2.2+, failed mailbox writes may return CF set (see AX=DE15h)
+	the data and status written to a keyboard object must match the format
+	  returned by the keyboard object in the current mode
+	the pointer position is scaled according to the current scaling factors
+SeeAlso: AH=12h/BH=04h,AH=12h/BH=85h
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF96
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET ACCOUNT STATUS
+	AX = F217h subfn 96h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02003 at AH=E3h/SF=96h)
+	ES:DI -> reply buffer (see #02224)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=96h,AX=F217h/SF=97h,AX=F217h/SF=98h
+
+Format of NetWare "Get Account Status" reply packet:
+Offset	Size	Description	(Table 02224)
+ 00h	DWORD	(big-endian) account balance
+ 04h	DWORD	(big-endian) credit limit
+		signed number indicating lowest allowable account balance
+ 06h 120 BYTEs	reserved
+ 80h	DWORD	(big-endian) object ID, server 1
+ 84h	DWORD	(big-endian) hold amount, server 1
+	...
+ F6h	DWORD	(big-endian) object ID, server 16
+ FAh	DWORD	(big-endian) hold amount, server 16
+Note:	the reply buffer lists the servers which have placed holds on a portion
+	  of the account balance, and the amount reserved by each
+SeeAlso: #02003,#02004 at AH=E3h/SF=96h
+

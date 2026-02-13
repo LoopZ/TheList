@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F244
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVICES - ERASE FILE
+	AX = F244h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02351)
+	ES:DI ignored
+Return: AL = status (see #02350)
+Note:	this function only marks the file for deletion; use AH=E2h/SF=CEh to
+	  actually delete all marked files
+SeeAlso: AH=13h,AH=41h,AH=E2h/SF=0Bh,AH=E3h/SF=CEh
+
+(Table 02350)
+Values for NetWare function status:
+ 00h	successful
+ 98h	nonexistent volume
+ 9Bh	invaid directory handle
+ 9Ch	invalid path
+ FFh	no files found
+SeeAlso: #02094,#02860 at INT 2F/AX=7A20h/BX=0000h
+
+Format of NetWare "Erase Files" request packet:
+Offset	Size	Description	(Table 02351)
+ 00h	BYTE	directory handle
+ 01h	BYTE	search attributes (see #01420 at AX=4301h)
+ 02h	BYTE	length of filespec
+ 03h  N BYTEs	ASCIZ filespec (may include wildcards)
+

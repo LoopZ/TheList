@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFDDBX0000
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1+ PCShell API - INSTALLATION CHECK
+	AX = FFDDh
+	BX = 0000h
+Return: CX = 5555h
+	DX = 5555h if PCShell installed in resident mode
+

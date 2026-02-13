@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1307
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - FIXED DISK - FORMAT DRIVE STARTING AT GIVEN TRACK (XT,PORT)
+	AH = 07h
+	AL = interleave value (XT only)
+	ES:BX = 512-byte format buffer (see AH=05h)
+	CH = cylinder number (bits 8,9 in high bits of CL)
+	CL = sector number
+	DH = head
+	DL = drive
+Return: AH = status code (see #00234)
+Note:	AWARD AT BIOS and AMI 386sx BIOS have been extended to handle more
+	  than 1024 cylinders by placing bits 10 and 11 of the cylinder number
+	  into bits 6 and 7 of DH
+SeeAlso: AH=05h"FIXED",AH=06h"FIXED",AH=1Ah
+

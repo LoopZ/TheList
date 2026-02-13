@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620014
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_COPYPAGE" - TRANSFER VIDEO PAGE CONTENTS
+	AX = 0014h
+	BX = source page number (0000h-003Fh)
+	CX = destination page number (0000h-003Fh)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	If both source and destination pages are logical pages, they must both
+	  be located in the same type (conventional, EMS, XMS) of memory
+SeeAlso: AX=009Eh,AX=00A2h,AX=00C6h,AX=00CAh
+

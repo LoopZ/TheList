@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152302
+  Category: B 	BIOS
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 15 u - IBM BIOS - SMART ENERGY SYSTEM - GET ROM STARTUP VIDEO REG TABLES
+	AX = 2302h
+	BL = data index (00h-0Dh) (see #00459)
+Return: ES:BX -> table for register (see #00460,#00461)
+	CX = size of table in bytes (may be 0000h)
+Note:	IBM classifies this function as optional
+SeeAlso: AX=2300h,AX=2301h,AX=2303h
+
+(Table 00459)
+Values for PS/1 ROM startup video register tables:
+ 00h	DAC registers
+ 01h	???
+ 02h	Palette registers
+ 03h-0Dh ???
+
+Format of PS/1 ROM startup DAC register table:
+Offset	Size	Description	(Table 00460)
+ 00h	WORD	number of DAC registers in table
+ 02h	var	array of 3-byte DAC register values, starting at register 00h
+SeeAlso: #00459
+
+Format of PS/1 ROM startup Palette register table:
+Offset	Size	Description	(Table 00461)
+ 00h 16 BYTEs	colors for palette registers 00h through 0Fh
+ 10h	BYTE	border color
+SeeAlso: #00459,#00018
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF06
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - MAKE PROGRAM UNBREAKABLE
+	AX = AF06h
+	DS:DX -> break handler
+	DI:BX = stack to use for break handler
+Return: nothing
+Desc:	set a handler which should be invoked when Ctrl-C is pressed instead of
+	  aborting the program
+SeeAlso: AX=AF00h"WinDOS",AX=AF0Ah"WinDOS",AX=AF0Ch"WinDOS"
+

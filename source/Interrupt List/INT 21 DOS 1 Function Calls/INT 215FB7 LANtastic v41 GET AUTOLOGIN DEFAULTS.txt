@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FB7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v4.1+ - GET AUTO-LOGIN DEFAULTS
+	AX = 5FB7h
+	ES:DI -> pointer to 16-byte buffer to store ASCIZ auto-login user name
+Return: CF clear if successful
+	    DL = adapter number used for default login attempt
+		FFh all valid adapters will be tried
+		00h-05h specified adapter will be tried explicitly
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F81h,AX=5FB6h
+

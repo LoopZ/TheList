@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0B0F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CLOCK/CALENDAR SERVCE "M_GET_SETTINGS_ADDR"
+	DI = 0B0Fh
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+Return: DX:AX -> system settings record (see #03294)
+	STACK unchanged
+SeeAlso: INT 60/DI=0B09h
+

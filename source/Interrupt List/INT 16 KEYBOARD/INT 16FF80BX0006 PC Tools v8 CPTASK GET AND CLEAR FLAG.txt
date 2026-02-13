@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF80BX0006
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ CPTASK - GET AND CLEAR ??? FLAG
+	AX = FF80h
+	BX = 0006h
+Return: AX = old state (0000h clear, 0001h set)
+Note:	the tested flag is bit 13 of the flags returned by AX=FF80h/BX=0003h
+

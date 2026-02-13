@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1702
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PRINTER - GET STATUS
+	AH = 02h
+	DX = printer number (00h-02h)
+Return: AH = printer status (see #00631)
+Note:	PRINTFIX from MS-DOS 5.0 hooks this function and always returns AH=90h
+SeeAlso: AH=01h,AH=F2h,INT 1A/AH=12h"NEC",INT 4B/AH=02h
+

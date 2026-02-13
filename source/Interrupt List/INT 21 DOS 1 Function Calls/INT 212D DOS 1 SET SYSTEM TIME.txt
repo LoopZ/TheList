@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - SET SYSTEM TIME
+	AH = 2Dh
+	CH = hour
+	CL = minute
+	DH = second
+	DL = 1/100 seconds
+Return: AL = result
+	    00h successful
+	    FFh invalid time, system time unchanged
+Note:	DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$
+	  driver interface, the CMOS date is also updated to the current
+	  DOS date
+SeeAlso: AH=2Bh"DOS",AH=2Ch,INT 1A/AH=01h,INT 1A/AH=03h,INT 1A/AH=FFh"AT&T"
+

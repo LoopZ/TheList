@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E001
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MX5 Extended FOSSIL - GET/SET MNP LEVEL
+	AX = E001h
+	BH = function
+	    00h get MNP level
+	    01h set MNP level
+		BL = new level (00h none, 02h/04h/05h MNP level N)
+	DX = port number (0-3)
+Return: BL = MNP level
+SeeAlso: AX=E002h,AX=E003h,AX=E004h,AX=E006h
+

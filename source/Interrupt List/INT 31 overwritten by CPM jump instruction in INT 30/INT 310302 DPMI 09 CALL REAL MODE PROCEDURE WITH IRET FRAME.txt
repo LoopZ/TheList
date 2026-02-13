@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310302
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - CALL REAL MODE PROCEDURE WITH IRET FRAME
+	AX = 0302h
+	BH = flags
+	    bit 0: reset the interrupt controller and A20 line (DPMI 0.9)
+		    reserved, must be 0 (DPMI 1.0+)
+	    others: reserved, must be 0
+	CX = number of words to copy from protected mode to real mode stack
+	ES:(E)DI = selector:offset of real mode call structure
+		  (see #03148 at INT 31/AX=0300h)
+Return: CF clear if successful
+	    real mode call structure modified (all fields except SS:SP, CS:IP
+	      filled with return values from real mode interrupt)
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8012h,8013h,8014h,8021h)(see #03143)
+	protected mode stack unchanged
+Notes:	16-bit programs use ES:DI as pointer, 32-bit programs use ES:EDI
+	the flags in the call structure are pushed on the real mode stack to
+	  form an interrupt stack frame, and the trace and interrupt flags are
+	  clear on entry to the handler
+	the real mode procedure must exit with an IRET
+	DPMI will provide a small (30 words) real mode stack if SS:SP is zero
+	the real mode handler must return with the stack in the same state as
+	  it was on being called
+SeeAlso: AX=0300h
+

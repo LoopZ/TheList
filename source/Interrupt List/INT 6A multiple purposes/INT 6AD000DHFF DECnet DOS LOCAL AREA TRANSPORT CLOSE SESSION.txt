@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6AD000DHFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6A - DECnet DOS LOCAL AREA TRANSPORT - CLOSE SESSION
+	AX = D000h
+	DH = FFh
+	DL = handle
+Return: AX = status (see #03728)
+SeeAlso: AH=D0h
+
+(Table 03728)
+Values for DECnet DOS LAT function status:
+ 0000h	successful
+ 0001h	no such session
+ 0002h	session not running, try again later
+

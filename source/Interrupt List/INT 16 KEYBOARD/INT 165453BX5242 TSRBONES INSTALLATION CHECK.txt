@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 165453BX5242
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - TSRBONES - INSTALLATION CHECK
+	AX = 5453h ('TS')
+	BX = 5242h ('RB')
+	CX = 4F4Eh ('ON')
+	DX = 4553h ('ES')
+Return: AX = 4553h if installed
+	BX = 4F4Eh if installed
+	CX = 5242h if installed
+	DX = 5453h if installed
+Program: TSRBONES is a skeletal TSR framework by Robert Curtis Davis
+Note:	these values are the default as the TSRBONES package is distributed,
+	  but will normally be changed when implementing an actual TSR with
+	  the TSRBONES skeleton
+SeeAlso: INT 2D/AL=00h"AMIS"
+

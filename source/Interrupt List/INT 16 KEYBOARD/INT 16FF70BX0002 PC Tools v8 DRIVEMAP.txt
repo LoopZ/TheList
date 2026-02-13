@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF70BX0002
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ DRIVEMAP - ???
+	AX = FF70h
+	BX = 0002h
+	CX = ???
+	DX = ???
+Return: AX = ??? or FFFEh/FFFFh on error
+	DL = ???
+BUG:	DRIVEMAP will branch to random locations for BX values other than
+	  those listed above for v8.0-9.0 because a) the incorrect register is
+	  range-tested, resulting in BX=0003h-5CD6h being accepted as valid
+	  function numbers, and b) the conditional which branches on invalid
+	  function numbers jumps to the following instruction, becoming a NOP
+SeeAlso: INT 2F/AX=9203h"DRIVEMAP"
+Index:	installation check;DRIVEMAP
+

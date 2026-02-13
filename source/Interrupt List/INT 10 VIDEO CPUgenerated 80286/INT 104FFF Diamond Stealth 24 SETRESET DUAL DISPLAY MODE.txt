@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104FFF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Diamond Stealth 24 - SET/RESET DUAL DISPLAY MODE
+	AX = 4FFFh
+	BX = dual display mode
+	    00h reset
+	    01h set dual display, 32KB VGA test
+	    02h set dual display, 64KB VGA test
+Return: AX = 4F00h if successful
+	    BX = number of scanlines off screen for test mode
+

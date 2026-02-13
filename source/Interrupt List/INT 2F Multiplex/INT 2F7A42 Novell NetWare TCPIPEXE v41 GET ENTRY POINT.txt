@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A42
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - TCPIP.EXE v4.1 - GET ??? ENTRY POINT
+	AX = 7A42h
+Return: AX = 7AFFh if supported
+	    ES:DI -> ??? entry point (see #02907)
+
+(Table 02907)
+Call NetWare TCPIP.EXE entry point with:
+	DX = ???
+	ES:DI -> ??? (see #02908)
+Return: AX = 0000h
+	other registers destroyed
+
+Format of data buffer:
+Offset	Size	Description	(Table 02908)
+ 00h	WORD	offset of WORD ??? or 0000h
+ 02h	WORD	offset of DWORD ??? or 0000h
+ 04h	WORD	offset of DWORD ??? or 0000h
+

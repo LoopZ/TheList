@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217070BX6060
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - PCW Weather Card interface - GET DATA SEGMENT
+	AX = 7070h
+	BX = 6060h
+	CX = 7070h
+	DX = 7070h
+	SI = 7070h
+	DI = 7070h
+Return: AX = segment of data structure (see #01776)
+Notes:	the data structure is at offset 516 from this segment
+	the update byte is at offset 514 from this segment.  Updates are
+	  once per second while this byte is nonzero and it is decremented
+	  once per second.  While this byte is 0 updates are once per minute.
+SeeAlso: AX=7070h/BX=7070h
+
+Format of PCW Weather Card data structure:
+Offset	Type	Description	(Table 01776)
+ 00h	WORD	hour
+ 02h	WORD	minute
+ 04h	WORD	second
+ 06h	WORD	day
+ 08h	WORD	month
+ 0Ah	WORD	year
+ 0Ch	WORD	???
+ 0Eh	WORD	relative barometric pressure (in 1/100 inches)
+ 10h	WORD	???
+ 12h	WORD	???
+ 14h	WORD	temperature 1 (in 1/10 degrees F)
+ 16h	WORD	temperature 1 lowest (in 1/10 degrees F)
+ 18h	WORD	temperature 1 highest (in 1/10 degrees F)
+ 1Ah	WORD	temperature 2 (in 1/10 degrees F)
+ 1Ch	WORD	temperature 2 lowest (in 1/10 degrees F)
+ 1Eh	WORD	temperature 2 highest (in 1/10 degrees F)
+ 20h	WORD	wind speed (in MPH)
+ 22h	WORD	average of 60 wind speed samples (in MPH)
+ 24h	WORD	highest wind speed (in MPH)
+ 26h	WORD	wind chill factor  (in 1/10 degrees F)
+ 28h	WORD	lowest wind chill factor (in 1/10 degrees F)
+ 2Ah	WORD	???
+ 2Ch	WORD	wind direction (in degrees)
+ 2Eh	WORD	accumulated daily rainfall (in 1/10 inches)
+ 30h	WORD	accumulated annual rainfall (in 1/10 inches)
+

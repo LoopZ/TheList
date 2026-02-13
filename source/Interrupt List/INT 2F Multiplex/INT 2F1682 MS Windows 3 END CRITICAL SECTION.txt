@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1682
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows 3+ - END CRITICAL SECTION
+	AX = 1682h
+Notes:	not supported in Windows/386 2.x.  Get InDOS flag with INT 21/AH=34h
+	  and decrement by hand, taking care not to decrement InDOS flag
+	  through zero
+SeeAlso: AX=1681h,INT 15/AX=101Ch,INT 21/AH=34h
+

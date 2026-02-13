@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C706
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TRANSACTION TRACKING SYSTEM - SET APPLICTN THRESHOLDS
+	AX = C706h
+	CL = maximum logical record locks (default 0)
+	CH = maximum physical record locks (default 0)
+Return: AL = status
+	    00h successful
+Desc:	specify the per-application limits on record locks allowed before an
+	  implicit transaction is begun
+Notes:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+	if either limit is set to FFh, implicit transactions are disabled for
+	  the corresponding lock type
+SeeAlso: AX=C705h,AX=C708h,AX=F222h/SF=06h
+

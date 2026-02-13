@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10007E
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Paradise VGA, AT&T VDC600 - SET SPECIAL MODE
+	AX = 007Eh
+	BX = horizontal dimension of the mode desired
+	CX = vertical dimension of the mode desired
+	    (both BX/CX in pixels for graphics modes, rows for alpha modes)
+	DX = number of colors of the mode desired (0000h for monochrome modes)
+Return: BH = 7Eh if successful (Paradise VGA)
+	AL = 7Eh if successful (AT&T VDC600)
+Desc:	specify a display mode by resolution rather than mode number
+SeeAlso: AH=00h,AX=0070h,AX=007Fh/BH=00h,AX=6F05h,AH=FFh"GO32"
+Index:	video modes;Paradise|video modes;AT&T
+

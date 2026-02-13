@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - GET LOCAL TARGET
+	BX = 0002h
+	ES:SI -> target internetwork address (see #03824 at INT 7A/BX=000Bh)
+	ES:DI -> 6-byte buffer for local target
+Return: AL = return code
+	    00h success
+	       CX = expected one-way transfer time (clock ticks) for a 576-byte
+		      packet
+	       ES:DI -> local target
+	    FAh unsuccessful (no path to destination)
+Notes:	the internetwork address consists of a 4-byte network address followed
+	  by a 6-byte node address.  The local target is only a 6-byte node
+	  address.  If the target is in the same network, the local target is
+	  just the node address of target; otherwise, the local target is the
+	  node address of the bridge that leads to the target.
+	this function may be called from inside IPX and AES Event Service
+	  Routines, but not from other interrupt handlers
+	this function is supported by Advanced NetWare 1.02+
+SeeAlso: BX=0009h
+

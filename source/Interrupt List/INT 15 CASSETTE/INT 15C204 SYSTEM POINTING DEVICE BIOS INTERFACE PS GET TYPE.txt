@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C204
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE (PS) - GET TYPE
+	AX = C204h
+Return: CF set on error
+	    AH = status (see #00522)
+	CF clear if successful
+	    BH = device ID
+

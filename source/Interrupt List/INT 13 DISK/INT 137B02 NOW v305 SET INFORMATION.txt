@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 137B02
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - NOW! v3.05 - SET INFORMATION
+	AX = 7B02h
+	BX = segment of ??? (10h above a PSP)
+	CX:DX -> 1F8h-byte information record (see #00288)
+Return: ???
+Program: NOW! is a disk cache by Vertisoft Systems, Inc.
+Note:	NOW! grabs the INT 24h value from the PSP reached via the segment in
+	  BX
+SeeAlso: AX=7B00h
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF19
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WRITE NAME SPACE INFO
+	AX = F257h subfn 19h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02413)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=17h,AX=F257h/SF=18h
+
+Format of NetWare "Write Name Space Info" request packet:
+Offset	Size	Description	(Table 02413)
+ 00h	BYTE	19h (subfunction "Write Name Space Info")
+ 01h	BYTE	source name space (see #02387)
+ 02h	BYTE	destination name space
+ 03h	BYTE	volume number
+ 04h	DWORD	directory entry number
+ 08h	DWORD	namespace information bitmask
+ 0Ch 512 BYTEs	namespace-specific informatin
+

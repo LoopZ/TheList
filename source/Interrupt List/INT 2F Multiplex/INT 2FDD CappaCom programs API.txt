@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDD
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CappaCom programs - API
+	AH = DDh
+	AL = 00h general installation check
+	    Return: AL = FFh if any CappaCom programs are resident
+	AL = FEh get info
+	    Return: ES:BX -> TSR info list (see #03098)
+	AL = program identifier
+	    BH = function
+		FDh get version
+		    Return: BX = version
+		FFh installation check
+		    Return: AL = FFh if installed
+				BX = version
+				ES = segment of resident code
+		others vary by program
+Return: AL = status
+	    bit 7 set on error
+	    AL = 81h unknown function
+Note:	CappaCom was originally SoftCom but changed its name due to a trademark
+	  conflict
+Index:	installation check;SoftCom programs
+Index:	installation check;CappaCom programs
+
+Format of CappaCom TSR info list:
+Offset	Size	Description	(Table 03098)
+ 00h  9 BYTEs	blank-padded ASCIZ program name
+ 09h	BYTE	program ID
+ 0Ah	WORD	program's PSP segment
+ 0Ch	WORD	program version (major in high byte)
+ 0Eh	DWORD	pointer to next item in info list or 0000h:0000h
+ 12h	BYTE	number of interrupts hooked
+ 13h  5 BYTEs	interrupt numbers hooked by program
+ 18h  8 BYTEs	reserved
+

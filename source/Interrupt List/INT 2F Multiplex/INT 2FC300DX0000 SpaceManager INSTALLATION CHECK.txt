@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC300DX0000
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - SpaceManager - INSTALLATION CHECK
+	AX = C300h
+	DX = 0000h
+Return: AL = FFh if any SpaceManager programs installed
+	    BX = 6F73h
+	    CX = 6F68h
+Program: SpaceManager is an enhancement for MS-DOS DoubleSpace by Vertisoft
+	  Systems, Inc.
+Range:	AH=C3h to AH=FFh, selected by scanning for first free multiplex number
+SeeAlso: AX=C300h/BX=4F53h
+

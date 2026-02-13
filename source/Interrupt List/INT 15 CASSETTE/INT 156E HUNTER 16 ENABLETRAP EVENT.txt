@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - ENABLE/TRAP EVENT
+	AH = 6Eh
+	AL = Software Interrupt
+	      00h  do not trap event
+	      else trap as software interrupt number AL
+	BH = event number (see AH=6Dh)
+	BL = enable mask
+	    00h disable event
+	    01h enable event
+Return: AH = 00h if successful
+SeeAlso: AH=6Dh,AH=6Fh
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A6C04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_COPYTO" - COPY DATA TO RESIDENT SNAP PACKAGE
+	AX = 6C04h
+	STACK:	WORD	offset within SNAP data segment of dest (nonzero)
+		WORD	segment of source buffer
+		WORD	offset of source buffer
+		WORD	number of bytes to copy
+Return: AX = offset of byte after last one copied to destination
+	STACK unchanged
+Program: SNAP.EXE is a TSR written by IBM and Carnegie Mellon University
+	  which implements the Simple Network Application Protocol
+SeeAlso: AX=6D04h
+

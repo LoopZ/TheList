@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE07
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - TERMINATE TASK
+	AX = DE07h
+	BX = mapping context of process containing task
+	DX = handle of task
+Notes:	driver should pass this call to previous handler before processing it
+	all DOS, BIOS, and DV API calls except those generating a task switch
+	  are valid in handler
+SeeAlso: AX=DE04h,AX=DE06h,AX=DE10h
+

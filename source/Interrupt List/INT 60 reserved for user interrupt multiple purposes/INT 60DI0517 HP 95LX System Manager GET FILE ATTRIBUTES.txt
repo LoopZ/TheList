@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0517
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - GET FILE ATTRIBUTES
+	DI = 0517h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ???
+		WORD	???
+		WORD	???
+		DWORD	pointer to ??? buffer for file's attributes???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 21/AX=4300h,INT 60/DI=0518h
+

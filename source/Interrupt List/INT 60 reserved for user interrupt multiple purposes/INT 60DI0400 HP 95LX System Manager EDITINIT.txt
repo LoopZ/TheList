@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0400
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - "EDIT_INIT"
+	DI = 0400h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to edit record (see #03285)
+		DWORD	pointer to string to be edited
+		WORD	initial length of string being edited
+		WORD	maximum length of edited string
+		WORD	row of edit field
+		WORD	leftmost column of edit field
+Return: ???
+	STACK unchanged
+
+Format of HP 95LX edit record:
+Offset	Size	Description	(Table 03285)
+ 00h	WORD	current length of edit buffer
+ 02h	BYTE	flag for special processing on first character
+ 03h	BYTE	flags
+		bit 0: tab handling
+ 04h	WORD	editing in prompt window?
+ 06h	DWORD	pointer to top line of prompt window message
+ 0Ah	WORD	length of top line of prompt
+ 0Ch	DWORD	pointer to second line of prompt window message
+ 10h	WORD	length of second line of prompt
+ 12h 80 BYTEs	workspace for editing
+ 62h  2 WORDs	line array needed for multi-line editing
+ 66h 36 BYTEs	multi-line edit record (see #03286)
+ 8Ah	WORD	displayable columns
+
+Format of HP 95LX multi-line edit record:
+Offset	Size	Description	(Table 03286)
+ 00h	DWORD	pointer to user-supplied edit buffer
+ 04h	WORD	length of edit buffer
+ 06h	WORD	current cursor position
+ 08h	WORD	starting row of edit area (-3 is topmost, 0 is first user line)
+ 0Ah	WORD	starting column of edit area
+ 0Ch	WORD	height of edit area
+ 0Eh	WORD	width of edit area
+ 10h	WORD	current top row (-3 is topmost, 0 is first user line)
+ 12h	WORD	number of rows displayable
+ 14h	BYTE	cursor column
+ 15h	BYTE	01h if buffer has been modified
+ 16h	BYTE	first displayable column (ticker fields only)
+ 17h	BYTE	01h if wordwrap enabled, FFh if ticker field
+ 18h	DWORD	pointer to array of line starts (at least one bigger than edit
+		  area is high)
+ 1Ch	BYTE	currently marking?
+ 1Dh	BYTE	flag
+ 1Eh	WORD	offset of mark start
+ 20h	WORD	offset of mark end (inclusive)
+ 22h	WORD	displayable columns
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2199
+  Category: D 	DOS kernel
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - European MS-DOS 4.0 - "PBLOCK" - BLOCK A PROCESS
+	AH = 99h
+	DS:BX -> memory location to block on
+	CX = timeout in milliseconds
+	DH = nonzero if interruptable
+Return: CF clear if awakened by event
+	    AX = 0000h
+	CF set if unusual wakeup
+	    ZF set if timeout, clear if interrupted by signal
+	    AX = nonzero
+Desc:	suspend calling process until another process sends a "restart" signal
+	  or a timeout occurs
+SeeAlso: AH=9Ah,INT 2F/AX=0802h
+

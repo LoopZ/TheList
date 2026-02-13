@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 167E
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - pcANYWHERE III - COMMUNICATIONS I/O THROUGH PORT
+	AH = 7Eh
+	AL = subfunction
+	    01h port input status
+		Return AX = 0 if no characer ready,
+		       AX = 1 if character ready
+	    02h port input character
+		Return AL = received character
+	    03h port output character in CX
+	    11h hang up phone
+SeeAlso: AH=7Ch
+

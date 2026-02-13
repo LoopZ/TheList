@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310100
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - ALLOCATE DOS MEMORY BLOCK
+	AX = 0100h
+	BX = number of paragraphs to allocate
+Return: CF clear if successful
+	    AX = real mode segment of allocated block
+	    DX = first selector for allocated block
+	CF set on error
+	    AX = DOS error code (07h,08h) (see #01680 at INT 21/AH=59h/BX=0000h)
+		(DPMI 1.0+) DPMI error code (8011h) (see #03143)
+	    BX = size (in paragraphs) of largest available block
+Notes:	multiple contiguous selectors are allocated for blocks of more than 64K
+	  if the caller is a 16-bit program
+	never modify or deallocate returned descriptors
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0101h,AX=0501h
+

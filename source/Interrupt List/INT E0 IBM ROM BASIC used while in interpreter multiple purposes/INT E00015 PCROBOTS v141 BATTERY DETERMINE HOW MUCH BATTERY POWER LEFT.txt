@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00015
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "BATTERY" - DETERMINE HOW MUCH BATTERY POWER LEFT
+	AX = 0015h
+Return: BX = current battery charge
+Note:	the battery starts off with 1000 units of charge, and is constantly
+	  being charged by solar panels and constantly discharged by motion;
+	  the battery is charged at 4 units per turn and discharged at
+	  0.1*speed units per turn.
+

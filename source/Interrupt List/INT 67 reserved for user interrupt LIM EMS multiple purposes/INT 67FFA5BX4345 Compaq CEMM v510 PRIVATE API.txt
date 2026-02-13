@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67FFA5BX4345
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 67 U - Compaq CEMM v5.10+ - PRIVATE API
+	AX = FFA5h
+	BX = 4345h ("CE")
+	DX = subfunction
+	    0000h unshadow video ROM???
+	    0001h shadow video ROM???
+	    0002h map pages
+		CX = number of pages (00h=one)
+		ESI = linear address of first page to map into address space
+		EDI = linear starting address at which pages are to be visible
+	    0003h get ???
+		Return: DX = ??? (0-2)
+	    0004h BUG: crashes system due to fencepost error
+Return: AH = 84h
+	AL = status (84h = error, FFh = success)
+Note:	if BX <> 4345h or DX > 0004h on entry, CEMM behaves identically to
+	  Microsoft's EMM386 (see AX=FFA5h"EMM386")
+SeeAlso: AX=FFA5h"EMM386",#01513 at INT 21/AX=4402h/SF=02h,#03666
+

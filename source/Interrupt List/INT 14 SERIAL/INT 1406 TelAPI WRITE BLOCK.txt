@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1406
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - WRITE BLOCK
+	AH = 06h
+	CX = number of characters to write
+	DX = port number
+	ES:DI -> buffer containing data
+Return: AX = number of characters actually sent (negative on error)
+	CX = ???
+SeeAlso: AH=07h"TelAPI",AH=E0h"TelAPI",AH=E3h"TelAPI"
+

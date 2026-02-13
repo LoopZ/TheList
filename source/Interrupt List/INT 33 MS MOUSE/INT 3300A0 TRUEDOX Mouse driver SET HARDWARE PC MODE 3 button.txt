@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 3300A0
+  Category: M 	mouse/pointing device
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 33 U - TRUEDOX Mouse driver - SET HARDWARE PC MODE (3 button)
+	AX = 00A0h
+Return: nothing
+Note:	this function is only available if the mouse mode is switchable
+	  through the power pins
+SeeAlso: AX=006Ch"TRUEDOX",AX=00A1h"TRUEDOX"
+

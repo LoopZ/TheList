@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610008BX0003
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - TALKPORT SERVICE - INTERCEPT VINES 25th-LINE MESSAGES
+	AX = 0008h
+	BX = 0003h
+	DS:DX -> request block (see #03442)
+Return: AX = status
+	    0000h successful
+	    0001h network software not installed or incompatible
+Notes:	message handler should not call BIOS or DOS functions, and should
+	  either call next handler or simply return
+	to stop intercepting messages, set prev and next request blocks to
+	  point at each other
+SeeAlso: AX=0008h/BX=0002h
+
+Format of VINES request block for 25-th line messages:
+Offset	Size	Description	(Table 03442)
+ 00h	DWORD	pointer to user-written message handler
+ 04h	DWORD	pointer to next request block (filled in by VINES)
+ 08h	DWORD	pointer to previous request block (filled in by VINES)
+ 0Ch	DWORD	pointer to message storage area (filled by VINES) (see #03443)
+
+Format of message storage area:
+Offset	Size	Description	(Table 03443)
+ 00h 16 BYTEs	IPC port of message sender (see #03328)
+ 10h	BYTE	message flags
+ 11h	WORD	reserved
+ 13h	BYTE	length of message
+ 14h 80 BYTEs	message text
+SeeAlso: #03442
+

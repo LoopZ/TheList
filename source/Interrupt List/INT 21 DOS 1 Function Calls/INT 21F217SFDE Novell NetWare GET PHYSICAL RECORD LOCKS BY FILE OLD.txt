@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFDE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET PHYSICAL RECORD LOCKS BY FILE (OLD)
+	AX = F217h subfn DEh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02058 at AH=E3h/SF=DEh)
+	ES:DI -> reply buffer (see #02237)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=DEh,AX=F217h/SF=EEh
+
+Format of NetWare "Get Physical Record Locks By File (old)" reply packet:
+Offset	Size	Description	(Table 02237)
+ 00h	WORD	next request record (place in "last record" on next call)
+		0000h if no more records
+ 02h	BYTE	number of physical record locks
+ 03h	BYTE	number of records following
+ 04h	var	array of Physical Record Lock Info records (see #02060)
+SeeAlso: #02058,#02059 at AH=E3h/SF=DEh
+

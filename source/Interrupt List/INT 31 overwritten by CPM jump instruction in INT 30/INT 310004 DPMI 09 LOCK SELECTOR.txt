@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310004
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - LOCK SELECTOR
+	AX = 0004h
+	BX = selector to lock (prevent paging)
+Return: ???
+Note:	although marked as reserved in versions 0.9 and 1.0 of the DPMI
+	  specification, this function is called by MS Windows TASKMAN,
+	  PROGMAN, and KERNEL
+SeeAlso: AX=0005h,AX=0600h
+

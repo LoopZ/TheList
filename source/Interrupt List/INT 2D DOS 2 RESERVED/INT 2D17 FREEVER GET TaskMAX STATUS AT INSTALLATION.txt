@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--17
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - FREEVER - GET TaskMAX STATUS AT INSTALLATION
+	AL = 17h
+	AH = AMIS multiplex number for FREEVER
+Return: AL = FFh if successful
+	    BL = status
+		00h if TaskMAX not loaded before SETDRVER
+		FFh if TaskMAX was loaded before SETDRVER
+Program: FREEVER is an AMIS-conformant freeware DOS version-faking TSR similar
+	  to SETVER for any DOS-compatible OS, written by Matthias Paul
+SeeAlso: INT 2D/AL=12h"FREEVER",INT 2D/AL=14h"FREEVER",INT 2D/AL=16h"FREEVER"
+

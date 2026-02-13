@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0A
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "ADDTO" - WRITE CHARS AND ATTRIBS TO WINDOW
+	AH = 12h
+	BH = 0Ah
+	BL = window to write to
+	    00h window handle is DWORD on top of stack
+	    01h current task's default window
+	    0Ch (DV 2.26+) default window of task owning handle on top of stack
+	    0Dh (DV 2.26+) default window of parent of current task
+	STACK:	DWORD count of attributes
+		DWORD address of attribute string
+		DWORD count of characters
+		DWORD address of character string
+Return: STACK popped
+Notes:	if one string is longer than the other, the shorter one will be reused
+	  until the longer one is exhausted
+	the cursor is left just after the last character written
+SeeAlso: AH=12h/BH=0Bh"WINDOW"
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1213
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - UPPERCASE CHARACTER
+	AX = 1213h
+	STACK: WORD character to convert to uppercase
+Return: AL = uppercase character
+	STACK unchanged
+

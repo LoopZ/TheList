@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4E00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4E - TI Professional PC - TIME-OF-DAY CLOCK - SET BIOS DATE
+	AH = 00h
+	BX = number of days since January 1, 1980
+Return: nothing
+SeeAlso: AH=01h,AH=02h
+SeeAlso: INT 40"TI Professional",INT 48/AH=00h"TI Professional"
+SeeAlso: INT 4A/AH=00h"TI",INT 4F"TI Professional"
+

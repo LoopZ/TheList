@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15102D
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.00+ - "KMOUSE" - KEYBOARD MOUSE CONTROL
+	AX = 102Dh
+	BL = subfunction
+	    00h determine whether using keyboard mouse
+		Return: BL = 00h using real mouse
+			     01h using keyboard mouse
+	    01h turn keyboard mouse on
+	    02h turn keyboard mouse off
+SeeAlso: INT 33/AX=0024h
+

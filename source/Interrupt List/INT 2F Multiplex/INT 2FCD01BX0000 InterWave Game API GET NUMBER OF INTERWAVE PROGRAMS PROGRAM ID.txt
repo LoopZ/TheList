@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD01BX0000
+  Category: s 	sound/speech
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - InterWave Game API - GET NUMBER OF INTERWAVE PROGRAMS / PROGRAM ID
+	AX = CD01h
+	BX = 0000h
+Return: BX = number of programs currently installed on the Game API
+Desc:	get the number of programs supporting the InterWave Game API which are
+	  currently installed in memory, which also forms the next program ID
+	  number if the caller wishes to go resident on the API
+Range:	AH=CDh-ECh, selected by scanning for an available multiplex number
+Notes:	the first program to install on the IW Game API must use ID 00h
+	the AMD-recommended implementation is for the handler to increment
+	  BX and chain to the previous handler (if any), but this will fail
+	  if TSRs are unloaded out-of-order
+SeeAlso: AX=CD00h"InterWave",AX=CD02h"InterWave",AX=CD03h"InterWave"
+SeeAlso: AX=CD05h"InterWave",AX=CD21h"InterWave",AX=CD80h"InterWave"
+

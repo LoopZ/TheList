@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1609
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - WINDOWS ENHANCED MODE BEGIN EXIT BROADCAST
+	AX = 1609h
+Note:	called at the beginning of a normal exit sequence; not made in the
+	  event of a fatal system crash
+SeeAlso: AX=1606h,AX=1608h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0001
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SBSIM - "QUERYDRIVERS" - CHECK DRIVERS INSTALLED
+	BX = 0001h
+Return: AX = bit flags for loaded drivers (see #03973)
+SeeAlso: BX=0000h"SBSIM",BX=0002h"SBSIM",BX=0005h"SBSIM",INT 80/BL=00h"SBSIM"
+
+Bitfields for SBSIM loaded drivers:
+Bit(s)	Description	(Table 03973)
+ 0	FM
+ 1	double disk-buffered voice driver (DDBV)
+ 2	memory voice driver
+ 3	auxiliary driver (mixer)
+ 4	MIDI
+

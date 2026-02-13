@@ -1,0 +1,78 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX002B
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VCOMM - GET API ENTRY POINT
+	AX = 1684h
+	BX = 002Bh (virtual device ID for VCOMM device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02670)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02670)
+Call VCOMM.VXD entry point with:
+	AX = function number
+	    0000h open COM/LPT port
+		BX = port number (00h-7Fh = COMx, 80h-FFh = LPTx)
+		Return: DX:AX = handle???
+	    0001h set comm state
+		???
+		Return: AX = ???
+	    0002h setup comm port
+		???
+		Return: AX = status (0000h failed, FFFFh success)
+	    0003h transmit character
+		EBX = handle???
+		CL = character to transmit
+		Return: AX = status???
+	    0004h close comm port
+		EBX = handle???
+		Return: ???
+	    0005h clear comm error
+		EBX = handle???
+		EAX = ???
+		Return: AX = status???
+	    0006h "EscapeCommFunction"
+		EBX = handle???
+		CX = ???
+		EAX = ???
+		Return: DX:AX = ???
+	    0007h purge buffers
+		EBX = handle???
+		CX = ???
+		Return: AX = status???
+	    0008h set comm event mask
+		EBX = handle???
+		CX = new event mask
+		Return: AX = status???
+	    0009h get comm event mask
+		EBX = handle???
+		Return: AX = current event mask
+	    000Ah ???
+		EBX = handle???
+		Return: ???
+	    000Bh "WriteComm"
+		EBX = handle???
+		CX = number of characters to write
+		ES???:BX -> buffer (if CX > 1)
+		SI??? low byte contains character if CX=1
+		Return: AX = status
+			EAX high word may be destroyed
+	    000Ch "ReadComm"
+		EBX = handle???
+		CX = number of bytes to read
+		ES???:DI -> buffer
+		Return: AX = status ???
+			ZF = ???
+	    000Dh set ??? callback
+		EBX = handle???
+		CX = ???
+		DX = ???
+		Return: AX = status???
+	    else
+		Return: AX = 0000h
+SeeAlso: #02669,#02671
+

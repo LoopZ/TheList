@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1403
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NLSFUNC.COM - SET CODE PAGE
+	AX = 1403h
+	DS:SI -> internal code page structure (see #02618)
+	BX = code page (see #01757 at INT 21/AX=6602h)
+	DX = country code (see #01400 at INT 21/AH=38h)
+Return: AL = status
+	     ???
+Note:	this function is called by the DOS v3.3+ kernel on INT 21/AH=38h
+SeeAlso: AX=1402h"NLSFUNC",AX=1404h,INT 21/AH=38h"SET"
+

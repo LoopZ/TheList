@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF00
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "Info" - GET SYSTEM SELECTORS/FLAGS
+	AX = FF00h
+Return: AX = selector for flag address space (base 00000000h, limit 4GB)
+	BX = selector for current PSP segment (limit 0100h)
+	(E)CX = size of DOS transfer buffer (max 64K)
+	DX = real-mode segment address of DOS transfer buffer
+	ES:(E)SI = protected-mode address of DOS transfer buffer
+	EDI = system flags (see #03162)
+Program: CauseWay is a 386 DOS extender by Michael Devore and John Wildsmith
+	  for use with Watcom C++ or assembly language programs
+Notes:	the entire transfer buffer can be addressed with a 16-bit offset in
+	  protected mode
+	CauseWay always maps selector 0040h to the BIOS data segment at
+	  real-mode segment 0040h; when not running under a DPMI host, CauseWay
+	  also provides selectors A000h, B000h, and B800h mapped to video
+	  memory
+SeeAlso: AX=FF25h
+
+Bitfields for CauseWay system flags:
+Bit(s)	Description	(Table 03162)
+ 0	32-bit code
+ 1	virtual memory manage enabled
+ 3-2	mode: 00 raw extended memory, 01 VCPI, 10 DPMI
+ 4	DPMI available
+ 5	VCPI available
+ 6	no memory managers
+ 7	application descriptor table type: 0 = GDT, 1 = LDT
+ 14-8	reserved
+ 15	debugging engine present
+

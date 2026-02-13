@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: B37D
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - REQUEST POP UP
+	AH = 7Dh
+	BL = index number to simulate pressing a hotkey
+	    FFh for immediate popup with no playback on return
+Return: CF set on error
+	    AL = error code
+		FDh already busy with another request
+		FEh illegal function
+	CF clear if successful
+	    AX destroyed
+	    window popped up and was closed by the user
+SeeAlso: AH=70h
+

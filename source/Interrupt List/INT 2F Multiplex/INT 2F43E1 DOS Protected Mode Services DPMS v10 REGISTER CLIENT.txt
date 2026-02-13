@@ -1,0 +1,300 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F43E1
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS Protected Mode Services (DPMS) v1.0 - REGISTER CLIENT
+	AX = 43E1h
+	CX = required protected-mode stack size in bytes
+	ES:DI -> DPMS client interface structure (see #02794)
+Return: AX = 0000h if supported
+	   CF clear
+	   ES:DI buffer filled with API entry point code from offset 0Ah
+Note:	the client is allowed to copy the returned API code to any location in
+	  memory, and need not keep the three code fields together
+SeeAlso: AX=43E0h,AX=43E2h,AX=43E3h
+
+Format of DPMS client interface structure:
+Offset	Size	Description	(Table 02794)
+ 00h	WORD	0000h (structure version / flags)
+ 02h  8 BYTEs	blank-padded client name
+ 0Ah  7 BYTEs	real/virtual-86 mode API code (see #02795)
+ 11h	BYTE	space for return instruction
+		set to C3h for near return, CBh for far return
+ 12h  7 BYTEs	16-bit protected-mode API code (see #02795)
+ 19h	BYTE	space for return instruction
+		set to C3h for near return, CBh for far return
+ 1Ah  9 BYTEs	32-bit protected-mode API code (see #02795)
+ 23h	BYTE	space for return instruction
+		set to C3h for near return, CBh for far return
+Note:	the DPMS server fills the return opcode bytes with zeros and DPMS
+	  requests will thus crash the system unless the application
+	  explicitly sets them (some early versions set them to C3h by
+	  default, but one should not rely on that)
+
+(Table 02795)
+Call DPMS entry point with:
+	AX = 0000h unregister client from server
+ ---control transfer functions---
+	AX = 0100h call protected-mode procedure
+		CX = number of words of stack to copy
+		ES:(E)DI -> callup/down register structure (see #02797)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0101h call real-mode procedure (RETF return)
+		CX = number of words of stack to copy
+		ES:(E)DI -> callup/down register structure (see #02797)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0102h call real-mode procedure (IRET return)
+		CX = number of words of stack to copy
+		ES:(E)DI -> callup/down register structure (see #02797)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0103h call real-mode interrupt handler
+		BL = interrupt number
+		CX = number of words of stack to copy
+		ES:(E)DI -> callup/down register structure (see #02797)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0104h register default protected mode procedure
+		ES:(E)DI -> default register structure (see #02798)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0105h register default real-mode procedure (RETF return)
+		ES:(E)DI -> default register structure (see #02798)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+		Note:	the procedure will be called from 16-bit prot. mode
+	AX = 0106h register default real-mode procedure (IRET return)
+		ES:(E)DI -> default register structure (see #02798)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+		Note:	the procedure will be called from 16-bit prot. mode
+	AX = 0107h register default real-mode interrupt handler
+		BL = interrupt number
+		ES:(E)DI -> default register structure (see #02798)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+		Note:	the handler will be called from 16-bit protected mode
+	AX = 0108h register default real-mode procedure (RETF return)
+		ES:(E)DI -> default register structure (see #02798)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+		Note:	the procedure will be called from 32-bit prot. mode
+	AX = 0109h register default real-mode procedure (IRET return)
+		ES:(E)DI -> default register structure (see #02798)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+		Note:	the procedure will be called from 32-bit prot. mode
+	AX = 010Ah register default real-mode interrupt handler
+		BL = interrupt number
+		ES:(E)DI -> default register structure (see #02798)
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+		Note:	the handler will be called from 32-bit protected mode
+ ---descriptor management---
+	AX = 0200h allocate descriptors
+		CX = number of descriptors to allocate
+		Return: CF clear if successful
+			    AX = selector for first descriptor allocated
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0201h free a descriptor
+		BX = selector for descriptor
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0202h create alias descriptor
+		BX = selector for descriptor to be aliased
+		Return: CF clear if successful
+			    AX = alias descriptor
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0203h build alias to real-mode segment
+		BX = descriptor
+		CX = real-mode segment
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0204h set descriptor base
+		BX = descriptor
+		CX:DX = base address
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0205h set descriptor limit
+		BX = descriptor
+		CX = limit
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0206h set descriptor type/attribute
+		BX = descriptor
+		CL = type
+		CH = attribute
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0207h get descriptor base
+		BX = descriptor
+		Return: CF clear if successful
+			    CX:DX = base address
+			CF set on error
+			    AX = error code (see #02796)
+ ---linear memory functions---
+	AX = 0300h get size of largest free block of memory
+		Return: CF clear if successful
+			    BX:CX = size
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0301h allocate block of extended memory
+		BX:CX = required size
+		Return: CF clear if successful
+			    BX:CX = base address
+			    SI:DI = handle
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0302h free block of extended memory
+		SI:DI = handle
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0303h map linear memory
+		ES:(E)DI -> DDS (see #02799)
+		Return: CF clear if successful
+			    BX:CX = base address
+			    SI:DI = handle
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0304h unmap linear memory
+		SI:DI = handle
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0305h get page table entries
+		ESI = linear address
+		(E)CX = count
+		ES:(E)DI -> buffer for page table entries
+		Return: CF clear if successful
+			    ES:(E)DI buffer filled
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0306h set page table entries
+		EBX = linear memory handle
+		ESI = linear address
+		(E)CX = count
+		ES:(E)DI -> buffer containing page table entries
+		Return: CF clear if successful
+			CF set on error
+			    AX = error code (see #02796)
+	AX = 0307h get largest mappable block size
+		Return: CF clear if successful
+			    BX:CX = size
+			CF set on error
+			    AX = error code (see #02796)
+ ---miscellaneous---
+	AX = 0400h relocate segment to extended memory
+		ES:SI = base address
+		CX = limit
+		BL = type
+		BH = attribute
+		DX = selector or 0000h
+		Return: CF clear if successful
+			    AX = selector
+			    BX:CX = new base address
+			    SI:DI = handle
+			CF set on error
+			    AX = error code (see #02796)
+Note:	the beta DPMS specification, which is still supported by the Novell
+	  DOS 7.0 DPMS host, only supported functions 0100h-0103h, 0200h-0207h,
+	  0300h-0304h, and 0400h
+
+(Table 02796)
+Values for DPMS error code:
+ 8000h	general error
+ 8001h	unsupported function
+ 8002h	unable to switch to protected mode
+ 8004h	no default stack defined
+ 8005h	unknown client
+ 8010h	resource unavailable
+ 8011h	descriptor unavailable
+ 8012h	linear memory unavailable
+ 8013h	physical memory unavailable
+ 8021h	invalid value
+ 8022h	invalid selector
+ 8023h	invalid handle
+ 8025h	invalid linear address
+
+Format of DPMS callup/down register structure:
+Offset	Size	Description	(Table 02797)
+ 00h	DWORD	EDI
+ 04h	DWORD	ESI
+ 08h	DWORD	EBP
+ 0Ch  4 BYTEs	reserved (0) (ESP, may be used by DPMS server)
+ 10h	DWORD	EBX
+ 14h	DWORD	EDX
+ 18h	DWORD	ECX
+ 20h	DWORD	EAX
+ 24h	DWORD	EIP
+ 28h	WORD	CS
+ 2Ah  2 BYTEs	reserved (0)
+ 2Ch	DWORD	EFLAGS
+ 30h	DWORD	ESP
+ 34h	WORD	SS
+ 36h  2 BYTEs	reserved (0)
+ 38h	WORD	ES
+ 3Ah  2 BYTEs	reserved (0)
+ 3Ch	WORD	DS
+ 3Eh  2 BYTEs	reserved (0)
+ 40h	WORD	FS
+ 42h  2 BYTEs	reserved (0)
+ 44h	WORD	GS
+ 46h  2 BYTEs	reserved (0)
+
+Format of DPMS default register structure:
+Offset	Size	Description	(Table 02798)
+ 00h	DWORD	EIP
+ 04h	WORD	CS
+ 06h  2 BYTEs	reserved (0)
+ 08h	WORD	number of words to copy from stack to stack
+ 0Ah	BYTE	(call) 00h
+		(ret) nonzero if call could not be made
+ 0Bh	BYTE	reserved (may be used by some servers)
+ 0Ch	DWORD	ESP
+ 10h	WORD	SS
+ 12h  2 BYTEs	reserved (0)
+ 14h	WORD	ES
+ 16h  2 BYTEs	reserved (0)
+ 18h	WORD	DS
+ 1Ah  2 BYTEs	reserved (0)
+ 1Ch	WORD	FS
+ 1Eh  2 BYTEs	reserved (0)
+ 20h	WORD	GS
+ 22h  2 BYTEs	reserved (0)
+ 24h  9 BYTEs	API entry code (filled in by server)
+
+Format of DPMS lock DDS:
+Offset	Size	Description	(Table 02799)
+ 00h	DWORD	total size in bytes
+ 04h	DWORD	offset
+ 08h	WORD	segment or selector
+ 0Ah	WORD	reserved
+ 0Ch	WORD	maximum number of physical blocks structure has space for
+ 0Eh	WORD	number of physical blocks listed
+ 10h	DWORD	physical address of first block
+ 14h	DWORD	size in bytes of first block
+	...
+

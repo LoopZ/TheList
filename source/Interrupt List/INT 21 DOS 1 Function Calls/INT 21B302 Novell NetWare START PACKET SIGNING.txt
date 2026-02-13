@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B302
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Novell NetWare - START PACKET SIGNING
+	AX = B302h
+	CX = server connection (1-8)
+	DS:SI -> 24-byte buffer containing ???
+Return: ???
+Notes:	this function appeared with the packet signing/Large Internet Packets/
+	  IPX Checksum-aware NetWare shells
+	if packet signing is active, this call is required if and only if the
+	  last call successfully authenticated the workstation to the server
+SeeAlso: AX=B300h,#02875
+

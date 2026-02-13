@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF0A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - TURN OFF REVERSE VIDEO
+	AX = BF0Ah
+Return: CF clear
+Notes:	clears bit 6 of port 03CEh index 81h; in some cases also sets index 84h
+	  to 80h and index 83h to FBh
+	supported by at least the QVision board and the LTE Lite ROM BIOS
+SeeAlso: AX=BF09h,AX=BF0Bh
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F14--CL01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - SET ACKNOWLEDGE ISR
+	AH = 14h
+	CL = 01h
+	DX:DI -> application FAR acknowledge service routine (see #03956)
+Return: AL = status (00h-03h) (see #03954)
+Note:	the service routine will be called as soon as an acknowledgment arrives
+SeeAlso: AH=12h,AH=14h/CL=00h,AH=14h/CL=04h,AH=15h/CL=04h
+
+(Table 03956)
+Values Alloy acknowledge service routine is called with:
+	DS:SI -> acknowledge structure (see #03960)
+Return: AL = response code
+	    00h application busy, network executive should call again later
+	    01h acknowledge accepted
+	AH,DX,SI may be destroyed
+

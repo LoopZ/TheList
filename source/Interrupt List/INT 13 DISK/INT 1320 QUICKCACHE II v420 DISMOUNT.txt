@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1320
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - DISMOUNT
+	AH = 20h
+	AL = drive (00h = A:, etc. or 7Fh for all removable drives???
+				   or FFh for all drives)
+Return: AX = status (0000h successful)
+Program: QUICKCACHE II is a shareware disk cache by P.R. Glassel and
+	  Associates, Inc.
+Desc:	flush any dirty buffers for the specified drive(s) and then discard
+	  those sector buffers
+SeeAlso: AH=21h"QUICKCACHE",AH=22h"QUICKCACHE",AH=28h
+

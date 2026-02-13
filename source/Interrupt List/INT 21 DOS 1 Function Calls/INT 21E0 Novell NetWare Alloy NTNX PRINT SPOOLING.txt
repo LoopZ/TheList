@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare, Alloy NTNX - PRINT SPOOLING
+	AH = E0h
+	DS:SI -> request buffer (see #01814)
+	ES:DI -> reply buffer
+Return: AL = status
+Note:	this function was added in NetWare 4.0, but is no longer listed in
+	  current Novell documentation and may no longer be supported
+SeeAlso: AH=E3h/SF=68h,AX=F211h/SF=06h,AX=F211h/SF=0Ah
+
+Format of NetWare print spooling request buffer:
+Offset	Size	Description	(Table 01814)
+ 00h	WORD	length of following data
+ 02h	BYTE	subfunction
+		00h spool data to a capture file
+		01h close and queue capture file
+		02h set spool flags
+		03h spool existing file
+		04h get spool queue entry
+		05h remove entry from spool queue
+ 03h	???
+SeeAlso: #02101
+

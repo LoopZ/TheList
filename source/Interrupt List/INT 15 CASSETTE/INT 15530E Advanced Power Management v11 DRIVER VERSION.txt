@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15530E
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.1+ - DRIVER VERSION
+	AX = 530Eh
+	BX = device ID of system BIOS (0000h)
+	CH = APM driver major version (BCD)
+	CL = APM driver minor version (BCD) (02h for APM v1.2)
+Return: CF clear if successful
+	    AH = APM connection major version (BCD)
+	    AL = APM connection minor version (BCD)
+	CF set on error
+	    AH = error code (03h,09h,0Bh) (see #00473)
+SeeAlso: AX=5300h,AX=5303h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1423
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - DECLARE PORT OWNERSHIP
+	AH = 23h
+	DX = port number
+	BX = TCB segment/selector address of owner task
+Return: nothing
+SeeAlso: AH=0Dh"Digiboard",AH=21h"PC-MOS",AH=22h"PC-MOS"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD05
+  Category: s 	sound/speech
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - InterWave Game API - UNINSTALL RESIDENT DEVICE DRIVER
+	AX = CD05h
+	BX = installed program identifier
+Return: AL = status
+	    00h successful
+	    else failed
+SeeAlso: AX=CD00h"InterWave",AX=CD01h"InterWave",AX=CD02h"InterWave"
+SeeAlso: AX=CD03h"InterWave",AX=CD21h"InterWave",AX=CD80h"InterWave"
+

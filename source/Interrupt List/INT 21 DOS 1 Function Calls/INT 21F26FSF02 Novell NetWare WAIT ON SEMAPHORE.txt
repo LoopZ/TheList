@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F26FSF02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WAIT ON SEMAPHORE
+	AX = F26Fh subfn 02h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02484)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F26Fh/SF=00h,AX=F26Fh/SF=04h
+
+Format of NetWare "Wait on Semaphore" request packet:
+Offset	Size	Description	(Table 02484)
+ 00h	BYTE	02h (subfunction "Wait on Semaphore")
+ 01h	DWORD	semaphore handle
+ 05h	WORD	timeout in clock ticks (0000h = no wait)
+

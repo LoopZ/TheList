@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A92
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - WRITE ONE
+	AH = 92h
+	AL = adapter number
+	BL = socket number (01h to maximum supported by adapter)
+	BH = attributes (see #00687)
+	CL/CX = value to write
+	DX:SI = card address
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (01h,07h,0Bh,12h,14h) (see #00656)
+Note:	this function is only valid for I/O-mapped sockets; it also does not
+	  implement Card Technology handling--use AH=94h when writing to
+	  non-RAM technologies
+SeeAlso: AH=91h,AH=94h,INT 21/AX=440Dh"DOS 3.2+"
+

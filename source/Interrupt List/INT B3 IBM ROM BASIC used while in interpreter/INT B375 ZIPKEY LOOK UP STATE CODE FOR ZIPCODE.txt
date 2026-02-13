@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: B375
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - LOOK UP STATE CODE FOR ZIPCODE
+	AH = 75h
+	DX = zipcode region (0-999)
+	CH = last two digits of zipcode (0-99)
+Return: CF set on error (zipcode not found)
+	    AL = suggested state code, FFh if none
+	CF clear if successful
+	    AL = ZIPKEY state code
+	    BX = area code (v2.0+)
+SeeAlso: AH=76h,AH=79h
+

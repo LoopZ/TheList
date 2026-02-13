@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09--BX8020
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - OPERATOR INFORMATION AREA
+	AH = 09h
+	BX = 8020h
+	CX = 00FFh
+	DX = ID of OIAM
+	AL = service
+	    01h read Operator Information Area
+	    02h read OIA subset
+	ES:DI -> control block
+Return: ???
+Note: the OIA is the 25th line on the Host session
+

@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200D7
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBTCCOPY" - COPY RECTANGLE BETWEEN VIRTUAL BUFS
+	AX = 00D7h
+	ES:BX -> variable record (see #03511)
+	CX = source virtual buffer's handle
+	DX = destination virtual buffer's handle
+Desc:	copy rectangle from one virtual buffer to another with transparent
+	  colors
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	if the destination buffer is the same as the source buffer, the regions
+	  must not overlap
+SeeAlso: AX=00CFh,AX=00D0h,AX=00D6h,AX=00D8h
+
+Format of FGDRIVER VBTCCOPY variable record:
+Offset	Size	Description	(Table 03511)
+ 00h	WORD	source region's left edge
+ 02h	WORD	source region's right edge
+ 04h	WORD	source region's top edge
+ 06h	WORD	source region's bottom edge
+ 08h	WORD	X coordinate of destination region's upper left corner
+ 0Ah	WORD	Y coordinate of destination region's upper left corner
+

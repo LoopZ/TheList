@@ -1,0 +1,70 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - PC/TCP IPCUST.SYS - READ CONFIGURATION DATA
+	AH = 3Fh
+	BX = handle for character device "$IPCUST"
+	CX = number of bytes to read
+	DS:DX -> buffer for configuration data (see #01411)
+Return: CF clear if successful
+	    AX = number of bytes actually read
+	CF set on error
+	    AX = error code (05h,06h) (see #01680 at AH=59h/BX=0000h)
+Notes:	if less than the entire data is read or written, the next read/write
+	  continues where the previous one ended; IOCTL calls AX=4402h and
+	  AX=4403h both reset the location at which the next operation starts
+	  to zero
+	the data pointer is also reset to zero if the previous read or write
+	  reached or exceeded the end of the data, when the current function
+	  is read and the previous was write, or vice versa
+	v2.1+ uses a new configuration method, but allows the installation
+	  of IPCUST.SYS for backward compatibility with other software which
+	  must read the PC/TCP configuration
+SeeAlso: AH=40h"IPCUST",AX=4402h"IPCUST",AX=4402h"FTPSOFT"
+
+Format of PC/TCP configuration data:
+Offset	Size	Description	(Table 01411)
+ 00h 12 BYTEs	IPCUST.SYS device driver header (see #01646)
+ 12h	BYTE	???
+ 13h	BYTE	???
+ 14h	WORD	???
+ 16h	BYTE	bit flags
+		bit 0: send BS rather than DEL for BackSpace key
+		bit 1: wrap long lines
+ 17h	BYTE	???
+ 18h 64 BYTEs	ASCIZ hostname
+ 58h 64 BYTEs	ASCIZ domain name
+		(fully qualified domain name is hostname.domain-name)
+ 98h 16 BYTEs	ASCIZ username
+ A8h 64 BYTEs	ASCIZ full name
+ E8h 64 BYTEs	ASCIZ office address
+128h 32 BYTEs	ASCIZ phone number
+148h	WORD	offset from GMT in minutes
+14Ah  4 BYTEs	ASCIZ timezone name
+14Eh	WORD	number of time servers
+150h  ? DWORDs	(big-endian) IP addresses for time servers
+	???
+164h	WORD	number of old-style name servers
+166h  3 DWORDs	(big-endian) IP addresses for name servers
+172h	WORD	number of domain name servers
+174h  3 DWORDs	(big-endian) IP addresses for domain name servers
+180h	DWORD	(big-endian) IP address of default gateway
+184h	DWORD	(big-endian) IP address of log server
+188h	DWORD	(big-endian) IP address of cookie server
+18Ch	DWORD	(big-endian) IP address of lpr server
+190h	DWORD	(big-endian) IP address of imagen print server
+194h 54 BYTEs	???
+1E8h	WORD	TCP default window size in bytes
+1EAh	WORD	TCP low window size
+1ECh 64 BYTEs	ASCIZ host tabel filename
+22Ch  2 BYTEs	???
+22Eh 80 BYTEs	ASCIZ mail relay host name
+27Eh	BYTE	???
+27Fh	BYTE	??? bit flags
+280h 44 BYTEs	???
+2ACh	WORD	???
+2AEh 202 BYTEs	???
+

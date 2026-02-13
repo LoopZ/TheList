@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: EF----CX0473
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT EF - GEM - VDI INTERFACE
+	CX = 0473h
+	DS:DX -> GEM VDI parameter block (see #04066)
+Note:	if installed, one of the following ASCII signatures will appear two
+	  bytes after the INT EF entry point:
+	    "GEMVDI"	GEM VDI (but not AES) is present
+	    "GEMAES"	GEM/ViewMAX VDI and AES are both present
+	    "ViewMAX"	ViewMAX VDI (only) is present
+	  each of the above is followed by an ASCIZ number indicating the
+	  version ("10" for GEM/1 AES and VDI; "20" for GEM/2,GEM/3,ViewMAX
+	  AES and GEM/2 VDI; "23" for GEM/3 VDI; and "1" for ViewMAX VDIs)
+SeeAlso: INT EF/CX=00C8h,INT EF/CX=00C9h
+Index:	installation check;GEM
+
+Format of VDI parameter block:
+Offset	Size	Description	(Table 04066)
+ 00h	DWORD	-> control array (see #04067)
+ 08h	DWORD	-> integer parameters
+ 0Ch	DWORD	-> (x,y) pair parameters
+ 10h	DWORD	-> integer results
+ 14h	DWORD	-> (x,y) pair results
+SeeAlso: #04064
+
+Format of VDI control array:
+Offset	Size	Description	(Table 04067)
+ 00h	WORD	(call) function number (0001h-0084h)
+ 02h	WORD	(call) number of words of pair parameters
+ 04h	WORD	(ret) number of words of pair results
+ 06h	WORD	(call) number of words of integer parameters
+ 08h	WORD	(ret) number of words of integer results
+ 0Ah	WORD	subfunction number
+ 0Ch	WORD	graphics handle
+ 0Eh	DWORD	(call) -> pointer parameter
+ 12h	DWORD	(ret) -> pointer result
+SeeAlso: #04066
+

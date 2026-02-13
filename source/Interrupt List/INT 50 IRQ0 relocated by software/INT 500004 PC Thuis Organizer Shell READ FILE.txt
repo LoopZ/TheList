@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500004
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - READ FILE
+	AX = 0004h
+	ES:BX -> buffer for data
+	CX = number of bytes to read or 0000h for entire file
+	DL = file type
+	    01h setting shell
+	    02h setting sterm
+	    03h INT21 file
+	DS:SI -> filename
+Return: AX = status
+	    0000h successful
+	    FFFFh error
+Note:	file type numbers are maintained by John Vanderaart; if a new file type
+	  is needed, a type number should be requested from him through the
+	  magazine:
+		PC Thuis BV
+		Spaarne 55
+		2011 CE HAARLEM
+		The Netherlands
+SeeAlso: AX=0003h"Shell"
+

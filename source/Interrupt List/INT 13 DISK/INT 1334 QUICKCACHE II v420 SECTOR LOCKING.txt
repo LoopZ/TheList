@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1334
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - QUICKCACHE II v4.20 - SECTOR LOCKING
+	AH = 34h
+	AL = function
+	    00h end sector locking/unlocking
+	    01h lock all accessed sectors into cache
+	    02h unlock all accessed sectors and discard from cache
+Return: AX = status (0000h successful)
+SeeAlso: AH=20h"QUICKCACHE",AH=35h
+

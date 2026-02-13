@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214411BXFFFF
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - NewSpace - DISABLE DRIVER
+	AX = 4411h
+	BX = FFFFh
+Program: NewSpace is a TSR by Isogon Corporation which automatically compresses
+	  all files as they are written and decompresses them as they are read
+Note:	compressed files are not accessible unless the driver is enabled
+SeeAlso: AX=4410h/BX=FFFFh
+

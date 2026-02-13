@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF41
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2.2+ - ADD OBJECT TO SET
+	AX = F217h subfn 41h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet	(see #01951 at AH=E3h/SF=41h)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+Desc:	add a member to an object's group property
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=41h,AX=F217h/SF=42h,AX=F217h/SF=43h
+

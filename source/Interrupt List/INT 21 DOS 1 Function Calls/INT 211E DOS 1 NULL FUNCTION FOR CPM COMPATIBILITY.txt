@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 211E
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - NULL FUNCTION FOR CP/M COMPATIBILITY
+	AH = 1Eh
+Return: AL = 00h
+Note:	corresponds to the CP/M BDOS function "set file attributes" which was
+	 meaningless under MS-DOS 1.x
+SeeAlso: AH=18h,AH=1Dh,AH=20h
+

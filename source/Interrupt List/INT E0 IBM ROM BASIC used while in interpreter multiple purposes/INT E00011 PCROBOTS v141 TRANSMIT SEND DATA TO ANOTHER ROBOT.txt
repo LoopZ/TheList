@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00011
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "TRANSMIT" - SEND DATA TO ANOTHER ROBOT
+	AX = 0011h
+	BX = target robot ID
+	CX = data to be sent
+Return: AX = status (0000h data could not be sent, 0001h data sent)
+Note:	this call costs one unit of battery power
+

@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF0B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP ALLOCATE TEMPORARY DIRECTORY HANDLE
+	AX = F223h subfn 0Bh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02325)
+	ES:DI -> reply buffer (see #02326)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=0Dh
+
+Format of NetWare "AFP Alloc Temporary Directory Handle" request packet:
+Offset	Size	Description	(Table 02325)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	0Bh (subfunction "AFT Alloc Temporary Directory Handle")
+ 03h	BYTE	volume number
+ 04h	DWORD	AFP entry ID
+ 08h	BYTE	path length
+ 09h  N BYTEs	AFP-style pathname
+SeeAlso: #02326
+
+Format of NetWare "AFP Alloc Temporary Directory Handle" request packet:
+Offset	Size	Description	(Table 02326)
+ 00h	BYTE	directory handle
+ 01h	BYTE	NetWare access rights (see #02327)
+SeeAlso: #02325
+
+Bitfields for NetWare AFP access rights:
+Bit(s)	Description	(Table 02327)
+ 0	read
+ 1	write
+ 2	open
+ 3	create
+ 4	delete
+ 5	parental: create/delete/rename subdirectories
+ 6	search
+ 7	modify file status flags
+SeeAlso: #02326,#02313
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200BA
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SHOWPPR" - DISPLAY IMAGE FROM PPR FILE
+	AX = 00BAh
+	ES:BX -> ASCIZ filename of packed pixel run image
+	CX = width in pixels (nonzero)
+Return: AX = status
+	    0000h successful
+	    0001h file not found
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The image is displayed with its lower left corner at the current
+	  graphics cursor position
+	This function is ignored in text modes and 256-color graphics modes
+SeeAlso: AX=005Bh,AX=006Ch,AX=006Dh,AX=006Eh,AX=00B9h,AX=00BBh
+

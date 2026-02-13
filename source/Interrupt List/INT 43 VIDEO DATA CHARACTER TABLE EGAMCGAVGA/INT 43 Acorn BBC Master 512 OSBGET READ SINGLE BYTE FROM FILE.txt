@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 43
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 43 - Acorn BBC Master 512 - "OSBGET" - READ SINGLE BYTE FROM FILE
+	BH = file handle
+Return: CF clear if successful
+	    AL = byte read from file
+	CF set on error
+SeeAlso: INT 40"Acorn",INT 41"Acorn",INT 42"Acorn",INT 46"Acorn"
+

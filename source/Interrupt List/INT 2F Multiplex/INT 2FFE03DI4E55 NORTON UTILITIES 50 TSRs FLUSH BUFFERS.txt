@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFE03DI4E55
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - NORTON UTILITIES 5.0+ TSRs - FLUSH BUFFERS
+	AX = FE03h
+	DI = 4E55h ("NU")
+	SI = TSR identifier (see #03140)
+Return: SI = TSR reply (lowercase version of entry SI, i.e. SI OR 2020h)
+	AX = status
+	    0006h successful???
+Notes:	only supported by DISKMON, FILESAVE, and NCACHE-x
+	useful for flushing NCACHE before rebooting
+SeeAlso: AX=FE00h,AX=FE10h
+

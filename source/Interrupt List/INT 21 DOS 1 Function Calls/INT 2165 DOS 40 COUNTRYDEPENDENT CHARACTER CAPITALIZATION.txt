@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2165
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 4.0+ - COUNTRY-DEPENDENT CHARACTER CAPITALIZATION
+	AH = 65h
+	AL = function
+	    20h capitalize character
+		DL = character to capitalize
+		Return: DL = capitalized character
+	    21h capitalize string
+		DS:DX -> string to capitalize
+		CX = length of string
+	    22h capitalize ASCIZ string
+		DS:DX -> ASCIZ string to capitalize
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Note:	these calls have been documented for DOS 5+, but were undocumented in
+	  DOS 4.x.
+BUG:	Novell DOS 7 Update 15 crashes on AX=6521h when CX=0000h
+

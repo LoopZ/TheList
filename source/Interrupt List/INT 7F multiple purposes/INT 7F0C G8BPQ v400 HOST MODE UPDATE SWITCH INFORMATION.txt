@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F0C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.00+ - HOST MODE - UPDATE SWITCH INFORMATION
+	AH = 0Ch
+	DX = function
+	    0001h update beacon text
+		CX = length of data
+		ES:SI -> data to be sent in beacons
+	    0002h (v4.07+) initiate NODES broadcast
+SeeAlso: AH=09h"G8BPQ"
+

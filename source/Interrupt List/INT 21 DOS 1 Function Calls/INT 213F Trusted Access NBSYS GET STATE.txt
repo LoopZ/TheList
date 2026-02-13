@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213F
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Trusted Access - NB.SYS - GET STATE
+	AH = 3Fh
+	BX = file handle for device "$$NB$$NB"
+	CX = 0002h (size of state)
+	DS:DX -> buffer for state record (see #01414)
+Return: CF clear if successful
+	    AX = number of bytes actually read (0 if at EOF before call)
+	CF set on error
+	    AX = error code (05h,06h) (see #01680 at AH=59h/BX=0000h)
+Program: Trusted Access is a security and access-control package by Lassen
+	  Software, Inc.; NB.SYS is a device driver to prevent the user from
+	  terminating CONFIG.SYS or AUTOEXEC.BAT with Ctrl-Break
+SeeAlso: AH=40h"NB.SYS",AX=4101h
+
+Format of Trusted Access state record:
+Offset	Size	Description	(Table 01414)
+ 00h	BYTE	00h off, 01h on
+ 01h	BYTE	keys being disabled
+		bit 0: Ctrl-Break
+		bit 1: SysReq
+		bit 2: Ctrl and Alt
+		bit 3: Ctrl-Alt-Del
+		bit 7: all keys (overrides other bits)
+

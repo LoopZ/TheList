@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8222
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MODRES - UNINSTALL
+	AX = 8222h
+Return: AX = code segment of the program
+Note:	this function does not release the TSRs memory; the caller must do so
+SeeAlso: AX=8220h,AX=8221h,AX=8223h
+

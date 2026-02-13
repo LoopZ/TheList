@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1004
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - GET CURSOR ADDRESS
+	AH = 04h
+	BH = page
+Return: DH = row (0..24)
+	DL = column (0..79)
+	CH = cursor pixel Y-address (0..199)
+	CL = cursor pixel X-address (0..639)
+Notes:	the Husky Hunter 16 is an 8088-based ruggedized laptop.	 Other family
+	  members are the Husky Hunter, Husky Hunter 16/80, and Husky Hawk.
+	pixel coordinates are for the lower left corner of the character cell
+	  containing the cursor
+SeeAlso: AH=60h"HUNTER"
+

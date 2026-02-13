@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660701
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - IBM Digitized Sound Package MIDI driver - GET DIGITIZED SOUND CAPABIL
+	AX = 0701h
+Return: AX = digitized sound capabilities
+	    0000h if digitized sound driver (functions 06xxh) not available
+InstallCheck:	test for the signature "MIDI" six bytes before the interrupt
+	  handler
+Note:	also supported by MIDPAK, the successor to the Digitized Sound
+	  Package's MIDI driver
+SeeAlso: AX=0688h
+

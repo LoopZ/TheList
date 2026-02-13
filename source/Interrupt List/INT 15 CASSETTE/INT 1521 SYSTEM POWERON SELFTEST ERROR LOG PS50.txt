@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1521
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POWER-ON SELF-TEST ERROR LOG (PS50+)
+	AH = 21h
+	AL = subfunction
+	    00h read POST log
+	    01h write POST log
+		BH = device ID
+		BL = error code
+Return: CF clear if successful
+	CF set on error
+	AH = status
+	    00h OK
+	    01h list full
+	    02h unsupported subfunction
+	    80h invalid command
+	    86h unsupported function
+	if function 00h:
+	   BX = number of error codes stored
+	   ES:DI -> error log
+Notes:	the log is a series of words, the first byte of which identifies the
+	  error code and the second the device.
+	supported by AMI PCI BIOS
+	IBM considers this a required BIOS function
+	if the device ID is FFh, the "error code" is the actual device number
+	  minus 255 (thus these devices have no specific error codes)
+SeeAlso: AH=23h"SYSTEM",AH=24h"SYSTEM"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1457
+  Category: S 	serial I/O
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 14 U - BWCOM14 - INITIALIZE
+	AH = 57h
+	DL = port number
+Return: AL = initialization status (00h successful, 01h already initialized)
+	CX = port status (0001h port redirected, 0002h and FFFFh failed)
+Note:	after this call, all invocations of INT 14/AH=00h-03h for the specified
+	  port will be handled by BWCOM14 until AH=58h is called
+SeeAlso: AH=00h"SERIAL",AH=56h,AH=58h
+

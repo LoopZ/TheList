@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - ZOOM DISPLAY
+	AX = 0000h
+	BX = zoom factor (0-7)
+Desc:	zooms the display based on the given zoom factor
+Notes:	INT 61h is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0001h"OPTIMA",AX=0002h"OPTIMA",AX=0005h"OPTIMA"
+SeeAlso: INT 16/AH=FFh"OPTIMA"
+

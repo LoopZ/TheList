@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver 1.09+ - HIGH-PERF FUNC - GET PARAMETERS
+	AH = 0Ah
+Return: CF set on error
+	    DH = error code (0Bh) (see #03305)
+	CF clear if successful
+	    ES:DI -> parameter table (see #03310)
+
+Format of packet driver parameter table:
+Offset	Size	Description	(Table 03310)
+ 00h	BYTE	major revision of packet driver spec driver conforms to
+ 01h	BYTE	minor revision of packet driver spec
+ 02h	BYTE	length of this structure in bytes
+ 03h	BYTE	length of a MAC-layer address
+ 04h	WORD	maximum transfer unit, including MAC headers
+ 06h	WORD	buffer size for multicast addr
+ 08h	WORD	number of receive buffers (one less than back-to-back MTU rcvs)
+ 0Ah	WORD	number of transmit buffers
+ 0Ch	WORD	interrupt number to hook for post-EOI processing, 00h=none
+

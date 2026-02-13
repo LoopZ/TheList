@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1504
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - SEND MESSAGE TO ANOTHER TASK
+	AH = 04h
+	AL = mailbox number (00h-3Fh)
+	CX = message length in bytes
+	DS:SI -> message
+Return: AH = status
+	    00h successful
+	    01h out of message memory
+	    02h invalid mailbox number
+Note:	the message is copied into a system buffer; the caller may immediately
+	  reuse its buffer
+SeeAlso: AH=05h"MultiDOS"
+

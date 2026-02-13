@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 172002
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PC Paint Plus 2.0 - PRINTER DRIVER - GET INFORMATION
+	AX = 2002h
+	BL = printer number???
+	CL = desired information
+	    00h printer type
+		Return: ES:DI -> ASCIZ printer name
+	    01h paper size
+		DX = size index
+		Return: ES:DI -> ASCIZ paper size description
+	    02h ???
+		Return: BX = ???
+	    03h printer information???
+		DX = ???
+		ES:BX -> buffer for ??? (min 134 bytes)
+Return: AX = status (see #00639)
+SeeAlso: AX=2000h,AX=2004h
+

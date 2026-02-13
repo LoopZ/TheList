@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16F3
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Compaq 80286s - SET CPU SPEED LIMIT (OVERRIDE JUMPER)
+	AH = F3h
+	AL = new limit
+	    00h limit is 6 Mhz
+	    01h limit is 8 Mhz/6 Mhz
+SeeAlso: AH=F0h,AH=F1h
+

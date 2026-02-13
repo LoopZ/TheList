@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 167C
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - pcANYWHERE III - GET PORT CONFIGURATION
+	AH = 7Ch
+Return: AH = port number
+	AL = baud rate (see #00606)
+SeeAlso: AX=7B00h,AH=7Eh
+
+(Table 00606)
+Values for pcANYWHERE III baud rate:
+ 00h	50 baud
+ 01h	75 baud
+ 02h	110 baud
+ 03h	134.5 baud
+ 04h	150 baud
+ 05h	300 baud
+ 06h	600 baud
+ 07h	1200 baud
+ 08h	1800 baud
+ 09h	2000 baud
+ 0Ah	2400 baud
+ 0Bh	4800 baud
+ 0Ch	7200 baud
+ 0Dh	9600 baud
+ 0Eh	19200 baud
+SeeAlso: #00309
+

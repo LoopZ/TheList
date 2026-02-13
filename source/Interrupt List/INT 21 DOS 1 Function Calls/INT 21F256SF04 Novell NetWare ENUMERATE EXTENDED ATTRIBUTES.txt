@@ -1,0 +1,71 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F256SF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - ENUMERATE EXTENDED ATTRIBUTES
+	AX = F256h subfn 04h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02365)
+	ES:DI -> reply buffer (see #02366)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F256h/SF=01h,AX=F256h/SF=02h,AX=F256h/SF=05h
+
+Format of NetWare "Enumerate Extended Attributes" request packet:
+Offset	Size	Description	(Table 02365)
+ 00h	BYTE	04h (subfunction "Enumerate Extended Attributes")
+ 01h	WORD	flags (see #02372)
+ 03h  8 BYTEs	extended attribute handle structure (see #02373)
+ 0Bh	DWORD	inspect size
+ 0Fh	WORD	enumeration sequence
+ 11h	WORD	key length
+ 13h  N BYTEs	key
+SeeAlso: #02366
+
+Format of NetWare "Enumerate Extended Attributes" reply packet:
+Offset	Size	Description	(Table 02366)
+ 00h	DWORD	error code
+ 04h	DWORD	total extended attributes
+ 08h	DWORD	total extended attribute data size
+ 0Ch	DWORD	total extended attribute key size
+ 10h	DWORD	new extended attribute handle
+---information level 0---
+ 14h  2 WORDs	reserved
+---information level 1---
+ 14h	WORD	number of enumerated extended attribute structures
+ 16h	var	EA structure level 1
+---information level 6---
+ 14h	WORD	reserved
+ 16h	var	EA structure level 6
+---information level 7---
+ 14h	WORD	number of enumerated extended attribute structures
+ 16h	var	EA structure level 7
+SeeAlso: #02365
+
+Format of NetWare Extended Attribute structure level 1:
+Offset	Size	Description	(Table 02367)
+ 00h	DWORD	length of EA value
+ 04h	WORD	length of EA key
+ 06h	DWORD	access flag
+ 0Ah  N BYTEs	key
+SeeAlso: #02366,#02368,#02369
+
+Format of NetWare Extended Attribute structure level 6:
+Offset	Size	Description	(Table 02368)
+ 00h	DWORD	length of EA value
+ 04h	WORD	length of EA key
+ 06h	DWORD	access flag
+ 0Ah	DWORD	key extents
+ 0Eh	DWORD	value extents
+ 12h  N BYTEs	key
+SeeAlso: #02366,#02367,#02369
+
+Format of NetWare Extended Attribute structure level 7:
+Offset	Size	Description	(Table 02369)
+ 00h	BYTE	key length
+ 01h  N BYTEs	key
+	BYTE	00h
+SeeAlso: #02366,#02367,#02368
+

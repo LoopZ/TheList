@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105101
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - AX PC - READ CHARACTER
+	AX = 5101h
+	BH = character width in bits
+	BL = character height
+	DX = character code (DH = 00h if 8-bit character)
+	ES:BP -> buffer for character bitmap
+Return: AL = status (00h successful, 01h failed)
+SeeAlso: AH=09h,AX=5100h
+

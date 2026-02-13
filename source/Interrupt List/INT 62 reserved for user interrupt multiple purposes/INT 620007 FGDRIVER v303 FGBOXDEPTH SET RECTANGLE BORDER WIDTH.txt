@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620007
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_BOXDEPTH" - SET RECTANGLE BORDER WIDTH
+	AX = 0007h
+	BX = width of left and right edges in pixels (> 0)
+	CX = width of top and bottom edges in pixels (> 0)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=0006h,AX=0008h,AX=0051h,AX=0055h
+

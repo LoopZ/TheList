@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F9C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - GET LOGIN LIST
+	AH = 9Ch
+	BX = zero-based index
+Return: CF clear if successful
+	    DS:DI -> BX'th node ID that caller's machine is logged into
+	CF set on error
+	    AX = status (see #03740)
+

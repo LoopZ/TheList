@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610008
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - SET ZOOM OFFSET
+	AX = 0008h
+	BX = X start of zoom offset
+	CX = Y start of zoom offset
+Desc:	specifies the first byte of video memory to appear in the zoom window
+Range:	unknown
+Notes:	INT 61 is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0000h"OPTIMA",AX=0006h"OPTIMA",INT 16/AH=FFh"OPTIMA"
+

@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0007
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET CONNECTION DATA STRUCTURES
+	AX = 0004h subfn 0007h
+	DS:DX -> request block (see #03408)
+Return: AX = status (see also #03400)
+	    0000h pointer returned in request block
+	    0033h invalid request ID
+Desc:	Returns pointers to various internal data structures
+
+Format of VINES Function 0004h/Subfunction 0007h request block:
+Offset	Size	Description	(Table 03408)
+ 00h	WORD	0007h
+ 02h	BYTE	request ID (0..7) (see #03409)
+ 03h	WORD	buffer for pointer segment
+ 05h	WORD	buffer for pointer offset
+SeeAlso: #03410,#03411
+
+(Table 03409)
+Values for VINES pointer ID:
+ 00h	job file table ???
+ 01h	drive handle table
+ 02h	drive connection table
+ 03h	IPC port of drive Z:
+ 04h	end of drive connection table
+ 05h	???
+ 06h	???
+ 07h	redirector data segment (offset=0)
+SeeAlso: #03408
+
+Format of VINES drive handle table:
+Offset	Size	Description	(Table 03410)
+ 00h	BYTE	handle to default drive (0 = not connected)
+ 01h	BYTE	handle to drive A: (0 = not connected)
+	...
+ 1Ah	BYTE	handle to drive Z: (0 = not connected)
+SeeAlso: #03411
+
+Format of VINES drive connection table:
+Offset	Size	Description	(Table 03411)
+ 00h	WORD	file service type (?) (0001h if drive Z:, 0000h else)
+ 02h 16	BYTEs	IPC port (contains the server serial number)
+ 12h 46	BYTEs	???
+ 40h 64	BYTEs	null-terminated StreetTalk name of associated file service
+ 80h 64	BYTEs	null-terminated root directory (/ROOT: parameter of SETDRIVE)
+SeeAlso: #03410
+

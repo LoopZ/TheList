@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL20
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (PS,EGA,VGA,MCGA) - ALTERNATE PRTSC
+	AH = 12h
+	BL = 20h  select alternate print screen routine
+Return: nothing
+Desc:	installs a PrtSc routine from the video card's BIOS to replace the
+	  default PrtSc handler from the ROM BIOS, which usually does not
+	  understand screen heights other than 25 lines
+Note:	some adapters disable print-screen instead of enhancing it
+SeeAlso: INT 05"PRINT SCREEN"
+

@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx000C
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VMD / VMOUSE - VxD SERVICES
+	VxD = 000Ch
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01275)
+Values for VMD / VMOUSE (VxD ID 000Ch) service number:
+ 0000h	get version
+ 0001h	set mouse type
+ 0002h	get mouse owner
+ 0003h	"VMOUSE_Post_Pointer_Message"
+ 0004h	"VMOUSE_Set_Cursor_Proc"
+ 0005h	"VMOUSE_Call_Cursor_Proc"
+ 0006h	"VMOUSE_Set_Mouse_Data~Get_Mouse_Data"
+ 0007h	"VMOUSE_Manipulate_Pointer_Message"
+ 0008h	"VMOUSE_Set_Middle_Button"
+ 0009h	"VMD_Set_Middle_Button"
+ 000Ah	"VMD_Enable_Disable_Mouse_Events"
+ 000Bh	"VMD_Post_Absolute_Pointer_Message"
+	...last service for Windows95 SP1
+SeeAlso: #01274,#01276,INT 2F/AX=1684h/BX=000Ch
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF0C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - SET DAC 6-BIT MODE
+	AX = BF0Ch
+Return: CF clear
+Desc:	specify that video DAC registers use only six bits of color info
+Note:	supported by at least the QVision board and the SystemPro XL ROM BIOS
+SeeAlso: AX=BF0Dh,AX=BF0Eh
+

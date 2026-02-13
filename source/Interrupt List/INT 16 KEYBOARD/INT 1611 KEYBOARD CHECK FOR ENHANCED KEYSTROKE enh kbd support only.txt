@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1611
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - CHECK FOR ENHANCED KEYSTROKE (enh kbd support only)
+	AH = 11h
+Return: ZF set if no keystroke available
+	ZF clear if keystroke available
+	    AH = BIOS scan code
+	    AL = ASCII character
+Notes:	if a keystroke is available, it is not removed from the keyboard buffer
+	unlike AH=01h, this function does not discard extended keystrokes
+	some versions of the IBM BIOS Technical Reference erroneously report
+	  that CF is returned instead of ZF
+	INT 16/AH=09h can be used to determine whether this function is
+	  supported, but only on later model PS/2s
+SeeAlso: AH=01h,AH=09h,AH=10h,AH=21h,INT 09,INT 15/AH=4Fh
+

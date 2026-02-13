@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FE5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET PROCESS NUMBER FROM TASK NAME
+	AH = E5h
+	DS:DX -> ASCIZ task name
+	BH = user number
+Return: CF clear if successful
+	    AL = DOS process number
+	    CL = memory size (00h=128K, 01h=256K, 02h=384K, 03h=512K, 04h=640K)
+	CF set on error (no match for name)
+SeeAlso: AH=E3h,AH=E4h
+

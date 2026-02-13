@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212B--CX5643
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Volkov Commander - INSTALLATION CHECK
+	AH = 2Bh
+	CX = 5643h ('VC')
+	DX = 4F4Dh ('OM')
+	AL = function number
+	    00h get left window data address
+	    01h get right window data address
+	    02h get address of general variables
+Return: AL = 00h if Volkov Commander installed
+	    AH = version code (27h for v4.00.039)
+	    ES:BX -> requested data
+Program: Volkov Commander is a Norton Commander-like DOS shell
+

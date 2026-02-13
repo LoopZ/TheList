@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FE8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - DOS TASK DELAY
+	AH = E8h
+	CX = delay time in milliseconds
+Note:	a delay of 0 may be used to surrender the current time slice
+SeeAlso: INT 15/AX=1000h,INT 1A/AX=FF01h,INT 21/AH=EEh"DoubleDOS"
+SeeAlso: INT 2F/AX=1680h
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0008
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 2.0 DPMILOAD.EXE - FREE MEMORY BLOCK
+	AX = FB42h
+	BX = 0008h
+	CX = bit flags
+	    bit 2: set if DPMI memory, clear if DOS memory
+	DX = selector of DOS memory block
+	SI:DI = handle of DPMI memory block
+Return: DX = 0000h on error, unchanged if succcessful
+Note:	The version of DPMILOAD distributed with BC++ v2.0 identifies itself
+	  as version 1.000, while the version distributed with BC++ 3.0
+	  identifies itself as version 1.0; the former is 10864 bytes, the
+	  latter 22180 bytes.
+SeeAlso: AX=FB42h/BX=0002h
+

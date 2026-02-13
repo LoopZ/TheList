@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0007
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 - SCRIPT.EXE - GET ???
+	AX = 12FFh
+	BX = 0007h
+	CX = 0000h
+Return: CF clear if installed
+	    AX = 0000h
+	    BX = ??? (4426h)
+	    CX = ??? (0068h)
+	    DX = PSP segment of resident code???
+	    SI = ??? (4AFAh)
+	    ES = resident code segment
+

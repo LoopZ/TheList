@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - PRINDIR v8.02-8.xx - API
+	AH = function
+	   00h set output to Invisible mode
+	   01h set output to LPT1
+	   02h set output to LPT2
+	   03h set output to LPT3
+	   04h set output to COM1
+	   05h set output to COM2
+	   06h set output to COM3
+	   07h set output to COM4
+	   08h set output to screen
+	   09h set output to file
+	   0Ah change file path
+	       ES:DI -> new path
+	       CX = length of path (max 41, but not range-checked)
+	   0Bh change file name
+	       ES:DI -> new filename
+	       CX = length of new name (max 41, but not range-checked)
+	   0Ch set redirected device
+		(01h = LPT1 ... 03h = LPT3, 04h = COM1 ... 07h = COM4)
+	   0Dh force buffer dump
+	   0Eh set display color
+	       AL = new color attribute (see #00014 at INT 10/AH=08h)
+	   0Fh set popup hotkey
+	       AL = hotkey scancode
+	   10h toggle byte display
+	       AL = new state (00h off, 01h on)
+	   11h change buffer flush delay
+	       AL = timer ticks before flush
+Return: AX = status
+	    0000h successful
+	    0001h invalid function or nothing in buffer to be dumped
+	    (documented as "nonzero = error")
+Program: PRINDIR is a shareware printer-redirection program by J.M. Allen
+	  Creations
+InstallCheck:	test for the ASCIZ signature "PRINDIR N.NN" (where N.NN is the
+	  version number) two bytes beyond the start of the interrupt handler
+Note:	prior versions of PRINDIR used INT 7A instead of INT 7C
+SeeAlso: INT 7A"PRINDIR",INT 2F/AX=7F00h"PRINDIR"
+Index:	hotkeys;PRINDIR
+

@@ -1,0 +1,77 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F122E
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4.0+ internal - GET OR SET ERROR TABLE ADDRESSES
+	AX = 122Eh
+	DL = subfunction
+	    00h get standard DOS error table (see #02614)
+		Return: ES:DI -> error table
+				 (DOS 4: errors 00h-12h,50h-5Bh)
+				 (DOS 5: errors 00h-26h,4Fh,51h-59h)
+	    01h set standard DOS error table
+		ES:DI -> error table
+	    02h get parameter error table (errors 00h-0Ah)
+		Return: ES:DI -> error table
+	    03h set parameter error table
+		ES:DI -> error table
+	    04h get critical/SHARE error table (errors 13h-2Bh)
+		Return: ES:DI -> error table
+	    05h set critical/SHARE error table
+		ES:DI -> error table
+	    06h get ??? error table
+		Return: ES:DI -> error table or 0000h:0000h
+	    07h set ??? error table
+		ES:DI -> error table
+	    08h get error message retriever (see #02615)
+		Return: ES:DI -> FAR procedure to fetch error message
+	    09h set ??? error table
+		ES:DI -> error table
+Notes:	if the returned segment on a "get" is 0001h, then the offset specifies
+	  the offset of the error message table within COMMAND.COM, and the
+	  procedure returned by DL=08h should be called
+	DOS 5+ COMMAND.COM does not allow setting any of the addresses (calls
+	  with DL odd are ignored); they are always returned with segment 0001h
+	for DOS 5.0, the standard and critical/SHARE error tables are combined
+	  into a single error table
+SeeAlso: AX=0500h,INT 21/AH=59h/BX=0000h
+
+Format of DOS 4.x error table:
+Offset	Size	Description	(Table 02614)
+ 00h	BYTE	FFh
+ 01h  2 BYTEs	04h,00h (DOS version???)
+ 03h	BYTE	number of error headers following
+ 04h 2N WORDs	table of all error headers for table
+		Offset	Size	Description
+		 00h	WORD	error message number
+		 02h	WORD	offset of error message from start of header
+				error messages are count byte followed by msg
+Note:	DOS 5 error tables consist of one word per error number; each word
+	  contains either the offset of a counted string or 0000h
+
+(Table 02615)
+Call error retrieval function with:
+	AX = error number (see #02616)
+	DI = offset of error table
+Return: ES:DI -> error message (counted string)
+Notes:	this function needs to access COMMAND.COM if the messages were not
+	  loaded into memory permanently with /MSG; the caller should assume
+	  that the returned message will be overwritten by the next call of
+	  the function
+	supported by DR DOS 5.0
+
+(Table 02616)
+Values for parameter errors:
+ 01h	Too many parameters
+ 02h	Required Parameter missing
+ 03h	Invalid switch
+ 04h	Invalid keyword
+ 06h	Parameter value not in allowed range
+ 07h	Parameter value not allowed
+ 08h	Parameter value not allowed
+ 09h	Parameter format not correct
+ 0Ah	Invalid parameter
+ 0Bh	Invalid parameter combination
+

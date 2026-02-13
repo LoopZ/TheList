@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155302
+  Category: p 	power management
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 15 R - Advanced Power Management v1.0+ - CONNECT 16-BIT PROTMODE INTERFACE
+	AX = 5302h
+	BX = device ID of system BIOS (0000h)
+Return: CF clear if successful
+	    AX = real-mode segment base address of protected-mode 16-bit code
+		segment
+	    BX = offset of entry point
+	    CX = real-mode segment base address of protected-mode 16-bit data
+		segment
+	    ---APM v1.1---
+	    SI = APM BIOS code segment length
+	    DI = APM BIOS data segment length
+	CF set on error
+	    AH = error code (02h,05h,06h,07h,09h) (see #00473)
+Notes:	the caller must initialize two consecutive descriptors with the
+	  returned segment base addresses; these descriptors must be valid
+	  whenever the protected-mode interface is called, and will have
+	  their limits arbitrarily set to 64K.
+	the protected mode interface is invoked by making a far call with the
+	  same register values as for INT 15; it must be invoked while CPL=0,
+	  the code segment descriptor must have a DPL of 0, the stack must be
+	  in a 16-bit segment and have enough room for BIOS use and possible
+	  interrupts, and the current I/O permission bit map must allow access
+	  to the I/O ports used for power management.
+	functions 00h-03h are not available from protected mode
+	on connection, an APM v1.1 or v1.2 BIOS switches to APM v1.0
+	  compatibility mode until it is informed that the user supports a
+	  newer version of APM (see AX=530Eh)
+SeeAlso: AX=5301h,AX=5303h,AX=5304h
+

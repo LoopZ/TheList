@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB00
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - INSTALLATION CHECK
+	AX = CB00h
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+Note:	AH = CBh is the default identifier, but may be reconfigured
+SeeAlso: AH=2Ah,AX=8000h"FaxBIOS",AX=CB0Eh,AX=CBDCh
+

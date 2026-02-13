@@ -1,0 +1,163 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0003
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - SEND PACKET
+	BX = 0003h
+	ES:SI -> Event Control Block (see #03810,#03811)
+Notes:	returns immediately; IPX attempts to send the packet in the background
+	this function is supported by Advanced NetWare 1.02+
+	this function is nearly identical to BX=000Fh, except that it always
+	  copies the source address into the IPX header assumed to be at the
+	  beginning of the first fragment
+SeeAlso: BX=0004h,BX=000Fh,INT 21/AH=EEh"Novell"
+
+Format of IPX Event Control Block:
+Offset	Size	Description	(Table 03810)
+ 00h	DWORD	Link
+ 04h	DWORD	-> Event Service Routine (00000000h if none) (see #03814)
+ 08h	BYTE	in use flag (see #03812)
+ 09h	BYTE	completion code (see #03813)
+ 0Ah	WORD	(big-endian) socket number (see #03809)
+ 0Ch  4 BYTEs	IPX workspace
+ 10h 12 BYTEs	driver workspace
+ 1Ch  6 BYTEs	immediate local node address
+ 22h	WORD	fragment count
+ 24h	var	fragment descriptors
+		Offset	Size	Description
+		 00h	DWORD	-> fragment data
+		 04h	WORD	size of fragment in bytes.
+Notes:	ESR is a far procedure that is called when the ECB has been handled.
+	  On call, the in use flag is zero if the ECB has been handled,
+	  non-zero otherwise. If the flag is zero, the completion code holds
+	  the result of the event.
+	the first fragment should start with an IPX header (see #03815)
+	all fragments are concatenated and sent in one piece
+	node address FFh FFh FFh FFh FFh FFh broadcasts to all nodes
+SeeAlso: #03811
+
+Format of AES-ECB:
+Offset	Size	Description	(Table 03811)
+ 00h	DWORD	Link
+ 04h	DWORD	ESR (Event Service Routine) address (see #03814)
+ 08h	BYTE	in use flag (see #03812)
+ 09h  5 BYTEs	AES workspace
+SeeAlso: #03810
+
+(Table 03812)
+Values for ECB in use flag:
+ 00h	available
+ E0h	AES temporary
+ F6h	\ special IPX/SPX processing for v3.02+
+ F7h	/
+ F8h	IPX in critical section
+ F9h	SPX listening
+ FAh	processing
+ FBh	holding
+ FCh	AES waiting
+ FDh	AES couting down delay time
+ FEh	awaiting packet reception
+ FFh	sending packet
+SeeAlso: #03810,#03811,#03813
+
+(Table 03813)
+Values for ECB completion code:
+ 00h	success
+ ECh	remote terminated connection without acknowledging packet
+ EDh	abnormal connection termination
+ EEh	invalid connection ID
+ EFh	SPX connection table full
+ F9h	event should not be cancelled
+ FAh	cannot establish connection with specified destination
+ FCh	cancelled
+ FDh	malformed packet
+ FEh	packet undeliverable
+ FFh	physical error
+SeeAlso: #03810,#03812
+
+(Table 03814)
+Values Event Service Routine is called with:
+	AL = caller's identity (00h = AES, FFh = IPX)
+	ES:SI -> event control block
+	interrupts disabled
+Return: all registers preserved
+SeeAlso: #03810,#03815
+
+Format of IPX header:
+Offset	Size	Description	(Table 03815)
+ 00h	WORD	(big-endian) checksum
+ 02h	WORD	(big-endian) length in bytes of total packet
+ 04h	BYTE	transport control
+ 05h	BYTE	packet type (see #03816)
+ 06h 10 BYTEs	destination internetwork address
+ 10h	WORD	(big-endian) destination socket
+ 12h 10 BYTEs	source internetwork address
+ 1Ch	WORD	(big-endian) source socket
+Notes:	an IPX packet has the identical format as a Xerox Network Standard
+	  (XNS) packet
+	the application must set packet type, destination address, and
+	  destination socket; IPX/SPX set the remaining fields
+SeeAlso: #03810,#03826
+
+(Table 03816)
+Values for IPX packet type:
+ 00h	unknown packet type
+ 01h	routing information packet
+ 02h	echo packet
+ 03h	error packet
+ 04h	packet exchange packet (always use this one for data)
+ 05h	SPX packet (see #03826)
+ 11h	NetWare Core Protocol (also used by Service Advertising Protocol)
+ 14h	Propagated Packet (for NetWare), NetBIOS name packet
+ 15h-1Eh experimental protocols
+Note:	undocumented packet type 14h will cross up to 16 networks deep in
+	  all directions; as Aaron Martin of Origin Systems discovered, the
+	  first 64 bytes of the IPX data in such packets should be considered
+	  reserved, as IPX places the traversed server nodes there.
+
+Format of Service Advertising Protocol Service Query Packet:
+Offset	Size	Description	(Table 03817)
+ 00h 30 BYTEs	IPX header
+ 1Eh	WORD	(big-endian) query type
+		0001h general find service
+		0003h find nearest server
+ 20h	WORD	(big-endian) server type
+		(see #01890 at INT 21/AH=E3h"CONNECTION CONTROL")
+SeeAlso: #03818
+
+Format of Service Advertising Protocol Server Identification Packet:
+Offset	Size	Description	(Table 03818)
+ 00h 30 BYTEs	IPX header
+ 1Eh	WORD	(big-endian) response type
+		0002h general service
+		0004h nearest service
+ 20h 64N BYTEs	server entries (1-7) (see #03819)
+SeeAlso: #03817,#03820
+
+Format of SAP server entry:
+Offset	Size	Description	(Table 03819)
+ 00h	WORD	(big-endian) server type
+		(see #01890 at INT 21/AH=E3h"CONNECTION CONTROL")
+ 02h 48 BYTEs	ASCIZ server name
+ 32h  2 WORDs	(big-endian) network number
+ 34h  3 WORDs	(big-endian) node number
+ 3Ch	WORD	(big-endian) socket number
+ 3Eh	WORD	(big-endian) number of hops between caller and server
+		10h = Server Shutdown Advertising Packet
+SeeAlso: #03818
+
+Format of IPX Routing Information packet:
+Offset	Size	Description	(Table 03820)
+ 00h 30 BYTEs	IPX header
+ 1Eh	WORD	operation (0001h request, 0002h response)
+ 20h 8N BYTEs	network entries (1-50) (see #03821)
+SeeAlso: #03818
+
+Format of RIP network entry:
+Offset	Size	Description	(Table 03821)
+ 00h	DWORD	network number (FFFFFFFFh = general request)
+ 04h	WORD	(response) number of hops
+ 06h	WORD	(response) number of clock ticks to reach destination
+

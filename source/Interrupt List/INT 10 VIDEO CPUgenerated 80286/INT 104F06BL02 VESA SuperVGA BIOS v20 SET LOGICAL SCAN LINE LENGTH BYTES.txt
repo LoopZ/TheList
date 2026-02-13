@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F06BL02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v2.0+ - SET LOGICAL SCAN LINE LENGTH (BYTES)
+	AX = 4F06h
+	BL = 02h
+	CX = desired scanline width in bytes
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+	    01h failed
+	BX = bytes per scan line
+	CX = number of pixels per scan line
+	DX = maximum number of scan lines
+Notes:	if the desired width is not achievable, the next larger width will be
+	  set
+	the scan line may be wider than the visible area of the screen
+	this function is valid in text modes, provided that pixel values are
+	  multiplied by the character cell width/height
+SeeAlso: AX=4F01h,AX=4F05h,AX=4F06h,AX=4F06h/BL=03h,AX=4F07h
+

@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+ Unique ID: 103000CX0000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - LOCATE 3270PC CONFIGURATION TABLE (INSTALLATION CHECK)
+	AX = 3000h
+	CX = 0000h
+	DX = 0000h
+Return: CX:DX -> 3270PC configuration table (see #00062)
+	CX:DX = 0000h:0000h if 3270PC Control Program not active
+SeeAlso: AX=1F01h
+
+Format of 3270 PC configuration table:
+Offset	Size	Description	(Table 00062)
+ 00h	BYTE	aspect ratio X
+ 01h	BYTE	aspect ratio Y
+ 02h	BYTE	monitor type (see #00063)
+ 03h	BYTE	reserved
+ 04h	BYTE	adapter ID
+		00h = 5151/5272 adapter
+		04h = 5151/5272 with XGA adapter
+		30h = 3295 or 3270PC G/GX adapter
+ 05h	BYTE	reserved
+ 06h	BYTE	function flags 1 (see #00064)
+ 07h	BYTE	function flags 2
+		bit 6: GPI graphics supported
+ 08h	WORD	segment address of Control Program Level table (see #00065)
+ 0Ah 10 BYTEs	reserved
+
+(Table 00063)
+Values for 3270 PC monitor type:
+ 00h	5151 (mono) or 5272 (color)
+ 01h	3295
+ 02h	5151 or 5272 with XGA (???) graphics adapter
+ 03h	5279 with 3270PC G adapter
+ 04h	5379 model C01 with 3270PC GX adapter
+ 05h	5379 model M01 with 3270PC GX adapter
+ 07h	non-3270PC with 3270 Workstation Program
+ FFh	3270PC Control Program not loaded
+
+Bitfields for 3270 PC function flags 1:
+Bit(s)	Description	(Table 00064)
+ 7	mono text, 1 page
+ 6	color text, 1 page
+ 5	color text, 4 pages
+ 4	CGA color graphics
+ 3	720x350 two-color graphics
+ 2	360x350 four-color graphics
+ 1	720x350 eight-color graphics
+
+Format of Control Program Level table:
+Offset	Size	Description	(Table 00065)
+ 00h	WORD	program version
+		02xxh = 3270PC Control Program v2.xx
+		03xxh = 3270PC Control Program v3.xx
+		04xxh = 3270 Workstation Program v1.xx
+ 02h	BYTE	Control Program ID (00h)
+ 03h 27 BYTEs	Control Program Descriptor ("IBM 3270 PC CONTROL PROGRAM")
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5403
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - POWER.EXE - GET/SET ADVANCED POWER MANAGEMENT SETTING
+	AX = 5403h
+	BX = new power management setting or 0000h to get current setting
+Return: AX = status
+	    0000h successful
+		BX = power management setting (see #02839)
+	    other error code
+SeeAlso: AX=5401h,AX=5480h
+
+(Table 02839)
+Values for power management setting:
+ 0001h-0005h "min"
+ 0006h	     "reg"
+ 0007h-0008h "max"
+

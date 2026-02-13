@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1482
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - PORT CLEANUP
+	AH = 82h
+	DX = port number
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+Desc:	reset the port to its state before the AH=81h initialization and unhook
+	  any interrupts used by the port
+SeeAlso: AH=81h"COMM-DRV",AH=83h"COMM-DRV"
+

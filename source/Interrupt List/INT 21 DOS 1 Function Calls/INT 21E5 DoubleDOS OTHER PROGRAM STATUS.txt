@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E5
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - OTHER PROGRAM STATUS
+	AH = E5h
+Return: AL = status
+	    00h no program in other partition
+	    01h program in other partition is running
+	    02h program in other partition is suspended
+SeeAlso: AX=E400h"DoubleDOS",AH=F5h"DoubleDOS"
+

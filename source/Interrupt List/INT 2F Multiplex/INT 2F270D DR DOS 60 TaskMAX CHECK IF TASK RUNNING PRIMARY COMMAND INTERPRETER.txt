@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F270D
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - CHECK IF TASK RUNNING PRIMARY COMMAND INTERPRETER
+	AX = 270Dh
+	DX = task index
+Return: DX = status
+	    0000h if primary command interpreter (COMMAND.COM, etc.) running
+	    0001h if not in root shell for task
+Note:	TaskMAX will return 0001h if the specified task has spawned another
+	  command interpreter with AX=2707h
+SeeAlso: AX=2707h,AX=270Ch
+

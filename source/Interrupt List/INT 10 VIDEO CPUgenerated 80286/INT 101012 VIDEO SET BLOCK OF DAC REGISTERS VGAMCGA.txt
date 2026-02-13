@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101012
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET BLOCK OF DAC REGISTERS (VGA/MCGA)
+	AX = 1012h
+	BX = starting color register
+	CX = number of registers to set
+	ES:DX -> table of 3*CX bytes where each 3 byte group represents one
+		 byte each of red, green and blue (0-63)
+Return: nothing
+SeeAlso: AX=1010h,AX=1017h,INT 62/AX=00A5h
+

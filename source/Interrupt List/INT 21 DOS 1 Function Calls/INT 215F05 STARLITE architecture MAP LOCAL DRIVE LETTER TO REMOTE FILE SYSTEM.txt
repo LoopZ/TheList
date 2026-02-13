@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F05
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - STARLITE architecture - MAP LOCAL DRIVE LETTER TO REMOTE FILE SYSTEM
+	AX = 5F05h
+	DL = drive number (0=A:)
+	DS:SI -> ASCIZ name of the object to map the drive to
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+SeeAlso: AX=5F06h"STARLITE",INT 60/AX=0002h
+

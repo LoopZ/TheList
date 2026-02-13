@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14F0F1DX0000
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ASAP v1.0 - INSTALLATION CHECK
+	AX = F0F1h
+	DX = 0000h
+Return: DX = segment of resident code
+	    0000h if not installed
+Program: ASAP (Automatic Screen Access Program) is a shareware screen reader
+	  by MicroTalk
+SeeAlso: AX=F0F0h,INT 10/AX=3800h
+

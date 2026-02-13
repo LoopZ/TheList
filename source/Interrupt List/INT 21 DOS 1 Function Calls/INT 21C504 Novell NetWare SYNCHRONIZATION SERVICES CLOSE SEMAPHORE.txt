@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C504
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - CLOSE SEMAPHORE
+	AX = C504h
+	CX:DX = semaphore handle
+Return: AL = status
+	    00h successful
+	    FFh invalid handle
+Desc:	decrement the semaphore's open count, and delete the semaphore if the
+	  count reaches zero
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AX=C500h"NetWare",AX=C501h,AX=F220h/SF=04h
+

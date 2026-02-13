@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1481
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COURIERS.COM - CHECK IF PORT BUSY
+	AH = 81h
+	AL = port number (1-4)
+Return: AH = status
+	    00h port available
+	    01h port exists but already in use
+	    02h port nonexistent
+Program: COURIERS is a TSR utility by PC Magazine
+SeeAlso: AH=83h,AH=8Dh
+

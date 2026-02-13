@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4507
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Microsoft Profiler (PROF.COM/VPROD.386) - "ProfFinish"
+	AX = 4507h
+Note:	this call is essentially a "ProfStop" (AX=4504h) followed by
+	  "ProfFlush" (AX=4506h)
+SeeAlso: AX=4504h,AX=4505h,AX=4506h
+

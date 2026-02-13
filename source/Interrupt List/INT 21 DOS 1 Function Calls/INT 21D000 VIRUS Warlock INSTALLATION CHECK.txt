@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D000
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Warlock" - INSTALLATION CHECK
+	AX = D000h
+	CF clear
+Return: CF set if resident (normal DOS return would be CF clear)
+SeeAlso: AX=D000h"VIRUS",AH=D5h"VIRUS"
+

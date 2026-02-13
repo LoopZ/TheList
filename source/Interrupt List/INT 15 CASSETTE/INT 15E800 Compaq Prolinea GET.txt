@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E800
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq Prolinea - GET ???
+	AX = E800h
+	BX = ??? (1369h)
+Return: BH = 01h
+	BL = ???
+	others???
+Note:	used by Compaq's SOFTPAQ number 0718 INT10_04.SYS to determine whether
+	  the fix that driver applies is required (will not install if BX on
+	  return is other than 010Eh or 010Fh)
+SeeAlso: AX=E802h
+

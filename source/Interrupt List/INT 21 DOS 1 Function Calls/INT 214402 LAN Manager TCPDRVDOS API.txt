@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - LAN Manager - TCPDRV.DOS - API
+	AX = 4402h
+	BX = file handle referencing device "TCPDRV$"
+	CX = 0019h
+	DS:DX -> buffer containing request block (see #01504)
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: TCPDRV.DOS is the low-level device driver supporting LAN Manager's
+	  TCP/IP protocol stack
+
+Format of TCPDRV.DOS request block:
+Offset	Size	Description	(Table 01504)
+ 00h	BYTE	(call) function number
+		00h initialize ???
+		06h get ???
+		07h get ???
+ 01h	BYTE	(call) 00h
+		(ret) error code if error, unchanged if successful
+ 02h	WORD	signature 4354h ('CT')
+---function 00h---
+ 04h	DWORD	(call) pointer to ??? FAR function
+		function is called with ES:BX -> device driver request used to
+		  invoke this function
+ 08h  4 BYTEs	???
+ 0Ch	DWORD	(call) pointer to ??? record, WORD at offset 22h is read
+ 10h	DWORD	(ret) -> ??? buffer if 0000h:0000h on call
+---function 06h---
+ 04h  4 BYTEs	???
+ 08h	DWORD	(ret) pointer to ???
+---function 07h---
+ 04h	DWORD	(ret) pointer to ??? record
+

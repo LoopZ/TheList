@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15F200CX454D
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Tandon memory mapper - Tandon MAPPER HARDWARE INITIALIZATION CHECK ???
+	AX = F200h
+	CX = 454Dh
+Return: CF clear if hardware already initialised
+	    BX = upper RAM areas in use
+		bit 0: C000-C3FF
+		bit 1: C400-C7FF
+		...
+		bit 11: EC00-EFFF
+	CF set if hardware not initialised yet
+

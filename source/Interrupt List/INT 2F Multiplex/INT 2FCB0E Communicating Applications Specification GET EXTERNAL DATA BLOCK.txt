@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB0E
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - GET EXTERNAL DATA BLOCK
+	AX = CB0Eh
+	DS:DX -> 256-byte buffer for external data block (see #03049)
+Return: AX = 0000h successful
+	    DS:DX buffer filled
+	AX < 0	   error code (see #03048)
+
+Format of CAS external data block:
+Offset	Size	Description	(Table 03049)
+ 00h	BYTE	CAS major version
+ 01h	BYTE	CAS minor version
+ 02h 68 BYTEs	ASCIZ path to directory containing CAS software, ends in slash
+ 46h 13 BYTEs	ASCIZ name of current phonebook (in CAS directory)
+ 53h 13 BYTEs	ASCIZ name of current logo file (in CAS directory)
+ 60h 32 BYTEs	ASCIZ default sender name
+ 80h 21 BYTEs	ASCIZ CCITT identification of fax device
+ 95h 107 BYTEs	reserved
+

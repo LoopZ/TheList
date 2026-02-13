@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX3110
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VSGLX16.386 - GET API ENTRY POINT
+	AX = 1684h
+	BX = 3110h (virtual device ID for VSGLX16.386) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02705)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: AX=1684h/BX=045Fh,AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02705)
+Call VSGLX16.386 entry point with:
+	DX = function number
+	    0000h get azt16 version
+		Return: CF clear
+			AX = version returned by "azt16" device
+	    0001h get ???
+		AX = ??? (always fails if nonzero)
+		ES:BX -> buffer for ???
+			first DWORD of buffer must be set to length of buffer
+			  (in bytes, 1 <= size <= 92) before calling
+		Return: CF clear if successful
+			    AX = 0001h
+			CF set on error (invalid pointer, bad buffer size)
+			    AX = 0000h
+	    0002h
+		AX = ???
+		BX = ???
+		Return: CF clear if successful
+			    AX = ???
+			CF set on error
+			    AX = error code
+	    0003h
+		AX = ???
+		BX = ???
+		Return: CF clear if successful
+			CF set on error
+	    0004h set ???
+		ES:DI -> buffer containing ???
+		BX = ???
+		CX = number of bytes to copy
+		Return: CF clear if successful
+			    AX = 0001h
+			CF set on error
+			    AX = 0000h
+	    0005h get ???
+		ES:DI -> buffer for ???
+		BX = ???
+		CX = number of bytes to copy
+		Return: CF clear if successful
+			    AX = 0001h
+			CF set on error
+			    AX = 0000h
+	    else
+		Return: CF set
+SeeAlso: #02686
+

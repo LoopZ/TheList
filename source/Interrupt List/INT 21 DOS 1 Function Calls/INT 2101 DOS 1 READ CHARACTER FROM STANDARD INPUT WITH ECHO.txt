@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2101
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - READ CHARACTER FROM STANDARD INPUT, WITH ECHO
+	AH = 01h
+Return: AL = character read
+Notes:	^C/^Break are checked, and INT 23 executed if read
+	^P toggles the DOS-internal echo-to-printer flag
+	^Z is not interpreted, thus not causing an EOF if input is redirected
+	character is echoed to standard output
+	standard input is always the keyboard and standard output the screen
+	  under DOS 1.x, but they may be redirected under DOS 2+
+SeeAlso: AH=06h,AH=07h,AH=08h,AH=0Ah
+

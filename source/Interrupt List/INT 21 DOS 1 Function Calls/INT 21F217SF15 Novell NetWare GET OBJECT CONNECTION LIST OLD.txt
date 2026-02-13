@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF15
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET OBJECT CONNECTION LIST (OLD)
+	AX = F217h subfn 15h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01915 at AH=E3h/SF=15h)
+	ES:DI -> reply buffer (see #02169)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=15h,AX=F217h/SF=1Bh
+
+Format of NetWare "Get Object Connection List (old)" reply packet:
+Offset	Size	Description	(Table 02169)
+ 00h	BYTE	number of connections
+ 01h  N BYTEs	connection list
+SeeAlso: #01915
+

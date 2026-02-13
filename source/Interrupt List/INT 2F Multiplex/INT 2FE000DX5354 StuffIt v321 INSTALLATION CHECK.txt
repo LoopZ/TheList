@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE000DX5354
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - StuffIt v3.21+ - INSTALLATION CHECK
+	AX = E000h
+	DX = 5354h ("ST")
+Return: AL = FFh if installed
+	    BX = version (BH = major, BL = BCD minor)
+	    DX = segment of resident code
+Program: StuffIt is a freeware delayed keyboard stuffer by Terje Mathisen
+

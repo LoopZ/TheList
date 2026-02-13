@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FC0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET TIME FROM SERVER
+	AX = 5FC0h
+	DS:SI -> time block (see #01743)
+	ES:DI -> ASCIZ server name to get time from
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AH=E7h"Novell"
+
+Format of LANtastic time block:
+Offset	Size	Description	(Table 01743)
+ 00h	WORD	year
+ 02h	BYTE	day
+ 03h	BYTE	month
+ 04h	BYTE	minutes
+ 05h	BYTE	hour
+ 06h	BYTE	hundredths of second
+ 07h	BYTE	second
+

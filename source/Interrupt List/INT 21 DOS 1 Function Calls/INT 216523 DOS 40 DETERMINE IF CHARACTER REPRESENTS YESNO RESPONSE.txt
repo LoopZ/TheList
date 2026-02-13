@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216523
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 4.0+ - DETERMINE IF CHARACTER REPRESENTS YES/NO RESPONSE
+	AX = 6523h
+	DL = character
+	DH = second character of double-byte character (if applicable)
+Return: CF set on error
+	CF clear if successful
+	    AX = type
+		00h no
+		01h yes
+		02h neither yes nor no
+Note:	supported by Novell DOS 7, though prior to Update 14, the results
+	  depended on the kernel variant rather than the YESCHAR= or COUNTRY=
+	  setting in CONFIG.SYS
+BUG:	Novell DOS commands and tools all use internal settings rather than
+	  this function, so the Yes/No responses are dependent on the specific
+	  country's variant being run rather than on the COUNTRY= setting
+

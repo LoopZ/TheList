@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21716C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - CREATE OR OPEN FILE
+	AX = 716Ch
+	BX = access mode and sharing flags (see #01782,also AX=6C00h)
+	CX = attributes
+	DX = action (see #01781)
+	DS:SI -> ASCIZ filename
+	DI = alias hint (number to append to short filename for disambiguation)
+Return: CF clear if successful
+	    AX = file handle
+	    CX = action taken
+		0001h file opened
+		0002h file created
+		0003h file replaced
+	CF set on error
+	    AX = error code (see #01680)
+		7100h if function not supported
+SeeAlso: AX=6C00h,AX=7141h,AX=7156h,AX=71A9h
+
+Bitfields for Windows95 long-name open action:
+Bit(s)	Description	(Table 01781)
+ 0	open file (fail if file does not exist)
+ 1	truncate file if it already exists (fail if file does not exist)
+ 4	create new file if file does not already exist (fail if exists)
+Note:	the only valid combinations of multiple flags are bits 4&0 and 4&1
+
+Bitfields for Windows95 file access/sharing modes:
+Bit(s)	Description	(Table 01782)
+ 2-0	file access mode
+	000 read-only
+	001 write-only
+	010 read-write
+	100 read-only, do not modify file's last-access time
+ 6-4	file sharing modes
+ 7	no-inherit flag
+ 8	do not buffer data (requires that all reads/writes be exact physical
+	  sectors)
+ 9	do not compress file even if volume normally compresses files
+ 10	use alias hint in DI as numeric tail for short-name alias
+ 12-11	unused??? (0)
+ 13	return error code instead of generating INT 24h if critical error
+	  while opening file
+ 14	commit file after every write operation
+SeeAlso: #01402
+

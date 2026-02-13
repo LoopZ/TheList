@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F110E
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - SET REMOTE FILE'S ATTRIBUTES
+	AX = 110Eh
+	SS = DOS DS
+	SDA first filename pointer -> fully-qualified name of file
+	SDA CDS pointer -> current directory structure for drive with file
+	STACK: WORD new file attributes
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	STACK unchanged
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: AX=110Dh,AX=110Fh,INT 21/AX=4301h,INT 21/AH=60h
+

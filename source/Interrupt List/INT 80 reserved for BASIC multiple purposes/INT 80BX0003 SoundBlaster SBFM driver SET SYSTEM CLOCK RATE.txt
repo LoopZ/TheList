@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0003
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SoundBlaster SBFM driver - SET SYSTEM CLOCK RATE
+	BX = 0003h
+	AX = clock rate divisor (1193180 / desired frequency in Hertz)
+	    FFFFh to restore to 18.2 Hz
+SeeAlso: BX=0000h"SBFM",BX=0001h"SBFM",BX=0004h"SBFM"
+

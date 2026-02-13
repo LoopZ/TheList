@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC00BX3F3F
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MediaVision MVSOUND.SYS - INSTALLATION CHECK
+	AX = BC00h
+	BX = 3F3Fh ('??')
+	CX = 0000h
+	DX = 0000h
+Return: if installed, BX XOR CX XOR DX = 4D56h ('MV')
+Program: MVSOUND.SYS is a driver for the MediaVision ProAudio Spectrum family
+	  of sound boards; its primary programmer was Bryan Crane
+SeeAlso: AX=BC01h"MVSOUND",AX=BC02h,AX=BC03h,AX=BC04h,AX=BC06h"MVSOUND"
+

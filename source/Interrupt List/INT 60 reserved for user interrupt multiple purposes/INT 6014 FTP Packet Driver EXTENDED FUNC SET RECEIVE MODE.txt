@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6014
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - EXTENDED FUNC - SET RECEIVE MODE
+	AH = 14h
+	BX = handle (optional for v1.10+)
+	CX = mode (see #03315)
+Return: CF set on error
+	   DH = error code (01h,08h) (see #03305)
+	CF clear if successful
+SeeAlso: AH=15h
+
+(Table 03315)
+Values for packet driver receive mode:
+ 01h	turn off receiver
+ 02h	receive only packets sent to this interface
+ 03h	mode 2 plus broadcast packets
+ 04h	mode 3 plus limited multicast packets
+ 05h	mode 3 plus all multicast packets
+ 06h	all packets
+ 07h	raw mode for serial line only (v1.10+)
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106501
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - SET BACKLIGHT TIMEOUT
+	AX = 6501h
+	BX = timeout in seconds (0-300)
+Return: nothing
+Desc:	set the idle time after which the backlight will turn off
+SeeAlso: AH=64h,AX=6500h
+

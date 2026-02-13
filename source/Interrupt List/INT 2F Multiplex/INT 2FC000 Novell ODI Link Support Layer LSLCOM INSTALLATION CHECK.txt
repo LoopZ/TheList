@@ -1,0 +1,506 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell ODI Link Support Layer (LSL.COM) - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    DX:BX -> FAR entry point (see #02986,#02987,#02988)
+	    ES:SI -> signature string "LINKSUP$"
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+Note:	on return, ES = DX for LSL v1.10 and v2.05; LSL makes use of this in
+	  its search for a previous installation
+SeeAlso: AX=5100h,AX=C000h"NESL"
+
+(Table 02986)
+Call LSL function "Request MLID Registration" with:
+	BX = 0001h
+	ES:SI -> registration??? record (see #02990)
+	DS:DI -> buffer for LSL information block (see #02991)
+Return: AX = completion code (0000h,8001h) (see #02989)
+	DS:DI buffer filled if successful
+	BX,CX corrupted
+Note:	see "Novell LAN Driver Developer's Guide, Volume III" for more details
+
+(Table 02987)
+Call LSL function "get support entry points" with:
+	BX = 0002h
+	ES:SI -> buffer for entry point record (see #02992)
+Return: ES:SI buffer filled
+
+(Table 02988)
+Call LSL function "Request MLID API entry point" with:
+	BX = 0003h
+Return: ES:SI -> MLID (Multiple Link Interface Driver) API entry point
+		(call with BX=function 00h-10h, not range-checked)
+Note:	LSL v1.10 and v2.05 execute BX=0003h for BX=0000h and any BX >= 0003h
+
+(Table 02989)
+Values for LSL completion code:
+ 0000h	successful
+ 8001h	out of resources
+ 8002h	bad parameter
+ 8003h	no more items
+ 8004h	item not present
+ 8005h	failed
+ 8006h	receive overflow
+ 8007h	canceled
+ 8008h	bad command
+ 8009h	duplicate entry
+ 800Ah	no such handler
+ 800Bh	no such driver
+
+Format of LSL registration record:
+Offset	Size	Description	(Table 02990)
+ 00h	DWORD	-> ??? FAR function (to be called with ES:SI -> ??? and
+		  returning AX = completion code)
+ 04h	DWORD	-> ???
+ 08h	DWORD	-> ??? data (at least 3Eh bytes)
+
+Format of LSL information block:
+Offset	Size	Description	(Table 02991)
+ 00h	DWORD	-> ??? entry point (called with BX=function 00h-11h)
+ 04h	WORD	???
+ 06h	WORD	???
+Note:	due to a fencepost error, LSL v2.05 (distributed with Novell DOS 7)
+	  will crash if the above entry point is called with BX=0012h
+
+Format of entry point record:
+Offset	Size	Description	(Table 02992)
+ 00h	DWORD	pointer to protocol support entry point in LSL (see #02993)
+ 04h	DWORD	pointer to general support entry point in LSL (see #02994)
+
+(Table 02993)
+Call protocol support entry point with:
+	BX = function number
+	    0000h ???
+	    0001h ???
+	    0002h ???
+	    0003h "ScheduleAESEvent"
+		ES:SI -> AES ECB to be scheduled (see #02997)
+		Return: ES,SI preserved
+	    0004h "CancelAESEvent"
+		ES:SI -> ECB to be cancelled (see #02997)
+		Return: ES,SI preserved
+	    0005h "GetIntervalMarker"
+		Return: DX:AX = current interval marker in milliseconds
+			all other registers preserved
+	    0006h "RegisterStack"
+		AX = logical board number
+		ES:SI -> bound stack info structure (see #03007)
+		Return: BX = assigned Stack ID if AX=0000h
+	    0007h "DeRegisterStack"
+		AX = protocol stack's assigned Stack ID
+	    0008h "RegisterDefaultStack"
+		AX = logical board number
+		ES:SI -> stack info structure (see #03008)
+	    0009h "DeRegisterDefaultStack"
+		AX = logical board number
+	    000Ah "RegisterPrescanStack"
+		AX = logical board number
+		ES:SI -> stack info structure (see #03008)
+	    000Bh "DeRegisterPrescanStack"
+		AX = logical board number
+	    000Ch "SendPacket"
+		ES:SI -> send ECB
+		Return: interrupts disabled
+	    000Dh ???
+	    000Eh ???
+	    000Fh ???
+	    0010h "GetStackIDFromName"
+		ES:SI -> counted NUL-terminated protocol name (max 15 chars)
+		Return: BX = Stack ID if AX=0000h
+	    0011h "GetPIDFromStackIDBoard"
+		AX = Stack ID for protocol
+		CX = logical board number
+		ES:SI -> 6-byte buffer for protocol ID
+	    0012h "GetMLIDControlEntry"
+		AX = logical board number
+		Return: ES:SI -> MLID control handler (see #02995) if AX=0000h
+	    0013h "GetProtocolControlEntry"
+		AX = Stack ID or
+			FFFEh Prescan stack
+			    CX = logical board number
+			FFFFh default protocol
+			    CX = logical board number
+		Return: ES:SI -> protocol stack control entry point if AX=0000h
+				  (see #02996)
+	    0014h "GetLSLStatistics"
+		Return: AX = 0000h (successful)
+			ZF set
+			ES:SI -> LSL statistics table (see #02999)
+	    0015h "BindStack"
+		AX = protocol stack's assigned Stack ID
+		CX = logical board number
+	    0016h "UnbindStack"
+		AX = protocol stack's assigned Stack ID
+		CX = logical board number
+	    0017h "AddProtocolID"
+		AX = frame type ID code
+		ES:SI -> 6-byte protocol ID
+		CX:DI -> counted NUL-terminated short protocol name (max 15 ch)
+	    0018h "RelinquishControl"
+		Return: after LSL performs any necessary background processing
+	    0019h "GetLSLConfiguration"
+		Return: AX = 0000h (successful)
+			ZF set
+			ES:SI -> LSL configuration table (see #02998)
+	    001Ah "GetTickMarker"
+		Return: AX = number of 55ms ticks since LSL loaded
+			BX destroyed
+Return: AX = completion code (see #02989)
+	ZF set if successful
+	SS:SP, DS, BP preserved; most other registers may be destroyed
+
+(Table 02994)
+Call general support entry point with:
+	BX = function number
+	    0000h "Allocate Memory" (obsolete)
+		 always returns AX=8008h (BAD_COMMAND)
+	    0001h "Free Memory" (obsolete)
+		 always returns AX=8008h (BAD_COMMAND)
+	    0002h "Realloc Memory" (obsolete)
+		 always returns AX=8008h (BAD_COMMAND)
+	    0003h "Memory Statistics" (obsolete)
+		 always returns AX=8008h (BAD_COMMAND)
+	    0004h "Add Memory To Pool" (obsolete)
+		 always returns AX=8008h (BAD_COMMAND)
+	    0005h "AddGeneralService"
+		ES:SI -> General Service Control Block (see #03009)
+	    0006h "RemoveGeneralService"
+		ES:SI -> General Service Control Block (see #03009)
+	    0007h "GetNETcfgPath"
+		Return: AX = 0000h (successful)
+			DS:DX -> ASCIZ pathname for NET.CFG
+	    0008h U ???	 (in LSL 1.10)
+		Return: AX = 0000h
+			ES:SI -> ??? (a 22-byte data area)
+	    000Ah "GetCriticalSectionStatus"
+		Return: BX = total outstanding calls to "StartCriticalSection"
+	    000Bh "ServiceEvents"
+		interrupts disabled
+		Return: interrupts disabled
+	    0010h "GetStackECB"
+		DS:DI -> Lookahead structure (see #03010)
+		interrupts disabled
+		Return: ES:SI -> ECB if successful (AX=0000h,ZF set)
+			interrupts disabled
+	    8000h-FFFFh reserved for user general service providers
+Return: AX = completion code (see #02989)
+	ZF set if successful
+	SS:SP, DS, BP preserved
+
+(Table 02995)
+Call MLID control handler with:
+	AX = logical board number
+	BX = function number
+	    0000h "GetMLIDConfiguration"
+		Return: ES:SI -> MLID's configuration table if successful
+				  (see #03002 for format)
+	    0001h "GetMLIDStatistics"
+		Return: ES:SI -> MLID's statistics table if successful
+				  (see #03002 for format)
+	    0002h "AddMulticastAddress"
+		ES:SI -> 6-byte multicast address to add
+	    0003h "DeleteMulticastAddress"
+		ES:SI -> 6-byte multicast address to delete
+	    0005h "MLIDShutdown"
+		CX = type
+		    0000h permanent (also deregisters from LSL)
+		    other temporary (shutdown hardware only)
+	    0006h "MLIDReset" reinitialize board / restart from temp shutdown
+	    0007h "Create Connection" (obsolete?)
+		???
+	    0008h "Delete Connection" (obsolete?)
+		???
+	    0009h "SetLookAheadSize"
+		CX = requested lookahead size (00h-80h)
+	    000Ah "PromiscuousChange"
+		CX = what to receive promiscuously
+		    bit 0: MAC frames
+		    bit 1: non-MAC frames
+	    000Bh "RegisterReceiveMonitor"
+		CX = subfunction
+		    0000h disable receive monitoring
+		    else  enable receive monitoring
+		ES:SI -> monitor receive routine
+		ES:DI -> monitor transmit routine
+	    000Ch "Driver Poll" (obsolete?)
+		???
+Return: AX = completion code (see #02989)
+	ZF set if successful
+Note:	not all boards/MLIDs support function 0010h; see bit 13 in the MLID
+	  mode flags field of the MLID's configuration table
+
+(Table 02996)
+Call protocol stack control entry point with:
+	BX = function number
+	    0000h "GetProtocolStackConfiguration"
+		Return: ES:SI -> protocol stack's configuration table
+				   (see #03001)
+	    0001h "GetProtocolStackStatistics"
+		Return: ES:SI -> protocol stack's statistics table (see #03000)
+	    0002h "BindToMLID"
+		CX = board number to bind to
+		ES:SI -> implementation-dependant parameter string
+	    0003h "UnBindFromMLID"
+		CX = board number from which protocol should unbind
+		ES:SI -> optional implementation-dependant parameter string
+	    0004h "MLIDDeRegistered"
+		CX = board number that has de-registered from LSL
+Return: AX = status
+	    0000h successful
+	    else implementation-dependant error codes
+	ZF set if successful
+	SS:SP, DS, BP preserved
+
+Format of AES ECB:
+Offset	Size	Description	(Table 02997)
+ 00h	DWORD	"AESLink" pointer used by LSL for list management
+ 04h	DWORD	number of milliseconds to wait
+ 08h	DWORD	"AESStatus" (is set to 00000000h when AES ESR is invoked)
+ 0Ch	DWORD	-> function to be invoked when time expires
+		ES:SI will point to this structure on entry,
+		DS, BP, and SS:SP must be preserved.
+SeeAlso: #03011
+
+Format of LSL Configuration Table:
+Offset	Size	Description	(Table 02998)
+ 00h	BYTE	major version of configuration table
+ 01h	BYTE	minor version of configuration table (decimal, 0-99)
+ 02h  8 BYTEs	reserved
+ 0Ah	BYTE	LSL major version (decimal)
+ 0Bh	BYTE	LSL minor version (decimal, 0-99)
+---LSL 1.0x ---
+ 0Ch 14 BYTEs	reserved
+---LSL 1.10+ ---
+ 0Ch	WORD	maximum number of boards which LSL can handle
+ 0Eh	WORD	maximum number of protocol IDs which LSL can handle
+ 10h 12 BYTEs	reserved
+
+Format of LSL Statistics Table:
+Offset	Size	Description	(Table 02999)
+ 00h	BYTE	major version of statistics table format
+ 01h	BYTE	minor version of statistics table format (decimal, 0-99)
+ 02h	WORD	"GenericCounters" number of counters in static portion of
+		  table
+ 04h	DWORD	"ValidCountersMask" bit mask indicating which generic
+		  counters are actually used.  Bit 31 = TotalTxPackets, bit 30
+		  is the next field, etc.
+ 08h	DWORD	"TotalTxPackets" total SendPacket requests made
+ 0Ch	DWORD	reserved
+ 10h	DWORD	reserved
+ 14h	DWORD	"AESEventsCount" number of completed AES events
+ 18h	DWORD	"PostponedEvents" number of events postponed due to critical
+		  sections inside the MLIDs
+ 1Ch	DWORD	"CancelAESFailures" number of times CancelAESEvent failed
+ 20h	DWORD	reserved
+ 24h	DWORD	reserved
+ 28h	DWORD	"TotalRxPackets" total number of GetStackECB requests
+ 2Ch	DWORD	"UnclaimedPackets" total number of packets not consumed by a
+		  protocol stack
+ 30h	WORD	"NumberCustom" number of custom variables that follow
+ 32h  N DWORDs	custom counters
+      N DWORDs	-> CustomCounterStrN (one per custom counter)
+	var	length-prepended and NULL terminated string for Counter 0
+	...
+	var	length-prepended and NULL terminated string for Counter N-1
+SeeAlso: #03000,#03006
+
+Format of Protocol Stack Statistics Table:
+Offset	Size	Description	(Table 03000)
+ 00h	BYTE	statistics table major version
+ 01h	BYTE	statistics table minor version (decimal, 0-99)
+ 02h	WORD	number of generic counters following
+ 04h	DWORD	"ValidCountersMask" (bitmask, bit 31 is TotalTxPackets)
+ 08h	DWORD	TotalTxPackets
+ 0Ch	DWORD	TotalRxPackets
+ 10h	DWORD	IgnoredRxPackets
+ 14h	WORD	number of custom counters
+ 16h  N DWORDs	custom counters
+      N DWORDs	-> CustomCounterStrN (one per custom counter)
+	var	length-prepended and NULL terminated string for Counter 0
+	...
+	var	length-prepended and NULL terminated string for Counter N-1
+SeeAlso: #02999,#03006
+
+Format of Protocol Stack Configuration Table:
+Offset	Size	Description	(Table 03001)
+ 00h	BYTE	configuration table major version
+ 01h	BYTE	configuration table minor version (decimal, 0-99)
+ 02h	DWORD	-> counted NUL-terminated long descriptive name for protocol
+ 06h	DWORD	-> counted NUL-terminated short name for protocol (15 chars)
+ 0Ah	BYTE	protocol stack major version
+ 0Bh	BYTE	protocol stack minor version (decimal, 0-99)
+ 0Ch 16 BYTEs	reserved for future use
+
+Format of MLID Configuration Table:
+Offset	Size	Description	(Table 03002)
+ 00h 26 BYTEs	signature 'HardwareDriverMLID	     ' (8 spaces on end)
+ 1Ah	BYTE	configuration table major version
+ 1Bh	BYTE	configuration table minor version (decimal, 0-99)
+ 1Ch  6 BYTEs	node address
+ 22h	WORD	MLID mode flags (see #03003)
+ 24h	WORD	board number
+ 26h	WORD	board instance (if more than one of same board installed)
+ 28h	WORD	maximum packet size
+ 2Ah	WORD	BestDataSize
+ 2Ch	WORD	WorstDataSize
+ 2Eh	DWORD	-> counted NUL-terminated long name for NIC
+ 32h	DWORD	-> counted NUL-terminated short name for NIC (8 chars max)
+ 36h	DWORD	-> counted NUL-terminated Frame and Media type
+ 3Ah	WORD	reserved (0000h)
+ 3Ch	WORD	frame type ID
+ 3Eh	WORD	TransportTime (milliseconds)
+ 40h	DWORD	-> SourceRouteHandler for TokenRing. (Used by ROUTE.COM)
+ 44h	WORD	lookahead size
+ 46h	WORD	line speed (Mbps if high bit clear, else Kbps)
+ 48h	WORD	QueueDepth
+ 4Ah  6 BYTEs	reserved (0)
+ 50h	BYTE	driver major version
+ 51h	BYTE	driver minor version (decimal, 0-99)
+ 52h	WORD	bus/multicast flags (see #03004)
+ 54h	WORD	send retries
+ 56h	DWORD	ConfigTableLink
+ 5Ah	WORD	MLID sharing flags (see #03005)
+ 5Ch	WORD	slot number
+ 5Eh	WORD	I/O address 1
+ 60h	WORD	I/O range 1
+ 62h	WORD	I/O address 2
+ 64h	WORD	I/O range 2
+ 66h	DWORD	memory address 1
+ 6Ah	WORD	memory size 1
+ 6Ch	DWORD	memory address 2
+ 70h	WORD	memory size 2
+ 72h	BYTE	interrupt line 1
+ 73h	BYTE	interrupt line 2
+ 74h	BYTE	DMA line 1
+ 75h	BYTE	DMA line 2
+
+Bitfields for MLID mode flags:
+Bit(s)	Description	(Table 03003)
+ 15	MLID supports Octet Reversal
+ 14	node address is non-canonical
+ 13	promiscuous mode is supported
+ 12-8	reserved
+ 7	LDataSize field in LookAhead structure supported
+ 6	raw send supported
+ 5	MLID needs to be polled by LSL
+ 4	reserved (0)
+ 3	multicasting is supported
+ 2	not currently used by DOS ODI, set to 0.
+ 1	network card uses DMA.
+ 0	RealDriverBit, always set to 1.
+
+Bitfields for bus/multicast flags:
+Bit(s)	Description	(Table 03004)
+ 10-9	specialized multicast support
+	00 = Group addressing is default for medium
+	01 = Invalid
+	10 = Filter group address in MLID.
+	11 = Adapter filters group address.
+ 2	supports Micro Channel cards
+ 1	supports ISA cards
+ 0	supports EISA cards
+
+Bitfields for MLID sharing flags:
+Bit(s)	Description	(Table 03005)
+ 8	NIC can share DMA2
+ 7	NIC can share DMA1
+ 6	NIC can share IRQ2
+ 5	NIC can share IRQ1
+ 4	NIC can share Memory2
+ 3	NIC can share Memory1
+ 2	NIC can share IO2
+ 1	NIC can share IO1
+ 0	MLID is currently shut down
+
+Format of MLID Statistics Table:
+Offset	Size	Description	(Table 03006)
+ 00h	BYTE	driver statistics table major version
+ 01h	BYTE	driver statistics table minor version (decimal, 0-99)
+ 02h	WORD	number of generic counters (typically 13)
+ 04h	DWORD	"ValidCountersMask" (bit mask, bit 31 is TotalTxCount)
+ 08h	DWORD	TotalTxCount
+ 0Ch	DWORD	TotalRxCount
+ 10h	DWORD	NoECBAvailableCount
+ 14h	DWORD	TxTooBigCount
+ 18h	DWORD	TxTooSmallCount
+ 1Ch	DWORD	RxOverflowCount
+ 20h	DWORD	RxTooBigCount
+ 24h	DWORD	RxTooSmallCount
+ 28h	DWORD	TxMiscCount
+ 2Ch	DWORD	RxMiscCount
+ 30h	DWORD	TxRetryCount
+ 34h	DWORD	RxChecksumErrorCount
+ 38h	DWORD	RxMismatchCount
+ 3Ch	WORD	number of custom counters
+ 3Eh  N DWORDs	custom counters
+      N DWORDs	-> CustomCounterStrN (one per custom counter)
+	var	length-prepended and NULL terminated string for Counter 0
+	...
+	var	length-prepended and NULL terminated string for Counter N-1
+SeeAlso: #02999,#03000
+
+Format of bound stack info structure:
+Offset	Size	Description	(Table 03007)
+ 00h	DWORD	-> protocol stack's short name (counted, NUL-terminated)
+ 04h	DWORD	-> receive handler
+ 08h	DWORD	-> control handler
+
+Format of stack info structure:
+Offset	Size	Description	(Table 03008)
+ 00h	DWORD	-> receive handler
+ 04h	DWORD	-> control handler
+
+Format of General Service Control Block:
+Offset	Size	Description	(Table 03009)
+ 00h	DWORD	-> next GSCB (maintained internally by LSL)
+ 04h	DWORD	-> entry point for general service handler
+ 08h	WORD	command code for this general service (8000h-FFFFh)
+Note:	the control block must not be altered or deallocated until the general
+	  service is removed
+
+Format of Lookahead structure:
+Offset	Size	Description	(Table 03010)
+ 00h	DWORD	-> Media header
+ 04h	DWORD	-> lookahead buffer
+ 08h	WORD	length of lookahead buffer
+ 0Ah  6 BYTEs	protocol ID
+ 10h	WORD	logical board number
+ 12h	WORD	lookahead size
+
+Format of ODI ECB:
+Offset	Size	Description	(Table 03011)
+ 00h	DWORD	link to next ECB
+ 04h	DWORD	link to previous ECB
+ 08h	WORD	general status
+		0000h received successfully
+		8006h packet overflow
+		8007h reception aborted (data not valid)
+ 0Ah	DWORD	-> event service routine or RETF (never 0000h:0000h)(see #03012)
+ 0Eh	WORD	protocol stack identifier
+ 10h  6 BYTEs	protocol ID (sending only)
+ 16h	WORD	MLID board number (sending only)
+ 18h  6 BYTEs	MAC destination address
+ 1Eh  4 BYTEs	driver workspace
+ 22h  8 BYTEs	protocol workspace
+ 2Ah	WORD	total length of sent buffer
+ 2Ch	WORD	fragment count
+ 2Eh  2 WORDs	segment,offset of first fragment buffer
+ 32h	WORD	length of first fragment buffer
+	...
+SeeAlso: #02997
+
+(Table 03012)
+Values event service routine is called with:
+	ES:SI -> associated ODI ECB (see #03011)
+	interrupts disabled
+Return: DS,BP,SS,SP preserved
+	interrupt disabled
+Notes:	the service routine may invoke any IPX/ODI function except CloseSocket
+	it is safe to send a packet and wait for completion if enough stack
+	  space is available
+

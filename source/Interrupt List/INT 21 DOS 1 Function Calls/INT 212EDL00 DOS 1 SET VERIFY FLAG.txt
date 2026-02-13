@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212E--DL00
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - SET VERIFY FLAG
+	AH = 2Eh
+	DL = 00h (DOS 1.x/2.x only)
+	AL = new state of verify flag
+	    00h off
+	    01h on
+Notes:	default state at system boot is OFF
+	when ON, all disk writes are verified provided the device driver
+	  supports read-after-write verification
+SeeAlso: AH=54h
+

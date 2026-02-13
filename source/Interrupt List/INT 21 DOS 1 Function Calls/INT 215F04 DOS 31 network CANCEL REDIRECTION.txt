@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F04
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ network - CANCEL REDIRECTION
+	AX = 5F04h
+	DS:SI -> ASCIZ local device name or path
+	CX = 4E57h ("NW") for NetWare 4.0 requester
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h,03h,05h,08h,0Fh,12h) (see #01680 at AH=59h)
+Notes:	the DS:SI string must be either a local device name, a drive letter
+	  followed by a colon, or a network directory beginning with two
+	  backslashes
+	the DOS kernel calls INT 2F/AX=111Eh with AX on top of the stack
+	also supported by Banyan VINES, LANtastic, and 10NET
+	for NetWare, if only a server name is specified (i.e. "\\SERVER"),
+	  the connection to that server will be closed
+SeeAlso: AX=5F03h,INT 2F/AX=111Eh,INT 60/AX=0003h
+

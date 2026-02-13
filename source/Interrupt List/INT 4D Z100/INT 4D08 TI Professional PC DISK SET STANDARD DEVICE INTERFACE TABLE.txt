@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4D08
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4D - TI Professional PC - DISK - SET STANDARD DEVICE INTERFACE TABLE
+	AH = 08h
+	DL = drive number (00h-03h)
+	AL = drive type
+	    00h single-sided 48 tpi (40-track, 8 sectors, 512 bytes/sector)
+	    01h double-sided 48 tpi (40-track, 8 sectors, 512 bytes/sector)
+	    02h single-sided 96 tpi (80-track, 8 sectors, 512 bytes/sector)
+	    03h double-sided 96 tpi (80-track, 8 sectors, 512 bytes/sector)
+Return: nothing???
+SeeAlso: AH=00h,AH=09h
+

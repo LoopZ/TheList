@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101103
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - TEXT-MODE CHARGEN - SET BLOCK SPECIFIER (PS,EGA,VGA)
+	AX = 1103h
+	BL = block specifier (see #00020)
+Return: nothing
+Notes:	(see also AX=1110h)
+	This function allows dual character sets to appear on screen
+	  simultaneously
+SeeAlso: AX=1100h,AX=1101h,AX=1102h,AX=1104h,AH=1Bh,AX=CD10h
+SeeAlso: MEM 0040h:0084h
+Index:	text mode;font|text mode;screen rows
+
+Bitfields for block specifier:
+Bit(s)	Description	(Table 00020)
+---EGA/MCGA---
+ 0,1	block selected by characters with attribute bit 3 clear
+ 2,3	block selected by characters with attribute bit 3 set
+---VGA---
+ 0,1,4	block selected by characters with attribute bit 3 clear
+ 2,3,5	block selected by characters with attribute bit 3 set
+

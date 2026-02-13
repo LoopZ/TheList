@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F1503
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v3.3+ - DELETE SHARED DEVICE ENTRY
+	AX = 1503h
+	BX = zero-based index
+	DS:SI -> node ID, 12 bytes blank-padded
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03740)
+SeeAlso: AX=1501h,AX=1502h,AX=9503h
+

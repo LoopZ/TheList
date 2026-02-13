@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0401
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SBSIM - "SETVOLUME" - SET SOURCE'S VOLUME
+	BX = 0401h
+	AX = sound source (see #03974)
+	DX = new volume
+Return: AX = result (0000h = success) (see also INT 80/BL=00h)
+SeeAlso: BX=0400h"SBSIM"
+

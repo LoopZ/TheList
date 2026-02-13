@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F222SF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TTS SET CONTROL FLAGS
+	AX = F222h subfn 0Ah
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02301)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=C702h,AX=F222h/SF=08h,AX=F222h/SF=09h
+
+Format of NetWare "TTS Set Transaction Bits" request packet:
+Offset	Size	Description	(Table 02301)
+ 00h	BYTE	0Ah (subfunction "TTS Set Transaction Bits")
+ 01h	BYTE	TTS control flags
+		bit 0: forced (automatic) record locking enabled
+		bits 1-7: reserved
+

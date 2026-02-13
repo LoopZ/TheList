@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--11
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - dLite 1.0+ - CHECK FOR dPressed FILE AND GET ORIGINAL SIZE
+	AL = 11h
+	AH = AMIS multiplex number for dLite
+	BX = file handle
+Return: CF clear if successful
+	    DX:AX = size of uncompressed file
+	CF set on error (not dPressed file)
+SeeAlso: AL=10h"dLite",AL=12h"dLite"
+

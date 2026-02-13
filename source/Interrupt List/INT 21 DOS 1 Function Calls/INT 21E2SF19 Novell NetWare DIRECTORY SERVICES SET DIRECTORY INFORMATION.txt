@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF19
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - SET DIRECTORY INFORMATION
+	AH = E2h subfn 19h
+	DS:SI -> request buffer (see #01881)
+	ES:DI -> reply buffer (see #01882)
+Return: AL = status (00h,9Bh,9Ch) (see #01839)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E2h/SF=02h,AH=E2h/SF=0Fh,AX=F216h/SF=19h
+
+Format of NetWare "Set Directory Information" request buffer:
+Offset	Size	Description	(Table 01881)
+ 00h	WORD	length of following data (max 10Bh)
+ 02h	BYTE	19h (subfunction "Set Directory Information")
+ 03h	BYTE	directory handle
+ 04h	DWORD	(big-endian) date and time of creation
+ 08h	DWORD	(big-endian) object ID of owner
+ 0Ch	BYTE	maximum directory rights (see #01849)
+ 0Dh	BYTE	length of directory path
+ 0Eh  N BYTEs	directory path
+SeeAlso: #01882
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01882)
+ 00h	WORD	(call) 0000h (no results returned)
+SeeAlso: #01881
+

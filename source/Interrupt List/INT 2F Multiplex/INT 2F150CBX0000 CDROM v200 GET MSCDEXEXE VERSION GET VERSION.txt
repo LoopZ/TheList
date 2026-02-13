@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F150CBX0000
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM v2.00+ - GET MSCDEX.EXE VERSION (GET VERSION)
+	AX = 150Ch
+	BX = 0000h
+Return: BH = major version
+	BL = minor version
+Notes:	MSCDEX.EXE versions prior to 2.00 leave BX unchanged, thus BX should
+	  be 0000h on entry
+	Corel's CORELCDX.COM v1.01d returns 2.20, v1.12a returns 2.21
+	Meridian Data's CDNETEX.EXE returns its own version number, e.g. 4.70
+	J.M.A. Hall's CDEMU2.COM returns 2.10 (it is an MSCDEX emulator for
+	  networked CD-ROM drives)
+	Windows95 returns v2.95
+	Novell DOS 7 NWCDEX.EXE returns the same version number reported in
+	  its startup message
+SeeAlso: AX=1500h"CD-ROM",AX=15FFh"CORELCDX"
+

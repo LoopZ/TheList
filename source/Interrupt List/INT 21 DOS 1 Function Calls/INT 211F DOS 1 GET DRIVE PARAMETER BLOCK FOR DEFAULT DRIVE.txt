@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 211F
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - GET DRIVE PARAMETER BLOCK FOR DEFAULT DRIVE
+	AH = 1Fh
+Return: AL = status
+	    00h successful
+		DS:BX -> Drive Parameter Block (DPB) (see #01357 for DOS 1.x,
+			AH=32h for DOS 2+)
+	    FFh invalid drive
+Note:	this call was undocumented prior to the release of DOS 5.0; however,
+	  only the DOS 4.0+ version of the DPB has been documented
+SeeAlso: AH=32h,AX=7302h
+
+Format of DOS 1.1 and MS-DOS 1.25 drive parameter block:
+Offset	Size	Description	(Table 01357)
+ 00h	BYTE	sequential device ID
+ 01h	BYTE	logical drive number (0=A:)
+ 02h	WORD	bytes per sector
+ 04h	BYTE	highest sector number within a cluster
+ 05h	BYTE	shift count to convert clusters into sectors
+ 06h	WORD	starting sector number of first FAT
+ 08h	BYTE	number of copies of FAT
+ 09h	WORD	number of directory entries
+ 0Bh	WORD	number of first data sector
+ 0Dh	WORD	highest cluster number (number of data clusters + 1)
+ 0Fh	BYTE	sectors per FAT
+ 10h	WORD	starting sector of directory
+ 12h	WORD	address of allocation table
+Note:	the DOS 1.0 table is the same except that the first and last fields
+	  are missing; see INT 21/AH=32h for the DOS 2+ version
+SeeAlso: #01395,#04039
+

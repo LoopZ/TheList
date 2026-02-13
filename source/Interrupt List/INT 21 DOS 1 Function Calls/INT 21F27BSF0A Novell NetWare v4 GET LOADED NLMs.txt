@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET LOADED NLMs
+	AX = F27Bh subfn 0Ah
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02502)
+	ES:DI -> reply buffer (see #02503)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Get NLMs Loaded" request buffer:
+Offset	Size	Description	(Table 02502)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	0Ah (subfunction "Get NLMs Loaded")
+ 03h	DWORD	first NLM number to report
+SeeAlso: #02503
+
+Format of NetWare "Get NLMs Loaded" reply buffer:
+Offset	Size	Description	(Table 02503)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	DWORD	total number of NLMs
+ 0Ch	DWORD	number of NLM numbers following (max 50)
+ 10h 50 DWORDs	NLM numbers
+SeeAlso: #02502
+

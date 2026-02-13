@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0500
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - OPEN FILE
+	DI = 0500h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file state record (see #03287)
+		DWORD	pointer to filename
+		WORD	length of filename
+		WORD	???
+		WORD	suppress buffering if nonzero
+Return: AX = status
+	STACK unchanged
+SeeAlso: INT 60/DI=0501h,INT 60/DI=0502h,INT 60/DI=0508h
+
+Format of HP 95LX file state record:
+Offset	Size	Description	(Table 03287)
+ 00h	WORD	DOS file handle
+ 02h	WORD	state flags (see #03288)
+ 04h	DWORD	current DOS physical file offset (FFFFFFFFh if unknown)
+ 08h	DWORD	DOS file offset of start of buffer
+ 0Ch	DWORD	effective file offset as seen by caller
+ 10h	WORD	number of bytes in file buffer
+---buffered I/O only---
+ 12h 512 BYTEs	file buffer
+
+Bitfields for HP 95LX file state flags:
+Bit(s)	Description	(Table 03288)
+ 0	buffer contents valid
+ 1	buffer is dirty and must be written
+ 2	unbuffered I/O
+ 3	file is a character device
+SeeAlso: #03287
+

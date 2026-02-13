@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B8105
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification - SCATTER/GATHER LOCK REGION
+	AX = 8105h
+	DX = flags (see #03224)
+	ES:DI -> Extended DMA descriptor structure (see #03222,#03223)
+		  region size, linear segment, linear offset, and number avail
+		  fields set
+Return: CF clear if successful
+	    EDDS number used field set
+	    if DX bit 6 set, lower 12 bits of BX = offset in first page
+	CF set on error
+	    AL = error code (see #03218)
+	    EDDS region size field filled with max length in bytes that can be
+		  locked and described in the EDDS table
+BUG:	Windows 3.0 in enhanced mode may return zero instead of the physical
+	  page address for pages which were originally not present
+SeeAlso: AX=8103h,AX=8106h
+
+Bitfields for VDS flags:
+Bit(s)	Description	(Table 03224)
+ 0-5	reserved (zero)
+ 6	EDDS should be returned with page table entries
+ 7	only present pages should be locked (not-present pages receive entry
+	  of 0000h)
+ 8-15	reserved (zero)
+

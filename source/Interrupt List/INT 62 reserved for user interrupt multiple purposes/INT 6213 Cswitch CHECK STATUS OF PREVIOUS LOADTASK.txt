@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6213
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - CHECK STATUS OF PREVIOUS LOAD_TASK
+	AH = 13h
+Return: AX = result
+	    FFFCh no Memory Control Blocks available
+	    FFFDh no TCBs available
+	    FFFEh insufficient memory
+	    FFFFh cannot open file
+	    0000h load in progress (not done yet)
+	    else  tcb indentifier
+SeeAlso: AH=0Fh
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: i 	system info/monitoring
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PMEASURE.EXE - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if multiplex number in use
+	    ES:DI -> ASCIZ signature "PMEASURE.EXE" if PMEASURE.EXE installed
+Program: PMEASURE.EXE is a TSR for monitoring system hardware activity which
+	  is part of the Personal Measure system activity monitor from Spirit
+	  of Performance, Inc.
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+Note:	If a Personal Measure Hook Module, such as ASPIHOOK.SYS, is already
+	  installed, PMEASURE.EXE uses the next highest free multiplex number.
+SeeAlso: AX=C000h"ASPIHOOK",AX=C000h"PERSONAL MEASURE"
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F636FBX6D70
+  Category: A 	applications
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - Clara Empricost - TSR Version - UNINSTALL
+	AX = 636Fh ('co')
+	BX = 6D70h ('mp')
+	CX = 6F73h ('os')
+Return: nothing -- call installation check to determine whether successful
+Program: Condition List Action Rejection Algorithm for the Evaluation
+	  of Music at Pseudo-Random Idea COnstruction STage
+	  (CLARA EMPRICOST) is an experimental program by Silas Brown
+Notes:	 Saves any unfinished task and prevents processing of
+	   new tasks, even if can't uninstall
+	 If INT 28h or INT 6Fh have been chained since installation,
+	   returns without changing interrupts or freeing memory
+	 do not call while DOS is active (i.e. InDOS flag is nonzero or INT 28
+	   is active and InDOS > 1)
+SeeAlso: AX=636Fh/BX=6D70h"INSTALLATION CHECK"
+

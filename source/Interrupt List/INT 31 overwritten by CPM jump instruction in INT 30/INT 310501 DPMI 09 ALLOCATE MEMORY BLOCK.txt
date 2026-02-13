@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310501
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - ALLOCATE MEMORY BLOCK
+	AX = 0501h
+	BX:CX = size in bytes
+Return: CF clear if successful
+	    BX:CX = linear address of block
+	    SI:DI = memory block handle for resizing and freeing block
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8012h-8014h,8016h,8021h)(see #03143)
+Notes:	no selectors are allocated
+	the memory block is allocated unlocked (can be locked with AX=0600h)
+	allocations are often page granular (see AX=0604h)
+	under MS Windows 3.10 Enhanced mode with paging enabled, it is possible
+	  for this function to fail even if AX=0500h indicates that enough
+	  memory is available
+SeeAlso: AX=0000h,AX=0100h,AX=0500h,AX=0502h,AX=0503h,AX=0504h,AX=0D00h
+SeeAlso: INT 2F/AX=FB42h/BX=0002h
+

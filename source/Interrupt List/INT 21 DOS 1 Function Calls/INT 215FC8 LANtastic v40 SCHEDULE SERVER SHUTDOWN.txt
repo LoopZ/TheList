@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FC8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v4.0+ - SCHEDULE SERVER SHUTDOWN
+	AX = 5FC8h
+	ES:DI -> ASCIZ server name in form "\\machine"
+	DS:SI -> ASCIZ reason string (80 characters)
+	CX = number of minutes until shutdown (0 = immediate)
+	DX = option flags (see #01744)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5FC9h
+
+Bitfields for LANtastic option flags:
+Bit(s)	Description	(Table 01744)
+ 0	auto reboot
+ 1	do not notify users
+ 2	halt after shutdown
+ 3	shutdown due to power fail (used by UPS)
+ 4-7	reserved
+ 8-14	user definable
+ 15	reserved
+

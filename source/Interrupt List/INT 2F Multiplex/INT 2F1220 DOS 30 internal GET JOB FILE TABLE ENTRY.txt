@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1220
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - GET JOB FILE TABLE ENTRY
+	AX = 1220h
+	BX = file handle
+Return: CF set on error
+	    AL = 6 (invalid file handle)
+	CF clear if successful
+	    ES:DI -> JFT entry for file handle in current process
+Notes:	the byte pointed at by ES:DI contains the number of the SFT for the
+	  file handle, or FFh if the handle is not open
+	supported by DR DOS 5.0+
+SeeAlso: AX=1216h,AX=1229h
+

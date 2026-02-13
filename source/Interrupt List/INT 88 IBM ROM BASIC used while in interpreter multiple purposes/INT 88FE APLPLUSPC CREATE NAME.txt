@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 88--FE
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 88 - APL*PLUS/PC - CREATE NAME
+	AL = FEh
+	ES:SI -> name
+	CX = length of name
+Return: BX = STPTR of name
+	DX = interpreter's data segment
+SeeAlso: AL=F9h,AL=FFh,INT C8"APL"
+

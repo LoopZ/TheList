@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1FFD--BL03
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - SET AUTO WAKE UP TIME
+       AH = FDh
+       BL = 03h
+       CH = hour by BCD
+       CL = min by BCD
+       DH = sec by BCD
+Return: CF set on error (incorrect Time format or Auto Wake up is not enable)
+SeeAlso: AH=FDh/BL=01h,AH=FDh/BL=02h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8003
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - QPC Software PKTINT.COM - GET ENTRY POINT
+	AH = 03h
+Return: CX:DX -> receive call address
+Note:	the returned address can be used in the packet driver calls since it
+	  will be a valid address in all DOS boxes
+SeeAlso: AH=06h
+

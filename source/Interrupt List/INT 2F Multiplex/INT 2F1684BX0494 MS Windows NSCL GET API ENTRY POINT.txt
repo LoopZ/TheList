@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0494
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - NSCL - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0494h (virtual device ID for NSCL device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02692,#02693)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02692)
+Call Windows95 NSCL.VXD virtual-86 entry point with:
+	AL = function number
+	    00h
+	    01h
+	    02h
+	    03h
+	    04h
+	    05h
+	    06h
+	    07h
+	    08h
+	    09h
+	    0Ah
+	    else
+		Return: AX = FFFFh
+SeeAlso: #02691,#02692
+
+(Table 02693)
+Call Windows95 NSCL.VXD protected-mode entry point with:
+	AL = function number
+	    00h
+	    01h
+	    02h
+	    03h
+	    else
+		Return: AX = FFFFh
+SeeAlso: #02692
+

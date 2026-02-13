@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - ENTER SPECIFY MODE
+	AX = 0004h
+Range:	unknown
+Notes:	Specify Mode is enabled by hot key (seeAlso below), and allows
+	  panning and zooming via the numeric keypad.
+	INT 61 is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0000h"OPTIMA",AX=0007h"OPTIMA",INT 16/AH=FFh"OPTIMA"
+

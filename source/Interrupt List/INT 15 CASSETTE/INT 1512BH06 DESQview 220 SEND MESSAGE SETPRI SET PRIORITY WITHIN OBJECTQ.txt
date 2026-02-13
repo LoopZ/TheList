@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH06
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview 2.20+ - SEND MESSAGE - "SETPRI" - SET PRIORITY WITHIN OBJECTQ
+	AH = 12h
+	BH = 06h
+	BL = object
+	    00h object handle in DWORD on top of stack
+		mailbox, keyboard, pointer, or timer
+		(DV 2.50+) window
+	    01h (DV 2.50+) current task's window
+	    04h given task's keyboard (task's handle on top of stack)
+	    05h current task's default keyboard
+	STACK: DWORD new priority of object in task's OBJECTQ
+			(new priority of task if window handle)
+Return: STACK popped
+Notes:	initially all objects have the same default value.  Should only make
+	  relative adjustments to this default value.
+	when changing priorities, all objects already on the objectq are
+	  reordered
+	for window handles, only the non-blocked task(s) with the highest
+	  priority receive CPU time under DESQview 2.50-2.52; the default
+	  priority is 0Ah
+SeeAlso: AH=12h/BH=07h,AH=12h/BH=87h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 186905
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - PLAY MUSIC
+	AX = 6905h
+	BL = voice number
+	BH = sample type (0 = 8-bit, 1 = 16-bit)
+	CL = looping type (0 = none, 1 = forward, 2 = back and forth)
+	CH:DI = 20-bit starting address for voice data
+	DL:SI = 20-bit address for loop start
+	DH:BP = 20-bit address for loop end
+SeeAlso: AX=6903h,AX=6906h,AX=690Bh
+

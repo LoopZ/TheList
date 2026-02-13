@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH02
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - REAL MODE CONNECT
+	AX = 53B0h
+	BH = 02h
+	CX = 6941h ('iA')
+Return: CF clear if successful
+	    AX = SMBus Real mode code segment
+	    BX = offset of entry point into SMBus BIOS Interface
+	    CX = SMBus Real mode data segment
+	CF set if error
+	    AH = error code (01h,02h,0Ah,86h) (see #00484)
+	    AL = sub-error code if error code is 02h (see #00485)
+Desc:	connect to SMBus interface; once connected, all SMBus calls are made
+	  to the supplied entry point instead of INT 15 (with registers
+	  identical to those described here for INT 15)
+Notes:	Support for this function is optional
+	this function is only supported in INT 15 mode when implemented
+SeeAlso: AX=53B0h/BH=01h,AX=53B0h/BH=03h,AX=53B0h/BH=04h,AX=53B0h/BH=05h
+

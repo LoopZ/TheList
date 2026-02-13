@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF--DL02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - CANCEL LPT CAPTURE
+	AH = DFh
+	DL = 02h
+Return: AL = status
+	    00h successful
+Desc:	this function ends the capture of the default LPT, removes the job from
+	  the print queue, and deletes the capture file unless it is a
+	  permanent capture file
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX; under NTNX, it sends a print break (see INT 17/AH=84h)
+	after this call, the default LPT defaults to local printing
+SeeAlso: AH=DFh/DL=00h,AH=DFh/DL=06h
+

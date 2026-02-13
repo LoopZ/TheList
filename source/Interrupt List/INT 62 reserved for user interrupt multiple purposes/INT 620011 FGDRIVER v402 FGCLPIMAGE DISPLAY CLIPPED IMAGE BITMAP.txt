@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620011
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_CLPIMAGE" - DISPLAY CLIPPED IMAGE (BITMAP)
+	AX = 0011h
+	ES:BX -> mode-specific bitmap
+	CX = width of bit map in bytes
+	DX = height of bit map in pixel rows
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes
+	The image is drawn with its lower left corner at the current graphics
+	  cursor position
+	The current clipping region is used, extended to a byte boundary
+SeeAlso: AX=0010h,AX=0024h,AX=0036h,AX=0044h,AX=00A0h,AX=00A9h,AX=00B9h
+

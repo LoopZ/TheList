@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5402
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - POWER.EXE - GET/SET IDLE DETECTION STRATEGY
+	AX = 5402h
+	BH = subfunction
+	    00h get
+	    other set
+		BL = detection strategy (00h-0Fh or FFh)
+Return: BX = current/new detection strategy
+SeeAlso: AH=53h,AX=5400h,AX=5401h,AX=5481h,AX=5482h
+

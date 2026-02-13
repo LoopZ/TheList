@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F222SF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TTS SET APPLICATION THRESHOLDS
+	AX = F222h subfn 06h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02295)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=C706h,AX=F222h/SF=05h,AX=F222h/SF=08h
+
+Format of NetWare "TTS Set Application Thresholds" request packet:
+Offset	Size	Description	(Table 02295)
+ 00h	BYTE	06h (subfunction "TTS Set Application Thresholds")
+ 01h	BYTE	logical lock threshold before implicit transaction started
+ 02h	BYTE	physical lock threshold before implicit transaction started
+SeeAlso: #02294,#02298
+

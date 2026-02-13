@@ -1,0 +1,72 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F9501
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - GET SHARED DEVICE ENTRY
+	AX = 9501h
+	BX = zero-based index
+	DS:SI -> server's node ID
+	ES:DI -> buffer for shared device structure (see #03783)
+Return: CF clear if successful
+	CF set on error
+	    AX = status (see #03740)
+SeeAlso: AX=1501h,AX=9502h,AX=9503h,AX=9504h
+
+Format of 10NET shared device structure:
+Offset	Size	Description	(Table 03783)
+ 00h  8 BYTEs	alias
+ 08h	BYTE	type (02h modem, 03h print queue, 04h directory)
+ 09h	BYTE	access rights
+		bit 0: read
+		bit 1: write
+		bit 2: create
+ 0Ah  8 BYTEs	password
+ 12h 32 BYTEs	comment
+---directory---
+ 32h 64 BYTEs	pathname of shared directory
+---print queue---
+ 32h	BYTE	notification bit mask (see #03784)
+ 33h	BYTE	job control bit mask (see #03785)
+ 34h	WORD	number of days to retain file
+ 36h	WORD	test print length
+ 38h	BYTE	number of copies to print
+ 39h	BYTE	compression algorithm
+ 3Ah	BYTE	tab width (00h = don't expand)
+ 3Bh	BYTE	priority
+ 3Ch	WORD	time to open queue (FFFFh = always)
+ 3Eh	WORD	time to close queue
+ 40h	WORD	pause following queue switch, in clock ticks
+ 42h	WORD	pause between print jobs, in clock ticks
+ 44h	BYTE	associate queue file existence mask
+		bit 0: queue switch file exists
+		bit 1: initiate file exists
+		bit 2: abort file exists
+ 45h  6 BYTEs	character sequence for page eject
+ 4Bh	BYTE	status of print queue
+		bit 0: queue is closed
+ 4Ch	WORD	number of jobs on queue
+ 4Eh	WORD	offset of next print job to be dispatched (FFFFh = none)
+ 50h	BYTE	number of print devices in printer pool
+ 51h	WORD	offset of first print device structure (FFFFh if empty)
+
+Bitfields for notification flags:
+Bit(s)	Description	(Table 03784)
+ 0	user at print start
+ 1	operator at start, with reply
+ 2	user at print completion
+ 3	operator at completion, with reply
+ 4	user on queue switch
+ 5	operator on queue switch, with reply
+ 6	user on print error
+
+Bitfields for 10NET job control mask:
+Bit(s)	Description	(Table 03785)
+ 0	print banner page
+ 1	eject page at end of job
+ 2	mark as "held" (queue but don't print)
+ 3	rush job (queue at top)
+ 4	overwrite file with zeros before deletion
+ 5	hyperspool if possible
+

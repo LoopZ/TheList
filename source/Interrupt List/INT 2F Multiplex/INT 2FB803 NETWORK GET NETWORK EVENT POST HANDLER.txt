@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB803
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - NETWORK - GET NETWORK EVENT POST HANDLER
+	AX = B803h
+Return: ES:BX -> current event post handler (see AX=B804h)
+Note:	this function is supported by PC LAN Program, 10NET v5.0,
+	  NetSoft DOS-NET v1.20+
+SeeAlso: AX=B800h,AX=B804h,AX=B903h
+

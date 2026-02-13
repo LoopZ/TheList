@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500006
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - Vanderaart TEXT WINDOWS - EDIT LINE IN WINDOW
+	AX = 0006h
+	ES:BX -> text string
+	CH = type of input (see #03242)
+	DH,DL = row,column of upper left corner
+	DI = window handle
+Return: AX = key which terminated entry
+	    0000h Enter
+	    0001h Esc
+	    0002h Down arrow
+	    0003h Up arrow
+	    0004h F10
+
+(Table 03242)
+Values for type of input to Vanderaart Text Windows:
+ 00h	everything
+ 01h	uppercase only
+ 02h	positive numbers
+ 03h	Dutch postal code ("9999 AA")
+ 04h	'J' or 'N' (Dutch yes/no)
+ 05h	telephone or FAX number
+ 06h	positive or negative number
+ 07h	date (dd/mm/yy)
+ 08h	money
+ 09h	'1' through '8'
+ 0Ah	'1' through '4'
+ 0Bh	uppercase filenames
+

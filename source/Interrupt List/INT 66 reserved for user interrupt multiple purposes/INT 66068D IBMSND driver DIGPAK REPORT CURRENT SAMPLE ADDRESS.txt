@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66068D
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - IBMSND driver, DIGPAK - REPORT CURRENT SAMPLE ADDRESS
+	AX = 068Dh
+Return: AX = current playback address
+Desc:	determine what point in the audio data the playback has reached, for
+	  synchronization with video or animation effects
+Notes:	this function applies to background playback only
+	the reported address may be an approximation rather than the exact
+	  address
+SeeAlso: AX=068Ch,AX=0691h
+

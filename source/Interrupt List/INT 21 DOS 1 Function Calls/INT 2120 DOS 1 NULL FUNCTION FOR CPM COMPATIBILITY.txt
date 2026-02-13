@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2120
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - NULL FUNCTION FOR CP/M COMPATIBILITY
+	AH = 20h
+Return: AL = 00h
+Note:	corresponds to the CP/M BDOS function "get/set default user
+	  (sublibrary) number", which is meaningless under MS-DOS
+SeeAlso: AH=18h,AH=1Dh,AH=1Eh,AX=4459h
+

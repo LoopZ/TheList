@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213304
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.4/4.0 - SET CPSW STATE
+	AX = 3304h
+	DL = new CPSW state
+Return: nothing
+Notes:	this function and AX=3303h were intended to support a proposed
+	  code-page switching flag (using the WORD at offset 0Ch in the DOS
+	  directory entry for codepage information); however, this function
+	  has always been a NOP in public releases of DOS and OS/2.
+	  See _DOS_Internals_ Chapter 2 for more information.
+	the released MS-DOS 4.00 IO.SYS has an undocumented CONFIG.SYS
+	  directive named CPSW= and that beside others the MS-DOS 4.00 ATTRIB
+	  supported a number of undocumented special parameters for
+	  "predefined" Extended Attributes (EAs) e.g.
+	  ATTRIB filename [(CODEPAGE|CP)[=new_value]].
+	this function does not use any of the DOS-internal stacks and may
+	   thus be called at any time. It is directly dispatched from
+	   the INT 21h entry point with interrupts disabled.
+SeeAlso: AX=3303h,AH=11h,AX=5702h
+

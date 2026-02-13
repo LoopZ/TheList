@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BLA2
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - SET MONITOR HORIZONTAL RETRACE FREQUENCY
+	AH = 12h
+	BL = A2h
+	AL = retrace rate
+	    00h standard VGA (31.5 kHz)
+	    01h 8514-compatible (31.5 kHz and 35.5 kHz interlaced)
+	    02h SuperVGA (31.5-35.1 kHz)
+	    03h extended SuperVGA (31.5-35.5 kHz)
+	    04h multi-frequency (31.5-37.8 kHz)
+	    05h extended multi-frequency (31.5-48.0 kHz)
+	    06h super multi-frequency (31.5-56.0 kHz)
+	    07h extended super multi-frequency (31.5-64.0 kHz)
+Return: nothing
+SeeAlso: AH=12h/BL=9Ah,AH=12h/BL=A0h,AH=12h/BL=A4h
+

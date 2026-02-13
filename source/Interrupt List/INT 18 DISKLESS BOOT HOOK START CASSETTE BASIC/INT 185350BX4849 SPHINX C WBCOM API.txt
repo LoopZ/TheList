@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 185350BX4849
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - SPHINX C-- - WB.COM - API
+	AX = 5350h ('SP')
+	BX = 4849h ('HI')
+	CX = 4E58h ('NX')
+	DH = function
+	    01h set ???
+		DL = ???
+	    02h get ???
+		Return: DL = ???
+	    03h get ???
+		Return: ES:DI -> ??? data buffer
+	    06h ???
+Return: AX = 7370h ('sp') if installed
+	BX = 6869h ('hi') if installed
+	CX = 6E78h ('nx') if installed
+Program: SPHINX C-- is a shareware compiler by Peter Cellik for a language
+	  which is a cross between C and assembler; WB.COM is the driver which
+	  launches the WorkBench
+

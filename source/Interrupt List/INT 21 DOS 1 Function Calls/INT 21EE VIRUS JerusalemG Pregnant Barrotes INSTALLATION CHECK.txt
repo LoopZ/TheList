@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EE
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Jerusalem-G", "Pregnant", "Barrotes" - INSTALLATION CHECK
+	AH = EEh
+Return: AX = 0300h if "Jerusalem-G" resident
+	AL = 05h if "Pregnant" resident
+	AL = FEh if "Barrotes" resident
+SeeAlso: AH=DDh"VIRUS",AX=EC59h,AX=EEE7h"VIRUS"
+

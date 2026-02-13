@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214321BX0000
+  Category: u 	emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Q87, Q387 - INSTALLATION CHECK
+	AX = 4321h
+	BX = 0000h
+	EAX = 87654321h (entire EAX value is required, not just AX)
+Return: EAX = 12345678h if installed
+Program: Q387 (renamed to Q87 as of v3.7) is a math coprocessor emulator from
+	  Quickware
+Note:	this function is available only in virtual-86 mode in older versions;
+	  newer versions also provide it in MS Windows 16- and 32-bit protected
+	  mode
+SeeAlso: AX=4321h/BX=0001h,AX=4321h/BX=0002h,INT 67/AX=4321h
+

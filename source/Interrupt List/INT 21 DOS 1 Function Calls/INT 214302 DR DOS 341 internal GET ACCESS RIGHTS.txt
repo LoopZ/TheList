@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214302
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DR DOS 3.41+ internal - GET ACCESS RIGHTS
+	AX = 4302h
+	DS:DX -> ASCIZ pathname
+Return: CF clear if successful
+	    CX = access rights (see #01421)
+	    AX = CX (DR DOS 5.0)
+	CF set on error
+	    AX = error code
+Desc:	Determine which operations the calling program may perform on a
+	  specified file without being required to provide a password.
+Notes:	this protection scheme has been coordinated on all current Digital
+	  Research/Novell operating systems (DR DOS 3.41+, DRMDOS 5.x, and
+	  FlexOS 2+)
+	this function is documented in DR DOS 6.0 and corresponds to the
+	  "Get/Set File Attributes" function, subfunction 2, documented in
+	  Concurrent DOS.
+	only FlexOS actually uses the "execution" bits; DR DOS 3.41+ treats
+	  them as "read" bits.
+	DR DOS 3.41-5.x only use bits 0-3.  Only DR DOS 6.0 using a
+	  DRMDOS 5.x security system allowing for users and groups uses bits
+	  4-11.
+SeeAlso: AX=4303h,#01354 at INT 21/AH=11h
+
+Bitfields for DR DOS file access rights:
+Bit(s)	Description	(Table 01421)
+ 0	owner delete requires password
+ 1	owner execution requires password (FlexOS)
+ 2	owner write requires password
+ 3	owner read requires password
+ 4	group delete requires password
+ 5	group execution requires password (FlexOS)
+ 6	group write requires password
+ 7	group read requires password
+ 8	world delete requires password
+ 9	world execution requires password (FlexOS)
+ 10	world write requires password
+ 11	world read requires password
+

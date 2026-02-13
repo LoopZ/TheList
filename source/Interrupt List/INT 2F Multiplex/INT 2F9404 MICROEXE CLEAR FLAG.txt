@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F9404
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MICRO.EXE - CLEAR ??? FLAG
+	AX = 9404h
+	ES:DI -> name of executable from which MICRO.EXE was started
+Note:	if the specified name is identical to the name of the program file
+	  from which MICRO was started, the ??? flag is cleared; otherwise,
+	  it is left unchanged
+SeeAlso: AX=9400h,AX=9403h
+

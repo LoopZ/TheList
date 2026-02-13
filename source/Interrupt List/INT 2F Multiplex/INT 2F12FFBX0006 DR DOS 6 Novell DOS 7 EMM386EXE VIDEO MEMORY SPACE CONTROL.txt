@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0006
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DR DOS 6+, Novell DOS 7+ - EMM386.EXE - VIDEO MEMORY SPACE CONTROL
+	AX = 12FFh
+	BX = 0006h
+	DX = 0000h
+	CX = function
+	    0000h get status of video memory space (MEMMAX /V)
+	    0001h map memory into video memory space (MEMMAX +V)
+	    0002h unmap memory from video memory space (MEMMAX -V)
+Return: CF clear if successful
+	    AX = 0000h (successful)
+	    BX = segment of reserved video RAM
+	    CX = segment of used video RAM
+	    DX = segment of first upper MCB
+Notes:	this functionality is provided by EMM386, and partially supported by
+	  HIDOS.SYS
+	BL specifies which program handles the call, BH is the function number
+BUG:	4DOS 5.51(a) often hangs the system (reported to be reproducable), if
+	  MEMMAX +V is issued from the 4DOS prompt.  To avoid this, one should
+	  temporary load COMMAND.COM followed by MEMMAX +v , starting the
+	  application, MEMMAX -v and EXIT.  4DOS 5.5c does not show this
+	  phenomena on the same systems where 5.51a hangs.
+SeeAlso: AX=D201h/BX=4849h
+
+(Table 04105)
+Values for DR DOS memory space control error code:
+ 00h	successful
+ 80h	video memory already unmapped
+ 81h	video memory already mapped
+ 82h	no video memory reserved (/VIDEO not specified)
+ 83h	video memory in use (graphics mode or non-standard text mode)
+ 84h	mapped video memory contains allocated arena(s)
+ 85h	hardware error
+ 86h	driver requires protected mode but is permanently in real mode
+	  ("EMM386 OFF")
+

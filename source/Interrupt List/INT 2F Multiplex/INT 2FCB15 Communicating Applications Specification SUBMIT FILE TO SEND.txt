@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB15
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - SUBMIT FILE TO SEND
+	AX = CB15h
+	DS:DX -> variable-length data area (see #03066)
+Return: AX >= 0 event handle
+	AX < 0	error code (see #03048)
+SeeAlso: AX=CB01h
+
+Format of CAS file submission data area:
+Offset	Size	Description	(Table 03066)
+ 00h	BYTE	transfer type
+		00h = 200x200 dpi, fax mode
+		01h = 100x200 dpi, fax mode
+		02h = file transfer mode
+		03h to 7Fh reserved
+ 01h	BYTE	text size
+		00h = 80 columns
+		01h = 132 columns
+		02h to 7Fh reserved
+ 02h	WORD	time to send (DOS packed time, see #01665 at INT 21/AX=5700h)
+ 04h	WORD	date to send (DOS packed date, see #01666 at INT 21/AX=5700h)
+ 06h 32 BYTEs	ASCIZ destination name
+ 26h 80 BYTEs	ASCIZ name of file to send
+ 76h 47 BYTEs	ASCIZ phone number to dial
+ A5h 64 BYTEs	ASCIZ application-specific tag string
+ E5h	BYTE	reserved (00h)
+ E6h	BYTE	cover page
+		00h don't send cover page
+		01h send cover page
+		02h to 7Fh reserved
+ E7h 23 BYTEs	reserved (zeros)
+ FEh variable	ASCIZ string containing text of cover page (if cover page flag
+		set to 01h)
+

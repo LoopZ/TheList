@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1705
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows "WINOLDAP" - GET CLIPBOARD DATA
+	AX = 1705h
+	DX = clipboard format supported by WinOldAp (see #02723)
+	ES:BX -> buffer
+Return: AX = status
+	    nonzero success
+	    0000h   error, or no data in this format in Clipboard
+SeeAlso: AX=1700h,AX=1704h,INT 16/AX=CB03h
+

@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0015
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - DOSMGR - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0015h (virtual device ID for DOSMGR device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02656,#01282)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: #01282 at INT 20"Windows"
+
+(Table 02656)
+Call DOSMGR entry point with:
+	AX = 0000h get DOSMGR version
+	    Return: CF clear
+		    AX = version (AH = major, AL = minor)
+	AX = 0001h set critical focus
+	    Return: CF clear
+	AX = 0002h crash current virtual machine
+	    Return: never
+	    Note:   displays message box stating that "application has been
+		      stopped by the DOSMGR device"
+	AX = 0003h enter critical section
+	    Note:   this function assumes that the code for INT 2A/AX=8001h
+		      and INT 2A/AX=8002h have been modified for Windows
+	AX = 0004h get VM ID byte
+	    Return: CF clear if successful
+			ES:DI -> VM ID byte
+		    CF set on error
+	    Note:   this function fails if the INT 2A modifications have not
+		      yet been applied
+	AX = 0005h inform Windows of possible media change
+	    BL = drive number (00h=A:)
+	    Return: CF clear if successful
+		    CF set on error
+SeeAlso: #01282 at INT 20"Windows",#02655,#02657
+

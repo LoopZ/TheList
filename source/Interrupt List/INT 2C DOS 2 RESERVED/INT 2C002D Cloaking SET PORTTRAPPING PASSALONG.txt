@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C002D
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - SET PORT-TRAPPING PASSALONG
+	AX = 002Dh
+	DX:EBX = new I/O trapping passalong address (see #02566)
+Return: CF clear
+Notes:	RM386 calls the passalong address whenever an access to a monitored
+	  I/O port is attempted; the handler should check whether it is a port
+	  that it is interested in, and if not call the previous passalong
+	  address (which was retrieved with AX=002Ch before installing the
+	  new handler)
+	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0009h,AX=002Ch,INT 67/AX=5DEAh
+
+(Table 02566)
+Values Cloaking port-trapping passalong address is called with:
+	EAX = CS:IP of faulting instruction (unless executing in protected-mode
+		ring 3)
+	SS:EBX -> caller register structure (see #02559)
+		check EFLAGS V86-mode bit for type
+	CX = first two bytes of I/O instruction which was trapped
+	DX = port to which I/O is being performed
+	CF clear
+Return: CF clear if RM386 should perform I/O operation
+	CF set if I/O should be skipped
+Note:	RM386 skips the trapped I/O instruction, so the passalong handler
+	  should not modify the client CS:EIP
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E9
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telportosn" - GET SESSION NUMBER FOR COM PORT
+	AH = E9h
+	DX = serial port number (0000h-0003h = COM1-COM4)
+Return: AX >= 0000h session number
+	AX < 0000h error code (see #00397)
+SeeAlso: AH=E0h,AH=E8h,AH=EAh,AX=FF00h
+

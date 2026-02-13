@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL34
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (VGA) - CURSOR EMULATION
+	AH = 12h
+	BL = 34h
+	AL = new state
+	    00h enable alphanumeric cursor emulation
+	    01h disable alphanumeric cursor emulation
+Return: AL = 12h if function supported
+Desc:	specify whether the BIOS should automatically remap cursor start/end
+	  according to the current character height in text modes
+SeeAlso: AH=01h,AH=03h
+

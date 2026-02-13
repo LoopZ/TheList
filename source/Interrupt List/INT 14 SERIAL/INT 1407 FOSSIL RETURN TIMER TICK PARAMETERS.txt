@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1407
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - RETURN TIMER TICK PARAMETERS
+	AH = 07h
+Return: AL = timer tick interrupt number
+	AH = ticks per second on interrupt number in AL
+	DX = approximate number of milliseconds per tick
+SeeAlso: AH=16h
+

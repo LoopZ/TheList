@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0010
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - CLIENT HOOK
+	AX = 0010h
+Return: nothing
+Notes:	An application having no active protocols may call this function to
+	  prevent the DLI from unloading.
+SeeAlso: AX=0001h,AX=0011h
+

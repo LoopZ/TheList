@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155307CX0003
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.2 - TURN OFF SYSTEM
+	AX = 5307h
+	CX = 0003h
+	BX = 0001h (device ID for all power-managed devices)
+Return: after system is resumed
+	CF clear
+Notes:	if supported by the system's power supply, turns off the system power
+SeeAlso: AX=5307h/CX=0001h"STAND-BY",AX=530Bh
+

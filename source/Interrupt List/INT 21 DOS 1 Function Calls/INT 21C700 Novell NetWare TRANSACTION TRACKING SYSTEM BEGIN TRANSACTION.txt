@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C700
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TRANSACTION TRACKING SYSTEM - BEGIN TRANSACTION
+	AX = C700h
+Return: CF clear if successful
+	    AL = 00h
+	CF set on error
+	    AL = error code
+		96h out of memory
+		FEh implicit transaction already active, converted to explicit
+		FFh explicit transaction already active
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+SeeAlso: AX=C701h,AX=C702h,AX=C703h,AX=F222h/SF=01h
+

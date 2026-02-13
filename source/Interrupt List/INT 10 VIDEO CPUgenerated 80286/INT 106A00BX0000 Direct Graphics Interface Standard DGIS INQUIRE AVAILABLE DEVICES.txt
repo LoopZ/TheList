@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106A00BX0000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Direct Graphics Interface Standard (DGIS) - INQUIRE AVAILABLE DEVICES
+	AX = 6A00h
+	BX = 0000h
+	CX = 0000h
+	DX = buffer length (may be 0)
+	ES:DI -> buffer
+Return: BX = number of bytes stored in buffer
+	CX = bytes required for all descriptions (0 if no DGIS)
+Note:	buffer contains descriptions and addresses of DGIS-compatible
+	  display(s) and printer(s)
+SeeAlso: AX=6A02h
+

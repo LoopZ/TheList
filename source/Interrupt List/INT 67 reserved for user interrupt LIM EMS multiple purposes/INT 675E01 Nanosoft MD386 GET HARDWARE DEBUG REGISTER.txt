@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675E01
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Nanosoft MD386 - GET HARDWARE DEBUG REGISTER
+	AX = 5E01h
+	BL = register number (0-3,7)
+Return: CX:BX = value of specified DRx register
+SeeAlso: AX=5E00h
+

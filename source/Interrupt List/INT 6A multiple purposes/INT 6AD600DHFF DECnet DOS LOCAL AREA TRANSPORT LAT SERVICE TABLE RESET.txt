@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6AD600DHFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6A - DECnet DOS LOCAL AREA TRANSPORT - LAT SERVICE TABLE RESET
+	AX = D600h
+	DH = FFh
+Return: AX = number of service table entries
+	BX = status
+	    0000h service table has not overflowed
+	    FFFFh service table has overflowed
+SeeAlso: AX=D500h
+

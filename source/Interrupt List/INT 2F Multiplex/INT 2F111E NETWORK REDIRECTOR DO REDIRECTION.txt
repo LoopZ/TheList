@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F111E
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - DO REDIRECTION
+	AX = 111Eh
+	SS = DOS DS
+	STACK: WORD function to execute
+		5F00h  get redirection mode
+			BL = type (03h printer, 04h disk)
+			Return: BH = state (00h off, 01h on)
+		5F01h  set redirection mode
+			BL = type (03h printer, 04h disk)
+			BH = state (00h off, 01h on)
+		5F02h  get redirection list entry
+			BX = redirection list index
+			DS:SI -> 16-byte local device name buffer
+			ES:DI -> 128-byte network name buffer
+			Return: must set user's BX to device type and CX to
+				stored parameter value, using AX=1218h to get
+				stack frame address
+		5F03h  redirect device
+			BL = device type (see INT 21/AX=5F03h)
+			CX = stored parameter value
+			DS:SI -> ASCIZ source device name
+			ES:DI -> destination ASCIZ network path + ASCIZ passwd
+		5F04h  cancel redirection
+			DS:SI -> ASCIZ device name or network path
+		5F05h  get redirection list extended entry
+			BX = redirection list index
+			DS:SI -> buffer for ASCIZ source device name
+			ES:DI -> buffer for destination ASCIZ network path
+			Return: BH = status flag
+				BL = type (03h printer, 04h disk)
+				CX = stored parameter value
+				BP = NETBIOS local session number
+		5F06h  similar to 5F05h???
+Return: CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	STACK unchanged
+Notes:	this function is called by the DOS 3.1+ kernel on INT 21/AH=5Fh
+	  (including LAN Manager calls)
+	the PC Network 1.00 redirector does not support function 5F06h
+SeeAlso: INT 21/AX=5F00h,INT 21/AX=5F01h,INT 21/AX=5F02h,INT 21/AX=5F03h
+SeeAlso: INT 21/AX=5F04h,INT 21/AX=5F05h,INT 21/AX=5F06h
+

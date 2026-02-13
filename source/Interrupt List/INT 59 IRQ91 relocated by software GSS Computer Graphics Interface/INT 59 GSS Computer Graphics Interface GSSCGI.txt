@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 59
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 59 - GSS Computer Graphics Interface (GSS*CGI)
+	DS:DX -> block of 5 array pointers
+Return: CF set on error
+	    AX = error code
+	CF clear if successful
+	    AX = return code
+Note:	INT 59 is the means by which GSS*CGI language bindings communicate with
+	  GSS*CGI device drivers and the GSS*CGI device driver controller.
+	also used by the IBM Graphic Development Toolkit
+

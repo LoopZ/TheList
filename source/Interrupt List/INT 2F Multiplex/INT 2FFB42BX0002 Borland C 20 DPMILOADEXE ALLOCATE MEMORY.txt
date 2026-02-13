@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0002
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 2.0 DPMILOAD.EXE - ALLOCATE MEMORY
+	AX = FB42h
+	BX = 0002h
+	CX = size in bytes
+	DX = bit flags
+	    bit 2: set to allocate DOS memory, clear for DPMI memory
+	SI = selector of descriptor to be modified to access allocated memory
+	DI = selector of a second descriptor to be modified
+Return: AX = ??? or 0000h on error
+	CX:DX = linear base address of DPMI memory block
+	SI:DI = handle for DPMI memory block or FFFFh:FFFFh
+	???
+Note:	two segment descriptors may be set if a code and an aliased data
+	  segment are required; if only one descriptor is needed, SI should
+	  equal DI on entry
+BUG:	when allocating DOS memory, the code computes the linear address by
+	  multiplying the segment number by 4 rather than shifting by 4
+SeeAlso: AX=FB42h/BX=0003h,AX=FB42h/BX=0008h,INT 31/AX=0501h
+

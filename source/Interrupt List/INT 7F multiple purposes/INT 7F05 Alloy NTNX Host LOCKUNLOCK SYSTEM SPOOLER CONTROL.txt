@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX (Host) - LOCK/UNLOCK SYSTEM, SPOOLER CONTROL
+	AH = 05h
+	AL = function
+	    00h lock system (disable slave services)
+	    01h unlock system
+	    02h enable spooler
+	    03h disable spooler
+	    04h enable slave timer update
+	    05h disable slave timer update
+	    06h enable form feeds
+	    07h disable form feeds
+SeeAlso: INT 17/AH=A4h
+

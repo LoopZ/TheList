@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FF00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telcheck" - INSTALLATION CHECK
+	AX = FF00h
+Return: AX = 00FFh if installed
+	    BX = version number * 100 (decimal)
+SeeAlso: AH=E6h,AX=F4FFh
+

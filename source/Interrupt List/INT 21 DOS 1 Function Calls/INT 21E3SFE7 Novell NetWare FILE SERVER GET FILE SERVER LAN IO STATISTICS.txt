@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFE7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER LAN I/O STATISTICS
+	AH = E3h subfn E7h
+	DS:SI -> request buffer (see #02079)
+	ES:DI -> reply buffer (see #02080)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AH=E3h/SF=0Eh,AH=E3h/SF=11h,AH=E3h/SF=D3h,AH=E3h/SF=E8h
+SeeAlso: AH=E7h"Novell",AX=F217h/SF=E7h
+
+Format of NetWare "Get File Server LAN I/O Statistics" request buffer:
+Offset	Size	Description	(Table 02079)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	E7h (subfunction "Get File Server LAN I/O Statistics")
+SeeAlso: #02080,#02245 at AX=F217h/SF=E7h
+
+Format of NetWare "Get File Server LAN I/O Statistics" reply buffer:
+Offset	Size	Description	(Table 02080)
+ 00h	WORD	(call) 0042h (size of following results buffer)
+ 02h	DWORD	clock ticks since system started
+ 06h	WORD	total routing buffers
+ 08h	WORD	maximum routing buffers used
+ 0Ah	WORD	current routing buffers used
+ 0Ch	DWORD	total file service packets
+ 10h	WORD	number of file service packets buffered
+ 12h	WORD	number of invalid connection packets
+ 14h	WORD	packets with bad logical connection numbers
+ 16h	WORD	number of packets received during processing
+ 18h	WORD	number of requests reprocessed
+ 1Ah	WORD	packets with bad sequence numbers
+ 1Ch	WORD	number of duplicate replies sent
+ 1Eh	WORD	number of acknowledgements sent
+ 20h	WORD	number of packets with bad request types
+ 22h	WORD	requests to attach to ws for which a request is being processed
+ 24h	WORD	requests to attach from ws which is already attaching
+ 26h	WORD	number of forged detach requests
+ 28h	WORD	detach requests with bad connection number
+ 2Ah	WORD	requests to detach from ws for which requests pending
+ 2Ch	WORD	number of cancelled replies
+ 2Eh	WORD	packets discarded due to excessive hop count
+ 30h	WORD	packets discarded due to unknown net
+ 32h	WORD	incoming packets discarded for lack of DGroup buffer
+ 34h	WORD	outgoing packets discarded due to lack of buffer
+ 36h	WORD	received packets destined for B,C, or D side drivers
+ 38h	DWORD	number of NetBIOS packets propagated through net
+ 3Ch	DWORD	total number of non-file-service packets
+ 40h	DWORD	total number of routed packets
+Note:	all fields except the first are big-endian
+SeeAlso: #02080,#02245 at AX=F217h/SF=E7h
+

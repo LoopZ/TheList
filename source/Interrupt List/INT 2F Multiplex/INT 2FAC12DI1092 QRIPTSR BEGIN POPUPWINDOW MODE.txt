@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC12DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - BEGIN POPUP-WINDOW MODE
+	AX = AC12h
+	DI = 1092h
+Return: nothing
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	while popup-mode is in effect, the terminal program can write to the
+	  screen (and easily restore it) by outputting a RIP file with AX=AC04h
+	  or AX=AC05h
+	QRIP will automatically drop out of popup-window mode if the terminal
+	  program invokes RIP pick-lists
+	any changes to the protected area will be restored when popup-window
+	  mode is cancelled
+SeeAlso: AX=AC04h,AX=AC11h,AX=AC13h,AX=ACF0h
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212538
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Ext VMM v3.0 - READ PROTMODE REGS AFTER SFTWARE INT
+	AX = 2538h
+	DS:EBX -> buffer for registers (see #01368)
+	ECX = register record to retrieve
+	    00h first interrupt state
+	    01h next interrupt state
+		EDX = handle for current interrupt state
+Return: CF clear if successful
+	    DS:EBX buffer filled
+	    EDX = handle of current interrupt state
+	    ESI = number of interrupt which occurred
+	CF set on error
+	    EAX = error code
+		81h invalid handle in EDX
+		83h register saving not enabled
+		84h no more interrupt states
+SeeAlso: AX=2527h,AX=2528h
+

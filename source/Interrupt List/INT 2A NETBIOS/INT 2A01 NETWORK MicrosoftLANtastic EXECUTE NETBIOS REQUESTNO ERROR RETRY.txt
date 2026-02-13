@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - NETWORK (Microsoft,LANtastic) - EXECUTE NETBIOS REQUEST,NO ERROR RETRY
+	AH = 01h
+	ES:BX -> NCB (see #03249 at INT 5C"NetBIOS")
+Return: AL = NetBIOS error code
+	AH = status
+	    00h no error
+	    01h error occurred
+SeeAlso: AH=04h,AX=0500h,INT 5B"Extended NetBIOS",INT 5C"NetBIOS"
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE24
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.40+ - "XNEWPROC" - START NEW APPLICATION
+	AX = DE24h
+	BX = length of .DVP data
+	CX = length of ??? string
+	DS:SI -> ??? string
+	ES:DI -> .DVP data (see #00427 at AX=102Ch)
+Return: BX = segment of task handle??? or 0000h on error
+Note:	this call is similar to AX=102Ch except that it can interpret the
+	  extended DVP data
+SeeAlso: AX=102Ch
+

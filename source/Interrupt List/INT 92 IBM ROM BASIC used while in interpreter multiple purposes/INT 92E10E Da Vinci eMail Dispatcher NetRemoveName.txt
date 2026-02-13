@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E10E
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - "NetRemoveName"
+	AX = E10Eh
+	BX = size of parameter block in words (0004h)
+	CX:DX -> parameter block (see #03992)
+Return: AX = 0001h
+Desc:	this function is used to remove a username
+SeeAlso: AX=E10Dh
+
+Format of Da Vinci eMail "NetRemoveName" parameter block:
+Offset	Type	Description	(Table 03992)
+ 00h	WORD	segment of uppercase username
+ 02h	WORD	offset of uppercase username
+ 04h	WORD	segment of "DVSEMAIL"
+ 06h	WORD	offset of "DVSEMAIL"
+

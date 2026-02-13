@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214404
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Stacker - GET DEVICE DRIVER ADDRESS AND SET VOLUME NUMBER
+	AX = 4404h
+	BL = drive number (00h = default, 01h = A:, etc.)
+	CX = 0004h
+	DS:DX -> DWORD buffer to receive device driver address
+Return: buffer filled with pointer into Stacker device driver (see #02550):
+	  driver + 19h if Stacker Anywhere controls this drive
+	  driver + 1Ah if Stacker controls this drive
+	  unchanged else
+Notes:	in addition to returning the address of the Stacker device driver,
+	  this call also sets the volume number at offset 58h in the device
+	  driver (see #02550 at INT 25/AX=CDCDh)
+	Stacker Anywhere does not link its built-in device driver into
+	  the standard device driver chain, but it can be found via CDS/DPB
+	this call can be used as an installation check for all versions of
+	  Stacker and Stacker Anywhere to avoid the INT 25 call
+SeeAlso: AX=4408h,AX=440Eh,AH=52h,INT 25/AX=CDCDh
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16F2
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Compaq 386 and newer - DETERMINE ATTACHED KEYBOARD TYPE
+	AH = F2h
+Return: AL = type
+	    00h if 11-bit AT keyboard is in use
+	    01h if 9-bit PC keyboard is in use
+	AH = 00h (04/08/93 system ROM)
+SeeAlso: MEM 0040h:00C2h
+

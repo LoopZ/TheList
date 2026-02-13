@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SET USER NAME
+	AX = 0004h subfn 0004h
+	DS:DX -> request block (see #03405)
+Return: AX = status (0000h) (see #03400)
+Notes:	Other side effects, if any, not known
+SeeAlso: AX=0004h/SF=0005h,#03431 [ID 0004h],AX=0007h/BX=0005h
+
+Format of VINES Function 0004h/Subfunction 0004h request block:
+Offset	Size	Description	(Table 03405)
+ 00h	WORD	0004h
+ 02h 64	BYTE	null-terminated user name
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC00BL01
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CATC USB4DOS Device Manager - REGISTER DEVICE
+	AX = BC00h
+	BL = 01h
+	CX:DX -> client_info structure (see #04096)
+Return: AX = client number, 0000h on failure
+SeeAlso: AX=BC00h/BL=02h,AX=BC00h/BL=00h
+
+Format of CATC USB4DOS client_info structure:
+Offset	Size	Description	(Table 04096)
+ 00h	DWORD	-> Attach() worker function
+ 04h	DWORD	-> Detach() worker function
+

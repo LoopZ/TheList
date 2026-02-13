@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1500
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - GIVE UP TIME SLICE
+	AH = 00h
+Return: nothing
+Note:	if issued by the highest-priority task while MultiDOS is using
+	  priority-based rather than round-robin scheduling, control will be
+	  returned to the caller immediately
+SeeAlso: AH=03h"MultiDOS",AX=1000h
+

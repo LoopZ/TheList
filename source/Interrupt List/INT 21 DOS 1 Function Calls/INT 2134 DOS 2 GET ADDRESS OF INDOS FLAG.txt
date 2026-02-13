@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2134
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET ADDRESS OF INDOS FLAG
+	AH = 34h
+Return: ES:BX -> one-byte InDOS flag
+Notes:	this function executes on the DOS stack, and thus cannot be called
+	  while another DOS function is already executing; you should use
+	  this function once at the beginning of the program and store the
+	  returned pointer rather than calling it when requiring DOS access
+	the value of InDOS is incremented whenever an INT 21 function begins
+	  and decremented whenever one completes
+	during an INT 28 call, it is safe to call some INT 21 functions even
+	  though InDOS may be 01h instead of zero
+	InDOS alone is not sufficient for determining when it is safe to
+	  enter DOS, as the critical error handling decrements InDOS and
+	  increments the critical error flag for the duration of the critical
+	  error.  Thus, it is possible for InDOS to be zero even if DOS is
+	  busy.
+	SMARTDRV 4.0 sets the InDOS flag while flushing its buffers to disk,
+	  then zeros it on completion
+	the critical error flag is the byte immediately following InDOS in
+	  DOS 2.x, and the byte BEFORE the InDOS flag in DOS 3.0+ and
+	  DR DOS 3.41+ (except COMPAQ DOS 3.0, where the critical error flag
+	  is located 1AAh bytes BEFORE the critical section flag)
+	for DOS 3.1+, an undocumented call exists to get the address of the
+	  critical error flag (see AX=5D06h)
+	this function was undocumented prior to the release of DOS 5.0.
+SeeAlso: AX=5D06h,AX=5D0Bh,INT 15/AX=DE1Fh,INT 28
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6752
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - GET/SET HANDLE ATTRIBUTES
+	AH = 52h
+	AL = subfunction
+	    00h get handle attributes
+		Return: AL = attribute
+			    00h handle is volatile
+			    01h handle is nonvolatile
+	    01h set handle attributes
+		BL = new attribute
+		   00h handle is volatile
+		   01h handle is nonvolatile
+	    02h get attribute capability
+		Return: AL = attribute capability
+			    00h only volatile handles supported
+			    01h both volatile and non-volatile supported
+	DX = handle
+Return: AH = status (00h,80h,81h,83h,84h,8Fh-91h) (see #03648)
+SeeAlso: AH=53h
+

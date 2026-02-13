@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 130F
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - WRITE SECTOR BUFFER (XT only)
+	AH = 0Fh
+	DL = drive number (80h = first, 81h = second hard disk)
+	ES:BX -> buffer
+Return: CF set on error
+	CF clear if successful
+	AH = status code (see #00234)
+Notes:	does not write data to the drive
+	should be called before formatting to initialize an XT-type
+	  controller's sector buffer
+	used for diagnostics only on PS/2 systems
+SeeAlso: AH=0Bh
+

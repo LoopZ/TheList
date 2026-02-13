@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF28
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay v1.3 - "SetMCBSize" - SET MCB MEMORY ALLOCATION BLOCK SIZE
+	AX = FF28h
+	ECX = new threshold (0000000h to disable MCB memory allocation system)
+Return: CF clear if successful
+	    threshold unchanged (default 16K)
+	CF set on error (threshold > 64K)
+Desc:	specify the memory allocation size below which CauseWay will use
+	  internal MCB chains rather than allocating full 4K pages via DPMI
+Note:	the specified threshold will be rounded up to the next higher multiple
+	  of 4K
+SeeAlso: AX=FF00h,AX=FF27h
+

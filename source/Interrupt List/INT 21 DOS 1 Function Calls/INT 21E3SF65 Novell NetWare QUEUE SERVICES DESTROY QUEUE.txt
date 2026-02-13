@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF65
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - DESTROY QUEUE
+	AH = E3h subfn 65h
+	DS:SI -> request buffer (see #01964)
+	ES:DI -> reply buffer (see #01969)
+Return: AL = status (00h,96h,9Ch,D0h,D1h,FFh) (see also AH=E3h/SF=64h)
+	    FFh hardware failure
+Desc:	abort all active jobs, detach all job servers, remove all job entries,
+	  delete all job files, remove the queue object and its properties
+	  from the bindery, and delete the queue's subdirectory
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must have SUPERVISOR privileges
+SeeAlso: AH=E3h/SF=64h,AH=E3h/SF=66h,AH=E3h/SF=68h,AH=E3h/SF=6Ah,AH=E3h/SF=70h
+SeeAlso: AX=F217h/SF=65h
+
+Format of NetWare "Destroy Queue" request buffer:
+Offset	Size	Description	(Table 01964)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	65h (subfunction "Destroy Queue")
+ 03h	DWORD	(big-endian) object ID of queue
+SeeAlso: #01969
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF02
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - KILL PROGRAM IN MEMORY PARTITION
+	AX = DF02h
+	BL = task number
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+	    FFh unsucessful
+		AH = error code (01h,03h) (see #01813)
+

@@ -1,0 +1,167 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - Novell NetWare - PCOX API (3270 PC terminal interface)
+	AX = function
+	    0000h enter terminal mode
+		Return: AX = status
+			    0000h no action requested
+			    0001h screen save
+	    0001h reset interface and set configuration parameters
+		DX = bitfields
+		    bits 2-0: model number
+		    bits 4-3: I/O address
+		    bits 6-5: DMA channel
+		Return: nothing
+	    0002h set display parameters
+		DX = bitfields
+		    bits 1-0: OIA mode
+		    bits 4-2: monitor support
+		Return: nothing
+	    0003h read status
+		Return: AX = status word (see #03738)
+	    0004h read cursor position
+		Return: AX = cursor position
+	    0005h get character from device buffer
+		DX = cursor position
+		Return: AH = type (00h data, 01h attribute)
+			AL = data or attribute character
+	    0006h send character
+		DH = type (00h ASCII, 01h extended code)
+		DL = ASCII character or extended code
+		Return: nothing
+	    0007h set timeout
+		DX = timeout in seconds
+		Return: nothing
+	    0008h wait for location to be modified
+		DX = cursor position
+		Return: AX = status (0000h modified, nonzero timeout)
+	    0009h NOP
+	    000Ah restore display
+		Return: nothing
+	    000Bh update device buffer
+		Return: AX = cursor positoin
+	    000Ch write string to add information area
+		DS:DX -> string
+		Return: nothing
+	    000Dh maintenance operations
+		DX = maintenance operation code
+		Return: AX = operation status
+	    000Eh get control program version
+		Return: AH = release number (major version)
+			AL = level number (minor version)
+	    000Fh get microcode version
+		Return: AH = release number (major version)
+			AL = level number (minor version)
+	    0010h save or display graphics
+		BX = length of data buffer
+		CX = subfunction request code
+		DS:DX -> data buffer
+		Return: AX = return code
+			CX = length of PIF data
+	    0011h perform structured field operation
+		CX = request number
+		DS:DX -> parameter list
+		Return: AX = status word (see #03738)
+			CX = error number
+	    0012h set cursor position for direct write buffer
+		DX = new cursor position
+		Return: AX = status word (see #03738)
+	    0013h write direct to buffer
+		DL = character to be written
+		DH = translation option
+		Return: AX = status word (see #03738)
+	    0014h write direct to buffer without echo
+		DL = character to be written
+		DH = translation option
+		Return: AX = status word (see #03738)
+	    0015h set direct write string length
+		DX = string value
+		Return: nothing
+	    0016h write string direct to buffer
+		DS:DX -> string
+		Return: AX = status word (see #03738)
+	    0017h write string direct to buffer, untranslated
+		DS:DX -> string
+		Return: AX = status word (see #03738)
+	    0018h get direct-write cursor position
+		Return: AX = cursor position
+	    0019h convert row/column to cursor position
+		DH = display row (1-43)
+		DL = display column (1-132)
+		Return: AX = cursor position
+	    001Ah convert cursor position to row/column
+		DX = cursor position
+		Return: AH = display row
+			AL = display column
+	    001Bh find next field
+		DX = initial cursor position
+		Return: AX = field cursor position
+	    001Ch find previous field
+		DX = initial cursor position
+		Return: AX = field cursor position
+	    001Dh find next unprotected field
+		DX = initial cursor position
+		Return: AX = field cursor position
+	    001Eh find previous unprotected field
+		DX = initial cursor position
+		Return: AX = field cursor position
+	    001Fh find next protected field
+		DX = initial cursor position
+		Return: AX = field cursor position
+	    0020h find previous protected field
+		DX = initial cursor position
+		Return: AX = field cursor position
+	    0021h masked search forward
+		DH = mask
+		DL = search pattern
+		Return: AX = cursor position or 0000h
+	    0022h masked search backward
+		DH = mask
+		DL = search pattern
+		Return: AX = cursor position or 0FFFh
+	    0023h find field length
+		DX = cursor position
+		Return: AX = field length
+	    0024h read field
+		DS:DX -> buffer for field contents
+		Return: AX = status word (see #03738)
+	    0025h read screen
+		DS:DX -> buffer for screen contents
+		Return: AX = status word (see #03738)
+	    0026h read buffer untranslated
+		DX = cursor position
+		Return: AX = buffer code
+			CX:BX -> 3278/79 device buffer image
+	    0027h enable/disable keyboard
+		DL = new state of keyboard breaks (00h enabled, 01h disabled)
+		Return: nothing
+	    0028h select host session
+		DL = session short name
+		Return: AX = session information
+	    0029h retrieve host session name
+		AX = short name (DFT) or 0000h (not available, CUT mode)
+	    002Ah get current device buffer size
+		Return: AX = device buffer size
+			CX = segment of EAB
+	    002Bh arm modified location trigger
+		DX = cursor position
+		Return: AX = status (0000h not available, 0001h successful)
+
+Bitfields for PCOX status word:
+Bit(s)	Description	(Table 03738)
+ 0,1	cursor type
+ 2	cursor inhibited
+ 3	display inhibited
+ 4	feature step inhibited
+ 5	480-character format code
+ 6,7	unused
+ 8-10	model number (2-5)
+ 11	unit has been reset by controller (cleared after status returned)
+ 12	buffer has been written into (cleared after status returned)
+ 13	alarm has been sounded (cleared after status returned)
+ 14-15	monitor type (01 mono, 10 color, 11 hybrid)
+

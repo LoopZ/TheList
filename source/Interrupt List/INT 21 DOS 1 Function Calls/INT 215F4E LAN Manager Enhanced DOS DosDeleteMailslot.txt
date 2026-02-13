@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F4E
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - DosDeleteMailslot
+	AX = 5F4Eh
+	BX = handle
+Return: CF clear if successful
+	    ES:DI -> memory to be freed (allocated during DosMakeMailslot)
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F4Dh,AX=5F4Fh
+

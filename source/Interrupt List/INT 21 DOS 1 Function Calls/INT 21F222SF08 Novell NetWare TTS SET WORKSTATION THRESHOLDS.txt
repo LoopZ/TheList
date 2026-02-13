@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F222SF08
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TTS SET WORKSTATION THRESHOLDS
+	AX = F222h subfn 08h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02298)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=C708h,AX=F222h/SF=06h,AX=F222h/SF=07h
+
+Format of NetWare "TTS Set Workstation Thresholds" request packet:
+Offset	Size	Description	(Table 02298)
+ 00h	BYTE	08h (subfunction "TTS Set Workstation Thresholds")
+ 01h	BYTE	logical lock threshold before implicit transaction started
+ 02h	BYTE	physical lock threshold before implicit transaction started
+SeeAlso: #02295
+

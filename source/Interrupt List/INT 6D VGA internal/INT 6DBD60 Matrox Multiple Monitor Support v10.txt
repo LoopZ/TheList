@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6DBD60
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 6D U - Matrox Multiple Monitor Support v1.0 - ???
+	AX = BD60h
+	DS:SI -> buffer containing ??? (see #03735)
+	???
+Return: AX = 00BDh if function executed
+	   ???:SI -> 22-byte buffer (inside TSR) filled with ??? (see #03735)
+	AX unchanged if function disabled
+Note:	this function is a NOP if AX=BD6Fh/BL=01h was called
+SeeAlso: AX=BD61h,AX=BD6Fh,AX=BDFFh
+
+Format of Matrox ??? buffer:
+Offset	Size	Description	(Table 03735)
+ 00h  4 BYTEs	???
+ 04h	WORD	video mode width in pixels
+ 06h	WORD	video mode height in pixels
+ 08h	BYTE	???
+ 09h	BYTE	???
+ 0Ah	BYTE	???
+ 0Bh	BYTE	flags
+		bit 1: ???
+		bit 4: ??? (corresponds to bit 14 for AX=BD61h)
+		bit 5: ??? (corresponds to bit 15 for AX=BD61h)
+ 0Ch	DWORD	-> ??? buffer
+ 10h	WORD	???
+		bit 4: ??? (corresponds to bit 14 for AX=BD61h)
+		bit 5: ??? (corresponds to bit 15 for AX=BD61h)
+ 12h  4 BYTEs	???
+SeeAlso: #03736
+

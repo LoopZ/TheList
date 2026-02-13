@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1419
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - SELECTIVE BUFFER FLUSH
+	AH = 19h
+	AL = what to flush
+	    bit 0: input buffer
+	    bit 1: output buffer
+	DX = port number
+Return: nothing
+SeeAlso: AH=09h"PC-MOS"
+

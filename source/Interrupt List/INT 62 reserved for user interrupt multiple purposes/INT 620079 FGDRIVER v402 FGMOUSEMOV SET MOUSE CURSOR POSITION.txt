@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620079
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOUSEMOV" - SET MOUSE CURSOR POSITION
+	AX = 0079h
+	BX = new column
+	CX = new row
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function will not move the mouse cursor outside the bounding box
+	  specified with AX=009Bh
+SeeAlso: AX=0078h,AX=007Ah,INT 33/AX=0004h
+

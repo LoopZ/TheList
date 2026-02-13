@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare - LOW-LEVEL API (IPX) INSTALLATION CHECK
+	AX = 7A00h
+Return: AL = status
+	    00h not installed
+	    FFh installed
+		ES:DI -> FAR entry point for routines accessed exclusively
+			  through INT 7A in NetWare versions through 2.0a.
+			  Call with same values as INT 7A
+		ES:BX -> two bytes containing IPX major/minor version
+			(IPXODI v2.12; BX unchanged by older IPX drivers)
+		CX = ES ???
+SeeAlso: AX=7AFFh/BX=0000h,AX=D800h,INT 64"Novell",INT 7A"LOW-LEVEL API"
+

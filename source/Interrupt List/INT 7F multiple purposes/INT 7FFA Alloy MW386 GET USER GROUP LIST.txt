@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FFA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET USER GROUP LIST
+	AH = FAh
+	DL = user number
+	DH = machine number (currently 00h)
+	ES:DI -> 16-byte buffer for group list
+Return: CX = number of groups
+	ES:DI buffer filled with group numbers
+SeeAlso: AH=F8h,AH=F9h
+

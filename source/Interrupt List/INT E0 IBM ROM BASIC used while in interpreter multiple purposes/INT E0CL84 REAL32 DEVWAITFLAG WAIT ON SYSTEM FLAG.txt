@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL84
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "DEV_WAITFLAG" - WAIT ON SYSTEM FLAG
+	CL = 84h
+	DX = system flag ID
+Return: AX = status (0000h success, else error code)
+	if successful, this function does not return until the system flag has
+	  been set by an interrupt handler (see INT E0/CL=85h); if the flag was
+	  already set, this call returns immediately
+SeeAlso: INT E0/CL=85h,INT E0/CL=B7h
+

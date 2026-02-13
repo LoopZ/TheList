@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17C6
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PC Magazine PCSpool - CHECK PRINTER QUEUE STATUS
+	AH = C6h
+	DX = printer port (0-3)
+Return: AX = queue status
+	   0000h printer not active or at pause
+	   0001h printer busy
+

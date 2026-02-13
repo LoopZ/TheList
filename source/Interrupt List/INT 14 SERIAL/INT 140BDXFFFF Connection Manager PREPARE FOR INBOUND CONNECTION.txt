@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140B--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - PREPARE FOR INBOUND CONNECTION
+	AH = 0Bh
+	DX = FFFFh
+	AL = service name
+	    00h use parameter file or default
+	    01h use specified name
+		ES:DI -> 16-byte blank-padded name
+	BH = connection notification
+	    00h program awaiting connection, don't notify user
+	    01h notify user on connecting
+	BL = connection type
+	    00h connection will use Connection Manager API
+Return: AH = return code (00h-02h) (see #00303 at AH=00h/DX=FFFFh)
+	AL = connection ID if AH=00h
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+SeeAlso: AH=04h/DX=FFFFh,AH=0Ch/DX=FFFFh,AH=10h/DX=FFFFh
+

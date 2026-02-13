@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F272
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET FILE SERVER UTC TIME
+	AX = F272h
+	CX = length of request buffer in bytes (0003h)
+	DX = length of reply buffer in bytes (0064h)
+	DS:SI -> request buffer (see #02488)
+	ES:DI -> reply buffer (see #02489)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Get File Server UTC Time" request buffer:
+Offset	Size	Description	(Table 02488)
+ 00h	BYTE	??? (00h)
+ 01h	BYTE	??? (01h)
+ 02h	BYTE	??? (01h)
+SeeAlso: #02489
+
+Format of NetWare "Get File Server UTC Time" reply buffer:
+Offset	Size	Description	(Table 02489)
+ 00h	DWORD	seconds
+ 04h	DWORD	???
+ 04h	DWORD	??? (00000204h)
+ 04h	DWORD	??? (00000000h)
+ 04h	DWORD	??? (00000000h)
+ 04h	DWORD	??? (FFFFFFFFh)
+ 04h	DWORD	??? (00000000h)
+SeeAlso: #02488
+

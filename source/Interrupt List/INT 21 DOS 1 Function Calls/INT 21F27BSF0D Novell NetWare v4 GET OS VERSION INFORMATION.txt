@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF0D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET OS VERSION INFORMATION
+	AX = F27Bh subfn 0Dh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02507)
+	ES:DI -> reply buffer (see #02508)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Get OS Version Information" request buffer:
+Offset	Size	Description	(Table 02507)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	0Dh (subfunction "Get OS Version Information")
+SeeAlso: #02508
+
+Format of NetWare "Get OS Version Information" reply buffer:
+Offset	Size	Description	(Table 02508)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	BYTE	operating system major version
+ 09h	BYTE	operating system minor version
+ 0Ah	BYTE	operating system revision number
+ 0Bh	BYTE	accounting version
+ 0Ch	BYTE	VAP version
+ 0Dh	BYTE	queueing version
+ 0Eh	BYTE	security restrictions level
+ 0Fh	BYTE	bridging support
+ 10h	DWORD	maximum number of volumes
+ 14h	DWORD	number of connection slots
+ 18h	DWORD	maximum number of logged-in connections
+ 1Ch	DWORD	maximum number of name spaces
+ 20h	DWORD	maximum number of LANs
+ 24h	DWORD	maximum number of media types
+ 28h	DWORD	maximum number of protocols
+ 2Ch	DWORD	maximum subdirectory tree depth
+ 30h	DWORD	maximum number of data streams
+ 34h	DWORD	maximum number of spooled printers
+ 38h	DWORD	serial number
+ 3Ch	WORD	application number
+SeeAlso: #02507
+

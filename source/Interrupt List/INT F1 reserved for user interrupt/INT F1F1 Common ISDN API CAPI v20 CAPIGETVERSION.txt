@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: F1--F1
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v2.0 - "CAPI_GET_VERSION"
+	AL = F1h
+	AH = CAPI version number * 10 (14h for v2.0)
+Return: AH = CAPI major version number
+	AL = CAPI minor version number
+	DH = vendor-specific major version
+	DL = vendor-specific minor version
+Notes:	the caller is required to provide at least 512 bytes of stack space
+SeeAlso: AH=F1h,INT F1/AL=01h,INT F1/AL=F0h,INT F1/AL=F2h,INT F1/AL=FFh
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200A3
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SCALE" - SCALE BITMAP
+	AX = 00A3h
+	ES:BX -> variable pointer record (see #03499)
+	CX = width of source bitmap in pixels (0 < width <= 1024)
+	DX = height of source bitmap in pixels (0 < height <= 1024)
+	SI = desired width of scaled bitmap (0 < width <= 1024)
+	DI = desired height of scaled bitmap (0 < height <= 1024)
+Return: nothing
+SeeAlso: AX=00B7h
+
+Format of FGDRIVER SCALE variable pointer record:
+Offset	Size	Description	(Table 03499)
+ 00h	WORD	segment of source bitmap (one pixel per byte)
+ 02h	WORD	offset of source bitmap
+ 04h	WORD	segment of buffer for resulting scaled bitmap
+ 06h	WORD	offset of buffer for resulting scaled bitmap
+

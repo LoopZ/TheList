@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 326E04
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 32 - NOISE.SYS v0.55+ - GET INTERRUPT HOOK LIST
+	AX = 6E04h
+Return: AL = status
+	    00h = unimplemented
+	    04h = DX:BX -> interrupt hook list
+	    FEh = subfunction disabled
+Note:	the hook list array ends with API interrupt (usually 32h, although
+	  it will differ if the API is installed at another interrupt)
+

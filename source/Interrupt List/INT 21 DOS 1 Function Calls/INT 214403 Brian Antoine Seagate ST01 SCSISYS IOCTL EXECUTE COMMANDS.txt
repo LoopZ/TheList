@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Brian Antoine Seagate ST-01 SCSI.SYS - IOCTL - EXECUTE COMMANDS
+	AX = 4403h
+	BX = handle for device "SCSITAPE"
+	CX = number of bytes to write
+	DS:DX -> SCSITAPE control block (see #01525)
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4405h"ST-01",INT 78/AH=10h
+
+Format of SCSITAPE control block:
+Offset	Size	Description	(Table 01525)
+ 00h	WORD	command type
+		'F' Format (argument 1 = interleave, argument 2 = format type)
+		'E' Erase
+		'R' Rewind
+		'L' Load
+		'N' No Load
+		'S' Space (argument 1 = count, argument 2 = type)
+		'M' File Mark (argument 1 = count)
+		'A' Reassign
+ 02h	WORD	argument 1
+ 04h	WORD	argument 2
+ 06h	WORD	segment of command buffer
+ 08h	WORD	offset of command buffer
+ 0Ah	WORD	length of command buffer
+

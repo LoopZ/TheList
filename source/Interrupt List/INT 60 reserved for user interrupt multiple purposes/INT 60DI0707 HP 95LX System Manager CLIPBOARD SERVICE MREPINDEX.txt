@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0707
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CLIPBOARD SERVICE "M_REP_INDEX"
+	DI = 0707h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ???
+		DWORD	pointer to ???
+		DWORD	pointer to ???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0704h,INT 60/DI=0706h
+

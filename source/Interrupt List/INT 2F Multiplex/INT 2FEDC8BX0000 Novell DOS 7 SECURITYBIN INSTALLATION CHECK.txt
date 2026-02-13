@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FEDC8BX0000
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell DOS 7+ - SECURITY.BIN - INSTALLATION CHECK
+	AX = EDC8h ('EDC' = Novell European Development Centre)
+	BX = 0000h
+	CX = 0000h
+	DX = 1234h
+Return: ???
+Note:	called by Novell DOS 7 LOCK command during installation
+
+(Table 04107)
+Call Novell DOS SECURITY.BIN API with:
+	AX??? = function
+	    0000h get status
+	    0001h authenticate password hash
+	    0002h get / change encrypted master key password???
+	    0003h ??? Set encrypted master key password
+	    0004h ??? Get logged-in user ID
+	    0005h ??? Set logged-in user ID
+	    0006h Get device restriction mask
+	    0007h Set device restriction mask
+	    0008h Disable PNW DB access
+	    0009h Enable PNW DB access
+	    000Ah Get user name
+	    000Bh Set user name
+	    000Ch Change user password hash
+	    000Dh Get last function
+	    000Eh Get Encoded ASCII password
+	    000Fh Set Encoded ASCII password
+	    0010h Get user seed
+	    0011h Set user seed
+	    !!! more info to follow
+

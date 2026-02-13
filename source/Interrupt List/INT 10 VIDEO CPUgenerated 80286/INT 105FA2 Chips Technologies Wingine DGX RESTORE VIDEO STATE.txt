@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105FA2
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Wingine DGX - RESTORE VIDEO STATE
+	AX = 5FA2h
+	CX = state(s) to be restored (see #00186)
+	ES:BX -> buffer containing previously-saved state information
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AH=1Ch,AX=5FA0h,AX=5FA1h,AX=5F92h
+

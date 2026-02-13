@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1700
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PRINTER - WRITE CHARACTER
+	AH = 00h
+	AL = character to write
+	DX = printer number (00h-02h)
+Return: AH = printer status (see #00631)
+Note:	Under PhysTechSoft's PTS ROM-DOS the parallel port can also be
+	  accessed as COM5.
+BUGS:	Some print spoolers trash the BX register on return.
+	Some original IBM BIOSes set more than one printer status bits at
+	  a time, while only one of them is correct.
+SeeAlso: AH=02h,AH=84h"AX",AX=6F02h,AH=F1h,INT 16/AX=FFE3h,INT 1A/AH=11h"NEC"
+SeeAlso: INT 4B/AH=00h,PORT 0278h"PRINTER",MEM 0040h:0008h,MEM 0040h:0078h
+
+Bitfields for printer status:
+Bit(s)	Description	(Table 00631)
+ 7	not busy
+ 6	acknowledge
+ 5	out of paper
+ 4	selected
+ 3	I/O error
+ 2-1	unused
+ 0	timeout
+Notes:	If both, bit 5 "out of paper" and 4 "selected" are set, the MS-DOS/
+	  PC DOS kernel assumes that no printer is attached.
+	for Tandy 2000, bit 7 indicates printer-busy when set rather than clear
+

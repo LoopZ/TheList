@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B8108
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification - RELEASE DMA BUFFFER
+	AX = 8108h
+	DX = flags
+	    bit 0: reserved (zero)
+	    bit 1: data should be copied out of buffer
+	    bits 2-15 reserved (zero)
+	ES:DI -> DMA descriptor structure (see #03221,#03222) with buffer ID set
+		  (also region size/region offset/segment if DX bit 1 set)
+Return: CF clear if successful
+	CF set on error
+	    AL = error code (see #03218)
+BUG:	under Windows 3.0 Enhanced mode, you must specify that data be copied
+	  for this function to work correctly
+SeeAlso: AX=8107h
+

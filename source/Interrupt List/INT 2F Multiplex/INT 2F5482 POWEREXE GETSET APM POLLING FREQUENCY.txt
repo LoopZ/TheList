@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5482
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - POWER.EXE - GET/SET APM POLLING FREQUENCY
+	AX = 5482h
+	BX = new polling frequency or 0000h to get current frequency
+Return: AX = 0000h (successful)
+	BX = current frequency if BX=0000h on entry
+SeeAlso: AH=53h,AX=5400h,AX=5401h,AX=5480h,AX=5481h,AX=548Fh
+

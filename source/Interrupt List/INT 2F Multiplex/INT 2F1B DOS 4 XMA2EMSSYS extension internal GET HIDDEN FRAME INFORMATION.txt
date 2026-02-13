@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1B
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4+ XMA2EMS.SYS extension internal - GET HIDDEN FRAME INFORMATION
+	AH = 1Bh
+	AL <> 00h
+	DI = hidden physical page number
+Return: AX = FFFFh if failed (no such hidden page)
+	AX = 0000h if OK, then
+	    ES = segment of page frame
+	    DI = physical page number
+Notes:	this corresponds to the data edited out of the INT 67/AH=58h call
+	FASTOPEN makes this call with AL = FFh
+SeeAlso: AX=1B00h
+

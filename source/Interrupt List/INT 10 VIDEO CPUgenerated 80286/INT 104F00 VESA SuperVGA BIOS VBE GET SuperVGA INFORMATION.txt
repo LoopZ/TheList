@@ -1,0 +1,82 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS (VBE) - GET SuperVGA INFORMATION
+	AX = 4F00h
+	ES:DI -> buffer for SuperVGA information (see #00077)
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+		ES:DI buffer filled
+	    01h failed
+	    ---VBE v2.0---
+	    02h function not supported by current hardware configuration
+	    03h function invalid in current video mode
+Desc:	determine whether VESA BIOS extensions are present and the capabilities
+	  supported by the display adapter
+SeeAlso: AX=4E00h,AX=4F01h,AX=7F00h"SOLLEX",AX=A00Ch
+Index:	installation check;VESA SuperVGA
+
+Format of SuperVGA information:
+Offset	Size	Description	(Table 00077)
+ 00h  4 BYTEs	(ret) signature ("VESA")
+		(call) VESA 2.0 request signature ("VBE2"), required to receive
+		  version 2.0 info
+ 04h	WORD	VESA version number (one-digit minor version -- 0102h = v1.2)
+ 06h	DWORD	pointer to OEM name
+		"761295520" for ATI
+ 0Ah	DWORD	capabilities flags (see #00078)
+ 0Eh	DWORD	pointer to list of supported VESA and OEM video modes
+		(list of words terminated with FFFFh)
+ 12h	WORD	total amount of video memory in 64K blocks
+---VBE v1.x ---
+ 14h 236 BYTEs	reserved
+---VBE v2.0 ---
+ 14h	WORD	OEM software version (BCD, high byte = major, low byte = minor)
+ 16h	DWORD	pointer to vendor name
+ 1Ah	DWORD	pointer to product name
+ 1Eh	DWORD	pointer to product revision string
+ 22h	WORD	(if capabilities bit 3 set) VBE/AF version (BCD)
+		0100h for v1.0P
+ 24h	DWORD	(if capabilities bit 3 set) pointer to list of supported
+		  accelerated video modes (list of words terminated with FFFFh)
+ 28h 216 BYTEs	reserved for VBE implementation
+100h 256 BYTEs	OEM scratchpad (for OEM strings, etc.)
+Notes:	the list of supported video modes is stored in the reserved portion of
+	  the SuperVGA information record by some implementations, and it may
+	  thus be necessary to either copy the mode list or use a different
+	  buffer for all subsequent VESA calls
+	not all of the video modes in the list of mode numbers may be
+	  supported, e.g. if they require more memory than currently installed
+	  or are not supported by the attached monitor.	 Check any mode you
+	  intend to use through AX=4F01h first.
+	the 1.1 VESA document specifies 242 reserved bytes at the end, so the
+	  buffer should be 262 bytes to ensure that it is not overrun; for
+	  v2.0, the buffer should be 512 bytes
+	the S3 specific video modes will most likely follow the FFFFh
+	  terminator at the end of the standard modes.	A search must then
+	  be made to find them, FFFFh will also terminate this second list
+	in some cases, only a "stub" VBE may be present, supporting only
+	  AX=4F00h; this case may be assumed if the list of supported video
+	  modes is empty (consisting of a single word of FFFFh)
+
+Bitfields for VESA capabilities:
+Bit(s)	Description	(Table 00078)
+ 0	DAC can be switched into 8-bit mode
+ 1	non-VGA controller
+ 2	programmed DAC with blank bit (i.e. only during blanking interval)
+ 3	(VBE v3.0) controller supports hardware stereoscopic signalling
+ 3	controller supports VBE/AF v1.0P extensions
+ 4	(VBE v3.0) if bit 3 set:
+	    =0 stereo signalling via external VESA stereo connector
+	    =1 stereo signalling via VESA EVC connector
+ 4	(VBE/AF v1.0P) must call EnableDirectAccess to access framebuffer
+ 5	(VBE/AF v1.0P) controller supports hardware mouse cursor
+ 6	(VBE/AF v1.0P) controller supports hardware clipping
+ 7	(VBE/AF v1.0P) controller supports transparent BitBLT
+ 8-31	reserved (0)
+SeeAlso: #00077,AX=4F09h
+

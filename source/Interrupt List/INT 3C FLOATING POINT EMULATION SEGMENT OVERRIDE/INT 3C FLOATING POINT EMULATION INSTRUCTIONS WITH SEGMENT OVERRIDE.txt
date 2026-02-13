@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 3C
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 3C - FLOATING POINT EMULATION - INSTRUCTIONS WITH SEGMENT OVERRIDE
+Notes:	the floating-point emulators in Borland and Microsoft languages and
+	  Lahey FORTRAN use this interrupt
+	the generated code is  CD 3C xy mm ....
+	  where xy is a modified ESC instruction and mm is the modR/M byte.
+	  The xy byte appears to be encoded as
+		s s 0 1 1 x x x	  or	s s 0 0 0 x x x
+	  where "ss" specifies the segment override:
+		00 -> DS:
+		01 -> SS:
+		10 -> CS:
+		11 -> ES:
+SeeAlso: INT 3B,INT 3D
+

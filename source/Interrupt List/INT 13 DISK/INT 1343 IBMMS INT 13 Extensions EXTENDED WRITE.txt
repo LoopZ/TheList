@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1343
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - IBM/MS INT 13 Extensions - EXTENDED WRITE
+	AH = 43h
+	AL = write flags
+	   ---v1.0,2.0---
+	   bit 0: verify write
+	   bits 7-1 reserved (0)
+	   ---v2.1+ ---
+	   00h,01h write without verify
+	   02h write with verify
+	DL = drive number
+	DS:SI -> disk address packet (see #00272)
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code (see #00234)
+	    disk address packet's block count field set to number of blocks
+	      successfully transferred
+Note:	the BIOS returns CF set/AH=01h (invalid function) if verify is
+	  requested but not supported
+SeeAlso: AH=03h,AH=41h"INT 13 Ext",AH=42h"INT 13 Ext",AH=44h
+

@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1704
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - Emulaser ELTSR - BEGIN CAPTURING OUTPUT
+	AH = 04h
+Note:	has no effect unless ELTSR is deactivated (see AX=0503h)
+SeeAlso: AH=03h"Emulaser",AX=0503h,INT 1A/AH=E5h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141C
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - X00 FOSSIL - ACTIVATE PORT
+	AH = 1Ch
+	DX = port number
+Return: AX = 1954h if successful
+	BL = maximum function number supported (not including 7Eh and above)
+	BH = revision of FOSSIL specification supported
+Note:	this is a duplicate of AH=04h, so that AH=04h may be made compatible
+	  with the PS/2 BIOS in a future release
+SeeAlso: AH=04h"FOSSIL",AH=1Dh
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33256CBX0004
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - LOGITECH MOUSE - SET PARAMETERS - SET MOUSE LOGICAL BUTTONS
+	AX = 256Ch
+	BX = 0004h
+	CX = buttons (2, 3)
+Return: AX = FFFFh if driver installed for serial mouse
+SeeAlso: AX=246Ch,AX=276Ch
+

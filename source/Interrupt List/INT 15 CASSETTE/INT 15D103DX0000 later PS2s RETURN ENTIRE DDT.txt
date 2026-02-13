@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D103DX0000
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - RETURN ENTIRE DDT
+	AX = D103h
+	DX = 0000h (reserved, must be set to 0)
+	ES:DI -> buffer to contain DDT entry (see #00535)
+Return: AH = return code (see #00534)
+	CF set on error
+	CF clear on success
+	    ES:DI buffer filled with DDT entry
+SeeAlso: AH=C0h,AH=C7h,AH=C9h,AX=D100h,AX=D104h
+

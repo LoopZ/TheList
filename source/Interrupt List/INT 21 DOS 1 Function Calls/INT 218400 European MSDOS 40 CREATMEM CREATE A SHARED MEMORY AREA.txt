@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 218400
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "CREATMEM" - CREATE A SHARED MEMORY AREA
+	AX = 8400h
+	BX = size in bytes (0000h = 65536)
+	CX = flags
+	    bit 6: zero-initialize segment
+	DS:DX -> ASCIZ name (must begin with "\SHAREMEM\")
+Return: CF clear if successful
+	    AX = segment address of shared memory global object
+	CF set on error
+	    AX = error code (06h,08h) (see #01680 at AH=59h/BX=0000h)
+Desc:	create an area of memory which may be accessed by multiple processes
+Notes:	shared memory objects are created as special files (thus the
+	  restriction on the name)
+	on successful creation, the reference count is set to 1
+SeeAlso: AX=8401h,AX=8402h,INT 15/AX=DE19h
+

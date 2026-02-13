@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F50
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies '65530' BIOS - GET 655xx INFORMATION
+	AX = 5F50h
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+		    BX = width of flat panel in pixels
+		    CX = height of flat panel in pixels
+		    DX = F65520/525/530 status (see #00184)
+SeeAlso: AX=5F51h,INT 15/AX=5F31h
+
+Bitfields for C&T F65520/525/530 status:
+Bit(s)	Description	(Table 00184)
+ 15-0	reserved
+ 6-5	type of clock chip
+	00 = 404
+	01 = 404A
+	10 = 404B ES
+	11 = 404B
+ 4	accelerator enabled
+ 3	both displays active
+ 2	video polarity (1 = inverted)
+ 1	output device
+	0 CRT
+	1 flat panel (LCD)
+ 0	reserved
+

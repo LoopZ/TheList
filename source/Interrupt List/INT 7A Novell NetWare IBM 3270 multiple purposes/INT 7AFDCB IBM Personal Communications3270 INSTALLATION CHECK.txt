@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7AFDCB
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM Personal Communications/3270 - INSTALLATION CHECK
+	AX = FDCBh
+Return: DX:AX -> PCS/3270 signature block if loaded (see #03839)
+
+Format of Personal Communications/3270 signature block:
+Offset	Size	Description	(Table 03839)
+ 04h	WORD	PCS/3270 signature (5741h)
+ 06h	WORD	version (0501h = PCS/3270 v1.0)
+

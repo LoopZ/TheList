@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0418BP0114
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_KEYBOARD_LED" - SET KEYBOARD LEDS
+	AX = 0418h
+	BP = 0114h (driver ID for V_HPHIL)
+	BL = new LED states
+	    bit 0: scroll lock
+	    bit 1: NumLock
+	    bit 2: CapsLock
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=040Eh/BP=0114h,AX=0416h/BP=0114h
+

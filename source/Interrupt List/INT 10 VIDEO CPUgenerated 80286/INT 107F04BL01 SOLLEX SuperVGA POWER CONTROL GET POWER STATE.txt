@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F04BL01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - POWER CONTROL - GET POWER STATE
+	AX = 7F04h
+	BL = 01h
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		    CX = current power state
+		    DX = maximum state
+		01h failed
+SeeAlso: AX=7F00h"SOLLEX",AX=7F04h/BL=00h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216F01
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 5+ ROM - SET ROM SCAN START ADDRESS
+	AX = 6F01h
+	BX = new ROM scan starting address
+Return: CF clear
+	AL = 00h
+SeeAlso: AX=6F00h,AX=6F03h
+

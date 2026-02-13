@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - "FLOW CONTROL DATA"
+	AX = 0003h subfn 03h
+	DS:BX -> argument block (see #03377)
+Return: AX = status (see #03369)
+Desc:	this function permits the caller to freeze/unfreeze the display and
+	  the ring buffer
+SeeAlso: AX=0003h/SF=02h,AX=0003h/SF=06h
+
+Format of VINES argument block for Function 0003h subfunction 03h:
+Offset	Size	Description	(Table 03377)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	03h (function "flow control data")
+ 02h	BYTE	flow control flag
+		00h allow characters to be put into display or ring buffer
+		01h don't place any more characters into display or ring buffer
+

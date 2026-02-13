@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB16BX1234
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Spec v1.2+ - UNLOAD RESIDENT MANAGER
+	AX = CB16h
+	BX = 1234h
+	CX = 5678h
+	DX = 9ABCh
+Return: AX = 0000h successful
+	AX < 0	   error code
+Note:	the METZ XpressFax CASMGR ignores the values in BX,CX, and DX
+SeeAlso: AX=C000h/BX=444Bh,AX=CB00h
+Index:	uninstall;CAS Manager
+

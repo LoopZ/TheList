@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F120E
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - MARK ALL DISK BUFFERS UNREFERENCED
+	AX = 120Eh
+	SS = DOS DS (must be using a DOS internal stack)
+Return: DS:DI -> first disk buffer
+Notes:	clears "referenced" flag on all disk buffers
+	in DOS 5+, this has become essentially a NOP, invoking the same code
+	  used by AX=1224h (SHARING DELAY)
+SeeAlso: AX=1209h,AX=1210h,INT 21/AH=0Dh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB809
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - NETWORK - PC LAN Program, Microsoft Networking - GET VERSION
+	AX = B809h
+Return: AH = minor version (decimal)
+	AL = major version
+Notes:	this function is supported in this form by PC LAN Program, LAN Manager,
+	  the DOS LAN Requester, 10NET v5.0, and Microsoft Networking under
+	  WfWg 3.11
+	10NET returns version 1.10 (AX=0A01h) for compatibility
+SeeAlso: AX=4E53h,AX=B800h,AX=B809h"LANtastic"
+

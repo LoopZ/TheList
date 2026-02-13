@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B8
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Attachmate Extra! - DISABLE HOST BUFFER UPDATES
+	AH = B8h
+	AL = window number (1-4=host B-E)
+	DL = 01h
+Notes:	only valid in CUT mode
+	next AID keystroke (eg Enter) enables host buffer updates
+SeeAlso: AH=A4h
+

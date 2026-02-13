@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C202
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE (PS) - SET SAMPLING RATE
+	AX = C202h
+	BH = sampling rate
+	    00h 10/second
+	    01h 20/second
+	    02h 40/second
+	    03h 60/second
+	    04h 80/second
+	    05h 100/second
+	    06h 200/second
+Return: CF set on error
+	    AH = status (see #00522)
+SeeAlso: INT 33/AX=001Ch
+

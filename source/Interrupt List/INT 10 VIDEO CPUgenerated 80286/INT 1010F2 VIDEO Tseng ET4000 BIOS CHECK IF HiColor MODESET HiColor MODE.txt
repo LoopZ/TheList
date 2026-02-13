@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1010F2
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 10 u - VIDEO - Tseng ET-4000 BIOS - CHECK IF HiColor MODE/SET HiColor MODE
+	AX = 10F2h
+	BL = function
+	    00h get current HiColor mode
+	    01h set 15-bit HiColor mode
+	    02h set 16-bit HiColor mode
+Return: AX = 0010h if supported
+	    BL = video mode type
+		00h not in HiColor mode
+		01h 15-bit RGB mode
+		02h 16-bit RGB mode
+		03h 24-bit RGB mode
+Desc:	determine whether the display is in a graphics mode with 15 or more
+	  bits per pixel color resolution
+Note:	set (BL=01h/02h) only works if already in a HiColor mode
+SeeAlso: AH=0Fh,AX=10F0h,AX=10F1h
+

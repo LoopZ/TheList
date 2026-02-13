@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310508
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - MAP DEVICE IN MEMORY BLOCK
+	AX = 0508h
+	ESI = memory block handle
+	EBX = page-aligned offset within memory block of page(s) to be mapped
+	ECX = number of pages to map
+	EDX = page-aligned physical address of device
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8001h,8003h,8023h,8025h) (see #03143)
+Notes:	only supported by 32-bit DPMI hosts, but may be used by 16-bit clients
+	support of this function is optional; hosts are also allowed to support
+	  the function for some devices but not others
+SeeAlso: AX=0504h,AX=0509h,AX=0800h,AX=0801h
+

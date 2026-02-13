@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F920D
+  Category: R 	remote control/file access
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v8.0 DRIVEMAP - GET DRIVE TYPE
+	AX = 920Dh
+	BL = drive letter (41h ['A'] = A:, etc)
+Return: AX = type flags
+		bit 0: ???
+		bit 1: available
+		bit 5: local
+	BX = ???
+	CX = segment of resident code (apparently an unintended side effect)
+Program: DRIVEMAP is a redirector which allows drives on computers connected
+	  over the parallel or serial ports to appear as local drives
+SeeAlso: AX=9218h,INT 16/AX=FF70h
+

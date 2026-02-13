@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6013
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - 3com, 10NET, Banyan VINES - UNLOCK
+	AH = 13h
+	AL = drive number or 00h
+	ES:SI = Ethernet address or 0000h:0000h
+	DS:BX -> 31-byte ASCIZ semaphore name
+Return: AL = status (see also #03314)
+	    01h semaphore not locked
+SeeAlso: AH=11h,AH=12h
+

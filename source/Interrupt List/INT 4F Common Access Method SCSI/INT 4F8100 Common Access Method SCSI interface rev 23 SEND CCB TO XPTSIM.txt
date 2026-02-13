@@ -1,0 +1,351 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4F8100
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4F - Common Access Method SCSI interface rev 2.3 - SEND CCB TO XPT/SIM
+	AX = 8100h
+	ES:BX -> CAM Control Block (CCB) (see #03229)
+Return: AH = status
+	    00h successful
+	    01h invalid CCB address (0000h:0000h)
+Note:	the SCSI Interface Module (SIM) may complete the requested function
+	  and invoke the completion callback function before this call returns
+SeeAlso: AX=8200h,INT 2F/AX=7F01h,INT 4B"Common Access Method"
+
+(Table 03228)
+Values for CAM function code:
+ 00h	NOP
+ 01h	execute SCSI I/O
+ 02h	get device type
+ 03h	path inquiry
+ 04h	release SIM queue
+ 05h	set async callback
+ 06h	set device type
+ 07h-0Fh reserved
+ 10h	abort SCSI command
+ 11h	reset SCSI bus
+ 12h	reset SCSI device
+ 13h	terminate I/O process
+ 14h-1Fh reserved
+ 20h	engine inquiry
+ 21h	execute engine request
+ 22h-2Fh reserved
+ 30h	enable logical unit number
+ 31h	execute target I/O
+ 32h-7Fh reserved
+ 80h-FFh vendor-specific functions
+
+Format of CAM Control Block:
+Offset	Size	Description	(Table 03229)
+ 00h	DWORD	physical address of this CCB
+ 04h	WORD	CAM control block length
+ 06h	BYTE	function code (see #03228)
+ 07h	BYTE	CAM status (see #03232)
+ 08h	BYTE	SCSI status
+ 09h	BYTE	path ID (FFh = XPT)
+ 0Ah	BYTE	target ID
+ 0Bh	BYTE	logical unit number
+ 0Ch	WORD	CAM flags (see #03230)
+ 0Eh	BYTE	CAM address flags (see #03231)
+ 0Fh	BYTE	target-mode flags (see #03233)
+---function 02h---
+ 10h	DWORD	pointer to 36-byte buffer for inquiry data or 0000h:0000h
+ 14h	BYTE	peripheral device type of target logical unit number
+---function 03h---
+ 10h	BYTE	version number (00h-07h prior to rev 1.7, 08h = rev 1.7,
+		09h-FFh = rev no, i.e. 23h = rev 2.3)
+ 11h	BYTE	SCSI capabilities (see #03234)
+ 12h	BYTE	target mode support
+		bit 7: processor mode
+		bit 6: phase-cognizant mode
+		bit 5-0: reserved
+ 13h	BYTE	miscellaneous flags
+		bit 7: scanned high to low instead of low to high
+		bit 6: removables not included in scan
+		bit 5: inquiry data not kept by XPT
+		bits 4-0: reserved
+ 14h	WORD	engine count
+ 16h 14 BYTEs	vendor-specific data
+ 24h	DWORD	size of private data area
+ 28h	DWORD	asynchronous event capabilities (see #03235)
+ 2Ch	BYTE	highest path ID assigned
+ 2Dh	BYTE	SCSI device ID of initiator
+ 2Eh  2 BYTEs	reserved
+ 30h 16 BYTEs	SIM vendor ID
+ 40h 16 BYTEs	HBA (host bus adaptor) vendor ID
+ 50h  4 BYTEs	operating-system dependant usage
+---functions 00h,04h,11h,12h---
+ no additional fields
+---function 05h---
+ 10h	DWORD	asynchronous event enables (refer to function 03h above)
+ 14h	DWORD	pointer to asynchronous callback routine (see #03241)
+ 18h	DWORD	pointer to peripheral driver buffer
+ 1Ch	BYTE	size of peripheral buffer
+---function 06h---
+ 10h	BYTE	peripheral device type of target
+---functions 10h,13h---
+ 10h	DWORD	pointer to CCB to be aborted
+---function 20h---
+ 10h	WORD	engine number
+ 12h	BYTE	engine type
+		00h buffer memory
+		01h lossless compression
+		02h lossy compression
+		03h encryption
+ 13h	BYTE	engine algorithm ID
+		00h vendor-unique
+		01h LZ1 variation 1 (STAC)
+		02h LZ2 variation 1 (HP DCZL)
+		03h LZ2 variation 2 (Infochip)
+ 14h	DWORD	engine memory size
+---function 21h---
+ 10h	DWORD	pointer to peripheral driver
+ 14h  4 BYTEs	reserved
+ 18h	DWORD	OS-dependent request-mapping info
+ 1Ch	DWORD	address of completion callback routine
+ 20h	DWORD	pointer to scatter/gather list or data buffer
+ 24h	DWORD	length of data transfer
+ 28h	DWORD	pointer to engine buffer data
+ 2Ch  2 BYTEs	reserved
+ 2Eh	WORD	number of scatter/gather entries
+ 30h	DWORD	maximum destination data length
+ 34h	DWORD	length of destination data
+ 38h	DWORD	source residual length
+ 3Ch 12 BYTEs	reserved
+ 48h	DWORD	OS-dependent timeout value
+ 4Ch  4 BYTEs	reserved
+ 50h	WORD	engine number
+ 52h	WORD	vendor-unique flags
+ 54h  4 BYTEs	reserved
+ 58h  N BYTEs	private data area for SIM
+---function 30h---
+ 10h	WORD	group 6 vendor-unique CDB length
+ 12h	WORD	group 7 vendor-unique CDB length
+ 14h	DWORD	pointer to target CCB list
+ 18h	WORD	number of target CCBs
+---other functions---
+ 10h	DWORD	pointer to peripheral driver
+ 14h	DWORD	pointer to next CCB
+ 18h	DWORD	OS-dependent request mapping information
+ 1Ch	DWORD	address of completion callback routine (see #03240)
+ 20h	DWORD	pointer to scatter/gather list or data buffer
+ 24h	DWORD	length of data transfer
+ 28h	DWORD	pointer to sense info buffer
+ 2Ch	BYTE	length of sense info buffer
+ 2Dh	BYTE	CDB length
+ 2Eh	WORD	number of scatter/gather entries
+		scatter/gather list is array of 2N DWORDs, each pair specifying
+		  the address and length of a data block
+ 30h  4 BYTEs	vendor-specific data
+ 34h	BYTE	(ret) SCSI status
+ 35h	BYTE	(ret) auto-sense residual length
+ 36h  2 BYTEs	reserved
+ 38h	DWORD	(ret) residual length
+ 40h 12 BYTEs	Command Descriptor Block (CDB) (see #03236,#03237,#03238)
+ 44h	DWORD	OS-dependent timeout value
+ 48h	DWORD	pointer to message buffer
+ 4Ch	WORD	length of message buffer
+ 4Eh	WORD	vendor-unique flags
+ 50h	BYTE	tag queue action
+ 51h  3 BYTEs	reserved
+ 54h  N BYTEs	private data area for SIM
+
+Bitfields for CAM flags:
+Bit(s)	Description	(Table 03230)
+ 0	CDB is a pointer
+ 1	tagged queue action enable
+ 2	linked CDB
+ 3	disable callback on completion
+ 4	scatter/gather
+ 5	disable autosense
+ 7-6	direction (00 reserved, 01 in, 10 out, 11 no data transfer)
+ 9-8	reserved
+ 10	engine synchronize
+ 11	SIM queue freeze
+ 12	SIM queue priority
+	1 head insertion
+	0 tail insertion (normal)
+ 13	disable synchronous transfers	\ mutually
+ 14	initiate synchronous transfers	/ exclusive
+ 15	disable disconnect
+
+Bitfields for CAM address flags:
+Bit(s)	Description	(Table 03231)
+ 7	SG list/data (0 = host, 1 = engine)
+ 6	CDB pointer    (6-1: 0=virtual addr, 1=phys addr)
+ 5	SG list/data
+ 4	sense buffer
+ 3	message buffer
+ 2	next CCB
+ 1	callback on completion
+ 0	reserved
+
+(Table 03232)
+Values for CAM status:
+ 00h	request in progress
+ 01h	request successful
+ 02h	host aborted request
+ 03h	unable to abort request
+ 04h	request completed with error
+ 05h	CAM is busy
+ 06h	invalid request
+ 07h	invalid path ID
+ 08h	no such SCSI device
+ 09h	unable to terminate I/O process
+ 0Ah	timeout on target selection
+ 0Bh	timeout on command
+ 0Dh	receive message rejection
+ 0Eh	sent/received SCSI bus reset
+ 0Fh	detected uncorrectable parity error
+ 10h	Autosense request failed
+ 11h	no HBA detected
+ 12h	data over/underrun
+ 13h	bus freed unexpectedly
+ 14h	target bus phase sequence failure
+ 15h	CCB too small
+ 16h	requested capability not available
+ 17h	sent bus device reset
+ 18h	terminate I/O process
+ 38h	invalid LUN
+ 39h	invalid target ID
+ 3Ah	unimplemented function
+ 3Bh	nexus not established
+ 3Ch	invalid initiator ID
+ 3Dh	received SCSI Command Descriptor Block
+ 3Eh	LUN already enabled
+ 3Fh	SCSI bus busy
+Note:	bit 6 set to indicate frozen SIM queue
+	bit 7 set to indicate valid autosense
+
+Bitfields for CAM target-mode flags:
+Bit(s)	Description	(Table 03233)
+ 7	data buffer valid
+ 6	status valid
+ 5	message buffer valid
+ 4	reserved
+ 3	phase-cognizant mode
+ 2	target CCB available
+ 1	disable autodisconnect
+ 0	disable autosave/restore
+
+Bitfields for SCSI capabilities:
+Bit(s)	Description	(Table 03234)
+ 7	modify data pointers
+ 6	wide bus (32 bits)
+ 5	wide bus (16 bits)
+ 4	synchronous transfers
+ 3	linked commands
+ 2	reserved
+ 1	tagged queueing
+ 0	soft reset
+
+Bitfields for CAM asynchronous event capabilities:
+Bit(s)	Description	(Table 03235)
+ 31-24	vendor-specific
+ 23-8	reserved
+ 7	new devices found during rescan
+ 6	SIM module deregistered
+ 5	SIM module registered
+ 4	sent bus device reset to target
+ 3	SCSI AEN
+ 2	reserved
+ 1	unsolicited reselection
+ 0	unsolicited SCSI bus reset
+
+Format of Six-Byte SCSI Command Descriptor Block (CDB):
+Offset	Size	Description	(Table 03236)
+ 00h	BYTE	operation code (see #03239)
+ 01h	BYTE	logical unit number (bits 7-5), SCSI-1/SCSI-2
+		MSB of logical block address (bits 4-0)
+ 02h	WORD	logical block address (low word)
+ 04h	BYTE	transfer length
+ 05h	BYTE	control byte
+SeeAlso: #03237,#03238
+
+Format of Ten-Byte SCSI Command Descriptor Block (CDB):
+Offset	Size	Description	(Table 03237)
+ 00h	BYTE	operation code (see #03239)
+ 01h	BYTE	logical unit number (bits 7-5), SCSI-1/SCSI-2
+		reserved in SCSI-3
+ 02h	DWORD	logical block address (low word)
+ 06h	BYTE	reserved
+ 07h	WORD	transfer length
+ 09h	BYTE	control byte
+SeeAlso: #03236,#03238
+
+Format of Twelve-Byte SCSI Command Descriptor Block (CDB):
+Offset	Size	Description	(Table 03238)
+ 00h	BYTE	operation code (see #03239)
+ 01h	BYTE	logical unit number (bits 7-5), SCSI-1/SCSI-2
+		reserved in SCSI-3
+ 02h	DWORD	logical block address (low word)
+ 06h	DWORD	transfer length
+ 0Ah	BYTE	reserved
+ 0Bh	BYTE	control byte
+SeeAlso: #03236,#03237
+
+(Table 03239)
+Values for SCSI CDB operation code for direct-access devices:
+ 00h	Test Unit Ready
+ 01h	Rezero Unit
+ 03h	Request Sense
+ 04h	Format Unit
+ 07h	Reassign Blocks
+ 08h	Read (6-byte CDB)
+ 0Ah	Write (6-byte CDB)
+ 0Bh	Seek (6-byte CDB)
+ 12h	Inquiry
+ 15h	Mode Select (6-byte CDB)
+ 16h	Reserve
+ 17h	Release
+ 18h	Copy
+ 1Ah	Mode Sense (6-byte CDB)
+ 1Bh	Start/Stop Unit
+ 1Ch	Receive Diagnostic Results
+ 1Dh	Send Diagnostic
+ 1Eh	Prevent/Allow Medium Removal
+ 25h	Read Capacity
+ 28h	Read (10-byte CDB)
+ 2Ah	Write (10-byte CDB)
+ 2Bh	Seek (10-byte CDB)
+ 2Eh	Write and Verify
+ 2Fh	Verify
+ 30h	Search Data High
+ 31h	Search Data Equal
+ 32h	Search Data Low
+ 33h	Set Limits
+ 34h	Prefetch
+ 35h	Synchronize Cache
+ 36h	Lock/Unlock Cache
+ 37h	Read Defect Data
+ 39h	Compare
+ 3Ah	Copy and Verify
+ 3Bh	Write Buffer
+ 3Ch	Read Buffer
+ 3Eh	Read Long
+ 3Fh	Write Long
+ 40h	Change Definition
+ 41h	Write Same
+ 4Ch	Log Select
+ 4Dh	Log Sense
+ 55h	Mode Select (10-byte CDB)
+ 5Ah	Mode Sense (10-byte CDB)
+SeeAlso: #03236,#03237,#03238
+
+(Table 03240)
+Values completion callback function is called with:
+	interrupts disabled
+	ES:BX -> completed CCB
+
+(Table 03241)
+Values asynchronous callback function is called with:
+	AH = opcode
+	AL = path ID generating callback
+	DH = target ID causing event
+	DL = LUN causing event
+	CX = data byte count (if applicable)
+	ES:BX -> data buffer (if applicable)
+Return: all registers preserved
+

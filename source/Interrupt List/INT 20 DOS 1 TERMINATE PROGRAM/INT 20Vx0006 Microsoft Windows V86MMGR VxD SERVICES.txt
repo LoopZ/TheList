@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0006
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - V86MMGR - VxD SERVICES
+	VxD = 0006h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01270)
+Values for V86MMGR (VxD ID 0006h) service number:
+ 00h	get version
+ 01h	allocate V86 pages
+ 02h	set EMS and XMS limits
+ 03h	get EMS and XMS limits
+ 04h	set mapping information
+ 05h	get mapping information
+ 06h	Xlat API
+ 07h	load client pointer
+ 08h	allocate buffer
+ 09h	free buffer
+ 0Ah	get Xlat buffer state
+ 0Bh	set Xlat buffer state
+ 0Ch	get VM flat selector
+ 0Dh	map pages
+ 0Eh	free page map region
+ 0Fh	_LocalGlobalReg
+ 10h	get page status
+ 11h	set local A20
+ 12h	reset base pages
+ 13h	set available mapped pages
+ 14h	"V86MMGR_NoUMBInitCalls"
+ 15h	"V86MMGR_Get_EMS_XMS_Avail"
+ 16h	"V86MMGR_Toggle_HMA"
+	EAX = ???
+ 17h	"V86MMGR_Dev_Init"
+ 18h	"V86MMGR_Alloc_UM_Page"
+SeeAlso: #02646,#01271,INT 2F/AX=1684h"DEVICE API"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F43E4BX0000
+  Category: m 	memory management
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DOS Protected Mode Services (DPMS) v1.0 - DPMS EXIT BROADCAST
+	AX = 43E4h
+	BX = 0000h
+	CX = 4450h ('DP')
+	DX = 4D53h ('MS')
+Return: BX = status
+	    bit 0 set if server is not allowed to unload
+Note:	servers never unload until all clients unregister
+SeeAlso: AX=43E0h,AX=43E3h
+

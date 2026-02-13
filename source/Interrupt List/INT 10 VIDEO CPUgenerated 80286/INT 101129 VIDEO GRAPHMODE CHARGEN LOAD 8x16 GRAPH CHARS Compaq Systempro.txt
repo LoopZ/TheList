@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101129
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GRAPH-MODE CHARGEN - LOAD 8x16 GRAPH CHARS (Compaq Systempro)
+	AX = 1129h
+	BL = row specifier (see AX=1121h)
+Return: nothing
+Notes:	this function is meant to be called immediately after a mode set;
+	  results are unpredictable at other times
+	UltraVision v2+ sets INT 43 to the appropriate font on this call
+SeeAlso: AX=1120h,AX=1121h,AX=1122h,AX=1123h,AX=1124h,INT 1F"SYSTEM DATA"
+SeeAlso: INT 43"VIDEO DATA"
+

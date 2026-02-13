@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0100
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - WAIT FOR EVENT
+	DI = 0100h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to event record (see #03277)
+Return: event record filled
+	STACK unchanged
+Note:	this call will timeout after about 500ms
+SeeAlso: INT 15/AX=4DD4h,INT 60/DI=0101h,INT 61"HP 95LX",INT 62"HP 95LX"
+
+(Table 03276)
+Values for HP 95LX event type:
+ 00h	no events
+ 01h	keystroke available
+ 02h	Ctrl-Break
+ 03h	reactivation (always follows deactivation event)
+ 04h	about to deactivate (sleep)
+	next get-event call will not return until reactivated
+ 05h	forced application termination
+ 06h	1-2-3 bridge service request (only given to 1-2-3)
+ 07h	request to grow
+ 08h	request to shrink
+ 09h	application's alarm expired
+ 0Ah	daily chance to set an alarm
+ 0Bh	system date or time has been changed
+
+Format of HP 95LX event record:
+Offset	Size	Description	(Table 03277)
+ 00h	WORD	event type (see #03276)
+ 02h	WORD	ASCII code page 850 translation of keystroke
+		or grow/shrink amount in paragraphs or 0000h if error
+		or alarm expiration data
+ 04h	BYTE	scan code from BIOS
+ 05h	BYTE	shift key states at time keystroke is retrieved
+ 06h	WORD	LICS translation of keystroke
+ 08h	BYTE	function key number (1-2-3 only)
+ 09h	DWORD	pointer to 1-2-3 bridge record (see #03279)
+		or pointer to time change structure (see #03278)
+Note:	if the System Manager is awaiting the conclusion of a bridge service
+	  or grow/shrink call and the event type field is set to FFFFh on
+	  entry, the SysMgr will resume
+
+Format of HP 95LX time change structure:
+Offset	Size	Description	(Table 03278)
+ 00h	WORD	old year
+ 02h	BYTE	old month
+ 03h	BYTE	old date
+ 04h	BYTE	old day
+ 05h	BYTE	old hour
+ 06h	BYTE	old minute
+ 07h	BYTE	old second
+ 08h	BYTE	old hundredth of a second
+ 09h  9 BYTEs	new time in same format as old time
+

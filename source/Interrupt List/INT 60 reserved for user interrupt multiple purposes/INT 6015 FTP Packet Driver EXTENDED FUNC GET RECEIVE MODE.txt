@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6015
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - EXTENDED FUNC - GET RECEIVE MODE
+	AH = 15h
+	BX = handle (optional for v1.10+)
+Return: CF set on error
+	    DH = error code (01h) (see #03305)
+	CF clear if successful
+	    AX = receive mode (see #03315)
+SeeAlso: AH=14h
+

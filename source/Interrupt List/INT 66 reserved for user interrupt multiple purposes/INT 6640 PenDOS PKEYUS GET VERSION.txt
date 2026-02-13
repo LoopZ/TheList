@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6640
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - PenDOS - PKEYUS - GET VERSION
+	AH = 40h
+Return: CF clear
+	AX = 0000h
+	BH = major version (02h for version bundled with IBM DOS 6.1)
+	BL = minor version (00h for version bundled with IBM DOS 6.1)
+	DL = ??? (4Eh)
+	DH = ??? (0Eh)
+

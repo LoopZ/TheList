@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0018
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 7A U - Novell NetWare - IPX Driver - internal - ADD DIAGNOSTIC ELEMENT
+	BX = 0018h
+	ES:SI -> diagnostic element (see #03829) to be added to Diagnostic Queue
+Note:	this function is supported on file servers only under v2.15; v3.02 also
+	  supports it on workstations
+SeeAlso: BX=0019h
+
+Format of IPX diagnostic element:
+Offset	Size	Description	(Table 03829)
+ 00h	DWORD	pointer to next diagnostic element
+ 04h	DWORD	pointer to function for ???
+ 08h	DWORD	pointer to function for ???
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD09
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Intel Image Processing Interface - LOAD SCREEN
+	AX = CD09h
+	CX:BX -> structure (see #03072)
+Return: AL = status (00h,80h) (see #03068)
+SeeAlso: AX=CD06h"Image Processing",AX=CD0Ah"Image Processing"
+
+Format of IPI load screen structure:
+Offset	Size	Description	(Table 03072)
+ 00h	BYTE	style
+		44h ('D') diamond style
+		4Ch ('L') line style
+ 01h	BYTE	reserved (00h)
+ 02h	WORD	frequency in lines per inch [sic]
+		currently, coerced to nearest of 50, 60, 68, 70, 75, 85, or 100
+ 04h	WORD	screen angle in degrees (-360 to 360)
+		currently coerced to nearest of -45, 0, 45, or 90
+

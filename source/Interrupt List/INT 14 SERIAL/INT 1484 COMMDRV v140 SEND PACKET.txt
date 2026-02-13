@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1484
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - SEND PACKET
+	AH = 84h
+	CX = packet length in bytes
+	DX = port number
+	ES:DI -> packet to be sent
+Return: AH = line status (see #00304)
+	    bit 7 set on error
+	AL destroyed
+SeeAlso: AH=83h"COMM-DRV",AH=85h"COMM-DRV",AH=86h"COMM-DRV"
+

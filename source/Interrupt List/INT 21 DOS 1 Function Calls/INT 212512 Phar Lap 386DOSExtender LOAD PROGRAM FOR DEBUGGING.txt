@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212512
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - LOAD PROGRAM FOR DEBUGGING
+	AX = 2512h
+	DS:EDX -> pointer to ASCIZ program name
+	ES:EBX -> pointer to parameter block (see #01363)
+	ECX = size in bytes of LDT buffer
+Return: CF clear if successful
+	    EAX = number of segment descriptors in LDT
+	CF set on error
+	    EAX = error code (see #01362)
+SeeAlso: AX=2517h
+
+(Table 01362)
+Values for Phar Lap error code:
+ 02h	file not found or path invalid
+ 05h	access denied
+ 08h	insufficient memory
+ 0Ah	environment invalid
+ 0Bh	invalid file format
+ 80h	LDT too small
+
+Format of Phar Lap program load parameter block:
+Offset	Size	Description	(Table 01363)
+Input:
+ 00h	DWORD	32-bit offset of environment string
+ 04h	WORD	segment of environment string
+ 06h	DWORD	32-bit offset of command-tail string
+ 0Ah	WORD	segment of command-tail string
+ 0Ch	DWORD	32-bit offset of LDT buffer (size in ECX)
+ 10h	WORD	segment of LDT buffer
+Output:
+ 12h	WORD	real-mode paragraph address of PSP (see also AH=26h)
+ 14h	WORD	real/protected mode flag
+		0000h  real mode
+		0001h  protected mode
+ 16h	DWORD	initial EIP value
+ 1Ah	WORD	initial CS value
+ 1Ch	DWORD	initial ESP value
+ 20h	WORD	initial SS value
+ 22h	WORD	initial DS value
+ 24h	WORD	initial ES value
+ 26h	WORD	initial FS value
+ 28h	WORD	initial GS value
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1011
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - BIOS Window Extension v1.1 - GET WINDOW COORDINATES
+	AH = 11h
+Return: CH,CL = row,column of upper left corner
+	DH,DL = row,column of lower right corner
+Desc:	determine the portion of the display to which output is restricted
+Program: BWE is a TSR by John J. Seal published in May 1986 Dr. Dobb's Journal
+SeeAlso: AH=10h"Window",AH=12h"Window"
+

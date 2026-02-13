@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0214
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SYSTEM SF_INTERVAL" - 60 HZ INTERVAL EXPIRED
+	AX = 0214h
+	BP = driver ID (see #03741)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	report to driver that a previously-requested 60 Hz interval has
+	  expired
+SeeAlso: AH=00h"HP Vectra",AX=0200h,AX=0208h,AX=020Eh,AX=0212h,AX=0216h
+

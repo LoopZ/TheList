@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F25--CL01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy ANSK, NTNX, MW386 - GET NETWORK EXECUTIVE TYPE
+	AH = 25h
+	CL = 01h
+Return: CL = executive type (see #03964)
+SeeAlso: AH=25h/CL=00h
+
+(Table 03964)
+Values for Alloy network executive type:
+ 00h	RTNX
+ 01h	ATNX
+ 02h	NTNX
+ 03h	BTNX
+ 04h	MW386
+ 05h	ANSK
+

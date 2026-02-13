@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 110225BX6909
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - Blank-It Screen Blanker - SET HOTKEY FOR MANUAL BLANKING
+	AX = 0225h
+	BX = 6909h
+	CL = key scan code (see #00229)
+Return: CF clear if successful
+	CF set on error
+	    AL = error code
+Program: Blank-It is a resident screen blanker by Rhode Island Soft Systems,
+	  Inc.
+SeeAlso: AX=0225h/BX=6900h
+Index:	screen saver;Blank-It|hotkeys;Blank-It
+
+(Table 00229)
+Values for Blank-It hotkey scan code:
+ 00h	No hot key
+ 1Dh	Left CTRL
+ 2Ah	Left Shift
+ 36h	Right Shift
+ 57h	F11
+ 58h	F12
+SeeAlso: #00006
+

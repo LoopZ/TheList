@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE301
+  Category: K 	keyboard enhancers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - ANARKEY.COM v2+ - GET ???
+	AX = E301h
+Return: DX:BX -> ??? (see #03108,#03109)
+SeeAlso: AX=E300h
+
+Format of returned data structure for ANARKEY v2.0:
+Offset	Size	Description	(Table 03108)
+ -7   7 BYTEs	signature ('ANARKEY')
+ 00h	WORD	??? (I see 0001h in v2.0)
+ 02h	WORD	??? (I see 0001h in v2.0)
+ 04h	WORD	??? (I see 0 in v2.0)
+ 06h	WORD	PSP segment of next program loaded
+
+Format of returned data structure for ANARKEY v3+:
+Offset	Size	Description	(Table 03109)
+ -1	BYTE	multiplex number
+ 00h	WORD	??? (I see 0001h in v3.0-4.0)
+ 02h	WORD	??? (I see 0001h in v3.0-4.0)
+ 04h	BYTE	??? (I see 0 in v3.0-4.0)
+ 05h	WORD	PSP segment of next program loaded
+

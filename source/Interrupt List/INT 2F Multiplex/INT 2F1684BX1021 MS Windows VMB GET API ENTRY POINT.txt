@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX1021
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VMB - GET API ENTRY POINT
+	AX = 1684h
+	BX = 1021h (virtual device ID for VMB device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500012
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - COMPARE MEMORY
+	AX = 0012h
+	DS:SI -> source
+	ES:DI -> destination
+	CX = number of bytes to compare (0000h=until NUL string terminator???)
+Return: AX = status
+	    0000h same
+	    FFFFh different
+SeeAlso: AX=0011h
+

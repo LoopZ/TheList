@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAB
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Player's Tool 3.996b+ - INSTALLATION CHECK
+	AH = ABh
+Return: BH = FFh if installed
+	    BL = DOS shell state
+		01h in DOS shell
+		00h not in DOS shell
+SeeAlso: AH=AAh"Player's Tool",AH=ACh"Player's Tool",INT 10/AH=ABh
+

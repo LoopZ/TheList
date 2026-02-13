@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - License Service API - RELEASE LICENSE
+	AX = 7002h
+	CX = license server index (0000h to 001Fh)
+	DS:DX -> SLSRELEASE structure (see #02852)
+	ES:BX = provider specific handle for the license context
+Return: AL = status
+	    00h not installed
+	    FFh installed
+SeeAlso: AX=7001h,AX=7005h
+
+Format of License Service SLSRELEASE structure:
+Offset	Size	Description	(Table 02852)
+ 00h	DWORD	handle indentifying license context
+ 04h	DWORD	total units consumed
+ 08h	DWORD	address of comment string
+

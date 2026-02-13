@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF76
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - READ QUEUE SERVER CURRENT STATUS OLD
+	AH = E3h subfn 76h
+	DS:SI -> request buffer (see #01992)
+	ES:DI -> reply buffer (see #01993)
+Return: AL = status (00h,96h,9Ch,D1h-D3h,F1h,FCh,FEh,FFh) (see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be on a workstation which is security-equivalent to a
+	  member of the Q_USERS or Q_OPERATORS properties
+SeeAlso: AH=E3h/SF=68h,AH=E3h/SF=6Ch,AH=E3h/SF=6Fh,AH=E3h/SF=77h,AH=E3h/SF=78h
+SeeAlso: AX=F217h/SF=76h
+
+Format of NetWare "Read Queue Server Current Status (old)" request buffer:
+Offset	Size	Description	(Table 01992)
+ 00h	WORD	000Ah (length of following data)
+ 02h	BYTE	76h (subfunction "Read Queue Server Current Status (old)")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	DWORD	(big-endian) object ID of server
+ 0Bh	BYTE	server station
+SeeAlso: #01993
+
+Format of NetWare "Read Queue Server Current Status (old)" reply buffer:
+Offset	Size	Description	(Table 01993)
+ 00h	WORD	(call) 0040h (size of following results)
+ 02h 64 BYTEs	server status record (format depends on server)
+		first four bytes should contain estimated "price" for an
+		  average job
+SeeAlso: #01992,#02203
+

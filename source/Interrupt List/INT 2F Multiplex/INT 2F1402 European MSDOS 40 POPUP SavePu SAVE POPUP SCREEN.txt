@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1402
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - European MS-DOS 4.0 POPUP - "SavePu" - SAVE POPUP SCREEN
+	AX = 1402h
+	ES:DI -> save buffer (0000h:0000h for default buffer in POPUP)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #02625)
+SeeAlso: AX=1400h"POPUP",AX=1401h"POPUP",AX=1403h"POPUP"
+
+(Table 02625)
+Values for POPUP error code:
+ 0001h	process does not own screen
+ 0004h	unknown error
+ 0005h	invalid pointer
+

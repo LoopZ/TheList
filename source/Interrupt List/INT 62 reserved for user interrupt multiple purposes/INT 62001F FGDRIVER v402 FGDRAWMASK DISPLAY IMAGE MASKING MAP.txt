@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62001F
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DRAWMASK" - DISPLAY IMAGE (MASKING MAP)
+	AX = 001Fh
+	ES:BX -> array containing image stored as a masking map (see #03475)
+	CX = number of pixel runs in masking map
+	DX = width of masking map in pixels
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes and in native EGA and VGA graphics
+	  modes
+	The image is drawn with its lower left corner at the current graphics
+	  cursor position
+SeeAlso: AX=0010h,AX=001Fh,AX=00A1h,AX=00A9h
+
+Format of FGDRIVER masking map:
+Offset	Size	Description	(Table 03475)
+ 00h	BYTE	length of first "protect" run (pixels remain unchanged)
+ 01h	BYTE	length of first "zero" run (pixels set to background color)
+ 02h	BYTE	length of second "protect" run
+ 03h	BYTE	length of second "zero" run
+	...
+

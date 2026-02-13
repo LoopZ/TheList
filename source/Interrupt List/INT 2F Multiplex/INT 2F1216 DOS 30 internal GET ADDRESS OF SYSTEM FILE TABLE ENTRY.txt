@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1216
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - GET ADDRESS OF SYSTEM FILE TABLE ENTRY
+	AX = 1216h
+	BX = system file table entry number
+Return: CF clear if successful
+	    ES:DI -> system file table entry
+	    BX = relative entry number in system file table containing entry
+	    AX destroyed
+	CF set if BX greater than FILES=
+Note:	supported by DR DOS 5+
+SeeAlso: AX=1220h
+

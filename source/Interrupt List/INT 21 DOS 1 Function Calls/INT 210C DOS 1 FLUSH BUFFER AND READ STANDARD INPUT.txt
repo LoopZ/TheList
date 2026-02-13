@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 210C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - FLUSH BUFFER AND READ STANDARD INPUT
+	AH = 0Ch
+	AL = STDIN input function to execute after flushing buffer
+	other registers as appropriate for the input function
+Return: as appropriate for the specified input function
+Note:	if AL is not one of 01h,06h,07h,08h, or 0Ah, the buffer is flushed but
+	  no input is attempted
+SeeAlso: AH=01h,AH=06h"INPUT",AH=07h,AH=08h,AH=0Ah
+

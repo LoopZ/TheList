@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13EE
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - SWBIOS - SET 1024-CYLINDER FLAG
+	AH = EEh
+	DL = drive number (80h, 81h)
+Return: CF clear
+	   AH = 00h
+Program: SWBIOS is a TSR by Ontrack Computer Systems
+Desc:	the following INT 13 call will add 1024 to the specified cylinder
+	  number to get the actual cylinder number desired
+Notes:	the flag is cleared by all INT 13 calls except AH=EEh and AH=EFh
+	Disk Manager also supports these calls
+	this function is also supported by HyperDisk v4.01+ and PC-Cache v5.5+,
+	  in order to allow caching of drives using SWBIOS to access more than
+	  1024 cylinders
+	for software which supports that call, this function is equivalent to
+	  calling AH=EFh with CX=0400h
+SeeAlso: AH=F9h,AH=FEh,INT 16/AX=FFA5h/CX=1111h,INT 2F/AX=DF00h
+Index:	PC-Cache;huge disks|Disk Manager
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F07
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - PLOT POINT
+	AH = 07h
+	DX,CX = row,column of point
+Note:	also sets pen position to the specified point
+SeeAlso: AH=06h,AH=08h,AH=0Ch
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6610
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - PenDOS - TDMOUSE.EXE - GET ???
+	AH = 10h
+Return: CF clear
+	AX = 0000h
+	BX = ??? (0012h)
+	DX:CX -> TDMOUSE INT 33 handler (IRET to hide mouse from other apps)
+Program: TDMOUSE is a PenDOS hardware driver which allows a mouse to emulate
+	  a touchpad; PenDOS is a set of programs by Communication Intelligence
+	  Corporation which makes applications pen-aware
+

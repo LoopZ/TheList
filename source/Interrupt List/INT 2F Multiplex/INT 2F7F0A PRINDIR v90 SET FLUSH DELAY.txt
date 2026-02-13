@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7F0A
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PRINDIR v9.0 - SET FLUSH DELAY
+	AX = 7F0Ah
+	DX = number of clock ticks before flushing
+Return: AX = status
+	    0000h successful
+SeeAlso: AX=7F00h"PRINDIR",AX=7F07h"PRINDIR",AX=7F09h,AX=7F0Bh,AX=7F0Ch
+

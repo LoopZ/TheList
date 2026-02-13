@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF01
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "IntXX" - SIMULATE REAL-MODE INTERRUPT
+	AX = FF01h
+	BL = interrupt number
+	ES:(E)DI -> real-mode register list (see #03148 at AX=0300h)
+Return: register list updated
+Note:	CauseWay fills in the values for SS, SP, and FLAGS itself, and ignores
+	  the values specified for CS and IP
+SeeAlso: AX=0300h,AX=FF02h
+

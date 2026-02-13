@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - WORKGRP.SYS - GET ENTRY POINT
+	AH = 3Fh
+	BX = file handle for device "NET$HLP$"
+	CX = 0008h
+	DS:DX -> buffer for entry point record (see #01485)
+Return: CF clear if successful
+	    AX = number of bytes actually read (0 if at EOF before call)
+	CF set on error
+	    AX = error code (05h,06h) (see #01680 at AH=59h/BX=0000h)
+Program: WORKGRP.SYS is the portion of Microsoft's Workgroup Connection which
+	  permits communication with PCs running Windows for Workgroups or
+	  LAN Manager
+SeeAlso: AX=4402h"WORKGRP.SYS",INT 2F/AX=9400h
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101002
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET ALL PALETTE REGISTERS (PCjr,Tandy,EGA,VGA)
+	AX = 1002h
+	ES:DX -> palette register list (see #00018)
+	BH = 00h to avoid problems on some adapters
+Return: nothing
+Note:	under UltraVision, the palette locking status (see AX=CD01h)
+	  determines the outcome
+SeeAlso: AX=1000h,AX=1001h,AX=1009h,AX=CD01h
+
+Format of palette register list:
+Offset	Size	Description	(Table 00018)
+ 00h 16 BYTEs	colors for palette registers 00h through 0Fh
+ 10h	BYTE	border color
+SeeAlso: #00461
+

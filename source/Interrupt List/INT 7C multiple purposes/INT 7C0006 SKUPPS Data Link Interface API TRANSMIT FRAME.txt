@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0006
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - TRANSMIT FRAME
+	AX = 0006h
+	ES:BX -> Mbuf (see #03847)
+Return: nothing
+Notes:	The DLI will send LENGTH bytes found in the Mbuf's DATA area starting
+	  at OFFSET. A complete and valid frame must be stored there. The DLI
+	  will only copy the current node address (see AX=0003h) to the
+	  source node field of the frame's MAC header.
+	On Ethernet, the DLI will always send a minimum of 60 bytes, regardless
+	  of the value found in the LENGTH field.
+	This function returns immediately; the DLI will call the protocol's
+	  Transmit Upcall (see #03848) when the frame has been sent.
+	The Mbuf's IN USE field will be non-zero until the DLI calls the
+	  Transmit Upcall.
+SeeAlso: AX=0002h,AX=0004h,AX=0013h
+
+(Table 03848)
+Values SK-UPPS Transmit Upcall is called with:
+	ES:BX -> Mbuf (NEXT field destroyed)
+	interrupts disabled
+Note:	On FDDI the bytes of the source and destination node fields in the MAC
+	  header have been bit-swapped to physical address format.
+

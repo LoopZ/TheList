@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 157200
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - RESET SERIAL NUMBER
+	AX = 7200h
+Return: AH = 00h if successful
+Desc:	reset the serial number to the default serial number present when the
+	  Hunter 16 was shipped
+SeeAlso: AH=6Ch,AH=72h
+

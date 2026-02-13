@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200AE
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETHPAGE" - SET HIDDEN VIDEO PAGE
+	AX = 00AEh
+	BX = new hidden page (0000h to 003Fh)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The specified page must be a physical page or a virtual page
+SeeAlso: AX=0043h,AX=00B2h,AX=00B6h
+

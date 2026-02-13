@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0003
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ DPMILOAD.EXE - GET AVAILABLE MEMORY
+	AX = FB42h
+	BX = 0003h
+Return: DX:AX = size of largest free block in paragraphs
+		0000h:0000h on error (BC3.0 version only)
+Note:	AX and DX are destroyed on error, but no other error indicator is
+	  returned, under the BC++ 2.0 version of DPMILOAD
+SeeAlso: AX=FB42h/BX=0002h
+

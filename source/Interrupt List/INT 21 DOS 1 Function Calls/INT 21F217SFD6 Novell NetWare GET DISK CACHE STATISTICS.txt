@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFD6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET DISK CACHE STATISTICS
+	AX = F217h subfn D6h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02031 at AH=E3h/SF=D6h)
+	ES:DI -> reply buffer (see #02229)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=D6h,AX=F217h/SF=D5h,AX=F217h/SF=D8h
+
+Format of NetWare "Get Disk Cache Statistics" reply packet:
+Offset	Size	Description	(Table 02229)
+ 00h	DWORD	clock ticks since system started
+ 04h	WORD	number of cache buffers
+ 06h	WORD	size of cache buffer in bytes
+ 08h	WORD	number of dirty cache buffers
+ 0Ah	DWORD	number of cache read requests
+ 0Eh	DWORD	number of cache write requests
+ 12h	DWORD	number of cache hits
+ 16h	DWORD	number of cache misses
+ 1Ah	DWORD	number of physical read requests
+ 1Eh	DWORD	number of physical write requests
+ 22h	WORD	number of physical read errors
+ 24h	WORD	number of physical write errors
+ 26h	DWORD	cache get requests
+ 2Ah	DWORD	cache full write requests
+ 2Eh	DWORD	cache partial write requests
+ 32h	DWORD	background dirty writes
+ 36h	DWORD	background aged writes
+ 3Ah	DWORD	total cache writes
+ 3Eh	DWORD	number of cache allocations
+ 42h	WORD	thrashing count
+ 44h	WORD	number of times LRU block was dirty
+ 46h	WORD	number of reads on cache blocks not yet filled by writes
+ 48h	WORD	number of times a fragmented write occurred
+ 4Ah	WORD	number of cache hits on unavailable block
+ 4Ch	WORD	number of times a cache block was scrapped
+Note:	all fields are big-endian
+SeeAlso: #02031,#02032 at AH=E3h/SF=D6h
+

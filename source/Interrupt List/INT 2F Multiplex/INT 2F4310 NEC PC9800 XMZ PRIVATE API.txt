@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4310
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - NEC PC-9800 - XMZ - PRIVATE API
+	AX = 4310h
+Return: ES:BX -> driver entry point (see #02787,#02788)
+Program: XMZ is an XMS 2.x-compatible driver for the NEC PC-98 series written
+	  by ZOBplus Hayami and available at
+	  ftp:/ftp.tohoku.ac.jp/pub/msdos/Memory/xmz/
+SeeAlso: AX=4300h,AX=4310h"XMS"
+
+(Table 02787)
+Call XMZ v1.02 "Get HMA Information" function with:
+	AH = FFh  (XMZ only)
+	AL = 01h
+Return: AX = 1 on success
+	DX = minimum HMA allocation size (/HMAMIN=)
+	BX = actual size of HMA allocation, if in use (i.e. the value in DX
+	      when XMS function 1 was called)
+SeeAlso: #02788
+
+(Table 02788)
+Call XMZ v1.02 "Get EMB Handle Information" function with:
+	AH = FFh  (XMZ only)
+	AL = 02h
+Return: AX = 1 on success
+	DX = number of EMB handles configured (/NUMHANDLES=)
+	BX = offset in XMZ's segment of the handle table (use segment of
+	      entry point) (see #02789)
+SeeAlso: #02787
+
+Format of XMZ v1.02 EMB Handle structure:
+Offset	Size	Description	(Table 02789)
+ 00h	BYTE	flag byte
+		04h unused handle slot
+		02h in-use handle slot
+		01h handle slot that represents a free block
+ 01h	BYTE	lock count
+ 02h	WORD	block start address (1K increments)
+ 04h	WORD	block length (1K increments)
+SeeAlso: #02788
+

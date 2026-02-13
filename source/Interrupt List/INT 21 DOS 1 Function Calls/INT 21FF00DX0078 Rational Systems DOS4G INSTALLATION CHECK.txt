@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF00DX0078
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Rational Systems DOS/4G - INSTALLATION CHECK
+	AX = FF00h
+	DX = 0078h
+Return: AL <> 00h if installed
+	    GS = segment of kernel if nonzero
+SeeAlso: INT 15/AX=BF02h
+

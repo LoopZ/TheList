@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0B
+  Category: h 	vendor-specific hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 0B - HP 95LX - LOW-LEVEL KEYBOARD HANDLER
+Desc:	this is the lowest-level keyboard handler on an HP 95LX palmtop
+Note:	debounces key, places the keycode in I/O register 60h, and calls INT 09
+SeeAlso: INT 09,INT 0D"HP 95LX",INT 15/AX=4DD4h
+

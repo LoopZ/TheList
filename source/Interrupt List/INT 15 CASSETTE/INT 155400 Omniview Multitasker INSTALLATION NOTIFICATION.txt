@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155400
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - Omniview Multitasker - INSTALLATION NOTIFICATION
+	AX = 5400h
+	ES:BX -> device information tables
+	DI:DX -> dispatcher entry point
+Note:	called by OmniView to notify programs loaded before OmniView of state
+	  changes inside OmniView
+SeeAlso: AX=5407h,INT 2F/AX=DE00h
+

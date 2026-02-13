@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2106--DLFF
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - DIRECT CONSOLE INPUT
+	AH = 06h
+	DL = FFh
+Return: ZF set if no character available
+	    AL = 00h
+	ZF clear if character available
+	    AL = character read
+Notes:	^C/^Break are NOT checked
+	if the returned character is 00h, the user pressed a key with an
+	  extended keycode, which will be returned by the next call of this
+	  function
+	this function reads from standard input, which is always the keyboard
+	  under DOS 1.x, but may be redirected under DOS 2+
+	although the return of AL=00h when no characters are available is not
+	  documented, some programs rely on this behavior
+SeeAlso: AH=0Bh
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101A01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET DISPLAY COMBINATION CODE (PS,VGA/MCGA)
+	AX = 1A01h
+	BL = active display code (see #00039)
+	BH = alternate display code
+Return: AL = 1Ah if function was supported
+SeeAlso: AH=12h/BL=35h,AX=1A00h
+

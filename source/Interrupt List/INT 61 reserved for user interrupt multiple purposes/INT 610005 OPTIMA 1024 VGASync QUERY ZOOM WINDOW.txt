@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610005
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync - QUERY ZOOM WINDOW
+	AX = 0005h
+	BX:CX -> buffer for window parameters (see #03429)
+Range:	unknown
+Notes:	INT 61 is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0000h"OPTIMA",AX=0003h"OPTIMA",AX=0006h"OPTIMA"
+SeeAlso: INT 16/AH=FFh"OPTIMA"
+
+Format of Optima 1024 window parameters:
+Offset	Size	Description	(Table 03429)
+ 00h	WORD	X start of zoom window
+ 02h	WORD	Y start of zoom window
+ 04h	WORD	X end of zoom window
+ 06h	WORD	Y end of zoom window
+ 08h	WORD	current zoom factor
+ 0Ah	WORD	zoom offset start X
+ 0Ch	WORD	zoom offset start Y
+

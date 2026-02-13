@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB711
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 4.0+ APPEND - SET RETURN FOUND NAME STATE
+	AX = B711h
+Note:	if the next INT 21h call (and ONLY the next) is function 3Dh, 43h, or
+	  6Ch (also 4B03h and 4Eh if /X active), the fully qualified filename
+	  is written over top of the filename passed to the INT 21h call.  The
+	  application must provide a sufficiently large buffer.	 This state is
+	  reset after the next INT 21h call processed by APPEND.
+	APPEND uses the byte at offset 3Dh in the PSP
+	  (see #01378 at INT 21/AH=26h) to store the flag telling it to
+	  overwrite the filename
+BUG:	DOS 4.0 APPEND reportedly overwrites DS:DX instead of DS:SI for
+	  INT 21/AH=6Ch
+SeeAlso: INT 21/AH=26h,INT 21/AH=4Eh
+

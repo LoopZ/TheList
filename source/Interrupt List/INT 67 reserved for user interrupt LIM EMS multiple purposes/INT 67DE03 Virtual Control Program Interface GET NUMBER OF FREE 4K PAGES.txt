@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE03
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - GET NUMBER OF FREE 4K PAGES
+	AX = DE03h
+Return: AH = 00h  successful
+	    EDX = number of free 4K pages
+	AH nonzero: failed
+Notes:	returns total number of pages available to ALL tasks in system
+	also available in protected mode by calling the protected-mode VCPI
+	  entry point (see AX=DE01h,#03664)
+SeeAlso: AX=DE04h
+

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2140
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "WRITE" - WRITE TO FILE OR DEVICE
+	AH = 40h
+	BX = file handle
+	CX = number of bytes to write
+	DS:DX -> data to write
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (05h,06h) (see #01680 at AH=59h/BX=0000h)
+Notes:	if CX is zero, no data is written, and the file is truncated or
+	  extended to the current position
+	data is written beginning at the current file position, and the file
+	  position is updated after a successful write
+	for FAT32 drives, the file must have been opened with AX=6C00h with
+	  the "extended size" flag in order to expand the file beyond 2GB;
+	  otherwise the write will fail with error code 0005h (access denied)
+	the usual cause for AX < CX on return is a full disk
+BUG:	a write of zero bytes will appear to succeed when it actually failed
+	  if the write is extending the file and there is not enough disk
+	  space for the expanded file (DOS 5.0-6.0); one should therefore check
+	  whether the file was in fact extended by seeking to 0 bytes from
+	  the end of the file (INT 21/AX=4202h/CX=0000h/DX=0000h)
+	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+SeeAlso: AH=28h,AH=3Fh"DOS",AH=93h,INT 2F/AX=1109h
+

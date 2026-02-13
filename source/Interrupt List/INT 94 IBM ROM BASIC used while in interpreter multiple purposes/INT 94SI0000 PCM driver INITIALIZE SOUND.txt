@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI0000
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - PCM driver - INITIALIZE SOUND
+	SI = 0000h
+	ES:BX -> parameters
+Return: ???
+Program: PCM.COM is a sound driver for Media Vision's Pro Audio Spectrum
+	  sound boards
+InstallCheck:	test for the signature string "PCMDRIVER" immediately preceding
+	  the interrupt handler; the word preceding the signature gives the PCM
+	  driver's version
+SeeAlso: SI=0001h,SI=0002h,SI=0003h,SI=0004h,SI=0005h,SI=000Ah
+Index:	installation check;PCM driver|PCM.COM;installation check
+Index:	PCM driver;installation check
+

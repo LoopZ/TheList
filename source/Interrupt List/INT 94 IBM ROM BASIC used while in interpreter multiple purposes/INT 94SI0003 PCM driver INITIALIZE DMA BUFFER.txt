@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI0003
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - PCM driver - INITIALIZE DMA BUFFER
+	SI = 0003h
+	ES:BX -> parameters (see #03998)
+Return: ???
+SeeAlso: SI=0000h,SI=000Ah,SI=000Bh
+
+Format of PCM driver function 0003h parameters:
+Offset	Size	Description	(Table 03998)
+ 00h	DWORD	-> DMA buffer
+ 04h	WORD	size of DMA buffer
+ 06h	WORD	number of divisions
+

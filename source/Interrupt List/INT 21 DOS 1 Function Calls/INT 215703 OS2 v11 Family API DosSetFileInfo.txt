@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215703
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - OS/2 v1.1+ Family API - DosSetFileInfo
+	AX = 5703h
+	BX = file handle
+	CX = size of information buffer
+	DX = level of information
+	ES:DI -> information buffer
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5702h"OS/2",AX=5703h/BX=FFFFh
+

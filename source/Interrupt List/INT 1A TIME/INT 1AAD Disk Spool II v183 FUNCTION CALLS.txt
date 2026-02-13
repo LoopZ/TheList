@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AAD
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1A U - Disk Spool II v1.83 - FUNCTION CALLS
+	AH = ADh
+	AL = function code (see #00697)
+Return: AH = 00h if successful
+SeeAlso: AH=ABh
+
+(Table 00697)
+Values for Disk Spool function code:
+ 02h	enable spooler only
+ 03h	enable the despooler
+ 04h	disable the despooler
+ 08h	inhibit popup menu
+ 09h	enable popup menu
+ 0Ah	???
+ 0Bh	disable the spooler
+ 0Ch	start despooler after last successfully printed document???
+ 0Dh	start despooler at the exact point where it last left off???
+ 0Eh	pop up the menu
+ 0Fh	???
+ 11h	???
+ 14h	???
+ 15h	???
+ 16h	???
+ 17h	???
+ 18h	???
+ 19h	???
+ 20h	clear file pointed to by the despooler???
+ 21h	???
+ 22h	???
+ 23h	???
+ 30h	???
+

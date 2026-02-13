@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310B01
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - CLEAR DEBUG WATCHPOINT
+	AX = 0B01h
+	BX = watchpoint handle
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8023h) (see #03143)
+Note:	the watchpoint handle is freed
+SeeAlso: AX=0B00h
+

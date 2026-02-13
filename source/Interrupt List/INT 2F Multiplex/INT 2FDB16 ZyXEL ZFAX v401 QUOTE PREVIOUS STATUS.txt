@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB16
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v4.01 - QUOTE PREVIOUS STATUS
+	AX = DB16h
+Return: DX:AX -> previous receive state transaction log (see #03097)
+	BX = type (00h incoming FAX, 01h incoming data, 02h incoming voice)
+SeeAlso: AX=DB00h"ZFAX",AX=DB11h,AX=DB17h
+
+Format of ZFAX transaction log receive state:
+Offset	Size	Description	(Table 03097)
+ 00h	WORD	year
+ 02h	WORD	date
+ 04h	WORD	time
+ 06h	WORD	extension number
+ 08h	WORD	type: 00h incoming FAX, 01h outgoing FAX, 02h voice message
+ 0Ah	WORD	status: 00h normal, 01h remote delete
+ 0Ch 125 BYTEs	filename
+ 89h 24 BYTEs	caller ID
+ A1h 20 BYTEs	FAX number
+ B5h 20 BYTEs	remote FAX ID
+ C9h	WORD	error code
+ CBh	WORD	connection direction (00h transmit, 01h receive)
+ CDh	BYTE	connection time minutes
+ CEh	BYTE	connection time seconds
+ CFh	BYTE	???
+ D0h	WORD	connection speed (24, 48, 72, 96, 12, 144)
+ D2h	WORD	connection page size (A4, B4, A3)
+ D4h	WORD	connection coding scheme (1-DN, 1-DH, 2-DN, 2-DH)
+ D6h	WORD	page count
+

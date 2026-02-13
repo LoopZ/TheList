@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0017
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - SPX Driver - LISTEN FOR SPX PACKET
+	BX = 0017h
+	DX = connection ID (unused in v2.15)
+	ES:SI -> Event Control Block (see BX=0003h)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	CX may need to be 0001h ???
+SeeAlso: BX=0011h,BX=0016h
+

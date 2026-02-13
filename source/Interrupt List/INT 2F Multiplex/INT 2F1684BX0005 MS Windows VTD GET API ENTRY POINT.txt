@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0005
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VTD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0005h (virtual device ID for VTD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02646)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02646)
+Call VTD.386/VTD.VXD entry point with:
+	AX = function number
+	    0000h get VTD version number
+		Return: CF clear
+			AH = major version
+			AL = minor version
+	    0100h get current clock tick time
+		Return: EDX:EAX = clock tick time in 840ns units since Windows
+				  was started
+	    0101h get current system time in milliseconds
+		Return: EAX = time in milliseconds that Windows has been
+				  running
+	    0102h get current virtual machine time
+		Return: EAX = cumulative amount of time the virtual machine has
+				  been active, in milliseconds
+Note:	this entry point should only be called directly when TOOLHELP.DLL
+	  TimerCount() cannot be called
+SeeAlso: #01268,#01270,#01269 at INT 20"Windows"
+

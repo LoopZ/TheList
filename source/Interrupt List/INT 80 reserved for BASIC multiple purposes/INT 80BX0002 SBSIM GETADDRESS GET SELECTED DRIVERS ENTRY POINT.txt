@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0002
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SBSIM - GETADDRESS" - GET SELECTED DRIVER'S ENTRY POINT
+	BX = 0002h
+	AX = driver (00h = FM,01h = DDBV,02h = memvoice,03h = mixer,04h = MIDI)
+Return: CF clear if successful
+	    DX:AX -> entry point
+	CF set on error
+SeeAlso: BX=0000h"SBSIM",BX=0001h"SBSIM",BX=0005h"SBSIM",INT 80/BL=00h"SBSIM"
+

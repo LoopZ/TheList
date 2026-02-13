@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB403
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Intel Plug-and-Play AUTO-CONFIGURATION - STORE ESCD TABLE IN NVRAM
+	AX = B403h
+	DS:SI -> configuration table (see #01244)
+Return: CF clear if successful
+	    AX = 0000h
+	CF set on error
+	    AX = error code (0055h) (see #01243)
+Note:	sets the configuration table's checksum field, then copies the table
+	  into nonvolatile storage (i.e. FlashROM)
+SeeAlso: AX=B400h,AX=B402h
+

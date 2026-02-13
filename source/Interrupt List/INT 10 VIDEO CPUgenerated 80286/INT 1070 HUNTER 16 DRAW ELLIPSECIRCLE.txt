@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1070
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - DRAW ELLIPSE/CIRCLE
+	AH = 70h
+	DS:BX -> control block (see #00192)
+Return: nothing
+Desc:	Draws a circle or ellipse. Only valid in graphics modes.
+Note:	the Husky Hunter 16 is an 8088-based ruggedized laptop.	 Other family
+	  members are the Husky Hunter, Husky Hunter 16/80, and Husky Hawk.
+SeeAlso: AH=71h"HUNTER"
+
+Format of HUNTER 16 control block:
+Offset	Size	Description	(Table 00192)
+ 00h	WORD	center X co-ordinate
+ 02h	BYTE	center Y co-ordinate
+ 03h	WORD	radius in pixels
+ 05h	BYTE	color (00h white, 01h black, FFh invert)
+ 06h	BYTE	aspect ratio x:x (1-127)
+ 07h	BYTE	aspect ratio y:y (1-127)
+

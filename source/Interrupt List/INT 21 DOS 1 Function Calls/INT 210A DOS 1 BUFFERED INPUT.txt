@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 210A
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - BUFFERED INPUT
+	AH = 0Ah
+	DS:DX -> buffer (see #01344)
+Return: buffer filled with user input
+Notes:	^C/^Break are checked, and INT 23 is called if either detected
+	reads from standard input, which may be redirected under DOS 2+
+	if the maximum buffer size (see #01344) is set to 00h, this call returns
+	  immediately without reading any input
+SeeAlso: AH=0Ch,INT 2F/AX=4810h
+
+Format of DOS input buffer:
+Offset	Size	Description	(Table 01344)
+ 00h	BYTE	maximum characters buffer can hold
+ 01h	BYTE	(call) number of chars from last input which may be recalled
+		(ret) number of characters actually read, excluding CR
+ 02h  N BYTEs	actual characters read, including the final carriage return
+

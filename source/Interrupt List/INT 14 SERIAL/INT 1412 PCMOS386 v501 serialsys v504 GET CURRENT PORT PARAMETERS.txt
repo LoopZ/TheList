@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1412
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - GET CURRENT PORT PARAMETERS
+	AH = 12h
+	DX = port number
+Return: AH = status
+	    FFh port number invalid
+	AL = line parameters (see #00304)
+	AH = flow control configuration (see #00336 at AH=05h"PC-MOS")
+	CX:BX = bps rate
+	DL = XOFF character or 00h for none
+	DH = XON character or 00h for none
+

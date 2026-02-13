@@ -1,0 +1,105 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DRFAT32.SYS device driver - IOCTL INPUT
+	AX = 4402h
+	BX = file handle referencing character device for DRFAT32.SYS driver
+	    (e.g. "FAT32XXX" in the default configuration)
+	CX = number of bytes to read
+	DS:DX -> control block (see #04108)
+Return: CF clear if successful
+	    AX = number of bytes actually read
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	 the data returned depends on the first byte of the control block
+	   the remainder of the control block is filled by the driver
+	 one DRFAT32.SYS device driver supports up to 8 subunits (that is up
+	   to 8 FAT32 partitions). By default, DRFAT32.SYS logs in all FAT32
+	   partitions it finds, however, by using command line options /C (CHS),
+	   /L (LBA), /H (Hidden) and /P:1..4 (Primary), /E:1..255 (Logical
+	   Drive), and /U:min[,max] (Unit 128..255) it can be directed to
+	   attach only to one or a specific range of partitions. Multiple
+	   DRFAT32.SYS drivers can be loaded in a system when using the
+	   /D:name option. To assign them to the redirector, the /D:name option
+	   must be repeated for each of the DRFAT32.SYS drivers in the
+	   DRFAT32.EXE command line.
+SeeAlso: AX=4402h"CD-ROM",INT 2F/AX=0802h
+
+Format of DRFAT32 control block:
+Offset	Size	Description	(Table 04108)
+ 00h	BYTE	data being requested
+		00h device driver header address
+		09h media change status
+		48h address of DRFAT32 geometry table
+		else error
+---function 00h---
+ 01h	DWORD	device driver header address (see also AH=52h,#01646)
+---function 09h---
+ 01h	BYTE	media change status
+		00h don't know
+		01h media unchanged
+		FFh media has been changed
+---DRFAT32 function 48h---
+ 01h	DWORD	address of DRFAT32 geometry table (see #04109)
+
+Format of DRFAT32 Geometry Table:
+Offset	Size	Description	(Table 04109)
+ 00h 8*59 BYTEs	eight DRFAT32 partition data tables (see #04110)
+ 1D8h	BYTE	DRFAT32 access flags (see #04111)
+ 1D9h	BYTE	DRFAT32 status flags (see #04112)
+Note:	This is the table layout used by DRFAT32.SYS 1.00 which supports up
+	  to 8 sub-units. The layout of this table and its records may change,
+	  so the version indicator in the device driver's signature ("FAT320")
+	  and the size of the public data structure should be checked first.
+SeeAlso: #04108
+
+Format of DRFAT32 partition data table:
+Offset	Size	Description	(Table 04110)
+ 00h	BYTE	size of following public data structure (9)
+	--- public data (needed by the DRFAT32.EXE redirector) ---
+ 01h	WORD	bytes per sector
+ 03h	BYTE	sectors per cluster
+ 04h	WORD	reserved sectors
+ 06h	DWORD	root directory start cluster
+	--- private data ---
+ 0Ah	DWORD	sectors per track
+ 0Eh	DWORD	root directory sector
+ 12h	DWORD	partition start sector
+ 16h	DWORD	highest partition sector allowed
+		(only if range checking enabled)
+ 1Ah	DWORD	absolute cluster start sector
+		(cluster start sector+partition start sector)
+ 1Eh	DWORD	total sectors per track (number of heads * sectors per track)
+ 22h	BYTE	drive unit (default 80h)
+ 23h	BYTE	temp buffer: CHS sectors to write (if verify enabled)
+ 24h	BYTE	INT 13h extension version
+	--- CHS data ---
+ 25h	WORD	cylinder
+ 27h	WORD	head
+ 29h	WORD	sector
+	--- LBA data ---
+ 2Bh 16 BYTEs disk address packet (see #00272 at INT 13/AH=42h)
+SeeAlso: #04109
+
+Bitfields for DRFAT32 access flags:
+Bit(s)	Description	(Table 04111)
+ 7	using LBA addressing instead of CHS
+ 6	using INT 13h extensions (see also INT 13/AH=48h)
+ 5	multi-sector access allowed
+ 4	force media change indication on removable drives
+ 3	force verify after every write (/W)
+ 2	more than 1024 cylinders, less than 64 heads (/A)
+ 1	client-side asynchronous buffering allowed (/B), normally =0
+ 0	read-only access (/R)
+SeeAlso: #04109,#04112
+
+Bitfields for DRFAT32 status flags:
+Bit(s)	Description	(Table 04112)
+ 7-2	reserved (0)
+ 1	Save Guard enabled (blocks any further writes after a fault)
+ 0	volume may have dirty sectors (set after write operations)
+SeeAlso: #04109,#04111
+

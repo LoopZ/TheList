@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151022BX0000
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "GETVER" - GET VERSION
+	AX = 1022h
+	BX = 0000h
+Return: BX nonzero, TopView or compatible loaded
+	(BL = major version, BH = minor version)
+Notes:	TaskView returns BX = 0001h, DESQview v2.00+ returns BX = 0A01h
+

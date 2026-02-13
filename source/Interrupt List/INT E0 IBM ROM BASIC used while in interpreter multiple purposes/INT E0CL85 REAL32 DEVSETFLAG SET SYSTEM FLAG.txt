@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL85
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "DEV_SETFLAG" - SET SYSTEM FLAG
+	CL = 85h
+	DX = system flag ID
+Return: AX = status (0000h success, else error code)
+Note:	REAL/32 returns an error if the flag was already set, which indicates
+	  that a previous logical interrupt has not yet been serviced
+SeeAlso: INT E0/CL=84h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE05
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview - GET AVAILABLE CONVENTIONAL MEMORY
+	AX = DE05h
+Return: BX = KB of memory available
+	CX = largest block available
+	DX = total conventional memory in KB
+SeeAlso: AX=DE04h,AX=DE06h
+

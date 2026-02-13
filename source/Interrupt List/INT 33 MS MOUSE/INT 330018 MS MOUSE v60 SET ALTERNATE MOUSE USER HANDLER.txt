@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330018
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - SET ALTERNATE MOUSE USER HANDLER
+	AX = 0018h
+	CX = call mask (see #03174)
+	ES:DX -> FAR routine to be invoked on mouse events (see #03175)
+Return: AX = status
+	    0018h if successful
+	    FFFFh on error
+Notes:	up to three handlers can be defined by separate calls to this function,
+	  each with a different combination of shift states in the call mask;
+	  calling this function again with a call mask of 0000h undefines the
+	  specified handler (official documentation); specifying the same
+	  call mask and an address of 0000h:0000h undefines the handler (real
+	  life)
+	some versions of the documentation erroneously reverse the order of
+	  the bits in the call mask
+SeeAlso: AX=000Ch,AX=0014h,AX=0019h
+
+Bitfields for mouse call mask:
+Bit(s)	Description	(Table 03174)
+ 0	call if mouse moves
+ 1	call if left button pressed
+ 2	call if left button released
+ 3	call if right button pressed
+ 4	call if right button released
+ 5	call if shift button pressed during event
+ 6	call if ctrl key pressed during event
+ 7	call if alt key pressed during event
+Note:	at least one of 5-7 must be set
+
+(Table 03175)
+Values user handler is called with:
+	AX = condition mask (same bit assignments as call mask)
+	BX = button state
+	CX = cursor column
+	DX = cursor row
+	SI = horizontal mickey count
+	DI = vertical mickey count
+Return: registers preserved
+Note:	in text modes, the row and column will be reported as a multiple of
+	  the cell size, typically 8x8 pixels
+

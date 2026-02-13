@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212504
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - SET PROTECTED-MODE INTERRUPT VECTOR
+	AX = 2504h
+	CL = interrupt number
+	DS:EDX = CS:EIP of protected-mode interrupt handler
+Return: CF clear
+Note:	this function is also supported by FlashTek X-32VM
+SeeAlso: AX=2502h,AX=2505h,INT 31/AX=0205h
+

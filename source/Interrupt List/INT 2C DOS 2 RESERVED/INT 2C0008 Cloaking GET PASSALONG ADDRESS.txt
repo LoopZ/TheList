@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0008
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - GET PASSALONG ADDRESS
+	AX = 0008h
+Return: CF clear
+	DX:EBX = current passalong address
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0009h,AX=002Ch,INT 2F/AX=4310h"Cloaking"
+

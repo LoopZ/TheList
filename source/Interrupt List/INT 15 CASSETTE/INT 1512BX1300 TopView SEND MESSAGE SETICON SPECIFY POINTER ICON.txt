@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BX1300
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "SETICON" - SPECIFY POINTER ICON
+	AH = 12h
+	BX = 1300h
+	STACK: DWORD object handle for pointer
+	       DWORD character to use for pointer
+Return: STACK popped
+

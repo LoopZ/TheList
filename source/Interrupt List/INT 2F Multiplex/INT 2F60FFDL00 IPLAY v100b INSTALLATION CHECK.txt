@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F60FFDL00
+  Category: s 	sound/speech
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - IPLAY v1.00b - INSTALLATION CHECK
+	AX = 60FFh
+	DL = 00h (function number)
+	BX = 5344h ('SD')
+	CX = 4D50h ('MP')
+Return: AX = 4F4Bh ('OK') if installed
+Program: IPLAY is the Inertia Player by Prime and Excalibur for .MODules
+	  (digitized music files)
+Note:	in version 1.00b, any value for DL except 01h invokes this function
+SeeAlso: AX=60FFh/DL=01h
+

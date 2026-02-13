@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F3901BL0A
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood TSR Windows - SOUND BEEPER
+	AX = 3901h
+	BL = 0Ah
+	DX = sound divisor, or 0 for silence.
+	     (divide 1843200 by required frequency to get value for DX)
+	CL = sound length in 18.2 Hz clock ticks
+Return: AX = error code (0000h if successful)
+	SI,DI,DS,ES preserved
+SeeAlso: AH=39h/BL=00h
+

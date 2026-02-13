@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "is_netnd" - CHECK IF NETWORK DESCRIPTOR VALID
+	AH = 0Dh
+	BX = possible network descriptor
+Return: CF clear if valid
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=08h"PC/TCP"
+SeeAlso: INT 61/AH=22h
+

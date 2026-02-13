@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1704
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows "WINOLDAP" - GET CLIPBOARD DATA SIZE
+	AX = 1704h
+	DX = clipboard format supported by WinOldAp (see #02723)
+Return: DX:AX = size of data in bytes, including any headers
+		0000h:0000h if no data in this format in the Clipboard
+Note:	Windows reportedly rounds up the size of the data to a multiple of 32
+	  bytes
+SeeAlso: AX=1700h,AX=1703h,AX=1705h
+

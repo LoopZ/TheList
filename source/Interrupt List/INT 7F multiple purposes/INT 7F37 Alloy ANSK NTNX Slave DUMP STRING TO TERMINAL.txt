@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F37
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy ANSK, NTNX (Slave) - DUMP STRING TO TERMINAL
+	AH = 37h
+	DS:DX -> ASCIZ string to display
+Note:	if the string is empty, a terminal update will be forced
+

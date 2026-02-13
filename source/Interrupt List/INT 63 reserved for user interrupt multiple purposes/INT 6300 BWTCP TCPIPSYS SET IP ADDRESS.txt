@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6300
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - SET IP ADDRESS???
+	AH = 00h
+	DS:BX -> DWORD containing IP address (big-endian)
+Return: CF clear if successful
+	CF set on error
+	AX destroyed
+Range:	INT 4D to INT FC, selected by configuration
+Note:	the Beame&Whiteside TCP/IP protocol stack uses two consecutive
+	  interrupts (62h and 63h by default); the BW-NFS client uses a third
+	  consecutive interrupt (64h by default) if it is loaded
+SeeAlso: AH=01h"BW-TCP",AH=02h"BW-TCP"
+

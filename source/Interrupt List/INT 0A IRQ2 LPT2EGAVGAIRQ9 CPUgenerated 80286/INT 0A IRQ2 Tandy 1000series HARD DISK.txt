@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0A
+  Category: H 	hardware
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 0A C - IRQ2 - Tandy 1000-series HARD DISK
+Notes:	this interrupt may be masked by setting bit 2 on I/O port 21h
+	the Tandy 1000, 1000A, and 1000HD use IRQ2 for the hard disk; the
+	  1000EX, HX, RLX, RLX-HD, RLX-B, RLX-HD-B use IRQ5 instead; the
+	  1000RL, RL-HD, SL, SL/2, TL, TL/2, and TL/3 are jumper-selectable
+	  for either IRQ2 or IRQ5 (default IRQ5); the 1000SX and TX are
+	  DIP-switch selectable for IRQ2 or IRQ5 (default IRQ2); the RSX and
+	  RSX-HD use IRQ14.  Tandy systems which use IRQ2 for the hard disk
+	  interrupt use IRQ5 for vertical retrace.
+SeeAlso: INT 52"DESQview",INT 5A"DoubleDOS",INT 71
+

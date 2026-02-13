@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH80
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.50+ - SEND MESSAGE 00h WITH ERROR RECOVERY
+	AH = 12h
+	BH = 80h
+Note:	this function is identical to AH=12h/BH=00h, except that DESQview will
+	  not pop up a "Programming Error" window, instead returning an error
+	  code in AL (see #00455)
+SeeAlso: AH=12h/BH=00h
+
+(Table 00455)
+Values for DESQview error code:
+ 00h	no error
+ 01h	invalid values
+ 02h	alias invalid
+ 03h	handle valid but wrong type
+ 04h	invalid handle
+

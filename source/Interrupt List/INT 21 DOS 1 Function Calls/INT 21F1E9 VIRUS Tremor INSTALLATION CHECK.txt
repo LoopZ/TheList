@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F1E9
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Tremor" - INSTALLATION CHECK
+	AX = F1E9h
+Return: AX = installation state
+	    CADEh installed, and calling program is infected
+	    F100h not installed (normal DOS return value)
+	    else  installed, but calling program is not infected
+SeeAlso: AH=F1h"VIRUS",AX=F2AAh
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310007
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - SET SEGMENT BASE ADDRESS
+	AX = 0007h
+	BX = selector
+	CX:DX = linear base address
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8022h,8025h) (see #03143)
+Notes:	only modify descriptors allocated with INT 31/AX=0000h
+	only the low 24 bits of the address will be used by 16-bit DPMI
+	  implementations even on a 386 or higher
+	DPMI 1.0+ automatically reloads any segment registers containing the
+	  selector being modified
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0006h,AX=0008h,AX=0009h,AX=000Ch,INT 21/AX=3503h
+SeeAlso: INT 21/AH=E9h"OS/286",INT 2C/AX=0002h
+

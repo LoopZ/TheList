@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17C0
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PC Magazine PCSpool - GET CONTROL BLOCK ADDRESS
+	AH = C0h
+	DX = printer port (0-3)
+Return: ES:BX -> control block (see #00646)
+SeeAlso: AH=C1h
+
+Format of PCSpool control block:
+Offset	Size	Description	(Table 00646)
+ 00h	WORD	printer number
+ 02h	WORD	address of printer status port
+ 04h	WORD	number of first record in queue
+ 06h	WORD	number of last record in queue
+ 08h	DWORD	characters already printed
+ 0Ch	DWORD	number of characters remaining
+ 10h	DWORD	pointer to dequeue buffer
+ 14h	DWORD	previous count of characters printed
+ 18h	DWORD	number of clock ticks taken to print them
+ 1Ch	WORD	offset of next character to output
+ 1Eh	WORD	offset of next character to print
+ 20h	WORD	pointer to spooling queue record
+ 22h	BYTE	current spooling status
+ 23h	BYTE	current printer status:
+		00h OK
+		01h not ready
+		02h paused with message
+		03h paused
+		04h initializing
+		FEh non-existent port
+		FFh not spooled
+ 24h	BYTE	current control record type
+ 25h	WORD	observed printer speed
+ 27h	WORD	characters to print per service
+ 29h	BYTE	01h if disk write needed
+ 2Ah	BYTE	01h if queued data should be flushed
+ 2Bh	BYTE	01h to update cps status
+

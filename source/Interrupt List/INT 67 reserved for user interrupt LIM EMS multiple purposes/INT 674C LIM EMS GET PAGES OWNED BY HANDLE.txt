@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 674C
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - GET PAGES OWNED BY HANDLE
+	AH = 4Ch
+	DX = EMM handle
+Return: AH = status (see #02785)
+	BX = number of logical pages if AH=00h
+SeeAlso: AH=4Dh
+

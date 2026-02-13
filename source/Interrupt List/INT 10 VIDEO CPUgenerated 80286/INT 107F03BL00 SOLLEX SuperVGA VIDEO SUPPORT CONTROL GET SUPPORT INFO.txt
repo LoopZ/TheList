@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F03BL00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - VIDEO SUPPORT CONTROL - GET SUPPORT INFO
+	AX = 7F03h
+	BL = 00h
+	CX = support type
+		0000h VGA, 0001h EGA, 0002h CGA, 0003h MDA, 0004h extensions,
+		0005h-0012h reserved for SOLLEX, 0013h Hercules,
+		0014h-001Fh reserved for SOLLEX, 0020h-00FFh reserved for OEM
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		    CX = size of video support code
+		    DX = segment of physical video support (0000h if no ROM)
+		    ES = segment of active video support
+		    ES:DI -> information block (DI = 0000h if none available)
+		01h failed
+SeeAlso: AX=7F03h/BL=01h
+

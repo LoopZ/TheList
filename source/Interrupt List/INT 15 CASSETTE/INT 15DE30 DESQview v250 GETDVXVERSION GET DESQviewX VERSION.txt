@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE30
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.50+ - "GETDVXVERSION" - GET DESQview/X VERSION
+	AX = DE30h
+Return: BX = version (BH=major, BL=minor) or 0000h if not DESQview/X
+Notes:	DESQview 2.50-2.53 are distributed as part of DESQview/X v1.00-1.10.
+	you must first check the DESQview version to verify that it is 2.50 or
+	  greater
+SeeAlso: INT 21/AH=2Bh/CX=4445h
+

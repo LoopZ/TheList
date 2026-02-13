@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330032
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.05+ - GET ACTIVE ADVANCED FUNCTIONS
+	AX = 0032h
+Return: AX = active function flags (FFFFh for v8.10)
+	    bit 15: function 0025h supported
+	    bit 14: function 0026h supported
+	    ...
+	    bit 0:  function 0034h supported
+	BX = ??? (0000h) officially unused
+	CX = ??? (E000h) officially unused
+	DX = ??? (0000h) officially unused
+Note:	the Italian version of MS MOUSE v8.20 reportedly indicates that
+	  functions 0033h and 0034h are not supported even though they are
+

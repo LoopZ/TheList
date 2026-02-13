@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB06
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - WINGO.COM - CALL CALLBACK FUNCTION
+	AX = DB06h
+Return: AX = return value of INT 2F/AX=1685h
+Note:	uses Windows service INT 2F/AX=1685h (SWITCH VMs AND CALLBACK) to
+	  call the callback function previously set by AX=DB01h
+	used for WINGO <-> WINSTART communication
+SeeAlso: AX=1685h, AX=DB00h"WINGO",AX=DB01h"WINGO",AX=DB02h"WINGO",
+SeeAlso: AX=DB03h"WINGO",AX=DB04h"WINGO",AX=DB05h"WINGO"
+

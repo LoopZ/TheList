@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB706
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 4.0+ APPEND - GET APPEND FUNCTION STATE
+	AX = B706h
+Return: BX = APPEND state (see #02980)
+SeeAlso: AX=B700h,AX=B707h
+
+Bitfields for APPEND state:
+Bit(s)	Description	(Table 02980)
+ 0	set if APPEND enabled
+ 1-11	reserved
+ 12	(DOS 5.0) set if APPEND applies directory search even if a drive has
+	  been specified
+ 13	set if /PATH flag active
+ 14	set if /E flag active (environment var APPEND exists)
+ 15	set if /X flag active
+

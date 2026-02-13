@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FA900
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - METZTSR.COM - INSTALLATION CHECK
+	AX = A900h
+	CF set
+Return: CF clear if resident
+	    AX = 97FFh
+	CF set if not present
+Notes:	METZTSR.COM prevents METZ applications (such as the MAGIC screen
+	  saver) inactivity timeout while running a DOSapp under MS Windows.
+	the default multiplex number is A9h, but may be set to any value from
+	  80h to FFh with a commandline switch
+SeeAlso: AX=A901h,AX=A902h
+

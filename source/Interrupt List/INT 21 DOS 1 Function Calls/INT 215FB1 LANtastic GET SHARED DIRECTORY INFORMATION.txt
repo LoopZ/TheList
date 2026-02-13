@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FB1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET SHARED DIRECTORY INFORMATION
+	AX = 5FB1h
+	DS:SI -> 64-byte buffer for link description
+	ES:DI -> ASCIZ machine and shared directory name in form
+		 "\\machine\shared-resource"
+Return: CF clear if successful
+	    CX = access control list privileges for requesting user (see #01742)
+	CF set on error
+	    AX = error code
+
+Bitfields for LANtastic access control list:
+Bit(s)	Description	(Table 01742)
+ 4	(I) allow expansion of indirect files
+ 5	(A) allow attribute changing
+ 6	(P) allow physical access to device
+ 7	(E) allow program execution
+ 8	(N) allow file renaming
+ 9	(K) allow directory deletion
+ 10	(D) allow file deletion
+ 11	(L) allow file/directory lookups
+ 12	(M) allow directory creation
+ 13	(C) allow file creation
+ 14	(W) allow open for write and writing
+ 15	(R) allow open for read and reading
+

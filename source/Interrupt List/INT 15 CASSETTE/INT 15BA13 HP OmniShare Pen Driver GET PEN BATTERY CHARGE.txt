@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA13
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - Pen Driver - GET PEN BATTERY CHARGE
+	AX = BA13h
+Return: CF clear if successful
+	    BL = pen battery state (00h good, 01h low charge)
+	CF set on error
+Note:	returns the last value set by AX=BA12h.
+SeeAlso: AX=BA12h
+

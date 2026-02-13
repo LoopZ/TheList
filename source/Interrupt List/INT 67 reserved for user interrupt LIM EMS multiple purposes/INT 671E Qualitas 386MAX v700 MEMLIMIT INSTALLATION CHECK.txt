@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 671E
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 67 U - Qualitas 386MAX v7.00 - MEMLIMIT - INSTALLATION CHECK
+	AH = 1Eh
+Return: AH = 00h if installed
+	    AL destroyed
+	    ES:DI -> ASCII signature "MemLimit"
+SeeAlso: AH=1Fh,INT 21/AX=4402h"386MAX"
+

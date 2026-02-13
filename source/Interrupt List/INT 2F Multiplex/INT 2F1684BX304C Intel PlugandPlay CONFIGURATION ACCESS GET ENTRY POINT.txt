@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX304C
+  Category: x 	non-volatile config storage
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Intel Plug-and-Play - CONFIGURATION ACCESS - GET ENTRY POINT
+	AX = 1684h
+	BX = 304Ch (ID for Configuration Access) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> API entry point (see #02700)
+		  0000h:0000h if Configuration Access not loaded
+Note:	this API is often provided by a DOS device driver, in which case it
+	  is available whether or not MSWindows is running
+Index:	installation check;Plug-and-Play Configuration Access
+SeeAlso: AX=1684h/BX=0034h
+
+(Table 02700)
+Call Plug-and-Play Configuration Access entry point with:
+	AX = function
+	    0000h "CA_GetVersion"
+		Return: AX = BCD version (AH = major, AL = minor)
+	    0001h "CA_PCI_Read_Config_Byte" (see also INT 1A/AX=B108h)
+	!!!
+	    0002h "CA_PCI_Read_Config_Word" (see also INT 1A/AX=B109h)
+	    0003h "CA_PCI_Read_Config_DWord" (see also INT 1A/AX=B10Ah)
+	    0004h "CA_PCI_Write_Config_Byte" (see also INT 1A/AX=B10Bh)
+	    0005h "CA_PCI_Write_Config_Word" (see also INT 1A/AX=B10Ch)
+	    0006h "CA_PCI_Write_Config_DWord" (see also INT 1A/AX=B10Dh)
+	    0007h "CA_PCI_Generate_Special_Cycle" (see also INT 1A/AX=B106h)
+	    0008h "CA_PCI_Get_Routing_Options" (see also INT 1A/AX=B10Eh)
+	    0009h invalid function
+	    000Ah invalid function
+	    000Bh "CA_PnPISA_Get_Info"
+	    000Ch "CA_PnPISA_Read_Config_Byte"
+	    000Dh "CA_PnPISA_Write_Config_Byte"
+	    000Eh "CA_PnPISA_Get_Resource_Data"
+	    000Fh invalid function
+	    0010h "CA_EISA_Get_Board_ID"
+	    0011h "CA_EISA_Get_Slot_Config"
+	    0012h "CA_EISA_Get_SlotFunc_Config"
+	    0013h "CA_EISA_Clear_NVRAM_Config"
+	    0014h "CA_EISA_Write_Config"
+	    0015h invalid function
+	    0016h "CA_ESCD_Get_Info"
+	    0017h "CA_ESCD_Read_Config"
+	    0018h "CA_ESCD_Write_Config"
+	    0019h invalid function
+	    001Ah "CA_Acfg_PCI_Manage_IRQs"
+		DL = IRQ???
+		ES:DI -> ???
+		Return: AX = status
+	    001Bh "CA_Acfg_PCI_Get_Routing_Options"
+		ES:DI -> IRQ routing table header
+			  (see #01259 at INT 1A/AX=B406h)
+		Return: AX = status
+	    001Ch-001Fh invalid functions
+	    0020h "CA_PnPB_Get_Num_Sys_Dev_Nodes"
+	    0021h "CA_PnPB_Get_Sys_Dev_Node"
+	    0022h "CA_PnPB_Set_Sys_Dev_Node"
+	    0023h "CA_PnPB_Get_Stat_Res_Info"
+	    0024h "CA_PnPB_Set_Stat_Res_Info"
+Return: AX = FFFFh if unsupported function
+SeeAlso: #02701
+

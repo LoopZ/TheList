@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C0
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Slow"/"Zerotime", "Solano" - INSTALLATION CHECK
+	AH = C0h
+Return: AX = 0300h if "Slow"/"Zerotime" resident
+	AX = 1234h if "Solano" resident
+SeeAlso: AX=BE00h,AX=C000h"VIRUS",AX=C301h"VIRUS"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660691
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - IBMSND driver, DIGPAK - REPORT CALLBACK ADDRESS
+	AX = 0691h
+Return: AX:DX -> current callback function
+	BX = original caller's DS register
+Program: The IBMSND driver is part of John W. Ratcliff's
+	   The IBM Digitized Sound Package
+	DIGPAK is a set of digitized sound drivers written by
+	  John W. Ratcliff, The Audio Solution, Inc.
+SeeAlso: AX=068Eh
+

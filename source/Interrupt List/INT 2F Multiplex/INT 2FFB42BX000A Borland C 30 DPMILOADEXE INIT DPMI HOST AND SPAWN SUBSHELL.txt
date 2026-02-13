@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX000A
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F RU - Borland C++ 3.0 DPMILOAD.EXE - INIT DPMI HOST AND SPAWN SUBSHELL
+	AX = FB42h
+	BX = 000Ah
+	CX = 0001h
+	DX = ???
+	SI = ???
+Return: after user exits subshell
+Notes:	this call is used by DPMIRES; unlike most of the DPMILOAD calls, this
+	  function is not available in protected mode.
+	the BC2.0 version of DPMILOAD is purely a DPMI loader, while the BC3.0
+	  version also adds a DPMI host and DOS extender.
+SeeAlso: AX=FB42h/BX=0004h,AX=FB42h/BX=0015h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 157D
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - OVERRIDE LOW POWER TURN OFF
+	AH = 7Dh
+	AL = 00h turn off after 10 warnings
+	    else never turn off
+Desc:	specify whether the Hunter 16 turns off after 10 low power warnings
+SeeAlso: AH=7Ch
+

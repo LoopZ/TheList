@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectra EX-BIOS - "F16_GET_ATTR" - GET CURRENT TYPEMATIC VALUES
+	AX = 6F02h
+Return: AH = 00h (successful)
+	CX = 0004h (size of returned buffer)
+	ES:SI -> buffer for typematic info (see #00596)
+Note:	supported by the original HP Vectra AT and ES/QS/RS series HP Vectras
+SeeAlso: AX=6F00h,AX=6F02h,AX=6F03h,AX=6F04h
+SeeAlso: AX=6F00h,AX=6F01h,AX=6F03h
+

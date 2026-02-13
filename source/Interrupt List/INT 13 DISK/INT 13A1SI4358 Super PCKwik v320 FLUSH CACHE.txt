@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13A1--SI4358
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Super PC-Kwik v3.20+ - FLUSH CACHE
+	AH = A1h
+	SI = 4358h
+Return: CF clear
+	AH = 00h (v5.10)
+Notes:	PC Tools PC-Cache 5.x and Qualitas Qcache 4.00 are OEM versions of
+	  Super PC-Kwik, and thus support this call (note that PC-Cache v5.1
+	  corresponds to PC-Kwik v3.20)
+	this function is one out of several cache flush calls issued by the
+	  PTS-DOS 6.51 and S/DOS 1.0 kernel before rebooting.
+SeeAlso: INT 16/AX=FFA5h/CX=FFFFh
+Index:	PC-Cache|Qualitas Qcache
+

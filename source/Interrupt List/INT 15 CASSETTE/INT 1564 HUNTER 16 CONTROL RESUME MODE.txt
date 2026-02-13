@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1564
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL RESUME MODE
+	AH = 64h
+	AL = new state
+	    00h disable Resume mode
+	    01h enable Resume mode
+Return: AH = status
+Desc:	turn Resume mode on or off. In Resume mode the system starts in
+	  the application that was running when it shut down as if nothing
+	  had happened.
+SeeAlso: AH=67h,AH=68h,AH=69h
+

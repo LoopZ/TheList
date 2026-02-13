@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL91
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS v3.02 - LCD panel - SET 720-DOT FIXUP MODE
+	AH = 12h
+	BL = 91h
+	AL = new mode
+	    00h display MGA mode from left of screen (default)
+	    01h display MGA from right
+	    02h skip every ninth pixel
+	    03h OR every 8th and 9th pixel
+Return: nothing
+SeeAlso: AH=12h/BL=84h,AH=12h/BL=8Ah,AH=12h/BL=90h
+

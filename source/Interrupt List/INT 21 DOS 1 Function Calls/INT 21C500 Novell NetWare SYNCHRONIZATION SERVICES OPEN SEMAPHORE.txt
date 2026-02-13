@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C500
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - OPEN SEMAPHORE
+	AX = C500h
+	DS:DX -> semaphore name (counted string, max 127 bytes)
+	CL = initial value for semaphore
+Return: AL = status
+	    00h successful
+		BL = number of processes having semaphore open
+		CX:DX = semaphore handle
+	    03h name length greater than 127
+		(refer to Novell document FYI.A.4611)
+	    FEh invalid name length
+	    FFh invalid semaphore value
+Notes:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+	the semaphore's value is incremented by AX=C503h and decremented by
+	  AX=C502h
+SeeAlso: AX=C501h,AX=C502h,AX=C503h,AX=C504h,AX=F220h/SF=00h
+

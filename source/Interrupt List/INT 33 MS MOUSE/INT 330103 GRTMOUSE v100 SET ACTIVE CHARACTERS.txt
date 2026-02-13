@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330103
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - GRTMOUSE v1.00+ - SET ACTIVE CHARACTERS
+	AX = 0103h
+	CH,CL,DH,DL = ASCII codes to be remapped to display mouse pointer
+Note:	the default active characters are D0h,D1h,D6h,D8h; the active
+	 characters should be in the range C0h to DFh
+SeeAlso: AX=0100h,AX=0104h
+

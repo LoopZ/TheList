@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148006
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - GET RESOURCE INFORMATION
+	AX = 8006h
+	BX = remote port (COM1=0, COM2=1, ...)
+	CL = adapter number, FFh to try all adapters
+	ES:DI -> resource information structure (see #00362)
+	DS:SI -> 16 byte server name. See note.
+Return: AX = error code, if error (see #00360)
+	BX = next remote port, recall to get next resource info
+Note:	Wild cards supported in both the resource field and server name
+	  string DS:SI. If wild cards used then first matching available
+	  resource information is searched. Set the resource field to FFh to
+	  return all resources.
+SeeAlso: AX=8000h,AX=8002h,AX=8003h,AX=8007h
+
+Format of ARTICOM resource information structure:
+Offset	Size	Description	(Table 00362)
+ 00h	BYTE	00h = free, else used
+ 01h 16 BYTEs	resource name
+ 11h 16 BYTEs	username of resource user
+ 21h	WORD	amount of time used
+ 23h	WORD	amount of time remaining
+ 53h 48 BYTEs	description of resource
+ 93h 64 BYTEs	initialization string for modem
+ B3h 32 BYTEs	dial string for modem
+ D3h 32 BYTEs	hang-up string for modem
+

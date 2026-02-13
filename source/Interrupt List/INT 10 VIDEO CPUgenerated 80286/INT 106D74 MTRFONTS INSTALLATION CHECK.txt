@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106D74
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - MTRFONTS - INSTALLATION CHECK
+	AX = 6D74h ('mt')
+	DS:0104h = signature "MtRfOnTs"
+Return: AX = 4D54h ('MT') if installed
+	    ES = PSP segment of resident code
+Program: MTRFONTS is a shareware TSR (part of the MTR package) by Mechon Mamre
+	  which provides Hebrew screen fonts
+SeeAlso: INT 16/AX=6D74h"MTRTSR"
+

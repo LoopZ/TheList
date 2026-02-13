@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0034
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - DWCFGMG.SYS - VxD SERVICES
+	VxD = 0034h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01298)
+Values for DWCFGMG.SYS (VxD ID 0034h) service number:
+ 00h	"CM_GetVersion" get supported DDI version
+	Return: EAX = 00000000h if not installed
+		else
+		    AH = major version number
+		    AL = minor version number
+		    EBX = number of devices controlled by DWCFGMG.SYS
+ 01h	"CM_GetConfig" get device configuration
+	EBX = device index
+	EDI -> buffer for configuration information (see #02675)
+	Return: EAX = status (0000h successful, 0001h index out of range)
+ 02h	"CM_LockConfig" lock device configuration
+	EDI -> configuration information (see #02675)
+	Return: EAX = status
+		    0000h successful
+		    0001h resource conflict
+		    0002h invalid request
+ 03h	"CM_UnlockConfig" unlock device configuration
+	EDI -> configuration information (see #02675)
+	Return: EAX = status (0000h successful, 0001h invalid request)
+ 04h	"CME_QueryResources"
+ 05h	"CME_AllocResources"
+ 06h	"CME_DeallocResources"
+SeeAlso: INT 2F/AX=1684h/BX=0034h
+

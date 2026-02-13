@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F121A
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - GET FILE'S DRIVE
+	AX = 121Ah
+	DS:SI -> filename
+Return: AL = drive (0 = default, 1 = A:, etc, FFh = invalid)
+	DS:SI -> filename without leading X: (if present)
+SeeAlso: INT 21/AH=19h,INT 21/AH=60h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4D00
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4D - TI Professional PC - DISK - RESET DISK SYSTEM
+	AH = 00h
+	DL = drive (if bit 7 is set both hard disks and floppy disks reset)
+Return: AH = status (see #00234 at INT 13/AH=01h)
+	CF clear if successful (returned AH=00h)
+	CF set on error
+Note:	this function is the same as INT 13/AH=00h on a standard PC BIOS
+SeeAlso: AH=01h,AH=02h,AH=08h,AH=0Bh,INT 13/AH=00h,INT 46"TI Professional"
+SeeAlso: INT 48/AH=00h"TI Professional",INT 4A/AH=00h"TI"
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C206
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE (PS) - EXTENDED COMMANDS
+	AX = C206h
+	BH = subfunction
+	    00h return device status
+		Return: BL = pointing device status (see #00524)
+			CL = resolution (see #00523)
+			DL = sample rate, reports per second
+	    01h set scaling at 1:1
+	    02h set scaling at 2:1
+Return: CF set on error
+	    AH = status (see #00522)
+
+Bitfields for pointing device status:
+Bit(s)	Description	(Table 00524)
+ 0	right button pressed
+ 1	reserved
+ 2	left button pressed
+ 3	reserved
+ 4	0 if 1:1 scaling, 1 if 2:1 scaling
+ 5	device enabled
+ 6	0 if stream mode, 1 if remote mode
+ 7	reserved
+

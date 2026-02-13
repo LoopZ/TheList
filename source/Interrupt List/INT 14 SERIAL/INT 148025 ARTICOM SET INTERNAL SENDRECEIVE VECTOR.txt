@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148025
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - SET INTERNAL SEND/RECEIVE VECTOR
+	AX = 8025h
+	DS:DX -> address of trap function (see #00366) to call on read/write
+Return: nothing
+Note:	setting the vector to a user function allows the redirector's activity
+	  to be monitored.
+SeeAlso: AX=8000h,AX=8035h,INT 21/AH=25h
+
+(Table 00366)
+Values ARTICOM trap function is called with:
+	AH = operation
+	    80h reading character
+	    81h writing character
+	AL = character
+Return: AX must be preserved
+	far JUMP to old trap function (see AX=8035h)
+

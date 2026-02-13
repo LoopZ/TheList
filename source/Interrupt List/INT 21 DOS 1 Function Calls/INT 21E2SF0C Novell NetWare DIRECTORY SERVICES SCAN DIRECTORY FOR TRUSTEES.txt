@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF0C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - SCAN DIRECTORY FOR TRUSTEES
+	AH = E2h subfn 0Ch
+	DS:SI -> request buffer (see #01859)
+	ES:DI -> reply buffer (see #01860)
+Return: AL = status (00h,9Ch) (see also #01839)
+	    9Ch no more trustees
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E2h/SF=0Dh,AH=E2h/SF=0Eh,AH=E3h/SF=47h,AX=F216h/SF=0Ch
+
+Format of NetWare "Scan Directory For Trustees" request buffer:
+Offset	Size	Description	(Table 01859)
+ 00h	WORD	length of following data (max 103h)
+ 02h	BYTE	0Ch (subfunction "Scan Directory For Trustees")
+ 03h	BYTE	directory handle
+ 04h	BYTE	sequence number
+		00h on first call, increment for each subsequent call
+ 05h	BYTE	length of directory path (00h-FFh)
+ 06h  N BYTEs	directory path
+SeeAlso: #01860,#01861,#02115 at AX=F216h/SF=0Ch
+
+Format of NetWare "Scan Directory For Trustees" reply buffer:
+Offset	Size	Description	(Table 01860)
+ 00h	WORD	(call) 0031h (length of following results buffer)
+ 02h 16 BYTEs	directory name
+ 12h  4 BYTEs	date and time of creation
+ 16h	DWORD	(big-endian) object ID of owner
+ 1Ah  5 DWORDs	(big-endian) object IDs of Trustees 0 through 4
+		00000000h = end of group
+ 2Eh  5 BYTEs	directory rights for Trustees 0 through 4 (see #01849)
+SeeAlso: #01859,#01863,#02115 at AX=F216h/SF=0Ch
+

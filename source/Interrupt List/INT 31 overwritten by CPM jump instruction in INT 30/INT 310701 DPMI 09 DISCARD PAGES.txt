@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310701
+  Category: E 	DOS extenders
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 31 Pu - DPMI 0.9+ - DISCARD PAGES
+	AX = 0701h
+	BX:CX = starting linear page number
+	SI:DI = number of pages to discard
+Return: ???
+Note:	although marked as reserved in versions 0.9 and 1.0 of the DPMI
+	  specification, this function is called by MS Windows TASKMAN,
+	  PROGMAN, and KERNEL
+SeeAlso: AX=0700h,AX=0703h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1073
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - SELECT TEXT FONT
+	AH = 73h
+	AL = new font
+	      00h  7x7 in a 8x8 cell
+	      01h  5x7 in a 6x8 cell
+	      06h  3x5 in a 4x6 cell
+Return: BH = cell width
+	BL = cell height
+SeeAlso: AH=60h"HUNTER",AH=77h"HUNTER"
+

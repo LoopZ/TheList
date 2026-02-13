@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE2B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.50+ - "OBJNEXT" - TRAVERSE OBJECT LIST
+	AX = DE2Bh
+	ES:DI -> starting object
+		0000h:0000h for first object in list???
+Return: AX = status
+	    0000h successful
+		ES:DI -> next object of same type (window/non-window)
+	    0001h failed (ES:DI was not a valid handle)
+Notes:	DESQview 2.50-2.52 are distributed as part of DESQview/X v1.0x.
+	there are two separate lists, one for window/task objects and one
+	  for all other objects
+SeeAlso: AX=1016h,AX=DE2Ah,AX=DE2Ch
+

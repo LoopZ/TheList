@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FE55
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ programs - GET ???
+	AX = FE55h
+	CX = segment of resident program or 0000h for last loaded
+	DX = 0000h
+Return: DX = resident code segment (unchanged if CX=0000h on entry)
+	AX = ??? or 0000h
+Note:	this call is supported by CPSCHED, CPTASK, DATAMON, DPROTECT, DRIVEMAP,
+	  and DSKLIGHT beginning in PC Tools v8.0; programs other than CPTASK
+	  seem to hook it merely to return the same AX as the CPTASK loaded
+	  prior to them returned
+

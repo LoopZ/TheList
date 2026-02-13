@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0602
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - "M_LOCK" - PREVENT TASK SWITCHES
+	DI = 0602h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 15/AX=101Bh,INT 2F/AX=1681h,INT 60/DI=0603h
+

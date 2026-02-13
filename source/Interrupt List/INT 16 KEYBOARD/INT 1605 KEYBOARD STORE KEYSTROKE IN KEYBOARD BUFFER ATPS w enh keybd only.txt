@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1605
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - STORE KEYSTROKE IN KEYBOARD BUFFER (AT/PS w enh keybd only)
+	AH = 05h
+	CH = BIOS scan code
+	CL = ASCII character
+Return: AL = status
+	    00h if successful
+	    01h if keyboard buffer full
+	AH destroyed by many BIOSes
+Notes:	under DESQview, a number of "keystrokes" invoke specific
+	  DESQview-related actions when they are read from the keyboard
+	  buffer (see #00583)
+	similarly, some "keystrokes" invoke special functions on the HP 100LX
+	  and HP 200LX (see #00584)
+SeeAlso: AH=00h,AH=25h"K3",AH=71h,AX=AF4Dh,AH=FFh,INT 15/AX=DE10h
+SeeAlso: MEM 0040h:001Eh
+
+(Table 00583)
+Values for pseudo-keystrokes for DESQview:
+ 38FBh or FB00h	switch to next window (only if main menu already popped up)
+ 38FCh or FC00h	pop up DESQview main menu
+ 38FEh or FE00h	close the current window
+ 38FFh or FF00h	pop up DESQview learn menu
+
+(Table 00584)
+Values for pseudo-keystrokes for HP 100LX/200LX:
+ EE00h	pop up topcard display and set other system manager applications
+	  into sleep mode
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15A100
+  Category: x 	non-volatile config storage
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI PCI BIOS - SET ??? FLAG
+	AX = A100h
+Return: AX = 0000h
+	CF clear
+	BX,CX,DI may be destroyed
+Desc:	sets bit 7 of CMOS RAM location 37h and updates the CMOS checksum in
+	  locations 3Eh and 3Fh
+Notes:	in the examined version of the BIOS, nonzero values in AL cause it to
+	  drop through to checking the next possible value of AH, i.e. only
+	  subfunction 00h is supported
+	also supported by Dell XPS P90 and IBM PS/PV 6384, which also use
+	  AMI BIOSes
+

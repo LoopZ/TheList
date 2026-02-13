@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFCC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - ENABLE FILE SERVER LOGIN
+	AH = E3h subfn CCh
+	DS:SI -> request buffer (see #02015)
+	ES:DI -> reply buffer (see #02014)
+Return: AL = status (00h,C6h) (see #02002)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=CBh,AX=F217h/SF=CCh
+
+Format of NetWare "Enable File Server Login" request buffer:
+Offset	Size	Description	(Table 02015)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	CCh (subfunction "Enable File Server Login")
+SeeAlso: #02014
+

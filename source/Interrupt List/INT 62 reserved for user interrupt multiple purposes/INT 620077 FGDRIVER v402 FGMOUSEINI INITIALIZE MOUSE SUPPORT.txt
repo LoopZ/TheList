@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620077
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOUSEINI" - INITIALIZE MOUSE SUPPORT
+	AX = 0077h
+Return: AX = status
+	    0002h two-button mouse
+	    0003h three-button mouse
+	    FFFFh initialization failed
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	After this call, the mouse cursor is invisible
+SeeAlso: AX=0076h,AX=0078h,AX=007Ch
+

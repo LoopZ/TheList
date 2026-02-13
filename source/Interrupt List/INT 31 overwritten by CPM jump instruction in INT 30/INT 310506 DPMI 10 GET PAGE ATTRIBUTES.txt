@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310506
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - GET PAGE ATTRIBUTES
+	AX = 0506h
+	ESI = memory block handle
+	EBX = offset in memory block of first page
+	ECX = number of pages
+	ES:EDX -> array of WORDs to hold page attributes (see #03156)
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (8001h,8023h,8025h) (see #03143)
+Notes:	only supported by 32-bit DPMI hosts, but may be used by 16-bit clients
+	if EBX is not page-aligned, it will be rounded down
+SeeAlso: AX=0504h,AX=0507h,INT 21/AX=251Dh,INT 21/AX=EB00h
+
+Bitfields for DPMI page attribute word:
+Bit(s)	Description	(Table 03156)
+ 0-2	page type
+	000 uncommitted
+	001 committed
+	010 mapped (see AX=0508h,AX=0509h)
+	other currently unused
+ 3	page is read/write rather than read-only
+ 4	accessed/dirty bits supplied in bits 5 and 6
+ 5	page has been accessed (only valid if bit 4 set)
+ 6	page has been written (only valid if bit 4 set)
+ 7-15	reserved (0)
+

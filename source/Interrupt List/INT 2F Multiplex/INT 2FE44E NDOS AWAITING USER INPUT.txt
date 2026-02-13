@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE44E
+  Category: l 	shells/command interpreters
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - NDOS - AWAITING USER INPUT
+	AX = E44Eh
+	BX = condition
+	    0000h NDOS is ready to display prompt
+	    0001h NDOS has displayed the prompt, about to accept user input
+Return: handler must preserve SI, DI, BP, SP, DS, ES, and SS
+SeeAlso: AX=E44Dh
+

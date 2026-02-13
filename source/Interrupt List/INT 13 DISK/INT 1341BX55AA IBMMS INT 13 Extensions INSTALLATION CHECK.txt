@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1341--BX55AA
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - IBM/MS INT 13 Extensions - INSTALLATION CHECK
+	AH = 41h
+	BX = 55AAh
+	DL = drive (80h-FFh)
+Return: CF set on error (extensions not supported)
+	    AH = 01h (invalid function)
+	CF clear if successful
+	    BX = AA55h if installed
+	    AH = major version of extensions
+		01h = 1.x
+		20h = 2.0 / EDD-1.0
+		21h = 2.1 / EDD-1.1
+		30h = EDD-3.0
+	    AL = internal use
+	    CX = API subset support bitmap (see #00271)
+	    DH = extension version (v2.0+ ??? -- not present in 1.x)
+Note:	the Phoenix Enhanced Disk Drive Specification v1.0 uses version 2.0 of
+	  the INT 13 Extensions API
+SeeAlso: AH=42h"INT 13 Ext",AH=48h"INT 13 Ext"
+
+Bitfields for IBM/MS INT 13 Extensions API support bitmap:
+Bit(s)	Description	(Table 00271)
+ 0	extended disk access functions (AH=42h-44h,47h,48h) supported
+ 1	removable drive controller functions (AH=45h,46h,48h,49h,INT 15/AH=52h)
+	  supported
+ 2	enhanced disk drive (EDD) functions (AH=48h,AH=4Eh) supported
+	extended drive parameter table is valid (see #00273,#00278)
+ 3-15	reserved (0)
+

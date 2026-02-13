@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1108
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - READ FROM REMOTE FILE
+	AX = 1108h
+	ES:DI -> SFT
+	    SFT DPB field -> DPB of drive containing file
+	CX = number of bytes
+	SS = DOS DS
+	SDA DTA field -> user buffer
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    CX = number of bytes read (0000h = end of file)
+	    SFT updated
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: AX=1109h,AX=1229h,INT 21/AH=3Fh"DOS",INT 21/AX=5D06h
+

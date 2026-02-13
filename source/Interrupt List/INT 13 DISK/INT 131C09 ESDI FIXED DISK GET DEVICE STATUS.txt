@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131C09
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - ESDI FIXED DISK - GET DEVICE STATUS
+	AX = 1C09h
+	DL = drive (80h,81h)
+	ES:BX -> buffer for Device Status Block (see #00259)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234 at AH=01h)
+SeeAlso: AX=1C08h,AX=1C0Ah,PORT 3510h"ESDI"
+
+Format of ESDI Device Status Block:
+Offset	Size	Description	(Table 00259)
+ 00h	BYTE	08h
+ 01h	BYTE	number of words in block (09h)
+ 02h	BYTE	error flags
+ 03h	BYTE	unused
+ 04h	BYTE	command error code (see #00255)
+ 05h	BYTE	command status code (see #00256)
+ 06h	WORD	ESDI standard status
+ 08h  5 WORDs	ESDI vendor-specific status codes
+

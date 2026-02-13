@@ -1,0 +1,182 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC502
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-DOS Econet v1.05 - PERFORM NETWORK OPERATION
+	AX = C502h
+	DS:DX -> control block (see #03036)
+Return: AX = return code (see #03037) (same as returned in control block)
+Note:	the interrupt-enable state will be preserved, but interrupts may be
+	  enabled during processing of this function
+SeeAlso: AX=C500h
+
+Format of Econet control block:
+Offset	Size	Description	(Table 03036)
+ 00h	DWORD	-> command block (see #03038)
+ 04h	WORD	length of transmit data block
+ 06h	DWORD	-> transmit data block
+ 0Ah	WORD	length of reply block (set to 0000h prior to call)
+ 0Ch	DWORD	-> reply block
+ 10h	WORD	return code (set to 0000h prior to call) (see #03037)
+ 12h	DWORD	reserved for Econet use
+
+(Table 03037)
+Values for Econet return code:
+ 0000h	successful
+ 0001h	bad command in command block
+ 0002h	no handles left
+ 0003h	bad handle
+ 0004h	bad argument in command
+ 0005h	buffer too small
+ 0006h	kill condition failed
+ 0007h	control block in use
+ 007Fh	command aborted
+ 01xxh	retryable board error XXh
+ 02xxh	fatal board error XXh
+ 0300h	invalid subfunction number in AL
+ 0301h	timeout
+ 03xxh	other driver errors
+SeeAlso: #03036
+
+Format of Econet command block:
+Offset	Size	Description	(Table 03038)
+ 00h	BYTE	command code (see #03039)
+---command 00h---
+ 01h	BYTE	direction (00h = read initialization data, 01h = set init data)
+ 02h	WORD	"TxCB" transmit control block size
+ 04h	WORD	"RxCB" receive control block size
+		Notes:	TxCB and RxCB are always the same size in v1.05,
+			  permitting any CB to be used for either receive
+			  or transmit
+			this command should not be used by applications to
+			  set the buffer sizes
+ 06h  6 BYTEs	padding (0)
+---command 01h---
+ 01h	BYTE	port number (00h = receive on all ports)
+		if the RxCB is opened for RPC, the port number indicates the
+		  allowable RPC (see #03040)
+ 02h	WORD	station number (FEFFh = broadcast)
+ 04h	BYTE	RPC flags
+		bit 7: CB is open for RPCs only
+		bit 6: restrict to RPC number given in next field
+ 05h	WORD	RPC number
+ 07h	BYTE	timeout in 1/2-second units (00h = never)
+		if a timeout occurs, the RxCB can still receive data, and may
+		  generate another event after the timeout unless it is
+		  explicitly killed
+ 08h  4 BYTEs	padding (0)
+---command 02h---
+ 01h	BYTE	control byte
+ 02h	BYTE	port number
+ 03h	WORD	station number
+ 05h	BYTE	number of retries
+ 06h	WORD	length of data to be sent (bits 14-0), 0000h allowed
+		if bit 15 is set, no data will be transferred, but this field
+		  will be updated (needed for peeking)
+ 08h	DWORD	-> destination address on remote machine
+---command 03h---
+ 01h	BYTE	Control Block Handle
+		FEh first filled-in RxCB
+		FFh first TxCB which has been sent
+ 02h 10 BYTEs	padding (0)
+---command 04h---
+ 01h	BYTE	Control Block Handle
+ 02h	BYTE	kill condition
+		00h always
+		01h kill only if bit7 of control byte is clear
+		81h kill only if bit7 of control byte is set
+ 03h  9 BYTEs	padding (0)
+		Notes:	control blocks are not freed until explicitly killed
+			because all TxCBs for a given destination are stored
+			  on a separate subchain, it is necessary to kill all
+			  failed TxCBs to a given destination before any new
+			  ones are opened to that destination
+---command 06h---
+ 01h	BYTE	Control Block Handle
+ 02h	WORD	starting byte within CB to read
+ 04h	WORD	number of bytes
+		if 0000h or greater than remaining bytes in CB, return all
+		  bytes from starting byte to end of CB
+ 06h  6 BYTEs	padding (0)
+---command 07h---
+ 01h	BYTE	subfunction
+		00h-0Fh get/set M/C type (bit N=1 indicates to set byte N)
+			four data bytes
+		10h get station number
+		11h set station number
+		12h get Tx pause in 5ms units (default 20)
+		13h set Tx pause
+		14h get software version numbers
+		16h get event enable mask
+		17h set event enable mask
+		18h get number of non-volatile bytes available
+		80h+2N get non-volatile byte N
+		81h+2N set non-volatile byte N
+ 02h	var	new data
+Note:	all command blocks should be padded to twelve bytes with zeros if
+	  needed
+SeeAlso: #03036
+
+(Table 03039)
+Values for Econet command code:
+ 00h	initialize
+ 01h	open receive
+ 02h	open transmit
+ 03h	poll
+ 04h	kill
+ 06h	read
+ 07h	get/set system parameters
+SeeAlso: #03038
+
+(Table 03040)
+Values for Econet RPC type:
+ 00h	all
+ 81h	peek
+ 82h	poke
+ 83h	remote JSR
+ 84h	remote procedure call
+ 85h	OS procedure
+ 86h	Halt
+ 87h	Continue
+SeeAlso: #03038
+
+Format of Econet Reply Block (command 00h):
+Offset	Size	Description	(Table 03041)
+ 00h	WORD	TxCB size (default is 0500h, the maximum Econet packet length)
+ 02h	WORD	RxCB size
+ 04h	BYTE	number of TxCBs allocated	
+ 05h	BYTE	number of RxCBs allocated	
+SeeAlso: #03036,#03042,#03044
+
+Format of Econet Reply Block (commands 01h,02h):
+Offset	Size	Description	(Table 03042)
+ 00h	BYTE	control block handle
+SeeAlso: #03036,#03041,#03045
+
+Format of Econet Reply Block (command 03h):
+Offset	Size	Description	(Table 03043)
+ 00h	BYTE	CB number (when wildcard specified for poll)
+ 01h	BYTE	control
+		(RxCB) 00h until received, then Sent Control byte
+		(TxCB) transmit status
+		    bit 7: transmission pending
+		    bit 6: transmission failed
+		    bits 3-0: error number
+ 02h	BYTE	Port number
+ 03h	WORD	station number
+ 05h	WORD	length
+ 07h	WORD	0000h
+SeeAlso: #03036,#03041,#03044
+
+Format of Econet Reply Block (command 06h):
+Offset	Size	Description	(Table 03044)
+ 00h  N BYTEs	data read from network
+SeeAlso: #03036,#03043,#03045
+
+Format of Econet Reply Block (command 07h):
+Offset	Size	Description	(Table 03045)
+ 00h  N BYTEs	returned information
+SeeAlso: #03036,#03044
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - RATSR 2.0+ - GET STATUS
+	AL = 10h
+	AH = AMIS multiplex number for RATSR
+Return: AL = status
+	    01h listening (no connection)
+	    02h receiving	      \
+	    03h sending		       > station being monitored
+	    04h initializing receive  /
+	AH = keyboard lock status (00h unlocked, 01h locked)
+Program: RATSR is a utility by James Berry provided with
+	  RemoteAccess/Professional, a commercial bulletin board system, that
+	  allows remote control of a station over a network
+SeeAlso: INT 2D"AMIS"
+

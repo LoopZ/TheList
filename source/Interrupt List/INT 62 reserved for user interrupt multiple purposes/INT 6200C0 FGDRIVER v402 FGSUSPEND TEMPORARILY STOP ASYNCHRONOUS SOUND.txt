@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200C0
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SUSPEND" - TEMPORARILY STOP ASYNCHRONOUS SOUND
+	AX = 00C0h
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call has no effect if there is no asynchronous sound in progress
+	The program must not exit while sound is suspended
+SeeAlso: AX=0059h,AX=0080h,AX=00BDh,AX=00C0h,AX=00DBh
+

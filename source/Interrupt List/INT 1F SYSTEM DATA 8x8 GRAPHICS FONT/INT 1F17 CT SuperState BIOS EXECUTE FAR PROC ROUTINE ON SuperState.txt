@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1F17
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - EXECUTE FAR PROC ROUTINE ON SuperState
+	AH = 17h
+	ES:DI -> far procedure
+Return: all registers except AH,ES,DI
+Note:	You can change the BIOS area (F000h:0000h - F000h:FFFFh) only through
+	  this function
+

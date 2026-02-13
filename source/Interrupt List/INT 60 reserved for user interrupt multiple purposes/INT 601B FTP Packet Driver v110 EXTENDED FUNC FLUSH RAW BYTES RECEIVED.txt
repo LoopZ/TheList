@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 601B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver v1.10+ - EXTENDED FUNC - FLUSH RAW BYTES RECEIVED
+	AH = 1Bh
+Return: CF set on error
+	    DH = error code (see #03305)
+	CF clear if successful
+SeeAlso: AH=1Ch
+

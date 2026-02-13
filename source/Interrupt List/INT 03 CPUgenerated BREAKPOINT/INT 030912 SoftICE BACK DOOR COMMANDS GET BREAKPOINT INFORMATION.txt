@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 030912
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 03 - Soft-ICE - BACK DOOR COMMANDS - GET BREAKPOINT INFORMATION
+	AX = 0912h
+	SI = magic value 4647h ('FG')
+	DI = magic value 4A4Dh ('JM')
+Return: BH = entry number of last breakpoint set
+	BL = type of last breakpoint set (see #00002)
+	DH = entry number of last breakpoint to be triggered
+	DL = type of last triggered breakpoint (see #00002)
+Program: Soft-ICE is a debugger by Nu-Mega Technologies, Inc.
+SeeAlso: AX=0911h,AX=0913h,AX=0914h
+
+(Table 00002)
+Values for Soft-ICE breakpoint type:
+ 00h	BPM (breakpoint register types)
+ 01h	I/O
+ 02h	INTerrupt
+ 03h	BPX (INT 03-style breakpoint)
+ 04h	reserved
+ 05h	range
+

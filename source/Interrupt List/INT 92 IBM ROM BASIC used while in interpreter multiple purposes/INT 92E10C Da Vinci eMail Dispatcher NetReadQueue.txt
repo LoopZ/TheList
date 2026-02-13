@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E10C
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - "NetReadQueue"
+	AX = E10Ch
+	BX = size of parameter block in words (0002h)
+	CX:DX -> parameter block (see #03990)
+Return: AX = 0001h
+SeeAlso: AX=E10Bh
+
+Format of Da Vinci eMail "NetReadQueue" parameter block:
+Offset	Size	Description	(Table 03990)
+ 00h	WORD	Segment of 128 byte node address buffer
+ 02h	WORD	Offset of 128 byte node address buffer
+

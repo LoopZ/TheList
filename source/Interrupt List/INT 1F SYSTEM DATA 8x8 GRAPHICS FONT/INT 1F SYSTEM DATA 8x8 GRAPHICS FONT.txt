@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1F
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1F - SYSTEM DATA - 8x8 GRAPHICS FONT
+Desc:	this vector points at 1024 bytes of graphics data, 8 bytes for each
+	  character 80h-FFh
+Notes:	graphics data for characters 00h-7Fh stored at F000h:FA6Eh in 100%
+	  compatible BIOSes
+	Under PhysTechSoft's PTS ROM-DOS this table is fictitious.
+SeeAlso: INT 10/AX=5000h,INT 43
+

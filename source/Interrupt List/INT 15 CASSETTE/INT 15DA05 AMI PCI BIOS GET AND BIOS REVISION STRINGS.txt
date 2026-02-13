@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DA05
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI PCI BIOS - GET ??? AND BIOS REVISION STRINGS
+	AX = DA05h
+	ES:SI -> 8-byte buffer for ??? and BIOS revision strings
+Return: CF clear
+	ES:SI buffer filled
+	AL = 00h
+	CX = ??? (0000h)
+Notes:	for BIOS v1.00.05.AX1, the ??? string is "IDNO" and the BIOS revision
+	  string is "AX1 "
+SeeAlso: AX=DA15h,AX=DB04h
+

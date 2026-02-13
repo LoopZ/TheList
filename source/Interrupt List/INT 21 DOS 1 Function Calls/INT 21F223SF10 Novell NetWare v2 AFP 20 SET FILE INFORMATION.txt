@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF10
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP 2.0 SET FILE INFORMATION
+	AX = F223h subfn 10h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02334)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=09h,AX=F223h/SF=11h
+
+Format of NetWare "AFP 2.0 Set File Information" request packet:
+Offset	Size	Description	(Table 02334)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	10h (subfunction "AFS 2.0 Set File Information")
+ 03h	BYTE	volume number
+ 04h	DWORD	AFP entry ID
+ 08h	WORD	request bitmap (see #02320)
+ 0Ah	WORD	directory/file attributes (see #02335)
+ 0Ch	WORD	creation date in AFP format
+ 0Eh	WORD	last-access date in AFP format
+ 10h	WORD	last-modified date in AFP format
+ 12h	WORD	last-modified time in AFP format
+ 14h	WORD	last-backup date in AFP format
+ 16h	WORD	last-backup time in AFP format
+ 18h 32 BYTEs	Finder information
+ 38h  6 BYTEs	ProDOS information
+ 3Eh	BYTE	path length
+ 3Fh  N BYTEs	AFP-style pathname (relative to AFP entry ID)
+SeeAlso: #02319
+
+Bitfields for NetWare AFP directory/file attributes:
+Bit(s)	Description	(Table 02335)
+ 0	read-only
+ 1	hidden
+ 2	system
+ 3	execute-only
+ 4	subdirectory
+ 5	archive
+ 7	shareable file
+SeeAlso: #02334
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2140
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - PC/TCP IPCUST.SYS - WRITE CONFIGURATION DATA
+	AH = 40h
+	BX = handle for character device "$IPCUST"
+	CX = number of bytes to write
+	DS:DX -> buffer for configuration data (AH=3Fh"IPCUST")
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (05h,06h) (see #01680 at AH=59h/BX=0000h)
+Notes:	if less than the entire data is read or written, the next read/write
+	  continues where the previous one ended; IOCTL calls AX=4402h and
+	  AX=4403h both reset the location at which the next operation starts
+	  to zero
+	the data pointer is also reset to zero if the previous read or write
+	  reached or exceeded the end of the data, when the current function
+	  is read and the previous was write, or vice versa
+	v2.1+ uses a new configuration method, but allows the installation
+	  of IPCUST.SYS for backward compatibility with other software which
+	  must read the PC/TCP configuration
+SeeAlso: AH=3Fh"IPCUST",AX=4402h"IPCUST"
+

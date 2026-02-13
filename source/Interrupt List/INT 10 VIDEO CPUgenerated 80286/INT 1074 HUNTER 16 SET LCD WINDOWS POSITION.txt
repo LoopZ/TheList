@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1074
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - SET LCD WINDOWS POSITION
+	AH = 74h
+	DH = row (0..24)
+	DL = column (0..79)
+Return: nothing
+Desc:	set the position in the virtual screen being displayed in the LCD
+	  screen. If Split Screen (INT 10/AH=66h) is used, this call sets the
+	  position for the window which has the cursor.
+SeeAlso: AH=66h"HUNTER",AH=75h,AH=76h
+

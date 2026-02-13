@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 60 U - Buffit v3.0 - (NOT A VECTOR!) - INSTALLATION CHECK
+Program: Buffit is a shareware scrollback utility by D.T. Hamilton
+Range:	INT 60 to INT 6F, selected by searching for first free vector
+Notes:	the Buffit installation check consists of testing whether the
+	  interrupt vector points at the ASCII signature "Buffit  "
+	there is a private entry point (see #03267) immediately following the
+	  signature string, i.e. eight bytes beyond the address pointed at
+	  by the interrupt vector
+
+(Table 03267)
+Call Buffit private entry point with:
+	AH = function
+	    00h get information and hotkey state
+	    01h get information and toggle hotkey state
+Return: AH = new hotkey state (00h enabled, 01h disabled)
+	AL = hotkey scan code (see #00006)
+	BH = hotkey shift states
+	BL = ??? (01h)
+	CX = segment of resident code
+	DH = interrupt number used for signature pointer
+	DL = ??? (00h)
+	SI = INT 09 handler offset
+	DI = INT 21 handler offset
+Index:	hotkeys;Buffit
+

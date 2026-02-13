@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17F2
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - NorthNet Jetstream API - GET PRINT PROGRESS STATUS
+	AH = F2h
+	DX = printer port (0-3)
+Return: AX = status
+	    0000h prior print request finished
+	    other number of characters left to print
+SeeAlso: AH=02h,AH=F1h,AH=F3h
+

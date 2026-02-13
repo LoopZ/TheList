@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6802--SF0F00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - CONNECTION CONTROL - SEND DATA
+	AH = 02h subfn 0F00h
+	DS:DX -> control block (see #03695)
+Return: control block updated
+SeeAlso: AH=02h/SF=0E00h,AH=02h/SF=1000h
+
+Format of APPC/PC "Send_Data" control block:
+Offset	Size	Description	(Table 03695)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	0F00h (verb "Send_Data" or "MC_Send_Data")
+ 0Eh	BYTE	1 if MC_ (mapped conversation) form of verb
+		0 if basic verb
+ 0Fh  5 BYTEs	reserved (0)
+ 14h	WORD	(big-endian) primary return code (see #03681)
+ 16h	DWORD	(big-endian) error code (see #03682)
+ 1Ah  8 BYTEs	(big-endian) TP_ID
+ 22h	DWORD	(big-endian) conversation ID
+ 26h	BYTE	request to send received (0=no, 1=yes)
+ 27h	BYTE	00h
+ 28h	WORD	data length
+ 2Ah	DWORD	pointer to data
+

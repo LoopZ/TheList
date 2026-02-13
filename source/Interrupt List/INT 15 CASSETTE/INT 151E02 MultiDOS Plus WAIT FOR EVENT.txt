@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151E02
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - WAIT FOR EVENT
+	AX = 1E02h
+	DX = event/trigger number (00h-3Fh)
+Return: AH = status
+	    00h successful
+	    01h invalid event/trigger number
+Note:	if the event counter is zero, the task is suspended until the event is
+	  triggered with AX=1E01h; else, the counter is decremented and the
+	  call returns immediately
+SeeAlso: AX=1E00h,AX=1E01h
+

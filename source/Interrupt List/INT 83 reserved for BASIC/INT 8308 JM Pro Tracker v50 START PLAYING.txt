@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8308
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 83 - JM Pro Tracker v5.0 - START PLAYING???
+	AH = 08h
+	???
+Return: CF clear if successful
+	   ???
+	CF set on error
+	    AX = error code (001Eh,001Fh) (see #03976)
+SeeAlso: AH=09h,AH=0Ah
+

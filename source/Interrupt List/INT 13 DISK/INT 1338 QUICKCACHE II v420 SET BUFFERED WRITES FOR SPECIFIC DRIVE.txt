@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1338
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - QUICKCACHE II v4.20 - SET BUFFERED WRITES FOR SPECIFIC DRIVE
+	AH = 38h
+	AL = new state (00h disabled, else enabled)
+	DL = drive number (00h = A:)
+Return: AX = status (0000h successful)
+SeeAlso: AH=2Ch,AH=37h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14AA01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - DimVGA v2.0+ - INSTALLATION CHECK
+	AX = AA01h
+Return: AX = FFFFh if installed, unchanged
+	BX = version (v1.5+ only), BH = major, BL = minor (v1.5 = 0105h)
+	CX = resident segment (v3.1+)
+Program: DimVGA is a public domain screen saver by Menno Pieters
+SeeAlso: AX=AA02h,AX=AA03h,AX=AA06h,INT 11/AX=0225h/BX=6900h,INT 12"KEYBUI"
+SeeAlso: INT 2D/AL=10h"Burnout Plus",INT 2F/AX=6400h,INT 2F/AH=93h
+SeeAlso: INT 2F/AX=C000h"VGAsave",INT 2F/AX=C000h"AD-DOS",INT 2F/AX=C050h
+SeeAlso: INT 2F/AX=E300h
+Index:	screen saver;DimVGA
+

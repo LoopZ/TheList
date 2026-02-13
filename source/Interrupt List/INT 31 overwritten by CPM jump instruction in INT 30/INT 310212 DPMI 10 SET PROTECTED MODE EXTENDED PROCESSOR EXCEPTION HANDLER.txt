@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310212
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - SET PROTECTED MODE EXTENDED PROCESSOR EXCEPTION HANDLER
+	AX = 0212h
+	BL = exception or fault number (00h-1Fh)
+	CX:(E)DX = exception handler selector:offset
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8021h,8022h) (see #03143)
+Note:	DPMI host sends exception to current client's handler
+SeeAlso: AX=0203h,AX=0210h,AX=0213h
+

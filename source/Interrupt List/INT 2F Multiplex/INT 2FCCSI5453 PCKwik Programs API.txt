@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCC--SI5453
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC-Kwik Programs - API
+	AH = CCh
+	SI = 5453h or 7473h
+	AL = function number (at least 00h,01h,04h,05h,07h,80h)
+	DL = program identifier (see #03067)
+Return: SI = 7473h
+	other registers vary by function
+Note:	Qualitas Qcache v4.00 is an OEM version of Super PC-Kwik v4.00, and
+	  thus supports this call
+SeeAlso: INT 21/AH=2Bh/CX=4358h
+
+(Table 03067)
+Values for PC-Kwik program identifier:
+ 00h	all installed PowerPak programs
+ 01h	SUPERPCK/SUPER/QCACHE v4.00+ (disk cache)
+ 02h	PCKSPL (print spooler)
+ 04h	PCKSCRN (screen accelerator)
+ 05h	PCKKEY (keyboard enhancer)
+ 06h	PCKRAMD (RAM disk)
+ 08h	PCKWIK.SYS
+ 10h	PCKCDROM (CD-ROM support for SUPERPCK)
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE03
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - DV TERMINATION
+	AX = DE03h
+	BX = mapping context of DESQview
+	DX = handle of DESQview system task
+Notes:	driver should pass this call to previous handler before doing its work
+	DESQview makes this call when it is exiting, but before unhooking any
+	  interrupt vectors
+SeeAlso: AX=DE02h,AX=DE0Fh,INT 15/AX=5407h
+

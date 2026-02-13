@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1049
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "DLINE" - DRAW TO POINT
+	AH = 49h
+	DI = x (0-719)
+	BP = y (0-347)
+Return: nothing
+Note:	function 48h or 49h specify first point, 44h operation and 43h page to
+	  use
+SeeAlso: AH=43h,AH=44h,AH=48h,AH=4Ch,AH=4Dh
+

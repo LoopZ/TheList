@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD000
+  Category: G 	debuggers/debugging tools
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MDEBUG display driver - GET DRIVER STATUS
+	AX = D000h
+Return: CF set on error
+	    all other registers must be unchanged)
+	CF clear if successful
+	    AL = FFh
+	    AH = driver semaphor
+		00h driver is not active
+		01h driver is active
+	    BX = CS of the driver
+	    CX = driver version (CH = major, CL = minor, must be >= 013Ch)
+	    DL = buffer semaphor
+		00h driver is not pending
+		01h driver is pending between functions 02h and 03h
+	    DH = show semaphor
+		00h driver is not pending
+		01h driver is pending between functions 04h and 05h
+Program: MDEBUG is a shareware memory-resident debugging tool by Bernd
+	  Schemmer, including a memory monitor, an interpreter and a
+	  disassembler
+Range:	AH=C0h to AH=FFh, selected by switch or programmatically
+Notes:	MDEBUG can use any two consecutive multiplex numbers between C0h and
+	  FFh; the default is D0h for the display driver and D1h for the
+	  command driver (call INT 60/AH=00h"MDEBUG" for the actual multiplex
+	  numbers used)
+	this function MUST be reentrant, as MDEBUG calls it after every popup
+	  before any other actions.  The handler should not change any
+	  registers if the display is in an unsupported mode or in a mode
+	  MDEBUG supports itself, e.g. a normal text mode with at least 80x25
+	  characters (i.e. 80x43 or 132x44 (v1.60+)). In this case MDEBUG will
+	  not call any of the other functions for this popup session.
+	MDEBUG will not call the other functions if the returned version is
+	  less than the actual version of MDEBUG.
+	if the driver is reentrant, DL and DH should be 00h
+SeeAlso: AX=D001h,AX=D002h,AX=D003h,AX=D004h,AX=D005h
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A00BX4156
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AVATAR.SYS - INSTALLATION CHECK
+	AX = 1A00h
+	BX = 4156h ('AV')
+	CX = 4154h ('AT')
+	DX = 4152h ('AR')
+Return: AL = FFh if installed
+	    CF clear
+	    BX = AVATAR protocol level supported
+	    CX = driver type
+		0000h AVATAR.SYS
+		4456h DVAVATAR.COM inside DESQview window
+	    DX = 0016h
+Program: AVATAR.SYS is a CON replacement by George Adam Stanislav which
+	  interprets AVATAR command codes in the same way that ANSI interprets
+	  ANSI command codes
+Notes:	AVATAR also identifies itself as ANSI.SYS if BX, CX, or DX differ from
+	  the magic values
+SeeAlso: AX=1A21h,AX=1A3Ch,AX=1A3Fh,AX=1A52h,AX=1A72h,AX=1A7Dh,AX=1AADh"AVATAR"
+

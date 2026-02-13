@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1580
+  Category: B 	BIOS
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - OS HOOK - DEVICE OPEN (AT,XT286,PS)
+	AH = 80h
+	BX = device ID
+	CX = process ID
+	CF clear
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = status (see #00496)
+Note:	this function should be hooked by a multitasker which wishes to keep
+	  track of device ownership; the default BIOS handler merely returns
+	  successfully
+SeeAlso: AH=81h,AH=82h
+
+(Table 00496)
+Values for status:
+ 80h	invalid command (PC,PCjr)
+ 86h	function not supported (XT)
+

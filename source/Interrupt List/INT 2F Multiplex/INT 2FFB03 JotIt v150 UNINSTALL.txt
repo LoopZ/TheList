@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB03
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Jot-It! v1.50 - UNINSTALL
+	AX = FB03h
+Return: resident code removed from memory
+Note:	CAUTION: NO checks are performed to ensure that the interrupt vectors
+	  being unhooked (08h,09h,28h,2Fh) actually point at the Jot-It! code
+SeeAlso: AX=FB00h"Jot-It"
+

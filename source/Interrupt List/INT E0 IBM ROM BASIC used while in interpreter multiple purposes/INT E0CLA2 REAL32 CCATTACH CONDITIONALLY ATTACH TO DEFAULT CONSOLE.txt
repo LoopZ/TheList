@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLA2
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "C_CATTACH" - CONDITIONALLY ATTACH TO DEFAULT CONSOLE
+	CL = A2h
+Return: AL = status (FFh = console attached to another process)
+Note:	if the console is currently owned by another process, this function
+	  will return an error code instead of attaching or waiting
+SeeAlso: INT E0/CL=93h,INT E0/CL=94h,INT E0/CL=99h,INT E0/CL=92h
+

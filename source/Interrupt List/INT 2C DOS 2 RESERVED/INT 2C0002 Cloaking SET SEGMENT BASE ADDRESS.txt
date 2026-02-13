@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0002
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - SET SEGMENT BASE ADDRESS
+	AX = 0002h
+	SI = selector
+	EBX = new physical base addres
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #02556)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0000h,AX=0003h,AX=0004h,INT 31/AX=0007h,#00501
+

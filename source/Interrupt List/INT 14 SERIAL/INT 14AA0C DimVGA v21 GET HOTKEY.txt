@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14AA0C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - DimVGA v2.1+ - GET HOTKEY
+	AX = AA0Ch
+Return: AX = FFFFh
+	BH = shift state (see #00396)
+	BL = keyboard scancode
+SeeAlso: AX=AA01h,AX=AA0Bh
+Index:	screen saver;DimVGA
+

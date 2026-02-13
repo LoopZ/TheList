@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 812010
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 81 - Gravis UltraSound - MEGA_EM v3.0+ - INT 78 REDIRECT
+	AX = 2010h
+	???
+Return: ???
+Note:	MegaEm calls this function from its INT 78 handler, and then
+	  immediately returns (via RETF in v3.10, thus leaving the flags on
+	  the stack); this permits it to operate while hooking only one
+	  interrupt through the memory manager in protected mode
+SeeAlso: AX=2011h,AX=2012h
+

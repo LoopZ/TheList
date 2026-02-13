@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21252F
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Ext VMM v3.0 - WRITE RECORD TO VMM PAGE LOG FILE
+	AX = 252Fh
+	DS:EBX -> data to be written
+	CX = size of data in bytes
+Return: CF clear if successful
+	CF set on error
+	    EAX = error code (85h no page log file or not 386/VMM)
+

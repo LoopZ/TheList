@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BC
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Phoenix 386 BIOS - DETERMINE CPU SPEED FOR DELAY LOOPS
+	AH = BCh
+Return: CF clear
+	(Phoenix 1.10 10a) BYTE 0040h:00B0h set to delay loop count
+	(Dell 4xxDE BIOS A11) WORD 0040h:00ECh set to delay loop count
+Note:	this function reads system timer channel 0 twice, then does
+	  calculations on the returned values to determine the delay loop
+	  counter needed by the BIOS for beeps and floppy timeouts
+SeeAlso: AX=2305h,MEM 0040h:00B0h
+

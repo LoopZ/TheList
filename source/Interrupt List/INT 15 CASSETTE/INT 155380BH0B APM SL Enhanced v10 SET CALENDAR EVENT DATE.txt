@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH0B
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - SET CALENDAR EVENT DATE
+	AX = 5380h
+	BH = 0Bh
+	SI = century
+	DI = year
+	CH = month
+	CL = day
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (see #00483)
+Desc:	sets calendar event date in Extended CMOS ram
+SeeAlso: AX=5380h/BH=0Ah,AX=5380h/BH=7Fh
+

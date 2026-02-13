@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101E05
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - FLAT-PANEL - BRIGHTNESS CONTROL
+	AX = 1E05h
+	BH = function
+	    bit 7: =1 set brightness, =0 query brightness
+	    bits 6-0: reserved (0)
+	---if BH bit 7 set---
+	BL = new brightness setting (see #00058)
+Return: AL = 1Eh if function supported
+	    BH = results
+		bit 7: query/set (copied from input)
+		bits 6-2: reserved (0)
+		bit 1: software brightness control is supported
+		bit 0: set operation was successful (always clear on get)
+	    BL = active brightness setting (see #00058)
+Note:	this function operates independently of AX=1E07h
+SeeAlso: AX=1E00h,AX=1E04h,AX=1E06h,AX=1E07h
+
+Bitfields for Flat-Panel brightness control:
+Bit(s)	Description	(Table 00058)
+ 7-1	reserved (0)
+ 0	high brightness
+SeeAlso: #00057,#00059
+

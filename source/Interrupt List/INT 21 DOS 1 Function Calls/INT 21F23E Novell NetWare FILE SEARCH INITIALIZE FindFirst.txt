@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F23E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SEARCH INITIALIZE (FindFirst)
+	AX = F23Eh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02343)
+	ES:DI -> reply buffer (see #02344)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=4Eh,AH=F2h"Novell",AX=F23Fh,AX=F242h
+
+Format of NetWare "File Search Initialize" request packet:
+Offset	Size	Description	(Table 02343)
+ 00h	BYTE	directory handle
+ 01h	BYTE	length of directory path
+ 02h  N BYTEs	path of directory to search, in VOLUME:DIRECTORY/... format
+SeeAlso: #02344,#02345
+
+Format of NetWare "File Search Initialize" reply packet:
+Offset	Size	Description	(Table 02344)
+ 00h	BYTE	volume number
+ 01h	WORD	directory ID
+ 03h	WORD	search sequence number
+ 05h	BYTE	directory access rights
+SeeAlso: #02343,#02346
+

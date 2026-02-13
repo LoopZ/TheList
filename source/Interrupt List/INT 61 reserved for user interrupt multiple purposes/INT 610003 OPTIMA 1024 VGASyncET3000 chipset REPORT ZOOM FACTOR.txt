@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - REPORT ZOOM FACTOR
+	AX = 0003h
+Return: AX = zoom factor
+Desc:	returns the current zoom factor
+Range:	unknown
+Notes:	INT 61h is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0000h"OPTIMA",AX=0005h"OPTIMA",INT 16/AH=FFh"OPTIMA"
+

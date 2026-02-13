@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0003
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - FIND A SERVICE
+	AX = 0007h
+	BX = 0003h
+	DS:DX -> port control block (see #03434)
+Return: AX = status (see AX=0007h/BX=0000h)
+SeeAlso: AX=0007h/BX=0002h,AX=0007h/BX=0004h,AX=0007h/BX=0005h
+
+Format of port control block:
+Offset	Size	Description	(Table 03434)
+ 00h	WORD	???
+ 02h	WORD	???
+ 04h 16	BYTEs	IPC port (see #03328 at AX=0001h"Sosock")
+ 14h  5	WORDs	???
+SeeAlso: #03440
+

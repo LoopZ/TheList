@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF17
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET ENCRYPTION KEY
+	AX = F217h subfn 17h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02172)
+	ES:DI -> reply buffer
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=18h,AX=F217h/SF=4Ah,AX=F217h/SF=4Bh
+
+Format of NetWare "Get Encryption Key" request packet:
+Offset	Size	Description	(Table 02172)
+ 00h	WORD	length of following data
+ 02h	BYTE	17h (subfunction "Get Encryption Key")
+	???
+

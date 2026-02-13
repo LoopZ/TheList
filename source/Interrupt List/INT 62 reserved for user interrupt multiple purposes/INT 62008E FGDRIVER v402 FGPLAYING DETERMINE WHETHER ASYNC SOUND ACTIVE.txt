@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62008E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PLAYING" - DETERMINE WHETHER ASYNC SOUND ACTIVE
+	AX = 008Eh
+Return: AX = sound state (0 = no asynchronous sound, 1 = async sound playing)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0059h,AX=0081h,AX=00BDh,AX=00DCh
+

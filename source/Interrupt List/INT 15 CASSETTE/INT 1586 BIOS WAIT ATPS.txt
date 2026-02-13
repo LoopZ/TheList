@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1586
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - BIOS - WAIT (AT,PS)
+	AH = 86h
+	CX:DX = interval in microseconds
+Return: CF clear if successful (wait interval elapsed)
+	CF set on error or AH=83h wait already in progress
+	    AH = status (see #00496)
+Note:	the resolution of the wait period is 977 microseconds on many systems
+	  because many BIOSes use the 1/1024 second fast interrupt from the AT
+	  real-time clock chip which is available on INT 70; because newer
+	  BIOSes may have much more precise timers available, it is not
+	  possible to use this function accurately for very short delays unless
+	  the precise behavior of the BIOS is known (or found through testing)
+SeeAlso: AH=41h,AH=83h,INT 1A/AX=FF01h,INT 70
+

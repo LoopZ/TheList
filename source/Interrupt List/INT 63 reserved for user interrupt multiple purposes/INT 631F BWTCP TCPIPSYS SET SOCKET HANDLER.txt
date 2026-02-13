@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 631F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - SET SOCKET ??? HANDLER
+	AH = 1Fh
+	BX = socket number
+	ES:SI -> FAR function for ???
+Return: CF clear if successful
+	CF set on error (out of slots)
+SeeAlso: AH=20h
+

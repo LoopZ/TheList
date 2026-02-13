@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - LOAD ULTRAVISION PALETTE (color EGA,VGA)
+	AX = CD00h
+	CL = palette table number (01h-07h for v1.x, 01h-0Fh for v2+)
+	DS:DX -> 16-byte palette register list (colors for registers 00h-0Fh)
+Return: nothing
+Notes:	if palette locking is in effect for the current mode, the new colors
+	  will be displayed immediately; otherwise, the system reverts to the
+	  default palette
+	palette table 0 is reserved for the default palette and cannot be set
+	UltraVision always sets the border color to black
+SeeAlso: AX=CD01h,AX=CD02h
+

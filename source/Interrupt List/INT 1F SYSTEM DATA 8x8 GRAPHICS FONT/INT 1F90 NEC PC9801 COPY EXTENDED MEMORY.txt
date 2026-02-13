@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1F90
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1F - NEC PC-9801 - COPY EXTENDED MEMORY
+	AH = 90h
+	ES:BX -> global descriptor table (see #00499 at INT 15/AH=87h)
+	CX = number of bytes to copy
+	SI = 0000h
+	DI = 0000h
+Return: CF clear if successful
+	CF set on error
+	???
+SeeAlso: INT 15/AH=87h
+

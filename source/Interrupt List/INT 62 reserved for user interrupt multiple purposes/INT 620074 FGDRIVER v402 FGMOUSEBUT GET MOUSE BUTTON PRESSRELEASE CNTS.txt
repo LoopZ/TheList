@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620074
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOUSEBUT" - GET MOUSE BUTTON PRESS/RELEASE CNTS
+	AX = 0074h
+	CX = mouse button (1 = left press, 2 = right press, 3 = middle press,
+		  -1=left release, -2=right release, -3=middle release)
+	ES:BX -> variable pointer record (see #03490)
+Return: variables updated
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function returns the count of presses or releases since the last
+	  call to this function; if the count is zero, row and column will
+	  also be zero
+SeeAlso: AX=0075h,AX=0077h,AX=007Ah
+
+Format of FGDRIVER MOUSEBUT variable pointer record:
+Offset	Size	Description	(Table 03490)
+ 00h	WORD	segment of WORD buffer for press/release count
+ 02h	WORD	offset of WORD buffer for press/release count
+ 04h	WORD	segment of WORD buffer for screen space col of last press/rls
+ 06h	WORD	offset of WORD buffer for screen space col of last press/rels
+ 08h	WORD	segment of WORD buffer for screen space row of last press/rls
+ 0Ah	WORD	offset of WORD buffer for screen space row of last press/rls
+

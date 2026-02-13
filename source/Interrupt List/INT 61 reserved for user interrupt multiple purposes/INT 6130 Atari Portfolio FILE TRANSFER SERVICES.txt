@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6130
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - FILE TRANSFER SERVICES
+	AH = 30h
+	AL = function
+	    00h transmit block
+		CX = number of bytes to send
+	    01h receive block
+		CX = buffer size
+	    02h open ports
+	    03h close ports
+	    04h wait 500ms
+	DS:DX -> start of data buffer
+Return: DL = status
+	    00h successful
+	    01h buffer too small
+	    02h transmission timeout
+	    03h checksum failure
+	    04h invalid subfunction
+	    05h peripheral not installed
+	if function 01h:
+	    CX = number of bytes received
+SeeAlso: AH=00h"Portfolio",AH=2Eh"Portfolio"
+

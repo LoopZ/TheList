@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB103
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - FIND PCI CLASS CODE
+	AX = B103h
+	ECX = class code (see also #F0085,#00878)
+	    bits 31-24 unused
+	    bits 23-16 class
+	    bits 15-8  subclass
+	    bits 7-0   programming interface
+	SI = device index (0-n)
+Return: CF clear if successful
+	CF set on error
+	AH = status (00h,86h) (see #00729)
+	    00h successful
+		BH = bus number
+		BL = device/function number (bits 7-3 device, bits 2-0 func)
+	    86h device not found
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	the meanings of BL and BH on return were exchanged between the initial
+	  drafts of the specification and final implementation
+	all devices sharing the same Class Code may be enumerated by
+	  incrementing SI from 0 until error 86h is returned
+SeeAlso: AX=B183h
+

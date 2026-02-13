@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1421
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - EXTENDED CONTROL
+	AH = 21h
+	AL = command
+	    01h force transmission of buffer
+	    02h clear transmit buffer
+	    03h clear receive buffer
+	DX = port (00h COM1, 01h COM2)
+Return: AH = extended status
+Desc:	executes the command on the selected port
+SeeAlso: AH=1Eh"HUNTER",AH=20h"HUNTER",AH=22h"HUNTER",AH=24h"HUNTER"
+

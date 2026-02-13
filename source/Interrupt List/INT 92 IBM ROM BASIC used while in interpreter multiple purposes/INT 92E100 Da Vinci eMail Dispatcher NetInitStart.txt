@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E100
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - "NetInitStart"
+	AX = E100h
+	BX = size of parameter block in words (000Ah)
+	CX:DX -> parameter block (see #03980)
+Return: AX = 0001h success
+Desc:	this function is used to initialize the dispatcher
+SeeAlso: AX=E101h,AX=E103h
+
+Format of Da Vinci eMail "NetInitStart" parameter block:
+Offset	Size	Description	(Table 03980)
+ 00h	WORD	segment of ???
+ 02h	WORD	offset of ???
+ 04h	WORD	high part of long ???
+ 06h	WORD	low part of long ???
+ 08h	WORD	high part of long ???
+ 0Ah	WORD	low part of long ???
+ 0Ch	WORD	high part of long ???
+ 0Eh	WORD	low part of long ???
+ 10h	WORD	high part of long ???
+ 12h	WORD	low part of long ???
+

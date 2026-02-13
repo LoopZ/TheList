@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF0C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - ALLOCATE SHORT DIRECTORY HANDLE
+	AX = F257h subfn 0Ch
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02397)
+	ES:DI -> reply buffer (see #02398)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+Note:	unlike "Alloc Permanent Directory Handle", this function does not
+	  automatically map a drive
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=04h,AX=F223h/SF=05h,AX=F223h/SF=09h
+
+Format of NetWare "Allocate Short Directory Handle" request packet:
+Offset	Size	Description	(Table 02397)
+ 00h	BYTE	0Ch (subfunction "Allocate Short Directory Handle")
+ 01h	BYTE	name space (see #02387)
+ 02h  2 BYTEs	reserved for future use
+ 04h	WORD	allocation mode
+		bits 1-0: 00 permanent handle
+			  01 temporary handle
+			  10 special temporary handle
+			  11 reserved
+ 06h		NetWare Handle/Path structure (see #02376)
+SeeAlso: #02398
+
+Format of NetWare "Allocate Short Directory Handle" reply packet:
+Offset	Size	Description	(Table 02398)
+ 00h	BYTE	new directory handle
+ 01h	BYTE	volume number
+ 02h	DWORD	reserved for future use
+SeeAlso: #02397
+

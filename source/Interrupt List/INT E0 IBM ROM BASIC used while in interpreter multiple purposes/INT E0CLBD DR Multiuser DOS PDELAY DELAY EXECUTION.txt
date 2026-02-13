@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLBD
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "P_DELAY" - DELAY EXECUTION
+	CL = BDh
+	DX = delay in system ticks (typically 16.6 ms/tick)
+Return: after the delay elapses
+	no results
+Notes:	the length of a system tick is installation-dependent (typically
+	  1/50 or 1/60 second); the length may be determined by reading the
+	  TICKSPERSEC value from the system data segment
+	the actual delay before the process is rescheduled to run may be up to
+	  one tick longer than requested; the delay between rescheduling and
+	  actual execution cannot be predicted if higher-priority processes
+	  are awaiting a turn at the CPU
+SeeAlso: INT 15/AH=86h,INT 1A/AX=FF01h,INT 2F/AX=1224h,INT 62/AX=0096h
+

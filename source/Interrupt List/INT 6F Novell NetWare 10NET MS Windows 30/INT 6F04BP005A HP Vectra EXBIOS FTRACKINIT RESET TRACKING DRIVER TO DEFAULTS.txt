@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F04--BP005A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_TRACK_INIT" - RESET TRACKING DRIVER TO DEFAULTS
+	AH = 04h
+	BP = 005Ah (driver ID for V_STRACK)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AH=06h"F_TRACK_ON",AH=08h"F_TRACK_OFF"
+SeeAlso: AH=0Ah"F_DEF_MASKS",AH=0Ch"F_SET_LIMITS_X"
+

@@ -1,0 +1,92 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4B01
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DOS 5+ TASK SWITCHER - BUILD CALLOUT CHAIN
+	AX = 4B01h
+	CX:DX -> task switcher entry point (see #02819)
+	ES:BX = 0000h:0000h
+Return: ES:BX -> callback info structure (see #02817) or 0000h:0000h
+Notes:	called by the task switcher
+	this function is hooked by clients which require notification of task
+	  switcher activities; the call must first be passed on to the prior
+	  handler with registers unchanged using a simulated interrupt.	 On
+	  return, the client must build a callback info structure and store
+	  the returned ES:BX in the "next" field, then return the address of
+	  its own callback info structure.
+	a client program must add itself to the notification chain if it
+	  provides services to other programs; before terminating, it must
+	  remove itself from the chain by calling the task switcher's entry
+	  point with AX=0005h (see #02819)
+	the task switcher entry point should not be saved, as it is subject to
+	  change and will be provided on any notification call
+	the Windows 3.1 Standard Mode supports this API
+SeeAlso: AX=160Bh,AX=4B02h
+
+Format of task switcher callback info structure:
+Offset	Size	Description	(Table 02817)
+ 00h	DWORD	pointer to next callback info structure
+ 04h	DWORD	pointer to notification function (see #02818)
+ 08h	DWORD	reserved
+ 0Ch	DWORD	address of zero-terminated list of API info structures
+		(see #02821)
+
+(Table 02818)
+Values task switcher notification function is called with:
+	AX = function
+	    0000h switcher initialization
+		Return: AX = status
+			    0000h if OK to load
+			    nonzero to abort task switcher
+	    0001h query suspend
+		BX = session ID
+		Return: AX = status
+			    0000h if OK to switch session
+			    0001h if not
+	    0002h suspend session
+		BX = session ID
+		interrupts disabled
+		Return: AX = 0000h if OK to switch session
+			   = 0001h if not
+	    0003h activate session
+		BX = session ID
+		CX = session status flags
+			bit 0: set if first activation of session
+			bits 1-15: reserved (0)
+		interrupts disabled
+		Return: AX = 0000h
+	    0004h session active
+		BX = session ID
+		CX = session status flags
+			bit 0: set if first activation of session
+			bits 1-15: reserved (0)
+		Return: AX = 0000h
+	    0005h create session
+		BX = session ID
+		Return: AX = 0000h if OK to create session
+			   = 0001h if not
+	    0006h destroy session
+		BX = session ID
+		Return: AX = 0000h
+	    0007h switcher termination
+		BX = flags
+		    bit 0: set if calling switcher is only switcher loaded
+		    bits 1-15: reserved (0)
+		Return: AX = 0000h
+	ES:DI -> task switcher entry point (see #02819)
+Notes:	function 0000h is generally called by the program which controls or
+	  invokes the task switcher, rather than by the task switcher itself;
+	  the entry point supplied to this function is not necessarily the
+	  entry point to the task switcher itself, and may be 0000h:0000h.  If
+	  any client indicates that loading is not possible, all clients will
+	  be called with function 0007h; thus it is possible for a client to
+	  receive a termination notice without a corresponding initialization
+	  notice.
+	except for functions 0002h and 0003h, the notification handler is
+	  called with interrupts enabled and may make any INT 21h function
+	  call; interrupts must not be enabled in functions 0002h and 0003h
+	function 0007h may be called with ES:DI = 0000h:0000h if the entry
+	  point is no longer valid
+

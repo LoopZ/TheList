@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6801--SF2B00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - NETWORK DEVICE CONTROL - ACTIVATE DLC
+	AH = 01h subfn 2B00h
+	DS:DX -> control block (see #03679)
+Return: control block updated
+SeeAlso: AH=01h/SF=1B00h,AH=01h/SF=2000h
+
+Format of APPC/PC "Activate DLC" control block:
+Offset	Size	Description	(Table 03679)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	2B00h (verb "Activate DLC")
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h  8 BYTEs	(big-endian) DLC name
+ 20h	BYTE	adapter number
+

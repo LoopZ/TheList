@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD44FBX0001
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - 4DOS v4.0+ - KSTACK.COM - PLACE KEYSTROKES INTO KEYSTACK
+	AX = D44Fh
+	BX = 0001h
+	CX = number of keystrokes (01h-FFh)
+	DS:DX -> keystroke list (one word per keystroke)
+Return: AX = status
+	    0000h successful
+	    nonzero failed
+	BX,CX,DX destroyed
+Notes:	the keystrokes are the exact values to return from subsequent calls to
+	  INT 16 with AH=00h,01h,10h, or 11h, with the following exceptions:
+		0000h causes subfunctions 01h and 11h to indicate an empty
+		      keyboard buffer
+		FFFFh is followed by a word indicating the number of clock
+		      ticks to delay before the next faked keystroke
+	v4.00 KSTACK overwrites any unread keystrokes from the previous
+	  invocation, and does not range-check CX; it will overwrite memory
+	  following the resident portion if CX is greater than 100h.
+	this function is also supported by ANSIPLUS v3.01+ and K3PLUS v6.20+,
+	  which emulate the 4DOS and NDOS keystack
+SeeAlso: AX=D44Dh,AX=D44Fh/BX=0000h,INT 16/AH=00h,INT 21/AX=4403h"DOS"
+

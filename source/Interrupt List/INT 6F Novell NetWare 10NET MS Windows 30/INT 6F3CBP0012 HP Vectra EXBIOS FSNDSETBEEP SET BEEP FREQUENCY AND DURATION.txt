@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F3C--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SND_SET_BEEP" - SET BEEP FREQUENCY AND DURATION
+	AH = 3Ch
+	BP = 0012h (driver ID of V_SYSTEM)
+	BX = frequency in Hz (1-25000, 0 = off)
+	DX = duration in 10-microsecond increments
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AH=3Ah/BP=0012h,AH=3Eh/BP=0012h,#03748
+

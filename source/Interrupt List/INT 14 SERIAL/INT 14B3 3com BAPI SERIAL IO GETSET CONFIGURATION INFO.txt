@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14B3
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - GET/SET CONFIGURATION INFO
+	AH = B3h
+	AL = direction (00h get, 01h set)
+	DH = session ID (00h for external session managment)
+	DL = configuration item (00h = end-of-line mapping)
+	CX = new configuration item value (if AL=01h)
+	    ---if DL=00h---
+	    CH = application EOL type (app to Telnet client)
+		01h application will send lone CR
+		02h application will send CR-? pair
+	    CL = driver EOL type (Telnet client to Telnet server)
+		01h driver should send CR-NUL pair
+		02h driver should send CR-LF pair
+Return: AH = return code (00h,03h,09h-0Bh) (see #00394)
+	---if AL=00h---
+	CX = configuration item value (above)
+SeeAlso: AH=B2h
+

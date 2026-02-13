@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1407
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - READ BLOCK
+	AH = 07h
+	CX = length of buffer in bytes
+	DX = port number
+	ES:DI -> buffer for data
+Return: AX > 0000h number of characters actually read
+	AX = 0000h host has closed connection
+	AX < 0000h error code (see #00397)
+	CX = ???
+Note:	translates CRLF into local EOL if the connection is in ASCII mode,
+	  negotiates various Telnet options, and immediately executes several
+	  different Telnet action commands
+SeeAlso: AH=06h"TelAPI",AH=E0h"TelAPI",AH=E2h"TelAPI"
+

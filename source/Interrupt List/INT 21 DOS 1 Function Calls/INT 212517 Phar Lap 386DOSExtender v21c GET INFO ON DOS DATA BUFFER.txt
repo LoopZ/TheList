@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212517
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender v2.1c+ - GET INFO ON DOS DATA BUFFER
+	AX = 2517h
+Return: CF clear
+	ES:EBX -> data buffer (protected mode address)
+	ECX -> data buffer (real mode address)
+	EDX = size of data buffer in bytes
+Note:	the data buffer's address changes after calls to AX=2512h and AX=252Ah
+SeeAlso: AX=2512h,AX=252Ah,AX=2530h
+

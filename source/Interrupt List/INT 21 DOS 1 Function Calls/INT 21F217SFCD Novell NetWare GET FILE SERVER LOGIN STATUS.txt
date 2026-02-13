@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFCD
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET FILE SERVER LOGIN STATUS
+	AX = F217h subfn CDh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02016 at AH=E3h/SF=CDh)
+	ES:DI -> reply buffer (see #02226)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=CDh,AX=F217h/SF=CBh,AX=F217h/SF=CCh
+
+Format of NetWare "Get File Server Login Status" reply packet:
+Offset	Size	Description	(Table 02226)
+ 00h	BYTE	login state (00h disabled, 01h enabled)
+SeeAlso: #02016,#02017 at AH=E3h/SF=CDh
+

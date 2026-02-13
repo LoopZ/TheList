@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BLAE
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - GET HIGH REFRESH
+	AH = 12h
+	BL = AEh
+Return:	AL = result
+	    bits 7-1: reserved
+	    bit 0:    640x480 high refresh rate
+		      =0 72 Hz
+		      =1 75 Hz
+SeeAlso: AH=12h/BL=9Ah,AH=12h/BL=A3h,AH=12h/BL=A4h,AH=12h/BL=AFh
+

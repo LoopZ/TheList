@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF80
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - REMOVE JOB FROM QUEUE
+	AX = F217h subfn 80h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02215)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=6Ah,AX=F217h/SF=7Fh
+
+Format of NetWare "Remove Job From Queue" request packet:
+Offset	Size	Description	(Table 02215)
+ 00h	WORD	length of following data
+ 02h	BYTE	80h (subfunction "Remove Job From Queue")
+ 03h	DWORD	queue ID
+ 07h	DWORD	job number (returned when job was added to queue)
+

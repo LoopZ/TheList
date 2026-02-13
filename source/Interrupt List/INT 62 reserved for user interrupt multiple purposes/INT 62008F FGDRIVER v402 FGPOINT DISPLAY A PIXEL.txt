@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62008F
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_POINT" - DISPLAY A PIXEL
+	AX = 008Fh
+	BX = column
+	CX = row
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+SeeAlso: AX=0006h,AX=001Dh,AX=004Dh,AX=0090h
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2120
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - S/DOS 1.0+ & PTS-DOS 6.51+ - GET OEM REVISION
+	AH = 20h
+	AL = which OEM code to retrieve
+	    00h get PTS OEM code
+		Return: CF cleared
+			AL = OEM code (currently always 00h)
+	    01h get PTS OEM revision code
+		Return: CF cleared
+			AL = revision code (default is 00h, but may vary)
+Desc:	S/DOS is a reduced and modified PTS-DOS 6.51 release with source code
+	  on CD
+Note:	This function is provided by S/DOS 1.0 (and is most probably also
+	  supported with PTS-DOS 6.51+, maybe even earlier).  It clears the
+	  CF flag for all other AL arguments, too. However, AL = 00h and 01h
+	  are handled separately. The revision code can be individually defined
+	  in the MAKEFILE at compilation time.
+	The PTS OEM code does not correlate with the DOS OEM code returned
+	  by INT 21/AH=30h, likewise the PTS OEM revision does not correlate
+	  with the DOS revision returned by INT 21/AX=3306h.
+SeeAlso: INT 21/AH=30h,INT 21/AX=3306h
+

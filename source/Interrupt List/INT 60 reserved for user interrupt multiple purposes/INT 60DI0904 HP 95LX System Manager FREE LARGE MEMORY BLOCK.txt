@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0904
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - FREE LARGE MEMORY BLOCK
+	DI = 0904h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	segment of memory block???
+Return: AX -> ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0902h,INT 60/DI=0903h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101DAABXFDEC
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 10 U - Diamond Stealth64 Video - INSTALLATION CHECK
+	AX = 1DAAh
+	BX = FDECh
+Return: BX = CDEFh if Diamond Stealth64 Video 2001-series video card installed
+	    AL = number of megabytes of video memory
+	    AH = card type??? (4Bh for VL-Bus/5Bh for PCI)
+	    CX = ??? (0000h)
+	    SI:DI -> signature/copyright string
+

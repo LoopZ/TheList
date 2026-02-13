@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BLAF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - SET HIGH REFRESH
+	AH = 12h
+	BL = AFh
+	AL = option
+	    bits 7-1: reserved
+	    bit 0:    640x480 high refresh rate
+		      =0 72 Hz
+		      =1 75 Hz
+Return: nothing
+SeeAlso: AH=12h/BL=9Ah,AH=12h/BL=A3h,AH=12h/BL=A4h,AH=12h/BL=AEh
+

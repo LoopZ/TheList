@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - END OF JOB
+	AH = D6h
+	BX = job flag (0000h current job, FFFFh all processes on workstation)
+Return: AL = error code
+Desc:	unlocks and clears all locked or logged files and records held by the
+	  process(es), closes all files, resets error and lock modes, and
+	  releases all network resources
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=BBh"NetWare",AH=D7h
+

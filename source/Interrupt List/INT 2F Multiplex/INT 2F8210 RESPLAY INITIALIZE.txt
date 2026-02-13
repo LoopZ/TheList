@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8210
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - RESPLAY - INITIALIZE
+	AX = 8210h
+	BL = sound device number (see #02959)
+	BH = sample rate in multiples of 250 Hz (14h to A0h)
+	CL = direction
+	    00h playback
+	    01h sample
+Return: AX = status (see #02958)
+SeeAlso: AX=8200h"RESPLAY",AX=8220h"MODRES"
+
+(Table 02959)
+Values for RESPLAY sound device:
+ 00h	printer port LPT1
+ 01h	printer port LPT2
+ 02h	prototype board at I/O address 0300h
+ 03h	printer port (alternative LPT1)
+ 04h	internal speaker
+

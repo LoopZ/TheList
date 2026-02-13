@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFCC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET PRINT SERVER'S SPOOLING QUEUE STATUS
+	AX = FFCCh
+	CL = printer server station address
+	BH = start item number of spooling file for print server
+	BL = number of the item to be retrieved
+	DS:DX -> buffer for queued file information (see #02539)
+Return: AL = status
+	    00h successful
+		AH = number of spool files
+		DS:DX buffer filled
+	    nonzero failed
+
+Format of TopWare queued file information buffer [16-item array, one element]:
+Offset	Size	Description	(Table 02539)
+ 00h 12 BYTEs	filename
+ 0Ch	DWORD	size
+ 10h	WORD	date
+ 12h	WORD	time
+ 14h 15 BYTEs	username
+ 23h	BYTE	count
+ 24h	BYTE	flag: header
+ 25h	BYTE	print number
+

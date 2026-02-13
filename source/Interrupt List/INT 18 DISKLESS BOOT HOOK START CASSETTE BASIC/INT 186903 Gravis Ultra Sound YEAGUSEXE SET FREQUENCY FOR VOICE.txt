@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 186903
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - SET FREQUENCY FOR VOICE
+	AX = 6903h
+	BX = voice number (00h-1Fh)
+	CX = frequency in Hz (0-44100)
+Return: nothing
+SeeAlso: AX=6902h,AX=6904h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF13
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq QVision - GAMMA CORRECTION
+	AX = BF13h
+	BL = subfunction
+	    00h load gamma correction table for true-color mode
+		DS = BIOS data segment
+	    01h set palette RAM bypass
+	BH = 00h
+Return: nothing
+Note:	these functions must be called after a video mode set, and are in
+	  effect only for the current video mode
+SeeAlso: #00733
+

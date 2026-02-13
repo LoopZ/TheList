@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F99
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET LAST RECEIVED UNSOLICITED MESSAGE
+	AX = 5F99h
+	ES:DI -> messsage buffer (see #01730)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F98h
+

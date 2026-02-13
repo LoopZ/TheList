@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: D412
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v3.0+ - FREE NATIVE MODE MEMORY BLOCK
+	AH = 12h
+	ES = selector for block to free
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+SeeAlso: AH=10h,AH=11h,AH=13h,INT 38
+

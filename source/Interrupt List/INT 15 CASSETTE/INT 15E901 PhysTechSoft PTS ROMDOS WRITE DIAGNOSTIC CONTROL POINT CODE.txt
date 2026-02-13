@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E901
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - PhysTechSoft PTS ROM-DOS - WRITE DIAGNOSTIC CONTROL POINT CODE
+	AX = E901h
+	CX = control point code (codes 000h-1FFh system backup)
+Return: nothing
+Note:	Provided by PhysTechSoft's PTS ROM-DOS and displayed by SETUP.COM.
+SeeAlso: AX=E902h,INT 14/AH=05h"PTS ROM-DOS",INT 14/AH=06h"PTS ROM-DOS"
+
+(Table 04093)
+Values for PhysTechSoft PTS ROM-DOS control point code:
+ ???	LOADER: Stack loaded
+	LOADER: IVT initialized
+	LOADER: Channel initialized
+	LOADER: Local loading
+	LOADER: Flash tested
+	LOADER: Load from ROM
+	LOADER: Load ROM comp.
+	LOADER: Load from Flash
+	LOADER: Load Flash co.
+	BIOS: Chipset initialized
+	BIOS: CPU tested
+	BIOS: Stack tested
+	BIOS: CRC tested
+	BIOS: IVT initialized
+	BIOS: Vars initialized
+	BIOS: Resident init
+	BIOS: Channel initialized
+	BIOS: Memory tested
+	BIOS: SRAM tested
+	BIOS: EMS tested
+	BIOS: PIC initialized
+	BIOS: PPI initialized
+	BIOS: DMA initialized
+	BIOS: Timer initialized
+	BIOS: Disks initialized
+	BIOS: Boot loaded
+	BIOS: Failed boot
+	DOS: Job point: (up to 25???)
+SeeAlso: #04091
+

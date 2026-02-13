@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0506
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell DOS 7+ - MEMORYMAX DESTROY ACCESS KEY
+	AX = 12FFh
+	BX = 0506h
+	SI:DI = access key
+Return: CF clear if successful
+	    AX = 0000h (successful)
+	    CX = 0000h
+	CF set on error
+	    AX = function status
+		0000h function supported
+		    CX error code
+		       80h if invalid access key
+		       81h if no access key exists
+	        0001h (AX > 0) function not supported
+		    CX undefined
+Note:	This function is supported by Novell DOS 7+ EMM386.EXE 3.0+ and
+	  possibly by HIMEM.SYS 2.3+.
+SeeAlso: AX=12FFh/BX=0406h
+

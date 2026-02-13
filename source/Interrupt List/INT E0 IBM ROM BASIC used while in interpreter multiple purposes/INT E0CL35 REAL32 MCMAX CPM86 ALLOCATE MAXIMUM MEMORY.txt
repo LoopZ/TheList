@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL35
+  Category: O 	other operating systems
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT E0 R - REAL/32 - "MC_MAX" - CP-M/86 ALLOCATE MAXIMUM MEMORY
+	CL = 35h
+	DS:DX -> MCB (see #04024)
+Return: AX = status
+	may destroy SI,DI,DS???
+SeeAlso: INT E0/CL=39h
+
+Format of REAL/32 MCB (Memory Control Block):
+Offset	Size	Description	(Table 04024)
+ 00h	WORD	segment address of memory block
+ 02h	WORD	length of block in paragraphs
+ 04h	BYTE	reserved (0)
+

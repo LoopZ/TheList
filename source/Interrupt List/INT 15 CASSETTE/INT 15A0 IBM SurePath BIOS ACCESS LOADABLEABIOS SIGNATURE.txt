@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15A0
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - IBM SurePath BIOS - ACCESS LOADABLE-ABIOS SIGNATURE
+	AH = A0h
+	AL = function
+	    00h get loadable-ABIOS signature
+		Return: BL = signature value
+			    00h loadable-ABIOS prompting not required
+			    A1h loadable-ABIOS prompting is required
+	    01h write loadable-ABIOS signature
+		BL = new signature value
+		    00h loadable-ABIOS prompting not required
+		    A1h loadable-ABIOS prompting is required
+Return: CF clear if successful
+	CF set on error
+	AH = status
+	    00h successful
+	    01h invalid subfunction
+	    02h unable to read/write signature
+	    86h function not supported
+Note:	IBM classifies this function as optional
+SeeAlso: AH=08h"IBM"
+

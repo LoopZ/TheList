@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 79
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 79 - AVATAR.SYS - FAST GET KEYSTROKE
+Return: CF set if no keystroke available
+	    AX = FFFFh
+	CF clear if key pressed
+	    AX = keystroke
+Program: AVATAR.SYS is a CON driver by George Adam Stanislav which interprets
+	  AVATAR command codes just as ANSI.SYS interprets ANSI commands
+Note:	if a keystroke is available, it is removed from the keyboard buffer
+	  before being returned
+SeeAlso: INT 29,INT 2F/AX=1A00h/BX=4156h
+

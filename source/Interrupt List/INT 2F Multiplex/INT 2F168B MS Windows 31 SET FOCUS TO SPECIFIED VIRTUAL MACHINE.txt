@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F168B
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows 3.1 - SET FOCUS TO SPECIFIED VIRTUAL MACHINE
+	AX = 168Bh
+	BX = virtual machine ID (see AX=1683h), 0000h for current DOS box
+Return: AL = 00h if focus set to specified VM
+Notes:	documented on the Microsoft Developer's Network CD-ROM
+	if the VM is a windowed DOS box, it will be set to full screen
+SeeAlso: AX=1683h
+

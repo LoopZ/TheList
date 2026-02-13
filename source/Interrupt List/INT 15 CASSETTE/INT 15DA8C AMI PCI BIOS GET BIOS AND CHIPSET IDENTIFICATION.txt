@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DA8C
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI PCI BIOS - GET BIOS AND CHIPSET IDENTIFICATION
+	AX = DA8Ch
+	CL = subfunction
+	    00h get BIOS version string
+		ES:DI -> 12-byte buffer for version string
+	    01h get chipset identification
+		BL = what to retrieve
+		    (00h host/PCI bridge,01h motherboard chipset)
+		ES:DI -> 12-byte buffer for chipset identification (see #00543)
+Return: CF clear if successful
+	    ES:DI buffer filled
+	CF set on error
+	    AH = error code (86h unsupported subfunction)
+Notes:	the v1.00.05.AX1 BIOS returns "1.00.05.AX1 " as its version string
+	subfunction 01h returns the five bytes read from the PCI configuration
+	  registers 00h-05h (see #00878), padded to 12 bytes with NULs
+SeeAlso: AX=DB04h,PORT C000h"Neptune"
+
+Format of AMI PCI BIOS chipset identification:
+Offset	Size	Description	(Table 00543)
+ 00h	WORD	vendor ID (see #00732 at AX=B102h)
+		8086h = Intel
+ 02h	WORD	device ID
+		0484h (BL=01h)
+		04A3h (BL=00h)
+ 04h	BYTE	low byte of PCI Command Register
+ 05h  7 BYTEs	unused (00h)
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6000
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - SYS_PROF.EXE - PROFILER STATUS
+	AH = 00h
+Return: AX = 0000h    profiling is off
+	    otherwise profiling is on
+Note:	SYS_PROF.EXE is the TSR portion of a profiler from Micro Cornucopia
+	  Issue 47
+SeeAlso: AH=01h"SYS_PROF",AH=02h"SYS_PROF"
+

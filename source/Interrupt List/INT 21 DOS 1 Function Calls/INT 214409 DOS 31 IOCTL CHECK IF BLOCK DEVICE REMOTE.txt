@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214409
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ - IOCTL - CHECK IF BLOCK DEVICE REMOTE
+	AX = 4409h
+	BL = drive number (00h = default, 01h = A:, etc)
+Return: CF clear if successful
+	    DX = device attribute word
+		bit 15: drive is SUBSTituted
+		bit 13: (DR DOS 3.41/5.0 local drives only) always set
+			media ID needed
+		bit 12: drive is remote
+		bit  9: direct I/O not allowed
+	CF set on error
+	    AX = error code (01h,0Fh,15h) (see #01680 at AH=59h/BX=0000h)
+Notes:	on local drives, DX bits not listed above are the attribute word from
+	  the device driver header (see #01646 at AH=52h); for remote drives,
+	  the other bits appear to be undefined for MS-DOS versions prior to
+	  5.0 (they are all cleared in DOS 5+)
+	checking whether DX=0800h on return appears to be a fairly reliable
+	  method for detecting Microsoft's RAMDRIVE, though not for other
+	  ramdisks (there appears to be no simple yet foolproof method for
+	  detecting ramdisks, although the presence of only a single copy of
+	  the FAT and only a single head on non-removable devices is a fairly
+	  good indicator); for Windows95, RAMDRIVE returns DX=4800h
+	for non-existent remote drives, this function sometimes returns
+	  AX=0015h (drive not ready) instead of AX=000Fh (invalid drive) on
+	  the first call; a subsequent call will return the correct error
+	  code
+	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AX=4400h,AX=4408h,AX=440Ah,INT 2F/AX=122Bh
+

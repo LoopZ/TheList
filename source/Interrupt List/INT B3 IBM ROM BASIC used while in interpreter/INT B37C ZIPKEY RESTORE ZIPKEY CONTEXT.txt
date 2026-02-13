@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: B37C
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - RESTORE ZIPKEY CONTEXT
+	AH = 7Ch
+	BL = maximum number of characters for a city name
+	BH = ZIPKEY state code for last city-name search, or FFh if none
+	CX:DX = internal code returned by AH=7Bh
+Return: CF set on error
+	CF clear if successful
+	AX destroyed
+SeeAlso: AH=7Bh
+

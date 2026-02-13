@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0E
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "ERASE" - ERASE OBJECT
+	AH = 12h
+	BH = 0Eh
+	BL = object
+	    00h handle is DWORD on top of stack
+		window:	  clear from scroll origin to end of window
+		keyboard: discard input
+		timer:	  cancel current interval
+		pointer:  discard all pending messages
+		mailbox:  discard all pending messages
+	    01h clear task's default window from scroll origin to end
+	    02h discard all queued messages in mailbox (handle on top of stack)
+	    03h discard all queued messages in current task's default mailbox
+	    04h discard all input queued to KEYBOARD (handle on top of stack)
+	    05h discard all input queued to task's default KEYBOARD
+	    06h remove all objects from OBJECTQ (task's handle on top of stack)
+	    07h remove all objects from current task's OBJECTQ
+	    0Ch (DV 2.26+) clear window of task owning handle on top of stack
+	    0Dh (DV 2.26+) clear default window of parent of current task
+Return: STACK popped if handle passed on stack
+Note:	when an OBJECTQ is erased, each object in the OBJECTQ is also erased
+SeeAlso: AH=12h/BH=02h
+

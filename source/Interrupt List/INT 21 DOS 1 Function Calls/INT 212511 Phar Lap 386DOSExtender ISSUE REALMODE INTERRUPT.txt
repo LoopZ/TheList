@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212511
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - ISSUE REAL-MODE INTERRUPT
+	AX = 2511h
+	DS:EDX -> parameter block (see #01361)
+Return: all segment registers unchanged
+	EDX unchanged
+	all other registers contain values set by the real-mode int handler
+	the flags are set as they were left by the real-mode interrupt handler
+	real-mode register values are returned in the parameter block
+Note:	this function is also supported by FlashTek X-32VM
+SeeAlso: AX=2503h,AX=2505h,AX=250Eh,AH=E3h"OS/286",INT 31/AX=0300h
+
+Format of Phar Lap real-mode interrupt parameter block:
+Offset	Size	Description	(Table 01361)
+ 00h	WORD	interrupt number
+ 02h	WORD	real-mode DS value
+ 04h	WORD	real-mode ES value
+ 06h	WORD	real-mode FS value
+ 08h	WORD	real-mode GS value
+ 0Ah	DWORD	real-mode EAX value
+ 0Eh	DWORD	real-mode EDX value
+Note: all other real-mode values set from protected-mode registers
+

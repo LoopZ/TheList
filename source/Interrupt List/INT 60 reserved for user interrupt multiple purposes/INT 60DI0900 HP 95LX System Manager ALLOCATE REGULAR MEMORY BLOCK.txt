@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0900
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - HP 95LX System Manager - ALLOCATE REGULAR MEMORY BLOCK
+	DI = 0900h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	size of block in bytes
+Return: AX -> memory block
+	STACK unchanged
+Note:	System Manager-compliant applications are always small-model (64K code,
+	  64K data)
+SeeAlso: INT 15/AX=4DD4h,INT 60/DI=0902h,INT 60/DI=0903h
+

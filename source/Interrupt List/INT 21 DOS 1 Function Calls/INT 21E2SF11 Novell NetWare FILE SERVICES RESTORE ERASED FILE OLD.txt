@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF11
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVICES - RESTORE ERASED FILE (OLD)
+	AH = E2h subfn 11h
+	DS:SI -> request buffer (see #01867)
+	ES:DI -> reply buffer (see #01868)
+Return: AL = status (00h,98h,FFh) (see #01866)
+Desc:	restores one file marked for deletion which has not yet been purged
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=13h,AH=41h,AH=E2h/SF=10h,AH=E3h/SF=CEh,AX=F244h
+
+(Table 01866)
+Values for NetWare function status:
+ 00h	successful
+ 98h	nonexistent volume
+ 9Ch	invalid path
+ C6h	no console rights
+ FFh	no more erased files
+SeeAlso: #01839,#01899
+
+Format of NetWare "Restore Erased File" request buffer:
+Offset	Size	Description	(Table 01867)
+ 00h	WORD	length of following data (max 13h)
+ 02h	BYTE	11h (subfunction "Restore Erased File")
+ 03h	BYTE	directory handle or 00h
+ 04h	BYTE	length of volume name
+ 05h  N BYTEs	volume name (including colon)
+Note:	if both a directory handle and a volume name are specified, the volume
+	  name overrides the handle
+SeeAlso: #01868,#02116
+
+Format of NetWare "Restore Erased File" reply buffer:
+Offset	Size	Description	(Table 01868)
+ 00h	WORD	(call) 001Eh (size of following results buffer)
+ 02h 15 BYTEs	ASCIZ name of erased file
+ 11h 15 BYTEs	ASCIZ name under which file was restored
+SeeAlso: #01867,#02116
+

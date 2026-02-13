@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF11
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - RECOVER ERASED FILE (OLD)
+	AX = F216h subfn 11h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01867 at AH=E2h/SF=11h)
+	ES:DI -> reply buffer (see #02116)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=11h,AX=F216h/SF=10h
+
+Format of NetWare "Recover Erased File (Old)" reply packet:
+Offset	Size	Description	(Table 02116)
+ 02h 15 BYTEs	ASCIZ name of erased file
+ 11h 15 BYTEs	ASCIZ name under which file was restored
+SeeAlso: #01867,#01868 at AH=E2h/SF=11h
+

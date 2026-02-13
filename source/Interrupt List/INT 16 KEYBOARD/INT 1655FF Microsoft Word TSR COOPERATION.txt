@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1655FF
+  Category: U 	resident utilities
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 16 C - Microsoft Word - TSR COOPERATION???
+	AX = 55FFh
+	BX >= 0004h (version of Microsoft Word [BL = major] ???)
+	CX = function
+	    0000h set ??? flag
+	    other clear ??? flag
+Notes:	hooks intercepting this call are present in SWAPSH and SWAPDT v1.77j,
+	  distributed with PC Tools v7, as well as the Trusted Access
+	  SCRNBLNK.COM; this may be part of the standard TesSeRact library
+	known to be called by the German edition of Microsoft Word 5.0
+SeeAlso: AX=5500h,INT 2F/AX=5453h
+

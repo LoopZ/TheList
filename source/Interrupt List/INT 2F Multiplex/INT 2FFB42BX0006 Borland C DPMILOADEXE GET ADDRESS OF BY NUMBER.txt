@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0006
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ DPMILOAD.EXE - GET ADDRESS OF ??? BY NUMBER
+	AX = FB42h
+	BX = 0006h
+	CX = selector of DPMILOAD data (see #03130)
+	DX = 1-based index into array of ??? 6-byte objects
+Return: DX = status (see #03129)
+	    0000h successful
+		AX:BX -> ??? FAR function (called with two words on top of stk)
+	    else
+		BX destroyed
+SeeAlso: AX=FB42h/BX=0005h,AX=FB42h/BX=000Eh
+

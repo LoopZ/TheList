@@ -1,0 +1,77 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4310
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Cloaking - REAL-MODE API
+	AX = 4310h
+Return: ES:BX -> driver entry point (see #02749,#02778,#02779,#02780,#02781)
+SeeAlso: AX=4310h"XMS"
+
+(Table 02778)
+Call the Cloaking v1.01 "Client Registration" function with:
+	AH = 7Eh
+	BX = subfunction
+	    0000h get client registration count
+	    0001h get client registration structures
+		ES:DI -> buffer for registration structures
+Return: AX = status
+	    0000h failed
+	    0001h successful
+		---subfunction 00h---
+		BX = size of client structure in bytes
+		CX = number of clients installed
+		---subfunction 01h---
+		ES:DI buffer filled
+SeeAlso: #02779,#02781,INT 2C/AX=0033h
+
+(Table 02779)
+Call the Cloaking v1.01 "Verify Cloaking Host" function with:
+	AH = 7Fh
+Return: AX = status
+	    0000h failed
+	    0001h (successful) if installed
+		BX = version (0101h for v1.01)
+		CX = flags
+		    bit 0: host is VCPI-based
+		DS:DX -> ASCIZ Cloaking host signature
+		    "CLOAKING.EXE"0, followed by a far-call entry point to
+		      uninstall host (see #02780) in Helix's CLOAKING.EXE
+SeeAlso: #02778,#02781
+Index:	installation check;Cloaking host|installation check;CLOAKING.EXE
+
+(Table 02780)
+Call the CLOAKING.EXE "Uninstall Host" function with:
+Return: AX = 4F4Bh ('OK') if successfully uninstalled protected-mode code
+
+(Table 02781)
+Call the Cloaking "Start Protected-Mode Client" function with:
+	AH = 82h
+	DX = XMS handle of locked block containing protected-mode code
+	CL = code size (00h 16-bit, else 32-bit)
+	ESI, EDI = parameters to pass to protected-mode code
+Return: AX = status
+	    nonzero success
+	    0000h failed
+		BL = error code (A2h,B0h) (see #02775)
+Notes:	this function calls a user initialization function at offset 0 in
+	  the XMS memory block (see #02782)
+	supported by Helix's RM386 v6.00 and Helix's CLOAKING.EXE
+SeeAlso: #02778,#02779
+
+(Table 02782)
+Values user initialization function is called with:
+	EBX = physical address of block's start
+	ESI = user data from function 82h call
+	EDI = user data from function 82h call
+	CS = code selector for XMS block at EBX (16-bit or 32-bit)
+	DS = data selector for XMS block, starting at EBX
+	ES = selector for V86 memory access to full real-mode 1088K
+	GS = selector for full 4G flat address space
+	SS:ESP -> stack provided by host
+Return: via 32-bit FAR return
+Note:	the initialization function may call any protected-mode Cloaking
+	  service; it should store the values of DS, ES, and GS for future
+	  reference
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F04BL03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - POWER CONTROL - GET TIMEOUT RESET
+	AX = 7F04h
+	BL = 03h
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		    BX = time increment
+		    CX = current timeout reset
+		    DX = maximum timeout reset
+		    ES:DI -> timeout reset table (array of bytes)
+		01h failed
+Note:	the timeout period is computed as (BYTE ES:[DI+CX]) * BX timer ticks
+SeeAlso: AX=7F00h"SOLLEX",AX=7F04h/BL=02h
+

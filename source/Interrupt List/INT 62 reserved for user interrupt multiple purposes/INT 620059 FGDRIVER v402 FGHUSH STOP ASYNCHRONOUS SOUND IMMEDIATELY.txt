@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620059
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_HUSH" - STOP ASYNCHRONOUS SOUND IMMEDIATELY
+	AX = 0059h
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function immediately stops any sounds started with "FG_MUSICB",
+	  "FG_SOUNDS", or "FG_VOICES"; it is ignored if no asynchronous sound
+	  is playing
+SeeAlso: AX=005Ah,AX=0081h,AX=00BDh,AX=00DCh
+

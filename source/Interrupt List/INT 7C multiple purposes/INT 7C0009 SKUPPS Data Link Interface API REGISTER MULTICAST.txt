@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0009
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - REGISTER MULTICAST
+	AX = 0009h
+	BX = protocol ID (see #03849)
+	ES:DI -> multicast address (6 bytes)
+Return: AX = completion code (see #03846)
+Notes:	The broadcast address is always enabled.
+	Set bit 9 of PCB's protocol mode field in REGISTER PROTOCOL call
+	  (AX=0007h) to receive all multicast frames.
+SeeAlso: AX=000Ah,AX=0014h
+

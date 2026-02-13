@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620096
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PRINT" - DISPLAY STRING OF HARDWARE CHARACTERS
+	AX = 0096h
+	CX = length of string
+	ES:BX -> string to display
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The string is displayed in the current color, and the graphics cursor
+	  is updated to be just to the right of the last displayed character
+	This function is ignored in text modes
+SeeAlso: AX=000Ch,AX=0037h,AX=0065h,AX=0097h
+

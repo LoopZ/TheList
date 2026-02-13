@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1317
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - FLOPPY DISK - SET DISK TYPE FOR FORMAT (AT,PS)
+	AH = 17h
+	AL = format type
+	    01h = 320/360K disk in 360K drive
+	    02h = 320/360K disk in 1.2M drive
+	    03h = 1.2M disk in 1.2M drive
+	    04h = 720K disk in 720K or 1.44M drive
+	DL = drive number
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234 at AH=01h)
+Note:	this function does not handle 1.44M drives; use AH=18h instead
+SeeAlso: AH=15h,AH=18h
+

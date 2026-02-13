@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6107
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_globalize" - MAKE NET DESCRIPTOR GLOBAL
+	AH = 07h
+	BX = local network descriptor
+Return: CF clear if successful
+	    AX = global network descriptor
+	CF set on error
+	    AX = error code (see #03319)
+Notes:	the new network descriptor can be accessed from all processes and is
+	  independent of DOS
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=08h"PC/TCP"
+SeeAlso: INT 61/AH=29h
+

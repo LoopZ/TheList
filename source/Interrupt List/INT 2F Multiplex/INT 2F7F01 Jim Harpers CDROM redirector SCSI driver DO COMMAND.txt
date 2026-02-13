@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7F01
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Jim Harper's CD-ROM redirector SCSI driver - DO COMMAND
+	AX = 7F01h
+	DS:DX -> command record (see #02927)
+Return: AL = status
+	    00h successful
+	    else error code
+SeeAlso: AX=7F00h"Harper",AX=7F02h"Harper",INT 11/AH=FFh"SDLP"
+SeeAlso: INT 21/AX=4402h"ASPI",INT 4F/AX=8100h
+
+Format of CD-ROM redirector command record:
+Offset	Size	Description	(Table 02927)
+ 00h	BYTE	ID
+ 01h 10 BYTEs	CDB (Command Descriptor Block) for operation (see #03236,#03237)
+ 0Bh	WORD	segment of buffer
+ 0Dh	WORD	offset of buffer
+ 0Fh	BYTE	status
+ 10h	BYTE	sense
+ 12h	WORD	count
+

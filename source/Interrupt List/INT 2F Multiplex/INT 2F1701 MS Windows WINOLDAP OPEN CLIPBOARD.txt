@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1701
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows "WINOLDAP" - OPEN CLIPBOARD
+	AX = 1701h
+Return: AX = status
+	    nonzero success
+	    0000h   clipboard is already open
+SeeAlso: AX=1700h,AX=1702h,AX=1703h,AX=1704h,INT 16/AX=CB00h
+

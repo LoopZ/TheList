@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F43E3BX0000
+  Category: m 	memory management
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DOS Protected Mode Services (DPMS) v1.0 - DPMS STARTUP BROADCAST
+	AX = 43E3h
+	BX = 0000h
+	CX = 4450h ('DP')
+	DX = 4D53h ('MS')
+	ES:DI -> DPMS server structure (see #02791)
+Return: BX = status
+	    bit 0 set if server is not allowed to load (e.g. some resident
+		  program is incompatible)
+Note:	this callout is made while the potential server is running as a normal
+	  real-mode DOS program, so there are no BIOS/DOS re-entrancy issues
+SeeAlso: AX=43E0h,AX=43E4h
+

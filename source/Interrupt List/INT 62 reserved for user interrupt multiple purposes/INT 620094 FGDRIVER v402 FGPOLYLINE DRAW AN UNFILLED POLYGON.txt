@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620094
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_POLYLINE" - DRAW AN UNFILLED POLYGON
+	AX = 0094h
+	CX = number of vertices in polygon
+	ES:BX -> vertex array (see #03498)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function is equivalent to "FG_POLYGON", but uses only a single
+	  array to define the vertices
+	This call is ignored in text modes
+SeeAlso: AX=008Fh,AX=0092h,AX=0093h,AX=0095h
+
+Format of FGDRIVER POLYFILL/POLYLINE vertex array element:
+Offset	Size	Description	(Table 03498)
+ 00h	WORD	column
+ 02h	WORD	row
+SeeAlso: #03497
+

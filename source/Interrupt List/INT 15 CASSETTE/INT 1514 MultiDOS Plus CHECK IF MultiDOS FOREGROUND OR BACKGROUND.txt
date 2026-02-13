@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1514
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - CHECK IF MultiDOS FOREGROUND OR BACKGROUND
+	AH = 14h
+Return: AX = current state
+	    0000h MultiDOS Plus command prompt is background task
+	    0001h command prompt is foreground task
+SeeAlso: AH=0Bh"MultiDOS"
+

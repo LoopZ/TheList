@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH12
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "READN" - GET NEXT N OBJECT BYTES
+	AH = 12h
+	BH = 12h
+	BL = window to read from
+	    00h handle is DWORD on top of stack
+	    01h read next N chars or attributes on task's default window
+	    0Ch (DV 2.26+) read window of task owning handle on top of stack
+	    0Dh (DV 2.26+) read default window of parent of current task
+	STACK: DWORD count
+Return: STACK: DWORD number of bytes actually read
+	       DWORD address of buffer containing data
+Notes:	reading starts at the current logical cursor position; the cursor is
+	  updated to point at the character following the last one read
+	any translucent blanks (FFh) which are visible on screen are changed
+	  to the character which is seen through them
+	the string produced by the read is placed in an input buffer which may
+	  be reused by the next READ or READN of a window
+	window stream opcodes D8h and D9h determine whether the read returns
+	  characters or attributes
+SeeAlso: AH=12h/BH=04h"WINDOW",AH=12h/BH=05h"WINDOW"
+

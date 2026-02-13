@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - GET EFFECTIVE DIRECTORY RIGHTS
+	AH = E2h subfn 03h
+	DS:SI -> request buffer (see #01847)
+	ES:DI -> reply buffer (see #01848)
+Return: AL = status (00h,98h,9Bh) (see #01839)
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=01h,AH=E2h/SF=02h,AX=F216h/SF=03h
+
+Format of NetWare "Get Effective Directory Rights (old)" request buffer:
+Offset	Size	Description	(Table 01847)
+ 00h	WORD	length of following data (max 102h)
+ 02h	BYTE	03h (subfunction "Get Effective Directory Rights (old)")
+ 03h	BYTE	directory handle
+ 04h	BYTE	length of directory path (00h-FFh)
+ 05h  N BYTEs	directory path
+SeeAlso: #01848,#01850
+
+Format of NetWare "Get Effective Directory Rights" reply buffer:
+Offset	Size	Description	(Table 01848)
+ 00h	WORD	(call) 0001h (length of following data buffer)
+ 02h	BYTE	effective directory rights (see #01849)
+SeeAlso: #01847
+
+Bitfields for NetWare directory rights:
+Bit(s)	Description	(Table 01849)
+ 0	reading allowed
+ 1	writing allowed
+ 2	opens allowed
+ 3	file creation allowed
+ 4	deletion allowed
+ 5	"parental" may create/delete subdirectories and grant/revoke trustee
+	  rights
+ 6	directory search allowed
+ 7	file attributes may be changed
+SeeAlso: #01848,#01850
+

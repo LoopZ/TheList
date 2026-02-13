@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FE0
+  Category: N 	network
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 21 C - LANtastic - GET DOS SERVICE VECTOR
+	AX = 5FE0h
+Return: CF clear if successful
+	    ES:BX -> current FAR service routine
+	CF set on error
+	    AX = error code
+Note:	the service routine is called by the LANtastic redirector whenever DOS
+	  may safely be called, permitting external TSRs and drivers to hook
+	  into LANtastic's DOS busy flag checking
+SeeAlso: AX=5FE1h,INT 28,INT 2A/AH=84h
+

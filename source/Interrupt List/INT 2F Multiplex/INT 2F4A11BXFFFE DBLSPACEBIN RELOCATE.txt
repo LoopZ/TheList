@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BXFFFE
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DBLSPACE.BIN - RELOCATE
+	AX = 4A11h
+	BX = FFFEh
+	ES = segment to which to relocate DBLSPACE.BIN
+Return: ???
+Notes:	called by DBLSPACE.SYS to relocate DBLSPACE.BIN to its final position
+	  in memory
+	this function also unhooks and discards the code providing this
+	  function and AX=4A11h/BX=FFFFh
+	this function is also supported by the version of SuperStor bundled
+	  with IBM DOS 6.x and "preloading" versions of Stacker
+SeeAlso: AX=4A11h/BX=FFFFh
+

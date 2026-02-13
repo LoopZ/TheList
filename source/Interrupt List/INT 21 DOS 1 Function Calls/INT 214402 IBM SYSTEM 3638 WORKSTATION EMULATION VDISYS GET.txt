@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: I 	IBM workstation/terminal emulators
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - IBM SYSTEM 36/38 WORKSTATION EMULATION - VDI.SYS - GET ???
+	AX = 4402h
+	BX = handle for character device "GDMS"
+	CX = number of bytes to read (>= 4)
+	DS:DX -> buffer (see #01445)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = number of bytes read
+
+Format of System 36/38 emulator returned data:
+Offset	Size	Description	(Table 01445)
+ 00h  4 BYTEs	???
+ 04h	DWORD	pointer to ???
+ 08h  4 BYTEs	???
+

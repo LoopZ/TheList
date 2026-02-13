@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152304
+  Category: B 	BIOS
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 15 u - IBM BIOS - SMART ENERGY SYSTEM - SYSTEM SETUP
+	AX = 2304h
+	DX = segment of 32K buffer
+Return: CF clear if successful
+	    AX = 0003h (left over from setting video mode 3)
+	    BX,CX,DX,BP,DS,ES destroyed
+	CF set on error
+	    AH = error code (80h,86h)
+Desc:	run system setup utility, and optionally save any changed settings to
+	  CMOS RAM
+Note:	IBM classifies this function as optional
+SeeAlso: AX=2301h,AX=2305h
+

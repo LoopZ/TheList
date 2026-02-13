@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7F09
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PRINDIR v9.0 - SET BYTE COUNTER DISPLAY
+	AX = 7F09h
+	DH = new state (00h off, 01h on)
+Return: AX = status
+	    0000h successful
+SeeAlso: AX=7F00h"PRINDIR",AX=7F07h"PRINDIR",AX=7F08h,AX=7F0Ah,AX=7F0Ch
+

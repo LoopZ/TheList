@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148000
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - INSTALLATION CHECK
+	AX = 8000h
+Return: AL = FFh if installed
+	    BH = major version
+	    BL = minor version
+Program: ArtiCom is an asynchronous communications driver by Artisoft which
+	  works on top of NetBIOS and allows modem/serial-port sharing by
+	  programs using INT 14 for serial I/O.
+Note:	ArtiCom supports 32 simultaneous COM ports using multiport cards and
+	  drivers
+SeeAlso: AH=00h"SERIAL",AH=01h,AH=02h,AH=03h,AH=04h"SERIAL",AH=05h"SERIAL"
+SeeAlso: AX=8001h,AX=8002h
+

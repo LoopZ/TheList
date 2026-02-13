@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6303
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - GET IP ADDRESS
+	AH = 03h
+	DS:SI -> buffer for DWORD IP address (big-endian)
+Return: AX destroyed
+	CF clear if successful
+	CF set on error
+Note:	this call may use ARP or RARP to determine the address
+

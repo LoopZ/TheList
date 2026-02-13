@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 333001
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Smooth Mouse Driver, PrecisePoint - ENABLE SMOOTH MOUSE
+	AX = 3001h
+Return: AX = status (0000h = disabled, 0001h = enabled)
+Note:	SMD remains disabled if running under Desqview or in graphics mode
+SeeAlso: AX=0001h,AX=0002h,AX=3002h
+

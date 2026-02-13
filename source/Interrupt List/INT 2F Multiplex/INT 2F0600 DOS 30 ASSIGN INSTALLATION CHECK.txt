@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0600
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.0+ ASSIGN - INSTALLATION CHECK
+	AX = 0600h
+Return: AL = status
+	    00h not installed
+	    01h not installed, but not OK to install
+	    FFh installed
+Notes:	ASSIGN is not a TSR in DR DOS 5.0; it is internally replaced by SUBST
+	  (see INT 21/AH=52h)
+	undocumented prior to the release of DOS 5.0
+SeeAlso: AX=0601h,INT 21/AH=52h
+

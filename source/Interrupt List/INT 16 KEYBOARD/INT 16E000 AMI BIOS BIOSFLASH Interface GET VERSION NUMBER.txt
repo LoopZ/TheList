@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E000
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface - GET VERSION NUMBER
+	AX = E000h
+Return: CF clear if successful
+	    AL = FAh
+	    BX = version number (BCD) (0200h = v2.00)
+	CF set on error (not implemented)
+Notes:	this interface is available on AMI BIOSes built from AMI core version
+	  8/8/93 (HiFlex BIOS) or 11/15/93 (WinBIOS) or later
+	the "Meningitis" virus uses this API when attacking a system equipped
+	  with an AMI BIOS; it is supposedly able to write itself into the
+	  Flash ROM and thus make itself part of the BIOS
+SeeAlso: AX=E001h,AX=E004h,AX=E006h,AX=E008h,AX=E00Ah,AX=E00Bh,AX=E0FFh
+

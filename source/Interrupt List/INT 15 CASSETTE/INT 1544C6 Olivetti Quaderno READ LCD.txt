@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1544C6
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Olivetti Quaderno - READ LCD
+	AX = 44C6h
+Return: DX = FFFFh clock is displayed on LCD display
+	DX = other: hex number displayed in first four positions of display
+	BH = left alphanumeric character on display (see #00466)
+	BL = right alphanumeric character on display (see #00466)
+	CL = colon flags (see #00467)
+Notes:	the LCD display has the format HH:HH:AA, where H is a hex digit and A
+	  is an alphanumeric character
+	this function is also supported by XBIOS.COM
+SeeAlso: AX=44C7h,AX=44C9h
+
+(Table 00466)
+Values for Olivetti Quaderno LCD alphanumeric characters:
+ 00h-0Fh hex digit
+ 2Bh	"+"
+ 2Dh	"-"
+ 30h-39h "0" to "9"
+ 41h-5Ah "A" to "Z"
+ 61h-6Ah "a" to "z"
+ else	blank
+
+Bitfields for Olivetti Quaderno LCD colon flags:
+Bit(s)	Description	(Table 00467)
+ 0	left colon on
+ 1	right colon on
+ 2-7	unused
+

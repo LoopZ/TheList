@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F01BL00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - ADAPTER CONTROL - SET ADAPTER
+	AX = 7F01h
+	BL = 00h
+	CX = adapter request (see #00205)
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		01h failed
+Note:	initializes video hardware to a particular standard
+SeeAlso: AX=7F00h"SOLLEX",AX=7F01h/BL=01h,AX=7F01h/BL=02h
+
+Bitfields for SOLLEX SuperVGA adapter request:
+Bit(s)	Description	(Table 00205)
+ 1-0	adapter type (00 VGA, 01 EGA, 10 CGA, 11 MDA)
+ 2	reserved
+ 4-3	change displays (00 none, 01 analog 10 digital 11 panel)
+ 6-5	desired monitor sense (01 color, 10 mono, 11=8514)
+ 7	lock override
+ 8	alternate adapter mode
+ 15-9	reserved
+

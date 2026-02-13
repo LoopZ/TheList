@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0C--BP005A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SET_LIMITS_X" - SET HORIZONTAL TRACKING LIMITS
+	AH = 0Ch
+	BP = 005Ah (driver ID for V_STRACK)
+	CX = minimum X coordinate
+	DX = maximum X coordinate
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AH=04h/BP=005Ah,AH=08h/BP=005Ah,AH=0Eh/BP=005Ah
+SeeAlso: AH=10h/BP=005Ah,AH=12h/BP=005Ah,INT 33/AX=0007h
+

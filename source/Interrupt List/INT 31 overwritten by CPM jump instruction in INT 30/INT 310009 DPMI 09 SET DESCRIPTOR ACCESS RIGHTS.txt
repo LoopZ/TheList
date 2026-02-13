@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310009
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - SET DESCRIPTOR ACCESS RIGHTS
+	AX = 0009h
+	BX = selector
+	CL = access rights/type byte (see #00502 at INT 15/AH=89h)
+	CH = 80386 extended rights/type byte (see #00505 at INT 15/AH=89h)
+	    (32-bit DPMI implementations only)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8021h,8022h,8025h) (see #03143)
+Notes:	if the Present bit is clear, CL bits 0-3 may have any value
+	DPMI 1.0+ automatically reloads any segment registers containing the
+	  selector being modified
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0007h,AX=0008h,AX=000Ch,INT 21/AX=2514h,INT 2C/AX=0004h
+SeeAlso: INT 2C/AX=0005h
+

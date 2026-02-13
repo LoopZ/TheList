@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD8C0
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NLCACHE,NWCACHE - INSTALLATION CHECK
+	AX = D8C0h
+Return: AL = FFh if installed
+	    CL = memory type (01h NLCACHEC, 02h NLCACHEX, 03h NLCACHEM)
+	    DH = major version (01h for v1.1)
+	    DL = minor version (01h for v1.1)
+	    ES:DI -> private API entry point (see #03091)
+Program: NWCACHE is the disk cache included with Personal NetWare,
+	    Novell DOS 7, Caldera OpenDOS 7.01, DR-OpenDOS 7.02, DR-DOS 7.02,
+	    and Caldera Thin Clients/Lineo DR-DOS 7.03.
+Note:	This function is called by the NetWare Lite and Personal NetWare
+	  SERVER.  It may also be called by future (post DR-DOS 7.03)
+	  COMMAND.COM before it returns to the prompt.
+BUG:	Some pre-BETA 17 (1993/09/28) versions of NWCACHE returned -1,0,1
+	  instead of 1,2,3 for the memory type in CL.
+SeeAlso: AX=D800h,AX=D880h
+
+(Table 03091)
+Call NLCACHE/NWCACHE "sideband function" API entry point with:
+	BX = function
+	    0000h flush request from server
+		Return: CF clear if successful at flushing deferred writes
+			    AX = 0000h
+			CF set on error
+			    AX = error code
+	    0001h (NWCACHE only) get cache statistics
+		ES:DI -> buffer for statistics (see #04122)
+		Return: CF clear if successful
+			AX = 0000h
+			ES:DI buffer filled
+	    other
+		Return: CF set
+			AX = 0001h (invalid function)
+
+Format of NWCACHE cache statistics:
+Offset	Size	Description	(Table 04122)
+ 00h	WORD	version
+ 02h	BYTE	memory type
+ 03h	WORD	initial cache size in KB
+ 05h	WORD	current cache size in KB
+ 07h	DWORD	number of read requests
+ 0Bh	DWORD	number of physical reads performed
+ 0Fh	DWORD	number of write requests
+ 13h	DWORD	number of physical writes performed
+ 17h	BYTE	delay ticks for deferred write (0 if no deferral)
+ 18h	WORD	maximum number of sectors in lookahead buffer
+ 1Ah	WORD	number of disk errors
+ 1Ch	WORD	number of cache memory errors
+SeeAlso: #03091
+

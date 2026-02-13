@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5701
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - IOMEGA DRIVERS - SECONDARY INSTALLATION CHECK
+	AX = 5701h
+	BX = program ID??? (0201h used by GUEST.EXE)
+	DX = 496Fh ('Io')
+Return: AX = 0001h if GUEST.EXE installed
+SeeAlso: AX=5700h,AX=5710h,AX=5711h,AX=5712h
+

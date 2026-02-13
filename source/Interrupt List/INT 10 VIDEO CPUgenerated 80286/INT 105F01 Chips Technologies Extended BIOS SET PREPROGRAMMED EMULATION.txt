@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - SET PREPROGRAMMED EMULATION
+	AX = 5F01h
+	BL = emulation type (see #00179)
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F00h,AX=5F02h,AH=FFh"Oak"
+
+(Table 00179)
+Values for Chips&Technologies emulation type:
+ 00h,01h reserved
+ 02h	CGA
+ 03h	MDA
+ 04h	Hercules
+ 05h	EGA
+ 06h	VGA (disable emulation)
+

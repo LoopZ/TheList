@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6805
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - TRANSFER MESSAGE DATA
+	AH = 05h
+	DS:DX -> control block (see #03703)
+Return: control block updated
+
+Format of APPC/PC "Transfer Message Data" control block:
+Offset	Size	Description	(Table 03703)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	1C00h (verb "Transfer Message Data")
+ 0Eh	BYTE	data type
+		00h user defined
+		01h NMVT
+		02h alert subvectors
+		03h PDSTATS subvectors
+ 0Fh  5 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h 12 BYTEs	00h
+ 24h	BYTE	flags (see #03704)
+ 25h	BYTE	00h
+ 26h	WORD	length of data
+ 28h  N BYTEs	data
+
+Bitfields for APPC/PC message transfer flags:
+Bit(s)	Description	(Table 03704)
+ 0	don't add correlation subvector
+ 1	don't add product set ID subvector
+ 2	don't do SYSLOG
+ 3	don't send SSCP_PU_SESSION
+SeeAlso: #03703
+

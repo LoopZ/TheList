@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC010
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PrintCache v3.1 PCACHE.EXE - GET ???
+	AX = C010h
+	CX = index of ??? table (00h-02h, others treated as 00h)
+	SI = offset into data table
+Return: AL = byte at specified offset into table
+	BX destroyed
+SeeAlso: AX=C000h"PCACHE"
+

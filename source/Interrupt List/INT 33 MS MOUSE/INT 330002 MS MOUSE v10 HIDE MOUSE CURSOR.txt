@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330002
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - HIDE MOUSE CURSOR
+	AX = 0002h
+Note:	multiple calls to hide the cursor will require multiple calls to
+	  function 01h to unhide it.
+SeeAlso: AX=0001h,AX=0010h,INT 16/AX=FFFFh,INT 62/AX=007Bh
+SeeAlso: INT 6F/AH=08h"F_TRACK_OFF"
+

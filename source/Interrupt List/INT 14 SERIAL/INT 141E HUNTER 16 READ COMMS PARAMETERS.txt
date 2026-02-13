@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141E
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - READ COMMS PARAMETERS
+	AH = 1Eh
+	CX = channel number (00h COM1, 01h COM2, ...)
+	DS:BX -> buffer for communications parameters (see #00347)
+Return: DS:BX buffer filled
+Note:	the Husky Hunter 16 is an 8088-based ruggedized laptop.	 Other family
+	  members are the Husky Hunter, Husky Hunter 16/80, and Husky Hawk.
+SeeAlso: AH=20h"HUNTER"
+
+Format of HUNTER 16 communications parameters:
+Offset	Size	Description	(Table 00347)
+ 00h	BYTE	communications type (00h IBM, nonzero Husky)
+ 01h	BYTE	port number (00h COM1, 01h COM2)
+ 02h	BYTE	baud rate (00h 110 bps, 01h 150, 02h 300, 03h 600, 04h 1200,
+		  05h 2400, 06h 4800, 07h 9600, 08h 19200, 09h 38400)
+ 03h	BYTE	data bits (01h seven, 02h eight)
+ 04h	BYTE	parity (00h none, 01h odd, 02h even)
+ 05h	BYTE	stop bits (00h one, 01h two)
+ 06h	BYTE	handshake (see #00348)
+ 07h	BYTE	handshake protocol (00h none, 01h Xon/Xoff, 02h HWK3780)
+ 08h	BYTE	Nulls after CR (0-20)
+ 09h	BYTE	LF (00h off, 01h on)
+ 0Ah	BYTE	Serig. 0..7Fh: Ignore this character
+		       80h: Serig off
+ 0Bh	BYTE	echo (00h off, 01h on)
+ 0Ch	BYTE	transmit timeout in seconds (1-60) or 00h to disable
+ 0Dh	BYTE	receive timeout in seconds (1-60) or 00h to disable
+ 0Eh  5 BYTEs	reserved
+
+Bitfields for HUNTER 16 handshake:
+Bit(s)	Description	(Table 00348)
+ 0-1	0: RTS off, 1: RTS hold, 2: RTS true
+ 2	DTR enabled
+ 4	CTS enabled
+ 5	DSR enabled
+ 6	DCD enabled
+

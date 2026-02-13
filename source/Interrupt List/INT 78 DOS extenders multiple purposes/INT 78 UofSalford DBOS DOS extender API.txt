@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 78
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - UofSalford DBOS DOS extender - API
+	AH = function
+	    00h (PB) display 32-bit memory specified by command argument
+	    01h (PT) display 32-bit instruction(s) specified by command arg
+	    02h specify offset to subsequent PB and PT commands
+	    03h switch to protected mode
+		DWORD following INT instruction point to map; protected-mode
+			  entry point is immediately following the DWORD
+		Return: never
+		Note:	if bit 31 of the map address is set, only a stub was
+			  loaded by DOS and DBOS will load the entire program
+	    04h specify that subsequent load (AH=03h) should leave program in
+		  memory
+	    05h release program from memory
+	    06h set break point at address and option count from commandline
+	    07h resume program execution
+	    08h single-step program
+	    09h set read/write breakpoint using 386 debug registers
+	    0Ah set write breakpoint using 386 debug register
+	    0Bh set memory byte to new value
+	    0Ch display CPU registers
+	    0Dh run until specified program address reached
+	    0Fh print trace from program map
+	    10h specify an offset using a map symbol
+	    14h print memory without any offset
+	    18h switch DBOS into/out of test mode (ON/OFF commandline args)
+	    1Dh get address of real/protected-mode communication buffer
+		Return: ES:BP -> comm buffer
+	    1Eh set real-mode memory size (specify how much real-mode memory
+		  to leave free when running FTN77 programs)
+	    22h uninstall DBOS
+	    24h force DBOS to emulate coprocessor instructions
+	    26h set named DBOS switches from commandline
+	    27h reset named DBOS switched from commandline
+	    2Ah set list of dynamic link libraries to contents of commandline
+		  file
+	    35h specify that subsequent load (AH=03h) should stop at first
+		  instruction
+Return: ???
+Notes:	DBOS supports functions 00h through 50h; many of these functions
+	  provide a low-level debugging interface
+	command arguments are read from the calling program's PSP
+SeeAlso: INT 79"DBOS"
+Index:	uninstall;DBOS DOS extender
+

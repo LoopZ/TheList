@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--DX0002
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.0+ Virtual DOS Machine - GET SESSION TITLE
+	AH = 64h
+	DX = 0002h (function number)
+	CX = 636Ch (magic value, "cl")
+	BX = 0000h (indicates special request)
+	ES:DI -> 13-byte buffer for current title
+Return: buffer filled (single 00h if title never changed)
+Note:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
+SeeAlso: AH=64h/DX=0000h,AH=64h/DX=0001h,INT 15/AH=12h/BH=05h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: F105
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v1.1 - "API-SET-SIGNAL" - SIGNAL HANDLING
+	AH = 05h
+	DX = application ID (see AH=01h)
+	ES:BX -> signal handler or 0000h:0000h to disable
+Return: AX = status (0000h,1002h) (see #04069)
+Notes:	the caller is required to provide at least 512 bytes of stack space
+	the signal handler is called as though it were an interrupt, with
+	  interrupts disabled; the handler must preserve all registers and
+	  return with an IRET
+SeeAlso: AH=01h
+

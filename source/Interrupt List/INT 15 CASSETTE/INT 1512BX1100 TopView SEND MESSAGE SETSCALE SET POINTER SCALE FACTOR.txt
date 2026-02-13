@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BX1100
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "SETSCALE" - SET POINTER SCALE FACTOR
+	AH = 12h
+	BX = 1100h
+	STACK: DWORD object handle for pointer object
+	       DWORD number of colums to scale pointer position to
+	       DWORD number of rows to scale pointer position to
+Return: STACK popped
+SeeAlso: AH=12h/BX=1200h
+

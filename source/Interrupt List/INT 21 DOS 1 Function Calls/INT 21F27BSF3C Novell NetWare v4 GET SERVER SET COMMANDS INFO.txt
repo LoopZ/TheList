@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF3C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET SERVER SET COMMANDS INFO
+	AX = F27Bh subfn 3Ch
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02523)
+	ES:DI -> reply buffer (see #02524)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Get Server Set Commands Info" request packet:
+Offset	Size	Description	(Table 02523)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	3Ch (subfunction "Get Server Set Commands Info")
+ 03h	DWORD	start sequence number
+SeeAlso: #02524
+
+Format of NetWare "Get Server Set Commands Info" packet:
+Offset	Size	Description	(Table 02524)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	DWORD	number of set commands
+ 0Ch	DWORD	next sequence number
+ 10h	DWORD	set command type
+ 14h	DWORD	set command category
+ 18h	DWORD	set command flags
+ 1Ch	BYTE	length of set command name
+ 1Dh  N BYTEs	set command name
+	BYTE	number of set command values
+      N BYTEs	set command values
+SeeAlso: #02523
+

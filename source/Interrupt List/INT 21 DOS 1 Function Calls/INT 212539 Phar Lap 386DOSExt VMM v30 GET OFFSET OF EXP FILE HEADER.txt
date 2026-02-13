@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212539
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Ext VMM v3.0 - GET OFFSET OF .EXP FILE HEADER
+	AX = 2539h
+	BX = MS-DOS file handle for open file
+Return: CF clear if successful
+	    EAX = offset of .EXP header in file
+	CF set on error
+	    EAX = error code (02h file error)
+	    EBX = file error code
+		02h DOS error seeking
+		03h DOS error reading
+		04h invalid file type
+		05h invalid file format
+	    ECX = DOS error code if EBX=02h or 03h
+	current file position in file modified
+

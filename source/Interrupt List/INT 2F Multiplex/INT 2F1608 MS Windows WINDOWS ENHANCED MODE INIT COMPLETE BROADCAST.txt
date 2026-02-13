@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1608
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - WINDOWS ENHANCED MODE INIT COMPLETE BROADCAST
+	AX = 1608h
+Notes:	called after all installable devices have been initialized
+	real-mode software may be called between the Windows enhanced-mode init
+	  call (AX=1605h) and this call; the software must detect this
+	  situation
+SeeAlso: AX=1605h,AX=1609h
+

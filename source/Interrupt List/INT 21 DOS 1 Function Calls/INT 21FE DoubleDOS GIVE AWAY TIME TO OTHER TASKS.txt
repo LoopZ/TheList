@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FE
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - GIVE AWAY TIME TO OTHER TASKS
+	AH = FEh
+	AL = number of 55ms time slices to give away
+Return: returns after giving away time slices
+SeeAlso: AH=EEh"DoubleDOS",INT FE"DoubleDOS"
+

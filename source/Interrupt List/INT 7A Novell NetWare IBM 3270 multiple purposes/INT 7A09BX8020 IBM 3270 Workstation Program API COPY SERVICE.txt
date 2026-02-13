@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09--BX8020
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - COPY SERVICE
+	AH = 09h
+	BX = 8020h
+	CX = 00FFh
+	DX = ID of copy service
+	AL = service
+	    01h copy string from one presentation space to another
+	    02h copy block from one presentation space to another
+	    03h connect to PC session for copy
+	    04h disconnect PC session from copy
+	ES:DI -> control block
+Return: ???
+

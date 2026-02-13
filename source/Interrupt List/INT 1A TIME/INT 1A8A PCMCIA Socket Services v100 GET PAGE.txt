@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A8A
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - GET PAGE
+	AH = 8Ah
+	AL = adapter number
+	BH = window number
+	BL = page number
+Return: CF clear if successful
+	    AH destroyed
+	    DX = page attributes (see #00679)
+	    DI = memory card offset (4K units)
+	CF set on error
+	    AH = error code (01h,08h,11h) (see #00656)
+Notes:	this function is only valid for memory-mapped windows
+	the socket being operated on is implied by the previous AH=89h call
+SeeAlso: AH=88h,AH=8Bh
+
+Bitfields for PCMCIA page attributes:
+Bit(s)	Description	(Table 00679)
+ 0	page enabled
+ 15-1	reserved (0)
+

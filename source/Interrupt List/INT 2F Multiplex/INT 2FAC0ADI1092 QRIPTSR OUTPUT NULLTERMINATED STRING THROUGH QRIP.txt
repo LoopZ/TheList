@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC0ADI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - OUTPUT NULL-TERMINATED STRING THROUGH QRIP
+	AX = AC0Ah
+	DI = 1092h
+	DX:BX -> ASCIZ string
+Return: AX = character to send to BBS (0001h-00FFh) or special code (see #02967)
+	BX = string-waiting flag
+	    0001h entire string waiting to be sent to terminal (call AX=AC0Ch)
+	CX = DX = AX
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC05h,AX=AC06h,AX=AC09h,AX=ACF0h
+

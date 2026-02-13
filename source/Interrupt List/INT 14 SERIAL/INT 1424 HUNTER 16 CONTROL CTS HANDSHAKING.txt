@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1424
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - CONTROL CTS HANDSHAKING
+	AH = 24h
+	AL = new CTS handshake state for COM1 (00h disabled, 01h enabled)
+Return: nothing
+SeeAlso: AH=23h"HUNTER",AH=25h"HUNTER",AH=26h"HUNTER"
+

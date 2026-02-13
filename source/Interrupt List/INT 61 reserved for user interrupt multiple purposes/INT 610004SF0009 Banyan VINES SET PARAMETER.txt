@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0009
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SET ??? PARAMETER
+	AX = 0004h subfn 0009h
+	DS:DX -> request block (see #03413)
+Return: AX = status (0000h) (see #03400)
+Notes:	The specified WORD parameter is copied to offset 1702h of the
+	  redirector code segment (revision 5.53)
+SeeAlso: AX=0004h/SF=000Bh
+
+Format of VINES Function 0004h/Subfunction 0009h request block:
+Offset	Size	Description	(Table 03413)
+ 00h	WORD	0009h
+ 02h	WORD	parameter
+

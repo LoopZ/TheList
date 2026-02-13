@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214A--BXFFFF
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS???
+	AH = 4Ah
+	BX = FFFFh
+	CX = 0568h
+	SI = 0129h
+	DI = 0000h
+	ES = BP
+Return: ???
+Note:	this call is intercepted by the Search&Destroy SDRes v27.03 bundled
+	  with Novell DOS 7, and is presumably some virus's installation check
+SeeAlso: AH=0Eh/DL=ADh,AH=4Ah/BX=00B6h
+

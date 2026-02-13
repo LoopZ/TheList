@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF08
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "GetSelDet32" - GET SELECTOR BASE AND LIMIT (32-bit)
+	AX = FF08h
+Return: CF clear if successful
+	    EDX = base address
+	    ECX = limit (bytes)
+	CF set on error
+SeeAlso: AX=FF07h,AX=FF0Ah
+

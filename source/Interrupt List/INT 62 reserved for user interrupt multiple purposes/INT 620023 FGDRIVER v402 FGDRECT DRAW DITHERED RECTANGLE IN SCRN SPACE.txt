@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620023
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DRECT" - DRAW DITHERED RECTANGLE IN SCRN SPACE
+	AX = 0023h
+	BX = screen space column of left edge
+	CX = screen space column of right edge
+	DX = screen space row of top edge
+	SI = screen space row of bottom edge
+	ES:DI -> dithering matrix (video-mode dependent)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+SeeAlso: AX=0006h,AX=0008h,AX=0013h,AX=003Ch,AX=0089h,AX=009Bh
+

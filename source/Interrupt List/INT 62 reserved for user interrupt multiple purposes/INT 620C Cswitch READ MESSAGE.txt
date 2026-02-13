@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620C
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - READ MESSAGE
+	AH = 0Ch
+	CX = number of bytes to read
+	DS:SI -> buffer
+	DX = queue number (0-63)
+Return: AX = status
+	    FFFFh bad queue number
+	    else  number of bytes transferred
+SeeAlso: AH=0Ah,AH=0Bh
+

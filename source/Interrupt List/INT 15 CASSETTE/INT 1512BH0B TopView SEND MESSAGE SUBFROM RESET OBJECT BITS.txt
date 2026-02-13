@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "SUBFROM" - RESET OBJECT BITS
+	AH = 12h
+	BH = 0Bh
+	BL = object
+	    00h handle is DWORD on top of stack
+		pointer: reset control flags
+		keyboard: reset control flags
+	    04h clear control flags on KEYBOARD object (handle on top of stack)
+	    05h clear control flags on task's default KEYBOARD object
+	STACK:	DWORD	which bits to clear (see #00450,#00451)
+Return: STACK popped
+SeeAlso: AH=12h/BH=0Ah"OBJECT"
+

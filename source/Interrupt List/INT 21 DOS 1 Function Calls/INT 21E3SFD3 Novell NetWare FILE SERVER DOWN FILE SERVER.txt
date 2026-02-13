@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFD3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - DOWN FILE SERVER
+	AH = E3h subfn D3h
+	DS:SI -> request buffer (see #02026)
+	ES:DI -> reply buffer (see #02024)
+Return: AL = status (00h,C6h,FFh) (see #02025)
+Desc:	take down the file server
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have SUPERVISOR privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=CBh,AH=E3h/SF=CFh,AH=E3h/SF=D1h
+
+(Table 02025)
+Values for NetWare function status:
+ 00h	successful
+ C6h	no console rights
+ FFh	files open
+SeeAlso: #02002,#02053
+
+Format of NetWare "Down File Server" request buffer:
+Offset	Size	Description	(Table 02026)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	D3h (subfunction "Down File Server")
+ 03h	BYTE	flag: force down even if files open if nonzero
+SeeAlso: #02024
+

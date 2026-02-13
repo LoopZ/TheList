@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A00CX0000
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - DOS 5+ - FLOPPY-DISK LOGICAL DRIVE CHANGE NOTIFICATION
+	AX = 4A00h
+	CX = 0000h
+	DH = new drive number
+	DL = current drive number
+Return: CX = FFFFh to skip "Insert diskette for drive X:" message
+Note:	called by MS-DOS 5.0+ IO.SYS just before displaying the message
+	  "Insert diskette for drive X:" on single-floppy systems
+

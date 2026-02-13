@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: FF----BX0000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT FF - PC/FORTH - GRAPHICS API - VIDEO STATUS CHANGE
+	BX = 0000h
+	DS:SI -> FORTH program counter
+	SS:BP -> FORTH parameter stack
+	SS:SP -> FORTH return stack
+	DS:DX -> FORTH video parameter area
+Desc:	called to inform graphics driver of any status changes such as video
+	  mode changes, character color changes, graphics XOR mode turned on
+	  or off, etc.; also used as an installation check
+Index:	installation check;PC/FORTH
+

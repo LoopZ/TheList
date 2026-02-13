@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFE9
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - GET VOLUME INFORMATION
+	AH = E3h subfn E9h
+	DS:SI -> request buffer (see #02084)
+	ES:DI -> reply buffer (see #02085)
+Return: AL = status
+	    00h successful
+Notes:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AH=DAh,AH=E2h/SF=15h,AX=F217h/SF=E9h
+
+Format of NetWare "Get Volume Information" request buffer:
+Offset	Size	Description	(Table 02084)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	E9h (subfunction "Get Volume Information")
+ 03h	BYTE	directory handle
+SeeAlso: #02085,#02247 at AX=F217h/SF=E9h
+
+Format of NetWare "Get Volume Information" reply buffer:
+Offset	Size	Description	(Table 02085)
+ 00h	WORD	(call) 0028h (length of following results buffer)
+ 02h	DWORD	(big-endian) elapsed system time
+ 06h	BYTE	volume number
+ 07h	BYTE	logical drive number
+ 08h	WORD	(big-endian) sectors per block
+ 0Ah	WORD	(big-endian) starting block
+ 0Ch	WORD	(big-endian) total blocks on volume
+ 0Eh	WORD	(big-endian) blocks available on volume
+ 10h	WORD	(big-endian) total directory slots
+ 12h	WORD	(big-endian) directory slots available
+ 14h	WORD	(big-endian) maximum directory entries actually used
+ 16h	BYTE	flag: volume hashed if nonzero
+ 17h	BYTE	flag: volume cached if nonzero
+ 18h	BYTE	flag: volume removable if nonzero
+ 19h	BYTE	flag: volume mounted if nonzero
+ 1Ah 16 BYTEs	NUL-padded volume name
+SeeAlso: #02084,#02247 at AX=F217h/SF=E9h
+

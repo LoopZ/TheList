@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB41
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - SEND DATA - DIAL NUMBER AND UPLOAD FILE WITH ZMODEM
+	AX = DB41h
+	DS:SI -> source file name, including path (max 128 characters)
+	DS:BX -> remote data number
+Return: AX = status (see #03096)
+SeeAlso: AX=DB00h,AX=DB28h
+

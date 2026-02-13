@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A0D
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - RESET RTC DATE/TIME ACTIVATED POWER-ON MODE (IBM)
+	AH = 0Dh
+Return: CF clear if successful
+	CF set on error
+Desc:	cancel a previously-set power-on alarm
+Note:	IBM classifies this function as optional
+SeeAlso: AH=07h,AH=0Ch,AH=0Eh
+

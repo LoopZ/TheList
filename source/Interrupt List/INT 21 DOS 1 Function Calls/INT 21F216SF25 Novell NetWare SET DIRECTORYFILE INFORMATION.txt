@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF25
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SET DIRECTORY/FILE INFORMATION
+	AX = F216h subfn 25h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02137)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=02h
+
+Format of NetWare "Set Directory/File Information" request packet:
+Offset	Size	Description	(Table 02137)
+ 00h	WORD	length of following data
+ 02h	BYTE	25h (subfunction "Set Directory/File Information")
+ 03h	BYTE	directory handle
+ 04h	BYTE	search attributes
+ 05h	DWORD	sequence number
+ 09h	DWORD	change bits
+ 0Dh	DWORD	directory number
+ 11h	DWORD	attributes
+ 15h	BYTE	unique ID
+ 16h	BYTE	flags
+ 17h	BYTE	name space (see #02387)
+ 18h	BYTE	length of directory/file name
+ 19h 12 BYTEs	directory/file name
+ 25h	DWORD	creation date and time
+ 29h	DWORD	(big-endian) owner ID
+ 2Dh	DWORD	last-backup date and time
+ 31h	DWORD	(big-endian) last-backup ID
+ 35h	DWORD	last-modification date and time
+ 39h	DWORD	(big-endian) last-modification ID
+ 3Dh	DWORD	file size
+ 41h	DWORD	data fork first FAT
+ 45h	DWORD	next trustee entry
+ 49h 36 BYTEs	reserved
+ 6Dh	WORD	inherited rights mask
+ 6Fh	WORD	last-access date
+ 71h 20 BYTEs	reserved
+ 85h	DWORD	primary entry
+ 89h	DWORD	name list
+

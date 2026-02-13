@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4500
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Microsoft Profiler (PROF.COM/VPROD.386) - INSTALLATION CHECK
+	AX = 4500h
+Return: AL = installation status
+	    01h if PROF.COM installed
+	    02h if VPROD.386 installed
+SeeAlso: AX=4501h,AX=4502h
+

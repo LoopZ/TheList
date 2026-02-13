@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200CA
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_TRANSFER" - COPY REGION
+	AX = 00CAh
+	CX = source video page
+	DX = destination video page
+	ES:BX -> copy record (see #03508)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The source and destination regions must not overlap if they are located
+	  on the same page
+SeeAlso: AX=009Eh,AX=00A2h,AX=00A5h,AX=00C6h
+
+Format of FGDRIVER copy record:
+Offset	Size	Description	(Table 03508)
+ 00h	WORD	left edge column of source region
+ 02h	WORD	right edge column of source region
+ 04h	WORD	top edge row of source region
+ 06h	WORD	bottom edge row of source region
+ 08h	WORD	left edge of destination
+ 0Ah	WORD	bottom edge of destination
+

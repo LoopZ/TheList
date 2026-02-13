@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1400
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - European MS-DOS 4.0 POPUP - "CheckPu" - INSTALLATION CHECK
+	AX = 1400h
+Return: AX = FFFFh if installed
+	    BX = maximum memory required to save screen and keyboard info
+	CF clear if successful
+	CF set on error
+	    AX = error code
+		0002h invalid function
+		0004h unknown error
+Note:	the POPUP interface is used by background programs (see INT 21/AH=80h)
+	  to communicate with the user
+SeeAlso: AX=1401h"POPUP",AX=1402h"POPUP",AX=1403h"POPUP"
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2780
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 - EMM386.EXE - MULTITASKING API - AVAILABLE FOR APPS
+	AX = 2780h
+	CL = function (07h-0Fh)
+	???
+Return: ???
+Notes:	called by DPMS.EXE and EMM386.EXE
+	the handlers for each of these functions may be set individually by
+	  one of the subfunctions of AX=2780h/CL=01h; the default handlers
+	  return with all registers unchanged
+	this API is only available if AX=12FFh/BX=0EDCh returns successfully;
+	  because the request is handled on the initial trap to the memory
+	  manager caused by INT instructions, this API must be invoked with
+	  an actual INT 2F instruction instead of some simulation such as a
+	  far call to the address in the interrupt vector table
+SeeAlso: AX=12FFh/BX=0EDCh,AX=2780h/CL=01h,AX=2780h/CL=02h,AX=2780h/CL=03h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A6B01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_FREE" - DEALLOCATE BUFFER IN SNAP DATA SEGMENT
+	AX = 6B01h
+	STACK:	WORD	offset within SNAP data segment of previously allocated
+			buffer
+Return: STACK unchanged
+Note:	this call is a NOP if the specified offset is 0000h
+SeeAlso: AX=6A01h
+

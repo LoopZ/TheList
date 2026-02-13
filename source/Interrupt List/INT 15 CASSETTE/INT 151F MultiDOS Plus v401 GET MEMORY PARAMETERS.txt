@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151F
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus v4.01 - GET MEMORY PARAMETERS
+	AH = 1Fh
+Return: BX = first segment of conventional memory
+	DX = first segment of EMS swap frame into which MultiDOS will load
+		programs
+

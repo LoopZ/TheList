@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107000BX0004
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Everex Extended Video BIOS - GET PAGING FUNCTION POINTER FOR CURR MODE
+	AX = 7000h
+	BX = 0004h
+Return: ES:DI -> FAR paging function (call with DL = page to set)
+Note:	the word preceding ES:DI is the length of the function in bytes, and
+	  the last byte of the function is a FAR return instruction.
+SeeAlso: AX=4F05h,AX=7000h/BX=0000h,AX=7000h/BX=0005h
+

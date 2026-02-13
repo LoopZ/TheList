@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0513
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - GET DEFAULT DRIVE
+	DI = 0513h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ??? buffer for current drive
+Return: ???
+	STACK unchanged
+SeeAlso: INT 21/AH=19h,INT 60/DI=0514h
+

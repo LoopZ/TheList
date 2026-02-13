@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF002
+  Category: K 	keyboard enhancers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - 4MAP - INSERT CHARACTER INTO ???
+	AX = F002h
+	BL = character to insert
+Return: AX = status
+	    0000h successful
+	    0001h buffer full
+SeeAlso: AX=F000h,AX=F003h
+

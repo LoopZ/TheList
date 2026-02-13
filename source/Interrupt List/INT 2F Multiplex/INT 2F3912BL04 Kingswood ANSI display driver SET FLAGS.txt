@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F3912BL04
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood ANSI display driver - SET FLAGS
+	AX = 3912h
+	BL = 04h
+	CL = new flags (see #02745)
+Return: AL = old flags
+	SI,DI,DS,ES preserved
+SeeAlso: AX=3900h,AX=3912h/BL=03h
+
+Bitfields for Kingswood ANSI flags:
+Bit(s)	Description	(Table 02745)
+ 0	do not wrap at end of line
+ 1	wait for beeps to end before displaying next character
+ 2	do not use graphics cursor
+

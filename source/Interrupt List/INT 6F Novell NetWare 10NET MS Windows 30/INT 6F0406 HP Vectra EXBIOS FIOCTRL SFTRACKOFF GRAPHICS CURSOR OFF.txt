@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0406
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_TRACK_OFF" - GRAPHICS CURSOR OFF
+	AX = 0406h
+	BP = driver ID (see #03741) for V_LPOINTER, V_LTOUCH, V_LTABLET
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	disables graphics cursor tracking of the logical device's movement
+SeeAlso: AH=00h"HP Vectra",AX=0400h"SF_LOCK",AX=0404h"SF_TRACK_ON"
+SeeAlso: AX=0408h"SF_CREATE_EVENT"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP 95LX - ENABLE/DISABLE LIGHT SLEEP
+	AH = 4Eh
+	AL = light sleep
+	    00h disabled
+	    01h enabled
+Note:	when light sleep is disabled, the system will continue running at full
+	  speed; when enabled, it may automatically slow to conserve batteries
+SeeAlso: INT 06"HP 95LX",INT 60/DI=0100h
+

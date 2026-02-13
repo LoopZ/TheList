@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14AA0D
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - DimVGA v3.0+ - SET MOUSE CHECK STATUS
+	AX = AA0Dh
+	BX = new mouse check status
+	    0000h mouse checking off
+	    0001h mouse checking on
+Return: AX = FFFFh
+Note:	before switching mouse checking on, a mouse driver should be
+	  found in memory. If no mouse driver is found, mouse checking
+	  should be switched off (resident DimVGA does not check by itself).
+SeeAlso: AX=AA01h,AX=AA0Eh
+Index:	screen saver;DimVGA
+

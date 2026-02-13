@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF000
+  Category: K 	keyboard enhancers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - 4MAP - INSTALLATION CHECK
+	AX = F000h
+Return: AX = 00FFh
+Program: 4MAP is a keybinding program for 4DOS (see AX=D44Dh) by Ho-Ping Tseng
+Note:	returns AX=00FFh for any value of AL not listed here
+SeeAlso: AX=D44Dh,AX=F001h,AX=F002h
+

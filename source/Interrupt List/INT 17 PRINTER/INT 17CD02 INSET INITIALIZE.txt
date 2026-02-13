@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD02
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - INITIALIZE
+	AX = CD02h
+Return: CX = 07C2h (1986d)
+Note:	all open files are closed and the printer is reset
+SeeAlso: AX=CD04h
+

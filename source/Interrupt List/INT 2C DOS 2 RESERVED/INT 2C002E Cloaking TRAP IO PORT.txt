@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C002E
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - TRAP I/O PORT
+	AX = 002Eh
+	DX = port number to trap
+Return: CF clear if successful
+	CF set on error (port out of range or reserved)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=002Fh,AX=0030h
+

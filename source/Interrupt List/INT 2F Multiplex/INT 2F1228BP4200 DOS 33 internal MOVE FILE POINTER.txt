@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1228BP4200
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ internal - MOVE FILE POINTER
+	AX = 1228h
+	BP = 4200h, 4201h, 4202h (see INT 21/AH=42h)
+	BX = file handle
+	CX:DX = offset in bytes
+	SS = DOS DS (must be using a DOS internal stack)
+Return: as for INT 21/AH=42h
+Notes:	equivalent to INT 21/AH=42h, but may only be called from inside a DOS
+	  function call
+	sets user stack frame pointer to dummy buffer, moves BP to AX, performs
+	  LSEEK, and restores frame pointer
+	used by NLSFUNC to access COUNTRY.SYS when invoked by the DOS kernel
+SeeAlso: INT 21/AH=42h
+

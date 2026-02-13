@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1580
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET/SET BATTERY CAPACITY (APM)
+	AH = 80h
+	AL = function
+	    00h get
+		Return: AL = capacity (500mA + AL * 50mA, max 40 = 2500mA)
+	    else set
+		BL = battery capacity (same as AL above)
+SeeAlso: AH=61h"HUNTER",AH=81h"HUNTER"
+

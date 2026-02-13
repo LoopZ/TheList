@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152403
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - later PS/2s - QUERY A20 GATE SUPPORT
+	AX = 2403h
+Return: CF clear if successful
+	    AH = 00h
+	    BX = status of A20 gate support (see #00462)
+	CF set on error
+	    AH = status
+		01h keyboard controller is in secure mode
+		86h function not supported
+Notes:	also supported by AMI PCI BIOS and Qualitas 386MAX v6.01+
+	IBM classifies this function as optional
+BUG:	at one point early in processing INT 15/AH=24h, the AMI PCI BIOS
+	  version 1.00.05.AX1 compares whether AL==03h instead of AL>=03h,
+	  thus causing a random branch on any value of AL greater than 3.
+SeeAlso: AX=2402h
+
+Bitfields for A20 gate support status:
+Bit(s)	Description	(Table 00462)
+ 0	supported on keyboard controller
+ 1	supported with bit 1 of I/O port 92h
+ 14-2	reserved
+ 15	additional data is available (location not yet defined)
+

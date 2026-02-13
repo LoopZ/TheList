@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310008
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - SET SEGMENT LIMIT
+	AX = 0008h
+	BX = selector
+	CX:DX = segment limit
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8021h,8022h,8025h) (see #03143)
+Notes:	CX must be zero for 16-bit DPMI implementations
+	limits greater than 1MB must be page aligned (low 12 bits set)
+	only modify descriptors allocated with INT 31/AX=0000h
+	DPMI 1.0+ automatically reloads any segment registers containing the
+	  selector being modified
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0007h,AX=0009h,AX=000Ch,INT 21/AX=3505h,INT 21/AH=E9h"OS/286"
+SeeAlso: INT 2C/AX=0003h,#00501 at INT 15/AH=89h
+

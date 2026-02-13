@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4F - TI Professional PC - SYSTEM CONFIGURATION CALL
+Return: AX = system configuration word (see #03227)
+	BX = size of contiguous DOS memory in paragraphs
+SeeAlso: INT 11"BIOS",INT 12"BIOS",INT 40"TI Professional",INT 48/AH=09h
+SeeAlso: INT 49/AH=01h"TI",INT 4B"TI Professional",INT 4D/AH=00h
+SeeAlso: INT 4E"TI Professional"
+
+Bitfields for TI Professional PC system configuration:
+Bit(s)	Description	(Table 03227)
+ 0	floppy drive 0 (A:, internal) installed
+ 1	floppy drive 1 (B:, internal) installed
+ 2	floppy drive 2 (C:, external) installed
+ 3	floppy drive 3 (D:, external) installed
+ 4	drive A: is 96tpi (80 tracks)
+ 5	drive A: is double-sided
+ 6	60 Hz power instead of 50 Hz
+ 7	hard disk (E: or E:/F:) installed
+ 8	serial port 1 installed
+ 9	serial port 2 installed
+ 10	serial port 3 installed
+ 11	serial port 4 installed
+ 14-12	installed graphics RAM
+	000 none (text-only system)
+	001 bank A only (graphics limited to 2 of 8 colors)
+	111 banks A/B/C (graphics supports 8 of 8 colors)
+ 15	clock/analog board installed
+

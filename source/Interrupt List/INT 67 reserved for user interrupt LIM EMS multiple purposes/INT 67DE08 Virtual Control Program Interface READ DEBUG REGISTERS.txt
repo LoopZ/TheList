@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE08
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - READ DEBUG REGISTERS
+	AX = DE08h
+	ES:DI -> array of 8 DWORDs
+Return: AH = 00h
+	buffer filled with DR0 first, DR7 last, DR4 and DR5 unused
+SeeAlso: AH=3Fh,AX=DE09h
+

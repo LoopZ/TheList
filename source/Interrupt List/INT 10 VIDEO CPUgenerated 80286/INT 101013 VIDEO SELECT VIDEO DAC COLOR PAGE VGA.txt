@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101013
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SELECT VIDEO DAC COLOR PAGE (VGA)
+	AX = 1013h
+	BL = subfunction
+	    00h select paging mode
+		BH = 00h select 4 blocks of 64
+		BH = 01h select 16 blocks of 16
+	    01h select page
+		BH = page number (00h to 03h) or (00h to 0Fh)
+Return: nothing
+Note:	this function is not valid in mode 13h
+SeeAlso: AX=101Ah
+

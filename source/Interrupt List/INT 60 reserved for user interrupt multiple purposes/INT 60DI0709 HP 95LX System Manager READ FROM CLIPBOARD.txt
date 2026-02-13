@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0709
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - READ FROM CLIPBOARD
+	DI = 0709h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	???
+		WORD	???
+		DWORD	pointer to buffer for data???
+		WORD	length of buffer???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0708h
+

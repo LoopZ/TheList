@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFD12
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - KS/KEYSTKCT.EXE - INSTALLATION CHECK
+	AX = FD12h
+Return: AX = 0093h if installed
+	    ES = resident code segment
+	    ES:CX -> internal "putbuf" routine
+Program: KS/KEYSTKCT.EXE is a key stacking utility (4DOS KEYSTACK.SYS
+	  look-alike) by Martin Gerdes, published in c't 11/1991, which can be
+	  loaded as a device driver or as a TSR. It does not emulate 4DOS
+	  KSTACK API
+Note:	the default buffer size is 128 keys
+

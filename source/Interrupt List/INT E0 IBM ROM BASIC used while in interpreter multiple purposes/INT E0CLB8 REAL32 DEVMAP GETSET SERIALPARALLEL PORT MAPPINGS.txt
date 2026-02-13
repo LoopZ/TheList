@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLB8
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "DEV_MAP" - GET/SET SERIAL/PARALLEL PORT MAPPINGS
+	CL = B8h
+	DS:DX -> Device Map Parameter Block (DEVPB) (see #04059)
+Return: nothing???
+	may destroy SI,DI,DS
+
+Format of REAL/32 Device Map Parameter Block (DEVPB):
+Offset	Size	Description	(Table 04059)
+ 00h	WORD	direction (00h = get current mapping, 01h = set new mapping)
+ 02h  4 BYTEs	physical device IDs which map into LPT1 - LPT4
+ 06h  4 BYTEs	physical device IDs which map into COM1 - COM4
+Note:	LPT4 and COM3/COM4 are reserved on early versions of Multiuser DOS,
+	  but are supported from at least CCI Multiuser DOS v7.22 onward
+

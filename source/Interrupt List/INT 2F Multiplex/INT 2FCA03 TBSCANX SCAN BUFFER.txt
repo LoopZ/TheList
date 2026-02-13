@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCA03
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - TBSCANX - SCAN BUFFER
+	AX = CA03h
+	CX = size of buffer
+	DS:DX -> buffer containing data to scan
+Return: CF clear if no virus signatures found
+	    BX,ES destroyed
+	CF set if signature found
+	    ES:BX -> ASCIZ virus name (v2.3+)
+	    DS:DX -> ASCIZ virus name (v2.0)
+	AX,CX,DX destroyed (v2.3+)
+	all other registers except CS:IP and SS:SP destroyed (v2.0)
+SeeAlso: AX=CA04h
+

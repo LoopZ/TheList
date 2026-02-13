@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675BF2
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 - GET RM386 INTERNAL DATA
+	AX = 5BF2h
+	CX = size of buffer
+	DS:SI -> buffer for internal data
+	(documentation says ES:BX -> buffer, SI = offset within RM386)
+Return: buffer filled
+Note:	the data returned by this function is release-specific
+SeeAlso: AX=5BF0h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140D
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - KEYBOARD READ WITHOUT WAIT
+	AH = 0Dh
+Return: AX = result
+	    FFFFh character not available
+	    xxyyh standard IBM-style scan code
+SeeAlso: AH=0Eh
+

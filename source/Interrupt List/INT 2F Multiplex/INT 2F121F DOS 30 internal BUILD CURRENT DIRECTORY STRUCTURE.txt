@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F121F
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - BUILD CURRENT DIRECTORY STRUCTURE
+	AX = 121Fh
+	SS = DOS DS (must be using a DOS internal stack)
+	STACK: WORD drive letter
+Return: ES:DI -> current directory structure (will be overwritten by next call)
+	STACK unchanged
+

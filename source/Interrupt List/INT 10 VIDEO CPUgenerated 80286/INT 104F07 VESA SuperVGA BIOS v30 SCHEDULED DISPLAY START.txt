@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F07
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v3.0+ - SCHEDULED DISPLAY START
+	AX = 4F07h
+	BL = subfunction
+	    02h,82h (VBE v3.0) schedule display start at next vertical retrace
+		ECX = display start address in bytes
+	    03h,83h schedule stereoscopic display start
+		ECX = left image start address (in bytes)
+		EDX = right image start address (in bytes)
+	    04h	get scheduled display start status
+		Return:	CX = start status
+			    (00h no display flip, else display has flipped)
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+	    01h failed
+SeeAlso: AX=4F07h"DISPLAY START",AX=4F07h"STEREOSCOPIC"
+

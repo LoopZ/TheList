@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10h - LIRVGA19 - CHAR HEIGHT HOOK
+Desc:	LIRVGA19.COM fixes display problems on some notebooks by hooking
+	   INT 10h and resetting the BIOS character height (MEM 0040h:0085h)
+	   to 10h on return, if it happens to be greater than 10h.
+Program: LIRVGA19.COM is part of the Lithuanian LIR codepage support package
+	  developed by LABAS u.a.b.
+SeeAlso: INT 10/AX=5555h/BX=BBBBh,MEM 0040h:0085h
+

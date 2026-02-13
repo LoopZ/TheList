@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0104
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.0+ PRINT - FREEZE PRINT QUEUE TO READ JOB STATUS
+	AX = 0104h
+Return: CF clear if successful
+	    DX = error count since status last read
+	    DS:SI -> print queue
+	CF set on error
+	    AX = error code (see #02594)
+Desc:	get the list of print jobs, temporarily suspending PRINT's activities
+	  to avoid changing the list while it is being examined
+Notes:	the print queue is an array of 64-byte ASCIZ filenames terminated by
+	  an empty filename; the first name is the file currently being printed
+	printing is stopped until AX=0105h is called to prevent the queue
+	  from changing while the filenames are being read
+SeeAlso: AX=0101h,AX=0105h
+

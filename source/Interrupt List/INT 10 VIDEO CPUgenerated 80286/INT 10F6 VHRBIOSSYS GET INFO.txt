@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10F6
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VHRBIOS.SYS - GET INFO
+	AH = F6h
+	AL = what to get
+	    00h device driver state
+		Return: AX = device driver state
+	    01h video mode info
+		Return: AL = video mode
+			DH = screen height in rows
+			DL = screen width in columns
+Program: VHRBIOS.SYS is a driver for the Micro Display Systems "TheGenius"
+	  black&white A4/portrait monitor
+SeeAlso: AH=F0h"VHRBIOS.SYS",AH=F4h"VHRBIOS.SYS",AH=96h"VHRBIOS.SYS
+

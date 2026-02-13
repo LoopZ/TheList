@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A7002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_SETANCHOR"
+	AX = 7002h
+	STACK:	WORD	anchor number (0000h-0009h)
+		WORD	new value for the anchor
+Return: AX = status
+	    0000h successful
+	    FFFFh failed (top word on stack not in range 00h-09h)
+	STACK unchanged
+SeeAlso: AX=7101h
+

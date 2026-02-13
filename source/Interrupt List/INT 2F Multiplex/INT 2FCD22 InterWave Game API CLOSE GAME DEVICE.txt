@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD22
+  Category: s 	sound/speech
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - InterWave Game API - CLOSE GAME DEVICE
+	AX = CD22h
+	BX = installed program identifier
+	DX = device handle (from AX=CD21h)
+Return: AL = status
+	    00h successful
+	    FFh inavlid handle or device is not open
+Range:	AH=CDh-ECh, selected by scanning for an available multiplex number
+SeeAlso: AX=CD00h"InterWave",AX=CD01h"InterWave",AX=CD02h"InterWave"
+SeeAlso: AX=CD05h"InterWave",AX=CD21h"InterWave",AX=CD80h"InterWave"
+

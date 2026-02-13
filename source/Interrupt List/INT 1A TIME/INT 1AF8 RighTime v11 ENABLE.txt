@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AF8
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - RighTime v1.1 - ENABLE
+	AH = F8h
+Program: RighTime is a TSR by G.T. Becker which continuously adjusts the
+	  system time to correct for clock drift
+Note:	RighTime is TeSseRact-compatible (see INT 2F/AX=5453h) and modifies its
+	  TeSseRact program identifier based on its current state: "RighTime"
+	  when enabled, "RighTim"F7h when disabled.
+SeeAlso: AH=F7h,AH=FFh"RighTime"
+

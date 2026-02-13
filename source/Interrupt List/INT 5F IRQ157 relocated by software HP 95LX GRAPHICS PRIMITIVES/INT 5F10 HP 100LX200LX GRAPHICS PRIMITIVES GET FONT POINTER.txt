@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F10
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 100LX/200LX GRAPHICS PRIMITIVES - GET FONT POINTER
+	AH = 10h
+	CX = font size of desired font
+	    0808h  8x8	small  (80x25 text)
+	    0A0Bh 11x10 medium (64x18 text)
+	    100Ch 12x16 large  (40x16 text)
+Return: DX:AX -> ptr to font or 0000h:fontID# if built-in font
+SeeAlso: AH=11h
+

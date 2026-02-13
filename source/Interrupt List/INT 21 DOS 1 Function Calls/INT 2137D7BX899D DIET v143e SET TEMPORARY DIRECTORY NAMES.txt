@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137D7BX899D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DIET v1.43e - SET TEMPORARY DIRECTORY NAMES
+	AX = 37D7h
+	BX = 899Dh ('DI' + 'ET')
+	DS:DX -> ASCIZ name of temporary directory (max 61 chars)
+		0000h:0000h for current directory
+Return: AX = 0000h
+Note:	the specified directory name must include a drive letter and end with
+	  a backslash
+SeeAlso: AX=37D0h,AX=37D6h
+

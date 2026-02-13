@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Compaq AG1024.SYS - CPQ_MGES - IOCTL OUTPUT
+	AX = 4403h
+	BX = file handle referencing device "CPQ_MGES"
+	DS:DX -> request packet (see #01527)
+	CX ignored
+Return: CF clear if successful
+	    AX destroyed
+	    data buffer filled (if applicable)
+	    first word of request packet set to number of bytes of data
+	      available (amount returned is smaller of this and requested
+	      amount)
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: AG1024.SYS is a device driver for the Advanced Graphics 1024 adapter
+SeeAlso: AX=4403h"RGDI"
+
+Format of Compaq AG1024.SYS request packet:
+Offset	Size	Description	(Table 01527)
+ 00h	WORD	function
+		0000h get ??? (26h bytes)
+		0001h get ??? (36h bytes)
+		0002h set ??? (same as returned by function 0001h)
+		0003h get ??? (6 bytes)
+		0004h get ???
+		0005h get ???
+		0006h get ??? (10h bytes)
+		0007h set ??? (same as returned by function 0006h)
+---functions 00h-03h,06h,07h---
+ 02h	WORD	size of data buffer
+ 04h	DWORD	-> buffer for function's data
+ ---functions 04h,05h---
+ 02h	WORD	???
+ 04h	WORD	size of data buffer
+ 06h	DWORD	-> buffer to receive data
+

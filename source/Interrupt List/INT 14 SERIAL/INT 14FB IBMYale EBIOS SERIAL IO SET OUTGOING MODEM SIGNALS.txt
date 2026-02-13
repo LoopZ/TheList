@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FB
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - IBM/Yale EBIOS SERIAL I/O - SET OUTGOING MODEM SIGNALS
+	AH = FBh
+	AL = modem control register (see #00334 at AH=05h"SERIAL")
+	DX = port (00h-03h)
+Return: nothing
+SeeAlso: AH=05h"SERIAL"
+

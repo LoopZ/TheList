@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C000A
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - GET BASE ADDRESS OF GDT SELECTOR
+	AX = 000Ah
+	SI = selector
+Return: CF clear if successful
+	    EBX = segment base address
+	CF set on error
+	    AX = error code (see #02556)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00, the
+	  memory manager included in Helix Software's Netroom
+SeeAlso: AX=0000h,AX=0002h,AX=000Bh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.3+ GRAFTABL.COM - INSTALLATION CHECK
+	AX = B000h
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+Notes:	called by DISPLAY.SYS
+	documented for DOS 5.0, but undocumented in prior versions
+SeeAlso: AX=2300h,AX=2E00h,AX=B001h
+

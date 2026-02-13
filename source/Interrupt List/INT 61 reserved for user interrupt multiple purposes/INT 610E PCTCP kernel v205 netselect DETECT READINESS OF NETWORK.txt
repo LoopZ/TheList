@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_select" - DETECT READINESS OF NETWORK
+	AH = 0Eh
+	BX = maximum value of network descriptor for which to return info
+	DS:DX -> 32-bit (max) array of bit flags for read readiness
+	ES:DI -> 32-bit (max) array of bit flags for write readiness
+Return: CF clear
+InstallCheck:	test for the signature "TCPTSR" three bytes beyond the start
+	  of the interrupt handler
+Range:	INT 20 to INT E0, selected by configuration
+Notes:	bits in the DS:DX buffer are set if the corresponding network
+	  descriptor may be read without blocking; bits in the ES:DI buffer
+	  are set if the corresponding network descriptor may be written
+	  without blocking.  This implies that the network descriptor has
+	  opened correctly and the protocol initialized.
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB001
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.3+ GRAFTABL.COM - GET GRAPHICS FONT TABLE
+	AX = B001h
+	DS:BX -> DWORD buffer for address of 8x8 font table
+Return: buffer filled
+	AL = FFh
+Note:	PC-DOS 3.30/4.01 and MS-DOS 6.0 set the font table offset to 0130h,
+	  MS-DOS 3.30 sets it to 0030h
+SeeAlso: AH=2Eh"GRAFTABL",AX=B000h
+

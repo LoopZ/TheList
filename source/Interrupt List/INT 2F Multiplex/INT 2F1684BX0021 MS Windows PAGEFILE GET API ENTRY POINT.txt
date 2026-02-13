@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0021
+  Category: W 	MS Windows
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - MS Windows - PAGEFILE - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0021h (virtual device ID for PAGEFILE device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02661)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: AX=1684h/BX=0017h,#01289 at INT 20"Windows"
+
+(Table 02661)
+Call PAGEFILE entry point with:
+	AX = function
+	    0000h get version
+		Return: CF clear
+			AX = version (AH = major, AL = minor)
+	    0001h get swap file info
+		DS:SI -> 128-byte buffer for swap file full pathname
+		DS:DI -> 128-byte buffer for SPART.PAR full pathname
+		Return: CF clear
+			AL = pager type (see #02662)
+			AH = flags
+			    bit 7: swap file corrupted
+			ECX = maximum size of swap file
+			DS:SI buffer filled if paging enabled
+			DS:DI buffer filled if permanent swap file
+	    0002h delete permanent swap file on exit
+		Return: CF clear
+	    0003h get current temporary swap file size
+		Return: CF clear
+			DX:AX = current swap file size in bytes
+				0000h:0000h if permanent swap file
+Note:	this API is only available in protected mode, and may only be called
+	  from the system VM
+SeeAlso: #01289 at INT 20"Windows",#02663
+
+(Table 02662)
+Values for MS Windows PAGEFILE pager type:
+ 00h	paging disabled
+ 01h	MSDOS
+ 02h	BIOS
+ 03h	32-bit disk access
+SeeAlso: #02661
+

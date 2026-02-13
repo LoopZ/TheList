@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF08
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET CPU INFORMATION
+	AX = F27Bh subfn 08h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02498)
+	ES:DI -> reply buffer (see #02499)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Get CPU Information" request buffer:
+Offset	Size	Description	(Table 02498)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	08h (subfunction "Get CPU Information")
+ 03h	DWORD	CPU number
+SeeAlso: #02499
+
+Format of NetWare "Get CPU Information" reply buffer:
+Offset	Size	Description	(Table 02499)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	DWORD	number of CPUs
+ 0Ch	DWORD	page table owner flag
+ 10h	DWORD	CPU type flag
+ 14h	DWORD	coprocessor flag
+ 18h	DWORD	bus type flag
+ 1Ch	DWORD	I/O engine flag
+ 20h	DWORD	filesystem engine flag
+ 24h	DWORD	non-dedicated flag
+ 28h 201 BYTEs	counted string: CPU string;number of coprocessors;bus string
+SeeAlso: #02498
+

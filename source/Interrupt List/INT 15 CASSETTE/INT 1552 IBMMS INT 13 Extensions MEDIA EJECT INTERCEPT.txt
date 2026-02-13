@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1552
+  Category: d 	disk I/O enhancements
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - IBM/MS INT 13 Extensions - MEDIA EJECT INTERCEPT
+	AH = 52h
+	DL = drive number
+Return: CF clear if OK to eject media
+	    AH = 00h
+	CF set if ejection disallowed
+	    AH = error code (B1h,B3h) (see #00234)
+Note:	called by the IBM/MS INT 13 Extensions driver/BIOS when an ejection
+	  request is made
+SeeAlso: INT 13/AH=46h"INT 13 Extensions"
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14B1
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - ENTER COMMAND MODE
+	AH = B1h
+Return: AH = return code (00h,07h,0Ah) (see #00394)
+Desc:	provide a means for the application or terminal emulator to perform
+	  the same action normally caused by the ECM character
+SeeAlso: AH=B0h,AH=B2h
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F25ASF85
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - MOVE FILE DATA FROM DATA MIGRATION
+	AX = F25Ah subfn 85h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02461)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F25Ah/SF=80h,AX=F25Ah/SF=83h,AX=F25Ah/SF=86h
+
+Format of NetWare "Move File Data From Data Migration" request packet:
+Offset	Size	Description	(Table 02461)
+ 00h	WORD	length of following data
+ 02h	BYTE	85h (subfunction "Move File Data from Data Migration")
+ 03h	DWORD	volume number
+ 07h	DWORD	directory entry number
+ 0Bh	DWORD	name space (see #02387)
+SeeAlso: #02452
+

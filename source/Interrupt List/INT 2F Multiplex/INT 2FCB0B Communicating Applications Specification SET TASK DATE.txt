@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB0B
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - SET TASK DATE
+	AX = CB0Bh
+	BX = event handle (task event only)
+	CX = year
+	DH = month
+	DL = day
+Return: AX = 0000h successful
+	AX < 0	   error code (see #03048)
+Note:	setting a task's date and time to before the current date and time
+	  causes it to execute immediately
+SeeAlso: AX=CB01h,AX=CB0Ah,AX=CB0Dh
+

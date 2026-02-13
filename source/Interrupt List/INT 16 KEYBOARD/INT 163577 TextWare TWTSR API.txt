@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 163577
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - TextWare TWTSR - API
+	AX = 3577h
+	CX = function
+	    00CBh ???
+		Return: AX = 0000h
+			BX = 0000h
+			DX:CX -> ???
+	    00CCh uninstall
+		Return: AX = status
+			    0000h successful
+			    FFFDh unable to unload because vectors taken
+	    00CDh ???
+		Return: AX = 0000h
+			BX = 0000h
+			DX:CX -> ???
+	    other
+		Return: AX = 5345h ('SE')
+Program: TWTSR is a TSR which allows the TextWare hypertext browser to be
+	  popped up via hotkey
+SeeAlso: AX=D724h
+

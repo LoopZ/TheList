@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4000
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Windows 3+ (OS/2 2.x???) - GET VIRTUAL DEVICE DRIVER (VDD) CAPABILTIES
+	AX = 4000h
+Return: AL = video virtualization (see #02746)
+Notes:	This function is used by display drivers to find out what capabilities
+	  exist for the VDD driver and also trigger the VDD driver to call
+	  functions 4005h and 4006h (and 4001h/4002h under OS/2?).  This
+	  function also gives the Video Driver hardware access to the video
+	  registers.
+	Once the background/foreground callouts have been activated by a
+	  call to this function, the application *must* handle those callouts
+	  and save/restore the video memory itself.
+
+(Table 02746)
+Values for Windows video virtualization:
+ 01h	does not virtualize video access
+ 02h	virtualizes the video when in text mode
+ 03h	virtualizes the video when in text mode or single plane graphics modes
+ 04h	virtualizes the video when in text mode, single plane graphics modes,
+	  and VGA multiplane modes
+ FFh	virtualizes the video fully
+

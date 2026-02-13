@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Realtek RTVGA - RETURN RTVGA ON-BOARD MEMORY SIZE
+	AX = 5F02h
+Return: AH = 00h, if successful
+	AL = on-board memory size
+	     (00h = 256K, 01h = 512K, 02h = 768K, 03h = 1024K)
+BUG:	in v3.C10, AX=5F02h on return due to improper stack restoration code
+SeeAlso: AX=5F01h"RTVGA",AX=5F03h"RTVGA"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66069C
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - DIGPAK - SET DMA BACKFILL MODE
+	AX = 069Ch
+	DX = mode
+	    0000h turn backfill mode on
+	    0001h turn backfill mode off
+Return: AX = status
+	    0000h command ignored
+	    0001h backfill mode set
+SeeAlso: AX=069Dh,AX=069Eh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 03
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 03 U - Watcom WVIDEO, Watcom WD - OUTPUT DEBUGGING MESSAGE
+	STACK:	DWORD	selector
+		DWORD	offset of ASCIZ message to display
+Notes:	the INT 03h instruction which invokes the debugger must be followed by
+	  a JMP SHORT and the signature string "WVIDEO"
+	to check whether this interface is available, define a public byte
+	  variable named ___WD_Present, which the debugger will set to 01h
+	  before running the program
+SeeAlso: AX=0910h
+

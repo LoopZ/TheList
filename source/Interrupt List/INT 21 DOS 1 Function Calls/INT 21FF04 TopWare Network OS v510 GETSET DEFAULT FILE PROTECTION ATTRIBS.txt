@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET/SET DEFAULT FILE PROTECTION ATTRIBS
+	AX = FF04h
+	CL = function
+	    00h get protections
+		Return: BH = read attribute
+			BL = write attribute
+	    01h set protections
+		BH = read attribute
+		BL = write attribute
+Note:	this function is supported only on Workstations, not on the server
+SeeAlso: AX=FF00h"TopWare"
+

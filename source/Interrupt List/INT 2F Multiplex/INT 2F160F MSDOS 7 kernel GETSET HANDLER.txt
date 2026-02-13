@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F160F
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS-DOS 7 kernel - GET/SET ??? HANDLER
+	AX = 160Fh
+	BL = subfunction
+	    00h get ??? handler
+		Return: AX = 0000h if supported
+			    CX:DX -> handler to which control is passed after
+				      ??? executes
+			   = 160Fh inside a Windows 95B DOS box
+	    01h set ??? handler
+		CX:DX -> new handler for ???
+		Return: AX = 0000h if supported
+Notes:	this function is not supported if ??? in the IO.SYS drivers portion of
+	  the kernel is an IRET instruction (as is the case on my system)
+	  rather than a FAR JMP
+	the indicated handler seems to be related to INT 10 processing
+SeeAlso: AX=160Eh,AX=1611h,AX=1614h
+

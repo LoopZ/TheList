@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1781
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - CANCEL JOBS FOR CURRENT USER
+	AH = 81h
+	AL = 00h (NTNX compatibility mode)
+	CL = number of jobs to cancel
+Return: AL = status (see #00642)
+Note:	this function cancels the last CL printouts for the current task
+SeeAlso: AH=82h
+
+(Table 00642)
+Values for Alloy status:
+ 00h	success
+ 01h-7Fh warning
+ 80h	general failure
+ 81h	host overloaded (NTNX only)
+ 82h	module busy (NTNX only)
+ 83h	host busy (NTNX only)
+ 84h	re-entry flag set
+ 85h	invalid request
+ 86h	invalid printer
+ 87h	invalid process ID
+ 89h	access denied
+ 8Ah	option not available for given port type
+ 8Bh	option not available for given task type
+ 91h	printer busy
+ C2h	file not found
+ C3h	path not found
+ C4h	file access failure
+

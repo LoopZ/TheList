@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13FE
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - SWBIOS - GET EXTENDED CYLINDER COUNT
+	AH = FEh
+	DL = drive number (80h, 81h)
+Return: CF clear
+	DX = number of cylinders beyond 1024 on drive
+Program: SWBIOS is a TSR by Ontrack Computer Systems
+Notes:	standard INT 13/AH=08h will return a cylinder count truncated to 1024
+	BIOS without this extension would return count modulo 1024
+	Disk Manager also supports these calls
+SeeAlso: AH=EEh
+

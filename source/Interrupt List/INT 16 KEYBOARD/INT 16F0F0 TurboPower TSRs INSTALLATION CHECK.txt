@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16F0F0
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - TurboPower TSRs - INSTALLATION CHECK
+	AX = F0F0h
+Return: AX = 0F0Fh if installed
+	    ES:DI -> last data block in TSR list (see #00615)
+Note:	the returned TSR list provides support for communication among TSRs
+	  built with TurboPower's Turbo Professional and Object Professional
+	  libraries for Turbo Pascal
+SeeAlso: AX=E0E0h
+
+Format of TurboPower TSR data block:
+Offset	Size	Description	(Table 00615)
+ 00h	DWORD	pointer to program tag (counted ASCII string)
+ 04h	WORD	interface version number (0400h)
+ 06h	DWORD	pointer to command entry point
+ 0Ah	DWORD	pointer to previous data block (0000h:0000h if none)
+ 0Eh	DWORD	pointer to next data block (0000h:0000h if none)
+---swappable TSRs only---
+ 12h	DWORD	pointer to swapping data
+ 16h	DWORD	pointer to user data
+	more???
+

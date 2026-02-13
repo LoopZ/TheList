@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF0D
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - GET CURRENT PARAMETER
+	AX = AF0Dh
+	BX = offset of desired parameter in global data area
+Return: AX = current value of parameter (AH undefined if byte value)
+SeeAlso: AX=AF00h"WinDOS",AX=AF0Eh
+

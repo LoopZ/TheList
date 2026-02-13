@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151B
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - REQUEST RESOURCE SEMAPHORE BY NAME
+	AH = 1Bh
+	DS:SI -> 8-byte name
+Return: AH = status
+	    00h successful
+	    02h invalid semaphore number
+	    03h caller already owns semaphore
+	    04h out of string space
+Notes:	(see AH=01h"MultiDOS")
+	equivalent to AH=1Ah followed by AH=01h
+SeeAlso: AH=01h"MultiDOS",AH=1Ah"MultiDOS",AH=1Ch"MultiDOS",AH=1Dh"MultiDOS"
+

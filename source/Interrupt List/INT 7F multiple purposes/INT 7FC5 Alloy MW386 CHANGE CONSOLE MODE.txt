@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FC5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - CHANGE CONSOLE MODE
+	AH = C5h
+	AL = new console mode
+	    00h keyboard indirect
+	    01h keyboard direct
+	    02h data handshake enforced
+	    03h no data handshake
+Return: CF clear if successful
+	    AL = prior console mode
+	CF set on error (caller is not remote user)
+Note:	modes 2 and 3 may be used for input through the console port; no video
+	  output should be performed in these modes
+

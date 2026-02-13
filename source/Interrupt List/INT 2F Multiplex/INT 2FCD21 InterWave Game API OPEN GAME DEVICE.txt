@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD21
+  Category: s 	sound/speech
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - InterWave Game API - OPEN GAME DEVICE
+	AX = CD21h
+	BX = installed program identifier
+	ES:DI -> ASCIZ device name
+	    "MIDISIMPLE"
+	    "MIDICOMPLEX"
+	    "DIRECTCODEC"
+Return: AL = status
+	    00h successful
+		DX = device handle
+		---MIDISIMPLE and MIDICOMPLEX---
+		BX = real-mode interrupt number (see #03074,#03075)
+		---DIRECTCODEC---
+		BX = base port
+		CL = IRQ
+		CH = DMA channel (04h = no DMA)
+		SI = size of FIFO in bytes (0000h = use DMA)
+	    nonzero failed (not supported or already in use)
+	AH may be destroyed
+Range:	AH=CDh-ECh, selected by scanning for an available multiplex number
+SeeAlso: AX=CD00h"InterWave",AX=CD01h"InterWave",AX=CD02h"InterWave"
+SeeAlso: AX=CD05h"InterWave",AX=CD22h"InterWave",AX=CD80h"InterWave"
+
+(Table 03074)
+Call MIDISIMPLE with:
+	EAX = function number
+	    0001h MIDI byte out
+		BL = MIDI byte to send
+	    0002h MIDI string out
+		ECX = length of MIDI string in bytes
+		ES:EDI -> MIDI string to send (should not include timing info)
+	DX = device handle
+	INT xxh (as returned by AX=CD21h)
+Return: EAX = status
+	    00000000h if successful
+	    FFFFFFFFh on error (bad handle)
+SeeAlso: #03075,INT 7E/AX=0001h"IWSBSDRV",INT 7E/AX=0002h"IWSBSDRV"
+
+(Table 03075)
+Call MIDICOMPLEX with:
+	EAX = function number
+	    ??? (specification is still in development)
+	DX = device handle
+	INT xxh (as returned by AX=CD21h)
+Return: EAX = status
+	    00000000h if successful
+	    FFFFFFFFh on error (bad handle)
+SeeAlso: #03074
+

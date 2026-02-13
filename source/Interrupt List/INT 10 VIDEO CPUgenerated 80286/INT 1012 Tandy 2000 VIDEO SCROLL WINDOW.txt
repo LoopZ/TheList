@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Tandy 2000 - VIDEO - SCROLL WINDOW
+	AH = 12h
+	AL = number of rows or columns to scroll
+	BH = buffer flag
+	    00h data in user buffer
+		ES:SI -> buffer containing character/attribute pairs
+	    01h no buffer, fill emptied rows/columns with blanks
+	BL = direction in which to scroll
+	    00h up
+	    01h down
+	    02h left
+	    03h right
+	CH,CL = row,column of upper left corner of scroll area
+	DH,DL = row,column of lower right corner
+Return: nothing
+Notes:	this interrupt is identical to INT 52 on Tandy 2000
+	the user buffer, if supplied, must be organized by row; regardless of
+	  the scroll direction, all character/attribute pairs for the first
+	  row are first, then the pairs for the second row, etc.
+SeeAlso: AH=00h,AH=0Bh/BH=02h,AH=11h"Tandy 2000",AH=12h"Tandy 2000"
+SeeAlso: INT 52"Tandy"
+

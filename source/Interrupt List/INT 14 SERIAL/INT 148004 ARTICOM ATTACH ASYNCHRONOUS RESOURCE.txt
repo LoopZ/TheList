@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148004
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - ATTACH ASYNCHRONOUS RESOURCE
+	AX = 8004h
+	DX = port to redirect (COM1=0, COM2=1, ...)
+	CH = attach type
+	CL = adapter to use for attach, 0FFh to search all
+	ES:DI -> attachment structure (see #00361)
+Return: AX = error code, if error (see #00360)
+Note:	The wildcard '*' is supported in the server and resource fields.  If
+	  wild cards are used then the first matching available server is
+	  attached.
+SeeAlso: AX=8000h,AX=8003h,AX=8005h
+
+Format of ARTICOM attachment structure:
+Offset	Size	Description	(Table 00361)
+ 00h 16 BYTEs	server to look for attach
+ 10h 16 BYTEs	attach to resource name
+ 20h 16 BYTEs	username for attach
+ 30h 16 BYTEs	password for username or resource
+ 40h	BYTE	attach type
+		00h normal
+		01h queue if resource is in use (not yet supported in v1.00)
+

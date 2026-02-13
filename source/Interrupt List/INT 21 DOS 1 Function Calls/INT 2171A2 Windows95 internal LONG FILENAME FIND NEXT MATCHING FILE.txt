@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2171A2
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Windows95 - internal - LONG FILENAME - FIND NEXT MATCHING FILE
+	AX = 71A2h
+	BX = filefind handle (from AX=714Eh)
+	SI = date/time format (see #01778)
+	ES:DI -> buffer for FindData record (see #01779)
+Return: CF clear if successful
+	    AX = 71A2h
+	    CX = Unicode conversion flags (see #01780)
+	CF set on error
+	    AX = error code
+		7100h if function not supported
+Notes:	this function is only available when IFSMgr is running, not under bare
+	  MS-DOS 7; it is functionally identical to AX=714Fh
+	documented as "for internal use by Windows 95 only"
+

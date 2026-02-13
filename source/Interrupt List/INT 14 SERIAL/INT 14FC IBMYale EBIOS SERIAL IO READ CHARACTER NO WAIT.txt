@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FC
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - IBM/Yale EBIOS SERIAL I/O - READ CHARACTER, NO WAIT
+	AH = FCh
+	DX = port (00h-03h)
+Return: AH = RS232 status bits (see #00304 at AH=03h)
+	AL = character
+SeeAlso: AH=02h,AH=0Ch,AX=FF02h
+

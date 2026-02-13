@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F0B--CL02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX (Host) - SET/RESET GRAPHICS DOS ON SLAVE
+	AH = 0Bh
+	CL = 02h
+	AL = slave ID number
+	CH = DOS to activate
+	    00h graphics DOS
+	    01h character DOS
+Return: AL = status
+	    00h successful
+	    01h nothing done, proper DOS type already loaded
+

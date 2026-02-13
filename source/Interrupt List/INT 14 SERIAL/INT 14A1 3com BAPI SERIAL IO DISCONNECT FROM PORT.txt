@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A1
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - DISCONNECT FROM PORT
+	AH = A1h
+	DH = session ID (00h for external session managment)
+Return: AH = return code (00h,03h,07h,0Ah,0Bh) (see #00394)
+	AL destroyed (Novell TELAPI.EXE)
+SeeAlso: AH=A0h"BAPI"
+

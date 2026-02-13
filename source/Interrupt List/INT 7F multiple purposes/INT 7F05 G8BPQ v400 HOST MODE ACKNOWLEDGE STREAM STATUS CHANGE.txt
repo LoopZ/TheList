@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.00+ - HOST MODE - ACKNOWLEDGE STREAM STATUS CHANGE
+	AH = 05h
+	AL = stream number (01h-40h)
+Note:	this function must be called in order to receive a report of another
+	  status change
+SeeAlso: AH=00h"G8BPQ",AH=04h"G8BPQ"
+

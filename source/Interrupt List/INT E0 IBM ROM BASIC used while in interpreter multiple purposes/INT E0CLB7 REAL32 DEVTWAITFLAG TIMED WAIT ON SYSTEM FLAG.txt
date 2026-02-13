@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLB7
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "DEV_TWAITFLAG" - TIMED WAIT ON SYSTEM FLAG
+	CL = B7h
+	DS:DX -> Flag Parameter Block (FPB) (see #04058)
+Return: AX = status
+	may destroy SI,DI,DS
+Note:	if the flag was already set, this function returns immediately
+SeeAlso: INT E0/CL=84h,INT E0/CL=85h
+
+Format of REAL/32 Flag Parameter Block (FPB):
+Offset	Size	Description	(Table 04058)
+ 00h	WORD	number of system flag on which to wait
+ 02h	WORD	maximum number of system ticks (see INT E0/CL=9Ah) to wait
+

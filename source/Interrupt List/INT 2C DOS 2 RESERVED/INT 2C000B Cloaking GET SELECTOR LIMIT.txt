@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C000B
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - GET SELECTOR LIMIT
+	AX = 000Bh
+	SI = selector
+Return: CF clear if successful
+	    EBX = segment base address
+	CF set on error
+	    AX = error code (see #02556)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=000Ah,INT 2F/AX=4310h"Cloaking"
+

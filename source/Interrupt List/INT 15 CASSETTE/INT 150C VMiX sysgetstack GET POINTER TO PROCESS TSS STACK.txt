@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150C
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_getstack" - GET POINTER TO PROCESS TSS STACK
+	AH = 0Ch
+	STACK:	WORD	process ID
+Return: DX:AX -> TSS stack store
+SeeAlso: AH=00h"VMiX"
+

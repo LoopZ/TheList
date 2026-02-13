@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 135342CX0001
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - ScanBoot - INSTALLATION CHECK
+	AX = 5342h ("SB")
+	CX = 0001h
+	DX = 0000h
+Return: CF clear if ScanBoot installed
+	   AX = 0000h
+	   CX = serial number ("SW" if shareware release)
+	   DX = version
+	   BX,SI,ES destroyed
+Program: ScanBoot is a virus-detection TSR by PanSoft
+

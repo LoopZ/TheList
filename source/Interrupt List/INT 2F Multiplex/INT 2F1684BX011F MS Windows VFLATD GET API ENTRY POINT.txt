@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX011F
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - VFLATD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 011Fh (virtual device ID for VFLATD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02681)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",AX=1684/BX=045Dh,INT 20"Windows"
+
+(Table 02681)
+Call VFLATD.VXD entry point with:
+	DL = function number
+	    00h get VFLATD version and ???
+		Return: CF clear
+			EAX = version (AH = major, AL = minor)
+			EBX = ???
+			ECX = ???
+			EDX = ??? or 00000000h
+	    01h ???
+		AX = ???
+		CX = ???
+		Return: EAX = ???
+			EDX = ???
+	    02h ???
+		???
+	    03h ???
+		EAX = ???
+		EBX = ???
+		ESI = ???
+		CX = ???
+		DH = ???
+		Return: EAX = ???
+			EDX = ???
+			CF clear
+	    04h ???
+		DH = ???
+		EAX = ???
+		ECX = ???
+		Return: CF clear
+			EAX = ???
+			EDX = ???
+	    05h ???
+		???
+		Note:	locks some linear memory and calls fn 02h
+	    06h ???
+		???
+		Return: CF clear if successful
+			CF set on error
+		Note:	calls fn 02h and unlocks some linear memory
+	    else
+		Return: CF set
+SeeAlso: #02680
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH0D
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - SET CPU SPEED MODE
+	AX = 5380h
+	BH = 0Dh
+	CL = CPU clock divider (1,2,4 or 8)
+	BL = autocpumode ???
+Return: CF clear if successful
+Desc:	writes bits 4-5 of CPUPWRMODE register
+SeeAlso: AX=5380h/BH=0Ch,AX=5380h/BH=7Eh,AX=5380h/BH=7Fh
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5207
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - JAM.SYS v1.10+ - "Write" - PHYSICAL WRITE DATA TO JAM ARCHIVE
+	AX = 5207h
+	DL = drive number (0-default, 1-A:, etc.)
+	DS:BX -> disk transfer packet (see #02836)
+Return: AH = status (00h,01h,04h,06h,07h,08h,0Dh) (see #02835)
+	AL = host drive error code (see #02598 at INT 2F/AX=0802h)
+SeeAlso: AX=5206h
+

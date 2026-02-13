@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 690102
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - DECnet DOS CTERM - READ BYTE
+	AX = 0102h
+	DX = session handle
+Return: AH >= 80h on error
+	AH < 80h if successful
+	    AL = character
+SeeAlso: AX=0101h
+

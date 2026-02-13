@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FEE02
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - XVIEW - POP UP GIVING A PAGE NUMBER
+	AX = EE02h
+	DX = physical page number or anchor page number (see #03112)
+Return: AX = status (see #03111)
+Note:	physical page numbers are assigned by the hypertext compiler, and
+	  will change if a page is inserted in the middle
+SeeAlso: AX=EE00h"XVIEW",AX=EE01h,AX=EE05h,AX=EE06h
+
+(Table 03112)
+Values for XVIEW anchor page number:
+ FFEAh	_Credits
+ FFECh	_SearchTopics
+ FFEDh	_SearchText
+ FFF0h	_ManualList
+ FFF5h	_HelpOnHelp
+ FFF8h	_HomePage
+ FFF9h	_IndexPage
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F0A
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - MultiLink Advanced v1.0+ - SET KEYBOARD TEST STATUS
+	AH = 0Ah
+	AL = task-switch status
+	    00h normal (disable task when it repeatedly polls keyboard)
+	    01h disable task until keyboard input available
+	    FFh never disable task
+Return: ???
+SeeAlso: AH=09h"MultiLink"
+

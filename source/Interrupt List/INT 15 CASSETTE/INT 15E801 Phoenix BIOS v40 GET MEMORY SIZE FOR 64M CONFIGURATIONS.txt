@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E801
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Phoenix BIOS v4.0 - GET MEMORY SIZE FOR >64M CONFIGURATIONS
+	AX = E801h
+Return: CF clear if successful
+	    AX = extended memory between 1M and 16M, in K (max 3C00h = 15MB)
+	    BX = extended memory above 16M, in 64K blocks
+	    CX = configured memory 1M to 16M, in K
+	    DX = configured memory above 16M, in 64K blocks
+	CF set on error
+Notes:	supported by the A03 level (6/14/94) and later XPS P90 BIOSes, as well
+	  as the Compaq Contura, 3/8/93 DESKPRO/i, and 7/26/93 LTE Lite 386 ROM
+	  BIOS
+	supported by AMI BIOSes dated 8/23/94 or later
+	on some systems, the BIOS returns AX=BX=0000h; in this case, use CX
+	  and DX instead of AX and BX
+	this interface is used by Windows NT 3.1, OS/2 v2.11/2.20, and is
+	  used as a fall-back by newer versions if AX=E820h is not supported
+	this function is not used by MS-DOS 6.0 HIMEM.SYS when an EISA machine
+	  (for example with parameter /EISA) (see also MEM F000h:FFD9h), or no
+	  Compaq machine was detected, or parameter /NOABOVE16 was given.
+SeeAlso: AH=8Ah"Phoenix",AX=E802h,AX=E820h,AX=E881h"Phoenix"
+

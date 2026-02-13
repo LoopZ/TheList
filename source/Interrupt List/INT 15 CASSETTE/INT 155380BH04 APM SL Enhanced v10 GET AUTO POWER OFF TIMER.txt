@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH04
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - GET AUTO POWER OFF TIMER
+	AX = 5380h
+	BH = 04h
+Return: CF clear if successful
+	SI:DI = timer count in seconds (actually 1.024 seconds)
+Desc:	reads the value of 82360SL APWR_TMRH & APWR_TMRL registers
+SeeAlso: AX=5380h/BH=02h,AX=5380h/BH=05h,AX=5380h/BH=06h,AX=5380h/BH=7Fh
+

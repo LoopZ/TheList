@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAFDE
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Disk-Emu - INSTALLATION CHECK / GET VERSION
+	AX = AFDEh
+	ES:DI -> 14-byte buffer for data (see #02979)
+Return: AX = CFDEh (Carlos Fernandez Disk-Emu) if installed
+	    BX = version (BH = major, BL = minor)
+
+Format of Disk-Emu information data:
+Offset	Size	Description	(Table 02979)
+ 00h	BYTE	number of tracks
+ 01h	BYTE	sectors per track
+ 02h	WORD	bytes per sector
+ 04h	BYTE	number of heads
+ 05h	BYTE	flag: 00h inactive, 01h active
+ 06h	BYTE	write protection (00h none, 01h full, 02h pseudo)
+ 07h	BYTE	saved (00h some unsaved data, 01h all data saved)
+ 08h	BYTE	disk in memory (00h no, 01h yes)
+ 09h	WORD	EMS handle
+ 0Bh	WORD	XMS handle
+ 0Dh	BYTE	memory type used for disk (00h XMS, 01h EMS)
+

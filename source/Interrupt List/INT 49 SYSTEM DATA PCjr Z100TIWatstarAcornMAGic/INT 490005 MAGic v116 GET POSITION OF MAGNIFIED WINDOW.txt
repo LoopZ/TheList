@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 490005
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - MAGic v1.16+ - GET POSITION OF MAGNIFIED WINDOW
+	AX = 0005h
+Return: AX = status
+	    0000h successful
+		BX = vertical position (char row or pixel row)
+		DX = horizontal position (char column or 8-pixel units)
+	    FFFFh MAGic busy, retry later
+		BX,DX destroyed
+	CX destroyed
+SeeAlso: AX=0001h,AX=0003h,AX=0004h,AX=0006h,AX=0007h
+

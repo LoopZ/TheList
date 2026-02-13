@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BLA3
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - SET VGA REFRESH
+	AH = 12h
+	BL = A3h
+	AL = refresh rate for 640x480 (00h normal, 01h high)
+Return: nothing
+SeeAlso: AH=12h/BL=9Ah,AH=12h/BL=A4h
+

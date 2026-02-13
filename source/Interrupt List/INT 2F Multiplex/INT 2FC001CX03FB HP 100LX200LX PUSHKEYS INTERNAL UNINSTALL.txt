@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC001CX03FB
+  Category: K 	keyboard enhancers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - HP 100LX/200LX - PUSHKEYS - INTERNAL - UNINSTALL
+	AX = C001h
+	CX = 03FBh return address to continue uninstall if possible
+Return: program uninstalled
+Range:	AH=C0h to AH=FFh, selected by scanning for signature with AL=AEh
+SeeAlso: AX=C000h"HP 100LX",AX=C0AEh"HP 100LX",AX=C0AFh"HP 100LX"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21A5
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Attachmate Extra! - GET HOST WINDOW CURSOR POSITION
+	AH = A5h
+	AL = window number (1-4=host B-E)
+Return: BX = cursor position (80 * row + column, where 0:0 is upper left)
+Note:	if the host window is configured with the Extended Attribute (EAB)
+	  feature, multiply the cursor position by 2 to obtain the byte offset
+	  into the display buffer
+SeeAlso: AH=A4h
+

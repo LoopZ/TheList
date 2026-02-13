@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620069
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_KBTEST" - CHECK WHETHER SPECIFIED KEY PRESSED
+	AX = 0069h
+	BX = scan code of desired key
+Return: AX = state
+	    0000h key is not pressed
+	    0001h key is currently pressed
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The low-level keyboard handler must have been enabled with AX=0066h
+SeeAlso: AX=0066h,AX=0067h,INT 16/AH=01h
+

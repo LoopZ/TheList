@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1416
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - INSERT/DELETE FUNCTION FROM TIMER TICK CHAIN
+	AH = 16h
+	AL = function
+	    00h = delete
+	    01h = add
+	ES:DX -> routine to call
+Return: AX = status
+	    0000h successful
+	    0001h unsuccessful
+SeeAlso: AH=07h"FOSSIL"
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660697
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - DIGPAK - SET STEREO PANNING
+	AX = 0697h
+	DX = panning position (0 = right, 127 = left)
+Return: AX = status
+	    0000h command ignored (not supported)
+	    0001h panning set
+

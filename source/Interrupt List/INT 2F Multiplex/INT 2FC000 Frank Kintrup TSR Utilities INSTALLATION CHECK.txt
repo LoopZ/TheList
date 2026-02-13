@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Frank Kintrup TSR Utilities - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    BX = program ID (see #03031)
+	    CX = 464Bh (signature "FK")
+	    DX = revision number (DH = major, DL = minor)
+	    ES = resident segment of TSR
+Range:	AH=C0h to AH=FFh, selected by searching for a free multiplex number
+SeeAlso: AX=C001h"Kintrup",AX=C002h"Kintrup"
+
+(Table 03031)
+Values for Frank Kintrup TSR program ID:
+ 4153h	"AS"	ASCII.COM	ASCII table with paste function
+ 434Ch	"CL"	CLOCK.COM	clock with date/time display and alarm
+ 5043h	"PC"	PCALC.COM	programmer's calculator with paste function
+ 5343h	"SC"	SCRSAVE.COM	screen saver with mouse support and hotkey
+ 5544h	"UD"	UNDEL.COM	undelete program like SMARTCAN or DPROTECT
+

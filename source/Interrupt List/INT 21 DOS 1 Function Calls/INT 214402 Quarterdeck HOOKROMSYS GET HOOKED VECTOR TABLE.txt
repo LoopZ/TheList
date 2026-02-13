@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Quarterdeck - HOOKROM.SYS - GET HOOKED VECTOR TABLE
+	AX = 4402h
+	BX = file handle for device "HOOKROM$"
+	CX = 0004h
+	DS:DX -> DWORD buffer for address of hooked vector table (see #01451)
+Return: CF clear if successful
+	    DS:DX buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4402h/SF=01h
+
+Format of HOOKROM.SYS hooked vector table entry:
+Offset	Size	Description	(Table 01451)
+ 00h  5 BYTEs	FAR jump to actual interrupt handler
+		(end of table if first byte is not EAh)
+ 05h	BYTE	interrupt vector number
+

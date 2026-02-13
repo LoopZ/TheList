@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx048E
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - NWREDIR - VxD SERVICES
+	VxD = 048Eh
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01322)
+Values for NWREDIR (VxD ID 048Eh) service number:
+ 00h	get NWREDIR version???
+ 01h	???
+SeeAlso: #01321,#01323
+

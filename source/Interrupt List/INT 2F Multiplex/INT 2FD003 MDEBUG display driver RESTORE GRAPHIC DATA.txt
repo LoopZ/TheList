@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD003
+  Category: G 	debuggers/debugging tools
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MDEBUG display driver - RESTORE GRAPHIC DATA
+	AX = D003h
+Return: CF set on error
+	CF clear if successful
+	    display restored to the mode it was in before calling AX=D002h and
+	      the display memory is restored
+Note:	MDEBUG calls this function only once every popup session just before
+	 it exits to normal DOS.
+SeeAlso: AX=D000h,AX=D002h
+

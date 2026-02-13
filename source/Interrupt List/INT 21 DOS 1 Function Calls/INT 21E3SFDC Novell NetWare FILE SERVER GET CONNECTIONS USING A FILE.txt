@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFDC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET CONNECTIONS USING A FILE
+	AH = E3h subfn DCh
+	DS:SI -> request buffer (see #02050)
+	ES:DI -> reply buffer (see #02051)
+Return: AL = status (00h,C6h) (see #02053)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=DAh,AH=E3h/SF=DBh,AH=E3h/SF=DFh,AH=E3h/SF=E1h
+SeeAlso: AX=F217h/SF=DCh
+
+Format of NetWare "Get Connections Using a File" request buffer:
+Offset	Size	Description	(Table 02050)
+ 00h	WORD	length of following data (max 104h)
+ 02h	BYTE	DCh (subfunction "Get Connections Using a File")
+ 03h	WORD	(big-endian) last record (0000h on first call)
+ 05h	BYTE	directory handle
+ 06h	BYTE	length of file path
+ 07h  N BYTEs	ASCIZ file path
+SeeAlso: #02051,#02235 at AX=F217h/SF=DCh
+
+Format of NetWare "Get Connections Using a File" reply buffer:
+Offset	Size	Description	(Table 02051)
+ 00h	WORD	(call) size of following results record (max 1FEh)
+ 02h	WORD	(big-endian) count of tasks which have opened or logged file
+ 04h	WORD	(big-endian) count of tasks which have opened file
+ 06h	WORD	(big-endian) count of opens for reading
+ 08h	WORD	(big-endian) count of opens for writing
+ 0Ah	WORD	(big-endian) deny read count
+ 0Ch	WORD	(big-endian) deny write count
+ 0Eh	WORD	next request record (place in "last record" field on next call)
+		0000h if no more records
+ 10h	BYTE	locked flag
+		00h not locked exclusively
+		else locked exclusively
+ 11h	BYTE	number of records following
+ 12h	var	array of File Usage Information Records (see #02052)
+SeeAlso: #02050,#02235 at AX=F217h/SF=DCh
+
+Format of NetWare File Usage Information Record:
+Offset	Size	Description	(Table 02052)
+ 00h	WORD	(big-endian) logical connection number
+ 02h	BYTE	task number
+ 03h	BYTE	lock flags (see #02048)
+ 04h	BYTE	access flags (see #02049)
+ 05h	BYTE	lock type
+		00h no lock
+		FEh file lock
+		FFh locked by Begin Share File Set
+

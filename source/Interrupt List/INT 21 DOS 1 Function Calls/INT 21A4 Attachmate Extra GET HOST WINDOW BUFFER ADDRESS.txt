@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21A4
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Attachmate Extra! - GET HOST WINDOW BUFFER ADDRESS
+	AH = A4h
+	AL = window number (1-4=host B-E)
+Return: DS:BX -> 3270 display buffer
+SeeAlso: AH=A5h,AH=B8h
+

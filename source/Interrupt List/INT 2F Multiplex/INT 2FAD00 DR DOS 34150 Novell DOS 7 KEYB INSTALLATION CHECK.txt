@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD00
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DR DOS 3.41-5.0, Novell DOS 7 KEYB - INSTALLATION CHECK
+	AX = AD00h
+Return: AX = FFFFh if installed
+	flags destroyed
+Note:	the Novell DOS 7 KEYB driver only checks AL to determine whether it
+	  is already installed
+SeeAlso: AX=AD80h"Novell"
+

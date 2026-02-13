@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 108200
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - AX PC - GET/SET SCROLL MODE
+	AX = 8200h
+	BL = new scroll mode or FFh to get current mode
+	    00h dynamic, 01h software
+Return: AL = scroll mode (current mode if BL=FFh, previous mode otherwise)
+SeeAlso: AH=06h,AH=07h
+

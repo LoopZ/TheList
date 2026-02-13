@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF73
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - ABORT SERVICING QUEUE JOB AND FILE
+	AH = E3h subfn 73h
+	DS:SI -> request buffer (see #01988)
+	ES:DI -> reply buffer (see #01989)
+Return: AL = status (00h,96h,D0h,D1h,D6h,D9h) (see #01961)
+Desc:	inform the Queue Management System (QMS) that the queue server is
+	  unable to service a previously-accepted job
+Notes:	this function is supported by Advanced NetWare 2.1+
+	this is an old version of the call (see AH=E3h/SF=84h)
+	only a job server which previously accepted a job for servicing may
+	  call this function
+SeeAlso: AH=E3h/SF=6Fh,AH=E3h/SF=71h,AH=E3h/SF=72h,AH=E3h/SF=76h,AH=E3h/SF=84h
+SeeAlso: AX=F217h/SF=73h
+
+Format of NetWare "Abort Servicing Queue Job and File (old)" request buffer:
+Offset	Size	Description	(Table 01988)
+ 00h	WORD	0007h (length of following data)
+ 02h	BYTE	73h (subfunction "Abort Servicing Queue Job and File (old)")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	WORD	(big-endian) job number
+SeeAlso: #01989,#01987
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01989)
+ 00h	WORD	(call) 0000h (no results returned)
+SeeAlso: #01987,#01988,#01990,#01991
+

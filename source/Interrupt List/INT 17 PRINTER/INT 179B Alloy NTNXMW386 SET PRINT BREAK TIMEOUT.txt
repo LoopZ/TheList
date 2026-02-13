@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 179B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX,MW386 - SET PRINT BREAK TIMEOUT
+	AH = 9Bh
+	AL = mode
+	    00h NTNX compatibility
+		CX = timeout value in clock ticks (1/18 sec) (00h = never)
+	    01h MW386
+		CX = timeout value in seconds (00h = never)
+	    02h MW386 v2+
+		BX = logical device number
+		    00h-03h = LPT1-LPT4
+		    04h-07h = COM1-COM4
+		CX = timeout value in seconds (00h = never)
+Return: AL = status (see #00642)
+Notes:	modes 00h and 01h affect only the current logical LPT1
+	if no data is sent to a printer for the specified amount of time, the
+	  spool file will be closed and queued for printing automatically
+SeeAlso: AH=97h
+

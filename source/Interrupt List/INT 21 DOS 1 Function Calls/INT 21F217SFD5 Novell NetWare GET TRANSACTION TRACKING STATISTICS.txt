@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFD5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET TRANSACTION TRACKING STATISTICS
+	AX = F217h subfn D5h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02029 at AH=E3h/SF=D5h)
+	ES:DI -> reply buffer (see #02228)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=D5h,AX=F217h/SF=D0h
+
+Format of NetWare "Get Transaction Tracking Statistics" reply packet:
+Offset	Size	Description	(Table 02228)
+ 00h	DWORD	(big-endian) clock ticks since system started
+ 04h	BYTE	transaction tracking supported if nonzero
+		(all following fields are invalid if zero)
+ 05h	BYTE	transaction tracking enabled
+ 06h	WORD	(big-endian) transaction volume number
+ 08h	WORD	(big-endian) maximum simultaneous transactions configured
+ 0Ah	WORD	(big-endian) maximum simultaneous transactions since startup
+ 0Ch	WORD	(big-endian) current transactions in progress
+ 0Eh	DWORD	(big-endian) total transactions performed
+ 12h	DWORD	(big-endian) total write transactions
+ 16h	DWORD	(big-endian) total transactions backed out
+ 1Ah	WORD	(big-endian) number of unfilled backout requests
+ 1Ch	WORD	(big-endian) disk blocks used for transaction tracking
+ 1Eh	DWORD	(big-endian) blocks allocated for tracked-file FATs
+ 22h	DWORD	(big-endian) number of file size changes during a transaction
+ 26h	DWORD	(big-endian) number of file truncations during a transaction
+ 2Ah	BYTE	number of records following
+ 2Bh	Active Transaction Records [array]
+	Offset	Size	Description
+	 00h	BYTE	logical connection number
+	 01h	BYTE	task number
+SeeAlso: #02029,#02030 at AH=E3h/SF=D5h
+

@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 333003
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Smooth Mouse Driver, PrecisePoint - GET INFORMATION
+	AX = 3003h
+	BL = data structure selector
+	    00h Primary Bitmap (used for 25 line mode) (see #03192)
+	    01h Secondary Bitmap (used for 43/50 line modes) (see #03192)
+	    02h Sacrifice Character Map (see #03193)
+	    03h Program Information (see #03194)
+Return: ES:DX -> selected data structure
+SeeAlso: AX=3000h
+
+Format of Primary/Secondary Bitmap [SMD_BITMAP_STRUCT]:
+Offset	Size	Description	(Table 03192)
+ 00h	BYTE	vertical size of bitmap (00h - 10h)
+ 01h	BYTE	horizontal size of bitmap (00h - 10h)
+ 02h	BYTE	vertical hotspot position (00h - 10h)
+ 03h	BYTE	horizontal hotspot position (00h - 10h)
+ 04h 16 WORDs	cursor bitmap data
+ 14h 16 WORDs	screen bitmap data
+
+Format of Sacrifice Character Map [SMD_SMAP_STRUCT]:
+Offset	Size	Description	(Table 03193)
+ 00h	BYTE	bytes are character values (00h-FFh) used in place of the
+ 01h	BYTE	actual character for the corresponding position on the screen
+ 02h	BYTE	     +--------------+	  occupied by part or all of the mouse
+ 03h	BYTE	     | 0h | 1h | 2h |	  cursor
+ 04h	BYTE	     |----+----+----|
+ 05h	BYTE	     | 3h | 4h | 5h |
+ 06h	BYTE	     |----+----+----|
+ 07h	BYTE	     | 6h | 7h | 8h |
+ 08h	BYTE	     +--------------+
+
+Format of Program Information [SMD_INFO_STRUCT]:
+Offset	Size	Description	(Table 03194)
+ 00h	WORD	segment of old interrupt 33h handler
+ 02h	WORD	offset of old interrupt 33h handler
+ 04h	WORD	PSP of SMD
+ 06h	BYTE	ENABLE/DISABLE manual setting status
+ 07h	BYTE	ENABLE/DISABLE internal usage status
+

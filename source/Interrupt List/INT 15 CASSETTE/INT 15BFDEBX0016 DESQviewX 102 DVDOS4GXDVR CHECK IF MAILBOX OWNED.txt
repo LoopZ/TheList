@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BFDEBX0016
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview/X 1.02+ - DVDOS4GX.DVR - CHECK IF ??? MAILBOX OWNED
+	AX = BFDEh
+	BX = 0016h
+	CX = index of ??? mailbox
+		(0000h-0004h valid, but no range checking done)
+Return: AX = status
+	    0000h no one owns mailbox
+	    0001h mailbox has an owner
+	BX destroyed
+SeeAlso: AX=BFDEh/BX=0015h,AX=BFDEh/BX=0017h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1702
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows "WINOLDAP" - EMPTY CLIPBOARD
+	AX = 1702h
+Return: AX = status
+	    nonzero clipboard has been emptied
+	    0000h   failure
+SeeAlso: AX=1700h,AX=1701h,AX=1703h,AX=1704h,INT 16/AX=CB05h
+

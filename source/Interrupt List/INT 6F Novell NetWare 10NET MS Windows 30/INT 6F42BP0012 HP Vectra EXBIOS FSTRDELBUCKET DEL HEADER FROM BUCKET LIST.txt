@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F42--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_STR_DEL_BUCKET" - DEL HEADER FROM BUCKET LIST
+	AH = 42h
+	BP = 0012h (driver ID of V_SYSTEM)
+	ES:DI -> bucket header (see #03775)
+Return: AH = status (00h,FEh) (see #03744 at AH=00h"HP Vectra")
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AH=40h/BP=0012h,AH=44h/BP=0012h
+
+Format of HP Vectra EX-BIOS bucket header:
+Offset	Size	Description	(Table 03775)
+ 00h	DWORD	pointer to next bucket header (FFFFh:FFFFh if last)
+ 04h	WORD	upper bound on string index
+ 06h	WORD	lower bound on string index
+ 08h	DWORD	pointer to array of string offset pointers
+ 0Ch	WORD	segment of strings
+Note:	the strings pointed at by the offset pointers are byte-counted ASCIZ
+	  strings
+

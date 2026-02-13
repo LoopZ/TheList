@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0C02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - WRITE TO PRINTER
+	DI = 0C02h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to data to be written
+		WORD	length of data
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0C00h
+

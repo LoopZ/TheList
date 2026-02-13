@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330007
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - DEFINE HORIZONTAL CURSOR RANGE
+	AX = 0007h
+	CX = minimum column
+	DX = maximum column
+Note:	in text modes, the minimum and maximum columns are truncated to the
+	  next lower multiple of the cell size, typically 8x8 pixels
+SeeAlso: AX=0008h,AX=0010h,AX=0031h,INT 62/AX=0080h
+SeeAlso: INT 6F/AH=0Ch"F_SET_LIMITS_X"
+

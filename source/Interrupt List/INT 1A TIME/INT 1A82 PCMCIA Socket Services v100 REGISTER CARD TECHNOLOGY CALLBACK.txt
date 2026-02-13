@@ -1,0 +1,85 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A82
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - REGISTER CARD TECHNOLOGY CALLBACK
+	AH = 82h
+	DS:DX -> callback routine (see #00661) or 0000h:0000h
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (see #00656)
+Note:	the callback is invoked on a Write Multiple request with an unsupported
+	  card technology type
+SeeAlso: AH=81h"PCMCIA",AH=94h
+
+(Table 00661)
+Values PCMCIA callback routine is invoked with:
+	ES:AX -> Low-Level Socket Services Routines (see #00663)
+	BH = socket attributes (see #00662)
+	CX = number of bytes or words to write
+	DS:SI -> data buffer to be written
+	DX:DI -> 26-bit linear card address
+	BP = card technology type
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (07h,0Ch,12h,14h) (see #00656)
+
+Bitfields for PCMCIA socket attributes:
+Bit(s)	Description	(Table 00662)
+ 7-4	reserved (0)
+ 3	packed buffer
+ 2	even bytes only (only valid if 1 set)
+ 1	data width (clear = byte, set = word)
+ 0	memory type (clear = common, set = attribute)
+
+Format of PCMCIA Low-Level Socket Services Routines:
+Offset	Size	Description	(Table 00663)
+ 00h	WORD	offset of Write Many routine (see #00664)
+ 02h	WORD	offset of Write One routine (see #00665)
+ 04h	WORD	offset of Read One routine (see #00666)
+ 06h	WORD	offset of Increment Offset routine (see #00667)
+ 08h	WORD	offset of Set Offset routine (see #00668)
+ 0Ah	WORD	offset of Get Status routine (see #00669)
+
+(Table 00664)
+Call Write Many routine with:
+	BH = socket attributes (see #00662)
+	CX = number of bytes or words to write
+	DS:SI -> data to be written
+Return: CF clear if successful
+	CF set on error
+
+(Table 00665)
+Call Write One routine with:
+	AL/AX = data to be written
+	BH = socket attributes (see #00662)
+Return: CF clear if successful
+	CF set on error
+
+(Table 00666)
+Call Read One routine with:
+	BH = socket attributes (see #00662)
+Return: CF clear if successful
+	    AL/AX = data read
+	CF set on error
+
+(Table 00667)
+Call Increment Offset routine with:
+	BH = socket attributes (see #00662)
+Return: CF clear if successful
+	CF set on error
+
+(Table 00668)
+Call Set Offset routine with:
+	DX:DI = new offset address
+Return: CF clear if successful
+	CF set on error
+
+(Table 00669)
+Call Get Status routine with:
+	nothing
+Return: AL = current card status (see #00660)
+

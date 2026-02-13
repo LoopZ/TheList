@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD07
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SWELL.EXE - GET INFO
+	AX = CD07h
+	ES:BX -> 32-byte buffer for info (see #03070)
+Return: AX = status
+	    0000h successful
+		ES:BX buffer filled
+	    8001h buffer wrong size
+
+Format of SWELL.EXE info buffer:
+Offset	Size	Description	(Table 03070)
+ 00h	WORD	20h  (total size of buffer)
+ 02h	BYTE	suspend-once mode active if nonzero
+ 03h	BYTE	00h active, 01h suspended
+ 04h	BYTE	00h quiet, 01h verbose
+ 05h	BYTE	"Borland support" (allowing INT 21/AX=4B01h) on if nonzero
+ 06h 26 BYTEs	unused???
+

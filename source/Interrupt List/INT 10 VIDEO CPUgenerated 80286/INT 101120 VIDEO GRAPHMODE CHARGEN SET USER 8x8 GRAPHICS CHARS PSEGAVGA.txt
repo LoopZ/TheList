@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101120
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GRAPH-MODE CHARGEN - SET USER 8x8 GRAPHICS CHARS (PS,EGA,VGA)
+	AX = 1120h
+	ES:BP -> user table for INT 1F
+Return: nothing
+Note:	this function is meant to be called immediately after a mode set;
+	  results are unpredictable at other times
+SeeAlso: AX=1121h,AX=1122h,AX=1123h,AX=1124h,AX=1129h,INT 1F"SYSTEM DATA"
+SeeAlso: INT 43"VIDEO DATA"
+

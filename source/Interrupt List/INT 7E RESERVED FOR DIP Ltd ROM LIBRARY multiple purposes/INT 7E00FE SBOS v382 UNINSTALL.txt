@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7E00FE
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7E - SBOS v3.82 - UNINSTALL
+	AX = 00FEh
+Return: AX = status
+	    0000h successful
+	    00FCh unable to unhook INT 21
+	    00FDh unable to unhook INT 09
+	    00FEh unable to release memory
+Program: SBOS is a SoundBlaster emulator for the Gravis UltraSound
+InstallCheck:	test for the ASCII signature "SBOS" at offset 0Ah in the
+	  interrupt handler's segment (similar to one of the possible EMS
+	  installation checks)
+Range:	SBOS may use INT 78-INT 7F
+Note:	this function may not be called if any SBOS vectors have been hooked
+SeeAlso: INT 21/AX=FD12h,INT 78"UltraMID"
+

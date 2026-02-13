@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4800
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PCED v2.1 - INSTALLATION CHECK
+	AX = 4800h
+Return: AX = AACDh if installed
+	    ES = segment of PCED kernel (PCED has multiple code segments)
+Program: PCED v2.1 is a command line editor/history/macro facility by
+	  Cove Software.  It is the commercial version of the freeware CED.
+Notes:	DOSKEY also responds to this call if installed, returning AX=AA02h.
+	unlike DOSKEY, PCED does *not* chain if AL contains an
+	  unsupported function code.  It IRETs with all registers intact.
+

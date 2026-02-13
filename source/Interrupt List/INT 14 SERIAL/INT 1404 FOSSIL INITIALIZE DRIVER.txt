@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1404
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - INITIALIZE DRIVER
+	AH = 04h
+	DX = port number
+	optionally BX=4F50h
+		   ES:CX -> byte to be set upon ^C
+Return: AX = 1954h (if successful)
+	BL = maximum function number supported (excluding 7Eh and above)
+	BH = revision of FOSSIL specification supported
+	DTR is raised
+Note:	the word at offset 6 in the interrupt handler contains 1954h, and the
+	  following byte contains the maximum function number supported; this
+	  can serve as an installation check
+SeeAlso: AH=05h"FOSSIL",AH=1Ch,INT 11/AH=BCh
+Index:	installation check;FOSSIL
+

@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1703
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows "WINOLDAP" - SET CLIPBOARD DATA
+	AX = 1703h
+	DX = clipboard format supported by WinOldAp (see #02723)
+	ES:BX -> data (see #02724,#02725)
+	SI:CX = size of data
+Return: AX = status
+	    nonzero data copied into the Clipboard
+	    0000h   failure
+SeeAlso: AX=1701h,AX=1705h,INT 16/AX=CB04h
+
+(Table 02723)
+Values for WinOldAp clipboard format:
+ 01h	text
+ 02h	bitmap
+ 03h	metafile picture
+ 04h	SYLK
+ 05h	DIF
+ 06h	TIFF
+ 07h	OEM text
+ 08h	DIB bitmap
+ 80h	special format (used by Windows WRITE, maybe other Windows applets???)
+ 81h	DSP text
+ 82h	DSP bitmap
+
+Format of Windows Clipboard bitmap:
+Offset	Size	Description	(Table 02724)
+ 00h	WORD	type (0000h)
+ 02h	WORD	width of bitmap in pixels
+ 04h	WORD	height of bitmap in pixels
+ 06h	WORD	bytes per line
+ 08h	BYTE	number of color planes
+ 09h	BYTE	number of adjacent color bits in pixel
+ 0Ah	DWORD	pointer to start of data
+ 0Eh	WORD	width in 0.1mm units
+ 10h	WORD	height in 0.1mm units
+ 12h  N BYTEs	bitmap data
+
+Format of Windows metafile picture:
+Offset	Size	Description	(Table 02725)
+ 00h	WORD	mapping mode
+ 02h	WORD	X extent
+ 04h	WORD	Y extent
+ 06h	WORD	picture data
+

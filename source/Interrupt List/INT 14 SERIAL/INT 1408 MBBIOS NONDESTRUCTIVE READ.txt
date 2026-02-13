@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1408
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS - NON-DESTRUCTIVE READ
+	AH = 08h
+	DX = port number
+Return: AL = character (if AH bit 0 set)
+	AH = status (see #00304)
+SeeAlso: AH=0Bh"MBBIOS",AH=0Ch"FOSSIL"
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A90
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - NETBIOS.EXE 3+ - INSTALLATION CHECK
+	AX = 7A90h
+Return: AL = 00h if present
+	    BX = ???
+	    CX = PSP segment of NETBIOS resident code
+SeeAlso: AX=7AFEh
+

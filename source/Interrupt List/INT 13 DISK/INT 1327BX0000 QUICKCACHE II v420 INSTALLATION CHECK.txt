@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1327--BX0000
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - INSTALLATION CHECK
+	AH = 27h
+	BX = 0000h
+Return: AX = 0000h if installed
+	BX nonzero if installed
+	    BH = major version
+	    BL = binary minor version
+Program: QUICKCACHE II is a shareware disk cache by P.R. Glassel and
+	  Associates, Inc.
+SeeAlso: AH=26h,AH=A0h,INT 16/AX=FFA5h/CX=1111h
+

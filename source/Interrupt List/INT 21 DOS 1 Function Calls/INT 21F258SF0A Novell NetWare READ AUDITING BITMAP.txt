@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F258SF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - READ AUDITING BITMAP
+	AX = F258h subfn 0Ah
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02435)
+	ES:DI -> reply buffer (see #02436)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F258h/SF=0Bh,AX=F258h/SF=10h
+
+Format of NetWare "Read Auditing Bitmap" request packet:
+Offset	Size	Description	(Table 02435)
+ 00h	BYTE	0Ah (subfunction "Read Auditing Bitmap")
+	???
+SeeAlso: #02436,#02437
+
+Format of NetWare "Read Auditing Bitmap" reply packet:
+Offset	Size	Description	(Table 02436)
+ 00h	???
+SeeAlso: #02435,#02438
+

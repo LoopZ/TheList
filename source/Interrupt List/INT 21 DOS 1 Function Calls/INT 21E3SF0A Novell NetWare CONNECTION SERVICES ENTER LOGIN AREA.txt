@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - ENTER LOGIN AREA
+	AH = E3h subfn 0Ah
+	DS:SI -> request buffer (see #01894)
+	ES:DI -> reply buffer (see #01895)
+Return: AL = status
+	    00h successful
+Desc:	change the login directory for the calling workstation
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=D7h,AH=E3h/SF=14h
+
+Format of NetWare "Enter Login Area" request buffer:
+Offset	Size	Description	(Table 01894)
+ 00h	WORD	length of following data (max 102h)
+ 02h	BYTE	0Ah (subfunction "Enter Login Area")
+ 03h	BYTE	number of local drives
+ 04h	BYTE	length of subdirectory name (00h-FFh)
+ 05h  N BYTEs	name of subdirectory under SYS:LOGIN where to find the login
+		  utility
+SeeAlso: #01895
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01895)
+ 00h	WORD	(call) 0000h (no data returned)
+SeeAlso: #01891,#01894,#01898
+

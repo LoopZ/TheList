@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 146F02
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HP Vectra EX-BIOS - "F14_PUT_BUFFER" - TRANSMIT BUFFER
+	AX = 6F02h
+	CX = number of characters in buffer
+	DX = port number (0-3)
+	ES:DI -> buffer containing characters
+Return: AH = line status (see #00304)
+	AL = modem status (see #00305)
+	CX = number of bytes actually sent
+	ES:DI -> next byte to be transferred (unchanged if all bytes sent)
+Desc:	send characters from the specified buffer until all characters have
+	  been sent or an error/timeout is encountered
+Note:	supported by original HP Vectra AT and by ES/QS/RS series Vectras
+SeeAlso: AX=6F00h,AX=6F03h,AX=6F04h,INT 17/AX=6F02h
+

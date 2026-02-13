@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215E03
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ network - GET NETWORK PRINTER SETUP STRING
+	AX = 5E03h
+	BX = redirection list index (see AX=5F02h)
+	ES:DI -> 64-byte buffer for setup string
+Return: CF clear if successful
+	    CX = length of setup string
+	    ES:DI buffer filled
+	CF set on error
+	    AX = error code (01h) (see #01680 at AH=59h/BX=0000h)
+Note:	also supported by 10NET v5.0, but 10NET is documented as using DS:SI
+	  instead of ES:DI
+SeeAlso: AX=5E02h,INT 2F/AX=111Fh
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0301
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CLEAR PORTION OF SCREEN
+	DI = 0301h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	starting row (-3 is topmost, 0 is first user line)
+		WORD	starting column
+		WORD	number of rows
+		WORD	number of columns
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0302h,INT 60/DI=1005h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600005
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - RIFS - CLIENT - GET TRANSLATION TABLE
+	AX = 0005h
+Return: CF clear if successful
+	    ES:BX -> translation table
+	CF set on error
+SeeAlso: AX=0000h,AX=0006h,AX=0007h
+

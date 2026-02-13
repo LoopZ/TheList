@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - Adaptec and OMTI controllers - DRIVE 0 DATA
+SeeAlso: INT 41"HARD DISK 0",INT 61"Adaptec",INT 62"Adaptec",INT 63"Adaptec"
+SeeAlso: INT 64"Adaptec",INT C0"AMI",#00732 at INT 1A/AX=B102h
+Notes:	this vector stores the first four bytes of the parameter table for
+	  hard disk 0
+	these vectors are used by the following Adaptec controllers:
+	    ACB 2370 A/B/C, ACB 2372 A/B/C, ACB 2333 A/B, 2322B-8, 2322B-16
+	these vectors are NOT used by the following Adaptec controllers:
+	    ACB 2310, ACB 2312, ACB 2320D, ACB 2322D
+

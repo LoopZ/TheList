@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150A
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_qetqnext" - GET ID OF NEXT QUEUED ELEMENT
+	AH = 0Ah
+	STACK:	WORD	queue ID (0 = process queue, 1 = object, 3 = type)
+		WORD	ID of current element in queue chain
+Return: AX = ID of next element
+SeeAlso: AH=09h"VMiX",AH=0Fh"VMiX"
+

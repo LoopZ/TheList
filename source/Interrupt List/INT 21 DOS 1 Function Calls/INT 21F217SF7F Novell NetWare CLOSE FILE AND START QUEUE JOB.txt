@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF7F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CLOSE FILE AND START QUEUE JOB
+	AX = F217h subfn 7Fh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02214)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=69h,AX=F217h/SF=80h,AX=F217h/SF=81h
+
+Format of NetWare "Close File And Start Queue Job" request packet:
+Offset	Size	Description	(Table 02214)
+ 00h	WORD	length of following data
+ 02h	BYTE	7Fh (subfunction "Close File And Start Queue Job")
+ 03h	DWORD	queue ID
+ 07h	DWORD	job number
+

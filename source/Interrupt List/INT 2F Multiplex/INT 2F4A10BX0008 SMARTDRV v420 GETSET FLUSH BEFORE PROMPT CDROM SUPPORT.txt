@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A10BX0008
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SMARTDRV v4.20+ - GET/SET FLUSH BEFORE PROMPT, CD-ROM SUPPORT
+	AX = 4A10h
+	BX = 0008h
+	DL = subfunction
+	    00h set
+		DH = new states
+		    bit 0: flush before prompt
+		    bits 1-7 reserved (0)
+	    01h get
+		Return: DH = status flags
+			    bit 0: (v4.2+) flush before prompt
+			    bit 1: (v5.0+) CD-ROM caching support installed
+Note:	v4.2 was an interim release to fix problems in the SMARTDRV included
+	  with MS-DOS 6.00; v5.00 is included with MS-DOS 6.2
+

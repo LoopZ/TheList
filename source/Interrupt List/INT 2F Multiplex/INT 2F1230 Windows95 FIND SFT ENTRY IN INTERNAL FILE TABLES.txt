@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1230
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Windows95 - FIND SFT ENTRY IN INTERNAL FILE TABLES
+	AX = 1230h
+	ES:DI -> SFT entry
+Return: CF clear if SFT found in internal table
+	CF set if SFT not in any internal file table
+	    AX = 0000h
+	    SI:CX = 32-bit starting cluster number for directory
+	    DX = directory entry number
+	    BX = index into new file system table
+Notes:	the new file system table from which the return values are taken is
+	  reported to be statically allocated with 20 entries, and used only
+	  for FCB calls
+	this function is not supported by DR-DOS 7.03 or earlier, by S/DOS 1.0,
+	  or by PTS-DOS 6.51
+BUG:	Win95-OSR2 is reported to have a bug that can potentially corrupt
+	  memory if SFT tables are "arranged poorly"
+SeeAlso: AX=1231h,AX=1200h
+

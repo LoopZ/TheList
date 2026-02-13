@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101E03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - FLAT-PANEL - VERTICAL EXPANSION FOR TEXT/GRAPHICS MODES
+	AX = 1E03h
+	BH = function
+	    bit 7: =1 set vertical expansion, =0 query expansion
+	    bits 6-0: reserved (0)
+	---if BH bit 7 set---
+	BL = new vertical expansion setting (see #00056)
+Return: AL = 1Eh if function supported
+	    BH = results
+		bit 7: query/set (copied from input)
+		bits 6-4: reserved (0)
+		bit 3: vertical expansion of text is supported by hardware
+		bit 2: vertical expansion of graphics is supported by hardware
+		bit 1: hardware supports independent control of expansion in
+			text and graphics modes
+		bit 0: set operation was successful (always clear on get)
+	    BL = active vertical expansion setting (see #00056)
+SeeAlso: AX=1E00h,AX=1E02h.AX=1E04h
+
+Bitfields for Flat-Panel vertical expansion setting:
+Bit(s)	Description	(Table 00056)
+ 7-2	reserved (0)
+ 1	vertical expansion turned on for text modes
+ 0	vertical expansion turned on for graphics modes
+SeeAlso: #00054,#00055,#00057
+

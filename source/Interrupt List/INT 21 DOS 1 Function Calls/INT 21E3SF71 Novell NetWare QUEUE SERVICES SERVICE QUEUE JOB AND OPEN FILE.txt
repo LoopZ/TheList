@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF71
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - SERVICE QUEUE JOB AND OPEN FILE
+	AH = E3h subfn 71h
+	DS:SI -> request buffer (see #01986)
+	ES:DI -> reply buffer (see #01972)
+Return: AL = status (00h,96h,9Ch,D0h,D1h,D3h,D5h,D9h,DAh,FEh,FFh)
+		(see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the caller must be on a workstation which is security-equivalent to a
+	  member of the queue's Q_USERS, Q_OPERATORS, or Q_SERVERS properties
+SeeAlso: AH=E3h/SF=6Fh,AH=E3h/SF=72h,AH=E3h/SF=73h,AH=E3h/SF=76h
+SeeAlso: AX=F217h/SF=71h
+
+Format of NetWare "Service Queue Job and Open File" request buffer:
+Offset	Size	Description	(Table 01986)
+ 00h	WORD	0007h (length of following data)
+ 02h	BYTE	71h (subfunction "Service Queue Job and Open File")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	WORD	(big-endian) target job type
+		FFFFh any
+SeeAlso: #01972,#01987
+

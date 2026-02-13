@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1FFD--BL00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - GET AUTO WAKE UP STATUS
+	AH = FDh
+	BL = 00h
+Return: AL = current wake-up state (00h = disabled, 01h = enabled)
+SeeAlso: AH=FDh/BL=01h,AH=FDh/BL=02h
+

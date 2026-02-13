@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62009C
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_RESET" - ERASE SCREEN AND RESTORE SCREEN ATTR
+	AX = 009Ch
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in graphics modes
+	The screen attributes are only restored if ANSI.SYS is loaded
+SeeAlso: AX=0028h,AX=00B0h
+

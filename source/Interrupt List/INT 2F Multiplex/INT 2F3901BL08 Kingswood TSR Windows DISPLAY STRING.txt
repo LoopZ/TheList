@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F3901BL08
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood TSR Windows - DISPLAY STRING
+	AX = 3901h
+	BL = 08h
+	DS:SI -> string
+Return: AX = error code (0000h if successful)
+	SI,DI,DS,ES preserved
+Notes:	The text is not clipped.
+	This routine understands Tab, NewLine and Carriage Return
+SeeAlso: AH=39h/BL=00h,AX=3901h/BL=07h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH11
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "SETNAME" - ASSIGN NAME TO MAILBOX
+	AH = 12h
+	BH = 11h
+	BL = mailbox to name
+	    00h DWORD on top of stack is mailbox handle
+	    02h use given task's mailbox (task's handle on top of stack)
+	    03h use current task's default mailbox
+	STACK: DWORD length of name
+	       DWORD address of name
+Return: STACK popped
+SeeAlso: AH=12h/BH=12h"GETNAME",AX=DE0Eh
+

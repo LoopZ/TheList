@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8223
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MODRES - PLAY SAMPLE
+	AX = 8223h
+	DX:CX -> SAMPARM structure (see #02963)
+Return: AX = status
+	    5722h succesful
+	    2000h parameters out of range
+	    other MODRES not installed
+SeeAlso: AX=8221h,AX=8224h,AX=8225h,AX=8226h
+
+Format of SAMPARM Structure:
+Offset	Size	Description	(Table 02963)
+ 00h	WORD	signature 5053h ("SP" = SAMPARM)
+ 02h	WORD	segment of start of sample to play
+ 04h	WORD	length of sample (IN WORD)
+ 06h	BYTE	output device (see #02962 at INT 2F/AX=8221h)
+ 07h	WORD	pitch to play (see #02964)
+ 09h	BYTE	volume (from 00h to 40h)
+ 0Ah	WORD	loop start
+ 0Ch	WORD	loop length
+ 0Eh	BYTE	machine speed (see INT 2F/AX=8220h)
+SeeAlso: #02960
+
+(Table 02964)
+Values for Pitch to play::
+ C 0 is	06B0h
+ C#0 is	06B0h / 2^(1/12)
+ D 0 is	(06B0h / 2^(1/12)) / 2^(1/12)
+ ...
+Note:	C 1 is	06B0h / 2
+	C 2 is	06B0h / 4
+	etc.
+SeeAlso: #02963
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL2F
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_CHAIN" - CHAIN PROCESS
+	CL = 2Fh
+	[DTA] = ASCIZ command line for process to start
+Return: AX = return code
+	    0000h successful
+	    FFFFh failed
+	may destroy SI,DI???
+

@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310306
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET RAW MODE SWITCH ADDRESSES
+	AX = 0306h
+Return: CF clear
+	BX:CX -> procedure to switch from real to protected mode (see #03151)
+	SI:(E)DI -> procedure to switch from protected to real mode
+Notes:	16-bit programs should jump to SI:DI, 32-bit programs should use SI:EDI
+	the caller must save and restore the state of the task with AX=0305h
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0305h
+
+(Table 03151)
+Values to JUMP at mode-switch procedures with:
+	AX = new DS
+	CX = new ES
+	DX = new SS
+	(E)BX = new (E)SP
+	SI:(E)DI = new CS:(E)IP
+Notes:	BP/EBP is preserved across the call, but AX/EAX, BX/EBX, CX/ECX,
+	  DX/EDX, SI/ESI, and DI/EDI will be undefined; FS and GS will be 0000h
+	interrupts will stay disabled during the entire mode switch if they
+	  are disabled on entry to the mode-switch procedure
+

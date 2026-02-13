@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1500
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX v2+ - INSTALLATION CHECK
+	AH = 00h
+Return: DX = 0798h if installed
+	    AX = version (AH = major, AL = minor)
+

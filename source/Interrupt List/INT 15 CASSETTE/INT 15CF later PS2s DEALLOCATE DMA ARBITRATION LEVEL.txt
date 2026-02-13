@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15CF
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - DEALLOCATE DMA ARBITRATION LEVEL
+	AH = CFh
+	BL = arbitration level to be deallocated (see AH=CEh)
+Return: CF set on error
+	    AH = status (80h,86h = function not supported)
+	CF clear on success
+	    AH = status
+		00h success
+		04h arbitration level not allocated
+SeeAlso: AH=CEh
+

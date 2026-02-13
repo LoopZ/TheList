@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1604
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - K3PLUS v6.22+ - SET KEYCLICK
+	AH = 04h
+	AL = keyclick state
+	    00h keyclick off, leave loudness setting unchanged
+	    01h keyclick on, leave loudness setting unchanged
+	    else
+	       bit 0: keyclick enabled if set
+	       bits 7-1: new keyclick loudness (non-zero)
+Return: AH destroyed by many BIOSes
+Note:	Applications which try to set a new loudness, but are unsure of the
+	  results of other INT 16/AH=04h implementations, should set the new
+	  loudness first, and then call this function again with AL=01h or
+	  AL=00h
+SeeAlso: AH=03h,AH=04h"KEYBOARD",AX=AF4Dh
+

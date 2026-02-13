@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Tandy 2000 - EQUIPMENT DETERMINATION
+Return: AX = BIOS equipment list word (see #03215)
+Note:	this interrupt is identical to INT 11 on the Tandy 2000
+SeeAlso: INT 11"EQUIPMENT",INT 4A"Tandy 2000",INT 4C"Tandy 2000"
+
+Bitfields for Tandy 2000 BIOS equipment list:
+Bit(s)	Description	(Table 03215)
+ 0	reserved
+ 1	monochrome graphics installed
+ 2	graphics with color option installed
+ 3	floppy disk drive 1 installed
+ 4	floppy disk drive 2 installed
+ 5	hard disk drive 1 installed
+ 6	hard disk drive 2 installed
+ 7	unused
+ 8	black and white monitor
+ 9	color monitor
+ 12-10	reserved
+ 13	printer installed
+ 14	reserved
+ 15	unused
+SeeAlso: #00226 at INT 11
+

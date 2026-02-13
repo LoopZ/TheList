@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF06
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "AliasSel" - CREATE READ/WRITE DATA ALIAS SELECTOR
+	AX = FF06h
+	BX = original selector
+Return: CF clear if successful
+	    AX = new data selector aliasing original selector
+	CF set on error
+SeeAlso: AX=FF03h,AX=FF04h
+

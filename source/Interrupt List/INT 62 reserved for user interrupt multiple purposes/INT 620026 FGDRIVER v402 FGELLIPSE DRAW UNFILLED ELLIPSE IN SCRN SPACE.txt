@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620026
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_ELLIPSE" - DRAW UNFILLED ELLIPSE IN SCRN SPACE
+	AX = 0026h
+	BX = horizontal semi-axis length in screen space units
+	CX = vertical semi-axis length in screen space units
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+	The ellipse is centered at the current graphics cursor position
+SeeAlso: AX=0006h,AX=000Dh,AX=0027h,AX=008Fh,AX=0093h
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1613
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - DOS/V - DOUBLE-BYTE CHARACTER SET SHIFT CONTROL
+	AH = 13h
+	AL = function
+	    00h set shift status
+		DX = shift status (see #00589), must preserve internal status
+			  bits
+	    01h get shift status
+		Return: DX = current shift status (see #00589)
+Note:	these functions are supplied by the Japanese Front-End Processor
+SeeAlso: AH=14h,INT 21/AX=6301h
+
+Bitfields for DOS/V shift status:
+Bit(s)	Description	(Table 00589)
+ 0	full-size rather than half-size
+ 2-1	character input mode
+	00 alphanumeric, 01 Katakana, 10 Hiragana, 11 unused
+ 5-3	internal status
+ 6	Romaji enabled
+ 7	Katakana to Kanji conversion enabled
+ 15-8	internal status
+

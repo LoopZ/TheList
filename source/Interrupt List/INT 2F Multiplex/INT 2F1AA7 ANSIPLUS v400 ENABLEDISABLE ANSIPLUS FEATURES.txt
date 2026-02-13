@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AA7
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v4.00+ - ENABLE/DISABLE ANSIPLUS FEATURES
+	AX = 1AA7h
+	BL = function
+	    00h prevent scroll-back saves
+	    01h enable scroll-back saves
+	    02h disable key reprogramming and lock changes by escape sequences
+	    03h enable key reprogramming by escape sequences
+	    04h	disable and lock key stacking changes by escape sequences
+	    05h allow key stacking by escape sequences
+Return: nothing
+SeeAlso: AX=1AA6h
+

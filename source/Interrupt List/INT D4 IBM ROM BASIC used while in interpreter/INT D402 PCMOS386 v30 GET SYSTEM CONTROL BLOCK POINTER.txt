@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: D402
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v3.0+ - GET SYSTEM CONTROL BLOCK POINTER
+	AH = 02h
+Return: AX = 0000h
+	ES:BX -> System Control Block in V86 mode (see #04004)
+	ES:EBX -> System Control Block in native mode (see #04004)
+Note:	superseded by AH=26h
+SeeAlso: AH=04h,AH=10h,AH=26h,AH=28h,AH=29h,AH=2Ah,INT 21/AX=3000h,INT 38
+
+Format of PC-MOS/386 System Control Block:
+Offset	Size	Description	(Table 04004)
+ 00h	WORD	pointer to first TCB in chain
+ 02h 17 BYTEs	reserved
+ 13h	WORD	pointer to current task's TCB
+ 15h	WORD	pointer to TCB of visible (console) task
+

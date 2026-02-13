@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AA9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v3.10+ - GET ANSIPLUS SCROLLBACK INFORMATION
+	AX = 1AA9h
+Return: AL = status
+	    00h successful
+		BX = current number of lines in scrollback buffer
+		CX = number of bytes in one line
+	    01h unsupported video mode active
+	    02h screen currently scrolled back
+	    03h reduced capability driver
+	    A9h unsupported function (driver before v3.10)
+Desc:	determine how much data is in the scrollback buffer and initialize
+	  scrollback retrieval to return the first line on the next call to
+	  AX=1AA8h
+SeeAlso: AX=1A00h/BX=414Eh,AX=1AA8h
+

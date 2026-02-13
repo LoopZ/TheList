@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF0F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVICES - SCAN FILE INFORMATION
+	AH = E3h subfn 0Fh
+	DS:SI -> request buffer (see #01903)
+	ES:DI -> reply buffer (see #01904)
+Return: AL = status (see #01902)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=B6h,AH=E3h/SF=10h,AX=F217h/SF=0Fh
+
+(Table 01902)
+Values for NetWare function status:
+ 00h	successful
+ 89h	not permitted to search directory
+ FFh	no more matching files
+SeeAlso: #01899,#01920
+
+Format of NetWare "Scan File Information" request buffer:
+Offset	Size	Description	(Table 01903)
+ 00h	WORD	length of following data (max 105h)
+ 02h	BYTE	0Fh (subfunction "Scan File Information")
+ 03h	WORD	(big-endian) sequence number
+		FFFFh on first call
+ 05h	BYTE	directory handle or 00h
+ 06h	BYTE	search attributes (see #01420 at AX=4301h)
+ 07h	BYTE	length of filespec
+ 08h  N BYTEs	ASCIZ uppercase filespec
+SeeAlso: #01904,#02165
+
+Format of NetWare "Scan File Information" reply buffer:
+Offset	Size	Description	(Table 01904)
+ 00h	WORD	(call) 005Eh (size of following results buffer)
+ 02h	WORD	next sequence number (place in request buffer for next call)
+ 04h 14 BYTEs	ASCIZ filename
+ 12h	BYTE	file attributes (see #01420 at AX=4301h)
+ 13h	BYTE	extended file attributes (see #01804 at AH=B6h)
+ 14h	DWORD	(big-endian) file size in bytes
+ 18h	WORD	(big-endian) file's creation date (see #01666 at AX=5700h)
+ 1Ah	WORD	(big-endian) date of last access (see #01665 at AX=5700h)
+ 1Ch	DWORD	(big-endian) date and time of last update (see #01846)
+ 20h	DWORD	(big-endian) object ID of owner
+ 24h	DWORD	(big-endian) date and time last archived (see #01846)
+ 28h 55 BYTEs	reserved
+Note:	the official documentation erroneously lists the field at offset 04h as
+	  15 bytes and thus shifts the remaining fields by one byte
+SeeAlso: #01903,#02165
+

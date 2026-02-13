@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0498
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - Splitter - VxD SERVICES
+	VxD = 0498h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier (see #02642)
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01329)
+Values for Splitter (VxD ID 0498h) service number:
+ 00h	get Splitter version
+	Return:	CF clear
+		EAX = version (00000001h)
+ 01h	???
+ 02h	???
+ 03h	hook/unhook VMM "hook device service" service
+	EAX = request (0 = unhook, nonzero = hook)
+	Return: if EAX nonzero on entry, Splitter's service 04h replaces VMM
+		  service 0090h; otherwise, default handler is restored
+ 04h	Splitter "hook device service" handler
+SeeAlso: #01328,#01330
+

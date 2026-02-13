@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150D
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_spawn" - START A CHILD PROCESS JOB SHELL
+	AH = 0Dh
+	STACK:	DWORD	ASCIZ string starting with requested I/O channel and
+			followed by standard VMiX shell command string
+Return: AX = process ID or error code "SYS_ERROR"
+Note:	the maximum string length is 7Fh characters
+SeeAlso: AH=0Eh"VMIX",AH=11h"VMiX",INT 21/AH=4Bh
+

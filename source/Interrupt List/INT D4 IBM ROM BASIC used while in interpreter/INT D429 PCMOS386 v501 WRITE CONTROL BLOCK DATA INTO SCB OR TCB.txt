@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: D429
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - WRITE CONTROL BLOCK DATA INTO SCB OR TCB
+	AH = 29h
+	BX = offset into control block at which to start writing
+	CX = number of bytes to write
+	DX = segment/selector of control block obtained via AH=26h or AH=27h
+	DS:SI -> buffer containing data to be written
+Return: CF clear if successful
+	CF set on errro
+	    AX = error code (see also #01680 at INT 21/AH=59h/BX=0000h)
+		05h access denied due to an invalid segment/selector
+Note:	 this function performs no bounds checking
+Program: PC-MOS/386 is a multitasking/multiuser MS-DOS-compatible operating
+	  system by The Software Link, Inc.
+SeeAlso: AH=26h,AH=27h,AH=28h,AH=2Ah
+

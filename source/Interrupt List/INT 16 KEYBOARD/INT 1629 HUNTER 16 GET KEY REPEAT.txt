@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1629
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HUNTER 16 - GET KEY REPEAT
+	AH = 29h
+Return: BL = Typematic rate (characters per second) (see #00592)
+	BH = delay (00h = 250ms, 01h = 500ms, 02h = 750ms, 03h = 1s)
+SeeAlso: AH=03h,AH=2Ah
+
+(Table 00592)
+Values for HUNTER 16 Typematic rate:
+ 00h	30.0	 08h	15.0	 10h	7.5	 18h	3.7
+ 01h	26.7	 09h	13.3	 11h	6.7	 19h	3.3
+ 02h	24.0	 0Ah	12.0	 12h	6.0	 1Ah	3.0
+ 03h	21.8	 0Bh	10.9	 13h	5.5	 1Bh	2.7
+ 04h	20.0	 0Ch	10.0	 14h	5.0	 1Ch	2.5
+ 05h	18.5	 0Dh	 9.2	 15h	4.6	 1Dh	2.3
+ 06h	17.1	 0Eh	 8.6	 16h	4.3	 1Eh	2.1
+ 07h	16.0	 0Fh	 8.0	 17h	4.0	 1Fh	2.0
+SeeAlso: AH=2Ah
+

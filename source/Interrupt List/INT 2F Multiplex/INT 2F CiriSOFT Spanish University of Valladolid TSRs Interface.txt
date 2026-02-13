@@ -1,0 +1,85 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CiriSOFT Spanish University of Valladolid TSR's Interface
+	AH = xx (dynamically assigned based upon a search for a multiplex
+		 number from C0h to FFh which doesn't answer installed)
+	AL = 00h installation check
+	ES:DI = 1492h:1992h
+Return: AL = 00h not installed
+	     01h not installed, not OK to install
+	     FFh installed; and if ES:DI was 1492h:1992h on entry, ES:DI will
+		   point to author_name_ver table (see #02588)
+	AH = FFh
+Note:	this interface permits advanced communication with TSRs: it is possible
+	  to make a generic uninstall utility, advanced TSR relocator programs
+	  in order to fit fragmented memory areas, etc.
+See also: INT 2D"AMIS",INT 2F"Compuscience"
+Index:	installation check;CiriSOFT TSR interface
+Index:	uninstall;CiriSOFT TSR interface
+
+Format of CiriSOFT author_name_ver table:
+Offset	Size	Description	(Table 02588)
+ -16	WORD	segment of the start of the resident TSR code (CS in programs
+		  with PSP, XMS upper memory segment if installed as UMB...)
+ -14	WORD	offset of the start of the resident TSR code (frequently 100h
+		  in *.COM programs and 0 in upper memory TSR's).
+ -12	WORD	memory used by TSR (in paragraphs). Knowing the memory area
+		  used by TSR is possible to determine if hooked vectors are
+		  still pointing it (and if it is safe to uninstall).
+ -10	BYTE	characteristics byte (see #02589)
+ -9	BYTE	number of multiplex entry used (redefinition available). Note
+		  that the TSR must use THIS variable in it's INT 2Fh handler.
+ -8	WORD	offset to vector_area table (see #02590)
+ -6	WORD	offset to extra_area table (see #02591,#02589 [bit 7])
+ -4   4 BYTEs	signature string "*##*"
+ 00h	var	"AUTHOR:PROGRAM_NAME:VERSION",0	 (variable length, this area
+		  is used in order to determine if the TSR is already resident
+		  and it's version code; the ':' char is used as delimiter)
+
+Bitfields for CiriSOFT characteristics byte:
+Bit(s)	Description	(Table 02589)
+ 0-2	type
+	000 normal program (with PSP)
+	001 upper XMS memory block (needed HIMEM.SYS function to free memory
+	      when uninstalling)
+	010 device driver (*.SYS)
+	011 device driver in EXE format
+	1xx others (reserved)
+ 3-6	reserved
+ 7	set if extra_table defined and supported (see #02591)
+SeeAlso: #02588
+
+Format of CiriSOFT vector_area table:
+Offset	Size	Description	(Table 02590)
+ -1	BYTE	number of vectors intercepted by TSR
+ 00h	BYTE	first vector number
+ 01h	DWORD	first vector pointer before installing the TSR
+ 05h	BYTE	second vector number
+ 06h	DWORD	second vector pointer before installing the TSR
+ 0Ah	...	(and so on)
+Note:	the TSR must use these variables to invoke the previous interrupt
+	  handler routines
+SeeAlso: #02588
+
+Format of extra_area table (needed only to improve relocation feature):
+Offset	Size	Description	(Table 02591)
+ 00h	WORD	offset to external_ctrl table (see #02592)
+		0000h if not supported
+ 02h	WORD	reserved for future use (0)
+SeeAlso: #02588
+
+Format of CiriSOFT external_ctrl table:
+Offset	Size	Description	(Table 02592)
+ 00h	BYTE	bit 0: TSR is relocatable (no absolute segment references)
+ 01h	WORD	offset to a variable which can activate/inhibit the TSR
+ ---And if bit 0 in offset 00h is off:
+ 03h	DWORD	pointer to ASCIZ pathname for executable file which supports
+		  /SR parameter (silent installation & inhibit)
+ 07h	DWORD	pointer to first variable to initialize on the copy reloaded
+		  from the previous TSR still resident
+ 0Bh	DWORD	pointer to last variable (all variables packed in one block)
+

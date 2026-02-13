@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL6E
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "C_DELIMIT" - GET/SET STRING DELIMITER
+	CL = 6Eh
+	DX = new delimiter, or FFFFh to get current string delimiter
+Return: AX = status (0000h success) if setting
+	AX = current string delimiter (default is 24h '$' at process start)
+SeeAlso: INT E0/CL=09h
+

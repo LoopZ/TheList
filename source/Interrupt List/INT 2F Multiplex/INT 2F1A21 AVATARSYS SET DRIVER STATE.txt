@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A21
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AVATAR.SYS - SET DRIVER STATE
+	AX = 1A21h (AL='!')
+	DS:SI -> command string with one or more state characters (see #02736)
+	CX = length of command string
+Return: CF set on error (invalid subfunction)
+	CF clear if successful
+Note:	the characters in the state string are interpreted left to right, and
+	  need not be in any particular order
+SeeAlso: AX=1A00h/BX=4156h,AX=1A3Fh
+
+(Table 02736)
+Values for AVATAR.SYS state characters:
+ 'a'	activate driver
+ 'd'	disable driver
+ 'f'	use fast screen output
+ 'g'	always convert gray keys (+ and -) to function keys
+ 'G'	never convert gray keys
+ 'l'	convert gray keys only when ScrollLock active
+ 's'	use slow screen output
+ 't'	Tandy 1000 keyboard (not yet implemented)
+

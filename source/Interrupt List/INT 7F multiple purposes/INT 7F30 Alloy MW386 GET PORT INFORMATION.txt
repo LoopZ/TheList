@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F30
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET PORT INFORMATION
+	AH = 30h
+	CX = MW386 port number
+Return: AL = result
+	    FFh if port not found
+	    else driver unit number
+		BL = port mode
+		BH = port type
+		    02h remote
+		DH = owner's machine ID
+		DL = owner's user ID
+SeeAlso: INT 17/AH=8Bh
+

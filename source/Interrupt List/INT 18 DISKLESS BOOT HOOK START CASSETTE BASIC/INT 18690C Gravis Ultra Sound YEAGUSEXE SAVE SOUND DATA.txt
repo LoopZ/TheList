@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 18690C
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - SAVE SOUND DATA
+	AX = 690Ch
+	BL = data format (1 = twos-complement, 0 = not)
+	BH = sample type (0 = 8-bit, 1 = 16-bit)
+	CX = number of bytes to get
+	ES:SI -> buffer for retrieved data
+	DL:DI = 20-bit address in GUS DRAM from which to read voice data
+Return: nothing
+SeeAlso: AX=6906h
+

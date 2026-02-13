@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A21
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Windows95 - ???
+	AX = 4A21h
+Return: AX destroyed
+Note:	calls INT 21/AX=4404h"IOCTL" with a five-byte buffer containing "MDF??"
+SeeAlso: AX=4A17h
+

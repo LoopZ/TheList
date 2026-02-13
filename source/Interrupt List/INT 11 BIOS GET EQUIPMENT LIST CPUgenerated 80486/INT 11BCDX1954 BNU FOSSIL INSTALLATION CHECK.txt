@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 11BC--DX1954
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - BNU FOSSIL - INSTALLATION CHECK
+	AH = BCh
+	DX = 1954h
+Return: AX = 1954h
+	ES:DX -> entry point of driver (instead of INT 14)
+SeeAlso: INT 14/AH=04h"FOSSIL"
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0402
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_UNLOCK" - RELEASE SUB-ADDRESSES
+	AX = 0402h
+	BP = driver ID (see #03741)
+	DH,DL = major,minor address (optional)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	release specified sub-addresses from exclusive access
+Note:	this function is documented as present but unsupported in the drivers
+	  V_LTABLET, V_LPOINTER, and VLTOUCH
+SeeAlso: AX=0200h"HP Vectra",AX=0400h"SF_LOCK"
+

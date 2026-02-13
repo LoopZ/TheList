@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0504
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - READ FROM FILE
+	DI = 0504h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file state record (see #03287)
+		DWORD	pointer to data buffer
+		WORD	number of bytes to read
+		DWORD	pointer to WORD in which to return actual bytes read
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0505h
+

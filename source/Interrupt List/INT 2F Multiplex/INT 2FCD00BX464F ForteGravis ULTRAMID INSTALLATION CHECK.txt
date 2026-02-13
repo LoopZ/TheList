@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD00BX464F
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Forte/Gravis ULTRAMID - INSTALLATION CHECK
+	AX = CD00h
+	BX = 464Fh ('FO')
+	CX = 5254h ('RT')
+	DX = 4520h ('E ')
+Return: AL = FFh if installed
+	    BX = 4155h ('AU')
+	    CX = 4449h ('DI')
+	    DX = 4F20h ('O ')
+	    ES:SI -> program ID string
+Program: ULTRAMID is a MIDI driver for the Gravis UltraSound which allows use
+	  of AIL drivers with other software
+Range:	AH=CDh-ECh, selected by scanning for an available multiplex number
+SeeAlso: INT 21/AX=FD12h,AX=CD00h/DX=4957h
+

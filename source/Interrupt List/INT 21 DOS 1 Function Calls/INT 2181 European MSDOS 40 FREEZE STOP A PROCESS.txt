@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2181
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "FREEZE" - STOP A PROCESS
+	AH = 81h
+	BX = flag (00h freeze command subtree, 01h only specified process)
+	CX = Process ID of head of command subtree
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (no such process)
+Desc:	temporarily suspend a process or a process and all of its children
+Note:	if BX=0001h, this call will not return until the process is actually
+	  frozen, which may not be until after it unblocks from an I/O
+	  operation
+SeeAlso: AH=82h,AH=89h,AX=8E00h,INT 15/AX=101Dh
+

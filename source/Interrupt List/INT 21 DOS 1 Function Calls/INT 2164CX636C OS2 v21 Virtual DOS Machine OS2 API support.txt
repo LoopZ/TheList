@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--CX636C
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - OS/2 API support
+	AH = 64h
+	CX = 636Ch ("cl")
+	BX = API ordinal (see #01747)
+	other registers as appropriate for API call
+Return: as appropriate for API call
+SeeAlso: AH=64h/BX=0025h,AH=64h/BX=00B6h,AH=64h/BX=00CBh
+
+(Table 01747)
+Values for OS/2 API ordinal:
+ 0025h	DOS32StartSession
+ 0082h	DosGetCP
+ 00B6h	DosQFSAttach
+ 00BFh	DosEditName
+ 00CBh	DosForceDelete
+ 0144h	Dos32CreateEventSem
+ 0145h	Dos32OpenEvenSem
+ 0146h	Dos32CloseEventSem
+ 0147h	Dos32ResetEventSem
+ 0148h	Dos32PostEventSem
+ 0149h	Dos32WaitEventSem
+ 014Ah	Dos32QueryEventSem
+ 014Bh	Dos32CreateMutexSem
+ 014Ch	Dos32OpenMutexSem
+ 014Dh	Dos32CloseMutexSem
+ 014Eh	Dos32RequestMutexSem
+ 014Fh	Dos32ReleaseMutexSem
+ 0150h	Dos32QueryMutexSem
+ 0151h	Dos32CreateMuxWaitSem
+ 0152h	Dos32OpenMuxWaitSem
+ 0153h	Dos32CloseMuxWaitSem
+ 0154h	Dos32WaitMuxWaitSem
+ 0155h	Dos32AddMuxWaitSem
+ 0156h	Dos32DeleteMuxWaitSem
+ 0157h	Dos32QueryMuxWaitSem
+

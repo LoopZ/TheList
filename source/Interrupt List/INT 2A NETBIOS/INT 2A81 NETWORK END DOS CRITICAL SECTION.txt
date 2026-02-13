@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A81
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2A CU - NETWORK - END DOS CRITICAL SECTION
+	AH = 81h
+	AL = critical section number (00h-0Fh) (see #02555)
+Notes:	normally hooked rather than called
+	the handler should reawaken any tasks which were suspended due to an
+	  attempt to enter the specified critical section
+	MS Windows patches the DOS kernel's calls to INT 2A/AH=80h-81h into
+	  far calls to its own handler, and does not reflect the calls back
+	  to INT 2A unless SYSTEM.INI contains ReflectDOSInt2A=1 or
+	  ModifyDOSInt2A=0 in the [386Enh] section
+SeeAlso: AH=80h,AH=82h,AX=8700h
+

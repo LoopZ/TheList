@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFE10DI4E55
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - NORTON UTILITIES 6.0 NCACHE - REBOOT
+	AX = FE10h
+	DI = 4E55h ("NU")
+	SI = TSR identifier (see #03140)
+Return: SI = TSR reply (lowercase version of entry SI, i.e. SI or 2020h)
+	AX = status
+Note:	probably used to flush NCACHE buffers and reboot when Ctrl-Alt-Del is
+	  detected
+SeeAlso: AX=FE03h
+

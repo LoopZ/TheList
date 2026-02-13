@@ -1,0 +1,303 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.2+ - IOCTL - GENERIC BLOCK DEVICE REQUEST
+	AX = 440Dh
+	BL = drive number (00h=default,01h=A:,etc)
+	CH = category code (see #01558)
+	CL = minor code (function) (see #01559)
+	DS:DX -> (DOS) parameter block (see #01560,#01562,#01563,#01564,#01565)
+	SI:DI -> (OS/2 comp box) parameter block (see #01566,#01568,#01569,#01572)
+Return: CF set on error
+	    AX = error code (01h,02h,etc.) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    DS:DX -> data block if CL=60h or CL=61h
+Notes:	DOS 4.01 seems to ignore the high byte of the number of directory
+	  entries in the BPB for diskettes.
+	functions 46h and 66h undocumented in DOS 4.x, documented for DOS 5+
+	the DUBLDISK.SYS v2.6 driver only supports minor codes 60h and 67h
+	DR DOS 3.41-6.0 only support minor codes 40h-42h and 60h-62h; all
+	  other minor codes return error code 16h
+	some PCMCIA calls reportedly appear to be dangerous for MS-DOS versions
+	  prior to 5.0
+	minor code 60h normally produces no I/O except with AutoMount=1 for
+	  DBLSPACE/DRVSPACE
+SeeAlso: AX=440Ch,AX=440Dh/CX=084Ah,AX=440Dh/CX=0871h,AH=69h,INT 2F/AX=0802h
+SeeAlso: INT 2F/AX=122Bh
+
+(Table 01558)
+Values for block device IOCTL category code:
+ 08h	disk drive
+ 48h	FAT32 disk drive
+ 00h-7Fh reserved for Microsoft
+ 80h-FFh reserved for OEM/user-defined
+
+(Table 01559)
+Values for generic block IOCTL minor code:
+ 00h	(OS/2)	\ used to lock/unlock a drive
+ 01h	(OS/2)	/
+ 40h	set device parameters (see #01560)
+ 41h	write logical device track (see #01562)
+ 42h	format and verify logical device track (see #01563)
+ 46h	(DOS 4.0+) set volume serial number (see #01565,AH=69h)
+ 47h	(DOS 4.0+) set access flag (see #01566)
+ 48h	(Enh. Disk Drive Spec) set media lock state (see #01567,INT 13/AH=45h)
+ 49h	(Enh. Disk Drive Spec) eject media in drive (see INT 13/AH=49h)
+	no parameter block required
+ 4Ah	(MS-DOS 7.0) lock logical volume (see AX=440Dh/CX=084Ah)
+ 4Bh	(MS-DOS 7.0) lock physical volume (see AX=440Dh/CX=084Bh)
+ 50h	(PCMCIA) attribute memory write
+ 51h	(PCMCIA) common memory write
+ 52h	(PCMCIA) force media change (DOS 5+ ???) (see #01568)
+ 53h	(PCMCIA) erase drive
+ 54h	(PCMCIA) erase media
+ 56h	(PCMCIA) set erase status callback
+ 57h	(PCMCIA) append Card Information Structure (CIS) tuple
+ 58h	(PCMCIA) erase CIS tuples
+ 60h	get device parameters (see #01560)
+ 61h	read logical device track (see #01562)
+ 62h	verify logical device track (see #01564)
+ 66h	(DOS 4.0+) get volume serial number (see #01565,AH=69h)
+ 67h	(DOS 4.0+) get access flag (see #01566)
+ 68h	(DOS 5.0+) sense media type (see #01569)
+ 6Ah	(MS-DOS 7.0) unlock logical volume (see AX=440Dh/CX=086Ah)
+	no parameter block required
+ 6Bh	(MS-DOS 7.0) unlock physical volume (see AX=440Dh/CX=086Bh)
+	no parameter block required
+ 6Ch	(MS-DOS 7.0) get lock flag (see AX=440Dh/CX=086Ch)
+	no parameter block required
+ 6Dh	(MS-DOS 7.0) enumerate open files (see AX=440Dh/CX=086Dh)
+ 6Eh	(MS-DOS 7.0) find swap file (see AX=440Dh/CX=086Eh)
+ 6Fh	(MS-DOS 7.0) get drive map information (see #01570)
+ 70h	(PCMCIA) attribute memory read
+ 70h	(MS-DOS 7.0) get current lock state (see AX=440Dh/CX=0870h)
+	no parameter block required
+ 71h	(MS-DOS 7.0) get first cluster (see AX=440Dh/CX=0871h)
+ 73h	(PCMCIA) get memory media information (DOS 5+ ???) (see #01572)
+ 76h	(PCMCIA) get erase status callback
+ 77h	(PCMCIA) get first Card Information Structure (CIS) tuple
+ 78h	(PCMCIA) get next CIS tuple
+ 7Fh	(PCMCIA) get ??? information (see #01573,#01574)
+
+Format of parameter block for functions 40h, 60h:
+Offset	Size	Description	(Table 01560)
+ 00h	BYTE	special functions
+		bit 0 set if function to use current BPB, clear if Device
+			  BIOS Parameter Block field contains new default BPB
+		bit 1 set if function to use track layout fields only
+			must be clear if CL=60h
+		bit 2 set if all sectors in track same size (should be set)
+		bits 3-7 reserved (MS-DOS, Novell DOS 7)
+		bit 5: skip head settling time (WinDOS 2.11)
+		bit 6: format access flag (WinDOS 2.11)
+ 01h	BYTE	device type (see #01561)
+ 02h	WORD	device attributes
+		bit 0 set if nonremovable medium
+		bit 1 set if door lock ("changeline") supported
+		bits 2-15 reserved
+ 04h	WORD	number of cylinders
+ 06h	BYTE	media type
+		for 1.2M drive
+		    00h 1.2M disk (default)
+		    01h 320K/360K disk
+		F8h for DUBLDISK.SYS v2.6 expanded drives
+		always 00h for other drive types
+ 07h 31 BYTEs	device BPB (see #01663 at AH=53h), bytes after BPB offset 1Eh
+		  omitted; final six bytes only transferred on function 40h
+		  with BYTE 00h bit 0 set for MS-DOS 5.0
+---function 40h only---
+ 26h	WORD	number of sectors per track (start of track layout field)
+		(maximum 63)
+ 28h  N word pairs: number,size of each sector in track
+---category code 48h (FAT32), function 40h---
+ 07h 53 BYTEs	extended BPB (see #01664)
+ 3Ch 32 BYTEs	reserved
+ 5Ch	WORD	number of track table entries
+ 5Eh 2N WORDs	sector table (word pairs: number/size of each sector in track)
+---category code 48h (FAT32), function 60h---
+ 07h 53 BYTEs	extended BPB (see #01664)
+ 3Ch 32 BYTEs	reserved
+
+(Table 01561)
+Values for device type:
+ 00h	320K/360K 5.25-inch floppy disk
+ 01h	1.2M 5.25-inch floppy disk
+ 02h	720K floppy disk
+ 03h	single-density 8-inch disk
+ 04h	double-density 8-inch disk
+ 05h	fixed disk
+ 06h	tape drive
+ 07h	(DOS 3.3+) other type of block device, normally 1.44M floppy
+ 08h	read/write optical disk
+ 09h	(DOS 5+) 2.88M 3.5-inch floppy
+ FFh	(some DOS 5 betas) 2.88M 3.5-inch floppy
+
+Format of parameter block for functions 41h, 61h:
+Offset	Size	Description	(Table 01562)
+ 00h	BYTE	special functions (reserved, must be zero)
+ 01h	WORD	number of disk head
+ 03h	WORD	number of disk cylinder
+ 05h	WORD	number of first sector to read/write
+ 07h	WORD	number of sectors
+ 09h	DWORD	transfer address
+Note:	under Windows95, a volume must be locked (see AX=440Dh/CX=084Bh) in
+	  order to perform direct accesses such as track reads and writes
+	  with this IOCTL function
+
+Format of parameter block for function 42h:
+Offset	Size	Description	(Table 01563)
+ 00h	BYTE	reserved, must be zero (DOS <3.2)
+		  bit 0=0: format/verify track
+			1: format status call (DOS 3.2+), don't actually format
+		  bit 1: format multiple tracks, require additional WORD
+			  (hard disks only)
+		  bits 2-7 reserved, must be zero
+		value on return (DOS 3.3+):
+		  00h	specified tracks, sectors/track supported by BIOS
+		  01h	function not supported by BIOS
+		  02h	specified tracks, sectors/track not allowed for drive
+		  03h	no disk in drive
+ 01h	WORD	number of disk head
+ 03h	WORD	number of disk cylinder
+---BYTE 00h bit 1 set---
+ 05h	WORD	number of tracks to format
+
+Format of parameter block for function 62h:
+Offset	Size	Description	(Table 01564)
+ 00h	BYTE	reserved, must be zero (DOS <3.2)
+		  bit 0=0: verify single track
+			1: verify multiple tracks
+		  bits 1-7 reserved, must be zero
+		value on return (DOS 3.3+):
+		  00h	specified tracks, sectors/track supported by BIOS
+		  01h	function not supported by BIOS
+		  02h	specified tracks, sectors/track not allowed for drive
+		  03h	no disk in drive
+ 01h	WORD	number of disk head
+ 03h	WORD	number of disk cylinder
+ 05h	WORD	number of tracks to verify (equivalent to 255 or fewer sectors)
+
+Format of parameter block for functions 46h, 66h:
+Offset	Size	Description	(Table 01565)
+ 00h	WORD	(call) info level (should be 0000h)
+ 02h	DWORD	disk serial number (binary)
+ 06h 11 BYTEs	volume label or "NO NAME    "
+ 11h  8 BYTEs	filesystem type "FAT12	 " or "FAT16   "
+		  (generally CL=66h only, but MS-DOS 5.0 will write the
+		  given filesystem type to the disk)
+Note:	under MS-DOS 7.0 or a Windows95 DOS box, the volume label field can
+	  return as all blanks even when a volume label has been set (the Win95
+	  installation seems to blank the volume label field in the partition
+	  boot sector; once LABEL has been run, the volume label is reported
+	  correctly)
+SeeAlso: AH=69h
+
+Format of parameter block for functions 47h, 67h:
+Offset	Size	Description	(Table 01566)
+ 00h	BYTE	special-function field (must be zero)
+ 01h	BYTE	disk-access flag, nonzero if access allowed by driver
+
+Format of parameter block for function 48h:
+Offset	Size	Description	(Table 01567)
+ 00h	BYTE	(call) locking operation
+		00h lock media in drive
+		01h unlock media
+		02h get locking status
+ 01h	BYTE	(ret) drive's lock status (number of pending locks on drive)
+Note:	also supported by MS-DOS 7.0+
+
+Format of parameter block for function 52h:
+ 00h	BYTE	(call) unused???	(Table 01568)
+		(ret) 00h if flash/ATA drive but no card inserted
+			unchanged otherwise
+Notes:	the absense of a flash card should be tested by checking the DOS error
+	  code rather than the returned byte
+	the parameter byte is cleared to 00h erroneously by the Award
+	  PCDISK.EXE v1.02c PCMCIA/ATA driver if no ATA card is inserted
+	  (bug corrected in PCDISK.EXE v1.02h and later)
+	not supported by the SystemSoft ATADRV.EXE and the Phoenix PCMATA.SYS
+	  PCMCIA/ATA drivers
+
+Format of parameter block for function 68h:
+Offset	Size	Description	(Table 01569)
+ 00h	BYTE	01h for default media type, 00h for any other media type
+		(see also INT 13/AH=20h"Compaq")
+ 01h	BYTE	02h for 720K, 07h for 1.44M, 09h for 2.88M
+
+Format of parameter block for function 6Fh:
+Offset	Size	Description	(Table 01570)
+ 00h	BYTE	(call) length of this buffer (in bytes)
+ 01h	BYTE	(ret) number of bytes in parameter block actually used
+ 02h	BYTE	(ret) drive flags (see #01571)
+ 03h	BYTE	(ret) physical drive number
+		00h-7Fh floppy
+		80h-FEh hard
+		FFh no physical drive
+ 04h	DWORD	(ret) bitmap of logical drives associated with physical drive
+		bit 0 = drive A:, etc.
+ 08h	QWORD	(ret) relative block address of partition start
+
+Bitfields for Get Drive Map Information drive flags:
+Bit(s)	Description	(Table 01571)
+ 0	protected-mode driver for logical drive
+ 1	protected-mode driver in use for physical drive corresponding to the
+	  logical drive
+ 2	drive available only in protected mode
+ 3	protected-mode drive supports media ejection
+ 4	drive issues media insertion and removal notifications
+SeeAlso: #01570
+
+Format of parameter block for function 73h:
+Offset	Size	Description	(Table 01572)
+ 00h	BYTE	???
+		00h ATA card inserted ???
+		80h ATA card not inserted ???
+ 01h	BYTE	length of parameter block ???
+		apparently always 40h
+ 02h	BYTE	???
+		00h ATA card not inserted ???
+		0Dh ATA card inserted ???
+ 03h  2 BYTEs	??? (apparently always 00h)
+ 05h	BYTE	drive number (0=first) ???
+ 06h	BYTE	total number of drives ???
+ 07h	BYTE	???
+		00h ATA card not inserted ???
+		01h ATA card inserted ???
+ 08h 17 BYTEs	???
+ 19h	BYTE	???
+		00h ATA card not inserted ???
+		01h ATA card inserted ???
+ 1Ah	BYTE	??? (apparently always 01h)
+ 1Bh	BYTE	???
+		00h ATA card not inserted ???
+		01h ATA card inserted ???
+ 1Ch  2 BYTEs	??? (apparently always 0015h)
+ 1Eh  2 BYTEs	???
+ 20h  2 BYTEs	??? (apparently always 0110h)
+ 22h 15 BYTEs	???
+ 31h  2 BYTEs	??? (apparently always 7000h)
+ 33h 11 BYTEs	driver signature
+		"AWARD PDISK" for Award PCDISK.EXE PCMCIA/ATA driver
+		"MS-BIOS    " for HP 200LX generic ATA driver
+ 3Eh  2 BYTEs	???
+Notes:	parameter structure possibly depends on driver
+	this function is not supported by the SystemSoft ATADRV.EXE and the
+	  Phoenix PCMATA.SYS PCMCIA/ATA drivers
+
+Format of parameter block for function 7Fh for SystemSoft ATADRV.EXE:
+Offset	Size	Description	(Table 01573)
+ 00h	DWORD	-> unknown location within driver
+Note:	function supported by the SystemSoft ATADRV.EXE PCMCIA/ATA driver
+	  but not by the Award PCDISK.EXE PCMCIA/ATA driver
+SeeAlso: #01574
+
+Format of parameter block for function 7Fh for Phoenix PCMATA.SYS:
+Offset	Size	Description	(Table 01574)
+ 00h  8 BYTEs	???
+Note:	this function supported by the Phoenix PCMATA.SYS PCMCIA/ATA driver
+	  but not by the Award PCDISK.EXE PCMCIA/ATA driver
+SeeAlso: #01573
+

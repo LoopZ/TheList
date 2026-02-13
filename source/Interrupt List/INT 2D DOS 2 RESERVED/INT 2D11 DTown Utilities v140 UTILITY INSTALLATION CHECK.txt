@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--11
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - DTown Utilities v1.40+ - UTILITY INSTALLATION CHECK
+	AL = 11h
+	BL = function
+	    00h get number of installed utilities
+		Return: BL = number of utilities
+	    01h get installed utilities
+		DX:DI -> buffer containing one byte for each utility
+		Return: DX:DI buffer filled with flags (0=no,1=yes) indicating
+			  whether the corresponding utility is loaded
+Return: AL = FFh if supported
+Note:	this function is only available if the extended API has been installed
+	  in the resident portion
+SeeAlso: INT 2D/AL=10h"DTown",INT 2D/AL=20h
+

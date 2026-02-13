@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F4F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 v2+ - SET FCB MODE
+	AH = 4Fh
+	AL = FCB mode
+	    02h read/write compatibility
+	    42h read/write shared
+	DX = 4E58h ("NX")
+Return: AL = status
+	    00h successful
+

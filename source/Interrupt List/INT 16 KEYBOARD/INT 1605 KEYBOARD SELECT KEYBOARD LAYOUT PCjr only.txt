@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1605
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - SELECT KEYBOARD LAYOUT (PCjr only)
+	AH = 05h
+	AL = function
+	    01h set keyboard layout to French
+	    02h set keyboard layout to German
+	    03h set keyboard layout to Italian
+	    04h set keyboard layout to Spanish
+	    05h set keyboard layout to UK
+	    80h check if function supported
+		Return: AL <> 80h if supported
+Return: ???
+	AH destroyed by many BIOSes
+Note:	this function is called by the DOS 3.2 KEYBxx.COM
+SeeAlso: AH=92h,AH=A2h,AX=AF4Dh
+

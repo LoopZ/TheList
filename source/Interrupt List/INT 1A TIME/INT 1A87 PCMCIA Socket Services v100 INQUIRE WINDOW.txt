@@ -1,0 +1,80 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A87
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - INQUIRE WINDOW
+	AH = 87h
+	AL = adapter number
+	BH = window number
+Return: CF clear if successful
+	    AH destroyed
+	    BL = capabilities (see #00673)
+	    CX = bitmap of assignable sockets
+	    DH = EISA A15-A12 address lines (in bits 7-4, bits 3-0 = 0)
+	    DL = supported access speeds (see #00674)
+	    DS:SI -> Memory Window Characteristics table (see #00675)
+	    DS:DI -> I/O Window Characteristics table (see #00676)
+	CF set on error
+	    AH = error code (01h,11h) (see #00656)
+SeeAlso: AH=84h"PCMCIA",AH=88h,AH=89h,AH=8Ch
+
+Bitfields for PCMCIA window capabilities:
+Bit(s)	Description	(Table 00673)
+ 7-5	reserved (0)
+ 4	separate enable for EISA comon space
+ 3	EISA I/O mappable
+ 2	I/O space
+ 1	attribute memory
+ 0	common memory
+
+Bitfields for PCMCIA supported access speeds:
+Bit(s)	Description	(Table 00674)
+ 7	reserved (0)
+ 6	600 ns
+ 5	300 ns
+ 4	250 ns
+ 3	200 ns
+ 2	150 ns
+ 1	100 ns
+ 0	WAIT line monitoring
+
+Format of PCMCIA Memory Window Characteristics table:
+Offset	Size	Description	(Table 00675)
+ 00h	WORD	window capabilities (see #00677)
+ 02h	WORD	minimum base address in 4K pages
+ 04h	WORD	maximum base address in 4K pages
+ 06h	WORD	minimum window size in 4K pages
+ 08h	WORD	maximum window size in 4K pages
+ 0Ah	WORD	window size granularity (4K units)
+ 0Ch	WORD	required base address alignment (4K units)
+ 0Eh	WORD	required card offset alignment (4K units)
+
+Format of PCMCIA I/O Window Characteristics table:
+Offset	Size	Description	(Table 00676)
+ 00h	WORD	window capabilities (see #00677)
+ 02h	WORD	minimum base address in bytes
+ 04h	WORD	maximum base address in bytes
+ 06h	WORD	minimum window size in bytes
+ 08h	WORD	maximum window size in bytes
+ 0Ah	WORD	window size granularity (bytes)
+
+Bitfields for PCMCIA window capabilities:
+Bit(s)	Description	(Table 00677)
+ 0	programmable base address
+ 1	programmable window size
+ 2	window disable/enable supported
+ 3	8-data bus
+ 4	16-data bus
+ 5	base address alignment on size boundary required
+ 6	power-of-two size granularity
+---memory windows---
+ 7	card offset must be aligned on size boundary
+ 8	paging hardware available
+ 9	paging hardware shared
+ 10	page disable/enable supported
+ 11-15	reserved (0)
+---I/O windows---
+ 7-15	reserved (0)
+

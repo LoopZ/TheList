@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FA189
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Biologic HRAMDEV.SYS - API
+	AX = A189h
+	BX = subfunction
+	    0000h set ???
+	    0001h remove ???
+	    0002h get status ???
+	    0003h enable ???
+	    0004h disable ???
+	    0005h set ??? flag
+	    0006h clear ??? flag
+	    0007h set ??? flag
+	    0008h clear ??? flag
+	    0009h set ???
+	ES:DI -> function-specific arguments
+		if func 0000h: 20-byte buffer containing ???
+		if func 0001h: 20-byte buffer for returned ???
+		if func 0002h: 16-byte buffer for returned ???
+		if func 0009h: WORD containing ???
+Return: BX = A189h if installed
+	AH = status
+	    00h successful
+	    FFh failed or invalid function number
+Program: HRAMDEV.SYS is a part of the shareware package HRAM by Biologic which
+	  provides improved high memory access under MS-DOS 5.0
+Note:	functions 00h and 01h use a stack of four entries; function 01h always
+	  removes the values stored with the most recent function 00h call
+	  which has not yet been matched with a function 01h call.
+

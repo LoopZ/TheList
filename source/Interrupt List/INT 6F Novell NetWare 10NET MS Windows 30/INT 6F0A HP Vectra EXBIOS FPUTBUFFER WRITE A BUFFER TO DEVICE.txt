@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_PUT_BUFFER" - WRITE A BUFFER TO DEVICE
+	AH = 0Ah
+	BP = driver ID (see #03741) for V_HPHIL (0114h), others
+	CX = number of bytes to write
+	ES:DI -> buffer containing data
+	---if driver is V_HPHIL---
+	BX = device address indicator (see #03760)
+	DH = HP HIL device major address
+	DL = HP-HIL device register (00h-7Fh)
+Return: AH = status (see #03744)
+	CX = number of unwritten bytes left in buffer
+	BP,DS destroyed
+SeeAlso: AH=06h"F_PUT_BYTE",AH=0Ah"F_PUT_BLOCK",AH=0Ch"F_GET_BUFFER"
+SeeAlso: AH=0Eh"F_PUT_WORD"
+

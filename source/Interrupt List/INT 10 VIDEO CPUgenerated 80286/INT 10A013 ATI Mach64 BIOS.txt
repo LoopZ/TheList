@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A013
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI Mach64 BIOS - ???
+	AX = A013h
+	???
+Return: AH = status
+	    00h successful
+	    01h failed
+	???
+Note:	not implemented in examined Mach64 BIOS, always returns AH=01h; NOP in
+	  examined All-in-Wonder 128 BIOS
+SeeAlso: AX=A000h,AX=A002h
+

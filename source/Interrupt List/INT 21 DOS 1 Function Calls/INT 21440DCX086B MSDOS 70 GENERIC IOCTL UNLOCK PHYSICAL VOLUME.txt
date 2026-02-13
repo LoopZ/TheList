@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440DCX086B
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7.0+ - GENERIC IOCTL - UNLOCK PHYSICAL VOLUME
+	AX = 440Dh
+	CX = 086Bh / 486Bh
+	    (category code 08h for FAT12/16, 48h for FAT32; minor code 6Bh)
+	BH = logical drive number (00h = default, 01h = A:, etc.)
+Return: CF set on error
+	    AX = error code (01h,02h,etc.) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Desc:	lock all logical volumes on the same physical volume as the indicated
+	  drive
+SeeAlso: AX=440Dh"DOS 3.2+",AX=440Dh/CX=084Bh,AX=440Dh/CX=086Ah
+

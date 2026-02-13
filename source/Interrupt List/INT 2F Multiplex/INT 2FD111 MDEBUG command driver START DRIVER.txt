@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD111
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MDEBUG command driver - START DRIVER
+	AX = D111h
+Return: DL = FFh
+Notes:	only called by the transient part of the driver to inform the resident
+	  part that it is installed
+	the function must be reentrant and the driver mustn't chain this
+	  function to the old INT 2F
+SeeAlso: AX=D101h,AX=D112h
+

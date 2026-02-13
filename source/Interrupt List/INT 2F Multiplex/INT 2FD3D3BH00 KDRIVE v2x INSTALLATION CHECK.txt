@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD3D3BH00
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - KDRIVE v2.x - INSTALLATION CHECK
+	AX = D3D3h
+	BH = 00h
+Return: BX = 3D3Dh if installed
+	CF clear if installed
+	    AX = driver ID??? (returns 0087h for KDRIVE.EXE and 0880h for
+		  KDRIVOS2.EXE in one examined version)
+Program: KDRIVE is a shareware extended German keyboard driver by Martin
+	  Austermeier, originally based on K3 by Martin Gerdes as published
+	  in c't magazine 7/1988
+

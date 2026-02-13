@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620060
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_INITXMS" - INITIALIZE EXTENDED MEMORY USE
+	AX = 0060h
+Return: AX = status
+	    0000h successful
+	    FFFFh extended memory manager inaccessible or not installed
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0003h,AX=005Dh
+

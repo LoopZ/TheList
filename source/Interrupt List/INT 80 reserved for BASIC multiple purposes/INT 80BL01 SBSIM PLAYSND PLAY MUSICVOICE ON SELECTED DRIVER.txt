@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BL01
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SBSIM - "PLAYSND" - PLAY MUSIC/VOICE ON SELECTED DRIVER
+	BL = 01h
+	BH = driver number (01h = FM, 02h=DDBV, 03h=memvoice, 05h=MIDI)
+Return: AX = result (see #03972)
+SeeAlso: INT 80/BL=00h"SBSIM",INT 80/BL=02h"SBSIM",INT 80/BL=04h"SBSIM"
+

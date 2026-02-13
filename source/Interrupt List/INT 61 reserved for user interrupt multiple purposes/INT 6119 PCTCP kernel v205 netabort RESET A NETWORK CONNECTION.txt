@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6119
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_abort" - RESET A NETWORK CONNECTION
+	AH = 19h
+	BX = network descriptor
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Desc:	immediately destroys the specified connection
+Note:	send a TCP "RST" command if a stream connection is open
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=24h
+

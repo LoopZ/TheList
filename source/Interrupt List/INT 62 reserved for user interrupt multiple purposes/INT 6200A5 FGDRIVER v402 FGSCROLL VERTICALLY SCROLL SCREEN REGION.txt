@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200A5
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SCROLL" - VERTICALLY SCROLL SCREEN REGION
+	AX = 00A5h
+	BX = left edge column
+	CX = right edge column
+	DX = top edge row
+	SI = bottom edge row
+	DI = number of pixels by which to scroll (positive scrolls up,
+	      negative scrolls down)
+	ES = type of scroll
+	    0000h circular (rows scrolled off are copied to vacated rows)
+	    else vacated rows are filled with the current color
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	In graphics modes, the left and right edges are adjusted to byte
+	  boundaries if necessary
+	Circular scrolling uses part of the hidden page as a workspace
+SeeAlso: AX=0088h,AX=00B2h
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF75
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - RESTORE QUEUE SERVER RIGHTS
+	AH = E3h subfn 75h
+	DS:SI -> request buffer (see #01991)
+	ES:DI -> reply buffer (see #01989)
+Return: AL = status (00h,96h,9Ch,D0h,D1h,D3h,D5h,D9h,DAh,FEh,FFh) (see #01961)
+Desc:	restore server's own identity after assuming the login identity of the
+	  client submitting the job being serviced
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be a job server which has previously changed its identity
+SeeAlso: AH=E3h/SF=74h,AX=F217h/SF=75h
+
+Format of NetWare "Restore Queue Server Rights" request buffer:
+Offset	Size	Description	(Table 01991)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	75h (subfunction "Change To Client Rights")
+SeeAlso: #01989,#01990
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62005C
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_IMAGESIZ" - DETERMINE IMAGE STORAGE REQUIREMENT
+	AX = 005Ch
+	BX = image width in pixels
+	CX = image height in pixels
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+Return: DX:AX = size in bytes of mode-specific bitmap for current video mode
+SeeAlso: AX=003Ch,AX=0098h
+

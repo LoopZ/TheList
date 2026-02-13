@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0418BP00AE
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_CLR_CRTSW" - SET CRT TO MONOCHROME
+	AX = 0418h
+	BP = 00AEh (driver ID for V_8041)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	clears a flag in the 8041, indicating that the primary display is the
+	  monochrome adapter
+SeeAlso: AH=00h"HP Vectra",AX=040Ch/BP=00AEh,AX=040Eh/BP=00AEh
+SeeAlso: AX=0414h/BP=00AEh,AX=0416h/BP=00AEh,AX=041Ah/BP=00AEh
+

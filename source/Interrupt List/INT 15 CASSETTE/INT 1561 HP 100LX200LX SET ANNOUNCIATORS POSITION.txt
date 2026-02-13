@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1561
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SET ANNOUNCIATORS POSITION
+	AH = 61h
+	AL = position (20h = left, 60h = right)
+Note:	The announciators are the indicator symbols for the Shift and Fn keys
+	  in the bottom line
+SeeAlso: AH=62h"HP",INT 16/AH=02h
+

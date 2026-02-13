@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213700
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "SWITCHAR" - GET SWITCH CHARACTER
+	AX = 3700h
+Return: AL = status
+	    00h successful
+		DL = current switch character
+	    FFh unsupported subfunction
+Desc:	Determine the character which is used to introduce command switches.
+	  This setting is ignored by MS-DOS commands in version 4.0 and higher,
+	  but is honored by many third-party programs and by Novell DOS 7
+	  external commands
+BUG:	Novell DOS 7's COMMAND.COM (prior to Update 15) fails to honor the
+	  SwitChar setting for internal commands even though COMMAND.COM
+	  honors it in its own command tail (i.e. COMMAND /?); even in Update
+	  15, internal commands fail to honor SwitChar for the /? help option
+Notes:	documented in some OEM versions of some releases of DOS
+	supported by OS/2 compatibility box
+	always returns AL=00h/DL=2Fh for MS-DOS 5+ and DR DOS 3.41-6.0
+	Novell DOS 7 COMMAND.COM indicates switch characters other than '/'
+	  by changing the first backslash (and only the first one) in the
+	  path it prints for PROMPT $p with a forward slash
+SeeAlso: AX=3701h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200E4
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_YALPHA" - CONVERT SCREEN ROW TO CHARACTER ROW
+	AX = 00E4h
+	BX = screen space row
+Return: AX = character space row containing specified coordinate
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00E1h,AX=00E5h
+

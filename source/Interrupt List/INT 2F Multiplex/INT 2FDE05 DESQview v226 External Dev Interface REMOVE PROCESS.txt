@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE05
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - REMOVE PROCESS
+	AX = DE05h
+	BX = mapping context of process (see #00416 at INT 15/AX=1016h)
+	DX = handle of last task in process
+Return: nothing
+Notes:	XMS XDI handler releases the structure allocated by AX=DE04h
+	driver should pass this call to previous handler before processing it
+	all DOS, BIOS, and DV API calls except those generating a task switch
+	  are valid in handler
+SeeAlso: AX=DE04h,AX=DE07h,INT 15/AX=5402h
+

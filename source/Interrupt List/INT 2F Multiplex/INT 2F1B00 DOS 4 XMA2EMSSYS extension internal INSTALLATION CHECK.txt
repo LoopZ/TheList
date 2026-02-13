@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1B00
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4+ XMA2EMS.SYS extension internal - INSTALLATION CHECK
+	AX = 1B00h
+Return: AL = FFh if installed
+Note:	XMA2EMS.SYS extension is only installed if DOS has page frames to hide.
+	This extension hooks onto INT 67/AH=58h and returns from that call data
+	  which excludes the physical pages being used by DOS.
+SeeAlso: AH=1Bh"FRAME INFO"
+

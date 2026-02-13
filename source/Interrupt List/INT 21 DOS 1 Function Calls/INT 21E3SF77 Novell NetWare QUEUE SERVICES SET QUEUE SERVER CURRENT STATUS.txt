@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF77
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - SET QUEUE SERVER CURRENT STATUS
+	AH = E3h subfn 77h
+	DS:SI -> request buffer (see #01994)
+	ES:DI -> reply buffer (see #01995)
+Return: AL = status (00h,96h,9Ch,D0h,D1h,FEh,FFh) (see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be a job server which has attached itself to the queue
+SeeAlso: AH=E3h/SF=68h,AH=E3h/SF=6Ch,AH=E3h/SF=6Fh,AH=E3h/SF=76h,AH=E3h/SF=78h
+SeeAlso: AX=F217h/SF=77h
+
+Format of NetWare "Set Queue Server Current Status" request buffer:
+Offset	Size	Description	(Table 01994)
+ 00h	WORD	0045h (length of following data)
+ 02h	BYTE	77h (subfunction "Set Queue Server Current Status")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h 64 BYTEs	server status record (format depends on server)
+		first four bytes should contain estimated "price" for an
+		  average job
+SeeAlso: #01995
+
+Format of NetWare "Set Queue Server Current Status" reply buffer:
+Offset	Size	Description	(Table 01995)
+ 00h	WORD	(call) 0000h (no results returned)
+SeeAlso: #01994
+

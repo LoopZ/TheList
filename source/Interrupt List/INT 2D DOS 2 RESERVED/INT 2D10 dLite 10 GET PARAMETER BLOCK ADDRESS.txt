@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - dLite 1.0+ - GET PARAMETER BLOCK ADDRESS
+	AL = 10h
+	AH = AMIS multiplex number for dLite
+Return: CF clear if successful
+	    ES:BX -> parameter block (see #02577)
+	CF set on error
+Program: dLite is a shareware TSR by Rainer Schuetze which transparently
+	  expands compressed files when they are read
+SeeAlso: AL=11h"dLite",AL=12h"dLite",INT 21/AX=FEDCh"PCMANAGE"
+
+Format of dLite parameter block:
+Offset	Size	Description	(Table 02577)
+ 00h	BYTE	TSR flags (see #02578)
+ 01h	WORD	maximum number of programs needing original filesize
+ 03h	WORD	current number of programs needing original filesize
+ 05h	WORD	maximum number of files that can be handled by dLite (should
+		  be the same as FILES= in CONFIG.SYS)
+ 07h	WORD	offset (in the same segment as the parameter block) of the
+		  table of programs needing the original filesize (8 bytes
+		  each,	without path or extension, uppercase, and zero \
+		  terminated if	shorter than 8 bytes)
+
+Bitfields for dLite TSR flags:
+Bit(s)	Description	(Table 02578)
+ 0	deny FCB access
+ 1	dLite sleeping rather than activated
+ 2	always indicate original filesize when reading directory entries,
+	  rather than only for specified programs
+ 3-7	reserved
+SeeAlso: #02577
+

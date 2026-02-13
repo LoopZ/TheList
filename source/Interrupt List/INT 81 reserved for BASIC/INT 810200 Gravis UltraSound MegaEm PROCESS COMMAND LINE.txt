@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 810200
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 81 - Gravis UltraSound - MegaEm - PROCESS COMMAND LINE
+	AX = 0200h
+	BX = PSP segment
+	SI = ??? (data area)
+Return: AX = status (see #03975)
+	BL = emulation state
+	    bit 1   Emulation is on
+	    bit 2   Emulation is off
+Program: MegaEm is a protected-mode SoundBlaster, SoundCanvas, and MT-32
+	  emulator for the Gravis UltraSound
+Range:	INT 81 to INT FF (see INT 21/AX=FD12h), selected by scanning for an
+	  interrupt with vector 0000h:0000h
+SeeAlso: AX=0202h,AX=0300h,AX=0400h,INT 21/AX=FD12h/BX=3457h
+
+(Table 03975)
+Values for MegaEm status:
+ 0000h	successful
+ 0001h	invalid command line optie
+ 0002h	display options
+ 0003h	???
+ 0004h	invalid number of voices specified
+ 0005h	could not load enough patches to provide acceptable emulation
+ 0006h	to many warnings on patch loading
+ 0007h	??? (not used anymore)
+ 0008h	/CO and SCSI don't work together
+ 0009h	invalid music volume
+ 000Ah	invalid master volume
+ 000Bh	/SC switch is no longer valid
+ 0100h	??? (some error on patch loading)
+

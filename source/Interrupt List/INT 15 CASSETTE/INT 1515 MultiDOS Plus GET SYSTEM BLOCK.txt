@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1515
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - GET SYSTEM BLOCK
+	AH = 15h
+Return: BX:AX -> system block (see #00457)
+SeeAlso: AH=13h"MultiDOS"
+
+Format of MultiDOS Plus 4.0 system block:
+Offset	Size	Description	(Table 00457)
+ 00h	WORD	segment of system control block
+ 02h	WORD	redirection flag set by /NOREDIRECT
+ 04h	WORD	no-INT 10 flag set by /NO10
+ 06h	DWORD	old INT 10
+ 0Ah	DWORD	new INT 10
+ 0Eh	DWORD	pointer to WORD with current TCB offset (see #00456)
+ 12h	DWORD	pointer to WORD with idle task TCB offset
+ 16h	DWORD	pointer to WORD with foreground TCB offset (see #00456)
+ 1Ah	DWORD	pointer to WORD with MultiDOS TCB offset (see #00456)
+ 1Eh	WORD	Task Control Block size
+ 20h	WORD	number of TCBs
+ 22h	WORD	flag: EMS present
+ 24h	WORD	EMS page frame base segment
+ 26h	WORD	16K pages in EMS page frame
+ 28h	WORD	base segment for conventional memory tasks
+ 2Ah	WORD	conventional memory size in paragraphs
+ 2Ch	DWORD	pointer to list of queue pointers
+

@@ -1,0 +1,105 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - INIT USER BUFFER PTR INFO
+	AX = 0003h subfn 00h
+	DS:BX -> argument block (see #03370)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=06h,AX=0003h/SF=08h,AX=0003h/SF=0Dh
+
+(Table 03369)
+Values for VINES function status:
+ 0000h	successful
+ 000Bh	invalid session ID
+ 000Ch	session not active
+ 000Dh	invalid request type
+ 000Eh	invalid parameters
+ 000Fh	out of heap space
+ 0010h	timeout on send
+ 0011h	Banyan communications error
+ 0012h	session not waiting for host
+ 0013h	session is active
+ 0014h	duplicate suspend session request
+ 0015h	no session suspended
+ 0016h	ring data buffer full
+ 0017h	printer error encountered
+ 0018h	Banyan communications error
+ 0019h	unable to make connection
+ 001Ah	no ring buffer specified at startup
+ 001Bh	service is down
+ 001Ch	invalid service name
+ 001Dh	service is closed
+ 001Eh	invalid connection name
+ 001Fh	max session limit reached for service
+ 0020h	access rights list for connection/dialout does not include this user
+ 0021h	service not responding
+ 0022h	missing telephone number
+SeeAlso: #03325,#03373
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03370)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	00h (func "initialize user buffer pointer information area")
+ 02h	WORD	-> user buffer ptr info area in caller's current DS (see #03371)
+
+Format of user buffer ptr info area:
+Offset	Size	Description	(Table 03371)
+ 00h	WORD	flags
+		0000h don't read interface's data buffer
+		0001h read data buffer
+ 02h	DWORD	pointer to ring buffer
+ 06h	WORD	length of ring buffer
+ 08h	WORD	ring buffer offset to last byte read by caller
+ 0Ah	DWORD	pointer to WORD containing offset of last byte
+		  in ring buffer filled
+ 0Eh	DWORD	pointer to screen buffer
+ 12h	DWORD	pointer to field containing cursor position
+ 16h	DWORD	pointer to terminal status area (see #03372)
+
+Format of VINES terminal status area:
+Offset	Size	Description	(Table 03372)
+ 00h	BYTE	status of session: 4Eh=oNline, 46h=oFfline, 57h=Waiting
+ 01h	BYTE	terminal type (00h=VT100, 01h=TTY, 02h=VT52, 03h=IBM3101)
+ 02h	BYTE	current keypad mode (VT100,VT52 only)
+		4Eh ("N") numeric mode
+		41h ("A") application mode
+ 03h  4 BYTEs	current state of LEDs (VT100 only)
+		00h off
+		01h on
+ 07h	WORD	line error count
+ 09h	WORD	primary error code (see #03373)
+ 0Bh	WORD	secondary error code
+
+(Table 03373)
+Values for VINES primary error code:
+ 0000h	no error
+ 0001h	unable to make connection
+ 0002h	communications error, restart session
+ 0003h	async terminal emulation service unavailable
+ 0004h	lost carrier
+ 0005h	all matching lines busy
+ 0006h	no lines defined for connection name
+ 0007h	no dial lines available on server
+ 0008h	no matching dial lines available
+ 0009h	out of heap space
+ 000Ah	service error encountered
+ 000Bh	timed out waiting to connect
+ 000Ch	communications error
+ 000Dh	communications error
+ 000Eh	host wants file transferred to/from PC
+ 000Fh	host software changed session parameter
+ 0010h	host software changed tap settings
+ 0011h	host software changed LED indicator
+ 0012h	host software changed display background (secondary error code 00h for
+	  white on black, 01h for black on white)
+ 0013h	host software changed display option (secondary error code 00h for off,
+	  01h for on)
+ 0014h	communications error
+ 0015h	communications error
+ 0016h	unable to make connection
+ 0017h	unable to make connection
+SeeAlso: #03369
+

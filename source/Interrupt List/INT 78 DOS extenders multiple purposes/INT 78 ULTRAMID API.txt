@@ -1,0 +1,77 @@
+--------------------------------------------------------------------------------
+ Unique ID: 78
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - ULTRAMID - API
+	AX = function
+	--- digital functions ---
+	    0000h start digital
+		ES:DI -> Sound Structure
+		Return: AX = voice used
+	    0001h play next buffer
+		ES:DI -> Sound Structure
+	    0002h set panning
+		BX = pan
+		CX = voice
+	    0003h set volume
+		BX = volume
+		CX = voice
+	    0004h set rate (not yet implemented)
+	    0005h pause digital
+		CX = voice
+	    0006h restart digital
+		CX = voice
+	    0007h stop digital
+		CX = voice
+	    0008h get digital position
+		CX = voice
+		Return: AX:DX -> position in PC buffer
+	    0009h get voice status (not yet implemented)
+	--- MIDI functions ---
+	    000Ah load MIDI patches
+		ES:DI -> MIDI track just after the Mtrk header
+		BX:DX = length of MIDI track
+	    000Bh load XMIDI patches
+		ES:DI -> event buffer including the EVNT header
+	    000Ch load patch
+		CX = MIDI number of patch
+	    000Dh unload patch
+		CX = MIDI number of patch
+	    000Eh start sequence
+	    000Fh unload all patches
+	    0010h MIDI out byte
+		CX = MIDI byte
+	    0011h MIDI out string
+		CX = length
+		ES:DI -> string of MIDI data
+	    0012h all notes off
+	--- resource functions ---
+	    0013h allocate memory
+		BX:DX = size of GUS memory needed
+		Return: AX:DX = address of memory, or 0000:0000 if not avaiable
+	    0014h free memory
+		BX:DX = address of memory to be freed
+	    0015h uninstall
+	    0016h sem enter
+	    0017h sem leave
+	    0018h add external semaphore
+		BX:DX -> external semaphore
+	    0019h clear external semaphore
+		BX:DX -> external semaphore
+	    001Ah application start
+	    001Bh application end
+	--- v1.12 ---
+	    001Ch ???
+	    001Dh ???
+	    001Eh ???
+	    001Fh ???
+Program: UltraMid is a TSR from Advanced Gravis to play MIDI and digital data
+	   through the Gravis UltraSound (GUS)
+InstallCheck:	test for the signature "ULTRAMID" at offset 0103h in the
+	  interrupt handler's segment
+Range:	INT 78 to INT 7F
+SeeAlso: INT 2F/AX=CD00h"ULTRAMID",INT 7E/AH=00h"SBOS",INT 7E/AX=00FEh"SBOS"
+Index:	uninstall;UltraMID
+

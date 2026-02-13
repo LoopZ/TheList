@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 326E14
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 32 - NOISE.SYS v0.53+ - GET FLAGS
+	AX = 6E14h
+Return: BX = flags (see #03167)
+	CX = mask of settable flags in BX
+SeeAlso: AX=6E00h,AX=6E15h
+
+Bitfields for NOISE.SYS flags:
+Bit(s)	Description	(Table 03167)
+ 0	MS Windows active
+ 1-5	reserved
+ 6	clock drift sampling
+ 7	video retrace drift sampling
+ 8	network access sampling (not implemented yet in 0.53)
+ 9	CD-ROM access sampling (not implemented yet in 0.53)
+ 10	DOS spinner
+ 11	DOS process start/end and miscellaneous process activity sampling
+ 12	mouse movement/button sampling
+ 13	disk sampling (INT 13)
+ 14	keystroke timings
+ 15	reserved for hardware RNG
+

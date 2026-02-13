@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214407
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - IOCTL - GET OUTPUT STATUS
+	AX = 4407h
+	BX = file handle
+Return: CF clear if successful
+	    AL = input status
+		00h not ready
+		FFh ready
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	for DOS 2+, files are always ready for output, even if the disk is
+	  full or no media is in the drive
+	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AX=4406h,INT 2F/AX=122Bh
+

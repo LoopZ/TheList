@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: n 	non-traditional input devices
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - PenDOS PENDEV.SYS - GET ENTRY POINTS
+	AX = 4402h
+	BX = file handle for device "$$PENDOS" or "$$PD_REG"
+	CX = size of buffer (4 for $$PENDOS and a 4,8,12, or 16 for $$PD_REG)
+	DS:DX -> buffer for entry point record (see #01500)
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: A limited version of PenDOS by Communication Intelligence Corporation,
+	  which provides pen capability to keyboard-based programs, is bundled
+	  with IBM DOS 6.1
+SeeAlso: AX=4403h"PENDEV.SYS"
+
+Format of PENDEV.SYS entry point record:
+Offset	Size	Description	(Table 01500)
+ 00h	DWORD	-> array of jumps
+ 04h	WORD	offset of function to retrieve entry point (see #01501)
+ 06h  2 BYTEs	signature "Pe"
+ 08h	WORD	offset of function to set entry point (see #01502)
+ 0Ah  2 BYTEs	signature "nD"
+ 0Ch	WORD	offset of function to clear entry point (see #01503)
+ 0Eh	WORD	signature "OS"
+
+(Table 01501)
+Call PENDEV.SYS function to retrieve entry point with:
+	AX = index of entry point (0-9)
+Return: CF clear if successful
+	    DX:AX -> desired entry point
+	CF set on error (AX out of range)
+
+(Table 01502)
+Call PENDEV.SYS function to set entry point with:
+	AX = index of entry point (0-9)
+	DX:SI -> new handler
+Return: CF clear if successful
+	CF set on error (AX out of range)
+
+(Table 01503)
+Call PENDEV.SYS function to clear entry point with:
+	AX = index of entry point (0-9)
+Return: CF clear if successful
+	CF set on error (AX out of range)
+Note:	resets the jump at the specified entry point to its default target,
+	  which simply returns
+

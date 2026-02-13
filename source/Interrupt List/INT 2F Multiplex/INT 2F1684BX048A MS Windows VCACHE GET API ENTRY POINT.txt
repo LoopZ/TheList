@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX048A
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VCACHE - GET API ENTRY POINT
+	AX = 1684h
+	BX = 048Ah (virtual device ID for VCACHE device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02691)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02690)
+Call Windows95 VCACHE.VXD entry point with:
+	Return:	CF set
+SeeAlso: #02689,#02691
+

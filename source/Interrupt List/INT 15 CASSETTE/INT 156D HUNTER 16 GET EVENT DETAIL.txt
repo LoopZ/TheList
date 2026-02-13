@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156D
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET EVENT DETAIL
+	AH = 6Dh
+Return: AH = 00h if successful
+	CX:BX = event flags bit 0..31 (see #00494)
+Note:	this function allows testing for events
+SeeAlso: AH=6Eh,AH=6Fh
+
+Bitfields for HUNTER 16 events:
+Bit(s)	Description	(Table 00494)
+ 6	RI received
+ 5	RTC Alarm
+ 4	data received on COM2
+ 3	data received on COM1
+ 2	error on COM2
+ 1	error on COM1
+ 0	PWR button pressed
+

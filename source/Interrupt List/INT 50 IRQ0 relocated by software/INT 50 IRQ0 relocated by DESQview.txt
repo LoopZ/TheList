@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 50
+  Category: H 	hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - IRQ0 relocated by DESQview
+Range:	INT 50 to INT F8, selected automatically
+Notes:	this is the default location for older versions; DESQview v2.26+
+	  searches for unused ranges of interrupts and uses the lowest
+	  available range in its list for relocating these IRQs and the next
+	  lowest for relocating IRQ8-IRQ15
+	a range of eight interrupts starting at a multiple of 8 is considered
+	  available if all vectors are identical and it has not been excluded
+	  with an /XB:nn commandline switch
+	the list of ranges for v2.26 is 50h,58h,68h,78h,F8h (if < two of these
+	  are available, F8h and then 50h are used anyway)
+	the list of ranges for v2.31+ is 68h,78h,88h-B8h,F8h (if < two of these
+	  are available, F8h and then F0h are used anyway)
+SeeAlso: INT 08"IRQ0",INT 51"DESQview",INT 54"DESQview",INT 58"DESQview"
+SeeAlso: INT D8"Screen Thief"
+

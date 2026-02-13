@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215700
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET FILE'S LAST-WRITTEN DATE AND TIME
+	AX = 5700h
+	BX = file handle
+Return: CF clear if successful
+	    CX = file's time (see #01665)
+	    DX = file's date (see #01666)
+	CF set on error
+	    AX = error code (01h,06h) (see #01680)
+Note:	under DR DOS 3.41 and 5.0, this function returns 0 (no date/time) for
+	  character devices; MS-DOS returns date and time of opening
+SeeAlso: AX=5701h,AX=5704h"Windows95"
+
+Bitfields for file time:
+Bit(s)	Description	(Table 01665)
+ 15-11	hours (0-23)
+ 10-5	minutes
+ 4-0	seconds/2
+
+Bitfields for file date:
+Bit(s)	Description	(Table 01666)
+ 15-9	year - 1980
+ 8-5	month
+ 4-0	day
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1689
+  Category: W 	MS Windows
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS Windows 3.0+ - KERNEL IDLE CALL
+	AX = 1689h
+	BX = status flags (see #04105)
+Return: ???
+Desc:	the Windows KERNEL idle loop calls this function, which VMM uses as an
+	  indication that the system is idle, which in turn generates INT 28
+	  and INT 2F/AX=1607h/BX=0018h callouts
+SeeAlso: AX=1680h,AX=1607h/BX=0018h,INT 15/AX=1000h,INT 28
+
+Bitfields for Kernel Idle status flags:
+Bit(s)	Description	(Table 04106)
+ 15-1	reserved
+ 0	"Win_Idle_Mouse_Busy"
+

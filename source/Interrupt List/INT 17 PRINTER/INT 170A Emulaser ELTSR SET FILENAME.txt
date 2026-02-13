@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 170A
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - Emulaser ELTSR - SET ??? FILENAME
+	AH = 0Ah
+	ES:BX -> ??? buffer
+	CX = length of ??? buffer
+Return: ???
+Note:	copies the specified name into the buffer passed to ELSPL as the
+	  filename by AH=09h
+SeeAlso: AH=09h,INT 1A/AH=E5h
+

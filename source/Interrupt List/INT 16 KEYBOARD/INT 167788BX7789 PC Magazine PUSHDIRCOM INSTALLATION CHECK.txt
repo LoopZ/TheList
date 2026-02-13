@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 167788BX7789
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - PC Magazine PUSHDIR.COM - INSTALLATION CHECK
+	AX = 7788h
+	BX = 7789h
+	DS:SI -> signature "PUSHDIR VERSION 1.0"
+Return: AX = 7789h if installed and signature correct
+	BX = 7788h
+	SI destroyed
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A6D04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_COPYFROM" - COPY DATA FROM RESIDENT SNAP PACKAGE
+	AX = 6D04h
+	STACK:	WORD	offset within SNAP data segment of source buffer
+		WORD	segment of destination buffer
+		WORD	offset of destination buffer
+		WORD	number of bytes to copy
+Return: AX = offset of byte after last one copied from source
+	buffer filled
+	STACK unchanged
+SeeAlso: AX=6C04h
+

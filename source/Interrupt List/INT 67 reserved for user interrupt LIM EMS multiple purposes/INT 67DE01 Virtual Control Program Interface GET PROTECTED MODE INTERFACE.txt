@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE01
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - GET PROTECTED MODE INTERFACE
+	AX = DE01h
+	ES:DI -> 4K page table buffer
+	DS:SI -> three descriptor table entries in GDT
+		first becomes code segment descriptor, other two for use by
+		  main control program
+Return: AH = 00h successful
+	    DI -> first unused page table entry in buffer
+	    EBX -> protected mode entry point in code segment (see #03664)
+	AH = nonzero  failed
+Note:	protected mode entry point may be called with AX=DE00h-DE05h and
+	  AX=DE0Ch (in each case, all other registers as appropriate for
+	  the function)
+SeeAlso: INT 2F/AX=1687h,INT 67/AH=3Fh
+
+(Table 03664)
+Call QEMM v6.03 protected mode entry point additionally with:
+	AX = DF00h ???
+		???
+		Return: ???
+	AX = DF01h ???
+		???
+		Return: ???
+

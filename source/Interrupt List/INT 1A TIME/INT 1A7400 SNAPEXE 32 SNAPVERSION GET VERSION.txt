@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A7400
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_VERSION" - GET VERSION
+	AX = 7400h
+Return: AX = version (AH=major, AL=minor)
+Note:	this call is only valid if SNAP is installed
+SeeAlso: AX=7302h,INT 1A/AX=6F01h
+

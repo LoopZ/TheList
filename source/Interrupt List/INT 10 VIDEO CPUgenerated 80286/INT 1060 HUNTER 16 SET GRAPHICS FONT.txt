@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1060
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - SET GRAPHICS FONT
+	AH = 60h
+	AL = new font
+	    bit 7    output characters in reverse video
+	    bits 0-6 font number (see #00200 at AH=77h)
+Return: BH = cell width
+	BL = cell height
+Desc:	select the font to use for output in mode 6; this can be used to mix
+	  fonts on the screen
+Note:	the Husky Hunter 16 is an 8088-based ruggedized laptop.	 Other family
+	  members are the Husky Hunter, Husky Hunter 16/80, and Husky Hawk.
+SeeAlso: AH=04h"HUNTER",AH=73h"HUNTER",AH=77h"HUNTER"
+

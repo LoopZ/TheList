@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD81
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.3+ KEYB.COM - SET KEYBOARD CODE PAGE
+	AX = AD81h
+	BX = code page (see #01757 at INT 21/AX=6601h)
+Return: CF set on error
+	    AX = 0001h (code page not available)
+	CF clear if successful
+Notes:	called by DISPLAY.SYS
+	this function was undocumented prior to the release of DOS 5.0
+SeeAlso: AX=AD80h,AX=AD82h
+

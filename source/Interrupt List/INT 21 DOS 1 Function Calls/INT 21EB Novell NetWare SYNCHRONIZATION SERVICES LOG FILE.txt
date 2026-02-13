@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - LOG FILE
+	AH = EBh
+	DS:DX -> ASCIZ filename
+	if function C6h lock mode 01h:
+	    AL = flags
+		00h log file only
+		01h lock as well as log file
+		    BP = lock timeout in timer ticks (1/18 second)
+			0000h = don't wait if file already locked
+Return: AL = status (see #02090)
+Desc:	add the location and size of the specified file to the log table and
+	  optionally lock the file
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=BCh"NetWare",AH=CAh,AH=D0h,AH=ECh"NetWare",AH=EDh"NetWare"
+
+(Table 02090)
+Values for NetWare status:
+ 00h	successful
+ 96h	no dynamic memory for file
+ FEh	timed out
+ FFh	failed
+SeeAlso: #02053
+

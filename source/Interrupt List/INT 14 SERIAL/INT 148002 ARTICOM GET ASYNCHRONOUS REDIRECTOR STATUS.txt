@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148002
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - GET ASYNCHRONOUS REDIRECTOR STATUS
+	AX = 8002h
+	ES:DI -> buffer for redirector status structure (see #00359)
+Return: AX = error code, if error (see #00360)
+SeeAlso: AX=8000h"ARTICOM",AX=8003h"ARTICOM"
+
+Format of ARTICOM redirector status:
+Offset	Size	Description	(Table 00359)
+ 00h	WORD	redirector major and minor version numbers
+ 02h	WORD	redirectable ports found
+ 04h	WORD	redirectable ports + local ports found
+ 06h	WORD	redirector internal buffer size
+ 08h	WORD	maximum servers maintained
+ 0Ah	WORD	number of adapters found
+

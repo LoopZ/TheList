@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155307CX0001
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - SYSTEM STAND-BY
+	AX = 5307h
+	CX = 0001h
+	BX = 0001h (device ID for all power-managed devices)
+Return: CF clear
+Notes:	puts the entire system into stand-by mode; normally called in response
+	  to a System Stand-by Request notification after any necessary
+	  processing, but may also be invoked at the caller's discretion
+	should not be called from within a hardware interrupt handler to avoid
+	  reentrance problems
+	the stand-by state is typically exited on an interrupt
+SeeAlso: AX=4280h,AX=5307h/CX=0002h"SUSPEND",AX=5307h/CX=0003h,AX=530Bh
+

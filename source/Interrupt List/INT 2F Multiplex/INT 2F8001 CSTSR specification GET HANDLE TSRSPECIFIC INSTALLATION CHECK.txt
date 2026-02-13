@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8001
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CS_TSR specification - GET HANDLE (TSR-SPECIFIC INSTALLATION CHECK)
+	AX = 8001h
+	DS:SI -> ASCIZ signature string for desired TSR (see #02929)
+Return: BX = process handle or 0000h if specified TSR not installed
+	ES:DI -> process block for TSR (see #02928) if BX<>0000h
+Note:	A widely-available copy of ASCII billing itself as "ASCII 2.OO by
+	  Nick Zaikin Jr." is in fact a hacked copy of the Compact Soft
+	  ASCII v4.23 which is identical except for the changed attribution
+	  and version (in fact, some instances of "4.23" were missed); the
+	  hacked copy requires the signature string
+	  "ASCII 2.OO by Nick Zaikin Jr." instead of the unhacked version's
+	  simple signature "ASCII"
+SeeAlso: AX=8000h"CS_TSR",AX=8002h"CS_TSR"
+
+(Table 02929)
+Values for CS_TSR signature strings:
+ "ASCII"	ASCII, a popup ASCII table with character input
+ "Halculator"	HALC, a 32-bit RPN WYSIWIH calculator with undo and ptr support
+ "AntiTurbo"	AT!, an intelligent system slow-down utility
+

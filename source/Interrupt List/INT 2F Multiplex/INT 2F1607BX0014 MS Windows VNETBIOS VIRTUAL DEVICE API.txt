@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1607BX0014
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - "VNETBIOS" VIRTUAL DEVICE API
+	AX = 1607h
+	BX = 0014h (VxD identifier of "VNETBIOS")
+Return: ES:DI -> 128-byte table specifying VNETBIOS actions for each NetBIOS
+		command code (see #02635)
+Note:	VNETBIOS (Virtual NetBIOS) calls this function to determine whether
+	  the NetBIOS has an extensions Windows should know about
+SeeAlso: AX=1607h/BX=000Ch,AX=1607h/BX=0010h,AX=1607h/BX=0015h
+
+(Table 02635)
+Values for VNETBIOS action code:
+ 00h	"VN_Unknown" unknown command
+ 04h	"VN_No_Map"  no memory mapping necessary
+ 08h	"VN_Map_In"  input buffer is quickly used, so no global mapping needed
+ 0Ch	"VN_Map_In"  output buffer is quickly used, so no global mapping needed
+ 10h	"VN_Map_In_Out"	 buffer is quickly used, so no global mapping needed
+ 14h	"VN_Chain_Send"	 the chain-send command
+ 18h	"VN_Cancel"	special case for cancel command
+ 1Ch	"VN_Buffer_In"	buffer is incoming
+ 20h	"VN_Buffer_Out" buffer is outgoing
+ 24h	"VN_Buffer_In_Out" buffer used for both incoming and outgoing data
+

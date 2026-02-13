@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI040B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - "MDIT_INS_STR"
+	DI = 040Bh
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ???
+		DWORD	pointer to ???
+		WORD	???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 15/AX=4DD4h,INT 61"HP 95LX",INT 62"HP 95LX"
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF80DHFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - SEND MESSAGE
+	AX = FF80h
+	DH = FFh
+	DL = destination address (FFh for broadcast)
+	CX = message length (max 2000)
+	DS:SI -> message to be sent (see #02530)
+Return: nothing
+Program: TopWare Network Operating System is manufactured by Grand Computer
+	  Company
+Notes:	this function is supported on both Workstations and the server
+	there is no guarantee that the message will be received correctly, or
+	  at all, by the destination
+
+Format of TopWare message:
+Offset	Size	Description	(Table 02530)
+ 00h	BYTE	type code
+		07h TopSend
+		11h user application
+		other reserved for TopWare
+ 01h	var	data
+Note:	sending messages with a type code other than 11h will cause
+	  unpredictable results
+

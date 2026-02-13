@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1116
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - OPEN EXISTING REMOTE FILE
+	AX = 1116h
+	ES:DI -> uninitialized SFT
+	SS = DOS DS
+	SDA first filename pointer -> fully-qualified name of file to open
+	STACK: WORD file access and sharing modes (see #01402 at INT 21/AH=3Dh)
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    SFT filled (except handle count, which DOS manages itself)
+	STACK unchanged
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: AX=1106h,AX=1115h,AX=1117h,AX=1118h,AX=112Eh,INT 21/AH=3Dh
+SeeAlso: INT 21/AH=60h
+

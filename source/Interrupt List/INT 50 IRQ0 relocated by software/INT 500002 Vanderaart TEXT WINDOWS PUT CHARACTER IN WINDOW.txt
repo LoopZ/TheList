@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500002
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - Vanderaart TEXT WINDOWS - PUT CHARACTER IN WINDOW
+	AX = 0002h
+	BL = character
+	BH = attribute
+	DL = column
+	DH = row
+	DI = window handle
+Return: AX = status
+	    0000h if successful
+	    FFFFh if outside window
+SeeAlso: AX=0000h
+

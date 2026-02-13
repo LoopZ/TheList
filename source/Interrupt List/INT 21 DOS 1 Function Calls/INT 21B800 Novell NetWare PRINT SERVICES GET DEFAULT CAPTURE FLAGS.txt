@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B800
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - GET DEFAULT CAPTURE FLAGS
+	AX = B800h
+	CX = size of reply buffer (01h-3Fh)
+	ES:BX -> reply buffer for capture flags table (see #01805)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 2.0+
+SeeAlso: AX=B801h,AX=B802h,AH=DFh/DL=00h,AH=DFh/DL=04h
+
+Format of NetWare capture flags table:
+Offset	Size	Description	(Table 01805)
+ 00h	BYTE	status (used internally, should be set to 00h)
+ 01h	BYTE	print flags (see #01806)
+ 02h	BYTE	tab size (01h-12h, default 08h)
+ 03h	BYTE	printer number on server (00h-04h, default 00h)
+ 04h	BYTE	number of copies to print (00h-FFh, default 01h)
+ 05h	BYTE	form type required in printer (default 00h)
+ 06h	BYTE	reserved
+ 07h 13 BYTEs	text to be placed on banner page
+ 14h	BYTE	reserved
+ 15h	BYTE	default local printer (00h = LPT1)
+ 16h	WORD	(big-endian) timeout in clock ticks for flushing capture file
+		  on inactivity, or 0000h to disable timeout
+ 18h	BYTE	flush capture file on LPT close if nonzero
+ 19h	WORD	(big-endian) maximum lines per page
+ 1Bh	WORD	(big-endian) maximum characters per line
+ 1Dh 13 BYTEs	name of form required in printer
+ 2Ah	BYTE	LPT capture flag
+		00h inactive, FFh LPT device is being captured
+ 2Bh	BYTE	file capture flag
+		00h if no file specified, FFh if capturing to file
+ 2Ch	BYTE	timing out (00h if no timeout in effect, FFh if timeout counter
+		  running)
+ 2Dh	DWORD	(big-endian) address of printer setup string
+ 31h	DWORD	(big-endian) address of printer reset string
+ 35h	BYTE	target connection ID
+ 36h	BYTE	capture in progress if FFh
+ 37h	BYTE	job queued for printing if FFh
+ 38h	BYTE	print job valid if FFh
+ 39h	DWORD	bindery object ID of print queue if previous byte FFh
+ 3Dh	WORD	(big-endian) print job number (1-999)
+
+Bitfields for NetWare print flags:
+Bit(s)	Description	(Table 01806)
+ 2	print capture file if interrupted by loss of connection
+ 3	no automatic form feed after print job
+ 6	printing control sequences interpreted by print service
+ 7	print banner page before capture file
+

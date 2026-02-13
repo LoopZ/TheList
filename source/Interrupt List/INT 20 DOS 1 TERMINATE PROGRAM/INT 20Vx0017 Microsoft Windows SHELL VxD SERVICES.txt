@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0017
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - SHELL - VxD SERVICES
+	VxD = 0017h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01283)
+Values for SHELL (VxD ID 0017h) service number:
+ 0000h	get version
+ 0001h	resolve contention
+ 0002h	event
+ 0003h	SYSMODAL message
+ 0004h	message
+ 0005h	get VM information
+ 0006h	"_SHELL_PostMessage"
+ 0007h	"_SHELL_WinExec"
+ 0008h	"_SHELL_CallDll"
+ 0009h	"SHELL_OpenClipboard"
+ 000Ah	"SHELL_SetClipboardData"
+ 000Bh	"SHELL_GetClipboardData"
+ 000Ch	"SHELL_CloseClipboard"
+ 000Dh	"_SHELL_Install_Taskman_Hooks"
+ 000Eh	"SHELL_Hook_Properties"
+ 000Fh	"SHELL_Unhook_Properties"
+ 0010h	"SHELL_OEMKeyScan"
+ 0011h	"SHELL_Update_User_Activity"
+ 0012h	"_SHELL_UnhookSystemBroadcast"
+ 0013h	"_SHELL_LocalAllocEx"
+ 0014h	"_SHELL_LocalFree"
+ 0015h	"_SHELL_LoadLibrary"
+ 0016h	"_SHELL_FreeLibrary"
+ 0017h	"_SHELL_GetProcAddress"
+ 0018h	"_SHELL_CallDll"
+ 0019h	"_SHELL_SuggestSingleMSDOSMode"
+ 001Ah	"SHELL_CheckHotkeyAllowed"
+ 001Bh	"_SHELL_GetDOSAppInfo"
+SeeAlso: #01282,#01284,#02657 at INT 2F/AX=1684h/BX=0017h
+

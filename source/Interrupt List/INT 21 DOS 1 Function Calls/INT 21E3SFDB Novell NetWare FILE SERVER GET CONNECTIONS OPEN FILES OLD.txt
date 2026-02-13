@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFDB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET CONNECTION'S OPEN FILES (OLD)
+	AH = E3h subfn DBh
+	DS:SI -> request buffer (see #02045)
+	ES:DI -> reply buffer (see #02046)
+Return: AL = status (00h,C6h) (see #02053)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E2h/SF=1Ah,AH=E3h/SF=C8h,AH=E3h/SF=DAh,AH=E3h/SF=DCh,AH=E3h/SF=DFh
+SeeAlso: AH=E3h/SF=E1h,AX=F217h/SF=DBh
+
+Format of NetWare "Get Connection's Open Files (old)" request buffer:
+Offset	Size	Description	(Table 02045)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	DBh (subfunction "Get Connection's Open Files")
+ 03h	WORD	(big-endian) logical connection number
+ 05h	WORD	(big-endian) last record seen (0000h on first call)
+SeeAlso: #02046,#02234 at AX=F217h/SF=DBh
+
+Format of NetWare "Get Connection's Open Files (old)" reply buffer:
+Offset	Size	Description	(Table 02046)
+ 00h	WORD	(call) size of following results record (max 1FEh)
+ 02h	WORD	next request record (place in "last record" field on next call)
+		0000h if no more records
+ 04h	BYTE	number of records following
+ 05h	var	array of File Information Records (see #02047)
+SeeAlso: #02045,#02234 at AX=F217h/SF=DBh
+
+Format of NetWare File Information Record:
+Offset	Size	Description	(Table 02047)
+ 00h	BYTE	task number
+ 01h	BYTE	lock flags (see #02048)
+ 02h	BYTE	access flags (see #02049)
+ 03h	BYTE	lock type
+		00h no lock
+		FEh file lock
+		FFh locked by Begin Share File Set
+ 04h	BYTE	volume number (00h-1Fh)
+ 05h	WORD	(big-endian) directory entry number
+ 07h 14 BYTEs	ASCIZ filename
+SeeAlso: #02046
+
+Bitfields for lock flags:
+Bit(s)	Description	(Table 02048)
+ 0	file is locked
+ 1	file opened Shareable
+ 2	logged
+ 3	file opened Normal
+ 6	TTS holding lock
+ 7	Transaction Flag set on file
+SeeAlso: #02047,#02049
+
+Bitfields for access flags:
+Bit(s)	Description	(Table 02049)
+ 0	file open for reading by calling station
+ 1	file open for writing by calling station
+ 2	deny reads by other stations
+ 3	deny writes by other stations
+ 4	file detached
+ 5	TTS Holding Detach
+ 6	TTS Holding Open
+SeeAlso: #02047,#02048
+

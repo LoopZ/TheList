@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - QUERY APPLICATION KEY
+	AX = 0007h
+Return: AX = current state (0000h/0001h)
+Desc:	returns the current toggle state of the application (END) key in
+	  specify mode. E.g. in the OPTIMA AutoCAD driver, 0 means AutoCAD
+	  calls INT 61/AX=0001h every time the crosshair cursor moves.
+Notes:	In specify mode, the END key has been reserved for applications.
+	INT 61 is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0000h"OPTIMA",AX=0001h"OPTIMA",AX=0004h"OPTIMA"
+SeeAlso: INT 16/AH=FFh"OPTIMA",INT 7A/AX=0001h"AutoCAD"
+

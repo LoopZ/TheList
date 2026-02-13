@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F06BL03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v2.0+ - GET MAXIMUM SCAN LINE LENGTH
+	AX = 4F06h
+	BL = 03h
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+	    01h failed
+	BX = maximum bytes per scan line
+	CX = maximum number of pixels per scan line
+Notes:	this function is valid in text modes, provided that pixel values are
+	  multiplied by the character cell width/height
+SeeAlso: AX=4F01h,AX=4F05h,AX=4F06h,AX=4F06h/BL=02h,AX=4F07h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F00BX4000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Diamond Stealth 24 - GET S3 INFORMATION BLOCK
+	AX = 7F00h
+	BX = 4000h
+Return: AX = 007Fh if supported
+	    DX:BX -> DAC set mode routine
+SeeAlso: AX=7F00h/BX=4001h,AX=7F00h/BX=4002h,#00732 at INT 1A/AX=B102h
+

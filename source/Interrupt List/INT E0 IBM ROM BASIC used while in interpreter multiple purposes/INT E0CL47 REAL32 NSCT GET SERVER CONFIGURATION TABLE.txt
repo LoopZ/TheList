@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL47
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "N_SCT" - GET SERVER CONFIGURATION TABLE
+	CL = 47h
+	DS:DX -> 112-byte buffer for Server Configuration Table (see #04034)
+Return: AX = status (0000h successful, else error code)
+	may destroy SI,DI,DS???
+Note:	the first byte of the SCT buffer is set to the desired server number
+	  prior to calling this function
+SeeAlso: INT E0/CL=45h
+
+Format of REAL/32 Server Configuration Table:
+Offset	Size	Description	(Table 04034)
+ 00h	BYTE	server's default physical drive ID
+ 01h	BYTE	network status
+ 02h	BYTE	server node ID number
+ 03h	BYTE	maximum number of requesters supported by server
+ 04h	BYTE	current number of shadow processes
+ 05h 108 BYTEs	six logon structures, each:
+		Offset	Size	Description
+		 00h	WORD	bit vector of logged-in nodes
+		 02h 16 BYTEs	list of requester node IDs
+

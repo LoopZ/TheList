@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - BW-TCP - HW DRIVER (ETHDEV.SYS) - ADD ???
+	AH = 0Bh
+	AL = ???
+	DX = ???
+	BP = ???
+	ES:SI -> ???
+Return: CF clear if successful
+	CF set on error
+	    AL = error code
+SeeAlso: AH=0Ch"ETHDEV",AH=FEh,INT 21/AH=3Fh"BW-TCP",INT 63/AH=24h"BW-TCP"
+SeeAlso: INT 64/AH=01h"BW-NFS"
+

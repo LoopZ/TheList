@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 134C
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Bootable CD-ROM - INITIATE DISK EMULATION AND BOOT
+	AH = 4Ch
+	AL = 00h
+	DS:SI -> specification packet (see #00281)
+Return: never, if successful
+	CF set (error while attempting to boot)
+	AX = error codes
+SeeAlso: AH=48h,AH=4Ah,AX=4B00h,AH=4Dh
+

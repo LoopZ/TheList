@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 81
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 81 - AMI WinBIOS - SECOND HARD DRIVE AUTODETECTION
+Notes:	used by WinBIOS with core version of July 1994 or later
+	QEMM 7.5 began using this interrupt internally after the QPAT3
+	  maintenance release when searching for "ROM holes", causing a
+	  lengthy delay during bootup.	Adding the QEMM parameter RH:N will
+	  avoid the QEMM call to INT 81 and speed up the boot process
+

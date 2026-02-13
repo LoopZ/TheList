@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F38
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX (Slave), MW386 - SET NEW TERMINAL DRIVER
+	AH = 38h
+	AL = new terminal driver number
+	    FFh dummy driver
+	    FEh current driver
+	    FDh load new driver
+		DS:SI -> new driver
+SeeAlso: AH=39h
+

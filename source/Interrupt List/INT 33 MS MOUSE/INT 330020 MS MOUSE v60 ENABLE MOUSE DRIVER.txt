@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330020
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - ENABLE MOUSE DRIVER
+	AX = 0020h
+Return: AX = status
+	    0020h successful
+	    FFFFh unsuccessful
+Notes:	restores vectors for INT 10h and INT 71h (8086) or INT 74h (286/386)
+	  which were removed by function 1Fh
+	Microsoft's documentation states that no value is returned
+SeeAlso: AX=001Fh
+

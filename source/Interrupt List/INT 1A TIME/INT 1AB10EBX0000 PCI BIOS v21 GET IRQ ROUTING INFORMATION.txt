@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB10EBX0000
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.1+ - GET IRQ ROUTING INFORMATION
+	AX = B10Eh
+	BX = 0000h
+	DS = segment/selector for PCI BIOS data
+	    (real mode: F000h; 16-bit PM: physical 000F0000h; 32-bit PM: as
+	    specified by BIOS32 services directory)
+	ES:(E)DI -> IRQ routing table header (see #01259 at AX=B406h)
+Return: CF clear if successful
+	    AH = 00h
+	    BX = bit map of IRQ channels permanently dedicated to PCI
+	    WORD ES:[DI] = size of returned data
+	CF set on error
+	    AH = error code (59h) (see #01243)
+	    WORD ES:[DI] = required size of buffer
+SeeAlso: AX=B10Fh,AX=B406h,INT 2F/AX=1684h/BX=304Ch
+

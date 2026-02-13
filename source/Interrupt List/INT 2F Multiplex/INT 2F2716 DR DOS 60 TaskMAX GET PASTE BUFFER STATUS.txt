@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2716
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - GET PASTE BUFFER STATUS
+	AX = 2716h
+Return: AX = 0000h if AX=2716h,AX=2717h,AX=2718h supported
+	    CX = bytes in paste buffer
+	    DX = current generation number (updated after every copy operation)
+BUG:	Novell DOS 7 TASKMGR returns AX=0000h even though it does not support
+	  this call (it does support the remainder of the TaskMAX API)
+SeeAlso: AX=2701h,AX=2713h,AX=2714h,AX=2717h,AX=2718h
+

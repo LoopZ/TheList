@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200A6
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETATTR" - SET TEXT-MODE CHARACTER ATTRIBUTE
+	AX = 00A6h
+	BX = foreground
+	CX = background
+	DX = blink (0000h nonblinking, 0001h blink)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in graphics modes
+SeeAlso: AX=000Bh,AX=003Ah,AX=0048h
+

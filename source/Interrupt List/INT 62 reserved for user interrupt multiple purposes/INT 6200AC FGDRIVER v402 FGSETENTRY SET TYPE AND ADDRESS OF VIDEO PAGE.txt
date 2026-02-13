@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200AC
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETENTRY" - SET TYPE AND ADDRESS OF VIDEO PAGE
+	AX = 00ACh
+	BX = page number (00h-3Fh)
+	CX = page address
+	DX = page type (see #03484 at AX=0042h)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0038h,AX=0042h,AX=00B0h
+

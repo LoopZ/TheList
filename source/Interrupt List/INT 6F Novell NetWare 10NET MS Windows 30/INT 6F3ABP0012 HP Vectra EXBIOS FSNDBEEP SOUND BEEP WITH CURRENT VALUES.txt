@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F3A--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SND_BEEP" - SOUND BEEP WITH CURRENT VALUES
+	AH = 3Ah
+	BP = 0012h (driver ID of V_SYSTEM)
+Return: AH = status (see #03744 at AH=00h"HP Vectra")
+	BP,DS destroyed
+Desc:	make a sound of the frequency and duration defined in the EX-BIOS
+	  global data area (see #03748)
+SeeAlso: AH=00h"HP Vectra",AH=34h/BP=0012h,AH=36h/BP=0012h,AH=38h/BP=0012h
+SeeAlso: AH=3Ch/BP=0012h,AH=3Eh/BP=0012h
+

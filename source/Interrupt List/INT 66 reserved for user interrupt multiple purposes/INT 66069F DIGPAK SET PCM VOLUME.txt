@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66069F
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - DIGPAK - SET PCM VOLUME
+	AX = 069Fh
+	BX = left channel volume (0-100)
+	CX = right channel volume (0-100)
+Return: AX =  status
+	    0000h command ignored
+	    0001h volume set
+

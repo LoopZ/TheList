@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2165
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 4.0+ internal - COUNTRY-DEPENDENT FILENAME CAPITALIZATION
+	AH = 65h
+	AL = function
+	    A0h capitalize filename character
+		DL = character to capitalize
+		Return: DL = capitalized character
+	    A1h capitalize counted filename string
+		DS:DX -> filename string to capitalize
+		CX = length of string
+	    A2h capitalize ASCIZ filename
+		DS:DX -> ASCIZ filename to capitalize
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Note:	nonfunctional in MS-DOS 4.00 through 7.10 (Win98) due to a bug (the
+	  code sets a pointer depending on the high bit of AL, but doesn't
+	  clear the bit before branching by function number).  Supported and
+	  functional(!) in Novell DOS 7 (Update 15), as well as PC-DOS 7 and
+	  OS/2 MVDM
+

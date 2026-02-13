@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155F33
+  Category: V 	video
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - Chips & Technologies '65530' BIOS - MODE SET HOOK
+	AX = 5F33h
+	BL = current width in characters
+	BH = curent video mode
+	CH = active display page
+Return:	nothing
+Desc:	this function is called at the end of a video mode set
+Note:	the OEM has the option of enabling or disabling this callout, as well
+	  as specifying whether the callout occurs on INT 15h or INT 42h
+SeeAlso: AX=5F31h,AX=5F35h,INT 10/AX=5F50h,INT 42/AX=5F33h
+

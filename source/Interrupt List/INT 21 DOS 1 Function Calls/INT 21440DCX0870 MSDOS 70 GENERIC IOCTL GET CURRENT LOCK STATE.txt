@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440DCX0870
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7.0+ - GENERIC IOCTL - GET CURRENT LOCK STATE
+	AX = 440Dh
+	CX = 0870h / 4870h
+	    (category code 08h for FAT12/16, 48h for FAT32; minor code 70h)
+	BL = drive number (00h=default,01h=A:,etc)
+Return: CF set on error
+	    AX = error code (01h,02h,etc.) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = current lock level (0-3) or FFFFh if not locked
+	    CX = lock permissions if AX<>FFFFh (see #01575)
+SeeAlso: AX=440Dh"DOS 3.2+",AX=440Dh/CX=086Ch
+

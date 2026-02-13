@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0483
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VSHARE - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0483h (virtual device ID for VSHARE device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02689)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02689)
+Call Windows95 VSHARE.VXD entry point with:
+	AX = function number
+	    0000h get VSHARE version
+		Return: AH = major version
+			AL = (BCD?) minor version
+	    else
+		NOP
+SeeAlso: #02688
+

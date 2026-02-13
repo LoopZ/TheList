@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - GET SESSION PARAMETER
+	AX = 0003h subfn 06h
+	DS:BX -> argument block (see #03381)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h,AX=0003h/SF=05h,AX=0003h/SF=07h
+
+Format of VINES argument block for getting session parameters:
+Offset	Size	Description	(Table 03381)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	06h (function "get session parameter")
+ 02h	BYTE	parameter number (see #03380)
+ 03h	BYTE	(ret) current parameter value
+

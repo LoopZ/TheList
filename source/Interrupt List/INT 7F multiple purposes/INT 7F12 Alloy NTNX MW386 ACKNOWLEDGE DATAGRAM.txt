@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F12
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - ACKNOWLEDGE DATAGRAM
+	AH = 12h
+	AL = channel number being acknowledged
+	DI:DX = 32-bit status to return to sender
+Return: AL = status (see #03954)
+Note:	also unlocks the channel, allowing the next datagram to be received
+SeeAlso: AH=11h,AH=15h/CL=04h
+
+(Table 03954)
+Values for Alloy function status:
+ 00h	successful
+ 01h	busy
+ 02h	channel range error (not 00h-3Fh)
+ 03h	invalid subfunction
+ 0Ah	channel not open
+ 0Bh	no message in channel
+ 0Ch	destination slave busy--retry (NTNX)
+ 0Dh	destination user not active
+ 0Eh	destination slave not active (NTNX)
+ 0Fh	destination disabled datagram service
+

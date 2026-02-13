@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F5C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - SET VERTICAL COMPENSATION
+	AX = 5F5Ch
+	BL = type of vertical compensation to use
+	    00h no compensation
+	    01h automatic centering
+	    02h set centering register
+		DX = centering value (bits 9-0 only)
+	    03h non-automatic centering
+	    04h set vertical line insertion register
+		DL = vertical line insertion (bits 3-0 only)
+	    05h set alternate maximum scanline register
+		DL = alternate maximum scanline (bits 4-0 only)
+	    06h enable text stretching, type 0
+	    07h enable text stretching, type 1
+	    08h enable text stretching, type 2
+	    09h enable text stretching, type 3
+	    0Ah	disable text stretching
+	    0Bh set vertical line replication register
+		DL = vertical line replication (bits 3-0 only)
+	    0Ch enable graphics stretching, type 0
+	    0Dh enable graphics stretching, type 1
+	    0Eh disable vertical graphics stretching
+	    0Fh disable all horizontal and vertical compensation
+	    10h enable optimal compensation
+	    11h disable optimal compensation
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F50h,AX=5F5Eh,AX=5F5Fh
+

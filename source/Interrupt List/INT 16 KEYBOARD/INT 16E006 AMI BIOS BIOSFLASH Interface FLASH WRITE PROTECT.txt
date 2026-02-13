@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E006
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface - FLASH WRITE PROTECT
+	AX = E006h
+Return: CF clear if successful
+	    AL = FAh
+	CF set on error
+Note:	this function performs any delay required to allow the Flash ROM to
+	  stabilize in the write-protected state
+SeeAlso: AX=E000h,AX=E004h,AX=E007h
+

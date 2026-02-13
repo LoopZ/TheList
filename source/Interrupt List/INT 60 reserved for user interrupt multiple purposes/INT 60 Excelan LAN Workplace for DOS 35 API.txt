@@ -1,0 +1,104 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - Excelan LAN Workplace for DOS 3.5 - API
+	ES:BX -> request packet (see #03272)
+Return: request packet updated
+InstallCheck:	test for the WORD 4142h ('AB') immediately preceding the
+	  interrupt handler
+Note:	this interrupt is also supported by Beame&Whiteside's BWLWP35 shim,
+	  which was used in creating this description
+BUG:	because BWLWP35 range-checks only the low byte of the function number,
+	  and has a fencepost error even in that test, functions 000Bh and
+	  XX01h-XX0Bh (XX nonzero) branch to random locations
+SeeAlso: INT 2F/AX=7A40h
+
+Format of Excelan request packet:
+Offset	Size	Description	(Table 03272)
+ 00h 12 BYTEs	???
+ 0Ch	WORD	(ret) error code (see #03273)
+ 0Eh	DWORD	-> FAR function for ???
+ 12h	WORD	function number
+		0001h ???
+		0002h NOP
+		0003h NOP
+		0004h NOP
+		0005h ???
+		0006h get ??? record
+		0007h NOP
+		0008h reset ???
+		0009h NOP
+		000Ah set ???
+	???
+---function 01h---
+ 20h	BYTE	(call) subfunction (32h-3Bh)
+		3Bh non-blocking I/O request (will be tested every clock tick)
+ 21h	BYTE	(ret) error code
+		00h successful
+		09h invalid connection number
+		2Ah bad connection type
+		45h ???
+---function 01h, subfunction 32h---
+ 3Ah	WORD	(call) connection type (01h stream, 02h datagram)
+---function 01h, subfunction 34h---
+ 26h	WORD	(call) ???
+ 28h	WORD	(call) ???
+ 2Ah	WORD	(call) ???
+---function 01h, subfunction 35h---
+ 1Ah	WORD	(call) connection number???
+ 26h	WORD	(ret) ???
+---function 01h, subfunction 36h---
+ 1Ah	WORD	(call) connection number???
+ 38h	WORD	???
+---function 01h, subfunction 37h---
+ 24h	WORD	(ret) ???
+ 26h	WORD	(ret) ???
+---function 01h, subfunction 38h---
+ 1Ah	WORD	(call) connection number???
+---function 01h, subfunction 3Ah---
+ 22h	WORD	(call) ???
+		667Eh ???
+		667Fh ???
+ 24h	BYTE	(call 667Eh) ???
+ 24h	WORD	(return 667Fh) ???
+---function 01h, subfunction 3Bh---
+ 0Eh	DWORD	(call) -> function to invoke for I/O or 0000h:0000h
+		function called with AX = 0000h
+				     STACK: DWORD -> request packet
+					    WORD 0000h
+			should return STACK unchanged
+ 1Ah	WORD	(call) connection number???
+ 21h	BYTE	(ret) set to 01h when I/O becomes possible
+ 22h	BYTE	(call) direction (00h write, 01h read)
+ 34h	DWORD	(ret) -> next pending request packet
+---function 05h---
+ 1Eh	WORD	(call) ???
+ 20h	WORD	(call) ???
+ 34h	DWORD	(call) -> ???
+---function 06h---
+ 16h	DWORD	(call) -> buffer for ??? record (see #03274)
+ 1Ah	WORD	(call) number of bytes to copy
+ 22h	WORD	(ret) number of bytes transferred
+---function 08h---
+ 14h	WORD	(ret) ??? (0001h)
+---function 0Ah---
+ 16h	DWORD	(call) -> WORD ???
+ 1Ch	WORD	(call) must be 000Ah for BWLWP35
+
+(Table 03273)
+Values for Excelan error code:
+ 0000h	successful
+ 002Dh	invalid function
+ 0050h	???
+
+Format of ??? record:
+Offset	Size	Description	(Table 03274)
+ 00h	WORD	offset of ???
+ 02h  4 BYTEs	???
+ 06h	DWORD	IP address (big-endian)
+ 0Ah  6 BYTEs	physical address (big-endian)
+	???
+

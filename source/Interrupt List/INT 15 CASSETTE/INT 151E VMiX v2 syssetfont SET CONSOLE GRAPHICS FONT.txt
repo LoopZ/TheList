@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151E
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX v2+ - "sys_setfont" - SET CONSOLE GRAPHICS FONT
+	AH = 1Eh
+	STACK: WORD new font number (00h-03h)
+Return: AX = current font number (00h-03h)
+SeeAlso: AH=1Dh"VMiX"
+

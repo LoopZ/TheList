@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Compaq AG1024.SYS - RGDI - IOCTL OUTPUT
+	AX = 4403h
+	BX = file handle referencing device "$$$$RGDI"
+	DS:DX -> request packet (see #01528)
+	CX ignored
+Return: CF clear if successful
+	    AX destroyed
+	    data buffer filled (if applicable)
+	    first word of request packet set to number of bytes of data
+	      available (amount returned is smaller of this and requested
+	      amount)
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: AG1024.SYS is a device driver for the Advanced Graphics 1024 adapter
+SeeAlso: AX=4402h"RGDI",AX=4403h"CPQ_MGES"
+
+Format of Compaq AG1024.SYS request packet:
+Offset	Size	Description	(Table 01528)
+ 00h	WORD	function
+		0000h get entry points
+		0001h get ???
+ 02h	DWORD	address of buffer for returned data
+

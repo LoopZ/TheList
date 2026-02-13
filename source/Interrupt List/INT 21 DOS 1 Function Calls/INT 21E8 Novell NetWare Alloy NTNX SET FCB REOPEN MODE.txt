@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E8
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare, Alloy NTNX - SET FCB RE-OPEN MODE
+	AH = E8h
+	DL = mode
+	    00h no automatic re-open
+	    01h auto re-open
+Return: AL = error code
+Desc:	provided backward compatibility with a bug in CP/M and early DOS vers
+Note:	this function was added in NetWare 4.6, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+

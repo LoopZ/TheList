@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10DAAD
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - TSRUNIT v1.10 - INSTALLATION CHECK
+	AX = DAADh
+	BX = check signature (different for each TSR)
+	CX = 0000h
+Return: CX = return signature (nonzero) if installed
+	    ES = program segment prefix
+Program: TSRUNIT is a Turbo Pascal unit for creating TSRs by Nir Sofer
+

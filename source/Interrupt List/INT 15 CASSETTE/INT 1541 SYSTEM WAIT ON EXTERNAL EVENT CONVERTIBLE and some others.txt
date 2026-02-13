@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1541
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - WAIT ON EXTERNAL EVENT (CONVERTIBLE and some others)
+	AH = 41h
+	AL = condition type (see #00463)
+	BH = condition compare or mask value
+	BL = timeout value times 55 milliseconds
+	    00h means no timeout
+	DX = I/O port address if AL bit 4 set
+	ES:DI -> user byte if AL bit 4 clear
+Return: after event or timeout occurs
+Note:	call AH=C0h and examine bit 3 of feature byte 1 to determine whether
+	  this function is supported
+SeeAlso: AH=83h,AH=86h,AH=C0h
+
+Bitfields for external event wait condition type:
+Bit(s)	Description	(Table 00463)
+ 0-2	condition to wait for
+	0 any external event
+	1 compare and return if equal
+	2 compare and return if not equal
+	3 test and return if not zero
+	4 test and return if zero
+ 3	reserved
+ 4	1=port address, 0=user byte
+ 5-7	reserved
+

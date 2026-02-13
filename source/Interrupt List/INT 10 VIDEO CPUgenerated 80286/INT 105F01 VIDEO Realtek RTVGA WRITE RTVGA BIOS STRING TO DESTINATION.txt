@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Realtek RTVGA - WRITE RTVGA BIOS STRING TO DESTINATION
+	AX = 5F01h
+	ES:DI -> zero-filled buffer for BIOS ID string
+Return: AH = 00h if successful
+	ES:DI -> ASCII signature "REALTEK VGA BIOS Version 3C.10"
+BUG:	in v3.C10, AX=5F01h on return due to improper stack restoration code
+SeeAlso: AX=5F00h"RTVGA",AX=5F02h"RTVGA"
+

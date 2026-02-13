@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - XFS v1.76 - FILTERED PACKET DRIVER API
+Program: XFS is a shareware Network File System client by Robert Juhasz
+Desc:	XFS requires a packet driver to operate.  Since it does redirections,
+	  etc., it provides its own packet driver entry point, changing the
+	  signature string of the original packet driver to "XKT DRVR" so that
+	  it will no longer be found by the packet driver installation check
+InstallCheck:	scan for the signature string "PKT DRVR" three bytes past the
+	  interrupt handler (the same as that for the packet driver
+	  specification)
+Range:	INT 61 to INT 66, selected by scanning for two consecutive free
+	  vectors and hooking the second
+SeeAlso: INT 60"Packet Driver Specification",INT 61"XFS"
+

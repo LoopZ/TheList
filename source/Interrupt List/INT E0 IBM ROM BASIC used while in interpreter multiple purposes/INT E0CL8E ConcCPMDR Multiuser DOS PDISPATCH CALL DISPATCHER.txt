@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL8E
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - ConcCP/M,DR Multiuser DOS - "P_DISPATCH" - CALL DISPATCHER
+	CL = 8Eh
+	DX = FFFFh (optional) to force dispatch
+Return: nothing
+Desc:	allow other processes of the same or higher priority to run if they
+	  are ready
+Notes:	if DX=FFFFh, a dispatch is forced even if no other process is ready
+	also supported by REAL/32
+SeeAlso: INT E0/CL=91h,INT 15/AX=1000h,INT 2F/AX=1680h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4800
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 5+ DOSKEY - INSTALLATION CHECK
+	AX = 4800h
+Return: AL = nonzero if installed
+	    (DOS 5.0 and 6.0 return AX=AA02h, Novell DOS 7 returns AX=EDFFh)
+	    ES = segment of DOSKEY resident portion
+	    DX = ??? (Novell DOS only; 02E6h for shipped v0.01)
+Notes:	DOSKEY chains if AL is not 00h or 10h on entry
+	this function is supported by Novell DOS 7 DOSKEY
+SeeAlso: AX=4800h"PCED",AX=4810h
+

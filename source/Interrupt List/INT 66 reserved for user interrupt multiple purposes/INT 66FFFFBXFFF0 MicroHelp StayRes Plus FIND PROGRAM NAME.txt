@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66FFFFBXFFF0
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - MicroHelp Stay-Res Plus - FIND PROGRAM NAME
+	AX = FFFFh
+	BX = FFF0h
+Return: DI = offset of program name in interrupt handler segment
+SeeAlso: AX=FFFBh,AX=FFFEh,INT 2D"AMIS"
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL07
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_STATIN" - GET INPUT STATUS OF AUX DEVICE
+	CL = 07h
+Return: AL = status
+	    00h not ready
+	    FFh character available
+Desc:	determine whether the current AUX device has input available
+SeeAlso: INT E0/CL=03h,INT E0/CL=08h
+

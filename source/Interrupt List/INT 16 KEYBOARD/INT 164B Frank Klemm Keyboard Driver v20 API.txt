@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+ Unique ID: 164B
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Frank Klemm Keyboard Driver v2.0 - API
+	AH = 4Bh
+	CX = code or action
+	    0000h-FEFFh key code
+	    FF00h-FFFFh action (see #00594)
+	BL = scan code (normal keys) or scan code + 60h (enhanced keys)
+	BH = shift state (see #00595)
+Return: CX = previous code or action
+
+(Table 00594)
+Values for Frank Klemm Keyboard Driver action code:
+ FF00h	no action
+ FF01h	hardcopy
+ FF02h	left shift
+ FF03h	right shift
+ FF04h	left Ctrl
+ FF05h	right Ctrl
+ FF06h	left Alt
+ FF07h	right Alt / AltGr
+ FF08h	CapsLock
+ FF09h	NumLock
+ FF0Ah	ScrlLock
+ FF0Bh	Insert (returns code 5200h or 52E0h)
+ FF0Ch	Pause
+ FF0Dh	Ctrl-Break function
+ FF0Eh	warm boot via far jump to F000h:FFF0h
+ FF0Fh	terminate current program
+ FF10h	key for entering keys via Alt-numpad (read-only)
+ FF11h	clear keyboard buffer
+ FF12h	reset (warmboot on XT)
+ FF13h	mouse sensitivity (read-only)
+ FF14h	keyjobs (read-only)
+ FF15h	SysRq
+ FF16h	turn on CPU cache (486+)
+ FF17h	turn off CPU cache (486+)
+SeeAlso: #00595
+
+(Table 00595)
+Values for Frank Klemm Keyboard Driver shift state:
+ 00h	no shift keys
+ 01h	either Shift
+ 02h	either Ctrl
+ 03h	left Alt
+ 04h	Ctrl + Alt
+---standard keyboard---
+ 05h	right Alt / AltGr
+---Russian keyboard---
+ 05h	Russian + no shift keys
+ 06h	Russian + either Shift
+SeeAlso: #00594
+

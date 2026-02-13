@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 490006
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - MAGic v1.16+ - GET SIZE OF FULL SCREEN
+	AX = 0006h
+Return: AX = status
+	    0000h successful
+		BX = vertical size (char rows or pixel rows)
+		DX = horizontal size (char cols or 8-pixel units)
+	    FFFFh MAGic busy, retry later
+		BX,DX destroyed
+	CX destroyed
+SeeAlso: AX=0001h,AX=0005h,AX=0007h
+

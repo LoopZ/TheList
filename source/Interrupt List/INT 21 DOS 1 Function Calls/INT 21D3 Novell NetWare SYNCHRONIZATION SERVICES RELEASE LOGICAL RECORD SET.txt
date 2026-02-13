@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - RELEASE LOGICAL RECORD SET
+	AH = D3h
+Desc:	unlock all currently-locked logical record names in the log table, but
+	  do not remove them from the table
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+,
+	  Banyan VINES, and Alloy NTNX
+	locks on logical record names are advisory and may be ignored by other
+	  applications
+SeeAlso: AH=C3h,AH=CDh,AH=D1h,AH=D2h,AH=D5h
+

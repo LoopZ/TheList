@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL8C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS v3.02 - LCD panel - SET AUTOMAP/EMULATE ATTRIBUTES
+	AH = 12h
+	BL = 8Ch
+	AL = new state
+	    00h enable automap
+	    01h disable automap and emulate attributes
+Return: nothing
+SeeAlso: AH=12h/BL=84h,AH=12h/BL=8Bh
+

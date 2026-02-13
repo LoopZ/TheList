@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET SINGLE PALETTE REGISTER (PCjr,Tandy,EGA,MCGA,VGA)
+	AX = 1000h
+	BL = palette register number (00h-0Fh)
+	   = attribute register number (undocumented) (see #00017)
+	BH = color or attribute register value
+Return: nothing
+Notes:	on MCGA, only BX = 0712h is supported
+	under UltraVision, the palette locking status (see AX=CD01h)
+	  determines the outcome
+SeeAlso: AX=1002h,AX=1007h,AX=CD01h
+
+(Table 00017)
+Values for attribute register number:
+ 10h	attribute mode control register (should let BIOS control this)
+ 11h	overscan color register (see also AX=1001h)
+ 12h	color plane enable register (bits 3-0 enable corresponding
+	  text attribute bit)
+ 13h	horizontal PEL panning register
+ 14h	color select register
+

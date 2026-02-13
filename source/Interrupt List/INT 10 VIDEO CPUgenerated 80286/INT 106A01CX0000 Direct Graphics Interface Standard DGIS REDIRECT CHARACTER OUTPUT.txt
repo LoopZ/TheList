@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106A01CX0000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Direct Graphics Interface Standard (DGIS) - REDIRECT CHARACTER OUTPUT
+	AX = 6A01h
+	CX = 0000h
+	ES:DI = address of device to send INT 10 output to
+Return: CX = 0000h  output could not be redirected
+	     else INT 10h output now routed to requested display
+SeeAlso: AX=6A02h
+

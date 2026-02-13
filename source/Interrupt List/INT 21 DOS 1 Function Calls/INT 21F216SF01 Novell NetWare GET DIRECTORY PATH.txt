@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET DIRECTORY PATH
+	AX = F216h subfn 01h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #01842 at AH=E2h/SF=01h)
+	ES:DI -> reply buffer (see #01843)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=01h,AX=F216h/SF=00h
+

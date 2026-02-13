@@ -1,0 +1,102 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4B02BX0000
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 5+ TASK SWITCHER - INSTALLATION CHECK
+	AX = 4B02h
+	BX = 0000h
+	ES:DI = 0000h:0000h
+Return: ES:DI = 0000h:0000h if task switcher not loaded
+	ES:DI -> task switcher entry point (see #02819) if loaded
+	    AX = 0000h
+Notes:	the returned entry point is that for the most-recently loaded task
+	  switcher; the entry points for prior task switchers may be determined
+	  with the "get version" call (see #02819)
+	this function is supported by PC Tools v8+ CPTASK
+SeeAlso: AX=4A05h,AX=4B03h
+
+(Table 02819)
+Call task switcher entry point with:
+	AX = 0000h get version
+		Return: CF clear if successful
+			    AX = 0000h
+			    ES:BX -> task switcher version struct (see #02820)
+			CF set if unsupported function
+	AX = 0001h test memory region
+		ES:DI -> first byte to be tested
+		CX = size of region to test
+		Return: CF clear if successful
+			    AX = memory type of tested region
+				0000h global
+				0001h global and local
+				0002h local (replaced on session switch)
+			CF set if unsupported function
+	AX = 0002h suspend switcher
+		ES:DI -> new task switcher's entry point
+		Return: CF clear if successful
+			    AX = state
+				0000h switcher has been suspended
+				0001h switcher not suspended, new switcher must
+					abort
+				0002h switcher not suspended, but new switcher
+					may run anyway
+			CF set if unsupported function
+	AX = 0003h resume switcher
+		ES:DI -> new task switcher's entry point
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set if unsupported function
+	AX = 0004h hook notification chain
+		ES:DI -> callback info structure to be added to chain
+			  (see #02817)
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set if unsupported function
+	AX = 0005h unhook notification chain
+		ES:DI -> callback info structure to be removed from chain
+			  (see #02817)
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set if unsupported function
+	AX = 0006h query API support
+		BX = asynchronous API identifier
+		Return: CF clear if successful
+			    AX = 0000h
+			    ES:BX -> API info structure (see #02821) for the
+				      client which provides the highest
+				      level of API support
+			CF set if unsupported function
+
+Format of task switcher version structure:
+Offset	Size	Description	(Table 02820)
+ 00h	WORD	major version of supported protocol  (current protocol is 1.0)
+ 02h	WORD	minor version of supported protocol
+ 04h	WORD	major version of task switcher
+ 06h	WORD	minor version of task switcher
+ 08h	WORD	task switcher ID (see AX=4B03h)
+ 0Ah	WORD	operation flags
+		bit 0: set if task switcher disabled
+		bits 1-15: reserved (0)
+ 0Ch	DWORD	pointer to ASCIZ task switcher name
+		("MS-DOS Shell Task Switcher" for DOSSHELL task switcher)
+ 10h	DWORD	pointer to previous task switcher's entry point or 0000h:0000h
+
+Format of API info structure:
+Offset	Size	Description	(Table 02821)
+ 00h	WORD	size of structure in bytes (000Ah)
+ 02h	WORD	API identifier
+		0001h NetBIOS
+		0002h 802.2
+		0003h TCP/IP
+		0004h LAN Manager named pipes
+		0005h Novell NetWare IPX
+ 04h	WORD	major version \ of highest version of API for which the support
+ 06h	WORD	minor version / level specified in the next field is provided
+ 08h	WORD	support level
+		0001h minimal support
+		0002h API-level support
+		0003h switcher compatibility
+		0004h seamless compatibility
+

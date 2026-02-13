@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: F700
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F7 - FSBBS 2.0 - CONFIGURATION RECORD
+	AH = 00h
+	AL = function
+	    00h get configuration record
+		Return: DS:DX -> configuration record
+	    01h set configuration record
+		Return: nothing
+	    02h get path for option
+		DS:DX -> option name
+		Return: DS:DX -> path
+	    03h determine whether configuration record set
+		Return: AX = status
+			    0000h set
+			    0001h not yet set
+	    04h get link state
+		Return: AX = state
+			    0000h unlinked
+			    0001h linked
+Notes:	this information is preliminary and still subject to change
+	all of the INT F7 calls for FSBBS are used for interprogram
+	  communication between the BBS kernel and the programs it spawns
+SeeAlso: AH=01h
+

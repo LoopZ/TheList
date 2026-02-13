@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F01
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - SET FILL MASK
+	AH = 01h
+	ES:DI -> 8-byte fill mask
+Note:	the fill mask represents an 8x8 pixel box and is repeated as necessary
+	  when drawing filled rectangles; it is always aligned with the byte
+	  boundaries of video memory, regardless of the actual boundaries of
+	  the rectangle
+SeeAlso: AH=02h
+

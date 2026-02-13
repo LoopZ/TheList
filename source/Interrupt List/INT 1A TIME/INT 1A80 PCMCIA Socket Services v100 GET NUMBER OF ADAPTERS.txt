@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A80
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - GET NUMBER OF ADAPTERS
+	AH = 80h
+Return: CF clear if successful
+	    CX = 5353h ('SS') if Socket Services installed
+		AL = number of adapters present (0-16)
+	    AH destroyed
+	CF set on error
+	    AH = error code (see #00656)
+SeeAlso: AH=83h"PCMCIA"
+
+(Table 00656)
+Values for PCMCIA error codes:
+ 01h	"BAD_ADAPTER" nonexistent adapter
+ 02h	"BAD_ATTRIBUTE" invalid attribute specified
+ 03h	"BAD_BASE" invalid system memory base address
+ 04h	"BAD_EDC" invalid EDC generator specified
+ 05h	"BAD_INDICATOR" invalid indicator specified
+ 06h	"BAD_IRQ" invalid IRQ channel specified
+ 07h	"BAD_OFFSET" invalid PCMCIA card offset specified
+ 08h	"BAD_PAGE" invalid page specified
+ 09h	"BAD_READ" unable to complete request
+ 0Ah	"BAD_SIZE" invalid window size specified
+ 0Bh	"BAD_SOCKET" nonexistent socket specified
+ 0Ch	"BAD_TECHNOLOGY" unsupported Card Technology for writes
+ 0Dh	"BAD_TYPE" unavailable window type specified
+ 0Eh	"BAD_VCC" invalid Vcc power level index specified
+ 0Fh	"BAD_VPP" invalid Vpp1 or Vpp2 power level index specified
+ 10h	"BAD_WAIT" invalid number of wait states specified
+ 11h	"BAD_WINDOW" nonexistent window specified
+ 12h	"BAD_WRITE" unable to complete request
+ 13h	"NO_ADAPTERS" no adapters installed, but Socket Services is present
+ 14h	"NO_CARD" no card in socket
+ 15h	function not supported
+ 16h	invalid mode
+ 17h	invalid speed
+ 18h	busy
+

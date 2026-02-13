@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A03
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - SET REAL-TIME CLOCK TIME (AT,XT286,PS)
+	AH = 03h
+	CH = hour (BCD)
+	CL = minutes (BCD)
+	DH = seconds (BCD)
+	DL = daylight savings flag (00h standard time, 01h daylight time)
+Return: nothing
+Note:	this function is also supported by the Sperry PC, which predates the
+	  IBM AT; the data is specified in binary rather than BCD on the
+	  Sperry, and the value of DL is ignored
+SeeAlso: AH=01h,AH=03h,AH=05h,INT 21/AH=2Dh,INT 4B/AH=01h
+

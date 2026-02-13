@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14800A
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - MODIFY FLOW CONTROL
+	AX = 800Ah
+	BL = flow control type (00h none, 01h XON/XOFF, 02h RTS/CTS)
+	DX = port index (COM1=0, COM2=1, ...)
+Return: AX = error code, if error (see #00360)
+Note:	for attached ports only!
+SeeAlso: AX=8000h,AX=8003h,AX=8009h
+

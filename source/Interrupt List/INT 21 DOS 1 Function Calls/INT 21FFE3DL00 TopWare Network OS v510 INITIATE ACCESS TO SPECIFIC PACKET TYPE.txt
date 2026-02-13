@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFE3DL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - INITIATE ACCESS TO SPECIFIC PACKET TYPE
+	AX = FFE3h
+	DL = 00h
+	BX = packet type for Ethernet header (IP = 0800h, ARP = 0806h, etc.)
+	ES:DI -> receive routine (see #02542)
+Return: CF clear if successful
+	    AX = handle number
+	CF set on error
+	    DH = error code (03h,05h,09h,0Ah,11h) (see #02541)
+SeeAlso: AX=FFE3h/DL=01h
+
+(Table 02541)
+Values for TopWare error code:
+ 01h	invalid handle
+ 03h	no interfaces of the specified type found
+ 05h	bad packet type
+ 09h	insufficient space
+ 0Ah	type already being accessed
+ 0Ch	unable to send packet (usually hardware error)
+ 11h	invalid function
+
+(Table 02542)
+Values TopWare receive routine is called with:
+	AX = function
+	    0000h request packet buffer
+		CX = packet size
+		Return: ES:DI -> buffer or 0000h:0000h to discard packet
+	    0001h packet copied
+		CX = packet size
+		DS:SI -> copied packet (same as returned ES:DI above)
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1500BX0000
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM - INSTALLATION CHECK
+	AX = 1500h
+	BX = 0000h
+Return: BX = number of CD-ROM drive letters used
+	CX = starting drive letter (0=A:)
+	AX = 15FFh (Novell DOS 7 NWCDEX only!)
+Notes:	this installation check DOES NOT follow the format used by other
+	  software
+	this installation check conflicts with the DOS 4.00 GRAPHICS.COM
+	  installation check
+BUG:	this function may return an incorrect starting drive letter when
+	  INTERLNK is installed
+SeeAlso: AX=150Ch,AX=15FFh,INT 2F/AX=D000h"Lotus"
+

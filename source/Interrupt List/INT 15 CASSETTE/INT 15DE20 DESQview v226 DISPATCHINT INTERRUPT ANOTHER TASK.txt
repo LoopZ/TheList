@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE20
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.26+ - "DISPATCHINT" - INTERRUPT ANOTHER TASK
+	AX = DE20h
+	BX = segment of handle of task to interupt
+	DX:CX -> FAR interrupt routine
+	BP,SI,DI,DS,ES as required by interrupt routine
+Return: nothing
+Notes:	unlike "PGMINT" (AX=1021h), DISPATCHINT may be applied to the task
+	  making the DISPATCHINT call
+	multiple "DISPATCHINT" calls are processed in the order in which they
+	  were executed
+	the FAR routine is entered with the current ES, DS, SI, DI, and BP
+	  values, using the task's internal stack (see AX=101Ah); only SS:SP
+	  needs to be preserved
+	this API call may be made from within a hardware interrupt handler
+SeeAlso: AX=1021h,AX=DE2Ah
+

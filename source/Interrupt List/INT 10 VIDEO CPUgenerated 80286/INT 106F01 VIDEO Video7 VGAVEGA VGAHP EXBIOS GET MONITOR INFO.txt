@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106F01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Video7 VGA,VEGA VGA,HP EX-BIOS - GET MONITOR INFO
+	AX = 6F01h
+Return: AL = monitor type code (HP,VEGA VGA only) (see #00188)
+	AH = status register information (see #00189)
+	CL = current value of Extended Control register (HP Ext BIOS, and only
+		if AL=41h) (see #00190)
+Notes:	bits 0-3 are the same as the EGA/VGA status register bits 0-3
+	supported by original HP Vectra AT and by ES/QS/RS series Vectras
+
+(Table 00188)
+Values for monitor type code (HP Extended BIOS):
+ 00h	non-HP card with ROM and possibly its own INT 10h driver
+ 41h	MultiMode video display adapter
+ 42h-44h reserved
+ 45h	industry standard monochrome display adapter
+ 46h	industry standard color display adapter
+ 51h	reserved
+
+Bitfields for status register information:
+Bit(s)	Description	(Table 00189)
+ 0	display enable
+	0 = display enabled
+	1 = vertical or horizontal retrace in progress
+ 1	light pen flip flop set
+ 2	light pen switch activated
+ 3	vertical sync
+ 4	monitor resolution
+	0 = high resolution (>200 lines)
+	1 = low resolution (<=200 lines)
+ 5	display type (0 = color, 1 = monochrome)
+ 6,7	diagnostic bits
+Note:	bits 0-3 are the same as the EGA/VGA status register bits 0-3
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0503
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CREATE OR TRUNCATE FILE
+	DI = 0503h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file state record (see #03287)
+		DWORD	pointer to filename
+		WORD	length of filename
+		WORD	???
+		WORD	suppress buffering if nonzero
+Return: AX = status
+	STACK unchanged
+SeeAlso: INT 60/DI=0502h
+

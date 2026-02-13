@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2133
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - EXTENDED BREAK CHECKING
+	AH = 33h
+	AL = subfunction
+	    00h get current extended break state
+		Return: DL = current state, 00h = off, 01h = on
+	    01h set state of extended ^C/^Break checking
+		DL = new state
+		    00h off, check only on character I/O functions
+		    01h on, check on all DOS functions
+		Return: (Novell DOS 7) DL = old state of extended Break checks
+Note:	under DOS 3.1+ and DR DOS, this function does not use any of the
+	  DOS-internal stacks and may thus be called at any time
+SeeAlso: AX=3302h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0800
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DRIVER.SYS support - INSTALLATION CHECK
+	AX = 0800h
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+Desc:	determine whether the internal support code used by DRIVER.SYS is
+	  present; it is always present in DOS 3.2+
+Note:	supported by DR DOS 5.0 and Novell DOS 7
+

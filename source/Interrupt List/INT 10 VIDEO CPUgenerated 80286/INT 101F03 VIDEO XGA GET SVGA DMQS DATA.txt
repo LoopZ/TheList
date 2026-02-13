@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101F03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - XGA - GET SVGA DMQS DATA
+	AX = 1F03h
+	ES:DI -> buffer for SVGA DMQS data (see #00061)
+Return: AL = 1Fh if function supported
+	    ES:DI buffer filled
+SeeAlso: AX=1F00h,AX=1F02h
+
+Format of SVGA DMQS data:
+Offset	Size	Description	(Table 00061)
+ 00h	WORD	offset to DMQS data for next SVGA instance or 0000h
+ 02h	BYTE	reserved
+ 03h	BYTE	SVGA implementation functional level
+ 04h	BYTE	SVGA implementation resolution level
+ 05h	WORD	vendor ID
+ 07h	WORD	vendor-specific
+ 09h  7 BYTEs	reserved
+ 10h	BYTE	SVGA linear address window size
+		00h 64K
+		01h 1M
+		02h 2M
+		03h 4M
+ 11h	WORD	SVGA linear address window location or 0000h if not allocated
+		(multiply by 10000h [shift left 16 bits] to get physical addr)
+ 13h	WORD	attached monitor's composite monitor ID
+ 15h	BYTE	available video RAM in multiples of 256K
+ 16h 11 BYTEs	reserved
+SeeAlso: #00060
+

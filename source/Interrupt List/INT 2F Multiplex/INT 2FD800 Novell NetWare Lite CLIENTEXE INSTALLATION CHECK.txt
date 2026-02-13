@@ -1,0 +1,105 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD800
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare Lite - CLIENT.EXE - INSTALLATION CHECK
+	AX = D800h
+Return: AL = FFh if installed
+	    DX = version number (0100h for v1.0, 0101h for v1.1)
+	    BX = data segment of resident copy
+	    ES:DI -> private API entry point (see #03089)
+	    SI = segment of resident code
+Note:	Microsoft assigned multiplex number D8h to Novell on 1991/05/21
+SeeAlso: AX=7A00h,AX=D880h
+
+(Table 03089)
+Call CLIENT API entry point with:
+	BX = function
+	    0000h get ???
+		Return: DX = CLIENT version??? (0101h for v1.1)
+			ES:BX -> ??? data
+	    0001h ???
+	    0002h ???
+	    0003h ???
+	    0004h ???
+	    0005h ???
+		DL = ???
+		???
+		Return: ???
+	    0006h get module name???
+		ES:DI -> 16-byte buffer
+		Return: CX = ???
+			ES:DI filled with "NWLITE_CLIENT" 00h 00h 00h
+	    0007h ???
+		DX:CX = ???
+		???
+		Return: ???
+	    0008h ???
+	    0009h ???
+		DL = ???
+		ES:DI -> 16-byte buffer for ???
+		Return: CF clear if successful
+			    AX = 0000h
+			    CX = 0000h
+			    SI,DI destroyed
+			CF set on error
+			    AX = error code 4903h
+	    000Ah ???
+		AH = subfunction
+		    00h get ???
+		    01h clear/set ??? flag
+			AL = new state (00h cleared, 01h set)
+		    02h set ???
+			DX = new value of ???
+		Return: DX = old value of ???
+	    000Bh ???
+		AX = ???
+		???
+		Return: ???
+	    000Ch ???
+		AX = ???
+		???
+		Return: ???
+	    000Dh ???
+		AX = ???
+		???
+		Return: ???
+	    000Eh get original INT 17
+		Return: CF clear
+			ES:BX -> original INT 17
+	    000Fh ???
+	    0010h ???
+		AX = ???
+		???
+		Return: ???
+	    0011h get ???
+		Return: CF clear
+			DL = ???
+	    0012h get ???
+		AL = index of ???
+		ES:DI -> 10-byte buffer for ???
+		Return: CF clear if successful
+			    ES:DI buffer filled
+			    AX,CX destroyed
+			CF set on error
+			    AX = error code (4907h if AL out of range)
+	    0013h get ???
+		Return: CF clear
+			DH = ???
+			DL = ???
+	    0014h ???
+		DL = ???
+		???
+		Return: CF clear if successful
+			    ???
+			CF set on error
+			    AX = error code 8056h
+	    0015h ???
+		DX = ???
+		Return: ES:DI -> ???
+	    other
+		Return: CF set
+			AX = 0001h (invalid function)
+

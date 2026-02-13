@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 5B C - TI Professional PC - KEYBOARD MAPPING HOOK
+	CF set
+	AH = shift state (see #03247)
+	AL = scan code (see #03214)
+Return:	BX, CX, DI, ES may be destroyed
+	various return methods are supported:
+	    IRET, AX unchanged: process keystroke normally
+	    IRET, AL = FFh: discard keystroke
+	    IRET, AX changed: process modified keystroke
+	    chain to old INT 5B: allow other handlers to look at (possibly
+		  modified) keystroke in AX
+	    RETF 2, CF clear: place returned AX into keyboard buffer without
+		  any further processing
+Notes:	invoked by the keyboard ISR, and used to remap the keyboard
+	if CF is clear on entry, some other handler has processed the
+	  keystroke and the current handler should not modify it, instead
+	  performing a RETF 2 or IRET (after clearing CF on the stack)
+	when requesting that a value be placed directly into the keyboard
+	  buffer, AL and AH may not *both* be nonzero (the TI does not
+	  return scan codes as part of the key code for non-extended keys)
+SeeAlso: INT 15/AH=4Fh,INT 4A/AH=00h"TI",INT 59"TI Professional"
+SeeAlso: INT 5C"TI Professional",INT 5D"TI Professional"
+SeeAlso: INT 5E"TI Professional",INT 5F"TI Professional"
+
+Bitfields for TI Professional PC keyboard mapping hook shift states:
+Bit(s)	Description	(Table 03247)
+ 7	CAPS LOCK is on
+ 6-4	reserved (0)
+ 3	repeated key
+ 2	Shift is pressed
+ 1	Alt is pressed
+ 0	Ctrl is pressed
+

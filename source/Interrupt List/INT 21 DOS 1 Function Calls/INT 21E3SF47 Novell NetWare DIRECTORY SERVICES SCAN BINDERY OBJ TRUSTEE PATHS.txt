@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF47
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - SCAN BINDERY OBJ TRUSTEE PATHS
+	AH = E3h subfn 47h
+	DS:SI -> request buffer (see #01959)
+	ES:DI -> reply buffer (see #01960)
+Return: AL = status (00h,96h,F0h,F1h,FCh,FEh,FFh) (see #01961)
+Desc:	iterate through the directories to which an object is a trustee
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E2h/SF=0Ch,AH=E2h/SF=0Dh,AH=E2h/SF=0Eh,AX=F217h/SF=47h
+
+Format of NetWare "Scan Bindery Object Trustee Paths" request buffer:
+Offset	Size	Description	(Table 01959)
+ 00h	WORD	0008h (length of following data)
+ 02h	BYTE	47h (subfunction "Scan Bindery Object Trustee Paths")
+ 03h	BYTE	volume number (00h-1Fh)
+ 04h	WORD	(big-endian) last sequence number (FFFFh on first call)
+ 06h	DWORD	(big-endian) object ID
+SeeAlso: #01960,#02190
+
+Format of NetWare "Scan Bindery Object Trustee Paths" reply buffer:
+Offset	Size	Description	(Table 01960)
+ 00h	WORD	(call) length of following results buffer (max 107h)
+ 02h	WORD	(big-endian) next sequence number
+ 04h	DWORD	(big-endian) object ID
+ 08h	BYTE	trustee directory rights (see #01849 at AH=E2h/SF=03h)
+ 09h	BYTE	length of trustee path
+ 0Ah  N BYTEs	trustee path
+SeeAlso: #01959,#02190
+

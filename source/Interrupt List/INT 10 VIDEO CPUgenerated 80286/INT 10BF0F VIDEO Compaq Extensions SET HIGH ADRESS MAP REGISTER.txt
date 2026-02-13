@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF0F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - SET HIGH ADRESS MAP REGISTER
+	AX = BF0Fh
+	BX = high address map location in megabytes, or
+	    0000h to disable high address map, or
+	    FFFFh to let ROM configure high address map
+Return: CF clear
+	AX = previous value of high address map register
+Notes:	supported by at least the QVision board and the SystemPro XL and LTE
+	  Lite ROM BIOSes
+SeeAlso: AX=BF10h
+

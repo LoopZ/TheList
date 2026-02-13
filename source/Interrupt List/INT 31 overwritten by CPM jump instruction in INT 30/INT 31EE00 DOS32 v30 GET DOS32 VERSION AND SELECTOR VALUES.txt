@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31EE00
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - DOS32 v3.0+ - GET DOS32 VERSION AND SELECTOR VALUES
+	AX = EE00h
+Return: AL = minor version (BCD)
+	AH = major version (BCD)
+	DL = system type (1=raw DOS, 2=XMS, 4=VCPI, 8=DPMI)
+	BX = selector of 4GB data segment with zero base address
+Program: DOS32 is a 32 bit DOS extender by Adam Seychell.
+SeeAlso: AX=EE02h
+

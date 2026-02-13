@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D601BL01
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - WRITE BOOT DEVICE KEY
+	AX = D601h
+	BL = 01h
+	DX = device ID
+Return: CF clear on success
+	    AH = 00h
+	CF set on error
+	    AH = status (86h for function not supported)
+SeeAlso: AX=D600h/BL=01h,AX=D601h/BL=00h
+

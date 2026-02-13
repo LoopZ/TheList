@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC03
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MediaVision MVSOUND.SYS - GET FUNCTION TABLE POINTER
+	AX = BC03h
+Return: AX = 4D56h ('MV')
+	BX:DX -> function table
+	CX = ??? (000Eh)
+SeeAlso: AX=BC00h/BX=3F3Fh,AX=BC02h
+

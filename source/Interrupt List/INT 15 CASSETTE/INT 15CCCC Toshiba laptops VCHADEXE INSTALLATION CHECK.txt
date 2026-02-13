@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15CCCC
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - Toshiba laptops - VCHAD.EXE - INSTALLATION CHECK
+	AX = CCCCh
+Return: AX = ABCDh if installed
+Note:	supported by Toshiba VGA change display utility VCHAD.EXE ver 2.90+
+	  older versions have the string "VCHAD" 2 bytes after the address of
+	  the INT 15 handler which is hooked by all versions for the SysReq key
+SeeAlso: AH=85h
+

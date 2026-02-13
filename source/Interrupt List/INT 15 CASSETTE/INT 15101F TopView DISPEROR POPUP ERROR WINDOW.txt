@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15101F
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "DISPEROR" - POP-UP ERROR WINDOW
+	AX = 101Fh
+	BX = bit fields
+	    bits 0-12: number of characters to display
+	    bits 13,14: which mouse button may be pressed to remove window
+			 00 = either
+			 01 = left
+			 10 = right
+			 11 = either
+	    bit 15: beep if 1
+	ES:DI -> text of message
+	CH = width of error window (0 = default)
+	CL = height of error window (0 = default)
+	DX = segment of object handle
+Return: BX = status: 1 = left button, 2 = right, 27 = ESC pressed
+Note:	window remains on-screen until ESC or indicated mouse button is pressed
+

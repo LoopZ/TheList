@@ -1,0 +1,101 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1308
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - DISK - GET DRIVE PARAMETERS (PC,XT286,CONV,PS,ESDI,SCSI)
+	AH = 08h
+	DL = drive (bit 7 set for hard disk)
+	ES:DI = 0000h:0000h to guard against BIOS bugs
+Return: CF set on error
+	    AH = status (07h) (see #00234)
+	CF clear if successful
+	    AH = 00h
+	    AL = 00h on at least some BIOSes
+	    BL = drive type (AT/PS2 floppies only) (see #00242)
+	    CH = low eight bits of maximum cylinder number
+	    CL = maximum sector number (bits 5-0)
+		 high two bits of maximum cylinder number (bits 7-6)
+	    DH = maximum head number
+	    DL = number of drives
+	    ES:DI -> drive parameter table (floppies only)
+Notes:	may return successful even though specified drive is greater than the
+	  number of attached drives of that type (floppy/hard); check DL to
+	  ensure validity
+	for systems predating the IBM AT, this call is only valid for hard
+	  disks, as it is implemented by the hard disk BIOS rather than the
+	  ROM BIOS
+	the IBM ROM-BIOS returns the total number of hard disks attached
+	  to the system regardless of whether DL >= 80h on entry.
+	Toshiba laptops with HardRAM return DL=02h when called with DL=80h,
+	  but fail on DL=81h.  The BIOS data at 40h:75h correctly reports 01h.
+	may indicate only two drives present even if more are attached; to
+	  ensure a correct count, one can use AH=15h to scan through possible
+	  drives
+	Reportedly some Compaq BIOSes with more than one hard disk controller
+	  return only the number of drives DL attached to the corresponding
+	  controller as specified by the DL value on entry.  However, on
+	  Compaq machines with "COMPAQ" signature at F000h:FFEAh,
+	  MS-DOS/PC DOS IO.SYS/IBMBIO.COM call INT 15/AX=E400h and 
+	  INT 15/AX=E480h to enable Compaq "mode 2" before retrieving the count
+	  of hard disks installed in the system (DL) from this function.
+	the maximum cylinder number reported in CX is usually two less than
+	  the total cylinder count reported in the fixed disk parameter table
+	  (see INT 41h,INT 46h) because early hard disks used the last cylinder
+	  for testing purposes; however, on some Zenith machines, the maximum
+	  cylinder number reportedly is three less than the count in the fixed
+	  disk parameter table.
+	for BIOSes which reserve the last cylinder for testing purposes, the
+	  cylinder count is automatically decremented
+	on PS/1s with IBM ROM DOS 4, nonexistent drives return CF clear,
+	  BX=CX=0000h, and ES:DI = 0000h:0000h
+	machines with lost CMOS memory may return invalid data for floppy
+	  drives. In this situation CF is cleared, but AX,BX,CX,DX,DH,DI,
+	  and ES contain only 0.  At least under some circumstances, MS-DOS/
+	  PC DOS IO.SYS/IBMBIO.COM just assumes a 360 KB floppy if it sees
+	  CH to be zero for a floppy.
+	the PC-Tools PCFORMAT program requires that AL=00h before it will
+	  proceed with the formatting
+	if this function fails, an alternative way to retrieve the number
+	  of floppy drives installed in the system is to call INT 11h.
+	In fact, the MS-DOS/PC-DOS IO.SYS/IBMBIO.COM attempts to get the
+	  number of floppy drives installed from INT 13/AH=08h, when INT 11h
+	  AX bit 0 indicates there are no floppy drives installed. In addition
+	  to testing the CF flag, it only trusts the result when the number of
+	  sectors (CL preset to zero) is non-zero after the call.
+BUGS:	several different Compaq BIOSes incorrectly report high-numbered
+	  drives (such as 90h, B0h, D0h, and F0h) as present, giving them the
+	  same geometry as drive 80h; as a workaround, scan through disk
+	  numbers, stopping as soon as the number of valid drives encountered
+	  equals the value in 0040h:0075h
+	a bug in Leading Edge 8088 BIOS 3.10 causes the DI,SI,BP,DS, and ES
+	  registers to be destroyed
+	some Toshiba BIOSes (at least before 1995, maybe some laptops???
+	  with 1.44 MB floppies) have a bug where they do not set the ES:DI
+	  vector even for floppy drives. Hence these registers should be
+	  preset with zero before the call and checked to be non-zero on
+	  return before using them.  Also it seems these BIOSes can return
+	  wrong info in BL and CX, as S/DOS 1.0 can be configured to preset
+	  these registers as for an 1.44 MB floppy.
+	the PS/2 Model 30 fails to reset the bus after INT 13/AH=08h and
+	  INT 13/AH=15h. A workaround is to monitor for these functions
+	  and perform a transparent INT 13/AH=01h status read afterwards.
+	  This will reset the bus. The MS-DOS 6.0 IO.SYS takes care of
+	  this by installing a special INT 13h interceptor for this purpose.
+	AD-DOS may leave interrupts disabled on return from this function.
+	Some Microsoft software explicitly sets STI after return.
+SeeAlso: AH=06h"Adaptec",AH=13h"SyQuest",AH=48h,AH=15h,INT 1E
+SeeAlso: INT 41"HARD DISK 0"
+
+(Table 00242)
+Values for diskette drive type:
+ 01h	360K
+ 02h	1.2M
+ 03h	720K
+ 04h	1.44M
+ 05h	??? (reportedly an obscure drive type shipped on some IBM machines)
+	2.88M on some machines (at least AMI 486 BIOS)
+ 06h	2.88M
+ 10h	ATAPI Removable Media Device
+

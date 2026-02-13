@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10007F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Paradise VGA, AT&T VDC600 - EXTENDED DATA REGISTER ACCESS
+	AX = 007Fh
+	BH = function
+	    0Ah,0Bh,0Ch,0Dh,0Eh,0Fh  WRITE PARADISE REGISTERS 0,1,2,3,4,5
+		(port 03CEh indices 0Ah,0Bh,0Ch,0Dh,0Eh,0Fh)
+		BL = value to set in the paradise register
+	    1Ah,1Bh,1Ch,1Dh,1Eh,1Fh READ PARADISE REGISTERS 0,1,2,3,4,5
+		(port 03CEh indices 0Ah,0Bh,0Ch,0Dh,0Eh,0Fh)
+		Return: BL = value of the paradise register
+			BH = 7Fh if successful
+	    29h-2Fh ??? (Paradise VGA for Dell, 1991/07/24)
+Return: AL = 7Fh if successful (AT&T VDC600)
+	BH = status (Paradise/Dell)
+	    00h invalid function
+	    7Fh successful
+SeeAlso: AX=007Eh,AX=007Fh/BH=03h,AX=007Fh/BH=05h,AH=FFh"Oak"
+

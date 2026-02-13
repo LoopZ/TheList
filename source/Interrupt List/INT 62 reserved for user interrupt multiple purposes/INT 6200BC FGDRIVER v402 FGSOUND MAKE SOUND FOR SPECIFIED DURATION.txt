@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200BC
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SOUND" - MAKE SOUND FOR SPECIFIED DURATION
+	AX = 00BCh
+	BX = frequency in Hertz (18-32767)
+	CX = duration in clock ticks (0000h or negative for continuous sound)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored if asynchronous sound (AX=00A5h,AX=00A8h,
+	  AX=00AAh) is already in progress
+SeeAlso: AX=0059h,AX=0080h,AX=00BDh,AX=00C0h,AX=00DBh
+

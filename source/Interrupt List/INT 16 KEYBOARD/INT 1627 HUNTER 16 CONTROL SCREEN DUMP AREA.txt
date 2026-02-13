@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1627
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HUNTER 16 - CONTROL SCREEN DUMP AREA
+	AH = 27h
+	AL = what to dump
+	    00h whole (virtual) window
+	    01h LCD window only
+Return: AL = 00h
+Desc:	control whether printscren dumps the whole 80x25 screen or only the
+	  part displayed in the LCD window
+Note:	the Hunter 16 has a 240x64 LCD display which serves as a window into
+	  a 640x200 virtual screen
+

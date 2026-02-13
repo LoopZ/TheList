@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D4
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - CLEAR LOGICAL RECORD
+	AH = D4h
+	DS:DX -> logical record name (counted string up to 99 chars long)
+Return: AL = status (00h,FFh) (see #01811)
+Desc:	unlock and remove the logical record name from the log table
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+,
+	  Banyan VINES, and Alloy NTNX
+	locks on logical record names are advisory and may be ignored by other
+	  applications
+SeeAlso: AH=BEh,AH=D0h,AH=D2h,AH=D5h
+
+(Table 01811)
+Values for NetWare status:
+ 00h	successful
+ FFh	no such record name
+

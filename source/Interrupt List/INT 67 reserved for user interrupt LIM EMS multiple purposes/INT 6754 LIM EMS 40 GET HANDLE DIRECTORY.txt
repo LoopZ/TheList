@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6754
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - GET HANDLE DIRECTORY
+	AH = 54h
+	AL = subfunction
+	    00h get handle directory
+	       ES:DI -> buffer for handle directory (see #03651)
+	    01h search for named handle
+	       DS:SI -> 8-byte name
+	    02h get total number of handles
+Return: AL = number of entries in handle directory (subfunction 00h)
+	DX = value of named handle (subfunction 01h)
+	BX = total number of handles (subfunction 02h)
+	AH = status (00h,80h,81h,84h,8Fh,A0h,A1h) (see also #03650)
+	    A1h a handle found had no name
+
+Format of EMS handle directory entry:
+Offset	Size	Description	(Table 03651)
+ 00h	WORD	handle
+ 02h  8 BYTEs	handle's name
+

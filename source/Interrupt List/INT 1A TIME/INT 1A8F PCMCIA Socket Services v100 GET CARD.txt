@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A8F
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - GET CARD
+	AH = 8Fh
+	AL = adapter number
+	BL = socket number (01h to maximum supported by adapter)
+Return: CF clear if successful
+	    AH destroyed
+	    DL = current card status (see #00660)
+	CF set on error
+	    AH = error code (01h,0Bh) (see #00656)
+SeeAlso: AH=8Dh,AH=90h
+

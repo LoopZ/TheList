@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0B04
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CLOCK/CALENDAR SERVICE "M_ALARM"
+	DI = 0B04h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to alarm record??? (see #03292)
+		WORD	???
+Return: ???
+	STACK unchanged
+
+Format of HP 95LX alarm record:
+Offset	Size	Description	(Table 03292)
+ 00h	BYTE	hour
+ 01h	BYTE	minute
+ 02h	BYTE	second
+ 03h	BYTE	unused padding
+ 04h	WORD	rescheduling interval, in seconds
+ 06h	BYTE	are seconds significant?
+ 07h	BYTE	alarm sound
+ 08h 40 BYTEs	message displayed when alarm activates
+ 30h	BYTE	task ID of owner
+ 31h	BYTE	application's own use for sub-class
+ 32h  4 BYTEs	application's own use for private data
+

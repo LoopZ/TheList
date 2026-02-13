@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2117
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - RENAME FILE USING FCB
+	AH = 17h
+	DS:DX -> modified FCB (see also #01345)
+		the old filename ('?' wildcards OK) is in the standard location
+		while the new filename ('?' wildcards OK, no drive) is stored
+		in the 11 bytes beginning at offset 11h
+Return: AL = status
+	    00h successfully renamed
+	    FFh no matching files,file is read-only, or new name already exists
+Notes:	subdirectories may be renamed using an extended FCB with the
+	  appropriate attribute, as may volume labels
+	DR DOS checks password attached with AX=4303h before permitting rename
+SeeAlso: AH=0Fh,AH=13h,AX=4303h,AH=56h,INT 2F/AX=1111h
+

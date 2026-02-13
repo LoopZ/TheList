@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17A8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy MW386 - DEFINE TEMPORARY FILENAME
+	AH = A8h
+	CX:SI -> ASCIZ filename without extension (max 8 chars)
+Return: AL = status (see #00642)
+Note:	allows application to specify banner page filename for spool files
+	  collected from the application's printer output
+SeeAlso: AH=A9h
+

@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217143
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - EXTENDED GET/SET FILE ATTRIBUTES
+	AX = 7143h
+	DS:DX -> ASCIZ filename
+	BL = action
+	    00h retrieve attributes
+		Return:	CX = file attributes (see #01420)
+	    01h set attributes
+		CX = attributes
+	    02h get physical size of compressed file
+		Return: DX:AX = actual disk usage of file, in bytes
+	    03h set last write date/time
+		DI = new last-write date (see #01666)
+		CX = new last-write time (see #01665)
+	    04h get last write date/time
+		Return:	CX = last write time (see #01665)
+			DI = last write date (see #01666)
+	    05h set last access date
+		DI = new last-access date (see #01666)
+	    06h get last access date
+		Return:	DI = last access date (see #01666)
+	    07h set creation date/time
+		DI = new creation date (see #01666)
+		CX = new creation time (see #01665)
+		SI = hundredths (10-millisecond units past time in CX, 0-199)
+	    08h get creation date/time
+		Return:	CX = creation time (see #01665)
+			DI = creation date (see #01666)
+			SI = hundredths (10-millisecond units past time in CX)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680)
+		7100h if function not supported
+Note:	for compatibility with DOS versions prior to v7.00, the carry flag
+	  should be set on call to ensure that it is set on exit
+SeeAlso: AX=4300h,AX=4301h
+

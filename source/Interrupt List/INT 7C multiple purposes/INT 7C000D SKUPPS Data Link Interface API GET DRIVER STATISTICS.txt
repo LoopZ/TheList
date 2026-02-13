@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C000D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - GET DRIVER STATISTICS
+	AX = 000Dh
+	BX = flag: 0=don't clear statistics, 1=clear statistics
+	ES:DI -> Statistics Data Block (see #03857)
+Return: AX = completion code (see #03846)
+SeeAlso: AX=0002h,AX=0015h
+
+Format of SK-UPPS Statistics Data Block (SDB):
+Offset	Size	Description	(Table 03857)
+ 00h	DWORD	node uptime in ticks (1/18.21 sec.)
+ 04h	DWORD	bytes received
+ 08h	DWORD	bytes transmitted
+ 0Ch	DWORD	frames received
+ 10h	DWORD	frames transmitted
+ 14h	DWORD	multicast bytes received
+ 18h	DWORD	multicast frames received
+ 1Ch	DWORD	unrecognized frames
+ 20h	WORD	missed frames
+ 22h	WORD	frame check sequence (FCS) errors
+ 24h	WORD	framing errors
+ 26h	WORD	babbling errors
+ 28h	WORD	late collision errors
+ 2Ah	WORD	loss of carrier errors
+ 2Ch	WORD	16 retries failed errors
+ 2Eh	WORD	overflow errors
+Note:	fields 26h through 2Ch are always zero, except in some very old
+	  versions of the DLI.	Use GET MEDIA STATISTICS (AX=0015h) to get
+	  more detailed information.
+

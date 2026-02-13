@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF45
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - OPEN BINDERY
+	AH = E3h subfn 45h
+	DS:SI -> request buffer (see #01956)
+	ES:DI -> reply buffer (see #01953)
+Return: AL = status
+	    00h successful
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+	the bindery may only be opened by the supervisor or an object with
+	  equivalent privileges
+SeeAlso: AH=E3h/SF=44h,AX=F217h/SF=45h
+
+Format of NetWare "Open Bindery" request buffer:
+Offset	Size	Description	(Table 01956)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	45h (subfunction "Open Bindery")
+SeeAlso: #01953,#01955
+

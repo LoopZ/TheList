@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6112
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "enable_async" - ENABLE ASYNCHRONOUS HANDLERS
+	AH = 12h
+Return: CF clear
+	AX = previous state
+	    0000h async calls were disabled
+	    else  async calls were already enabled
+SeeAlso: INT 61"FTP Software",INT 61/AH=11h
+

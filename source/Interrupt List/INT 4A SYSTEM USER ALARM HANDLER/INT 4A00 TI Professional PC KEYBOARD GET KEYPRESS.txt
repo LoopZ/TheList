@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4A00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4A - TI Professional PC - KEYBOARD - GET KEYPRESS
+	AH = 00h
+Return: AX = keystroke (AH=00h for ASCII keys -- no scan code)
+SeeAlso: AH=01h,AH=02h,AH=03h,AH=04h,AH=05h,INT 16/AH=00h
+SeeAlso: INT 47"TI Professional",INT 48/AH=00h"TI Professional"
+SeeAlso: INT 49/AH=01h"TI",INT 4C"TI Professional",INT 4D/AH=00h
+SeeAlso: INT 5B"TI Professional"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F10--CL04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - CHANNEL CONTROL - RELEASE BUFFER
+	AH = 10h
+	CL = 04h
+	AL = channel number
+Return: AL = status (00h-03h) (see #03951)
+Notes:	unlocks buffer after received datagram has been processed
+	may not be invoked from within a hardware interrupt handler
+SeeAlso: AH=10h/CL=00h
+

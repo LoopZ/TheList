@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAB00
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SRSoft MODAL PC v2+ - INSTALLATION CHECK / GET VERSION
+	AX = AB00h
+Return: AX = 5253h ('SR' byte-swapped) if installed
+	    BX = MODAL PC version (BL = major, BH = minor)
+Program: MODAL PC is an algorithm/real-system simulation package by SR Soft
+	  using Petri-nets to describe simulated objects
+SeeAlso: AX=AB01h"MODAL",AX=AB02h"MODAL",AX=AB06h"MODAL"
+

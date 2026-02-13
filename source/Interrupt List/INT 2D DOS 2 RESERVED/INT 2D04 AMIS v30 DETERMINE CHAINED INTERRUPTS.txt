@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--04
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - AMIS v3.0+ - DETERMINE CHAINED INTERRUPTS
+	AL = 04h
+	AH = multiplex number for program
+	BL = interrupt number (except 2Dh)
+Return: AL = status
+	    00h not implemented (makes TSR non-compliant with specification)
+	    01h (obsolete) unable to determine
+	    02h (obsolete) interrupt hooked
+	    03h (obsolete) interrupt hooked, address returned
+		DX:BX -> TSR's interrupt BL handler
+	    04h list of hooked interrupts returned
+		DX:BX -> interrupt hook list (see #02571)
+	    FFh interrupt not hooked
+Notes:	BL is ignored if the TSR returns AL=04h; in that case, the caller
+	  needs to scan the return list rather than making additional calls
+	  to this function.  If the return is not 00h or 04h, then the caller
+	  must cycle through the remaining interrupt numbers it wishes to
+	  check.
+	return values 01h through 03h may not be used by AMIS v3.6-compliant
+	  programs; they are included here solely for compatibility with
+	  version 3.3, though they were probably never used in any
+	  implementation
+	for return values 01h through 03h, since INT 2D is known to be hooked,
+	  the resident code need not test for BL=2Dh (to minimize its size),
+	  and the return value is therefore undefined in that case.
+	this function is not valid unless a program is installed on the
+	  specified multiplex number; use INT 2D/AL=00h to check
+SeeAlso: INT 2D/AL=00h,INT 2D/AL=01h,INT 2D/AL=02h,INT 2D/AL=03h,INT 2D/AL=05h
+SeeAlso: INT 2D/AL=06h
+
+Format of AMIS interrupt hook list [array]:
+Offset	Size	Description	(Table 02571)
+ 00h	BYTE	interrupt number (last entry in array is 2Dh)
+ 01h	WORD	offset within hook list's segment of the interrupt handler
+		this will point at the initial short jump of the interrupt
+		  sharing protocol header (see #02568)
+SeeAlso: #02572
+

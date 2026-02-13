@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62000C
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_CHGTEXT" - DISPLAY STRING AT CURSOR POSITION
+	AX = 000Ch
+	CX = length of string
+	ES:BX -> string to be displayed
+Return: text cursor updated
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in graphics modes
+SeeAlso: AX=000Bh,AX=0096h
+

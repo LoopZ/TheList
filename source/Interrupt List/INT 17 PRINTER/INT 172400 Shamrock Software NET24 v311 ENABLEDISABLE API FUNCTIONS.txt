@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 172400
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Shamrock Software NET.24 v3.11+ - ENABLE/DISABLE API FUNCTIONS
+	AX = 2400h
+	DL = new state
+	    00h disabled
+	    01h enabled
+Return: DL = 24h if installed
+	DH = minor version number
+	CX = network address of this machine
+	AL = status (see #00640)
+SeeAlso: AX=2403h,INT 16/AX=4500h
+
+(Table 00640)
+Values for NET.24 function status:
+ 00h	successful
+ 01h	timeout
+ 02h	header error
+ 03h	data error
+ 04h	busy
+ 05h	invalid parameters
+

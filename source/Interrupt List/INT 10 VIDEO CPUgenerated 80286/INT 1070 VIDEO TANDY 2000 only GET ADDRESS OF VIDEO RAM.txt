@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1070
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - TANDY 2000 only - GET ADDRESS OF VIDEO RAM
+	AH = 70h
+Return: AX:BX -> WORD containing green plane's offset
+	AX:CX -> WORD containing green plane's segment
+	AX:DX -> WORD containing segment of red (offset 0) and blue (offset
+			4000) planes
+SeeAlso: AH=71h
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214300
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET FILE ATTRIBUTES
+	AX = 4300h
+	DS:DX -> ASCIZ filename
+Return: CF clear if successful
+	    CX = file attributes (see #01420)
+	    AX = CX (DR DOS 5.0)
+	CF set on error
+	    AX = error code (01h,02h,03h,05h) (see #01680 at AH=59h)
+Notes:	under the FlashTek X-32 DOS extender, the filename pointer is in DS:EDX
+	under DR DOS 3.41 and 5.0, attempts to change the subdirectory bit are
+	  simply ignored without an error
+BUG:	Windows for Workgroups returns error code 05h (access denied) instead
+	  of error code 02h (file not found) when attempting to get the
+	  attributes of a nonexistent file.  This causes open() with O_CREAT
+	  and fopen() with the "w" mode to fail in Borland C++.
+SeeAlso: AX=4301h,AX=4310h,AX=7143h,AH=B6h,INT 2F/AX=110Fh,INT 60/DI=0517h
+

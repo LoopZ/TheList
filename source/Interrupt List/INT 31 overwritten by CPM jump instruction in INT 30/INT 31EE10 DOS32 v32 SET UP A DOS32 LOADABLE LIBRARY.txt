@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31EE10
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - DOS32 v3.2+ - SET UP A DOS32 LOADABLE LIBRARY
+	AX = EE10h
+	EDX -> library ASCIZ path\filename
+	EBX = number of bytes to seek from beginning of file
+Return: CF clear if successful
+	    EAX = size of memory block required to store library
+	    EBX = size of library file
+	CF set on error
+	    AL = error code.
+		01h error opening or reading file
+		02h bad DOS32 library file
+SeeAlso: AX=EE00h,AX=EE11h
+

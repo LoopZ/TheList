@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156003
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SET MAIN BATTERY TYPE
+	AX = 6003h
+	BL = battery type
+	    00h alkaline
+	    01h NiCad
+SeeAlso: AX=6000h,AX=6004h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0406BP0114
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_CRV_RECONFIGURE" - RECONFIG LINK
+	AX = 0406h
+	BP = 0114h (driver ID for V_HPHIL)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=020Eh,AX=0408h"SF_CRV_WR_PROMPTS"
+SeeAlso: AX=0410h"SF_CRV_SELF_TEST"
+

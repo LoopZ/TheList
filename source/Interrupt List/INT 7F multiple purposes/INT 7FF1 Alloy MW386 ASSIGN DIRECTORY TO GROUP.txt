@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FF1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - ASSIGN DIRECTORY TO GROUP
+	AH = F1h
+	AL = group number
+	DS:DX -> ASCIZ directory name
+Notes:	performs permanent assignment to a group; no immediate action is taken
+	  unless the directory has been restricted with AH=F0h
+	may be used to restrict a nonexistent directory
+SeeAlso: AH=F0h
+

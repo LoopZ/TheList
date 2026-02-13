@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB906
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC Network RECEIVER.COM - SET FILENAME
+	AX = B906h
+	DS:BX -> 128-byte buffer for filename 1
+	DS:DX -> 128-byte buffer for filename 2
+Return: RECEIVER.COM internal buffers filled from user buffers
+Note:	use of filenames is unknown, but one appears to be for storing messages
+SeeAlso: AX=B905h
+

@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131C0A
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - ESDI FIXED DISK - GET DEVICE CONFIGURATION
+	AX = 1C0Ah
+	DL = drive (80h,81h)
+	ES:BX -> buffer for Drive Configuration Status Block (see #00260)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234 at AH=01h)
+Note:	device configuration format can be found in IBM ESDI Fixed Disk Drive
+	  Adapter/A Technical Reference
+SeeAlso: AX=1C08h,AX=1C0Bh,AX=1C0Ch
+
+Format of ESDI Drive Configuration Status Block:
+Offset	Size	Description	(Table 00260)
+ 00h	BYTE	09h
+ 01h	BYTE	number of words in block (06h)
+ 02h	BYTE	flags
+ 03h	BYTE	number of spare sectors per cylinder
+ 04h	DWORD	total number of usable sectors
+ 08h	WORD	total number of cylinders
+ 0Ah	BYTE	tracks per cylinder
+ 0Bh	BYTE	sectors per track
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A94
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - WRITE MULTIPLE
+	AH = 94h
+	AL = adapter number
+	BL = socket number (01h to maximum supported by adapter)
+	BH = attributes (see #00687)
+	CX = number of bytes or words to read
+	DX:DI = card address
+	DS:SI -> buffer containing data
+	BP = Card Technology type (0000h = RAM)
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (01h,07h,0Bh,0Ch,12h,14h) (see #00656)
+Notes:	this function is only available on I/O-mapped sockets
+	Socket Services calls the Card Technology callback (see #00661) for
+	  any card technology it does not directly support
+SeeAlso: AH=82h"PCMCIA",AH=92h,AH=93h,INT 21/AX=440Dh"DOS 3.2+"
+

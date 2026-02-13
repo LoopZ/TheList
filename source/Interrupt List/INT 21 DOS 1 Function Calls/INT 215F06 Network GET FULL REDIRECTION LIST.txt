@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F06
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Network - GET FULL REDIRECTION LIST
+	AX = 5F06h
+	???
+Return: ???
+Notes:	similar to AX=5F02h and AX=5F05h, but also returns redirections
+	  excluded from those calls for various reasons
+	calls INT 2F/AX=111Eh with AX on top of the stack
+SeeAlso: AX=5F05h"DOS",INT 2F/AX=111Eh
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140D00
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS - GET AVAILABLE BYTES
+	AX = 0D00h
+Return: AX = bytes in transmit buffer
+	CX = bytes in receive buffer
+SeeAlso: AH=0Ah"MBBIOS",AH=0Bh"MBBIOS"
+

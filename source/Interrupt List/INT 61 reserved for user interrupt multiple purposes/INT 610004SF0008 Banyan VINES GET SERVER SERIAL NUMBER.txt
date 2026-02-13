@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0008
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET SERVER SERIAL NUMBER
+	AX = 0004h subfn 0008h
+	DS:DX -> request block (see #03412)
+Return: AX = status (0000h,000Fh,0015h) (see #03400)
+Notes:	The server ID is extracted from the IPC port address of the associated
+	  file service stored in the drive connection table
+	The server serial number and the server subnet number are returned in
+	  big-endian (Motorola) format (i.e. MSB first)
+SeeAlso: AX=0004h/SF=0005h
+
+Format of VINES request block for getting server serial number:
+Offset	Size	Description	(Table 03412)
+ 00h	WORD	0008h
+ 02h	WORD	drive number (0=default, 1=A, ...)
+ 04h	DWORD	buffer for server serial number
+ 08h	WORD	buffer for server subnet number (always 0001h)
+

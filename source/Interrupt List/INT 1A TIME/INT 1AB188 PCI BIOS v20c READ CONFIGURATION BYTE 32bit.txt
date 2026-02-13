@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB188
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - READ CONFIGURATION BYTE (32-bit)
+	AX = B188h
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (0000h-00FFh)
+Return: as for AX=B108h
+Note:	the meanings of BL and BH on return were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B108h,AX=B189h,AX=B18Ah
+

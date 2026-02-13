@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 218E00BH00
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "SETPRI" - GET/SET PROCESS PRIORITY
+	AX = 8E00h
+	BH = 00h
+	BL = action
+	    00h set priority for command subtree
+	    01h set priority for specified process only
+	CX = Process ID
+	DH = 00h
+	DL = change in priority (00h to get priority)
+Return: CF clear if successful
+	    DL = process priority
+	    DH destroyed
+	CF set on error
+	    AX = error code (01h,no such process)(see #01680 at AH=59h)
+Desc:	specify or determine the execution priority of the specified process
+	  or the process and all of its children
+SeeAlso: AH=81h
+

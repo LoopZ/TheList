@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C208
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE - WRITE TO POINTER PORT
+	AX = C208h
+	BL = byte to be sent to the pointing device
+Note:	IBM classifies this function as optional
+SeeAlso: AX=C200h,AX=C209h
+

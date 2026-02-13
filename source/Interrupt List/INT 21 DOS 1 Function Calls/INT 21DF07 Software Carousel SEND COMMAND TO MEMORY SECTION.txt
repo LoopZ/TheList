@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF07
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - SEND COMMAND TO MEMORY SECTION
+	AX = DF07h
+	BL = task number
+	CX = length of command (max 8 chars)
+	DS:SI -> command line
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+	    FFh unsucessful
+		AH = error code (01h,06h) (see #01813)
+Note:	the maximum length seems too small and may be a typo for 80 characters
+

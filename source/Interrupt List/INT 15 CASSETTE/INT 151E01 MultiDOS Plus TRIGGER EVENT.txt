@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151E01
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - TRIGGER EVENT
+	AX = 1E01h
+	DX = event/trigger number (00h-3Fh)
+Return: AH = status
+	    00h successful
+	    01h invalid event/trigger number
+Notes:	schedules any task waiting for event; if no task is waiting, the event
+	  counter is incremented (and will roll over if it was 65535)
+	may be invoked by interrupt handler
+SeeAlso: AX=1E00h,AX=1E02h
+

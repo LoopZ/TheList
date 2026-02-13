@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DB00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI BIOS - Flash ROM - READ FLASH BIOS
+	AX = DB00h
+	DS:SI -> parameter block (see #00544)
+	ES:DI -> buffer for copied information
+Return: CF clear if successful
+	CF set on error
+	    AH = status (86h if not implemented)
+	DS,ES destroyed, possibly other registers
+Note:	used by FMUP.EXE, Intel's Flash Memory Update utility
+SeeAlso: AH=DAh,AX=DB01h,AX=DB04h
+
+Format of AMI BIOS Flash ROM parameter block:
+Offset	Size	Description	(Table 00544)
+ 00h 32 BYTEs	ASCIZ description of the file's contents
+ 20h	BYTE	Logical area type (see #00545)
+ 21h	DWORD	logical area size (overall size of area)
+ 25h	BYTE	flag: load from file (FF=yes, 00=no)
+ 26h	BYTE	flag: reboot after update (FF=yes, 00=no)
+ 27h	BYTE	flag: update entire image (FF=yes, 00=no)
+ 28h 24	BYTEs	ASCIZ logical area name (cooresponds to offset 20)
+		"System BIOS"
+		"Logo Data Area", etc.
+ 40h 15 BYTEs	ASCIZ time stamp string: MM/DD/YY-HH:MM
+ 4Fh	BYTE	checksum for this header (sum of all bytes except this one)
+		if checksum would be 00h,01h, or FFh, it is set to 2Ah
+ 50h	DWORD	this file's starting address (offset in image)
+ 54h	DWORD	size of image chunk in this file
+ 58h	BYTE	logical area type - same as offset 20h
+ 59h	BYTE	flag: last file in chain (FF=yes, 00=no)
+ 5Ah  6 BYTEs	ASCIZ signature "FLASH"
+ 60h 16 BYTEs	ASCIZ filename of next file in chain
+ 70h 16 BYTEs	ASCIZ BIOS reserved string (usually version #)
+Notes:	this block is identical in format to the 128-byte header on an AMI
+	  BIOS Update file
+	for AX=DB00h, the following fields must be specified: 50h,54h,58h;
+	  the fields at offset 20h and 5Ah should also be set if possible
+	the fields at offsets 40h and 70h will be set on return, if available
+SeeAlso: #00546
+

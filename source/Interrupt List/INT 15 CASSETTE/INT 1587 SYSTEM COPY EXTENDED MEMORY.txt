@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1587
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - COPY EXTENDED MEMORY
+	AH = 87h
+	CX = number of words to copy (max 8000h)
+	ES:SI -> global descriptor table (see #00499)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00498)
+Notes:	copy is done in protected mode with interrupts disabled by the default
+	  BIOS handler; many 386 memory managers perform the copy with
+	  interrupts enabled
+	on the PS/2 30-286 & "Tortuga" this function does not use the port 92h
+	  for A20 control, but instead uses the keyboard controller (8042).
+	  Reportedly this may cause the system to crash when access to the
+	  8042 is disabled in password server mode (see also PORT 0064h,#P0398)
+	this function is incompatible with the OS/2 compatibility box
+SeeAlso: AH=88h,AH=89h,INT 1F/AH=90h
+
+(Table 00498)
+Values for extended-memory copy status:
+ 00h	source copied into destination
+ 01h	parity error
+ 02h	interrupt error
+ 03h	address line 20 gating failed
+ 80h	invalid command (PC,PCjr)
+ 86h	unsupported function (XT,PS30)
+
+Format of global descriptor table:
+Offset	Size	Description	(Table 00499)
+ 00h 16 BYTEs	zeros (used by BIOS)
+ 10h	WORD	source segment length in bytes (2*CX-1 or greater)
+ 12h  3 BYTEs	24-bit linear source address, low byte first
+ 15h	BYTE	source segment access rights (93h)
+ 16h	WORD	(286) zero
+		(386+) extended access rights and high byte of source address
+ 18h	WORD	destination segment length in bytes (2*CX-1 or greater)
+ 1Ah  3 BYTEs	24-bit linear destination address, low byte first
+ 1Dh	BYTE	destination segment access rights (93h)
+ 1Eh	WORD	(286) zero
+		(386+) extended access rights and high byte of destin. address
+ 20h 16 BYTEs	zeros (used by BIOS to build CS and SS descriptors)
+

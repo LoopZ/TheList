@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - GET PHYSICAL STATION ADDRESS
+	AH = EEh
+Return: CX:BX:AX = six-byte physical address
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E3h/SF=13h
+

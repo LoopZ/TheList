@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CB00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - UNCHAIN - SAVE CURRENT VGA REGISTERS
+	AX = CB00h
+Note:	combined with AX=CB06h, this function permits the use of video mode
+	  13h together with the VGA's unchained mode
+SeeAlso: AX=CB06h,AX=CBFFh
+

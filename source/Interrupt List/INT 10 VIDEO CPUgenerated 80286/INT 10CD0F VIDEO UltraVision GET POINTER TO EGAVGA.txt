@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD0F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - GET POINTER TO ??? (EGA,VGA)
+	AX = CD0Fh
+Return: DS:DI -> pointer to ???
+Note:	This gets called by DR DOS "Panther" SECURITY.	SECURITY also issues a
+	  number of calls to the other UltraVision functions in the AH=CCh and
+	  AH=CDh range, and carefully checks signatures.
+SeeAlso: AX=1100h,AX=1103h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL01
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "C_READ" - FETCH CHARACTER FROM THE DEFAULT CONSOLE
+	CL = 01h
+Return: AX = character
+	may destroy SI,DI???
+Notes:	this function echos the character to the screen, expanding Tab
+	  characters to the next multiple of eight columns; Ctrl-C is
+	  ignored if the calling process can not terminate
+	the calling process is suspended until a character is available; if
+	  the caller does not own the console, it is suspended until it
+	  can attach to the console
+SeeAlso: INT E0/CL=02h,INT E0/CL=06h,INT 21/AH=01h
+

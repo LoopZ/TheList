@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AFE
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - AT&T 6300 - READ TIME AND DATE
+	AH = FEh
+Return: BX = day count (0 = Jan 1, 1984)
+	CH = hour
+	CL = minute
+	DH = second
+	DL = hundredths
+SeeAlso: AX=CCCCh/BX=CCCCh,AH=FFh"AT&T",INT 21/AH=2Ah,INT 21/AH=2Ch
+

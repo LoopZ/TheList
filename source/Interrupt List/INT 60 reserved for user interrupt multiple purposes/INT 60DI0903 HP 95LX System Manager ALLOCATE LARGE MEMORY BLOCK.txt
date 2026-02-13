@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0903
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - ALLOCATE LARGE MEMORY BLOCK
+	DI = 0903h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	size of block in bytes???
+Return: AX -> memory block???
+	STACK unchanged
+SeeAlso: INT 60/DI=0900h,INT 60/DI=0904h
+

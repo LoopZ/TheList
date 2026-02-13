@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10FE
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - TopView - GET SHADOW BUFFER
+	AH = FEh
+	ES:DI -> assumed video buffer
+		B800h:0000h color text/CGA graphics, B000h:0000h mono text,
+		  or A000h:0000h EGA/VGA graphics (RSIS environments only)
+Return: ES:DI -> actual video buffer for calling process
+Desc:	Determine the address of the virtual screen to which the program
+	  should write instead of the actual video memory; this permits
+	  programs to be multitasked without interfering with each other's
+	  output, and allows memory managers to move the video memory to
+	  permit larger programs to be loaded.
+Notes:	if no multitasker or RSIS-compliant environment is installed, ES:DI is
+	  returned unchanged; RSIS is the Relocated Screen Interface
+	  Specification
+	for display pages other than 0, use AH=05h and AH=0Fh to determine
+	  whether a particular page exists
+	TopView requires a call to AH=FFh to notify it that the screen has
+	  changed; DESQview will check for changes itself until the first call
+	  to AH=FFh
+SeeAlso: AH=05h,AX=5201h,AH=FFh,INT 15/AX=1024h,INT 21/AH=2Bh"DESQview"
+SeeAlso: INT 21/AH=ECh"DoubleDOS"
+

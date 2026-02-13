@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15102B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.00+ (TopView???) - "POSTTASK" - AWAKEN TASK
+	AX = 102Bh
+	BX = segment of object handle for task
+Return: nothing
+Note:	forces a task which is waiting on its objectq to continue by placing
+	  the handle for the task on the objectq
+SeeAlso: AX=101Dh,AX=101Eh,INT 21/AH=82h
+

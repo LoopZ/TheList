@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 146F01
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HP Vectra EX-BIOS - "F14_EXINIT" - INITIALIZE SERIAL PORT
+	AX = 6F01h
+	BX = port attributes (see #00356)
+	DX = port number (0-3)
+Return: AH = line status (see #00304)
+	AL = modem status (see #00305)
+Note:	supported by original HP Vectra AT and by ES/QS/RS series Vectras
+SeeAlso: AX=6F00h
+
+Bitfields for HP Vectra Extended BIOS serial port attributes:
+Bit(s)	Description	(Table 00356)
+ 8-5	data rate (110, 150, 300, 600, 1200, 2400, 4800, 9600, 19200)
+ 4-3	parity
+	00 none
+	01 odd
+	10 none
+	11 even
+ 2	stop bits (0 = one, 1 = two)
+ 1-0	bits per character
+	10 seven-bit characters
+	11 eight-bit characters
+	0x undefined
+

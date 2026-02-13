@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154600
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq SLT/286 - READ POWER CONSERVATION/MODEM CONFIGURATION
+	AX = 4600h
+Return: AH = modem configuration information (see #00468)
+	AL = power conservation status information (see #00469)
+	BH = default system inactivity timeout (1-21 minutes)
+	BL = current system inactivity timeout (1-21 minutes)
+	CH = default video display inactivity timeout (1-63 minutes)
+	CL = current video display inactivity timeout (1-63 minutes)
+	DH = default fixed disk drive inactivity timeout (1-21 minutes)
+	DL = current fixed disk drive inactivity timeout (1-21 minutes)
+SeeAlso: AX=4280h,AX=4601h,INT 77
+
+Bitfields for Compaq SLT/286 modem configuration information:
+Bit(s)	Description	(Table 00468)
+ 0	powerup state (0 off, 1 on)
+ 1	modem installed
+ 2	IRQ line assignment (0 IRQ 4, 1 IRQ 3)
+ 3	COM port assignment (0 = COM 2, 1 = COM 1)
+ 4	modem state (0 not assigned, 1 assigned)
+ 5	modem is on
+
+Bitfields for Compaq SLT/286 power conservation status:
+Bit(s)	Description	(Table 00469)
+ 0	power source (0 internal, 1 external)
+ 1-2	low battery state
+	00 no low battery condition
+	01 low battery 1
+	10 reserved
+	11 low battery 2
+ 3-4	power conservation mode
+	00 automatic, 01 on, 10 off, 11 reserved
+

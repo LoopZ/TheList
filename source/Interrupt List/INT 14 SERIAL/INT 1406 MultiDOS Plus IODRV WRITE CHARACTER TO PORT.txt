@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1406
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus IODRV - WRITE CHARACTER TO PORT
+	AH = 06h
+	AL = character
+Return: AL = status
+	    00h successful
+Notes:	the port number is stored at offset BEh in the Task Control Block
+	if output queue is full, the calling task is blocked until the
+	  character can be stored
+SeeAlso: AH=01h,AH=04h"MultiDOS",AH=05h"MultiDOS",AH=21h"MultiDOS"
+SeeAlso: INT 15/AH=13h"MultiDOS"
+

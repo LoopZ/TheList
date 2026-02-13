@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6123
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_listen" - LISTEN FOR INCOMING CONNECTIONS
+	AH = 23h
+	BX = network descriptor or FFFFh to allocate descriptor
+	DX = type of service
+	DS:SI -> "addr" structure (see #03462)
+Return: CF clear if successful
+	    AX = network descriptor
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Notes:	type of service and "addr" structure are as for AH=13h
+	any of the address structure can be zero; normally local socket number
+	  is filled in prior to call
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=13h
+SeeAlso: INT 63/AH=12h"BW-TCP"
+

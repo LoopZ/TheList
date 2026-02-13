@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A10BX000A
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SMARTDRV v4.00+ - GET ELEMENT STATUS TABLE
+	AX = 4A10h
+	BX = 000Ah
+Return: ES:BX -> information pointer table (see #02803)
+Note:	this function is also supported by PC-Cache v8.0.
+SeeAlso: AX=4A10h/BX=0000h
+
+Format of SMARTDRV information pointer table:
+Offset	Size	Description	(Table 02803)
+ 00h	WORD	offset of ??? byte/word array (byte if elements < 2000h bytes)
+ 02h	WORD	offset of dirty flag byte/word array (byte if elts < 2000h)
+		each byte/word is a bit string of the dirty sectors in element
+ 04h	WORD	offset of word array containing low halves of unique
+		  identifiers for the corresponding element's contents
+ 06h	WORD	offset of word array containing high halves of unique
+		  identifiers for the corresponding element's contents
+ 08h	WORD	offset of WORD containing current number of elements in cache
+

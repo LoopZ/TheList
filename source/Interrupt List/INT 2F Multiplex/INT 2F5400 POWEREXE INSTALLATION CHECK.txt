@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5400
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - POWER.EXE - INSTALLATION CHECK
+	AX = 5400h
+Return: AX = POWER.EXE version (AH = major, AL = minor) if installed
+	BX = 504Dh ("PM")
+	CF clear
+Note:	called by MS Windows 3.1 POWER.DRV
+SeeAlso: AH=53h,AX=5401h,AX=5402h,AX=5481h,AX=5482h
+

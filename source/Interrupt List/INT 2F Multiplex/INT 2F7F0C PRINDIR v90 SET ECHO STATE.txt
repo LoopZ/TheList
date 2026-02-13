@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7F0C
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PRINDIR v9.0 - SET ECHO STATE
+	AX = 7F0Ch
+	DX = new state (00h echo off, 01h echo on)
+Return: AX = status
+	    0000h successful
+SeeAlso: AX=7F00h"PRINDIR",AX=7F0Ah,AX=7F0Bh,AX=7F0Dh,AX=7F0Eh
+

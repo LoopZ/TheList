@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131F
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - SyQuest - DOOR LATCH/DOOR BUTTON DETECT
+	AH = 1Fh
+	AL = subfunction
+	    00h allow media removal
+	    01h prevent media removal (lock door)
+	DL = drive ID (bit 7 set for hard disks)
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code
+		00h successful
+		01h invalid function request
+		80h timeout
+		DDh media change requested
+SeeAlso: AH=12h"SyQuest",AH=13h"SyQuest",AH=59h"SyQuest"
+

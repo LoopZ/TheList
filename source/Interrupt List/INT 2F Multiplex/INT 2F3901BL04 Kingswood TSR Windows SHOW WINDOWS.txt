@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F3901BL04
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood TSR Windows - SHOW WINDOWS
+	AX = 3901h
+	BL = 04h
+Return: AX = error code (0000h if successful)
+	SI,DI,DS,ES preserved
+Notes:	Re-display all TSR windows after a HIDE WINDOWS call.
+SeeAlso: AH=39h/BL=00h,AX=3901h/BL=02h,AX=3901h/BL=03h
+

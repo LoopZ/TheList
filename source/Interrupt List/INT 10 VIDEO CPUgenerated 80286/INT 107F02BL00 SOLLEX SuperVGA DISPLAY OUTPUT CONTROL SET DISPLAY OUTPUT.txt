@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F02BL00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - DISPLAY OUTPUT CONTROL - SET DISPLAY OUTPUT
+	AX = 7F02h
+	BL = 00h
+	CX = display output setting (see #00207)
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		01h failed
+SeeAlso: AX=7F00h"SOLLEX",AX=7F02h/BL=00h
+
+Bitfields for SOLLEX SuperVGA display output setting:
+Bit(s)	Description	(Table 00207)
+ 0	CRTC control in 2,1 valid
+ 1	enable digital output
+ 2	enable analog output
+ 3	panel control in 5,4 valid
+ 4	enable LCD output
+ 5	enable plasma/EL output
+ 6	inverse control in 7 valid
+ 7	0=normal, 1=inverse
+ 15-8	reserved
+

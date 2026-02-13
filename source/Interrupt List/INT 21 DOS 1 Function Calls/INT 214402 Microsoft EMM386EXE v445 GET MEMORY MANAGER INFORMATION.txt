@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Microsoft EMM386.EXE v4.45 - GET MEMORY MANAGER INFORMATION
+	AX = 4402h
+	BX = file handle for device "EMMXXXX0"
+	CX = size of buffer in bytes (varies, see #01521)
+	DS:DX -> buffer for returned data (see #01521)
+		first byte must be set on entry to indicate desired data
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	an error is returned if the number of bytes to be read does not match
+	  the number of bytes returned for the specified data item
+	this function is part of the interface which allows MS Windows to
+	  cooperate with memory managers
+SeeAlso: AX=4402h/SF=00h,AX=4402h/SF=01h,AX=4402h/SF=02h,INT 67/AX=FFA5h
+
+Format of EMM386.EXE data buffer:
+Offset	Size	Description	(Table 01521)
+ 00h	BYTE	(call) function
+		03h get ???
+		04h get ???
+---function 03h---
+ 00h	WORD	???
+ 02h	WORD	???
+---function 04h---
+ 00h	WORD	segment of UMB containing EMM386 code/data
+ 02h	WORD	number of paragraphs of EMM386 code/data in UMB
+ 04h	WORD	???
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310902
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET VIRTUAL INTERRUPT STATE
+	AX = 0902h
+Return: CF clear
+	AL = current interrupt state (00h disabled, 01h enabled)
+Note:	should be used rather than PUSHF because that instruction yields the
+	  physical interrupt state rather than the per-client virtualized
+	  interrupt flag
+SeeAlso: AX=0900h,AX=0901h
+

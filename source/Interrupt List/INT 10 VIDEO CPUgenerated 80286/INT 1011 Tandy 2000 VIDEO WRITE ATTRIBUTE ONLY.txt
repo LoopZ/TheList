@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1011
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Tandy 2000 - VIDEO - WRITE ATTRIBUTE ONLY
+	AH = 11h
+	BL = new character attribute (text modes) or color (graphics)
+	CX = number of times to write attribute
+Return: nothing
+Note:	this interrupt is identical to INT 52 on Tandy 2000
+SeeAlso: AH=0Ah,AH=0Bh/BH=02h,AH=11h"Tandy 2000",AH=12h"Tandy 2000"
+SeeAlso: INT 52"Tandy 2000"
+

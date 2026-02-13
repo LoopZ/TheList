@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330035
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v8.10+ - LCD SCREEN LARGE POINTER SUPPORT
+	AX = 0035h
+	BX = function
+	    FFFFh get current settings
+		Return: AX = 0000h
+			BH = style (see #03183)
+			BL = size (see #03184)
+			CH = threshold (00h-64h)
+			CL = active flag (00h disabled, 01h enabled)
+			DX = delay
+	    other
+		BH = pointer style (see #03183)
+		BL = size (see #03184)
+		CH = threshold (00h-64h)
+		CL = active flag (00h disable size change, 01h enable)
+		DX = delay (0000h-0064h)
+		Return: AX = 0000h
+Note:	not supported by Logitech driver v6.10
+SeeAlso: AX=0012h,AX=002Ah
+
+(Table 03183)
+Values for pointer style:
+ 00h	normal
+ 01h	reverse
+ 02h	transparent
+SeeAlso: #03184
+
+(Table 03184)
+Values for pointer size:
+ 00h	small ("1")
+ 01h	medium ("1.5")
+ 02h	large ("2")
+SeeAlso: #03183
+

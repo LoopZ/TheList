@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1322
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - ENABLE/DISABLE CACHE
+	AH = 22h
+	AL = new state (00h disabled, 01h enabled)
+Return: AX = status (0000h successful)
+Note:	enables/disables caching of all drives
+SeeAlso: AH=2Ch,AH=2Dh,AH=32h,AH=33h,AH=A3h,AH=A4h
+

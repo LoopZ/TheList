@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--DX0003
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1 Virtual DOS Machine - GET LASTDRIVE
+	AH = 64h
+	DX = 0003h (function number)
+	CX = 636Ch (magic value, "cl")
+	BX = 0000h (indicates special request)
+Return: AL = highest drive supported
+Notes:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
+	used by WinOS2
+	not supported by OS/2 Warp 3.0, check list of lists instead (see #01627)
+SeeAlso: AH=52h
+

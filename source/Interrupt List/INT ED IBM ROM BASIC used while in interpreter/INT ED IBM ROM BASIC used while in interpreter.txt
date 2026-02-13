@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: ED
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT ED - IBM ROM BASIC - used while in interpreter
+Notes:	called by ROM BASIC, but pointed at IRET by BASIC.COM/BASICA.COM
+	BASIC.COM/BASICA.COM do not restore vector on termination
+	INT 80 through INT ED are modified but not restored by Direct Access
+	  v4.0, and may be left dangling by other programs written with the
+	  same version of compiled BASIC
+SeeAlso: INT EC"BASIC",INT EE"BASIC"
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1904
+  Category: l 	shells/command interpreters
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4.x only SHELLB.COM - SHELLB transient to TSR interface
+	AX = 1904h
+Return: ES:DI -> name of current shell batch file:
+		WORD	number of bytes of name following
+		BYTEs	(8 max) uppercase name of shell batch file
+

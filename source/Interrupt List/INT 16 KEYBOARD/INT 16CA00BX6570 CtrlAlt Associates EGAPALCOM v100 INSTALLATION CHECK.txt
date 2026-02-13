@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16CA00BX6570
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - CtrlAlt Associates EGAPAL.COM v1.00 - INSTALLATION CHECK
+	AX = CA00h
+	BX = 6570h ("ep")
+	CX = 6570h
+Return: AX = CAFFh if installed
+	    BX = segment of resident code
+	    CX = ??? (0090h)
+Program: EGAPAL is a TSR supplied with STACKEY which makes EGA palette
+	  settings permanent across mode switches
+SeeAlso: AX=CA00h/BX=7670h
+

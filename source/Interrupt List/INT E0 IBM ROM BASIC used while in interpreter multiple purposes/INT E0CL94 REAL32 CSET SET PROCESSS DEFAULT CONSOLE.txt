@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL94
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "C_SET" - SET PROCESS'S DEFAULT CONSOLE
+	CL = 94h
+	DX = console ID
+Return: AX = status (0000h success, else error code)
+SeeAlso: INT E0/CL=92h,INT E0/CL=95h,INT E0/CL=99h
+

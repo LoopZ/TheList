@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 490A
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - WRITE CHARACTER(S) WITH CURRENT ATTRIBUTE
+	AH = 0Ah
+	AL = character to write
+	CX = number of times to write character
+Return: nothing
+Desc:	write CX copies of the character in AL beginning at the current cursor
+	  position
+Note:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+SeeAlso: AH=01h,AH=02h,AH=08h,AH=09h,AH=0Eh,INT 10/AH=0Ah
+

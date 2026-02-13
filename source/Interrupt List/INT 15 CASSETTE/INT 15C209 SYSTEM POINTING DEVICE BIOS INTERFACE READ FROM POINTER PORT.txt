@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C209
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE - READ FROM POINTER PORT
+	AX = C209h
+Return: BL = first byte read from pointing device
+	CL = second byte read
+	DL = third byte read
+Note:	IBM classifies this function as optional
+SeeAlso: AX=C200h,AX=C208h
+

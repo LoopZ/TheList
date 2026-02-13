@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx002C
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - SPOOLER - VxD SERVICES
+	VxD = 002Ch
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01295)
+Values for SPOOLER (VxD ID 002Ch) service number:
+ 0000h	get version???
+ 0001h	???
+ 0010h	...last service for Windows95 SP1
+SeeAlso: #01294,#01296
+

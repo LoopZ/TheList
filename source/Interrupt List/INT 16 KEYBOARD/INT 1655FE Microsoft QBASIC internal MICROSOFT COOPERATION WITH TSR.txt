@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1655FE
+  Category: A 	applications
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 CU - Microsoft QBASIC internal - MICROSOFT COOPERATION WITH TSR
+	AX = 55FEh
+	DX = function
+	    0000h initialize
+		ES:BX -> ??? function
+		ES:CX -> ??? structure
+	    FFFFh shutdown/reset
+Return: AX = result
+	    4D4Bh only the INT 1B handler will be installed.
+	    other: handlers for INT 08, INT 09, INT 16, INT 1B, and INT 1C
+		  are installed
+Notes:	The pointer in ES:CX seems to point at a structure defining a callback
+	  function when new keyboard keys are pressed. If a TSR returns
+	  AX=4D4Bh, QBASIC will stop (with IRQ's and interrupts enabled).
+	these calls are also made by MS-DOS 6.0's DOSSHELL at startup, exit,
+	  and before/after shelling out
+	since EDIT.COM and HELP.COM merely invoke QBASIC, those two programs
+	  will also cause this interface to be invoked
+	K3PLUS v6.07+ supports this function, but will never invoke the
+	  callback function
+SeeAlso: AX=5500h,AX=AF4Dh,INT 1A/AX=3601h
+

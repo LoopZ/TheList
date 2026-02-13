@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_sleep" - PUT PROCESS TO SLEEP
+	AH = 12h
+	STACK:	WORD	process ID
+Return: AX = status (SYS_OK or SYS_ERROR)
+SeeAlso: AH=03h"MultiDOS",AX=101Dh,AH=13h"VMiX"
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E10A
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - "NetClose"
+	AX = E10Ah
+	BX = size of parameter block in words (0001h)
+	CX:DX -> parameter block (see #03988)
+Return: AX = 0001h
+Desc:	this function is used to close a dispatcher handle
+SeeAlso: AX=E105h
+
+Format of Da Vinci eMail "NetClose" parameter block:
+Offset	Size	Description	(Table 03988)
+ 00h	WORD	handle from NetOpen
+

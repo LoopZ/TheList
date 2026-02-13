@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14400B
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - RECEIVE A BYTE FROM A DEVICE
+	AX = 400Bh
+Return: CF clear if successful
+	    AL = byte received
+	    CL = last-byte flag
+		00h more bytes to follow
+		01h received byte is the last
+	CF set on error
+	    AL = error number
+		80h EOI response required
+		81h talker not ready
+		82h clock not set
+		83h clock not released
+	    CL = 00h
+SeeAlso: AX=4000h,AX=400Ah
+

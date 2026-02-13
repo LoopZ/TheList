@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AA0
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v2.1 - GET/SET SOCKET SERVICES ADDRESS
+	AH = A0h
+	AL = adapter number
+	BH = mode
+	    00h real mode
+	    01h 16:16 protected mode
+	    02h 16:32 protected mode
+	    03h 00:32 (Flat) protected mode
+	BL = subfunction
+	    00h return number of additional data areas (see #00693)
+	    01h return description of additional data areas (see #00694)
+	    02h accept mode-specific pointers to data areas (see #00695)
+	ES:EDI -> buffer supplied by caller
+Return: CF clear if successful
+	    AH destroyed
+	    CX = number of additional data areas
+	    ES:EDI unchanged
+	CF set on error
+	    AH = error code (01h,02h,15h,16h,18h) (see #00656)
+SeeAlso: AH=9Fh,AH=AEh
+
+Format of PCMCIA Subfunction 00h Buffer Table Entry structure:
+Offset	Size	Description	(Table 00693)
+ 00h	DWORD	32-bit linear base address of the code segment
+ 04h	DWORD	segment limit of the code segment
+ 08h	DWORD	entry point offset
+ 0Ch	DWORD	32-bit linear base address of the data segment
+		(ignored in 00:32 flat mode)
+ 10h	DWORD	segment limit of the data segment
+ 14h	DWORD	data area offset.  Only used in 32-bit protected mode.
+SeeAlso: #00694,#00695
+
+Format of PCMCIA Additional Data Area Description structure [array]:
+Offset	Size	Description	(Table 00694)
+ 00h	DWORD	32-bit linear base address of the additional data segment
+		(ignored in 00:32 flat mode)
+ 04h	DWORD	segment limit of the code segment
+ 08h	DWORD	data area offset (only used in 32-bit protected mode)
+SeeAlso: #00693,#00695
+
+Format of PCMCIA Subfunction 02h Buffer Table Entry structure:
+Offset	Size	Description	(Table 00695)
+ 00h	DWORD	32-bit offset(ignored in 16:16 protected mode)
+ 04h	DWORD	selector (only used in 00:32 flat mode)
+ 08h	DWORD	reserved
+SeeAlso: #00693,#00694
+

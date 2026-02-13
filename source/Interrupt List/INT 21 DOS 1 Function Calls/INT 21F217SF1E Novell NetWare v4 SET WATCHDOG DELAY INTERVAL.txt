@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF1E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4 - SET WATCHDOG DELAY INTERVAL
+	AX = F217h subfn 1Eh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02181)
+	ES:DI -> reply buffer
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Set Watchdog Delay Interval" request buffer:
+Offset	Size	Description	(Table 02181)
+ 00h	WORD	length of following data
+ 02h	BYTE	1Eh (subfunction "Set Watchdog Delay Interval")
+ 03h	DWORD	interval in minutes
+

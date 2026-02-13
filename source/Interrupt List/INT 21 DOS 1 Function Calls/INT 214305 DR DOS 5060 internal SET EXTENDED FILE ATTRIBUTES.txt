@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214305
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DR DOS 5.0-6.0 internal - SET EXTENDED FILE ATTRIBUTES
+	AX = 4305h
+	DS:DX -> ASCIZ filename
+	???
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+Desc:	this function allows the extended attributes, and optionally the
+	  encrypted password, of a file to be set.
+Note:	this function is only supported by DR DOS 5.0 and 6.0 and DRMDOS 5.1
+SeeAlso: AX=4304h,AX=4311h
+

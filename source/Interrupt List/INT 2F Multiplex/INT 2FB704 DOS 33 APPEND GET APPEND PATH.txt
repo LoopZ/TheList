@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB704
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.3+ APPEND - GET APPEND PATH
+	AX = B704h
+Return: ES:DI -> active APPEND path (128 bytes max)
+Note:	some versions of append do not support this call, and return ES
+	  unchanged; in this case, you should call AX=B701h to get the APPEND
+	  path
+SeeAlso: AX=B701h
+

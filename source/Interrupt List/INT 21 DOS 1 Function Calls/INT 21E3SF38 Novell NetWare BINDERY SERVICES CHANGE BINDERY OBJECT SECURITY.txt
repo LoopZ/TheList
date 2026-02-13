@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF38
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - CHANGE BINDERY OBJECT SECURITY
+	AH = E3h subfn 38h
+	DS:SI -> request buffer (see #01932)
+	ES:DI -> reply buffer (see #01935)
+Return: AL = status (00h,96h,F0h,F1h,FBh,FCh,FEh,FFh) (see #01933)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=32h,AH=E3h/SF=3Bh,AX=F217h/SF=38h
+
+Format of NetWare "Change Bindery Object Security" request buffer:
+Offset	Size	Description	(Table 01932)
+ 00h	WORD	length of following data (max 34h)
+ 02h	BYTE	38h (subfunction "Change Bindery Object Security")
+ 03h	BYTE	new security levels
+ 04h	WORD	(big-endian) type of object
+ 06h	BYTE	length of object's name (01h-2Fh)
+ 07h  N BYTEs	object name
+Note:	the object type may not be WILD (FFFFh)
+SeeAlso: #01935
+

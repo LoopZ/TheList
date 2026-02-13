@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 20 - Minix - SEND/RECEIVE MESSAGE
+	AX = process ID of other process
+	BX -> message
+	CX = operation (1 send, 2 receive, 3 send&receive)
+Program: Minix is a Version 7 Unix-compatible operating system by Andrew
+	  Tanenbaum
+Note:	the message contains the system call number (numbered as in V7
+	  Unix(tm)) and the call parameters
+

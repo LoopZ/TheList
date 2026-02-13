@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E00B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface - SAVE INTERNAL CACHE STATUS
+	AX = E00Bh
+	ES:DI -> buffer for internal cache status (minimum 4Kbytes)
+Return: CF clear if successful
+	    AL = FAh
+	CF set on error
+Note:	always returns error if the hardware does not contain internal
+	  cache or this call is made in protected mode
+SeeAlso: AX=E000h,AX=E00Ah,AX=E00Ch
+

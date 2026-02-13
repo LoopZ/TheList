@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFB0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET SPOOLER PRINTING PRIORITY
+	AX = FFB0h
+Return: AL = priority status (see #02533)
+SeeAlso: AX=FFB1h
+
+Bitfields for TopWare printer priority status:
+Bit(s)	Description	(Table 02533)
+ 2	LPT3 has high priority
+ 1	LPT2 has high priority
+ 0	LPT1 has high priority
+

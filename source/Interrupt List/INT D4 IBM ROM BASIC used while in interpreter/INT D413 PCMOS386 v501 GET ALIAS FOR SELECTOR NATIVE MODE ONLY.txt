@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: D413
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - GET ALIAS FOR SELECTOR (NATIVE MODE ONLY)
+	AH = 13h
+	AL = type of alias selector (00h data, 01h stack, 02h code)
+	BX = selector
+Return: CF clear if successful
+	    AX = new selector or 0000h if BX selector not found
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+SeeAlso: AH=11h,AH=12h
+

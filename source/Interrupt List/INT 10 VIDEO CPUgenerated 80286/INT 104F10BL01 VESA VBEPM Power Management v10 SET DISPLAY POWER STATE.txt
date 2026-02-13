@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F10BL01
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/PM (Power Management) v1.0+ - SET DISPLAY POWER STATE
+	AX = 4F10h
+	BL = 01h
+	BH = new state (see #00111)
+Return: AL = 4Fh if function supported
+	AH = call status
+	    00h successful
+	    else failed
+SeeAlso: AX=4F10h/BL=00h,AX=4F10h/BL=02h,AX=A00Ch
+
+(Table 00111)
+Values for VESA VBE/PM power state:
+ 00h	On
+ 01h	standby
+ 02h	suspend
+ 04h	Off
+ 08h	reduced On (for flat screens)
+

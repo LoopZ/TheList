@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AA8
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v3.10+ - GET NEXT ANSIPLUS SCROLLBACK LINE
+	AX = 1AA8h
+Return: AL = status
+	    00h successful
+		ES:BX -> screen line (character and attribute pairs)
+		CX = length of line in bytes, 0000h if no more lines or
+		      unsupported video mode
+	    01h unsupported video mode active
+	    02h screen currently scrolled back
+	    03h reduced capability driver
+	    A8h unsupported function (driver before v3.10)
+SeeAlso: AX=1A00h/BX=414Eh,AX=1AA9h
+

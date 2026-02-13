@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLA1
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "L_CATTACH" - CONDITIONALLY ATTACH TO DEFAULT LIST DEVICE
+	CL = A1h
+Return: AX = status (00h = successful, FFh = unable to attach)
+	may destroy SI,DI
+Desc:	attach the default list device to the calling process only if it is
+	  currently available
+SeeAlso: INT E0/CL=92h,INT E0/CL=9Eh,INT E0/CL=A0h
+

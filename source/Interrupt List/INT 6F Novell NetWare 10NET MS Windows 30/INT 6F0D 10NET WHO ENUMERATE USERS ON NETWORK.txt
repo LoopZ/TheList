@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - "WHO" - ENUMERATE USERS ON NETWORK
+	AH = 0Dh
+	AL = type code
+	    01h return superstations only
+	    02h return non-superstations only
+	    otherwise return all
+	CX = length of data buffer
+	DS:DX -> array of records to be filled (see #03768)
+Return: CL = number of records returned (responding stations)
+SeeAlso: AH=16h,AH=8Dh
+
+Format of station record:
+Offset	Size	Description	(Table 03768)
+ 00h 12 BYTEs	node ID
+ 0Ch	BYTE	station flags (see #03769)
+---if AL = 01h---
+ 0Dh	BYTE	version number
+ 0Eh	WORD	level number of 10Net software in responding node
+---if AL = 02h---
+ 0Dh  8 BYTEs	user ID
+ 15h	BYTE	version number
+ 16h	WORD	level number
+
+Bitfields for station flags:
+Bit(s)	Description	(Table 03769)
+ 1	workstation
+ 2	superstation
+ 3	xgate
+ 4	active gate
+

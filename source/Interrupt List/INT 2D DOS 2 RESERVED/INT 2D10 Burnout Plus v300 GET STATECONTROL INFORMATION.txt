@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - Burnout Plus v3.00 - GET STATE/CONTROL INFORMATION
+	AL = 10h
+	AH = AMIS multiplex number for Burnout Plus
+Return: AL = 01h
+	BX = Burnout Plus status (see #02579)
+	CX = record of features loaded (see #02580)
+	ES:DI -> Burnout Plus control structure (see #02581)
+Program: Burnout Plus is a DOS screen saver from Cove Software
+SeeAlso: INT 14/AX=AA01h,INT 2D"AMIS"
+Index:	screen saver;Burnout Plus
+
+Bitfields for Burnout Plus status:
+Bit(s)	Description	(Table 02579)
+ 0	screen is blanked
+ 1	MS Windows is active (Burnout Plus deactivated)
+ 2-15	reserved
+
+Bitfields for Burnout Plus features loaded/features enabled:
+Bit(s)	Description	(Table 02580)
+ 0	mouse activity monitor
+ 1	passkey support
+ 2	password support
+ 3	continuous clear
+ 4	software blanking
+ 5	video activity monitor
+ 6	disk activity monitor
+ 7	activating keystroke suppression
+SeeAlso: #02581
+
+Format of Burnout Plus control structure:
+Offset	Size	Description	(Table 02581)
+ 00h	BYTE	size of structure in bytes
+ 01h	WORD	Burnout Plus version
+ 03h	WORD	screen blanking reset count in clock ticks
+ 05h	WORD	current countdown value in clock ticks
+ 07h	BYTE	type of timeout specification
+ 08h	BYTE	instant-blank hotkey
+ 09h	WORD	extended status information (see #02582)
+		the bits for password, passkey, and software blanking are
+		  ignored and cannot be enabled or disabled externally
+ 0Bh	WORD	features enabled (see #02580)
+Note:	all fields except the first two may be modified by external programs
+	  to affect the operation of Burnout Plus
+Index:	hotkeys;Burnout Plus
+
+Bitfields for extended Burnout Plus status information:
+Bit(s)	Description	(Table 02582)
+ 0	Burnout Plus disabled
+ 1	force screen to blank on next clock tick
+ 2	restore screen if currently blanked
+ 3-15	reserved
+Note:	1 and 2 are automatically cleared by Burnout Plus after blanking
+	  or restoring the screen
+SeeAlso: #02581
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0A
+  Category: C 	CPU-generated
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 0A CP - CPU-generated (80286+) - INVALID TASK STATE SEGMENT
+Desc:	automatically called during a task switch if the new TSS specified by
+	  the task gate is invalid for any of the following reasons:
+		TSS limit is less than 43 (80286) or 103 (80386/80486)
+		LDT selector invalid or segment not present
+		null SS selector, or SS selector outside LDT/GDT limit
+		stack segment is read-only
+		stack segment DPL differs from new CPL, or RPL <> CPL
+		CS selector is outside LDT/GDT limit or not code
+		non-conforming code segment's DPL differs from CPL
+		conforming code segment's DPL > CPL
+		DS/ES selectors outside LDT/GDT limit or not readable segments
+Note:	the handler must use a task gate in order to have a valid TSS under
+	  which to execute; it must also reset the busy bit in the new TSS
+SeeAlso: INT 0B"CPU"
+

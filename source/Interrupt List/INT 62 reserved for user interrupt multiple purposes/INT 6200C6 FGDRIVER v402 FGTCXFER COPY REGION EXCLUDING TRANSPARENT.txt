@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200C6
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_TCXFER" - COPY REGION EXCLUDING TRANSPARENT
+	AX = 00C6h
+	CX = source video page
+	DX = destination video page
+	ES:BX -> copy record (see #03508)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	Pixels which are in any of the colors defined as transparent with
+	  "FG_TCMASK" (see AX=00C5h) are left unchanged in the destination
+	  region
+	The source and destination regions must not overlap if they are located
+	  on the same page
+	This call is ignored in text modes
+SeeAlso: AX=00C4h,AX=00C5h,AX=00CAh
+

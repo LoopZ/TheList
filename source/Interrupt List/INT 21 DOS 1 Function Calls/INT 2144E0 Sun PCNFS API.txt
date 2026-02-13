@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2144E0
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Sun PC-NFS - API???
+	AX = 44E0h
+	DS:DX -> ???
+	SS:BP -> stack frame (see #01589)
+Return: ???
+Note:	this function is also supported by Beame&Whiteside's BWPCNFS shim; the
+	  description presented here was derived from that shim
+
+Format of PC-NFS stack frame:
+Offset	Size	Description	(Table 01589)
+ 00h	WORD	-> previous stack frame
+ 02h	DWORD	return address
+

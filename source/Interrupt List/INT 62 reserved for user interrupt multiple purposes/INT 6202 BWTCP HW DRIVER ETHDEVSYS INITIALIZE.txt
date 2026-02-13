@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6202
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - BW-TCP - HW DRIVER (ETHDEV.SYS) - INITIALIZE
+	AH = 02h
+Return: CF clear if successful
+	CF set on error
+	    AL = error code
+SeeAlso: AH=00h"ETHDEV",AH=03h"ETHDEV",AH=FEh,INT 21/AH=3Fh"BW-TCP"
+SeeAlso: INT 63/AH=03h"BW-TCP",INT 63/AH=24h"BW-TCP",INT 64/AH=01h"BW-NFS"
+

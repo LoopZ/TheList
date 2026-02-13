@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6204
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - TRIGGER SEMAPHORE
+	AH = 04h
+	DX = semaphore number (0-63)
+Return: AX = status
+	    FFFFh bad semaphore number
+	    else  success
+SeeAlso: AH=02h"Cswitch",AH=03h"Cswitch"
+

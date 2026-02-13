@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 186906
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - LOAD SOUND DATA
+	AX = 6906h
+	BL = data format (1 = twos-complement, 0 = not)
+	BH = sample type (0 = 8-bit, 1 = 16-bit)
+	CX = number of bytes to send
+	ES:SI -> buffer containing data
+	DL:DI = 20-bit address of GUS DRAM at which to load sound data
+SeeAlso: AX=6900h,AX=6905h,AX=690Ch
+

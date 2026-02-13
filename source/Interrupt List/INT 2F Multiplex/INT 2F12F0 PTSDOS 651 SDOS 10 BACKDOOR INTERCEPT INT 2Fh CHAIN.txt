@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12F0
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PTS-DOS 6.51, S/DOS 1.0+ - BACKDOOR INTERCEPT INT 2Fh CHAIN
+	AX = 12F0h
+	CX:DX -> user INT 2F handler
+	CF set
+Return: CF clear if successful
+	    CX:DX -> previous INT 2F handler
+	CF set on error
+Notes:	This function is known to be supported by Paragon Technology Systems
+	  PTS-DOS 6.51 and S/DOS 1.0, and probably was also supported
+	  in earlier releases.  It is handled from within the kernel's
+	  INT 2Fh dispatcher.
+	Resident system extensions should call INT 2Fh/12F0h to intercept
+	  the INT 2Fh chain. The main idea of this call is to allow them to
+	  be moved to the HMA and intercept INT 2Fh without querying A20 state
+	  and without interception of the INT2Fh vector. This is why the
+	  "Chain2F" variable must be instanced by placing it to the SDA.
+	On chain entry of the far procedure, CF must be set.  All registers
+	  except for AX, BP, and DS remain unchanged. If a handler cannot
+	  process the call, it must set CF and do a far jump to the previous
+	  one in the chain in order to indicate an error.  If CF is still set
+	  on exit, the call will be ignored.
+

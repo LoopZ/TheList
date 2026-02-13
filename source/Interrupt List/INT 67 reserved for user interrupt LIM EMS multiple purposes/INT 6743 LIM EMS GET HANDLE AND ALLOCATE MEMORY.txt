@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6743
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - GET HANDLE AND ALLOCATE MEMORY
+	AH = 43h
+	BX = number of logical pages to allocate
+Return: AH = status (00h,80h,81h,84h,85h,87h,88h,89h) (see #03648)
+	DX = handle if AH=00h
+SeeAlso: AH=45h
+

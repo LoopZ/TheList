@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE04
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - ALLOCATE A 4K PAGE
+	AX = DE04h
+Return: AH = 00h successful
+	    EDX = physical address of allocated page
+	AH nonzero: failed
+Notes:	the client program is responsible for freeing all memory allocated
+	  with this call before terminating
+	also available in protected mode by calling the protected-mode VCPI
+	  entry point (see AX=DE01h,#03664)
+SeeAlso: AH=3Fh,AX=DE03h,AX=DE05h
+

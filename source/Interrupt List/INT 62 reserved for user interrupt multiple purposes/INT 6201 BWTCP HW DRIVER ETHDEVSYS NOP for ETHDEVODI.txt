@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6201
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - BW-TCP - HW DRIVER (ETHDEV.SYS) - NOP for ETHDEV.ODI
+	AH = 01h
+Return: CF clear if successful
+	CF set on error
+	    AL = error code
+Range:	INT 4C to INT FB, selected by configuration
+SeeAlso: AH=FEh,INT 21/AH=3Fh"BW-TCP",INT 63/AH=24h"BW-TCP"
+SeeAlso: INT 64/AH=01h"BW-NFS"
+

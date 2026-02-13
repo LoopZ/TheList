@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F222SF03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TTS ABORT TRANSACTION
+	AX = F222h subfn 03h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02291)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=C703h,AX=F222h/SF=01h,AX=F222h/SF=02h
+SeeAlso: AX=F220h/SF=04h
+
+Format of NetWare "TTS Abort Transaction" request packet:
+Offset	Size	Description	(Table 02291)
+ 00h	BYTE	03h (subfunction "TTS Abort Transaction")
+SeeAlso: #02288,#02289
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH02
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "FREE" - FREE AN OBJECT
+	AH = 12h
+	BH = 02h
+	BL = object
+	    00h handle in DWORD on top of stack
+		window: close window and free
+		timer: free timer
+		panel: free panel object
+		pointer: free pointer
+	    01h task's window handle - kills task, never returns
+	    02h given task's mailbox (task's handle on top of stack)
+	    03h current task's mailbox
+	    04h given task's keyboard (task's handle on top of stack)
+	    05h current task's keyboard object
+Return: STACK popped if handle passed on stack
+Notes:	when a window is freed, its keyboard and pointer objects are freed;
+	  task windows also free any mailbox, objectq, and panel objects held
+	  by the task and any child tasks
+	if the keyboard being freed is the default keyboard for a task, this
+	  call is equivalent to CLOSE
+	panel and pointer objects are automatically closed if open
+SeeAlso: AH=12h/BH=01h,AH=12h/BH=0Dh,AH=12h/BH=82h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F06
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - DRAW LINE
+	AH = 06h
+	DX,CX = row,column of end point
+Note:	the line is drawn starting at the current pen position
+SeeAlso: AH=05h,AH=07h
+

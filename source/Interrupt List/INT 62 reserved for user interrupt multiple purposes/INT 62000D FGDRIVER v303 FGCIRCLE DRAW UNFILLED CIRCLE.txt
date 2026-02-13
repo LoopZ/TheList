@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62000D
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_CIRCLE" - DRAW UNFILLED CIRCLE
+	AX = 000Dh
+	BX = radius in horizontal screen space units (> 0)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	The circle is drawn in screen space, centered at the current graphics
+	  cursor position
+	This call is ignored in text modes
+SeeAlso: AX=0006h,AX=0008h,AX=000Eh,AX=0026h,AX=0093h
+

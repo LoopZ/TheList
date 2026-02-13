@@ -1,0 +1,97 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A12CX5354
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Stacker 4 LZS Compression Interface (LZSAPI)
+	AX = 4A12h
+	CX = 5354h ("ST")
+	DX = 4143h ("AC")
+Return: AX = 4F4Bh ("OK") if installed
+	CX = 7374h ("st") if installed
+	DX = 6163h ("ac") if installed
+	    ES:DI -> entry point in LZSAPI server (usually, driver
+		      STACKER.COM) containing far address of an actual
+		      LZSINFO structure (see #02808)
+SeeAlso: AX=4A12h/CX=4D52h,INT 25/AX=CDCDh
+
+Format of LZSINFO structure:
+Offset	Size	Description	(Table 02808)
+ 00h  6 BYTEs	signature "LZSAPI"
+ 06h	WORD	server version (200 (0C8h) for Stacker 4 and Stacker Anywhere)
+ 08h  4 BYTEs	vendor signature
+		"STAC" = Stac Electronics, Inc.
+ 0Ch  6 BYTEs	???
+ 12h	WORD	bit flags: server status/capabilities (see #02809)
+ 14h	DWORD	-> Stacker 3.X-compatible compression procedure
+ 18h	DWORD	-> Stacker 3.X-compatible decompression procedure
+ 1Ch  4 BYTEs	reserved (always set to 0)
+ 20h	DWORD	-> incremental Stacker 3.x-compatible compression procedure
+		  (see #02810)
+ 24h  4 BYTEs	???
+ 28h	DWORD	-> incremental Stacker 3.x-compatible decompression procedure
+		  (see #02811)
+ 2Ch  4	BYTES	???
+ 30h	DWORD	-> new (Stacker 4) compression procedure
+ 34h  4 BYTEs	???
+ 38h	DWORD	-> new (Stacker 4) decompression procedure
+Notes:	Stacker 4 usally keeps two different data-compression algorithms in
+	  memory (preferably in XMA):
+	    1) new (Stacker 4) data compression algorithm (4K LZ77 with hashing
+		  and static Huffman encoding), and
+	    2) old (Stacker 3.x-compatible) one (2K LZ77 with hashing), which
+		  is used to work with STACVOL files created under older
+		  versions of Stacker.
+
+Bitfields for LZSAPI capabilities:
+Bit(s)	Description	(Table 02809)
+ 0	???
+ 1	busy/error flag
+ 2-10	???
+ 11	maximum compressor/decompressor presented
+
+(Table 02810)
+Call Stacker 3.x-style non-incremental functions with:
+	STACK:	DWORD	return address for compress/decompress procedure
+		WORD	compression algorithm parameters (see #02812)
+		WORD	size of destination buffer (in bytes)
+		DWORD	address of destination buffer
+		WORD	size of source buffer (in bytes)
+		DWORD	address of source buffer
+Return: (compression/decompression procedure)
+	AX = size of resulting data in destination buffer
+	    0000h if error (either destination buffer too small or error in
+		  compressed data)
+
+(Table 02811)
+Call Stacker 4-style incremental procedures with:
+	STACK:	DWORD	return address for compr./decompr. procedure
+		DWORD	address of LZSSWAP structure (see #02813)
+			if 0000:0000, procedure uses non-incremental technique
+		WORD	compression algorithm parameters (see #02812)
+		WORD	size of destination buffer (in bytes)
+		DWORD	address of destination buffer
+		WORD	size of source buffer (in bytes)
+		DWORD	address of source buffer
+
+(Table 02812)
+Values for Compression algorithm parameters:
+Value	Compression level (/P=xx parameter)
+ 07F9h	  1
+ 0621h	  2
+ 0625h	  3
+ 0665h	  4
+ 0669h	  5
+ 06E9h	  6
+ 06EDh	  7
+ 07D1h	  8
+ 07D9h	  9
+
+Format of LZSSWAP structure:
+Offset	Size	Description	(Table 02813)
+ 00h  2 BYTEs	signature "CS"
+ 02h  6 BYTEs	reserved
+ 08h	DWORD	address of destination buffer swapping procedure
+ 0Ch	DWORD	address of stack swapping procedure
+

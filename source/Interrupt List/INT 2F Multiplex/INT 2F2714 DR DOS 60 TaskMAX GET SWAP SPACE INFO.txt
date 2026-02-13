@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2714
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - GET SWAP SPACE INFO
+	AX = 2714h
+Return: CX = total KB of swap space
+	DX = available KB of swap space
+Note:	the TaskMAX API is also supported by Novell DOS 7 TASKMGR in both
+	  taskswitching and multitasking modes
+SeeAlso: AX=2701h
+

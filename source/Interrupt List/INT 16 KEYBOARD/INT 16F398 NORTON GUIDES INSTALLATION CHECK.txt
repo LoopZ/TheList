@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16F398
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - NORTON GUIDES - INSTALLATION CHECK
+	AX = F398h
+Return: AX = 6A73h ("js")
+	BH = BIOS scan code of current hot key
+	BL = ASCII code of current hot key
+Note:	NG.EXE was written by John Socha
+

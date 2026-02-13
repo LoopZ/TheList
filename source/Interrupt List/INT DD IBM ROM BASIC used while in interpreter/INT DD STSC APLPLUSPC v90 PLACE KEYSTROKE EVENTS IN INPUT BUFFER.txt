@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: DD
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT DD - STSC APL*PLUS/PC v9.0 - PLACE KEYSTROKE EVENTS IN INPUT BUFFER
+	BX = where to place keystrokes
+	    FFFFh insert before current buffer contents
+	    0000h replace current contents
+	    0001h insert after current contents
+	CX = number of keystroke events to insert
+	ES:SI -> data to be placed into buffer (list of WORD key codes)
+	    4000h + N = normal ASCII keystroke N (N = 00h to FFh)
+	    4100h + N = extended ASCII keystroke N (N = 03h to 84h)
+Return: nothing
+SeeAlso: INT 16/AH=05h
+

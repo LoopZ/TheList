@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155F31
+  Category: V 	video
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 C - Chips & Technologies '65530' BIOS - POST INITIALIZATION NOTIFICATION
+	AX = 5F31h
+Return:	nothing
+Desc:	this function is called after the video BIOS completes power-up
+	  initialization and just prior to displaying the sign-on message
+SeeAlso: AX=5F33h,AX=5F35h,INT 10/AX=5F50h
+

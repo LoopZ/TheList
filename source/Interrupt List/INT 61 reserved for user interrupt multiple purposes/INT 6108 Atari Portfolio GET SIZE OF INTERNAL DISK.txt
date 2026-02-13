@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6108
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - GET SIZE OF INTERNAL DISK
+	AH = 08h
+Return: AX = segment address of RAMdisk
+	BX = size in KB
+SeeAlso: AH=00h"Portfolio",AH=07h"Portfolio",AH=09h"Portfolio"
+

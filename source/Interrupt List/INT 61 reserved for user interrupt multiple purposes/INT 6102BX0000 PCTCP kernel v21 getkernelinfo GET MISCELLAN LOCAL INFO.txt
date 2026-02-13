@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6102--BX0000
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 61 u - PC/TCP kernel v2.1+ - "get_kernel_info" - GET MISCELLAN LOCAL INFO
+	AH = 02h
+	BX = 0000h
+	DH = tag number
+	DL = device number
+	DS:SI -> buffer for result (up to 48 bytes for version <= 2.2)
+	ES:DI -> integer containing size of buffer
+Return: CF clear if successful
+	    Data loaded into specified buffer, and size value altered
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Range:	INT 20 to INT E0, selected by configuration
+Notes:	there are a large number of tags available; the items returned
+	  all refer to local kernel configuration, and are not needed in
+	  normal use.
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=01h"PC/TCP"
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F5E
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - EN/DISABLE TALL FONT LOADING
+	AX = 5F5Eh
+	BL = new state of tall-font loading
+	    00h enable loading	of 8x19/30/32 fonts
+	    01h disable loading of 8x19/30/32 fonts
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+Note:	when tall fonts are enabled, the fonts are stretched by duplicating
+	  scan lines as appropriate to convert an 8x16 font to the proper
+	  height (scan lines 1/9/12 [8x19] or 2-15 [8x30] or all [8x32])
+SeeAlso: AX=5F5Ch,AX=5F5Fh
+

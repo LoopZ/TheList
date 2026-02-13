@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620087
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PALETTES" - SET ALL PALETTE REGISTERS
+	AX = 0087h
+	ES:BX -> array of 16 WORDs containing values for palette registers
+		  (or first 16 DAC registers in 256-color modes)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function is ignored in text modes, CGA and Hercules graphics modes
+SeeAlso: AX=0041h,AX=004Eh,AX=0086h,AX=00ABh
+

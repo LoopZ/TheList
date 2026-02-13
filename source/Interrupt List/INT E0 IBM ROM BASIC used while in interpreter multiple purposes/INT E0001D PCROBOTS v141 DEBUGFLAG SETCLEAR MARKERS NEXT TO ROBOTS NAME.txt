@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0001D
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "DEBUG_FLAG" - SET/CLEAR MARKERS NEXT TO ROBOT'S NAME
+	AX = 001Dh
+	BX = flag number (0 or 1)
+	CX = new value (0 reset, 1 set)
+Return: nothing
+Program: PCROBOTS is P.D. Smith's adaptation of Tom Poindexter's CROBOTS, in
+	  which specially-written .COM or .EXE programs form robots battling
+	  each other in a user-defined arena
+Note:	the two flag markers may be used for any purpose, typically for
+	  debugging to provide a visual display of progress
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD05
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Intel Image Processing Interface - PRINT PAGE
+	AX = CD05h
+Return: AL = status (00h,80h) (see #03068)
+Note:	page image is retained, so multiple calls will print multiple copies of
+	  the page
+SeeAlso: AX=CD06h"Image"
+

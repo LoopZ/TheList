@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62000E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_CIRCLEF" - DRAW FILLED CIRCLE
+	AX = 000Eh
+	BX = radius in horizontal screen space units (> 0)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=0008h,AX=000Dh,AX=0027h,AX=0092h
+

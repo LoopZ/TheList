@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1686
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS Protected-Mode Interface - DETECT MODE
+	AX = 1686h
+Return: AX = 0000h if operating in protected mode under DPMI (INT 31 available)
+	AX nonzero if in real/V86 mode or no DPMI (INT 31 not available)
+SeeAlso: AX=1687h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310304
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - FREE REAL MODE CALLBACK ADDRESS
+	AX = 0304h
+	CX:DX = real mode callback address
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8024h) (see #03143)
+Note:	the limited DPMI host built into Phar Lap's 286|DOS-Extender v2.5 does
+	  not support this function
+SeeAlso: AX=0303h
+

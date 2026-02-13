@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6019
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - EXTENDED FUNC - SET NETWORK ADDRESS
+	AH = 19h
+	ES:DI -> address
+	CX = length of address
+Return: CF set on error
+	    DH = error code (0Dh,0Eh) (see #03305)
+	CF clear if successful
+	    CX = length
+

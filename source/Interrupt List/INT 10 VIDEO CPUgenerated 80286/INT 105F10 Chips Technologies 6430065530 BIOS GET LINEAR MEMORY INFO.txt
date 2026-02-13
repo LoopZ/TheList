@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F10
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies '64300'/'65530' BIOS - GET LINEAR MEMORY INFO
+	AX = 5F10h
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+		    BX:CX = linear memory base address
+		    DX = virtual screen width offset (bytes)
+		    SI;DI = linear memory size
+SeeAlso: AX=5F08h,AX=5FA0h
+

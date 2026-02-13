@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F258SF02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - ADD AUDIT PROPERTY
+	AX = F258h subfn 02h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02425)
+	ES:DI -> reply buffer (see #02426)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=39h,AX=F258h/SF=06h,AX=F258h/SF=08h
+
+Format of NetWare "Add Audit Property" request packet:
+Offset	Size	Description	(Table 02425)
+ 00h	BYTE	02h (subfunction "Add Audit Property")
+	???
+SeeAlso: #02426
+
+Format of NetWare "Add Audit Property" reply packet:
+Offset	Size	Description	(Table 02426)
+ 00h	???
+SeeAlso: #02425
+

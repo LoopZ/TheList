@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F97
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - COPY FILE
+	AX = 5F97h
+	CX:DX = number of bytes to copy (FFFFFFFFh = entire file)
+	SI = source file handle
+	DI = destination file handle
+Return: CF clear if successful
+	    DX:AX = number of bytes copied
+	CF set on error
+	    AX = error code
+Note:	copy is performed by server
+

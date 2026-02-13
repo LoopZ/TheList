@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A90
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - RESET CARD
+	AH = 90h
+	AL = adapter number
+	BL = socket number (01h to maximum supported by adapter)
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (01h,0Bh,14h) (see #00656)
+Note:	toggles RESET pin of the specified card, but does not wait after
+	  toggling the pin; it is the caller's responsibility to avoid
+	  accessing the card before it is ready again
+

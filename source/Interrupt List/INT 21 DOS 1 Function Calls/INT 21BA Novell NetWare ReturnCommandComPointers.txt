@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21BA
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Novell NetWare - "ReturnCommandComPointers"
+	AH = BAh
+Return: DX = environment segment
+	ES:DI -> COMMAND.COM drive
+Desc:	used to edit the COMSPEC and PATH variables in the master environment
+	  when mapping network drives
+Note:	this function was documented in older Novell documents which are no
+	  longer available
+

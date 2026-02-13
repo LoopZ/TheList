@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148035
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - GET INTERNAL SEND/RECEIVE VECTOR
+	AX = 8035h
+Return: ES:BX -> address of current send/receive routine
+Note:	this function returns the address of the routine which is called
+	  inside A-REDIR.EXE each time a character is received or sent on the
+	  active COM port.
+SeeAlso: AX=8000h,AX=8025h,INT 21/AH=35h
+

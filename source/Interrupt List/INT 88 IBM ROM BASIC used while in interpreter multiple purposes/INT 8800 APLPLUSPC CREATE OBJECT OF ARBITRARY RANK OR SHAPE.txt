@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 88--00
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 88 - APL*PLUS/PC - CREATE OBJECT OF ARBITRARY RANK OR SHAPE
+	AL = 00h
+	BX = STPTR of the variable to be assigned
+	ES:SI -> model of type, rank, and shape (see #03978)
+Return: ES:DI -> first data byte of object
+	DX:CX = number of elements in the object
+SeeAlso: INT 88/AL=01h,INT 88/AL=08h,INT C8"APL"
+
+Format of APL*PLUS/PC shape model:
+Offset	Size	Description	(Table 03978)
+ 00h	BYTE	type
+		01h character (2-byte dimension sizes)
+		02h integer (2-byte dimension sizes)
+		08h floating point (2-byte dimension sizes)
+		11h character (4-byte dimension sizes)
+		12h integer (4-byte dimension sizes)
+		18h floating point (4-byte dimension sizes)
+ 01h	BYTE	rank
+ 02h	(D)WORD first dimension of shape
+ N	(D)WORD second dimension of shape
+	...
+

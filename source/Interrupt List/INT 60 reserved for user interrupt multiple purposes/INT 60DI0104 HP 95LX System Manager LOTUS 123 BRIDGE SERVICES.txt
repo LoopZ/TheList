@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0104
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - LOTUS 1-2-3 BRIDGE SERVICES
+	DI = 0104h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD pointer to bridge record (see #03279)
+Return: ???
+	STACK unchanged
+
+Format of HP 95LX bridge record:
+Offset	Size	Description	(Table 03279)
+ 00h	WORD	function code (see #03280)
+ 02h	WORD	return code from 1-2-3
+ 04h 16 BYTEs	ASCII range name
+ 14h	WORD	start column of range
+ 16h	WORD	start row of range
+ 18h	WORD	end column of range
+ 1Ah	WORD	end row of range
+ 1Ch	WORD	order in which data is placed in buffer
+ 1Eh	WORD	buffer size
+ 20h	WORD	offset within bridge record's segment of buffer for cell data
+
+(Table 03280)
+Values for HP 95LX function code:
+ 00h	test
+ 01h	get range
+ 02h	"GETRANGE_ADDR"
+ 03h	"SETRANGE_ADDR"
+ 04h	"GETRANGE_DATA"
+ 05h	"SETRANGE_DATA"
+ 06h	recalculate
+ 07h	get cursor
+ 08h	set cursor
+ 09h	redisplay
+ 0Ah	cell type
+ 0Bh	"CALCTYPE"
+

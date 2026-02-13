@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AE402
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1A U - Disk Spool II v4.0x - SPOOL EXISTING FILE???
+	AX = E402h
+	ES:BX -> ASCIZ filename (max 32 chars)
+	CL = printer port (01h COM1, 02h COM2, 05h LPT1, 06h LPT2)
+Return: AH = status
+	    00h successful
+	    FFh failed
+Note:	this function is also supported by Vertisoft's Emulaser utility ELSPL,
+	  as that is a licensed version of Disk Spool II
+SeeAlso: AH=E1h,AX=E302h,AX=E401h
+

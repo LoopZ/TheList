@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCA01
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - TBSCANX - GET STATUS
+	AX = CA01h
+Return: AH = BCD version number (v2.2+)
+	    CAh for versions before 2.2
+	AL = state (00h = disabled, 01h = enabled)
+	CX = number of signatures which will be searched
+---v2.0---
+	BX = EMS handle, 0000h if not using EMS
+---v2.3+---
+	BX = segment of swap area, 0000h if not swapped
+	DX = EMS or XMS handle (XMS handle if BX=0000h), FFFFh if not using EMS
+SeeAlso: AX=CA02h
+

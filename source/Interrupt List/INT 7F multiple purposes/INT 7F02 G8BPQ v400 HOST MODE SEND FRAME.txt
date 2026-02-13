@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.00+ - HOST MODE - SEND FRAME
+	AH = 02h
+	AL = stream number (01h-40h)
+	CX = length of frame
+	ES:SI -> frame to be sent
+SeeAlso: AH=00h"G8BPQ",AH=03h"G8BPQ",AH=07h"G8BPQ",AH=0Ah"G8BPQ"
+

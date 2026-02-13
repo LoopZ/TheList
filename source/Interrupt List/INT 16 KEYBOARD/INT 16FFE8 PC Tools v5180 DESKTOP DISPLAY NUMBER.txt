@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFE8
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - DISPLAY NUMBER
+	AX = FFE8h
+	CX = number
+	DH = attribute
+	DS:SI -> destination for ASCII number
+Return: DS:SI buffer filled in with alternating characters and attributes
+

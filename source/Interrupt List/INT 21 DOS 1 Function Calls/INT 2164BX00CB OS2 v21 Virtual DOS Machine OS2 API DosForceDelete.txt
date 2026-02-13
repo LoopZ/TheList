@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--BX00CB
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - OS/2 API DosForceDelete
+	AH = 64h
+	BX = 00CBh (API ordinal)
+	CX = 636Ch (magic value "cl")
+	DS:DX -> ASCIZ filename
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (02h,03h,05h) (see #01680 at AH=59h/BX=0000h)
+Desc:	delete a file without saving it to the undelete directory
+SeeAlso: AH=41h,AH=64h/CX=636Ch
+

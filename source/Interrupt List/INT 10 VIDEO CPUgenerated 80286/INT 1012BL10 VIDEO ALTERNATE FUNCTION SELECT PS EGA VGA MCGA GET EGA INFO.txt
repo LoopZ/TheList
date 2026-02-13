@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL10
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (PS, EGA, VGA, MCGA) - GET EGA INFO
+	AH = 12h
+	BL = 10h
+Return: BH = video state
+	    00h color mode in effect (I/O port 3Dxh)
+	    01h mono mode in effect (I/O port 3Bxh)
+	BL = installed memory (00h = 64K, 01h = 128K, 02h = 192K, 03h = 256K)
+	CH = feature connector bits (see #00022)
+	CL = switch settings (see #00023,#00024)
+	AH destroyed (at least by Tseng ET4000 BIOS v8.00n)
+Note:	one possible check for the presence of an EGA or later display card
+	  is to call this function with BH=FFh; if not present, BH will be
+	  unchanged on return
+	another installation check is used by Athena Digital's HGCIBM, which
+	  sets CX to FFFFh on calling and checks whether it has been changed
+	  on return
+Index:	installation check;EGA
+
+Bitfields for feature connector bits:
+Bit(s)	Description	(Table 00022)
+ 0	FEAT 1 line, state 2
+ 1	FEAT 0 line, state 2
+ 2	FEAT 1 line, state 1
+ 3	FEAT 0 line, state 1
+ 4-7	unused (0)
+
+Bitfields for switch settings:
+Bit(s)	Description	(Table 00023)
+ 0	switch 1 OFF
+ 1	switch 2 OFF
+ 2	switch 3 OFF
+ 3	switch 4 OFF
+ 4-7	unused
+
+(Table 00024)
+Values for switch settings on original EGA/VGA:
+ 00h		primary MDA/HGC,	secondary EGA+ 40x25
+ 01h-03h	primary MDA/HGC,	secondary EGA+ 80x25
+ 04h		primary CGA 40x25,	secondary EGA+ 80x25 mono
+ 05h		primary CGA 80x25,	secondary EGA+ 80x25 mono
+ 06h		primary EGA+ 40x25,	secondary MDA/HGC (optional)
+ 07h-09h	primary EGA+ 80x25,	secondary MDA/HGC (optional)
+ 0Ah		primary EGA+ 80x25 mono,secondary CGA 40x25 (optional)
+ 0Bh		primary EGA+ 80x25 mono,secondary CGA 80x25 (optional)
+

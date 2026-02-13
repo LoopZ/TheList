@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214413BXFFFF
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - NewSpace - GET ???
+	AX = 4413h
+	BX = FFFFh
+Return: AX = code segment of NewRes (resident driver for NewSpace)
+	BX = offset of ???
+SeeAlso: AX=4412h/BX=FFFFh
+

@@ -1,0 +1,71 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX000F
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - VPD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 000Fh (virtual device ID for VPD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02653)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02653)
+Call VPD entry point with:
+	EDX = function number
+	    0000h get VPD version
+		Return: CF clear
+			AH = major version
+			AL = minor version
+			DX = ??? (CB01h)
+	    0001h get valid??? printers
+		Return: CF clear
+			AX = bitmask of ??? printers (bits 0-2)
+	    0002h get ??? for printer
+		CX = printer port (0-2)
+		Return: CF clear if successful
+			    BX:AX = ???
+			CF set on error (invalid port number)
+	    0003h set ??? for printer
+		CX = printer port (0-2)
+		BX:AX = ???
+		Return:	CF clear if successful
+			CF set on error (invalid port number)
+	    0004h ???
+		CX = printer port (0-2)
+		EAX = VM handle
+		Return:	CF clear if successful
+			CF set on error (invalid port number)
+	    0005h ???
+		CX = printer port (0-2)
+		EAX = VM handle
+		Return:	CF clear if successful
+			CF set on error (invalid port number or ???)
+	    0006h-000Eh unused
+		Return: CF set
+	    000Fh ???
+		CX = printer port (0-2)
+		AX = ???
+		Return:	CF clear if successful
+			CF set on error (e.g. invalid port number)
+	    0010h ???
+		CX = printer port (0-2)
+		Return:	CF clear if successful
+			CF set on error (e.g. invalid port number)
+	    0011h ???
+		CX = printer port (0-2)
+		Return:	CF clear if successful
+			CF set on error (e.g. invalid port number)
+	    0012h get port status
+		CX = printer port (0-2)
+		Return:	CF clear if successful
+			    AX = port status (see #P0658 at PORT 03BCh"LPT")
+			CF set on error (e.g. invalid port number)
+	    else
+		Return: CF set
+Note:	these functions are apparently only available from the system VM,
+	  returning CF set
+SeeAlso: #02652,#02654
+

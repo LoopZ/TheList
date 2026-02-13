@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF99
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - ACCOUNTING SERVICES - SUBMIT ACCOUNT NOTE
+	AH = E3h subfn 99h
+	DS:SI -> request buffer (see #02008)
+	ES:DI -> reply buffer (see #02007)
+Return: AL = status (00h,C0h) (see #02002)
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AH=E3h/SF=96h,AX=F217h/SF=99h
+
+Format of NetWare "Submit Account Note" request buffer:
+Offset	Size	Description	(Table 02008)
+ 00h	WORD	length of following data (max 137h)
+ 02h	BYTE	99h (subfunction "Submit Account Note")
+ 03h	WORD	(big-endian) type of service
+ 05h	WORD	(big-endian) type of bindery object
+ 07h	WORD	(big-endian) type of comment
+		8000h-FFFFh reserved for experimental use
+ 09h	BYTE	length of object's name
+ 0Ah  N BYTEs	object name
+	BYTE	length of comment
+      N BYTEs	comment
+SeeAlso: #02007
+

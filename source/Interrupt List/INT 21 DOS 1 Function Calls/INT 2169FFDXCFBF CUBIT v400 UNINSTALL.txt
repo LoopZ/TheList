@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2169FFDXCFBF
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - CUBIT v4.00 - UNINSTALL
+	AX = 69FFh
+	DX = CFBFh
+	CX = EFCFh
+	BX = CB00h (magic value)
+Return: ES:BX -> CUBITR.EXE handler for INT 21
+	CX = status
+	    2020h successful
+	    2222h failed
+Note:	if DX is neither 0000h nor CFBFh on entry, some other code is executed
+SeeAlso: AX=69FFh/DX=0000h
+

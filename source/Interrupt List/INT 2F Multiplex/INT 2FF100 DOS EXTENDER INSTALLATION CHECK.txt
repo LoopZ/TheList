@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF100
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS EXTENDER INSTALLATION CHECK
+	AX = F100h
+Return: AL = FFh if DOS extender present
+	    SI = 444Fh ("DO")
+	    DI = 5358h ("SX")
+Note:	supported or soon to be supported by Phar Lap, Rational, Ergo, and IGC
+SeeAlso: AH=A1h,AX=ED00h,AX=FBA1h/BX=0081h,INT 15/AX=BF02h
+

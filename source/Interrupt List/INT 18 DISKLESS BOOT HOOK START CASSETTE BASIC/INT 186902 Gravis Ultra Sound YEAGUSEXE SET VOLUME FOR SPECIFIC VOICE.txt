@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 186902
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - SET VOLUME FOR SPECIFIC VOICE
+	AX = 6902h
+	BX = voice number (00h-1Fh)
+	CX = linear volume (0000h-01FFh)
+Return: nothing
+SeeAlso: AX=6900h,AX=6903h,AX=6904h,AX=6909h,AX=690Ah
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 50000E
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - PLOT CHARACTER
+	AX = 000Eh
+	BL = character
+	BH = attribute
+	DH,DL = row,column at which to plot
+	DI = window handle
+Return: AX = status
+	    0000h successful
+	    FFFFh errror
+

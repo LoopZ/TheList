@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2138--DXFFFF
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.0+ - SET COUNTRY CODE
+	AH = 38h
+	DX = FFFFh
+	AL = 01h thru FEh for specific country with code <255
+	AL = FFh for specific country with code >= 255
+	   BX = 16-bit country code (see #01400)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Note:	not supported by OS/2
+SeeAlso: INT 2F/AX=1403h
+

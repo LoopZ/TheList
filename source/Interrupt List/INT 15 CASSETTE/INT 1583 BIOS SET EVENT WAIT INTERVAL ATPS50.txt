@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1583
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - BIOS - SET EVENT WAIT INTERVAL (AT,PS50+)
+	AH = 83h
+	AL = subfunction
+	    00h set interval
+		CX:DX = microseconds to delay
+		ES:BX -> byte whose high bit is to be set at end of interval
+	    01h cancel wait interval
+Return: CF set on error or function already busy
+	    AH = status
+		80h invalid command (PC,PCjr)
+		86h function not supported (XT and later)
+	CF clear if successful
+Notes:	the resolution of the wait period is 977 microseconds on many systems
+	  because many BIOSes use the 1/1024 second fast interrupt from the AT
+	  real-time clock chip which is available on INT 70
+	IBM AT 1984/1/10 BIOS ignores AL and always performs subfunction 00h
+SeeAlso: AH=41h,AH=86h,INT 70,MEM 0040h:0098h,MEM 0040h:009Ch
+

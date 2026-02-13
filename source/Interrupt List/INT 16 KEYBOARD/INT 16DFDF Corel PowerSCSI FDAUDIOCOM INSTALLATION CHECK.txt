@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16DFDF
+  Category: s 	sound/speech
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - Corel PowerSCSI - FDAUDIO.COM - INSTALLATION CHECK
+	AX = DFDFh
+Return: ES:DI -> ASCII signature "FDAUDIO/CD" followed by ASCII date, i.e.
+	  "06/18/93" if installed
+

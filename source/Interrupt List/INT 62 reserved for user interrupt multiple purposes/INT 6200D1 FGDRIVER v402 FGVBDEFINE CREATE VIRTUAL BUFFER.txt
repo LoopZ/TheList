@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200D1
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBDEFINE" - CREATE VIRTUAL BUFFER
+	AX = 00D1h
+	ES:BX -> memory block for virtual buffer
+	CX = buffer width in pixels
+	DX = buffer height in pixels
+Return: AX = virtual buffer handle
+	    FFFFh on error
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	the application-provided buffer must be large enough to hold CX*DX
+	  bytes
+SeeAlso: AX=00CCh,AX=00CDh,AX=00CEh,AX=00D2h,AX=00D4h,AX=00D5h
+

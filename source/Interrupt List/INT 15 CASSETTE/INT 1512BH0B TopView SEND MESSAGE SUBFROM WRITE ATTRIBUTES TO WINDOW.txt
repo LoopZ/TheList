@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "SUBFROM" - WRITE ATTRIBUTES TO WINDOW
+	AH = 12h
+	BH = 0Bh
+	BL = window to write attributes to
+	    00h handle is DWORD on top of stack
+	    01h current task's default window
+	    0Ch (DV 2.26+) default window of task owning handle on top of stack
+	    0Dh (DV 2.26+) default window of parent of current task
+	STACK:	DWORD number of attributes to write
+		DWORD address of attributes
+Return: STACK popped
+Note:	the attributes are written starting at the current cursor position; the
+	  cursor is left just after the last position written
+SeeAlso: AH=12h/BH=0Ah"WINDOW"
+

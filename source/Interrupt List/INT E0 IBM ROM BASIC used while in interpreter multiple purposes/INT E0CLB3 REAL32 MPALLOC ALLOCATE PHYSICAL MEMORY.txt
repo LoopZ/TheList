@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLB3
+  Category: O 	other operating systems
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT E0 R - REAL/32 - "MP_ALLOC" - ALLOCATE PHYSICAL MEMORY
+	CL = B3h
+	DX = number of 4K pages to allocate
+Return: AX = number of first 4K page allocated, or FFFFh on error
+Note:	memory allocated with this function is not automatically freed when
+	  the process terminates
+SeeAlso: INT E0/CL=B4h,INT E0/CL=B5h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213022
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - StopPrg v2.0 - INSTALLATION CHECK
+	AX = 3022h
+Return: AX = DOS version (see AH=30h)
+	CX = 1112h if StopPrg installed
+	    BX = segment of resident code
+Program: StopPrg is a resident program aborter by MAK-TRAXON's Prophet
+Note:	StopPrg may be temporarily disabled by storing 9090h in the word at
+	  0000h:04FEh
+

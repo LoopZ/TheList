@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214404
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DoubleTools v1.0 - GET ???
+	AX = 4404h
+	BL = drive number (00h = default, 01h = A:, etc)
+	CX = 0006h
+	DS:DX -> DoubleTools structure (see #01534)
+Return: CF clear if IOCTL successful -- check DSPACKET for actual status
+	    AX = number of bytes actually transferred
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Note:	the Transporter device driver has the signature 55h 61h 50h 74h
+	  ("DaPt") twelve bytes after it beginning
+
+Format of DoubleTools structure:
+Offset	Size	Description	(Table 01534)
+ 00h	WORD	(call) signature 55h AAh
+		(ret) signature 78h 70h ("xp")
+ 02h	WORD	(call) signature 52h 16h
+		(ret) ???
+ 04h	WORD	(ret) segment of driver's DS (same as its PSP)
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500003
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - Vanderaart TEXT WINDOWS - OUTPUT LINE TO WINDOW
+	AX = 0003h
+	ES:BX -> text string
+	CX = string length (0000h if ASCIZ string)
+	DL = position (FFh centered, else flush left)
+	DH = starting row
+	DI = window handle
+Return: AX = status
+	    0000h successful
+	    FFFFh did not fit in window
+

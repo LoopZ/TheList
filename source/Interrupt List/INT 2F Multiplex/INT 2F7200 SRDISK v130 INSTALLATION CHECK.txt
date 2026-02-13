@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7200
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SRDISK v1.30+ - INSTALLATION CHECK
+	AX = 7200h
+Return: AL = FFh if installed
+	    ES = segment of device driver header (see #02856)
+Program: SRDISK is a freeware resizeable RAMdisk by Marko Kohtala
+SeeAlso: AX=7201h
+
+Format of SRDISK device driver header:
+Offset	Size	Description	(Table 02856)
+ 00h 10 BYTEs	same as standard device driver header
+		  (see #01646 at INT 21/AH=52h)
+ 0Ah	BYTE	number of subunits (drives) supported by driver
+ 0Bh  3 BYTEs	signature "SRD"
+ 0Eh  4 BYTEs	memory type string ("XMS "/"EMS ")
+ 12h  4 BYTEs	ASCII driver version string "N.NN"
+ 16h	BYTE	00h
+ 17h	BYTE	configuration format version (currently 00h or 01h)
+ 18h	WORD	offset of drive configuration data
+SeeAlso: #01646
+

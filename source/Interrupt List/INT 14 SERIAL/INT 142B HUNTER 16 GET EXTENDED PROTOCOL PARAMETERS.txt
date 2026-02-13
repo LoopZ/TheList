@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 142B
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - GET EXTENDED PROTOCOL PARAMETERS
+	AH = 2Bh
+	AL = protocol handle
+	DS:BX -> buffer for extended protocol parameters
+Return: AH = status
+	    00h successful
+		DS:BX buffer filled with extended parameters
+	    FFh failed
+SeeAlso: AH=2Ah"HUNTER"
+

@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF10
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SCAN SALVAGEABLE FILES
+	AX = F257h subfn 10h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02399)
+	ES:DI -> reply buffer (see #02400)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=1Bh,AX=F257h/SF=11h,AX=F257h/SF=12h
+
+Format of NetWare "Scan Salvageable Files" request packet:
+Offset	Size	Description	(Table 02399)
+ 00h	BYTE	10h (subfunction "Scan Salvageable Files")
+ 01h	BYTE	name space
+ 02h	BYTE	data stream
+ 03h	DWORD	return information mask
+ 07h	DWORD	last sequence (set to FFFFFFFFh before first call)
+ 0Bh		NetWare Handle/Path structure (see #02376)
+SeeAlso: #02400,#02123
+
+Format of NetWare "Scan Salvageable Files" reply packet:
+Offset	Size	Description	(Table 02400)
+ 00h	DWORD	next sequence number
+ 04h	WORD	deletion time
+ 06h	WORD	deletion date
+ 08h	DWORD	ID of deletor
+ 0Ch	DWORD	volume number
+ 10h	DWORD	directory entry number
+ 14h		NetWare Information Structure
+SeeAlso: #02399,#02124
+

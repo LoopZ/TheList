@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F24D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CREATE NEW FILE
+	AX = F24Dh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02356)
+	ES:DI -> reply buffer (see #02357)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AX=6C00h,AH=F2h"Novell",AX=F23Eh,AX=F242h,AX=F243h
+
+Format of NetWare "Create New File" request packet:
+Offset	Size	Description	(Table 02356)
+ 00h	BYTE	directory handle
+ 01h	BYTE	file attributes
+ 02h	BYTE	length of filename
+ 03h  N BYTEs	filename in DOS format
+SeeAlso: #02357
+
+Format of NetWare "Create New File" reply packet:
+Offset	Size	Description	(Table 02357)
+ 00h  6 BYTEs	NetWare file handle
+ 06h	WORD	reserved
+ 08h 14 BYTEs	DOS-format filename
+ 16h	BYTE	file attributes
+ 17h	BYTE	file execute type
+ 18h	DWORD	file length
+ 1Ch	WORD	creation date
+ 1Eh	WORD	last-access date
+ 20h	WORD	last-modification date
+ 22h	WORD	last-modification time
+SeeAlso: #02356
+

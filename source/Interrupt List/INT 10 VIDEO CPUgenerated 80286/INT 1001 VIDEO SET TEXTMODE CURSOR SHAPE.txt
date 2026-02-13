@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1001
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET TEXT-MODE CURSOR SHAPE
+	AH = 01h
+	CH = cursor start and options (see #00013)
+	CL = bottom scan line containing cursor (bits 0-4)
+Return: nothing
+Desc:	specify the starting and ending scan lines to be occupied by the
+	  hardware cursor in text modes
+Notes:	buggy on EGA systems--BIOS remaps cursor shape in 43 line modes, but
+	  returns unmapped cursor shape
+	UltraVision scales size to the current font height by assuming 14-line
+	  monochrome and 8-line color fonts; this call is not valid if cursor
+	  emulation has been disabled
+	applications which wish to change the cursor by programming the
+	  hardware directly on EGA or above should call INT 10/AX=1130h or
+	  read 0040h:0085h first to determine the current font height
+	on some adapters, setting the end line greater than the number of lines
+	  in the font will result in the cursor extending to the top of the
+	  next character cell on the right
+BUG:	AMI 386 BIOS and AST Premier 386 BIOS will lock up the system if AL
+	  is not equal to the current video mode
+SeeAlso: AH=03h,AX=CD05h,AH=12h/BL=34h,#03885
+
+Bitfields for cursor start and options:
+Bit(s)	Description	(Table 00013)
+ 7	should be zero
+ 6,5	cursor blink
+	(00=normal, 01=invisible, 10=erratic, 11=slow)
+	(00=normal, other=invisible on EGA/VGA)
+ 4-0	topmost scan line containing cursor
+

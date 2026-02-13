@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 690103
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - DECnet DOS CTERM - STATUS
+	AX = 0103h
+	DX = session handle
+Return: AH status flags (see #03710)
+	AL = reason code if DECnet error (see #03711)
+SeeAlso: AX=0104h
+
+Bitfields for DECnet DOS CTERM status flags:
+Bit(s)	Description	(Table 03710)
+ 7	session has been aborted
+ 6	DECnet error
+ 1	trace data available
+ 0	receive data available
+
+(Table 03711)
+Values for reason code:
+ 00h	normal disconnect
+ 01h	unknown message from host
+ 02h	protocol violation from host
+ 03h	could not process the initiate message
+ 04h	error receiving message from host
+ 05h	error sending message to host
+ 06h	error checking for message from host
+ 07h	remote system does not support CTERM
+ 08h	remote system does not support correct protocol version
+ 09h	did not receive BIND message from host
+ 0Ah	could not send BIND message to host
+ 0Bh	no more sessions available
+ 0Ch	session does not exist
+ 0Dh	not enough memory to complete operation
+ 0Eh	connection has broken
+Index:	error codes;DECnet DOS CTERM|DECnet DOS CTERM;error codes
+

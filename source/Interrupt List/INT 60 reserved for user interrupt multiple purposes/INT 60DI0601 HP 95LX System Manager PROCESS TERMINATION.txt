@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0601
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - PROCESS TERMINATION
+	DI = 0601h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+Return: never
+	STACK unchanged
+SeeAlso: INT 21/AH=4Ch,INT 2F/AX=1122h,INT 60/DI=0600h
+

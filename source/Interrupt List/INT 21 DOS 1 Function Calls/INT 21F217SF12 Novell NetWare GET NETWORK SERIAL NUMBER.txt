@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF12
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET NETWORK SERIAL NUMBER
+	AX = F217h subfn 12h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01909 at AH=E3h/SF=12h)
+	ES:DI -> reply buffer (see #02167)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=12h,AX=F217h/SF=0Ch
+
+Format of NetWare "Get Network Serial Number" reply packet:
+Offset	Size	Description	(Table 02167)
+ 00h   4 BYTEs	(big-endian) NetWare server serial number
+ 04h   2 BYTEs	(big-endian) NetWare application serial number
+SeeAlso: #01909 at AH=E3h/SF=12h
+

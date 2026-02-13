@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE1C
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.23+ - "ENTERC" - INCREMENT CRITICAL NESTING COUNT
+	AX = DE1Ch
+Return: nothing
+Notes:	similar to AX=101Bh, but begins the critical region without ensuring
+	  that DOS is free
+	the official documentation states that this call should be paired with
+	  "ENDC" (AX=101Ch); no mention is made of AX=DE1Bh
+	this API call may be made from within a hardware interrupt handler
+SeeAlso: AX=101Bh,AX=101Ch,AX=DE13h,AX=DE1Bh
+

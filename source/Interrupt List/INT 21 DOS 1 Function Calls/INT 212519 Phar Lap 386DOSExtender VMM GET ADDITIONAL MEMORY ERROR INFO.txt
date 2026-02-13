@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212519
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender VMM - GET ADDITIONAL MEMORY ERROR INFO
+	AX = 2519h
+Return: CF clear
+	EAX = error code
+	    0000h  no error
+	    0001h  out of physical memory
+	    0002h  out of swap space (unable to grow swap file)
+	    0003h  out of LDT entries and unable to grow LDT
+	    0004h  unable to change extended memory allocation mark
+	    FFFFFFFFh	paging disabled
+Note:	VMM is the Virtual Memory Manager option
+

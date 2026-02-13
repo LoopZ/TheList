@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBL07
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - FreeDOS - FDAK-DDT - UNINSTALL
+	AX = 12FFh
+	BL = 07h
+Return: ES = segment of FDAK memory block
+Note:	the caller must free the memory block returned in ES
+	  (via INT 21/AH=49h)
+SeeAlso: AX=12FFh/BL=00h
+

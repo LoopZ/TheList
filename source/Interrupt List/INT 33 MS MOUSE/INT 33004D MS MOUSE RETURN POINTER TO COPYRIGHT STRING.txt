@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33004D
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE - RETURN POINTER TO COPYRIGHT STRING
+	AX = 004Dh
+Return: ES:DI -> copyright message "*** This is Copyright 1983 Microsoft" or
+		"Copyright 19XX...."
+Notes:	also supported by Logitech, Kraft, Genius Mouse, and Mouse Systems
+	  mouse drivers
+	in the Genius Mouse 9.06 driver, the ASCIZ signature "KYE" immediately
+	  follows the above copyright message (KYE Corp. manufactures the
+	  driver)
+SeeAlso: AX=0024h,AX=006Dh,AX=0666h
+

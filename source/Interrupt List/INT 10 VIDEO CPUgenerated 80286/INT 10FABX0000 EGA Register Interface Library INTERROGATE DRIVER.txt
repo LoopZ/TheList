@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10FA--BX0000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - EGA Register Interface Library - INTERROGATE DRIVER
+	AH = FAh
+	BX = 0000h
+Return: BX = 0000h if RIL driver not present
+	ES:BX -> EGA Register Interface version number, if present:
+	    byte 0 = major release number
+	    byte 1 = minor release number
+Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+	  compatibility box, and others
+SeeAlso: AH=F0h"EGA",AH=F6h"EGA",INT 2F/AX=BC00h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148005
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - DETACH ASYNCHRONOUS RESOURCE
+	AX = 8005h
+	DX = port to detach (COM1=0, COM2=1, ...)
+Return: AX = error code, if error (see #00360)
+Note:	only a previously attached resource can be detached
+SeeAlso: AX=8000h,AX=8003h,AX=8004h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151A
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - MAP SEMAPHORE NAME TO NUMBER
+	AH = 1Ah
+	DS:SI -> 8-byte name
+Return: AL = status
+	    00h successful
+		AH = semaphore number (20h-3Fh)
+	    04h out of string space
+Notes:	all eight bytes of the name are significant
+	if the name does not already exist, it is added to the name table and
+	  associated with a free semaphore number
+	names cannot be destroyed
+SeeAlso: AH=1Bh"MultiDOS",AH=1Ch"MultiDOS",AH=1Dh"MultiDOS"
+

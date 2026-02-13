@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 133A
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - QUICKCACHE II v4.20 - SET WRITE BUFFER SIZE FOR SPECIFIC DRIVE
+	AH = 3Ah
+	AL = new size of write buffer
+	DL = drive number (00h = A:)
+Return: AX = status (0000h successful)
+SeeAlso: AH=2Ah,AH=39h
+

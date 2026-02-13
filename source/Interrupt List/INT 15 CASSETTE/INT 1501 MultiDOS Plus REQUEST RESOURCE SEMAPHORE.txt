@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1501
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - REQUEST RESOURCE SEMAPHORE
+	AH = 01h
+	AL = semaphore number (00h-3Fh)
+Return: AH = status
+	    00h successful
+	    02h invalid semaphore number
+Notes:	if the semaphore is not owned, ownership is assigned to the calling
+	  task and the call returns immediately
+	if the semaphore is already owned by another task, the calling task
+	  is placed on a queue for the semaphore and suspended until it can
+	  become owner of the semaphore
+	semaphore 0 is used internally by MultiDOS to synchronize DOS access
+SeeAlso: AH=02h"MultiDOS",AH=10h"MultiDOS",AH=1Bh"MultiDOS"
+

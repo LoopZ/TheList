@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FE2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - SWITCH TO NEW DOS TASK
+	AH = E2h
+	AL = DOS process number (from AH=E1h)
+Return: CF set on error (invalid process number or caller not foreground task)
+Notes:	specified task becomes the foreground task and current task is placed
+	  in the background
+	may only be called by a foreground task
+SeeAlso: AH=E0h,AH=E1h
+

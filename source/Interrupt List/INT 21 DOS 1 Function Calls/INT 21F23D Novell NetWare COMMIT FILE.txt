@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F23D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - COMMIT FILE
+	AX = F23Dh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02347)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=3Eh,AH=F2h"Novell",AX=F23Eh,AX=F243h
+

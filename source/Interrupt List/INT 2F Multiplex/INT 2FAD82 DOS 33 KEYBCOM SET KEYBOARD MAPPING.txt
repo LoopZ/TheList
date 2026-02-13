@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD82
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.3+ KEYB.COM - SET KEYBOARD MAPPING
+	AX = AD82h
+	BL = new state
+	    00h US keyboard (Control-Alt-F1)
+	    FFh foreign keyboard (Control-Alt-F2)
+Return: CF set on error (BL not 00h or FFh)
+	CF clear if successful
+Notes:	this function was undocumented prior to the release of DOS 5.0
+	the states 00h and FFh correspond with the byte stored at offset +02h
+	  in KEYBs INT 09h handler
+SeeAlso: AX=AD80h,AX=AD81h,AX=AD83h,AX=AD84h
+

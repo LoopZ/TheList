@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH09
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "LEN" - GET OBJECT LENGTH
+	AH = 12h
+	BH = 09h
+	BL = object
+	    00h handle in DWORD on top of stack
+		window: get chars/line
+		timer: get 1/100 seconds remaining before timer expires
+		mailbox: (DV/X) get number of bytes queued to mailbox
+	    01h get number of chars/line in current task's default window
+	    0Ch (DV 2.26+) get chars/line in window owning handle on top of stk
+	    0Dh (DV 2.26+) get chars/line in parent task's window
+Return: DWORD on top of stack is length (any handle on stack has been popped)
+SeeAlso: AH=12h/BH=08h
+

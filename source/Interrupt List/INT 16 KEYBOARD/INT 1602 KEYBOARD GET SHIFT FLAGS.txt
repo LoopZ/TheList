@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1602
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - GET SHIFT FLAGS
+	AH = 02h
+Return: AL = shift flags (see #00582)
+	AH destroyed by many BIOSes
+SeeAlso: AH=12h,AH=22h,INT 17/AH=0Dh,INT 18/AH=02h,MEM 0040h:0017h
+
+Bitfields for keyboard shift flags:
+Bit(s)	Description	(Table 00582)
+ 7	Insert active
+ 6	CapsLock active
+ 5	NumLock active
+ 4	ScrollLock active
+ 3	Alt key pressed (either Alt on 101/102-key keyboards)
+ 2	Ctrl key pressed (either Ctrl on 101/102-key keyboards)
+ 1	left shift key pressed
+ 0	right shift key pressed
+SeeAlso: #00587,#03743,MEM 0040h:0017h,#M0010
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5480
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - POWER.EXE - GET/SET ???
+	AX = 5480h
+	BX = direction
+	    0000h get
+	    other set
+	CX = size of buffer (at least 0010h)
+	DS:SI -> buffer
+Return: AX = status
+	    0000h successful
+	    other error code
+SeeAlso: AX=5400h,AX=5481h,AX=548Fh
+

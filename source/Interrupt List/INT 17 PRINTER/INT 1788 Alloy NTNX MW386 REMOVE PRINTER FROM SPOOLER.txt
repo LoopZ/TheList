@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1788
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - REMOVE PRINTER FROM SPOOLER
+	AH = 88h
+	AL = mode
+	    00h NTNX compatibility
+		DX = NTNX printer number (see #00643)
+	    01h MW386
+		DX = MW386 printer number
+Return: AH = status (see #00642)
+Note:	removes specified printer from the spooler's list of printers
+SeeAlso: AH=89h,AH=8Bh
+
+(Table 00643)
+Values for Alloy NTNX printer number:
+ 00h	host LPT1
+ 01h	host LPT2
+ 02h	host LPT3
+ 03h	host LPT4
+ 04h	host COM1
+ 05h	host COM2
+ 06h	user's logical COM2
+ 07h	user's terminal AUX port
+ 08h	user's logical COM1 (MW386 only)
+

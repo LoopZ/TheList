@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F020C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SYSTEM SF_SET_ATTR" - SET DEVICE ATTRIBUTES
+	AX = 020Ch
+	BP = driver ID (see #03741)
+	BX,CX = new attributes
+	---for V_LTOUCH, V_LPOINTER---
+	    BX = new logical width
+	    CX = new logical height
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=0200h,AX=0208h,AX=020Ah
+

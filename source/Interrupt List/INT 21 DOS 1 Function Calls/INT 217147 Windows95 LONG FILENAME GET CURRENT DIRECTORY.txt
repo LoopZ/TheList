@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217147
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - GET CURRENT DIRECTORY
+	AX = 7147h
+	DL = drive number (00h = current, 01h = A:, etc.)
+	DS:SI -> buffer for ASCIZ directory name
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680)
+		7100h if function not supported
+Notes:	the returned pathname does not include the drive letter, colon, or
+	  leading backslash, and is not necessarily a long filename -- this
+	  function returns whatever path was used when changing to the
+	  current directory, and may include a mixture of long and short
+	  components
+	the provided buffer must be at least as large as the value indicated
+	  by AX=71A0h
+	for compatibility with DOS versions prior to v7.00, the carry flag
+	  should be set on call to ensure that it is set on exit
+SeeAlso: AH=47h,AX=713Bh,AX=7160h,AX=71A0h
+

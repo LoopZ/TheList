@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1ACCCCBXCCCC
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1A U - DATEFIX - INSTALLATION CHECK
+	AX = CCCCh
+	BX = CCCCh
+	CX = 0000h
+Return: CX = CCCCh if installed
+	    ES:BX -> original interrupt handler
+Program: DATEFIX is a public-domain TSR to correct the date on AT&T 6300
+	  machines, where the realtime clock's calendar wraps after 1991
+SeeAlso: AH=FEh,AH=FFh"AT&T"
+

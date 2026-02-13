@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21350A
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - FlashTek X-32VM - PHYSICAL ADDRESS MAPPING
+	AX = 350Ah
+	EBX = absolute physical address
+	ECX = size in bytes of area to map
+Return: CF clear if successful
+	CF set on error (insufficient memory or service refused by DPMI host)
+Notes:	should not make repeated calls for the same physical address
+	there is no provision for unmapping memory
+

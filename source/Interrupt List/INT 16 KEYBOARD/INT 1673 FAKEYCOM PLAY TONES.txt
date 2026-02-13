@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1673
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - FAKEY.COM - PLAY TONES
+	AH = 73h
+	CX = number of tones to play
+	DS:SI -> array of tones (see #00605)
+Program: FAKEY is a keystroke faking utility by System Enhancement Associates
+SeeAlso: INT 15/AX=1019h
+
+Format of FAKEY.COM tone array entries:
+Offset	Size	Description	(Table 00605)
+ 00h	WORD	divisor for timer channel 2
+ 02h	WORD	duration in clock ticks
+

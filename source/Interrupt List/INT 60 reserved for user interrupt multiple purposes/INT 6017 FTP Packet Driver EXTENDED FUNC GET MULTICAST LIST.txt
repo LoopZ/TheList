@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6017
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - EXTENDED FUNC - GET MULTICAST LIST
+	AH = 17h
+Return: CF set on error
+	    DH = error code (06h,09h) (see #03305 at AX=01FFh)
+	CF clear if successful
+	    ES:DI -> multicast addresses (do not modify)
+	    CX = bytes of multicast addresses currently in use
+SeeAlso: AH=16h
+

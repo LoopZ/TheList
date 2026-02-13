@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1501
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM - GET DRIVE DEVICE LIST
+	AX = 1501h
+	ES:BX -> buffer to hold drive letter list (5 bytes per drive letter)
+Return: buffer filled, for each drive letter
+	  BYTE	subunit number in driver
+	  DWORD address of device driver header (see #01646)
+Note:	reportedly returns AX=0000h and an invalid address under Windows95;
+	  other reports say it works fine
+SeeAlso: AX=1510h
+

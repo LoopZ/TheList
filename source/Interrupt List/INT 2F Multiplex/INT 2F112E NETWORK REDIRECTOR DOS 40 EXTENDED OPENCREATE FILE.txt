@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F112E
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR (DOS 4.0+) - EXTENDED OPEN/CREATE FILE
+	AX = 112Eh
+	SS = DS = DOS DS
+	ES:DI -> uninitialized SFT for file
+	STACK: WORD file attribute for created/truncated file
+			low byte = file attributes
+			high byte = 00h normal create/open, 01h create new file
+	SDA first filename pointer -> fully-qualified filename
+	SDA extended file open action = action code
+	      (see #01770 at INT 21/AX=6C00h)
+	SDA extended file open mode = open mode for file (see INT 21/AX=6C00h)
+Return: CF set on error
+	    AX = error code
+	CF clear if successful
+	    CX = result code
+		01h file opened
+		02h file created
+		03h file replaced (truncated)
+	    SFT initialized (except handle count, which DOS manages itself)
+Note:	this function is called by the DOS 4.0+ kernel
+BUG:	this function is not called correctly under some DOS versions
+	  (at least 5.0 and 6.2):
+	    the file attribute on the stack is not correct if the action
+	      code is 11h,
+	    the result code in CX is not passed back to the application.
+SeeAlso: AX=1115h,AX=1116h,AX=1117h,INT 21/AX=6C00h
+

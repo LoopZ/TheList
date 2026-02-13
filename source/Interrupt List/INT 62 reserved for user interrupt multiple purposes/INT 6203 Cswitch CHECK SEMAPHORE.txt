@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6203
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - CHECK SEMAPHORE
+	AH = 03h
+	DX = semaphore number (0-63)
+Return: AX = status
+	    FFFFh not owned
+	    else  owned
+SeeAlso: AH=02h,AH=04h
+

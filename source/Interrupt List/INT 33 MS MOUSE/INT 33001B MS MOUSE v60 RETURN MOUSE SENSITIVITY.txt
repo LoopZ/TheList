@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33001B
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - RETURN MOUSE SENSITIVITY
+	AX = 001Bh
+Return: BX = horizontal speed
+	CX = vertical speed
+	DX = double speed threshold
+SeeAlso: AX=000Bh,AX=001Ah
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0000
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "GetVersion" - INSTALLATION CHECK
+	AX = 4A11h
+	BX = 0000h
+Return: AX = 0000h (successful)
+	BX = 444Dh ("DM")
+	CL = first drive letter used by DBLSPACE (41h ['A'] = A:)
+	CH = number of drive letters used by DBLSPACE
+	DX = internal DBLSPACE.BIN version number (bits 14-0)
+		bit 15 set if DBLSPACE.BIN has not yet been relocated to final
+		  position in memory (i.e. DBLSPACE.SYS /MOVE)
+Program: DBLSPACE.BIN is the resident driver for DoubleSpace, the
+	  disk-compression software bundled with MS-DOS 6.0 and 6.20
+Notes:	this function is also supported by the version of SuperStor bundled
+	  with IBM DOS 6.x and "preloading" versions of Stacker
+	the complete DBLSPACE.BIN API is still supported by MS-DOS 6.22's
+	  DRVSPACE.BIN
+SeeAlso: AX=4A11h/BX=0001h,AX=4A11h/BX=0002h,AX=4A11h/BX=0003h
+SeeAlso: AX=4A11h/BX=0005h,AX=4A11h/BX=0007h,AX=4A11h/BX=FFFFh
+SeeAlso: INT 21/AX=4404h"DBLSPACE"
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5D
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 5D C - TI Professional PC - KEYBOARD BREAK KEY VECTOR
+	CF clear
+	AX = 0000h
+Return: CF clear
+	    AX = keystroke to place into keyboard buffer
+	CF set
+	    AX ignored
+Desc:	invoked by the keyboard ISR when Shift-BrkPause is pressed
+Note:	the default handler is a simple IRET instruction
+SeeAlso: INT 09"IRQ1",INT 4A/AH=00h"TI",INT 59"TI Professional"
+SeeAlso: INT 5B"TI Professional",INT 5C"TI Professional"
+SeeAlso: INT 5E"TI Professional",INT 5F"TI Professional"
+

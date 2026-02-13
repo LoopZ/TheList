@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2143FFBP5053
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7.20 (Win98) - EXTENDED-LENGTH FILENAME OPERATIONS
+	AX = 43FFh
+	BP = 5053h ('PS')
+	CL = function
+	    39h "mkdir" create directory
+		DS:DX -> ASCIZ pathname
+	    56h rename file
+		DS:DX -> ASCIZ filename of existing file (no wildcards)
+		ES:DI -> ASCIZ new filename (no wildcards)
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (03h,05h) (see #01680 at AH=59h/BX=0000h)
+Note:	these functions are equivalent to INT 21/AH=39h and INT 21/AH=56h,
+	  but with a maximum path length of 128 characters instead of 67;
+	  unlike INT 21/AX=71xxh, these functions are available under bare
+	  DOS and not just in a Windows DOS box
+SeeAlso: AH=39h,AH=56h,AX=7139h,AX=7156h
+

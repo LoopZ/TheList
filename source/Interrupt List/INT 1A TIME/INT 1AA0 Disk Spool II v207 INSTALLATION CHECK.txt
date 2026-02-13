@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AA0
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1A U - Disk Spool II v2.07+ - INSTALLATION CHECK
+	AH = A0h
+Return: AH = B0h if installed
+	    AL = pending INT 1A/AH=D0h subfunction if nonzero???
+	    ES = code segment
+	    ES:BX -> name of current spool file
+	    ES:SI -> current despool file
+	    CL = despooler state (00h disabled, 41h enabled)
+	    CH = spooler state (00h disabled, 41h enabled)
+	    DL = despooler activity
+		00h currently active printing a file
+		41h standing by
+	    DH = 00h ???
+	       = 41h ???
+	    DI = 0000h ???
+		 0001h ???
+Program: Disk Spool II is a shareware disk-based print spooler by Budget
+	  Software Company
+Note:	this function is also supported by Vertisoft's Emulaser utility ELSPL,
+	  as that is a licensed version of Disk Spool II
+SeeAlso: AH=ABh,AH=C0h,AH=D0h,AH=E1h
+

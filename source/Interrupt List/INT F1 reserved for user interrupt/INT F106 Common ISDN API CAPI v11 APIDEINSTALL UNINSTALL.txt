@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: F106
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v1.1 - "API-DEINSTALL" - UNINSTALL
+	AH = 06h
+	BX = force flag
+	    0000h normal uninstall
+	    0001h forced uninstall
+Return: AX = status (0000h,1008h) (see #04069)
+Desc:	reset ISDN controller, close all ISDN Level 1 connections except for
+	  telephone connections
+Notes:	the caller is required to provide at least 512 bytes of stack space
+SeeAlso: INT F1/AL=01h,INT F1/AH=01h
+

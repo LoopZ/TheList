@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 130D
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - RESET HARD DISKS
+	AH = 0Dh
+	DL = drive number (80h = first, 81h = second hard disk)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234)
+Notes:	reinitializes the hard disk controller, resets the specified drive's
+	  parameters, and recalibrates the drive's heads (seek to track 0)
+	for PS/2 35SX, 35LS, 40SX and L40SX, as well as many other systems,
+	  both the master drive and the slave drive respond to the Reset
+	  function that is issued to either drive
+	not for PS/2 ESDI drives
+SeeAlso: AH=00h,INT 21/AH=0Dh
+

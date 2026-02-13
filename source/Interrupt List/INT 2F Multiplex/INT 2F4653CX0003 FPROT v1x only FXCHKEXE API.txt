@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4653CX0003
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - F-PROT v1.x only - F-XCHK.EXE - API
+	AX = 4653h ('FS')
+	CX = 0003h
+	BX = subfunction
+	    0000h  installation check
+		Return: AX = FFFFh
+	    0001h  uninstall
+		Return: AX,BX,ES destroyed
+Program: F-XCHK is part of the shareware F-PROT virus/trojan protection
+	  package by Fridrik Skulason
+SeeAlso: AX=4653h/CX=0002h,AX=4653h/CX=0004h,AX=CA00h
+Index:	installation check;F-XCHK|uninstall;F-XCHK
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F13BX0004
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/AI (Audio Interface) - CLOSE DEVICE
+	AX = 4F13h
+	BX = 0004h
+	CX = handle
+Return: AL = 4Fh if function supported
+	    AH = status
+		00h successful
+		01h failed
+SeeAlso: AX=4F13h/BX=0000h,AX=4F13h/BX=0003h,AX=4F13h/BX=0005h
+

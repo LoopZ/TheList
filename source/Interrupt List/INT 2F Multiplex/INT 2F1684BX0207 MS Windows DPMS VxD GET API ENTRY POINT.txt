@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0207
+  Category: W 	MS Windows
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - MS Windows - DPMS VxD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0207h (virtual device ID for DPMS device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+

@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F256SF03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - READ EXTENDED ATTRIBUTE
+	AX = F256h subfn 03h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02363)
+	ES:DI -> reply buffer (see #02364)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F256h/SF=01h,AX=F256h/SF=04h,AX=F256h/SF=05h
+
+Format of NetWare "Read Extended Attribute" request packet:
+Offset	Size	Description	(Table 02363)
+ 00h	BYTE	03h (subfunction "Read Extended Attribute")
+ 01h	WORD	flags (see #02372)
+ 03h  8 BYTEs	extended attribute handle structure (see #02373)
+ 0Bh	DWORD	read position
+ 0Fh	DWORD	inspect size
+ 13h	WORD	key length
+ 15h  N BYTEs	key
+SeeAlso: #02364,#02361
+
+Format of NetWare "Read Extended Attribute" reply packet:
+Offset	Size	Description	(Table 02364)
+ 00h	DWORD	error code
+ 04h	DWORD	total extended attribute value length
+ 08h	DWORD	new extended attribute handle
+ 0Ch	DWORD	access flag
+ 10h	WORD	value length
+ 12h  N BYTEs	EA value
+SeeAlso: #02363
+

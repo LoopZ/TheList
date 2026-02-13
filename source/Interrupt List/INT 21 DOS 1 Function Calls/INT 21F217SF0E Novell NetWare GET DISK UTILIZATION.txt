@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF0E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET DISK UTILIZATION
+	AX = F217h subfn 0Eh
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01900 at AH=E3h/SF=0Eh)
+	ES:DI -> reply buffer (see #02164)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=0Eh,AX=F217h/SF=D6h
+
+Format of NetWare "Get Disk Utilization" reply packet:
+Offset	Size	Description	(Table 02164)
+ 00h	BYTE	volume number (00h-1Fh)
+ 01h	DWORD	(big-endian) object ID
+ 05h	WORD	(big-endian) directories used by object
+ 07h	WORD	(big-endian) files created by object
+ 09h	WORD	(big-endian) disk blocks used by object-created files
+SeeAlso: #01900 at AH=E3h/SF=0Eh
+

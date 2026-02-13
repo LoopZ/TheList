@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6003
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - MDEBUG - POP UP
+	AH = 03h
+	DS:SI -> password or a null byte
+	ES -> new value for the register SE
+	DI -> new value for the register OF
+Return: AX = return code (see #03309)
+SeeAlso: AH=04h"MDEBUG"
+
+(Table 03309)
+Values for MDEBUG return code:
+ FFFFh	call not allowed
+ FFFEh	password is invalid
+ FFFDh	display mode is invalid
+ else	successful
+

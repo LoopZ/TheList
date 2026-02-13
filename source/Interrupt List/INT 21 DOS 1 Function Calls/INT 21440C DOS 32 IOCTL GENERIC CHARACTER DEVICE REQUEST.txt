@@ -1,0 +1,151 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.2+ - IOCTL - GENERIC CHARACTER DEVICE REQUEST
+	AX = 440Ch
+	BX = device handle
+	CH = category code (see #01545)
+	CL = function number (see #01546)
+	DS:DX -> parameter block (see #01547,#01548,#01549,#01550,#01551,#01552)
+	SI = parameter to pass to driver (European MS-DOS 4.0, OS/2 comp box)
+	DI = parameter to pass to driver (European MS-DOS 4.0, OS/2 comp box)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    DS:DX -> iteration count if CL=65h
+	    SI = returned value (European MS-DOS 4.0, OS/2 comp box)
+	    DI = returned value (European MS-DOS 4.0, OS/2 comp box)
+Note:	DR DOS 3.41 and 5.0 return error code 16h on CL=45h,65h if the device
+	  does not support a retry counter
+SeeAlso: AX=440Dh"DOS 3.2+",INT 2F/AX=0802h,INT 2F/AX=122Bh,INT 2F/AX=14FFh
+SeeAlso: INT 2F/AX=1A01h
+
+(Table 01545)
+Values for IOCTL category code:
+ 00h	unknown (DOS 3.3+)
+ 01h	COMn: (DOS 3.3+)
+ 02h	reserved for terminal control
+ 03h	CON (DOS 3.3+)
+ 04h	reserved for keyboard control
+ 05h	LPTn:
+ 07h	mouse control (European MS-DOS 4.0)
+ 08h	reserved for disk control -- same as for block devices
+	(see INT 21/AX=440Dh)
+ 9Eh	Media Access Control driver (STARLITE)
+ 00h-7Fh reserved for Microsoft
+ 80h-FFh reserved for OEM/user-defined
+SeeAlso: #01558
+
+(Table 01546)
+Values for generic character IOCTL function:
+ 00h	MAC driver Bind (STARLITE) (see #01547)
+ 40h	DOS 3??? only: was reserved for set screen mode (see #04116)
+ 45h	set iteration (retry) count (see #01548)
+ 4Ah	select code page (see #01549)
+ 4Ch	start code-page preparation (see #01550)
+ 4Dh	end code-page preparation (see #01551)
+ 5Fh	set display information (DOS 4.0+) (see #01552)
+ 60h	DOS 3??? only: was reserved for get screen mode (see #04116)
+ 65h	get iteration (retry) count
+ 6Ah	query selected code page (see #01549)
+ 6Bh	query codepage prepare list (DOS 4.0+) (see #01553)
+ 7Fh	get display information (DOS 4.0+) (see #01552)
+Note:	bit assignments for function code:
+	    bit 7: set to ignore if unsupported, clear to return error
+	    bit 6: set if passed to driver, clear if intercepted by DOS
+	    bit 5: set if queries data from device, clear if sends command
+		(by convention, if a function both queries and sends data,
+		  bit 5 should be clear)
+	    bits 4-0: subfunction
+
+Format of parameter block for function 00h:
+Offset	Size	Description	(Table 01547)
+ 00h  8 BYTEs	ASCIZ signature "STARMAC"
+ 08h	WORD	version
+ 0Ah	WORD	flags
+		bit 0: media requires connect or listen request before use
+		bit 1: network is a LAN (broadcast/multicast supported)
+		bit 2: point-to-point network
+ 0Ch	WORD	handle for use with MAC driver's private interface (filled in
+		by MAC driver)
+ 0Eh	WORD	context
+ 10h	WORD	approximate speed in KB/sec (filled in by MAC driver)
+ 12h	WORD	approximate cost in cents per hour (filled in by MAC driver)
+ 14h	WORD	maximum packet size in bytes (filled in by MAC driver)
+ 16h	WORD	addressing format (filled in by MAC driver)
+		0000h general addressing
+		0001h Ethernet addressing
+		0002h Token Ring addressing
+		0003h Token Bus addressing
+ 18h	DWORD	Send entry point (filled in by MAC driver)
+ 1Ch	DWORD	RegisterEventHandler entry point (filled in by MAC driver)
+ 20h	DWORD	SetPacketFilter entry point (filled in by MAC driver)
+ 24h	DWORD	UnBind entry point (filled in by MAC driver)
+
+Format of parameter block for DOS 3??? screen mode functions 40h and 60h:
+Offset	Size	Description	(Table 04116)
+ 00h	WORD	length of folowing data (0009h)
+ 02h	BYTE	mode type
+ 03h	WORD	number of colors
+ 05h	WORD	width
+ 07h	WORD	height
+Note:	these functions appear never to have been released to the public
+SeeAlso: #01546
+
+Format of parameter block for function 45h:
+Offset	Size	Description	(Table 01548)
+ 00h	WORD	number of times output is attempted before driver assumes
+		  device is busy
+
+Format of parameter block for functions 4Ah and 6Ah:
+Offset	Size	Description	(Table 01549)
+ 00h	WORD	length of data
+ 02h	WORD	code page ID (see #01757 at INT 21/AX=6602h)
+ 04h 2N BYTEs	DCBS (double byte character set) lead byte range
+		  start/end for each of N ranges (DOS 4.0)
+	WORD	0000h  end of data (DOS 4.0)
+
+Format of parameter block for function 4Ch:
+Offset	Size	Description	(Table 01550)
+ 00h	WORD	flags
+		DISPLAY.SYS = 0000h
+		PRINTER.SYS bit 0 clear to prepare downloaded font, set to
+			prepare cartridge selection
+ 02h	WORD	length of remainder of parameter block
+ 04h	WORD	number of code pages following
+ 06h  N WORDs	code page 1,...,N
+
+Format of parameter block for function 4Dh:
+Offset	Size	Description	(Table 01551)
+ 00h	WORD	length of data
+ 02h	WORD	code page ID (see #01757 at INT 21/AX=6602h)
+
+Format of parameter block for functions 5Fh and 7Fh:
+Offset	Size	Description	(Table 01552)
+ 00h	BYTE	level (0 for DOS 4.x-6.0)
+ 01h	BYTE	reserved (0)
+ 02h	WORD	length of following data (14)
+ 04h	WORD	control flags
+		bit 0 set for blink, clear for intensity
+		bits 1-15 reserved
+ 06h	BYTE	mode type (1=text, 2=graphics)
+ 07h	BYTE	reserved (0)
+ 08h	WORD	colors
+		0000h = monochrome
+		else N bits per pixel
+ 0Ah	WORD	pixel columns
+ 0Ch	WORD	pixel rows
+ 0Eh	WORD	character columns
+ 10h	WORD	character rows
+
+Format of parameter block for function 6Bh:
+Offset	Size	Description	(Table 01553)
+ 00h	WORD	length of following data
+ 02h	WORD	number of hardware code pages
+ 04h  N WORDs	hardware code pages 1,...,N
+	WORD	number of prepared code pages
+      N WORDs	prepared code pages 1,...,N
+

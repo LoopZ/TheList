@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F256SF05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DUPLICATE EXTENDED ATTRIBUTES
+	AX = F256h subfn 05h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02370)
+	ES:DI -> reply buffer (see #02371)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F256h/SF=01h,AX=F256h/SF=02h,AX=F256h/SF=04h
+
+Format of NetWare "Duplicate Extended Attributes" request packet:
+Offset	Size	Description	(Table 02370)
+ 00h	BYTE	05h (subfunction "Duplicate Extended Attributes")
+ 01h	WORD	source flags (see #02372)
+ 03h	WORD	destination flags (see #02372)
+ 05h  8 BYTEs	source extended attribute structure (see #02373)
+ 0Dh  8 BYTEs	destination extended attribute structure (see #02373)
+SeeAlso: #02371
+
+Format of NetWare "Duplicate Extended Attributes" reply packet:
+Offset	Size	Description	(Table 02371)
+ 00h	DWORD	number duplicated
+ 04h	DWORD	data size duplicated
+ 08h	DWORD	key size duplicated
+SeeAlso: #02370
+
+Bitfields for NetWare extended attribute flags:
+Bit(s)	Description	(Table 02372)
+ 1-0	extended attribute handle structure type
+	00 volume number and directory entry number
+	01 NetWare file handle
+	10 extended attribute handle
+	11 not used
+ 2	close handle on error
+ 6-4	information level (0,1,6,7)
+ 7	not used
+SeeAlso: #02370,#02373
+
+Format of NetWare extended attribute structure:
+Offset	Size	Description	(Table 02373)
+---type 0---
+ 00h	DWORD	volume number
+ 04h	DWORD	directory entry number
+---type 1---
+ 00h	DWORD	NetWare file handle
+ 04h  4 BYTEs	unused
+---type 2---
+ 00h	DWORD	extended attribute handle
+ 04h  4 BYTEs	unused
+SeeAlso: #02372
+

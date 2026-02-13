@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21445A
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Concurrent DOS etc. - USER GROUP SUPPORT
+	AX = 445Ah
+	CX = operation type
+	    00h get default file access rights
+	    01h set default file access rights
+	    02h get user/group
+	    03h get security version
+	    04h set security key (needs key)
+	    05h set user/group (needs key)
+	DX = data for operation if set
+	BX = key (if required)
+Return: AX = result
+Note:	This function was introduced on 1990/06/04 for CDOS.  It has been
+	  supported by DR PalmDOS and DR DOS "Panther" (BDOS 1070h),
+	  but it is not supported by Novell DOS 7 - DR-DOS 7.03.
+

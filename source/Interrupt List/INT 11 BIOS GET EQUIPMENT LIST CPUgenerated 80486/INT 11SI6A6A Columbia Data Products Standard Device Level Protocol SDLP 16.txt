@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------
+ Unique ID: 11----SI6A6A
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - Columbia Data Products Standard Device Level Protocol (SDLP) 1.6
+	SI = 6A6Ah
+	AH = command (see #00227)
+	AL = SCSI Addressing (see #00228)
+Return: CF clear if successful
+	    DI = 6A6Ah if AH=01h on entry (maybe for all functions???)
+	    AH = ??? for command 01h
+	CF set on error
+	    AL = error code
+SeeAlso: INT 21/AX=4402h"ASPI"
+
+(Table 00227)
+Values for SDLP command:
+ 00h	SDLP initialization
+ 01h	SDLP System Identify
+ 02h	simple read sectors
+ 03h	simple write sectors
+ 04h	simple verify sectors/seek to sector
+ 05h	get device size/type
+ 06h	ready unit
+ 07h	format unit
+ 08h	diagnostics
+ 09h	rewind
+ 0Ah	erase
+ 0Bh	write filemarks
+ 0Ch	space
+ 0Dh	prevent/allow media removal
+ 0Eh	load/unload media
+ 0Fh	reserved - returns good status
+ 10h	set block size
+ 11h	write setmark
+ 12h	set error level
+ 13h	get address of Request Sense Buffer
+ 14h	get SDLP error via Request Sense
+ F0h	Vendor Unique Function (WD7000-FASST2 only)
+ FDh	reset current SCSI HAC
+ FEh	get/set current SCSI HAC
+ FFh	execute SCSI command
+
+Bitfields for SDLP SCSI addressing:
+Bit(s)	Description	(Table 00228)
+ 7-6	Host Adapter
+ 5-3	SCSI Target ID
+ 2-0	SCSI Target LUN (logical unit number)
+

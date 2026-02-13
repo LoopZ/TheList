@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F42
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX - UNLOCK FILE FOR USER
+	AH = 42h
+	AL = user ID
+	DS:DX -> ASCIZ filename
+Return: AL = status (see #03966)
+SeeAlso: AH=00h,AH=41h"NTNX",AH=42h"MW386"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA21
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - STANDBY.COM - SET STANDBY DURATION
+	AX = BA21h
+	BL = new timeout before standby mode in minutes (01h-0Fh)
+	    00h to disable automatic switch to standby mode
+Return: CF clear if successful
+	CF set on error (function not supported)
+Note:	The actual timeout with a GD6205 controller is ((N*64)-32) seconds,
+	  instead of (N*60) seconds as documented.
+SeeAlso: AX=BA20h,AX=BA22h
+

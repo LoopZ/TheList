@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB106
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - PCI BUS-SPECIFIC OPERATIONS
+	AX = B106h
+	BL = bus number
+	EDX = Special Cycle data
+Return: CF clear if successful
+	CF set on error
+	AH = status (00h,81h) (see #00729)
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Note:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+SeeAlso: AX=B186h,INT 2F/AX=1684h/BX=304Ch
+

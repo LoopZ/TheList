@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104E02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA XGA BIOS Extensions - RETURN XGA MODE INFORMATION
+	AX = 4E02h
+	CX = Video mode
+	DX = XGA handle
+	ES:DI -> 256 byte buffer for mode information (see #00073)
+Return: AL = 4Eh if function supported
+	AH = status
+	    00h	 function successful
+	    else error code
+SeeAlso: AX=4E00h,AX=4E01h
+
+Format of XGA mode information:
+Offset	Size	Description	(Table 00073)
+ 00h	WORD	attributes of the mode (see #00074)
+ 02h	WORD	bytes per logical scanline
+ 04h	WORD	horizontal resolution in pixels
+ 06h	WORD	vertical resolution in scanlines
+ 08h	BYTE	character Width in pixels
+ 09h	BYTE	character Height in pixels
+ 0Ah	BYTE	number of planes
+ 0Bh	BYTE	bits per pixels
+ 0Ch	BYTE	memory model (see #00075)
+ 0Dh	BYTE	number of Image Pages
+ 0Eh	BYTE	number of Red bits
+ 0Fh	BYTE	bit position of Red bit field
+ 10h	BYTE	number of Green bits
+ 11h	BYTE	bit position of Green bit field
+ 12h	BYTE	number of Blue bits
+ 13h	BYTE	bit position of Blue bit field
+ 14h	BYTE	number of Reserved bits
+ 15h	BYTE	bit position of Reserved bit field
+ 16h 235 BYTEs	reserved
+
+Bitfields for XGA mode attributes:
+Bit(s)	Description	(Table 00074)
+ 0	set if mode is supported
+ 1	reserved
+ 2	output is supported by the BIOS
+ 3	reserved
+ 4	if set this is a graphics mode (VGA registers inactive, XGA active),
+	  if clear this is a text mode (VGA registers active, XGA inactive)
+
+(Table 00075)
+Values for XGA video memory model:
+ 00h	Text Mode
+ 01h	CGA graphics
+ 02h	Hercules graphics
+ 03h	4-planar graphics
+ 04h	Packed Pixel
+ 05h	Non-chain 4, 256 color
+ 06h	Direct Color
+ 07h	YUV-24
+

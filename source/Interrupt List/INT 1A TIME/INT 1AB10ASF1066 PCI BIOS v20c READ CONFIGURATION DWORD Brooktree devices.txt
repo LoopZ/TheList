@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB10ASF1066
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - READ CONFIGURATION DWORD (Brooktree devices)
+	AX = B10Ah subfn 1066h
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (0000h-00FFh) (see #00878)
+Return: CF clear if successful
+	    ECX = dword read
+	CF set on error
+	AH = status (00h,87h) (see #00729)
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	the meanings of BL and BH on entry were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B10Ah,AX=B10Ah/SF=8086h
+
+Format of Brooktree Bt8230 ATM controller configuration:
+Offset	Size	Description	(Table 00981)
+ 00h 64 BYTEs	header (see #00878)
+		(vendor ID 109Eh, device ID 8230h)
+ 10h	DWORD	address at which to map external memory (multiple of 16M)
+		internal registers are mapped at offsets 0000h-01FFh; Bt8222
+		  registers are mapped at 0200h-03FFh, and T1/E1 Framer
+		  registers are mapped at 0800h-0FFFh.	Only 32-bit memory
+		  accesses are used
+ 40h	BYTE	maximum burst length (00h not allowed, default = 10h)
+ 41h	BYTE	"SPECIAL_STATUS"
+		bit 3: attempted to perform DMA on PCI while bus-mastering
+			  disabled in PCI command word
+		bit 2: PCI/DMA synchronization error occurred
+		bit 1: PCI bus master encountered fatal error
+		bit 0: direction of transaction which encountered error
+			=0 write (refer to offset 48h)
+			=1 read (refer to offset 44h)
+		Note:	bits 3-1 are write-clear, bit 0 is read-only
+ 42h  2 BYTEs	unused
+ 44h	DWORD	current read target address for PCI bus master (read-only)
+ 48h	DWORD	current write target address for PCI bus master (read-only)
+ 4Ch 180 BYTEs	reserved
+SeeAlso: #00790
+

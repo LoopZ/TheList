@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD856
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare Lite v1.1 - SERVER - "VNWLSERV_INIT" - GET ???
+	AX = D856h
+Return: AX = 0001h if supported???
+	BX = ??? (0004h for v1.1)
+	CX = ??? (0F20h for v1.1)
+	DS = segment of resident code
+	ES = data segment of resident copy
+Note:	this function is also supported by Personal NetWare SERVER, bundled
+	  with Novell DOS 7
+

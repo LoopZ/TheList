@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7806
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - TARGA.DEV - SET/CLEAR EARLY RETURN MODE
+	AH = 06h
+	AL = new state
+	    00h clear early return mode
+	    01h set early return mode
+Note:	if early return mode is set then SCSI will return with no errors
+	  when the last DMA transfer is started in a call with AH=13h or AH=14h
+	if this routine is not called, early return mode is cleared
+SeeAlso: AH=13h,AH=14h,AH=15h
+

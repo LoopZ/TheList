@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: D427
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - GET TASK CONTROL BLOCK SEGMENT/SELECTOR
+	AH = 27h
+	BX = task ID (FFFFh if current task) (see AH=19h)
+Return: CF clear if successful
+	    DX = segment/selector for the Task Control Block (see #04006)
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+Note:	this function supersedes AH=04h
+SeeAlso: AH=26h,AH=28h,AH=29h,AH=2Ah
+

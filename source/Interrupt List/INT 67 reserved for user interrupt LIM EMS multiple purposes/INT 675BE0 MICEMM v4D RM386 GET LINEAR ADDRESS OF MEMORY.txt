@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675BE0
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - MICEMM v4D, RM386 - GET LINEAR ADDRESS OF MEMORY
+	AX = 5BE0h
+	ES:BX -> memory for which to get linear address
+Return: AH = 00h
+	CX:DX = linear address of physical memory corresponding to ES:BX
+Program: RAM-MAN/386 is the memory manager included with Helix's Netroom;
+	  MICEMM is a memory manager for some Micronics motherboards
+Note:	this has been superceded by AX=DE06h, which should be used instead
+SeeAlso: AX=5BF0h,AX=5BF1h,AX=DE06h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200CE
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBCLOSE" - CLOSE ACTIVE VIRTUAL BUFFER
+	AX = 00CEh
+Desc:	close the active virtual buffer and direct further graphics to the
+	  active video page
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=00CCh,AX=00D1h,AX=00D4h,AX=00D5h,AX=00D9h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1545
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SET DISPLAY CONTROL STATUS
+	AH = 45h
+	AL = new display control status
+	    bit 0: DISPCTL flag +C instead of -C
+	    bit 1: DISPCTL flag +K instead of -K
+SeeAlso: AH=46h"HP",AH=47h"HP"
+

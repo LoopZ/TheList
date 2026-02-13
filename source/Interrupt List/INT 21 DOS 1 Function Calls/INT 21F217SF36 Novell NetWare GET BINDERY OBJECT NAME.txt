@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF36
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET BINDERY OBJECT NAME
+	AX = F217h subfn 36h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01928 at AH=E3h/SF=36h)
+	ES:DI -> reply buffer (see #02185)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=36h,AX=F217h/SF=35h,AX=F217h/SF=37h
+
+Format of NetWare "Get Bindery Object Name" reply packet:
+Offset	Size	Description	(Table 02185)
+ 00h	DWORD	(big-endian) object ID
+ 04h	WORD	(big-endian) type of object
+ 06h 48 BYTEs	object name
+SeeAlso: #01928 at AH=E3h/SF=36h
+

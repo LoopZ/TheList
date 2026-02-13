@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B21
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - QUERY NAME SERVICE
+	AH = 21h
+	AL = virtual circuit number
+	CL = ??? (00h or 01h)
+	ES:BX -> buffer for service name structure (see #03732)
+Return: CF clear if successful
+	    ES:BX buffer filled
+	CF set on error
+Notes:	a program should call this function after allocating a virtual circuit
+	  and check that the general name matches the requested service
+	prior to version 3.0, Novell's NASI returned the first available port;
+	  v3.0+ returns the first port found--check the returned status to
+	  determine whether the port is available
+SeeAlso: AH=14h"NCSI"
+
+Format of NCSI service name structure:
+Offset	Size	Description	(Table 03732)
+ 00h	WORD	buffer length
+ 02h  8 BYTEs	service name
+ 0Ah  8 BYTEs	general name
+ 12h  8 BYTEs	specific name
+ 1Ah  4 BYTEs	???
+---Novell NASI v3.0+ ---
+ 1Eh	BYTE	port number
+ 1Fh	BYTE	port status
+		00h idle (available)
+		01h allocated (available)
+		02h connected
+		03h on hold
+

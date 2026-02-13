@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E003
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MX5 Extended FOSSIL - GET/SET MNP WAIT TICKS
+	AX = E003h
+	BH = function
+	    00h get wait ticks
+	    01h set wait ticks
+		BL = MNP wait ticks (default 0Eh)
+	DX = port number (0-3)
+Return: BL = wait ticks
+SeeAlso: AX=E001h,AX=E002h,AX=E006h
+

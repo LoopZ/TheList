@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF22
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "ResMemDOS" - RESIZE CONVENTIONAL MEMORY BLOCK
+	AX = FF22h
+	BX = new size in paragraphs
+	DX = initial selector for block
+Return: CF clear if successful
+	CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	    BX = maximum number of paragraphs available
+Note:	this function will also fail if the block is expanded past a 64K
+	  boundary and the next selector is already in use
+SeeAlso: AX=FF21h,AX=FF23h,INT 21/AH=49h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC003
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AD-DOS - SET MINUTES TO WAIT
+	AX = C003h
+	BX = minutes to wait before blanking screen
+Return: AL = 00h if successful
+Program: AD-DOS is the DOS version of the After Dark screen blanker for
+	  MS Windows
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+Note:	this call also resets the delay timer
+SeeAlso: AX=C000h"AD-DOS",AX=C004h
+Index:	screen saver;AD-DOS
+

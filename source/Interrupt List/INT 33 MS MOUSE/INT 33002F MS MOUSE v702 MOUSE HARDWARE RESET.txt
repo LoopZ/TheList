@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33002F
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.02+ - MOUSE HARDWARE RESET
+	AX = 002Fh
+Return: AX = status
+Note:	invoked by mouse driver v8.20 on being called with INT 2F/AX=530Bh
+SeeAlso: INT 2F/AH=53h
+

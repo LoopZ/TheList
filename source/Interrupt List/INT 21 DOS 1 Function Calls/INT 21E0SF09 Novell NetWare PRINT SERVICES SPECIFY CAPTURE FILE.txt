@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E0--SF09
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - SPECIFY CAPTURE FILE
+	AH = E0h subfn 09h
+	DS:SI -> request buffer (see #01817)
+	ES:DI -> reply buffer (see #01818)
+Return: AL = status
+	    00h successful
+	    9Ch invalid path
+Desc:	create a permanent capture file for the next print capture to be
+	  started
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+	the caller must have read, write, and create rights for the directory
+	  containing the capture file
+
+Format of NetWare "Specify Capture File" request buffer:
+Offset	Size	Description	(Table 01817)
+ 00h	WORD	length of following data (max 102h)
+ 02h	BYTE	09h (subfunction "Specify Capture File")
+ 03h	BYTE	directory handle or 00h
+ 04h	BYTE	length of filename
+ 05h  N BYTEs	name of capture file
+SeeAlso: #01818
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01818)
+ 00h	WORD	(call) 0000h (no results returned)
+SeeAlso: #01817
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 672763CL04
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - VIDEMS.SYS v1.31+ - RETURN HIDDEN BLOCK SIZE
+	AX = 2763h
+	CL = 04h
+	BX = signature AAFFh
+Return: AH = 00h if successful
+	    DX = block size in kilobytes
+Desc:	Returns the amount of EMS which can be safely used at any time, and
+	  can't be destroyed by writing anything to the B800:0000 buffer.
+Note:	this function normally returns 184K, while the driver provides up to
+	  240K of EMS.
+SeeAlso: AX=2763h/CL=01h,AX=2763h/CL=02h
+

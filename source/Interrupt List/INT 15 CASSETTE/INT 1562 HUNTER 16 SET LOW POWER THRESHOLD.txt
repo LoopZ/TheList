@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1562
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SET LOW POWER THRESHOLD
+	AH = 62h
+	AL = level (00h 5%, 01h 10%, ... 12h 95%)
+	BX = interval between power low warnings in seconds (1..600)
+Return: AH = Status
+Desc:	set the level (relative to full power) when power-low warnings begin
+	  and the interval between the warnings
+SeeAlso: AH=61h,AH=65h,AH=66h
+

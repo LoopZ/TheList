@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD05
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - START MERGING IMAGE INTO TEXT
+	AX = CD05h
+	DS:DX -> ASCIZ name of PIX file
+	CX = left margin of text in 1/720th inch
+Return: AH = printer type
+	    00h page-oriented (multiple images may be placed side-by-side)
+	    01h line-oriented (use AX=CD06h for vertical paper movement)
+	CX = 07C2h (1986d)
+SeeAlso: AX=CD07h
+

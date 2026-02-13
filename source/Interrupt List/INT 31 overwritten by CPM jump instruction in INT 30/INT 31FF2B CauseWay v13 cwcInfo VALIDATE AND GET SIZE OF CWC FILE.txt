@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF2B
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay v1.3 - "cwcInfo" - VALIDATE AND GET SIZE OF CWC FILE
+	AX = FF2Bh
+	BX = file handle for CWC-compressed file
+Return: CF clear if successful
+	    ECX = expanded file size
+	CF set on error (not a CWC-compressed file)
+SeeAlso: AX=FF00h,AX=FFFBh
+

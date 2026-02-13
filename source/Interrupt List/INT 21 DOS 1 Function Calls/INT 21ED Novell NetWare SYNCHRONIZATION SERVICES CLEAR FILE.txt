@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21ED
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - CLEAR FILE
+	AH = EDh
+	DS:DX -> ASCIZ filename
+Return: AL = status
+	    00h successful
+	    FFh no files found
+Desc:	unlock the file and remove it from the log table
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=CBh"NetWare",AH=CEh,AH=CFh,AH=EBh"NetWare",AH=ECh"NetWare"
+

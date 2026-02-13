@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212B--CX4358
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Super PC-Kwik v3.20+ - INSTALLATION CHECK
+	AH = 2Bh
+	CX = 4358h ('CX')
+Return: AL = FFh if PC-Kwik/PC-Cache not installed
+	AL = 00h if installed
+	    CF clear
+	    CX = 6378h ('cx')
+	    BX = ???
+	    DX = version (DH = major version, DL = binary minor version)
+Note:	PC Tools PC-Cache v5.x and Qualitas Qcache v4.00 are OEM versions of
+	  Super PC-Kwik, and thus support this call (PC-Cache 5.1 corresponds
+	  to PC-Kwik v3.20)
+SeeAlso: INT 13/AH=A0h,INT 13/AH=B0h,INT 16/AX=FFA5h/CX=1111h
+Index:	PC-Cache;installation check|Qualitas Qcache;installation check
+Index:	installation check;PC-Cache 5.x|installation check;Qualitas Qcache
+

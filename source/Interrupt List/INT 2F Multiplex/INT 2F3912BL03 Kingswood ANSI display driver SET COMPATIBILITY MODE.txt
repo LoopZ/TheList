@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F3912BL03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood ANSI display driver - SET COMPATIBILITY MODE
+	AX = 3912h
+	BL = 03h
+	CL = new mode (00h fast, FFh BIOS)
+Return: AL = old compatibility mode
+	SI,DI,DS,ES preserved
+SeeAlso: AX=3900h,AX=3912h/BL=04h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212B--CX4149
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - AI Architects - ??? - INSTALLATION CHECK
+	AH = 2Bh
+	CX = 4149h ('AI')
+	DX = 413Fh ('A?')
+Return: AL <> FFh if installed
+Note:	Borland's TKERNEL makes this call
+

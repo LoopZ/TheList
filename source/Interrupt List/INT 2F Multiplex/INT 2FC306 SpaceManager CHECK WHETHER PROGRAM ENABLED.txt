@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC306
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - SpaceManager - CHECK WHETHER PROGRAM ENABLED
+	AX = C306h
+	DX = program identifier (9000h,9001h,9003h) (see #03035)
+Return: AL = current state (00h disabled, FAh enabled)
+	AH destroyed
+SeeAlso: AX=C302h,AX=C303h
+

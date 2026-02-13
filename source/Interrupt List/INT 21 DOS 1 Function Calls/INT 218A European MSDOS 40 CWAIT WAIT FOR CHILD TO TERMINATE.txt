@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 218A
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "CWAIT" - WAIT FOR CHILD TO TERMINATE
+	AH = 8Ah
+	BL = range (00h command subtree, 01h any child)
+	BH = suspend flag
+	    00h suspend if children exist but none are dead
+	    01h return if no dead children
+	CX = Process ID of head of command subtree
+Return: CF clear if successful
+	    AH = termination type (see #01792)
+	    AL = return code from child or aborting signal
+	    BX = PID of child (0000h if no dead children)
+	CF set on error
+	    AX = error code (no child,interrupted system call)
+Desc:	get return code from an asynchronously-executed child program,
+	  optionally waiting if no return code is available
+SeeAlso: AH=4Bh,AH=4Dh,AH=80h,AH=8Dh
+
+(Table 01792)
+Values for termination type:
+ 00h	normal termination
+ 01h	aborted by Control-C
+ 02h	aborted by I/O error
+ 03h	terminate and stay resident
+ 04h	aborted by signal
+ 05h	aborted by program error
+

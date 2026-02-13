@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE14
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.20+ - GET OBJECT TYPE
+	AX = DE14h
+	ES:DI -> object
+Return: BL = 00h not an object
+	     08h window or task
+	     09h mailbox
+	     0Ah keyboard
+	     0Bh timer
+	     0Ch objectq
+	     0Fh pointer
+	     10h panel
+SeeAlso: AX=1016h
+

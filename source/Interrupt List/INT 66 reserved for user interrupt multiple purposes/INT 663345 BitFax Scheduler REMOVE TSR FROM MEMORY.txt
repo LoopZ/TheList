@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 663345
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - BitFax Scheduler - REMOVE TSR FROM MEMORY
+	AX = 3345h
+Return: AX = FFFFh error removing TSR
+InstallCheck:	test for the signature "BitFax Scheduler" beginning two bytes
+	  past the interrupt handler
+SeeAlso: AH=04h,INT 2F/AH=2Ah,INT 2F/AX=CB00h
+Index:	installation check;BitFax Scheduler
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1418
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - GET DRIVER DESCRIPTION
+	AH = 18h
+	DX = port number
+Return: DS:BX -> 40-byte buffer containing a string identifying the serial
+		driver
+SeeAlso: AH=06h"PC-MOS"
+

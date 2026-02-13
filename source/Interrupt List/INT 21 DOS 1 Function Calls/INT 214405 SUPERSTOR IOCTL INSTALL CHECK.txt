@@ -1,0 +1,97 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214405
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - SUPERSTOR - IOCTL - INSTALL CHECK
+	AX = 4405h
+	BL = drive number (00h = default, 01h = A:, etc)
+	(BH = 0???)
+	CX = 000Ch (size of SuperStor packet structure)
+	DS:DX -> SuperStor packet structure (see #04114)
+Return: CF clear if IOCTL successful -- check SuperStor packet for actual
+	      status
+	    AX = number of bytes actually transferred???
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Note:	This function is called with CX = 0008h for command 06h by NWCACHE
+	  although the Request Packet can be larger.  WINSWAP.SYS calls it
+	  with 000Ch - also for command 06h.
+
+Format of SuperStor packet:
+Offset	Size	Description	(Table 04114)
+ 00h	WORD	(call) product signature AA55h
+		(ret) result code, 0000h if successful
+ 02h	BYTE	(call) SuperStor product ID (01h)
+ 03h	BYTE	(call) SuperStor command parameter:
+		06h = get compressed drive structure / drive parameters
+		07h = return the compressed length of a file
+		08h = return real drive ID for swapped drive
+		09h = validate the contents of the cluster
+		0Bh = checks whether deleted cluster is free
+		0Ch = reallocate previously deleted cluster
+		0Dh = read absolute sector from the drive
+		0Eh = write absolute sector to the drive
+		0Fh = instruct the driver to rebuild tables
+		10h = flush any cached Replacement Block Table (RBT) sectors
+		      to the drive
+---command 06h---
+ 04h	DWORD	(ret) pointer to SuperStor CVF's compressed unit structure
+		      (see #04115)
+ 08h	DWORD	(ret) pointer to internal status structure
+---command 07h---
+ 04h	DWORD	(ret) size of file in bytes
+ 08h	WORD	(ret) first cluster number
+---command 08h---
+ 04h	BYTE	(ret) swapped drive (0-based)
+---commands 09h,0Bh,0Ch---
+ 04h	WORD	(call) cluster
+---commands 0Dh,0Eh---
+ 04h	DWORD	(call) first logical sector to transfer
+ 08h	WORD	(call) number of logical sectors to transfer
+ 0Ah	DWORD	(call) pointer to buffer
+---command 0Fh---
+ 04h	WORD	(call) temporary buffer area
+---command 10h---
+ no additional parameters
+
+Format of SuperStor CVF compressed unit structure:
+Offset	Size	Description	(Table 04115)
+ 00h 31 BYTEs	BIOS parameter block for compressed drive (see #01663)
+ 1Fh  5 BYTEs	reserved for future expansion of the BPB
+ 24h 33 BYTEs   DOS 4-6 style drive parameter block for compressed drive
+		  (see #01395)
+ 45h  2 BYTEs	reserved for future expansion of the DPB
+ 47h	WORD	first sector of relocation table (RBT)
+ 49h	WORD	first sector of file allocation table
+ 4Bh	WORD	first sector of the data area
+ 4Dh	BYTE	sec2byteshift
+ 4Eh  2 BYTEs	???
+		Note:	Reportedly these two bytes did not exist in ADDSTOR's
+			  specification, so the whole structure would have
+			  been documented differently.
+ 50h	WORD	sectors per cluster
+ 52h	BYTE	sector shift
+ 53h	WORD	compression ratio
+ 55h	DWORD	number of physical sectors in the host file
+ 59h	WORD	OS version
+ 5Bh	BYTE	SuperStor level
+ 5Ch	BYTE	unknown???
+ 5Dh	BYTE	flags
+		bits 7-1: ???
+		bit 0: drive is mounted
+ 5Eh	BYTE	unknown???
+ 5Fh	DWORD	pointer to CVF's underlaying host DCB
+		this should be the physical DPB for this unit
+		    ->  +00h BYTE host unit DOS unit number
+		        +01h BYTE CVF's driver host subunit number
+Note:	As this SuperStor compressed unit structure's structure is located
+	  within the segment the SuperStor driver has occupied, the segment
+	  value of its address can be used as an installation check, since it
+	  contains the signature "ADDSTOR" at offset 20h in the SuperStor
+	  driver.  This is used by Novell DOS 7 WINSWAP.SYS to check for the
+	  presence of SuperStor.
+SeeAlso: #04114
+Index:	installation check;SuperStor
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660704
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - MIDPAK - REGISTER XMIDI
+	AX = 0704h
+	CX:BX -> XMIDI sequence data
+	DI:SI = length of XMIDI data
+Return: AX = status
+	    0000h unable to register XMIDI data
+	    0001h XMIDI file registered resident
+	    0002h XMIDI file was registered to the application
+

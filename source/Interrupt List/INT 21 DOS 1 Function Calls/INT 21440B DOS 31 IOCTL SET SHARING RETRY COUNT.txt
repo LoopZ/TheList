@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440B
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ - IOCTL - SET SHARING RETRY COUNT
+	AX = 440Bh
+	CX = pause between retries (default 1)
+	DX = number of retries (default 3)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h) (see #01680 at AH=59h/BX=0000h)
+Notes:	delay is dependent on processor speed (value in CX specifies number of
+	  64K-iteration empty loops to execute)
+	if DX=0000h on entry, the retry count is left unchanged
+	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AH=52h,INT 2F/AX=1224h,INT 2F/AX=122Bh
+

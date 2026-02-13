@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF64
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - CREATE QUEUE
+	AH = E3h subfn 64h
+	DS:SI -> request buffer (see #01962)
+	ES:DI -> reply buffer (see #01963)
+Return: AL = status (00h,96h,99h,9Bh,9Ch,EDh-F1h,F5h,F7h,FCh,FEh,FFh)
+	      (see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be on a workstation with supervisor privileges
+SeeAlso: AH=E3h/SF=65h,AH=E3h/SF=66h,AH=E3h/SF=68h,AH=E3h/SF=6Bh
+SeeAlso: AX=F217h/SF=64h
+
+(Table 01961)
+Values for NetWare function status:
+ 00h (0)	successful
+ 96h (150)	server out of memory
+ 99h (153)	directory full
+ 9Bh (155)	invalid directory handle
+ 9Ch (156)	invalid path
+ D0h (208)	queue error
+ D1h (209)	no such queue
+ D2h (210)	no server for queue
+ D3h (211)	no queue rights
+ D4h (212)	queue full
+ D5h (213)	no queue job
+ D6h (214)	no job rights
+ D7h (215)	queue servicing error
+ D8h (216)	queue not active
+ D9h (217)	station is not a server
+ DAh (218)	queue halted
+ DBh (219)	too many queue servers
+ EDh (237)	property already exists
+ EEh (238)	object already exists
+ EFh (239)	invalid name
+ F0h (240)	wildcard not allowed
+ F1h (241)	invalid bindery security level
+ F5h (245)	not permitted to create object
+ F7h (247)	not permitted to create property
+ FCh (252)	no such object
+ FEh (254)	server bindery locked
+ FFh (255)	bindery failure
+SeeAlso: #01950,#02002,#01680,#02860 at INT 2F/AX=7A20h/BX=0000h
+
+Format of NetWare "Create Queue" request buffer:
+Offset	Size	Description	(Table 01962)
+ 00h	WORD	length of following data (max ABh)
+ 02h	BYTE	64h (subfunction "Create Queue")
+ 03h	WORD	(big-endian) queue type
+ 05h	BYTE	length of queue's name (01h-2Fh)
+ 06h  N BYTEs	queue's name
+	BYTE	directory handle or 00h
+	BYTE	length of path name (01h-76h)
+      N BYTEs	path name of directory in which to create queue subdirectory
+SeeAlso: #01963,#02198
+
+Format of NetWare "Create Queue" reply buffer:
+Offset	Size	Description	(Table 01963)
+ 00h	WORD	(call) 0004h (size of following results buffer)
+ 02h	DWORD	(big-endian) object ID of queue
+SeeAlso: #01962,#02198
+

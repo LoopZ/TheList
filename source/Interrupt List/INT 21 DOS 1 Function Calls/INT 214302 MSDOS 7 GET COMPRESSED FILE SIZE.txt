@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214302
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7 - GET COMPRESSED FILE SIZE
+	AX = 4302h
+	DS:DX -> ASCIZ pathname for file or directory
+Return: CF clear if successful
+	    ??? = compressed size of file/directory in bytes
+	CF set on error
+	    AX = error code
+Note:	on volumes which do not support compression, the returned size is the
+	  actual file size rounded up to the next cluster boundary
+SeeAlso: AH=71h,AH=72h
+

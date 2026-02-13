@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F15--CL04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - GET AND CLEAR ACKNOWLEDGE STATUS
+	AH = 15h
+	CL = 04h
+	DX:DI -> status structure (see #03960)
+Return: AL = status
+	    00h successful
+		DX:DI structure filled
+	    01h busy
+	    0Ah no acknowledgement has arrived
+SeeAlso: AH=12h,AH=14h/CL=01h
+
+Format of Alloy status structure:
+Offset	Size	Description	(Table 03960)
+ 00h	BYTE	sender ID
+ 01h	BYTE	channel number
+ 02h  4 BYTEs	receiver status (see #03954)
+

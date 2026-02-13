@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE209DX0000
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SecureDevice - INSTALLATION CHECK
+	AX = E209h
+	DX = 0000h
+Return: AX = 1DEAh if installed
+	    DX = number of drivers installed
+

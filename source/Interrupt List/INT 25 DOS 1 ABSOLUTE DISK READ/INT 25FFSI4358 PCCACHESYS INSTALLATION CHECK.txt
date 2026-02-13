@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 25--FFSI4358
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 25 - PC-CACHE.SYS - INSTALLATION CHECK
+	AL = FFh
+	SI = 4358h
+Return: SI = 6378h if installed
+	    CX = segment of device driver PC-CACHE.SYS
+	    DX = version (major in DH, minor in DL)
+Program: PC-CACHE.SYS is a small device driver used by PC-Cache v5.x to obtain
+	  access to certain disk drivers for devices such as Bernoulli drives
+SeeAlso: INT 13/AH=A0h
+

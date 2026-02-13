@@ -1,0 +1,270 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F0B
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS - GET VBE/AF v1.0P DEVICE CONTEXT BUFFER
+	AX = 4F0Bh
+	BL = subfunction
+	    00h get length of device context buffer
+	    01h initialize device context buffer
+		ES:DI -> real-mode address of buffer (see #00089)
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+		CX = number of bytes required for buffer (if BL=00h on entry)
+		ES:DI buffer initialized (if BL=01h on entry)
+	    01h failed
+Note:	this interface description is derived from the draft VBE/AF proposal
+	  (version 1.0P, document revsion 0.12P, dated 13jan95)
+SeeAlso: AX=4F00h,AX=4F01h,AX=4F17h
+
+Format of VBE/AF v1.0P Device Context buffer:
+Offset	Size	Description	(Table 00089)
+ 00h	WORD	maximum X coordinate in frame buffer (0 = left edge)
+		Note:	application must never pass X coordinate greater than
+			  this value to the SetClipRect function (values are
+			  NOT range-checked!)
+ 02h	WORD	maximum Y coordinate in frame buffer (0 = top edge)
+		Note:	application must never pass Y coordinate greater than
+			  this value to the SetClipRect function
+ 04h	DWORD	-> "SetForeColor" to set foreground color/mix (see #00091)
+ 08h	DWORD	-> "SetBackColor" to set background color/mix (see #00092)
+ 0Ch	DWORD	-> "SetClipRect" set hardware clipping rectangle (see #00093)
+ 10h	DWORD	-> function "DrawScan" to draw a single scan line
+ 14h	DWORD	-> function "DrawScanList" to draw a list of scan lines
+ 18h	DWORD	-> function "DrawRect" to draw a solid rectangle
+ 1Ch	DWORD	-> function "DrawLine" to draw a solid line
+ 20h	DWORD	-> function "DrawPattScan" to draw a patterned scan line
+ 24h	DWORD	-> function "BitBlt" to perform screen-to-screen BitBLT
+ 28h	DWORD	-> "TransBitBlt" to perform transparent screen-to-screen BitBLT
+ 2Ch	DWORD	-> "MonoBitBlt" to monochrome expansion screen-to-screen BitBLT
+ 30h	DWORD	-> function "SetCursor" to download hardware cursor image
+ 34h	DWORD	-> function "SetCursorPos" to set hardware cursor position
+ 38h	DWORD	-> function "SetCursorColor" to set hardware cursor color
+ 3Ch	DWORD	-> function "ShowCursor" to show/hide hardware cursor
+ 40h	DWORD	-> function "WaitTillIdle" to wait until graphics engine idle
+ 44h	DWORD	-> "EnableDirectAccess" to enable direct framebuffer access
+ 48h	DWORD	-> "DisableDirectAccess" to disable direct framebuffer access
+ 4Ch	DWORD	-> "BankSwitchCB" bank-switching callback function
+		(set by application, may simply point at 32-bit VBE 2.0 bank
+		  switching entry point)
+ 50h	WORD	"VidMemSel" selector for video memory (must be set by app)
+ 52h	WORD	"IOPortsOff" offset of I/O ports table in context buffer
+ 54h	WORD	"IOMemoryOff" offset of I/O memory table in context buffer
+ 56h	WORD	"IOMemSel1" selector for first I/O memory area specified by
+		  I/O memory table (must be set by application)
+ 58h	WORD	"IOMemSel2" selector for second I/O memory area
+ 5Ah	WORD	"IOMemSel3" selector for third I/O memory area
+ 5Ch	WORD	"IOMemSel4" selector for fourth I/O memory area
+ 5Eh  N BYTEs	device-specific state buffer
+      N WORDs	I/O port access table (list of ports, last entry is FFFFh)
+      N DWORDs	I/O memory access table (list of physical-address/length pairs,
+		  last entry is FFFFFFFFh)
+      N BYTEs	32-bit code for VBE/AF v1.0P function
+Notes:	all function pointers are offsets into the 32-bit code within the
+	  context buffer, and should be updated to point at the actual
+	  functions after the application has copied the buffer from the
+	  real-mode memory used for the interrupt call into its own flat-model
+	  memory space
+	any functions which are not supported by the hardware have function
+	  pointers which are set to 00000000h initially
+
+(Table 00090)
+Values for VBE/AF v1.0P color mixing mode:
+ 00h	replace
+ 01h	XOR with existing pixel
+ 02h	OR with existing pixel
+ 03h	AND with existing pixel
+SeeAlso: #00091,#00090
+
+(Table 00091)
+Call VBE/AF v1.0P function "SetForeColor" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = new foreground color (format varies by video mode)
+	BL = new foreground mixing mode (see #00090)
+SeeAlso: #00089,#00092,#00107
+
+(Table 00092)
+Call VBE/AF v1.0P function "SetbackColor" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = new background color (format varies by video mode)
+	BL = new background mixing mode (see #00090)
+SeeAlso: #00089,#00091,#00093
+
+(Table 00093)
+Call VBE/AF v1.0P function "SetClipRect" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = left clipping coordinate
+	EBX = top clipping coordinate
+	ECX = right clipping coordinate
+	EDX = bottom clipping coordinate
+SeeAlso: #00089,#00092,#00094,#00107
+
+(Table 00094)
+Call VBE/AF v1.0P function "DrawScan" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = X1 coordinate
+	EBX = Y coordinate
+	ECX = X2 coordinate
+Desc:	draw a solid horizontal line from (X1,Y) to (X2,Y) in the currently-
+	  active foreground color and mix, omitting the pixel at the largest
+	  X coordinate
+SeeAlso: #00089,#00093,#00095,#00098,#00107
+
+(Table 00095)
+Call VBE/AF v1.0P function "DrawScanList" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = Y coordinate of first line
+	EBX = length of scan list
+	DS:ESI -> scanline list X coordinates (2N WORDs)
+Desc:	draw multiple solid horizontal lines at successive Y coordinates,
+	  using the currently-active foreground color and mix, omitting the
+	  pixel at the largest X coordinate for each line
+Note:	the scanline list consists of pairs of X coordinates; because the
+	  last pixel is omitted, a scanline will be skipped if X1==X2
+SeeAlso: #00089,#00094,#00096,#00107
+
+(Table 00096)
+Call VBE/AF v1.0P function "DrawRect" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = left coordinate
+	EBX = top coordinate
+	ECX = right coordinate
+	EDX = bottom coordinate
+Desc:	draw a solid rectangle in the currently-active foreground color and
+	  mix, omitting the rightmost X coordinate and bottom-most scan line
+Note:	results are undefined if EAX>ECX or EBX>EDX; nothing will be drawn if
+	  EAX=ECX or EBX=EDX
+SeeAlso: #00089,#00094,#00095,#00097
+
+(Table 00097)
+Call VBE/AF v1.0P function "DrawLine" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = ??? (specified this way in the draft documentation!)
+	EBX = ???
+	ECX = ???
+	EDX = ???
+	ESI = ???
+Desc:	draw a solid line in the currently-active foreground color and mix,
+	  given the Bresenham parameters
+SeeAlso: #00089,#00094,#00096,#00098
+
+(Table 00098)
+Call VBE/AF v1.0P function "DrawPattScan" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = X1 coordinate
+	EBX = Y coordinate
+	ECX = X2 coordinate
+	DL = 8-bit stipple pattern
+Desc:	draw a patterned horizontal line from (X1,Y) to (X2,Y) in the
+	  currently-active foreground color and mix, omitting the pixel at
+	  the largest X coordinate
+Note:	for each pixel in the line, if DL bit (X mod 8) is set, the pixel is
+	  drawn, and left untouched if the bit is clear
+SeeAlso: #00089,#00096,#00097,#00094,#00099,#00107
+
+(Table 00099)
+Call VBE/AF v1.0P function "BitBlt" with:
+	ES:EDI -> device context buffer (see #00089)
+	DS:ESI -> BitBlt parameter block (see #00100)
+	BL = mix operation
+	    00h replace
+	    01h XOR
+	    02h OR
+	    03h AND
+SeeAlso: #00089,#00094,#00098,#00101,#00107
+
+Format of VBE/AF BitBlt parameter block:
+Offset	Size	Description	(Table 00100)
+ 00h	WORD	left coordinate of source rectangle
+ 02h	WORD	top coordinate of source rectangle
+ 04h	WORD	right coordinate of source rectangle
+ 06h	WORD	bottom coordinate of source rectangle
+ 08h	WORD	left coordinate of destination rectangle
+ 0Ah	WORD	top coordinate of destination rectangle
+ 0Ch	BYTE	horizontal direction: 00h = decrement X, 01h = increment X
+ 0Dh	BYTE	vertical direction: 00h = decrement Y, 01h = increment Y
+Notes:	the rightmost pixel(s) and bottom-most scan line are not copied
+	the horizontal/vertical direction flags are used to ensure correct
+	  copies when the source and destination rectangles overlap
+SeeAlso: #00099
+
+(Table 00101)
+Call VBE/AF v1.0P function "TransBitBlt" with:
+	ES:EDI -> device context buffer (see #00089)
+	DS:ESI -> BitBlt parameter block (see #00100)
+	BL = mix operation
+	    00h replace
+	    01h XOR
+	    02h OR
+	    03h AND
+	ECX = transparent color
+Desc:	copy a rectangular area from one location to another, treating pixels
+	  with the specified color as transparent (leaving the destination
+	  unchanged)
+SeeAlso: #00089,#00099,#00102,#00107
+
+(Table 00102)
+Call VBE/AF v1.0P function "MonoBitBlt" with:
+	ES:EDI -> device context buffer (see #00089)
+	DS:ESI -> BitBlt parameter block (see #00100)
+	BL = mix operation
+	    00h replace
+	    01h XOR
+	    02h OR
+	    03h AND
+	BH = bit-plane from which to read
+Desc:	copy a rectangular area from one location to another, expanding a
+	  single bit of each source pixel
+SeeAlso: #00089,#00099,#00101
+
+(Table 00103)
+Call VBE/AF v1.0P function "SetCursor" with:
+	ES:EDI -> device context buffer (see #00089)
+	DS -> application's data segment
+	ESI -> 32x32 cursor data, in Windows 3.1 cursor-file format
+		(32 DWORDs of XOR mask followed by 32 DWORDs of AND mask)
+SeeAlso: #00089,#00094,#00104,#00105
+
+(Table 00104)
+Call VBE/AF v1.0P function "SetCursorPos" with:
+	ES:EDI -> device context buffer (see #00089)
+	EAX = cursor X coordinate
+	EBX = cursor Y coordinate
+	CL = cursor's X hotspot
+	CH = cursor's Y hotspot
+SeeAlso: #00089,#00103,#00105
+
+(Table 00105)
+Call VBE/AF v1.0P function "SetCursorColor" with:
+	ES:EDI -> device context buffer (see #00089)
+	AL = 8-bit color index, or color's Red value
+	AH = color's Green value (16-bpp, 24-bpp, 32-bpp modes)
+	BL = color's Blue value (16-bpp, 24-bpp, 32-bpp modes)
+SeeAlso: #00089,#00103,#00104,#00106
+
+(Table 00106)
+Call VBE/AF v1.0P function "ShowCursor" with:
+	ES:EDI -> device context buffer (see #00089)
+	AL = new visibility (00h hide cursor, 01h show cursor)
+SeeAlso: #00089,#00103,#00104,#00105
+
+(Table 00107)
+Call VBE/AF v1.0P function "WaitTillIdle" with:
+	ES:EDI -> device context buffer (see #00089)
+Desc:	pause until the hardware accelerator has completed all pending
+	  operations
+SeeAlso: #00089,#00108,#00109
+
+(Table 00108)
+Call VBE/AF v1.0P function "EnableDirectAccess" with:
+	ES:EDI -> device context buffer (see #00089)
+SeeAlso: #00089,#00109,#00107,AX=4F05h,#00078,#00080
+
+(Table 00109)
+Call VBE/AF v1.0P function "DisableDirectAccess" with:
+	ES:EDI -> device context buffer (see #00089)
+SeeAlso: #00089,#00108
+

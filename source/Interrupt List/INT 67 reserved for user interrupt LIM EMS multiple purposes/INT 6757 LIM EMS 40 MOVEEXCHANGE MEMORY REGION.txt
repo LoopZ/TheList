@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6757
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - MOVE/EXCHANGE MEMORY REGION
+	AH = 57h
+	AL = subfunction
+	    00h move memory region
+	    01h exchange memory region
+	DS:SI -> structure describing source and destination (see #03653)
+Return: AH = status (see #03652)
+Note:	source and destination may overlap for a move, in which case the copy
+	  direction is chosen such that the destination receives an intact copy
+	  of the source region
+
+(Table 03652)
+Values for EMS function status:
+ 00h	successful
+ 80h	internal error
+ 81h	hardware failure
+ 83h	invalid handle
+ 84h	undefined function requested
+ 8Ah	invalid logical page number encountered
+ 8Fh	undefined subfunction
+ 92h	successful, but a portion of the source region has been overwritten
+ 93h	length of source or destination region exceeds length of region
+	  allocated to either source or destination handle
+ 94h	conventional and expanded memory regions overlap
+ 95h	offset within logical page exceeds size of logical page
+ 96h	region length exceeds 1M
+ 97h	source and destination EMS regions have same handle and overlap
+ 98h	memory source or destination type undefined
+ A2h	attempted to wrap around 1M conventional address space
+
+Format of EMS copy data:
+Offset	Size	Description	(Table 03653)
+ 00h	DWORD	region length in bytes
+ 04h	BYTE	source memory type
+		00h conventional
+		01h expanded
+ 05h	WORD	source handle (0000h if conventional memory)
+ 07h	WORD	source initial offset (within page if EMS, segment if convent)
+ 09h	WORD	source initial segment (conv mem) or logical page (EMS)
+ 0Bh	BYTE	destination memory type
+		00h conventional
+		01h expanded
+ 0Ch	WORD	destination handle
+ 0Eh	WORD	destination initial offset
+ 10h	WORD	destination initial segment or page
+

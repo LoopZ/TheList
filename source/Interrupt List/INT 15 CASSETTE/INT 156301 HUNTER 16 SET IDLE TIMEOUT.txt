@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156301
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SET IDLE TIMEOUT
+	AX = 6301h
+	BX = timeout in seconds (0-3600)
+Desc:	sets the idle timeout value, the interval without keyboard or
+	  communications activity before the system shuts down
+SeeAlso: AX=6300h
+

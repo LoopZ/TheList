@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 92E105
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 92 - Da Vinci eMail Dispatcher - "NetOpen"
+	AX = E105h
+	BX = size of parameter block in words (0007h)
+	CX:DX -> parameter block (see #03982)
+Return: AX = 0000h Error
+	AX = handle
+Desc:	this function is used to open a submission channel
+SeeAlso: AX=E10Ah,AX=E106h,AX=E108h
+
+Format of Da Vinci eMail "NetOpen" parameter block:
+Offset	Size	Description	(Table 03982)
+ 00h	WORD	operation (1 = read, 2 = write)
+ 02h	WORD	segment of uppercase To: username
+ 04h	WORD	offset of uppercase To: username
+ 06h	WORD	segment of "DVSEMAIL"
+ 08h	WORD	offset of "DVSEMAIL"
+ 0Ah	WORD	segment of node address
+ 0Ch	WORD	offset of node address
+

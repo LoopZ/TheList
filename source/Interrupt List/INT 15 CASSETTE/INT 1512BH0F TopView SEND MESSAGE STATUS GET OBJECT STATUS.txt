@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0F
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "STATUS" - GET OBJECT STATUS
+	AH = 12h
+	BH = 0Fh
+	BL = object
+	    00h handle is DWORD on top of stack
+		timer:	 is it running?
+		pointer: return status of last message
+		panel:	 verify success of last OPEN or APPLY
+	    02h return status of last msg READ from mailbox (handle on stack)
+	    03h return status of last msg READ from task's default mailbox
+	    04h get stat of last msg from task's KEYBOARD (task handle on stk)
+	    05h get status of last msg from task's default KEYBOARD
+	    06h return whether OBJECTQ is open or not (handle on top of stack)
+	    07h return whether task's default OBJECTQ is open or not
+Return: DWORD on top of stack is status (any handle passed on stack popped)
+Notes:	if object is a panel object, the status indicates the error code:
+	  00h successful
+	  14h panel name not in panel directory
+	  15h not enough memory to apply panel
+	  16h invalid panel format
+	  17h panel file already open
+	  81h-92h  DOS error codes+80h			\  codes > 80h indicate
+	  95h not enough memory to open panel file	 > that the panel was
+	  98h null panel file name			/  not opened
+	if object is a timer, the status is:
+	  00000000h open but not running
+	  40000000h open and running
+	  80000000h closed
+	if object is an OBJECTQ, the status is:
+	  00000000h open
+	  80000000h closed
+	if object is a keyboard in keystroke mode, the status is the extended
+	  character code (scan code) of the last keystroke
+	if object is a keyboard in field mode, the status indicates the reason
+	  for the last return from the field manager
+	  00h Enter key pressed
+	  01h Button 1 or keystroke selection
+	  02h Button 2
+	  03h validation
+	  04h auto Enter on field
+	  1Bh Escape pressed
+	  46h ^Break pressed
+	  other: extended code for key terminating input
+	the status of mailbox messages sent by the window manager is always 80h
+	the status of a pointer message is the same as the status field in the
+	  message
+SeeAlso: AH=12h/BH=04h"READ"
+

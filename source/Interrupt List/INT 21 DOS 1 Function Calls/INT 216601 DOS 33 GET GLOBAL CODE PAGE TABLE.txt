@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216601
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.3+ - GET GLOBAL CODE PAGE TABLE
+	AX = 6601h
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    BX = active code page (see #01757)
+	    DX = system code page (see #01757)
+SeeAlso: AX=6602h
+

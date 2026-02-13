@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E909
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - NetWare shell - CONVERT DOS FILE HANDLE TO NETWARE
+	AX = E909h
+	BX = DOS file handle
+Return: AX = 0000h if successful
+	    BX:CX:DX = NetWare file handle
+Notes:	this function is partially a reverse of "AttachHandle" (AH=B4h)
+	many NetWare 3.x functions use a four-byte file handle, which appears
+	  to be the high four bytes of the six-byte NetWare handle
+SeeAlso: AH=B4h"NetWare"
+

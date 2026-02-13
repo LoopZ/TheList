@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 50000C
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - DO REQUEST
+	AX = 000Ch
+	ES:BX -> request structure
+Return: AX = status
+	    0000h confirmed
+	    FFFFh denied
+SeeAlso: AX=0008h
+

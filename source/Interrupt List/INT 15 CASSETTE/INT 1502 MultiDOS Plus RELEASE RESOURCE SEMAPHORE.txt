@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1502
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - RELEASE RESOURCE SEMAPHORE
+	AH = 02h
+	AL = semaphore number (00h-3Fh)
+Return: AH = status
+	    00h successful
+	    01h not semaphore owner
+	    02h invalid semaphore number
+Notes:	if any tasks are waiting for the semaphore, the first task on the wait
+	  queue will become the new owner and be reawakened
+	do not use within an interrupt handler
+SeeAlso: AH=01h"MultiDOS",AH=10h"MultiDOS",AH=1Ch"MultiDOS"
+

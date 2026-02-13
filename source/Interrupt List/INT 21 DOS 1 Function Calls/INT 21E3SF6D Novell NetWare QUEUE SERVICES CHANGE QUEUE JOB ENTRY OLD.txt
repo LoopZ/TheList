@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF6D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - CHANGE QUEUE JOB ENTRY (OLD)
+	AH = E3h subfn 6Dh
+	DS:SI -> request buffer (see #01981)
+	ES:DI -> reply buffer (see #01983)
+Return: AL = status (00h,96h,D0h,D1h,D5h,D7h,FEh,FFh) (see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be an operator or the user who created the job
+SeeAlso: AH=E3h/SF=68h,AH=E3h/SF=6Ah,AH=E3h/SF=6Ch,AH=E3h/SF=6Eh
+SeeAlso: AX=F217h/SF=6Dh
+
+Format of NetWare "Change Queue Job Entry" request buffer:
+Offset	Size	Description	(Table 01981)
+ 00h	WORD	0105h (length of following data)
+ 02h	BYTE	6Dh (subfunction "Change Queue Job Entry")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h 256 BYTEs	job structure (see #01971)
+SeeAlso: #01983
+

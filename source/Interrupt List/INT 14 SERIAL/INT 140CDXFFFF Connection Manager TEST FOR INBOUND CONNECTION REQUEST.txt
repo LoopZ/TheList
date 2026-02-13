@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140C--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - TEST FOR INBOUND CONNECTION REQUEST
+	AH = 0Ch
+	DX = FFFFh
+	AL = connection ID from AH=0Bh/DX=FFFFh
+Return: AH = return code (00h-03h) (see also #00303 at AH=00h/DX=FFFFh)
+	    03h not prepared for inbound connection
+	AL = connection ID (if AH=00h) or correct connection ID (if AH=02h)
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+SeeAlso: AH=03h/DX=FFFFh,AH=04h/DX=FFFFh,AH=0Bh/DX=FFFFh
+

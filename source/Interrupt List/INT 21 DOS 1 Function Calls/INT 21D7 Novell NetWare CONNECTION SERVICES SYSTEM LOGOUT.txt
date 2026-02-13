@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - SYSTEM LOGOUT
+	AH = D7h
+Return: AL = error code
+Desc:	this function closes the caller's open files, logs it out from all
+	  file servers, detaches the workstation from all non-default file
+	  servers, and maps a drive to the default server's SYS:LOGIN directory
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=D6h,AH=E3h/SF=14h,AH=F1h"NetWare"
+

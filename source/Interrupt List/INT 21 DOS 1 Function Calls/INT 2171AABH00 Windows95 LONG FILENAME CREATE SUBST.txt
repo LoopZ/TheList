@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2171AABH00
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - CREATE SUBST
+	AX = 71AAh
+	BH = 00h
+	BL = drive number (00h = default, 01h = A:, etc.)
+	DS:DX -> ASCIZ pathname to associate with drive letter
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680)
+		7100h if function not supported
+SeeAlso: AX=71AAh/BH=01h,AX=71AAh/BH=02h,INT 2F/AX=1000h,#01643
+

@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310303
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - ALLOCATE REAL MODE CALLBACK ADDRESS
+	AX = 0303h
+	DS:(E)SI = selector:offset of procedure to call
+	ES:(E)DI = selector:offset of real mode call structure (see #03148)
+Return: CF clear if successful
+	    CX:DX = segment:offset of real mode call address (see #03149)
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8015h) (see #03143)
+Notes:	the real mode call structure is static, causing reentrancy problems;
+	  its contents are only valid at the time of a callback
+	the called procedure must modify the real mode CS:IP before returning
+	values are returned to real mode by modifying the real mode call struc
+	DPMI hosts must provide at least 16 callbacks per client
+	the limited DPMI host built into Phar Lap's 286|DOS-Extender v2.5 does
+	  not support this function
+BUG:	Windows NT 4.0 either ignores or clears the high 16 bits of EDI,
+	  causing an illegal instruction error if the real mode call
+	  structure's offset in ES is greater than 64K
+SeeAlso: AX=0304h,AX=0C00h
+
+(Table 03149)
+Values DPMI real-mode callback procedure is called with:
+	DS:(E)SI = selector:offset of real mode SS:SP
+	ES:(E)DI = selector:offset of real mode call structure
+	SS:(E)SP = locked protected mode API stack
+	interrupts disabled
+Return: (with IRET)
+	ES:(E)DI = selector:offset of real mode call structure to restore
+

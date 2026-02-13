@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EF00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - GET DRIVE HANDLE TABLE
+	AX = EF00h
+Return: ES:SI -> network shell's 32-byte drive handle table
+	AX = 0000h
+Notes:	this function is supported by Advanced NetWare 1.0+
+	each byte in the drive handle table contains the directory handle for
+	  the corresponding drive, or 00h if not mapped to a directory
+SeeAlso: AX=EF01h,AX=EF02h,AX=EF03h,AX=EF04h
+

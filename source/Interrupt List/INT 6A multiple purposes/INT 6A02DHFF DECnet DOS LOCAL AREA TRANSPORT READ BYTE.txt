@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6A02--DHFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6A - DECnet DOS LOCAL AREA TRANSPORT - READ BYTE
+	AH = 02h
+	DH = FFh
+	DL = handle
+Return: AH < 80h if successful
+	    AL = character
+	AH >= 80h on error
+SeeAlso: AH=01h
+

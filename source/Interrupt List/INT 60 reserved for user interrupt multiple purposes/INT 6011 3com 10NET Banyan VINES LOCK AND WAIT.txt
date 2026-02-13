@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6011
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - 3com, 10NET, Banyan VINES - LOCK AND WAIT
+	AH = 11h
+	AL = drive number or 0
+	DX = number of seconds to wait
+	ES:SI = Ethernet address or 0
+	DS:BX -> 31-byte ASCIZ semaphore name
+Return: AL = status (see #03314)
+SeeAlso: AH=12h,AH=13h
+
+(Table 03314)
+Values for 3com semaphore status:
+ 00h	successful
+ 01h	timeout
+ 02h	server not responding
+ 03h	invalid semaphore name
+ 04h	semaphore list is full
+ 05h	invalid drive ID
+ 06h	invalid Ethernet address
+ 07h	not logged in
+ 08h	write to network failed
+ 09h	semaphore already logged for this CPU
+

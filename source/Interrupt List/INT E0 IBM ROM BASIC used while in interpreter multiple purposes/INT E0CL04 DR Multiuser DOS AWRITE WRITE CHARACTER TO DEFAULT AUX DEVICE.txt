@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL04
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_WRITE" - WRITE CHARACTER TO DEFAULT AUX DEVICE
+	CL = 04h
+	DL = BYTE to write
+Return: nothing
+	may destroy SI,DI,DH???
+Note:	if another process owns AUX, this call blocks until the device becomes
+	  available
+SeeAlso: INT 21/AH=04h,INT E0/CL=03h,INT E0/CL=08h,INT E0/CL=A5h,INT E0/CL=ADh
+

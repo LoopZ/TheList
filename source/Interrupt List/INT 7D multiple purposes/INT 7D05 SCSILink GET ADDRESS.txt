@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D05
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - GET ADDRESS
+	AH = 05h
+Return: AL = DMA channel
+	AH = initiator ID
+	BX = card address
+Desc:	determine the current hardware configuration
+

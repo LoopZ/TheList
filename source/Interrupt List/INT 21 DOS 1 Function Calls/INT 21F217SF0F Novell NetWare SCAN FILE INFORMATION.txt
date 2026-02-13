@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF0F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SCAN FILE INFORMATION
+	AX = F217h subfn 0Fh
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01903 at AH=E3h/SF=0Fh)
+	ES:DI -> reply buffer (see #02165)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=0Fh,AX=F217h/SF=10h
+
+Format of NetWare "Scan File Information" reply packet:
+Offset	Size	Description	(Table 02165)
+ 00h	WORD	next sequence number (place in request buffer for next call)
+ 02h 14 BYTEs	ASCIZ filename
+ 10h	BYTE	file attributes (see #01420 at AX=4301h)
+ 11h	BYTE	extended file attributes (see #01804 at AH=B6h)
+ 12h	DWORD	(big-endian) file size in bytes
+ 16h	WORD	(big-endian) file's creation date (see #01666 at AX=5700h)
+ 18h	WORD	(big-endian) date of last access (see #01665 at AX=5700h)
+ 1Ah	DWORD	(big-endian) date and time of last update (see #01846)
+ 1Eh	DWORD	(big-endian) object ID of owner
+ 22h	DWORD	(big-endian) date and time last archived (see #01846)
+ 26h 55 BYTEs	reserved
+SeeAlso: #01903 at AH=E3h/SF=0Fh
+

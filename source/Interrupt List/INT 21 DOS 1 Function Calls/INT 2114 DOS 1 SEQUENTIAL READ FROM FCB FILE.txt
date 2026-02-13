@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2114
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - SEQUENTIAL READ FROM FCB FILE
+	AH = 14h
+	DS:DX -> opened FCB (see #01345)
+Return: AL = status
+	    00h successful
+	    01h end of file (no data)
+	    02h segment wrap in DTA
+	    03h end of file, partial record read
+	Disk Tranfer Area filled with record read from file
+Notes:	reads a record of the size specified in the FCB beginning at the
+	  current file position, then updates the current block and current
+	  record fields in the FCB
+	if a partial record was read, it is zero-padded to the full size
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+SeeAlso: AH=0Fh,AH=15h,AH=1Ah,AH=3Fh"DOS",INT 2F/AX=1108h
+

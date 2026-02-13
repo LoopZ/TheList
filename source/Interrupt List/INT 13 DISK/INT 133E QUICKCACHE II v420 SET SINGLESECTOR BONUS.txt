@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 133E
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - QUICKCACHE II v4.20 - SET SINGLE-SECTOR BONUS
+	AH = 3Eh
+	AL = new value for bonus
+Return: AX = status (0000h successful)
+Desc:	specify the bonus score to give to single-sector transfers in order to
+	  keep those sectors in the cache longer
+

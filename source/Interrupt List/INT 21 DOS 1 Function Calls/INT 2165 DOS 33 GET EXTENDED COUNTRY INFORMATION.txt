@@ -1,0 +1,103 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2165
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.3+ - GET EXTENDED COUNTRY INFORMATION
+	AH = 65h
+	AL = info ID
+	    01h get general internationalization info (see also AX=6500h)
+	    02h get pointer to uppercase table
+	    03h (DOS 6.2+ COUNTRY.SYS) get pointer to lowercase table
+	    04h get pointer to filename uppercase table
+	    05h get pointer to filename terminator table
+	    06h get pointer to collating sequence table
+	    07h (DOS 4.0+) get pointer to Double-Byte Character Set table
+	BX = code page (FFFFh=global code page) (see #01757)
+	DX = country ID (FFFFh=current country)
+	ES:DI -> country information buffer (see #01750)
+	CX = size of buffer (>= 5)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    CX = size of country information returned
+	    ES:DI -> country information (see #01750)
+Notes:	AL=05h appears to return same info for all countries and codepages; it
+	  has been documented for DOS 5+, but was undocumented in earlier
+	  versions
+	NLSFUNC must be installed to get info for countries other than the
+	  default
+	subfunctions 02h and 04h are identical under OS/2
+	subfunction 03h apparently supports only codepage 866 in DOS 6.2x
+SeeAlso: AH=38h,AH=70h"MS-DOS 7",INT 2F/AX=1401h,INT 2F/AX=1402h
+SeeAlso: INT 2F/AX=14FEh
+
+Format of country information:
+Offset	Size	Description	(Table 01750)
+ 00h	BYTE	info ID
+---if info ID = 01h---
+ 01h	WORD	size of following info in bytes
+ 03h	WORD	country ID (see #01400 at AH=38h)
+ 05h	WORD	code page (see #01757)
+ 07h 34 BYTEs	country-dependent info (see #01399 at AH=38h)
+---if info ID = 02h---
+ 01h	DWORD	pointer to uppercase table (see #01751)
+---if info ID = 03h---
+ 01h	DWORD	pointer to lowercase table (see #01752)
+---if info ID = 04h---
+ 01h	DWORD	pointer to filename uppercase table (see #01753)
+---if info ID = 05h---
+ 01h	DWORD	pointer to filename character table (see #01754)
+---if info ID = 06h---
+ 01h	DWORD	pointer to collating table (see #01755)
+---if info ID = 07h (DOS 4.0+)---
+ 01h	DWORD	pointer to DBCS lead byte table (see #01756)
+SeeAlso: #01775
+
+Format of uppercase table:
+Offset	Size	Description	(Table 01751)
+ 00h	WORD	table size (0080h)
+ 02h 128 BYTEs	uppercase equivalents (if any) of chars 80h to FFh
+SeeAlso: #01750,#01753
+
+Format of lowercase table:
+Offset	Size	Description	(Table 01752)
+ 00h	WORD	table size (0100h)
+ 02h 256 BYTEs	lowercase equivalents (if any) of chars 00h to FFh
+SeeAlso: #01750,#01753
+
+Format of filename uppercase table:
+Offset	Size	Description	(Table 01753)
+ 00h	WORD	table size (0080h)
+ 02h 128 BYTEs	uppercase equivalents (if any) of chars 80h to FFh
+SeeAlso: #01750,#01751
+
+Format of filename terminator table:
+Offset	Size	Description	(Table 01754)
+ 00h	WORD	table size (not counting this word)
+ 02h	BYTE	??? (01h for MS-DOS 3.30-6.00)
+ 03h	BYTE	lowest permissible character value for filename
+ 04h	BYTE	highest permissible character value for filename
+ 05h	BYTE	??? (00h for MS-DOS 3.30-6.00)
+ 06h	BYTE	first excluded character in range \ all characters in this
+ 07h	BYTE	last excluded character in range  / range are illegal
+ 08h	BYTE	??? (02h for MS-DOS 3.30-6.00)
+ 09h	BYTE	number of illegal (terminator) characters
+ 0Ah  N BYTEs	characters which terminate a filename:	."/\[]:|<>+=;,
+Note:	partially documented for DOS 5+, but undocumented for earlier versions
+SeeAlso: #01750
+
+Format of collating table:
+Offset	Size	Description	(Table 01755)
+ 00h	WORD	table size (0100h)
+ 02h 256 BYTEs	values used to sort characters 00h to FFh
+SeeAlso: #01750
+
+Format of DBCS lead byte table:
+Offset	Size	Description	(Table 01756)
+ 00h	WORD	length of table in ranges
+ 02h 2N BYTEs	start/end for N lead byte ranges
+	WORD	0000h	(end of table)
+SeeAlso: #01750
+

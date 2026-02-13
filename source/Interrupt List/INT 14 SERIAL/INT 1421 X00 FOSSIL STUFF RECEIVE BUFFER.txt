@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1421
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - X00 FOSSIL - STUFF RECEIVE BUFFER
+	AH = 21h
+	AL = character
+	DX = port number
+Return: nothing
+Notes:	the given character is inserted at the end of the receive buffer as if
+	  it had just arrived from the serial port; all normal receive
+	  processing (XON/XOFF, ^C/^K) is performed on the character
+	fully re-entrant
+SeeAlso: AH=20h"X00"
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215D02
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 3.1+ internal - SHARE.EXE - CLOSE FILE BY NAME
+	AX = 5D02h
+	DS:DX -> DOS parameter list (see #01686), only fields DX, DS,
+		  computer ID, and process ID used
+	DPL's DS:DX -> ASCIZ name of file to close
+Return: CF set on error
+	    AX = error code (see #01680)
+	CF clear if successful
+Notes:	error unless SHARE is loaded (calls [SysFileTable-28h])
+	  (see #01636 at AH=52h)
+	name must be canonical fully-qualified, such as returned by AH=60h
+	not supported by DR DOS 3.41 and 5.0; returns error code 01h
+	not supported by Novell DOS 7, although in Update 15 it is reported
+	  to no longer return an error code
+SeeAlso: AX=5D03h,AX=5D04h,AH=3Eh,AH=60h
+

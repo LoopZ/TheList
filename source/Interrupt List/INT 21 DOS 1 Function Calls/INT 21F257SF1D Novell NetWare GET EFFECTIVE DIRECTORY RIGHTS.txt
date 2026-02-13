@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF1D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET EFFECTIVE DIRECTORY RIGHTS
+	AX = F257h subfn 1Dh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02421)
+	ES:DI -> reply buffer (see #02422)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AX=F216h/SF=03h,AX=F257h/SF=06h,AX=F257h/SF=0Ch,AX=F257h/SF=15h
+
+Format of NetWare "Get Effective Directory Rights" request packet:
+Offset	Size	Description	(Table 02421)
+ 00h	BYTE	1Dh (subfunction "Get Effective Directory Rights")
+ 01h	BYTE	name space (see #02387)
+ 02h	BYTE	destination name space (see #02387)
+ 03h	WORD	search attributes
+ 05h	DWORD	return information mask
+ 09h		NetWare Handle/Path structure (see #02376)
+SeeAlso: #02422
+
+Format of NetWare "Get Effective Directory Rights" reply packet:
+Offset	Size	Description	(Table 02422)
+ 00h	WORD	caller's effective rights
+ 02h		NetWare Information Structure
+SeeAlso: #02421
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC64CBX5553
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Smart Prompt - INSTALLATION CHECK
+	AX = C64Ch
+	BX = 5553h
+Return: AX = 4CC6h if installed
+	BX = 5355h if installed
+Program: Smart Prompt (SMARTPMT) is a freeware TSR by Steve Gibson which
+	  forces an immediate flush of SmartDrive's (and compatible caches')
+	  buffers on returning to the DOS prompt
+

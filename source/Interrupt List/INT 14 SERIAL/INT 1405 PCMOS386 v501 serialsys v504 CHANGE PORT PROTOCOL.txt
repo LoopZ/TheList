@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1405
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - CHANGE PORT PROTOCOL
+	AH = 05h
+	AL = new port protocol (see #00336)
+	BH = new XOFF character
+	BL = new XON character
+	DX = port number
+Return: AH = FFh if invalid protocol
+SeeAlso: AH=00h,AH=04h"SERIAL",AH=06h"PC-MOS"
+
+Bitfields for PC-MOS/386 serial port protocol:
+Bit(s)	Description	(Table 00336)
+ 7	set to enable/disable CD monitoring, clear to set protocol
+---bit 7 set---
+ 4	CD monitoring enabled
+ 5	automatic restart enabled
+---bit 7 clear---
+ 0	receive XON/XOFF
+ 1	transmit XON/XOFF
+ 2	DTR/DSR
+ 3	RTS/CTS
+

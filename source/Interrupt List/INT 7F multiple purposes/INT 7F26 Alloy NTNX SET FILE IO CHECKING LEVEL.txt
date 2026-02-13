@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F26
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX - SET FILE I/O CHECKING LEVEL
+	AH = 26h
+	CL = check type to set/reset
+	    01h directory protection
+	    02h extended open
+	    03h flush on every disk write
+	    04h flush on disk write if any lock set during write
+	    05h flush on all reads if file written
+	AL = new state (00h off, 01h on)
+SeeAlso: AH=26h/CL=00h,AH=26h/CL=06h
+

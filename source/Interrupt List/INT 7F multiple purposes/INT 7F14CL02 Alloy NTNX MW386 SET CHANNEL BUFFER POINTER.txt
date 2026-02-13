@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F14--CL02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - SET CHANNEL BUFFER POINTER
+	AH = 14h
+	CL = 02h
+	AL = channel number
+	DX:DI -> receive buffer
+Return: AL = status (00h-03h) (see #03954)
+Note:	may be called from within a receive ISR or when a datagram is pending
+SeeAlso: AH=10h/CL=00h,AH=14h/CL=00h
+

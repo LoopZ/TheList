@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310C00
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - INSTALL RESIDENT HANDLER INIT CALLBACK
+	AX = 0C00h
+	ES:(E)DI -> resident service provider structure (see #03158)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8015h,8021h,8025h) (see #03143 at AX=0000h)
+Note:	calling this function declares an intent to provide resident
+	  protected mode services after terminating with AX=0C01h
+SeeAlso: AX=0303h,AX=0C01h
+
+Format of DPMI resident service provider structure:
+Offset	Size	Description	(Table 03158)
+ 00h	QWORD	descriptor for 16-bit data segment
+ 08h	QWORD	descriptor for 16-bit code segment (zeros if not supported)
+ 10h	WORD	offset of 16-bit callback procedure
+ 12h  2 BYTEs	reserved
+ 14h	QWORD	descriptor for 32-bit data segment
+ 1Ch	QWORD	descriptor for 32-bit code segment (zeros if not supported)
+ 24h	DWORD	offset of 32-bit callback procedure
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH03
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - 16-BIT PROTECTED-MODE CONNECT
+	AX = 53B0h
+	BH = 03h
+	CX = 6941h ('iA')
+Return: CF clear if successful
+	    AX = SMBus 16-bit code segment (real mode base address)
+	    BX = offset of entry point into SMBus BIOS Interface
+	    CX = SMBus 16-bit data segment (real mode base address)
+	    SI = code segment length in bytes
+	    DI = data segment length in bytes
+	CF set if error
+	    AH = error code (01h,02h,0Ah,86h) (see #00484)
+	    AL = sub-error code if error code is 02h (see #00485)
+Desc:	connect to SMBus interface; once connected, all SMBus calls are made
+	  to the supplied entry point instead of INT 15 (with registers
+	  identical to those described here for INT 15)
+Notes:	before calling the entry point, two descriptors must be initialized
+	  in the GDT or LDT.  They must be consecutive and be in the order of
+	  code, then data.  At the time	of the call, the descriptors must be
+	  valid and have CPL=0.
+	the code descriptor must be ring-0 privilege
+	this function is only supported in INT 15 mode
+SeeAlso: AX=53B0h/BH=01h,AX=53B0h/BH=02h,AX=53B0h/BH=04h,AX=53B0h/BH=05h
+

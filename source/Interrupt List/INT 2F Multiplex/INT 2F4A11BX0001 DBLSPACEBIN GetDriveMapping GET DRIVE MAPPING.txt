@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0001
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "GetDriveMapping" - GET DRIVE MAPPING
+	AX = 4A11h
+	BX = 0001h
+	DL = drive number (0=A:)
+Return: AX = status (see also #02804)
+	    0000h successful
+		if DL was compressed drive,
+		    BL = host drive (bit 7 set if drive is compressed)
+		else if DL was host drive,
+		    BL = compressed drive
+		else
+		    BL = specified drive (if available for DoubleSpace)
+		BH = DoubleSpace sequence number
+	    other error code (0101h) (see #02804)
+		apparently never returned for the MS-DOS 6.2 DoubleSpace
+Note:	the compressed volume file for the specified compressed drive is
+	  host:\DBLSPACE.sequence
+SeeAlso: AX=4A11h/BX=0000h
+
+(Table 02804)
+Values for DBLSPACE function status:
+ 0000h	successful
+ 0100h	bad function
+ 0101h	invalid drive
+ 0102h	not a compressed drive
+ 0103h	drive already swapped
+ 0104h	drive not swapped
+SeeAlso: #02806
+

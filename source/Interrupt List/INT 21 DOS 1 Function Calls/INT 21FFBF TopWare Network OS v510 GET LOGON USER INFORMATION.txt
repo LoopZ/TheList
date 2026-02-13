@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFBF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET LOGON USER INFORMATION
+	AX = FFBFh
+	DX:BX -> buffer for logon information (see #02535)
+Return: AL = status (00h successful, else failed)
+	AH = number of logged-in stations
+
+Format of TopWare logon information:
+Offset	Size	Description	(Table 02535)
+ 00h	BYTE	station address
+ 01h 15 BYTEs	username
+

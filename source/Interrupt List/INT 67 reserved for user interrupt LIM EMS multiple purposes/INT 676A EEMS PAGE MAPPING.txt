@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 676A
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - EEMS - PAGE MAPPING
+	AH = 6Ah
+	AL = subfunction
+	    00h save partial page map
+		CH = first page frame
+		CL = number of frames
+		ES:DI -> buffer which is to be filled
+	    01h restore partial page map
+		CH = first page frame
+		CL = number of frames
+		DI:SI -> previously saved page map
+	    02h save and restore partial page map
+		CH = first page frame
+		CL = number of frames
+		ES:DI = buffer for current page map
+		DI:SI = new page map
+	    03h get size of save array
+		CH = first page frame
+		CL = number of frames
+		Return: AL = size of array in bytes
+	    04h switch to standard map register setting
+	    05h switch to alternate map register setting
+	    06h deallocate pages mapped to frames in conventional memory
+		CH = first page frame
+		CL = number of frames
+Return: AH = status (see #03648)
+Note:	similar to EMS function 4Eh, except that a subrange of pages can be
+	  specified
+SeeAlso: AH=69h
+

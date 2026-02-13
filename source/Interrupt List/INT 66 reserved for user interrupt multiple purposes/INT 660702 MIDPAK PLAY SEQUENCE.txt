@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660702
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - MIDPAK - PLAY SEQUENCE
+	AX = 0702h
+	BX = Sequence number
+Return: AX = status
+	    0000h Sequence is being played
+	    0001h Sequence not available
+SeeAlso: AX=0703h,AX=0705h
+

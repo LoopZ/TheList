@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62007A
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOUSEPOS" - GET CURRENT MOUSE POSITION
+	AX = 007Ah
+	ES:BX -> variable pointer record (see #03491)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0079h
+
+Format of FGDRIVER MOUSEPOS variable pointer record:
+Offset	Size	Description	(Table 03491)
+ 00h	WORD	segment of WORD buffer for mouse column
+ 02h	WORD	offset of WORD buffer for mouse column
+ 04h	WORD	segment of WORD buffer for mouse row
+ 06h	WORD	offset of WORD buffer for mouse row
+ 08h	WORD	segment of WORD buffer for button status
+ 0Ah	WORD	offset of WORD buffer for button status
+Note:	button status: bit 0 = left button, bit 1 = right, bit 2 = middle
+

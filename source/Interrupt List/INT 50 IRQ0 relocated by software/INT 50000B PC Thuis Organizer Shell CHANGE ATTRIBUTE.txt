@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 50000B
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - CHANGE ATTRIBUTE
+	AX = 000Bh
+	BL = new attribute
+	CH,CL = row,column of upper left corner
+	DH,DL = row,column of lower right corner
+	DI = window handle
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC500
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-DOS Econet v1.05 - INSTALLATION CHECK
+	AX = C500h
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, can't install
+	    FFh installed
+Note:	the interrupt-enable state will be preserved, but interrupts may be
+	  enabled during processing of this function
+SeeAlso: AX=C501h,AX=C508h
+

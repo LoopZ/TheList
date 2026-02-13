@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200D2
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBFREE" - RELEASE VIRTUAL BUFFER
+	AX = 00D2h
+	BX = virtual buffer handle
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	this function should be used only for buffers created with FG_VBALLOC
+SeeAlso: AX=00CDh,AX=00D4h,AX=00D5h
+

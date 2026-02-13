@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1522
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - later PS/2s - LOCATE ROM BASIC
+	AH = 22h
+Return: CF set on error
+	    AH = status (86h if function not supported)
+	CF clear on success
+	    AH = 00h
+	    ES:BX -> ROM BASIC
+Notes:	if this function is not supported, ROM BASIC is at F600h:0000h
+	IBM classifies this function as optional
+SeeAlso: INT 86"BASIC",INT F0"BASIC"
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1424
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus - SET MONITOR MODE
+	AH = 24h
+	AL = port status storage
+	    00h single status for entire receive buffer
+	    01h separate status kept for each byte in receive buffer
+	DX = port number
+Return: AH = status
+	    00h successful
+	    3Ah invalid status storage specified
+	    41h no such port
+	    64h monitor mode already active
+Note:	in monitor mode, MultiDOS redirects all BIOS video output to a serial
+	  port
+SeeAlso: AH=20h"MultiDOS",AH=25h
+

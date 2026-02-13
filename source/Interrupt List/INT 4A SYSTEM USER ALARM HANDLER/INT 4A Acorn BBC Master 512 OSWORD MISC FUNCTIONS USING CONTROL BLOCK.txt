@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4A
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4A - Acorn BBC Master 512 - "OSWORD" - MISC FUNCTIONS USING CONTROL BLOCK
+	AL = function code
+	    FAh transfer data between 80186 and 65C12 I/O processor
+	DS:BX -> control block (see #03211)
+Return: FLAGS destroyed
+	control block updated
+Note:	there are more functions than are listed here, but details are not
+	  available
+SeeAlso: INT 40"Acorn",INT 4B"Acorn",INT 4C"Acorn"
+
+Format of BBC Master control block for function FAh:
+Offset	Size	Description	(Table 03211)
+ 00h	BYTE	number of parameters sent to I/O processor (0Dh,0Eh)
+ 01h	BYTE	number of parameters read from I/O processor (01h)
+ 02h	DWORD	I/O processor address
+ 06h	DWORD	80186 segment:offset address
+ 0Ah	WORD	number of bytes to transfer
+ 0Ch	BYTE	operation type
+		00h write to 65C12 at 24 us/byte
+		01h read from 65C12 at 24 us/byte
+		02h write to 65C12 at 26 us/word
+		03h read from 65C12 at 26 us/word
+		04h write to 65C12 at 10 us/byte using 256-byte blocks
+		05h read from 65C12 at 10 us/byte using 256-byte blocks
+ 0Dh	BYTE	65C12 memory access control (only used if offset 00h = 0Eh)
+		(see #03212)
+
+Bitfields for 65C12 memory access control:
+Bit(s)	Description	(Table 03212)
+ 7	unused
+ 6	always use main screen memory if I/O addr 3000h-7FFFh (overrides bit 5)
+ 5	use shadow screen memory if screen address specified
+ 4	use current ROM rather than ROM selected by bits 3-0 (only if I/O
+	  address between 8000h and BFFFh)
+ 3-0	paged ROM number
+

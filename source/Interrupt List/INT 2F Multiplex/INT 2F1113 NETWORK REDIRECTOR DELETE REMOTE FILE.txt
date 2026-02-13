@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1113
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - DELETE REMOTE FILE
+	AX = 1113h
+	SS = DS = DOS DS
+	SDA first filename pointer -> fully-qualified filename in DOS DS
+	SDA CDS pointer -> current directory structure for drive with file
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+Notes:	this function is called by the DOS 3.1+ kernel
+	the filespec may contain wildcards
+SeeAlso: AX=1114h,INT 21/AH=41h,INT 21/AH=60h
+

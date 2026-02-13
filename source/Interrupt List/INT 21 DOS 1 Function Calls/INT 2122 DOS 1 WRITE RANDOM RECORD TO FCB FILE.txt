@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2122
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - WRITE RANDOM RECORD TO FCB FILE
+	AH = 22h
+	DS:DX -> opened FCB (see #01345)
+	Disk Transfer Area contains record to be written
+Return: AL = status
+	    00h successful
+	    01h disk full
+	    02h segment wrap in DTA
+Notes:	the record is written to the current file position as specified by the
+	  random record and record size fields of the FCB
+	the file position is not updated after writing the record
+	if the record is located beyond the end of the file, the file is
+	  extended but the intervening data remains uninitialized
+	if the record only partially fills a disk sector, it is copied to a
+	  DOS disk buffer to be written out to disk at a later time
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+SeeAlso: AH=15h,AH=21h,AH=28h,AH=40h
+

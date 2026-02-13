@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BFDCDX0000
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Rational Systems DOS/4GW - INSTALLATION CHECK
+	AX = BFDCh
+	DX = 0000h
+	SI = 0000h
+Return: DX = nonzero if installed
+	    DX:SI -> XBRK structure (see #00508)
+SeeAlso: AX=BF02h
+

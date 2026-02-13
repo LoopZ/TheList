@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212510
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - CALL REAL-MODE PROCEDURE, REGISTERS
+	AX = 2510h
+	EBX = CS:IP of real-mode procedure to call
+	ECX = number of two-byte words to copy to protected-mode stack to
+	      real-mode stack
+	DS:EDX -> pointer to parameter block (see #01360)
+Return: CF clear if successful
+	    all segment registers unchanged,
+	    EDX unchanged
+	    all other general registers contain values set by real-mode proc
+	    all other flags are set as they were left by real-mode procedure
+	    real-mode register values are returned in the parameter block
+	CF set on error
+	    EAX = error code
+		01h not enough real-mode stack space
+Note:	unlike most of the preceding 25xxh functions, this one is not
+	  supported by FlashTek X-32VM
+SeeAlso: AX=250Eh,AX=250Fh
+
+Format of Phar Lap real-mode call parameter block:
+Offset	Size	Description	(Table 01360)
+ 00h	WORD	real-mode DS value
+ 02h	WORD	real-mode ES value
+ 04h	WORD	real-mode FS value
+ 06h	WORD	real-mode GS value
+ 08h	DWORD	real-mode EAX value
+ 0Ch	DWORD	real-mode EBX value
+ 10h	DWORD	real-mode ECX value
+ 14h	DWORD	real-mode EDX value
+

@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A95
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - INQUIRE ERROR DETECTION CODE
+	AH = 95h
+	AL = adapter number
+	BH = EDC generator number
+Return: CF clear if successful
+	    AH destroyed
+	    CX = bitmap of assignable sockets
+	    DH = EDC capabilities (see #00688)
+	    DL = supported EDC types (see #00689)
+	CF set on error
+	    AH = error code (01h,04h) (see #00656)
+SeeAlso: AH=96h,AH=9Ch
+
+Bitfields for EDC capabilities:
+Bit(s)	Description	(Table 00688)
+ 0	unidirectional only generation
+ 1	bidirectional only generation
+ 2	register-based (I/O-mapped) support
+ 3	memory-mapped support
+ 4	pausable
+ 5-7	reserved (0)
+
+Bitfields for supported EDC types:
+Bit(s)	Description	(Table 00689)
+ 0	8-checksum
+ 1	16-CRC-SDLC
+ 2-7	reserved (0)
+

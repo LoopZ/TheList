@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15101C
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "ENDC" - END CRITICAL REGION
+	AX = 101Ch
+Return: task-switching enabled
+Note:	this API call may be made from within a hardware interrupt handler
+SeeAlso: AX=101Bh,AX=DE13h,AX=DE1Bh,INT 2F/AX=1682h,INT 60/DI=0603h
+

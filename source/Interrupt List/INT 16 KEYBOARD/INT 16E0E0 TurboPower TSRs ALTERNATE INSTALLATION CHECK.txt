@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E0E0
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - TurboPower TSRs - ALTERNATE INSTALLATION CHECK
+	AX = E0E0h
+Return: AX = 1F1Fh if installed
+	    DWORD 0040h:00F0h -> last data block in TSR list (see #00615)
+Note:	the returned TSR list provides support for communication among TSRs
+	  built with TurboPower's Turbo Professional and Object Professional
+	  libraries for Turbo Pascal
+SeeAlso: AX=F0F0h
+

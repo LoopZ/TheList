@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE11BL00
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.00+ - "JUSTIFY" - EN/DISABLE AUTOM. WINDOW JUSTIFICATION
+	AX = DE11h
+	BL = 00h      viewport will not move automatically
+	     nonzero  viewport will move to keep cursor visible (default)
+Return: nothing
+

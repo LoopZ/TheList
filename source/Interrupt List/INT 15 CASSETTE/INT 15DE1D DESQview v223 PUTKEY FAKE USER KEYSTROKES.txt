@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE1D
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.23+ - "PUTKEY" - FAKE USER KEYSTROKES
+	AX = DE1Dh
+	DX = segment of handle for task to receive keystroke
+	BL = character
+	BH = scan code
+Return: AX = 0000h if successful
+	   nonzero if receiver's keyboard buffer was full
+Notes:	the key is treated as though the user had pressed it, ignoring any
+	  script which may be bound to the key, and using the current field
+	  table if the keyboard object is in field processing mode
+	multiple PUTKEYs are seen in the order in which they are executed
+SeeAlso: AX=DE10h
+

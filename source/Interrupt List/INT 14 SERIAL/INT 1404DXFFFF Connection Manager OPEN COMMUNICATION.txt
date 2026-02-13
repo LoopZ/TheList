@@ -1,0 +1,228 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1404--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - OPEN COMMUNICATION
+	AH = 04h
+	DX = FFFFh
+	ES:DI -> Connection Request protocol vector (see #00311)
+Return: AH = return code
+	    00h successful
+		AL = connection ID
+		BH = connection type
+		    00h direct connection or no dialing
+		    01h Connection Server dialed phone
+	    01h no response from Connection Server
+	    03h invalid request
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+Desc:	initiate a connection to the Connection Server listed in the current
+	  Client parameter set
+Notes:	if DX is 0-3 on entry, Connection Manager emulates the standard BIOS
+	  function, but redirects the port over the network; if DX is any other
+	  value, the call is chained
+	all subvectors of the Connection Request vector are optional; if
+	  missing, default values are provided by the default connection
+	  parameter set
+SeeAlso: AH=00h/DX=FFFFh,AH=05h/DX=FFFFh,AH=06h/DX=FFFFh,AH=07h/DX=FFFFh
+SeeAlso: AH=0Ah/DX=FFFFh,AH=0Ch/DX=FFFFh
+
+Format of Connection Manager protocol command vector:
+Offset	Size	Description	(Table 00311)
+ 00h	WORD	(big-endian) total length of command (including this word)
+ 02h	WORD	(big-endian) command code
+		EF01h Connection Request
+		EF06h Modify Connection Parameters
+ 04h  N BYTEs	list of subvectors (see #00313)
+		allowable subvector types are 01h-04h,17h,18h for command code
+		  EF01h; 03h,04h for command code EF06h (see #00312)
+
+(Table 00312)
+Values for Connection Manager subvector type code:
+ 01h	Connection ID
+ 02h	Destination ID
+ 03h	Asynchronous line parameters
+ 04h	Data transfer parameters
+ 09h	Line speed
+ 0Ah	Serial coding
+ 0Bh	Packet size
+ 0Ch	Timers
+ 0Dh	Special characters
+ 0Eh	Target ID
+ 0Fh	Telephone number
+ 10h	ASCII destination ID
+ 11h	Parity
+ 12h	Bits per character
+ 13h	Number of stop bits
+ 14h	Packet timer
+ 15h	Intercharacter timer
+ 17h	Flags
+ 18h	Parameter ranges
+ 19h	Flow control
+
+Format of Connection Manager subvector:
+Offset	Size	Description	(Table 00313)
+ 00h	BYTE	length of subvector
+ 01h	BYTE	type code (see #00312)
+ 02h N-2 BYTEs	data, which may include subvectors
+SeeAlso: #00314,#00315,#00316,#00317,#00318,#00319,#00320,#00321,#00322,#00323,#00324
+SeeAlso: #00325,#00326,#00328,#00329,#00330,#00331,#00332,#00333,#00311
+
+Format of Connection ID subvector:
+Offset	Size	Description	(Table 00314)
+ 00h	BYTE	03h (length)
+ 01h	BYTE	01h (subvector "Connection ID")
+ 02h	BYTE	connection ID
+SeeAlso: #00313
+
+Format of Destination ID subvector:
+Offset	Size	Description	(Table 00315)
+ 00h	BYTE	length
+ 01h	BYTE	02h (subvector "Destination ID")
+ 02h  N BYTEs	subvector(s) of type 0Eh, 0Fh, or 10h
+SeeAlso: #00313
+
+Format of Asynchronous line parameters subvector:
+Offset	Size	Description	(Table 00316)
+ 00h	BYTE	length
+ 01h	BYTE	03h (subvector "Asynchronous line parameters")
+ 02h  N BYTEs	subvector(s) of type 09h, 0Ah, or 19h
+SeeAlso: #00313
+
+Format of Data transfer parameters subvector:
+Offset	Size	Description	(Table 00317)
+ 00h	BYTE	length
+ 01h	BYTE	04h (subvector "Data transfer parameters")
+ 02h  N BYTEs	subvector(s) of type 0Bh, 0Ch, or 0Dh
+SeeAlso: #00313
+
+Format of Line speed subvector:
+Offset	Size	Description	(Table 00318)
+ 00h	BYTE	04h (length)
+ 01h	BYTE	09h (subvector "Line speed")
+ 02h	WORD	bit map, highest set bit selects speed
+		bit 0: 2400
+		bits 1-7: 1800, 1200, 600, 300, 115200, 150, 110 bps
+		bits 8-15: 57600, 38400, 19200, 14400, 9600, 7200, 4800, 3600
+SeeAlso: #00313
+
+Format of Serial coding subvector:
+Offset	Size	Description	(Table 00319)
+ 00h	BYTE	length
+ 01h	BYTE	0Ah (subvector "Serial coding")
+ 02h  N BYTEs	subvector(s) of type 11h, 12h, or 13h
+SeeAlso: #00313
+
+Format of Packet size subvector:
+Offset	Size	Description	(Table 00320)
+ 00h	BYTE	04h (length)
+ 01h	BYTE	0Bh (subvector "Packet size")
+ 02h	WORD	(big-endian) packet size, 1 to 1024
+SeeAlso: #00313
+
+Format of Timers subvector:
+Offset	Size	Description	(Table 00321)
+ 00h	BYTE	length
+ 01h	BYTE	0Ch (subvector "Timers")
+ 02h  8 BYTEs	subvector of type 14h or 15h
+SeeAlso: #00313
+
+Format of Special characters subvector:
+Offset	Size	Description	(Table 00322)
+ 00h	BYTE	length
+ 01h	BYTE	0Dh (subvector "Special characters")
+ 02h  N BYTEs	list of ASCII characters to be used as EOM or EOB
+SeeAlso: #00313
+
+Format of Target ID:
+Offset	Size	Description	(Table 00323)
+ 00h	BYTE	length
+ 01h	BYTE	0Eh (subvector "Target ID")
+ 02h  N BYTEs	target ID, 1-16 bytes
+SeeAlso: #00313
+
+Format of Telephone number subvector:
+Offset	Size	Description	(Table 00324)
+ 00h	BYTE	length
+ 01h	BYTE	0Fh (subvector "Telephone number")
+ 02h  N BYTEs	telephone number
+SeeAlso: #00313
+
+Format of ASCII destination ID subvector:
+Offset	Size	Description	(Table 00325)
+ 00h	BYTE	length
+ 01h	BYTE	10h (subvector "ASCII destination ID")
+ 02h  N BYTEs	destination ID
+SeeAlso: #00313
+
+Format of Parity subvector:
+Offset	Size	Description	(Table 00326)
+ 00h	BYTE	03h (length)
+ 01h	BYTE	11h (subvector "Parity")
+ 02h	BYTE	parity type (see #00327)
+SeeAlso: #00313
+
+Bitfields for Connection Manager parity type:
+Bit(s)	Description	(Table 00327)
+ 7	odd
+ 6	even
+ 5	mark
+ 4	space
+ 3	none
+SeeAlso: #00326
+
+Format of Bits per character subvector:
+Offset	Size	Description	(Table 00328)
+ 00h	BYTE	03h (length)
+ 01h	BYTE	12h (subvector "Bits per character")
+ 02h	BYTE	bits per character
+		bit 7: seven
+		bit 6: eight
+SeeAlso: #00313
+
+Format of Number of stop bits subvector:
+Offset	Size	Description	(Table 00329)
+ 00h	BYTE	03h (length)
+ 01h	BYTE	13h (subvector "Number of stop bits")
+ 02h	BYTE	stop bits
+		bit 7: one
+		bit 6: 1.5
+		bit 5: two
+SeeAlso: #00313
+
+Format of Packet timer and Intercharacter timer subvectors:
+Offset	Size	Description	(Table 00330)
+ 00h	BYTE	04h (length)
+ 01h	BYTE	subvector type
+		14h Packet timer
+		15h Intercharacter timer
+ 02h	WORD	(big-endian) unit of value representing 20ms
+SeeAlso: #00313
+
+Format of Flags subvector:
+Offset	Size	Description	(Table 00331)
+ 00h	BYTE	03h (length)
+ 01h	BYTE	17h (subvector "Flags")
+ 02h	BYTE	flags
+		bit 7: queueing requested
+SeeAlso: #00313
+
+Format of Parameter ranges subvector:
+Offset	Size	Description	(Table 00332)
+ 00h	BYTE	length
+ 01h	BYTE	18h (subvector "Parameter ranges")
+ 02h  N BYTEs	subvector(s) of type 09h, 11h, 12h, or 13h
+SeeAlso: #00313
+
+Format of Flow control subvector:
+Offset	Size	Description	(Table 00333)
+ 00h	BYTE	length (02h-04h)
+ 01h	BYTE	19h (subvector "Flow control")
+ 02h	BYTE	XOFF character
+ 03h	BYTE	XON character
+Note:	if length is 02h, flow control is disabled; if length is 03h, any
+	  character will be accepted as XON after an XOFF
+SeeAlso: #00313
+

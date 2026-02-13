@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0037
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VMINI / ENABLE - VxD SERVICES
+	VxD = 0037h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01300)
+Values for VMINI / ENABLE (VxD ID 0037h) service number:
+ 0000h	get version
+	Return: CF clear
+		EAX = version (AH = major, AL = minor)
+ 0001h	"VMINI_Update"
+	??? (performs VMMCall 1800Eh, then falls through to service 04h)
+	Return: EAX = system time???
+ 0002h	"VMINI_Status"
+	get current ???
+	Return: EAX = ???
+ 0003h	"VMINI_DisplayError" (schedules a global event via VMMCall 1800Eh)
+	Return: ???
+ 0004h	"VMINI_SetTimeStamp" (performs VMMCall 100CFh)
+	Return: EAX = system time
+ 0005h	"VMINI_Siren" (call ??? priority event)
+	Return: nothing
+ 0006h	"VMINI_RegisterAccess" (set ??? / get ???)
+	EDI -> buffer containing data to copy into VxD and space for results
+	Return: EDI buffer updated
+ 0007h	"VMINI_GetData"
+	EBX = ??? flags (bits 2,15,17,18 checked)
+	EDI -> ???
+	???
+	Return: ???
+ 0008h	"VMINI_ShutDownItem" (schedules a global event via VMMCall 1800Eh)
+	Return: ???
+ 0009h	"VMINI_RegisterSK" (get ??? data)
+	EDI -> buffer for data (see #01301)
+	Return:	EDI buffer updated if large enough
+SeeAlso: #01299,#01302,#02677 at INT 2F/AX=1684h/BX=0037h
+
+Format of ENABLE.VXD ??? data:
+Offset	Size	Description	(Table 01301)
+ 00h	DWORD	(ret) length of data, including this word
+		(call) length of buffer
+ 04h	DWORD	-> 24-byte (or larger) buffer
+ 08h	DWORD	-> 20-byte buffer
+ 0Ch	DWORD	-> 260-byte buffer
+ 10h	DWORD	-> 260-byte buffer
+SeeAlso: #01300
+

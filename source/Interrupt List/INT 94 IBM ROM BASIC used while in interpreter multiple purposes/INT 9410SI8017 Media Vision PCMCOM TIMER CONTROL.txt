@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94--10SI8017
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - TIMER CONTROL
+	AL = 10h
+	SI = 8017h
+	AH = timer options (see #04003)
+	DX:CX = delay if AH bit 7 set (one-shot if DX bit 15 set)
+Return: ???
+SeeAlso: AL=08h/SI=8017h
+
+Bitfields for PCM.COM timer options:
+Bit(s)	Description	(Table 04003)
+ 7	set timer
+ 6	timer active (timer turned off if clear)
+ 5-0	timer number
+

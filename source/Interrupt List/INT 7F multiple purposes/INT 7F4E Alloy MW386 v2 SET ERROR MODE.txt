@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F4E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 v2+ - SET ERROR MODE
+	AH = 4Eh
+	AL = error mode flags
+	    bit 0: display critical disk errors
+	    bit 1: display sharing errors
+	DX = 4E58h ("NX")
+Return: AL = status
+	    00h successful
+SeeAlso: AH=4Fh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 186909
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - Gravis Ultra Sound YEA_GUS.EXE - RAMP VOLUME
+	AX = 6909h
+	BL = voice number (00h-1Fh)
+	BH = looping type (0 = none, 1 = forward, 2 = back and forth)
+	CX = starting volume
+	DX = ending volume
+	DI:SI = time
+Return: nothing
+SeeAlso: AX=6902h,AX=690Ah
+

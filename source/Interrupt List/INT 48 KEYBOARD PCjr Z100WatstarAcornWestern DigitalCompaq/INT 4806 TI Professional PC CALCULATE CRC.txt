@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4806
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 48 - TI Professional PC - CALCULATE CRC
+	AH = 06h
+	ES:BX -> memory block for which to calculate CRC
+	BP = size of block in bytes
+Return: DX = CRC for block
+	ZF set if DX = 0000h
+Note:	if the CRC of a memory block is appended to the block, then the CRC
+	  of the block plus CRC should equal 0000h
+SeeAlso: AH=00h,AH=01h,AH=02h,AH=03h,AH=04h,AH=06h,AH=08h,AH=0Ah,AH=0Bh
+

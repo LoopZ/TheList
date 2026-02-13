@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BFA0BXADAD
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq ADAPT.COM - INSTALLATION CHECK
+	AX = BFA0h
+	BX = ADADh
+Return: AX = BDBDh if newer ADAPT.COM installed
+	    BX = BCD version (BH = major, BL = minor)
+	    CL = ???
+	    CH = ???
+	    DL = ???
+	AX = ADADh if older version of ADAPT.COM installed
+Program: ADAPT is Compaq's Advanced Display Attribute Programming Tool, an
+	  optionally-resident utility for setting display colors and cursor
+	  size; when resident, it also includes a screen blanker
+SeeAlso: AX=BFA1h,AX=BFA2h,AX=DFA5h
+Index:	screen saver;ADAPT
+

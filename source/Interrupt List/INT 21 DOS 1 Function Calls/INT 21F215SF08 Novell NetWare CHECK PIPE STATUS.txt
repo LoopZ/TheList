@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F215SF08
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CHECK PIPE STATUS
+	AX = F215h subfn 08h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #01835 at AH=E1h/SF=08h)
+	ES:DI -> reply buffer (see #02108)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E1h/SF=08h,AX=F215h/SF=09h
+
+Format of NetWare "Check Pipe Status" reply packet:
+Offset	Size	Description	(Table 02108)
+ 00h	BYTE	number of connections
+ 01h  N BYTEs	list of pipe statuses
+		00h open
+		FEh incomplete
+		FFh closed
+SeeAlso: #01835,#01836
+

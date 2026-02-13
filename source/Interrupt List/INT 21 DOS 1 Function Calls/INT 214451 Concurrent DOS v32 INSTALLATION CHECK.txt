@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214451
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Concurrent DOS v3.2+ - INSTALLATION CHECK
+	AX = 4451h
+Return: CF set if not Concurrent DOS
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AH = single-user/multiuser nature (see #01581)
+		10h single-user
+		    AL = operating system version ID (see #01580)
+		14h multiuser
+		    AL = operating system version ID (see #01579)
+Notes:	as of Concurrent DOS/XM 5.0 (possibly earlier), the version is stored
+	  in the environment variable VER and the OS type in variable OS
+	use this function if you are looking for multiuser capabilities,
+	  AX=4452h for single-user
+	this function should never return the single-user values; however, an
+	  application should be prepared to accept single-user values, i.e. it
+	  should check the returned AH and AL separately
+	CCI Multiuser DOS 7.22 returns AX=DX=1466h.
+	DR DOS 3.31+ error returns with AX=0001h
+SeeAlso: AX=4452h,AX=4459h
+
+(Table 01579)
+Values for Digital Research operating system version ID:
+ 32h	Concurrent PC DOS 3.2
+ 41h	Concurrent DOS 4.1
+ 50h	Concurrent DOS/XM 5.0 or Concurrent DOS/386 1.1
+ 60h	Concurrent DOS/XM 6.0 or Concurrent DOS/386 2.0
+ 62h	Concurrent DOS/XM 6.2 or Concurrent DOS/386 3.0
+ 66h	DR Multiuser DOS 5.1, CCT Multiuser DOS 7.x
+ 67h	Concurrent DOS 5.1
+SeeAlso: #01581,#04023
+

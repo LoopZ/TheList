@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101015
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - READ INDIVIDUAL DAC REGISTER (VGA/MCGA)
+	AX = 1015h
+	BL = palette register number
+Return: DH = red value
+	CH = green value
+	CL = blue value
+	AX destroyed by some BIOSes
+	      (e.g. Tseng ET4000 BIOS v8.00n always returns AX=00C9h)
+SeeAlso: AX=1010h,AX=1017h
+

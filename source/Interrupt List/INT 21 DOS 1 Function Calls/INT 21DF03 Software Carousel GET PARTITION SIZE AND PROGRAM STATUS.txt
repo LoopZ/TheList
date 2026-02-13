@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF03
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Software Carousel - GET PARTITION SIZE AND PROGRAM STATUS
+	AX = DF03h
+	BL = task number
+Return: AL = status
+	    00h Carousel not running
+	    01h successful
+		BL = partition state (00h no program running, 01h prog running)
+		DX = partition size in KB
+	    FFh unsucessful
+		AH = error code (01h) (see #01813)
+SeeAlso: AX=DF05h
+

@@ -1,0 +1,73 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 80 U - AMI BIOS v1.00.12.AX1T - internal - BIOS SUBSYSTEM SELECTION
+	AH = function
+	    00h install and initialize BIOS subsystem
+		AL = ??? (00h,01h,03h)
+		CX:BX = subsystem ID (see #03971)
+		ESI = address from which to load, or 00000000h for default for
+			subsystem
+		EDI = physical address at which to install, or 0 for default
+		Note:	if CX=0000h on entry, this call is applied to all
+			  subsystems whose ID has low word BX
+	    01h get BIOS subsystem information
+		CX:BX = subsystem ID (see #03971)
+		Return: AL = ???
+			AH = ???
+			EDX = uncompressed size of subsystem in bytes
+			SI = offset within subsystem of initialization
+				routine, or FFFFh if none
+			EDI = physical address of default location or 0
+	    02h get matching subsystem identifier
+		AL = index into subsystem list (return ALth occurrence
+		      matching BX)
+		BX = low word of subsystem identifier
+			(0001h,0002h,0004h,0005h,000Bh,FFFFh)
+		Return: CF clear if successful
+			    CX = high word of ALth matching subsystem
+			CF set on error
+		Note:	the system is halted if AL=00h on entry
+	    03h set up "big real" mode (4G segment limits)
+	    04h turn off "big real" mode (restore 64K segment limits)
+	    05h remove BIOS subsystem
+		CX:BX = subsystem ID to leave out
+		Note:	the system is halted if an invalid (not installed)
+			  subsystem ID is specified
+	    06h get installed subsystem info
+		CX:BX = subsystem ID (see #03971)
+		Return:	CF clear
+			EDX = length of ???
+			EDI = linear address of start of ???
+		Note:	the system is halted if an invalid (not installed)
+			  subsystem ID is specified
+Return: CF clear if successful
+	CF set on non-fatal error
+Note:	this interrupt vector is cleared to 0000h:0000h near the end of the
+	  BIOS startup sequence
+
+(Table 03971)
+Values for AMI BIOS subsystem ID:
+ 00010001h	ROM BIOS @F000-FFFF
+ 00010002h	setup??? (loaded @6000-68FF)
+ 00010005h	APM code
+ 0001000Bh	language-specific error message set (English)
+ 00020002h	PnP/PCI ACFG code (loaded @F000-F1FF)
+ 0001FFFFh
+ 0002FFFFh	recovery code
+ 00030004h
+ 0003FFFFh	BIOS decompression code
+ 0004000Bh
+ 00060004h
+ 0100FFFFh	ACFG data
+ 10000000h	ROM @C000 (64K)
+ 10000001h	HMA (48K)
+ 10000002h	RAM @7A00 (24K)
+ 10000003h	RAM @8000-BFFF
+ 10000004h
+ 10000005h	real-mode address space (0-1M)
+ 1000000Bh	installed language-specific message set???
+

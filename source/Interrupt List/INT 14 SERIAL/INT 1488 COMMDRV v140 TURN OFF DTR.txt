@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1488
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - TURN OFF DTR
+	AH = 88h
+	DX = port number
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+Program: COMM-DRV is a universal serial communications driver by Willies'
+	  Computer Software Company, which supports standard INT 14 and
+	  FOSSIL calls as well as its own interfaces
+SeeAlso: AX=8000h"COMM-DRV",AH=87h"COMM-DRV",AH=8Ah"COMM-DRV"
+

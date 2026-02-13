@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148003
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - TRANSLATE ERROR CODE TO ERROR STRING
+	AX = 8003h
+	CX = error number to translate (see #00360)
+Return: ES:DI -> ASCIZ error text or 0000h:0000h if unable to translate
+SeeAlso: AX=8000h
+
+(Table 00360)
+Values for ARTICOM error codes:
+ 00h	"No error"
+ 01h	"An invalid port number was specified"
+ 02h	"Port is already redirected"
+ 03h	"Too many ports redirected"
+ 04h	"Cannot locate the server"
+ 05h	"Server is busy"
+ 06h	"Access denied"
+ 07h	"Resource in use"
+ 08h	"Resource in use - request queued"
+ 09h	"No such resource"
+ 0Ah	"Invalid username/password pair"
+ 0Bh	"Noncompatible version number"
+ 0Ch	"Can't remove from memory"
+ 0Dh	"Bad NETBIOS adapter number"
+ 0Eh	"No more entries in list"
+ 0Fh	"Resource is not available at this time"
+ 10h	"Invalid value to INT 14 call"
+

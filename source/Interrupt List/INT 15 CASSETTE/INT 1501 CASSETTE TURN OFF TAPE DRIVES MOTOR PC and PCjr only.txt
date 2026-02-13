@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1501
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - CASSETTE - TURN OFF TAPE DRIVE'S MOTOR (PC and PCjr only)
+	AH = 01h
+Return: CF set on error
+	    AH = 86h no cassette present
+	CF clear if successful
+SeeAlso: AH=00h"CASSETTE"
+

@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2170
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7 (Windows95) - GET/SET INTERNATIONALIZATION INFORMATION
+	AH = 70h
+	AL = subfunction
+	    00h get ??? info
+		CX = buffer size (3Ah bytes needed)
+		ES:DI -> buffer
+	    01h set above info
+		CX = number of bytes to set
+		DS:SI -> buffer containing ??? info (see #01774)
+	    02h set general internationalization info (see also AX=6500h)
+		DS:SI -> buffer containing info (see #01775)
+		CX = buffer size in bytes (up to 26h bytes used)
+		first three bytes are skipped, the rest is copied to somewhere
+		  in the DOS data segment
+Return: CF clear if successful
+	    ES:DI buffer filled (func 00h) (see #01774)
+	    CX = number of bytes actually set or returned
+		  (max 003Ah for functions 00h and 01h under v7.00, 0026h for
+		  function 02h)
+	CF set on error
+	    AX = error code
+		7000h if function not supported
+SeeAlso: AH=38h,AH=65h
+
+Format of MS-DOS v7.0 ??? table:
+Offset	Size	Description	(Table 01774)
+ 00h 58 BYTEs	??? country-specific information
+		returned was (among others) "ENU USA GR"..."AM PM M/d/yy"...
+		 "dddd,MMMMdd,yyyy" in the German Preview version, and "US"
+		 instead of "GR" in the US build 450 version (with German
+		 country setting) and the US build 950a version with US
+		 country settings
+SeeAlso: #01775
+
+Format of MS-DOS v7.0 internationalization table:
+Offset	Size	Description	(Table 01775)
+ 00h  3 BYTEs	unused (and ignored by DOS)
+ 03h	WORD	country ID (see #01400 at AH=38h)
+ 05h	WORD	code page (see #01757)
+ 07h	WORD	date format
+ 09h  5 BYTEs	ASCIZ currency symbol string
+ 07h  2 BYTEs	ASCIZ thousands separator
+ 09h  2 BYTEs	ASCIZ decimal separator
+ 0Bh  2 BYTEs	ASCIZ date separator
+ 0Dh  2 BYTEs	ASCIZ time separator
+ 0Fh	BYTE	currency format
+		bit 2 = set if currency symbol replaces decimal point
+		bit 1 = number of spaces between value and currency symbol
+		bit 0 = 0 if currency symbol precedes value
+			1 if currency symbol follows value
+ 10h	BYTE	number of digits after decimal in currency
+ 11h	BYTE	time format
+		bit 0 = 0 if 12-hour clock
+			1 if 24-hour clock
+ 12h	DWORD	address of case map routine
+		(FAR CALL, AL = character to map to upper case [>= 80h])
+ 16h  2 BYTEs	ASCIZ data-list separator
+ 18h 10 BYTEs	reserved
+Note:	this table has the identical format to the extended country information
+	  retrieved via AH=65h with info ID = 01h
+SeeAlso: #01399,#01750
+

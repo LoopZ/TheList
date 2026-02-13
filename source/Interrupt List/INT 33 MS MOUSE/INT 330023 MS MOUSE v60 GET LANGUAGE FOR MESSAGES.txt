@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330023
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - GET LANGUAGE FOR MESSAGES
+	AX = 0023h
+Return: BX = language (see #03177)
+Note:	the US version of the driver always returns zero
+SeeAlso: AX=0022h
+

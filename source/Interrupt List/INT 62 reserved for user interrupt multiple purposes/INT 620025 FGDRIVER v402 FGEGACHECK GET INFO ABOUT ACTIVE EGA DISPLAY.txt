@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620025
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_EGACHECK" - GET INFO ABOUT ACTIVE EGA DISPLAY
+	AX = 0025h
+Return: AX = number of 64K banks of video memory, or 0000h if no EGA or EGA
+	      without an Enhanced Color Display
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00C2h
+

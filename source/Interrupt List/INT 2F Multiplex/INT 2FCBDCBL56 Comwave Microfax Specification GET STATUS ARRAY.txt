@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCBDCBL56
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Comwave Microfax Specification - GET STATUS ARRAY
+	AX = CBDCh
+	BL = 56h
+	BH = line number (starts with 1)
+	CX:DX -> 32-byte status buffer or 80 character string
+Return: AX = number of cards installed, or FFFFh on error
+Program: Comwave manufacturers the Microfax line of fax cards which are a
+	  high-performance multi-card FAX solution for OEMs.
+Note:	defaults to AH=CBh but can be changed
+SeeAlso: AX=CBDDh,AX=DA00h
+

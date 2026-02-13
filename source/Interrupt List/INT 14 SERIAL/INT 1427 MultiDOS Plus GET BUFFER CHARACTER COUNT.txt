@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1427
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus - GET BUFFER CHARACTER COUNT
+	AH = 27h
+	DX = port number
+Return: AH = status
+	    00h successful
+	    41h no such port
+	    42h monitor mode not active
+	AL = number of characters in receive buffer
+

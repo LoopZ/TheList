@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7005
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - License Service API - QUERY LICENSE
+	AX = 7005h
+	CX = license server index (0000h to 001Fh)
+	DS:DX -> SLSQUERY structure (see #02855)
+	ES:BX = provider specific handle for the license context
+Return: AL = status
+	    00h not installed
+	    FFh installed
+SeeAlso: AX=7001h,AX=7002h
+
+Format of License Service SLSQUERY structure:
+Offset	Size	Description	(Table 02855)
+ 00h	DWORD	(ret) status code
+ 04h	DWORD	handle identifying license context
+ 08h	DWORD	information index
+ 0Ch	DWORD	buffer size in bytes
+ 10h  N BYTEs	data buffer
+

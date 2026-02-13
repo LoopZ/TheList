@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F16--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_INS_FREEGLBDS" - INSTALL VALUES IN FREE VECTOR
+	AH = 16h
+	BP = 0012h (driver ID for V_SYSTEM)
+	ES:DI -> new CS:IP entry point
+Return: AH = status (00h) (see #03744 at INT 6F/AH=00h"HP Vectra")
+	BP,DS destroyed
+Note:	on installation, the given entry point will be invoked with an SF_INIT
+	  call (see AX=0200h"SF_INIT"), with BX set to the EX-BIOS global
+	  data area.  If the SF_INIT call returns with error code FEh, the
+	  power-on self-test sequence will be called.
+SeeAlso: AH=00h"HP Vectra",AH=04h/BP=0012h,AH=10h/BP=0012h,AH=12h/BP=0012h
+SeeAlso: AH=14h/BP=0012h,AH=18h/BP=0012h
+

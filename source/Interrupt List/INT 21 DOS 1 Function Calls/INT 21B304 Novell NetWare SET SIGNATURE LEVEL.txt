@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B304
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Novell NetWare - SET SIGNATURE LEVEL
+	AX = B304h
+	BX:CX = new signature level (see AX=B301h)
+Return: ???
+Note:	this function appeared with the packet signing/Large Internet Packets/
+	  IPX Checksum-aware NetWare shells
+SeeAlso: AX=B300h,AX=B301h,AX=B306h,#02875
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1402
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NLSFUNC.COM - GET EXTENDED COUNTRY INFO
+	AX = 1402h
+	BP = subfunction (same as AL for INT 21/AH=65h)
+	BX = code page (see #01757 at INT 21/AX=6602h)
+	DX = country code (see #01400 at INT 21/AH=38h)
+	DS:SI -> internal code page structure (see #02618)
+	ES:DI -> user buffer
+	CX = size of user buffer
+Return: AL = status
+	    00h successful
+	    else DOS error code
+Notes:	this function is called by the DOS v3.3+ kernel on INT 21/AH=65h
+	code page structure apparently only needed for COUNTRY.SYS pathname
+SeeAlso: AX=1401h"NLSFUNC",AX=1403h"NLSFUNC",AX=1404h,INT 21/AH=65h
+

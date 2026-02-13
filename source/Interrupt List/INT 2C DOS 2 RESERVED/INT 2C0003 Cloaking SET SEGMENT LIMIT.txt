@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0003
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - SET SEGMENT LIMIT
+	AX = 0003h
+	SI = selector
+	EBX = new limit
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #02556)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0000h,AX=0002h,AX=0004h,INT 31/AX=0008h
+

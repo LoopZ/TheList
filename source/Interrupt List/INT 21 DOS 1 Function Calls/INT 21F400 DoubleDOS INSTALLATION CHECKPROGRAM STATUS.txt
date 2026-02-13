@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F400
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - INSTALLATION CHECK/PROGRAM STATUS
+	AX = F400h
+Return: AL = program status
+	    00h if DoubleDOS not present
+	    01h if running in visible DoubleDOS partition
+	    02h if running in the invisible DoubleDOS partition
+SeeAlso: AX=E400h,AH=F5h"DoubleDOS"
+

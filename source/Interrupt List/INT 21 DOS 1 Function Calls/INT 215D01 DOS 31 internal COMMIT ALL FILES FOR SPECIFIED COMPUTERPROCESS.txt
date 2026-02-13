@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215D01
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 3.1+ internal - COMMIT ALL FILES FOR SPECIFIED COMPUTER/PROCESS
+	AX = 5D01h
+	DS:DX -> DOS parameter list (see #01686), only computer ID and
+		  process ID fields used
+Return: CF set on error
+	    AX = error code (see #01680)
+	CF clear if successful
+Notes:	flushes buffers and updates directory entries for each file which has
+	  been written to; if remote file, calls INT 2F/AX=1107h
+	the computer ID and process ID are stored but ignored under DOS 3.3
+	not supported by DR DOS 3.41 and 5.0; returns error code 01h.  Fully
+	  supported by Novell DOS 7
+SeeAlso: AH=0Dh,AH=68h,INT 2F/AX=1107h
+

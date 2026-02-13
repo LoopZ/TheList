@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6207
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - SPAWN
+	AH = 07h
+	ES:BX -> function address to start executing at
+	CX = priority (1-10)
+Return: AX = result/status
+	    FFFDh  no free memory control blocks
+	    FFFEh  no free task control blocks
+	    FFFFh  not enough memory to create new task stack
+	    >0	   the tcb number of the new task, indicating no error
+SeeAlso: AH=0Fh"Cswitch",AH=10h"Cswitch"
+

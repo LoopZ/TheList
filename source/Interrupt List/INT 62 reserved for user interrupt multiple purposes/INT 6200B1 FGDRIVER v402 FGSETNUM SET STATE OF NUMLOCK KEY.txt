@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200B1
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETNUM" - SET STATE OF NUMLOCK KEY
+	AX = 00B1h
+	BX = new state (0000h off, 0001h on)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=000Ah,AX=0082h,AX=00A4h,AX=00A8h
+

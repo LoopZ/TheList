@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1542
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - REQUEST POWER OFF (CONVERTIBLE,HP 95LX)
+	AH = 42h
+	AL = suspend type
+	    00h to use system profile
+	    01h to force suspend regardless of system profile
+Return: nothing
+Note:	the HP 95LX apparently suspends regardless of the value in AL; on
+	  power-up, execution will resume following the instruction calling
+	  this function
+SeeAlso: AH=44h
+

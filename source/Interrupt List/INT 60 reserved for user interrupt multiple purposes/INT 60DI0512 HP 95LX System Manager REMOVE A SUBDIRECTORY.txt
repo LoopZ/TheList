@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0512
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - REMOVE A SUBDIRECTORY
+	DI = 0512h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ???
+		WORD	???
+		WORD	???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 21/AH=3Ah,INT 60/DI=0511h
+

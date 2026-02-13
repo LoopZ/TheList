@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL12
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Trident TVGA 8800/8900/9000 BIOS - GET VIDEO RAM SIZE
+	AH = 12h
+	BL = 12h
+Return: AL = 12h if function supported
+	    AH = number of 256K banks of RAM installed
+		  (read from CRTC register 1Fh)
+SeeAlso: AH=12h/BL=11h"TRIDENT"
+

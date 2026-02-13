@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4807
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 48 - TI Professional PC - PRINT ROM MESSAGE
+	AH = 07h
+	SI = offset of ASCIZ message string within segment F400h
+Return: nothing
+SeeAlso: AH=00h,AH=01h,AH=02h,AH=03h,AH=04h,AH=06h,AH=08h,AH=0Ah,AH=0Bh
+

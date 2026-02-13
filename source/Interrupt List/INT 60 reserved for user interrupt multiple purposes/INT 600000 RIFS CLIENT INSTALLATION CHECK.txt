@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - RIFS - CLIENT - INSTALLATION CHECK
+	AX = 0000h
+Return: AX = 1234h if installed
+	CF clear
+Program: RIFS is the Remote Installable File System by "kyle"
+InstallCheck:	test for the signature "RIFS" immediately preceding the
+	  interrupt handler
+Range:	INT 60 to INT 66 and INT 18,selected by scanning for 0000h:0000h vector
+SeeAlso: AX=0001h,AX=0005h,AX=0007h,AX=0008h,INT 2F/AX=5600h
+

@@ -1,0 +1,91 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - FTP Software PC/TCP - TCP/IP TSR System Call interface
+	AH = system call number (also see entries below)
+	    01h "pkt_alloc" (v2.05; this is "net_config" in v2.1+)
+	    02h "pkt_free" (v2.05; this is "get_kernel_info" in v2.1+)
+Return: CF clear if successful
+	CF set on error
+	    AL = basic error (see #03319)
+	    AH = suberror number (see #03320,#03321)
+InstallCheck:	test for the signature "TCPTSR" three bytes beyond the start
+	  of the interrupt handler
+Range:	INT 20h to INT E0h, selected by configuration
+BUG:	the SLIP kernel for v2.05 bounds-checks the wrong register, so values
+	  greater than 54h in AH may crash the system.	Other kernels may have
+	  this bug as well.
+SeeAlso: INT 61/AH=00h"PC/TCP",INT 61/AH=2Ah,INT 61/AH=54h
+Index:	installation check;PC/TCP
+
+(Table 03319)
+Values for PC/TCP error code:
+ 00h "NET_NOERR" successful
+ 01h "NET_ERR_INUSE" protocol or socket already in use
+ 02h "NET_DOS_ERR" MS-DOS error (returned as suberror code in AH)
+ 03h "NET_ERR_NOMEM" out of memory
+ 04h "NET_ERR_NOTNETCONN" not a network descriptor
+ 05h "NET_ERR_ILLEGALOP" invalid operation on given kind of network descriptor
+ 06h "NET_ERR_BADPKT" illegal or corrupted packet
+ 07h "NET_ERR_NOHOST" no host bound to specified connection
+ 08h "NET_ERR_CANTOPEN" unable to open file
+ 09h "NET_ERR_NET_UNREACHABLE" network is unreachable
+ 0Ah "NET_ERR_HOST_UNREACHABLE" host is unreachable (see #03320)
+ 0Bh "NET_ERR_PROT_UNREACHABLE" protocol is unreachable
+ 0Ch "NET_ERR_PORT_UNREACHABLE" port is unreachable
+ 0Dh "NET_ERR_TIMEOUT" operation timed out
+ 0Eh "NET_ERR_HOSTUNKNOWN" unable to resolve host name
+ 0Fh "NET_ERR_NOSERVERS" no name servers configured
+ 10h "NET_ERR_SERVER_ERR" bad reply from name server
+	Subcodes: 0= no error, 1 = Host unreachable
+ 11h "NET_ERR_BADFORMAT" bad format for IP address or field in IP address
+			structure is zero
+ 12h "NET_ERR_BADARG" invalid argument
+ 13h "NET_ERR_EOF" foreign host closed its end of connection
+ 14h "NET_ERR_RESET" connection has been reset
+ 15h "NET_ERR_WOULDBLOCK" recv() call was done on a non-blocking connection
+			with no data available
+ 16h "NET_ERR_UNBOUND" insufficient resources to do operation
+ 17h "NET_ERR_NODESC" could not allocate network descriptor
+ 18h "NET_ERR_BADSYSCALL" invalid/unsupported kernel call
+ 19h "NET_ERR_CANTBROADCAST" unable to broadcast
+ 1Ah "NET_ERR_NOTESTAB" operation illegal because connection not established
+ 1Bh kernel busy, try again later
+ 1Ch "NET_ERR_ICMPMESG" an ICMP message was received (not on streams)
+	(see #03321)
+---v2.1+---
+ 1Dh "NET_ERR_TERMINATING" internal kernel fatal error
+ 1Eh "NET_ERR_TAG_LOCKED" not allowed to set this tag (net_config)
+ 1Fh "NET_ERR_BAD_INTERFACE" non existent interface specified
+ 20h "NET_ERR_BADCONFIG" kernel cannot run - bad configuration
+ 21h "NET_ERR_EMM" expanded memory error
+ 22h "NET_ERR_CANT_SHUTDOWN" cant unload kernel (multitasker running)
+ 23h "NET_ERR_PARKED_IN" unable to unhook DOS interrupt
+ 24h "NET_ERR_NOQIOS" ran out of resources; try again later
+ 25h "NET_ERR_WOULD_TRUNCATE" datagram too large and "don't truncate" was set
+
+(Table 03320)
+Values for subcodes of PC/TCP error 0Ah "NET_ERR_HOST_UNREACHABLE":
+ 00h	no error
+ 01h	host unreachable
+ 02h	ARP failed
+ 03h	hardware failure
+ 04h	link failure
+ 05h	no route
+ 06h	gateway down
+SeeAlso: #03319,#03321
+
+(Table 03321)
+Values for subcodes of PC/TCP error 1Ch "NET_ERR_ICMPMESG":
+ 07h	unrecognised
+ 08h	can't fragment
+ 09h	srcr_fail
+ 0Ah	source quench
+ 0Bh	time exceeded
+ 0Ch	parameter problem
+ 0Dh	admin_prohib. see also code 0Ah
+SeeAlso: #03319,#03320
+

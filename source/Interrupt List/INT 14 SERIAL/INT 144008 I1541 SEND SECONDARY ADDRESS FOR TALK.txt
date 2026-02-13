@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144008
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - SEND SECONDARY ADDRESS FOR TALK
+	AX = 4008h
+	BL = channel number and mode (see #00355)
+Return: CF clear if successful
+	CF set on error
+	    AL = error number (see also #00354)
+		40h turn around time-out
+SeeAlso: AX=4007h,AX=4009h
+

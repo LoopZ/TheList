@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFBA1BX0081
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - TKERNEL (Borland DOS extender) - INSTALLATION CHECK
+	AX = FBA1h
+	BX = 0081h
+	ES:DI -> 16-byte buffer
+Return: if installed, first four bytes of ES:DI buffer are "IABH"
+Program: TKERNEL is a licensed version of AI Architects/Ergo's OS/x86.
+Note:	TKERNEL was present only in Borland C++ 2.0; with version 3.0, the DOS
+	  extender was moved into DPMILOAD.
+SeeAlso: AH=A1h,AX=F100h,AX=FBA1h/BX=0082h,AX=FBA1h/BX=0084h,INT 15/AX=BF02h
+SeeAlso: INT 21/AX=4403h"AI Architects"
+

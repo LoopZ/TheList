@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLA8
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_SET" - SET DEFAULT AUX DEVICE NUMBER
+	CL = A8h
+	DL = auxiliary device number
+Return: AX = status
+	    0000h successful
+	    FFFFh failed
+	CX = error code
+Desc:	specify which physical device will become AUX
+SeeAlso: INT E0/CL=A5h,INT E0/CL=A9h
+

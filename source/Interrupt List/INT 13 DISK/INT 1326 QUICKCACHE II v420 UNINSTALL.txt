@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1326
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - QUICKCACHE II v4.20 - UNINSTALL
+	AH = 26h
+Return: AX = status
+	    0000h successful
+	    0001h-00FFh interrupt vector which was hooked by another TSR
+SeeAlso: AH=27h
+

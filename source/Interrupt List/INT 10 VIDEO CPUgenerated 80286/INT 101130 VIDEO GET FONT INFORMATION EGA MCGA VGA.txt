@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101130
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GET FONT INFORMATION (EGA, MCGA, VGA)
+	AX = 1130h
+	BH = pointer specifier
+	    00h INT 1Fh pointer
+	    01h INT 43h pointer
+	    02h ROM 8x14 character font pointer
+	    03h ROM 8x8 double dot font pointer
+	    04h ROM 8x8 double dot font (high 128 characters)
+	    05h ROM alpha alternate (9 by 14) pointer (EGA,VGA)
+	    06h ROM 8x16 font (MCGA, VGA)
+	    07h ROM alternate 9x16 font (VGA only) (see #00021)
+	    11h (UltraVision v2+) 8x20 font (VGA) or 8x19 font (autosync EGA)
+	    12h (UltraVision v2+) 8x10 font (VGA) or 8x11 font (autosync EGA)
+Return: ES:BP = specified pointer
+	CX    = bytes/character of on-screen font (not the requested font!)
+	DL    = highest character row on screen
+Note:	for UltraVision v2+, the 9xN alternate fonts follow the corresponding
+	  8xN font at ES:BP+256N
+BUG:	the IBM EGA and some other EGA cards return in DL the number of rows on
+	  screen rather than the highest row number (which is one less).
+SeeAlso: AX=1100h,AX=1103h,AX=1120h,INT 1F"SYSTEM DATA",INT 43"VIDEO DATA"
+
+Format of alternate font table [array]:
+Offset	Size	Description	(Table 00021)
+ 00h	BYTE	character to be replaced (00h = end of table)
+ 01h  N BYTEs	graphics data for character, one byte per scan line
+

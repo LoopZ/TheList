@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD004
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MDEBUG display driver - SHOW SAVED DATA
+	AX = D004h
+Return: CF set on error
+	CF clear if successful
+	    display switched to mode it was in before calling AX=D002h and the
+	      display memory is restored
+Note:	This function needn't save the display memory before changing it.
+SeeAlso: AX=D000h,AX=D005h
+

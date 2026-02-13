@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A0200BX0000
+  Category: A 	applications
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 7A R - AutoCAD Device Interface - RENDERING DEVICE - INITIALIZE (RDLINKUP)
+	AX = 0200h
+	BX = 0000h
+	CX = interface level (0001h)
+Return: BX = 0000h (driver uses packet communication)
+	DX:CX -> packet-mode entry point (see #03832)
+SeeAlso: AX=0001h"AutoCAD",INT 79/AX=0001h,INT 7B/AX=8001h"AutoCAD"
+

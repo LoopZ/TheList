@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0210
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SYSTEM SF_CLOSE" - RELEASE DRIVER
+	AX = 0210h
+	BP = driver ID (see #03741) for V_HPHIL, others
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	place device in closed state, which disallows output to the device
+SeeAlso: AH=00h"HP Vectra",AX=0200h,AX=0208h,AX=020Eh
+

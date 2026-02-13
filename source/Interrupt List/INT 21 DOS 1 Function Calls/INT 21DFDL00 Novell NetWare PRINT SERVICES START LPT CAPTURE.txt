@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF--DL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - START LPT CAPTURE
+	AH = DFh
+	DL = 00h
+Return: AL = status
+	    00h successful
+Desc:	this function redirects the default LPT to a capture file on the file
+	  server
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX; under NTNX, it sends a print break (see INT 17/AH=84h)
+	a print job is queued when the first character of output is captured
+SeeAlso: AX=B800h,AX=B804h,AH=DFh/DL=01h,AH=DFh/DL=02h,AH=DFh/DL=03h
+SeeAlso: AH=DFh/DL=04h,AX=F003h
+

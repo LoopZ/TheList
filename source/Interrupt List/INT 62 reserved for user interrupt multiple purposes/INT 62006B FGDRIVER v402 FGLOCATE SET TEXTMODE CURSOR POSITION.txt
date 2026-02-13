@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62006B
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_LOCATE" - SET TEXT-MODE CURSOR POSITION
+	AX = 006Bh
+	BX = row
+	CX = column
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	There are only eight text cursors shared by successive groups of
+	  eight video pages (pages 0, 8, 16, ... share one cursor, 1, 9, ...
+	  share the second, etc)
+SeeAlso: AX=0054h,AX=0058h,AX=007Eh,AX=00E0h
+

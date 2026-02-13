@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156002
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - GET POWER INFO
+	AX = 6002h
+Return: AL = power settings (see #00493)
+SeeAlso: AX=6000h,AX=6003h,AX=6004h
+
+Bitfields for power settings:
+Bit(s)	Description	(Table 00493)
+ 0-1	unused ???
+ 2	card battery status low (OK if bit clear)
+ 3	battery charging off (disabled if bits 3-5 clear)
+ 4	battery charging slow
+ 5	battery charging fast
+ 6	power adaptor active
+ 7	battery type NiCad (alkaline if bit clear)
+

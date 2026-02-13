@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1400
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS - INITIALIZE PORT
+	AH = 00h
+	AL = port parameters (see #00302)
+	DX = port number
+Return: AH = line status (see #00304)
+	AL = modem status (see #00305)
+Note:	MBBIOS was written by H. Roy Engehausen
+SeeAlso: AH=04h"MBBIOS",AH=05h"MBBIOS",AH=09h"MBBIOS"
+
+Bitfields for MBBIOS port parameters:
+Bit(s)	Description	(Table 00302)
+ 7-5	data rate
+	(normally 110,150,300,600,1200,2400,4800,9600 bps;
+	9600,14400,19200,28800,38400,57600,115200,330400 bps
+	if the high-speed option is set)
+ 4-3	parity (00 or 10 = none, 01 = odd, 11 = even)
+ 2	stop bits (set = 2, clear = 1)
+ 1-0	data bits (00 = 5, 01 = 6, 10 = 7, 11 = 8)
+SeeAlso: #00300
+

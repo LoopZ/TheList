@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: B372
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - CONVERT STATE CODE TO TWO-LETTER ABBREVIATION
+	AH = 72h
+	BL = ZIPKEY state code
+Return: CF set on error
+	    AX destroyed
+	CF clear if successful
+	    AX = abbreviation, in upper case
+SeeAlso: AH=71h,AH=73h
+

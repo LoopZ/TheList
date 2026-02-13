@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5712
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - IOMEGA DRIVERS - UNLOCK MEDIA IN DRIVE / EJECT
+	AX = 5712h
+	BX = program ID??? (0201h used by GUEST.EXE)
+	DX = 496Fh ('Io')
+Return: AX = new lock count (00h = unlocked)
+Note:	if the lock count was already zero, the storage medium is ejected
+	  from the drive
+SeeAlso: AX=5700h,AX=5701h,AX=5710h,AX=5711h
+

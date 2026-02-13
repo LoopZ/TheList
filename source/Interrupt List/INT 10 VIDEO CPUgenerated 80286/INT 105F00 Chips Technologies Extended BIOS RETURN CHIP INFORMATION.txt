@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - RETURN CHIP INFORMATION
+	AX = 5F00h
+Return: AL = 5Fh function supported
+	    BL = chip type (see #00176)
+	    BH = video memory size (see #00177)
+	    CX = miscellaneous information (see #00178)
+SeeAlso: AX=5F01h
+
+Bitfields for Chips&Technologies chip type:
+Bit(s)	Description	(Table 00176)
+ 7-4	chip type
+	0000: 82c451
+	0001: 82c452 / 82c452A
+	0010: 82c455
+	0011: 82c453
+	0100: 82c450
+	0101: 82c456
+	0110: 82c457
+	0111: F65520
+	1000: F65530 / F65525
+	1001: F66510
+	1010: ???
+	1011: F64300 "Wingine DGX"
+	1100: F65535/F65545 ???
+	1101: F65540
+	1110: ???
+	1111: ???
+ 3-0	revision number
+SeeAlso: #00177
+
+(Table 00177)
+Values for Chips&Technologies video memory size:
+ 00h	256KB
+ 01h	512KB
+ 02h	1MB
+ 03h	2MB
+SeeAlso: #00176
+
+Bitfields for Chips&Technologies miscellaneous information:
+Bit(s)	Description	(Table 00178)
+ 0	DAC size (0=6-bit, 1=8-bit)
+ 1	system type (0=PC/AT, 1=PS/2)
+ 2	extended text modes supported by BIOS
+ 3	reserved
+ 4	extended graphics modes supported by BIOS
+ 5	reserved
+ 6	BIOS supports graphics cursor
+ 7	BIOS supports anti-aliased font
+ 8	BIOS supports pre-programmed emulation
+ 9	BIOS supports auto emulation
+ 10	BIOS supports variable mode set at cold boot
+ 11	BIOS supports variable mode set on warm boot
+ 12	BIOS supports emulation mode set at cold boot
+ 13	BIOS supports emulation mode set on warm boot
+ 14-15	reserved
+

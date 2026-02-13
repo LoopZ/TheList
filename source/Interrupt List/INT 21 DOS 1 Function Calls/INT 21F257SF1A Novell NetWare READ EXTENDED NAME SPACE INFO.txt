@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF1A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - READ EXTENDED NAME SPACE INFO
+	AX = F257h subfn 1Ah
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02414)
+	ES:DI -> reply buffer (see #02415)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=18h,AX=F257h/SF=19h,AX=F257h/SF=1Bh
+
+Format of NetWare "Read Extended Name Space Info" request packet:
+Offset	Size	Description	(Table 02414)
+ 00h	BYTE	1Ah (subfunction "Read Extended Name Space Info")
+ 01h	BYTE	name space (see #02387)
+ 02h	BYTE	volume number
+ 03h	DWORD	directory base
+ 07h	DWORD	huge mask
+ 0Bh 16 BYTEs	huge state information
+SeeAlso: #02415
+
+Format of NetWare "Read Extended Name Space Info" reply packet:
+Offset	Size	Description	(Table 02415)
+ 00h 16 BYTEs	next huge state information
+ 10h	DWORD	huge data length
+ 14h  N BYTEs	huge data
+SeeAlso: #02414
+

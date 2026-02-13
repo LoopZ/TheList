@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F60FFDL01
+  Category: s 	sound/speech
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - IPLAY v1.00b - GET DATA SEGMENT
+	AX = 60FFh
+	DL = 01h (function number)
+	BX = 5344h ('SD')
+	CX = 4D50h ('MP')
+Return: AX = data segment
+Program: IPLAY is the Inertia Player by Prime and Excalibur for .MODules
+	  (digitized music files)
+SeeAlso: AX=60FFh/DL=00h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140E
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS PACCOM support - SET PERSISTENCE
+	AH = 0Eh
+	AL = new setting (FFh = 1.0)
+Return: nothing
+Desc:	specify the time from end of DCD to RTS
+SeeAlso: AH=0Dh"MBBIOS",AH=0Fh"MBBIOS"
+

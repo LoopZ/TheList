@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL35
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (PS) - DISPLAY-SWITCH INTERFACE
+	AH = 12h
+	BL = 35h
+	AL = subfunction
+	    00h initial adapter video off
+	    01h initial planar video on
+	    02h switch active video off
+	    03h switch inactive video on
+	    80h *UNDOCUMENTED* set system board video active flag
+	ES:DX -> buffer for 128 byte save area (if AL = 00h-03h)
+Return: AL = 12h if function supported
+Desc:	switch between two video adapters which may otherwise have address
+	  conflicts
+SeeAlso: AX=BF00h,AX=BF01h,INT 6D"VGA"
+

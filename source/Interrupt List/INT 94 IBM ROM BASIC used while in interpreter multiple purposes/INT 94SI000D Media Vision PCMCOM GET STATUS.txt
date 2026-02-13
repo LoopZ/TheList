@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI000D
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - GET STATUS
+	SI = 000Dh
+Return: AX = status (0000h = waiting) (see #04001)
+
+Bitfields for PCM.COM status:
+Bit(s)	Description	(Table 04001)
+ 0	playing
+ 1	recording
+ 2	SBplaying
+ 3	SBrecording
+ 14	SBpaused
+ 15	paused
+

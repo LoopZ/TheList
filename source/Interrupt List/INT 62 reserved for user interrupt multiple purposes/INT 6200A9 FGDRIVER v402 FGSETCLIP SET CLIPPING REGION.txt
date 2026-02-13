@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200A9
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETCLIP" - SET CLIPPING REGION
+	AX = 00A9h
+	BX = left edge of clipping region
+	CX = right edge of clipping region
+	DX = top edge of clipping region
+	SI = bottom edge of clipping region
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0010h,AX=001Fh,AX=0034h,AX=003Eh,AX=00A1h,AX=00C5h
+

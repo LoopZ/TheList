@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1411
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - SET CURRENT CURSOR LOCATION
+	AH = 11h
+	DH = row
+	DL = column
+Return: nothing
+Note:	this is the same as INT 10/AH=02h
+SeeAlso: AH=12h"FOSSIL"
+

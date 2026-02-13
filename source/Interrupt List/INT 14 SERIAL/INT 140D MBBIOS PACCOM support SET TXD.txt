@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140D
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS PACCOM support - SET TXD
+	AH = 0Dh
+	AL = new setting (FFh = 1.0)
+Return: nothing
+Desc:	specify the time from RTS to start or packet
+SeeAlso: AX=0D00h,AH=0Eh"MBBIOS",AH=0Fh"MBBIOS"
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.00+ - HOST MODE - SESSION CONTROL
+	AH = 06h
+	AL = stream number (01h-40h)
+	CX = subfunction
+	    0000h connect to node
+		DL bit 0: use BBS callsign instead of Node Call
+	    0001h connect to node
+		use BBS Call if APPLMASK=1
+	    0002h disconnect
+	    0003h return user to node
+SeeAlso: AH=01h"G8BPQ",AH=04h"G8BPQ"
+

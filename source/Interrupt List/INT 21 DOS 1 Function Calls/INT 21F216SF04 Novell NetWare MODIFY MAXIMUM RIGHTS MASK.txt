@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - MODIFY MAXIMUM RIGHTS MASK
+	AX = F216h subfn 04h
+	CX = length of request buffer in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet	(see #01850 at AH=E2h/SF=04h)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=04h,AX=F216h/SF=03h,AX=F216h/SF=05h
+

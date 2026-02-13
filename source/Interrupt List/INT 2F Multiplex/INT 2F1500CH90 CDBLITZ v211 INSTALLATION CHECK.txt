@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1500CH90
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - CDBLITZ v2.11 - INSTALLATION CHECK
+	AX = 1500h
+	CH = 90h (function number)
+	BX = 1234h (magic value for CDBLITZ)
+Return: CX = 1234h if installed
+	    CF clear
+	    DX = BCD version number (DH = major, DL = minor)
+Program: CDBLITZ is a CD-ROM cache by Blitz 'n' Software, Inc.
+SeeAlso: AX=1500h/CH=99h
+

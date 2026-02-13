@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB09
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - DELETE ALL FILES IN Q
+	AX = CB09h
+	DL = queue
+	    00h delete all control files in task queue, including all group
+		  files
+	    01h delete all files in receive queue
+	    02h delete all control files in log queue, including all group
+		  files
+Return: AX = 0000h successful
+	AX < 0	   error code (see #03048)
+SeeAlso: AX=CB08h
+

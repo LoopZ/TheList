@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A89
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - SET WINDOW
+	AH = 89h
+	AL = adapter number
+	BH = window number
+	BL = socket number
+	CX = window size (bytes if I/O window, 4K units if memory window)
+	DH = window attributes (see #00678)
+	DL = access speed (only one bit set) (see #00674)
+	SI = window base address (bytes if I/O, 4K units if memory window)
+	DI = card offset addrress (memory only, 4K units)
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (01h,03h,07h,08h,0Ah,0Bh,0Dh,10h,11h) (see #00656)
+SeeAlso: AH=87h,AH=88h,AH=8Bh
+

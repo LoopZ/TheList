@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0009
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "GetExtraInfo" - DETERMINE NUMBER OF DISK_UNIT STRUCTS
+	AX = 4A11h
+	BX = 0009h
+	DL = compressed drive number (0=A:)
+Return: AX = status (see also #02804)
+	    0000h successful
+		CL = number of DISK_UNIT structures allocated
+			  (see AX=4A11h/BX=0005h)
+		CH = DoubleGuard enabled-checks bitflags in bits 6-0 (DOS 6.2)
+Note:	the DoubleGuard checks are enabled or disabled as a block by the
+	  DoubleGuard= line in DBLSPACE.INI; they may be individually set with
+	  the CheckSum= line.
+SeeAlso: AX=4A11h/BX=0000h,AX=4A11h/BX=0008h
+

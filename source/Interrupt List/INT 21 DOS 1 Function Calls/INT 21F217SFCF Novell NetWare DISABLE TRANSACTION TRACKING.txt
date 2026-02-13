@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFCF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DISABLE TRANSACTION TRACKING
+	AX = F217h subfn CFh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02019 at AH=E3h/SF=CFh)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=CFh,AX=F217h/SF=D0h
+

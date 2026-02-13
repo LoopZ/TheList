@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI8000
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - Media Vision PCM.COM - GET INTERNAL DMA BUFFER ADDRESS
+	SI = 8000h
+Return: DX:AX -> DMA buffer
+Program: PCM.COM is a superset of the standard PCM driver which provides
+	  additional functions for fine control of the driver
+InstallCheck:	for the Media Vision PCM.COM "shark" functions, test for the
+	  signature "PCM-SHARK" at offset 107h in the INT 94 handler's segment
+SeeAlso: SI=8001h,SI=8004h
+Index:	installation check;Media Vision PCM.COM|PCM.COM;installation check
+Index:	Media Vision PCM.COM;"shark" functions
+

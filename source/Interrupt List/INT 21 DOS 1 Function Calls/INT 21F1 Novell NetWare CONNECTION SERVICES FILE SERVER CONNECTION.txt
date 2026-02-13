@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - FILE SERVER CONNECTION
+	AH = F1h
+	AL = subfunction
+	    00h attach to file server
+		DL = preferred file server (01h-08h)
+	    01h detach from file server
+		DL = connection ID
+	    02h logout from file server
+		DL = connection ID
+Return: AL = status (see #02094)
+Note:	these functions are supported by Advanced NetWare 1.0+
+SeeAlso: AH=D7h"NetWare",AH=E3h/SF=14h
+
+(Table 02094)
+Values for NetWare function status:
+ 00h	successful
+ F8h	already attached to server
+ F9h	connection table full
+ FAh	no more server slots
+ FCh	unknown file server
+ FEh	server bindery locked
+ FFh	no response from server, or connection does not exist
+SeeAlso: #02053,#02350
+

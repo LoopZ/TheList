@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVICES - FILE SERVER FILE COPY
+	AH = F3h
+	ES:DI -> request buffer (see #02527)
+Return: AL = status/error code
+	CX:DX = number of bytes copied
+Notes:	this function is supported by Advanced NetWare 2.0+
+	both source and destination must be on the same file server
+SeeAlso: AH=3Ch,AH=3Fh"DOS"
+
+Format of NetWare "File Server File Copy" request buffer:
+Offset	Size	Description	(Table 02527)
+ 00h	WORD	source file handle (as returned by AH=3Ch or AH=3Dh)
+ 02h	WORD	destination file handle
+ 04h	DWORD	starting offset in source
+ 08h	DWORD	starting offset in destination
+ 0Ch	DWORD	number of bytes to copy
+

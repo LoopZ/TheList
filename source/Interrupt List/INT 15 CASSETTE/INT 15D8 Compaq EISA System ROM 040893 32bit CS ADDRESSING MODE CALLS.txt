@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D8
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq EISA System ROM 04/08/93 - 32-bit CS ADDRESSING MODE CALLS
+	AH = D8h
+	AL = A0h to A6h
+	other registers as appropriate for AL=20h to 26h
+Return: as appropriate for AL=20h to 26h
+Note:	these functions are identical to AX=D820h to D826h, except that they
+	  should be called when using 32-bit CS addressing mode
+

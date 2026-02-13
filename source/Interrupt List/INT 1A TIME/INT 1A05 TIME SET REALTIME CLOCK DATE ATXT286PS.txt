@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A05
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - SET REAL-TIME CLOCK DATE (AT,XT286,PS)
+	AH = 05h
+	CH = century (BCD)
+	CL = year (BCD)
+	DH = month (BCD)
+	DL = day (BCD)
+Return: nothing
+SeeAlso: AH=04h,INT 21/AH=2Bh"DATE",INT 4B/AH=00h"TI"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A52
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - AVATAR.SYS v0.11 - GET ???
+	AX = 1A52h
+	CX = size of buffer
+	ES:DI -> buffer
+Return: ??? copied into user buffer
+Note:	the maximum size of the data which may be copied is returned by
+	  AX=1A72h
+SeeAlso: AX=1A53h,AX=1A72h
+

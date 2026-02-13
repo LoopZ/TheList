@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FA1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - SET QUEUE ENTRY
+	AX = 5FA1h
+	BX = handle of opened queue entry
+	DS:SI -> queue entry (see #01732)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Notes:	the only queue entry fields which may be changed are output control,
+	  number of copies, destination device, and comment
+	the handle in BX is that from a create or open (INT 21/AH=3Ch,3Dh)
+	  call on the file "\\server\\@MAIL" or "\\server\@name" (for
+	  printer queue entries)
+SeeAlso: AX=5FA0h,AX=5FA2h,AX=5FA9h
+

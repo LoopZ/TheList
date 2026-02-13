@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F8D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - "WHO" - ENUMERATE USERS ON NETWORK
+	AH = 8Dh
+	BX = service mask (see #03779)
+	CX = length of buffer
+	DS:DX -> buffer for array of Who data structures (see #03780)
+Return: CF clear if successful
+	    CX = number of nodes matching service mask
+	    DS:DX buffer filled
+	CF set on error
+	    AX = status (see #03740)
+SeeAlso: AH=0Dh
+
+Bitfields for 10NET service mask:
+Bit(s)	Description	(Table 03779)
+ 0	workstation
+ 1	file server
+ 2	print server
+ 3	de-spool server
+
+Format of 10NET Who data structure:
+Offset	Size	Description	(Table 03780)
+ 00h  8 BYTEs	user name
+ 08h 15 BYTEs	node ID
+ 17h  3 BYTEs	unique portion of Ethernet address
+ 1Ah	BYTE	Who group number
+ 1Bh	WORD	service mask (see #03779)
+ 1Dh	DWORD	serial number
+ 21h	BYTE	maximum concurrent users with same serial number allowed on net
+ 22h	BYTE	chat mask (see #03781)
+ 23h	BYTE	internal system bits (see #03782)
+ 24h  9 BYTEs	version number in format MM.mm.xxx
+ 2Dh	BYTE	number of shared directories
+ 2Eh	BYTE	number of shared printer queues
+
+Bitfields for 10NET chat mask:
+Bit(s)	Description	(Table 03781)
+ 0	chat permitted
+ 1	bell enabled
+ 2	chat keyboard initiated
+ 3	in INT 16 handler
+ 4	in Get Input
+ 5	display has timed out
+ 6	chat is idle
+
+Bitfields for 10NET internal system bits:
+Bit(s)	Description	(Table 03782)
+ 0	submit permitted
+ 1	submit initiated
+ 2	submit executing
+ 3	internal client call/chat/spool/autospool
+ 4	in spool termination
+ 5	print permitted
+ 6	waiting for keyboard input
+

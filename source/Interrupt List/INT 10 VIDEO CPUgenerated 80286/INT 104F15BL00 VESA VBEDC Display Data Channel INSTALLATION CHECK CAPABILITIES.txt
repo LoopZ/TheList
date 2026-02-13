@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F15BL00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/DC (Display Data Channel) - INSTALLATION CHECK / CAPABILITIES
+	AX = 4F15h
+	BL = 00h
+Return: AL = 4Fh if function supported
+	    AH = status
+		00h successful
+		    BX = ???
+		01h failed
+		    ???
+SeeAlso: AX=4F15h/BL=01h,AX=4F15h/BL=02h
+

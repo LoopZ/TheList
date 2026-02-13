@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141F
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - X00 FOSSIL - EXTENDED SERIAL PORT STATUS/CONTROL
+	AH = 1Fh
+	DX = port number
+	AL = direction
+	    00h read modem control register
+		Return: BL = modem control register (see #00349)
+			AH = status
+	    01h write modem control register
+		BL = modem control register (see #00349)
+		Return: AX = status
+Notes:	this function is intended to exactly emulate the PS/2 BIOS AH=05h call
+	X00 forces BL bit 3 set (interrupts cannot be disabled)
+SeeAlso: AH=00h,AH=05h"SERIAL"
+
+Bitfields for X00 FOSSIL modem control register:
+Bit(s)	Description	(Table 00349)
+ 0	data terminal ready
+ 1	request to send
+ 2	OUT1
+ 3	OUT2 (interrupts) enabled
+ 4	LOOP
+ 5-7	reserved
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1584
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - BIOS - JOYSTICK SUPPORT (XT after 1982/11/8,AT,XT286,PS)
+	AH = 84h
+	DX = subfunction
+	    0000h read joystick switches
+		Return: AL bits 7-4 = switch settings
+	    0001h read positions of joysticks
+		Return: AX = X position of joystick A
+			BX = Y position of joystick A
+			CX = X position of joystick B
+			DX = Y position of joystick B
+Return: CF set on error
+	    AH = status (see #00496)
+	CF clear if successful
+Notes:	if no game port is installed, subfunction 0000h returns AL=00h (all
+	  switches open) and subfunction 0001h returns AX=BX=CX=DX=0000h
+	a 250kOhm joystick typically returns 0000h-01A0h
+SeeAlso: AH=84h"V20-XT-BIOS"
+

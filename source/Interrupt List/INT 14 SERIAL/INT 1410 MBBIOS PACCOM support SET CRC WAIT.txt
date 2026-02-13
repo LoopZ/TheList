@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1410
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS PACCOM support - SET CRC WAIT
+	AH = 10h
+	AL = new setting in clock ticks (should be at least 5 character times)
+Return: nothing
+Desc:	specify the time from start of last character to dropping RTS
+SeeAlso: AH=0Dh"MBBIOS",AH=0Fh"MBBIOS"
+

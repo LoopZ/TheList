@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF6A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - REMOVE JOB FROM QUEUE (OLD)
+	AH = E3h subfn 6Ah
+	DS:SI -> request buffer (see #01975)
+	ES:DI -> reply buffer (see #01974)
+Return: AL = status (00h,96h,D0h,D1h,D5h,D6h,FEh,FFh) (see #01961)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must have created the job or be an operator
+SeeAlso: AH=E3h/SF=68h,AH=E3h/SF=6Ah,AH=E3h/SF=6Eh,AX=F217h/SF=6Ah
+
+Format of NetWare "Remove Job From Queue (old)" request buffer:
+Offset	Size	Description	(Table 01975)
+ 00h	WORD	0007h (length of following data)
+ 02h	BYTE	6Ah (subfunction "Remove Job From Queue (old)")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	WORD	(big-endian) job number
+

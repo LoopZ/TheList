@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620083
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PACK" - CONVERT PIXEL-PER-BYTE TO PACKED BITMAP
+	AX = 0083h
+	ES:BX -> variable pointer record (see #03492)
+	CX = width of bitmap in pixels
+	DX = height of bitmap in pixels
+Return: result bitmap buffer updated
+SeeAlso: AX=00CBh
+
+Format of FGDRIVER PACK variable pointer record:
+Offset	Size	Description	(Table 03492)
+ 00h	WORD	segment of source (mode-independent) bitmap
+ 02h	WORD	offset of source (mode-independent) bitmap
+ 04h	WORD	segment of buffer for result (mode-specific) bitmap
+ 06h	WORD	offset of buffer for result (mode-specific) bitmap
+

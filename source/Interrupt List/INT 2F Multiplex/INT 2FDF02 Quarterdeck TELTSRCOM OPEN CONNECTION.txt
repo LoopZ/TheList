@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDF02
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Quarterdeck TELTSR.COM - OPEN CONNECTION
+	AX = DF02h
+	BX = file handle for connection's socket
+Return: AX = status
+	    0000h successful
+	    FFFFh no more room in TELTSR's JFT
+Program: TELTSR is a Telnet TSR included with Quarterdeck's DESQview/X v2.00
+Notes:	the indicated file handle becomes owned by TELTSR, and is closed in
+	  the caller's JFT
+	multiple calls to this function will override the previous assignment
+	  without closing the previous file; use AX=DF01h before further calls
+SeeAlso: AX=DF00h"TELTSR",AX=DF01h"TELTSR"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1505
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - CHECK MAILBOX
+	AH = 05h
+	AL = mailbox number (00h-3Fh)
+Return: AH = status
+	    00h successful
+		DX = length of first message in queue, 0000h if no message
+	    02h invalid mailbox number
+SeeAlso: AH=04h"MultiDOS",AH=06h"MultiDOS"
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1335
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - QUICKCACHE II v4.20 - SET LOCK POOL SIZE
+	AH = 35h
+	BX = number of sectors in lock pool
+Return: AX = status (0000h successful)
+Desc:	specify the number of cache sector buffers which may be dedicated to
+	  data locked into the cache
+SeeAlso: AH=34h
+

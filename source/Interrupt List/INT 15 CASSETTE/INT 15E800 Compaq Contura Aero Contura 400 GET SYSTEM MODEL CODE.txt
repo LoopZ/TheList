@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E800
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq Contura Aero, Contura 400 - GET SYSTEM MODEL CODE???
+	AX = E800h
+	BX = ??? (0000h)
+Return: CF clear if successful
+	    BH = 02h
+	    BL = submodel??? (0Ch,0Dh,34h,38h,40h,44h,48h,64h,68h)
+	CF set on error
+	others???
+Notes:	used by Compaq's SOFTPAQ number 0937 EPPBIOS.SYS to determine whether
+	  the Enhanced Parallel Port expected by that driver is available
+	used by Compaq's SOFTPAW number 0856 VOLCTRL.EXE to determine whether
+	  volume control hardware expected by that driver is available
+

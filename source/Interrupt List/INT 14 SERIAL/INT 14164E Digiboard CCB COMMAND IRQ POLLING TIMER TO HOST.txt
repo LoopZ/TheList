@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14164E
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard - CCB COMMAND - IRQ POLLING TIMER TO HOST
+	AX = 164Eh
+	BL = ticks
+	BH = ???
+	CL = mode
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AH = status
+	    00h successful
+	    80h error
+	    FFh error
+SeeAlso: AH=16h"Digiboard",AX=164Dh
+

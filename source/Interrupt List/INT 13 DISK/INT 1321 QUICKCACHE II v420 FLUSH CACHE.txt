@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1321
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - FLUSH CACHE
+	AH = 21h
+Return: AX = status (0000h successful)
+Desc:	immediately write all dirty sectors back to disk
+Note:	this is one out of several cache flush calls issued by the PTS-DOS 6.51
+	  and S/DOS 1.0 kernel before rebooting. It is called with DL=80h and
+	  conflicts with the PS/2 function of the same function number, because
+	  the kernel does not perform Quickcache's installation check first.
+SeeAlso: AH=25h"QUICKCACHE",AH=2Eh,AH=2Fh
+

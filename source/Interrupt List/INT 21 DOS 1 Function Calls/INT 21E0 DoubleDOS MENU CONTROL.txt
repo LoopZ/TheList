@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E0
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - MENU CONTROL
+	AH = E0h
+	AL = subfunction
+	    01h exchange tasks
+	    73h resume invisible job if suspended
+	    74h kill other job
+	    75h suspend invisible job
+Note:	identical to AH=F0h
+SeeAlso: AH=F0h"DoubleDOS"
+

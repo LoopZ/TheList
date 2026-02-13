@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0A--BP005A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_DEF_MASKS" - DEFINE GRAPHICS CURSOR MASKS
+	AH = 0Ah
+	BP = 005Ah (driver ID for V_STRACK)
+	BH = width of save area in bytes
+	BL = hot-spot X coordinate
+	CH = height in scan lines
+	CL = hot-spot Y coordinate
+	ES:SI -> sprite mask (screen mask followed by XOR sprite mask)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Note:	the save area is one byte wider than the actual sprite mask; the total
+	  size of the sprite is at most 144 bytes
+SeeAlso: AH=00h"HP Vectra",AH=04h"F_TRACK_INIT",AH=08h"F_TRACK_OFF"
+SeeAlso: AH=0Ch"F_SET_LIMITS_X",AH=10h"F_PUT_SPRITE",AH=12h"F_REMOVE_SPRITE"
+

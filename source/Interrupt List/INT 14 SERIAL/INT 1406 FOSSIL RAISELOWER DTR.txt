@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1406
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - RAISE/LOWER DTR
+	AH = 06h
+	DX = port
+	AL = DTR state to be set
+	    00h = lower
+	    01h = raise
+Return: nothing
+SeeAlso: AH=05h"MBBIOS",AH=1Ah
+

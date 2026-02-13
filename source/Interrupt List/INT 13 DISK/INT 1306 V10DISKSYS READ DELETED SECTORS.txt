@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1306
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - V10DISK.SYS - READ DELETED SECTORS
+	AH = 06h
+	AL = number of sectors
+	CH = cylinder number (bits 8,9 in high bits of CL)
+	CL = sector number
+	DH = head
+	DL = drive
+	ES:BX -> buffer
+Return: AH = status code (see #00234)
+Program: V10DISK.SYS is a driver for the Flagstaff Engineering 8" floppies
+SeeAlso: AH=02h,AH=07h"V10DISK.SYS"
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF9C
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ CPTASK - SET/CLEAR ??? POINTER
+	AX = FF9Ch
+	BL = function
+	    00h set ??? pointer
+		DS:SI -> ???
+	    01h clear pointer to 0000h:0000h
+

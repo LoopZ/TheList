@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1422
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - RECEIVE CHARACTER, WITH TIMEOUT
+	AH = 22h
+	DX = port number
+	SI = timeout in timer ticks (0000h = default)
+Return: AH = port status (see also #00304 at AH=03h)
+	    bit 7 = 1 indicates time-out
+	AL = character received
+Program: PC-MOS/386 v5.01 is a multitasking, multiuser MS-DOS 5.0-compatible
+	  operating system by The Software Link, Inc.
+SeeAlso: AH=02h,AH=0Fh"Digiboard",AH=21h"PC-MOS"
+

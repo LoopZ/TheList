@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 054E57
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 05 U - PSPS v2.01 - SET PARAMETERS
+	AX = 4E57h ('NW')
+	ES:SI -> 11-byte buffer containing new settings
+Return: buffer filled
+SeeAlso: AX=454Ah,AX=5053h,INT 17/AH=63h
+

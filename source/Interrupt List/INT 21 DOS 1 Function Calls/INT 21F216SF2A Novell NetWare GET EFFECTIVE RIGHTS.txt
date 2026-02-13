@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF2A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET EFFECTIVE RIGHTS
+	AX = F216h subfn 2Ah
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02146)
+	ES:DI -> reply buffer (see #02147)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=32h
+
+Format of NetWare "Get Effective Rights" request packet:
+Offset	Size	Description	(Table 02146)
+ 00h	WORD	length of following data
+ 02h	BYTE	2Ah (subfunction "Get Effective Rights")
+	???
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFCD
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET STATUS OF ALL PRINT SERVERS
+	AX = FFCDh
+	DS:DX -> buffer for server status (see #02540)
+Return: AL = status
+	    00h successful
+		AH = number of print servers
+	    nonzero failed
+
+Format of TopWare server status:
+Offset	Size	Description	(Table 02540)
+ 00h	BYTE	station address
+ 01h 15 BYTEs	username
+ 10h	BYTE	flag: 01h printer is shared, 00h sharing disabled
+ 11h	BYTE	number of files pending in queue
+

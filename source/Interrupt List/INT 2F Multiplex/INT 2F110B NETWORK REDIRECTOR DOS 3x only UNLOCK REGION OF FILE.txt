@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F110B
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR (DOS 3.x only) - UNLOCK REGION OF FILE
+	AX = 110Bh
+	BX = file handle
+	CX:DX = starting offset
+	SI = high word of size
+	STACK: WORD low word of size
+	ES:DI -> SFT for file
+	    SFT DPB field -> DPB of drive containing file
+Return: CF set on error
+	   AL = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	STACK unchanged
+Note:	this function is called by the DOS 3.1-3.31 kernel; DOS 4.0+ calls
+	  AX=110Ah instead
+SeeAlso: AX=110Ah,INT 21/AH=5Ch
+

@@ -1,0 +1,87 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A4147DX0000
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2A U - NetSoft DOS-NET v1.20+ - INSTALLATION CHECK
+	AX = 4147h ('AG')
+	DX = 0000h
+Return: DX = 4147h if installed
+	    DS:SI -> configuration data (see #02554)
+Program: DOS-NET is a shareware networking package by Albert Graham
+Note:	this call is supported by CLIENT.COM, SERVER.COM, ROUTER.COM, and
+	  NETDOS.COM
+SeeAlso: INT 65/DX=4147h,INT 65/DX=4741h
+
+Format of DOS-NET v1.20 configuration data area:
+Offset	Size	Description	(Table 02554)
+ 00h	BYTE	???
+ 01h	BYTE	interrupt number used by DOS-NET APIs
+ 02h	WORD	function number to place in AX for above interrupt
+ 04h	BYTE	minor version as two BCD digits (e.g. 20h for v1.20)
+ 05h	BYTE	major version number (01h for v1.20)
+ 06h  2 BYTEs	???
+ 08h	WORD	??? (used by ARCNET.COM)
+		bit 15: ??? (set by MACTEST.COM)
+ 0Ah	WORD	??? (used by NDIS.COM and ODI.COM)
+ 0Ch 22 BYTEs	???
+ 24h	DWORD	-> ??? function (set by PROTECT.COM)
+ 28h 12 BYTEs	???
+ 34h	DWORD	-> ??? function (set by FASTVIEW.COM)
+ 38h	DWORD	-> ??? function (set by FASTVIEW.COM)
+ 58h	DWORD	-> ??? (offsets 04h and 1Ah from value are used by NETFILES)
+	???
+ 7Ch	WORD	???
+ 7Eh	WORD	??? (may be high half of a DWORD at 7Ch)
+	???
+ A8h	DWORD	-> ??? (used by SM.COM)
+	???
+114h	WORD	???
+116h	WORD	??? (may be high half of a DWORD at 114h)
+	???
+1BDh	BYTE	??? flags
+		bit 0: ???
+		bit 6: ???
+	???
+1E1h	BYTE	???
+	???
+208h	WORD	??? (used by SM.COM, MACTEST)
+282h	WORD	???
+284h  2 BYTEs	???
+286h	WORD	??? flags
+		bit 0: ???
+	???
+31Eh	WORD	???
+320h	WORD	??? (used by NDIS.COM and ODI.COM)
+322h  8 BYTEs	???
+32Ah	WORD	??? (used by NDIS.COM and ODI.COM)
+	???
+33Eh  4 BYTEs	??? (used by ODI.COM)
+342h  N BYTEs	??? (used by NDIS.COM)
+	???
+3CFh	BYTE	??? flags
+		bit 2: ???
+3D2h	BYTE	installed-component flags
+		bit 0: PROTECT installed
+		bit 1: NETCACHE installed
+		bit 3: SM.COM installed
+		bit 7: NETDEBUG installed
+3D3h	BYTE	installed-component flags
+		bit 0: NETFILES installed
+		bit 6: FASTVIEW installed
+	???
+3FFh	BYTE	??? (used by NDIS.COM)
+400h	BYTE	???
+401h	BYTE	??? (used by SM.COM)
+402h	BYTE	??? (used by SM.COM)
+	???
+448h	BYTE	???
+449h	BYTE	??? (used by MACTEST)
+44Ah	BYTE	??? (used by PROTECT)
+44Bh	BYTE	???
+44Ch	BYTE	???
+44Dh	BYTE	??? (used by SM.COM)
+44Eh	BYTE	??? (used by SM.COM, MACTEST)
+	???
+

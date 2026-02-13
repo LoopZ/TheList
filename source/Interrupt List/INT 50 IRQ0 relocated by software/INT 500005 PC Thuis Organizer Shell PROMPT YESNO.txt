@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500005
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - PROMPT YES/NO
+	AX = 0005h
+	ES:BX -> prompt string (ES:0000h if no prompt)
+Return: AX = key pressed
+	    0000h "J" (Dutch "Ja" = "Yes")
+	    FFFFh "N" (Dutch "Nee" = "No")
+Program: The PC Thuis Organizer Shell was written by John Vanderaart and
+	  published in the June/July 1990 issue of PC Thuis Power magazine
+SeeAlso: AX=0008h"PC Thuis"
+

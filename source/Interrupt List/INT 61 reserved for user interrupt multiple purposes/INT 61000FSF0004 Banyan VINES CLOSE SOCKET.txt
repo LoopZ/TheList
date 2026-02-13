@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61000FSF0004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - CLOSE SOCKET
+	AX = 000Fh subfn 0004h
+	CX:BX -> request block (see #03449)
+	DX = application's data segment (should be = CX)
+	ES = DS
+Return: AX = status
+	    0000h successful
+	    00A5h resource not available
+Desc:	Closes a socket identified by its socket handle
+
+Format of request block:
+Offset	Size	Description	(Table 03449)
+ 00h	WORD	0004h
+ 02h	WORD	magic number (FEFEh)
+ 04h	WORD	buffer for return code (set to 0 before calling)
+ 06h	WORD	reserved (will be set to client DS)
+ 08h	WORD	reserved (obviously not used; set to 0 before calling)
+ 0Ah	DWORD	far pointer to socket handle (2 bytes)
+ 0Eh	WORD	process handle (see AX=000Fh/SF=0008h)
+

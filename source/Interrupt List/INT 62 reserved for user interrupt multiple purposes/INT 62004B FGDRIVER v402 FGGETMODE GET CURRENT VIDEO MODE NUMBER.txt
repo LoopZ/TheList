@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62004B
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETMODE" - GET CURRENT VIDEO MODE NUMBER
+	AX = 004Bh
+	ES:BX -> WORD ???
+Return: AX = current video mode number
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00B0h
+

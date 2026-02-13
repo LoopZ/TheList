@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213305
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 4.0+ - GET BOOT DRIVE
+	AX = 3305h
+Return: DL = boot drive (1=A:,...)
+Notes:	This function does not use any of the DOS-internal stacks and may
+	   thus be called at any time.  It is directly dispatched from
+	   the INT 21h entry point with interrupts disabled.
+	NEC 9800-series PCs always call the boot drive A: and assign the other
+	  drive letters sequentially to the other drives in the system
+	this call is supported by OS/2 Warp 3.0, but not earlier versions of
+	  OS/2; it is also supported by Novell DOS 7
+

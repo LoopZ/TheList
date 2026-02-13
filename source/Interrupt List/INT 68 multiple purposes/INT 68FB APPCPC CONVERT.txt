@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 68FB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - CONVERT
+	AH = FBh
+	DS:DX -> control block (see #03707)
+Return: control block updated
+
+Format of APPC/PC "CONVERT" control block:
+Offset	Size	Description	(Table 03707)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	1A00h (verb "CONVERT")
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code
+ 18h	BYTE	conversion
+		00h ASCII to EBCDIC
+		01h EBCDIC to ASCII
+ 19h	BYTE	character set
+		00h AE
+		01h A
+		02h G
+ 1Ah	WORD	length of string to convert
+ 1Ch	DWORD	pointer to source
+ 20h	DWORD	pointer to target
+

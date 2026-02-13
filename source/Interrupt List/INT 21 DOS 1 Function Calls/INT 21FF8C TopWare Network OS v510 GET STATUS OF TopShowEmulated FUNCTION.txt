@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF8C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET STATUS OF TopShow/Emulated FUNCTION
+	AX = FF8Ch
+	BL = subfunction
+	    00h get TopShow status
+	    FFh get Emulated status
+Return: AL = status
+	    00h not installed
+	    01h already installed
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF00DX534C
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Software Carousel - INSTALLATION CHECK
+	AX = DF00h
+	DX = 534Ch ("SL")
+	DI = 534Ch ("SL")
+Return: AX = 00FFh if installed
+	    ???
+Program: Software Carousel is a task switcher by SoftLogic Solutions, Inc.
+

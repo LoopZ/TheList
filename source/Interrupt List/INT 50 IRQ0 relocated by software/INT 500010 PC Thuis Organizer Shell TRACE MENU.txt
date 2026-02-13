@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 500010
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - TRACE MENU
+	AX = 0010h
+	ES:BX -> first menu structure
+	CL = hotkey to look up
+Return: AL = index 1 or FFh if not selected
+	AH = index 2 or FFh if not selected
+	BL = index 3 or FFh if not selected
+	BH = index 4 or FFh if not selected
+Index:	hotkeys;PC Thuis Organizer Shell
+

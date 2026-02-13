@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16AF25BX4B33
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - K3PLUS v6.00+ (API v2.0+) - COPY INTO EXTENDED BUFFER
+	AX = AF25h
+	BX = 4B33h ('K3')
+	CX = number of keystrokes to copy
+	ES:SI -> buffer containing keystrokes
+Return: CF clear if successful
+	CF set on error (i.e. buffer full)
+	    CX = number of keystrokes NOT transferred
+	    ES:SI -> first keystroke not transferred
+Note:	this function replaces the identical function AH=25h"K3"
+SeeAlso: AH=25h"K3",AX=AF20h,AX=AF4Dh,AX=AF50h,INT 2F/AX=D44Fh/BX=0001h
+

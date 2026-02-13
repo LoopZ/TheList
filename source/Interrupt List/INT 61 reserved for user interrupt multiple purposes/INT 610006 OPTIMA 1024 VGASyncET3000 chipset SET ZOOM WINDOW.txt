@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610006
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - SET ZOOM WINDOW
+	AX = 0006h
+	BX:CX -> zoom window description (see #03430)
+Range:	unknown
+Notes:	width of zoom window must be a multiple of the pixel replication (zoom)
+	  factor
+	INT 61 is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0000h"OPTIMA",AX=0001h"OPTIMA",AX=0005h"OPTIMA",AX=0008h"OPTIMA"
+SeeAlso: INT 16/AH=FFh"OPTIMA"
+
+Format of Optima 1024 zoom window description:
+Offset	Size	Description	(Table 03430)
+ 00h	WORD	X start of zoom window
+ 02h	WORD	Y start of zoom window
+ 04h	WORD	X end of zoom window
+ 06h	WORD	Y end of zoom window
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6124
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_abortall" - RESET ALL NETWORK CONNECTIONS
+	AH = 24h
+Return: always successful
+Note:	performs "net_abort" (AH=19h) on all open non-global descriptors
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=19h
+

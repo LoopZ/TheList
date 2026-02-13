@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD880
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare Lite v1.0+ - SERVER - INSTALLATION CHECK
+	AX = D880h
+Return: AL = FFh if installed
+	    DX = version number (binary, DH = major, DL = minor)
+	    BX = data segment of resident copy
+	    CL = current state (00h SERVER is disabled, 01h SERVER is active)
+	    ES:DI -> private API entry point (see #03090)
+	    SI = ??? (offset of configuration info?)
+	    AH may be destroyed
+Note:	this function is also supported by Personal NetWare SERVER, but DI is
+	  not set; instead, ES:SI points at the API entry point
+SeeAlso: AX=7A00h,AX=D800h,INT 2A/AX=D852h
+
+(Table 03090)
+Call SERVER API entry point with:
+	BX = function
+	    0000h shut down server
+		???
+		Return: ???
+		Note: closes open files by calling INT 21/AH=3Eh
+	    0001h get connection information
+		DX = connection number (0001h-max connections)
+		ES:DI -> 28-byte buffer for connection information
+		Return: CF clear if successful
+			    ES:DI buffer filled
+			CF set on error
+			    AX = FFFFh
+	---Personal NetWare only---
+	    0002h ???
+	    0003h ???
+	    0004h ???
+	    0005h ???
+	    0006h get server info table
+		  CX = size of buffer
+		  ES:DI -> buffer
+		  AL = mode (02h = get current status)
+	    0007h ???
+	    other
+		Return: CF set
+			AX = 0001h (invalid function)
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL8B
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - ConcCP/M,DR Multiuser DOS - "Q_WRITE" - WRITE MESSAGE QUEUE
+	CL = 8Bh
+	DS:DX -> queue parameter block (QPB) (see #04044,#04045)
+Return: AX = status (0000h success, FFFFh failure)
+	CX = error code (see #04021)
+Note:	also supported by REAL/32
+SeeAlso: INT E0/CL=89h,INT E0/CL=8Ch
+

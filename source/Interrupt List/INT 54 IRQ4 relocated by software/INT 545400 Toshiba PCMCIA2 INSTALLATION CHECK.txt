@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 545400
+  Category: X 	expansion bus BIOSes
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 54 U - Toshiba PCMCIA2 - INSTALLATION CHECK
+	AX = 5400h
+Return: AX = 0054h if installed
+	    CX:DX -> INT function handler
+

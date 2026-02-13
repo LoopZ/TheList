@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33000F
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - DEFINE MICKEY/PIXEL RATIO
+	AX = 000Fh
+	CX = number of mickeys per 8 pixels horizontally (default 8)
+	DX = number of mickeys per 8 pixels vertically (default 16)
+SeeAlso: AX=0013h,AX=001Ah,INT 62/AX=0082h
+

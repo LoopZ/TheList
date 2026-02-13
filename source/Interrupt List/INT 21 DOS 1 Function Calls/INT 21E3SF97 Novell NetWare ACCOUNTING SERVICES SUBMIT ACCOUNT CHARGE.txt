@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF97
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - ACCOUNTING SERVICES - SUBMIT ACCOUNT CHARGE
+	AH = E3h subfn 97h
+	DS:SI -> request buffer (see #02005)
+	ES:DI -> reply buffer (see #02007)
+Return: AL = status (00h,C0h-C2h) (see #02002)
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AH=E3h/SF=96h,AH=E3h/SF=98h,AX=F217h/SF=97h
+
+Format of NetWare "Submit Account Charge" request buffer:
+Offset	Size	Description	(Table 02005)
+ 00h	WORD	length of following data (max 13Fh)
+ 02h	BYTE	97h (subfunction "Submit Account Charge")
+ 03h	WORD	(big-endian) service type
+ 05h	DWORD	(big-endian) amount to be charged to account
+ 09h	DWORD	(big-endian) amount of prior hold to be cancelled
+ 0Dh	WORD	(big-endian) type of bindery object
+ 0Fh	WORD	(big-endian) type of comment
+		8000h-FFFFh reserved for experimental use
+ 11h	BYTE	length of object's name
+ 12h  N BYTEs	object name
+	BYTE	length of comment
+      N BYTEs	comment
+SeeAlso: #02007
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F04
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS - SAVE/RESTORE SuperVGA VIDEO STATE
+	AX = 4F04h
+	DL = subfunction
+	    00h get state buffer size
+		Return: BX = number of 64-byte blocks needed
+	    01h save video states
+		ES:BX -> buffer
+	    02h restore video states
+		ES:BX -> buffer
+	CX = states to save/restore (see #00085)
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+	    01h failed
+SeeAlso: AH=1Ch,AX=5F90h,AX=5FA0h
+
+Bitfields for VESA SuperVGA states to save/restore:
+Bit(s)	Description	(Table 00085)
+ 0	video hardware state
+ 1	video BIOS data state
+ 2	video DAC state
+ 3	SuperVGA register state
+SeeAlso: #00048,#00186
+

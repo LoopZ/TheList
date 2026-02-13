@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 170500
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - Emulaser ELTSR - ???
+	AX = 0500h
+	???
+Return: AX = unload status (0001h safe to unload, 0002h not safe)
+	BX = ???
+	CX = PSP segment of ELTSR
+	DX = activity flag (0000h disabled, 0001h capturing, 0002h ???printing)
+	SI = ???
+	DI = ???
+SeeAlso: AH=04h,INT 1A/AH=E5h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6A - DECnet DOS - LOCAL AREA TRANSPORT PROGRAM - INSTALLATION CHECK
+InstallCheck:	test for a signature area immediately preceding the interrupt
+	  handler (see #03715)
+SeeAlso: AH=01h/DH=FFh,INT 6B"DECnet",INT 6D"DECnet"
+Index:	installation check;DECnet DOS Local Area Transport
+
+Format of DECnet DOS signature area:
+Offset	Size	Description	(Table 03715)
+ -5	BYTE	major version number
+ -4	BYTE	minor version number
+ -3   3 BYTEs	signature (ASCII "LAT")
+

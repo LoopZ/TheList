@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1584--DX0003
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MULTIJOY - GET ACTIVE JOYSTICK
+	AH = 84h
+	DX = 0003h
+Return: AX = number of the currently-active joystick device
+	BX = device classification (see #04098)
+SeeAlso: AH=84h/DX=0002h"MULTIJOY"
+ !!! more info to follow
+
+Bitfields for MULTIJOY device classification:
+Bit(s)	Description	(Table 04098)
+ 15	device connected and ready
+ 14	no buttons (overrides bits 12-9)
+ 13	no axes (overrides bits 8-5)
+ 12-9	number of buttons, less one
+ 8-5	number of axes, less one
+ 4	digital device rather than analog
+ 3-0	device type
+	0000 keyboard emulating joystick
+	0001 gamepad
+	0010 joystick
+	0011 steering wheel
+	0100 flight yoke
+	0101 mouse emulating joystick
+	0110 trackball emulating joystick
+	0111 GlidePoint (touchpad) emulating joystick
+	1000 touchscreen emulating joystick
+	1001 steering wheel
+	1010 light pen emulating joystick
+	1011 speech recognition emulating joystick
+	1100 TV remote emulating joystick
+	1101 network/Internet remote control
+	1110 PC software-controlled (demo mode, etc.)
+	1111 other device
+

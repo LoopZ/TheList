@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1615
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Windows95 - SAVE32.COM - INSTALLATION CHECK
+	AX = 1615h
+Return: AX = 0000h if installed
+	    BX = segment of resident code
+Program: SAVE32.COM is a TSR included in the Windows95 distribution which
+	  preserves the contents of 32-bit registers across invocations of
+	  all of the hardware interrupt handlers (which, for some older BIOSes
+	  and TSRs, do not properly preserve the high words of the 32-bit
+	  registers)
+

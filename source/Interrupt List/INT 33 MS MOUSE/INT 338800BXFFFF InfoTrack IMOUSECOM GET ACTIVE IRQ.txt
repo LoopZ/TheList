@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 338800BXFFFF
+  Category: M 	mouse/pointing device
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 33 U - InfoTrack IMOUSE.COM - GET ACTIVE IRQ
+	AX = 8800h
+	BX = FFFFh
+Return: BL = number of IRQ being used by the mouse
+SeeAlso: AX=8800h
+

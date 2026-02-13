@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC00BL03
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CATC USB4DOS Device Manager - HUB DEVICE ATTACHED
+	AX = BC00h
+	BL = 03h
+	BH = address and device type
+	    bits 7-1: USB address of hub
+	    bit 0: device speed
+		=0 low-speed device
+		=1 full-speed device
+	CX:DX -> callback function
+Return: AX = USB address of attached device, or 0000h on failure
+SeeAlso: AX=BC00h/BL=04h,AX=BC00h/BL=00h
+

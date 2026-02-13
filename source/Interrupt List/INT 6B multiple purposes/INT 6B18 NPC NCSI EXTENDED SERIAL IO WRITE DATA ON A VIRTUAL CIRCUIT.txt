@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B18
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - WRITE DATA ON A VIRTUAL CIRCUIT
+	AH = 18h
+	AL = virtual circuit number
+	CX = number of characters to send
+	ES:BX -> buffer containing characters to be sent
+Return: CF clear if successful
+	CF set on error
+	???
+Note:	this function is also supported by TelAPI, which always returns CF
+	  clear and AL=30h
+SeeAlso: AX=0000h,AH=12h,AH=19h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFE3
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - PRINT CHARACTER
+	AX = FFE3h
+	BL = character to print to currently open printer or print file
+Return: CF set on error
+Note:	available only when popped up
+SeeAlso: INT 17/AH=00h
+

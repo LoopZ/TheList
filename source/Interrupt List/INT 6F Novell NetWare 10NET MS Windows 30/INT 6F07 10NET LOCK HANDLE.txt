@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F07
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - LOCK HANDLE
+	AH = 07h
+	BX = file handle
+	CX:DX = starting offset in file
+	SI = record length
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see also AH=00h)
+		0002h file not found
+SeeAlso: AH=08h"10NET",AH=0Fh,INT 21/AH=5Ch
+

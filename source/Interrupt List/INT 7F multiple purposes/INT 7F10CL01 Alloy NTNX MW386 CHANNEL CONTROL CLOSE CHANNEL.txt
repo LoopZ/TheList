@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F10--CL01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - CHANNEL CONTROL - CLOSE CHANNEL
+	AH = 10h
+	CL = 01h
+	AL = channel number
+Return: AL = status (00h-03h,0Ah) (see #03951)
+Note:	may not be invoked from within a hardware interrupt handler
+SeeAlso: AH=10h/CL=00h,AH=10h/CL=05h
+

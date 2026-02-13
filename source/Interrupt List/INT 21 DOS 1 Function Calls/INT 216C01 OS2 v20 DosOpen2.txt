@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216C01
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.0 - "DosOpen2"
+	AX = 6C01h
+	BL = open mode as in AL for normal open (see also AH=3Dh)
+	    bit 7: inheritance
+	    bits 4-6: sharing mode
+	    bit 3 reserved
+	    bits 0-2: access mode
+	BH = flags
+	    bit 6 = auto commit on every write (see also AH=68h)
+	    bit 5 = return error rather than doing INT 24h
+	CX = create attribute (see #01769)
+	DL = action if file exists/does not exist (see #01770)
+	DH = 00h (reserved)
+	DS:SI -> ASCIZ file name
+	ES:DI -> EAOP structure
+Return: CF set on error
+	   AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	   AX = file handle
+	   CX = status (see #01768)
+Note:	this function is virtually identical to AX=6C00h, but supports OS/2's
+	  extended attributes
+SeeAlso: AX=5704h,AX=6C00h,AH=6Fh"OS/2"
+

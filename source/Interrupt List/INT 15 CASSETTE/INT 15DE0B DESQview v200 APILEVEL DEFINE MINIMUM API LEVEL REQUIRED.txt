@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE0B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.00+ - "APILEVEL" - DEFINE MINIMUM API LEVEL REQUIRED
+	AX = DE0Bh
+	BL = API level minor version number
+	BH = API level major version number
+Return: AX = maximum API level (AH = major, AL = minor)
+Notes:	if the requested API level is greater than the version of DESQview, a
+	  "You need a newer version" error window is popped up
+	the API level defaults to 1.00, and is inherited by child tasks
+

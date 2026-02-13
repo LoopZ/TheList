@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1417
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - REBOOT SYSTEM
+	AH = 17h
+	AL = method
+	    00h = cold boot
+	    01h = warm boot
+SeeAlso: INT 16/AX=E0FFh,INT 19,INT 60/DI=0606h
+

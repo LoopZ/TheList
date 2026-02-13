@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330028
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.0+ - SET VIDEO MODE
+	AX = 0028h
+	CX = new video mode (call is NOP if 0000h)
+	DH = Y font size (00h = default)
+	DL = X font size (00h = default)
+Return: CL = status (00h = successful)
+Notes:	DX is ignored unless the selected video mode supports font size control
+	when CX=0000h, an internal flag that had been set by a previous call
+	  is cleared; this is required before a mouse reset
+SeeAlso: AX=0029h,INT 10/AH=00h
+

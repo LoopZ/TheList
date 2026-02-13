@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E800
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq Contura - GET ???
+	AX = E800h
+Return: AX = 0000h
+	BH = 00h
+	BL = ??? (read from port 0C7Ch)
+	CH = ???
+	CL = ???
+	DX = 0000h
+Note:	also supported by 3/8/93 DESKPRO/i and 7/26/93 LTE Lite 386 ROM BIOS
+

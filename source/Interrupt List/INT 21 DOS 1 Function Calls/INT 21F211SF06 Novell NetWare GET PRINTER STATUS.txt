@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F211SF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET PRINTER STATUS
+	AX = F211h subfn 06h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02101)
+	ES:DI -> reply buffer (see #02102)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=E0h"NetWare",AH=F2h"Novell",AX=F211h/SF=0Ah
+
+Format of NetWare "Get Printer Status" request packet:
+Offset	Size	Description	(Table 02101)
+ 00h	WORD	length of following data
+ 02h	BYTE	06h (subfunction "Get Printer Status")
+ 03h	BYTE	target printer number (00h-04h)
+SeeAlso: #02102,#01814
+
+Format of NetWare "Get Printer Status" reply packet:
+Offset	Size	Description	(Table 02102)
+ 00h	BYTE	flag: printer halted if FFh
+ 01h	BYTE	flag: printer off-line if FFh
+ 02h	BYTE	current form type
+ 03h	BYTE	redirected printer number
+SeeAlso: #02101
+

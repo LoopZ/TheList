@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0F00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - "M_ERRMSG"
+	DI = 0F00h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	???
+		DWORD	pointer to ???
+		WORD	???
+		DWORD	pointer to ???
+Return: ???
+	STACK unchanged
+

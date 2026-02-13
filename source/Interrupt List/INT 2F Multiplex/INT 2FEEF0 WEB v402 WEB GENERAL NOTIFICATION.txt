@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FEEF0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WEB v4.02 - WEB GENERAL NOTIFICATION
+	AX = EEF0h
+	BX = notification function ID (see #03124)
+Return: varies by notification function
+Program: WEB is an IPX-based peer-to-peer network by Webcorp.
+Note:	the notification functions are used internally by WEB modules to notify
+	  other modules and external programs of actions or event, and should
+	  never be called by an application
+SeeAlso: AX=EE00h"WEB"
+
+(Table 03124)
+Values for WEB Notification Function ID:
+ 00h	node added
+ 01h	node deleted
+ 02h	dial attempt
+ 03h	dial failed
+ 04h	file close
+ 05h	close connection
+ 07h	check Windows mode
+ 20h	link up
+ 21h	link down
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675DE8
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 - GET PARTIAL PAGE TABLE
+	AX = 5DE8h
+	BX = starting page number in first megabyte+HMA (0000h-010Fh)
+	CX = number of page table entries to get
+	ES:DI -> buffer for DWORD page table entries
+Return: AH = status (00h successful, 8Bh invalid page)
+Note:	RM386 traps this function on the initial transition to protected
+	  mode caused by the INT instruction, which means it can not be
+	  overridden simply by hooking the interrupt
+SeeAlso: AX=5DE9h
+

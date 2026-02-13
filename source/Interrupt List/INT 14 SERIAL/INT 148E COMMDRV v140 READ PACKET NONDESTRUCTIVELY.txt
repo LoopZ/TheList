@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148E
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - READ PACKET NONDESTRUCTIVELY
+	AH = 8Eh
+	CX = length of packet in bytes
+	DX = port number
+	ES:DI -> buffer for packet
+Return: AH = line status (see #00304)
+	    bit 7 set on error (see AX=8000h"COMM-DRV")
+	AL destroyed
+Program: COMM-DRV is a universal serial communications driver by Willies'
+	  Computer Software Company, which supports standard INT 14 and
+	  FOSSIL calls as well as its own interfaces
+Desc:	retrieve a packet from the input buffer without removing it from the
+	  buffer
+Note:	this call requires that at least the requested number of bytes are
+	  already present in the input buffer, and will fail if there are
+	  fewer bytes available
+SeeAlso: AX=8000h"COMM-DRV",AH=84h"COMM-DRV",AH=85h"COMM-DRV",AH=86h"COMM-DRV"
+

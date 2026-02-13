@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1319
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Future Domain SCSI CONTROLLER - REINITIALIZE DRIVE
+	AH = 19h
+	DL = hard drive ID
+Return: CF set on error
+	    AH = status code (see #00234 at AH=01h)
+	CF clear if successful
+	    AH = disk type (03h = fixed disk)
+	    CX:DX = number of 512-byte sectors
+Notes:	sends SCSI Read Capacity command to get number of logical blocks and
+	  adjusts the result for 512-byte sectors
+	displays either "Error in Read Capacity Command" or "nnn Bytes per
+	  sector" (nnn=256 or 512, the only sizes supported in the translation
+	  code)
+	should probably be called when a removable device has its media changed
+	returns the same values as AH=15h
+	the TMC-950 does not support any Future Domain BIOS calls; instead,
+	  it provides a full CAM implementation (see INT 4F/AX=8100h)
+SeeAlso: AH=15h,AH=1Ah,INT 4F/AX=8100h
+

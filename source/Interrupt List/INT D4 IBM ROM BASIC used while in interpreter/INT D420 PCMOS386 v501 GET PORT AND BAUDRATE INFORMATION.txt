@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: D420
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - GET PORT AND BAUDRATE INFORMATION
+	AH = 20h
+	BX = task ID (FFFFh for current task) (see AH=19h)
+Return: CF clear if successful
+	    CX = port number (0000h if none)
+	    DI:SI = baudrate (if CX nonzero)
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+SeeAlso: INT 14/AH=0Ch"FOSSIL"
+

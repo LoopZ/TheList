@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1214
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - COMPARE FAR POINTERS
+	AX = 1214h
+	DS:SI = first pointer
+	ES:DI = second pointer
+Return: ZF set if pointers are equal, ZF clear if not equal
+	CF clear if pointers equal, CF set if not
+

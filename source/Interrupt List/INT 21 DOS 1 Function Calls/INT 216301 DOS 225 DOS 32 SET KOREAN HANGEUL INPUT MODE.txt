@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216301
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2.25, DOS 3.2+ - SET KOREAN (HANGEUL) INPUT MODE
+	AX = 6301h
+	DL = new mode
+	    00h return only full characters on DOS keyboard input functions
+	    01h return partially-formed (interim) characters also
+Return: AL = status
+	    00h successful
+	    FFh invalid mode
+Notes:	Novell DOS 7 simply stores DL in the caller's PSP (see #01378 at AH=26h)
+	the US version of MS-DOS 3.30 treats this as an unused function,
+	  setting AL=00h and returning immediately; only the Far East versions
+	  of MS-DOS 3.2 and 3.3 supported this call
+SeeAlso: AH=07h,AH=08h,AH=0Bh,AX=6300h,AX=6302h
+

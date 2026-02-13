@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0006
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - CANCEL EVENT
+	BX = 0006h
+	ES:SI -> Event Control Block (see BX=0003h)
+Return: AL = return code (see #03822)
+Notes:	cannot cancel packets which the node's driver has already sent
+	this function is supported by Advanced NetWare 1.02+
+SeeAlso: BX=0005h
+
+(Table 03822)
+Values for IPX return code:
+ 00h	success
+ F9h	event in use
+ FCh	event cancelled
+ FFh	unsuccessful, event not in use, or unrecognized ECB flag
+

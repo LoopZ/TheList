@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F09
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - MultiLink Advanced v1.0+ - SET TASK PRIORITY
+	AH = 09h
+	AL = priority (0-7)
+Return: nothing
+InstallCheck:	ensure that the interrupt vector is not pointing at segment
+	  0000h, then test whether the byte at offset 0000h in the interrupt
+	  handler's segment is E9h
+Index:	installation check;MultiLink Advanced
+SeeAlso: AH=00h"MultiLink",AH=0Ah"MultiLink"
+

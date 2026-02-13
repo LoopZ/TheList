@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137D4BX899D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DIET v1.43e - GET TSR OPTIONS
+	AX = 37D4h
+	BX = 899Dh ('DI' + 'ET')
+Return: AX = 0000h
+	DX = TSR options (see #01396)
+SeeAlso: AX=37D0h,AX=37D2h,AX=37D5h
+
+Bitfields for DIET TSR options:
+Bit(s)	Description	(Table 01396)
+ 0	automated compression of DIETed file
+ 1	automated compression of newly-created file
+ 2	suppress DIET message
+ 3	display original file size
+ 4-15	reserved (0)
+

@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0023
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPXODI v2.12+ - OPEN LOOK-AHEAD SOCKET
+	BX = 0023h
+	DX = socket number (0000h for dynamic allocation)
+	ES:SI -> Look Ahead handler (see #03831)
+	BP = desired lookahead size (0000h-0080h)
+Return: AL = status
+	    00h successful
+		DX = assigned socket number (big-endian)
+	    FEh maximum number of sockets already open
+	    FFh specific socket already opened by another application
+	DS,FLAGS preserved
+	all other registers may be destroyed
+Notes:	the socket will always be long-lived, and must thus be explicitly
+	  closed with INT 7A/BX=0001h before the Look Ahead handler code is
+	  removed from memory (i.e. the program terminates)
+	this function is only supported if INT 2F/AX=7A00h returns ES:BX
+	  pointing at an IPX version greater than 3.30
+	the desired lookahead size is the smallest-size packet (including IPX
+	  header) that should be passed to the lookahead handler when it
+	  arrives
+SeeAlso: INT 7A/BX=0000h,INT 7A/BX=0001h
+
+(Table 03831)
+Call IPX Look-Ahead handler with:
+	AX = packet's destination socket
+	DS:SI -> look-ahead structure (see #03010 at INT 2F/AX=C000h"LSL")
+	DF clear
+	interrupt disabled (must remain disabled)
+Return: AX = packet use
+	    0000h application want packet
+		ES:SI -> ODI ECB (see #03011 at INT 2F/AX=C000h"LSL")
+	    8001h application does not want packet
+	ZF set if AX=0000h
+	DS,DI,BP,SS,SP preserved
+	interrupts disabled
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF13
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET INTERNET ADDRESS (OLD)
+	AX = F217h subfn 13h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01911 at AH=E3h/SF=13h)
+	ES:DI -> reply buffer (see #02168)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=13h,AX=F217h/SF=1Ah
+
+Format of NetWare "Get Internet Address (old)" reply packet:
+Offset	Size	Description	(Table 02168)
+ 00h  4 BYTEs	network number
+ 04h  6 BYTEs	physical node address
+ 0Ah  2 BYTEs	socket number
+SeeAlso: #01911 at AH=E3h/SF=13h,#02174
+

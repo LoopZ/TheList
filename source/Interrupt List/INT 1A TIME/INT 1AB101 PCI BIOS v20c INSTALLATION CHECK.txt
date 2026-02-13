@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB101
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - INSTALLATION CHECK
+	AX = B101h
+	EDI = 00000000h
+Return: AH = 00h if installed
+	    CF clear
+	    EDX = 20494350h (' ICP')
+	    EDI = physical address of protected-mode entry point (see #00731)
+	    AL = PCI hardware characteristics (see #00730)
+	    BH = PCI interface level major version (BCD)
+	    BL = PCI interface level minor version (BCD)
+	    CL = number of last PCI bus in system
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	some BIOSes do not change EDI, so applications looking for the
+	  protected-mode entry point should set EDI to 00000000h before
+	  calling this function
+SeeAlso: AX=B181h
+
+(Table 00729)
+Values for PCI BIOS v2.0c+ status codes:
+ 00h	successful
+ 81h	unsupported function
+ 83h	bad vendor ID
+ 86h	device not found
+ 87h	bad PCI register number
+
+Bitfields for PCI hardware characteristics:
+Bit(s)	Description	(Table 00730)
+ 0	configuration space access mechanism 1 supported
+ 1	configuration space access mechanism 2 supported
+ 2-3	reserved
+ 4	Special Cycle generation mechanism 1 supported
+ 5	Special Cycle generation mechanism 2 supported
+ 6-7	reserved
+
+(Table 00731)
+Call protected-mode entry point with:
+	registers as for real/V86-mode INT call
+	CS = ring 0 descriptor with access to full address space
+Return: as for real/V86-mode call
+

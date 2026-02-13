@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7815
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - TARGA.DEV - FINISH DATA TRANSFER (DMA)
+	AH = 15h
+Return: AH = SCSI status byte
+	CF clear if successful
+	    AL = SCSI message byte
+	CF set on error
+	    AL = error code (see #03786)
+Note:	if AH=06h was previously called to set the early return mode, this
+	  function finishes a command AH=13h or AH=14h which returned before
+	  the last DMA transfer was finished
+SeeAlso: AH=06h,AH=13h,AH=14h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1420
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - SELECT COMMS PARAMETERS
+	AH = 20h
+	CX = channel number (00h COM1, 01h COM2, ...)
+	DS:BX -> buffer with communications parameter (see #00347)
+Return: AX = status
+	    0000h successful
+	    0001h invalid parameter
+SeeAlso: AH=1Eh"HUNTER",AH=21h"HUNTER"
+

@@ -1,0 +1,72 @@
+--------------------------------------------------------------------------------
+ Unique ID: 25
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 25 - DOS 1+ - ABSOLUTE DISK READ (except partitions > 32M)
+	AL = drive number (00h = A:, 01h = B:, etc)
+	CX = number of sectors to read (not FFFFh)
+	DX = starting logical sector number (0000h - highest sector on drive)
+	DS:BX -> buffer for data
+Return: CF clear if successful
+	CF set on error
+	    AH = status (see #02547)
+	    AL = error code (same as passed to INT 24 in DI)
+	    AX = 0207h if more than 64K sectors on drive -- use new-style call
+	may destroy all other registers except segment registers
+Notes:	original flags are left on stack, and must be popped by caller
+	this call bypasses the DOS filesystem
+	examination of CPWIN386.CPL indicates that if this call fails with
+	  error 0408h on an old-style (<32M) call, one should retry the
+	  call with the high bit of the drive number in AL set
+	Novell DOS 7 decides whether the old-style or new-style (>32M) version
+	  of INT 25 must be used solely on the basis of the partition's size,
+	  thus forcing use of the new-style call even for data in the first
+	  32M of the partition
+	PC Tools MIRROR as shipped with MS-DOS 5.0+ checks several signatures
+	  at the beginning of INT 25h and INT 26h before it starts to patch
+	  these vectors. The signatures it looks for are 83h, F9h, FFh, 74h
+	  (CMP CX,-01; JZ ????) at offset +1 from the INT 25h/26h entry points
+	  and 2Eh, FFh, 2Eh (JMP DWORD PTR CS:[????]) at the location pointed
+	  to by the JZ ????. If it finds these signatures it will use the
+	  target address of the far jump for its sub-sequent checks, otherwise
+	  it will just take the previous interrupt entry points when scanning
+	  for FAh, 2Eh, 8Ch, 16h (CLI; MOV CS:????,SS) or FAh, 2Eh, 89h, 26h
+	  (CLI; MOV CS:????,SP) right at the beginning. Hence, it seems the
+	  first two checks are to trace through a specific INT 25h/26h
+	  filter. However, the purpose of the whole patch is unknown.
+	A method to detect the actual assignments of logical drive numbers
+	 to physical BIOS drive units (for example to detect the boot drive),
+	 is to temporarily mount an INT 13h handler recording the used DL
+	 drive unit for any INT 13/AH=02h read operations and discarding any
+	 attempts to access actual floppy drives.  Then call INT 25h for
+	 all the appropriate DOS drives and watch the results recorded by
+	 the INT 13h interceptor.
+	Although all registers except segment registers may be destroyed
+	 some software depends on some of the registers being preserved.
+	 For example some Flash disk drivers requires that DX is not trashed.
+	 DR-DOS 7.03 takes care of this.
+BUGS:	DOS 3.1 through 3.3 set the word at ES:[BP+1Eh] to FFFFh if AL is an
+	  invalid drive number
+	DR DOS 3.41 will return with a jump instead of RETF, leaving the
+	  wrong number of bytes on the stack; use the huge-partition version
+	  (INT 25/CX=FFFFh) for all partition sizes under DR DOS 3.41
+	DR DOS 6.0 original issues 05/1991 & 08/1991 reported wrong error
+	  codes for "drive not ready" and "write protect". This was fixed
+	  with the DR DOS BDOS patch "PAT321" (1992/02/19, XDIR /C: 947Bh),
+	  and later "full" rebuilds (see INT 21/AX=4452h for details).
+SeeAlso: INT 13/AH=02h,INT 25/CX=FFFFh,INT 26,INT 21/AX=7305h,INT 21/AH=90h"PTS"
+
+(Table 02547)
+Values for disk I/O status:
+ 80h	device failed to respond (timeout)
+ 40h	seek operation failed
+ 20h	controller failed
+ 10h	data error (bad CRC)
+ 08h	DMA failure
+ 04h	requested sector not found
+ 03h	write-protected disk (INT 26 only)
+ 02h	bad address mark
+ 01h	bad command
+

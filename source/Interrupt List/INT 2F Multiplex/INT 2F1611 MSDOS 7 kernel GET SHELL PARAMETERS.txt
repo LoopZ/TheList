@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1611
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS-DOS 7 kernel - GET SHELL PARAMETERS
+	AX = 1611h
+Return: AX = 0000h if supported
+	    DS:DX -> primary shell's executable name
+	    DS:SI -> prinary shell command line (counted string)
+	    BH = ??? (00h)
+	    BL = ??? (00h,40h)
+Desc:	return the program name and commandline from the CONFIG.SYS SHELL=
+	  statement
+SeeAlso: AX=160Eh,AX=160Fh,AX=1612h,AX=4A33h
+

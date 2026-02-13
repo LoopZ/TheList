@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A85
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - GET ADAPTER
+	AH = 85h
+	AL = adapter number
+Return: CF clear if successful
+	    AH destroyed
+	    DH = adapter attributes (see #00672)
+	CF set on error
+	    AH = error code (01h) (see #00656)
+SeeAlso: AH=84h"PCMCIA",AH=86h
+
+Bitfields for PCMCIA adapter attributes:
+Bit(s)	Description	(Table 00672)
+ 7-5	reserved (0)
+ 4	hardware share status change
+ 3	software share status change
+ 2	enable status change interrupts
+ 1	adapter preserves state information during reduced power consumption
+ 0	attempting to reduce power consumption
+

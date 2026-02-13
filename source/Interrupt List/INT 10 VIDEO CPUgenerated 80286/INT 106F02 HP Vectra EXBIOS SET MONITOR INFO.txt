@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106F02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HP Vectra EX-BIOS - SET MONITOR INFO
+	AX = 6F02h
+	BL = new value for extended control register (see #00190)
+Return: AX,BL destroyed
+Notes:	this function is only valid when an HP MultiMode Video Display Adapter
+	  is installed
+	the Extended Control register is at I/O address 3DDh
+SeeAlso: AX=6F01h,AX=6F03h
+
+Bitfields for HP Vectra extended control register:
+Bit(s)	Description	(Table 00190)
+ 0	screen resolution (0 = 200 lines, 1 = 400 lines)
+ 1	underline enable (if set, 'blue' of fg color = underline)
+ 2	font (0 = Standard-8, 1 = HP-Roman-8)
+ 3	memory disabled for CPU access
+ 4	allow access to full 32K memory instead of wrapping at 16K
+ 5	select second 16K page instead of first
+ 6,7	unused
+

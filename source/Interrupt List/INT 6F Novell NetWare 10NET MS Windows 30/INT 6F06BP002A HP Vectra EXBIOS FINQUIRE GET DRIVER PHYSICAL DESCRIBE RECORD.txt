@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F06--BP002A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_INQUIRE" - GET DRIVER PHYSICAL DESCRIBE RECORD
+	AH = 06h
+	BP = 002Ah (driver ID for V_SINPUT)
+	AL = HP-HIL physical device number (01h-07h)
+Return: AH = status (see #03744)
+	ES:SI -> physical describe record for driver
+	BP,DS destroyed
+Note:	the returned physical describe record must not be modified
+SeeAlso: AH=00h"HP Vectra",AX=0400h/BP=002Ah,AH=08h/BP=002Ah,AH=0Ah/BP=002Ah
+SeeAlso: AH=0Ch/BP=002Ah
+

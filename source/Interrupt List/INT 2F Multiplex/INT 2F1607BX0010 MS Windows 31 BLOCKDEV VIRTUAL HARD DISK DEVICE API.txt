@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1607BX0010
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows 3.1 - "BLOCKDEV" VIRTUAL HARD DISK DEVICE API
+	AX = 1607h
+	BX = 0010h (VxD identifier of "BLOCKDEV")
+	CX = function
+	    0001h starting FastDisk compatibility tests
+	    0002h ending FastDisk compatibility tests
+	    0003h check if FastDisk installation allowed
+		Return: CX = 0000h if allowed
+Note:	this interface is called by the Windows FastDisk driver (such as
+	  WDCTRL) when it thinks that the INT 13h handler immediately below
+	  IO.SYS's INT 13h code is not in ROM; it should be supported by any
+	  program which hooks itself underneath IO.SYS's INT 13h code with
+	  INT 2F/AH=13h
+SeeAlso: AX=1607h/BX=0014h,INT 2F/AH=13h
+

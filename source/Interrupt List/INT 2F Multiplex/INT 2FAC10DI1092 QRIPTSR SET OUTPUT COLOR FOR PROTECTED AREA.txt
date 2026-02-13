@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC10DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - SET OUTPUT COLOR FOR PROTECTED AREA
+	AX = AC10h
+	DI = 1092h
+	BL = new attribute (bit 7 set for high-intensity background)
+Return: nothing
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC0Dh,AX=AC0Eh,AX=AC0Fh,AX=AC11h,AX=ACF0h
+

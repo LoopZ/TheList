@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1408
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - INPUT STATUS CHECK
+	AH = 08h
+	DX = port number
+Return: CF set if carrier loss detected
+	ZF set if input buffer empty
+	ZF clear if characters available
+	    AL = next character dequeued
+

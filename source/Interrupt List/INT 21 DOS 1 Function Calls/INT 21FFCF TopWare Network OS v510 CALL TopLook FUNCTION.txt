@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFCF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - CALL TopLook FUNCTION
+	AX = FFCFh
+	DH = page number (0-2, 2 is text mode)
+	DL = type
+	    00h look at specific screen
+	    01h AutoLook on
+	    FFh AutoLook off
+	BH = station number wishing to look
+	BL = station number to be looked at
+	CH = monochrome flag (01h monochrome, 00h not monochrome)
+	CL = screen mode (see #02531)
+Return: AL = status (00h successful, nonzero failed)
+SeeAlso: AX=FF8Dh
+

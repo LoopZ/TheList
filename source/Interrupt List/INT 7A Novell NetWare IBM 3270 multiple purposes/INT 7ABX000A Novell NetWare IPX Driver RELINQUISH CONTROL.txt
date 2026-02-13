@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX000A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - RELINQUISH CONTROL
+	BX = 000Ah
+Desc:	this call indicates that the application is idle and permits the IPX
+	  driver to do some work
+Note:	this function is supported by Advanced NetWare 1.02+
+SeeAlso: INT 15/AX=1000h,INT 21/AH=89h,INT 2F/AX=1680h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET SERIAL NUMBER
+	AH = 6Ch
+Return: BL:CX = BCD serial number
+Note:	when shipped, all Hunter 16s have the same Serial Number, but a
+	  different number can be stored (see AH=72h)
+SeeAlso: AH=6Bh,AH=72h
+

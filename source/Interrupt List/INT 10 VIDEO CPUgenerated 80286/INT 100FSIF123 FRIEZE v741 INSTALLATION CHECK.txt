@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100F--SIF123
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - FRIEZE v7.41+ - INSTALLATION CHECK
+	AH = 0Fh
+	SI = F123h
+	DI = 321Fh
+Return: AH = number of character columns
+	AL = display mode (see #00010 at AH=00h)
+	BH = active page (see AH=05h)
+	SI = DI = F345h if installed
+Notes:	if mode was set with bit 7 set ("no blanking"), the returned mode will
+	  also have bit 7 set
+	EGA, VGA, and UltraVision return either AL=03h (color) or AL=07h
+	  (monochrome) in all extended-row text modes
+SeeAlso: AH=0Fh"VIDEO",AH=4Bh"FRIEZE"
+

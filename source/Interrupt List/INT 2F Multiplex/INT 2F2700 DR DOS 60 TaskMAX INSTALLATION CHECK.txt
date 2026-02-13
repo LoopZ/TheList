@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2700
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - INSTALLATION CHECK
+	AX = 2700h
+Return: AL = status
+	    00h not installed
+	    FFh installed
+Note:	the TaskMAX API is also supported by Novell DOS 7 TASKMGR in both
+	  taskswitching and multitasking modes
+

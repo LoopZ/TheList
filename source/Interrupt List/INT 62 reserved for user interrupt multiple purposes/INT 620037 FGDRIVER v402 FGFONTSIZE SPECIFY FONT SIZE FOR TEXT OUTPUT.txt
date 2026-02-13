@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620037
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FONTSIZE" - SPECIFY FONT SIZE FOR TEXT OUTPUT
+	AX = 0037h
+	BX = desired character height in scan lines (8, 14, 16)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored if the current mode is not a VGA or SVGA graphics
+	  mode, or the specified character height is not 8, 14, or 16
+SeeAlso: AX=0096h
+

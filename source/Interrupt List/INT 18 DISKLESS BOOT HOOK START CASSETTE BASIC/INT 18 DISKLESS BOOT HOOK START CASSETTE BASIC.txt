@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 18
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - DISKLESS BOOT HOOK (START CASSETTE BASIC)
+Desc:	called when there is no bootable disk available to the system
+Notes:	very few PCs other than those produced by IBM contain BASIC in ROM, so
+	  the action is unpredictable on compatibles; this interrupt often
+	  reboots the system, and often has no effect at all
+	some PC and XT clones had an optional IBM CASSETTE BASIC stored
+	  in the ROM, too.
+	most BIOSes will display an error message similar to "NO BASIC", and
+	  either reboot or return to the caller.
+	PS/2 machines usually pop up a graphical box to the effect that
+	  the user should enter a floppy and press F1.
+	Some clones display the message "No boot device available,
+	  strike F1 to retry, F2 for setup utility"
+	network cards with their own BIOS can hook this interrupt to allow
+	  a diskless boot off the network (even when a hard disk is present
+	  if none of the partitions is marked as the boot partition)
+SeeAlso: INT 2F/AX=4A06h,INT 86"NetBIOS",INT 2F/AX=4A06h,INT 2F/AX=4A07h
+

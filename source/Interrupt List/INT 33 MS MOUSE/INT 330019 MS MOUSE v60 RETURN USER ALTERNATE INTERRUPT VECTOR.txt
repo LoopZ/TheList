@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330019
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - RETURN USER ALTERNATE INTERRUPT VECTOR
+	AX = 0019h
+	CX = call mask (see #03174)
+Return: BX:DX = user interrupt vector
+	CX = call mask (0000h if not found)
+Note:	attempts to find a user event handler (defined by function 18h)
+	  whose call mask matches CX
+SeeAlso: AX=0018h
+

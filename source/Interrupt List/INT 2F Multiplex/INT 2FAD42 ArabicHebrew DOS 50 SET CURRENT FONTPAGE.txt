@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD42
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Arabic/Hebrew DOS 5.0???+ SET CURRENT FONTPAGE
+	AX = AD42h
+	CX = fontpage (> 0)
+Return: ???
+Note:	called by Arabic/Hebrew MS-DOS 5.0 CODEPAGE.COM almost immediately
+	  before a call to INT21h/6602h to set the current codepage
+	  (without checking any possible error codes returned from the call).
+	The function is probably implemented in the ARABIC.COM/HEBREW.COM
+	  driver.
+SeeAlso: AX=AD41h,AX=AD43h,INT 21/AX=6601h,INT 21/AX=6602h
+

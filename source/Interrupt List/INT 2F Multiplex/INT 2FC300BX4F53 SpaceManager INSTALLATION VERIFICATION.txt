@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC300BX4F53
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - SpaceManager - INSTALLATION VERIFICATION
+	AX = C300h
+	BX = 4F53h ('OS')
+	CX = 4F48h ('OH')
+	DX = program identifier (see #03035) or 0666h for any SpaceManager prog
+Return: AL = FFh if BX/CX as specified and specified program installed
+	    BX = 6F73h ('os')
+	    CX = 6F68h ('oh')
+Range:	AH=C3h to AH=FFh, selected by scanning for first free multiplex number
+Note:	this call is chained if BX,CX, or DX are not as specified above
+SeeAlso: AX=C300h/DX=0000h
+
+(Table 03035)
+Values for SpaceManager program identifier:
+ 9000h	SMOUNT (SuperMount)
+ 9001h	SELECTC (SelectCompress)
+ 9002h	SUPERX (SuperExchange)
+ 9003h	FORTUNE (FortuneTeller)
+

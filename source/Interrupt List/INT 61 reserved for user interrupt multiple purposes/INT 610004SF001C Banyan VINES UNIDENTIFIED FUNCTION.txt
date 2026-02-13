@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF001C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - UNIDENTIFIED FUNCTION
+	AX = 0004h subfn 001Ch
+	DS:DX -> request block (see #03427)
+Return: AX = status
+	    0000h success
+	    0057h invalid number of entries
+Desc:	The purpose of this function is not known.
+
+Format of request block:
+Offset	Size	Description	(Table 03427)
+ 00h	WORD	001Ch
+ 02h	WORD	???
+ 04h	WORD	???
+ 06h	WORD	???
+ 08h	WORD	???
+ 0Ah	DWORD	far pointer to data area (14 bytes)
+

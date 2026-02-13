@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31000B
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET DESCRIPTOR
+	AX = 000Bh
+	BX = LDT selector
+	ES:(E)DI -> 8-byte buffer for copy of descriptor
+Return: CF clear if successful
+	    buffer filled
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8022h) (see #03143)
+Notes:	16-bit programs use ES:DI as pointer, 32-bit must use ES:EDI
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=000Ch
+

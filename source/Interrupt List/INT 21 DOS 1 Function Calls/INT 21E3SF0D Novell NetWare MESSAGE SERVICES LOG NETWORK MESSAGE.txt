@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF0D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - MESSAGE SERVICES - LOG NETWORK MESSAGE
+	AH = E3h subfn 0Dh
+	DS:SI -> request buffer (see #01898)
+	ES:DI -> reply buffer (see #01895)
+Return: AL = status
+	    00h successful
+Desc:	append a line to the default file server's NET$LOG.MSG file
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E1h/SF=09h
+
+Format of NetWare "Log Network Message" request buffer:
+Offset	Size	Description	(Table 01898)
+ 00h	WORD	length of following data (max 52h)
+ 02h	BYTE	0Dh (subfunction "Log Network Message")
+ 03h	BYTE	length of message (01h-50h)
+ 04h  N BYTEs	message (no control characters or characters > 7Eh)
+SeeAlso: #01895
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver 1.10+ - HIGH-PERF FUNC - ASYNCHRONOUS SEND PACKET
+	AH = 0Ch
+	ES:DI -> pointer to IOCB (see #03312)
+Return: CF set on error
+	    DH = error code (see #03305)
+	CF clear if successful
+SeeAlso: AH=04h"Packet Driver",AH=0Bh"Packet Driver"
+
+Format of packet driver IOCB:
+Offset	Size	Description	(Table 03312)
+ 00h	DWORD	pointer to buffer
+ 04h	WORD	length of buffer
+ 06h	BYTE	flags
+		bit 0: packet driver is finished with IOCB
+		bit 1: application requests upcall when driver completes
+ 07h	DWORD	function address for upcall (see #03313)
+ 0Bh  4 BYTEs	future gather write
+ 0Fh	BYTE	???
+ 10h  8 BYTEs	private driver workspace
+
+(Table 03313)
+Values completion function is called with:
+	ES:DI -> IOCB passed to INT 60/AH=0Ch
+

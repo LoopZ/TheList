@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF46
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET BINDERY ACCESS LEVEL
+	AX = F217h subfn 46h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01957 at AH=E3h/SF=46h)
+	ES:DI -> reply buffer (see #02189)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=46h,AX=F217h/SF=45h
+
+Format of NetWare "Get Bindery Access Level" reply packet:
+Offset	Size	Description	(Table 02189)
+ 00h	BYTE	security levels
+ 01h	DWORD	(big-endian) object ID
+SeeAlso: #01957,#01958 at AH=E3h/SF=46h
+

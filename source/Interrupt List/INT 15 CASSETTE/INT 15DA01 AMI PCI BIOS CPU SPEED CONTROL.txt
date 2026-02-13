@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DA01
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI PCI BIOS - CPU SPEED CONTROL
+	AX = DA01h
+	CL = subfunction (00h-02h)
+	    00h set low CPU speed
+	    01h set high CPU speed
+	    02h get current CPU speed
+Return: CF clear if successful
+	    AH = current/new CPU speed (00h low, 01h high)
+	    AL = ??? (00h)
+	CF set on error
+	    AH = error code (86h unsupported subfunction)
+Notes:	in the v1.00.05.AX1 BIOS, subfunctions 00h and 01h are NOPs in both
+	  protected and V86 modes due to a test of MSW bit 0
+	setting the CPU speed also generates the same audible signals generated
+	  when manually switching speeds with Ctrl-Alt-Gray- and Ctrl-Alt-Gray+
+BUG:	the BIOS apparently intends to return CF set if ???, but fails to use
+	  a different exit path in that case, resulting in CF clear
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - RELEASE FILE
+	AH = ECh
+	DS:DX -> ASCIZ filename
+Return: AL = status
+	    00h successful
+	    FFh file not found
+Desc:	unlock the specified file but retain it in the log table
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=CDh,AH=EBh"NetWare",AH=EDh"NetWare"
+

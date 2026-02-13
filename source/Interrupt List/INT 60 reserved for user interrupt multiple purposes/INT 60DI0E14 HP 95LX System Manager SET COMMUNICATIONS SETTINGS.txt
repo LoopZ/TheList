@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0E14
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - SET COMMUNICATIONS SETTINGS
+	DI = 0E14h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	comm channel handle
+		DWORD	pointer to communications settings (see #03303)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0E15h
+
+Format of HP 95LX communications settings:
+Offset	Size	Description	(Table 03303)
+ 00h	BYTE	dial type ('T' tone, 'P' pulse)
+ 01h	WORD	baud rate divisor (115200/baud_rate)
+ 03h	BYTE	parity (00h none, 08h odd, 18h even, 28h mark, 38h space)
+ 04h	BYTE	stop bits (00h one, 04h two)
+ 05h	BYTE	data bits - 5
+ 06h	BYTE	software handshake
+		01h none, 02h XOFF/XON, 04h XOFF/any, 08h ENQ/ACK
+ 07h	BYTE	infrared (01h off, 02h on)
+ 08h	BYTE	duplex (01h half, 02h full)
+ 09h	BYTE	echo (01h echo, 02h no echo)
+

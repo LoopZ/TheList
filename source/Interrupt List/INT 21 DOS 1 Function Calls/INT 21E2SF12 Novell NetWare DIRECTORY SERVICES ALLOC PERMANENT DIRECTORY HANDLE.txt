@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF12
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - ALLOC PERMANENT DIRECTORY HANDLE
+	AH = E2h subfn 12h
+	DS:SI -> request buffer (see #01869)
+	ES:DI -> reply buffer (see #01870)
+Return: AL = status (00h,98h,9Ch) (see #01866)
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=00h,AH=E2h/SF=13h,AH=E2h/SF=14h,AX=F216h/SF=12h
+
+Format of NetWare "Allocate Permanent Directory Handle" request buffer:
+Offset	Size	Description	(Table 01869)
+ 00h	WORD	length of following data (max 103h)
+ 02h	BYTE	12h (subfunction "Allocate Permanent Directory Handle")
+ 03h	BYTE	directory handle
+ 04h	BYTE	drive ('A'-'Z')
+ 05h	BYTE	length of directory path
+ 06h  N BYTEs	directory path
+SeeAlso: #01870,#01871,#02118
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01870)
+ 00h	WORD	(call) 0002h (size of following results buffer)
+ 02h	BYTE	new directory handle
+ 03h	BYTE	effective directory rights (see #01849)
+SeeAlso: #01869,#02118
+

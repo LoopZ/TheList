@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2113
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - DELETE FILE USING FCB
+	AH = 13h
+	DS:DX -> unopened FCB (see #01345), filename filled with template for
+		deletion ('?' wildcards allowed)
+Return: AL = status
+	    00h one or more files successfully deleted
+	    FFh no matching files or all were read-only or locked
+Notes:	DOS 1.25+ deletes everything in the current directory (including
+	  subdirectories) and sets the first byte of the name to 00h (entry
+	  never used) instead of E5h if called on an extended FCB with
+	  filename '???????????' and bits 0-4 of the attribute set (bits 1 and
+	  2 for DOS 1.x).  This may have originally been an optimization to
+	  minimize directory searching after a mass deletion (DOS 1.25+ stop
+	  the directory search upon encountering a never-used entry), but can
+	  corrupt the filesystem under DOS 2+ because subdirectories are
+	  removed without deleting the files they contain.
+	currently-open files should not be deleted
+	MS-DOS allows deletion of read-only files with an extended FCB, whereas
+	  Novell NetWare, DR DOS 6, and Novell DOS 7/OpenDOS 7.01 do not
+	this function generates a trap "D" under OS/2 v4.x (Warp4) when called
+	  on an HPFS partition with a wildcard in the filename; it operates
+	  correctly on FAT partitions and when called without wildcards
+SeeAlso: AH=41h,INT 2F/AX=1113h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675DFF
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 67 U - RM386 v6.00 - ???
+	AX = 5DFFh
+	???
+Return: ???
+Note:	RM386 traps this function on the initial transition to protected
+	  mode caused by the INT instruction, which means it can not be
+	  overridden simply by hooking the interrupt
+SeeAlso: AX=5DFDh,AX=5DFEh
+

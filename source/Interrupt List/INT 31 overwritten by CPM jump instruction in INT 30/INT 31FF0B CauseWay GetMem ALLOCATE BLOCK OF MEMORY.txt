@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF0B
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "GetMem" - ALLOCATE BLOCK OF MEMORY
+	AX = FF0Bh
+	CX:DX = size in bytes (FFFFh:FFFFh to get size of largest available)
+Return: CF clear if successful
+	    BX = selector for accessing block if requested size not FFFFh:FFFFh
+	    CX:DX = size of largest available block if requested FFFFh:FFFFh
+	CF set on error
+SeeAlso: AX=FF0Ch,AX=FF0Dh,AX=FF0Fh,AX=FF10h,AX=FF2Ch
+

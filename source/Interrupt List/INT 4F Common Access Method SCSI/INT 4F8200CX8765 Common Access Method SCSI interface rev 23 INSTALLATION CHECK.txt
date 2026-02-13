@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4F8200CX8765
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4F - Common Access Method SCSI interface rev 2.3 - INSTALLATION CHECK
+	AX = 8200h
+	CX = 8765h
+	DX = CBA9h
+Return: AH = 00h if installed
+	    CX = 9ABCh
+	    DX = 5678h
+	    ES:DI -> "SCSI_CAM"
+SeeAlso: AX=8100h,INT 4B"Common Access Method"
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF80BX0003
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ CPTASK - GET ??? FLAGS
+	AX = FF80h
+	BX = 0003h
+Return: AX = flags (see #00617)
+SeeAlso: AX=FF80h/BX=0004h,AX=FF80h/BX=0006h
+
+Bitfields for CPTASK flags:
+Bit(s)	Description	(Table 00617)
+ 10	???
+ 13	???
+ 14	???
+ 15	???
+

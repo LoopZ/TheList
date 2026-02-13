@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F8
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - SET/RESET KEYBOARD CONTROL FLAGS
+	AH = F8h
+	AL = program for which to set flags
+	    00h this program
+	    01h other program
+	DX = keyboard control flags (see #02088 at AH=E8h"DoubleDOS")
+Return: DX = previous flags
+Notes:	disabling Ctrl-PrtSc will allow the program to intercept the keystroke;
+	  disabling any of the other keystrokes disables them completely
+	this function is identical to AH=E8h
+SeeAlso: AH=E8h"DoubleDOS",AH=F1h"DoubleDOS",AH=F2h"DoubleDOS"
+SeeAlso: AH=F3h"DoubleDOS"
+

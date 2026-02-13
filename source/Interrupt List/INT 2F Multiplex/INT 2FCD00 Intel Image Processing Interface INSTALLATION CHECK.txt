@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD00
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Intel Image Processing Interface - INSTALLATION CHECK
+	AX = CD00h
+Return: AL = state
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+SeeAlso: AX=CD02h"Image"
+

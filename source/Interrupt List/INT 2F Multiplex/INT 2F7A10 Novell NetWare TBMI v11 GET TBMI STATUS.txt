@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A10
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - TBMI v1.1+ - GET TBMI STATUS
+	AX = 7A10h
+Return: DH = major TBMI version number
+	DL = minor TBMI version number (01h for v1.1)
+	CX = segment address of TBMI resident part
+	BX = status word of TBMI (see #02857)
+Note:	TBMI is the Task-Switched Buffer Manager Interface
+SeeAlso: AX=7A11h,AX=7A12h,AX=7A13h,AX=7A14h
+
+Bitfields for NetWare TBMI status word:
+Bit(s)	Description	(Table 02857)
+ 0	INT2F intercepted by TBMI
+ 1	INT7A intercepted by TBMI
+ 2	INT64 intercepted by TBMI
+ 3-14	reserved or unused ???
+ 15	outstanding task ID was detected
+

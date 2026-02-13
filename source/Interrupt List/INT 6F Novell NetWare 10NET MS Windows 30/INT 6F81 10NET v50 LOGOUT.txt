@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F81
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - LOGOUT
+	AH = 81h
+	DS:DX -> server node ID (DX=0000h for universal logout)
+Return: AX = status (see #03740)
+SeeAlso: AH=01h,AH=80h
+

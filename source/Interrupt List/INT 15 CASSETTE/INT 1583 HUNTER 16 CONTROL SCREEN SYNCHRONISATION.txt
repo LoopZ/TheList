@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1583
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL SCREEN SYNCHRONISATION
+	AH = 83h
+	AL = state of LCD window (00h disabled, nonzero enabled)
+Desc:	Enable/disable the facility where the displayed window tracks the
+	  cursor output to keep the focus visible
+

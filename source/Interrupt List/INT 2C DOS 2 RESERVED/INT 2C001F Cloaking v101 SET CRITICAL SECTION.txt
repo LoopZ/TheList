@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C001F
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - SET CRITICAL SECTION
+	AX = 001Fh
+Return: CF clear
+Desc:	prevent MS Windows from switching to another VM
+SeeAlso: AX=001Eh,INT 15/AX=101Bh,INT 2F/AX=1681h
+

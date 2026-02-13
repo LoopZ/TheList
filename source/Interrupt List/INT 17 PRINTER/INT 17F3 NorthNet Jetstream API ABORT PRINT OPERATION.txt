@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17F3
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - NorthNet Jetstream API - ABORT PRINT OPERATION
+	AH = F3h
+	DX = printer port (0-3)
+Return: AX = number of unprinted characters due to abort
+SeeAlso: AH=F1h,AH=F4h
+

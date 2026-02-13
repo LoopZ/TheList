@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440DCX086D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7.0+ - GENERIC IOCTL - ENUMERATE OPEN FILES
+	AX = 440Dh
+	CX = 086Dh / 486Dh
+	    (category code 08h for FAT12/16, 48h for FAT32; minor code 6Dh)
+	BL = drive number (00h=default,01h=A:,etc)
+	DS:DX -> buffer for ASCIZ pathname
+	SI = file index (0000h to number of open files-1)
+	DI = enumeration type (0000h all files, 0001h unmovable files)
+Return: CF set on error
+	    AX = error code (01h,02h,12h,etc.) (see #01680 at AH=59h/BX=0000h)
+		0012h if file index is out of range
+	CF clear if successful
+	    AX = file open mode (BX from AX=6C00h or AX=716Ch)
+	    CX = file type (see #01577)
+SeeAlso: AX=440Dh"DOS 3.2+",AX=440Dh/CX=084Ah,AX=440Dh/CX=086Ch
+SeeAlso: AX=440Dh/CX=086Eh,AX=6C00h,AX=716Ch
+
+(Table 01577)
+Values for file type:
+ 0000h	normal file
+ 0001h	memory-mapped file (unmovable)
+ 0002h	unmovable file
+ 0004h	swap file
+

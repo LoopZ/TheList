@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101017
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - READ BLOCK OF DAC REGISTERS (VGA/MCGA)
+	AX = 1017h
+	BX = starting palette register
+	CX = number of palette registers to read
+	ES:DX -> buffer (3 * CX bytes in size) (see also AX=1012h)
+Return: buffer filled with CX red, green and blue triples
+SeeAlso: AX=1012h,AX=1015h,INT 62/AX=00A4h
+

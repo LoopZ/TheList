@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDF02BX4448
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - HyperDisk v4.50+ - SET CACHE STATE
+	AX = DF02h
+	BX = 4448h ('DH')
+	DL = new caching flags (see #03106)
+Return: AX = 0000h if supported
+	    BX = number of cache buffers in use
+	    CX = number of cache buffers which have been modified
+	    DL = previous caching flags (see #03106)
+Program: HyperDisk is a shareware disk cache by HyperWare (Roger Cross)
+Range:	AH=C0h to AH=FFh, selected by scanning AH=DFh, then AH=C0h-FFh
+SeeAlso: AX=DF00h,AX=DF01h
+

@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A10BX0000
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NWCACHE - INSTALLATION CHECK AND STATISTICS
+	AX = 4A10h
+	BX = 0000h
+	CX = magic value
+	    0EDCh flush delayed writes
+		('EDC' = Novell European Development Center)
+	    other (use EBABh to avoid SMARTDRV/DBLSPACE interaction)
+Return: (also refer to notes below)
+	AX = 6756h ('gV') if installed
+	    CF clear
+	    BX = cache memory type
+		01h conventional memory
+		02h extended memory
+		03h EMS
+	    DI:SI = cache misses
+	    CX:DX = segment:offset address of data area containing statistics
+		  (see #04095)
+	    BP = version in BCD 
+		0100h = 1.00
+		0101h = 1.01 & 1.02 (!)
+Notes:	SMARTDRV 4.0+ uses a similar installation check on this function but
+	  returns different data.  To ensure proper interpretation of
+	  the returned values, the caller must check the returned magic
+	  value in AX. Since SMARTDRV may also alter DI:SI (and possibly
+	  DS), the caller should take care of this, too.
+	The Novell DOS / DR-DOS 7.x COMMAND.COM invokes this function with
+	  CX=0EDCh, which causes NWCACHE to flush any delayed writes before
+	  returning the normal register values if it is configured to flush
+	  writes before returning to the DOS prompt (/FLUSH:ON); however, if
+	  /FLUSH:OFF, this function becomes a NOP with CX=0EDCh.
+	Note that for this function the 0EDCh special case may vanish with
+	  future issues of NWCACHE (2.0+), and the function would then always
+	  do the normal install check, and not flush the cache.
+SeeAlso: AX=4A10h/BX=0001h"NWCACHE"
+
+Format of NWCACHE statistics:
+Offset	Size	Description	(Table 04095)
+ 00h	DWORD	number of read requests
+ 04h	DWORD	number of reads performed
+ 08h	DWORD	number of write requests
+ 0Ch	DWORD	number of writes performed
+ 10h	WORD	number of disk errors
+ 12h	WORD	number of cache memory errors
+

@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF1C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - GET CONNECTION INFORMATION
+	AX = F217h subfn 1Ch
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02178)
+	ES:DI -> reply buffer (see #02179)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=16h,AX=F217h/SF=1Fh
+
+Format of NetWare "Get Connection Information" request packet:
+Offset	Size	Description	(Table 02178)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	1Ch (subfunction "Get Connection Information")
+ 03h	DWORD	target connection number
+Note:	connection numbers greater than the maximum supported by the server
+	  can cause ABENDs
+SeeAlso: #02179,#02170
+
+Format of NetWare "Get Connection Information" reply packet:
+Offset	Size	Description	(Table 02179)
+ 00h	DWORD	(big-endian) unique user ID, 00000000h if no one logged in
+ 04h	WORD	(big-endian) user type
+ 06h 48 BYTEs	user name
+ 36h  7 BYTEs	login time (see #02087)
+ 3Dh	BYTE	reserved
+SeeAlso: #02178,#02171
+

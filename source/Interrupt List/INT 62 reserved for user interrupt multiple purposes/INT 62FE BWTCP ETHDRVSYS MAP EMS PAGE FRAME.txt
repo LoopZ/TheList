@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62FE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - BW-TCP - ETHDRV.SYS - MAP EMS PAGE FRAME
+	AH = FEh
+	AL = direction
+	    00h map in driver's memory block
+	    01h map out driver's memory block
+Return: CF clear if successful
+	CF set on error
+	    AL = error code
+Range:	INT 4C to INT FB, selected by configuration
+Notes:	this function is supported by at least the SLIP and ODI versions of
+	  ETHDEV.SYS
+	the Beame&Whiteside TCP/IP protocol stack uses two consecutive
+	  interrupts (62h and 63h by default); the BW-NFS client uses a third
+	  consecutive interrupt (64h by default) if it is loaded
+SeeAlso: INT 21/AH=3Fh"BW-TCP",INT 62/AH=00h"ETHDEV",INT 62/AH=18h"ETHDEV"
+SeeAlso: INT 63/AH=03h"BW-TCP",INT 63/AH=24h,INT 64/AH=FEh
+

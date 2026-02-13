@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF2C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET VOLUME USAGE
+	AX = F216h subfn 2Ch
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02148)
+	ES:DI -> reply buffer (see #02149)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=20h,AX=F216h/SF=29h
+
+Format of NetWare "Get Volume Usage" request packet:
+Offset	Size	Description	(Table 02148)
+ 00h	WORD	length of following data
+ 02h	BYTE	2Ch (subfunction "Get Volume Usage")
+	???
+

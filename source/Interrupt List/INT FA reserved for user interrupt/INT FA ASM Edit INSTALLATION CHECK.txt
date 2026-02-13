@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: FA
+  Category: - 	reserved (and not otherwise classified)
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT FA P - ASM Edit - INSTALLATION CHECK
+Program: ASM Edit is a shareware programmer's editor
+Note:	ASM Edit hooks this vector in protected mode to allow DPMI programs
+	  to detect whether they were run while shelled to DOS from ASM Edit
+
+Format of ASM Edit signature block:
+Offset	Size	Description	(Table 04080)
+ 00h	BYTE	CFh (IRET)
+ 01h  8 BYTEs	signature "ASM Edit" (no trailing NUL)
+

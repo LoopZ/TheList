@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C1
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - RETURN EXTENDED-BIOS DATA-AREA SEGMENT ADDRESS (PS)
+	AH = C1h
+Return: CF set on error
+	CF clear if successful
+	    ES = segment of data area (see #M0001,#M0004,#M0005)
+SeeAlso: AH=04h"ABIOS",MEM 0040h:000Eh"DATA"
+

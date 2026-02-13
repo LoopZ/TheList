@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 5F C - TI Professional PC - KEYBOARD QUEUEING VECTOR
+Return: all registers preserved
+Desc:	hook for multitaskers to be informed when a keypress is placed in the
+	  keyboard buffer
+Note:	the default handler is a simple IRET instruction
+SeeAlso: INT 09,INT 4A/AH=00h"TI",INT 59"TI Professional"
+SeeAlso: INT 5B"TI Professional",INT 5C"TI Professional"
+SeeAlso: INT 5D"TI Professional",INT 5E"TI Professional"
+

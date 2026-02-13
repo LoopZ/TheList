@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare shell 3.01 - TASK MODE CONTROL
+	AH = B5h
+	AL = subfunction
+	    03h get task mode
+		Return: AH = 00h
+			AL = current task mode byte (see #01803)
+	    04h get task mode pointer
+		Return: ES:BX -> task mode byte
+Notes:	the task mode byte specifies how task cleanup should be performed, but
+	  is declared to be version-dependent
+	allows a program to disable the automatic cleanup for programs managing
+	  task swapping, etc.
+
+(Table 01803)
+Values for NetWare task mode byte in version 3.01:
+ 00h-03h reserved
+ 04h	 no task cleanup
+

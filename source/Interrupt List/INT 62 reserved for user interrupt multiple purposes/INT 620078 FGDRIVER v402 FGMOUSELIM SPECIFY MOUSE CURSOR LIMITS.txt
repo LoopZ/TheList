@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620078
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOUSELIM" - SPECIFY MOUSE CURSOR LIMITS
+	AX = 0078h
+	BX = left-most position allowed for mouse cursor
+	CX = right-most position allowed
+	DX = top-most position allowed
+	SI = bottom-most position allowed
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0077h,AX=0079h,INT 33/AX=0007h,INT 33/AX=0008h
+

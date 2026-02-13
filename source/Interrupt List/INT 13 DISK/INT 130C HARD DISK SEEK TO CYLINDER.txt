@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 130C
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - SEEK TO CYLINDER
+	AH = 0Ch
+	CH = low eight bits of cylinder number
+	CL = sector number (bits 5-0)
+	    high two bits of cylinder number (bits 7-6)
+	DH = head number
+	DL = drive number (80h = first, 81h = second hard disk)
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234)
+SeeAlso: AH=00h,AH=02h,AH=0Ah,AH=47h
+

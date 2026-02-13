@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL81
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "M_FREE" - DEALLOCATE MEMORY
+	CL = 81h
+	DS:DX -> Memory Free Parameter Block (MFPB) (see #04041)
+Return: AX = status (0000h success, else error code)
+SeeAlso: INT E0/CL=81h
+
+Format of REAL/32 Memory Free Parameter Block (MFPB) :
+Offset	Size	Description	(Table 04041)
+ 00h	WORD	starting segment of block to be freed
+ 02h	WORD	reserved (0)
+SeeAlso: #04040
+

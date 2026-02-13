@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6118
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - MUTE STATES
+	AH = 18h
+	AL = function
+	    00h get mute state
+	    01h set mute state
+	    02h get key click state
+	    03h set key click state
+	    04h get beep state
+	    05h set beep state
+	    06h get alarm state
+	    07h set alarm state
+	    08h get DTMF duration
+	    09h set DTMF duration
+	DL = new state ("set" functions) (00h off [muted], 01h on)
+Return: DL = current state ("get" functions) (00h off [muted], 01h on)
+SeeAlso: AH=15h"Portfolio",AH=16h"Portfolio",AH=17h"Portfolio"
+SeeAlso: AH=19h"Portfolio"
+

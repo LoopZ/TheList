@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150B
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_sysreq" - SYSTEM CONFIGURATION MANAGER
+	AH = 0Bh
+	STACK:	WORD	caller's UID
+		DWORD	pointer to ASCIZ name of requested method
+			"abort" abort current send/receive on comm port
+			"block" start/end critical section
+			"close" terminate interrupt-drive comm I/O
+			"open" prepare comm port for interrupt-driven I/O
+			"delay" set delay timer and wait
+			"hibernate" put process to sleep
+			"ints" enable/disable interrupt-driven INT 14h
+			"length" get current send/receive buffer offsets
+			"kswitch" switch stacks
+			"numproc" get number of active processes
+			"protocol" set protocol function for comm interrupts
+			"relocate" set/reset VMiX flag for relocating to himem
+			"status" get current open comm port status
+			"wake" awaken a process
+			"xport" get comm port polled for logins
+		---if "abort"---
+		 no additional arguments
+		---if "block"---
+		 WORD	0000h end, 0001h start
+		---if "close"---
+		 no additional arguments
+		---if "open"---
+		 WORD	comm port (00h-03h)
+		 WORD	BIOS parameter byte (see #00300 at INT 14/AH=00h),
+			except bits 7-5: 000 = 19200, 001 = 38400, 011 = 115200
+		---if "delay"---
+		 WORD	time in seconds
+		---if "hibernate"---
+		 WORD	process ID
+		---if "ints"---
+		 WORD	0000h if no, 0001h if yes
+		---if "length","numproc","relocate","status","xport"---
+		 no additional arguments
+		---if "kswitch"---
+		 DWORD	pointer to new stack
+		---if "protocol"---
+		 DWORD	pointer to function (must be in low "assign"ed memory
+			when in 386 mode)
+		---if "wake"---
+		 WORD	process ID
+Return: DX:AX -> result or 0000h:0000h
+		---if "length"---
+		 BYTE	receive offset
+		 BYTE	send offset
+		---if "kswitch"---
+		 DWORD	old stack pointer
+		---if "numproc"---
+		 WORD	number of active processes
+		---if "status"---
+		 current open comm port status
+		---if "xport"---
+		 current comm port being polled for logins
+Note:	the "delay" command reportedly disables the keyboard until the delay
+	  completes
+SeeAlso: AH=05h"VMiX",AH=0Eh"VMiX"
+

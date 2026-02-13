@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2707
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - CREATE NEW TASK
+	AX = 2707h
+	DS:DX -> ASCIZ pathname of executable
+	ES:BX -> parameter block (see #02738)
+	CX = number of ticks before automatic return to task manager
+		(0000h = run until termination or explicitly switched)
+Return: DX = new task's task index (FFFFh if task terminated)
+SeeAlso: AX=2706h,AX=2708h
+
+Format of TaskMAX parameter block:
+Offset	Size	Description	(Table 02738)
+ 00h	WORD	reserved, should be 0000h
+ 02h	DWORD	pointer to command tail to be copied into child's PSP
+ 06h	DWORD	pointer to first FCB to be copied into child's PSP
+ 0Ah	DWORD	pointer to second FCB to be copied into child's PSP
+

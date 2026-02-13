@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB800
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - NETWORK - INSTALLATION CHECK
+	AX = B800h
+Return: AL = status
+	    00h	    not installed
+	    nonzero installed
+	      BX = installed component flags (test in this order!)
+		   bit 6   server
+		   bit 2   messenger
+		   bit 7   receiver
+		   bit 3   redirector
+		   bit 1   LANPUP (LANtastic 4.0)
+Notes:	this function is supported by PC LAN Program, LAN Manager, LANtastic,
+	  NetWare Lite, SilverNET, 10NET, etc.
+	LANtastic and NetWare Lite use only BL for the return value, preserving
+	  BH; LAN Manager and DOS LAN Requester return BH=00h.	This permits
+	  differentiation between those two groups by setting BH to a nonzero
+	  value before the call and checking its value on return.
+SeeAlso: AX=4E53h,AX=B809h
+

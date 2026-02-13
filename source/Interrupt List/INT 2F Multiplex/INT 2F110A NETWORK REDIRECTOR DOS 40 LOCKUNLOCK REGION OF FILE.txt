@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F110A
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR (DOS 4.0+) - LOCK/UNLOCK REGION OF FILE
+	AX = 110Ah
+	BL = function
+	    00h lock
+	    01h unlock
+	CX = number of lock/unlock parameters (0001h for DOS 4.0-6.1)
+	DS:DX -> parameter block (see #02606)
+	ES:DI -> SFT
+	    SFT DPB field -> DPB of drive containing file
+	SS = DOS DS
+Return: CF set on error
+	   AL = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+Notes:	this function is called by the DOS 4.0+ kernel
+	the redirector is expected to resolve lock conflicts
+SeeAlso: AX=110Bh,INT 21/AH=5Ch
+
+Format of parameter block entry [array, but currently limited to single entry]:
+Offset	Size	Description	(Table 02606)
+ 00h	DWORD	start offset
+ 04h	DWORD	size of region
+

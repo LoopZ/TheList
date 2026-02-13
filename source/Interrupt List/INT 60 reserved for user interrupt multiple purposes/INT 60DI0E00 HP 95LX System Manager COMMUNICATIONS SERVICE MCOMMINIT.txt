@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0E00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - COMMUNICATIONS SERVICE "M_COMM_INIT"
+	DI = 0E00h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to ???
+Return: ???
+	STACK unchanged
+SeeAlso: #03301,INT 60/DI=0E01h,INT 60/DI=0E02h
+
+(Table 03301)
+Values for HP 95LX error code:
+ 0000h	successful
+ FFF1h	"E_BUSY"
+ FFF2h	timeout
+ FFF3h	framing error
+ FFF4h	parity error
+ FFF5h	overrun error
+ FFF6h	"E_EMPTY"
+ FFF7h	"E_CONECT"
+ FFF8h	not open
+ FFF9h	out of memory
+ FFFAh	buffer overflow
+ FFFBh	"E_NOFIT"
+ FFFCh	unsupported
+ FFFDh	"E_IVOPR"
+ FFFEh	"E_IVCHN"
+ FFFFh	"E_REOPEN"
+

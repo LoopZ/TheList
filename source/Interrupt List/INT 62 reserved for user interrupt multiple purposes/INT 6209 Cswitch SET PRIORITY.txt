@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6209
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - SET PRIORITY
+	AH = 09h
+	BX = new base priority (1-10)
+Note:	the lower the priority is numerically, the more often the task will run
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET SYSTEM INFORMATION
+	AX = FF00h
+	CL = what to get
+	    00h user information (see #02528)
+	    01h drive mapping (see #02529)
+	    02h printer server(s)
+	    05h local DOS drive number
+Return: ES:BX -> desired information
+Program: TopWare Network Operating System is manufactured by Grand Computer
+	  Company
+Note:	this call is only supported on Workstations, not on the server
+SeeAlso: AX=FF04h,INT 2F/AX=FF00h
+
+Format of TopWare user information:
+Offset	Size	Description	(Table 02528)
+ 00h	BYTE	node ID
+ 01h 15 BYTEs	user name
+ 10h	WORD	user number
+ 12h	BYTE	group number
+
+Format of TopWare drive mapping [array]:
+Offset	Size	Description	(Table 02529)
+ 00h	BYTE	bits 6-0: drive number (1=A:, etc.)
+		bit 7: this is a server drive
+ 01h  3 BYTEs	mapping drive (for example, "C:\")
+ 04h 64 BYTEs	current directory
+

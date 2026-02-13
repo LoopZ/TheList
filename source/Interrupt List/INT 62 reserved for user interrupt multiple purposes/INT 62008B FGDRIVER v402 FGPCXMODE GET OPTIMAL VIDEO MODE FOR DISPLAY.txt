@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62008B
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PCXMODE" - GET OPTIMAL VIDEO MODE FOR DISPLAY
+	AX = 008Bh
+	ES:BX -> PCX header (see AX=008Ah)
+Return: AX = optimal video mode for PCX file
+	    FFFEh not a valid PCX header
+	    FFFFh unable to determine compatible video mode
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=008Ah,AX=00B9h
+

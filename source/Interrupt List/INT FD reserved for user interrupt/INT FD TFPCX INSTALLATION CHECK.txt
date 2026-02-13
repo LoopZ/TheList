@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: FD
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT FD - TFPCX - INSTALLATION CHECK
+	AH = function (also see separate entries below)
+Program: TFPCX is an interface between modem and terminal program for packet-
+	  radio communications
+InstallCheck:	test for the string "N5NX" three bytes beyond the interrupt
+	  handler
+Range:	INT FD is the default, but may be changed, so the full installation
+	 check consists of scanning for the signature
+Note:	TFPCX returns AX=FFFFh on any unsupported function call
+SeeAlso: AH=01h,AH=03h,AH=FEh
+

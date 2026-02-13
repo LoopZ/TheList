@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 130800DLF0
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - SecureDrive - INSTALLATION CHECK
+	AX = 08000h
+	DL = F0h
+Return: AX = EDCBh for version 1.0-1.2
+	AX = EDCCh for version 1.3
+	CX = code segment
+	DX = data address within code segment
+Program: SecureDrive by Mike Ingle <mikeingle@delphi.com> allows you to create
+	  an encrypted partition on your harddisk.
+

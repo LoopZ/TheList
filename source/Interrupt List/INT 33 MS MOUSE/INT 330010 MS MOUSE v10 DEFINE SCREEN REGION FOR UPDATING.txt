@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330010
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - DEFINE SCREEN REGION FOR UPDATING
+	AX = 0010h
+	CX,DX = X,Y coordinates of upper left corner
+	SI,DI = X,Y coordinates of lower right corner
+Note:	mouse cursor is hidden in the specified region, and needs to be
+	  explicitly turned on again
+SeeAlso: AX=0001h,AX=0002h,AX=0007h,AX=0010h"Genius MOUSE",AX=0031h
+

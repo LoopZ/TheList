@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217304
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - FAT32 - Set DPB TO USE FOR FORMATTING
+	AX = 7304h
+	DL = drive number (00h=default, 01h=A:, etc.)
+	CX = size of buffer (must be at least 18h)
+	ES:DI -> buffer for Set_DPBforFormat structure (see #01790)
+Return: CF clear if successful
+	    ES:DI buffer updated
+	CF set on error
+	    AX = error code (18h = bad length in CX)
+SeeAlso: AX=7302h,AX=7303h,AX=7305h
+
+Format of Set_DPBforFormat structure:
+Offset	Size	Description	(Table 01790)
+ 00h	WORD	(call) size
+ 02h	WORD	(call) structure version???  (0000h)
+		(ret) ???
+ 04h	DWORD	(call) function number
+		00h invalidate DPB counts
+		01h rebuild DPB from BPB
+		02h force media change (next access to drive rebuild DPB)
+		03h get/set active FAT number and mirroring
+		04h get/set root directory cluster number
+---function 00h---
+ 08h	DWORD	new DPB free count (00000000h=no change, FFFFFFFFh=unknown)
+ 0Ch	DWORD	new DPB next-free (00000000h=no change, FFFFFFFFh=unknown)
+ 10h	DWORD	unused
+ 14h	DWORD	unused
+---function 01h---
+ 08h	DWORD	unused???
+ 0Ch	DWORD	(call) -> BIOS Parameter Block from which to rebuild DPB
+ 10h	DWORD	unused
+ 14h	DWORD	unused
+---function 02h---
+ 08h	DWORD	unused
+ 0Ch	DWORD	unused
+ 10h	DWORD	unused
+ 14h	DWORD	unused
+---function 03h---
+ 08h	DWORD	(call) new active FAT/mirroring state, or FFFFFFFFh to get
+		bits 3-0: the 0-based FAT number of the active FAT
+		bits 6-4: reserved (0)
+		bit 7: do not mirror active FAT to inactive FATs
+ 0Ch	DWORD	(ret) previous active FAT/mirroring state (as above)
+ 10h	DWORD	unused
+ 14h	DWORD	unused
+---function 04h---
+ 08h	DWORD	(call) new root directory cluster number
+		    FFFFFFFFh to get current
+ 0Ch	DWORD	(ret) previous root directory cluster number
+ 10h	DWORD	unused
+ 14h	DWORD	unused
+

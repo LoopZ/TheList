@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1409
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS - GET/SET OPTIONS
+	AH = 09h
+	AL = option byte (see #00337)
+	DX = port number???
+Return: AL = old option byte
+SeeAlso: AH=00h"MBBIOS",AH=04h"MBBIOS",AH=10h"FOSSIL"
+
+Bitfields for MBBIOS option byte:
+Bit(s)	Description	(Table 00337)
+ 0	transmit buffering enabled
+ 2	hardware handshaking enabled
+ 5	high-speed option enabled (see AH=00h"MBBIOS",#00302)
+ other	reserved
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620070
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MEASURE" - GET DELAY UNITS PER CLOCK TICK
+	AX = 0070h
+Return: AX = delay units per clock tick (processor-dependent)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	These delay units are used by "FG_STALL" (see AX=00BFh)
+SeeAlso: AX=00BFh
+

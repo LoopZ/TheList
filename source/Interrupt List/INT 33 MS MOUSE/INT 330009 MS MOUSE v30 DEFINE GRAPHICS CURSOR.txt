@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330009
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v3.0+ - DEFINE GRAPHICS CURSOR
+	AX = 0009h
+	BX = column of cursor hot spot in bitmap (-16 to 16)
+	CX = row of cursor hot spot (-16 to 16)
+	ES:DX -> mask bitmap (see #03170)
+Notes:	in graphics modes, the screen contents around the current mouse cursor
+	  position are ANDed with the screen mask and then XORed with the
+	  cursor mask
+	the Microsoft mouse driver v7.04 and v8.20 uses only BL and CL, so the
+	  hot spot row/column should be limited to -128..127
+	Microsoft KnowledgeBase article Q19850 states that the high bit is
+	  right-most, but that statement is contradicted by all other available
+	  documentation
+SeeAlso: AX=000Ah,AX=0012h,AX=002Ah,INT 62/AX=007Fh,INT 6F/AH=0Ah"F_DEF_MASKS"
+
+Format of mouse mask bitmap:
+Offset	Size	Description	(Table 03170)
+ 00h 16 WORDs	screen mask
+ 10h 16 WORDs	cursor mask
+Note:	each word defines the sixteen pixels of a row, low bit rightmost
+

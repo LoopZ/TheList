@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0032
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - SERVER / VSERVER - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0032h (virtual device ID for SERVER device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02671)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",#01296 at INT 20"Windows"
+
+(Table 02671)
+Call Windows95 VSERVER.VXD protected-mode entry point with:
+	AX = function number
+	    0003h NOP
+		Return: AX = 0000h
+	    0004h NOP
+		Return: AX = 0000h
+	    0007h NOP
+		Return: AX = 0000h
+	    0008h NOP
+		Return: nothing
+	    000Fh ???
+		Return: AX = status
+			    0000h successful
+			    0842h on error
+	    0010h ???
+		Return: AX = status
+			    0000h successful
+			    0842h on error
+	    else
+		Return: AX = 0032h
+SeeAlso: #02670,#02672
+

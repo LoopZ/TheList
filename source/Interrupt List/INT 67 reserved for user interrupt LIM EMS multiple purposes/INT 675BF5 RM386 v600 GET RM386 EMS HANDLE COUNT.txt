@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675BF5
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 v6.00 - GET RM386 EMS HANDLE COUNT
+	AX = 5BF5h
+Return: AH = status
+	    00h successful
+		BX = current number of allocated EMS handles
+	    84h function not available
+SeeAlso: AX=5BF0h
+

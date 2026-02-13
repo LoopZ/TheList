@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 157C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL HOT KEY POWER OPTION
+	AH = 7Ch
+	AL = 00h prevent HOT key power option
+	    else allow HOT key power option
+Desc:	allow or prevent changing the power options
+SeeAlso: AH=7Bh,AH=7Dh
+

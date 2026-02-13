@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF19
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - SET HEAD SETTLE FLAG
+	AX = AF19h
+	DL = new state
+	    00h diskette head settling time reset to 15ms before each access
+	    01h no additional head settling time used between accesses
+Return: nothing
+SeeAlso: AX=AF00h"WinDOS"
+

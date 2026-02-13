@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E602
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E6 - Linux DOSEMU - SET I/O PORT PERMISSIONS
+	AH = 02h
+	BX = base I/O port address
+	CX = number of consecutive I/O ports
+	CF set to allow DOS to use ports
+	CF clear if DOS should not be allowed to use ports
+Return: nothing
+SeeAlso: AH=00h
+

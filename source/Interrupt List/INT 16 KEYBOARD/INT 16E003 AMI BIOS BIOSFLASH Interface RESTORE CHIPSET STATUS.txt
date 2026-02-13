@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16E003
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AMI BIOS - BIOS-FLASH Interface -  RESTORE CHIPSET STATUS
+	AX = E003h
+	ES:DI -> buffer in which chipset status was previously stored
+Return: CF clear if successful
+	    AL = FAh
+	CF set on error
+SeeAlso: AX=E000h,AX=E001h,AX=E002h
+

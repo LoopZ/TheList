@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0005
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "ActivateDrive" - MOUNT COMPRESSED DRIVE
+	AX = 4A11h
+	BX = 0005h
+	DL = drive number (0=A:) to assign to new drive
+	ES:SI -> activation record (see #02805)
+Return: status returned in activation record (see #02806)
+SeeAlso: AX=4A11h/BX=0000h,AX=4A11h/BX=0006h
+
+Format of DBLSPACE activation record:
+Offset	Size	Description	(Table 02805)
+ 00h  2 BYTEs	signature "MD" (4Dh 44h)
+ 02h	BYTE	4Dh ('M') mount command
+ 03h	BYTE	error code (set to FFh before calling) (see #02806)
+ 04h	BYTE	host drive number (0=A:)
+ 05h	???	DISK_UNIT structure (not documented)
+
+(Table 02806)
+Values for DBLSPACE Mount error code:
+ 00h	successful
+ 01h	drive letter not available for DoubleSpace
+ 02h	drive letter already in use
+ 03h	no more disk units (increase MaxRemovableDrives in .INI)
+ 09h	CVF too fragmented
+SeeAlso: #02805,#02804
+

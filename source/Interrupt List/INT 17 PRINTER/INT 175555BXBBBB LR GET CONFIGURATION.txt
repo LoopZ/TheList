@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 175555BXBBBB
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - LR - GET CONFIGURATION
+	AX = 5555h
+	BX = BBBBh
+	DX = LPT number
+Return: AX = A55Ah
+	BX = CCCCh
+	CL = configuration flags (see #04117)
+SeeAlso: AX=5555h/BX=AAAAh,INT 10/AX=5555h/BX=BBBBh
+

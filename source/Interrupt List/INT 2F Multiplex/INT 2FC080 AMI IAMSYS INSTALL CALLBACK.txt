@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC080
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - AMI IAM.SYS - INSTALL ??? CALLBACK
+	AX = C080h
+	CX:DX -> ??? callback
+	DI = segment of ??? buffer (first WORD copied into IAM.SYS)
+Program: IAM.SYS is the Illegal Activity Monitor portion of American
+	  Megatrends, Inc.'s PC-Defender anti-virus product
+Note:	also sets ??? flag
+SeeAlso: AX=C081h
+
+Format of IAM.SYS buffer:
+Offset	Size	Description	(Table 03034)
+ 00h	BYTE	???
+ 01h	BYTE	???
+ 02h  N BYTEs	??? (ASCIZ strings)
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 50000D
+  Category: l 	shells/command interpreters
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 50 - PC Thuis Organizer Shell - EDIT LINE
+	AX = 000Dh
+	ES:BX -> text string
+	CL = length
+	CH = input type (see #03243)
+	DH,DL = row,column of upper left corner
+	DI = window handle
+Return: AX = result code
+Program: The PC Thuis Organizer Shell was written by John Vanderaart and
+	  published in the June/July 1990 issue of PC Thuis Power magazine
+
+Bitfields for input type:
+Bit(s)	Description	(Table 03243)
+ 0	force uppercase
+ 1	integer
+ 2	no spaces allowed
+ 3	no cursor keys
+

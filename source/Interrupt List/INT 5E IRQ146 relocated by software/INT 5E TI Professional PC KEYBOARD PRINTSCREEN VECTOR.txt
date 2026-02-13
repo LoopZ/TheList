@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 5E C - TI Professional PC - KEYBOARD PRINT-SCREEN VECTOR
+	CF set
+Return: CF clear
+	    AX = keystroke to be placed into keyboard buffer
+	CF set
+	    AX ignored
+Desc:	hook to dump the screen to the printer
+Notes:	hooked by TI MS-DOS, which provides a PRTSCRN character device which
+	  can invoke screen prints when a decimal digit (indicating the type
+	  of screen dump) is written to it
+	the TI MS-DOS print-screen routine allows selective dumps of text
+	  only, graphics only, or text and graphics superimposed, in either
+	  normal or reverse, by pressing the appropriate keystroke combination:
+	  Shift-Print, Ctrl-Print, Alt-Print, Shift-Alt-Print, Ctrl-Alt-Print,
+	  or Shift-Ctrl-Print.
+	the BIOS default routine for this vector is an IRET
+SeeAlso: INT 05"PRINT SCREEN",INT 4A/AH=00h"TI",INT 59"TI Professional"
+SeeAlso: INT 5B"TI Professional",INT 5C"TI Professional"
+SeeAlso: INT 5D"TI Professional",INT 5F"TI Professional"
+

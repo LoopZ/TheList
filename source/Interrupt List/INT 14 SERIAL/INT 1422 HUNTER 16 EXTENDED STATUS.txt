@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1422
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - EXTENDED STATUS
+	AH = 22h
+	DX = port (00h COM1, 01h COM2)
+Return: AH = extended status
+	BX = number of characters in input buffer
+	CX = number of characters in output buffer
+Desc:	returns the most recent Extended Status code for the port
+SeeAlso: AH=21h"HUNTER"
+

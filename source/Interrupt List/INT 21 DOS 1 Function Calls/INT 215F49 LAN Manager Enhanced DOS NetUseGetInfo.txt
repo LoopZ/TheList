@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F49
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - NetUseGetInfo
+	AX = 5F49h
+	DS:DX -> NetUseGetInfo parameter structure (see #01719)
+Return: CF clear on success
+	    DX = total available
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F44h,AX=5F47h
+
+Format of LAN Manager NetUseGetInfo parameter structure:
+Offset	Size	Description	(Table 01719)
+ 00h	DWORD	pointer to either the local device name or UNC remote name
+ 04h	WORD	level of information (0000h or 0001h)
+ 06h	DWORD	pointer to buffer of use_info_0 or use_info_1 structures
+ 0Ah	WORD	length of buffer
+

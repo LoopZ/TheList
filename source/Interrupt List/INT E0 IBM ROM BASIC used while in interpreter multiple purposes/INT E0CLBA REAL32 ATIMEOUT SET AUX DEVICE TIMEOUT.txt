@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLBA
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "A_TIMEOUT" - SET AUX DEVICE TIMEOUT
+	CL = BAh
+	DX = timeout value in system ticks (see #04048)
+		0000h-FFEFh = new number of system ticks
+		FFFDh = get current value without changing
+		FFFEh = start timeout count
+		FFFFh = never timeout
+Return: AX = status, or current timeout value if DX=FFFDh on entry
+	may destroy SI,DI
+SeeAlso: INT E0/CL=B9h
+

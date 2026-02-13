@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F0105
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - IBM XGA Adapter Interface (XGAAIDOS.SYS)
+	AX = 0105h
+Return: CF set on error
+	CF clear if successful
+	    CX:DX -> array of FAR pointers to entry points (see #03877)
+Note:	this API is a superset of the 8514/A Adapter Interface
+	  (see AX=0105h"HDILOAD")
+

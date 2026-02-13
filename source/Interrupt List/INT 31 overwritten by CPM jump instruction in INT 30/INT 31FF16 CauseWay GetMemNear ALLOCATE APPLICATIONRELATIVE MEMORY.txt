@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF16
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "GetMemNear" - ALLOCATE APPLICATION-RELATIVE MEMORY
+	AX = FF16h
+	EBX = size in bytes of block to allocate
+Return: CF clear if successful
+	   ESI = application-relative linear address of allocated block
+	CF set on error
+SeeAlso: AX=FF17h,AX=FF18h,AX=FF19h
+

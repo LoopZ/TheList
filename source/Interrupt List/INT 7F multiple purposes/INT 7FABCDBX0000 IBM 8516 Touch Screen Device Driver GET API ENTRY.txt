@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FABCDBX0000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - IBM 8516 Touch Screen Device Driver - GET API ENTRY
+	AX = ABCDh
+	BX = 0000h
+Return: AX = total number of functions available
+	ES:BX -> entry point array (see #03967)
+SeeAlso: AX=0104h,AX=0105h
+
+(Table 03967)
+Values for 8516 Touch Screen function number:
+ 00h	check initialization and reset (see #03968)
+ 14h	set user-defined subroutine (see #03969)
+Notes:	each driver function takes two stack parameters using Pascal calling
+	  conventions: address of parameter block and address of results buffer
+	all pointers are FAR pointers
+	on return, AX contains the status of the call:
+	    AX = 0000h successful
+		 0001h invalid input
+		 0002h interface error
+		 0003h unable to perform function
+
+Format of 8516 Touch Screen Function 00h parameter block:
+Offset	Size	Description	(Table 03968)
+ 00h	WORD	0000h (function number)
+Note:	this function should be called before any other device driver functions
+
+Format of 8516 Touch Screen Function 00h results buffer:
+Offset	Size	Description	(Table 03969)
+ 00h	WORD	touch screen status
+		0000h unavailable
+		0001h uncalibrated
+		FFFFh available
+ 02h	WORD	aux mouse status (0000h not present, FFFFh present)
+Notes:	the following driver parameters will have been reset to zero:
+	  touchdown counter, liftoff counter, position at last touch, position
+	  at last lift, int call mask, select on count, select off count,
+	  pos select on count, pos select off count.
+	the following driver parameters will have been reset as listed:
+	  mouse emulation mode: left on
+	  thresholds: 46 on screen, 96 push harder, 80 push release
+	  x, y hysteresis: 400
+	  data repeat rate: 40/sec
+	  select mechanism: push-harder - first-touch
+	  coordinate origin: upper left corner
+	  filter frequency: medium
+	  data block mask: all enabled
+	  click lock: on
+

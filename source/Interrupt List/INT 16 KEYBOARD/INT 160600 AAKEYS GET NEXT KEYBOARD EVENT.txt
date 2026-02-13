@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 160600
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - AAKEYS - GET NEXT KEYBOARD EVENT
+	AX = 0600h
+Return:	CF clear if successful
+	    AL = next keyboard event in event buffer, FFh if buffer overflowed
+	CF set on error
+	    AL = 00h buffer empty
+	BX destroyed
+Program: AAKEYS is a TSR by Anthony Appleyard which records keyboard scan
+	  codes in a 256-byte buffer in addition to any normal processing which
+	  takes place
+Note:	the installation check consists of calling INT 16/AX=06xxh (where 'xx'
+	  is any subfunction other than those listed here) and testing whether
+	  AX=BEEFh on return
+SeeAlso: AX=0601h,AX=0602h,AX=0603h,AX=0604h
+

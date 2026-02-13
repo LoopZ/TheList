@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: B371
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - CONVERT TWO-LETTER ABBREVIATION TO STATE CODE
+	AH = 71h
+	BX = abbreviation, in either case (first letter in BL)
+Return: CF set on error
+	    AL = FFh
+	CF clear if successful
+	    AL = ZIPKEY state code
+SeeAlso: AH=72h
+

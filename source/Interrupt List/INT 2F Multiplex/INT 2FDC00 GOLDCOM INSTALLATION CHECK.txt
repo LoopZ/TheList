@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDC00
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - GOLD.COM - INSTALLATION CHECK
+	AX = DC00h
+Return: AL = state
+	    00h not installed
+	    FFh installed
+Program: GOLD is a TSR by Bob Eager which makes the NumLock key return the
+	  code for F1; the purpose is to improve Kermit's VTxxx emulation
+

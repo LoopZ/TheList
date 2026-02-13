@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 333000
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - Smooth Mouse Driver, PrecisePoint - INSTALLATION CHECK
+	AX = 3000h
+Return: AX = FFFFh if installed
+	    BX = version number (BH = major, BL = minor)
+Program: SMD is a programmer's library by Andy Hakim which provides a
+	  graphics-style mouse cursor in text mode.  PrecisePoint is an
+	  SMD-based TSR which replaces the block mouse cursor in text
+	  applications.
+SeeAlso: AX=0000h,AX=3001h,AX=3003h
+

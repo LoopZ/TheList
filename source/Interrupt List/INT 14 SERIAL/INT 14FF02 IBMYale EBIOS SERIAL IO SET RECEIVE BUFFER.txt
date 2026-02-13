@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FF02
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - IBM/Yale EBIOS SERIAL I/O - SET RECEIVE BUFFER
+	AX = FF02h
+	CX = length of buffer (0000h to cancel buffer assignment)
+	DX = port (00h-03h)
+	ES:BX -> receive buffer
+Return: nothing
+SeeAlso: AH=18h,AH=83h"COURIERS",AH=A5h"BAPI",AH=FCh,AX=FF01h
+

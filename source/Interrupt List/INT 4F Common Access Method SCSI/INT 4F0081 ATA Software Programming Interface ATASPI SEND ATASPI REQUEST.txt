@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4F0081
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4F - ATA Software Programming Interface (ATASPI) - SEND ATASPI REQUEST
+	AX = 0081h
+	ES:BX -> ATA Request Block (see #90002)
+Return:	AH = 00h always???
+Note:	this interface has probably appeared in some later revisions of ATASPI
+	  than 0.72
+SeeAlso: INT 21/AX=4402h"ATASPI",INT 4F/AX=0082h
+

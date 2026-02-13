@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1787
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX - SET INDOS POINTER
+	AH = 87h
+	AL = 00h
+	CX:BX -> buffer for user-written printer drivers
+Return: BX,CX destroyed
+Note:	must be executed before the printer is enabled
+SeeAlso: AH=8Ah
+

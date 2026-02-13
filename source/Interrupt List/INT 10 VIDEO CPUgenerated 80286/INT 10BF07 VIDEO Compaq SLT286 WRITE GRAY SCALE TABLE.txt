@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF07
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq SLT/286 - WRITE GRAY SCALE TABLE
+	AX = BF07h
+	CH = value to write to gray scale table
+	CL = address to be written to gray scale table
+Return: nothing
+SeeAlso: AX=BF06h,AX=BF08h
+

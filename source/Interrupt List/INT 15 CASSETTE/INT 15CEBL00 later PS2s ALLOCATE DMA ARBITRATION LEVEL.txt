@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15CE--BL00
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - ALLOCATE DMA ARBITRATION LEVEL
+	AH = CEh
+	BL = 00h-0Eh arbitration level to be allocated
+	     0Fh-FFh reserved
+	AL = option byte
+	    bit 7-1: reserved (0)
+	    bit 0: 0 = need DMA channel for arbitration level requested
+		   1 = no channel required for arbitration level
+Return: CF set on error
+	    AH = status (80h,86h = function not supported)
+	CF clear on success
+	    AL = channel number
+		00h-07h channel number allocated for the arbiration level
+		08h-FEh reserved
+		FFh	no channel requested for arbitration level
+	    AH = status (see #00531)
+Notes:	 arbitration level 00h has the highest priority, 0Eh the lowest
+	 to perform a DMA transfer operation, be sure to call this function
+	   first, and call AH=CFh afterward.  Failure to use this function
+	   can cause unpredictable results.
+SeeAlso: AH=CFh
+
+(Table 00531)
+Values for DMA arbitration status:
+ 00h	success
+ 01h	arbitration level not available
+ 02h	channel not available
+ 03h	invalid arbitration level passed
+

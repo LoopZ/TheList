@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154DD4
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP 95LX/100LX/200LX - INSTALLATION CHECK
+	AX = 4DD4h
+Return: BX = 4850h ("HP") if HP 95LX/100LX/200LX
+	    CX = model
+		0101h HP 95LX
+		0102h HP 100LX/200LX
+	    DH = ???
+		02h HP 200LX 2MB BIOS 1.01 A D german
+	    DL = ???
+		00h HP 95LX
+		01h HP 200LX 2MB BIOS 1.01 A D german
+SeeAlso: INT 0B"HP 95LX",INT 0F"HP 95LX",INT 5F/AH=00h,INT 60/DI=0100h
+SeeAlso: INT 61"HP 95LX"
+

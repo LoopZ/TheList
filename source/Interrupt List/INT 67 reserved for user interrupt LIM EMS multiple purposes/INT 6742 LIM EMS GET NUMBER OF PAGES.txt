@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6742
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - GET NUMBER OF PAGES
+	AH = 42h
+Return: AH = status (see also AH=40h)
+	    00h function successful
+		BX = number of unallocated pages
+		DX = total number of pages
+BUG:	DOS 6.0 EMM386.EXE causes a system lock-up or reboot if in AUTO mode
+	  when this call is made; use AH=46h to ensure that EMM386 is ON
+	  before making this call
+SeeAlso: INT 2F/AX=2702h
+

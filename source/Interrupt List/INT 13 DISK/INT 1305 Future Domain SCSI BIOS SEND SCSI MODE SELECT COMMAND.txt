@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1305
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Future Domain SCSI BIOS - SEND SCSI MODE SELECT COMMAND
+	AH = 05h
+	DL = hard drive ID
+	ES:BX -> mode select data (see #00236)
+Return: CF set on error
+	CF clear if successful
+	AH = status code (see #00234)
+Notes:	this function can be called before AH=07h"SCSI" or AH=06h"SCSI" to
+	  format a SCSI disk with the desired parameters
+	the mode select data below is from the SCSI-1 specification
+	the TMC-950 does not support any Future Domain BIOS calls; instead,
+	  it provides a full CAM implementation (see INT 4F/AX=8100h)
+SeeAlso: AH=06h"SCSI",AH=07h"SCSI",INT 4F/AX=8100h
+
+Format of Future Domain SCSI mode select data:
+Offset	Size	Description	(Table 00236)
+ 00h	BYTE	number of bytes of remaining data (12 + vendor unique length)
+ 01h	BYTE	reserved (0)
+ 02h	BYTE	medium type (0 for hard disk)
+ 03h	BYTE	reserved (0)
+ 04h	BYTE	block descriptor length (8)
+ 05h	BYTE	density code (0 for hard disk)
+ 06h  3 BYTEs	(big-endian) number of blocks (000000h for entire disk)
+ 09h	BYTE	reserved (0)
+ 0Ah  3 BYTEs	(big-endian) block length (512 standard, or 256)
+ 0Dh	???	vendor-specific parameter bytes (optional)
+

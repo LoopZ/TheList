@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF003
+  Category: K 	keyboard enhancers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - 4MAP - INSERT CHARACTER INTO ???
+	AX = F003h
+	BL = character to insert
+Return: AX = status
+	    0000h successful
+	    0001h buffer full
+Program: 4MAP is a keybinding program for 4DOS (see AX=D44Dh) by Ho-Ping Tseng
+SeeAlso: AX=F000h,AX=F002h
+

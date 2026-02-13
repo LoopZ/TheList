@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1318--CX5055
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - PU_1700.COM - INSTALLATION CHECK
+	AH = 18h
+	CX = 5055h ('PU')
+	DL = 00h
+Return: AX = 7570h ('up') if PU_1700 is installed
+Program: PU_1700 is a BIOS enhancer from PU Service Systems which permits
+	  formatting diskettes at higher capacity (1.78M instead of 1.44M)
+SeeAlso: AX=057Fh/SI=324Dh"2M"
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE000DX4D50
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - FREEVER v1.0+ - INSTALLATION CHECK
+	AX = E000h
+	DX = 4D50h ('MP')
+Return: AL = FFh if installed
+	    AH = AMIS INT 2Dh multiplex ID
+	    CX = FREEVER version (CH=major, CL=minor)
+	    DX:DI -> AMIS-compliant signature (see #02569)
+		(vendor ID is "M. Paul ", program name is "FREEVER ")
+Program: FREEVER is an AMIS-conformant freeware DOS version-faking TSR similar
+	  to SETVER for any DOS-compatible OS, written by Matthias Paul
+Note:	FREEVER emulates INT 21/AH=30h, INT 21/AX=3306h, INT 21/AX=4412h,
+	  INT 21/AX=4452h, and SETDRVER's API on INT 2F/AX=E00xh, as well as
+	  providing an AMIS API on INT 2Dh
+SeeAlso: AX=E000h"SETDRVER",INT 21/AH=30h,INT 21/AX=3306h,INT 21/AX=4452h
+

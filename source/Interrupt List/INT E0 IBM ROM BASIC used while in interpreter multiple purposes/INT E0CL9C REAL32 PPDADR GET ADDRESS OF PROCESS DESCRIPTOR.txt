@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL9C
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_PDADR" - GET ADDRESS OF PROCESS DESCRIPTOR
+	CL = 9Ch
+Return: ES:AX -> caller's process descriptor (see #04026)
+	may destroy SI,DI
+Note:	This function is also called by the DR DOS MEM utility when
+	  INT 21/AX=4451h returns either 1463h (MDOS 5.00), 1465h (MDOS 5.01),
+	  or 1466h (MDOS 5.10).
+SeeAlso: INT E0/CL=8Fh,INT E0/CL=90h
+

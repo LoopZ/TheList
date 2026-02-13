@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0007
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - SET PROTECTED-MODE INTERRUPT VECTOR
+	AX = 0007h
+	CL = vector (00h-7Fh)
+	DX:EBX -> interrupt handler
+Return: CF clear
+Notes:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+	the IDT entry's type remains unchanged
+SeeAlso: AX=0006h,INT 31/AX=0205h
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16CA--BX736B
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - CtrlAlt Associates STACKEY.COM v3.00 - API
+	AH = CAh
+	BX = 736Bh ("sk")
+	CX = 736Bh
+	AL = function
+	    00h installation check
+		Return: DX = words available in keyboard buffer
+	    01h place keystroke in buffer
+		DX = keystroke (DH = scan code, DL = ASCII character)
+		Return: DX = words available in keyboard buffer
+			    FFFFh on error
+	    02h flush STACKEY and BIOS keyboard buffers
+Return: AX = CAFFh if installed
+	    BX = segment of resident code
+	    CX = STACKEY version (CH = major, CL = minor)
+Program: STACKEY is a shareware keyboard-input faking TSR
+Index:	installation check;STACKEY
+

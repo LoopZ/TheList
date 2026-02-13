@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: 141E
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - X00 FOSSIL - EXTENDED LINE CONTROL INITIALIZATION
+	AH = 1Eh
+	AL = break status
+	    00h if break
+	    01h if no break
+	BH = parity (see #00344)
+	BL = number of stop bits
+	    00h one stop bit
+	    01h two stop bits (1.5 if 5 bit word length)
+	CH = word length (see #00345)
+	CL = bps rate (see #00346)
+	DX = port number
+Return: AX = port status code (see #00304,#00305)
+Notes:	this function is intended to exactly emulate the PS/2 BIOS AH=04h call
+	if the port was locked at X00 load time, the appropriate parameters are
+	  ignored
+SeeAlso: AH=00h,AH=04h"SERIAL"
+
+(Table 00344)
+Values for X00 FOSSIL parity:
+ 00h	no parity
+ 01h	odd parity
+ 02h	even parity
+ 03h	stick parity odd
+ 04h	stick parity even
+SeeAlso: #00307,#00345,#00346
+
+(Table 00345)
+Values for X00 FOSSIL word length:
+ 00h	5 bits
+ 01h	6 bits
+ 02h	7 bits
+ 03h	8 bits
+SeeAlso: #00308,#00344,#00346
+
+(Table 00346)
+Values for X00 FOSSIL bps rate:
+ 00h	110
+ 01h	150
+ 02h	300
+ 03h	600
+ 04h	1200
+ 05h	2400
+ 06h	4800
+ 07h	9600
+ 08h	19200
+SeeAlso: #00309,#00344,#00345
+

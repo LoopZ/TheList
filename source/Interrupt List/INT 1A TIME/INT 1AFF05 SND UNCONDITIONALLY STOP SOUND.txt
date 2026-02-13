@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AFF05
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SND - UNCONDITIONALLY STOP SOUND
+	AX = FF05h
+Return: AH = 00h (successful)
+Note:	this function is the same as AX=FF03h, but will stop the sound even if
+	  SND is currently busy, such as playing background music
+SeeAlso: AX=FF00h,AX=FF03h,INT 80/BX=0007h
+

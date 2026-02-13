@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFD6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET KEYCARD SERIAL NUMBER AND MAX USERS
+	AX = FFD6h
+	ES:BX -> 12-byte buffer for keycard serial number
+Return: CX = maximum number of users
+	ES:BX buffer filled
+

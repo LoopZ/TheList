@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F270C
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - CHECK OPEN FILES
+	AX = 270Ch
+	DX = task index
+Return: AX = number of files currently open for specified task
+SeeAlso: AX=2708h
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 158C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET/SET POWER SAVE ENTRY FLAG
+	AH = 8Ch
+	AL = function
+	    00h get
+		Return: BX = which operations disable power save (see #00506)
+	    else set
+		BX = which operations should disable power save (see #00506)
+SeeAlso: AH=8Dh
+
+Bitfields for HUNTER 16 operations disabling power save:
+Bit(s)	Description	(Table 00506)
+ 0	INT 10h prevents power save
+ 1	INT 13h prevents power save
+ 2	INT 14h prevents power save
+ 3	INT 15h prevents power save
+ 4	INT 1Ah prevents power save
+ 5	INT 21h prevents power save
+ 6	direct write to video RAM prevents power save
+ 7	access to 8250 UART prevents power save
+ 8	access to 8253 (Sound) prevents power save
+

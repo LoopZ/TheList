@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF12
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - GET CONNECTION INFORMATION
+	AX = 0003h subfn 12h
+	DS:BX -> argument block (see #03395)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=11h,AX=0003h/SF=15h
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03395)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	12h (function "get connection information")
+ 02h	WORD	offset of buffer for connection information (see #03396)
+
+Format of VINES connection information:
+Offset	Size	Description	(Table 03396)
+ 00h	WORD	length of service name (returned)
+ 02h	WORD	pointer to 64-byte buffer for service name
+ 04h	BYTE	type of connection
+		00h connection name
+		01h dialout
+ 05h	WORD	length of connection name/telephone number
+ 07h	WORD	pointer to 64-byte buffer for name/telno
+ 09h	BYTE	server line number being used (returned)
+

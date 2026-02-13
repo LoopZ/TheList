@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1324
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - PS/1 and newer PS/2 - SET MULTIPLE MODE
+	AH = 24h
+	AL = number of sectors per block (2,4,8,16)
+	DL = drive number (80h,81h)
+Return: CF clear if successful
+	CF set onerror
+	AH = status (see #00234 at AH=01h)
+Desc:	specify how many sectors the controller should transfer as a group
+	  between operation-complete interrupts when using the Read Multiple
+	  and Write Multiple functions (AH=21h,AH=22h)
+Notes:	set the number of sectors to 0 to disable multiple-transfer mode
+	the maximum value for the block size depends on the fixed disk
+	  drive type.  The value is stored in byte 15h of the fixed disk
+	  drive parameter table that is created by POST.
+	the byte at address 0040h:0074h is set to status of operation.
+SeeAlso: AH=21h"PS/1",AH=22h"PS/1",AH=23h"PS/1",AH=25h"PS/1"
+

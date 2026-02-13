@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31EE20
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - DOS32 v3.0+ - GET REAL MODE CALL BACK ADDRESS WITH RETF STACK FRAME
+	AX = EE20h
+	ESI = offset of the real mode call back function
+Return: CF clear if successful
+	    CX:DX = real mode address to call up to the protected mode
+		  procedure
+	CF set on error
+SeeAlso: AX=EE00h,AX=EE02h,AX=EE21h
+

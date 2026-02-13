@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - SET MASTER MODE OF CURRENT CONTROLLER
+	AX = BF02h
+	BH = master mode
+	    04h CGA
+	    05h EGA
+	    07h MDA
+Return: nothing
+SeeAlso: AX=BF03h
+

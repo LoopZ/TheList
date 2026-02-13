@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F020A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SYSTEM SF_GET_ATTR" - GET CURRENT ATTRIBUTES
+	AX = 020Ah
+	BP = driver ID (see #03741)
+Return: AH = status (see #03744)
+	BX,CX = current attributes
+	BP,DS destroyed
+	---for V_LTOUCH, V_LPOINTER---
+	    BX = logical width
+	    CX = logical height
+SeeAlso: AH=00h"HP Vectra",AX=0200h,AX=0208h,AX=020Ch
+

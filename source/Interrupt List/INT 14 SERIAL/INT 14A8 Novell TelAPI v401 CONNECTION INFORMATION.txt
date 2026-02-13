@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Novell TelAPI v4.01 - CONNECTION INFORMATION???
+	AH = A8h
+	DH = session ID???
+	CH = subfunction
+	    02h ???
+	    0Dh ???
+	    0Fh ???
+	    10h ???
+	    11h ???
+	    28h ???
+	    else
+		Return: AH = 09h (not supported)
+Return: AH = return code (see #00394)
+	    00h successful
+		CL = ??? (0/1/8) (subfunctions 02h,0Dh,0Fh,10h)
+		CL = ??? (7Fh/FFh) (subfunction 28h)
+		CX = ??? (subfunction 11h)
+SeeAlso: AH=A9h"TelAPI"
+

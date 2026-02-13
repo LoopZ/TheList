@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4D09
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4D - TI Professional PC - DISK - SET DEVICE INTERFACE TABLE ADDRESS
+	AH = 09h
+	DL = drive number (00h-07h)
+	ES:BX -> Device Interface Table (see #03226)
+Return: nothing???
+SeeAlso: AH=00h,AH=08h,AH=0Ah,INT 1E
+
+Format of TI Professional PC Device Interface Table:
+Offset	Size	Description	(Table 03226)
+ 00h	DWORD	-> entry point for disk routine
+ 04h	WORD	bytes per sector
+ 06h	BYTE	sectors per track
+ 07h	BYTE	number of heads
+ 08h	BYTE	number of cylinders
+ 09h	BYTE	retry count
+ 0Ah	BYTE	precompensation start
+SeeAlso: #01264 at INT 1E
+

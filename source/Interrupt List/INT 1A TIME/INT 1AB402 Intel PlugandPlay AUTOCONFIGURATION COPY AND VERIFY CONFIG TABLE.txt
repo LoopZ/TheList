@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB402
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Intel Plug-and-Play AUTO-CONFIGURATION - COPY AND VERIFY CONFIG TABLE
+	AX = B402h
+	DS:SI -> configuration table (see #01244)
+	ES:DI -> buffer for copy of configuration table
+Return: CF clear if successful
+	    AX = 0000h
+	CF set on error
+	    AX = error code (0055h,0056h) (see #01243)
+Note:	the buffer pointed at by ES:DI must be at least as large as the
+	  maximum configuration table size reported by AX=B401h
+SeeAlso: AX=B400h,AX=B401h,AX=B403h
+

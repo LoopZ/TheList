@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6AD500DHFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6A - DECnet DOS LOCAL AREA TRANSPORT - GET NEXT LAT SERVICE NAME
+	AX = D500h
+	DH = FFh
+	ES:BX -> 17-byte buffer for name
+Return: AH = 00h if successful
+	   ES:BX buffer filled
+	AX = FFFFh if end of table or no name available
+Notes:	use this function to get the names of the hosts on the network
+	successive calls are necessary to get all names
+SeeAlso: AX=D600h/DH=FFh
+

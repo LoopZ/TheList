@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: D416
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - SET/CLEAR IRQ RESERVATION
+	AH = 16h
+	AL = function (00h clear, 01h set reservation)
+	CX = IRQ number
+Return: AX = status
+	    (0000h successful, 0001h currently reserved by another task)
+SeeAlso: AH=07h,INT 14/AH=11h"PC-MOS"
+

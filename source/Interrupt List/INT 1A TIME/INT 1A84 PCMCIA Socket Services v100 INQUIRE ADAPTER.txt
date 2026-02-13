@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A84
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - INQUIRE ADAPTER
+	AH = 84h
+	AL = adapter number
+Return: CF clear if successful
+	    AH destroyed
+	    BH = number of windows
+	    BL = number of sockets (1-16)
+	    CX = number of EDCs
+	    DH = capabilities (see #00670)
+	    DL = status change interrupt used (only if DH bit 3 set)(see #00671)
+	CF set on error
+	    AH = error code (01h) (see #00656)
+SeeAlso: AH=80h"PCMCIA",AH=85h"PCMCIA",AH=87h
+
+Bitfields for PCMCIA capabilities:
+Bit(s)	Description	(Table 00670)
+ 7-6	reserved (0)
+ 5	status change interrupt is hardware shareable
+ 4	status change interrupt is software shareable
+ 3	status change interrupt
+ 2	data bus width is per-socket rather than per-window
+ 1	power management is per-adapter rather than per-socket
+ 0	indicators are per-adapter rather than per-socket
+
+(Table 00671)
+Values for PCMCIA status change interrupt usage:
+ 00h-0Fh IRQ level
+ 10h	NMI
+ 11h	I/O check
+ 12h	bus error
+ 13h	vendor specific
+ 14h-FFh reserved
+

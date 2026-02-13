@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F6284BX0003
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v7-8 DATAMON, v9+ DPROTECT - SET OPTION??? FLAGS
+	AX = 6284h
+	BX = 0003h
+	CX = flags (see #02849)
+	DX = flags
+	    bit 15: ???
+Note:	v9 DPROTECT only checks bit 12 of CX, and ignores DX entirely
+SeeAlso: AX=6284h/BX=0002h
+
+Bitfields for DATAMON/DPROTECT CX flags:
+Bit(s)	Description	(Table 02849)
+ 3	???
+ 5	???
+ 10	???
+ 12	disable DATAMON/DPROTECT
+

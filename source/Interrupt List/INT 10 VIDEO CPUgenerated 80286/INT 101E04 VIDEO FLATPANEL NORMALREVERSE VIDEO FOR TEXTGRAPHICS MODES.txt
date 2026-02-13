@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101E04
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - FLAT-PANEL - NORMAL/REVERSE VIDEO FOR TEXT/GRAPHICS MODES
+	AX = 1E04h
+	BH = function
+	    bit 7: =1 set normal/reverse video, =0 query normal/reverse
+	    bits 6-0: reserved (0)
+	---if BH bit 7 set---
+	BL = new normal/reverse video setting (see #00057)
+Return: AL = 1Eh if function supported
+	    BH = results
+		bit 7: query/set (copied from input)
+		bits 6-4: reserved (0)
+		bit 3: hardware supports reverse video for text modes
+		bit 2: hardware supports reverse video for graphics modes
+		bit 1: hardware supports independent control of reverse video
+		      in text and graphics modes
+		bit 0: set operation was successful (always clear on get)
+	    BL = active normal/reverse video setting (see #00057)
+SeeAlso: AX=1E00h,AX=1E03h,AX=1E05h
+
+Bitfields for Flat-Panel normal/reverse video setting:
+Bit(s)	Description	(Table 00057)
+ 7-2	reserved (0)
+ 1	reverse video for text
+ 0	reverse video for graphics
+SeeAlso: #00054,#00056,#00058,#00059
+

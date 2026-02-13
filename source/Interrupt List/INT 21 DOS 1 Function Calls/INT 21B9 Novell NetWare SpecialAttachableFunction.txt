@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B9
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Novell NetWare - "SpecialAttachableFunction"
+	AH = B9h
+	AL = FFh to hook this function
+	    ES:BX -> function to invoke on AH=B9h when AL<>FFh
+Note:	this function is no longer used or supported by current versions of
+	  NetWare
+

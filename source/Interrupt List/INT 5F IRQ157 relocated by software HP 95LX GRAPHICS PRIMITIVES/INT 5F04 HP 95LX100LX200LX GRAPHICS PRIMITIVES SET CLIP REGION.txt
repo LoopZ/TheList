@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F04
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - SET CLIP REGION
+	AH = 04h
+	CX = left-most column
+	DX = top-most row
+	SI = right-most column
+	DI = bottom-most row
+SeeAlso: AH=03h
+

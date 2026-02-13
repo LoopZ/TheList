@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1575
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SET CONTRAST POWER UP STATE
+	AH = 75h
+	AL = new level
+	    01h off
+	    02h unchanged
+	    03h change level
+		BL = desired level (00h-7Fh)
+Return: AH = status
+Desc:	select the LCD contrast level to use when the Hunter is next turned on
+SeeAlso: AH=63h,AH=74h
+

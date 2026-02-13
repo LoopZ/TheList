@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1325
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - SET FLUSH INTERVAL
+	AH = 25h
+	BX = interval
+Return: AX = status (0000h successful)
+Desc:	specify how often the cache should write dirty buffers to disk when
+	  buffered writes are enabled
+SeeAlso: AH=21h"QUICKCACHE",AH=2Ch,AH=2Eh
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAB02
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Btrieve Multi-User - GET NEW PROCESS ID
+	AX = AB02h
+Return: AL = 00h successful
+	    BX = process ID
+	AL > 00h failed, retry after calling INT 7F/AX=0200h
+SeeAlso: AX=AB00h,AX=AB01h,INT 7B"Btrieve",INT 7F/AX=0200h
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215702BXFFFF
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - OS/2 v1.1+ Compatibility Box Family API - DosQPathInfo
+	AX = 5702h
+	BX = FFFFh
+	CX = size of buffer for information
+	DX = level of information (0002h)
+	DS:SI -> filename
+	ES:DI -> buffer for FAPI path information (see #01678)
+Return: CF clear if successful
+	    AL = 00h
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5702h"OS/2",AX=5703h/BX=FFFFh
+
+Format of FAPI path information:
+Offset	Size	Description	(Table 01678)
+ 00h 22 BYTEs	???
+ 16h	DWORD	extended attribute size (none present if less than 5)
+

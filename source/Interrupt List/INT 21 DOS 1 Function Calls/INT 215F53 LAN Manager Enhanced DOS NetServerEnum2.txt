@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F53
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - NetServerEnum2
+	AX = 5F53h
+	DS:SI -> NetServerEnum2 parameter structure (see #01727)
+Return: CF clear if successful
+	    BX = entries read
+	    CX = total entries available
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F4Ch
+
+Format of LAN Manager NetServerEnum2 parameter structure:
+Offset	Size	Description	(Table 01727)
+ 00h	WORD	level (0000h or 0001h)
+ 02h	DWORD	-> buffer as array of server_info_??? structures (see #01723)
+ 06h	WORD	length of buffer
+ 08h	DWORD	server type bitmask (see #01725)
+ 0Ch	DWORD	-> Domain name (may be 0000h:0000h for all local domains)
+

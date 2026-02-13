@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--12
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - FREEVER - GET ORIGINAL DOS VERSION INFO
+	AL = 12h
+	AH = AMIS multiplex number for FREEVER
+Return: AL = FFh if successful
+	    BH = major DOS version
+	    BL = minor DOS version
+	    CH = DOS version flag
+	    CL = OEM number
+	    DH = major DR DOS version number (FFh if unknown)
+	    DL = minor DR DOS version number (FFh if unknown)
+Program: FREEVER is an AMIS-conformant freeware DOS version-faking TSR similar
+	  to SETVER for any DOS-compatible OS, written by Matthias Paul
+SeeAlso: INT 2D/AL=13h"FREEVER",INT 2D/AL=14h"FREEVER",INT 2D/AL=17h"FREEVER"
+

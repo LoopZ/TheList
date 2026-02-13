@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1206
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - INVOKE CRITICAL ERROR
+	AX = 1206h
+	DI = error code
+	BP:SI -> device driver header (see #01646)
+	SS = DOS DS (must be using a DOS internal stack)
+	STACK: WORD value to be passed to INT 24 in AX
+Return: AL = 0-3 for Abort, Retry, Ignore, Fail
+	STACK unchanged
+SeeAlso: INT 24
+

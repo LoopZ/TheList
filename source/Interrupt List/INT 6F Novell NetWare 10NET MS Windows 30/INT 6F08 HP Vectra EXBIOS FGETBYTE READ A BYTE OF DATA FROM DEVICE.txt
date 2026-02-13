@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F08
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_GET_BYTE" - READ A BYTE OF DATA FROM DEVICE
+	AH = 08h
+	BP = driver ID (see #03741) for V_HPHIL (0114h), others
+	---if device is V_HPHIL---
+	BX = device address indicator (see #03760)
+	DH = HP HIL device major address
+	DL = HP-HIL device register (00h-7Fh)
+Return: AH = status (see #03744)
+	AL = value read from device
+	BP,DS destroyed
+Desc:	generic read-byte function; for driver V_HPHIL, retrieves the value
+	  of a specific HP-HIL device register
+Note:	this function is only available if the driver is in the open state
+	  (see AX=020Eh"SF_OPEN")
+SeeAlso: AH=06h"F_PUT_BYTE",AH=0Ah"F_PUT_BUFFER",AH=0Ch"F_GET_BUFFER"
+

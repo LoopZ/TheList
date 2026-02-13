@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F168FDH02
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Windows95 - CLOSE-AWARENESS - ACKNOWLEDGE CLOSE
+	AX = 168Fh
+	DH = 02h
+	DL = 00h (reserved)
+Return: AX = status
+	    0000h successful
+	    else failed
+Note:	once a Close command has been issued, no further keyboard input is
+	  available to the application until it calls this function to
+	  acknowledge the Close request
+SeeAlso: AX=168Fh/DH=00h,AX=168Fh/DH=03h
+

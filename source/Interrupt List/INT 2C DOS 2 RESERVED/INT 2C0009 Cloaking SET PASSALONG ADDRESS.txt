@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0009
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - SET PASSALONG ADDRESS
+	AX = 0009h
+	DX:EBX = new value for passalong address (see #02558)
+Return: CF clear
+Notes:	when an INT 2C instruction is executed in V86 mode, the Cloaking host
+	  calls the passalong address.	The handler should check whether the
+	  upcall is of interest to it, and if not it should jump to the old
+	  passalong address (retrieved with AX=0008h before the handler was
+	  installed).  The final handler should return with CF clear to cause
+	  the interrupt to be reflected back to V86 mode if none of the
+	  passalong handlers is triggered
+	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0008h,AX=002Dh,INT 2C"PASSALONG CHAIN"
+
+(Table 02558)
+Values Cloaking passalong address is called with:
+	EAX = CS:IP of byte following INT 2C instruction invoking passalong
+	SS:EBX -> caller registers (see #02559)
+	CF clear
+	others undefined
+Return: CF clear: pass along to V86-mode INT 2C handler
+	CF set: return immediately to V86 mode
+
+Format of Cloaking caller registers:
+Offset	Size	Description	(Table 02559)
+ 00h	DWORD	EDI
+ 04h	DWORD	ESI
+ 08h	DWORD	EBP
+ 0Ch	DWORD	reserved (ESP from PUSHAD instruction)
+ 10h	DWORD	EBX
+ 14h	DWORD	EDX
+ 18h	DWORD	ECX
+ 1Ch	DWORD	EAX
+ 20h	DWORD	error code
+ 24h	DWORD	EIP
+ 28h	WORD	CS
+ 2Ah	WORD	padding
+ 2Ch	DWORD	EFLAGS
+ 30h	DWORD	ESP
+ 34h	WORD	SS
+ 36h	WORD	padding
+--remainder not available if protected-mode ring3 trap---
+ 38h	WORD	ES
+ 3Ah	WORD	padding
+ 3Ch	WORD	DS
+ 3Eh	WORD	padding
+ 40h	WORD	FS
+ 42h	WORD	padding
+ 44h	WORD	GS
+ 46h	WORD	padding
+

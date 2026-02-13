@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13E000
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - XBIOS - COMMAND
+	AX = E000h
+	CX = 0
+	DL = drive number (80h,81h,82h,83h)
+	ES:BX = pointer to XBIOS Command Block (see #00297)
+Return: CF clear if successful
+	    CX = 1234h XBIOS Signature
+	CF set on error
+Program: XBIOS is a driver in some versions of Disk Manager that is
+	  loaded from the disk MBR, replacing the ROM BIOS disk support
+	  e.g. adding LBA mode support, and read/write multiple.
+SeeAlso: AH=F9h"SWBIOS"
+
+Format of XBIOS Command Block:
+Offset	Size	Description	(Table 00297)
+ 00h	BYTE	function
+		0Eh Get XBIOS Configuration Information
+		    Return: buffer points to Ontrackr_Ref_Data structure
+			(see #00298)
+ 01h	BYTE	reserved (must be zero before function call)
+ 02h	DWORD	buffer pointer - Input or output depending on opcode
+SeeAlso: #00298,#00299
+
+Format of Ontrackr_Ref_Data structure:
+Offset	Size	Description	(Table 00298)
+ 00h	WORD	Size of structure (33h)
+ 02h	BYTE	VxD Chain mode
+ 03h 12 BYTEs	Drive 1: Ontrackr_VxD_Data structure (see #00299)
+ 0Fh 12 BYTEs	Drive 2: Ontrackr_VxD_Data structure
+ 1Bh 12 BYTEs	Drive 3: Ontrackr_VxD_Data structure
+ 27h 12 BYTEs	Drive 4: Ontrackr_VxD_Data structure (see #00299)
+SeeAlso: #00297,#00299
+
+Format of Ontrackr_VxD_Data structure:
+Offset	Size	Description	(Table 00299)
+ 00h	BYTE	INT 13h drive number
+ 01h	DWORD	Delta skew value
+ 05h	BYTE	Physical  heads (Word 3 of Identify Data)
+ 06h	BYTE	Physical sectors per track (Word 6 of Identify Data)
+ 07h	BYTE	Multiple Block Size (Blocking factor)
+ 08h	BYTE	Read/Write Multiple disable flags
+		00001000b	drive supports r/w multiple
+		00000100b	do not use read multiple
+		00000010b	do not use write multiple
+ 09h	WORD	Base port address (1F0/170)
+ 0Bh	BYTE	Hardware interrupt channel (14/15)
+SeeAlso: #00298
+

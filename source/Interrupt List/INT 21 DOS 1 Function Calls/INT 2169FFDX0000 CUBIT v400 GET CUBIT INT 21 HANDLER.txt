@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2169FFDX0000
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - CUBIT v4.00 - GET CUBIT INT 21 HANDLER
+	AX = 69FFh
+	DX = 0000h
+	BX = CB00h (magic value)
+Return: ES:BX -> CUBITR.EXE handler for INT 21
+InstallCheck:	test that the first eight bytes at the returned interrupt
+	  handler are EBh 07h "CUBITR" (a short jump around the signature
+	  followed by the signature)
+Note:	the byte following the signature (i.e. ES:[BX+8]) indicates whether
+	  CUBITR is active (01h) or disabled (00h)
+SeeAlso: AX=69FFh/DX=CFBFh
+Index:	installation check;CUBIT
+

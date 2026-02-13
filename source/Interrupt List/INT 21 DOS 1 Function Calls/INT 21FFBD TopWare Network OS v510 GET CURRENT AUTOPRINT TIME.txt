@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFBD
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET CURRENT AUTOPRINT TIME
+	AX = FFBDh
+	CH = printer number (00h LPT1, 01h LPT2, 02h LPT3)
+Return: AX = current AutoPrint timeout in clock ticks
+SeeAlso: AX=FFBEh
+

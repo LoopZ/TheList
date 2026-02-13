@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC00BL04
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CATC USB4DOS Device Manager - HUB DEVICE DETACHED
+	AX = BC00h
+	BL = 04h
+	BH = USB address of detached device (may be the hub itself)
+Return: AX destroyed
+SeeAlso: AX=BC00h/BL=03h,AX=BC00h/BL=00h
+

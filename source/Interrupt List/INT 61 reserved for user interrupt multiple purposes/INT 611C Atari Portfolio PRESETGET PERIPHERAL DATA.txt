@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 611C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - PRESET/GET PERIPHERAL DATA
+	AH = 1Ch
+	AL = function
+	    00h preset data values
+		BL = data value
+		DX = I/O address
+	    01h get data values
+	BH = table entry number (04h-09h)
+Return: if function 01h
+	    BL = data value
+	    DX = I/O address
+Desc:	preset peripheral I/O data in a table mapping I/O addresses to data
+	  values; function 00h additionally outputs the data value to the
+	  I/O port
+SeeAlso: AH=1Ah"Portfolio",AH=1Bh"Portfolio",AH=1Eh"Portfolio"
+

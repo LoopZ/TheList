@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FA3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v3+ - GET PRINTER STATUS
+	AX = 5FA3h
+	BX = physical printer number (00h-02h = LPT1-LPT3, 03h-04h = COM1-COM2)
+	DS:SI -> buffer for printer status (see #01736)
+	ES:DI -> ASCIZ server name in form "\\machine"
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+	BX = next physical printer number
+Note:	you must be logged in to the specified server
+
+Format of LANtastic printer status:
+Offset	Size	Description	(Table 01736)
+ 00h	BYTE	printer state (see #01737)
+ 01h	WORD	queue index of print job being despooled
+		FFFFh if not despooling--ignore all following fields
+ 03h	WORD	actual characters per second being output
+ 05h	DWORD	number of characters actually output so far
+ 09h	DWORD	number of bytes read from spooled file so far
+ 0Dh	WORD	copies remaining to print
+
+Bitfields for LANtastic printer state:
+Bit(s)	Description	(Table 01737)
+ 7	printer paused
+ 0-6	0 printer disabled
+	1 will stop at end of job
+	2 print multiple jobs
+

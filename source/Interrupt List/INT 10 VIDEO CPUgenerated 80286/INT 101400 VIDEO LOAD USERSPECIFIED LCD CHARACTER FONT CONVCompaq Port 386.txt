@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101400
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - LOAD USER-SPECIFIED LCD CHARACTER FONT (CONV,Compaq Port 386)
+	AX = 1400h
+	ES:DI -> character font
+	BH = number of bytes per character
+	    08h or 10h (Compaq)
+	BL = 00h load main font (block 0)
+	     01h load alternate font (block 1)
+	CX = number of characters to store
+	DX = character offset into RAM font area
+Return: nothing
+SeeAlso: AX=1100h,AX=1110h,AX=1401h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1519
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX v2+ - "sys_setconwn" - SET WINDOW COLORS
+	AH = 19h
+	STACK:	WORD	new background/foreground colors
+			bits 3-0: foreground
+			bits 7-4: background
+			bits 15-8: unused
+Return: AX = color
+SeeAlso: AH=18h"VMiX"
+

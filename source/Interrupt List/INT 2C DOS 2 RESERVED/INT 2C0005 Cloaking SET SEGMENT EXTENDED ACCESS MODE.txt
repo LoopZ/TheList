@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0005
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - SET SEGMENT EXTENDED ACCESS MODE
+	AX = 0005h
+	SI = selector
+	CL = new extended access mode byte (limit field ignored) (see #02557)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #02556)
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0000h,AX=0002h,AX=0003h,AX=0004h,INT 31/AX=0009h
+
+Bitfields for extended access mode byte:
+Bit(s)	Description	(Table 02557)
+ 7	4K granularity instead of byte granularity
+ 6	32-bit code segment
+ 5	reserved (0)
+ 4	segment available to system
+SeeAlso: #00505
+

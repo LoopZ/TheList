@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105FA0
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Wingine DGX - GET EXTENDED BIOS SAVE BUFFER SIZE
+	AX = 5FA0h
+	CX = state(s) to be saved (see #00186)
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+		    BX = number of 64-byte blocks required for state
+SeeAlso: AH=1Ch,AX=5FA1h,AX=5FA2h,AX=5F90h,AX=4F04h
+
+Bitfields for C&T BIOS save/restore state type:
+Bit(s)	Description	(Table 00186)
+ 0	video hardware
+ 1	BIOS data
+ 2	DAC and color registers
+ 14	(65530 BIOS with AL=A1h only) clear emulation state
+ 15	extended registers
+SeeAlso: #00048,#00085
+

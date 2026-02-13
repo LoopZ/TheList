@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "CREAT" - CREATE OR TRUNCATE FILE
+	AH = 3Ch
+	CX = file attributes (see #01401)
+	DS:DX -> ASCIZ filename
+Return: CF clear if successful
+	    AX = file handle
+	CF set on error
+	    AX = error code (03h,04h,05h) (see #01680 at AH=59h/BX=0000h)
+Notes:	if a file with the given name exists, it is truncated to zero length
+	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+	DR DOS checks the system password or explicitly supplied password at
+	  the end of the filename against the reserved field in the directory
+	  entry before allowing access
+SeeAlso: AH=16h,AH=3Dh,AH=5Ah,AH=5Bh,AH=93h,INT 2F/AX=1117h
+
+Bitfields for file attributes:
+Bit(s)	Description	(Table 01401)
+ 0	read-only
+ 1	hidden
+ 2	system
+ 3	volume label (ignored)
+ 4	reserved, must be zero (directory)
+ 5	archive bit
+ 7	if set, file is shareable under Novell NetWare
+

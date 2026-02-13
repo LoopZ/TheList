@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4808
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 48 - TI Professional PC - DISPLAY SYSTEM ERROR MESSAGE
+	AH = 08h
+	BX = error number
+Return: nothing
+Desc:	displays the error message " ** System Error ** - xxxx" where xxxx is
+	  the hexadecimal value in BX
+SeeAlso: AH=00h,AH=01h,AH=02h,AH=03h,AH=04h,AH=06h,AH=08h,AH=0Ah,AH=0Bh
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB01
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - WINGO.COM - SET CALLBACK FUNCTION POINTER
+	AX = DB01h
+	CX:DX -> new callback function
+Return: AX = 0000h
+	CX:DX -> end of resident code (stack ???)
+Desc:	the callback function is used for WINGO <-> WINSTART communication
+SeeAlso: AX=DB00h"WINGO",AX=DB02h"WINGO",AX=DB03h"WINGO",AX=DB04h"WINGO"
+SeeAlso: AX=DB05h"WINGO",AX=DB06h"WINGO"
+

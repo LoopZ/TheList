@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLAD
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_WRITEBLK" - WRITE STRING TO AUX DEVICE
+	CL = ADh
+	DS:DX -> character control block (see #04051,#04052)
+Return: AX = number of characters written
+Notes:	does not return until at least one character has been written
+	also supported by REAL/32
+SeeAlso: INT E0/CL=04h,INT E0/CL=A5h,INT E0/CL=ACh
+

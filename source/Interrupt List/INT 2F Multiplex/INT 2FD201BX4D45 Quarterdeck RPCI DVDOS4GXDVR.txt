@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD201BX4D45
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Quarterdeck RPCI - DVDOS4GX.DVR - ???
+	AX = D201h
+	BX = 4D45h ("ME")
+	CX = 5155h ("QU")
+	DX = 5044h ("PD")
+Return: AL = FFh
+	BX = 4F4Bh ("OK")
+Range:	AH=C0h to AH=FFh, selected by scanning AH=D2h-FFh, then AH=C0h-D1h
+Note:	this function is called by QEMM 6.03
+	performs a variety of actions before setting return registers
+SeeAlso: AX=D200h
+

@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0013
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET VALUE OF GLOBAL VARIABLE
+	AX = 0004h subfn 0013h
+	DS:DX -> request block (see #03421)
+Return: AX = status (see also #03400)
+	    0000h successful
+	    0033h invalid request ID (returned if variable index out of range)
+Desc:	Returns the value of the specified global variable
+Note:	The data will be truncated if the specified buffer is not large enough.
+	  Check the length word in the request block to find out how many
+	  bytes should have been copied.
+SeeAlso: AX=0004h/SF=0014h,AX=0006h
+
+Format of request block:
+Offset	Size	Description	(Table 03421)
+ 00h	WORD	0013h
+ 02h	WORD	variable index (0000h-001Fh) (see #03422)
+ 04h	WORD	buffer length (on exit set to # of bytes actually needed)
+ 06h	DWORD	far pointer to result buffer
+SeeAlso: #03423
+
+(Table 03422)
+Values for variable indices:
+Index	Length	Description
+ 0000h	   1	???
+ 0001h	  16	StreetTalk port
+ 0002h	   4	StreetTalk session handle
+ 0003h	   6	colors
+ 0004h	  64	StreetTalk name of currently logged in user
+ 0005h	   0	old clear text password (not applicable)
+ 0006h	   0	default group (not applicable)
+ 0007h	   1	number of messages in message queue
+ 0008h	   1	message flag
+ 0009h	  16	TalkPort
+ 000Ah	   2	TalkPort socket
+ 000Bh	  64	StreetTalk name of mail service
+ 000Ch	   2	message timeout
+ 000Dh	   2	next message place
+ 000Eh	 246	message queue (3 times 80 characters + 2 flag bytes)
+ 000Fh	  14	system nonce
+ 0010h	   2	failed login count
+ 0011h	   1	new mail message received
+ 0012h	   8	mail service capabilities
+ 0013h	   3	printer port diverted
+ 0014h	  32	international location
+ 0015h	  16	IPC port of drive Z:
+ 0016h	1024	pointer to current directory table
+ 0017h	   2	maximum number of file volume mappings
+ 0018h	  24	routine to call back for messages (6 far pointers)
+ 0019h	   4	current virtual machine
+ 001Ah	  20	DOS redirector message bell tones
+ 001Bh	   2	various flags used for internal communication
+ 001Ch	   0	OS/2 client configuration (not applicable)
+ 001Dh	   8	redirector/IFS file version
+ 001Eh	   0	reserved (not applicable)
+ 001Fh	   4	address of VVINESD.386 dispatch
+

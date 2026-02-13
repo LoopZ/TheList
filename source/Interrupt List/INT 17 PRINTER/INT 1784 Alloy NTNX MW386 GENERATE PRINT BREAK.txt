@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1784
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - GENERATE PRINT BREAK
+	AH = 84h
+	AL = mode
+	    00h NTNX compatibility
+	    02h MW386 v2+
+		BX = logical device number
+		    00h-03h = LPT1-LPT4
+		    04h-07h = COM1-COM4
+Note:	closes spool file and tells spooler to queue the print job (LPT1 only
+	  under MW386 in NTNX compatibility mode)
+

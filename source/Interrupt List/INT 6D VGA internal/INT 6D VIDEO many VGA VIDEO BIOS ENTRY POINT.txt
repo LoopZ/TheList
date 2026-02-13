@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6D
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6D - VIDEO - many VGA - VIDEO BIOS ENTRY POINT
+Desc:	points at the original INT 10 entry point set up by the VGA BIOS
+Notes:	used by IBM, ATI VGA Wonder, Paradise, Video7, and NCR, and many others
+	the Diamond Stealth64 BIOS uses this vector to store the INT 42 vector
+	   of the inactive video (see INT 10/AH=12h/BL=35h)
+SeeAlso: INT 10/AH=00h,INT 10/AH=0Eh,INT 10/AH=12h/BL=10h
+

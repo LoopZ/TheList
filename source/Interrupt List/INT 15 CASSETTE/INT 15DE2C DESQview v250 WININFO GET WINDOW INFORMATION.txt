@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE2C
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.50+ - "WININFO" - GET WINDOW INFORMATION
+	AX = DE2Ch
+	DX = window information format version (0100h for DESQview 2.5x)
+	BX = segment of window handle or 0000h for default
+	ES:DI -> buffer for window information (see #00554)
+Return: AX = status
+	    0000h successful
+Note:	DESQview 2.50-2.52 are distributed as part of DESQview/X v1.0x.
+SeeAlso: AX=1000h,AX=1016h,AX=DE01h,AX=DE2Bh
+
+Format of DESQview window information:
+Offset	Size	Description	(Table 00554)
+ 00h	BYTE	task flag: 00h window, 01h task
+ 01h	BYTE	process number if owner task
+		00h if non-owner task
+ 02h	WORD	segment of owner's handle, 0000h if orphaned
+ 04h	WORD	mapping context (see #00416 at AX=1016h)
+ 06h	BYTE	task status (see #00555)
+ 07h	BYTE	unused
+ 08h	WORD	status bits (see #00556)
+ 0Ah	BYTE	01h if foreground-only window
+
+(Table 00555)
+Values for DESQview task status:
+ 00h	"Waiting" waiting for input
+ 01h	"Idle" keyboard poll limit reached
+ 03h	same as 01h
+ 04h	"Pausing" INT 15/AX=1000h pause called
+ 04h	DV/X direct: user did something to allow task switch
+ 05h	"ModeChg" video mode about to be changed
+ 06h	"ModeNtf" notify that video mode changed
+ 07h	"MoniCh" requested change to other monitor
+ 08h	"StartPgm" control relinquished to start new process
+ 09h	"MgrCan" made window manager CANCEL command
+ 0Ah	"Slicing" time slice expired
+ 0Bh	"Exit DOS" notify on DOS calls
+ 0Ch	"Enter DOS" process is re-entering DOS
+ 0Dh	"Terminate" INT 21/AH=4Ch or task freed
+ 0Eh	"BrkNxt" Control-Break pressed
+ 0Fh	"MgrCol" keyboard focus taken away
+ 10h	"PgmInt" interrupted by API call from another task
+ 11h	"BldOpen" call to INT 15/AX=DE01h
+
+Bitfields for DESQview task status bits:
+Bit(s)	Description	(Table 00556)
+ 6	task is freeing another task
+ 5	process is being created
+ 4	user suspended process
+ 3	process suspended itself
+ 2	process is resized direct window (suspended)
+ 1	process swapped out
+ 0	DESQview process
+

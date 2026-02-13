@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 611B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - SET PERIPHERAL ID BYTE
+	AH = 1Bh
+	AL = which peripheral to set
+	    00h serial
+	    01h parallel
+	DL = peripheral ID
+Return: nothing
+Desc:	specify that a peripheral is compatible with the BIOS serial or
+	  parallel services
+SeeAlso: AH=1Ah"Portfolio",AH=1Ch"Portfolio"
+

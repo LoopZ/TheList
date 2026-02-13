@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0205
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - INITIALIZE FILE SELECTION MENU
+	DI = 0205h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file menu structure (see #03282)
+		DWORD	pointer to edit record (see #03285 at INT 60/DI=0400h)
+		DWORD	pointer to wildcard filespec for initial file list
+		WORD	row???
+		WORD	column???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0200h,INT 60/DI=0206h,INT 60/DI=0208h
+
+Format of HP 95LX file menu structure:
+Offset	Size	Description	(Table 03282)
+ 00h	DWORD	pointer to ASCIZ base directory name
+ 04h	DWORD	pointer to ASCIZ file pattern (wildcard filespec)
+ 08h	DWORD	pointer to file list workspace, at least 1024 bytes (see #03283)
+ 0Ch	WORD	size of file list workspace in bytes
+ 0Eh	WORD	starting row (-3 is topmost, 0 is first non-"reserved" line)
+ 10h	WORD	starting column
+ 12h	WORD	number of lines
+ 14h	WORD	number of columns
+ 16h	WORD	number of files displayed on each line
+---the remaining fields are initialized by the System Manager---
+ 18h	WORD	0000h if first edit character, else multiline
+ 1Ah	WORD	number of files in file list
+ 1Ch	WORD	max files workspace has room for
+ 1Eh	WORD	file at top of list
+ 20h	WORD	index of file to highlight
+ 22h	WORD	index of file to unhighlight
+ 24h	WORD	current focus (01h FMENU, 02h EDIT)
+
+Format of HP 95LX file list workspace entry:
+Offset	Size	Description	(Table 03283)
+ 00h	BYTE	file attributes
+ 01h	WORD	file time (see #01665 at INT 21/AX=5700h)
+ 03h	WORD	file date (see #01666 at INT 21/AX=5700h)
+ 05h	DWORD	file size
+ 09h 13 BYTEs	ASCIZ filename
+

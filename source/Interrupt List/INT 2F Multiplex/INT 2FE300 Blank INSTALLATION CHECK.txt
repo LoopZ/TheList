@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE300
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Blank - INSTALLATION CHECK
+	AX = E300h
+Return: AL = FFh if installed
+	    ES = resident code segment
+Program: Blank is a shareware screen blanker by Yonah Schmeidler
+Note:	AH=E3h is the default, which may be reconfigured by the installation
+	  program in the registered version
+SeeAlso: AH=93h,AX=C050h,INT 14/AX=AA01h
+Index:	screen saver;Blank
+

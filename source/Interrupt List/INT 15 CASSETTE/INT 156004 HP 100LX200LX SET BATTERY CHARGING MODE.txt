@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156004
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SET BATTERY CHARGING MODE
+	AX = 6004h
+	BL = charging
+	    00h disabled
+	    01h enabled
+SeeAlso: AX=6000h,AX=6003h
+

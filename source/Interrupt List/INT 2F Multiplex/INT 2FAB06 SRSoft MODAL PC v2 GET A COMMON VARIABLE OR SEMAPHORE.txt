@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAB06
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SRSoft MODAL PC v2+ - GET A COMMON VARIABLE OR SEMAPHORE
+	AX = AB06h
+	BX = offset of variable or semaphore in common memory
+	CX = variable/semaphore size in bytes
+	DS:DX -> buffer for variable or semaphore
+Return: AX = 5253h ('SR' byte-swapped) if installed
+	CF clear if successful
+	CF set on error
+SeeAlso: AX=AB00h"MODAL",AX=AB04h,AX=AB05h,AX=AB07h
+

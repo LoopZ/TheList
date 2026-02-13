@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100E--CXABCD
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - V20-XT-BIOS - TELETYPE OUTPUT WITH ATTRIBUTE
+	AH = 0Eh
+	CX = ABCDh
+	BP = ABCDh
+	AL = character to write
+	BH = page number
+	BL = foreground color (text modes as well as graphics modes)
+Return: nothing
+Program: V20-XT-BIOS is a ROM BIOS replacement with extensions by Peter
+	  Koehlmann / c't magazine
+Desc:	display a character on the screen, advancing the cursor and scrolling
+	  the screen as necessary
+Notes:	characters 07h (BEL), 08h (BS), 0Ah (LF), and 0Dh (CR) are interpreted
+	  and do the expected things
+SeeAlso: INT 15/AH=84h"V20-XT-BIOS"
+

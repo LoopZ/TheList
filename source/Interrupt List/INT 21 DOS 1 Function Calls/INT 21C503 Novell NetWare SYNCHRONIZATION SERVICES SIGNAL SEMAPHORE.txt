@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C503
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - SIGNAL SEMAPHORE
+	AX = C503h
+	CX:DX = semaphore handle
+Return: AL = status
+	    00h successful
+	    01h semaphore value overflowed
+	    FFh invalid handle
+Desc:	increment the semaphore's value and signal the first process (if any)
+	  in the queue waiting on the semaphore
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AX=C500h"NetWare",AX=C502h,AX=F220h/SF=03h
+

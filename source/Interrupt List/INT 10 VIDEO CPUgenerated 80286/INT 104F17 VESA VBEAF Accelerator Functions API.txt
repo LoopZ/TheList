@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F17
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/AF (Accelerator Functions) - API
+	AX = 4F17h
+	BL = function
+	    00h installation check / get capabilities
+	other registers vary by function
+Return:	AL = 4Fh if function supported
+	    AH = status
+		00h successful
+		01h failed
+		02h hardware does not support function
+		03h function not available in current video mode
+		else reserved for future error codes
+	other vary by function
+Notes:	the accelerator function code should be given a 32-bit protected
+	  mode stack which has at least 1024 bytes available for use by the
+	  VBE/AF code
+	when called, the I/O permission bitmap must allow access to any
+	  ports which VBE/AF may require for operation
+SeeAlso: AX=4F0Bh
+

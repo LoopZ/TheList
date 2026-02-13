@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 134B01
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Bootable CD-ROM - GET STATUS
+	AX = 4B01h
+	DL = drive number
+	DS:SI -> empty specification packet (see #00281)
+Return: CF clear if successful
+	CF set on error
+	AX = return codes
+	DS:SI specification packet filled
+Note:	same as AX=4B00h, but does not terminate emulation
+SeeAlso: AH=48h,AH=4Ah,AX=4B00h,AH=4Ch,AH=4Dh
+

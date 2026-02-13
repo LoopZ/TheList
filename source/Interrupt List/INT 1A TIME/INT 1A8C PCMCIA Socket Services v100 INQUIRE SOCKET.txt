@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A8C
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - INQUIRE SOCKET
+	AH = 8Ch
+	AL = adapter number
+	BL = socket number (01h to maximum supported by adapter)
+Return: CF clear if successful
+	    AH destroyed
+	    DH = capabilities (see #00680)
+	    DL = hardware indicators (see #00681)
+	    DS:SI -> Socket Characteristics table (see #00682)
+	    DS:DI -> Power Management table (see #00684)
+	CF set on error
+	    AH = error code (01h,0Bh) (see #00656)
+SeeAlso: AH=87h,AH=8Dh,AH=8Eh
+
+Bitfields for PCMCIA socket capabilities:
+Bit(s)	Description	(Table 00680)
+ 0	card change
+ 1	card lock
+ 2	insert card (motor control)
+ 3	eject card (motor control)
+ 4-7	reserved (0)
+
+Bitfields for PCMCIA socket hardware indicators:
+Bit(s)	Description	(Table 00681)
+ 0	busy status
+ 1	write-protected
+ 2	battery status
+ 3	card lock status
+ 4	XIP status (eXecute-In-Place)
+ 5-7	reserved (0)
+
+Format of PCMCIA Socket Characteristics table:
+Offset	Size	Description	(Table 00682)
+ 00h	WORD	supported card types (see #00683)
+ 02h	WORD	steerable IRQ levels (bit 0 = IRQ0 to bit 15 = IRQ15)
+ 04h	WORD	additional steerable IRQ levels
+		bit 0: NMI
+		bit 1: I/O check
+		bit 2: bus error
+		bit 3: vendor-unique
+		bits 4-7 reserved (0)
+
+Bitfields for supported card types:
+Bit(s)	Description	(Table 00683)
+ 0	memory card
+ 1	I/O card
+ 2-7	reserved (0)
+
+Format of PCMCIA Power Management table:
+Offset	Size	Description	(Table 00684)
+ 00h	WORD	number of entries in table (0 if power management not avail)
+ 02h 2N BYTEs	power levels
+		byte 0: voltage in 0.1V units
+		byte 1: power supply
+			bit 7: Vcc
+			bit 6: Vpp1
+			bit 5: Vpp2
+

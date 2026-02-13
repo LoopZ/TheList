@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1709
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows "WINOLDAP" - COMPACT CLIPBOARD
+	AX = 1709h
+	SI:CX = desired size in bytes
+Return: DX:AX = number of bytes in largest block of free memory
+Note:	WinOldAp is responsible for including the size of any headers
+

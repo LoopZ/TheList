@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0101
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.0+ PRINT - SUBMIT FILE FOR PRINTING
+	AX = 0101h
+	DS:DX -> submit packet (see #02593)
+Return: CF clear if successful
+	    AL = status
+		01h added to queue
+		9Eh now printing
+	CF set on error
+	    AX = error code (see #02594,#01680 at INT 21/AH=59h/BX=0000h)
+SeeAlso: AX=0102h
+
+Format of PRINT submit packet:
+Offset	Size	Description	(Table 02593)
+ 00h	BYTE	level (must be 00h)
+ 01h	DWORD	pointer to ASCIZ filename (no wildcards)
+
+(Table 02594)
+Values for PRINT error code:
+ 0001h	invalid function
+ 0002h	file not found
+ 0003h	path not found
+ 0004h	out of file handles
+ 0005h	access denied
+ 0008h	print queue full
+ 0009h	spooler busy
+ 000Ch	name too long
+ 000Fh	invalid drive
+

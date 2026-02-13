@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F0E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectra ES/QS/RS EX-BIOS - SET HIL Extended BIOS INTERRUPT NUMBER
+	AX = 6F0Eh
+	BL = new interrupt number (60h-6Fh,78h-7Fh)
+Return: AH = status (00h = successful)
+Desc:	allows the HIL Extended BIOS software to use a non-default interrupt
+	  number in case of an interrupt conflict with another application
+Notes:	supported by ES, QS, and RS series of HP Vectras
+	called by MS Windows HPSYSTEM.DRV and HPEBIOS.386 to support the HP-HIL
+	  input system
+SeeAlso: AX=6F00h,AX=6F0Dh,INT 6F/AH=00h"HP",INT 6F/AH=0Ah"HP"
+

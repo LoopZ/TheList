@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675B
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - ALTERNATE MAP REGISTER SET - DMA REGISTERS
+	AH = 5Bh
+	AL = subfunction
+	    05h allocate DMA register set
+		Return: BL = DMA register set number, 00h if not supported
+	    06h enable DMA on alternate map register set
+	       BL = DMA register set number
+	       DL = DMA channel number
+	    07h disable DMA on alternate map register set
+	       BL = DMA register set number
+	    08h deallocate DMA register set
+	       BL = DMA register set number
+Return: AH = status (00h,80h,81h,84h,8Fh,9Ah-9Fh,A3h,A4h) (see #03656)
+Note:	this function is for use by operating systems only, and can be
+	  enabled or disabled at any time by the operating system
+

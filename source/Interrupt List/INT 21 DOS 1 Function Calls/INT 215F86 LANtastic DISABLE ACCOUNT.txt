@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F86
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - DISABLE ACCOUNT
+	AX = 5F86h
+	ES:DI -> ASCIZ machine name and password in form "\\machine\password"
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Note:	must be logged into the named machine and concurrent logins set to 1
+	  by NET_MGR.  Requires system manager to re-enable account.
+

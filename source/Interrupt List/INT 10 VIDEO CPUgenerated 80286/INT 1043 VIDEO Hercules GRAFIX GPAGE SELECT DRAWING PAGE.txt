@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1043
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "GPAGE" - SELECT DRAWING PAGE
+	AH = 43h
+	AL = page number (0,1)
+Return: nothing
+Desc:	specify which of the two pages of video memory is to be used for
+	  output
+SeeAlso: AH=05h,AH=44h,AH=45h
+

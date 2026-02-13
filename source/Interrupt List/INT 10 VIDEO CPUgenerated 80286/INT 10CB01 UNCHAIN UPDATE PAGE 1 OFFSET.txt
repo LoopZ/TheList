@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CB01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - UNCHAIN - UPDATE PAGE 1 OFFSET
+	AX = CB01h
+	BX = offset of page 1
+Return: nothing
+Desc:	inform UNCHAIN of the location of video page 1 in video memory; the
+	  default is 0000h
+SeeAlso: AX=CB02h,AX=CB03h,AX=CB04h,AX=CBFFh
+

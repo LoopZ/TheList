@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F99
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - AUDIT
+	AH = 99h
+	DS:SI -> server's node ID
+	ES:DI -> data to be appended to audit trail file (max 106 bytes)
+Return: CF clear if successful
+	CF set on error
+	    AX = status (see #03740)
+SeeAlso: AH=19h,AH=9Ch
+

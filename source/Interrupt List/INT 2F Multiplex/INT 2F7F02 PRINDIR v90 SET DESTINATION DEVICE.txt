@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7F02
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PRINDIR v9.0 - SET DESTINATION DEVICE
+	AX = 7F02h
+	DX = destination device number (as used by /PUT commandline option)
+Return: AX = status
+	    0000h successful
+	    FFFFh invalid device number
+SeeAlso: AX=7F00h"PRINDIR",AX=7F01h"PRINDIR",AX=7F04h"PRINDIR"
+SeeAlso: AX=7F06h"PRINDIR"
+

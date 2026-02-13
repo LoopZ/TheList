@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 142C00
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - GET DTR
+	AX = 2C00h
+Return: AH = 00h
+	BL = current state
+	    00h	 normal DTR operation
+	    else DTR is forced high
+Desc:	Indicates whether the DTR signal on COM1 is forced high
+Note:	the Husky Hunter 16 is an 8088-based ruggedized laptop.	 Other family
+	  members are the Husky Hunter, Husky Hunter 16/80, and Husky Hawk.
+SeeAlso: AH=2Ch"SET DTR"
+

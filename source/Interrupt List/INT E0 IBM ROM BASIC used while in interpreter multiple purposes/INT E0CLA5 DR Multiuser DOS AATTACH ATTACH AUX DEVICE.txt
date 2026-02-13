@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLA5
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_ATTACH" - ATTACH AUX DEVICE
+	CL = A5h
+Return: nothing (DR)
+	AX = status (REAL/32)
+Desc:	attaches the default auxiliary device to the calling process unless
+	  it is already attached to another process, in which case the call
+	  blocks until the device becomes available
+Notes:	this call should be used before attempting to read or write from
+	  the AUX device; however, the I/O calls internally call this function
+	  to ensure device ownership
+	also supported by REAL/32
+SeeAlso: INT E0/CL=03h,INT E0/CL=04h,INT E0/CL=A6h,INT E0/CL=A7h,INT E0/CL=A8h
+SeeAlso: INT E0/CL=ACh,INT E0/CL=ADh,INT E0/CL=B0h
+

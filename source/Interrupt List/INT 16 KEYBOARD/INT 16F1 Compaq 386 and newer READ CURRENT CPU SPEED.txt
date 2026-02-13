@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16F1
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Compaq 386 and newer - READ CURRENT CPU SPEED
+	AH = F1h
+Return: AL = speed code (see #00614)
+	if AL = 09h, CX = speed code
+Note:	also supported by some versions of AMI BIOS dated June 1992 or later
+SeeAlso: AH=F0h,AH=F3h
+

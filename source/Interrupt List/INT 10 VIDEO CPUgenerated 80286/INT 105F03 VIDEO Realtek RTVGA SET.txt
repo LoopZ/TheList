@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Realtek RTVGA - SET ???
+	AX = 5F03h
+	BL = 0-3 (???)
+Return: AH = 00h if successful
+BUG:	in v3.C10, AX=5F03h on return due to improper stack restoration code
+SeeAlso: AX=5F02h"RTVGA"
+

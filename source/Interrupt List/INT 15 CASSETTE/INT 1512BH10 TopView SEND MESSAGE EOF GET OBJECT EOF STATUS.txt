@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH10
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "EOF" - GET OBJECT EOF STATUS
+	AH = 12h
+	BH = 10h
+	BL = object
+	    00h handle is DWORD on top of stack
+		window: return TRUE if logical cursor past end of window
+		mailbox: ???
+	    01h returns TRUE if logical cursor past end of task's def window
+	    02h return ??? for task's mailbox (task's handle on top of stack)
+	    03h return ??? for current task's mailbox
+	    0Ch (DV 2.26+) check log crsr of window owning handle on top of stk
+	    0Dh (DV 2.26+) check log cursor of window of parent task
+Return: DWORD on top of stack is status (any handle on stack has been popped)
+

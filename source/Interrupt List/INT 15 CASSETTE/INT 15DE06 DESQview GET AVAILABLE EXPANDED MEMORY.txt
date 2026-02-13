@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE06
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview - GET AVAILABLE EXPANDED MEMORY
+	AX = DE06h
+Return: BX = KB of expanded memory available
+	CX = largest block available
+	DX = total expanded memory in KB
+SeeAlso: AX=DE04h,AX=DE05h
+

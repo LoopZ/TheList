@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 135515
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - Seagate - PARK HEADS???
+	AX = 5515h
+	DX = drive (bit 7 set for hard disk)
+Return: CF clear if successful
+	CF set on error
+Note:	appears to be identical to AX=5505h
+SeeAlso: AX=5504h,AX=5505h
+

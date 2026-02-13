@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 158400
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET DISKETTE PORT
+	AX = 8400h
+	BH = Drive (0: A:, 1: B:)
+Return: AL = Port (0: COM1, >0: COM2)
+Desc:	return the COM port used for the floppy drive
+SeeAlso: AX=8401h
+

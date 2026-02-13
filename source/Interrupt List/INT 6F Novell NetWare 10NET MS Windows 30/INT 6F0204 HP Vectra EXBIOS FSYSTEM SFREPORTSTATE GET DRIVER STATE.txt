@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0204
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SYSTEM SF_REPORT_STATE" - GET DRIVER STATE
+	AX = 0204h
+	BP = driver ID (see #03741)
+Return: AH = status (see #03744)
+	DX = device state from Logical Describe Record (see #03749,#03755)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=0200h,AX=0206h"HP Vectra"
+
+Bitfields for HP Vectra V_HPHIL driver state:
+Bit(s)	Description	(Table 03755)
+ 0	link configuration in progress
+ 1	reserved
+ 2	no devices attached
+ 3	general failure
+ 4,5	reserved
+ 6	HP-HIL driver open
+ 7	reserved
+ 8	link has been reconfigured
+ 9	error during output request
+ 10	reserved
+ 11	output request complete
+ 12	timeout
+ 13-15	reserved
+

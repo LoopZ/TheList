@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F3901BL0B
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood TSR Windows - ADD OR REMOVE USER
+	AX = 3901h
+	BL = 0Bh
+	CL = number of users increment: +1 if adding a new user
+					-1 if removing a user
+Return: AX = error code (0000h if successful)
+	SI,DI,DS,ES preserved
+Note:	the TSR windows resident module may only be removed when the internal
+	  user count is zero
+SeeAlso: AH=39h/BL=00h,AX=3901h/BL=02h
+

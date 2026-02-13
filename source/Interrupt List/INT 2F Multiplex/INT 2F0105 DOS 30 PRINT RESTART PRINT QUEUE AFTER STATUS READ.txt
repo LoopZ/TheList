@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0105
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.0+ PRINT - RESTART PRINT QUEUE AFTER STATUS READ
+	AX = 0105h
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #02594)
+Desc:	restart PRINT's activities once an application finishes examining the
+	  print queue
+SeeAlso: AX=0104h
+

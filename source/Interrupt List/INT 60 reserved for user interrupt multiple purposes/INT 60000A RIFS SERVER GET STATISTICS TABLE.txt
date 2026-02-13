@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60000A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - RIFS - SERVER - GET STATISTICS TABLE
+	AX = 000Ah
+Return: CF clear if successful
+	    ES:BX -> statistics table
+	CF set on error
+SeeAlso: AX=0006h,AX=0008h,AX=0009h,AX=000Bh
+

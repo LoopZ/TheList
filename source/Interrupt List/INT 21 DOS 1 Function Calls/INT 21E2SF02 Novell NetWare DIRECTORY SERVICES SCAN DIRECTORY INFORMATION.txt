@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - SCAN DIRECTORY INFORMATION
+	AH = E2h subfn 02h
+	DS:SI -> request buffer (see #01844)
+	ES:DI -> reply buffer (see #01845)
+Return: AL = status (00h,98h,9Bh,9Ch) (see #01839)
+Desc:	get information about the first or next subdirectory of the specified
+	  directory
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=01h,AH=E2h/SF=03h,AH=E2h/SF=19h,AX=F216h/SF=02h
+
+Format of NetWare "Scan Directory Information" request buffer:
+Offset	Size	Description	(Table 01844)
+ 00h	WORD	length of following data (max 104h)
+ 02h	BYTE	02h (subfunction "Scan Directory Information")
+ 03h	BYTE	directory handle
+ 04h	WORD	(big-endian) subdirectory number
+		0000h for first call, returned subdir number + 1 on next call
+ 06h	BYTE	length of directory path
+ 07h  N BYTEs	directory path
+SeeAlso: #01842,#01845
+
+Format of NetWare "Scan Directory Information" reply buffer:
+Offset	Size	Description	(Table 01845)
+ 00h	WORD	(call) 001Ch (length of following data buffer)
+ 02h 16 BYTEs	subdirectory name
+ 12h	DWORD	(big-endian) date and time of creation (see #01846)
+ 16h	DWORD	(big-endian) object ID of owner
+ 1Ah	BYTE	maximum directory rights (see #01849)
+ 1Bh	BYTE	unused
+ 1Ch	WORD	(big-endian) subdirectory number
+SeeAlso: #01843,#01844,#02111 at AX=F216h/SF=02h
+
+Bitfields for NetWare date and time:
+Bit(s)	Description	(Table 01846)
+ 31-25	year-1980
+ 24-21	month
+ 20-16	day
+ 15-11	hour
+ 10-5	minute
+ 4-0	second
+

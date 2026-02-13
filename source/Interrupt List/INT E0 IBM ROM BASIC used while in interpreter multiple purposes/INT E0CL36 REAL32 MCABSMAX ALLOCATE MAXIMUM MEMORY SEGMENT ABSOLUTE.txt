@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL36
+  Category: O 	other operating systems
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT E0 R - REAL/32 - "MC_ABSMAX" - ALLOCATE MAXIMUM MEMORY SEGMENT ABSOLUTE
+	CL = 36h
+	DS:DX -> MCB (see #04024)
+Return: AX = status
+	may destroy SI,DI,DS???
+SeeAlso: INT E0/CL=39h
+

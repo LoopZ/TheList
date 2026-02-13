@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 160A
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - GET KEYBOARD ID
+	AH = 0Ah
+Return: BX = keyboard ID (see #00586)
+	AH destroyed by many BIOSes
+Notes:	check return value from AH=09h to determine whether this function is
+	  supported
+	this function is also supported by the K3PLUS v6.00+ INT 16 BIOS
+	  replacement
+SeeAlso: AH=09h,AX=AF4Dh,MEM 0040h:00C2h"AMI"
+
+(Table 00586)
+Values for keyboard ID:
+ 0000h	no keyboard attached
+ 41ABh	Japanese "G" keyboard (translate mode)
+	MF2 Keyboard (usually in translate mode)
+ 54ABh	Japanese "P" keyboard (translate mode)
+ 83ABh	Japanese "G" keyboard (pass-through mode)
+	MF2 Keyboard (pass-through mode)
+ 84ABh	Japanese "P" keyboard (pass-through mode)
+ 86ABh	122-key keyboard
+ 90ABh	old Japanese "G" keyboard
+ 91ABh	old Japanese "P" keyboard
+ 92ABh	old Japanese "A" keyboard
+

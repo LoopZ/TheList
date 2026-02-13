@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF15
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET VOLUME INFO WITH HANDLE
+	AX = F216h subfn 15h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01874 at AH=E2h/SF=15h)
+	ES:DI -> reply buffer (see #02119)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=15h,AX=F212h,AX=F216h/SF=13h
+
+Format of NetWare "Get Volume Info With Handle" reply packet:
+Offset	Size	Description	(Table 02119)
+ 00h	WORD	(big-endian) sectors per block
+ 02h	WORD	(big-endian) total blocks on volume
+ 04h	WORD	(big-endian) blocks available on volume
+ 06h	WORD	(big-endian) total directory slots
+ 08h	WORD	(big-endian) directory slots available
+ 0Ah 16 BYTEs	NUL-padded volume name
+ 1Ah	WORD	(big-endian) flag: volume removable if nonzero
+SeeAlso: #01874 at AH=E2h/SF=15h
+

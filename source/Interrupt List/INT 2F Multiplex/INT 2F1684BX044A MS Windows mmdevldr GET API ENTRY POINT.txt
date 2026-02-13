@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX044A
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - mmdevldr - GET API ENTRY POINT
+	AX = 1684h
+	BX = 044Ah (virtual device ID for "mmdevldr" device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02685)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02685)
+Call MMDEVLDR.VXD entry point with:
+	DX = function number
+	    0000h ???
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set on error
+			    AX = error code (000Bh)
+		Note:	invokes VxDCall 17000Eh ("CallAtAppyTime")
+	    0001h ???
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set on error
+			    AX = error code (000Bh)
+		Note:	invokes VxDCall 17000Eh ("CallAtAppyTime")
+	    0002h ???
+		EDX = ???
+		Return: CF clear if successful
+			    AX = 0000h
+			    EDX = ???
+			CF set on error
+			    AX = error code
+	    0003h ???
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set on error
+			    AX = error code
+		Note:	invokes VxDcall 2A0002h ("VWIN32_QueueUserApc")
+	    0004h set Win32 event
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set on error
+			    AX = error code
+		Note:	invokes VxDcall 2A000Eh ("VWIN32_SetWin32Event")
+	    0005h ??? (allocates some memory)
+		Return: CF clear
+			AX = 0000h
+	    0006h ??? (frees memory)
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set on error
+			    AX = error code
+	    else
+		Return: CF set
+			AX = 000Bh (invalid function)
+SeeAlso: #02684,#02686
+

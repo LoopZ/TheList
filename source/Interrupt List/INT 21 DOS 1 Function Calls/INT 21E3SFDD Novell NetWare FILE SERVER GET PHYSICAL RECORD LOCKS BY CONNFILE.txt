@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFDD
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET PHYSICAL RECORD LOCKS BY CONN&FILE
+	AH = E3h subfn DDh
+	DS:SI -> request buffer (see #02054)
+	ES:DI -> reply buffer (see #02055)
+Return: AL = status (00h,C6h,FFh) (see #02053)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=DEh,AH=E3h/SF=DFh,AX=F217h/SF=DDh
+
+(Table 02053)
+Values for NetWare function status:
+ 00h	successful
+ C6h	no console rights
+ FFh	file not open
+SeeAlso: #02025,#02094
+
+Format of NetWare "Get Phys Record Locks by Conn and File" request buffer:
+Offset	Size	Description	(Table 02054)
+ 00h	WORD	0016h (length of following data)
+ 02h	BYTE	DDh (subfunction "Get Physical Record Locks by Connection and
+		  File")
+ 03h	WORD	(big-endian) logical connection number
+ 05h	WORD	(big-endian) last record seen (0000h on first call)
+ 07h	BYTE	volume number (00h-1Fh)
+ 08h	WORD	(big-endian) directory handle
+ 0Ah 14 BYTEs	ASCIZ filename
+SeeAlso: #02055,#02236 at AX=F217h/SF=DDh
+
+Format of NetWare "Get Phys Record Locks by Conn and File" reply buffer:
+Offset	Size	Description	(Table 02055)
+ 00h	WORD	(call) size of following results record (max 1FEh)
+ 02h	WORD	next request record (place in "last record" on next call)
+		0000h if no more records
+ 04h	BYTE	number of physical record locks
+ 05h	BYTE	number of records following
+ 06h	var	array of Physical Record Lock Info records (see #02056)
+SeeAlso: #02054,#02236 at AX=F217h/SF=DDh
+
+Format of NetWare Physical Record Lock Info:
+Offset	Size	Description	(Table 02056)
+ 00h	BYTE	task number
+ 01h	BYTE	lock status (see #02057)
+ 02h	DWORD	(big-endian) starting offset of record in file
+ 06h	DWORD	(big-endian) ending offset of record in file
+SeeAlso: #02055
+
+Bitfields for lock status:
+Bit(s)	Description	(Table 02057)
+ 0	exclusive lock
+ 1	shareable lock
+ 2	logged
+ 6	lock held by TTS
+SeeAlso: #02056
+

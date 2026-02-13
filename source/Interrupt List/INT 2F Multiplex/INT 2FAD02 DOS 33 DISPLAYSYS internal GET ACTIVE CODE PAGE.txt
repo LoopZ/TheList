@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD02
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ DISPLAY.SYS internal - GET ACTIVE CODE PAGE
+	AX = AD02h
+Return: CF set if code page never set
+	    AX = 0001h
+	    BX = FFFFh (assume first hardware code page)
+	CF clear if successful
+	    BX = current code page (see #01757 at INT 21/AX=6602h)
+SeeAlso: AX=AD01h"DISPLAY",AX=AD03h
+

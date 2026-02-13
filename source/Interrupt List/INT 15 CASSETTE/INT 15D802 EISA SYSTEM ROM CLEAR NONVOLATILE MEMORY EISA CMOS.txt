@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D802
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - EISA SYSTEM ROM - CLEAR NONVOLATILE MEMORY (EISA CMOS)
+	AX = D802h
+	BH = EISA config utility major revision level
+	BL = EISA config utility minor revision level
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code (84h,86h,88h) (see #00539)
+Note:	call with AL=82h if using 32-bit CS addressing mode instead of 16-bit
+SeeAlso: AX=D803h
+

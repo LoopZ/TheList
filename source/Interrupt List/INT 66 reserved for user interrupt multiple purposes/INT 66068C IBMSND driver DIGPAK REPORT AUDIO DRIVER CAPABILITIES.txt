@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66068C
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - IBMSND driver, DIGPAK - REPORT AUDIO DRIVER CAPABILITIES
+	AX = 068Ch
+Return: AX = capabilities (see #03520)
+	DX = playback rate if fixed-frequency playback
+	---DIGPAK---
+	BX:CX -> ASCIZ ID string
+SeeAlso: AX=0689h,AX=068Dh
+
+Bitfields for IBMSND driver capabilities:
+Bit(s)	Description	(Table 03520)
+ 0	can play audio in background
+ 1	data is massaged for output device
+ 2	driver plays at fixed frequency, resampling input data to fit
+ 3	driver uses timer interrupt
+---DIGPAK---
+ 4	device supports timer sharing
+ 5	supports looped sounds and pending
+ 6	supports stereo panning
+ 7	supports 8-bit PCM stereo playback
+ 8	supports audio recording
+ 9	supports DMA bakcfilling
+

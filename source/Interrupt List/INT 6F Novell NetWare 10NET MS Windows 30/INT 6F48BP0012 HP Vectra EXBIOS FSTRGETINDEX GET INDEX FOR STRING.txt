@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F48--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_STR_GET_INDEX" - GET INDEX FOR STRING
+	AH = 48h
+	BP = 0012h (driver ID of V_SYSTEM)
+	ES:DI -> ASCIZ string
+Return: AH = status (00h,other) (see #03744 at AH=00h"HP Vectra")
+	BP,DS destroyed
+	---if successful---
+	BX = index for the given string
+SeeAlso: AH=00h"HP Vectra",AH=40h/BP=0012h,AH=46h/BP=0012h
+

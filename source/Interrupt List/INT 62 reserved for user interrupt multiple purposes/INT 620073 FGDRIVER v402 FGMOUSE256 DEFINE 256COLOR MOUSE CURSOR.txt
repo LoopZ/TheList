@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620073
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MOUSE256" - DEFINE 256-COLOR MOUSE CURSOR
+	AX = 0073h
+	ES:BX -> 512-byte cursor definition
+	CX = X offset of hot-spot within mouse cursor
+	DX = Y offset of hot-spot within mouse cursor
+Return: nothing
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	the cursor definition array consists of 256 bytes defining the 16x16
+	  screen mask, followed by another 256 bytes definining the 16x16
+	  cursor mask
+SeeAlso: AX=0074h,AX=0075h,AX=007Bh
+

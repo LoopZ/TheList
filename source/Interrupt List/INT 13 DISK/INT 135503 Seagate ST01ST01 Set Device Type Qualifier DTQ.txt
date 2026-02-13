@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 135503
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Seagate ST01/ST01 - Set Device Type Qualifier (DTQ)
+	AX = 5503h
+	DH = DTQ byte (see #00285)
+	DL = drive ID (80h, 81h, ...)
+Return: nothing
+
+Bitfields for DTQ byte:
+Bit(s)	Description	(Table 00285)
+ 7	reserved
+ 6	SCSI drive attached
+ 5	reserved
+ 4	selected drive is ST225N/NP (Paired)
+ 3	selected drive is ST225N
+ 2	Host Adapter checks parity on the selected drive
+ 1	selected drive has been installed
+ 0	Seagate installation software present
+

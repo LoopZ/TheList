@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 167D
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - pcANYWHERE III - GET/SET TERMINAL PARAMETERS
+	AH = 7Dh
+	AL = subfunction
+	    00h set terminal parameters
+	    01h get terminal parameters
+	    02h get configuration header and terminal parameters
+	DS:CX -> terminal parameter block
+SeeAlso: AH=7Ch,AH=7Eh
+

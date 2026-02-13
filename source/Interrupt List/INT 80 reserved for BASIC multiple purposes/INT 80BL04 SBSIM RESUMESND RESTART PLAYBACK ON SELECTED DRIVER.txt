@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BL04
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SBSIM - "RESUMESND" - RESTART PLAYBACK ON SELECTED DRIVER
+	BL = 04h
+	BH = driver number (01h = FM, 02h=DDBV, 03h=memvoice, 05h=MIDI)
+Return: nothing
+SeeAlso: INT 80/BL=00h"SBSIM",INT 80/BL=03h"SBSIM",INT 80/BL=05h"SBSIM"
+

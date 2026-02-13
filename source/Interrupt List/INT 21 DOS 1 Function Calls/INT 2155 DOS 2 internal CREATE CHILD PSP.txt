@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2155
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ internal - CREATE CHILD PSP
+	AH = 55h
+	DX = segment at which to create new PSP
+	SI = (DOS 3.0+) value to place in memory size field at DX:[0002h]
+Return: AL destroyed
+Notes:	creates a "child" PSP rather than making an exact copy of the current
+	  PSP; the new PSP's parent pointer is set to the current PSP and the
+	  reference count for each inherited file is incremented
+	(DOS 2.0+) sets current PSP to DX
+	(DOS 3.0+) marks "no inherit" file handles as closed in child PSP
+	this function is implemented using the same code as AH=26h, so unlike
+	  other DOS 2+ functions, it does not return status in CF, instead
+	  returning status in AL as DOS 1.x functions do (but it never puts an
+	  explicit return value in AL)
+SeeAlso: AH=26h,AH=50h
+

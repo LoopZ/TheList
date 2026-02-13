@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F150D
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM v2.00+ - GET CD-ROM DRIVE LETTERS
+	AX = 150Dh
+	ES:BX -> buffer for drive letter list (1 byte per drive)
+Return: buffer filled with drive numbers (0=A:).  Each byte corresponds
+	to the drive in the same position for function 1501h
+SeeAlso: AX=150Bh
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B0100
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - Novell NASI/NACS, Ungermann-Bass Net One SERIAL I/O - BUFFERED READ
+	AX = 0100h
+	CX = length of buffer
+	ES:BX -> buffer
+Return: CX = number of bytes read
+Note:	also supported by TelAPI and NPC NCSI; for TelAPI, nonzero values in
+	  AL specify a connection ID
+SeeAlso: AX=0000h,AH=19h,INT 14/AH=18h,INT 14/AH=E2h,INT 14/AX=FF02h
+

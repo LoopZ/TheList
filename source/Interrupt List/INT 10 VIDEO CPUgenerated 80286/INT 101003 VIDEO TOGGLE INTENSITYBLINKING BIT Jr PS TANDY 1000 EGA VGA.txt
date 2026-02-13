@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101003
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - TOGGLE INTENSITY/BLINKING BIT (Jr, PS, TANDY 1000, EGA, VGA)
+	AX = 1003h
+	BL = new state
+	    00h background intensity enabled
+	    01h blink enabled
+	BH = 00h to avoid problems on some adapters
+Return: nothing
+Notes:	although there is no function to get the current status on adapters
+	  prior to the VGA, bit 5 of 0040h:0065h indicates the state; on the
+	  VGA, use AH=1Bh and check offset 2Dh of the returned data (see #00040)
+	when configured for a monochrome display, the Boca Research Multi-EGA
+	  with ROM v M1.1 Type D has its screen disrupted if BH is not clear
+	this call is reported to be "Get Cursor Position" on the Tandy
+	  1000SL/TL
+SeeAlso: AH=08h,AH=1Bh
+

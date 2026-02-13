@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX1002
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Borland RTM.EXE 1.0 - EXECUTE COMPILED PROGRAM
+	AX = FB42h
+	BX = 1002h
+	DX = 0014h ???
+	???
+Return: AX = nonzero if successful
+	    AH = child program exit method??? (usually 4Ch)
+	    AL = child program exit code (Errorlevel)
+	AX = 0000h on load error
+	    DX = error code (0000h-0027h) (see #03134)
+SeeAlso: AX=FB42h/BX=1001h
+
+(Table 03134)
+Values for RTM.EXE error code:
+ 01h	out of memory
+ 02h	out of selectors
+ 03h	out of internal tables
+ 10h	internal error
+ 18h	internal error
+ 1Ah	internal error
+ 1Bh	internal error
+ 1Ch	internal error
+ 20h	invalid dynamic link
+ 21h	internal error
+ 22h	unable to open file
+ 23h	invalid .EXE format
+ 24h	wrong version
+ 25h	unable to initialize 
+ 26h	DLL initialization error
+ other	unrecognized error
+

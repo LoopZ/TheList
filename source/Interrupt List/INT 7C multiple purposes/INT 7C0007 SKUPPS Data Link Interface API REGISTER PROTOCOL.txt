@@ -1,0 +1,127 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0007
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - REGISTER PROTOCOL
+	AX = 0007h
+	ES:BX -> Protocol Control Block (see #03849)
+Return: AX = completion code (see #03846)
+Program: SK-UPPS is the Schneider & Koch Universal Portable Protocol Stack,
+	  which provides an API on top of its Data Link Interface, allowing the
+	  use of any of several network transport layers
+SeeAlso: AX=0008h,AX=000Bh
+
+Format of SK-UPPS Protocol Control Block (PCB):
+Offset	Size	Description	(Table 03849)
+ 00h	WORD	(big-endian) protocol type
+ 02h	WORD	protocol mode (see #03850)
+ 04h	DWORD	-> Receive Upcall routine (see #03851)
+ 08h	DWORD	-> Transmit Upcall routine
+ 0Ch	DWORD	-> Event Upcall routine (see #03853)
+ 10h	DWORD	-> ASCIZ protocol name (zero if none)
+ 14h	WORD	protocol ID will be returned here (always non-zero)
+
+Bitfields for SK-UPPS protocol mode:
+Bit(s)	Description	(Table 03850)
+ 0	promiscuous mode; protocol receives all frames regardless of their
+	  destination (PROTOCOL TYPE must be FFFFh)
+ 1	if set, protocol's Event Upcall will be called on entry and exit of the
+	  DLI's Interrupt Service Routine (see #03854)
+ 2	DLI 2.2+ hook mode; protocol receives all directed frames destined for
+	  this station (PROTOCOL TYPE must be FFFFh)
+ 3	DLI 2.3+ receive error frames (only valid in promiscuous mode (0))
+ 4-5	DLI 2.5+ frame type:
+	00 Ethernet II; specify type code in PROTOCOL TYPE field (high-low)
+	01 IEEE 802.2; specify Service Access Point (SAP) in MSB
+	      (offset 0) of PROCOTOL TYPE field; LSB must be zero
+	10 IEEE 802.2 with SNAP header; specify type code in PROTOCOL TYPE
+	      field (high-low)
+	11 reserved (currently unused)
+ 6	DLI 2.5+ if set, protocol's Event Upcall will be called with event code
+	  EV_BUFFER_WANTED, when DLI runs out of Mbufs
+ 7	DLI 2.7+ chain mode; if set, client allows the specified frame type to
+	  be shared with other clients
+ 8	DLI 2.8+ receive non-LLC frames rather than LLC frames
+ 9	DLI 2.8+ receive all multicast frames (see also AX=0009h)
+ 10-15	reserved (currently unused; must be zero)
+Notes:	If PROTOCOL TYPE is FFFFh and neither the "promiscuous" nor the "hook"
+	  mode is set, the protocol receives all frames that did not match
+	  any registered frame type (demultiplexor mode).
+	Protocols using "promiscuous", "hook" or "chain" mode should always
+	  return from the Receive Upcall with the received Mbuf in ES:BX and
+	  the Carry Flag set. The DLI will then pass the Mbuf to the FEED BACK
+	  BUFFER function (see AX=000Fh).
+	Some DLIs do not support all or even any of the "promiscuous",
+	  "receive non-LLC" and "receive all multicasts" mode bits.
+SeeAlso: #03849
+
+(Table 03851)
+Values SK-UPPS Receive Upcall is called with:
+	ES:BX -> Mbuf
+	AX = receive status (see #03852) (also stored in Mbuf's RECEIVE STATUS field)
+	interrupts disabled
+Return: nothing
+SeeAlso: #03853
+
+Bitfields for SK-UPPS receive status:
+Bit(s)	Description	(Table 03852)
+ 0-2	reserved (0), currently unused
+ 3	frame check sequence (FCS) error
+ 4	overflow (frame too long)
+ 5	framing error
+ 6	reserved (0), currently unused
+ 7	non-LLC frame (see #03850 [bit 8])
+ 8-15	reserved (0), currently unused
+Notes:	The protocol's Receive Upcall routine will be called whenever a frame
+	  matching the specified frame type is received. A received frame is
+	  passed to the protocol in the Mbuf's DATA area at OFFSET and its size
+	  is LENGTH bytes.
+	The receive status passed to the Receive Upcall in register AL is
+	  always zero, except for protocols using "non-LLC" mode (8 of PCB's
+	  protocol mode field) or "promiscuous" mode together with "receive
+	  error frames" (0 & 3).
+	Upcalls are FAR routines and must return with a RET FAR. If the Carry
+	  Flag is set on return from a Receive or Transmit Upcall, then ES:BX
+	  must point to an Mbuf, which the DLI will then pass to the RELEASE
+	  BUFFER function (see AX=0005h). See also notes for PROTOCOL MODE.
+
+(Table 03853)
+Values SK-UPPS Event Upcall is called with:
+	AX = event code (see #03854)
+Return: nothing
+Note:	All Event Upcalls may be ignored by the protocol.
+SeeAlso: #03851
+
+(Table 03854)
+Values for SK-UPPS Event Upcall event code:
+ 00h	EV_BUFFER_AVAILABLE client may now call REQUEST BUFFER (AX=0004h)
+ 01h	EV_ISR_START	    start of Interrupt Service Routine
+ 02h	EV_ISR_END	    end of ISR (see #03850 [bit 1])
+ 03h	EV_BUFFER_WANTED    DLI temporarily out of Mbufs
+ 04h	EV_NETWORK_STATUS   DLI 2.8+ network status -- DX=status (see #03855)
+ 05h	EV_IO_CONTROL	    DLI 2.8+ I/O control -- DX=subfunc (see AX=0016h)
+SeeAlso: #03853
+
+Bitfields for EV_NETWORK_STATUS in register DX:
+Bit(s)	Description	(Table 03855)
+	Token-Ring		FDDI
+ 15	SIGNAL_LOSS		SIGNAL_LOSS
+ 14	HARD_ERROR		HARD_ERROR
+ 13	SOFT_ERROR		SOFT_ERROR
+ 12	TRANSMIT_BEACON		TRANSMIT_BEACON
+ 11	LOBE_WIRE_FAULT		PATH_TEST_FAILED
+ 10	AUTO_REMOVAL		SELF_TEST_REQUIRED
+ 9	reserved		reserved
+ 8	REMOVE_RECEIVED		REMOTE_DISCONNECT
+ 7	COUNTER_OVERFLOW	reserved
+ 6	SINGLE_STATION		DUPLICATE_ADDRESS
+ 5	RING_RECOVERY		NO_RING_OP_STATUS
+ 4	reserved		VERSION_MISMATCH
+ 3	reserved		STUCK_BYPASS
+ 2	reserved		FDDI_EVENT
+ 1	reserved		RING_OP_CHANGE
+ 0	reserved		reserved
+Note:	EV_NETWORK_STATUS is not supported on Ethernet
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10F7
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - EGA Register Interface Library - DEFINE DEFAULT REGISTER TABLE
+	AH = F7h
+	DX = port number
+	   Pointer/data chips
+	      00h CRTC (3B4h mono modes, 3D4h color modes)
+	      08h Sequencer 3C4h
+	      10h Graphics Controller 3CEh
+	      18h Attribute Controller 3C0h
+	   Single registers
+	      20h Miscellaneous Output register 3C2h
+	      28h Feature Control register (3BAh mono modes, 3DAh color modes)
+	      30h Graphics 1 Position register 3CCh
+	      38h Graphics 2 Position register 3CAh
+	ES:BX -> table of one-byte entries, one byte to be written to each
+		 register
+Return: nothing
+Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+	  compatibility box, and others
+SeeAlso: AH=F0h"EGA",AH=F6h"EGA"
+

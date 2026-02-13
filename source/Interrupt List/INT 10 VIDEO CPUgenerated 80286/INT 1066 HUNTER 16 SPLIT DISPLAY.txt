@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1066
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - SPLIT DISPLAY
+	AH = 66h
+	AL = control bits (see #00187)
+	BH = top row of lower section of LCD (0..7)
+	BL = top row of lower section of the virtual screen (0..24)
+Return: nothing
+Desc:	split the LCD screen horizontally into two parts; each part may be
+	  individually scrollable or fixed.
+Note:	the Hunter 16 has a 240x64 LCD display which serves as a window into
+	  a 640x200 virtual screen
+
+Bitfields for HUNTER 16 control bits:
+Bit(s)	Description	(Table 00187)
+ 0-1	01: no split, 10: allow split
+ 2	allow scrolling the upper part
+ 3	allow scrolling the lower part
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 696996
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - ISR.COM v1.00 - SPECIFY INTERRUPT HANDLER
+	AX = 6996h
+	DS:DX -> interrupt handler or 0000h:0000h to disable
+Return: AX = 9669h
+Program: ISR (Interrupt Service Reflector) is a TSR by Rich Bono which permits
+	  a program to provide hardware interrupt handlers even while being
+	  debugged with a debugger that swaps interrupt vectors during
+	  debugging.
+Note:	the interrupt vector which is to be reflected is set at installation
+	  time and cannot be changed
+

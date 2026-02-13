@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2144FFBXFFFF
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - NewSpace - ???
+	AX = 44FFh
+	BX = FFFFh
+	DX = ???
+Program: NewSpace is a TSR by Isogon Corporation which automatically compresses
+	  all files as they are written and decompresses them as they are read
+SeeAlso: AX=4414h/BX=FFFFh
+

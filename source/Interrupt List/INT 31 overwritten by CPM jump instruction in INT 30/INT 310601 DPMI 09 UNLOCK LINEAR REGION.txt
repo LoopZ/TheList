@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310601
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - UNLOCK LINEAR REGION
+	AX = 0601h
+	BX:CX = starting linear address
+	SI:DI = size of region in bytes
+Return: CF clear if successful
+	CF set on error
+	    none of the memory is unlocked
+	    AX = error code (DPMI 1.0+) (8002h,8025h) (see #03143)
+Notes:	pages at beginning and end will be unlocked if the region overlaps them
+	memory whose lock count has not reached zero remains locked
+SeeAlso: AX=0005h,AX=0600h,INT 21/AX=251Bh,INT 21/AX=EB07h
+

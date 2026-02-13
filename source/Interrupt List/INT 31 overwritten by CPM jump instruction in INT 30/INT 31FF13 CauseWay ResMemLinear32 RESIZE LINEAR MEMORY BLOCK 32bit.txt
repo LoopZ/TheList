@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF13
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "ResMemLinear32" - RESIZE LINEAR MEMORY BLOCK (32-bit)
+	AX = FF13h
+	ECX = new size in bytes
+	ESI = linear address of block to be resized
+Return: CF clear if successful
+	   ESI = new linear address of block
+	CF set on error
+SeeAlso: AX=FF0Eh,AX=FF11h,AX=FF12h
+

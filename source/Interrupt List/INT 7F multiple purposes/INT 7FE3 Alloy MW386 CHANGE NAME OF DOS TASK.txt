@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FE3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - CHANGE NAME OF DOS TASK
+	AH = E3h
+	DS:DX -> ASCIZ task name
+---v1.x---
+	AL = user number
+---v2+---
+	BH = user number
+	BL = task number
+Return: CF clear if successful
+	CF set on error (invalid process number)
+SeeAlso: AH=E0h,AH=E4h,AH=E5h
+

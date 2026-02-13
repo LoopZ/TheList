@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13A0--SI4358
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Super PC-Kwik v3.20+ - GET RESIDENT CODE SEGMENT
+	AH = A0h
+	SI = 4358h
+Return: AX = segment of resident code
+Note:	PC Tools PC-Cache 5.x and Qualitas Qcache 4.00 are OEM versions of
+	  Super PC-Kwik, and thus support this call (note that PC-Cache v5.5
+	  corresponds to PC-Kwik v3.27)
+SeeAlso: INT 16/AX=FFA5h/CX=1111h
+Index:	PC-Cache|Qualitas Qcache
+

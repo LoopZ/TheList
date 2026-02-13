@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFE3DL02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - SEND PACKET
+	AX = FFE3h
+	DL = 02h
+	CX = length of data buffer
+	DS:SI -> buffer containing data
+Return: CF clear if successful
+	CF set on error
+	    DH = error code (0Ch,11h) (see #02541)
+

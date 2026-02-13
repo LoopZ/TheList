@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F257SF18
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET NAME SPACES LOADED
+	AX = F257h subfn 18h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02411)
+	ES:DI -> reply buffer (see #02412)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F257h/SF=17h,AX=F257h/SF=19h,AX=F257h/SF=1Ah
+SeeAlso: AX=F216h/SF=2Fh
+
+Format of NetWare "Get Name Spaces Loaded" request packet:
+Offset	Size	Description	(Table 02411)
+ 00h	BYTE	18h (subfunction "Get Name Spaces Loaded")
+ 01h  2 BYTEs	reserved for future use
+ 03h	BYTE	volume number
+SeeAlso: #02412
+
+Format of NetWare "Get Name Spaces Loaded" reply packet:
+Offset	Size	Description	(Table 02412)
+ 00h	WORD	number of namespace elements
+ 02h	WORD	number of namespace elements loaded
+ 04h  N BYTEs	loaded name spaces (each byte contains number of one loaded
+		  name space)
+SeeAlso: #02411
+

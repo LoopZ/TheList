@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F10--CL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - CHANNEL CONTROL - OPEN CHANNEL
+	AH = 10h
+	CL = 00h
+	AL = channel number
+	DX:DI -> channel buffer
+Return: AL = status (00h-03h,0Dh) (see #03951)
+Note:	may not be invoked from within a hardware interrupt handler
+SeeAlso: AH=10h/CL=01h,AH=10h/CL=04h,AH=14h/CL=02h
+
+(Table 03951)
+Values for Alloy function status:
+ 00h	successful
+ 01h	busy
+ 02h	channel range error (not 00h-3Fh)
+ 03h	invalid subfunction
+ 0Ah	channel not open
+ 0Ch	channel already locked
+ 0Dh	unable to open
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1760
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - FLASHUP.COM - INSTALLATION CHECK
+	AH = 60h
+Return: AL = 60h
+	DX = CS of resident code
+Notes:	FLASHUP.COM is part of Flash-Up Windows by The Software Bottling Co.
+	FLASHUP also hooks INT 10 and receives commands via INT 10/AH=09h,0Ah
+	  consisting of an 80h followed by the actual command
+SeeAlso: INT 10/AH=09h,INT 10/AH=0Ah
+

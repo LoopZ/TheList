@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E006BX0000
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MX5 Extended FOSSIL - INSTALLATION CHECK
+	AX = E006h
+	BX = 0000h
+Return: BX = 4D58h ('MX') if installed
+	    AH = major version
+	    AL = minor version
+SeeAlso: AX=E000h,AX=E001h,AX=E005h,AX=E007h
+

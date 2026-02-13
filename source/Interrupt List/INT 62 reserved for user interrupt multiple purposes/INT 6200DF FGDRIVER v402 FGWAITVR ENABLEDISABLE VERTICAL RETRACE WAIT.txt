@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200DF
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_WAITVR" - ENABLE/DISABLE VERTICAL RETRACE WAIT
+	AX = 00DFh
+	BX = new state (0000h disabled, 0001h enabled)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+

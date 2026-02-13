@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1620
+  Category: K 	keyboard enhancers
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 16 O - K3 v1.5x, K3PLUS v5.xx - GET EXTENDED BUFFER STATE
+	AH = 20h
+Return: AX = K3 version
+	ES:BX -> extended keyboard buffer start
+	ES:DX -> extended keyboard buffer end
+	ES:SI -> next keystroke
+	ES:DI -> last keystroke in buffer
+	CX = number of keystrokes in buffer
+Program: K3PLUS is an extended keyboard driver by Matthias Paul and Axel C.
+	  Frinke, originally based on the K3 extended German keyboard driver
+	  by Martin Gerdes published in c't magazine in 1988
+Note:	this function was normally unsupported under K3PLUS v6.00-v6.22 and
+	  is no longer supported by v6.30+; use AX=AF20h instead
+SeeAlso: AH=25h"K3",AX=AF20h,INT 2F/AX=D44Fh/BX=0000h,INT 2F/AX=ED58h
+

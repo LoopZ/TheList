@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF0D
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "ResMem" - RESIZE MEMORY BLOCK
+	AX = FF0Dh
+	BX = selector for block to be resized
+	CX:DX = new size in bytes
+Return: CF clear if successful
+	CF set on error
+Note:	the memory block may have to be copied to another location in order
+	  to satisfy the requested new size, in which case the base address
+	  of the selector is updated
+SeeAlso: AX=FF0Bh,AX=FF0Eh,AX=FF12h
+

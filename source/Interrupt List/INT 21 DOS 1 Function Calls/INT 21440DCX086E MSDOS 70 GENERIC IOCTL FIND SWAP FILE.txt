@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440DCX086E
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7.0+ - GENERIC IOCTL - FIND SWAP FILE
+	AX = 440Dh
+	CX = 086Eh / 486Eh
+	    (category code 08h for FAT12/16, 48h for FAT32; minor code 6Eh)
+	BL = drive number (00h=default,01h=A:,etc)
+	DS:DX -> buffer for ASCIZ pathname
+	SI = file index
+	DI = enumeration type
+Return: CF set on error
+	    AX = error code (01h,02h,etc.) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = pager type
+		0001h no pager
+		0002h paging through MS-DOS
+		0003h protected-mode pager
+	    CX:BX = swap file size in 4K pages
+SeeAlso: AX=440Dh"DOS 3.2+",AX=440Dh/CX=086Dh
+

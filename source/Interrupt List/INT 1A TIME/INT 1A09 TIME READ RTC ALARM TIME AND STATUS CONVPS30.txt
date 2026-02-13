@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A09
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - READ RTC ALARM TIME AND STATUS (CONV,PS30)
+	AH = 09h
+Return: CH = hours in BCD
+	CL = minutes in BCD
+	DH = seconds in BCD
+	DL = alarm status
+	    00h alarm not enabled
+	    01h alarm enabled but will not power up system
+	    02h alarm will power up system
+SeeAlso: AH=08h
+

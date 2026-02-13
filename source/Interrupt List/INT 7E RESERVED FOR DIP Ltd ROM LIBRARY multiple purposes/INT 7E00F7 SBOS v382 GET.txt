@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7E00F7
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7E - SBOS v3.82 - GET ???
+	AX = 00F7h
+Return: AX = status
+	    0000h failed
+	    0001h successful
+		BX = ??? (if nonzero, ??? is hooked) (see AX=00FFh)
+		CH = ???
+		CL = ???
+SeeAlso: AX=00F6h,AX=00FDh,AX=00FFh
+

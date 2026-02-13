@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155305
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - CPU IDLE
+	AX = 5305h
+Return: CF clear if successful (after system leaves idle state)
+	CF set on error
+	    AH = error code (03h,0Bh) (see #00473)
+Notes:	call when the system is idle and should be suspended until the next
+	  system event or interrupt
+	should not be called from within a hardware interrupt handler to avoid
+	  reentrance problems
+	if an interrupt causes the system to resume normal processing, the
+	  interrupt may or may not have been handled when the BIOS returns
+	  from this call; thus, the caller should allow interrupts on return
+	interrupt handlers may not retain control if the BIOS allows
+	  interrupts while in idle mode even if they are able to determine
+	  that they were called from idle mode
+	the caller should issue this call continuously in a loop until it needs
+	  to perform some processing of its own
+SeeAlso: AX=1000h,AX=5306h,INT 2F/AX=1680h
+

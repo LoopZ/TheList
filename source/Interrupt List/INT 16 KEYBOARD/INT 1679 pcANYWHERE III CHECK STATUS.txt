@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1679
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - pcANYWHERE III - CHECK STATUS
+	AH = 79h
+Return: AX = status
+	    FFFFh if resident and active
+	    FFFEh if resident but not active
+	    FFFDh if in Memory Resident mode
+	    FFFCh if in Automatic mode
+	    other value if not resident
+SeeAlso: AX=7B00h,INT 21/AX=2B44h
+

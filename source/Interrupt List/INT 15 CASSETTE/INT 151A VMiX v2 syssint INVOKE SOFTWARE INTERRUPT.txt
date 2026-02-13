@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151A
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX v2+ - "sys_sint" - INVOKE SOFTWARE INTERRUPT
+	AH = 1Ah
+	STACK:	WORD	interrupt number
+		DWORD	pointer to register structure
+Return: AX = returned flags
+

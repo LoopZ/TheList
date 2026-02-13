@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F39
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Named Pipes - LOCAL DosRawReadNmPipe
+	AX = 5F39h
+	BX = handle
+	CX = buffer length
+	DS:DX -> buffer
+Return: CF clear if successful
+	    CX = bytes read
+	CF set if error
+	    AX = error code
+Notes:	this function was introduced by LAN Manager but is also supported by
+	  the Novell DOS Named Pipe Extender, Banyan VINES, OS/2 Virtual DOS
+	  Machines, and others
+	not documented in the LAN Manager Toolkit
+SeeAlso: AX=5F35h,AX=5F3Ah,INT 2F/AX=1186h
+

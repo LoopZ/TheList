@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--DX0006
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - UNLOAD DOSKRNL SYMBOLS & LOAD PROGR
+	AH = 64h
+	DX = 0006h (function number)
+	CX = 636Ch (magic value, "cl")
+	BX = 0000h (indicates special request)
+	ES:DI -> ASCIZ filespec
+	DS = base address for loading
+Notes:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
+	this function is only supported by the kernel debugging version of
+	  OS2KRNL
+

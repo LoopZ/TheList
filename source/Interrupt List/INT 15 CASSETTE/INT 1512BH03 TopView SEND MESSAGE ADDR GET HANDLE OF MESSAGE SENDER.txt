@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH03
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "ADDR" - GET HANDLE OF MESSAGE SENDER
+	AH = 12h
+	BH = 03h
+	BL = object
+	    00h mailbox handle in DWORD on top of stack
+	    02h sender of last msg read from mailbox (task's handle on stack)
+	    03h sender of last msg read from current task's mailbox
+Return: DWORD on stack is task handle of message sender
+SeeAlso: AH=12h/BH=00h,AH=12h/BH=83h
+

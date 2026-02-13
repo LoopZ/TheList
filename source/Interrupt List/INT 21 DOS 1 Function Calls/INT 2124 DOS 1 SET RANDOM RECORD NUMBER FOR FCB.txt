@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2124
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - SET RANDOM RECORD NUMBER FOR FCB
+	AH = 24h
+	DS:DX -> opened FCB (see #01345)
+Notes:	computes the random record number corresponding to the current record
+	  number and record size, then stores the result in the FCB
+	normally used when switching from sequential to random access
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+SeeAlso: AH=21h,AH=27h,AH=42h
+

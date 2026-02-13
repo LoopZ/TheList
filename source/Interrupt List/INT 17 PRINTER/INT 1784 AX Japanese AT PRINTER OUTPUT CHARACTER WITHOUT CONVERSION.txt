@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1784
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - AX (Japanese AT) PRINTER - OUTPUT CHARACTER WITHOUT CONVERSION
+	AH = 84h
+	AL = character
+	DX = printer number
+Return: AH = printer status (see #00631)
+SeeAlso: AH=00h,AH=85h
+

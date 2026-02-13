@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F268SF05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - MONITOR NDS CONNECTION
+	AX = F268h subfn 05h
+	CX = length of request buffer in bytes (0001h)
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02468)
+	ES:DI -> reply buffer (unused???)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+
+Format of NetWare "Monitor NDS Connection" request buffer:
+Offset	Size	Description	(Table 02468)
+ 00h	BYTE	05h (subfunction "Monitor NDS Connection"
+

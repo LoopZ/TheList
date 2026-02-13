@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 138006CX6572
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - FAST! v4.02+ - INSTALLATION CHECK
+	AX = 8006h
+	CX = 6572h
+	DX = 1970h
+	ES:BX -> request packet (see #00295)
+Return: AX = 1965h if installed
+SeeAlso: AH=80h,AX=8001h,AX=8007h
+
+Format of FAST! request packet:
+Offset	Size	Description	(Table 00295)
+ 00h	DWORD	-> 19-byte signature string (see #00291)
+

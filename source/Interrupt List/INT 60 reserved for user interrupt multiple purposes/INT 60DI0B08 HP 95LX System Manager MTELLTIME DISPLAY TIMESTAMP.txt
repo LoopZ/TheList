@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0B08
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - "M_TELLTIME" - DISPLAY TIMESTAMP
+	DI = 0B08h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	timestamp format (see #03293)
+		WORD	row (-3 is topmost, 0 is first non-reserved line)
+		WORD	column
+Return: ???
+	STACK unchanged
+
+Bitfields for HP 95LX timestamp format:
+Bit(s)	Description	(Table 03293)
+ 1-0	timestamp components
+	00 date only
+	01 time only
+	10 date and time
+	11 day and date
+ 4	supply am/pm
+ 5	supply seconds
+ 6	show year
+ 7	four-digit year
+

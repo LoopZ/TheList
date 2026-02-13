@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL44
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "N_STAT" - GET NETWORK STATUS
+	CL = 44h
+Return: AX = network status or 0FFFh on error
+	    bit 8: calling process is attached to network
+	may destroy SI,DI???
+

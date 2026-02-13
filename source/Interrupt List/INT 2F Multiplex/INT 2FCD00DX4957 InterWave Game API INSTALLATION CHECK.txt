@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD00DX4957
+  Category: s 	sound/speech
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - InterWave Game API - INSTALLATION CHECK
+	AX = CD00h
+	DX = 4957h ('IW')
+	SI = 5645h ('VE')
+Return: AL = FFh if installed
+	    DX = 4554h ('ET')
+	    SI = 454Bh ('EK')
+Range:	AH=CDh-ECh, selected by scanning for an available multiplex number
+SeeAlso: AX=CD00h/BX=464Fh,AX=CD01h"InterWave",AX=CD21h"InterWave"
+SeeAlso: AX=CD80h"InterWave"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140B
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - TRANSMIT NO WAIT
+	AH = 0Bh
+	AL = character
+	DX = port number
+Return: AX = result
+	    0000h character not accepted
+	    0001h character accepted
+SeeAlso: AH=01h
+

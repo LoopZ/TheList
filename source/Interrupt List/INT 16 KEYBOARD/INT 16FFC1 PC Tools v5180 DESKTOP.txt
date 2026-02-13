@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFC1
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - ???
+	AX = FFC1h
+	BL = ???
+	ES:DI -> data structure (see #00623)
+	???
+Return: AX = ???
+Note:	available only when popped up
+SeeAlso: AX=FFC2h,AX=FFC3h
+
+Format of PC Tools DESKTOP data structure:
+Offset	Size	Description	(Table 00623)
+ 00h	WORD	???
+ 02h	WORD	???
+ 04h	WORD	???
+ 06h	WORD	???
+ 08h	WORD	???
+ 0Ah	BYTE	???
+ 0Bh	BYTE	??? (zero/nonzero)
+---v7.1---
+ 0Ch	WORD	???
+ 0Eh	BYTE	???
+ 0Fh	WORD	???
+ 11h	WORD	???
+	???
+

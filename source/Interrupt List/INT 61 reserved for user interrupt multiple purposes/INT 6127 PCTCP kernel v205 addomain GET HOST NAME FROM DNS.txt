@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6127
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "ad_domain" - GET HOST NAME FROM DNS
+	AH = 27h
+	DX,BX = IP address in network order
+	CX = length of buffer
+	DS:SI -> buffer for host name
+Return: CF clear if successful
+	    buffer filled with ASCIZ host name
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	normally one would use AH=25h instead of this function
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=25h,INT 61/AH=26h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE29BX0001
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - DESQview/X - ???
+	AX = DE29h
+	BX = 0001h
+	DX = segment of window handle
+Return: CF clear if successful
+	    AX = ???
+	    DX = ???
+	CF set on error
+Note:	DESQview 2.50-2.52 are distributed as part of DESQview/X v1.0x.
+

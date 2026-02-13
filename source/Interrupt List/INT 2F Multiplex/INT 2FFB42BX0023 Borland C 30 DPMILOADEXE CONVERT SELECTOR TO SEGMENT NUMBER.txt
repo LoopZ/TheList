@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0023
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 3.0 DPMILOAD.EXE - CONVERT SELECTOR TO SEGMENT NUMBER
+	AX = FB42h
+	BX = 0023h
+	CX = selector
+Return: DX = status (see also AX=FB42h/BX=0004h)
+	    0000h successful
+		CX = real-mode segment number
+	    FFF2h descriptor has invalid base address for real-mode segment
+SeeAlso: AX=FB42h/BX=0010h
+

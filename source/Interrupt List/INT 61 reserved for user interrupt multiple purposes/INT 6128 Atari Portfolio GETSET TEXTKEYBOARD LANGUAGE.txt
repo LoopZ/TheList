@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6128
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - GET/SET TEXT/KEYBOARD LANGUAGE
+	AH = 28h
+	AL = function
+	    00h get languages
+	    01h set languages
+		DH = new text language (set bit 7 to leave unchanged)
+		DL = new keyboard language (set bit 7 to leave unchanged)
+	    03h get language table pointers
+Return: if function 00h or 01h:
+	    DH = current/old text language
+	    DL = current/old keyboard language
+	if function 03h
+	    ES:CX -> keyboard table (see #03471)
+	    ES:DX -> language table (see #03471)
+SeeAlso: AH=24h"Portfolio",AH=26h"Portfolio",AH=2Ch"Portfolio"
+
+Format of Atari Portfolio language table:
+Offset	Size	Description	(Table 03471)
+ 00h	BYTE	number of languages supported
+ 01h  N BYTEs	supported languages
+		00h English
+		01h French
+		02h German
+		03h Spanish
+		04h Italian
+		05h Swedish
+		06h Danish
+

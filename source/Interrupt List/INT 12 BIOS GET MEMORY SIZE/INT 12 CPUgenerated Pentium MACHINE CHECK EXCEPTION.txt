@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 12
+  Category: C 	CPU-generated
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 12 - CPU-generated (Pentium +) - MACHINE CHECK EXCEPTION
+Notes:	Intel documents this interrupt as CPU model-dependent
+	for current Pentium processors, the reason for the machine check
+	  exception may be read from model-specific registers 00h and 01h
+	  (described, for example, in Christian Ludloff's 4P package)
+	for Pentium Pro/II processors,	the reason may be read from the
+	  MCG_STATUS MSR (see MSR 0000017Ah)
+	this exception is enabled by bit 6 of CR4
+SeeAlso: INT 11"CPU",MSR 00000000h,MSR 00000001h,MSR 0000017Ah
+

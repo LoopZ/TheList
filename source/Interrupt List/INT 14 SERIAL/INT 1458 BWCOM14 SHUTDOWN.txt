@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1458
+  Category: S 	serial I/O
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 14 U - BWCOM14 - SHUTDOWN
+	AH = 58h
+Return: CX = status (0001h successful, 0002h not initialized)
+Note:	after this call, BWCOM14 will no longer redirect the COM port
+SeeAlso: AH=56h,AH=57h
+

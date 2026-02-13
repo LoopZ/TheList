@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F111D
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - CLOSE ALL REMOTE FILES FOR PROCESS (ABORT)
+	AX = 111Dh
+	SS = DOS DS
+	SDA PSP segment field = PSP of terminating process
+Return: nothing
+Notes:	used when a process is aborted; the process being terminated is
+	  indicated by the "sharing PSP" field in the SDA (offset 1Ah/1Ch)
+	this function is called by the DOS 3.1+ kernel
+	closes all FCBs opened by process
+SeeAlso: INT 21/AX=5D04h
+

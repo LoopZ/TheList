@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC00C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AD-DOS - SET ??? INTERNAL FLAG TO 01h
+	AX = C00Ch
+Return: AX = status
+	    0000h successful
+	    000Ch failed
+Program: AD-DOS is the DOS version of the After Dark screen blanker for
+	  MS Windows
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+Index:	screen saver;AD-DOS
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620072
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MEMORY" - GET SIZE OF VIDEO MEMORY
+	AX = 0072h
+Return: AX = size of video memory in KB
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	You must first call "FG_SVGAINIT" (see AX=00C1h) before using this
+	  function
+SeeAlso: AX=0071h
+

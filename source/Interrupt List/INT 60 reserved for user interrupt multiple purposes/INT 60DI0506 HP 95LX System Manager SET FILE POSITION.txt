@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0506
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - SET FILE POSITION
+	DI = 0506h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file state record (see #03287)
+		2 WORDs	???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0507h
+

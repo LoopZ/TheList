@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: F703
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F7 - FSBBS 2.0 - TERMINAL NUMBER
+	AH = 03h
+	AL = function
+	    00h get terminal index number
+		Return: DX = index number
+	    01h set terminal index number
+		DX = terminal index
+		Return: nothing
+

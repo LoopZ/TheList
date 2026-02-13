@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14400A
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - SEND A BYTE TO A DEVICE
+	AX = 400Ah
+	BL = byte to send
+	CL = last-byte flag
+	    00h more bytes follow
+	    01h this is the last byte to be sent
+Return: CF clear if successful
+	CF set on error
+	    AL = error number (see #00354)
+SeeAlso: AX=4000h,AX=400Bh
+

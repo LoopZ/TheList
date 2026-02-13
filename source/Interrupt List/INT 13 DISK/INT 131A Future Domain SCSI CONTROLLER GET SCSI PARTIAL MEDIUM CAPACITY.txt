@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131A
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Future Domain SCSI CONTROLLER - GET SCSI PARTIAL MEDIUM CAPACITY
+	AH = 1Ah
+	CH = track (bits 8,9 in high bits of CL)
+	CL = sector (01h to number of sectors/track for drive)
+	DH = head
+	DL = hard drive ID
+Return: CF set on error
+	AH = status code (see #00234 at AH=01h)
+	CX:DX = logical block number of last quickly-accessible block after
+		given block
+Notes:	sends SCSI Read Capacity command with the PMI bit set to obtain the
+	  logical block address of the last block after which a substantial
+	  delay in data transfer will be encountered (usually the last block
+	  on the current cylinder).  No translation to 512 byte sectors is
+	  performed on the result if data is stored on the disk in other than
+	  512 byte sectors.
+	the TMC-950 does not support any Future Domain BIOS calls; instead,
+	  it provides a full CAM implementation (see INT 4F/AX=8100h)
+SeeAlso: AH=15h,AH=19h"SCSI"
+

@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 18
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 18 - NEC PC-9800 series - VIDEO
+	AH = function
+	    0Ah set video mode
+	    0Bh get video mode
+	    0Ch start text screen display
+	    0Dh end text screen display
+	    0Eh set single display area
+	    0Fh set multiple display area
+	    10h set cursor shape
+	    11h display cursor
+	    12h terminate cursor
+	    13h set cursor position
+	    14h read font patter
+	    16h initialize text video RAM
+	    1Ah define user character
+	    others
+	???
+Return: ???
+Notes:	details are not available at this time
+	text video RAM is located at segments A000h (characters) and A200h
+	  (attributes), graphics video RAM at segment C000h
+
+Bitfields for NEC PC-9800 series video attributes:
+Bit(s)	Description	(Table 00648)
+ 0	disable drawing character
+ 1	blinking
+ 2	reverse video
+ 3	underline
+ 4	vertical line
+ 7-5	color
+	(0=black, 1=blue, 2=red, 3=purple, 4=green, 5=cyan, 6=yellow, 7=white)
+

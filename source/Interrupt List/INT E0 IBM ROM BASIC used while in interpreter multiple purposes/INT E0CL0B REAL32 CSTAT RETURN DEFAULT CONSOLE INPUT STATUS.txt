@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL0B
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "C_STAT" - RETURN DEFAULT CONSOLE INPUT STATUS
+	CL = 0Bh
+Return: AX = status
+	    0000h no characters ready
+	    0001h character available
+	may destroy SI,DI???
+Note:	after setting bit 0 of the console mode word with C_MODE, this function
+	  will only return AX=0001h when the user presses Ctrl-C.
+

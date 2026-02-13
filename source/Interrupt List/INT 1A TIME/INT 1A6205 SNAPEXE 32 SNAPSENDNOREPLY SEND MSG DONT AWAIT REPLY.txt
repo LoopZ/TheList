@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A6205
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_SENDNOREPLY" - SEND MSG, DON'T AWAIT REPLY
+	AX = 6205h
+	STACK:	WORD	conversation ID (0000h-0009h)
+		DWORD	pointer to message
+		WORD	length of message
+		WORD	0000h (use default "Cparms" structure)
+Return: AX = status (see #00654)
+	STACK unchanged
+SeeAlso: AX=6108h
+

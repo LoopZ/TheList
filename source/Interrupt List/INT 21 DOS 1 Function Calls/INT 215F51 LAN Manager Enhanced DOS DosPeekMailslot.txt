@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F51
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - DosPeekMailslot
+	AX = 5F51h
+	BX = handle
+	ES:DI -> buffer
+Return: CF clear if successful
+	    AX = bytes read
+	    CX = next item's size
+	    DX = next item's priority
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F35h,AX=5F4Fh,AX=5F50h,AX=5F52h
+

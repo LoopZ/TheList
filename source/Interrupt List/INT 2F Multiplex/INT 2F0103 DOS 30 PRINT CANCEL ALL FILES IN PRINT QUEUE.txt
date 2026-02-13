@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0103
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.0+ PRINT - CANCEL ALL FILES IN PRINT QUEUE
+	AX = 0103h
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #02594)
+SeeAlso: AX=0102h
+

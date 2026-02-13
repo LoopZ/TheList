@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151E08
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus 4.01 - SET CONTEXT-SWITCH FUNCTIONS
+	AX = 1E08h
+	DX:BX -> context save handler (see #00458)
+	DX:CX -> context restore handler (see #00458)
+Return: nothing
+Note:	handlers may be removed by setting addresses to 0000h:0000h
+
+(Table 00458)
+Values MultiDOS Plus context-switch handlers are called with:
+	ES:BX -> task's TCB
+Return: all registers preserved
+

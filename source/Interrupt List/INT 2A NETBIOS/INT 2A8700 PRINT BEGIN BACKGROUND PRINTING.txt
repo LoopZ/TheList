@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A8700
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2A CU - PRINT - BEGIN BACKGROUND PRINTING
+	AX = 8700h
+	CF clear
+Return: CF clear if OK to print in background now
+	CF set if background printing not allowed at this time
+Desc:	used to inform interested programs that PRINT is about to start its
+	  background processing, and allow those programs to postpone the
+	  processing if necessary
+Notes:	when PRINT gains control and wants to begin printing, it calls this
+	  function.  If CF is clear on return, PRINT begins its background
+	  processing, and calls AX=8701h when it is done.  If CF is set on
+	  return, PRINT will relinquish control immediately, and will not
+	  call AX=8701h
+	PCVENUS (an early network shell by IBM and CMU) hooks this call to
+	  prevent background printing while its own code is active
+SeeAlso: AH=80h,AH=81h,AX=8701h
+

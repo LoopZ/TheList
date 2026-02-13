@@ -1,0 +1,79 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675BF4
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 v6.00 - GET RM386 GLOBAL FLAGS
+	AX = 5BF4h
+Return: AH = 00h
+	BX = global flags 1 (see #03659)
+	CX = global flags 2 (see #03660)
+	DX = global flags 3 (see #03661)
+	SI = global flags 4 (see #03662)
+SeeAlso: AX=5BF0h
+
+Bitfields for RM386 global flags 1:
+Bit(s)	Description	(Table 03659)
+ 0-3	reserved
+ 4	V86 mode
+ 5	reserved
+ 6	80386 or higher CPU
+ 7,8	reserved
+ 9	A20 enabled at startup
+ 10	"HIGH_IO"
+ 11	ROM
+ 12	large frame
+ 13,14	reserved
+ 15	PS/2-style A20 control
+
+Bitfields for RM386 global flags 2:
+Bit(s)	Description	(Table 03660)
+ 0	HMA in use
+ 1	XMS present
+ 2	using XMS driver memory
+ 3	HIGH (NEAT only)
+ 4-7	reserved
+ 8	NOBKTRAP
+ 9	NORESET
+ 10	ALTMAP
+ 11	NOFRAME
+ 12-15	reserved
+
+Bitfields for RM386 global flags 3:
+Bit(s)	Description	(Table 03661)
+ 0	NOTEST
+ 1	NOEBDA
+ 2	Windows3 support
+ 3	system board mouse
+ 4	DISKBUF
+ 5	EBDALOW
+ 6	A20 global enable flag
+ 7	A20 flag
+ 8	EBDA moved to stub
+ 9	VXD file was found
+ 10	reserved
+ 11	NOBOOTMAP
+ 12	AUTO
+ 13	PS/2 machine
+ 14	Compaq ROM merge active
+ 15	NOHMA set
+
+Bitfields for RM386 global flags 4:
+Bit(s)	Description	(Table 03662)
+ 0	"NOV8259" don't virtualize interrupt controller
+ 1	NOSCSI
+ 2	NOSCAN
+ 3	NOTR
+ 4	ALTBOOT
+ 5	NOCOMPQ
+ 6	KB2TRAP
+ 7	DESHADOW
+ 8	Video 7 VGA detected
+ 9	reserved
+ 10	NOVGA
+ 11	NOPS2
+ 12	DEBUG
+ 13	NOVKB
+ 14,15	reserved
+

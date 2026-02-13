@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AFF00
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SND - INSTALLATION CHECK???
+	AX = FF00h
+Return: AL = version??? (02h)
+	AH = busy flag (00h if not in a SND call, 01h if SND currently active)
+Note:	the SND API is also supported by IC (Internal Commands) v2.0, a
+	  shareware TSR by Geoff Friesen which extends COMMAND.COM's internal
+	  command set
+SeeAlso: AX=FF01h,AX=FF02h,AX=FF04h,AX=FF05h
+

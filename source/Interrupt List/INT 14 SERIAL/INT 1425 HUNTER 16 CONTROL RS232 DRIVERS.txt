@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1425
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - CONTROL RS232 DRIVERS
+	AH = 25h
+	AL = new state of RS232 drivers (00h off, 01h on)
+Return: nothing
+Note:	this function can be used to save power by turning off the RS232
+	  drivers.  It can also be used to turn on the RS232 drivers before
+	  connecting to a remote system to avoid "garbage" while the drivers
+	  turn on.
+SeeAlso: AH=23h"HUNTER",AH=24h"HUNTER",AH=26h"HUNTER"
+

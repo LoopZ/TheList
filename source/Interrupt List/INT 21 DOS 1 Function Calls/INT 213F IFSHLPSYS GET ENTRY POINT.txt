@@ -1,0 +1,119 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - IFSHLP.SYS - GET ENTRY POINT
+	AH = 3Fh
+	BX = file handle for device "IFS$HLP$"
+	CX = 0008h (size of buffer in bytes)
+	DS:DX -> buffer for entry point record (see #01415)
+Return: CF clear if successful
+	    AX = number of bytes actually read (0 if at EOF before call)
+	CF set on error
+	    AX = error code (05h,06h) (see #01680 at AH=59h/BX=0000h)
+Program: IFSHLP.SYS is a support driver for Microsoft Windows for Workgroups
+SeeAlso: AX=4402h"IFSHLP"
+
+Format of IFSHLP.SYS entry point record:
+Offset	Size	Description	(Table 01415)
+ 00h  4 BYTEs	(call) required signature if called via IOCTL
+			70h E9h 34h 37h for Windows 3.11
+			70h E9h 35h 37h for Windows 3.11
+		(ret) signature 34h 37h 70h EFh (Windows 3.11)
+		(ret) signature 35h 37h 70h EFh (Windows95)
+ 04h	DWORD	(ret) pointer to FAR call entry point (see #01416)
+
+(Table 01416)
+Call IFSHLP.SYS entry point with:
+	STACK:	WORD	function number (00h-0Ch)
+			00h get ??? data
+			01h set interrupt intercepts (trap)
+			02h remove interrupt intercepts (untrap)
+			03h ??? LPT2
+			04h ??? LPT1
+			05h revector INT 2F to trap and remove trap for others
+			06h set ??? flag
+			07h clear ??? flag
+			08h get ??? flag word
+			---Windows 3.11 only---
+			09h ???
+			0Ah ???
+			0Bh ???
+			0Ch get ???
+---if function 00h---
+Return: DX:AX -> ??? data (see #01417)
+	BX destroyed
+---if function 01h---
+	STACK:	DWORD	new intercept (trap) address
+Return: AX = status
+	    0000h successful
+	    0001h failed (already set)
+		DX = 0000h
+	BX destroyed
+Note:	the trap handler is called with a function number in BX, and the
+	  original BX on top of the stack; a null handler must perform a
+	  POP BX and an IRET
+---if function 02h---
+Return: AX = status
+	    0000h successful
+	    0001h failed (not set)
+	DX = 0000h
+	BX destroyed
+---if function 03h,04h---
+	STACK:	WORD	???
+Return: AX = 0000h
+	DX = 0000h
+	BX destroyed
+---if function 05h---
+	???
+Return:	BX destroyed
+---if function 06h---
+Return: AX = 0001h and DX = 0000h if already set
+	AX,DX unchanged if successful
+	BX destroyed
+---if function 07h---
+Return: AX = 0001h and DX = 0000h if not set
+	AX,DX unchanged if successful
+	BX destroyed
+---if function 08h---
+Return: DX = 0000h
+	AX = flags
+	    bit 0: set/cleared by functions 06h and 07h
+	    bit 1: trap is currently set (refer to functions 01h/02h)
+	BX destroyed
+---if function 09h---
+Return: AX = status
+	    0000h successful
+	    0001h failed (already called)
+	BX destroyed
+---if function 0Ah---
+	STACK:	WORD	???
+	???
+Return:	BX destroyed
+---if function 0Bh---
+Return: AX = status
+	    0000h successful
+	    0001h failed (not set)
+	BX destroyed
+---if function 0Ch---
+Return: AX = 0000h
+	ES:BX -> ??? data
+---if function > 0Ch---
+Return: AX = 0001h
+	DX = 0000h
+	BX destroyed
+
+Format of IFSHLP ??? data:
+Offset	Size	Description	(Table 01417)
+ 00h	DWORD	-> DOS Swappable Data Area (see #01687,#01689)
+ 02h	WORD	??? offset in DOS data segment?
+ 04h	WORD	offset in DOS data segment of current-PSP WORD
+ 06h	WORD	???
+ 08h	WORD	???
+ 0Ah	WORD	???
+ 0Ch	DWORD	-> DOS List of Lists (see #01627)
+ 10h	???
+SeeAlso: #01416
+

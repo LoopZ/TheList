@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFDA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2.2+ - GET CONNECTION'S TASK INFORMATION
+	AX = F217h subfn DAh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02041 at AH=E3h/SF=DAh)
+	ES:DI -> reply buffer (see #02233)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=DAh,AX=F217h/SF=EAh
+
+Format of NetWare "Get Connection's Task Information" reply packet:
+Offset	Size	Description	(Table 02233)
+ 00h	BYTE	lock status of connection (see #02043)
+ 01h	var	Lock Status Information (see #02044)
+ N	BYTE	number of records following
+ N+1	Active Task Information Records [array]
+	Offset	Size	Description
+	 00h	BYTE	task number (01h-FFh)
+	 01h	BYTE	task state
+			00h normal task
+			01h in TTS explicit transaction
+			02h in TTS implicit transaction
+			04h shared fileset lock active
+SeeAlso: #02248,#02041,#02042 at AH=E3h/SF=DAh
+

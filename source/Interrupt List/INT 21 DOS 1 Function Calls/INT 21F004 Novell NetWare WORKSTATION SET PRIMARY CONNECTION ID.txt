@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - SET PRIMARY CONNECTION ID
+	AX = F004h
+	DL = connection ID of primary file server (1-8) or 00h for none
+Note:	this function is supported by Advanced NetWare 2.0+
+SeeAlso: AH=D6h,AX=EF03h,AX=F000h,AX=F002h,AX=F005h
+

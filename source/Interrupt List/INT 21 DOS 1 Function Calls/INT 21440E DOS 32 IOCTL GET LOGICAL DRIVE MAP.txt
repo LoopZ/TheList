@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440E
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.2+ - IOCTL - GET LOGICAL DRIVE MAP
+	AX = 440Eh
+	BL = drive number (00h=default,01h=A:,etc)
+Return: CF set on error
+	    AX = error code (01h,0Fh) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AL = 00h block device has only one logical drive assigned
+		 1..26 the last letter used to reference the drive (1=A:,etc)
+Notes:	DR DOS 3.41-5.0 DRIVER.SYS does not support drive mapping and thus
+	  always returns AL=00h; Windows NT 4.0 also always returns AL=00h
+	in addition to the normal operation, if Stacker is installed, this
+	  call also sets the volume number at offset 58h in the Stacker
+	  device driver (DR DOS 3.41-5.0 only; use AX=4408h otherwise)
+	  (see AX=4404h"Stacker",INT 25/AX=CDCDh)
+SeeAlso: AX=4408h,AX=440Fh,INT 2F/AX=122Bh
+

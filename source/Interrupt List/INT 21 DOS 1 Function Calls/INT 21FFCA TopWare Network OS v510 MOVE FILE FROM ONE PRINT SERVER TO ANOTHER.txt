@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFCA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - MOVE FILE FROM ONE PRINT SERVER TO ANOTHER
+	AX = FFCAh
+	CH = printer number (00h LPT1, 01h LPT2, 02h LPT3)
+	CL = original printer server station address
+	BL = target printer server station address
+	DS:DX -> filename (12 bytes)
+Return: AL = status (00h successful, else failed)
+SeeAlso: AX=FFCBh
+

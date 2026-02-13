@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1225
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - GET LENGTH OF ASCIZ STRING
+	AX = 1225h
+	DS:SI -> ASCIZ string
+Return: CX = length of string
+Note:	supported by DR DOS 5.0+
+SeeAlso: AX=1212h
+

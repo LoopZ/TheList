@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - MODIFY MAXIMUM RIGHTS MASK
+	AH = E2h subfn 04h
+	DS:SI -> request buffer (see #01850)
+	ES:DI -> reply buffer (see #01851)
+Return: AL = status (00h,8Ch,98h,9Ch) (see #01839)
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=03h,AH=E2h/SF=0Ah,AH=E2h/SF=0Dh,AX=F216h/SF=04h
+
+Format of NetWare "Modify Maximum Rights Mask" request buffer:
+Offset	Size	Description	(Table 01850)
+ 00h	WORD	length of following data (max 104h)
+ 02h	BYTE	04h (subfunction "Modify Maximum Rights Mask")
+ 03h	BYTE	directory handle
+ 04h	BYTE	rights to grant (see #01849)
+ 05h	BYTE	rights to revoke (see #01849)
+ 06h	BYTE	length of directory path (00h-FFh)
+ 07h  N BYTEs	directory path
+Note:	the rights specified at offset 05h are revoked first, and then the
+	  rights specified at offset 04h are added to the resulting rights
+	  mask
+SeeAlso: #01847,#01851
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01851)
+ 00h	WORD	(call) 0000h (no results returned)
+SeeAlso: #01850
+

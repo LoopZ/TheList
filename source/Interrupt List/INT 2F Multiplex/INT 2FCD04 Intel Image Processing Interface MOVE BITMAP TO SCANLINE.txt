@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD04
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Intel Image Processing Interface - MOVE BITMAP TO SCANLINE
+	AX = CD04h
+	CX:BX -> structure (see #03069)
+Return: AL = status (see #03068)
+SeeAlso: AX=CD03h"Image"
+
+(Table 03068)
+Values for IPI function status:
+ 00h	successful
+ 80h	unsuccessful
+ 81h	scan line out of range
+ 82h	unsupported scan line density
+ 83h	out of memory
+ 84h	unrecognized source
+ 85h	initialization error
+
+Format of structure:
+Offset	Size	Description	(Table 03069)
+ 00h	WORD	image source (0 = conventional memory, 1 = expanded memory)
+ 02h	DWORD	pointer to image data
+ 06h	WORD	scan line on which to place
+ 08h	WORD	bit offset from start of scan line at which to place
+ 0Ah	WORD	density of bitmap data (300, 600, or 1200 dpi)
+ 0Ch	WORD	width in bits of data
+ 0Eh	WORD	source logical page number
+ 10h	WORD	source handle (only if source in expanded memory)
+ 12h	WORD	source offset (only if source in expanded memory)
+

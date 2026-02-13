@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151E00
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - CLEAR EVENT COUNTER
+	AX = 1E00h
+	DX = event/trigger number (00h-3Fh)
+Return: AH = status
+	    00h successful
+SeeAlso: AX=1E01h,AX=1E02h
+

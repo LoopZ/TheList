@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00003
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "SHOOT" - FIRE A SHELL AT ANOTHER ROBOT
+	AX = 0003h
+	BX = direction (0-359 degrees)
+	CX = range (0-700)
+Return: AX = status (0000h not fired, else ID of shell fired)
+Notes:	up to seven shells may be in flight for a robot at one time; the cannon
+	  takes 50 ticks to reload
+	this call also terminates the current robot's turn
+SeeAlso: AX=0000h,AX=0001h,AX=0002h,AX=002Ch
+

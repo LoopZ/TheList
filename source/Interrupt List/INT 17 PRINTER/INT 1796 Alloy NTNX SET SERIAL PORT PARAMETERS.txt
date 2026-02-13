@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1796
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX - SET SERIAL PORT PARAMETERS
+	AH = 96h
+	AL = 00h
+Note:	documentation states that this is a NOP, doing only XOR AX,AX before
+	  returning
+SeeAlso: INT 14/AH=24h
+

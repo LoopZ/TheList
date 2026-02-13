@@ -1,0 +1,71 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2780CL04
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 - EMM386.EXE - MULTITASKING API - DOMAINS
+	AX = 2780h
+	CL = 04h (module: Domains)
+	CH = subfunction
+	    00h "F_DAlloc" create new domain
+	    01h "F_DFree" delete a domain
+	    02h "X_DomHandleGetMy" get current domain handle
+	    03h "F_DSet" switch to another domain
+	    04h "Z_HandlerSWInt" install software-interrupt handler
+	    05h "Z_HandlerPageFault" install page-fault handler
+	    06h "Z_HandlerIOEx" install I/O exception handler
+	    07h "Z_HandlerGenEx" install general exception handler
+	    08h "Z_HandlerHWInt" install hardware interrupt handler
+	    09h "Z_IOBitmapGet" get current domain's I/O bitmap entry
+	    0Ah "Z_IOBitmapSet" set current domain's I/O bitmap entry
+	    0Bh "Z_IOBitmapDomGet" get domain's I/O bitmap entry
+	    0Ch "Z_IOBitmapDomSet" set domain's I/O bitmap entry
+	    0Dh "Z_DomMemRead" read memory in another domain
+	    0Eh "Z_DomMemWrite" write memory in another domain
+	    0Fh "Z_PtblDomGet" read domain's page table
+	    10h "Z_PtblDomSet" write domain's page table
+	    11h "Z_InstanceSet" register instanced memory
+	    12h "X_DomNProcessesGet" get number of processes in domain
+	    13h "X_DomSuspend" suspend a domain
+	    14h "Z_DomUnsuspend" resume execution of a domain
+	    15h "Z_DomFork" make a copy of the current domain
+	    16h "Z_DomTerm" terminate domain and all processes in it
+	    17h "Z_HandlerUnlink" remove a handler
+	    18h "Z_HandlerHWIntDflt" install default hardware interrupt handler
+	    19h "Z_HandlerVHWInt" install virtual hardware interrupt handler
+	    1Ah "Z_HandlerVHWIntDflt" install default virtual hware int handler
+	    1Bh "Z_HandlerSwapIn" install swap-in handler
+	    1Ch "Z_HandlerSwapOut" install swap-out handler
+	    1Dh "Z_EndOfInterrupt" signal EOI
+	    1Eh ???
+	    1Fh "Z_HandlerPCreate" install process-creation handler
+	    20h "Z_HandlerPTerm" install process-termination handler
+	    21h "Z_DomRootProcessGet" get domain's root process' handle
+	    22h "F_DForeground" domain has just switched to foreground
+	    23h "F_DBackground" domain has just switched to background
+	    24h "F_MapHMA" map domain's HMA
+	    25h "F_AddInstData" add DOS instance data
+	    26h "X_DomMemFreeGet" get free memory in a domain
+	    27h "X_DomMemUsedGet" get memory used by current domain
+	    28h "Z_DomMemMaxGet" get per-domain memory limit
+	    29h "Z_DomMemMaxSet" set per-domain memory limit
+	    2Ah "F_ReflectInt21" protected-mode INT 21 support
+	    2Bh "Z_DomHandleGet" get domain for a process
+	    2Ch ???
+	    2Dh ???
+	    2Eh ???
+	    2Fh ???
+	    30h ???
+	    31h ???
+	    32h ???
+Return: CX = status (most subfunctions)
+	(E)AX and/or (E)BX contain return values, depending on function
+Notes:	called by DPMS.EXE and EMM386.EXE
+	this API is only available if AX=12FFh/BX=0EDCh returns successfully;
+	  because the request is handled on the initial trap to the memory
+	  manager caused by INT instructions, this API must be invoked with
+	  an actual INT 2F instruction instead of some simulation such as a
+	  far call to the address in the interrupt vector table
+SeeAlso: AX=12FFh/BX=0EDCh,AX=2780h/CL=01h,AX=2780h/CL=02h,AX=2780h/CL=03h
+

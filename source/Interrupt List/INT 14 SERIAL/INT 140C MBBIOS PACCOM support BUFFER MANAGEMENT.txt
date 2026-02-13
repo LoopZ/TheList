@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140C
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MBBIOS PACCOM support - BUFFER MANAGEMENT
+	AH = 0Ch
+	ES = segment of buffer to free, or 0000h to allocate new buffer
+Return: ES = segment of allocated buffer (if ES=0000h on entry)
+Note:	the PACCOM version of MBBIOS uses only ES as buffer address for
+	  AH=0Ah and AH=0Bh
+SeeAlso: AH=0Ah"MBBIOS",AH=0Bh"MBBIOS"
+

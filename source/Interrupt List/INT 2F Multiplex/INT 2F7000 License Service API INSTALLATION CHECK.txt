@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - License Service API - INSTALLATION CHECK
+	AX = 7000h
+	CX = license server index (0000h to 001Fh)
+Return: AL = status
+	    00h not installed
+	    FFh installed
+Notes:	The License Service API is being maintained by Microsoft but is being
+	  supported by a large number of companies including Apple, Banyan,
+	  DEC, HP, Lotus, Microsoft, Novell, Software Publishers Association,
+	  and Wordperfect (not a complete list!)
+	Each license service provider must search for the next free index
+	  slot to use
+SeeAlso: AX=7001h,AX=7003h,AX=7004h,AX=7005h
+

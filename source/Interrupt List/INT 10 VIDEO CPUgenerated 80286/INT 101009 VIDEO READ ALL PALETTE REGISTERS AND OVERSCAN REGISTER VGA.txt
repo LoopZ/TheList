@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101009
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - READ ALL PALETTE REGISTERS AND OVERSCAN REGISTER (VGA)
+	AX = 1009h
+	ES:DX -> 17-byte buffer for palette register list (see #00018)
+Return: nothing
+Note:	UltraVision v2+ supports this function even on color EGA systems in
+	  video modes 00h-03h, 10h, and 12h; direct programming of the palette
+	  registers will cause incorrect results because the EGA registers are
+	  write-only.  To guard against older versions or unsupported video
+	  modes, programs which expect to use this function on EGA systems
+	  should set the ES:DX buffer to FFh before calling.
+SeeAlso: AX=1002h,AX=1007h,AX=CD02h
+

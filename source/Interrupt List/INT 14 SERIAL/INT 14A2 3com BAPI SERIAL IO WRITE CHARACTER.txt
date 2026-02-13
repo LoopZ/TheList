@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A2
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - WRITE CHARACTER
+	AH = A2h
+	AL = character
+	DH = session ID (00h for external session managment)
+Return: AH = return code (00h,01h,03h,07h,0Ah,0Bh) (see #00394)
+SeeAlso: AH=A0h"BAPI",AH=A3h"BAPI",AH=A4h"BAPI"
+

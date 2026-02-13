@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FA0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET USER NAME
+	AH = A0h
+	DL = user number (FFh = caller)
+	DH = machine number for user
+	ES:DI -> 17-byte buffer for ASCIZ user name
+Return: CF set if invalid user number
+SeeAlso: AH=03h,AH=A1h
+

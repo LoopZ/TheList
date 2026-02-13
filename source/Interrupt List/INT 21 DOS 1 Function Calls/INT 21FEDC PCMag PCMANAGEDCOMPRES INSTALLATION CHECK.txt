@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FEDC
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - PCMag PCMANAGE/DCOMPRES - INSTALLATION CHECK
+	AX = FEDCh
+Return: AX = CDEFh if installed
+Program: the PCMANAGE/DCOMPRES combination from PC Magazine permits
+	  infrequently-used files to be compressed to save space and
+	  transparently expanded when accessed
+SeeAlso: AH=DCh,INT 2D/AL=10h"dLite"
+

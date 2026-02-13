@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212528
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender VMM - READ REGISTERS AFTER CTRL-C INT
+	AX = 2528h
+	DS:EBX -> buffer for registers (see #01368)
+Return: CF clear if successful
+	    DS:EBX buffer filled
+	CF set on error
+	    EAX = error code
+		83h interrupt state save not enabled
+		84h no active interrupt
+SeeAlso: AX=2527h
+
+Format of Phar Lap buffer for registers:
+Offset	Size	Description	(Table 01368)
+ 00h  8 BYTEs	unused
+ 08h  4	DWORDs	EAX,EBX,ECX,EDX
+ 18h  4 DWORDs	ESI,EDI,EBP,ESP
+ 28h  6 WORDs	CS,DS,SS,ES,FS,GS
+ 34h	DWORD	EIP
+ 38h	DWORD	EFLAGS
+

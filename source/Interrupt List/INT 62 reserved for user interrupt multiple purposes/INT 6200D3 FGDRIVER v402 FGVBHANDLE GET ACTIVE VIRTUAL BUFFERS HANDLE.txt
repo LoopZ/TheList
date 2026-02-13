@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200D3
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBHANDLE" - GET ACTIVE VIRTUAL BUFFER'S HANDLE
+	AX = 00D3h
+Return: AX = handle for active virtual buffer
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=00CCh,AX=00D4h
+

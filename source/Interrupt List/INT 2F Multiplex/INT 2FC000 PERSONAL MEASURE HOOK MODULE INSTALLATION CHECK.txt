@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: i 	system info/monitoring
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PERSONAL MEASURE - HOOK MODULE INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	ES:DI -> signature string "PMEASUREHOOK"
+	AX = C000 if not installed, per mux id conventions
+	DH = major release number (binary)
+	DL = minor release number (binary)
+Program: The Personal Measure system activity monitor from Spirit of
+	  Performance, Inc. uses an extensible series of modules to hook
+	  into various operating system interfaces and monitor system calls.
+	  Current hook modules are ASPIHOOK.SYS for ASPI device activity
+	  and CDRHOOK.SYS for non-ASPI CD-ROM activity.	 All hook modules
+	  share the same mux id.
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+SeeAlso: AX=C000h"PMEASURE.EXE",AX=C001h"PERSONAL MEASURE"
+

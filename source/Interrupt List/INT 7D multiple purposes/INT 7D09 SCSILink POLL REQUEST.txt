@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D09
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - POLL REQUEST
+	AH = 09h
+	AL = target ID
+Return: AL = status
+	    FEh resident driver experienced SCSI error
+	    FFh resident driver handleded event
+Desc:	give any drivers chained onto INT 7D a chance to handle an exception
+	  not specifically handled by the calling program
+Notes:	this service exists so that resident disk servers, etc. can continue
+	  running even while debuggers and profilers are active
+	the resident driver assumes that a connection has been established and
+	  attempts to leave the target connected
+

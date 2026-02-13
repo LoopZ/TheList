@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0000
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SBSIM - "QUERYVERSION" - GET VERSION
+	BX = 0000h
+Return: AX = version (AH = major, AL = minor)
+Program: SBSIM is Creative Labs' SoundBlaster Simplified Interface Module,
+	  which provides access to multiple drivers for the SoundBlaster
+	  board through a single interface
+Range:	INT 80h to INT BFh, selected automatically
+Note:	the SBSIM installation check consists of testing for the signature
+	  "SBSIM" at offset 103h in the interrupt handler's segment.
+SeeAlso: BX=0001h"SBSIM",BX=0005h"SBSIM",INT 21/AX=4402h"CTMMSYS"
+SeeAlso: INT 80/BL=00h"SBSIM"
+Index:	installation check;SBSIM|installation check;SoundBlaster
+

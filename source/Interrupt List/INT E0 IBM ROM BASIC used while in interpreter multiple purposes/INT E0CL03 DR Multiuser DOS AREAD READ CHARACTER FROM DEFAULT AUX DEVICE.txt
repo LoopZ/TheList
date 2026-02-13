@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL03
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_READ" - READ CHARACTER FROM DEFAULT AUX DEVICE
+	CL = 03h
+Return: AL = ASCII character
+	may destroy SI,DI???
+Notes:	A_READ reads the next 8-bit character from the logical auxilliary
+	  input device (AUXn:); control is not returned to the calling
+	  process until a character has been read.
+	if another process owns AUX, this call blocks until the device becomes
+	  available
+	this function is also supported by REAL/32
+SeeAlso: INT 21/AH=03h,INT E0/CL=04h,INT E0/CL=07h,INT E0/CL=A5h,INT E0/CL=ACh
+

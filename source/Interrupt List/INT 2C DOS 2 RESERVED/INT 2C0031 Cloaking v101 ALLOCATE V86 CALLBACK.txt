@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0031
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - ALLOCATE V86 CALLBACK
+	AX = 0031h
+	DX:EBX = CS:EIP of protected-mode routine to be invoked by callback
+Return: CF clear if successful
+	    EBX = CS:IP of V86-mode callback handler
+	CF set on error
+SeeAlso: AX=0032h
+

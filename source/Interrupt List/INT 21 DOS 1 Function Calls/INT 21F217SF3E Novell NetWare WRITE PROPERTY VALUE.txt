@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF3E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WRITE PROPERTY VALUE
+	AX = F217h subfn 3Eh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet	(see #01944 at AH=E3h/SF=3Eh)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=3Eh,AX=F217h/SF=39h,AX=F217h/SF=3Dh
+

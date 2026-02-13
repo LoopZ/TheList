@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200BF
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_STALL" - PAUSE FOR SPECIFIED DURATION
+	AX = 00BFh
+	BX = duration in processor-dependent delay units (see AX=0070h)
+Return: after delay elapses
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0070h,INT 2F/AX=1224h
+

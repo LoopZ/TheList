@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214B
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - ELRES v1.0 only - INSTALLATION CHECK
+	AH = 4Bh
+	DS:DX = 0000h:0000h
+Return: ES:BX -> ELRES history structure (see #01381 at AH=2Bh/CX=454Ch)
+	DX = DABEh (signature, DAve BEnnett)
+Program: ELRES is an MS-DOS return code (errorlevel) recorder by David H.
+	  Bennett
+SeeAlso: AH=2Bh/CX=454Ch
+

@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2129
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - PARSE FILENAME INTO FCB
+	AH = 29h
+	AL = parsing options (see #01380)
+	DS:SI -> filename string (both '*' and '?' wildcards OK)
+	ES:DI -> buffer for unopened FCB
+Return: AL = result code
+	    00h successful parse, no wildcards encountered
+	    01h successful parse, wildcards present
+	    FFh failed (invalid drive specifier)
+	DS:SI -> first unparsed character
+	ES:DI buffer filled with unopened FCB (see #01345)
+Notes:	asterisks in the name are expanded to question marks in the FCB
+	all processing stops when a filename terminator is encountered
+	cannot be used with filespecs which include a path (DOS 2+)
+	Novell NetWare monitors the result code since an 'invalid drive' may
+	  signal an attempt to reconnect a network drive; if there are no
+	  connections to the specified drive, NetWare attempts to build a
+	  connection and map the drive to the SYS:LOGIN directory
+SeeAlso: AH=0Fh,AH=16h,AH=26h
+
+Bitfields for parsing options:
+Bit(s)	Description	(Table 01380)
+ 0	skip leading separators
+ 1	use existing drive number in FCB if no drive is specified, instead of
+	  setting field to zero
+ 2	use existing filename in FCB if no base name is specified, instead of
+	  filling field with blanks
+ 3	use existing extension in FCB if no extension is specified, instead of
+	  filling field with blanks
+ 4-7	reserved (0)
+

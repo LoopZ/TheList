@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F258SF03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - LOGIN AS VOLUME AUDITOR
+	AX = F258h subfn 03h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02427)
+	ES:DI -> reply buffer (see #02428)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F258h/SF=04h,AX=F258h/SF=0Dh
+
+Format of NetWare "Login As Volume Auditor" request packet:
+Offset	Size	Description	(Table 02427)
+ 00h	BYTE	03h (subfunction "Login As Volume Auditor")
+	???
+SeeAlso: #02428
+
+Format of NetWare "Login As Volume Auditor" reply packet:
+Offset	Size	Description	(Table 02428)
+ 00h	???
+SeeAlso: #02427
+

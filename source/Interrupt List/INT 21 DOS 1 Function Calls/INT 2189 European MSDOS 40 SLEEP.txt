@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2189
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - SLEEP
+	AH = 89h
+	CX = time in milliseconds or 0000h to give up time slice
+Return: CF clear if successful
+	    CX = 0000h
+	CF set on error
+	    AX = error code (interrupted system call)
+	    CX = sleep time remaining
+Desc:	suspend the calling process for the specified duration
+Notes:	the sleep interval is rounded up to the next higher increment of the
+	  scheduler clock, and may be extended further if other processes are
+	  running
+	this call may be interrupted by signals (see AH=8Dh)
+	reportedly called by Microsoft C 4.0 startup code
+	background processes have higher priority than the foreground process,
+	  and should thus periodically yield the CPU
+SeeAlso: AH=81h,INT 15/AX=1000h,INT 2F/AX=1680h,INT 7A/BX=000Ah
+

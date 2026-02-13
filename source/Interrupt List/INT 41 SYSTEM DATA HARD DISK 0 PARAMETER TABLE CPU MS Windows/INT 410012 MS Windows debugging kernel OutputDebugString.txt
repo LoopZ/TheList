@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 410012
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 41 CPU - MS Windows debugging kernel - "OutputDebugString"
+	AX = 0012h
+	DS:SI -> string (Windows 3.0)
+	ES:SI -> string (Windows 3.1)
+Return: nothing???
+Note:	this function is called by the kernel when it wants to output a
+	  string through the debugger
+SeeAlso: AX=0050h,INT 68/AH=47h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC507
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-DOS Econet v1.05 - TEST/CLEAR EVENT STATUS
+	AX = C507h
+	DH = event number (FFh = first event in queue)
+	DL = disposition (00h test only, 01h test and clear)
+Return: AX = return code (see #03037)
+	DH = event number if one is pending, 00h if none
+Note:	the interrupt-enable state will be preserved, but interrupts may be
+	  enabled during processing of this function
+SeeAlso: AX=C500h,AX=C503h,AX=C506h,AX=C508h
+

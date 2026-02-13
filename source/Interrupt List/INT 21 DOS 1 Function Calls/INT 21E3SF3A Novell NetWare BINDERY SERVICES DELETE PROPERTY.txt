@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF3A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - DELETE PROPERTY
+	AH = E3h subfn 3Ah
+	DS:SI -> request buffer (see #01936)
+	ES:DI -> reply buffer (see #01935)
+Return: AL = status (see #01933)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=32h,AH=E3h/SF=39h,AX=F217h/SF=3Ah
+
+Format of NetWare "Delete Property" request buffer:
+Offset	Size	Description	(Table 01936)
+ 00h	WORD	length of following data (max 43h)
+ 02h	BYTE	3Ah (subfunction "Delete Property")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name (01h-2Fh)
+ 06h  N BYTEs	object's name
+	BYTE	length of property's name (01h-0Fh)
+      N BYTEs	property's name
+SeeAlso: #01935
+

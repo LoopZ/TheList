@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15530D
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.1+ - EN/DISABLE DEVICE POWER MANAGEMENT
+	AX = 530Dh
+	BX = device ID (see #00474)
+	CX = function
+	    0000h disable power management
+	    0001h enable power management
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (01h,03h,09h,0Ah,0Bh) (see #00473)
+Desc:	specify whether automatic power management should be active for a
+	  given device
+SeeAlso: AX=5308h,AX=530Fh
+

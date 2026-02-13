@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0015
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - DLI 2.6+ - GET MEDIA STATISTICS
+	AX = 0015h
+	ES:DI -> media-specific statistics buffer (see #03859,#03860,#03861)
+	BX = offset of 1st field within MSS to be returned
+	CX = number of bytes to be returned
+Return: AX = completion code (see #03846)
+	CX = number of bytes copied (regardless of value returned in AX)
+Note:	not supported by all DLIs (will return AX=FFFFh if not supported).
+SeeAlso: AX=0000h,AX=000Dh
+
+Format of SK-UPPS media-specific statistics for Ethernet:
+Offset	Size	Description	(Table 03859)
+ 00h	DWORD	alignment errors
+ 04h	DWORD	frame check sequence (FCS) errors
+ 08h	DWORD	single collision frames
+ 0Ch	DWORD	multiple collision frames
+ 10h	DWORD	signal quality error (SQE) test errors
+ 14h	DWORD	deferred transmissions
+ 18h	DWORD	late collisions
+ 1Ch	DWORD	excessive collisions
+ 20h	DWORD	internal MAC transmit errors
+ 24h	DWORD	carrier sense errors
+ 28h	DWORD	excessive deferrals
+ 2Ch	DWORD	frame too longs
+ 30h	DWORD	in range length errors
+ 34h	DWORD	out of range length fields
+ 38h	DWORD	internal MAC receive errors
+
+Format of SK-UPPS media-specific statistics for FDDI:
+Offset	Size	Description	(Table 03860)
+ 00h	DWORD	SMT operating version id (refer to ANSI 7.1.2.2)
+ 04h	DWORD	SMT CF state: 1=Isolated, 2= Wrap_S, 3=Wrap_A, 4=Wrap_B,
+		  5=Wrap_AB, 6=Thru (refer to ANSI SMT 9.7.4.3)
+ 08h	DWORD	SMT frames sent
+ 0Ch	DWORD	SMT frames received
+ 10h	DWORD	SMT ring up count
+ 14h  6 BYTEs	MAC upstream neighbour
+ 1Ah  6 BYTEs	MAC downstream neighbour
+ 20h	DWORD	MAC frame counter (refer to ANSI MAC 2.2.1)
+ 24h	DWORD	MAC error counter ( " )
+ 28h	DWORD	MAC lost counter ( " )
+ 2Ch	BYTE	port 1 link error estimate (ranges from 10**-4 to 10**-15 and
+		  is reported as the absolute value of the exponent)
+ 2Dh	BYTE	port 2 link error estimate ( " )
+ 2Eh  2 BYTEs	reserved (currently unused)
+ 30h	DWORD	attachment class: 1=single-attachment (S PORT),
+		  2=dual-attachment (A/B PORT pairs), 3=concentrator (M PORTs)
+ 34h	DWORD	attachment optical bypass present: 1=true, 2=false
+
+Format of SK-UPPS media-specific statistics for Token-Ring:
+Offset	Size	Description	(Table 03861)
+ 00h  6 BYTEs	upstream neighbour
+ 06h	WORD	local ring number
+ 08h	DWORD	ring up count
+ 0Ch	DWORD	signal loss errors
+ 10h	DWORD	lobe wire faults
+ 14h	DWORD	ring recovery count
+ 18h	DWORD	line errors
+ 1Ch	DWORD	burst errors
+ 20h	DWORD	ARI/FCI errors
+ 24h	DWORD	lost frame errors
+ 28h	DWORD	receive congestion errors
+ 2Ch	DWORD	frame copied errors
+ 30h	DWORD	token errors
+ 34h	DWORD	DMA bus errors
+ 38h	DWORD	DMA parity errors
+ 3Ch	DWORD	receive overflow errors
+

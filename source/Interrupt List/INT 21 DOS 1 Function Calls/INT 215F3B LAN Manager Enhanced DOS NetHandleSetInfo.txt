@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F3B
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - NetHandleSetInfo
+	AX = 5F3Bh
+	BX = handle
+	CX = handle_info_1 structure length or sizeof DWORD
+	DI = parameter number to set
+	    0000h all
+	    0001h number of milliseconds
+	    0002h number of characters
+	DS:DX -> handle_info_1 structure (DI=0000h) (see #01705)
+		or DWORD (DI=0001h or 0002h)
+	SI = level of information (0001h)
+Return: CF clear if successful
+	    CX = total bytes available
+	CF set if error
+	    AX = error code
+SeeAlso: AX=5F3Ch
+
+Format of LAN Manager handle_info_1 structure:
+Offset	Size	Description	(Table 01705)
+ 00h	DWORD	number of milliseconds which workstation collects data before
+		  it sends the data to the named pipe
+ 04h	DWORD	number of characters which workstation collects before it
+		  sends the data to the named pipe
+

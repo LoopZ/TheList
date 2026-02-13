@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2130FFCX4445
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DESQ??? - INSTALLATION CHECK
+	AX = 30FFh
+	CX = 4445h ("DE")
+	DX = 5351h ("SQ")
+Return: BH = 05h if installed
+	???
+Note:	called by DUBLDISK.COM v2.6; this function is not supported by
+	  DESQview, so it may be for DESQview's precursor DESQ.
+SeeAlso: AX=4404h"DUBLDISK"
+

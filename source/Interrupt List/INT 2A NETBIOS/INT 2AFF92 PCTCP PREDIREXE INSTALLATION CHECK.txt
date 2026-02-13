@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2AFF92
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - PC/TCP PREDIR.EXE - INSTALLATION CHECK
+	AX = FF92h
+Return: AX = 0000h if installed
+	   BX = redirected printer port (FFFFh if no printers redirected)
+	   CX = version (CH = major, CL = minor)
+Note:	PREDIR.EXE is the network printer redirector included as part of the
+	  PC/TCP system by FTP Software, Inc.
+

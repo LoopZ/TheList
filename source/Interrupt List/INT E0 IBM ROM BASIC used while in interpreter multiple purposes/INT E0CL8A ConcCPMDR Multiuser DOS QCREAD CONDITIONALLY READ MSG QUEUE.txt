@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL8A
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - ConcCP/M,DR Multiuser DOS - "Q_CREAD" - CONDITIONALLY READ MSG QUEUE
+	CL = 8Ah
+	DS:DX -> queue parameter block (QPB) (see #04044,#04045)
+Return: AX = status (0000h success, FFFFh failure)
+	CX = error code (see #04021)
+Note:	also supported by REAL/32
+SeeAlso: INT E0/CL=87h,INT E0/CL=89h,INT E0/CL=8Ch,INT E0/CL=B6h
+

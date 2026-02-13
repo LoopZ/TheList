@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 135504
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - Seagate - ??? - RETURN IDENTIFICATION
+	AX = 5504h
+	DX = drive (bit 7 set for hard disk)
+Return: CF clear if successful
+	    AX = 4321h if ST01/ST02h
+	    AX = 4322h if ??? Seagate controller
+	CF set on error
+SeeAlso: AX=5505h,AX=5514h
+

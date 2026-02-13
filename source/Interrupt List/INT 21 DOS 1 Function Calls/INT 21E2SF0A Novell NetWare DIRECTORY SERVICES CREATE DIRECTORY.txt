@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - CREATE DIRECTORY
+	AH = E2h subfn 0Ah
+	DS:SI -> request buffer (see #01856)
+	ES:DI -> reply buffer (see #01857)
+Return: AL = status (00h,84h,98h,FCh) (see #01839)
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=39h,AH=E2h/SF=0Bh,AH=E2h/SF=0Fh,AX=F216h/SF=0Ah
+
+Format of NetWare "Create Directory" request buffer:
+Offset	Size	Description	(Table 01856)
+ 00h	WORD	length of following data (max 103h)
+ 02h	BYTE	0Ah (subfunction "Create Directory")
+ 03h	BYTE	directory handle
+ 04h	BYTE	maximum directory rights (see #01849)
+ 05h	BYTE	length of directory path (00h-FFh)
+ 06h  N BYTEs	directory path
+SeeAlso: #01857,#01858
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01857)
+ 00h	WORD	(call) 0000h (no data returned)
+SeeAlso: #01856,#01858
+

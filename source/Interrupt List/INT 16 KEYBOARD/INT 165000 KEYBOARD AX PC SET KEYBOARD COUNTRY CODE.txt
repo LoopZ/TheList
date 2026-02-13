@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 165000
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - AX PC - SET KEYBOARD COUNTRY CODE
+	AX = 5000h
+	BX = country code
+	    0001h USA (English), 0051h Japan
+Return: AL = status
+	    00h successful
+	    01h bad country code
+	    02h other error
+Notes:	This function is called with BX=0051h by Japanese versions of
+	  MS-DOS/PC DOS/DR DOS IO.SYS/IBMBIO.COM at initialization time.
+	the K3PLUS v6.00+ INT 16 BIOS replacement will switch between the
+	  supported country specific layout (e.g. BX=0031h Germany, BX=001Fh
+	  Netherlands, BX=0020h Belgium, BX=0022h Spain) (as with <Ctrl>+
+	  <Alt>+<F2>) and K3PLUS' transparent mode (as with <Ctrl>+<Alt>+<F1>).
+	In transparent mode (BX=0001h), K3PLUS chains to the underlying
+	  driver (normally the BIOS driver with US-layout). K3PLUS beeps on
+	  mode changes
+SeeAlso: AX=5001h,AX=AF4Dh,INT 10/AX=5000h,INT 17/AX=5000h
+

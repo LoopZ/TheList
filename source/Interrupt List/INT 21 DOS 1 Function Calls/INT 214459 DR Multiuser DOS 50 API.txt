@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214459
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DR Multiuser DOS 5.0 - API
+	AX = 4459h
+	CL = function (see #04019 at INT E0"CP/M-86")
+	DS,DX = parameters
+Notes:	DR DOS 5.0 and Novell DOS 7 return CF set and AX=0001h
+	this API is also available on INT E0
+SeeAlso: AX=4452h,INT E0"CP/M-86"
+

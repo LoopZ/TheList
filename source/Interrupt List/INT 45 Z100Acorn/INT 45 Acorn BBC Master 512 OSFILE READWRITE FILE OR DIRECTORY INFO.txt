@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 45
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 45 - Acorn BBC Master 512 - "OSFILE" - READ/WRITE FILE OR DIRECTORY INFO
+	AL = function
+	    00h save block of memory as file
+	    01h update directory entry for existing file
+	    02h set load address for existing file
+	    03h set execution address for existing file
+	    04h set attributes for existing file
+	    05h read directory
+	    06h delete file
+	    FFh load file
+	DS:BX -> control block (see #03201)
+Return: FLAGS destroyed
+	AL = file type
+	    00h not found
+	    01h file found
+	    02h directory found
+	    FFh protected file
+SeeAlso: INT 40"Acorn",INT 41"Acorn",INT 44"Acorn",INT 46"Acorn"
+
+Format of BBC Master control block:
+Offset	Size	Description	(Table 03201)
+ 00h	WORD	address of CR-terminated filename
+ 02h	DWORD	load address of file
+ 06h	DWORD	execution address of file
+ 0Ah	DWORD	start address of data to save
+ 0Eh	DWORD	end address of data to save, or file attributes
+		file attributes in low byte (see #03202)
+		other three bytes are filing-system specific file attributes
+
+Bitfields for BBC Master file attributes:
+Bit(s)	Description	(Table 03202)
+ 0	no owner read access
+ 1	no owner write access
+ 2	not executable by owner
+ 3	not deletable by owner
+ 4	no public read access
+ 5	no public write access
+ 6	not executable with public access
+ 7	not deletable with public access
+

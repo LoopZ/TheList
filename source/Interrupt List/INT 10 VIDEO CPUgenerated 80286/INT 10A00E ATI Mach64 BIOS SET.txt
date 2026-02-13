@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A00E
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI Mach64 BIOS - SET ???
+	AX = A00Eh
+	CL = ??? (00h-03h)
+Return: AH = status
+	    00h successful
+	    01h failed
+Notes:	CL zero/nonzero are treated differently
+	NOP in All-in-Wonder 128 BIOS
+SeeAlso: AX=A000h,AX=A00Fh
+

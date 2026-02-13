@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET PORTS FOR A SERVICE
+	AX = 0007h
+	BX = 0002h
+	DS:DX -> StreetTalk service name
+	DS:DI -> port record block (see #03433)
+Return: AX = status (see #03432)
+Note:	if the requested number of ports is greater than five, it will be reset
+	  to five
+SeeAlso: AX=0007h/BX=0001h,AX=0007h/BX=0003h,AX=0007h/BX=0004h
+SeeAlso: AX=0007h/BX=000Ah
+
+Format of VINES port record block:
+Offset	Size	Description	(Table 03433)
+ 00h	WORD	(call) number of 17-byte elements (01h-05h) to be filled
+ 02h	BYTE	(call) port type for first port
+ 03h 16 BYTEs	(ret) port (see #03328)
+ 13h	BYTE	(call) port type for second port
+ 14h 16 BYTEs	(ret) port (see #03328)
+ 24h	BYTE	(call) port type for third port
+ 25h 16 BYTEs	(ret) port (see #03328)
+ 35h	BYTE	(call) port type for fourth port
+ 36h 16 BYTEs	(ret) port (see #03328)
+ 46h	BYTE	(call) port type for fifth port
+ 47h 16 BYTEs	(ret) port (see #03328)
+ 57h	BYTE	reserved
+SeeAlso: #03435
+

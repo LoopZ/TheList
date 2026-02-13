@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: EC
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT EC - Exact - RUNTIME INTERFACE MULTIPLEXOR
+	AX = function number (0000h to 0140h)
+	STACK:	DWORD address to return to
+		any arguments required by function
+Return: STACK:	return address popped, but otherwise unchanged
+Desc:	this is the interface from applications to the runtime system by Exact
+	  Automatisering B.V. of the Netherlands.  By using this interrupt,
+	  it can provide DLL-style capabilities under MS-DOS.
+Note:	the interrupt handler removes the return address and flags placed on
+	  the stack by the INT EC, then jumps to the appropriate function
+

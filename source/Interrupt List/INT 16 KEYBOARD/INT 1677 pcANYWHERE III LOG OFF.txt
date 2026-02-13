@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1677
+  Category: R 	remote control/file access
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - pcANYWHERE III - LOG OFF
+	AH = 77h
+	AL = mode
+	    00h wait for another call
+	    01h leave in Memory Resident Mode
+	    02h leave in Automatic Mode
+	    FFh leave in current operating mode
+

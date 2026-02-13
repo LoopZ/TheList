@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC0B
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MediaVision MVSOUND.SYS - GET EXECUTABLE PATH
+	AX = BC0Bh
+Return: BX:DX -> ASCIZ path for MVPROAS.EXE, 0000h:0000h if not available
+SeeAlso: AX=BC00h/BX=3F3Fh
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660695
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - DIGPAK - POST AUDIO PENDING
+	AX = 0695h
+	DS:SI -> Sound Data structure (***)
+Return: AX = status
+	    0000h sound started playing
+	    0001h sound was posted as pending to play
+	    0002h sound effect already pending, this one not posted
+SeeAlso: AX=0696h
+

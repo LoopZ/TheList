@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE16
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.20+ - GET ERROR HANDLING
+	AX = DE16h
+Return: BL = current mode
+	    00h always post system error
+	    01h return carry flag set on failed mailbox writes
+	    02h return CF set on failed mailbox writes and NULL on failed
+		GETMEM calls
+SeeAlso: AX=DE15h
+

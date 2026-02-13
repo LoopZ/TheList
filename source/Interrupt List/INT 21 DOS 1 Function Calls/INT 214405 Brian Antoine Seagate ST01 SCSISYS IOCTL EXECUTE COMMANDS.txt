@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214405
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Brian Antoine Seagate ST-01 SCSI.SYS - IOCTL - EXECUTE COMMANDS
+	AX = 4405h
+	BX = drive number (00h = default, 01h = A:, etc)
+	CX = number of bytes to write
+	DS:DX -> SCSIDISK control block (see also #01525 at AX=4403h"ST-01")
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4403h"ST-01"
+

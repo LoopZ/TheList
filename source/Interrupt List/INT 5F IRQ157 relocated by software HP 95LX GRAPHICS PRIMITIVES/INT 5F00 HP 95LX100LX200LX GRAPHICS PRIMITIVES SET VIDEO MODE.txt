@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - SET VIDEO MODE
+	AH = 00h
+	AL = video mode
+	    03h text,CGA color (100LX/200LX)
+	    06h 640x200 CGA graphics (100LX/200LX)
+	    07h text, system manager compliant
+	    20h 240x128 mono graphics, system manager compliant
+	    87h text, not system manager compliant
+	    A0h 240x128 mono graphics, not system manager compliant
+Notes:	the defaults after setting the mode to graphics are (0,0) logical
+	  origin, full-screen clip region, (0,0) pen location, pen color 1,
+	  pixel replacement FORCE, line type and fill mask all bits set
+	modes 03h and 06h can also be set with the standard INT 10/AH=00h
+SeeAlso: INT 0F"HP 95LX",INT 10/AH=00h,INT 15/AX=4DD4h
+

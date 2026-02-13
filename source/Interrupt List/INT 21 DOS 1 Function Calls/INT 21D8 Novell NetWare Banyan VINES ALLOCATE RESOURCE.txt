@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare, Banyan VINES - ALLOCATE RESOURCE
+	AH = D8h
+	DL = resource number
+Return: AL = status (00h successful, FFh unsucessful)
+Note:	this function is no longer used or supported by NetWare, and is not
+	  documented in Novell documents
+SeeAlso: AH=D9h
+

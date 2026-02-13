@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE1E
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.23+ - "SCRNINFO" - GET TRUE VIDEO PARAMETERS
+	AX = DE1Eh
+Return: CL = actual number of rows on screen
+	CH = actual number of columns on screen
+	BL = actual video mode (may differ from INT 10/AH=0Fh return) (v2.26+)
+Note:	this API call may be made from a hardware interrupt handler
+SeeAlso: INT 10/AH=0Fh
+

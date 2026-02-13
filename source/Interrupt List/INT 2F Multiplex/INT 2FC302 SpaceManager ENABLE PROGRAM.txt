@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC302
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - SpaceManager - ENABLE PROGRAM
+	AX = C302h
+	DX = program identifier (9000h,9001h,9003h) (see #03035)
+Return: AX destroyed
+SeeAlso: AX=C303h,AX=C306h
+

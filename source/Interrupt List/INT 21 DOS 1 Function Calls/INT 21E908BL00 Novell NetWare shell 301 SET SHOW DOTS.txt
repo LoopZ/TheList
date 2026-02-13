@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E908BL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare shell 3.01 - SET SHOW DOTS
+	AX = E908h
+	BL = 00h	don't return '.' or '..' during directory scans
+	   = nonzero	directory scans will return '.' or '..' entries
+Return: BL = previous show-dots setting
+

@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 26
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 26 - DOS 1+ - ABSOLUTE DISK WRITE (except partitions > 32M)
+	AL = drive number (00h = A:, 01h = B:, etc)
+	CX = number of sectors to write (not FFFFh)
+	DX = starting logical sector number (0000h - highest sector on drive)
+	DS:BX -> data to write
+Return: CF clear if successful
+	CF set on error
+	    AH = status (see #02547)
+	    AL = error code (same as passed to INT 24 in DI)
+	    AX = 0207h if more than 64K sectors on drive -- use new-style call
+	may destroy all other registers except segment registers
+Notes:	original flags are left on stack, and must be popped by caller
+	this call bypasses the DOS filesystem, though DOS 5+ invalidates any
+	  disk buffers referencing sectors which are written with this call
+	examination of CPWIN386.CPL indicates that if this call fails with
+	  error 0408h on an old-style (<32M) call, one should retry the
+	  call with the high bit of the drive number in AL set
+	Novell DOS 7 decides whether the old-style or new-style (>32M) version
+	  of INT 26 must be used solely on the basis of the partition's size,
+	  thus forcing use of the new-style call even for data in the first
+	  32M of the partition
+	Windows98 will display an error message and deliberately hang the
+	  system on attempted write to any hard disk if neither bit 7 of the
+	  Extended Drive Info byte nor bit 6 of "DOS_FLAG" (List-of-Lists+60h)
+	  is set
+	Although all registers except segment registers may be destroyed
+	 some software depends on some of the registers being preserved.
+	 For example some Flash disk drivers requires that DX is not trashed.
+	 DR-DOS 7.03 takes care of this.
+BUGS:	DOS 3.1 through 3.3 set the word at ES:[BP+1Eh] to FFFFh if AL is an
+	  invalid drive number
+	DR DOS 3.41 will return with a jump instead of RETF, leaving the
+	  wrong number of bytes on the stack; use the huge-partition version
+	  (INT 26/CX=FFFFh) for all partition sizes under DR DOS 3.41
+	DR DOS 6.0 original releases 05/1991 & 08/1991 reported wrong error
+	  codes for "drive not ready" and "write protect". This was fixed
+	  with the DR DOS BDOS patch "PAT321" (1992/02/19, XDIR /C: 947Bh)
+	  and later "full" rebuilds (see INT21/AX=4452h for details).
+SeeAlso: INT 13/AH=03h,INT 25,INT 26/CX=FFFFh,INT 21/AX=7305h,INT 21/AH=91h"PTS"
+

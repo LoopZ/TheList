@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2125C1
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - RELEASE MS-DOS MEMORY BLOCK
+	AX = 25C1h
+	CX = real-mode paragraph address of memory block to free
+Return: CF clear if successful
+	    EAX destroyed
+	CF set on error
+	    AX = error code
+		07h MS-DOS memory control blocks destroyed
+		09h invalid memory block address in CX
+SeeAlso: AX=25C0h,AX=25C2h
+

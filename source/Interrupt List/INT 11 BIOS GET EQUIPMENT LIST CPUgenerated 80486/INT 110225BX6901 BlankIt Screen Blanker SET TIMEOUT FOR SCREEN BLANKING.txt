@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 110225BX6901
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - Blank-It Screen Blanker - SET TIMEOUT FOR SCREEN BLANKING
+	AX = 0225h
+	BX = 6901h
+	CX = timeout in timer ticks (18.2/second) or 0000h to disable timeout
+	     largest value is 59 minutes (FBACh or 64428)
+Return: CF clear if successful
+	    DI = 6A6Ah (possibly also 6A6Ah for all following functions)
+	    AH = ???
+	CF set on error
+	    AL = error code
+SeeAlso: AX=0225h/BX=6900h,AX=0225h/BX=6904h
+Index:	screen saver;Blank-It
+

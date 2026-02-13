@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F9803
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - S3RMDRV.SYS - COPY ??? INTO USER BUFFER
+	AX = 9803h
+	DX:BX -> 116-byte buffer for ASCIZ ???
+Return: AX = 0000h
+	DX:BX buffer filled with string stored in driver from its parameter
+	  list when it was loaded
+Note:	the examined version of the driver returns CF set for any AL other
+	  than 00h or 03h
+SeeAlso: AX=9800h
+

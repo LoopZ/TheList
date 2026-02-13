@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1077
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - GET GRAPHICS FONT
+	AH = 77h
+Return: AL = font number (see #00200)
+SeeAlso: AH=60h"HUNTER",AH=73h"HUNTER"
+
+(Table 00200)
+Values for HUNTER 16 graphics font number:
+ 00h	 7x7  in a  8x8	 cell
+ 01h	 5x7  in a  6x8	 cell
+ 02h	 7x9  in a  8x10 cell
+ 03h	14x9  in a 16x10 cell
+ 04h	 7x18 in a  8x20 cell
+ 05h	14x18 in a 16x20 cell
+ 06h	 3x5  in a  4x6	 cell
+Note:	size is X * Y
+

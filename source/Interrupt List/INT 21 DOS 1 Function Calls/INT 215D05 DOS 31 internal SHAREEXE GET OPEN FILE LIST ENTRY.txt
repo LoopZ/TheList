@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215D05
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 3.1+ internal - SHARE.EXE - GET OPEN FILE LIST ENTRY
+	AX = 5D05h
+	DS:DX -> DOS parameter list (see #01686)
+	DPL's BX = index of sharing record (see #01637 at AH=52h)
+	DPL's CX = index of SFT in sharing record's SFT list
+Return: CF clear if successful
+	    ES:DI -> ASCIZ filename
+	    BX = network machine number of SFT's owner
+	    CX = number of locks held by SFT's owner
+	CF set if either index out of range
+	    AX = 0012h (no more files)
+Notes:	error unless SHARE is loaded (calls [SysFileTable-18h])
+	  (see #01636 at AH=52h)
+	names are always canonical fully-qualified, such as returned by AH=60h
+	not supported by DR DOS 3.41 and 5.0 and Novell DOS 7, but does not
+	  return an error, instead destroying AX
+SeeAlso: AH=5Ch,AH=60h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BLA0
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - GET VIDEO MODE AVAILABILITY
+	AH = 12h
+	BL = A0h
+	AL = video mode number (00h-7Fh)
+Return: AH bit 0: video mode supported
+	BX = offset of BIOS subroutine to fixup standard video parameters
+		(call subroutine with DS:SI and ES:DI as returned by this call)
+	DS:SI -> standard video parameters or FFFFh:FFFFh
+	ES:DI -> supplemental video parameters or FFFFh:FFFFh
+SeeAlso: AH=00h,AH=12h/BL=9Ah,AH=12h/BL=A1h
+

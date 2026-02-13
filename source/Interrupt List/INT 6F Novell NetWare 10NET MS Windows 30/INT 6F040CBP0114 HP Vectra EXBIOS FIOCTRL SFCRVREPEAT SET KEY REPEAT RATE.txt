@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F040CBP0114
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_CRV_REPEAT" - SET KEY REPEAT RATE
+	AX = 040Ch
+	BP = 0114h (driver ID for V_HPHIL)
+	BX = device address indicator (see #03760)
+	DH = HP HIL device major address
+	DL = repeat rate (00h = 30 Hz, 01h = 60 Hz)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Note:	this function is only available if the driver is in the open state
+	  (see AX=020Eh"SF_OPEN")
+SeeAlso: AH=00h"HP Vectra",AX=040Ah/BP=0114h,AX=040Eh/BP=0114h
+

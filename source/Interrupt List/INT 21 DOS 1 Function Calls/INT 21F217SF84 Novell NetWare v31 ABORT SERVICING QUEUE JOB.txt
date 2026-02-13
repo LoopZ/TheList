@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF84
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3.1+ - ABORT SERVICING QUEUE JOB
+	AX = F217h subfn 84h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02000 at AH=E3h/SF=84h)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+Desc:	inform the Queue Management System (QMS) that the queue server is
+	  unable to service a previously-accepted job
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=84h,AX=F217h/SF=73h,AX=F217h/SF=83h
+

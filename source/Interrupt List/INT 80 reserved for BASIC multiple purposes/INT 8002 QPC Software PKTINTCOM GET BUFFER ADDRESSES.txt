@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - QPC Software PKTINT.COM - GET BUFFER ADDRESSES
+	AH = 02h
+	BX = extra bytes to allocate per packet
+Return: AX = segment address of 10K buffer (for receives???)
+	BX = segment address of 2K buffer (for sends???)
+SeeAlso: AH=05h
+

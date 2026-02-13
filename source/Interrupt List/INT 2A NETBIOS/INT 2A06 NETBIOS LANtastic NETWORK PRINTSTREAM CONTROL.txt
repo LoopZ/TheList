@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - NETBIOS, LANtastic - NETWORK PRINT-STREAM CONTROL
+	AH = 06h
+	AL = function
+	    01h set concatenation mode
+		all printer output put in one job until return to DOS prompt
+	    02h set truncation mode (default)
+		printer open/close or BIOS/DOS output switch starts new job
+	    03h flush printer output and start new print job
+Return: CF set on error
+	    AX = error code
+	CF clear if successful
+Notes:	subfunction 03h is equivalent to Ctrl/Alt/keypad-*
+	supported by PC LAN Program, LANtastic, NetWare, 10NET, etc.
+	LANtastic v4.x no longer supports this call
+	this function sets the printer mode for all redirected printers
+SeeAlso: INT 21/AX=5D08h,INT 21/AX=5D09h,INT 2F/AX=1125h
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFD7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET DRIVE MAPPING TABLE
+	AX = F217h subfn D7h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02033 at AH=E3h/SF=D7h)
+	ES:DI -> reply buffer (see #02230)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AX=EF00h,AX=EF01h,AX=EF02h,AH=F2h"Novell",AH=E3h/SF=D7h
+
+Format of NetWare "Get Drive Mapping Table" reply packet:
+Offset	Size	Description	(Table 02230)
+ 00h	DWORD	(big-endian) clock tick elapsed since system started
+ 04h	BYTE	fault tolerance (SFT) level
+ 05h	BYTE	number of logical drives attached to server
+ 06h	BYTE	number of physical drives attached to server
+ 07h  5 BYTEs	disk channel types (00h none, 01h XT, 02h AT, 03h SCSI,
+		  04h disk coprocessor drive, 32h-FFh value-added drive types)
+ 0Ch	WORD	(big-endian) number of outstanding controller commands
+ 0Eh 32 BYTEs	drive mapping table (FFh = no such drive)
+ 2Eh 32 BYTEs	drive mirror table (secondary physical drive, FFh = none)
+ 4Eh 32 BYTEs	dead mirror table (last drive mapped to, FFh if never mirrored)
+ 6Eh	BYTE	physical drive being remirrored (FFh = none)
+ 6Fh	BYTE	reserved
+ 70h	DWORD	(big-endian) remirrored block
+ 74h 60 BYTEs	SFT error table (internal error counters)
+SeeAlso: #02033,#02034 at AH=E3h/SF=D7h
+

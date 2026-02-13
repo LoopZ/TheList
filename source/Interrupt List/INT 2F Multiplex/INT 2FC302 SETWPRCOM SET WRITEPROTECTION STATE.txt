@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC302
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SETWPR.COM - SET WRITE-PROTECTION STATE
+	AX = C302h
+	BL = new state
+	    00h disk may be written
+	    01h disk write-protected
+Return: AL = FFh if installed
+Program: SETWPR is a hard-disk write-protection TSR by Jaroslaw Rafa
+SeeAlso: AX=C300h"SETWPR"
+

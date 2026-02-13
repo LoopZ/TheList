@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10007FBH02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Paradise VGA, AT&T VDC600 - QUERY MODE STATUS
+	AX = 007Fh
+	BH = 02h
+Return: AL = 7Fh if successful (AT&T VDC600)
+	BH = status (Paradise/Dell)
+	    00h invalid function
+	    7Fh successful
+	---if successful---
+	BL = 00h if operating in VGA mode, 01h if non-VGA mode
+	CH = total video RAM size in 64k byte units
+	CL = video RAM used by the current mode
+Note:	under Novell DOS 7 TaskMgr Multitasker, this call always returns 0K
+	  video memory in CX
+SeeAlso: AX=007Fh/BH=00h,AX=007Fh/BH=01h
+

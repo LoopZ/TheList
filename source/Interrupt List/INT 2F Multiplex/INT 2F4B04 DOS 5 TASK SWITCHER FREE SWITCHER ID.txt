@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4B04
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 5+ TASK SWITCHER - FREE SWITCHER ID
+	AX = 4B04h
+	BX = switcher ID
+	ES:DI -> task switcher entry point (see #02819)
+Return: AX = 0000h
+	BX = status
+	    0000h successful
+	    other error (invalid ID or ID not allocated)
+Notes:	called by a task switcher when it exits, unless it was the first loaded
+	  and is providing the support for AX=4B03h and AX=4B04h
+	the task switcher providing the identifiers may call the terminating
+	  task switcher's entry point as needed
+	this call is available from within DOSSHELL even if the task switcher
+	  is not installed
+	this call is supported by PC Tools v8+ CPTASK, but appears to return
+	  sucessfully no matter which ID is given
+SeeAlso: AX=4B02h,AX=4B03h
+

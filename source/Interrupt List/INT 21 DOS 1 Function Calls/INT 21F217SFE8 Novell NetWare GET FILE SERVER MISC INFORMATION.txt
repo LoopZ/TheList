@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFE8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET FILE SERVER MISC INFORMATION
+	AX = F217h subfn E8h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02081 at AH=E3h/SF=E8h)
+	ES:DI -> reply buffer (see #02246)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=E8h,AX=F217h/SF=11h,AX=F217h/SF=F5h
+
+Format of NetWare "Get File Server Misc Information" reply packet:
+Offset	Size	Description	(Table 02246)
+ 00h	DWORD	(big-endian) clock ticks since system started
+ 04h	BYTE	CPU type
+		00h Motorola 68000
+		01h Intel 8086, 8088, or V20
+		02h Intel 80286+
+ 05h	BYTE	reserved
+ 06h	BYTE	number of service processes in server
+ 07h	BYTE	server utilization in percent
+ 08h	WORD	(big-endian) maximum bindery objects set by configuration
+		0000h = unlimited
+ 0Ah	WORD	(big-endian) maximum number of bindery objects used
+ 0Ch	WORD	(big-endian) current number of bindery objects in use
+ 0Eh	WORD	(big-endian) total server memory in KB
+ 10h	WORD	(big-endian) wasted server memory in KB
+		normally 0000h
+ 12h	WORD	number of records following (01h-03h)
+ 14h	var	array of Dynamic Memory Information records (see #02083)
+SeeAlso: #02081,#02082 at AH=E3h/SF=E8h
+

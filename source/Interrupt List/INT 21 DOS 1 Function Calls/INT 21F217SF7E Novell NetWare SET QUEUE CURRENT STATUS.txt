@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF7E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SET QUEUE CURRENT STATUS
+	AX = F217h subfn 7Eh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02213)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=7Dh
+
+Format of NetWare "Set Queue Current Status" request packet:
+Offset	Size	Description	(Table 02213)
+ 00h	WORD	length of following data
+ 02h	BYTE	7Eh (subfunction "Set Queue Current Status")
+ 03h	DWORD	queue ID
+ 07h	DWORD	queue status
+		bit 0: no more jobs can be added
+		bit 1: no more queue servers can be attached
+		bit 2: attached queu servers can not service queue jobs
+SeeAlso: #02211
+

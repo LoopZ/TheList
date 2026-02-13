@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 218D
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - SEND SIGNAL
+	AH = 8Dh
+	AL = signal number (see #01793)
+	BH = signal argument
+	BL = action
+	    00h send to entire command subtree
+	    01h send only to specified process
+	DX = Process ID
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h,06h)(see #01680 at AH=59h/BX=0000h)
+Desc:	invoke the exceptional-condition handler for the specified process
+Note:	error 06h may be returned if one or more of the affected processes
+	  have an error handler for the signal
+SeeAlso: AH=8Ch
+

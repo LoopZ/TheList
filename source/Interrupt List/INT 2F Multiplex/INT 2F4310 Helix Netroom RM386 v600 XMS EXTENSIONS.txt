@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4310
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Helix Netroom RM386 v6.00 - XMS EXTENSIONS
+	AX = 4310h
+Return: ES:BX -> driver entry point (see #02783,#02784,#02785,#02786)
+Notes:	HIMEM.SYS v2.77 chains to previous handler if AH is not 00h or 10h
+	HIMEM.SYS requires at least 256 bytes free stack space when calling
+	  the driver entry point
+SeeAlso: AX=4300h,AX=4310h"XMS",AX=4310h"Cloaking"
+
+(Table 02783)
+Call the Netroom RM386 v6.00 "Reallocate upper memory block" function with:
+	AH = 80h
+	DX = segment address of UMB to resize
+	BX = new size of block in paragraphs
+Return: AX = status
+	    0001h success
+	    0000h failure
+		BL = error code (80h,B0h,B2h) (see #02775)
+		DX = maximum available size
+Note:	this function is identical to function 12h
+SeeAlso: #02768,#02784
+
+(Table 02784)
+Call the Netroom RM386 v6.00 "re-enable HMA allocation" function with:
+	AH = 81h
+Return: AX = 0001h (success)
+SeeAlso: #02751,#02783,#02785
+
+(Table 02785)
+Call the Netroom RM386 v6.00 "Create new UMB entry" function with:
+	AH = 83h
+	BX = segment of high-memory block
+	DX = first page of start of block
+	CX = number of consecutive pages in block
+	DI = start of UMB in block
+Return: AX = 0001h (success)
+	DI = segment of first high-DOS block
+Note:	the new UMB is not linked into the high-memory chain
+SeeAlso: #02766,#02784,#02786
+
+(Table 02786)
+Call the Netroom RM386 v6.00 "Get all XMS handles info" function with:
+	AH = 84h
+	CX = size of buffer for handle info
+	ES:DI -> buffer for handle info (see #02777)
+Return: AX = 0001h (success)
+	DX = current number of allocated XMS handles
+SeeAlso: #02785,#02771
+

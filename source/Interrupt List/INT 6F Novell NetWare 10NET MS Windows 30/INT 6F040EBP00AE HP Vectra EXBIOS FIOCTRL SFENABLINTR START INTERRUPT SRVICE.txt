@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F040EBP00AE
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_ENABL_INTR" - START INTERRUPT SRVICE
+	AX = 040Eh
+	BP = 00AEh (driver ID for V_8041)
+	BH = vector number of driver to be called regularly (vector addr / 6)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	enable 60 Hz calling of a driver previously added to the list of
+	  drivers to be called by the HP's 8041
+SeeAlso: AH=00h"HP Vectra",AX=040Ah/BP=00AEh,AX=0410h/BP=00AEh
+SeeAlso: AX=0412h/BP=00AEh,AX=0416h/BP=00AEh,AX=041Ah/BP=00AEh
+

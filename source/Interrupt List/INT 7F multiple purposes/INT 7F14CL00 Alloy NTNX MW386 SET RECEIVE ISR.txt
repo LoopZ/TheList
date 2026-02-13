@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F14--CL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 -  SET RECEIVE ISR
+	AH = 14h
+	CL = 00h
+	DX:DI -> application FAR receive service routine (see #03955)
+Return: AL = status (00h-03h) (see #03954)
+SeeAlso: AH=14h/CL=01h,AH=14h/CL=03h
+
+(Table 03955)
+Values Alloy receive service routine is called with:
+	DH = sender ID
+	DL = channel with datagram
+	interrupts disabled
+Return: AL = response code
+	    00h leave buffer locked, set channel status, and repeat call later
+	    01h release channel buffer
+	    02h change buffer pointer to DX:DI
+	AH,CX,DX,DI,SI may be destroyed
+

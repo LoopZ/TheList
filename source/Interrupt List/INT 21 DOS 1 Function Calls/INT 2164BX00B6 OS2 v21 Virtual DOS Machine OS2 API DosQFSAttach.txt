@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--BX00B6
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.1+ Virtual DOS Machine - OS/2 API DosQFSAttach
+	AH = 64h
+	BX = 00B6h (API ordinal)
+	CX = 636Ch (magic value "cl")
+	DS = user's data segment
+	ES:DI -> FSQAttachStruc (see #01749)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = 0000h
+	    data buffer filled
+SeeAlso: AH=64h/CX=636Ch
+
+Format of OS/2 Virtual DOS Machine FSQAttachStruc:
+Offset	Size	Description	(Table 01749)
+ 00h	DWORD	reserved
+ 04h	DWORD	pointer to the offset of the data buffer length
+ 08h	DWORD	pointer to the offset of the data buffer
+ 0Ch	WORD	FSA Info level
+ 0Eh	WORD	ordinal index into table
+ 10h	DWORD	pointer to the offset of the device name
+Notes:	The segment value of the buffer, buffer length, and device
+	  name MUST all be the same.  It is defined on entry in the DS
+	  register.  The details of each info level are defined in the
+	  OS/2 CP Reference.
+

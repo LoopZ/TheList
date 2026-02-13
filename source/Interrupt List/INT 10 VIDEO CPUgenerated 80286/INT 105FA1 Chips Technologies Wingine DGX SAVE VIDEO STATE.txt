@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105FA1
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Wingine DGX - SAVE VIDEO STATE
+	AX = 5FA1h
+	CX = state(s) to be saved (see #00186)
+	ES:BX -> buffer for state information
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+		    ES:BX buffer filled
+SeeAlso: AH=1Ch,AX=5FA0h,AX=5FA2h,AX=5F91h
+

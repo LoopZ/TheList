@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FB4
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v3+ - CREATE INDIRECT FILE
+	AX = 5FB4h
+	DS:SI -> 128-byte buffer containing ASCIZ contents of indirect file
+	ES:DI -> full ASCIZ path of indirect file to create, incl machine name
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Note:	the contents of the indirect file may be any valid server-relative path
+SeeAlso: AX=5FB3h,AX=5FB5h
+

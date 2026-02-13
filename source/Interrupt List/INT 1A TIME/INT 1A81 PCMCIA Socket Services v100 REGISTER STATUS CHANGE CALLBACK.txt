@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A81
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - REGISTER STATUS CHANGE CALLBACK
+	AH = 81h
+	DS:DX -> callback routine (see #00657) or 0000h:0000h to disable
+Return: CF clear if successful
+	    AH destroyed
+	CF set on error
+	    AH = error code (see #00656)
+Note:	the callback will be invoked on any socket changes whose notification
+	  has not been disabled with the status change enable mask; it may be
+	  invoked either while processing a hardware interrupt from the adapter
+	  or while processing the following Socket Services request
+SeeAlso: AH=80h"PCMCIA",AH=82h"PCMCIA"
+
+(Table 00657)
+Values PCMCIA callback routine is invoked with:
+	AL = adapter number
+	BH = status change interrupt enable mask (see #00658)
+	BL = socket number
+	DH = current socket status (see #00659)
+	DL = current card status (see #00660)
+Return: all registers preserved
+Notes:	the callback may be invoked during a hardware interrupt, and may not
+	  call on Socket Services
+	the callback will be invoked once for each socket with a status change
+
+Bitfields for PCMCIA status change interrupt enable mask:
+Bit(s)	Description	(Table 00658)
+ 7	card detect change
+ 6	ready change
+ 5	battery warning change
+ 4	battery dead change
+ 3	insertion request
+ 2	ejection request
+ 1-0	reserved (0)
+
+Bitfields for PCMCIA current socket status:
+Bit(s)	Description	(Table 00659)
+ 7	card changed
+ 6	reserved (0)
+ 5	card insertion complete
+ 4	card ejection complete
+ 3	card insertion request pending
+ 2	card ejection request pending
+ 1	card locked
+ 0	reserved (0)
+
+Bitfields for PCMCIA current card status:
+Bit(s)	Description	(Table 00660)
+ 7	card detect
+ 6	ready
+ 5	battery voltage detect 2 (battery warning)
+ 4	battery voltage detect 1 (battery dead)
+ 3-1	reserved (0)
+ 0	write protected
+

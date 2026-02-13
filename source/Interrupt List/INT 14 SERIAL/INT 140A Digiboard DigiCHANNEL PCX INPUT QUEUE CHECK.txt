@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140A
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - INPUT QUEUE CHECK
+	AH = 0Ah
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AX = number of characters available in buffer
+Note:	this function is also supported by the PC-MOS/386 v5.01 $serial.sys
+SeeAlso: AH=09h"Digiboard",AH=0Dh"Digiboard"
+

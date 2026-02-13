@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 110225BX6904
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - Blank-It Screen Blanker - GET BLANKING TIMEOUT
+	AX = 0225h
+	BX = 6904h
+Return: CF clear if successful
+	    BX = timeout (see AX=0225h/BX=6901h)
+	CF set on error
+	    AL = error code
+SeeAlso: AX=0225h/BX=6900h,AX=0225h/BX=6901h
+Index:	screen saver;Blank-It
+

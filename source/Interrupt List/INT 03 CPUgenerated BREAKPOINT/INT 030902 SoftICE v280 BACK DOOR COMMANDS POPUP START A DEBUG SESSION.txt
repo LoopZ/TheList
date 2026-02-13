@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 030902
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 03 - Soft-ICE v2.80 - BACK DOOR COMMANDS - POPUP & START A DEBUG SESSION
+	AX = 0902h
+	SI = magic value 4647h ('FG')
+	DI = magic value 4A4Dh ('JM')
+	DS:BX -> initial register values (see #00001)
+Return: registers as specified in initial register values table
+Note:	This function is called by LDR.EXE in loading a program to
+	  be debugged. After executing the function, Soft-ICE pops up its
+	  debugging window and you may start debugging your program.
+Return: ???
+SeeAlso: AX=0000h,AX=090Ah,AX=0910h,AX=0914h
+
+Format of Soft-ICE initial register values:
+Offset	Size	Description	(Table 00001)
+ 00h	WORD	initial value of SP
+ 02h	WORD	initial value of SS
+ 04h	WORD	initial value of IP
+ 06h	WORD	initial value of CS
+ 08h	WORD	initial value of DS and ES
+ 0Ah	WORD	???
+ 0Ch	WORD	???
+ 0Eh	WORD	???
+ 10h	WORD	initial value of AX
+ 12h	WORD	??? (defaults to 000AH ???)
+ 14h	WORD	??? (defaults to 0001H ???)
+ 16h	WORD	??? (defaults to 0100H ???)
+

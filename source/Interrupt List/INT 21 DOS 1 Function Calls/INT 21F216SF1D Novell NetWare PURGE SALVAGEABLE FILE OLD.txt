@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF1D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PURGE SALVAGEABLE FILE (OLD)
+	AX = F216h subfn 1Dh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02126)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=1Bh,AX=F216h/SF=1Ch,AX=F257h/SF=12h
+
+Format of NetWare "Purge Salvageable File (old)" request packet:
+Offset	Size	Description	(Table 02126)
+ 00h	WORD	length of following data
+ 02h	BYTE	1Dh (subfunction "Purge Salvageable File (Old)")
+ 03h	BYTE	directory handle
+ 04h	DWORD	directory entry
+ 08h	DWORD	sequence number from Scan Salvageable Files
+

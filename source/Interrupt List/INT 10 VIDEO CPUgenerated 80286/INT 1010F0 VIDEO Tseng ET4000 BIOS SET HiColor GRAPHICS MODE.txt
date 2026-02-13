@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1010F0
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Tseng ET-4000 BIOS - SET HiColor GRAPHICS MODE
+	AX = 10F0h
+	BL = video mode (see also #00010 at AH=00h)
+	    13h = 320x200x32K
+	    2Dh = 640x350x32K
+	    2Eh = 640x480x32K
+	    2Fh = 640x400x32K
+	    30h = 800x600x32K
+	    3Eh = 640x480x16M (Genoa 7900)
+	    FFh Tseng 24-bit color mode
+		BH = mode
+		    2Dh = 640x480
+		    2Eh = 640x480x16M
+		    2Fh = 640x400
+		    30h = 800x600
+		    38h = 1024x768??? (Tseng ET4000/W32i)
+Return: AL = 10h if supported
+	AH = status
+	    00h if successful
+	    other on error
+Desc:	switch the display into a graphics mode with 15 or more bits per pixel
+Note:	the Tseng HiColor BIOS extensions are supported by:
+	  Diamond Computer Systems	SpeedStar HiColor VGA
+	  Everex Systems		HC VGA
+	  Focus Information Systems	2theMax 4000
+	  Cardinal Technologies		VGA732
+	  Orchid ProDesigner IIs	Genoa 7900
+SeeAlso: AH=00h,AX=10E0h,AX=10F1h,AX=10F2h
+Index:	video modes;Tseng Hi-Color
+

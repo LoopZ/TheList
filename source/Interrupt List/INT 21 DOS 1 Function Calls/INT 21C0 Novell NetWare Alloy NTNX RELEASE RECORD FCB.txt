@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C0
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare, Alloy NTNX - RELEASE RECORD (FCB)
+	AH = C0h
+	DS:DX -> non-extended FCB (see #01345 at AH=0Fh)
+	BX:CX = offset
+Return: AL = error code (see #01807)
+Notes:	unlocks record but does not remove it from log table
+	this function was added in NetWare 4.6, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+SeeAlso: AH=BDh,AH=BFh,AH=C1h"NetWare",AH=C3h
+

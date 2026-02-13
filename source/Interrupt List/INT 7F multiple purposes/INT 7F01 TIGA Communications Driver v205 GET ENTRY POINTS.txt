@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - TIGA Communications Driver v2.05 - GET ENTRY POINTS
+	AH = 01h
+Return: BX = 1234h if installed
+	    DX:AX -> array of FAR entry points
+	    CH = driver major version
+	    CL = driver minor version
+Note:	TIGACD 2.05 returns CF set on unrecognized functions in AX
+SeeAlso: AX=1234h,AX=4321h
+

@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1504
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - BUILD ABIOS SYSTEM PARAMETER TABLE (PS)
+	AH = 04h
+	ES:DI -> 32-byte results buffer for System Parameter Table (see #00410)
+	DS = segment containing ABIOS RAM extensions (zero if none)
+Return: CF clear if successful
+	    AH = 00h success
+	    ES:DI buffer filled
+	    AL destroyed
+	CF set on failure
+	    AX destroyed
+	    AH = 80h/86h if not supported
+SeeAlso: AH=05h"ABIOS",AH=C1h
+
+Format of ABIOS System Parameter Table:
+Offset	Size	Description	(Table 00410)
+ 00h	DWORD	FAR address of ABIOS Common Start Routine
+ 04h	DWORD	FAR address of ABIOS Interrupt Routine
+ 08h	DWORD	FAR address of ABIOS Time-out Routine
+ 0Ch	WORD	number of bytes of stack required by this ABIOS implementation
+ 0Eh 16 BYTEs	reserved
+ 1Eh	WORD	number of entries in initialization table
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FA06DX5945
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ VSAFE, VWATCH - GET NETWORK DRIVES TEST FLAG
+	AX = FA06h
+	DX = 5945h
+Return: CF clear
+	DI = 4559h
+	BL = test status
+	    00h don't monitor network drives (default for VWATCH v2.1)
+	    FFh monitor network drives (default for VSAFE v2.0)
+	CL = ??? (only VSAFE 2.0)
+SeeAlso: AX=FA07h
+

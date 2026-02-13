@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15530A
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - GET POWER STATUS
+	AX = 530Ah
+	BX = device ID
+	    0001h all devices power-managed by APM
+	    80xxh specific battery unit number XXh (01h-FFh) (APM v1.2)
+Return: CF clear if successful
+	    BH = AC line status
+		00h off-line
+		01h on-line
+		02h on backup power (APM v1.1)
+		FFh unknown
+		other reserved
+	    BL = battery status (see #00476)
+	    CH = battery flag (APM v1.1+) (see #00477)
+	    CL = remaining battery life, percentage
+		00h-64h (0-100) percentage of full charge
+		FFh unknown
+	    DX = remaining battery life, time (APM v1.1) (see #00478)
+	    ---if specific battery unit specified---
+	    SI = number of battery units currently installed
+	CF set on error
+	    AH = error code (09h,0Ah) (see #00473)
+Notes:	should not be called from within a hardware interrupt handler to avoid
+	  reentrance problems
+	supported in real mode (INT 15) and both 16-bit and 32-bit protected
+	  mode
+
+(Table 00476)
+Values for APM v1.0+ battery status:
+ 00h	high
+ 01h	low
+ 02h	critical
+ 03h	charging
+ FFh	unknown
+ other	reserved
+SeeAlso: #00477,#00478
+
+Bitfields for APM v1.1+ battery flag:
+Bit(s)	Description	(Table 00477)
+ 0	high
+ 1	low
+ 2	critical
+ 3	charging
+ 4	selected battery not present (APM v1.2)
+ 5-6	reserved (0)
+ 7	no system battery
+Note:	all bits set (FFh) if unknown
+SeeAlso: #00476,#00478
+
+Bitfields for APM v1.1+ remaining battery life:
+Bit(s)	Description	(Table 00478)
+ 15	time units: 0=seconds, 1=minutes
+ 14-0	battery life in minutes or seconds
+Note:	all bits set (FFFFh) if unknown
+SeeAlso: #00476,#00477
+

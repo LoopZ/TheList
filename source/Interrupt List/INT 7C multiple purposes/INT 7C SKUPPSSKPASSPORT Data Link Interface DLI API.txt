@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS/SK-PASSPORT Data Link Interface (DLI) API
+Program: SK-UPPS is the Schneider & Koch Universal Portable Protocol Stack,
+	  which provides an API on top of it Data Link Interface, allowing the
+	  use of any of several network transport layers; this product is
+	  called SK-PASSPORT in the USA.
+InstallCheck:	test for the ASCII signature string "UPPS_DLI" immediately
+	  preceding the interrupt handler
+Notes:	To find the service interrupt being used by the driver, an application
+	  should scan through the interrupt table until it finds an interrupt
+	  vector with the "UPPS_DLI" string.
+	There may be more than one DLI loaded, each having its own service
+	  interrupt.
+SeeAlso: AX=0000h,AX=0002h,AX=000Fh
+Index:	installation check;SK-UPPS
+

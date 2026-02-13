@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620064
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_INVERT" - INVERT ORIENTATION OF BITMAP
+	AX = 0064h
+	ES:BX -> bitmap
+	CX = width of bitmap in bytes
+	DX = height of bitmap in pixel rows
+Return: nothing
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106E04
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Paradise VGA internal - GET SCREEN SIZE AND ???
+	AX = 6E04h
+Return: BX = screen width (columns)
+	CX = screen height (lines)
+	AH = ??? (05h or FFh)
+	AL = ??? (04h or video mode)
+SeeAlso: AX=6E00h,AX=6E05h
+

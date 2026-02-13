@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL88
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "Q_DELETE" - DELETE SYSTEM QUEUE
+	CL = 88h
+	DS:DX -> queue parameter block (QPB) (see #04044,#04045)
+Return: AX = status (0000h success, FFFFh failure)
+SeeAlso: INT E0/CL=87h
+

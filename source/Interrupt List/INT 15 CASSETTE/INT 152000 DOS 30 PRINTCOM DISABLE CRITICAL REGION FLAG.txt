@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152000
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - DOS 3.0+ PRINT.COM - DISABLE CRITICAL REGION FLAG
+	AX = 2000h
+Return: nothing
+Desc:	stop setting user flag on entry to PRINT critical region
+Note:	also supported by PC Network v1.00 RECEIVER.COM
+SeeAlso: AX=2001h
+

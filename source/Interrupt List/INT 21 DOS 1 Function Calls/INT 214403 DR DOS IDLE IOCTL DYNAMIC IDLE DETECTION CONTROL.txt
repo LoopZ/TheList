@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DR DOS $IDLE$ - IOCTL - DYNAMIC IDLE DETECTION CONTROL
+	AX = 4403h
+	BX = file handle referencing character device $IDLE$
+	CX = number of bytes to write (0004h)
+	DS:DX -> $IDLE$ IOCTL structure (see #04113)
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	When the DR DOS IBMBIO.COM detects the presence of the $IDLE$ device
+	  during startup, it will retrieve the address of the idle state
+	  data area via INT 21/AX=4458h and pass it along to the $IDLE$ device
+	  driver by calling this function.
+
+Format of DR DOS $IDLE$ IOCTL structure:
+Offset	Size	Description	(Table 04113)
+ 00h	DWORD	-> idle state data area (see Table !!! at INT 21/AX=4458h)
+

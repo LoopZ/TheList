@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: i 	system info/monitoring
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 2F O - ASPIHOOK.SYS - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if multiplex number in use
+	    ES:DI -> ASCIZ signature "ASPIHOOK" if ASPIHOOK.SYS installed
+Program: ASPIHOOK is a device driver for monitoring SCSI activity through an
+	  ASPI host manager; it is part of the Personal Measure system
+	  activity monitor from Spirit of Performance, Inc.
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+SeeAlso: AX=C000h"PMEASURE"
+

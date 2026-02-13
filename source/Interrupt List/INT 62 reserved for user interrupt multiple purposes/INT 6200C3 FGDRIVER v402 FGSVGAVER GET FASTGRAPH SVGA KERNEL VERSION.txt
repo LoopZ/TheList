@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200C3
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SVGAVER" - GET FASTGRAPH SVGA KERNEL VERSION
+	AX = 00C3h
+	ES:BX -> variable pointer record (see #03507)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00C1h,AX=00C2h
+
+Format of FGDRIVER variable pointer record:
+Offset	Size	Description	(Table 03507)
+ 00h	WORD	segment of WORD buffer for major version
+ 02h	WORD	offset of WORD buffer for major version
+ 04h	WORD	segment of WORD buffer for minor version (hundredths)
+ 06h	WORD	offset of WORD buffer for minor version
+

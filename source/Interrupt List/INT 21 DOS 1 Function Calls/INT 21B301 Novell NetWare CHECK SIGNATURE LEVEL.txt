@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B301
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Novell NetWare - CHECK SIGNATURE LEVEL???
+	AX = B301h
+Return: AX = 0000h if supported???
+	    BX:CX indicate signature level (see #01801)
+Note:	this function appeared with the packet signing/Large Internet Packets/
+	  IPX Checksum-aware NetWare shells
+SeeAlso: AX=B300h,AX=B304h,#02875 at INT 2F/AX=7A20h/BX=0000h
+
+(Table 01801)
+Values for signature level indicator:
+ 0000h:0000h = signature level 0
+ 0002h:0000h = signature level 1
+ 0202h:0000h = signature level 2
+ 0202h:0202h = signature level 3
+

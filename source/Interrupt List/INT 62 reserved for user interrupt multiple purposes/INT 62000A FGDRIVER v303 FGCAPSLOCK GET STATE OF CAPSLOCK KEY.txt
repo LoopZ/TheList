@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62000A
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_CAPSLOCK" - GET STATE OF CAPSLOCK KEY
+	AX = 000Ah
+Return: AX = CapsLock state (0000h off, 0001h on)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=0082h,AX=00A4h,AX=00A8h,AX=00B1h
+

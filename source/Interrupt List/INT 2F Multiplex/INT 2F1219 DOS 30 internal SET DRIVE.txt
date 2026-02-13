@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1219
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - SET DRIVE???
+	AX = 1219h
+	SS = DOS DS (must be using a DOS internal stack)
+	STACK: WORD drive (0 = default, 1 = A:, etc)
+Return: ???
+	STACK unchanged
+Notes:	calls AX=1217h
+	builds a current directory structure if inside server call
+	  (INT 21/AX=5D00h)
+SeeAlso: AX=1217h,AX=121Fh
+

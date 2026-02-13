@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0036
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VFBACKUP - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0036h (virtual device ID for VFBACKUP device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02676)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02676)
+Call VFBACKUP.VXD entry point with:
+	nothing -- this API is a NOP for the default Windows95 VFBACKUP
+SeeAlso: #02673,#01126
+

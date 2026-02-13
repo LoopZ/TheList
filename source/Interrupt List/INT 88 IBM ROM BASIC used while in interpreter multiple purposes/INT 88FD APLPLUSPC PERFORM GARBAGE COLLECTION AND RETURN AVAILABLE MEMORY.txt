@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 88--FD
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 88 - APL*PLUS/PC - PERFORM GARBAGE COLLECTION AND RETURN AVAILABLE MEMORY
+	AL = FDh
+Return: BX = number of paragraphs available in workspace
+SeeAlso: AL=FCh,INT C8"APL"
+

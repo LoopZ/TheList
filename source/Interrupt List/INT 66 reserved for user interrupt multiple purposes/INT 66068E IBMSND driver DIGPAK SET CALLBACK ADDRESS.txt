@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66068E
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - IBMSND driver, DIGPAK - SET CALLBACK ADDRESS
+	AX = 068Eh
+	BX:DX -> callback function
+	    0000h:0000h to disable callback
+	DS = value to load into DS when calling the callback function
+Desc:	specify the function to be called when playback of a sound effect is
+	  completed
+Note:	the callback function will typically be called during a hardware
+	  interrupt, so all the usual precautions should be taken except for
+	  preserving registers
+SeeAlso: AX=0691h
+

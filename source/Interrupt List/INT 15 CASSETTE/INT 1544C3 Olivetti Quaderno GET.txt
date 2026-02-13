@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1544C3
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Olivetti Quaderno - GET ???
+	AX = 44C3h
+Return: DH = bitfields (see #00465)
+	DL = value read from I/O port 350h
+Note:	this function is also supported by XBIOS.COM
+SeeAlso: AX=44C2h,AX=44C9h
+
+Bitfields for Olivetti Quaderno ???:
+Bit(s)	Description	(Table 00465)
+ 5-7	5-7 read from I/O port 351h
+ 2-4	zero
+ 1-0	"tres complique"
+

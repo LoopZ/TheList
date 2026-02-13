@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF26
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "SetDOSTrans" - SET DOS TRANSFER BUFFER
+	AX = FF26h
+	BX = real-mode segment of new transfer buffer
+	ECX = new transfer buffer size
+	DX = protected-mode selector for new transfer buffer
+Return: nothing
+Note:	the specific buffer must be located in conventional memory; only the
+	  first 64K will be used
+SeeAlso: AX=FF25h
+

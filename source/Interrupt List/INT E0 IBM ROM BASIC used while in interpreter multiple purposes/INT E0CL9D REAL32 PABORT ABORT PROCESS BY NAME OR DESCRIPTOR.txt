@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL9D
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_ABORT" - ABORT PROCESS BY NAME OR DESCRIPTOR
+	CL = 9Dh
+	DS:DX -> Abort Parameter Block (see #04050)
+Return: AX = status
+	may destroy SI,DI,DS
+SeeAlso: INT E0/CL=8Fh,INT E0/CL=9Ch
+
+Format of REAL/32 Abort Parameter Block:
+Offset	Size	Description	(Table 04050)
+ 00h	WORD	process descriptor of process to abort, or 0000h
+ 02h	WORD	termination code
+ 04h	BYTE	default console number
+ 05h	BYTE	reserved (0)
+ 06h  8 BYTEs	name of process to abort, if descriptor at offset 00h is 0000h
+

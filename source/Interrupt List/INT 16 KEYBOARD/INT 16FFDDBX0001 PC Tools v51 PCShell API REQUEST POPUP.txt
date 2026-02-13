@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFDDBX0001
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1+ PCShell API - REQUEST POP-UP
+	AX = FFDDh
+	BX = 0001h
+Return: CF clear if request successful (PCShell will pop up)
+	CF set on error
+SeeAlso: AX=FFDDh/BX=0003h
+

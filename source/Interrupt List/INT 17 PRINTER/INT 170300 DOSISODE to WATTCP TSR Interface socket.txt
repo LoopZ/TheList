@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 170300
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - DOSISODE to WATTCP TSR Interface - "socket"
+	AX = 0300h
+	CX = type of socket from  socket( domain, type, protocol )
+	DX = local identifier of socket (0 - 31)
+Return: AX = 0000h success
+	    CX = segment of 4500 byte transfer buffer
+	    DX = offset of 4500 byte transfer buffer
+	   = FFFFH failure
+	    CX = error code
+		ENFILE	    23
+Program: DOSISODE is the ISO developers environment which has been ported to
+	  DOS and will run with the Waterloo TCP turned into a resident TSR.
+	  Currently it allows a maximum of 6 open sockets.
+Note:	this function will initialize the interface the first time it is
+	  called
+SeeAlso: AX=0400h"DOSISODE",AX=0600h"DOSISODE",AX=0800h"DOSISODE"
+SeeAlso: AX=0A00h"DOSISODE",AX=0C00h"DOSISODE",AX=0E00h"DOSISODE"
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0A
+  Category: H 	hardware
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 0A C - IRQ2 - LPT2 (PC), VERTICAL RETRACE INTERRUPT (EGA,VGA)
+Notes:	the TOPS and PCnet adapters use this interrupt request line by default
+	DOS 3.2 revectors IRQ2 to a stack-switching routine; DOS 3.3+ does so
+	  unless STACKS=0 has been set in CONFIG.SYS.  MS/PC-DOS 3.3+ use the
+	  IBM Interrupt Sharing Protocol (see #02568) when hooking this IRQ
+	on ATs and above, the physical data line for IRQ2 is labeled IRQ9 and
+	  connects to the slave 8259.  The BIOS redirects the interrupt for
+	  IRQ9 back here.
+	under DESQview, only the INT 15h vector and BASIC segment address (the
+	  word at 0000h:0510h) may be assumed to be valid for the handler's
+	  process
+	many VGA boards do not implement the vertical retrace interrupt,
+	  including the IBM VGA Adapter where the traces are either cut or
+	  removed
+SeeAlso: INT 52"DESQview",INT 5A"DoubleDOS",INT 71,INT 7A"GO32"
+

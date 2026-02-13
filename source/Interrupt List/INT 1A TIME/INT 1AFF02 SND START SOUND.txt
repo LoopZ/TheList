@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AFF02
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SND - START SOUND
+	AX = FF02h
+	DX = frequency in Hertz (14h-FFFFh)
+Return: AH = status
+	    00h successful
+	    01h SND busy
+SeeAlso: AX=FF00h,AX=FF01h,AX=FF03h
+

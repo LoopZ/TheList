@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF2A
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay v1.3 - "cwLoad" - LOAD ANOTHER CAUSEWAY PROGRAM AS OVERLAY
+	AX = FF2Ah
+	DS:EDX -> filename
+Return: CF clear if successful
+	    CX:EDX = CS:EIP of entry point
+	    BX:EAX = initial SS:ESP for program
+	    SI = PSP for overlay program
+	CF set on error
+	    AX = error code (01h file error, 02h not a 3P file, 03h no memory)
+Note:	the returned PSP can be given to "RelMem" (AX=FF0Fh) to release the
+	  overlay's memory and selectors; only selectors and memory allocated
+	  during loading will be freed by RelMem unless one switches PSPs with
+	  INT 21/AH=50h
+SeeAlso: AX=FF00h,AX=FF24h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215E05
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ network - GET PRINTER MODE
+	AX = 5E05h
+	BX = redirection list index (see AX=5F02h)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    DX = printer mode (see AX=5E04h)
+Notes:	calls INT 2F/AX=111Fh with 5E05h on stack
+	supported by DR DOS 3.41+
+SeeAlso: AX=5E04h"DOS",INT 2F/AX=111Fh
+

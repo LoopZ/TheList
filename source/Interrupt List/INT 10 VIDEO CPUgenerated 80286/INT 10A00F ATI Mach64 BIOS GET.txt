@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A00F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI Mach64 BIOS - GET ???
+	AX = A00Fh
+Return: AH = 00h (successful)
+	CL = ??? (00h-03h, read from PORT 42ECh)
+Note:	NOP in All-in-Wonder 128 BIOS
+SeeAlso: AX=A000h,AX=A00Eh
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B810B
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification - DISABLE DMA TRANSLATION
+	AX = 810Bh
+	BX = DMA channel number
+	DX = 0000h
+Return: CF clear if successful
+	CF set on error
+	    AL = error code (see #03218)
+SeeAlso: AX=810Ch
+

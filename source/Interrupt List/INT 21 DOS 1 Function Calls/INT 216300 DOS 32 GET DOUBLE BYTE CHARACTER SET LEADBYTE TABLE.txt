@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216300
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.2+ - GET DOUBLE BYTE CHARACTER SET LEAD-BYTE TABLE
+	AX = 6300h
+Return: AL = error code
+	    00h successful
+		DS:SI -> DBCS table (see #01746)
+		all other registers except CS:IP and SS:SP destroyed
+	    FFh not supported
+Notes:	probably identical to AH=63h/AL=00h for DOS 2.25
+	the US version of MS-DOS 3.30 treats this as an unused function,
+	  setting AL=00h and returning immediately, WITHOUT setting DS:SI;
+	  only the Far East versions of MS-DOS 3.2 and 3.3 supported this call
+	the US version of DOS 4.0+ accepts this function, but returns an empty
+	  list
+	IBM DOS 6.1 SYS.COM assumes that CF is set on error
+SeeAlso: AX=6300h"DOS 2.25"
+

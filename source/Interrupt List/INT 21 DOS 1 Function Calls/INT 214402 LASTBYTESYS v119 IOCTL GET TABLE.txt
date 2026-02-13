@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - LASTBYTE.SYS v1.19 - IOCTL - GET ??? TABLE
+	AX = 4402h
+	BX = handle for device "LA$TBYTE"
+	CX = 0004h
+	DS:DX -> DWORD to hold address of 39-byte table of ???
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = number of bytes read
+Program: LASTBYTE.SYS is part of the shareware "The Last Byte" memory
+	  management package by Key Software Products
+SeeAlso: AX=4402h"HIGHUMM"
+

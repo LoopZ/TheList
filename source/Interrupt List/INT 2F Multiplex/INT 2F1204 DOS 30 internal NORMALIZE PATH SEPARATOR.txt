@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1204
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - NORMALIZE PATH SEPARATOR
+	AX = 1204h
+	STACK: WORD character to normalize
+Return: AL = normalized character (forward slash turned to backslash, all
+		  others unchanged)
+	ZF set if path separator
+	STACK unchanged
+

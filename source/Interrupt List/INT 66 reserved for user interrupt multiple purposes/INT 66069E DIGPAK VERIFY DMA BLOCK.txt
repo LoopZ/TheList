@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66069E
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - DIGPAK - VERIFY DMA BLOCK
+	AX = 069Eh
+	CX = length of buffer
+	ES:BX -> buffer containing sound data
+Return: AX = status
+	    0000h block crosses 64K bounadary
+	    0001h block is OK
+SeeAlso: AX=069Dh
+

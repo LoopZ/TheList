@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200AB
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETDACS" - SET VIDEO DAC CONTENTS
+	AX = 00ABh
+	CX = number of DAC registers to set (0001h to 0100h)
+	DX = starting DAC register number (0000h to 00FFh)
+	ES:BX -> buffer containing DAC red/green/blue triples
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The register number wraps back to zero after reaching FFh
+	This call has no effect in text modes or graphics modes below 11h
+SeeAlso: AX=0041h,AX=004Eh,AX=0086h,INT 10/AX=1012h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - TSENGP.COM - INSTALLATION CHECK
+	AX = C000h
+Return: AL = status
+	    00h not installed, OK to install
+	    FFh installed
+		DS = segment of resident code
+Program: TSENGP.COM is a TSR supplied by Compaq to fix an incompatibility
+	  between some applications and Tseng ET4000-based video adapters
+Range:	AH=C0h to AH=FFh, selected automatically
+Note:	the installation check is completed by comparing the first eleven
+	  bytes at DS:005Fh against the TSR's code (80h FCh 06h 74h 0Ah
+	  80h FCh 07h 74h 05h EAh)
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 674321
+  Category: u 	emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Q87 v4+ - INSTALLATION CHECK
+	AX = 4321h
+	EAX = 87654321h (entire EAX value required)
+Return: EAX = 12345678h if Q87 is installed
+Note:	this call requires that VCPI services be available; if they are not,
+	  this call will not be recognized
+BUG:	v4.00-v4.03 will hang on most machines when run under bare DOS with
+	  no memory manager, because neither Q87 nor UNLOAD87 checks whether
+	  there is a valid INT 67 handler before performing an installation
+	  check via INT 67
+SeeAlso: AX=2833h,INT 21/AX=4321h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A10BX0004
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SMARTDRV v4.00+ - GET CACHE SIZE
+	AX = 4A10h
+	BX = 0004h
+Return: AX = size in elements of full-sized cache
+	BX = current size in elements
+	CX = size of one element in bytes
+	DX = number of elements under Windows
+Note:	this function is also supported by PC-Cache v8.0.
+SeeAlso: AX=4A10h/BX=0000h,AX=4A10h/BX=0003h,AX=4A10h/BX=0005h
+

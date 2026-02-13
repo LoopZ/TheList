@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F18--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_INS_FIND" - FIND DRIVER BY ATTRIBUTES
+	AH = 18h
+	BP = 0012h (driver ID for V_SYSTEM)
+	AL = sense of test (00h equal, 02h non-equal)
+	BX = AND mask
+	DX = pattern
+	SI = first vector address to search
+	DI = offset in HP header of field to test
+Return: AH = status (00h,FEh) (see #03744 at INT 6F/AH=00h"HP Vectra")
+	BP,DS destroyed
+	---if AH=00h---
+	SI = first matching vector address
+Desc:	compare successive drivers' header fields starting at address SI
+	  until the header field AND BX is either equal or non-equal to DX
+SeeAlso: AH=00h"HP Vectra",AH=04h/BP=0012h,AH=0Ch/BP=0012h,AH=10h/BP=0012h
+SeeAlso: AH=12h/BP=0012h,AH=16h/BP=0012h
+

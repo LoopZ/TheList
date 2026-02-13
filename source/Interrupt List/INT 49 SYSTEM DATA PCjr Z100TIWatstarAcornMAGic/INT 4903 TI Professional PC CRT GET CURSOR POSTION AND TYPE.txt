@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4903
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - GET CURSOR POSTION AND TYPE
+	AH = 03h
+Return: CH = cursor start and status (see AH=01h)
+	CL = cursor end line
+	DH = cursor column
+	DL = cursor row
+Note:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+SeeAlso: AH=01h,AH=02h
+

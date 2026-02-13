@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1508
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - TERMINATE INTERNAL TASK (KILL THREAD)
+	AH = 08h
+Return: calling task terminated, so execution never returns to caller
+Notes:	an internal task must be terminated with this function rather than a
+	  DOS termination function
+	task's stack space is returned to parent task's memory pool
+SeeAlso: AH=07h"MultiDOS"
+

@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A8D
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - GET SOCKET
+	AH = 8Dh
+	AL = adapter number
+	BL = socket number (01h to maximum supported by adapter)
+Return: CF clear if successful
+	    AH destroyed
+	    BH = status change interrupt enable mask (see #00658)
+	    CH = Vcc level (lower nybble) (see #00684)
+	    CL = Vpp1 level (upper nybble) and Vpp2 level (lower nybble)
+	    DH = current socket status (see #00659)
+	    DL = indicators (see #00681)
+	    SI = card type (see #00685)
+	    DI = IRQ level steering (I/O only) (see #00686)
+	CF set on error
+	    AH = error code (01h,0Bh) (see #00656)
+SeeAlso: AH=8Ch,AH=8Eh
+
+Bitfields for PCMCIA card type:
+Bit(s)	Description	(Table 00685)
+ 0	memory
+ 1	I/O
+ 2-15	reserved (0)
+
+Bitfields for PCMCIA I/O level steering:
+Bit(s)	Description	(Table 00686)
+ 15	interrupt steering enabled
+ 14-5	reserved (0)
+ 4-0	IRQ level (0-15=IRQ,16=NMI,17=I/O check,18=bus error,19=vendor)
+

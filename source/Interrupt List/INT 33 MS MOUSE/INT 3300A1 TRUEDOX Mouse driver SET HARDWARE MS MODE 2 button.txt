@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 3300A1
+  Category: M 	mouse/pointing device
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 33 U - TRUEDOX Mouse driver - SET HARDWARE MS MODE (2 button)
+	AX = 00A1h
+Return: nothing
+Notes:	this function is only available if the mouse mode is switchable
+	  through the power pins
+	this is the mouse driver for the Dell Dimension series of computers, by
+	  TRUEDOX Technology Corporation
+SeeAlso: AX=006Ch"TRUEDOX",AX=00A0h"TRUEDOX",AX=00A6h,AX=0666h
+

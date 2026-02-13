@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1107
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - COMMIT REMOTE FILE
+	AX = 1107h
+	ES:DI -> filled-in SFT (assumed to point at SDA's current SFT field)
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    all buffers for file flushed
+	    directory entry updated
+	ES:DI must be preserved
+Desc:	perform all the buffer flushing, directory updates, etc. that would be
+	  performed on a file close, but do not decrement the SFT reference
+	  count
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: INT 21/AH=68h,INT 21/AX=5D01h
+

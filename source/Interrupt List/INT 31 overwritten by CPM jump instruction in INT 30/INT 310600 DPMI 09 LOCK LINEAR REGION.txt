@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310600
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - LOCK LINEAR REGION
+	AX = 0600h
+	BX:CX = starting linear address
+	SI:DI = size of region in bytes
+Return: CF clear if successful
+	CF set on error
+	    none of the memory is locked
+	    AX = error code (DPMI 1.0+) (8013h,8017h,8025h) (see #03143)
+Notes:	pages at beginning and end will be locked if the region overlaps them
+	may be called multiple times for a given page; the DPMI host keeps a
+	  lock count for each page
+SeeAlso: AX=0004h,AX=0601h,INT 21/AX=251Ah,INT 21/AX=EB06h
+

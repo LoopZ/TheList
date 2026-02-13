@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1763
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 17 U - T2PS v1.0 - SET PARAMETERS
+	AH = 63h
+	ES:SI -> settings (see #00641)
+Program: T2PS is a shareware ASCII-to-PostScript converter by A.N.D.
+	  Technologies
+SeeAlso: AH=62h,AH=64h,INT 05/AX=4E57h
+
+Format of T2PS settings:
+Offset	Size	Description	(Table 00641)
+ 00h	WORD	LPT port number (0=LPT1, etc.)
+ 02h	WORD	page heigh in points
+ 04h	WORD	page width in points
+ 06h	WORD	top margin in points
+ 08h	WORD	bottom margin in points
+ 0Ah	WORD	left margin in points
+ 0Ch	WORD	right margin in points
+ 0Eh	WORD	font size in points
+ 10h	WORD	tab size
+ 12h	WORD	timeout in clock ticks
+

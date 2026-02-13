@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH06
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - GET RESUME CONDITION
+	AX = 5380h
+	BH = 06h
+Return: CF clear if successful
+	    BL = resume condition (see #00482)
+Desc:	reads the value of 82360SL RESUME_MASK register
+SeeAlso: AX=5380h/BH=04h,AX=5380h/BH=07h,AX=5380h/BH=08h,AX=5380h/BH=7Fh
+
+Bitfields for APM SL resume condition:
+Bit(s)	Description	(Table 00482)
+ 7-2	reserved (0)
+ 1	alarm enabled (resume on CMOS alarm)
+ 0	ring enabled
+

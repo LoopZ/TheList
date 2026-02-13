@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09--BX8020
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - TRANSLATE DATA
+	AH = 09h
+	BX = 8020h
+	CX = 00FFh
+	DX = ID of XLATE
+	AL = service
+	    01h translate from host characters to ASCII and vice versa
+		(determined by control block byte 11)
+	ES:DI -> control block
+Return: ???
+

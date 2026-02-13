@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA25
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - STANDBY.COM - PREPARE FOR UNINSTALL
+	AX = BA25h
+Return: CF clear if successful
+	    AX = 25BAh
+	    BX = PSP of STANDBY.COM resident portion
+	    DX:CX -> previous INT 15 handler
+	CF set on error
+Note:	This function is used internally by the STANDBY.COM /u option, and
+	  should not be used by application programs.
+SeeAlso: AX=BA20h
+

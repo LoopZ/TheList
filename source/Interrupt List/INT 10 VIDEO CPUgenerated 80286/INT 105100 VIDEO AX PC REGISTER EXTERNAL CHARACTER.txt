@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105100
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - AX PC - REGISTER EXTERNAL CHARACTER
+	AX = 5100h
+	BH = character width in bits (10h)
+	BL = character height (10h)
+	DX = character code (DH = F0h-F3h, DL=40h-7Eh,80h-FCh)
+	ES:BP -> character bitmap
+Return: AL = status (00h successful, 01h failed)
+SeeAlso: AX=5101h,INT 1F"SYSTEM DATA"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF10
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PURGE ERASED FILES (OLD)
+	AX = F216h subfn 10h
+	CX = length of request buffer in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #01865 at AH=E2h/SF=10h)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=10h,AX=F216h/SF=11h
+

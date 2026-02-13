@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F122A
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ internal - SET FASTOPEN ENTRY POINT
+	AX = 122Ah
+	BX = entry point to set (0001h or 0002h)
+	DS:SI -> FASTOPEN entry point (see #02611,#02612)
+		(entry point not set if SI = FFFFh for DOS 4.0+)
+Return: CF set if specified entry point already set
+Notes:	entry point in BX is ignored under DOS 3.30
+	both entry points set to same handler by DOS 4.01
+	DOS 5.0 and 6.0 only set entry point 1
+
+(Table 02611)
+Values DOS 3.30+ FASTOPEN entry point is called with:
+	AL = 01h  Lookup
+	    CX = ??? seems to be offset
+	    DI = ??? seems to be offset
+	    SI = offset in DOS DS of filename
+	AL = 02h  insert file into FASTOPEN cache
+	AL = 03h  delete file from FASTOPEN cache
+	    SI = offset in DOS DS of filename
+	AL = 04h  purge FASTOPEN cache
+	    AH = subfunction (00h,01h,02h)
+	    ES:DI -> ???
+	    CX = ??? (subfunctions 01h and 02h only)
+Returns: CF set on error or not installed
+Note: function 03h calls function 01h first
+SeeAlso: #02612,#02613
+
+(Table 02612)
+Values PC-DOS 4.01 FASTOPEN is additionally called with:
+	AL = 04h ???
+	    AH = 03h
+	    ???
+	AL = 05h ???
+	AL = 0Bh ???
+	AL = 0Ch ???
+	AL = 0Dh ???
+	AL = 0Eh ???
+	AL = 0Fh ???
+	AL = 10h ???
+SeeAlso: #02611,#02613
+
+(Table 02613)
+Values MS-DOS 5.0-6.0 FASTOPEN is additionally called with:
+	AL = 04h  purge FASTOPEN cache
+	    AH = 03h
+	    ???
+	AL = 05h ???
+	    DL = drive (00h = A:)
+	    ???
+	AL = 06h ???
+	    ???
+SeeAlso: #02611,#02612
+

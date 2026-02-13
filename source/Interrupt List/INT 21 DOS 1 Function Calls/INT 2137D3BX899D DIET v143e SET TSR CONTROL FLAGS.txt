@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137D3BX899D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DIET v1.43e - SET TSR CONTROL FLAGS
+	AX = 37D3h
+	BX = 899Dh ('DI' + 'ET')
+	DL = control flag (00h active, else disabled)
+	DH = skip flag (00h)
+Return: AX = 0000h
+SeeAlso: AX=37D0h,AX=37D2h,AX=37D5h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB905
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC Network RECEIVER.COM - GET FILENAME
+	AX = B905h
+	DS:BX -> 128-byte buffer for filename 1
+	DS:DX -> 128-byte buffer for filename 2
+Return: buffers filled from RECEIVER.COM internal buffers
+Note:	use of filenames is unknown, but one appears to be for storing messages
+SeeAlso: AX=B906h
+

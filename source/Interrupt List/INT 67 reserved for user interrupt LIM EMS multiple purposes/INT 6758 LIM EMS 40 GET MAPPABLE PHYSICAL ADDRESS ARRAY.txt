@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6758
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - GET MAPPABLE PHYSICAL ADDRESS ARRAY
+	AH = 58h
+	AL = subfunction
+	    00h get mappable physical address array
+		ES:DI -> buffer to be filled with array (see #03654)
+	    01h get number of entries in m.p.a. array
+Return: CX = number of entries in array
+	AH = status (00h,80h,81h,84h,8Fh) (see #03652)
+Note:	the returned array for subfunction 00h is filled in physical segment
+	  address order
+
+Format of EMS mappable physical address entry:
+Offset	Size	Description	(Table 03654)
+ 00h	WORD	physical page segment
+ 02h	WORD	physical page number
+

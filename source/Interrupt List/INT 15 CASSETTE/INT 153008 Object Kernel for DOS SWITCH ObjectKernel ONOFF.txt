@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 153008
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Object Kernel for DOS - SWITCH ObjectKernel ON/OFF
+	AX = 3008h
+	BH = new state (00h disabled, 01h enabled)
+Return: AX = FFFFh
+SeeAlso: AX=3000h,AX=3009h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00013
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "DAMAGE" - DETERMINE HOW MUCH DAMAGE SUSTAINED
+	AX = 0013h
+Return: BX = damage status
+Note:	the initial value depends on configuration, but is typically 100; as
+	  the robot is damaged, it decreases
+

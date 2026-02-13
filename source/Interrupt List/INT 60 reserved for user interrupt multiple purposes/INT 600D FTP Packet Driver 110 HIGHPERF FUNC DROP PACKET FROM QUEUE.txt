@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver 1.10+ - HIGH-PERF FUNC - DROP PACKET FROM QUEUE
+	AH = 0Dh
+	ES:DI -> IOCB
+Return: CF set on error
+	    DH = error code (see #03305)
+	CF clear if successful
+SeeAlso: AH=0Ch"Packet Driver"
+

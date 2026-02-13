@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101E06
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - FLAT-PANEL - CONTRAST CONTROL FOR TEXT/GRAPHICS
+	AX = 1E06h
+	BH = function
+	    bit 7: =1 set contrast control, =0 query contrast
+	    bits 6-0: reserved (0)
+	---if BH bit 7 set---
+	BL = new normal/reverse video setting (see #00059)
+Return: AL = 1Eh if function supported
+	    BH = results
+		bit 7: query/set (copied from input)
+		bits 6-4: reserved (0)
+		bit 3: software contrast control supported for text
+		bit 2: software contrast control supported for graphics
+		bit 1: hardware supports independent control of contrast
+		      in text and graphics modes
+		bit 0: set operation was successful (always clear on get)
+	    BL = active contrast setting (see #00059)
+Note:	this function operates independently of AX=1E08h
+SeeAlso: AX=1E00h,AX=1E04h,AX=1E05h,AX=1E07h,AX=1E08h
+
+Bitfields for Flat-Panel contrast control:
+Bit(s)	Description	(Table 00059)
+ 7-2	reserved (0)
+ 1	high contrast for text
+ 0	high contrast for graphics
+SeeAlso: #00057,#00058
+

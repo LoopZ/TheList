@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6118
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_eof" - CLOSE TRANSMIT SIDE OF CONNECTION
+	AH = 18h
+	BX = network descriptor
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	a TCP "FIN" command is sent and no further data may be transmitted,
+	  although the connection remains open
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=13h"PC/TCP"
+SeeAlso: INT 63/AH=0Eh"BW-TCP"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A01
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - SET SYSTEM TIME
+	AH = 01h
+	CX:DX = number of clock ticks since midnight
+Return: nothing
+Notes:	there are approximately 18.2 clock ticks per second, 1800B0h per 24 hrs
+	  (except on Tandy 2000, where the clock runs at 20 ticks per second)
+	this call resets the midnight-passed flag
+SeeAlso: AH=00h,AH=03h,INT 21/AH=2Dh
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - ALTMENU - GET POINTER TO KEY CODE
+	AL = 10h
+	AH = AMIS multiplex number for signature 'Pino Nav' 'ALTMENU '
+Return: DX:BX -> WORD key code to insert in keyboard buffer on Alt-key tap
+Program: Pino Navato's freeware ALTMENU permits activating the menu bar of
+	  any program by pressing the Alt key alone.
+Notes:	The value in the key code word will be returned in AX by a call to
+	  INT 16/AH=00h after the Alt key is pressed by itself
+	ALTMENU may be disabled by setting the key code equal to 0000h
+SeeAlso: INT 16/AH=00h,INT 2D"AMIS"
+

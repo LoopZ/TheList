@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6804
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - TRANSACTION PROCESSING
+	AH = 04h
+	DS:DX -> control block (see #03702)
+Return: control block updated
+
+Format of APPC/PC control block:
+Offset	Size	Description	(Table 03702)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	verb (action)
+		2500h TP_ENDED
+		2900h TP_VALID
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h	WORD	00h
+ 1Ah  8 BYTEs	(big-endian) TP_ID
+ 22h	DWORD	-> CREATE_TP record (only if verb = 2900h)
+

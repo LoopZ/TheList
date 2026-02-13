@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F07
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - STARLITE architecture - MAKE NAMED OBJECT AVAILABLE ON NETWORK
+	AX = 5F07h
+	DS:SI -> ASCIZ name of object to offer to network
+	ES:DI -> ASCIZ name under which object will be known on the network
+		MUST begin with three slashes
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+SeeAlso: AX=5F08h"STARLITE"
+

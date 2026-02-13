@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--DC
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2D C - DAISY.SYS - BROADCAST: CHAIN RESCANNED
+	AL = DCh
+	AH = AMIS multiplex number for signature 'DAISYCHA' 'INDRIVER'
+	DL = LPT Port Rescanned
+Program: DAISY.SYS is a daisy chain manager for parallel port peripherals
+	  conforming to the IEEE 1284.3 Committee's daisy chain specification.
+Desc:	This Broadcast is sent whenever daisy chain IDs are reassigned to
+	  warn parallel port device drivers that their daisy chain ID may
+	  have been changed.
+Note:	This function is a callout from DAISY.SYS, NOT a call into DAISY.SYS
+SeeAlso: INT 17/AX=0200h"Enhanced Parallel Port",#00633,#02570
+

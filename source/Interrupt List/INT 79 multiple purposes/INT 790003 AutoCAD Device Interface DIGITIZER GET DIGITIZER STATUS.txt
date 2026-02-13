@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 790003
+  Category: A 	applications
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 79 R - AutoCAD Device Interface - DIGITIZER - GET DIGITIZER STATUS
+	AX = 0003h
+Return: AX = status
+	    0000h nothing
+	    0002h tracking point (no button pressed)
+		BX = X coordinate
+		CX = Y coordinate
+	    0003h picked point (button 0,A,B,C,D pressed)
+		BX = X coordinate
+		CX = Y coordinate
+	    0004h button pick
+		BX = button number
+	    0005h button and coordinates
+		BX = button number
+		CX = X coordinate
+		DX = Y coordinate
+SeeAlso: AX=0001h,AX=0002h
+

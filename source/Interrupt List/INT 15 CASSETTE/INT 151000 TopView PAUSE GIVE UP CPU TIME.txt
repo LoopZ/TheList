@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151000
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "PAUSE" - GIVE UP CPU TIME
+	AX = 1000h
+Return: after other processes run
+Note:	under DESQview, if the process issuing this call has hooked INT 08h,
+	  the current time-slice is set to expire at the next clock tick rather
+	  than immediately
+SeeAlso: AH=00h"MultiDOS",AX=5305h,INT 21/AH=89h,INT 21/AH=EEh"DoubleDOS"
+SeeAlso: INT 2F/AX=1680h,INT 60/DI=0106h,INT 62/AH=01h,INT 6F/AH=2Ah"F_YIELD"
+SeeAlso: INT 7A/BX=000Ah,INT 7F/AH=02h"MultiLink",INT 7F/AH=E8h
+

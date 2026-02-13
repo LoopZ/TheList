@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 130A
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - READ LONG SECTOR(S) (AT and later)
+	AH = 0Ah
+	AL = number of sectors (01h may be only value supported)
+	CH = low eight bits of cylinder number
+	CL = sector number (bits 5-0)
+	     high two bits of cylinder number (bits 7-6)
+	DH = head number
+	DL = drive number (80h = first, 81h = second)
+	ES:BX -> data buffer
+Return: CF clear if successful
+	CF set on error
+	AH = status (see #00234)
+	AL = number of sectors transferred
+Notes:	this function reads in four to seven bytes of error-correcting code
+	  along with each sector's worth of information
+	data errors are not automatically corrected, and the read is aborted
+	  after the first sector with an ECC error
+	used for diagnostics only on PS/2 systems; IBM officially classifies
+	  this function as optional
+BUG:	on the original IBM AT BIOS (1984/01/10) this function does not disable
+	  interrupts for harddisks (DL >= 80h). On these machines the MS-DOS/
+	  PC DOS IO.SYS/IBMBIO.COM installs a special filter to bypass the
+	  buggy code in the ROM (see CALL F000h:211Eh)
+SeeAlso: AH=02h,AH=0Bh,MEM 0040h:0074h
+

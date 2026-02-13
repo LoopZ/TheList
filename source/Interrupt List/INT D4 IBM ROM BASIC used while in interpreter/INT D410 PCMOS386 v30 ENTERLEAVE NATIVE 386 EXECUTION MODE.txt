@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: D410
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v3.0+ - ENTER/LEAVE NATIVE 386 EXECUTION MODE
+	AH = 10h
+	AL = direction (00h return to V86 mode, 01h enter native mode)
+	CX = length in bytes of Native Context Area ( >=1024 )
+	DX = segment of Native Context Area
+Return: CF clear if successful
+	    running in desired mode at instruction following INT D4 call
+	    all segment registers converted to appropriate selectors/segments
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+Note:	MS-DOS calls are available in protected mode
+SeeAlso: AH=11h,AH=12h,AH=13h,INT 2F/AX=1687h,INT 67/AX=DE0Ch,INT 38
+

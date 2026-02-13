@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFC3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET SHARING STATUS OF PRINTER SERVER
+	AX = FFC3h
+Return: AL = sharing status of printers (see #02537)
+	    FFh if not a printer server
+
+Bitfields for TopWare printer sharing status:
+Bit(s)	Description	(Table 02537)
+ 2	LPT3 is shared
+ 1	LPT2 is shared
+ 0	LPT1 is shared
+

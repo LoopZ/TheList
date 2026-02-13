@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151021
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "PGMINT" - INTERRUPT ANOTHER TASK
+	AX = 1021h
+	BX = segment of object handle for task to interrupt (not self)
+	DX:CX -> FAR routine to jump to next time task is run
+Return: nothing
+Notes:	the FAR routine is entered with the current ES, DS, SI, DI, and BP
+	  values, using the task's internal stack (see AX=101Ah); only SS:SP
+	  needs to be preserved
+	multiple PGMINTs to a single task are processed last-in first-out
+	if the other task is in a DOS or DV API call, the interruption will
+	  occur on return from that call
+

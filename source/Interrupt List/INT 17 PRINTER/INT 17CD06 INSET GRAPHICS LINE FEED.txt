@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD06
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - GRAPHICS LINE FEED
+	AX = CD06h
+Return: AH = completion status
+	    00h image complete
+	    01h image incomplete
+	CX = 07C2h (1986d)
+SeeAlso: AX=CD09h
+

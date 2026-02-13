@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1380--CX6572
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - FAST! v4.02+ - API
+	AH = 80h
+	CX = 6572h
+	DX = 1970h
+	ES:BX -> request packet (see #00290)
+	AL = function number (see #00289)
+Return: AH = status (except function 06h)
+	    00h if successful
+	    01h invalid function
+	    05h not supported by the installed variant
+	CF clear if successful
+	CF set on error
+	AL may be destroyed
+Program: FAST! is a disk cache by Future Computing Systems and marketed by
+	  BLOC Publishing Corp.
+SeeAlso: AX=8001h,AX=8006h,AX=8007h
+Index:	hotkeys;FAST!
+
+(Table 00289)
+Values for FAST! function:
+ 01h	get cache information (see AX=8001h)
+ 04h	disable cache
+ 05h	enable cache and reset statistics
+ 06h	installation check (see AX=8006h)
+ 07h	unhook interrupts (see AX=8007h)
+ 09h	flush cache
+ 0Ah	(v4.02+) enable staged writes
+ 0Bh	(v4.02+) disable staged writes
+ 0Ch	(v4.02+) enable beep on flush
+ 0Dh	(v4.02+) disable beep on flush
+ 0Eh	???
+ 0Fh	???
+ 10h	(v4.12+) enable hotkeys
+ 11h	(v4.12+) disable hotkeys
+ 12h	(v4.13+) set idle delay
+ 13h	(v4.13+) set flush dirty percentage
+ 14h	(v5.00+) enable mouse checks
+ 15h	(v5.00+) disable mouse checks
+ 16h	(v5.00d+) reduce cache size to minimum
+ 17h	(v5.00d+) increase cache size to maximum
+
+Format of FAST! request packet:
+Offset	Size	Description	(Table 00290)
+ 00h	DWORD	pointer to 19-byte signature string (see #00291)
+ 04h	DWORD	pointer to buffer for data (if needed by function)
+
+(Table 00291)
+Values for FAST! v4.04-v5.03 signature string:
+ 13h 07h 06h 08h 11h 18h 0Fh 0Eh 02h 18h 13h 08h 0Bh 08h 01h 00h 04h 08h 15h
+

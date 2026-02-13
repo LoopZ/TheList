@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2171AABH02
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - QUERY SUBST
+	AX = 71AAh
+	BH = 02h
+	BL = drive number (01h = A:, etc.)
+	DS:DX -> buffer for ASCIZ pathname associated with drive letter
+Return: CF clear if successful
+	    DS:DX buffer filled
+	CF set on error
+	    AX = error code (see #01680)
+		7100h if function not supported
+Note:	the specified drive number may not be 00h (default drive)
+SeeAlso: AX=71AAh/BH=00h,AX=71AAh/BH=01h,INT 2F/AX=1000h,#01643
+

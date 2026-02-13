@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0010
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - IOS - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0010h (virtual device ID for IOS device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02654)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02654)
+Call IOS entry point with:
+	EAX = function number
+	    0000h ???
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set on error
+			    AX = FFFFh
+	    0001h check if ???
+		Return: CF clear if successful
+			    AX = 0000h
+			CF set on error
+			    AX = FFFFh
+	    0002h requestor services???
+		DL = service number???
+		Return: CF clear if successful
+			    AX = 0000h
+			    DX = ???
+			CF set on error
+			    AX = FFFFh
+		Note:	calls "IOS_Requestor_Service" (see INT 20"Windows")
+	    0003h ??? (copies five bytes of data internally)
+		Return: CF clear if successful
+			    AX = 0000h
+			    EDX = ???
+			CF set on error
+			    AX = FFFFh
+	    else
+		Return: CF set
+			AX = FFFFh
+SeeAlso: #02653,#02655
+

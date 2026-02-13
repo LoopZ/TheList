@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6109
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_releaseall" - CLOSE ALL NON-GLOBAL DESCRS
+	AH = 09h
+Return: CF clear
+Range:	INT 20 to INT E0, selected by configuration
+Notes:	this call performs function 08h on every non-global network descriptor.
+	  Global descriptors must be released individually.
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=08h"PC/TCP"
+SeeAlso: INT 63/AH=0Eh"BW-TCP"
+

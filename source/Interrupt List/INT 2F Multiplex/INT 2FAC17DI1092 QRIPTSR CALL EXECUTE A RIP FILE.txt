@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC17DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - CALL (EXECUTE) A RIP FILE
+	AX = AC17h
+	DI = 1092h
+	DX:BX -> ASCIZ filename for RIP file to be executed
+Return: nothing
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	the specified file may be in the current icon directory, the QRIP
+	  startup directory, or the current directory; any pathnames specified
+	  with the filename are ignored
+

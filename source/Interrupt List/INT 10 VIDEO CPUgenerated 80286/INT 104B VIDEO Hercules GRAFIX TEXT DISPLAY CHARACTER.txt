@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104B
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "TEXT" - DISPLAY CHARACTER
+	AH = 4Bh
+	AL = character to display
+	DI = x (0-719)
+	BP = y (0-347)
+Return: nothing
+Notes:	unlike the other BIOS character functions character position is
+	  specified in pixels rather than rows and columns
+	the character is writting using the drawing function last specified by
+	  AH=44h
+SeeAlso: AH=09h,AH=0Ah,AH=44h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF--DL04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - START SPECIFIC LPT CAPTURE
+	AH = DFh
+	DL = 04h
+	DH = LPT port (00h-02h)
+Return: AL = status
+	    00h successful
+Desc:	this function redirects the specified LPT to a capture file on the file
+	  server
+Notes:	this function is supported by Advanced NetWare 2.1+
+	a print job is queued when the first character of output is captured
+SeeAlso: AX=B800h,AH=DFh/DL=00h,AH=DFh/DL=05h,AH=DFh/DL=06h,AH=DFh/DL=07h
+SeeAlso: AX=F003h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1007
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - Novell DOS 7+ FDOS EXTENSIONS - UPDATE FAT ENTRY / WRITE FAT???
+	AX = 1007h
+	BX = FAT entry to change
+	DX = new value
+Return:	nothing
+Notes:	This private function is called internally by the OS kernel to
+	  ask the FDOS to update the FAT.  By using the INT 2F/AX=1001h FDOS
+	  hook, the call can be intercepted by external system components such
+	  as the DELWATCH TSR.
+	This function must under no circumstances be called by applications!
+SeeAlso: INT 2F/AX=1001h,AX=1005h,AX=1006h,AX=1008h,AX=10FEh
+

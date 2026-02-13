@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F0C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - GET PIXEL
+	AH = 0Ch
+	DX,CX = row,column of pixel to read
+Return: AX = pixel color
+SeeAlso: AH=07h
+

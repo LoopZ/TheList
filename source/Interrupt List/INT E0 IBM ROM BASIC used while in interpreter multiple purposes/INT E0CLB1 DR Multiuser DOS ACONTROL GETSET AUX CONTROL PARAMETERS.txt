@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLB1
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_CONTROL" - GET/SET AUX CONTROL PARAMETERS
+	CL = B1h
+	DS:DX -> AUX device control block (see #04056)
+Return: AX = status
+	    0000h successful
+		control block updated
+	    FFFFh failed
+		CX = error code
+Note:	also supported by REAL/32
+SeeAlso: INT E0/CL=B0h,INT E0/CL=B2h
+
+Format of DR Multiuser DOS AUX device control block:
+Offset	Size	Description	(Table 04056)
+ 00h	BYTE	function (00h get, 01h set)
+ 01h	BYTE	DTR state (00h low, 01h high, FFh unknown/don't change)
+ 02h	BYTE	RTS state (00h low, 01h high, FFh unknown/don't change)
+ 03h	BYTE	DSR state (00h low, 01h high, FFh unknown/don't change)
+ 04h	BYTE	CTS state (00h low, 01h high, FFh unknown/don't change)
+ 05h	BYTE	DCD state (00h low, 01h high, FFh unknown/don't change)
+ 06h	BYTE	RI state (00h inactive, 01h active, FFh unknown/don't change)
+

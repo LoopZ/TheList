@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F040ABP00AE
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_CREATE_INTR" - CREATE INTERVAL ENTRY
+	AX = 040Ah
+	BP = 00AEh (driver ID for V_8041)
+	BH = vector number of driver to be called regularly (vector addr / 6)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	add a driver to the list (max eight) of drivers which will be called
+	  by the HP's 8041 at 60 Hz
+Note:	the newly added entry will not be called until enabled with
+	  AX=040Eh/BP=00AEh
+SeeAlso: AH=00h"HP Vectra",AX=040Ch/BP=00AEh,AX=040Eh/BP=00AEh
+SeeAlso: AX=0412h/BP=00AEh,AX=0416h/BP=00AEh,AX=041Ah/BP=00AEh
+

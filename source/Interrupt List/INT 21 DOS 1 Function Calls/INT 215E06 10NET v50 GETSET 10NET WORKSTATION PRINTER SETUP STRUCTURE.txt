@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215E06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - 10NET v5.0 - GET/SET 10NET WORKSTATION PRINTER SETUP STRUCTURE
+	AX = 5E06h
+	BX = zero-based redirection list index (see AX=5F02h)
+	CX = operation (06h set, 07h get)
+	DS:DX -> buffer for setup structure (same as first nine bytes of
+		  workstation printer setup) (see #01698)
+Return: CF clear if successful
+	    DS:DX buffer updated on get
+	CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=5E04h"10NET",AX=5E05h"10NET"
+

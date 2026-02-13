@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH07
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - RETRIEVE CRITICAL MESSAGES
+	AX = 53B0h
+	BH = 07h
+	CX = 6941h ('iA')
+Return: CF clear if successful
+	    AH = 00h (SMBus OK)
+	    AL = device address
+	    BX = device message
+	CF set if error
+	    AH = error code (05h,07h,08h,09h,0Ah,86h) (see #00484)
+Desc:	retrieves oldest queued critical message from an SMBus device to the
+	  host
+Notes:	up to five messages are queued; if the queue is full, messages will be
+	  lost and error 09h returned
+

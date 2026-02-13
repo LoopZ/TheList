@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1500CH93
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - CDBLITZ v2.11 - DISABLE CACHE
+	AX = 1500h
+	CH = 93h (function number)
+	BX = 1234h (magic value for CDBLITZ)
+Return: CF clear
+SeeAlso: AX=1500h/CH=90h,AX=1500h/CH=92h,AX=1500h/CH=95h
+

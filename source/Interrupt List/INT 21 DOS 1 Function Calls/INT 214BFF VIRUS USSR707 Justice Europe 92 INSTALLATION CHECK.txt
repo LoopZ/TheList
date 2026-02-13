@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214BFF
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "USSR-707", "Justice", "Europe 92" - INSTALLATION CHECK
+	AX = 4BFFh
+Return: BL = FFh if "USSR-707" resident
+	DI = 55AAh if "Justice" resident
+	AX = 1234h if "Hitchcock.1238" resident
+	CF clear if "Europe 92" resident
+SeeAlso: AX=4BFEh,AX=4BFFh"Cascade",AX=5252h
+

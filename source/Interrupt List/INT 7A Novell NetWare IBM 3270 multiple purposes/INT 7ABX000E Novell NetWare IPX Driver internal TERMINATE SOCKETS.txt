@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX000E
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 7A U - Novell NetWare - IPX Driver - internal - TERMINATE SOCKETS
+	BX = 000Eh
+Return: nothing
+Notes:	this function terminates all sockets opened with the current mode; this
+	  may be intended for future enhancements as the socket mode never
+	  changes in v2.15
+	called by the NetWare shell if a program terminates
+

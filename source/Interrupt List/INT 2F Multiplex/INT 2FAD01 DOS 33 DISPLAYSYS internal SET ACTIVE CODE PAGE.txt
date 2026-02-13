@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD01
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ DISPLAY.SYS internal - SET ACTIVE CODE PAGE
+	AX = AD01h
+	BX = new code page (see #01757 at INT 21/AX=6602h)
+Return: CF clear if successful
+	    AX = 0001h
+	CF set on error (unsupported code page)
+	    AX = 0000h
+SeeAlso: AX=AD02h"DISPLAY"
+

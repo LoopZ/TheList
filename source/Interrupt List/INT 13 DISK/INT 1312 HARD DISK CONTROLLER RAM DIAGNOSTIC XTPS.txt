@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1312
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - CONTROLLER RAM DIAGNOSTIC (XT,PS)
+	AH = 12h
+	DL = drive number (80h = first, 81h = second hard disk)
+Return: CF set on error
+	CF clear if successful
+	AH = status code (see #00234 at AH=01h)
+	AL = 00h
+SeeAlso: AH=13h,AH=14h
+

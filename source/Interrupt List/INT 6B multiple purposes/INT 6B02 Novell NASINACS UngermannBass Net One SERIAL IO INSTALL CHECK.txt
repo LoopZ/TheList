@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B02
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - Novell NASI/NACS, Ungermann-Bass Net One SERIAL I/O - INSTALL CHECK
+	AH = 02h
+	AL nonzero
+Return: AL = 00h if present and OK
+Note:	this function is also supported by TelAPI and NPC NCSI
+SeeAlso: AX=0700h
+

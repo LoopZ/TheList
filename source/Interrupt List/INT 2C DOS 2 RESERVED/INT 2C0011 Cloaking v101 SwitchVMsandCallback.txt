@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0011
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - "Switch_VMs_and_Call_back"
+	AX = 0011h
+	EBX = handle of VM to be made active
+	SI:EDI -> 32-bit FAR completion procedure
+Return: CF clear if successful (scheduled)
+	CF set on error
+Notes:	this function is only available while MS Windows is running
+	the completion procedure is called with CF clear if the specified
+	  VM has been made active, or with CF set on error
+SeeAlso: AX=000Fh,AX=0012h
+

@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1218
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - GET CALLER'S REGISTERS
+	AX = 1218h
+Return: DS:SI -> saved caller's AX,BX,CX,DX,SI,DI,BP,DS,ES (on stack)
+Note:	only valid while within DOS
+

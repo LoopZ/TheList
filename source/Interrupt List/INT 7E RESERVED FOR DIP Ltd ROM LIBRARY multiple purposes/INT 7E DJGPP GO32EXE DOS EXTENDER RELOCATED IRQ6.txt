@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7E
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7E - DJGPP GO32.EXE DOS EXTENDER - RELOCATED IRQ6
+Program: GO32.EXE is a DOS extender included as part of the 80386 port of the
+	  GNU C/C++ compiler by DJ Delorie and distributed as DJGPP
+Notes:	this vector is overwritten when GO32 starts but is not restored by
+	  early versions of the extender
+	the newest versions of GO32 dynamically allocate the vectors used
+	  for the relocated IRQs, much as DESQview does (see INT 50"DESQview")
+SeeAlso: INT 0E"IRQ6",INT 7D"GO32",INT 7F"GO32"
+

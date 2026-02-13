@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F07
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v1.1+ - GET/SET DISPLAY START
+	AX = 4F07h
+	BL = subfunction
+	    00h,80h set display start
+		CX = leftmost displayed pixel in scan line
+		DX = first displayed scan line
+	    01h get display start
+		Return: BH = 00h
+			CX = leftmost displayed pixel in scan line
+			DX = first displayed scan line
+	BH = 00h (reserved)
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+	    01h failed
+Notes:	this function is valid in text modes, provided that values are
+	  multiplied by the character cell width/height
+	subfunction 80h waits until vertical retrace before changing the
+	  display start address (VBE v2.0+)
+SeeAlso: AX=4F01h,AX=4F05h,AX=4F06h
+

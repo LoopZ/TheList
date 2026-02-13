@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 676B
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - DESQview 2.42-2.53 - BUG
+	AH = 6Bh
+Note:	the EMM.DVR portion of DESQview branches to a random location on this
+	  function due to a fencepost error
+

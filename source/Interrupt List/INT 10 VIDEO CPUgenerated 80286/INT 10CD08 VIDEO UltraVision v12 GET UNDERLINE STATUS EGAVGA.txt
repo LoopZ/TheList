@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD08
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision v1.2+ - GET UNDERLINE STATUS (EGA,VGA)
+	AX = CD08h
+Return: CL = hardware underline status (see #00221)
+	BL = foreground color for normal text
+	BH = foreground color for bright text
+Note:	only CL is valid on monochrome EGA systems
+SeeAlso: AX=CD07h
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A20BX0004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare - DOS Requester v1.03+ - GET VLM MULTICAST CALLOUT
+	AX = 7A20h
+	BX = 0004h
+Return: AX = 0000h if request was handled
+	    ES:BX -> VLM multicast data (see #02896)
+SeeAlso: AX=7A20h/BX=0000h,AX=7A20h/BX=0002h,AX=7A20h/BX=0005h
+
+Format of DOS Requester data:
+Offset	Size	Description	(Table 02896)
+ 00h	DWORD	pointer to ??? (code)
+ 04h  4 BYTEs	???
+ 08h	DWORD	pointer to ??? (code) (see #02897)
+	???
+
+(Table 02897)
+Call offset 08h function with:
+	AL = function (00h-07h)
+	???
+Return: ???
+

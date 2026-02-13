@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FCB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v4.1+ - TERMINATE USER
+	AX = 5FCBh
+	ES:DI -> ASCIZ server name in form "\\machine"
+	DS:SI -> blank-padded username.	 A null char = wildcard.
+	DS:DX -> blank-padded machine name.  A null char = wildcard.
+	CX = minutes until termination (0 = immediate)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Note:	you must have the "S" privilege to use this call
+	you cannot log yourself out using this call
+SeeAlso: AX=5F82h
+

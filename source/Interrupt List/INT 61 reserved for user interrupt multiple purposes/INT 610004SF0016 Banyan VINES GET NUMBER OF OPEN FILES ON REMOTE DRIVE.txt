@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0016
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET NUMBER OF OPEN FILES ON REMOTE DRIVE
+	AX = 0004h subfn 0016h
+	DS:DX -> request block (see #03424)
+Return: AX = status
+	    0000h open file count returned in request block
+Desc:	Counts the number of open files on the specified remote drive.
+Note:	No error is returned if the specified drive number is invalid or points
+	  to a local drive. Use AX=0004h/SF=0006h to test if a given drive
+	  number is assigned to a remote drive.
+SeeAlso: AX=0004h/SF=0006h
+
+Format of request block:
+Offset	Size	Description	(Table 03424)
+ 00h	WORD	0016h
+ 02h	BYTE	drive number (0=default, 1=A:, ...)
+ 03h	BYTE	reserved
+ 04h	WORD	buffer for open file count
+SeeAlso: #03426
+

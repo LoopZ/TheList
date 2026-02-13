@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330005
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - RETURN BUTTON PRESS DATA
+	AX = 0005h
+	BX = button number (see #03169)
+Return: AX = button states (see #03168)
+	BX = number of times specified button has been pressed since last call
+	CX = column at time specified button was last pressed
+	DX = row at time specified button was last pressed
+Note:	at least for the Genius mouse driver, the number of button presses
+	  returned is limited to 7FFFh
+SeeAlso: AX=0006h,INT 62/AX=007Ch
+
+(Table 03169)
+Values for mouse button number:
+ 0000h	left
+ 0001h	right
+ 0002h	middle (Mouse Systems/Logitech/Genius mouse)
+

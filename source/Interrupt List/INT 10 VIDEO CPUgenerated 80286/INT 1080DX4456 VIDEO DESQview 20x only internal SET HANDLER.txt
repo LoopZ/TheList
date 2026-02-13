@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1080--DX4456
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 10 U - VIDEO - DESQview 2.0x only - internal - SET ??? HANDLER
+	AH = 80h
+	DX = 4456h ('DV')
+	ES:DI -> FAR subroutine to be called on ???
+Return: DS = segment of DESQview data structure for video buffer
+Note:	this function is probably meant for internal use only, due to the magic
+	  value required in DX
+	the subroutine seems to be called when the DESQview menu is accessed;
+	  on entry, AL = 03h or 04h
+

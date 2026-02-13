@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F220SF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - EXAMINE SEMAPHORE (OLD)
+	AX = F220h subfn 01h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02282)
+	ES:DI -> reply buffer (see #02283)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=C501h,AX=F220h/SF=00h,AX=F220h/SF=03h
+
+Format of NetWare "Close Semaphore (old)" request packet:
+Offset	Size	Description	(Table 02282)
+ 00h	BYTE	01h (subfunction "Examine Semaphore (old)")
+ 01h	DWORD	semaphore handle
+SeeAlso: #02283,#02280
+
+Format of NetWare "Close Semaphore (old)" request packet:
+Offset	Size	Description	(Table 02283)
+ 00h	BYTE	current semaphore value
+ 01h	BYTE	number of processes using semaphore (including caller)
+SeeAlso: #02282,#02281
+

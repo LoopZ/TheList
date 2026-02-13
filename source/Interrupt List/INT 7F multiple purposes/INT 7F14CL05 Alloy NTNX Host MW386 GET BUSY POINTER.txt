@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F14--CL05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX (Host), MW386 - GET BUSY POINTER
+	AH = 14h
+	CL = 05h
+	DX:DI -> buffer for busy structure (see #03957)
+Return: DX:DI buffer filled
+
+Format of Alloy busy structure:
+Offset	Size	Description	(Table 03957)
+ 00h	DWORD	pointer to busy flag byte
+ 04h	WORD	fixed port address (FF00h)
+

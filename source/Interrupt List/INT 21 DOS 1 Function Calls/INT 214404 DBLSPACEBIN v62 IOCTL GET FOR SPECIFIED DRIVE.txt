@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214404
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DBLSPACE.BIN v6.2 - IOCTL - GET ??? FOR SPECIFIED DRIVE
+	AX = 4404h
+	BL = drive number (00h = default, 01h = A:, etc)
+	CX = size of DSPACKET structure (ignored in DOS 6.2)
+	DS:DX -> DSPACKET structure (see #01533)
+Return: CF clear if IOCTL successful -- check DSPACKET for actual status
+	    AX = number of bytes actually transferred
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4405h"DBLSPACE",INT 2F/AX=4A11h/BX=0000h
+
+Format of DoubleSpace DSPACKET structure:
+Offset	Size	Description	(Table 01533)
+ 00h	WORD	signature 444Dh ("DM")
+ 02h	BYTE	command code
+		53h ('S') get ??? for specified drive
+ 03h	WORD	result code
+		(ret) 4F4Bh ("OK") if successful, else unchanged
+ 05h	DWORD	(ret) pointer to 96-byte ??? data
+ 09h	DWORD	(ret) pointer to ??? data
+ 0Dh  3 BYTEs	reserved
+

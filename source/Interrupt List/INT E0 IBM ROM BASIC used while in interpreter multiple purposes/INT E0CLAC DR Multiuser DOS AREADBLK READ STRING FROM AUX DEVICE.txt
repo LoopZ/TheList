@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CLAC
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_READBLK" - READ STRING FROM AUX DEVICE
+	CL = ACh
+	DS:DX -> character control block (CHCB) (see #04051,#04052)
+Return: AX = number of characters read
+Desc:	read characters from the default auxiliary (AUXn:) device into a buffer
+	  until the buffer is full or the device is no longer ready
+Notes:	if the device is initially not ready, blocks until at least one
+	  character has been read
+	if another process owns AUX, this call blocks until the device becomes
+	  available
+	also supported by REAL/32
+SeeAlso: INT E0/CL=03h,INT E0/CL=A5h,INT E0/CL=ADh
+
+Format of DR Multiuser DOS character control block (CHCB):
+Offset	Size	Description	(Table 04051)
+ 00h	DWORD	pointer to character buffer
+ 04h	WORD	length of character buffer
+Note:	this version of the structure is used by REAL/32 in real mode
+SeeAlso: #04059
+
+Format of REAL/32 protected-mode Character Control Block (CHCB):
+Offset	Size	Description	(Table 04052)
+ 00h	DWORD	32-bit offset of character buffer
+ 04h	WORD	selector for character buffer
+ 06h	WORD	length of character buffer
+SeeAlso: #04051
+

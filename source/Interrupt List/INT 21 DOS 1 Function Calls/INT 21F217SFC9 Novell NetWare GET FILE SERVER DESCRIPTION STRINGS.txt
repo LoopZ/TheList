@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFC9
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET FILE SERVER DESCRIPTION STRINGS
+	AX = F217h subfn C9h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02010 at AH=E3h/SF=C9h)
+	ES:DI -> reply buffer (see #02225)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=C9h,AX=F217h/SF=C8h,AX=F217h/SF=CAh
+
+Format of NetWare "Get File Server Description Strings" reply packet:
+Offset	Size	Description	(Table 02225)
+ 00h	var	ASCIZ name of company distributing this copy of NetWare
+	var	ASCIZ version and revision
+      9 BYTEs	ASCIZ revision date (mm/dd/yy)
+	var	ASCIZ copyright notice
+SeeAlso: #02010,#02011 at AH=E3h/SF=C9h
+

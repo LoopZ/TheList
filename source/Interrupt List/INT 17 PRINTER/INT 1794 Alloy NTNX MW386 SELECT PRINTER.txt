@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1794
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - SELECT PRINTER
+	AH = 94h
+	AL = mode
+	    00h NTNX compatibility
+		DX = NTNX printer number (see #00643)
+	    01h MW386
+		DX = MW386 printer number
+	    02h MW386 v2+
+		BX = logical printer number
+		DX = MW386 printer number
+Return: AL = status (see #00642)
+Note:	modes 00h and 01h affect only logical LPT1
+SeeAlso: AH=8Bh,AH=95h
+

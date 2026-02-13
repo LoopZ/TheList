@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1117
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - CREATE/TRUNCATE REMOTE FILE
+	AX = 1117h
+	ES:DI -> uninitialized SFT
+	SS = DOS DS
+	SDA first filename pointer -> fully-qualified name of file to open
+	SDA CDS pointer -> current directory structure for drive with file
+	STACK: WORD file creation mode
+			low byte = file attributes (see #01401 at INT 21/AH=3Ch)
+			high byte = 00h normal create, 01h create new file
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    SFT filled (except handle count, which DOS manages itself)
+	STACK unchanged
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: AX=1106h,AX=1116h,AX=1118h,AX=112Eh,INT 21/AH=3Ch,INT 21/AH=60h
+

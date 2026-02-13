@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC9FD
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ThunderByte TBLOG - WRITE STRING TO LOG
+	AX = C9FDh
+	DS:SI -> ASCIZ string (max 110 chars)
+Return: AH = 00h
+	AL = last character in string
+	CX = number of unused characters in string
+	SI,DI destroyed
+Notes:	The string can also be terminated with a '%'-character.
+	This function is never called within ThunderBYTE Anti-Virus.
+SeeAlso: AX=C900h
+

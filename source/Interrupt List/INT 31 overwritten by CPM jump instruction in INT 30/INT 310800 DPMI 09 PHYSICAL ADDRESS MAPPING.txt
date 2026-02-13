@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310800
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - PHYSICAL ADDRESS MAPPING
+	AX = 0800h
+	BX:CX = physical address (should be above 1 MB)
+	SI:DI = size in bytes
+Return: CF clear if successful
+	    BX:CX = linear address which maps the requested physical memory
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8003h,8021h) (see #03143)
+Notes:	implementations may refuse this call because it can circumvent protects
+	the caller must build an appropriate selector for the memory
+	do not use for memory mapped in the first megabyte
+SeeAlso: AX=0002h,AX=0508h,AX=0509h,AX=0801h,INT 21/AX=250Ah,INT 21/AX=EB05h
+

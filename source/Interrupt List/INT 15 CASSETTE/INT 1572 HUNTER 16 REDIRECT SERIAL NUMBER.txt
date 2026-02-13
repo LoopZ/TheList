@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1572
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - REDIRECT SERIAL NUMBER
+	AH = 72h
+	AL nonzero
+	DS:BX -> new serial number (6 ASCII digits)
+Return: AH = 00h if successful
+Desc:	install a new serial number
+SeeAlso: AH=6Ch,AX=7200h
+

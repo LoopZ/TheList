@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2780CL06
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 - EMM386.EXE - MULTITASKING API - DPMI SERVICES
+	AX = 2780h
+	CL = 06h
+	CH = function
+	    00h "F_InitDPMI" used for internal initialization
+	    01h "F_DescAllocLDT" allocate LDT descriptor
+	    02h "F_DescFreeLDT" free LDT descriptor
+	    03h "F_DescGetLDT" get details on LDT descriptor
+	    04h "F_DescSetLDT" set up LDT descriptor
+	    05h "F_DescAllocInt21" allocate descriptor for PM INT 21
+	    06h "F_WhereIsDPMI" get address of DPMI global data
+Return: ???
+Notes:	called by DPMS.EXE and EMM386.EXE
+	the handler for this function may be set by one of the subfunctions
+	  of AX=2780h/CL=01h; the default handler returns AX=BX=FFFFh and
+	  CX=0001h (see #02739)
+	this API is only available if AX=12FFh/BX=0EDCh returns successfully;
+	  because the request is handled on the initial trap to the memory
+	  manager caused by INT instructions, this API must be invoked with
+	  an actual INT 2F instruction instead of some simulation such as a
+	  far call to the address in the interrupt vector table
+SeeAlso: AX=12FFh/BX=0EDCh,AX=2780h/CL=01h,AX=2780h/CL=02h,AX=2780h/CL=03h
+

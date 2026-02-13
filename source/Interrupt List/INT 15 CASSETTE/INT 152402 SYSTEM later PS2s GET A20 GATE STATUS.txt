@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152402
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - later PS/2s - GET A20 GATE STATUS
+	AX = 2402h
+Return: CF clear if successful
+	    AH = 00h
+	    AL = current state (00h disabled, 01h enabled)
+	    CX = ??? (set to 0000h-000Bh or FFFFh by AMI BIOS v1.00.03.AV0M)
+		FFFFh if keyboard controller does not become ready within C000h
+			 read attempts
+	CF set on error
+	    AH = status
+		01h keyboard controller is in secure mode
+		86h function not supported
+Notes:	also supported by AMI PCI BIOS and Qualitas 386MAX v6.01+
+	IBM classifies this function as optional
+SeeAlso: AX=2400h,AX=2401h
+

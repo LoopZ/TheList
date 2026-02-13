@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FC
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - GET VIRTUAL SCREEN ADDRESS
+	AH = FCh
+Return: ES = segment of virtual screen
+Desc:	Determine the address of the virtual screen to which the program
+	  should write instead of the actual video memory, so that the
+	  multitasked programs do not interfere with each other's output.
+Notes:	screen address can change if task-switching is on!
+	identical to AH=ECh
+SeeAlso: AH=ECh"DoubleDOS",INT FC"DoubleDOS"
+

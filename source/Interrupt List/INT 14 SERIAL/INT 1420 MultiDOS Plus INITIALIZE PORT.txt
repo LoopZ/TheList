@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1420
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus - INITIALIZE PORT
+	AH = 20h
+	AL = port parameters (see #00300 at AH=00h"SERIAL")
+	DX = port number (0-3)
+Return: AH = status
+	    00h successful
+	    41h no such port
+	    64h monitor mode already active
+SeeAlso: AH=00h"SERIAL",AH=04h"MultiDOS",AH=21h"MultiDOS",AH=23h"MultiDOS"
+

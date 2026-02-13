@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 68FE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - SET TRACE DESTINATION
+	AH = FEh
+	AL = trace destinations (see #03708)
+	DS:DX -> trace stats record if AL bit 0 set (see #03709)
+SeeAlso: AH=FCh,AH=FDh
+
+Bitfields for trace destinations:
+Bit(s)	Description	(Table 03708)
+ 0	storage (DS:DX -> trace stats record)
+ 1	display
+ 2	file (trace written to file OUTPUT.PC)
+ 3	printer
+
+Format of APPC/PC Trace Statistics Record:
+Offset	Size	Description	(Table 03709)
+ 00h	DWORD	pointer to storage trace buffer
+ 04h	WORD	max number of 80-byte records in trace
+ 06h	WORD	(high-order byte first!) current record number (must init to 0)
+ 08h	DWORD	(high-order byte first!) number of records written (init to 0)
+ 0Ch	DWORD	reserved
+Note:	do not move record while trace is active
+

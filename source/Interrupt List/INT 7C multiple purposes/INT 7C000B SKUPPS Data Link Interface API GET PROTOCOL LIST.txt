@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C000B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - GET PROTOCOL LIST
+	AX = 000Bh
+	ES:DI -> protocol ID buffer
+	CX = number of 2-byte protocol IDs that may be stored in buffer
+Return: AX = completion code (see #03846)
+	CX = number of active protocols (regardless of value returned in AX)
+	protocol ID buffer filled with active protocol IDs
+Program: SK-UPPS is the Schneider & Koch Universal Portable Protocol Stack,
+	  which provides an API on top of its Data Link Interface, allowing the
+	  use of any of several network transport layers
+Note:	If the buffer supplied is too small, CX still contains the total number
+	  of active protocols and the buffer has been filled until full.
+SeeAlso: AX=000Ch,AX=0014h
+

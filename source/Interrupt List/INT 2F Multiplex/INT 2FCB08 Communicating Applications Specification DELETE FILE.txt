@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB08
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - DELETE FILE
+	AX = CB08h
+	BX = event handle
+	CX = receive file number
+	    0000h delete ALL received files and receive control file
+	    N	  delete Nth received file
+	DL = queue
+	    00h delete control file in task queue and corresponding group file
+		  if it exists
+	    01h delete file in receive queue, as given by CX
+	    02h delete control file in log queue (individual deletions not
+		  recommended, to maintain integrity of log) and corresponding
+		  group file if it exists
+Return: AX = 0000h successful
+	AX < 0	   error code (see #03048)
+SeeAlso: AX=CB02h,AX=CB09h
+

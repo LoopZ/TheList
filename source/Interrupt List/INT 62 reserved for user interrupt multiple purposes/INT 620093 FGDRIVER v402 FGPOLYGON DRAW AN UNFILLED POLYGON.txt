@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620093
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_POLYGON" - DRAW AN UNFILLED POLYGON
+	AX = 0093h
+	CX = number of vertices in polygon
+	ES:BX -> variable pointer record (see #03497)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+SeeAlso: AX=0091h,AX=0092h,AX=0094h,AX=0095h
+
+Format of FGDRIVER POLYGON variable pointer record:
+Offset	Size	Description	(Table 03497)
+ 00h	WORD	segment of WORD array containing vertex columns
+ 02h	WORD	offset of WORD array containing vertex columns
+ 04h	WORD	segment of WORD array containing vertex rows
+ 06h	WORD	offset of WORD array containing vertex rows
+SeeAlso: #03496
+

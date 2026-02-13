@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB800CXF041
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - 10NET - INSTALLATION CHECK
+	AX = B800h
+	CX = F041h
+Return: AL = status
+	    00h	    not installed
+	    nonzero installed
+		BX = installed component flags (test in this order!)
+		   bit 6   server
+		   bit 2   messenger
+		   bit 7   receiver
+		   bit 3   redirector
+		   bit 1   LANPUP (LANtastic 4.0)
+		CX = 10Net data segment
+		CX:DX -> 10Net Configuration Table
+			  (see #01691 at INT 21/AX=5E01h"10NET")
+Note:	if CX <> F041h on entry, neither CX nor DX will be changed, and this
+	  call becomes identical to the standard installation check above
+SeeAlso: AX=B800h"network",INT 21/AX=5E01h"10NET"
+

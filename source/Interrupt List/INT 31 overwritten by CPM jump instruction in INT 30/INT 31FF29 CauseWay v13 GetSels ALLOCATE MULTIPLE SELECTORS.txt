@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF29
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay v1.3 - "GetSels" - ALLOCATE MULTIPLE SELECTORS
+	AX = FF29h
+	CX = number of selectors to allocate
+Return: BX = base selector
+Desc:	allocate multiple contiguous selectors, initializing each to have a
+	  base address and limit of zero
+SeeAlso: AX=FF00h,AX=FF04h
+

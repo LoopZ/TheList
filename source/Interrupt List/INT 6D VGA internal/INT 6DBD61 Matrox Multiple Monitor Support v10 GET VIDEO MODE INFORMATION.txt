@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6DBD61
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 6D U - Matrox Multiple Monitor Support v1.0 - GET VIDEO MODE INFORMATION
+	AX = BD61h
+	BX = width in pixels (bits 13-0)
+	    bit 14: ???
+	    bit 15: ???
+	CX = height in pixels
+Return: AL = BDh if function supported
+	    AH = status
+		00h successful
+		01h failed (resolution/flags not supported)
+	    CX:BX -> video mode data structure (see #03736)
+		  (first word is FFFFh if unsupported resolution)
+	    EAX high word cleared
+SeeAlso: AX=BD60h,AX=BD6Fh,AX=BDFFh
+
+Format of Matrox video mode information (VCE structure):
+Offset	Size	Description	(Table 03736)
+ 00h	WORD	width in pixels
+ 02h	WORD	height in pixels
+ 04h	WORD	???
+ 06h	DWORD	dot clock frequency
+ 0Ah 25 BYTEs	???
+SeeAlso: #03735
+

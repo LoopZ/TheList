@@ -1,0 +1,208 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7AF1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare - Access Server Driver - INSTALLATION CHECK
+	AX = 7AF1h
+	BL = sequence number (01h first driver, 02h second, 00h no driver)
+Return: AX <> 7AF1h if present
+	    BH = total number of drivers
+	    ---if BL nonzero on entry---
+	    AL = number of ports provided by specified driver
+	    ES:DI -> driver entry point
+		      (see #02910,#02911,#02912,#02913,#02914,#02915,#02916,#02917)
+	    ES:DX -> ID string
+SeeAlso: INT 7A/BX=001Ch
+
+(Table 02910)
+Call Access Server driver "initialize port" function with:
+	AH = 01h
+	AL = port number (00h-0Fh)
+	ES:BX -> configuration parameter block (see #02923)
+	interrupts disabled
+Return: CF clear if successful
+	CF set on error
+SeeAlso: #02911
+
+(Table 02911)
+Call Access Server driver "get port status" function with:
+	AH = 02h
+	AL = port number (00h-0Fh)
+	interrupts disabled
+Return: CF clear if successful
+	    BL = transmitter status (see #02920)
+	    BH = receiver status (see #02921)
+	    DL = external status signals (see #02922)
+	CF set on error
+	interrupts disabled
+SeeAlso: #02910,#02912,#02915
+
+(Table 02912)
+Call Access Server driver "get input from port" function with:
+	AH = 03h
+	AL = port number (00h-0Fh)
+	CX = size of data buffer
+	ES:BX -> buffer for data
+	interrupts disabled
+Return: CF clear if successful
+	CF set on error
+	interrupts disabled
+	CX = number of bytes read
+Note:	the driver will add a NUL to the buffer when a break signal is detected
+SeeAlso: #02912,#02913
+
+(Table 02913)
+Call driver "send output data to port" function with:
+	AH = 04h
+	AL = port number (00h-0Fh)
+	CX = number of bytes to send
+	ES:BX -> buffer containing data
+	interrupts disabled
+Return: CF clear if successful
+	CF set on error
+	interrupts disabled
+	CX = number of bytes actually written
+SeeAlso: #02912,#02914
+
+(Table 02914)
+Call driver "get I/O character counts" function with:
+	AH = 05h
+	AL = port number (00h-0Fh)
+	interrupts disabled
+Return: CF clear if successful
+	    BX = number of bytes pending transmission
+	    CX = number of bytes available for reading
+	CF set on error
+	interrupts disabled
+SeeAlso: #02912,#02913
+
+(Table 02915)
+Call driver "control XON/XOFF" function with:
+	AH = 06h
+	AL = port number (00h-0Fh)
+	DL = new state
+	    (00h software flow control disabled, else enabled)
+	interrupts disabled
+Return: CF clear if successful
+	CF set on error
+	interrupts disabled
+SeeAlso: #02916
+
+(Table 02916)
+Call driver "get error counts and statistics" function with:
+	AH = 07h
+	AL = port number (00h-0Fh)
+	ES:BX -> buffer for statistics (see #02924)
+	interrupts disabled
+Return: CF clear if successful
+	    ES:BX buffer filled
+	CF set on error
+	interrupts disabled
+SeeAlso: #02917,#02918,#02919
+
+(Table 02917)
+Call driver "general request" function with:
+	AH = 08h
+	AL = port number (00h-0Fh)
+	DX = requested operations
+	    bit 0: flush transmit buffers
+	    bit 1: flush receive buffers
+	    bit 4: define XON/XOFF characters
+	ES:BX -> XON/XOFF characters (see #02925) if DX bit 4 set
+	interrupts disabled
+Return: CF clear if successful
+	CF set on error
+	interrupts disabled
+
+(Table 02918)
+Call driver "deadman timer management" function with:
+	AH = 09h
+	AL = port number (00h-0Fh)
+	BX = next time interval in seconds (0000h to disable timer)
+	interrupts disabled
+Return: CF clear
+	interrupts disabled
+SeeAlso: #02919
+
+(Table 02919)
+Call driver "get buffer sizes" function with:
+	AH = 0Ah
+	AL = port number (00h-0Fh)
+	interrupts disabled
+Return: CF clear if successful
+	   BX = size of transmit buffer
+	   CX = size of receive buffer
+	CF set on error
+	interrupts disabled
+SeeAlso: #02918
+
+(Table 02920)
+Values for Access Server transmitter status:
+ 00h	uninitialized
+ 01h	ready, not transmitting
+ 02h	transmitting
+ 03h	XOFF received
+ 04h	transmitting, buffer full
+ 05h	XOFF received and buffer full
+
+(Table 02921)
+Values for Access Server receiver status:
+ 00h	uninitialized
+ 01h	ready
+ 02h	receive buffer full, data may have been lost
+
+Bitfields for external status signals:
+Bit(s)	Description	(Table 02922)
+ 7,6	undefined
+ 5	CTS active
+ 4	DSR active
+ 3	DCD active
+ 2,1	undefined
+ 0	ring indicator
+
+Format of Access Server configuration parameter block:
+Offset	Size	Description	(Table 02923)
+ 00h	BYTE	receive baud rate index
+		00h 50 bps, 01h 75 bps, 02h 110 bps, 03h 134.5 bps,
+		04h 150 bps, 05h 300 bps, 06h 600 bps, 07h 1200 bps,
+		08h 1800 bps, 09h 2000 bps, 0Ah 2400 bps, 0Bh 3600 bps,
+		0Ch 4800 bps, 0Dh 7200 bps, 0Eh 9600 bps, 0Fh 19200 bps,
+		10h 38400 bps, 11h 57600 bps, 12h 115200 bps
+ 01h	BYTE	receive bits per character (0=5 bits..3=8 bits)
+ 02h	BYTE	receive stop bits
+ 03h	BYTE	receive parity
+		00h none, 01h odd, 02h even, 03h mark, 04h space
+ 04h	BYTE	transmit baud rate index (same as receive baud rate)
+ 05h	BYTE	transmit bits per character (0=5 bits..3=8 bits)
+ 06h	BYTE	transmit stop bits
+ 07h	BYTE	transmit parity (same as receive parity)
+ 08h	BYTE	DTR state (00h off, 01h on)
+ 09h	BYTE	RTS state (00h off, 01h on)
+ 0Ah	BYTE	flow control (00h none, 01h XON/XOFF, 02h RTS/CTS, 03h both)
+ 0Bh	BYTE	break control (00h off, 01h on)
+
+Format of Access Server statistics:
+Offset	Size	Description	(Table 02924)
+ 00h	BYTE	port number
+ 01h	BYTE	external status signals (see #02922)
+ 02h	BYTE	transmitter status (see #02920)
+ 03h	BYTE	receiver status (see #02921)
+ 04h	DWORD	number of characters received
+ 08h	DWORD	number of characters transmitted
+ 0Ch	WORD	input parity errors
+ 0Eh	WORD	input framing errors
+ 10h	WORD	lost characters due to hardware overrun
+ 12h	WORD	lost characters due to data buffer overrun
+Note:	the counts are not allowed to wrap around; once a count reaches FFFFh
+	  or FFFFFFFFh, it is no longer incremented
+
+Format of Access Server XON/XOFF characters:
+Offset	Size	Description	(Table 02925)
+ 00h	BYTE	04h (number of bytes following)
+ 01h	BYTE	transmit XON character
+ 02h	BYTE	transmit XOFF character
+ 03h	BYTE	receive XON character
+ 04h	BYTE	receive XOFF character
+

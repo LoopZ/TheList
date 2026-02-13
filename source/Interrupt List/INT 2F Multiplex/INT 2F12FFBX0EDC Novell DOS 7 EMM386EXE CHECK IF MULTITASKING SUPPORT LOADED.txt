@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0EDC
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 - EMM386.EXE - CHECK IF MULTITASKING SUPPORT LOADED???
+	AX = 12FFh
+	BX = 0EDCh ('EDC' = Novell European Development Center)
+Return: AX = 0000h if ??? loaded
+	    CF clear
+	    BX = 0000h
+Notes:	called by Novell DOS 7 TaskMgr
+	if this function returns with AX=0000h, then the code necessary to
+	  support the API on INT 2F/AX=2780h is loaded and that API becomes
+	  available for use
+	because the request is handled on the initial trap to the memory
+	  manager caused by INT instructions, this function must be invoked
+	  with an actual INT 2F instruction instead of some simulation such
+	  as a far call to the address in the interrupt vector table
+SeeAlso: AX=2780h/CL=01h,AX=2780h/CL=02h,AX=2780h/CL=03h,AX=2780h/CL=04h
+

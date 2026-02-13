@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16ED--BHED
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - BORLAND TURBO LIGHTNING - API
+	AH = EDh
+	BH = EDh
+	BL = function
+	    00h installation check
+		Return: AX = 5205h
+			CH = major version
+			CL = minor version
+	    01h identical to function 00h???
+	    02h get resident data segment
+		Return: AX = data segment of resident portion
+	    03h get resident ???
+		Return: AX = offset of some buffer in resident code seg
+	    04h redefine auxiliary dictionary
+		DS:SI -> counted filename string
+		Return: AL = result code
+	    05h select active environment
+		AL = environment (00h to 0Ch)
+		Return: AX = status
+			    0000h if OK
+			    0001h if out of range
+	    06h toggle AutoProof???
+		AL = state (00h off, 01h on)
+	    07h ???
+	    08h ???
+		AL = char???
+		CX = ???
+		DX = ???
+		Return: AX = 0, 1 or 2
+	    09h ???
+	    0Ah ???
+		CX = ???
+		DX = ???
+		Return: AX = ???
+	    0Bh check dictionary integrity???
+		DS:SI -> counted dictionary filename string
+		Return: AX = 0, 40h, 80h
+	    0Ch spellcheck string (disk dictionary, possibly RAM dict as well)
+		DS:SI -> counted string to check
+		Return: AH = 0
+			AL = result code
+			   00h string found in dictionary
+			   20h string begins more than one word
+			   40h string not found
+	    0Dh set ???
+		(sets an internal flag)
+	    0Eh spellcheck string (RAM dictionary only)
+		DS:SI -> counted string to check
+		Return: AH = 00h
+			AL = result code
+			    00h string found in dictionary
+			    01h string not found
+			    02h ???
+	    0Fh ???
+	    10h ???
+Notes:	AX in general returns an error code from most functions.
+Index:	installation check;Turbo Lightning
+

@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215702
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - OS/2 v1.1+ Family API - DosQFileInfo
+	AX = 5702h
+	BX = file handle
+	CX = size of buffer for information
+	DX = level of information
+	    0001h standard file information (see #01672)
+	    0002h Query EA Size (see #01672)
+	    0003h Query EAs from List (see #01673)
+	    0004h Query All EAs (see #01673)
+	ES:DI -> buffer for information (see #01672,#01673)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5702h/BX=FFFFh,AX=5703h"OS/2",AH=6Dh"OS/2"
+
+Format of OS/2 DosQFileInfo:
+Offset	Size	Description	(Table 01672)
+ 00h	WORD	creation date
+ 02h	WORD	creation time
+ 04h	WORD	last access date
+ 06h	WORD	last access time
+ 08h	WORD	last write date
+ 0Ah	WORD	last write time
+ 0Ch	DWORD	file size in bytes
+ 10h	DWORD	allocated space in bytes
+ 14h	WORD	file attributes
+---level 2 only---
+ 16h	DWORD	size of Extended Attributes in byte
+SeeAlso: #01673,#01676
+
+Format of OS/2 DosQFileInfo, EAOP structure:
+Offset	Size	Description	(Table 01673)
+ 00h	DWORD	pointer to general EA list (see #01674)
+ 04h	DWORD	pointer to buffer for full EA list, with length field set
+ 08h	DWORD	(ret) error
+Note:	for info level 3, the first pointer must contain the address of a
+	  list of the Extended Attributes to be retrieved; for info level 4,
+	  it should be 0000h:0000h
+SeeAlso: #01672,#01676
+
+Format of OS/2 DosQFileInfo, General EA List:
+Offset	Size	Description	(Table 01674)
+ 00h	DWORD	(call) total size of list in bytes (including this field)
+		(ret) number of bytes actually used (including this field)
+ 04h	var	Extended Attribute entries (see #01675) [packed arrray]
+
+Format of OS/2 DosQFileInfo, General EA entry:
+Offset	Size	Description	(Table 01675)
+ 00h	BYTE	length of Extended Attribute name (excluding terminating NUL)
+ 01h  N BYTEs	EA name
+	BYTE	00h
+SeeAlso: #01674
+
+Format of OS/2 DosQFileInfo, Full EA List:
+Offset	Size	Description	(Table 01676)
+ 00h	DWORD	(call) total size of list in bytes (including this field)
+		(ret) number of bytes actually used (including this field)
+ 04h	var	Extended Attribute data (see #01677) [packed array]
+SeeAlso: #01672,#01673
+
+Format of OS/2 Extended Attribute data (struct FEA):
+Offset	Size	Description	(Table 01677)
+ 00h	BYTE	flags
+		bit 7: critical EA
+ 01h	BYTE	length of Extended Attribute name (excluding terminating NUL)
+ 02h	WORD	length of Extended Attribute value
+ 04h  N BYTEs	EA name
+	BYTE	00h
+      M BYTEs	EA value
+

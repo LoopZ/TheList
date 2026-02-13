@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155307
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - SET POWER STATE
+	AX = 5307h
+	BX = device ID (see #00474)
+	CX = system state ID (see #00475)
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (01h,03h,09h,0Ah,0Bh,60h) (see #00473)
+Note:	should not be called from within a hardware interrupt handler to avoid
+	  reentrance problems
+SeeAlso: AX=530Ch
+
+(Table 00474)
+Values for APM device IDs:
+ 0000h	system BIOS
+ 0001h	all devices for which the system BIOS manages power
+ 01xxh	display (01FFh for all attached display devices)
+ 02xxh	secondary storage (02FFh for all attached secondary storage devices)
+ 03xxh	parallel ports (03FFh for all attached parallel ports)
+ 04xxh	serial ports (04FFh for all attached serial ports)
+---APM v1.1+ ---
+ 05xxh	network adapters (05FFh for all attached network adapters)
+ 06xxh	PCMCIA sockets (06FFh for all)
+ 0700h-7FFFh reserved
+ 80xxh	system battery devices (APM v1.2)
+ 8100h-DFFFh reserved
+ Exxxh	OEM-defined power device IDs
+ F000h-FFFFh reserved
+
+(Table 00475)
+Values for system state ID:
+ 0000h	ready (not supported for device ID 0001h)
+ 0001h	stand-by
+ 0002h	suspend
+ 0003h	off (not supported for device ID 0001h in APM v1.0)
+---APM v1.1---
+ 0004h	last request processing notification (only for device ID 0001h)
+ 0005h	last request rejected (only for device ID 0001h)
+ 0006h-001Fh reserved system states
+ 0020h-003Fh OEM-defined system states
+ 0040h-007Fh OEM-defined device states
+ 0080h-FFFFh reserved device states
+

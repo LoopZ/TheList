@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F268SF16
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - NDS LIST PARTITIONS
+	AX = F268h subfn 16h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02469)
+	ES:DI -> reply buffer (see #02470)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+Note:	the length specified in CX must be exactly 13 bytes more than the
+	  length field at offset 09h in the request buffer for this function
+	  to be successful
+SeeAlso: AX=F268h/SF=35h
+
+Format of NetWare "NDS List Partitions" request buffer:
+Offset	Size	Description	(Table 02469)
+ 00h	BYTE	02h
+ 01h	DWORD	??? (FFFFFFFFh)
+ 05h	DWORD	??? (00000202h)
+ 09h	DWORD	length (00000018h)
+ 0Dh	DWORD	??? (00000000h)
+ 11h	DWORD	function (00000016h) (subfunction "NDS List Partitions")
+ 15h	DWORD	??? (00000400h)
+ 19h	DWORD	API version (00000000h)
+ 1Dh	DWORD	??? (00000000h)
+ 21h	DWORD	iteration (FFFFFFFFh)
+SeeAlso: #02470,#02471
+
+Format of NetWare "NDS List Partitions" reply buffer:
+Offset	Size	Description	(Table 02470)
+ 00h	DWORD	length
+ 04h	DWORD	???
+ 08h	DWORD	return code
+ 0Ch	DWORD	iteration
+ 10h 1000 BYTEs	returned data
+SeeAlso: #02469
+

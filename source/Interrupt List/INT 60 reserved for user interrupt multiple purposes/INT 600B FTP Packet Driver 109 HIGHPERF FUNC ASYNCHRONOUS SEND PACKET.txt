@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver 1.09 - HIGH-PERF FUNC - ASYNCHRONOUS SEND PACKET
+	AH = 0Bh
+	DS:SI -> buffer
+	CX = length of buffer
+	ES:DI -> FAR function to call when buffer becomes available (see #03311)
+Return: CF set on error
+	    DH = error code (0Bh,0Ch) (see #03305)
+	CF clear if successful
+Notes:	unlike function 04h, the buffer is not available for modification as
+	  soon as the call returns; the buffer may be queued by the driver and
+	  not processed until later
+	this function has been dropped from v1.10+ of the specification and
+	  replaced by function 0Ch
+SeeAlso: AH=04h"Packet Driver",AH=0Ch"Packet Driver"
+
+(Table 03311)
+Values packet driver completion function is called with:
+	AX = result
+	    00h copy OK
+	    nonzero error
+	ES:DI -> buffer passed to INT 60/AH=0Bh call
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BX0400
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "APPLY" - WRITE PANEL TO WINDOW
+	AH = 12h
+	BX = 0400h
+	STACK: DWORD handle of panel object
+	       DWORD window's handle (or 0 for current task's window)
+	       DWORD length of panel name
+	       DWORD pointer to panel name
+Return: STACK: DWORD handle of window which was used
+	       DWORD handle of keyboard or 0
+Notes:	status of APPLY may be checked with STATUS message
+	panel MUST have the following format
+	  first byte must be 1Bh (i.e. must start with a stream)
+	  first opcode in stream must be E5h
+	    single byte arg of opcode is interpreted thus:
+	      bits 7,6	11 means create new window
+			10 means create new field table for existing window
+			01 means use existing window and field table
+	      bit 5 if set, panel contains a field table
+			(creates a new keyboard and puts it in field mode)
+	      bit 4 if set, panel contains input fields
+	      bit 3 if set, panel contains select fields but no input fields
+	if the panel contains input or select fields, a keyboard handle is
+	  returned; either the window's current open keyboard or a
+	  newly-created keyboard object.  The caller should read that keyboard
+	  to obtain input from the panel.
+SeeAlso: AH=12h/BH=84h
+

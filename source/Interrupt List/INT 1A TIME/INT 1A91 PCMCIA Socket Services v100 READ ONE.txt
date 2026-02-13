@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A91
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v1.00 - READ ONE
+	AH = 91h
+	AL = adapter number
+	BL = socket number (01h to maximum supported by adapter)
+	BH = attributes (see #00687)
+	DX:SI = card address
+Return: CF clear if successful
+	    AH destroyed
+	    CL/CX = value read
+	CF set on error
+	    AH = error code (01h,07h,09h,0Bh,14h) (see #00656)
+	    CX may be destroyed
+Note:	this function is only valid for I/O-mapped sockets
+SeeAlso: AH=92h,AH=93h,INT 21/AX=440Dh"DOS 3.2+"
+
+Bitfields for PCMCIA attributes:
+Bit(s)	Description	(Table 00687)
+ 2	even bytes only
+ 1	word rather than byte
+ 0	attribute memory instead of common memory
+

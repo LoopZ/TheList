@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FFB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - ASSIGN GROUP NAME
+	AH = FBh
+	CL = group number
+	ES:DI -> ASCIZ group name (max 17 bytes)
+SeeAlso: AH=FCh
+

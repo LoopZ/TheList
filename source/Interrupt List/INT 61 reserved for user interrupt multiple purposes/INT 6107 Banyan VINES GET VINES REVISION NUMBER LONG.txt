@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6107
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET VINES REVISION NUMBER (LONG)
+	AH = 07h
+	DS:DX -> 4-byte buffer for result
+Return: AX = 0000h successful
+	    DS:DX buffer contains revision number as
+		10000d * major_ver + 100d * minor_ver + patch_revision
+SeeAlso: AH=02h"VINES",AH=04h"VINES",AH=08h"VINES"
+

@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6100
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 61 U - PC/TCP kernel v2.05+ - GET DEBUG INFORMATION
+	AH = 00h
+	DS:SI -> 216-byte buffer for network debugging information (see #03322)
+Return: CF clear
+	AX = 0000h
+	buffer filled
+Notes:	this call is not documented by FTP, Inc. for any version
+	most of the information returned by this call is available via the
+	  documented get_kernel_info or net_info commands.
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=2Ah"PC/TCP"
+
+Format of network debugging information:
+Offset	Size	Description	(Table 03322)
+ 00h	DWORD	number of interrupts
+ 04h	DWORD	receive buffer low-water mark
+ 08h	DWORD	transmit buffer low-water mark
+ 0Ch	DWORD	number of packets received
+ 10h	DWORD	number of packets transmitted
+ 14h	DWORD	total receive errors
+ 18h	DWORD	total transmit errors
+ 1Ch  4 BYTEs	???
+ 20h	DWORD	receive resets
+ 24h	DWORD	transmit resets
+ 28h	DWORD	number of "runts" received
+ 2Ch	DWORD	number of alignment errors on received packets
+ 30h	DWORD	number of CRC errors on received packets
+ 34h	DWORD	number of parity errors on received packets
+ 38h	DWORD	number of receive overflow errors
+ 3Ch	DWORD	number of oversized packets received
+ 40h	DWORD	number of packets lost due to lack of buffers
+ 44h	DWORD	receive timeouts
+ 48h 32 BYTEs	???
+ 68h	DWORD	number of transmit collisions
+ 6Ch	DWORD	number of transmit timeouts
+ 70h	DWORD	number of transmit underflows
+ 74h	DWORD	number of lost "crs" on transmit
+ 78h	DWORD	number of times heartbeat failed on transmit
+ 7Ch 24 BYTEs	???
+ 94h	WORD	free packet buffers
+ 96h	WORD	total packet buffers
+ 98h	WORD	minimum number of packet buffers free since kernel started
+ 9Ah 24 BYTEs	???
+ B2h	DWORD	pointer to TCP connection list???
+ B6h	DWORD	pointer to IP routing table???
+ BAh 30 BYTEs	???
+

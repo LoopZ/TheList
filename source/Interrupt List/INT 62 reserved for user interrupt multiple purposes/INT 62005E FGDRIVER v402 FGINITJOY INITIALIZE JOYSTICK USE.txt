@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62005E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_INITJOY" - INITIALIZE JOYSTICK USE
+	AX = 005Eh
+	BX = joystick number (0001h or 0002h)
+Return: AX = status
+	    0000h successful
+	    FFFFh joystick not connected or no game port
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	Fastgraph assumes that the requested joystick is centered at the time
+	  this function is called
+SeeAlso: AX=0009h,AX=0052h,AX=0056h,AX=0062h,AX=0077h
+

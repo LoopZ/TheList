@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 480B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 48 - TI Professional PC - GET EXTRA SYSTEM CONFIGURATION INFORMATION
+	AH = 0Bh
+Return: AL = drive type byte (see #03206)
+	BX = extra system configuration word 1 (see #03205)
+	CX = extra system configuration word 2 (see #03205)
+	AH destroyed
+SeeAlso: AH=00h,AH=01h,AH=02h,AH=03h,AH=04h,AH=06h,AH=08h,AH=0Ah
+

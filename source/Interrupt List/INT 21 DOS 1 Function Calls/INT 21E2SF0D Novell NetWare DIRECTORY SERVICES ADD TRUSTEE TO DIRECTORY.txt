@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF0D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - ADD TRUSTEE TO DIRECTORY
+	AH = E2h subfn 0Dh
+	DS:SI -> request buffer (see #01861)
+	ES:DI -> reply buffer (see #01863)
+Return: AL = status (00h,8Ch,FCh) (see #01839)
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=0Ch,AH=E2h/SF=0Eh,AH=E3h/SF=47h,AX=F216h/SF=0Dh
+
+Format of NetWare "Add Trustee To Directory" request buffer:
+Offset	Size	Description	(Table 01861)
+ 00h	WORD	length of following data (max 107h)
+ 02h	BYTE	0Dh (subfunction "Add Trustee To Directory")
+ 03h	BYTE	directory handle
+ 04h	DWORD	(big-endian) object ID of trustee
+ 08h	BYTE	trustee directory rights (see #01849)
+ 09h	BYTE	length of directory path (00h-FFh)
+ 0Ah  N BYTEs	directory path
+SeeAlso: #01863
+

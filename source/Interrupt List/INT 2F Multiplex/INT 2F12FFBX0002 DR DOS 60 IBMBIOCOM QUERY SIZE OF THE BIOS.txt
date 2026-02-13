@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0002
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DR DOS 6.0+ IBMBIO.COM - QUERY SIZE OF THE BIOS
+	AX = 12FFh
+	BX = 0002h
+Return: AX = 0000h if supported
+	DX = size of the DOS BIOS in paragraphs
+	CL and flags trashed
+Note:	This API is provided by IBMBIO.COM for the initialization phase
+	  of drivers loaded via DEVICE=/HIDEVICE=/DEVICEHIGH= directives and
+	  is only available during these short time intervals. It is called
+	  by DR DOS 6.0 EMM386.SYS and Novell DOS 7 EMM386.EXE to query the
+	  size of the DOS BIOS (the resident code of IBMBIO.COM).
+SeeAlso: AX=12FFh/BX=0000h,AX=12FFh/BX=0003h
+

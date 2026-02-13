@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD10
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 5+ DISPLAY.SYS internal - ???
+	AX = AD10h
+	???
+Return: CF clear if successful
+	CF set on error
+Note:	this function is a NOP if the active code page has never been set
+	  (AX=AD02h returns BX=FFFFh); its purpose otherwise is not known
+

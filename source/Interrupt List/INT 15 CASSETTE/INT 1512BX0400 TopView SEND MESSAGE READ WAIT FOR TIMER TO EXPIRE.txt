@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BX0400
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "READ" - WAIT FOR TIMER TO EXPIRE
+	AH = 12h
+	BX = 0400h
+	STACK: DWORD timer's handle
+Return: after timer expires
+	STACK: DWORD time in 1/100 sec after midnight when timer expired
+SeeAlso: AH=12h/BH=0Ah,AH=12h/BH=84h
+

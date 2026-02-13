@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F36--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_SND_BEEP_ENABLE" - ENABLE BEEPS
+	AH = 36h
+	BP = 0012h (driver ID of V_SYSTEM)
+Return: AH = status (see #03744 at AH=00h"HP Vectra")
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AH=30h/BP=0012h,AH=34h/BP=0012h,AH=38h/BP=0012h
+

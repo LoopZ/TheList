@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 030914
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 03 - Soft-ICE v2.5x - BACK DOOR COMMANDS - REMOVE Soft-ICE BREAKPOINT
+	AX = 0914h
+	SI = magic value 4647h ('FG')
+	DI = magic value 4A4Dh ('JM')
+	BX = breakpoint number (returned by AX=0913h)
+Return: BX = ???
+Program: Soft-ICE is a debugger by Nu-Mega Technologies, Inc.
+SeeAlso: AX=0912h,AX=0913h
+

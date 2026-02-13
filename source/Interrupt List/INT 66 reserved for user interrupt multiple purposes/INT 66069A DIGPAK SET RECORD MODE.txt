@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66069A
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - DIGPAK - SET RECORD MODE
+	AX = 069Ah
+	DX = recording mode
+	    0000h turn audio recording on
+	    0001h turn audio recording off
+Return: AX = status
+	    0000h command ignored
+	    0001h audio recording mode set
+

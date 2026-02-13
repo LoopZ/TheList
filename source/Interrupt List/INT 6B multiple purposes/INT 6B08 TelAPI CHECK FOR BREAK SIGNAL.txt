@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B08
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - TelAPI - CHECK FOR BREAK SIGNAL
+	AH = 08h
+	AL = circuit number
+Return: CF clear if no breaks
+	    AL = 00h
+	    CX = 0000h
+	CF set if one or more breaks received
+Note:	this function also clears ??? flag
+SeeAlso: INT 14/AX=FF00h
+

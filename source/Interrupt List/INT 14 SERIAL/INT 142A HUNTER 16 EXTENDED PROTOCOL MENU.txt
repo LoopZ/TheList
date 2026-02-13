@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 142A
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - EXTENDED PROTOCOL MENU
+	AH = 2Ah
+	AL = protocol handle
+Return: AH = status
+	    00h successful
+	    FFh failed
+	AL = menu handle
+SeeAlso: AH=29h"HUNTER",AH=2Bh"HUNTER"
+

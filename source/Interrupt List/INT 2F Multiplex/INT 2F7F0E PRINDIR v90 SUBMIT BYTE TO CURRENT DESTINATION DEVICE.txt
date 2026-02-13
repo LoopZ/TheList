@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7F0E
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PRINDIR v9.0 - SUBMIT BYTE TO CURRENT DESTINATION DEVICE
+	AX = 7F0Eh
+	DL = byte to send to destination device
+Return: AX = status
+	    0000h successful
+	    else  failed
+SeeAlso: AX=7F00h"PRINDIR",AX=7F0Ah,AX=7F0Bh,AX=7F0Ch,AX=7F0Dh
+

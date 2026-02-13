@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6004
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - MDEBUG - POP UP
+	AH = 04h
+	DS:SI -> password or a null byte
+Return: AX = return code (see #03309)
+SeeAlso: AH=03h"MDEBUG",AH=07h"MDEBUG"
+

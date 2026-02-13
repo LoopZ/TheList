@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F52
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - DosWriteMailslot
+	AX = 5F52h
+	BX = class
+	CX = length of buffer
+	DX = priority
+	ES:DI -> DosWriteMailslot parameter structure (see #01726)
+	DS:SI -> mailslot name
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F4Fh,AX=5F50h,AX=5F51h
+
+Format of LAN Manager DosWriteMailslot parameter structure:
+Offset	Size	Description	(Table 01726)
+ 00h	DWORD	timeout
+ 04h	DWORD	-> buffer
+

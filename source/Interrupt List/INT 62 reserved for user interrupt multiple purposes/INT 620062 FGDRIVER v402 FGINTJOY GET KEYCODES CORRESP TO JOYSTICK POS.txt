@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620062
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_INTJOY" - GET KEYCODES CORRESP TO JOYSTICK POS
+	AX = 0062h
+	CX = joystick number (0001h or 0002h)
+	ES:BX -> variable pointer record (see #03488)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	If the indicated joystick has not been initialized with AX=008Eh, both
+	  the button code and joystick position will be set to 00h
+	If either button is pressed, a button code of 0Dh is returned;
+	  otherwise, a button code of 00h is returned
+SeeAlso: AX=0009h,AX=0052h,AX=0046h,AX=005Eh,AX=0077h
+
+Format of FGDRIVER INTJOY variable pointer record:
+Offset	Size	Description	(Table 03488)
+ 00h	WORD	segment of BYTE buffer for button code
+ 02h	WORD	offset of BYTE buffer for button code
+ 04h	WORD	segment of BYTE buffer for joystick position
+ 06h	WORD	offset of BYTE buffer for joystick position
+

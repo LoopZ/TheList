@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF3A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DELETE PROPERTY
+	AX = F217h subfn 3Ah
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet	(see #01936 at AH=E3h/SF=3Ah)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=3Ah,AX=F217h/SF=39h,AX=F217h/SF=3Bh
+

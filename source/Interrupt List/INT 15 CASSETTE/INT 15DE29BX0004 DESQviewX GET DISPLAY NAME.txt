@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE29BX0004
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - DESQview/X - GET DISPLAY NAME
+	AX = DE29h
+	BX = 0004h
+	CX = size of buffer in bytes
+	DX = segment of window handle
+	ES:DI -> buffer for display name
+Return: CF clear if successful
+	    buffer filled with ASCIZ display name (truncated if necessary) or
+	      null string if no display
+	CF set on error
+Notes:	DESQview 2.50-2.52 are distributed as part of DESQview/X v1.0x.
+	the name ":0" refers to the local display
+

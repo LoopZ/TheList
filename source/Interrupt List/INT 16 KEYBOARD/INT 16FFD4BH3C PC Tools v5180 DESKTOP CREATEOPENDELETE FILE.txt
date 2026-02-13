@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFD4BH3C
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - CREATE/OPEN/DELETE FILE
+	AX = FFD4h
+	BH = 3Ch create file (with no attributes)
+	     3Dh open file
+	     41h delete file
+	BL = access mode
+	     00h read only
+	     01h write only
+	     02h read/write
+	DS:SI -> ASCIZ filename
+Return: BX = file handle
+	    0000h on error
+Note:	operation is attempted in (in order) the directory from which the
+	  desktop was started/run???, the directory specified with the
+	  filename, X:\PCTOOLS\, and X:\
+

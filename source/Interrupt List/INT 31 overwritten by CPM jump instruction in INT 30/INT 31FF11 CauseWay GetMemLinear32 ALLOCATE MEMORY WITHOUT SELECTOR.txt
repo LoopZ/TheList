@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF11
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "GetMemLinear32" - ALLOCATE MEMORY WITHOUT SELECTOR
+	AX = FF11h
+	ECX = size of block in bytes
+Return: CF clear if successful
+	    ESI = linear address of allocated block
+	CF set on error
+Note:	this function may return addresses above 16M
+SeeAlso: AX=FF0Ch,AX=FF10h,AX=FF13h,AX=FF14h
+

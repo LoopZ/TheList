@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200DC
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VOICES" - PLAY SOUNDS IN BACKGROUND
+	AX = 00DCh
+	ES:BX -> tone array (see #03512)
+	CX = number of times to repeat tone array
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function is only available on the PCjr and Tandy 1000 machines
+SeeAlso: AX=0059h,AX=0081h,AX=00BDh,AX=00DBh
+
+Format of FGDRIVER tone array element:
+Offset	Size	Description	(Table 03512)
+ 00h	WORD	channel number (0000h terminates array)
+ 02h	WORD	frequency
+ 04h	WORD	volume
+ 06h	WORD	duration in 1/72.8 seconds
+

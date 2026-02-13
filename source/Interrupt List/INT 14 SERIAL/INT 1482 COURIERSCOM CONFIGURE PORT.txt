@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1482
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COURIERS.COM - CONFIGURE PORT
+	AH = 82h
+	AL = port number (1-4)
+	BX = speed (bps)
+	CX = bit flags
+	    bit 0: enable input flow control
+	    bit 1: enable output flow control
+	    bit 2: use X.PC protocol (not yet implemented)
+Return: nothing
+SeeAlso: AH=00h,AH=8Ch,INT 7A"X.PC"
+

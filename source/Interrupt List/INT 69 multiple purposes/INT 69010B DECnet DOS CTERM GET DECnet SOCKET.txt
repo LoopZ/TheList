@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 69010B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - DECnet DOS CTERM - GET DECnet SOCKET
+	AX = 010Bh
+	DX = session handle
+Return: AX > 0	DECnet socket for the session
+	AX = 0	no match for handle
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX30F6
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - WSVV - GET API ENTRY POINT
+	AX = 1684h
+	BX = 30F6h (virtual device ID for WSVV device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02702)
+Call WSVV.VXD protected-mode entry point with:
+	AX = function number
+	    ????
+	Return: ???
+SeeAlso: #02701,#02703
+

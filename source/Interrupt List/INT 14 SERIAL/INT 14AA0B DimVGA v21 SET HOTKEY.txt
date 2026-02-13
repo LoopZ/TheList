@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14AA0B
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - DimVGA v2.1+ - SET HOTKEY
+	AX = AA0Bh
+	BH = shift state (see #00396)
+	BL = keyboard scancode
+Return: AX = FFFFh
+SeeAlso: AX=AA01h,AX=AA0Ch
+Index:	screen saver;DimVGA
+
+Bitfields for DimVGA hotkey shift state:
+Bit(s)	Description	(Table 00396)
+ 7-4	unused
+ 3	Alt key pressed
+ 2	Ctrl key pressed
+ 1	Left shift key pressed
+ 0	Right shift key pressed
+

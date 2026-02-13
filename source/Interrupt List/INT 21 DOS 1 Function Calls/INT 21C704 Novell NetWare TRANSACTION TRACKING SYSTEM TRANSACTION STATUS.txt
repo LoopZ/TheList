@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C704
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TRANSACTION TRACKING SYSTEM - TRANSACTION STATUS
+	AX = C704h
+	CX:DX = transaction number (see AX=C701h)
+Return: AL = status
+	    00h successful
+	    FFh not yet written to disk
+Desc:	verify that a transaction has actually been written to disk
+Notes:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+	transactions are written to disk in the order in which they are ended,
+	  but it may take as much as five seconds for the data to be written
+SeeAlso: AX=C700h"NetWare",AX=C701h,AX=C703h,AX=F222h/SF=04h
+

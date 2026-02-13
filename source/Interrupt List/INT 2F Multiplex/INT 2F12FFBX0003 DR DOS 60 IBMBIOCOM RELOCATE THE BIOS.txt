@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0003
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DR DOS 6.0+ IBMBIO.COM - RELOCATE THE BIOS
+	AX = 12FFh
+	BX = 0003h
+	CX = 0000h (DR PalmDOS)
+	DX = segment to relocate to (FFFFh for HMA)
+Return: AX = 0000h if supported
+	Flags trashed
+Notes:	This API is provided by IBMBIO.COM for the initialization phase
+	  is only available during these short time intervals.  It is initiated
+	  by DR DOS 6.0 EMM386.SYS and Novell DOS 7 EMM386.EXE to relocate the
+	  resident part of the DOS BIOS.  The actual relocation takes place at
+	  a later stage.
+	This call is also issued by DR PalmDOS IBMBIO.COM which explicitly
+	  clears CX.
+SeeAlso: AX=12FFh/BX=0001h,AX=12FFh/BX=0002h
+

@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330033
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.05+ - GET SWITCH SETTINGS AND ACCELERATION PROFILE DATA
+	AX = 0033h
+	CX = size of buffer
+	    0000h get required buffer size
+		Return: AX = 0000h
+			CX = required size (0154h for Logitech v6.10, 0159h
+				for MS v8.10-8.20)
+	    other
+		ES:DX -> buffer of CX bytes for mouse settings
+		Return: AX = 0000h
+			CX = number of bytes returned
+			ES:DX buffer filled (see #03182)
+SeeAlso: AX=002Bh
+
+Format of mouse settings data buffer:
+Offset	Size	Description	(Table 03182)
+ 00h	BYTE	mouse type
+ 01h	BYTE	current language
+ 02h	BYTE	horizontal sensitivity (00h-64h)
+ 03h	BYTE	vertical sensitivity (00h-64h)
+ 04h	BYTE	double-speed threshold (00h-64h)
+ 05h	BYTE	ballistic curve (01h-04h)
+ 06h	BYTE	interrupt rate (01h-04h)
+ 07h	BYTE	cursor override mask
+ 08h	BYTE	laptop adjustment
+ 09h	BYTE	memory type (00h-02h)
+ 0Ah	BYTE	SuperVGA support (00h,01h)
+ 0Bh	BYTE	rotation angle
+ 0Ch	BYTE	???
+ 0Dh	BYTE	primary button (01h-04h)
+ 0Eh	BYTE	secondary button (01h-04h)
+ 0Fh	BYTE	click lock enabled (00h,01h)
+ 10h 324 BYTEs	acceleration profile data (see #03180)
+154h  5 BYTEs	??? (Microsoft driver, but not Logitech)
+

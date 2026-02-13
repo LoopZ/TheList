@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD000
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZWmous - INSTALLATION CHECK
+	AX = D000h
+Return: AX = 5A57h ("ZW") if installed
+	    BX = segment of resident code
+Program: ZWmous is a shareware TSR by Zen Wu which permits the use of a mouse
+	  with many non-mouse applications by entering the letter under the
+	  mouse cursor on button presses
+SeeAlso: INT 33/AX=0003h
+

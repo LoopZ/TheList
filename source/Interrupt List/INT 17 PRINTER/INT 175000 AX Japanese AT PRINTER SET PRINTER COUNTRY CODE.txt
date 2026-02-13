@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 175000
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - AX (Japanese AT) PRINTER - SET PRINTER COUNTRY CODE
+	AX = 5000h
+	BX = country code
+	    0001h USA (English), 0051h Japan
+Return: AL = status
+	    00h successful
+	    01h bad country code
+	    02h other error
+SeeAlso: AX=5001h,AH=51h,INT 10/AX=5000h,INT 16/AX=5000h
+

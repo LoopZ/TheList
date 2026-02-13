@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0009
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0+ IBMBIO.COM - REGISTER ROOT OF UPPER MEMORY LINK
+	AX = 12FFh
+	BX = 0009h
+	DX = new value for root segment of upper memory link
+Return: AX = 0000h if supported
+	ES:BX modified
+Notes:	the DX value is stored at offset 66h in SYSVARS (see INT 21h/AH=52h)
+	  and offset 18h in the Novell DOS 7 internal variable table
+	  (see INT 21/AX=4458h)
+	This API is provided by IBMBIO.COM for the initialization phase
+	  of drivers loaded via DEVICE=/HIDEVICE=/DEVICEHIGH= directives and
+	  is only available during these short time intervals.  It is probably
+	  initiated by the Novell DOS 7+ EMM386.EXE.
+	this function has apparently been supported since DR DOS 6.0 "Buxton"
+	  of 1991/03/19
+	for Novell DOS 7, ES:BX points at the internal variable table DRDAT,
+	  but this may change in future releases
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0491
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - FILESEC - VxD SERVICES
+	VxD = 0491h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01323)
+Values for FILESEC (VxD ID 0491h) service number:
+ 00h	get FILESEC version???
+ 01h	???
+ 10h	...last service for Windows95 SP1
+SeeAlso: #01322,#01324
+

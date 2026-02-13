@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0E08
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - SEND DATA OVER COMM CHANNEL
+	DI = 0E08h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	comm channel handle
+		DWORD	pointer to data to be sent
+		WORD	option flags
+			bit 0: send partial buffer
+			bit 1: turn on receiver after sending
+		DWORD	pointer to WORD containing length of data to be sent
+Return: length WORD updated to contain number of bytes actually sent???
+	STACK unchanged
+SeeAlso: INT 60/DI=0E09h,INT 60/DI=0E0Bh
+

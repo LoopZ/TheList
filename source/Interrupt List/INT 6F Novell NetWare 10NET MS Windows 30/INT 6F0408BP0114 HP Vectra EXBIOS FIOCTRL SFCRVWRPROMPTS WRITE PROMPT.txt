@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0408BP0114
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_CRV_WR_PROMPTS" - WRITE PROMPT
+	AX = 0408h
+	BP = 0114h (driver ID for V_HPHIL)
+	BX = device address indicator (see #03760)
+	DH = HP HIL device major address
+	DL = prompt number
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=020Eh,AX=0406h/BP=0114h,AX=040Ah/BP=0114h
+
+Bitfields for HP Vectra V_HPHIL device address indicator:
+Bit(s)	Description	(Table 03760)
+ 15-14	reserved
+ 13	address in DH is valid (must be set, clear is reserved)
+ 12	valid value in DL
+ 11-0	reserved
+

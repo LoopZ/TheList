@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2116
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - CREATE OR TRUNCATE FILE USING FCB
+	AH = 16h
+	DS:DX -> unopened FCB (see #01345), wildcards not allowed
+Return: AL = status
+	    00h successful
+	    FFh directory full or file exists and is read-only or locked
+Notes:	if file already exists, it is truncated to zero length
+	if an extended FCB is used, the file is given the attribute in the
+	  FCB; this is how to create a volume label in the disk's root dir
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+	(FAT32 drive) this function will only succeed for creating a volume
+	  label; FAT32 does not support FCBs for file I/O
+SeeAlso: AH=0Fh,AH=10h,AH=3Ch
+

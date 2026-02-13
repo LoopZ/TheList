@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB404
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Intel Plug-and-Play AUTO-CONFIGURATION - GET AVAILABLE IRQs???
+	AX = B404h
+	BX = bitmap of IRQs being used???
+Return: CF clear if successful
+	    AX = 0000h
+	    BX = available for ISA??? (not(BXin) & A127h)
+	    CX = available for on-board I/O??? (not(BXin) & 40D8h)
+	    DX = available for PCI??? (either not(BXin) & 0E00h or 0000h)
+	CF set on error
+	    AX = error code (0051h) (see #01243)
+Note:	the various vector types have also been called "shareable",
+	  "unshareable", and "avoidable"
+SeeAlso: AX=B400h,INT 2F/AX=1684h/BX=304Ch
+

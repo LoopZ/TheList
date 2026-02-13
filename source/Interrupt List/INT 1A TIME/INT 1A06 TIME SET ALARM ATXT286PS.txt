@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A06
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - SET ALARM (AT,XT286,PS)
+	AH = 06h
+	CH = hour (BCD)
+	CL = minutes (BCD)
+	DH = seconds (BCD)
+Return: CF set on error (alarm already set or clock stopped for update)
+	CF clear if successful
+Notes:	the alarm occurs every 24 hours until turned off, invoking INT 4A each
+	  time
+	the BIOS does not check for invalid values for the time, so the CMOS
+	  clock chip's "don't care" setting (any values between C0h and FFh)
+	  may be used for any or all three parts.  For example, to create an
+	  alarm once a minute, every minute, call with CH=FFh, CL=FFh, and
+	  DH=00h.
+SeeAlso: AH=07h,AH=0Ch,INT 4A"SYSTEM"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164--DX0001
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v2.0+ Virtual DOS Machine - SET SESSION TITLE
+	AH = 64h
+	DX = 0001h (function number)
+	CX = 636Ch (magic value, "cl")
+	BX = 0000h (indicates special request)
+	ES:DI -> new ASCIZ title (max 12 char) or "" to restore default title
+Note:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
+SeeAlso: AH=64h/DX=0000h,AH=64h/DX=0002h,INT 15/AH=12h/BH=05h
+

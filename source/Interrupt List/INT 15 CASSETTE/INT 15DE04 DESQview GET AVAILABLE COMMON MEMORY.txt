@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE04
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview - GET AVAILABLE COMMON MEMORY
+	AX = DE04h
+Return: BX = bytes of common memory available
+	CX = largest block available
+	DX = total common memory in bytes
+SeeAlso: AX=DE05h,AX=DE06h
+

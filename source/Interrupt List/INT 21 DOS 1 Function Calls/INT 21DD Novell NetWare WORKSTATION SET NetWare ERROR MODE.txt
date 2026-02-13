@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DD
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - SET NetWare ERROR MODE
+	AH = DDh
+	DL = error mode
+	    00h invoke INT 24 on critical I/O errors (default)
+	    01h return NetWare extended error code in AL
+	    02h return error code in AL, mapped to standard DOS error codes
+Return: AL = previous error mode
+Note:	this function is supported by Advanced NetWare 2.0+
+SeeAlso: INT 24
+

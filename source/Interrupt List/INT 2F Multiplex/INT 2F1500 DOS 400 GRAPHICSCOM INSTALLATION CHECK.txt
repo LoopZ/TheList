@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1500
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 4.00 GRAPHICS.COM - INSTALLATION CHECK
+	AX = 1500h
+Return: AX = FFFFh
+	ES:DI -> ??? (graphics data?)
+Note:	this installation check conflicts with the CD-ROM Extensions
+	  installation check; moved to AX=AC00h in later versions
+SeeAlso: AX=AC00h
+

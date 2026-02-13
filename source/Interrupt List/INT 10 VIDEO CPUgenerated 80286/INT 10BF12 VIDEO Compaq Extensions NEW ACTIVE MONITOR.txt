@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF12
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - NEW ACTIVE MONITOR
+	AX = BF12h
+	BH reserved
+	BL = function mask (see #00215)
+Return: CF clear
+Notes:	this function is a NOP if the VGA subsystem is inactive or the current
+	  Display Combination Code is 10h or higher
+	supported by at least the QVision board and the LTE Lite and ProSignia
+	  ROM BIOSes
+SeeAlso: AX=BF01h,AX=BF02h,#00733
+
+Bitfields for function mask:
+Bit(s)	Description	(Table 00215)
+ 7	command mode
+	if set, bits 1 and 0 make the monitor active when set
+	if clear, bits 1 and 0 toggle the monitor's state when set
+ 6-2	reserved
+ 1	internal monitor
+ 0	external monitor
+

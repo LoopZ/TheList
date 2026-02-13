@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6401
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 64 U - BW-NFS - BWRPC - ???
+	AH = 01h
+	ES:BX -> ??? (at least 8 bytes)
+	ES:BP -> DWORD ???
+	???
+Return: CF clear if successful
+	    ???
+	CF set on error
+	    CX = 0000h
+Range:	INT 4E to INT FD, selected by configuration
+Notes:	the Beame&Whiteside TCP/IP protocol stack uses two consecutive
+	  interrupts (62h and 63h by default); the BW-NFS client uses a third
+	  consecutive interrupt (64h by default) if it is loaded
+	the BWRPC installation check consists of determining the interrupt
+	  vector assigned to it (two more than the value returned by reading
+	  the ETHDEV27 device), and testing whether the word immediately
+	  preceding the interrupt handler is 4257h ('BW')
+SeeAlso: INT 62/AH=00h"ETHDEV",INT 63/AH=03h"BW-TCP",INT 63/AH=24h
+Index:	installation checks;BWRPC
+

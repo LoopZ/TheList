@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH0A
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "ADDTO" - SET OBJECT BITS
+	AH = 12h
+	BH = 0Ah
+	BL = object
+	    00h handle is DWORD on top of stack
+		timer: start timer for specified interval
+		pointer: set control flags (see #00451)
+		keyboard: set control flags (see #00450)
+	    04h set control flags on KEYBOARD object (handle on top of stack)
+	    05h set control flags on task's default KEYBOARD object
+	STACK: (if timer)   DWORD duration in 1/100 seconds
+	       (otherwise)  DWORD bits to set
+Return: STACK popped
+SeeAlso: AH=12h/BH=0Bh"OBJECT"
+
+Bitfields for DESQview keyboard object bits:
+Bit(s)	Description	(Table 00450)
+ 15	reserved, can't be set
+ 14	unused
+ 13	reserved, can't be set
+ 12-6	unused
+ 5	(DV 2.2+) exclusive input
+ 4	filter all keys (used with handler established by SETESC)
+	if 0, only keys that would normally be displayed are filtered
+ 3	program continues executing while input in progress
+ 2	insert mode active for field mode
+ 1	hardware cursor displayed when task is hardware cursor owner
+	must be set if keyboard in field mode and field table includes input
+	  fields
+ 0	keyboard is in field mode rather than keystroke mode
+
+Bitfields for DESQview pointer object bits:
+Bit(s)	Description	(Table 00451)
+ 15	reserved, can't be set
+ 14-8	unused
+ 7	mouse pointer is hidden while in window
+ 6	get messages even if window not topmost
+ 5	get messages even if window not foreground
+ 4	multiple clicks separated by less than 1/3 second are counted and
+	  returned in a single message
+ 3	pointer position is relative to screen origin, not window origin
+ 2	send message on button release as well as button press
+ 1	(DV 2.23+) send message with row=FFFFh and col=FFFFh whenever the
+	  pointer leaves the window
+ 0	send message only on button activity, not movement
+	DV-specific, and INT 15/AX=DE0Fh must have been called first
+

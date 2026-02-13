@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152303
+  Category: B 	BIOS
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - IBM BIOS - SMART ENERGY SYSTEM - ???
+	AX = 2303h
+	BX = ??? ('x')
+	DX = 'y' and 'z'
+		bits 15-7 = 'y'
+		bits 6-3 unused
+		bits 2-0 = 'z'
+	DI = ??? (0352h)
+Return: ???
+Notes:	performs graphics functions, writes to segment A000h and VGA I/O ports
+	IBM classifies this function as optional
+

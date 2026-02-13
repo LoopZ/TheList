@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660688
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - IBMSND driver, DIGPAK - PLAY 8-BIT DIGITIZED SOUND
+	AX = 0688h
+	DS:SI -> SNDSTRUC (see #03519)
+Return: ???
+Program: The IBMSND driver is part of John W. Ratcliff's
+	   The IBM Digitized Sound Package
+	DIGPAK is a set of digitized sound drivers written by
+	  John W. Ratcliff, The Audio Solution, Inc.
+InstallCheck:	test for a valid signature string six bytes prior to the
+	  interrupt handler; this string may be either "KERN" or "MIDI" (in
+	  the latter case, call AX=0701h to determine whether IBMSND is
+	  installed)
+SeeAlso: AX=068Bh,AX=068Fh,AX=0701h
+
+Format of IBMSND driver SNDSTRUC:
+Offset	Size	Description	(Table 03519)
+ 00h	DWORD	-> audio data
+ 04h	WORD	length of audio data in bytes
+ 06h	DWORD	-> playback status flag
+ 0Ah	WORD	playback frequency
+

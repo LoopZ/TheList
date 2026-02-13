@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 612B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.02+ - "net_alarm" - SET TIMED ASYNCHRONOUS EVENT
+	AH = 2Bh
+	BX = network descriptor
+	CX,DX = time before alarm in milliseconds
+	DS:SI -> handler which will receive call (see #03467 at INT 61/AH=1Fh)
+	ES:DI = 32-bit cookie passed to handler
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Notes:	this function will cause a NET_AS_ALARM to be generated; it is intended
+	  for TSRs, etc. to regain control periodically
+	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+

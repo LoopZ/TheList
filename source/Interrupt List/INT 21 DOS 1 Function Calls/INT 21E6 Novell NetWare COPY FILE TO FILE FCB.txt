@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E6
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare - COPY FILE TO FILE (FCB)
+	AH = E6h
+	CX:DX = number of bytes to copy
+	DS:SI -> opened source FCB
+	ES:DI -> opened destination FCB
+Return: AL = error code
+	CX = ???
+	DX = ???
+Note:	this function was added in NetWare 4.0, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1040
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "GMODE" - SET GRAPHICS MODE
+	AH = 40h
+Return: nothing
+Program: Hercules GRAFIX (or GRAPH X, as it is called in some documentation)
+	  provides text output in graphics mode and some graphics primitives
+	  on the Hercules Graphics Card
+Desc:	switch the Hercules Graphics Card into graphics mode (720x348) without
+	  clearing the screen; make Page 0 the default for both writing and
+	  display, and set LEVEL (see AH=44h) to 01h
+SeeAlso: AH=00h,AH=41h,AH=42h
+Index:	video modes;Hercules
+

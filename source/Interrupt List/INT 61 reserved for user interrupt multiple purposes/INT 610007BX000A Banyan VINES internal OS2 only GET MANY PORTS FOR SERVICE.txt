@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX000A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - internal, OS/2 only - GET MANY PORTS FOR SERVICE
+	AX = 0007h
+	BX = 000Ah
+	DS:DX -> port control block (see #03440)
+Return: AX = status (see AX=0007h/BX=0000h)
+Note:	This function cannot be called from applications, as the DS register
+	  is checked against the redirector data segment address (status code
+	  0001h will be returned if DS doesn't match)
+SeeAlso: AX=0007h/BX=0001h,AX=0007h/BX=0002h,AX=0007h/BX=0004h
+
+Format of port control block:
+Offset	Size	Description	(Table 03440)
+ 00h	WORD	???
+ 02h	WORD	???
+ 04h 16	BYTEs	IPC port (see #03328 at AX=0001h"Sosock")
+ 14h 14 WORDs	???
+SeeAlso: #03434
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212B01CX444D
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Quarterdeck DOS-UP.SYS v2.00 - INSTALLATION CHECK
+	AX = 2B01h
+	CX = 444Dh ('DM')
+	DX = 4158h ('AX')
+Return: AX = 0000h if installed
+	    BX = DOS-UP version (BH = minor, BL = major)
+	    CX = 4845h ('HE')
+	    DX = 5245h ('RE')
+	    ES = DOS-UP driver segment
+

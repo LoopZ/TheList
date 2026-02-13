@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA12
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - Pen Driver - STORE PEN BATTERY CHARGE
+	AX = BA12h
+	BL = new battery state (00h good, 01h low charge)
+Return: CF set on error
+	CF clear if successfully stored in CMOS
+Note:	The last report will be displayed by the Power-On Self Test the next
+	  time the OmniShare boots.  This allows something meaningful to be
+	  reported even if the pen is not detected during the POST.
+SeeAlso: AX=BA13h
+

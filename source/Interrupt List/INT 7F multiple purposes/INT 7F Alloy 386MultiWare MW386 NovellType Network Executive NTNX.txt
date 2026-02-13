@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy 386/MultiWare (MW386), Novell-Type Network Executive (NTNX)
+Notes:	the words at C800h:0000h and C800h:0002h will both be 584Eh if the
+	  MW386 multitasking system is present (i.e. signature "NXNX")
+	NTNX allows its API to be placed on a different interrupt than 7Fh at
+	  load time.  To determine the actual vector used, open the device
+	  "SPOOLER" with INT 21/AX=3D02h, place it in RAW mode with
+	  INT 21/AX=4400h and INT 21/AX=4401h, then read one byte which will
+	  be the actual interrupt number being used; the other interrupts may
+	  be found with INT 7F/AH=09h/CL=03h
+

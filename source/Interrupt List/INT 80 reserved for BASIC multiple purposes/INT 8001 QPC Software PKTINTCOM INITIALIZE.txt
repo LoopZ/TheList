@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8001
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - QPC Software PKTINT.COM - INITIALIZE
+	AH = 01h
+Return: AX = 0000h
+	CX = FFFFh
+	DX = FFFFh
+Notes:	this interrupt is the WinQVTNet protected mode interface to Windows 3.0
+	all buffer pointers are reset back to 0
+

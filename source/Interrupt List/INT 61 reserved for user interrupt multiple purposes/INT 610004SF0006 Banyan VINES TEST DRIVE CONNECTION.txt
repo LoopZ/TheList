@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0006
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - TEST DRIVE CONNECTION
+	AX = 0004h subfn 0006h
+	DS:DX -> request block (see #03407)
+Return: AX = status (see also #03400)
+	    0000h connection flag returned in request block
+Desc:	Returns a flag indicating if the drive is connected to a file service
+SeeAlso: AX=0004h/SF=0007h
+
+Format of VINES Function 0004h/Subfunction 0006h request block:
+Offset	Size	Description	(Table 03407)
+ 00h	WORD	0006h (subfunction "Test Drive Connection")
+ 02h	BYTE	buffer for connection flag (1 = not connected, 2 = connected)
+

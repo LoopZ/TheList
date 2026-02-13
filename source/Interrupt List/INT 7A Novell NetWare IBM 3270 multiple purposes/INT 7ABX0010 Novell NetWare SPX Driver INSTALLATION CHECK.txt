@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0010
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - SPX Driver - INSTALLATION CHECK
+	BX = 0010h
+	AL = 00h
+Return: AL = status
+	    00h if SPX not installed
+	    F0h if IPX not installed
+	    FFh if SPX loaded
+		BH = SPX major version
+		BL = SPX minor version
+		CX = maximum SPX connections
+		DX = SPX connections available
+Notes:	this function is supported by Advanced NetWare 2.1+
+	this interrupt is used for IPX/SPX access in NetWare versions through
+	  2.0a; in later versions, you should use INT 2F/AX=7A00h to get an
+	  entry point even though INT 7A still exists.	For both INT 7A and
+	  the FAR entry point, BX contains the function number
+	IPX is sometimes called internally with BX bit 15 set, which causes the
+	  entry point handler to bypass some checks and an optional call to
+	  the IPX Windows support handler set with INT 2F/AX=7AFFh/BX=0000h
+	  (see #02926)
+SeeAlso: BX=0015h
+

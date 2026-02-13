@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Tandy 2000 - TIME - GET DATE AND TIME
+	AH = 02h
+Return: BX = number of days since January 1, 1980
+	CH = hours
+	CL = minutes
+	DH = seconds
+	DL = hundredths
+SeeAlso: AH=03h"Tandy 2000",INT 55"Tandy 2000"
+

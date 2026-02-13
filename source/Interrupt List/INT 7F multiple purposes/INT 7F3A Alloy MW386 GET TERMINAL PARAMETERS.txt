@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F3A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET TERMINAL PARAMETERS
+	AH = 3Ah
+	DL = user number (FFh = caller)
+	DH = machine number
+Return: CF clear if successful
+	    AH = terminal driver number
+	    AL = baud rate (00h = 38400, 01h = 19200, etc)
+	    CL = parity (00h none, 01h even, 02h odd)
+	    CH = handshaking (00h none, 01h XON/XOFF, 02h DTR/DSR, 03h XPC)
+	CF set if invalid user number
+SeeAlso: AH=3Bh
+

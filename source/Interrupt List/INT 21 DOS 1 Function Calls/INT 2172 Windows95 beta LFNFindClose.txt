@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2172
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 beta - LFN-FindClose
+	AH = 72h
+	details not available
+Return:	CF clear if successful
+	CF set on error
+	    AX = error code (see #01680)
+		7200h if function not supported (e.g. under bare MS-DOS 7)
+Note:	this function was present in beta versions of Windows95, but is
+	  probably not present in the release version
+SeeAlso: AX=71A1h
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212B--CX454C
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - ELRES v1.1 - INSTALLATION CHECK
+	AH = 2Bh
+	CX = 454Ch ('EL')
+	DX = 5253h ('RS')
+Return: ES:BX -> ELRES history structure (see #01381)
+	DX = DABEh (signature, DAve BEnnett)
+Program: ELRES is an MS-DOS return code (errorlevel) recorder by David H.
+	  Bennett which stores recent errorlevel values, allows them to be
+	  retrieved for use in batch files, and can place them in an
+	  environment variable
+SeeAlso: AH=4Bh"ELRES",AH=4Dh
+
+Format of ELRES history structure:
+Offset	Size	Description	(Table 01381)
+ 00h	WORD	number of return codes which can be stored by following buffer
+ 02h	WORD	current position in buffer (treated as a ring)
+ 04h  N BYTEs	ELRES buffer
+

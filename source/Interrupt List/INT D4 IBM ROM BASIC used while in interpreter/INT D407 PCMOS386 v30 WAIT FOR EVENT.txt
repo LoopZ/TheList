@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: D407
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v3.0+ - WAIT FOR EVENT
+	AH = 07h
+	AL = events to monitor (see #04015)
+	BX = number of timer ticks until timeout if AL bit 1 set
+	CX = bitmap of IRQs to monitor if AL bit 2 set
+		(bit 0 = IRQ0 .. bit 15 = IRQ15)
+	DX = port to monitor if AL bit 3 set
+Return: CF clear if successful
+	    AL = type of event which woke up task (see #04015)
+	    CX = IRQ (if any) which awakened task
+	    DX = port (if any) which awakened task
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+Note:	a device driver may make this call with AL=00h, which indicates that
+	  the driver is responsible for setting and clearing the TCBWAIT field
+	  in the TCB.  To put task to sleep, set TCBWAIT bits 2-0 to 001; to
+	  reawaken it, set bit 1 (leaving other bits unchanged)
+SeeAlso: AH=04h,INT 16/AH=00h,INT 38
+
+Bitfields for PC-MOS/386 events to monitor:
+Bit(s)	Description	(Table 04015)
+ 0	keystroke
+ 1	timeout
+ 2	IRQ
+ 3	port access
+ 7	return status of user poll routine (other ignored if set)
+

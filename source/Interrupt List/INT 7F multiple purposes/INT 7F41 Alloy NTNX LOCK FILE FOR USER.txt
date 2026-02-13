@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F41
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX - LOCK FILE FOR USER
+	AH = 41h
+	AL = user ID
+	DS:DX -> ASCIZ filename
+Return: AL = status (see #03966)
+Note:	requests exclusive read/write access to file
+SeeAlso: AH=00h,AH=41h"MW386",AH=42h"NTNX"
+
+(Table 03966)
+Values for Alloy function status:
+ 00h	successful
+ 01h	invalid function
+ 02h	already locked
+ 03h	unable to lock
+ 04h	lock table full or semaphore space exhausted
+

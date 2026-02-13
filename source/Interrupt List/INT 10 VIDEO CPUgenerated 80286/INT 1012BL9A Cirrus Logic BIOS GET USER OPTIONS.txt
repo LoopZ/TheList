@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL9A
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - GET USER OPTIONS
+	AH = 12h
+	BL = 9Ah
+Return: AX = options word 1 (see #00031)
+	CX = options word 2 (see #00032)
+	BX,DX reserved
+SeeAlso: AH=12h/BL=80h,AH=12h/BL=84h,AH=12h/BL=93h,AH=12h/BL=A0h
+SeeAlso: AH=12h/BL=A3h,AH=12h/BL=A4h,#00732 at INT 1A/AX=B102h
+
+Bitfields for Cirrus Logic options word 1:
+Bit(s)	Description	(Table 00031)
+ 0,1	reserved
+ 2-4	monitor type
+ 5-6	maximum vertical resolution
+ 7-9	reserved
+ 10	force 8-bit operation
+ 11-13	reserved
+ 14	vertical refresh frequency at 640x480
+	=0 60 Hz
+	=1 high refresh
+ 15	reserved
+SeeAlso: AH=12h/BL=AEh
+
+Bitfields for Cirrus Logic options word 2:
+Bit(s)	Description	(Table 00032)
+ 15-13	vertical refresh frequency at 1024x768
+ 12-11	vertical refresh frequency at 800x600
+ 10-6	reserved
+ 5-4	vertical refresh frequency at 1280x1024
+ 3-0	reserved
+SeeAlso: #00033
+
+Bitfields for Cirrus Logic Options word 2 (alternate???):
+Bit(s)	Description	(Table 00033)
+ 15-12	vertical refresh frequency at 1024x768
+	0000 43i Hz
+	0001 60	 Hz
+	0010 70	 Hz
+	0011 72	 Hz
+	0100 76	 Hz
+	other reserved
+ 11-8	vertical refresh frequency at 800x600
+	0000 56 Hz
+	0001 60 Hz
+	0010 72 Hz
+	0011 75 Hz
+	other reserved
+ 7-4	maximum vertical resolution
+	0000 480  scanlines
+	0001 600  scanlines
+	0010 768  scanlines
+	0011 1024 scanlines
+	other reserved
+ 3-1	vertical refresh frequency at 1280x1024
+	000 43i	 Hz
+	001 60	 Hz
+	010 71.2 Hz (CL-GD5434 rev. E and F)
+	011 74	 Hz (CL-GD5434 rev. E and F)
+	other reserved
+ 0	reserved
+SeeAlso: #00032
+

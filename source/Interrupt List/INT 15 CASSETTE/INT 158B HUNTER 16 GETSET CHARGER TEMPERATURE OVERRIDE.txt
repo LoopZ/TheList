@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 158B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET/SET CHARGER TEMPERATURE OVERRIDE
+	AH = 8Bh
+	AL = function
+	    00h get
+		Return:	BH = Maximum charging temperature
+				Temp = -20 + (n * 0.63) degrees Centigrade
+			BL = Minimum charging temperature
+	    else set
+		BH = maximum charging temperature (as above)
+		BL = minimum charging temperature (as above)
+Return: AH = status
+	    00h success
+	    FFh failure
+Desc:	get/set the temperature interval within which the charger should
+	  operate
+

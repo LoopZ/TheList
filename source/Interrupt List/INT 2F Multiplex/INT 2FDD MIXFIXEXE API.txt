@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDD
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MIXFIX.EXE - API
+	AH = DDh
+	AL = function
+	    00h installation check
+		Return: AX = 00DDh if installed
+			    BX = version (BH = major, BL = minor)
+	    41h/61h get From: address
+		Return: AX = 0001h
+			ES:BX -> ASCIZ 4d address of mail sender ("1:2/3.4")
+	    49h/69h get To: address
+		Return: AX = 0001h
+			ES:BX -> ASCIZ 4d address of recipient ("1:2/3.4")
+	    4Ah/6Ah get subject of mail
+		Return: AX = 0001h
+			ES:BX -> ASCIZ subject of handled mail
+	    4Dh/6Dh get mail name
+		Return: AX = 0001h
+			ES:BX -> ASCIZ full name of current mail file
+	    4Eh/6Eh get From: field
+		Return: AX = 0001h
+			ES:BX -> ASCIZ From: field of mail (mail sender's name)
+Program: MIXFIX by "KIV without Co" is a FidoNet mail robot which may execute
+	  other programs for mail handling.  The called programs may use the
+	  services described here to retrieve information about the mail being
+	  handled.
+Index: installation check;MIXFIX.EXE
+

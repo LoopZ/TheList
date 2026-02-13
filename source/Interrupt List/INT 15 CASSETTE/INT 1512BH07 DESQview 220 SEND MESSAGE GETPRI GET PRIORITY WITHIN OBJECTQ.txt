@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH07
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview 2.20+ - SEND MESSAGE - "GETPRI" - GET PRIORITY WITHIN OBJECTQ
+	AH = 12h
+	BH = 07h
+	BL = object
+	    00h object handle in DWORD on top of stack
+		mailbox, keyboard, pointer, or timer
+		(DV 2.50+) window
+	    01h (DV 2.50+) current task's window
+	    04h given task's keyboard (task's handle on top of stack)
+	    05h current task's default keyboard
+Return: STACK: DWORD object priority
+Note:	initially all objects have the same default value.  Should only make
+	  relative adjustments to this default value.
+SeeAlso: AH=12h/BH=06h
+

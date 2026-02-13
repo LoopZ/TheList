@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1903
+  Category: l 	shells/command interpreters
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4.x only SHELLB.COM - COMMAND.COM interface
+	AX = 1903h
+	ES:DI -> ASCIZ batch file name as for AX=1902h
+Return: AL = status
+	    FFh quoted batch file name matches last SHELLB parameter
+	    00h it does not
+

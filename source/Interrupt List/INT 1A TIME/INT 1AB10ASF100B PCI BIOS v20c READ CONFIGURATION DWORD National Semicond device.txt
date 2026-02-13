@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB10ASF100B
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - READ CONFIGURATION DWORD (National Semicond. device)
+	AX = B10Ah subfn 100Bh
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (0000h-00FFh) (see #00878)
+Return: CF clear if successful
+	    ECX = dword read
+	CF set on error
+	AH = status (00h,87h) (see #00729)
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	the meanings of BL and BH on entry were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B10Ah,AX=B10Ah/SF=8086h
+
+Format of National Semiconductor PC87410 EIDE Controller configuration:
+Offset	Size	Description	(Table 00921)
+ 00h 64 BYTEs	header (see #00878)
+		(vendor ID 100Bh, device ID D001h)
+ 10h	DWORD	I/O base address for channel 0 control ports (def: 01F0h)
+ 14h	DWORD	I/O base address for channel 0 status port (def: 03F6h)
+ 18h	DWORD	I/O base address for channel 1 control ports (def: 0170h)
+ 1Ch	DWORD	I/O base address for channel 1 status port (def: 0376h)
+ 40h	BYTE	IDE Channel 0 timing control
+ 41h	WORD	IDE Channel 0 read-ahead counter (write-only except bit 15)
+ 43h	BYTE	IDE Channel 0 function
+ 44h	BYTE	IDE Channel 1 timing control
+ 45h	WORD	IDE Channel 1 read-ahead counter (write-only except bit 15)
+ 47h	BYTE	IDE Channel 1 function
+ 48h	BYTE	PCI control
+ 49h  7 BYTEs	unused
+ 50h 176 BYTEs	??? (unused?)
+!!!http://www.national.com/ds/PC/PC87410.pdf p.7
+SeeAlso: #00739,#00922
+
+Format of National Semiconductor PC87415 IDE DMA-Master configuration:
+Offset	Size	Description	(Table 00922)
+ 00h 64 BYTEs	header (see #00878)
+		(vendor ID 100Bh, device ID 0002h)
+ 40h  3 BYTEs	control register
+ 43h	BYTE	write buffer status (read-only)
+ 44h	BYTE	Channel 1 master read timing
+ 45h	BYTE	Channel 1 master write timing
+ 48h	BYTE	Channel 1 slave read timing
+ 49h	BYTE	Channel 1 slave write timing
+ 4Ch	BYTE	Channel 2 master read timing
+ 4Dh	BYTE	Channel 2 master write timing
+ 50h	BYTE	Channel 2 slave read timing
+ 51h	BYTE	Channel 2 slave write timing
+ 54h	BYTE	command and control block timing
+ 55h	BYTE	sector size
+!!!http://www.national.com/ds/PC/PC87415.pdf p.8
+SeeAlso: #00739,#00921
+

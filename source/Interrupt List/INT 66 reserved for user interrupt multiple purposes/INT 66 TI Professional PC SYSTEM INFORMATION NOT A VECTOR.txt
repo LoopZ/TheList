@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 66
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - TI Professional PC - SYSTEM INFORMATION (NOT A VECTOR!)
+Desc:	the low word of this vector contains the system memory size in
+	  paragraphs; the third byte contains the number of outstanding
+	  interrupt requests, and the fourth byte contains a description
+	  of the installed drive types (see #03517)
+SeeAlso: INT 60"TI Professional PC",INT 67"TI Professional"
+
+Bitfields for TI Professional drive type information:
+Bit(s)	Description	(Table 03517)
+ 7	floppy drive D: has 80 tracks
+ 6	floppy drive D: is double-sided
+ 5	floppy drive C: has 80 tracks
+ 4	floppy drive C: is double-sided
+ 3	floppy drive B: has 80 tracks
+ 2	floppy drive B: is double-sided
+ 1	floppy drive A: has 80 tracks
+ 0	floppy drive A: is double-sided
+

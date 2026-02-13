@@ -1,0 +1,91 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB001CX4D52
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Microsoft Real-Time Compression Interface (MRCI) - ROM-BASED SERVER
+	AX = B001h
+	CX = 4D52h ("MR")
+	DX = 4349h ("CI")
+Return: CX = 4943h ("IC") if installed
+	DX = 524Dh ("RM") if installed
+	    ES:DI -> MRCINFO structure (see #00725)
+Note:	this call is functionally identical to INT 2F/AX=4A12h, which should
+	  be called first, as this call is used for the first, ROM-based
+	  MRCI server, while the other call is used for RAM-based servers
+	  which may be partially or entirely replacing a prior server
+SeeAlso: INT 2F/AX=4A12h
+
+Format of MRCINFO structure:
+Offset	Size	Description	(Table 00725)
+ 00h  4 BYTEs	vendor signature
+		"MSFT" Microsoft
+ 04h	WORD	server version (high=major)
+ 06h	WORD	MRCI specification version
+ 08h	DWORD	address of server entry point (see #00727)
+ 0Ch	WORD	bit flags: server capabilities (see #00726)
+ 0Eh	WORD	bit flags: hardware assisted capabilities (see #00726)
+ 10h	WORD	maximum block size supported by server (at least 8192 bytes)
+
+Bitfields for MRCI capabilities:
+Bit(s)	Description	(Table 00726)
+ 0	standard compress
+ 1	standard decompress
+ 2	update compress
+ 3	MaxCompress (not present in initial public release)
+ 4	reserved
+ 5	incremental decompress
+ 6	MRCI 2.0 standard compress
+ 7	MRCI 2.0 standard decompress
+ 8-14	reserved
+ 15	this structure is in ROM and can't be modified
+	(server capabilities only)
+
+(Table 00727)
+Call MRCI entry point with:
+	DS:SI -> MRCREQUEST structure (see #00728)
+	CX = type of client (0000h application, 0001h file system)
+	AX = operation
+	    0001h perform standard compression
+	    0002h perform standard decompression
+	    0004h perform update compression
+	    0008h perform MaxCompress
+	    0020h perform incremental decompression
+	    0040h perform MRCI 2.0 standard compression
+	    0080h perform MRCI 2.0 standard decompression
+	AX = FFFFh clear flags
+	    BX = bitmask of flags to clear (set bits in BX are flags to clear)
+Return: AX = status
+	    0000h successful
+	    0001h invalid function
+	    0002h server busy, try again
+	    0003h destination buffer too small
+	    0004h incompressible data
+	    0005h bad compressed data format
+	BP destroyed (MS-DOS 6.2)
+Note:	MRCI driver may chain to a previous driver
+
+Format of MRCREQUEST structure:
+Offset	Size	Description	(Table 00728)
+ 00h	DWORD	pointer to source buffer
+ 04h	WORD	size of source buffer (0000h = 64K)
+ 06h	WORD	(UpdateCompress only)
+		(call) offset in source buffer of beginning of changed data
+		(ret) offset in destination buffer of beginning of changed
+			  compressed data
+ 08h	DWORD	pointer to destination buffer
+		must contain original compressed data for UpdateCompress
+ 0Ch	WORD	size of destination buffer (0000h = 64K)
+		any compression: size of buffer for compressed data
+		standard decompression: number of bytes to be decompressed
+		incremental decompression: number of byte to decompress now
+		(ret) actual size of resulting data
+ 0Eh	WORD	client compressed data storage allocation size
+ 10h	DWORD	incremental decompression state data
+		set to 00000000h before first incremental decompression call
+Notes:	the source and destination buffers may not overlap
+	the source and destination buffer sizes should normally be the same
+	application should not update the contents of the MRCREQUEST structure
+	  between incremental decompression calls
+

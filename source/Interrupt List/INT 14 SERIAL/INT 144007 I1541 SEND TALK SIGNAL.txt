@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144007
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - SEND TALK SIGNAL
+	AX = 4007h
+	BH = device number (0-15)
+Return: CF clear if successful
+	CF set on error
+	    AL = error number (see #00354)
+SeeAlso: AX=4008h,AX=4009h
+

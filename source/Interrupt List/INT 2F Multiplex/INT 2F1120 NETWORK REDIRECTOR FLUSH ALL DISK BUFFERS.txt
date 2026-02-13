@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1120
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - FLUSH ALL DISK BUFFERS
+	AX = 1120h
+	DS = DOS DS
+	???
+Return: CF clear (successful)
+Notes:	this function is called by the DOS 3.1+ kernel
+	uses CDS array pointer and LASTDRIVE= entries in DOS list of lists
+SeeAlso: INT 21/AH=0Dh,INT 21/AX=5D01h
+

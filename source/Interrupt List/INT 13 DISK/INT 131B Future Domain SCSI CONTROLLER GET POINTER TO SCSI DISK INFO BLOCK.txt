@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131B
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Future Domain SCSI CONTROLLER - GET POINTER TO SCSI DISK INFO BLOCK
+	AH = 1Bh
+	DL = hard drive ID
+Return: CF set on error
+	    AH = status code (see #00234 at AH=01h)
+	CF clear if successful
+	    ES:BX -> SCSI disk information block (see #00252)
+Notes:	also sets a non-resettable flag which prevents some controller messages
+	  from being displayed
+	the TMC-950 does not support any Future Domain BIOS calls; instead,
+	  it provides a full CAM implementation (see INT 4F/AX=8100h)
+SeeAlso: AH=18h"SCSI",AH=1Ch"SCSI"
+
+Format of Future Domain SCSI disk information block:
+Offset	Size	Description	(Table 00252)
+ 00h	BYTE	drive physical information (see #00253)
+ 01h	WORD	translated number of cylinders
+ 03h	BYTE	translated number of heads
+ 04h	BYTE	translated number of sectors per track (17, 34, or 63)
+ 05h	BYTE	drive address
+		bits 0-2: logical unit number
+		bits 3-5: device number
+ 06h	BYTE	01h at initialization
+ 07h	BYTE	sense code byte 00h, or extended sense code byte 0Ch
+ 08h	BYTE	00h
+ 09h	BYTE	00h or extended sense code byte 02h (sense key)
+ 0Ah	BYTE	00h
+ 0Bh 10 BYTEs	copy of Command Descriptor Block (CDB) (see #03236,#03237)
+ 15h	DWORD	translated number of sectors on device
+
+Bitfields for Future Domain SCSI device physical information:
+Bit(s)	Description	(Table 00253)
+ 0	???
+ 1	device uses parity
+ 2	256 bytes per sector instead of 512
+ 3	don't have capacity yet???
+ 4	disk is removable
+ 5	logical unit number is not present
+

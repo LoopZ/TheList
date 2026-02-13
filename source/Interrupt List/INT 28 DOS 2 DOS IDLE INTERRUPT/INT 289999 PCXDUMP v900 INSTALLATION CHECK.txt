@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 289999
+  Category: U 	resident utilities
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 28 u - PCXDUMP v9.00+ - INSTALLATION CHECK
+	AX = 9999h
+Return: AX = AAAAh if installed
+	    CX = version number * 100 (example: 03A2h = 930 = v9.30)
+	    DL = interrupt used by the dump function (see #02553)
+		(00h if call not available)
+	    BX = CS of PCXDUMP's INT 28 handler (undocumented)
+	    ES = segment of PCXDUMP's memory block (v9.30, undocumented)
+Program: PCXDUMP is a shareware screen grabber saving in PCX format
+Notes:	if DL<>00h a dump can be requested by calling INT DL as shown
+	  below (the user can choose the interrupt number at installation
+	  time); if DL=00h the dump function can be called only by hotkeys
+	  (this is the default)
+
+(Table 02553)
+Call PCXDUMP screen-dump function with:
+	INT xx
+	AX = 1234h
+	BX = dump type
+	    0000h Color dump
+	    0001h Immediate color dump
+	    0002h Black/White dump
+	    0003h Immediate B/W dump
+	    0004h Inverted B/W dump
+	    0005h Gray scaled dump
+	    0006h Inverted gray scaled dump
+	    0007h Text screen dump to text file
+	    0008h Text screen dump to ansi file
+Return: nothing
+Notes:	if BX=0001h, 0003h, 0007h or 0008h the whole screen will be
+	  dumped; the other valid values will draw a selection frame
+	  on the screen except in text modes (text modes allow only
+	  full screen dumps)
+	this function doesn't perform the dump, it only requests it;
+	  the dump will be performed after a few milliseconds if it's
+	  safe to do so, thus the author recommends putting a 60 ms delay
+	  after this call
+

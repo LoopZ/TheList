@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33000C
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - DEFINE INTERRUPT SUBROUTINE PARAMETERS
+	AX = 000Ch
+	CX = call mask (see #03171)
+	ES:DX -> FAR routine (see #03172)
+SeeAlso: AX=0018h
+
+Bitfields for mouse call mask:
+Bit(s)	Description	(Table 03171)
+ 0	call if mouse moves
+ 1	call if left button pressed
+ 2	call if left button released
+ 3	call if right button pressed
+ 4	call if right button released
+ 5	call if middle button pressed (Mouse Systems/Logitech/Genius mouse)
+ 6	call if middle button released (Mouse Systems/Logitech/Genius mouse)
+ 7-15	unused
+Note:	some versions of the Microsoft documentation incorrectly state that CX
+	  bit 0 means call if mouse cursor moves
+
+(Table 03172)
+Values interrupt routine is called with:
+	AX = condition mask (same bit assignments as call mask)
+	BX = button state
+	CX = cursor column
+	DX = cursor row
+	SI = horizontal mickey count
+	DI = vertical mickey count
+Notes:	some versions of the Microsoft documentation erroneously swap the
+	  meanings of SI and DI
+	in text modes, the row and column will be reported as a multiple of
+	  the character cell size, typically 8x8 pixels
+

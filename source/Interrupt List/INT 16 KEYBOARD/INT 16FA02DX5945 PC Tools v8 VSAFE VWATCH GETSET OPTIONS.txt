@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FA02DX5945
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ VSAFE, VWATCH - GET/SET OPTIONS
+	AX = FA02h
+	DX = 5945h
+	BL = new parameter flags (see #00616)
+Return: CF clear
+	DI = 4559h
+	CL = old value of parameter flags
+
+Bitfields for VSAFE/VWATCH parameter flags:
+Bit(s)	Description	(Table 00616)
+ 7	Protect executable files
+ 6	Protect FD boot sector
+ 5	Protect HD boot sector
+ 4	Boot sector viruses
+ 3	Check executable files
+ 2	General write protect
+ 1	Resident
+ 0	HD Low level format
+

@@ -1,0 +1,225 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB401
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Intel Plug-and-Play AUTO-CONFIGURATION - GET DEFAULT CONFIG TABLE
+	AX = B401h
+Return: CF clear if successful
+	    AX = 0000h
+	    BX = maximum size of configuration table in bytes
+	    CX = required configuration buffer size
+		(includes scratch space used by ACFG code)
+	    EDI = linear/physical address of ESCD table (see #01244)
+	CF set on error
+	    AX = error code (see #01243)
+SeeAlso: AX=B400h,AX=B402h,@xxxxh:xxxxh"Plug-and-Play"
+
+Format of Intel Plug-and-Play Extended System Configuration Data table:
+Offset	Size	Description	(Table 01244)
+ 00h	WORD	total length of this table
+ 02h  4 BYTEs	signature "ACFG"
+ 06h	BYTE	minor version number
+ 07h	BYTE	major version number (currently 02h)
+ 08h	BYTE	number of boards listed in the configuration data
+ 09h  3 BYTEs	reserved (00h)
+ 0Ch	var	board data
+	WORD	checksum
+Notes:	this table contains information about the standard devices in the
+	  system, such as serial ports, parallel ports, etc.  For each device,
+	  it includes at least the I/O port address (03F8h,02F8h,0378h,etc).
+	the sum of all words in the table, including the checksum field (with
+	  implied zero padding if the length is odd), must equal 0000h
+SeeAlso: #01245
+
+Format of Extended System Configuration Data Board Header:
+Offset	Size	Description	(Table 01245)
+ 00h	WORD	length of this header in bytes
+ 02h	BYTE	slot number
+		00h motherboard
+		01h-0Fh ISA/EISA
+		10h-40h	PCI
+ 03h	BYTE	reserved (00h)
+SeeAlso: #01244,#01246
+
+Format of Extended System Configuration Data Freeform Board Header:
+Offset	Size	Description	(Table 01246)
+ 00h  4 BYTEs	signature "ACFG"
+ 04h	BYTE	minor version number
+ 05h	BYTE	major version number (currently 02h)
+ 06h	BYTE	board type
+		01h ISA
+		02h EISA
+		04h PCI
+		08h PCMCIA
+		10h PnPISA
+		20h MCA
+ 07h	BYTE	reserved (00h)
+ 08h	WORD	disabled functions (bit N set = function N disabled)
+ 0Ah	WORD	configuration error functions
+ 0Ch	WORD	reconfigurable functions (bit N set = function N reconfig'able)
+ 0Eh  2 BYTEs	reserved (00h)
+SeeAlso: #01249,#01250
+
+Format of Extended System Configuration Data Freeform PCI Device Data:
+Offset	Size	Description	(Table 01247)
+ 00h	BYTE	PCI bus number
+ 01h	BYTE	PCI device and function number
+ 02h	WORD	PCI device identifier
+ 04h	WORD	PCI vendor ID (see #00732 at INT 1A/AX=B102h)
+ 06h  2 BYTEs	reserved (00h)
+SeeAlso: #01247,#01250
+
+Format of Extended System Configuration Data Freeform PnP ISA Board ID:
+Offset	Size	Description	(Table 01248)
+ 00h	DWORD	vendor ID (EISA device identifier)
+ 04h	DWORD	serial number
+SeeAlso: #01248,#01249
+
+Format of Extended System Configuration Data PnP ISA ECD Extension Function:
+Offset	Size	Description	(Table 01249)
+ 00h	WORD	001Eh (length of this structure)
+ 02h	BYTE	01h (selection size)
+ 03h	BYTE	00h (selection data)
+ 04h	BYTE	C0h (function information byte) (see #01252)
+ 05h	BYTE	18h (size of following free-format data)
+ 06h 16 BYTEs	freeform board header (see #01246)
+ 16h  8 BYTEs	Plug-and-Play board ID (see #01248)
+Note:	ECD = Extended Configuration Data; this structure must be the last
+	  "function" for a particular ISA Plug-and-Play board
+SeeAlso: #01250
+
+Format of Extended System Configuration Data PCI ECD Extension Function:
+Offset	Size	Description	(Table 01250)
+ 00h	WORD	length of this structure (at least 001Eh, up to 0056h)
+ 02h	BYTE	01h (selection size)
+ 03h	BYTE	00h (selection data)
+ 04h	BYTE	C0h (function information byte) (see #01252)
+ 05h	BYTE	size of following free-format data (at least 18h, max 50h)
+ 06h 16 BYTEs	freeform board header (see #01246)
+ 16h 8N BYTEs	PCI board ID (see #01247) for one to eight boards
+Notes:	ECD = Extended Configuration Data; this structure must be the last
+	  "function" for a particular PCI board
+	AMI BIOS v1.00.05.AX1 sets the length field to 001Ch for entries with
+	  a single board ID, apparently treating the field as the length of
+	  the remainder of the structure instead of the full structure's length
+SeeAlso: #01249
+
+Bitfields for EISA ID and Slot Information:
+Bit(s)	Description	(Table 01251)
+ 3-0	selector among duplicate configuration file names (0000 if no dups)
+ 5-4	slot type
+	00 expansion slot
+	01 embedded
+	10 virtual slot
+	11 reserved
+ 6	ID is readable
+ 7	duplicate IDs present
+ 8	board can be disabled
+ 9	IOCHKERR supported
+ 10	board or entries locked
+ 13-11	reserved
+ 14	board does not have or need configuration file
+ 15	configuration not complete
+SeeAlso: #01252
+
+Bitfields for EISA Function Information:
+Bit(s)	Description	(Table 01252)
+ 0	subtype data
+ 1	memory information (see #01253)
+ 2	IRQ information (see #01255)
+ 3	DMA information (see #01256)
+ 4	port range information (see #01257)
+ 5	port initialization data (see #01258)
+ 6	free form data
+ 7	function disabled
+SeeAlso: #01249,#01250,#01251
+
+Format of EISA Memory Information:
+Offset	Size	Description	(Table 01253)
+ 00h	WORD	memory information flags (see #01254)
+ 02h  3 BYTEs	high 24 bits of memory start address (LSB first)
+ 05h	WORD	memory size in K (0000h = 65536K)
+SeeAlso: #01252
+
+Bitfields for EISA Memory Information Flags:
+Bit(s)	Description	(Table 01254)
+ 0	writable (RAM rather than ROM)
+ 1	cached
+ 2	write-back cache rather than write-through
+ 4-3	memory type
+	00 system
+	01 expantion
+	10 virtual
+	11 other
+ 5	shared
+ 6	reserved (0)
+ 7	more entries follow
+ 9-8	memory width
+	00 byte
+	01 word
+	10 dword
+	11 reserved
+ 11-10	decoded address lines
+	00 = 20
+	01 = 24
+	10 = 32
+	11 reserved
+ 15-12	reserved (0)
+SeeAlso: #01253
+
+Bitfields for EISA IRQ Information:
+Bit(s)	Description	(Table 01255)
+ 3-0	IRQ number
+ 4	reserved (0)
+ 5	IRQ triggering (0 = edge, 1 = level)
+ 6	IRQ is shareable
+ 7	more entries follow
+ 15-8	reserved (0)
+SeeAlso: #01252
+
+Bitfields for EISA DMA Information:
+Bit(s)	Description	(Table 01256)
+ 2-0	DMA channel number
+ 5-3	reserved (0)
+ 6	shareable
+ 7	more entries follow
+ 9-8	reserved
+ 11-10	DMA transfer size
+	00 byte
+	01 word
+	10 dword
+	11 word, but count in bytes
+ 13-12	DMA timing
+	00 ISA-compatible
+	01 EISA type "A"
+	10 EISA type "B"
+	11 EISA type "C"/"F" (burst)
+ 15-14	reserved (0)
+SeeAlso: #01252
+
+Format of EISA Port Range Information:
+Offset	Size	Description	(Table 01257)
+ 00h	BYTE	port description
+		bits 4-0: number of sequential ports
+		bit 5 reserved (0)
+		bit 6: shareable
+		bit 7: more entries follow
+ 01h	WORD	I/O port address
+SeeAlso: #01252,#01258
+
+Format of EISA Port Initialization Data:
+Offset	Size	Description	(Table 01258)
+ 00h	BYTE	flags
+		bits 1-0: port size
+			00 byte
+			01 word
+			10 dword
+			11 reserved
+		bit 2: masked write
+		bits 6-3 reserved (0)
+		bit 7: more entries follow
+ 01h	???
+SeeAlso: #01252,#01257
+

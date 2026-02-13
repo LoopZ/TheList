@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0106
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - YIELD CPU
+	DI = 0106h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD pointer to ???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 15/AX=1000h,INT 2F/AX=1680h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21CD
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - RELEASE FILE SET
+	AH = CDh
+Return: none
+Desc:	unlock all files listed in the log table, but don't remove them from
+	  the table
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=CBh,AH=CCh,AH=CFh,AH=D3h
+

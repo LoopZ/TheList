@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC508
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-DOS Econet v1.05 - ENABLE/DISABLE EVENT SCHEDULER
+	AX = C508h
+	DL = new state of scheduler (01h enabled, 02h disabled)
+Return: AX = return code (see #03037)
+	DL = previous state
+Notes:	the interrupt-enable state will be preserved, but interrupts may be
+	  enabled during processing of this function
+	while the scheduler is disabled, all events are queued until the
+	  scheduler is re-enabled
+SeeAlso: AX=C500h,AX=C503h,AX=C504h,AX=C506h,AX=C507h
+

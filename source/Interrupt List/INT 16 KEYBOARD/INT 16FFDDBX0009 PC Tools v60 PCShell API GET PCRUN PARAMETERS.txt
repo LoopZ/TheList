@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFDDBX0009
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v6.0+ PCShell API - GET PCRUN PARAMETERS
+	AX = FFDDh
+	BX = 0009h
+Return: CF clear if successful
+	    DS:SI -> list of pointers (see #00624)
+
+Format of PC Tools PCShell returned pointer list:
+Offset	Size	Description	(Table 00624)
+ 00h	WORD	offset of WORD containing ???
+ 02h	WORD	offset of name of program to execute
+ 04h	WORD	offset of 80-byte buffer for ???
+ 06h	WORD	offset of buffer for ??? (length in WORD preceding buffer)
+ 08h	WORD	offset of buffer for ??? (length in WORD preceding buffer)
+

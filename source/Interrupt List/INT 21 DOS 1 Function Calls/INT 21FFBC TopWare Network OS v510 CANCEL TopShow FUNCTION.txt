@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFBC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - CANCEL TopShow FUNCTION
+	AX = FFBCh
+	CH = printer number (00h LPT1, 01h LPT2, 02h LPT3)
+	CL = printer server station address or 00h for local printer
+Return: AL = status (00h successful, else failed)
+SeeAlso: AX=FFBBh
+

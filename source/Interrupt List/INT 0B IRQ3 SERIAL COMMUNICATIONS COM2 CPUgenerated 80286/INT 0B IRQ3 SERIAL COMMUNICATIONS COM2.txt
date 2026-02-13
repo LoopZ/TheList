@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0B
+  Category: H 	hardware
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 0B C - IRQ3 - SERIAL COMMUNICATIONS (COM2)
+Desc:	automatically asserted by the UART when COM2 needs attention, if the
+	  UART has been programmed to generate interrupts
+Notes:	the TOPS and PCnet adapters use this interrupt request line as an
+	  alternate
+	on PS/2s, COM2 through COM8 share this interrupt; on many PC's, COM4
+	  shares this interrupt
+	may be masked by setting bit 3 on I/O port 21h
+	DOS 3.3+ revectors IRQ3 to a stack-switching routine unless STACKS=0
+	  has been set in CONFIG.SYS.  MS/PC-DOS use the IBM Interrupt Sharing
+	  Protocol (see #02568) when hooking this IRQ
+SeeAlso: INT 0C"COM1",INT 53"DESQview",INT 5B"DoubleDOS",INT 7B"GO32"
+

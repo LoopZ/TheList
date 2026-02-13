@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214410
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 5+ - IOCTL - QUERY GENERIC IOCTL CAPABILITY (HANDLE)
+	AX = 4410h
+	BX = handle for device
+	CH = category code (see #01545)
+	CL = function code (see #01546)
+Return: CF clear if successful
+	    AX = 0000h	specified IOCTL function is supported
+	CF set on error
+	    AL = 01h	IOCTL capability not available
+Note:	a program which wishes to use Generic IOCTL calls beyond those in the
+	  standard DOS 3.2 set may use this call first to see whether a
+	  particular call is supported
+SeeAlso: AX=440Ch,AX=440Dh"DOS 3.2+",AX=4411h
+

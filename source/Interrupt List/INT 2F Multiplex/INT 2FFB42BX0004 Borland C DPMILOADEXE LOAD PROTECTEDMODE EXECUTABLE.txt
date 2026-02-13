@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0004
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ DPMILOAD.EXE - LOAD PROTECTED-MODE EXECUTABLE???
+	AX = FB42h
+	BX = 0004h
+	DS:DX -> ASCIZ filename of protected-mode executable
+Return: CX = selector of ??? or 0000h
+---BC3.0---
+	DX = status (0000h,FFF4h,others???) (see #03129)
+Note:	the filename may also be terminated by a CR rather than a NUL under the
+	  BC++ 3.0 version of DPMILOAD
+
+(Table 03129)
+Values for DPMILOAD function status:
+ 0000h	successful
+ 0001h	??? failure
+ 0002h	invalid selector
+ 0004h	unknown error
+ 0008h	no more LDT descriptors available???
+ FFDEh	unable to set descriptor
+ FFDFh	unable to get segment base address
+ FFE0h	???
+ FFF2h	invalid parameter value
+ FFF4h	component of filename too long (name not in 8.3 format)
+ FFF5h	pathname too long (>79 chars)
+ FFF6h	???
+ FFF8h	???
+ FFF9h	index out of range
+ FFFAh	???
+ FFFCh	invalid access to code segment???
+ FFFEh	???
+ FFFFh	general error
+

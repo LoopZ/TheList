@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216E
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 5+ ROM - FIND NEXT ROM PROGRAM
+	AH = 6Eh
+	Disk Transfer Area contains result of previous FindFirst ROM
+	  (see AH=6Dh)
+Return: CF clear if found
+	    Disk Transfer Area filled with updated ROM search structure
+	      (see #01771)
+	CF set if not found
+	    AX = 0012h (no more matches)
+	---if not supported (DOS <5, MS-DOS 5+ non-ROM versions)---
+	AL = 00h
+SeeAlso: AH=4Fh,AH=6Dh
+

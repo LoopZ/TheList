@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1403--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - RETURN COMMUNICATION PORT STATUS
+	AH = 03h
+	DX = FFFFh
+	AL = connection ID
+Return: AH = return code (00h-02h) (see #00303)
+	BH = line status (see #00306)
+	BL = modem status (see #00305) (only bits 4,5,7; all others zero)
+Notes:	if DX is 0-3 on entry, Connection Manager emulates the standard BIOS
+	  function, but redirects the port over the network; if DX is any other
+	  value, the call is chained
+SeeAlso: AH=00h/DX=FFFFh,AH=04h/DX=FFFFh,AH=0Ah/DX=FFFFh
+
+Bitfields for Connection Manager line status:
+Bit(s)	Description	(Table 00306)
+ 7	CTS changed
+ 6	current CTS state
+ 5	timeout
+ 4	break
+ 3	framing error
+ 2	parity error
+ 1	overrun
+ 0	current carrier state (0 active, 1 no carrier)
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFC8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET DEFAULT PRINT FILE HEADER STATUS
+	AX = FFC8h
+Return: AL = header status for printers (see #02538)
+SeeAlso: AX=FFC6h
+
+Bitfields for TopWare print header status:
+Bit(s)	Description	(Table 02538)
+ 2	LPT3 has headers enabled
+ 1	LPT2 has headers enabled
+ 0	LPT1 has headers enabled
+

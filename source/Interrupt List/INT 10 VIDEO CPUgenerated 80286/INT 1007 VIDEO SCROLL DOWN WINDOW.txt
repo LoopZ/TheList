@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1007
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SCROLL DOWN WINDOW
+	AH = 07h
+	AL = number of lines by which to scroll down (00h=clear entire window)
+	BH = attribute used to write blank lines at top of window
+	CH,CL = row,column of window's upper left corner
+	DH,DL = row,column of window's lower right corner
+Return: nothing
+Note:	affects only the currently active page (see AH=05h)
+BUGS:	some implementations (including the original IBM PC) have a bug which
+	  destroys BP
+	the Trident TVGA8900CL (BIOS dated 1992/9/8) clears DS to 0000h when
+	  scrolling in an SVGA mode (800x600 or higher)
+SeeAlso: AH=06h,AH=12h"Tandy 2000",AH=72h,AH=73h,INT 50/AX=0014h
+

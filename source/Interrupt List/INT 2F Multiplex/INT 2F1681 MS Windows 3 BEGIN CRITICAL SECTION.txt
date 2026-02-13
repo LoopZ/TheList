@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1681
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows 3+ - BEGIN CRITICAL SECTION
+	AX = 1681h
+Notes:	used to prevent a task switch from occurring
+	should be followed by an INT 2F/AX=1682h call as soon as possible
+	nested calls are allowed, and must be followed by an appropriate number
+	  of "end critical section" calls
+	not supported in Windows/386 2.x. Get INDOS flag with INT 21/AH=34h and
+	  increment by hand.
+SeeAlso: AX=1682h,INT 15/AX=101Bh,INT 21/AH=34h
+

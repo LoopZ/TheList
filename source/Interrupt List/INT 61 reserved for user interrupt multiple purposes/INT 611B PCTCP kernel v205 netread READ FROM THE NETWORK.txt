@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 611B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_read" - READ FROM THE NETWORK
+	AH = 1Bh
+	BX = network descriptor
+	CX = maximum number of bytes to read
+	DX = receive options (see #03465)
+	DS:SI -> buffer for data
+	ES:DI -> "addr" structure (see #03462) for remote from which to read
+		0000h:0000h for any
+Return: CF clear if successful
+	    AX = number of bytes actually read
+	    DX = ???
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=1Ah,INT 61/AH=1Dh
+
+Bitfields for PC/TCP receive options:
+Bit(s)	Description	(Table 03465)
+ 1	do not remove data from queue, just copy it
+ 2	do not copy data, just remove it from queue
+ 5	fail if datagram would be truncated
+ 6	do not block, return error if no data available
+Note:	special case for UDP: if both 1 and 2 set, return number of datagrams
+

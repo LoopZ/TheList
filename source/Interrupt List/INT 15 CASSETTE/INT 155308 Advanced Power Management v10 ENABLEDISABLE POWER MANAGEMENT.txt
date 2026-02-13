@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155308
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - ENABLE/DISABLE POWER MANAGEMENT
+	AX = 5308h
+	BX = device ID for all devices power-managed by APM
+	    0001h (APM v1.1+)
+	    FFFFh (APM v1.0)
+	CX = new state
+	    0000h disabled
+	    0001h enabled
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (01h,03h,09h,0Ah,0Bh) (see #00473)
+Notes:	when power management is disabled, the system BIOS will not
+	  automatically power down devices, enter stand-by or suspended mode,
+	  or perform any power-saving actions in response to AX=5305h calls
+	should not be called from within a hardware interrupt handler to avoid
+	  reentrance problems
+	the APM BIOS should never be both disabled and disengaged at the same
+	  time
+SeeAlso: AX=5309h,AX=530Dh,AX=530Fh
+

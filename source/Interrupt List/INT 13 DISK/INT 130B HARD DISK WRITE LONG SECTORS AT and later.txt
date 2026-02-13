@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 130B
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - WRITE LONG SECTOR(S) (AT and later)
+	AH = 0Bh
+	AL = number of sectors (01h may be only value supported)
+	CH = low eight bits of cylinder number
+	CL = sector number (bits 5-0)
+	     high two bits of cylinder number (bits 7-6)
+	DH = head number
+	DL = drive number (80h = first, 81h = second)
+	ES:BX -> data buffer
+Return: CF clear if successful
+	CF set on error
+	AH = status (see #00234)
+	AL = number of sectors transferred
+Notes:	each sector's worth of data must be followed by four to seven bytes of
+	  error-correction information
+	used for diagnostics only on PS/2 systems; IBM officially classifies
+	  this function as optional
+SeeAlso: AH=03h,AH=0Ah,MEM 0040h:0074h
+

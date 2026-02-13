@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F43E2
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS Protected Mode Services (DPMS) v1.0 - ENABLE/DISABLE DPMS
+	AX = 43E2h
+	BX = new state (0000h disable, 0001h enable)
+Return: AX = 0000h if supported
+Note:	this function should normally be called only by system software
+SeeAlso: AX=43E0h,AX=43E1h,AX=43E3h
+

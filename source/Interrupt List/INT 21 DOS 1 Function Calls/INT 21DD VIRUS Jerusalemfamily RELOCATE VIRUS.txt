@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DD
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Jerusalem"-family - RELOCATE VIRUS???
+	AH = DDh
+	CX = number of bytes to copy
+	DS:SI -> source of copy
+	ES:DI -> destination of copy
+Return: does not return normally; return address is caller's CS:0100h with
+	  AX = ???
+SeeAlso: AX=DDEFh,AH=E0h"VIRUS",AH=EEh"VIRUS"
+

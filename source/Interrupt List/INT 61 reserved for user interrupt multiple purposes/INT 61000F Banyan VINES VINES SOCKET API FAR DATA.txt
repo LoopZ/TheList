@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61000F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - VINES SOCKET API (FAR DATA)
+	AX = 000Fh
+	CX:BX -> request block (see #03444)
+	DX = application's data segment (should be = CX)
+	ES = DS
+Return: AX = status
+	    0000h successful
+	    0099h invalid operation
+	    00A5h resource not available
+Desc:	StreetTalk access with session handles
+Notes:	This service is handled by the adapter driver
+	The request dispatch table contains dummy entries for subfunctions
+	  06h, 0Dh, 0Eh, 0Fh, 10h, and 11h, which always return error 0099h
+	  (invalid operation) in the request block's result buffer
+	This interface does the same as the corresponding AX=0001h interface,
+	  but with a slightly modified request block structure (i.e it allows
+	  FAR parameter block pointers) and without expecting DS=0001h
+	Some adapter drivers (e.g. the NDIS2 token ring driver NDTOKBAN for
+	  VINES 5.53) ignore the value in CX and use the value from DX instead
+SeeAlso: AX=0001h/SF=0001h,AX=000Fh/SF=0001h
+
+Format of VINES Socket request block:
+Offset	Size	Description	(Table 03444)
+ 00h	WORD	subfunction number (01h-16h)
+ 02h	WORD	magic number (FEFEh)
+ 04h	WORD	buffer for return code (set to 0 before calling)
+ 06h	WORD	reserved (will be set to client DS)
+ 08h	WORD	reserved (obviously not used; set to 0 before calling)
+ 0Ah	DWORD	far pointer to parameter block
+ 0Eh	WORD	StreetTalk handle
+SeeAlso: #03324 at INT 61/AX=0001h
+

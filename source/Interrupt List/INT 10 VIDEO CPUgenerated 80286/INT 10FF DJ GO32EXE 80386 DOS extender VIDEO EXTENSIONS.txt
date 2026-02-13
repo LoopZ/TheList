@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10FF
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - DJ GO32.EXE 80386+ DOS extender - VIDEO EXTENSIONS
+	AH = FFh
+	AL = video mode (see #00225)
+Program: GO32.EXE is a DOS extender included as part of the 80386 port of the
+	  GNU C/C++ compiler by DJ Delorie and distributed as DJGPP
+SeeAlso: AH=00h,INT 21/AH=FFh"GO32"
+
+(Table 00225)
+Values for GO32 video mode number:
+ 00h	80x25 text
+ 01h	default text
+ 02h	CXxDX text
+ 03h	biggest text
+ 04h	320x200 graphics
+ 05h	default graphics
+ 06h	CXxDX graphics
+ 07h	biggest non-interlaced graphics
+ 08h	biggest graphics
+Index:	video modes;GO32
+

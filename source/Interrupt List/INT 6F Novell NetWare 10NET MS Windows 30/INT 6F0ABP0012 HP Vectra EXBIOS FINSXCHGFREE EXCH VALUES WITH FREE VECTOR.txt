@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0A--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_INS_XCHGFREE" - EXCH VALUES WITH FREE VECTOR
+	AH = 0Ah
+	BP = 0012h (driver ID for V_SYSTEM)
+	DX = new value for DS
+	ES:DI -> new CS:IP entry point
+Return: AH = status (00h,F6h) (see also #03744)
+	    00h successful
+		BX = vector address used
+		DX = old value for DS
+		ES:DI -> old CS:IP entry point
+	BP,DS destroyed
+Desc:	exchange the supplied entry point and DS with the values in the next
+	  free entry in the HP_VECTOR_TABLE
+Note:	returns AH=F6h if no more reserved vectors are available
+SeeAlso: AH=00h"HP Vectra",AH=04h/BP=0012h,AH=06h/BP=0012h,AH=08h/BP=0012h
+SeeAlso: AH=0Ch/BP=0012h
+

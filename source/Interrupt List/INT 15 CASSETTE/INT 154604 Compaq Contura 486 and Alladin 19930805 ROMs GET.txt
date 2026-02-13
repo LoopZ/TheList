@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154604
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq Contura 486 and "Alladin" 1993/08/05 ROMs - GET ???
+	AX = 4604h
+Return: CF clear if successful
+	    AL = byte read from I/O port 03F8h
+	CF set on error (not supported)
+	    AH = 86h (unsupported function)
+Note:	also supported by 1993/7/26 LTE Lite 386 ROM
+

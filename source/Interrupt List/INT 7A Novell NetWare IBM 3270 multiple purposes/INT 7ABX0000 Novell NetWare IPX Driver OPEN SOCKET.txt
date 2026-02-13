@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - OPEN SOCKET
+	BX = 0000h
+	AL = socket longevity
+	    00h open until close or terminate
+	    FFh open until close
+	DX = socket number (high byte in DL)
+	    0000h dynamic allocation
+	    else  socket to open (see #03809)
+Return: AL = return code
+	    00h success
+		DX = socket number
+	    FEh socket table full
+	    FFh socket already open
+Notes:	TSRs which need to use sockets should set AL to FFh, non-resident
+	  programs should normally use AL=00h
+	IPX can be configured to support up to 150 open sockets on a
+	  workstation, and defaults to 20
+	this function is supported by Advanced NetWare 1.02+
+SeeAlso: INT 7A/BX=0001h,INT 7A/BX=0004h,INT 7A/BX=0023h
+
+(Table 03809)
+Values for IPX socket number:
+ 0451h	File Service (NetWare Core Protocol)
+ 0452h	Service Advertising Protocol (SAP) (see #03817)
+ 0453h	Routing Information Packet (see #03820)
+ 0455h	NetBIOS Packet
+ 0456h	diagnostics
+ 0457h	server serial numbers (labeled "Copy Protection" by Lanalyzer)
+ 2222h	NetWare Core Protocol
+ 4000h-7FFFh used for dynamic allocation
+ 4000h \ seem to be used by IPX internally
+ 4001h /
+ 4444h	Brightwork Development's SiteLock server
+ 5555h	Brightwork Development's SiteLock client (workstation)
+ 8000h-FFFFh assigned by Novell
+ 869Ch	ID Software's DOOM
+ 901Fh	Lancheck
+ 9023h	Server info (NetWare "Slurpee", NetWare Lite, Personal NetWare)
+ 9024h	Client info (NetWare "Slurpee", NetWare Lite, Personal NetWare)
+ 9025h	Serial socket (NetWare "Slurpee", NetWare Lite, Personal NetWare)
+ 9026h	Extension info (NetWare Lite, Personal NetWare???)
+Notes:	SiteLock is an application metering product using IPX to communicate
+	  between the application and the license server
+	IPX socket numbers should be registered with the Novell Development
+	  Products Division
+SeeAlso: INT 7A/BX=0001h
+

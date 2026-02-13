@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: B6
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B6 - (NOT A VECTOR!) - USED BY TBFENCE
+Program: TBFence is a security program by ESaSS B.V. which transparently
+	  encrypts floppies and optionally allows only encrypted diskettes to
+	  be accessed
+Note:	the low word of this vector (0000h:02D8h) contains the segment of the
+	  TBFence INT 13h code, which starts with the signature word E487h;
+	  this forms the installation check
+	the highest byte of this vector contains the start of a FAR JMP
+	  instruction to ???
+SeeAlso: INT B7"TBFENCE"
+Index:	installation check;TBFence
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAB03
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SRSoft MODAL PC v2+ - ALLOCATE COMMON MEMORY
+	AX = AB03h
+	BX = required size of common memory for variables/semaphores in bytes
+Return: AX = 5253h ('SR' byte-swapped) if installed
+SeeAlso: AX=AB00h"MODAL",AX=AB02h"MODAL",AX=AB04h"MODAL"
+

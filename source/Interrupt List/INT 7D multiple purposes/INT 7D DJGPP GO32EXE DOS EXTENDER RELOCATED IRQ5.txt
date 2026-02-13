@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - DJGPP GO32.EXE DOS EXTENDER - RELOCATED IRQ5
+Notes:	this vector is overwritten when GO32 starts but is not restored by
+	  early versions of the extender
+	the newest versions of GO32 dynamically allocate the vectors used
+	  for the relocated IRQs, much as DESQview does (see INT 50"DESQview")
+SeeAlso: INT 0D"IRQ5",INT 7C"GO32",INT 7E"GO32"
+

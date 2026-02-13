@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660698
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - DIGPAK - SET PLAY MODE
+	AX = 0698h
+	DX = playback mode
+	    0000h 8-bit PCM
+	    0001h 8-bit stereo PCM
+	    0002h 16-bit PCM
+	    0003h 16-bit stereo PCM
+Return: AX = status
+	    0000h command ignored
+	    0001h mode set
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6320
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - REMOVE SOCKET ??? HANDLER
+	AH = 20h
+	BX = socket number
+Return: CF clear if successful
+	CF set on error (not set)
+Range:	INT 4D to INT FC, selected by configuration
+SeeAlso: AH=1Fh
+

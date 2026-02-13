@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A18
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - TASKID v1.0 - INSTALLATION CHECK
+	AX = 7A18h
+Return: AL = FFh if installed
+	    BX = configuration flags (see #02858)
+	    CX = resident code segment
+SeeAlso: AX=7A10h
+
+Bitfields for NetWare TASKID configuration flags:
+Bit(s)	Description	(Table 02858)
+ 0	INT 2F hooked
+ 3	INT 08 hooked
+ other	unused
+

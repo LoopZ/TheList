@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214406
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - IOCTL - GET INPUT STATUS
+	AX = 4406h
+	BX = file handle
+Return: CF clear if successful
+	    AL = input status
+		00h not ready (device) or at EOF (file)
+		FFh ready
+	    AH may be destroyed (refer to note)
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	files may not register as being at EOF if positioned there by AH=42h
+	under DOS 5.0, on a successful return, AH contains either the next
+	  character which will be read or 1Ah if at EOF; under a Windows95
+	  DOS box, AH seems to be either unchanged or 00h
+	this function was not supported by Digital Research's DOS Plus
+BUG:	the CLOCK$ device under DR DOS 3.41 always indicates 'Ready'; this was
+	  corrected in v5.0
+SeeAlso: AX=4407h,INT 2F/AX=122Bh
+

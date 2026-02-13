@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330052
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - PCMOUSE - RESTORE MSMOUSE STATE
+	AX = 0052h
+	BX = buffer size (ignored by some driver versions)
+	ES:DX -> buffer
+Return: AX = FFFFh if successful
+Note:	also supported by Genius Mouse 9.06 driver
+SeeAlso: AX=0050h
+

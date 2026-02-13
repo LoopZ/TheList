@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15101A
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "OSTACK" - SWITCH TO TASK'S INTERNAL STACK
+	AX = 101Ah
+Return: stack switched
+Notes:	this call may not be nested; a second call must be preceded by a call
+	  to "USTACK" (AX=1025h)
+	while TopView requires many API calls to be executed while on the
+	  task's internal stack, DESQview allows those calls to be executed
+	  regardless of the current stack
+SeeAlso: AX=1025h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217156
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - RENAME FILE
+	AX = 7156h
+	DS:DX -> ASCIZ old file or directory name (long names allowed)
+	ES:DI -> ASCIZ new name (long names allowed)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+		7100h if function not supported
+Note:	the file may be renamed into a different directory, but not across
+	  disks
+SeeAlso: AH=56h,AX=7141h,AX=43FFh/BP=5053h
+

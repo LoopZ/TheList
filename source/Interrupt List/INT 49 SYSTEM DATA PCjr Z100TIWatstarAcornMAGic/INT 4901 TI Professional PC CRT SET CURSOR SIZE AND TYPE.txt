@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4901
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - SET CURSOR SIZE AND TYPE
+	AH = 01h
+	CH = cursor start line (bits 3-0) and status (bits 6-5)
+	    status bits:
+		00 non-blinking cursor
+		01 no cursor
+		10 fast-blinking cursor
+		11 slow-blinking cursor
+	CL = cursor end line
+Return: nothing
+Note:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+SeeAlso: AH=02h,AH=03h,INT 40"TI Professional",INT 48/AH=00h"TI Professional"
+SeeAlso: INT 4A/AH=00h"TI",INT 4B"TI Professional",INT 4D/AH=00h
+SeeAlso: INT 57"TI Professional"
+

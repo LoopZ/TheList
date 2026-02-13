@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC11DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - CONVERT PROTECTED AREA TO ENTIRE SCREEN
+	AX = AC11h
+	DI = 1092h
+	BX = mode (0000h = normal protect, 0001h = allow full-screen access)
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC0Dh,AX=AC0Eh,AX=AC0Fh,AX=AC10h,AX=AC12h,AX=ACF0h
+

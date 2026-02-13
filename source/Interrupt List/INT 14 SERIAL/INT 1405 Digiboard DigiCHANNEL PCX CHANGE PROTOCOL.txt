@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1405
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - CHANGE PROTOCOL
+	AH = 05h
+	AL = protocol (see #00335)
+	BH = new XOFF character (00h = current)
+	BL = new XON character (00h = current)
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AH = status
+	    00h successful
+	    FFh error
+SeeAlso: AH=04h"Digiboard"
+
+Bitfields for Digiboard protocol:
+Bit(s)	Description	(Table 00335)
+ 7-4	unused
+ 3	RTS/CTS
+ 2	DSR
+ 1,0	XON/XOFF
+

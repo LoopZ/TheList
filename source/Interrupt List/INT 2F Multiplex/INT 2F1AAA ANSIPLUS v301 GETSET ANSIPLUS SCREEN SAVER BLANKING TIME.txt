@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1AAA
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS v3.01+ - GET/SET ANSIPLUS SCREEN SAVER BLANKING TIME
+	AX = 1AAAh
+	BX = function
+	    FFFFh to get current blanking time
+	    other to set time
+		CX = blanking time in clock ticks (0000h-7FFFh)
+Return: BX = current blanking time
+	CX = blanking time when last set
+SeeAlso: AX=1A00h/BX=414Eh,AX=1AABh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620001
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_ALLOCCMS" - CREATE LOGICAL VIDEO PAGE (CONV)
+	AX = 0001h
+	BX = page number (0001h-003Fh)
+Return: AX = status (0000h,FFFCh,FFFDh,FFFEh) (see #03473)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	The only operation which is allowed on logical pages is "FG_COPYPAGE"
+	  (see AX=0014h)
+SeeAlso: AX=0000h,AX=0002h,AX=0003h,AX=0014h,AX=0038h
+

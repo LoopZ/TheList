@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF18
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - RESTORE DIRECTORY HANDLE
+	AX = F216h subfn 18h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01879 at AH=E2h/SF=18h)
+	ES:DI -> reply buffer (see #02121)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E2h/SF=18h,AX=F216h/SF=17h
+
+Format of NetWare "Restore Directory Handle" reply packet:
+Offset	Size	Description	(Table 02121)
+ 00h	BYTE	new directory handle
+ 01h	BYTE	effective rights (see #01849)
+SeeAlso: #01880,#02120
+

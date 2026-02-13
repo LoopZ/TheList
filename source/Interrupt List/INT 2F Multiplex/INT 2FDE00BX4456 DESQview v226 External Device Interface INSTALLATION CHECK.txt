@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE00BX4456
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DESQview v2.26+ External Device Interface - INSTALLATION CHECK
+	AX = DE00h
+	BX = 4456h ("DV")
+	CX = 5844h ("XD")
+	DX = 4931h ("I1")
+Return: AL = FFh if installed (even if other registers do not match)
+	if BX,CX, and DX were as specified on entry,
+	    BX = 4845h ("HE")
+	    CX = 5245h ("RE")
+	    DX = 4456h ("DV")
+Range:	AH=C0h to AH=FFh, selected by scanning AH=DEh-FFh, then AH=C0h-DDh
+Note:	the XDI handler should not issue any DOS or BIOS calls, nor should it
+	  issue DESQview API calls other than those allowed from hardware ints
+SeeAlso: AX=DE02h,INT 15/AX=5400h
+

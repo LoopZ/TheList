@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62002E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FLICHEAD" - READ FLI/FLC FILE HEADER
+	AX = 002Eh
+	ES:BX -> FLICHEAD variable pointer record (see #03477)
+Return: AX = status (see #03476)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=002Dh,AX=002Fh,AX=0030h,AX=0032h
+
+(Table 03476)
+Values for FGDRIVER FLIC processing status:
+ 0000h	successful
+ FFFEh	not an FLI or FLC file
+ FFFFh	file not found
+
+Format of FGDRIVER FLICHEAD variable pointer record:
+Offset	Size	Description	(Table 03477)
+ 00h	WORD	segment of ASCIZ FLI/FLC file name
+ 02h	WORD	offset of ASCIZ FLI/FLC file name
+ 04h	WORD	segment of buffer for 128-byte file header
+ 06h	WORD	offset of buffer for 128-byte file header
+

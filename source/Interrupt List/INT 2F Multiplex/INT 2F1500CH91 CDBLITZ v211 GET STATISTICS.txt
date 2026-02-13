@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1500CH91
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - CDBLITZ v2.11 - GET STATISTICS
+	AX = 1500h
+	CH = 91h (function number)
+	BX = 1234h (magic value for CDBLITZ)
+Return: CF clear
+	ES:BX -> statistics record (see #02627)
+SeeAlso: AX=1500h/CH=90h,AX=1500h/CH=97h
+
+Format of CDBLITZ statistics record:
+Offset	Size	Description	(Table 02627)
+ 00h	WORD	cache mode (see also AX=1500h/CH=94h)
+		0001h 'min', 0002h 'max'
+ 02h	DWORD	number of read calls???
+ 06h	DWORD	total number of sectors read
+ 0Ah	DWORD	unused??? (zero)
+ 0Eh	DWORD	number of cache hit sectors
+ 12h	WORD	cache size in KB
+ 14h	WORD	unused??? (zero)
+ 16h	WORD	cache state (0000h disabled, 0001h enabled)
+

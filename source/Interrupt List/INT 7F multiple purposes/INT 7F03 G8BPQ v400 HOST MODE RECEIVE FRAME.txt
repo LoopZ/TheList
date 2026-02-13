@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.00+ - HOST MODE - RECEIVE FRAME
+	AH = 03h
+	AL = stream number (01h-40h)
+	ES:DI -> buffer for frame (must be large enough for a full frame; 350
+		  bytes is usually sufficient)
+Return: BX = number of pending frames (0000h if returned frame was last avail)
+	CX = length of received frame
+SeeAlso: AH=02h"G8BPQ",AH=07h"G8BPQ",AH=0Bh"G8BPQ"
+

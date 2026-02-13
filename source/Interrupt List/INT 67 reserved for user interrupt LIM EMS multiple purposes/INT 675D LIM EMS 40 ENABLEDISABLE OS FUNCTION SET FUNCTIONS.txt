@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675D
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - ENABLE/DISABLE OS FUNCTION SET FUNCTIONS
+	AH = 5Dh
+	AL = subfunction
+	    00h enable OS Function Set
+	    01h disable OS Function Set
+	    02h return access key (resets memory manager, returns access key at
+		next invocation)
+	BX,CX = access key returned by first invocation
+Return: BX,CX = access key, returned only on first invocation of function
+	AH = status (see also AH=5Ch)
+	    8Fh undefined subfunction
+	    A4h operating system denied access
+

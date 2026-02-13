@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB908
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC Network RECEIVER.COM - UNLINK KEYBOARD HANDLER
+	AX = B908h
+	ES:BX -> INT 09 handler RECEIVER should call after it finishes INT 09
+Note:	this call replaces the address to which RECEIVER.COM chains on an
+	  INT 09 without preserving the original value.	 This allows a prior
+	  handler to unlink, but does not allow a new handler to be added
+	  such that RECEIVER gets the INT 09 first.
+SeeAlso: AX=B808h
+

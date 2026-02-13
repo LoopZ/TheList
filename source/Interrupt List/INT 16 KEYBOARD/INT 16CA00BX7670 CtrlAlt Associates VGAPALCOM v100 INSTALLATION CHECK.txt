@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16CA00BX7670
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - CtrlAlt Associates VGAPAL.COM v1.00 - INSTALLATION CHECK
+	AX = CA00h
+	BX = 7670h ("vp")
+	CX = 7670h
+Return: AX = CAFFh if installed
+	    BX = segment of resident code
+	    CX = ??? (0090h)
+Program: VGAPAL is a TSR supplied with STACKEY which makes VGA palette
+	  settings permanent across mode switches
+SeeAlso: AX=CA00h/BX=6570h
+

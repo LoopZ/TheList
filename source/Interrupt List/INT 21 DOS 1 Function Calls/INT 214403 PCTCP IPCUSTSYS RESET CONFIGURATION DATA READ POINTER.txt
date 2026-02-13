@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - PC/TCP IPCUST.SYS - RESET CONFIGURATION DATA READ POINTER
+	AX = 4403h
+	BX = file handle referencing device "$IPCUST"
+	CX, DS:DX ignored
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	there are a total of 378h bytes of configuration data for IPCUST.SYS
+	  version 2.05.	 If less than the entire data is read or written,
+	  the next read/write continues where the previous one ended; this
+	  call and AX=4402h both reset the location at which the next
+	  operation starts to zero
+	v2.1+ uses a new configuration method, but allows the installation
+	  of IPCUST.SYS for backward compatibility with other software which
+	  must read the PC/TCP configuration
+SeeAlso: AH=3Fh"IPCUST",AH=40h"IPCUST",AX=4402h"IPCUST"
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6202
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - WAIT FOR SEMAPHORE
+	AH = 02h
+	DX = semaphore number (0-63)
+Return: AX = FFFFh bad semaphore number
+	     else  success
+SeeAlso: AH=03h"Cswitch",AH=04h"Cswitch"
+

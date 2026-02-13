@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B8109DX0000
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification - COPY INTO DMA BUFFER
+	AX = 8109h
+	DX = 0000h
+	ES:DI -> DMA descriptor structure (see #03221,#03222) with buffer ID,
+		  region segment/offset, and region size fields set
+	BX:CX = starting offset into DMA buffer
+Return: CF clear if successful
+	CF set on error
+	    AL = error code (see #03218)
+BUG:	Windows 3.0 Enhanced mode does not correctly interpret the copy count
+SeeAlso: AX=810Ah
+

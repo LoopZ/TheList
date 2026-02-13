@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF8D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - CALL TopShow FUNCTION
+	AX = FF8Dh
+	CH = monochrome flag (01h monochrome, 00h not monochrome)
+	CL = screen mode of station to be viewed (see #02531)
+	BL = graphic page number for monochrome
+Return: AL = status (00h successful, else failed)
+SeeAlso: AX=FF8Eh,AX=FFCFh
+
+(Table 02531)
+Values for TopWare screen mode:
+ 00h	text mode
+ 01h	720x348
+ 02h	640x408
+ 03h	720x352
+ 04h	640x390
+ 05h	reserved
+

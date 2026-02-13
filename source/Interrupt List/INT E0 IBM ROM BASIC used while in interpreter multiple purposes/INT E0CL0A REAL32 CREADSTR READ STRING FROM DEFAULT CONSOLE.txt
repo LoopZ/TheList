@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL0A
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "C_READSTR" - READ STRING FROM DEFAULT CONSOLE
+	CL = 0Ah
+	DS:DX -> buffer for string (see #04022)
+Return: nothing
+
+Format of REAL/32 "C_READSTR" buffer:
+Offset	Size	Description	(Table 04022)
+ 00h	BYTE	maximum number of characters buffer can hold
+ 01h	BYTE	actual number of buffers read
+ 02h  N BYTEs	input line
+

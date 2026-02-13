@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FE1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - SET DOS SERVICE VECTOR
+	AX = 5FE1h
+	ES:BX -> FAR routine to call when DOS services are available
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Note:	new handler must chain to previous handler as its first action
+SeeAlso: AX=5FE0h
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1600
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - GET KEYSTROKE
+	AH = 00h
+Return: AH = BIOS scan code
+	AL = ASCII character
+Notes:	on extended keyboards, this function discards any extended keystrokes,
+	  returning only when a non-extended keystroke is available
+	the BIOS scan code is usually, but not always, the same as the hardware
+	  scan code processed by INT 09.  It is the same for ASCII keystrokes
+	  and most unshifted special keys (F-keys, arrow keys, etc.), but
+	  differs for shifted special keys
+	some (older) clone BIOSes do not discard extended keystrokes and manage
+	  function AH=00h and AH=10h the same
+	the K3PLUS v6.00+ INT 16 BIOS replacement doesn't discard extended
+	  keystrokes (same as with functions 10h and 20h), but will always
+	  translate prefix E0h to 00h. This allows old programs to use extended
+	  keystrokes and should not cause compatibility problems
+SeeAlso: AH=01h,AH=05h,AH=10h,AH=20h,AX=AF4Dh"K3PLUS",INT 18/AH=00h
+SeeAlso: INT 09,INT 15/AH=4Fh
+

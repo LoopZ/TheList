@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1544C0
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Olivetti Quaderno - INITIALIZE DIGITAL SIGNAL PROCESSING???
+	AX = 44C0h
+	ES:DI -> new DSP procedure (exchanged with CMOS[28h])
+	ES:SI -> ??? buffer
+Return: ES:DI -> old DSP procedure
+	ES:SI buffer filled with ten bytes from CMOS (addresses 14h-1Ch)
+	  followed by 00h (addresses 15h-1Ch copied only if less than 21h)
+Note:	this function is also supported by XBIOS.COM
+SeeAlso: AX=44C9h
+

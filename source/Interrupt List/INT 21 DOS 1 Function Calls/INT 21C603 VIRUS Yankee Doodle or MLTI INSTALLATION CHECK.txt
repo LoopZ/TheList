@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C603
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Yankee Doodle" or "MLTI" - INSTALLATION CHECK
+	AX = C603h
+	BX = version number (002Ch or 002Dh)
+	CF set
+Return: CF clear if resident
+	ZF set if resident and input BX matches version
+SeeAlso: AX=C500h"VIRUS",AX=C700h"VIRUS"
+

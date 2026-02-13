@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0402
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - DISPLAY OR REDISPLAY EDIT FIELD
+	DI = 0402h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to edit record (see #03285)
+Return: ???
+	STACK unchanged
+

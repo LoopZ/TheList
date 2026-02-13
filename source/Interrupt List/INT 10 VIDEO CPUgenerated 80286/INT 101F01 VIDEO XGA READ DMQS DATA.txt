@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101F01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - XGA - READ DMQS DATA
+	AX = 1F01h
+	ES:DI -> user buffer for return data (call AX=1F00h for size)
+Return: AL = 1Fh if function supported
+	user buffer filled with DMQS data (see #00060)
+Note:	not supported on the original IBM XGA, only on XGA-NI (non-interlaced)
+	  and later models.
+SeeAlso: AH=1Bh,AX=1F00h,AX=3000h
+
+Format of XGA DMQS buffer:
+Offset	Size	Description	(Table 00060)
+ 00h	WORD	offset (in bytes) to DMQS data for next XGA instance
+ 02h	BYTE	slot number
+ 03h	BYTE	XGA implementation function level identifier
+ 04h	BYTE	XGA implementation resolution level identifier
+ 05h	WORD	vendor identifier - identifies card vendor
+ 07h	WORD	vendor defined field
+ 09h	WORD	XGA adapter I/O register base address
+ 0Bh	WORD	XGA coprocessor register base address
+		(paragraph--multiply by 10h to get physical address)
+ 0Dh	WORD	1 Megabyte system video memory aperture
+		0000h if not allocated
+		(Multiply by 100000h to get physical address)
+ 0Fh	WORD	4 Megabyte system video memory aperture
+		0000h if not allocated
+		(multiply by 100000h to get physical address)
+ 11h	WORD	video memory base address
+		(multiply by 100000h to get physical address)
+ 13h	WORD	composite ID of the attached display
+ 15h	BYTE	amount of video memory available, in multiples of 256K bytes
+ 16h	DWORD	alternate XGA coprocessor register base address.  0 = none.
+ 1Ah	var	DMQS Data for further XGA Instances (as above)
+Note:	"Instances" refers to the capability of having up to 8 XGA
+	  adapters in one computer.
+SeeAlso: #00061
+

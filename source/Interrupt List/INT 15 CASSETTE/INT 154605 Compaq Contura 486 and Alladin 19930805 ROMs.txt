@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154605
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq Contura 486 and "Alladin" 1993/08/05 ROMs - ???
+	AX = 4605h
+Return: CF clear if successful
+	CF set on error (not supported)
+	    AH = 86h (unsupported function)
+Note:	this function is a NOP (other than clearing CF) in the 1993/08/05
+	  version of the Contura 486/486c/486cx and "Aladdin" ROM, and the
+	  1993/7/26 LTE Lite 386 ROM
+

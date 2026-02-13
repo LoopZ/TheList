@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1312
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Future Domain SCSI CONTROLLER - STOP SCSI DISK
+	AH = 12h
+	DL = hard drive ID
+Return: CF set on error
+	CF clear if successful
+	AH = status code (see #00234 at AH=01h)
+Notes:	available at least on the TMC-870 8-bit SCSI controller BIOS v6.0A
+	if the given drive is a SCSI device, the SCSI Stop Unit command is sent
+	  and either "Disk prepared for shipping" or "Disk Stop command failed"
+	  is displayed
+	the TMC-950 does not support any Future Domain BIOS calls; instead,
+	  it provides a full CAM implementation (see INT 4F/AX=8100h)
+

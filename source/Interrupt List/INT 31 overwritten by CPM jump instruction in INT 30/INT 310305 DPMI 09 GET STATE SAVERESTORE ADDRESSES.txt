@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310305
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET STATE SAVE/RESTORE ADDRESSES
+	AX = 0305h
+Return: CF clear
+	AX = size in bytes of state buffer
+	BX:CX = real mode address of procedure to save/restore state
+	SI:(E)DI = protected mode procedure to save/restore state (see #03150)
+Notes:	the buffer size will be zero if it is not necessary to preserve state
+	16-bit programs should call SI:DI, 32-bit programs should call SI:EDI
+	this function is only needed if using the raw mode switch service
+SeeAlso: AX=0306h
+
+(Table 03150)
+Call DPMI state-save procedures with:
+	AL = direction
+	    00h save state
+	    01h restore state
+	ES:(E)DI -> state buffer
+Return: all registers preserved
+

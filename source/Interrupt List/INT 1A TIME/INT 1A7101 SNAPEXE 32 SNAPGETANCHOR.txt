@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A7101
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_GETANCHOR"
+	AX = 7101h
+	STACK:	WORD	anchor number (0000h-0009h)
+Return: AX = anchor's value
+	STACK unchanged
+Program: SNAP.EXE is a TSR written by IBM and Carnegie Mellon University
+	  which implements the Simple Network Application Protocol
+SeeAlso: AX=7002h
+

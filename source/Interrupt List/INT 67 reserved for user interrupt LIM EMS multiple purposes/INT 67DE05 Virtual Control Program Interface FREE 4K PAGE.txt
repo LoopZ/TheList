@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE05
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - FREE 4K PAGE
+	AX = DE05h
+	EDX = physical address of 4K page
+Return: AH = status
+	    00h successful
+	    nonzero failed
+Note:	also available in protected mode by calling the protected-mode VCPI
+	  entry point (see AX=DE01h,#03664)
+SeeAlso: AH=3Fh,AX=DE04h
+

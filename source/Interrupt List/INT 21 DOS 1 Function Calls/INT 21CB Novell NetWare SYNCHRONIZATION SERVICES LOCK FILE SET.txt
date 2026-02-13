@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21CB
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - LOCK FILE SET
+	AH = CBh
+	if function C6h lock mode 00h:
+	    DL = mode (00h no wait, 01h wait)
+	if function C6h lock mode 01h:
+	    BP = lock timeout in timer ticks (1/18 sec), 0000h = no wait
+Return: AL = status (00h,FEh,FFh) (see #01810)
+Desc:	attempt to lock all files listed in the log table
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+	status FFh will be returned if one or more of the files have already
+	  been exclusively locked by another process
+SeeAlso: AH=CAh,AH=CDh,AH=D1h,AH=EBh
+
+(Table 01810)
+Values for NetWare status:
+ 00h	successful
+ FEh	timed out
+ FFh	failed
+

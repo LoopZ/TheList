@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: F1F0
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v1.1 - "API-GET-MANUFACTURER"
+	AH = F0h
+	ES:BX -> 64-byte buffer for manufacturer identification information
+Return: ES:BX buffer filled with ASCIZ idnetification string
+Range:	INT 00 to INT FF, selectable by program parameter
+Notes:	the caller is required to provide at least 512 bytes of stack space
+SeeAlso: AH=01h,AH=F1h,AH=F2h,AH=FFh,INT F1/AL=F0h
+

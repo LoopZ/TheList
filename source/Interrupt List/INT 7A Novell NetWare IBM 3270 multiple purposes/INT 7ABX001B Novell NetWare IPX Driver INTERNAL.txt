@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX001B
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 7A U - Novell NetWare - IPX Driver - INTERNAL
+	BX = 001Bh
+	???
+Return: ???
+Notes:	this function is supported on file servers only under v2.15; v3.02 also
+	  supports it on workstations
+	used by NetWare Access Server, which may call INT 15/AX=1117h with
+	  BX=0000h in some cases (it uses a modified DESQview)
+

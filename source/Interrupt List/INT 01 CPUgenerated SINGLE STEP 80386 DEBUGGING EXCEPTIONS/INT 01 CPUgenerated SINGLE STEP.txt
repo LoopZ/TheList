@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 01
+  Category: C 	CPU-generated
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 01 C - CPU-generated - SINGLE STEP
+Desc:	generated after each instruction if TF (trap flag) is set; TF is
+	  cleared on invoking the single-step interrupt handler
+Notes:	interrupts are prioritized such that external interrupts are invoked
+	  after the INT 01 pushes CS:IP/FLAGS and clears TF, but before the
+	  first instruction of the handler executes
+	used by debuggers for single-instruction execution tracing, such as
+	  MS-DOS DEBUG's T command
+SeeAlso: INT 03"CPU"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF0F
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - FLU_SHOT+ v1.83 - INSTALLATION CHECK
+	AX = FF0Fh
+Return: AX = 0101h if resident
+Program: FLU_SHOT+ is an antivirus/antitrojan program by Ross M. Greenberg and
+	  Software Concepts Design
+Note:	the "PSQR/1720" virus calls this function to determine whether
+	  FLU_SHOT+ is present
+SeeAlso: AH=FFh"VIRUS",AX=FF10h"VIRUS"
+

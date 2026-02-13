@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD09
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - ALTER TEXT LINE SPACING
+	AX = CD09h
+	CX = line spacing in 1/720th inch
+Return: CX = 07C2h
+Note:	not yet implemented, line spacing is currently fixed at 1/6 inch
+SeeAlso: AX=CD06h
+

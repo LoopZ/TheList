@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1322
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - PS/1 and newer PS/2 - WRITE MULTIPLE DISK SECTORS
+	AH = 22h
+	AL = number of sectors to write
+	CH = low byte of 12-bit cylinder number
+	CL = starting sector (bits 0-5) and bits 8-9 of cylinder (bits 6-7)
+	DH = head number (bits 0-5) and bits 10-11 of cylinder (bits 6-7)
+	DL = drive number (80h,81h)
+	ES:BX -> buffer containing data to be written
+Return: CF clear if successful
+	CF set on error
+	AH = status (see #00234 at AH=01h)
+Desc:	write to the disk using the Multiple Block mode available on newer
+	  IDE drives and some hard disk controllers, which generates an
+	  interrupt only after the end of transferring a group of sectors
+	  rather than after each sector
+Notes:	must call AH=24h"PS/1" before using this function
+	input values in CL and DH are not range-checked
+	the byte at address 0040h:0074h is set to the status of the operation
+SeeAlso: AH=03h,AH=21h"PS/1",AH=23h"PS/1",AH=24h"PS/1"
+

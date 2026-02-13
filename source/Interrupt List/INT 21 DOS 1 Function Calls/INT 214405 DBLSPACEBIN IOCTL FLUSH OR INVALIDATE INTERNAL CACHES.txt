@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214405
+  Category: k 	file/disk compression
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DBLSPACE.BIN - IOCTL - FLUSH OR INVALIDATE INTERNAL CACHES
+	AX = 4405h
+	BL = drive number (00h = default, 01h = A:, etc)
+	CX = 000Ah (size of DSPACKET structure)
+	DS:DX -> DSPACKET structure (see #01537)
+Return: CF clear if IOCTL successful -- check DSPACKET for actual status
+	    AX = number of bytes actually transferred
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Note:	this call is identical to the documented AX=4404h
+SeeAlso: AX=4404h"DBLSPACE",INT 2F/AX=4A11h/BX=0000h
+
+Format of DoubleSpace DSPACKET structure:
+Offset	Size	Description	(Table 01537)
+ 00h	WORD	signature 444Dh ("DM")
+ 02h	BYTE	command code
+		46h ('F') flush internal caches
+		49h ('I') flush and invalidate internal caches
+ 03h	WORD	result code
+		(ret) 4F4Bh ("OK") if successful, else unchanged
+ 05h  5 BYTEs	padding
+

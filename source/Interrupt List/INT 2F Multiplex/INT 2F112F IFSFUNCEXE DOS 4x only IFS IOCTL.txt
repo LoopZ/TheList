@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F112F
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - IFSFUNC.EXE (DOS 4.x only) - IFS IOCTL
+	AX = 112Fh
+	SS = DOS DS
+	STACK: WORD function in low byte
+		00h ???
+		    DS:SI -> Current Directory Structure???
+		    CL = drive (1=A:)
+		01h ???
+		    DS:SI -> ???
+		    CL = file handle???
+		02h ???
+		    DS:SI -> Current Directory Structure???
+		    DI = ???
+		    CX = drive (1=A:)
+	???
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+Note:	this function is called by the DOS 4.0 kernel
+SeeAlso: INT 21/AH=6Bh
+

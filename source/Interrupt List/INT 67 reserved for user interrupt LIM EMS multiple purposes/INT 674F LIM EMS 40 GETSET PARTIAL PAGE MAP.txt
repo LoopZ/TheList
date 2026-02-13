@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 674F
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - GET/SET PARTIAL PAGE MAP
+	AH = 4Fh
+	AL = subfunction
+	    00h get partial page map
+	       DS:SI -> structure containing list of segments whose mapping
+			contexts are to be saved
+	       ES:DI -> array to receive page map
+	    01h set partial page map
+	       DS:SI -> structure containing saved partial page map
+	    02h get size of partial page map
+	       BX = number of mappable segments in the partial map to be saved
+Return: AH = status (00h,80h,81h,84h,8Bh,8Fh,A3h) (see also AH=40h)
+	    8Bh one of the specified segments is not mappable
+	    A3h contents of partial page map corrupted or count of mappable
+		segments exceeds total number of mappable segments in system
+	AL = size of partial page map for subfunction 02h
+SeeAlso: AH=4Eh
+

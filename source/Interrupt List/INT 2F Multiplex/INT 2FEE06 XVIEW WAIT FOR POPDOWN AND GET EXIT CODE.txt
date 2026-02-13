@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FEE06
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - XVIEW - WAIT FOR POP-DOWN AND GET EXIT CODE
+	AX = EE06h
+Return: AX = status (see also AX=EE01h)
+	    0001h specified filename is not an xText database
+	    0002h no databases found
+	    0003h bad data in file
+	    0004h memory shortage
+	    0005h unable to open the requested file
+	    0007h invalid page number for file
+Note:	although this call is not required, the exit code can alert the
+	  caller to problems; if the call is not made, the program should
+	  enforce a delay of about 1/2 second to allow the viewer to pop up,
+	  and should not get keyboard input or attempt disk accesses during
+	  the delay
+SeeAlso: AX=EE00h"XVIEW",AX=EE01h,AX=EE02h,AX=EE03h,AX=EE04h,AX=EE05h
+

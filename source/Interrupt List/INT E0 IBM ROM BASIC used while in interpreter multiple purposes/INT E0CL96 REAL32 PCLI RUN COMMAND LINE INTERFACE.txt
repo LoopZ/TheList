@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL96
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_CLI" - RUN COMMAND LINE INTERFACE
+	CL = 96h
+	DS:DX -> Command Line Buffer (CLBUF) (see #04047)
+Return: AX = status
+Desc:	execute the indicated command concurrently with the calling process;
+	  system queue commands, .BAT, .CMD, .COM, and .EXE files can be
+	  executed
+Note:	the calling process will lose its virtual console and must reattach it
+	  before attempting any I/O
+SeeAlso: INT E0/CL=92h
+
+Format of REAL/32 Command Line Buffer (CLBUF):
+Offset	Size	Description	(Table 04047)
+ 00h	BYTE	reserved (0)
+ 01h 128 BYTEs	ASCIZ command line
+ 81h	BYTE	(0)
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2164
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.2+ internal - SET DEVICE DRIVER LOOKAHEAD FLAG
+	AH = 64h
+	AL = flag
+		00h (default) call device driver function 5 (non-dest read)
+			before INT 21/AH=01h,08h,0Ah
+	    nonzero don't call driver function 5
+Return: nothing (MS-DOS)
+	CF set, AX=error code??? (DR DOS 5.0, which does not support this call)
+Notes:	this function is called by the DOS 3.3+ PRINT.COM
+	under MS-DOS, this function does not use any of the DOS-internal stacks
+	  and may thus be called at any time, even during another DOS call
+SeeAlso: AH=01h,AH=08h,AH=0Ah,AX=5D06h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 12
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 12 - BIOS - GET MEMORY SIZE
+Return: AX = kilobytes of contiguous memory starting at absolute address 00000h
+Note:	this call returns the contents of the word at 0040h:0013h; in PC and
+	  XT, this value is set from the switches on the motherboard
+SeeAlso: INT 11"BIOS",INT 2F/AX=4A06h,INT 4C"Tandy 2000",MEM 0040h:0013h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2106
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - DIRECT CONSOLE OUTPUT
+	AH = 06h
+	DL = character (except FFh)
+Return: AL = character output (despite official docs which state nothing is
+		returned) (at least DOS 2.1-7.0)
+Notes:	does not check ^C/^Break
+	writes to standard output, which is always the screen under DOS 1.x,
+	  but may be redirected under DOS 2+
+SeeAlso: AH=02h,AH=09h
+

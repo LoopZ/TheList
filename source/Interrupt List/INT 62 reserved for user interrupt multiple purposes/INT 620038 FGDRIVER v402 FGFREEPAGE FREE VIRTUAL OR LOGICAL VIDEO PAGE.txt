@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620038
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FREEPAGE" - FREE VIRTUAL OR LOGICAL VIDEO PAGE
+	AX = 0038h
+	BX = page number (0000h-003Fh)
+Return: AX = status (0000h,0001h,0007h,0009h) (see #03473)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0000h,AX=0001h,AX=0002h,AX=0003h
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 41
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 41 - Acorn BBC Master 512 - "OSGBPB" - MULTI-BYTE GET/PUT
+	AL = function
+	    01h put bytes sequentially
+	    02h put bytes, ignoring sequential pointer
+	    03h get bytes sequentially
+	    04h get bytes, ignoring sequential pointer
+	    05h get media title and boot option
+	    06h get current device and directory
+	    07h get current library and device
+	    08h search directory
+	DS:BX -> control block (see #03199)
+Return: CF clear if successful
+	CF set on error
+	AL = 00h if operation attempted
+	AL unchanged if unsupported function
+SeeAlso: INT 40"Acorn",INT 42"Acorn",INT 43"Acorn"
+
+Format of BBC Master control block:
+Offset	Size	Description	(Table 03199)
+ 00h	BYTE	file handle
+ 01h	DWORD	pointer to data in either I/O processor or Tube processor
+ 05h	DWORD	number of bytes to be transferred
+ 09h	DWORD	transfer address
+

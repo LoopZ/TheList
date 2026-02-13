@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--03
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - AMIS v3.0+ - REQUEST POP-UP
+	AL = 03h
+	AH = multiplex number for program
+Return: AL = status
+	    00h not implemented or TSR is not a pop-up
+	    01h can not pop up at this time, try again later
+	    02h can not pop up yet, will do so when able
+	    03h already popped up
+	    04h unable to pop up, user intervention required
+		BX = standard reason code
+		    0000h unknown failure
+		    0001h interrupt chain passes through memory
+			  which must be swapped out to pop up
+		    0002h swap-in failed
+		CX = application's reason code if nonzero
+	    FFh TSR popped up and was exited by user
+		BX = return value
+		    0000h no return value
+		    0001h TSR unloaded
+		    0002h-00FFh reserved
+		    0100h-FFFFh application-dependent
+Note:	this function is not valid unless a program is installed on the
+	  specified multiplex number; use INT 2D/AL=00h to check
+SeeAlso: INT 2D/AL=00h,INT 2D/AL=01h,INT 2D/AL=02h,INT 2D/AL=04h,INT 2D/AL=05h
+SeeAlso: INT 2D/AL=06h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330101
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - GRTMOUSE v1.00+ - SET MOUSE CURSOR SHAPE
+	AX = 0101h
+	DS:SI -> 16-byte cursor pattern
+Return: CF clear if successful
+SeeAlso: AX=0100h,AX=0102h
+

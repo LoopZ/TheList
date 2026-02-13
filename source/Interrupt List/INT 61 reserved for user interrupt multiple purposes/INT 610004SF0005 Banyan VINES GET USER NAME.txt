@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0005
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET USER NAME
+	AX = 0004h subfn 0005h
+	DS:DX -> request block (see #03406)
+Return: AX = status (see also #03400)
+	    0000h user name returned in request block
+Desc:	Returns the StreetTalk name of the currently logged in user
+SeeAlso: AX=0004h/SF=0004h,#03431 [ID 0004h],AX=0007h/BX=0005h
+SeeAlso: AX=0004h/SF=0004h
+
+Format of VINES Function 0004h/Subfunction 0005h request block:
+Offset	Size	Description	(Table 03406)
+ 00h	WORD	0005h (subfunction "Get User Name")
+ 02h 64	BYTE	buffer for null-terminated user name
+

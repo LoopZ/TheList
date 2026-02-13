@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD41
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Arabic/Hebrew DOS 5.0???+ - GET CURRENT FONTPAGE
+	AX = AD41h
+	(CX = 0000h)
+Return: CX = current fontpage
+Notes:	Called by Arabic/Hebrew MS-DOS 5.0 CODEPAGE.COM immediately before
+	  a call to INT21h/6601h to get the current codepage.
+	The function is probably implemented in the ARABIC.COM/HEBREW.COM
+	  driver.
+	The CX = 0 on call is not actually a requirement, but it should be
+	  initialized this way to receive a fontpage 0 if ARABIC.COM/
+	  HEBREW.COM is not loaded. A fontpage 0 indicated no fontpage
+	  support. At least this is what CODEPAGE.COM assumes (by using
+	  the CX=0 init status of a .COM program, when not being loaded
+	  in DEBUG.)
+	Some European clones have code page 850 as their hardware font instead
+	  of code page 437
+	!!!more details to follow
+SeeAlso: AX=AD42h,AX=AD43h
+

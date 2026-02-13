@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX001A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - GET DRIVER MAXIMUM PACKET SIZE
+	BX = 001Ah
+Return: AX = maximum packet size with preamble (at least 576 bytes)
+	CX = IPX retry count
+	DS,FLAGS preserved
+SeeAlso: BX=000Dh
+

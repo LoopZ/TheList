@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy ANSK, NTNX, MW386 - GET USER NUMBER
+	AH = 03h
+Return: AL = user number
+	AH = machine number (MW386)
+Note:	this function call is the recommended method for a CPU-bound process to
+	  prevent its priority from being lowered
+SeeAlso: AH=04h,AH=05h,AH=A1h
+

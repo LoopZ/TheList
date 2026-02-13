@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33002C
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.0+ - GET ACCELERATION PROFILES
+	AX = 002Ch
+Return: AX = status (0000h success)
+	BX = currently-active acceleration profile
+	ES:SI -> acceleration profile data (see #03180)
+SeeAlso: AX=002Bh,AX=002Dh,AX=0033h
+

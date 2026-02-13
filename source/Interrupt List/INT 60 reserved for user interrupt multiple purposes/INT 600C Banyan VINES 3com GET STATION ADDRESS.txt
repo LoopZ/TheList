@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 600C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - Banyan VINES, 3com - GET STATION ADDRESS
+	AH = 0Ch
+Return: AL = status
+	    00h successful
+		ES:SI -> 6-byte station address
+	    02h semaphore service is unavailable
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1046
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "PLOT" - DRAW ONE PIXEL
+	AH = 46h
+	DI = x (0-719)
+	BP = y (0-347)
+Return: nothing
+Notes:	function 44h determines operation and function 43h which page to use
+	if the indicated coordinate is invalid, this function does nothing
+SeeAlso: AH=0Ch,AH=47h,AH=49h,AH=4Ch,AH=4Dh
+

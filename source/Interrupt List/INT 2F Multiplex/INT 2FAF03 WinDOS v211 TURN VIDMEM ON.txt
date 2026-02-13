@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF03
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - TURN VIDMEM ON
+	AX = AF03h
+Return: AX = status
+	    0000h successful
+	    0001h CPU not in mode set by DOS386=On
+	    0002h video adapter in graphics mode
+	    0003h memory chain corrupted
+SeeAlso: AX=AF00h"WinDOS",AX=AF04h"WinDOS",AX=AF05h"WinDOS"
+

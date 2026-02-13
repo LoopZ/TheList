@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1341
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - QUICKCACHE II v4.20 - SAVE/RESTORE ???
+	AH = 41h
+	AL = direction
+	    01h save to file
+	    else restore from file
+	ES:DI -> 1024-byte buffer for ???
+Return: AX = status (0000h successful, 8000h failed)
+Program: QUICKCACHE II is a shareware disk cache by P.R. Glassel and
+	  Associates, Inc.
+SeeAlso: AH=40h"QUICKCACHE"
+

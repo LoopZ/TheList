@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH00
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "HANDLE" - RETURN OBJECT HANDLE
+	AH = 12h
+	BH = 00h
+	BL = which handle to return
+	    00h handle in DWORD on top of stack
+	    01h current task's window handle
+	    02h given task's mailbox handle (task's handle on stack)
+	    03h current task's mailbox handle
+	    04h given task's keyboard handle (task's handle on stack)
+	    05h current task's keyboard object handle
+	    06h given task's OBJECTQ handle (task's handle on stack)
+	    07h current task's OBJECTQ handle
+	    08h	  \
+	      thru > return 0000:0000 under DV < 2.26
+	    10h	  /
+	    0Ch (2.26+) task owning object with handle in DWORD on top of stack
+	    0Dh (2.26+) task handle of owner (parent) of current task
+Return: DWORD on top of stack is object handle
+Note:	BL=0Ch,0Dh returns 00000000h if the object is not open (keyboard,
+	  mailbox, panel, pointer, and timer objects) or is an orphan (task,
+	  window)
+SeeAlso: AH=12h/BH=02h,AH=12h/BH=80h
+

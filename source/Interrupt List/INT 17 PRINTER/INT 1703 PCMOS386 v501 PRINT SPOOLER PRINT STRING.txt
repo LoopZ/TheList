@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1703
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PC-MOS/386 v5.01 - PRINT SPOOLER - PRINT STRING
+	AH = 03h
+	DX = printer port number
+	CX = number of characters to print
+	DS:SI -> string
+Return: AH = printer status (see #00631)
+	CX = number of characters actually printed
+Desc:	send an entire string of chars to the print spooler with a single call
+Program: PC-MOS/386 v5.01 is a multitasking, multiuser MS-DOS 5.0-compatible
+	  operating system by The Software Link, Inc.
+SeeAlso: AH=00h,AH=01h,AH=02h,AH=FFh"PC-MOS"
+

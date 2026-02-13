@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F112C
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR (DOS 4.0+) - "UPDATE_CB" - ???
+	AX = 112Ch
+	SS = DOS DS
+	SDA current SFT pointer -> SFT for file
+	???
+Return: CF set on error
+Note:	called by SHARE in DOS 5.0-6.0
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF18
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "RelMemNear" - RELEASE APPLICATION-RELATIVE MEMORY BLOCK
+	AX = FF18h
+	ESI = application-relative linear address of block
+Return: CF clear if successful
+	CF set on error
+SeeAlso: AX=FF16h,AX=FF17h,AX=FF19h
+

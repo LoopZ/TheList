@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD002BX4D44
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Multiplex - Lotus CD/Networker GET DATA AREA
+	AX = D002h
+	BX = 4D44h
+	DX = bitmap identifying one loaded CD/Networker TSR
+Return: ES:DI -> data area owned by TSR
+Note:	the format of the data area changes with each minor revision, so it
+	  cannot be counted on
+SeeAlso: AX=D000h"Lotus"
+

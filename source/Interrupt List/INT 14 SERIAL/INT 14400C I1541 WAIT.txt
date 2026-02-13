@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14400C
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - WAIT
+	AX = 400Ch
+	CX = number of 838ns microticks to wait (0000h means 65536, ~55ms)
+Return: after wait period elapses
+SeeAlso: AX=4000h,AX=400Dh
+

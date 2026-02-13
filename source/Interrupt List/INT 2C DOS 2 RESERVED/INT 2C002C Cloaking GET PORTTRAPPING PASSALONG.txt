@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C002C
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - GET PORT-TRAPPING PASSALONG
+	AX = 002Ch
+Return: CF clear
+	DX:EBX = current I/O trapping passalong address
+Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0008h,AX=002Dh
+

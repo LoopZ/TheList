@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6105
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "get_addr" - GET INTERNET ADDRESS OF NET DESCR
+	AH = 05h
+	BX = network descriptor
+Return: CF clear if successful
+	    DX:AX = Internet address of ND
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+InstallCheck:	test for the signature "TCPTSR" three bytes beyond the start
+	  of the interrupt handler
+Range:	INT 20 to INT E0, selected by configuration
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=16h"PC/TCP"
+SeeAlso: INT 63/AH=25h"BW-TCP"
+

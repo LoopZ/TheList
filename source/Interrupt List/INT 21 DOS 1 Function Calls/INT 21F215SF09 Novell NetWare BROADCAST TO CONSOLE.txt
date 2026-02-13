@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F215SF09
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BROADCAST TO CONSOLE
+	AX = F215h subfn 09h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #01837 at AH=E1h/SF=09h)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+Note:	requires Access Control rights to the target directory or its parent
+SeeAlso: AH=E1h/SF=09h,AH=F2h"NetWare",AX=F215h/SF=08h
+

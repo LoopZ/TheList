@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33004B
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - LCS/Telegraphics MOUSE DRIVERS - INSTALLATION CHECK / GET VERSION
+	AX = 004Bh
+Return: ES:DI -> ASCIZ signature/description string if installed (see #03186)
+
+(Table 03186)
+Values for LCS/Telegraphics mouse driver OEM signature/description string:
+ "Primax Generic;Universal Mouse Driver;IMOUSE;v8.20i"
+ "Synaptics;TouchPad Driver;SYNTOUCH;v2.26"
+ "Z-NIX;BUS,AUX,Serial 3-byte and 5-byte Mouse Driver;ZMOUSE;v7.04d"
+Note:	the string consists of OEM, driver description, driver name, and
+	  version number
+

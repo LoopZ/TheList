@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131C
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Future Domain SCSI CONTROLLER - GET POINTER TO FREE CONTROLLER RAM
+	AH = 1Ch
+	DL = hard drive ID (any valid SCSI hard disk)
+Return: CF set on error
+	    AH = status code (see #00234 at AH=01h)
+	CF clear if successful
+	    ES:BX -> first byte of free RAM on controller
+Notes:	the Future Domain TMC-870 contains 1024 bytes of RAM at offsets 1800h
+	  to 1BFFh on-board the controller for storing drive information and
+	  controller status; ES:BX points to the first byte available for other
+	  uses
+	ES contains the segment at which the controller resides; the
+	  controller's two memory-mapped I/O ports are at offsets 1C00h, 1E00h
+SeeAlso: AH=1Bh"SCSI"
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 65
+  Category: S 	serial I/O
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 65 U - EZRECV v1.0 - API
+	AX = function
+	    0000h ???
+		Return: AX = ??? or FFFFh
+	    0001h ???
+		Return: AX = status (0000h or 0001h)
+	    0002h ???
+		Return: AX = status (0000h or 0001h)
+	    0003h set ??? to 0001h
+		Return: AX = 0000h
+	    0004h ???
+		Return: AX = ???
+Return: BH = COM port being used
+	BL = speed???
+	CH = ???
+	CL = ???
+	DX = ???
+	DS = ???
+	ES = EZRECV data segment
+Program: EZRECV is a background Zmodem file receiver by Express Consulting
+

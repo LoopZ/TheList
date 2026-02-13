@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148009
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - SET SEND AND RECEIVE TIMEOUTS
+	AX = 8009h
+	BX = send timeout in ticks
+	CX = receive timeout in ticks
+	DX = port index (COM1=0, COM2=1, ...)
+Return: nothing
+SeeAlso: AX=8000h,AX=800Ah
+

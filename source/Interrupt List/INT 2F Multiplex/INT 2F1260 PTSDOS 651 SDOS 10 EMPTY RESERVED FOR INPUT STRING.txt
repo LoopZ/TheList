@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1260
+  Category: O 	other operating systems
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - PTS-DOS 6.51, S/DOS 1.0+ - "EMPTY" (RESERVED FOR INPUT STRING)
+	AX = 1260h
+	ES:DI -> string buffer (see getstr)
+	DL = extended keystroke code or FFh if ENTER
+Return: AX = 0000h (default handler in the kernel)
+	CF set if action done, all registers preserved
+Notes:	This function is known to be handled by Paragon Technology Systems
+	  PTS-DOS 6.51 and S/DOS 1.0, and probably was also handled
+	  in earlier releases.
+	The default handler in the kernel justs XORs AX,AX and returns.
+	This is reserved to be invoked in input string
+

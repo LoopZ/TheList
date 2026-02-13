@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1560
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SET SYSTEM CLOCK SPEED
+	AH = 60h
+	AL = new speed
+	    00h normal (8 MHz)
+	    01h Slow Mode 1 (4 MHz)
+	    02h Slow Mode 2 (2 MHz)
+Note:	the Husky Hunter 16 is an 8088-based ruggedized laptop.	 Other family
+	  members are the Husky Hunter, Husky Hunter 16/80, and Husky Hawk.
+SeeAlso: AX=6301h
+

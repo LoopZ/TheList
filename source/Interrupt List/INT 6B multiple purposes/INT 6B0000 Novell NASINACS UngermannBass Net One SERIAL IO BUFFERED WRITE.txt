@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B0000
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - Novell NASI/NACS, Ungermann-Bass Net One SERIAL I/O - BUFFERED WRITE
+	AX = 0000h
+	CX = length
+	ES:BX -> buffer
+Return: CX = number of bytes written
+Program: NASI is Novell's NetWare Asynchronous Services Interface (purchased
+	  from Network Products Corp, who call it NCSI) which runs on
+	  workstations; NACS is the NetWare Asynchronous Communications
+	  Services module which runs on servers
+InstallCheck:	test for the signature string "NCSI" three bytes past the
+	  interrupt handler; see also AH=02h.
+	As of version 3.0, Novell's NASI can be distinguished from NPC's
+	  NCSI by the presence of an 'A' immediately following the signature
+Notes:	this function is also supported by TelAPI, NPC NCSI, and Connection
+	  Manager CLIENT.EXE; for TelAPI, nonzero values in AL specify a
+	  connection ID
+	Connection Manager returns CF set/AL=FFh if called while an INT 6B
+	  call is already in progress
+SeeAlso: AX=0100h,AH=18h,INT 14/AH=19h,INT 14/AH=E3h
+

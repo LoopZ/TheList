@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620060
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v1.10 only - "FG_DISPPCX" - DISPLAY PCX FILE
+	AX = 0060h
+	ES:BX -> ASCIZ filename
+	CX = flags
+	    bit 0: use current palette rather than PCX file's palette
+	    bits 1-15 reserved (0)
+Return: AX = status
+	    0000h success
+	    0001h file not found
+	    0002h file is not a valid PCX file
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes and Hercules low-resolution graphics
+	The image is displayed with its upper left corner at the current
+	  graphics cursor position
+SeeAlso: AX=00B9h
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7003
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - License Service API - UPDATE
+	AX = 7003h
+	CX = license server index (0000h to 001Fh)
+	DS:DX -> SLSUPDATE structure (see #02853)
+	ES:BX = provider specific handle for the license context
+Return: AL = status
+	    00h not installed
+	    FFh installed
+SeeAlso: AX=7004h,AX=7005h
+
+Format of License Service SLSUPDATE structure:
+Offset	Size	Description	(Table 02853)
+ 00h	DWORD	(ret) status code
+ 04h	DWORD	(call) handle identifying license context
+ 08h	DWORD	(call) total units consumed
+ 0Ch	DWORD	additional units required
+ 10h	DWORD	address of comment string
+ 14h	DWORD	address of SLSCHALLENGE structure (see #02851)
+

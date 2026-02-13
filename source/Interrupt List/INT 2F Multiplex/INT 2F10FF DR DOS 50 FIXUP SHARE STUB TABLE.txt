@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F10FF
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DR DOS 5.0 - FIXUP SHARE STUB TABLE???
+	AX = 10FFh
+	ES:BX -> new SHARE stub table to use???
+Return: DS destroyed???
+Notes:	Sets a pointer in the kernel. ES:BX points to a structure in SHARE's
+	  segment, which presumeably contains a number (4 or 11???) of entries
+	  of 5 bytes each and is probably part of some kind of share stub
+	  dispatcher that gets fixed up by this call.
+	This was seen called by DR DOS 5.0 SHARE 1.00 (when INT 2F/AX=1000h
+	  revealed that SHARE was not installed) before it hooked INT 2Fh
+	  via INT 21/AH=35h to provide its install check function. It preserved
+	  the DS register before calling.
+	However, the DR DOS 6.0+ SHARE 1.02+ uses INT 2F/AX=1001h to hook
+	  into the OS, DR PalmDOS SHARE 2.00 directly fixes up the share stubs
+	  in table !!! at INT 21h/52h, and Novell DOS 7 - DR-DOS 7.03
+	  SHARE 2.01-2.05 maintains the private set of share stubs in
+	  Table !!! at INT 21/AX=4458h).
+	This function was probably used between 1990/02/09 and 1991/03/15.
+SeeAlso: INT 2F/AX=1001h
+

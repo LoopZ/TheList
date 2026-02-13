@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A008
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI Mach64 BIOS - GET ??? SIZE
+	AX = A008h
+	CL = ??? flags
+	???
+Return: AH = 00h (successful)
+	BX = size of ??? (0046h if CL bit 0 clear on entry)
+SeeAlso: AX=A000h,AX=A009h
+

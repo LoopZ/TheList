@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH7F
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.1 - OEM APM INSTALLATION CHECK
+	AX = 5380h
+	BH = 7Fh
+Return: CF clear if successful
+	    BX = OEM identifier
+	    all other registers OEM-defined
+	    ---Intel SL Enhanced Option BIOS---
+	    BX = 534Ch ('SL')
+	    CL = 4Fh ('O')
+	    AL = version (10h = 1.0)
+	    ---HP APM BIOS---
+	    BX = 4850h ('HP')
+	    CX = version (0001h)
+	CF set on error
+	    AH = error code (03h) (see #00473)
+SeeAlso: AX=5380h/BH=00h
+

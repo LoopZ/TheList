@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310500
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET FREE MEMORY INFORMATION
+	AX = 0500h
+	ES:(E)DI -> buffer for memory information (see #03155)
+Return: CF clear
+Notes:	16-bit programs use ES:DI, 32-bit programs use ES:EDI
+	this function must be considered advisory because other applications
+	  may affect the results at any time after the call
+	fields not supported by the DPMI implementation are filled with
+	  FFFFFFFFh
+	DPMI 1.0+ supports this function solely for backward compatibility; use
+	  AX=050Bh instead
+	the limited DPMI host built into Phar Lap's 286|DOS-Extender v2.5 only
+	  returns the first field in the memory information record
+SeeAlso: AX=0501h,AX=050Bh,AX=0604h
+
+Format of DPMI memory information:
+Offset	Size	Description	(Table 03155)
+ 00h	DWORD	largest available block in bytes
+ 04h	DWORD	maximum unlocked page allocation
+ 08h	DWORD	maximum locked page allocation
+ 0Ch	DWORD	total linear address space in pages
+ 10h	DWORD	total unlocked pages
+ 14h	DWORD	free pages
+ 18h	DWORD	total physical pages
+ 1Ch	DWORD	free linear address space in pages
+ 20h	DWORD	size of paging file/partition in pages
+ 24h 12 BYTEs	reserved
+

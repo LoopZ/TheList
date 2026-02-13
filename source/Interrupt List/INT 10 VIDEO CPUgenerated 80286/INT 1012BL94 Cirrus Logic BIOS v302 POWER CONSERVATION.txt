@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL94
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS v3.02 - POWER CONSERVATION
+	AH = 12h
+	BL = 94h
+	AL = new state (00h wake up monitor, 01h shut down display)
+Return: nothing
+Note:	AL=01h is reported not to work properly on the LCD panel
+SeeAlso: AH=12h/BL=84h,AH=12h/BL=92h
+

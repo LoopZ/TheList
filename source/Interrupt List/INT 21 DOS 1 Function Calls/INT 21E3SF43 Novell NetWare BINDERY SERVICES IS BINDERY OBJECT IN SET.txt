@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF43
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - IS BINDERY OBJECT IN SET
+	AH = E3h subfn 43h
+	DS:SI -> request buffer (see #01954)
+	ES:DI -> reply buffer (see #01953)
+Return: AL = status (see #01950)
+Desc:	determine whether the specified object is a member of the given set
+	  property
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+	the caller must have read access to the property
+SeeAlso: AH=E3h/SF=41h,AH=E3h/SF=42h,AX=F217h/SF=43h
+
+Format of NetWare "Is Bindery Object in Set?" request buffer:
+Offset	Size	Description	(Table 01954)
+ 00h	WORD	length of following data (max 75h)
+ 02h	BYTE	43h (subfunction "Is Bindery Object In Set")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name
+ 06h  N BYTEs	object's name
+	BYTE	length of property's name
+      N BYTEs	property's name
+	WORD	(big-endian) type of member object
+	BYTE	length of member object's name
+      N BYTEs	member object's name
+SeeAlso: #01953
+

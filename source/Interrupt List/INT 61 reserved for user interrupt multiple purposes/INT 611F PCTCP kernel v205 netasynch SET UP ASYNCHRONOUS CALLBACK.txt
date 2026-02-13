@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 611F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_asynch" - SET UP ASYNCHRONOUS CALL-BACK
+	AH = 1Fh
+	BX = network descriptor
+	CX = event type (see #03466)
+	DS:SI -> event handler routine (see #03467)
+	ES:DI = 32-bit hint passed to handler
+Return: CF clear if successful
+	    DS:DX -> previous handler
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	ICMP messages do not trigger events on stream connections
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
+
+(Table 03466)
+Values for PC/TCP event type:
+ 00h	alarm
+ 01h	open (successfully opened stream connection)
+ 02h	receive (data available)
+ 03h	transmit (ACK received on stream connection)
+ 04h	transmit flush???
+ 05h	foreign close (remote host closed data connection)
+ 06h	close (local host closed connection and protocol is complete)
+ 07h	error (error code passed to handler as arg)
+
+(Table 03467)
+Values PC/TCP user event handler is called with:
+	BX = network descriptor
+	CX = event type (see #03466)
+	DS:DX -> arg
+	ES:DI = 32-bit hint value
+	STACK:	small stack, possibly the DOS stack
+

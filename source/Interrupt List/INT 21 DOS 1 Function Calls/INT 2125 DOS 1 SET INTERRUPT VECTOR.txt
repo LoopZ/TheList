@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2125
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - SET INTERRUPT VECTOR
+	AH = 25h
+	AL = interrupt number
+	DS:DX -> new interrupt handler
+Notes:	this function is preferred over direct modification of the interrupt
+	  vector table
+	some DOS extenders place an API on this function, as it is not
+	  directly meaningful in protected mode
+	under DR DOS 5.0-6.0, this function does not use any of the
+	  DOS-internal stacks and may thus be called at any time; however,
+	  under Novell DOS 7.0 - DR-DOS 7.02, this function was not reentrant.
+	  Since 1998/05/29, DR-DOS 7.03 no longer uses any internal stacks and
+	  tests for this function much earlier, to allow a minimal stack usage
+	  of just two words in addition to the IRET frame, allowing it to be
+	  called from INT 21h functions, specificially device drivers.  This
+	  fixes the MCS SMB client
+	Novell NetWare (except the new DOS Requester) monitors the offset of
+	  any INT 24 set, and if equal to the value at startup, substitutes
+	  its own handler to allow handling of network errors; this introduces
+	  the potential bug that any program whose INT 24 handler offset
+	  happens to be the same as COMMAND.COM's will not have its INT 24
+	  handler installed
+SeeAlso: AX=2501h,AH=35h
+

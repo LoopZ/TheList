@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217160CL00
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - "TRUENAME" - CANONICALIZE PATH
+	AX = 7160h
+	CL = 00h
+	CH = SUBST expansion flag
+	    00h return a path containing true path for a SUBSTed drive letter
+	    80h return a path containing the SUBSTed drive letter
+	DS:SI -> ASCIZ filename or path (either long name or short name)
+	ES:DI -> 261-byte buffer for canonicalized name
+Return: CF set on error
+	    AX = error code
+		02h invalid component in directory path or drive letter only
+		03h malformed path or invalid drive letter
+	    ES:DI buffer unchanged
+	CF clear if successful
+	    ES:DI buffer filled with fully qualified name
+	    AX destroyed
+Desc:	determine the canonical name of the specified filename or path,
+	  corresponding to the undocumented TRUENAME command in COMMAND.COM
+Notes:	if a complete path is given, the result will be a short-form complete
+	  path; otherwise, the given relative path is appended to the
+	  short-form current directory name, '.'/'..'/'...'/etc. are resolved,
+	  and the final result uppercased without converting any remaining
+	  long-form names to short-form
+	for compatibility with DOS versions prior to v7.00, the carry flag
+	  should be set on call to ensure that it is set on exit
+BUG:	Windows95 incorrectly treats filenames where the first two characters
+	  after the drive letter and colon are both slashes (either forward
+	  or backward) as a UNC (network name) and requires several seconds
+	  to attempt to resolve the name before returning an unchanged
+	  string
+SeeAlso: AH=60h,AX=7160h/CL=01h
+

@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F98
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Micro Focus COBOL v3.1.31 internal - ???
+	AH = 98h
+	AL = function
+	    00h installation check
+		Return: AL = FFh if installed
+	    10h get ???
+		Return: AX = ???
+	    18h get segment of ???
+		Return: AX = segment of ???
+	    19h get pointer to ???
+		Return: AX:BX -> ???
+Notes:	Micro Focus COBOL compiler v3.1.31 and companion programs supply
+	  these functions for internal use; these programs call the
+	  installation check at startup (before installing the INT 2F
+	  handler) and crash the system if a not authorized program answers
+	  with AL=FFh
+	the handler checks AL only if an internal flag is 0, otherwise ???
+SeeAlso: AH=97h"COBOL",AH=99h"COBOL",AH=9Ah"COBOL"
+

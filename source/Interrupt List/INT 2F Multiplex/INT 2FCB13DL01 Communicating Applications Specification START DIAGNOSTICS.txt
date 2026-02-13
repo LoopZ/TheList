@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB13DL01
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - START DIAGNOSTICS
+	AX = CB13h
+	DL = 01h
+Return: AX = 0000h successfully started
+	AX < 0	   error code (see #03048)
+SeeAlso: AX=CB13h/DL=00h
+

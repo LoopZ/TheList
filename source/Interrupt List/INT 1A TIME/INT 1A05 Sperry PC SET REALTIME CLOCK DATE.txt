@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A05
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - Sperry PC - SET REAL-TIME CLOCK DATE
+	AH = 05h
+	CL = year-1980
+	CH = 00h (???)
+	DH = month (binary) (01h-0Ch)
+	DL = day (binary) (01h-1Fh)
+Return: nothing
+SeeAlso: AH=02h,AH=04h"Sperry",AH=05h,INT 21/AH=2Bh"DATE"
+

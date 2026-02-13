@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - FILE SERVICE CONTROL
+	AX = 0004h
+	DS:DX -> request block (see #03401)
+Return: AX = status (see #03400)
+Notes:	This service is handled by the redirector
+	The request dispatch table contains dummy entries for requests 0Ah,
+	  0Dh, 15h, 19h, and 1Ah, which always return error 0033h (invalid
+	  request ID)
+
+(Table 03400)
+Values for Banyan VINES file service control status code:
+ 0000h	successful
+ 0002h	file not found
+ 0003h	path not found
+ 000Fh	invalid drive
+ 0015h	drive not ready
+ 0033h	invalid request ID
+ 0034h	drive not connected
+ 0037h	drive number out of range
+ 0038h	drive number not available
+ 003Ah	invalid operation
+ 0055h	drive already connected
+ 0057h	invalid number of entries
+
+Format of Banyan VINES file service request block:
+Offset	Size	Description	(Table 03401)
+ 00h	WORD	request ID (1..28)
+ 02h  n BYTES	additional parameters and result buffer
+

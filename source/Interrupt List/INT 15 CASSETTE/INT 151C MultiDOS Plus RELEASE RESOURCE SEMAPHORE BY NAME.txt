@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151C
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - RELEASE RESOURCE SEMAPHORE BY NAME
+	AH = 1Ch
+	DS:SI -> 8-byte name
+Return: AH = status
+	    00h successful
+	    01h not semaphore owner
+	    02h invalid semaphore number
+	    04h out of string space
+Notes:	(see AH=02h"MultiDOS")
+	equivalent to AH=1Ah followed by AH=02h
+SeeAlso: AH=02h"MultiDOS",AH=1Ah"MultiDOS",AH=1Bh"MultiDOS",AH=1Dh"MultiDOS"
+

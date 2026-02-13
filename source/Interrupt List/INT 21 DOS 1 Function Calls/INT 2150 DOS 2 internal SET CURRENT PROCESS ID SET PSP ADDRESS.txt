@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2150
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ internal - SET CURRENT PROCESS ID (SET PSP ADDRESS)
+	AH = 50h
+	BX = segment of PSP for new process
+Notes:	DOS uses the current PSP address to determine which processes own files
+	  and memory; it corresponds to process identifiers used by other OSs
+	under DOS 2.x, this function cannot be invoked inside an INT 28h
+	  handler without setting the Critical Error flag
+	under MS-DOS 3.0+ and DR DOS 3.41+, this function does not use any of
+	  the DOS-internal stacks and may thus be called at any time, even
+	  during another INT 21h call
+	some Microsoft applications such as Quick C 2.51 use segments of 0000h
+	  and FFFFh and direct access to the SDA (see #01687 at AX=5D06h) to
+	  test whether they are running under MS-DOS rather than a compatible
+	  OS; although one should only call this function with valid PSP
+	  addresses, any program hooking it should be prepared to handle
+	  invalid addresses
+	this function is supported by the OS/2 compatibility box
+	this call was undocumented prior to the release of DOS 5.0
+SeeAlso: AH=26h,AH=51h,AH=62h
+

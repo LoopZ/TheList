@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - RELEASE LOGICAL RECORD
+	AH = D2h
+	DS:DX -> semaphore identifier (counted string up to 99 chars long)
+Return: AL = status
+	    00h successful
+	    FFh no such record
+Desc:	unlock the logical record name but do not remove it from the log table
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+,
+	  Banyan VINES, and Alloy NTNX
+	locks on logical record names are advisory and may be ignored by other
+	  applications
+SeeAlso: AH=BDh,AH=D0h,AH=D3h,AH=D4h
+

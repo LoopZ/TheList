@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148A
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - TURN OFF RTS
+	AH = 8Ah
+	DX = port number
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+SeeAlso: AX=8000h"COMM-DRV",AH=88h"COMM-DRV",AH=89h"COMM-DRV"
+

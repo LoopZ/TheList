@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F08
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - UNLOCK HANDLE
+	AH = 08h
+	BX = file handle
+	AL = mode
+	    00h unlock all
+	    01h unlock record at CX:DX
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see also AH=00h)
+		0002h file not found
+SeeAlso: AH=07h,AH=0Fh,INT 21/AH=5Ch
+

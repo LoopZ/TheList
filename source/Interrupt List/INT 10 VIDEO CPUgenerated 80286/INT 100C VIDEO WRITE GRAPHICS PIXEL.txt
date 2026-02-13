@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - WRITE GRAPHICS PIXEL
+	AH = 0Ch
+	BH = page number
+	AL = pixel color
+	    if bit 7 set, value is XOR'ed onto screen except in 256-color modes
+	CX = column
+	DX = row
+Return: nothing
+Desc:	set a single pixel on the display in graphics modes
+Notes:	valid only in graphics modes
+	BH is ignored if the current video mode supports only one page
+SeeAlso: AH=0Dh,AH=46h
+

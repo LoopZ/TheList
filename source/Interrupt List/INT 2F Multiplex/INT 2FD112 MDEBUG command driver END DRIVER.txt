@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD112
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MDEBUG command driver - END DRIVER
+	AX = D112h
+Return: DL = FFh
+Notes:	only called by the transient part of the driver to inform the resident
+	  part that it will be released after this function
+	the function must be reentrant and the driver mustn't chain this
+	  function to the old INT 2F
+SeeAlso: AX=D101h,AX=D111h
+

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4400
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 44 - Acorn BBC Master 512 - "OSARGS" - GET/SET FILE PARAMS FOR OPEN FILE
+	AH = 00h
+	AL = function
+	    00h get current filing system
+		Return: AL = filing system (see #03200)
+	    01h get address of commandline tail
+		Return: BX buffer filled with address of command tail in I/O
+			      processor address space (use INT 4A/AL=05h to
+			      retrieve)
+	    FFh flush all files onto secondary storage
+	BX -> 4-byte data buffer
+Note:	the commandline tail is terminated with a carriage return (0Dh)
+SeeAlso: INT 40"Acorn",INT 45"Acorn"
+
+(Table 03200)
+Values for BBC Master filing system:
+ 00h	none
+ 01h	1200 bps cassette
+ 02h	300 bps cassette
+ 03h	ROM FS
+ 04h	DFS
+ 05h	ANFS/NFS
+ 06h	TFS
+ 08h	ADFS
+

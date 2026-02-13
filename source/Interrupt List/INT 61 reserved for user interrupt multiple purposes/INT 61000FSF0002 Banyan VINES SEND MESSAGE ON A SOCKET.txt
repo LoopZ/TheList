@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61000FSF0002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SEND MESSAGE ON A SOCKET
+	AX = 000Fh subfn 0002h
+	CX:BX -> request block (see #03447)
+	DX = application's data segment (should be = CX)
+	ES = DS
+Return: AX = status
+	    0000h successful
+	    00A5h resource not available
+Desc:	send data to a socket identified by its socket handle
+
+Format of request block:
+Offset	Size	Description	(Table 03447)
+ 00h	WORD	0002h
+ 02h	WORD	magic number (FEFEh)
+ 04h	WORD	buffer for return code (set to 0 before calling)
+ 06h	WORD	reserved (will be set to client DS)
+ 08h	WORD	reserved (obviously not used; set to 0 before calling)
+ 0Ah	DWORD	far pointer to parameter block (see #03448)
+ 0Eh	WORD	process handle (see AX=000Fh/SF=0008h)
+
+Format of parameter block:
+Offset	Size	Description	(Table 03448)
+ 00h	WORD	buffer for estimated communication cost in 220 msec ticks
+ 02h	WORD	buffer for return code (set to 0 before calling)
+ 04h	WORD	socket handle
+ 06h	DWORD	far pointer to IPC/SPP message buffer
+ 0Ah	WORD	length of IPC/SPP message buffer
+ 0Ch	WORD	option flags
+		bit 0: asynchronous communication
+		bit 1: reliable message
+		bit 3: end of message
+		bit 4: vectored I/O
+ 0Eh 16	BYTEs	socket address (IPC port of source)
+ 1Eh	WORD	not used (set to 0 before calling)
+ 20h	WORD	SPP connection id (0 for IPC messages)
+ 22h	WORD	request type (1 = data, 2 = connect SPP, 3 = disconnect SPP)
+SeeAlso: #03447
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 4.01+ GRAPHICS.COM - INSTALLATION CHECK
+	AX = AC00h
+Return: AX = FFFFh
+	ES:DI -> ??? (graphics data?) (not documented)
+Note:	this installation check was moved here to avoid the conflict with the
+	  CD-ROM extensions that occurred in DOS 4.00
+SeeAlso: AX=1500h"GRAPHICS"
+

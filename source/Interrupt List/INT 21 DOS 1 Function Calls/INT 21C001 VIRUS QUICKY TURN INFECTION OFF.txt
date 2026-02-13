@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C001
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "QUICKY" - TURN INFECTION OFF
+	AX = C001h
+Return: nothing
+Note:	if the virus is already memory resident this call disables any
+	  further infections
+SeeAlso: AX=C000h,AX=C002h
+

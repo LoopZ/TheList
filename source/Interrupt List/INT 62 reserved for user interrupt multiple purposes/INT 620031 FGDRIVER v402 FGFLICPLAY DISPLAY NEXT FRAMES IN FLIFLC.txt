@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620031
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FLICPLAY" - DISPLAY NEXT FRAME(S) IN FLI/FLC
+	AX = 0031h
+	ES:BX -> context descriptor (see AX=0030h)
+	CX = number of frames to display starting at current frame
+	DX = control flags (see #03479)
+Return: AX = number of frames displayed
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0030h,AX=0033h,AX=00B8h
+
+Bitfields for FGDRIVER FLI/FLC control flags:
+Bit(s)	Description	(Table 03479)
+ 0	skip inter-frame delay specified in FLI/FLC header
+ 1	display relative to current graphics position
+ 2	dipslay image from the FG_IMAGEBUF buffer instead of file
+

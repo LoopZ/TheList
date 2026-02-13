@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies '64300' BIOS - SET CLOCK
+	AX = 5F02h
+	BH = what to set
+	    02h dot clock
+		BL = speed in MHz (12-99)
+	    03h memory clock
+		BL = speed in MHz (12-99)
+	    FFh default dot and memory clocks
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F00h"Chips",AX=5F03h"64300",AX=5F02h"65530"
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A01
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4.0+ ANSI.SYS internal - GET/SET DISPLAY INFORMATION
+	AX = 1A01h
+	CL = function
+	    7Fh for GET
+	    5Fh for SET
+	DS:DX -> parm block as for INT 21,AX=440Ch,CX=037Fh/035Fh respectively
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (many non-standard)
+Note:	presumably this is the DOS IOCTL interface to ANSI.SYS
+SeeAlso: AX=1A02h,INT 21/AX=440Ch
+

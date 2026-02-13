@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620030
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FLICOPEN" - OPEN FLI/FLC FILE
+	AX = 0030h
+	ES:BX -> FLICOPEN variable pointer record (see #03478)
+Return: AX = status (see #03476)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=002Dh,AX=002Eh,AX=002Fh,AX=0030h,AX=0031h,AX=0032h
+
+Format of FGDRIVER FLICOPEN variable pointer record:
+Offset	Size	Description	(Table 03478)
+ 00h	WORD	segment of ASCIZ FLI/FLC file name
+ 02h	WORD	offset of ASCIZ FLI/FLC file name
+ 04h	WORD	segment of buffer for 16-byte file context descriptor
+ 06h	WORD	offset of buffer for 16-byte file context descriptor
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telreset" - RESET ALL CONNECTIONS
+	AH = E5h
+Return: AX = status (0000h,other) (see also #00397)
+	    FFFFh unable to reset
+Desc:	close all sessions and reset TelAPI to defaults
+SeeAlso: AH=E1h,AH=E6h,AX=FF00h
+

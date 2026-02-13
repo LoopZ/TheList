@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A33
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Windows95 - CHECK MS-DOS VERSION 7
+	AX = 4A33h
+Return: AX = 0000h for MS-DOS 7.00+
+	    (officially) BX,DX,SI,DS may be destroyed
+	    (undoc) DS:DX -> ASCIZ primary shell executable name
+	    (undoc) DS:SI -> CONFIG.SYS SHELL= command line (counted string)
+	    (undoc) BH = ??? (0000h)
+	    (undoc) BL = ??? (0000h)
+	AX nonzero (usually 4A33h) if MS-DOS 6- or other DOS
+SeeAlso: AX=1611h,INT 21/AH=30h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310202
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET PROCESSOR EXCEPTION HANDLER VECTOR
+	AX = 0202h
+	BL = exception number (00h-1Fh)
+Return: CF clear if successful
+	    CX:(E)DX = selector:offset of handler
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8021h) (see #03143)
+Notes:	16-bit programs receive the pointer in CX:DX, 32-bit programs in CX:EDX
+	DPMI 1.0+ supports this function only for backward compatibility; use
+	   AX=0210h or AX=0211h instead
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0203h,AX=0210h,AX=0211h,INT 2F/AX=FB42h/BX=0021h
+

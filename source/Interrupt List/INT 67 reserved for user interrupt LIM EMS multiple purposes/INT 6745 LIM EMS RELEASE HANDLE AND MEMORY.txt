@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6745
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - RELEASE HANDLE AND MEMORY
+	AH = 45h
+	DX = EMM handle
+Return: AH = status (00h,80h,81h,83h,84h,86h) (see #03648)
+SeeAlso: AH=43h
+

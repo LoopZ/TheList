@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2121
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - READ RANDOM RECORD FROM FCB FILE
+	AH = 21h
+	DS:DX -> opened FCB (see #01345)
+Return: AL = status
+	    00h successful
+	    01h end of file, no data read
+	    02h segment wrap in DTA, no data read
+	    03h end of file, partial record read
+	Disk Tranfer Area filled with record read from file
+Notes:	the record is read from the current file position as specified by the
+	  random record and record size fields of the FCB
+	the file position is not updated after reading the record
+	if a partial record is read, it is zero-padded to the full size
+	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+SeeAlso: AH=14h,AH=22h,AH=27h,AH=3Fh"DOS"
+

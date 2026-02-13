@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: i 	system info/monitoring
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2D U - RAMLIGHT v1.0 - GET MONITORING INFORMATION
+	AL = 10h
+	AH = AMIS multiplex number for RAMLIGHT
+Return: ES:BX -> array of fake device driver headers used in monitoring
+	CX = number of drives being monitored???
+

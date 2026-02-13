@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX (Host) - GET SHARED DRIVE INFO
+	AH = 06h
+	AL = drive number (1=A:, 2=B:, etc)
+	ES:DI -> drive info record (see #03946)
+Return: AX = status
+	    0000h successful
+		ES:DI buffer filled
+	    0001h not shared drive
+
+Format of Alloy drive info record:
+Offset	Size	Description	(Table 03946)
+ 00h	WORD	segment of drive IO-REQUEST structure (MS-DOS DPB)
+ 02h	WORD	segment of allocation map (owner table)
+		one byte per FAT entry, containing user ID owning that entry
+ 04h	WORD	segment of master FAT for drive (copy of FAT on disk)
+ 06h	WORD	pointer to configuration file
+ 08h	WORD	total number of clusters
+ 0Ah	WORD	bytes per sector
+ 0Ch	WORD	sectors per cluster
+ 0Eh	BYTE	FAT type (0Ch = 12-bit, 10h = 16-bit)
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D042BL03
+  Category: - 	reserved (and not otherwise classified)
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 15 R - Intel Pentium Pro BIOS UPDATE - READ BIOS UPDATE AREA
+	AX = D042h
+	BL = 03h
+	ES:DI -> buffer for microcode update block (see #00533)
+	ECX = two real-mode 64K scratchpad segments (upper and lower words)
+	DX = segment of 64K scratchpad area for BIOS use
+	SI = zero-based index number of update block to retrieve
+Return: CF clear if successful
+	CF set on error
+	AH = status
+	    00h successful
+		ES:DI buffer filled with 2048-byte update block
+	    86h not implemented
+	AL = OEM error (if AH is not 00h or 86h, otherwise undefined)
+	    00h successful
+Program: the Pentium Pro BIOS update allows the system BIOS or other software
+	  to install a microcode patch into the Pentium Pro processor
+Notes:	this API must be called from actual real mode, not V86 mode
+	at least 32K stack space must be available when this function is called
+SeeAlso: AX=D042h/BL=00h,AX=D042h/BL=01h,AX=D042h/BL=03h
+

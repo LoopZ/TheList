@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675DEB
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 - V86-MODE I/O TRAPPING PORT CONTROL
+	AX = 5DEBh
+	BX = function
+	    00h disable V86-mode trapping for specified port
+	    01h enable V86-mode trapping for specified port
+	    02h get V86-mode trapping state for specified port
+	DX = port for which to enable/disable/query trapping
+Return: AH = status
+	    00h successful
+		BX = current trapping state (00h off, 01h on) (function 02)
+	    A7h invalid port ID
+	    A8h reserved port--cannot trap/untrap (DMA/INT/KBD controllers)
+Notes:	RM386 traps this function on the initial transition to protected
+	  mode caused by the INT instruction, which means it can not be
+	  overridden simply by hooking the interrupt
+SeeAlso: AX=5DEAh
+

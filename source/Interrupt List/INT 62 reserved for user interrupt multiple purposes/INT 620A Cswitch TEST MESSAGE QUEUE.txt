@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620A
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - TEST MESSAGE QUEUE
+	AH = 0Ah
+	DX = queue number (0-63)
+Return: AX = result/message size
+	    0000h nothing on queue
+	    FFFFh bad queue number
+	    else  number of bytes in first message in queue
+SeeAlso: AH=0Bh"Cswitch",AH=0Ch"Cswitch"
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: FD02
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT FD - TFPCX - GET CHARACTER
+	AH = 02h
+Return: AL = character
+Notes:	this call is only allowed if AH=01h indicated that a character is
+	  available
+	all available characters should be read before sending any additional
+	  characters
+SeeAlso: AH=01h,AH=03h
+

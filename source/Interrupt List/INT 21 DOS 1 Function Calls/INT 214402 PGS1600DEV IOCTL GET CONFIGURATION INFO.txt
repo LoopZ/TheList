@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - PGS1600.DEV - IOCTL - GET CONFIGURATION INFO
+	AX = 4402h
+	BX = file handle for device "PGS1600$"
+	CX = 0018h (size of buffer)
+	DS:DX -> configuration buffer (see #01484)
+Return: CF clear if successful
+	    buffer filled
+	    AX = number of bytes actually copied
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: PGS1600.DEV is a device driver for the Cornerstone Technology PG1600
+	  display adapter, which provides a 1600x1200 monochrome display as
+	  well as one of two emulations, MDA or CGA.
+SeeAlso: AX=4403h"PGS1600"
+
+Format of PGS1600.DEV configuration information:
+Offset	Size	Description	(Table 01484)
+ 00h	WORD	version (high byte = major, low byte = minor)
+ 02h	WORD	board initialisation mode
+ 04h	WORD	board I/O address
+		03D0h CGA emulation
+		03B0h MDA emulation
+		0390h no emulation
+		0350h no emulation, alternate
+ 06h	WORD	emulation buffer segment
+		B800h	CGA emulation
+		B000h	MDA emulation
+		0000h	no emulation
+ 08h	WORD	PG1600 graphics buffer segment
+ 0Ah	WORD	number of bytes between consecutive graphic rows
+ 0Ch	WORD	horizontal pixel size
+ 0Eh	WORD	vertical pixel size
+ 10h	WORD	horizontal dots per inch
+ 12h	WORD	vertical dots per inch
+ 14h	WORD	graphics buffer bits per pixel
+ 16h	WORD	monitor bits per pixel
+

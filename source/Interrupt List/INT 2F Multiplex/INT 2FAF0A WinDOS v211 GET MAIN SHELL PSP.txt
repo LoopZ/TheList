@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF0A
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - GET MAIN SHELL PSP
+	AX = AF0Ah
+Return: AX = shell's PSP (same as DS on last call to AX=AF06h)
+Desc:	get the PSP address of the last program to call AX=AF06h (normally
+	  the main command interpreter)
+SeeAlso: AX=AF00h"WinDOS",AX=AF06h"WinDOS",AX=AF09h
+

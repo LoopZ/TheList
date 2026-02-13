@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0007
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "GetDriveSpace" - GET SPACE AVAIL ON COMPRESSED DRIVE
+	AX = 4A11h
+	BX = 0007h
+	DL = compressed drive number (0=A:)
+Return: AX = status (0000h,0102h) (see also #02804)
+	    0000h successful
+		DS:SI -> free space record (see #02807)
+Program: DBLSPACE.BIN is the resident driver for DoubleSpace, the
+	  disk-compression software bundled with MS-DOS 6.0
+SeeAlso: AX=4A11h/BX=0000h,AX=4A11h/BX=0008h
+
+Format of DBLSPACE free space record:
+Offset	Size	Description	(Table 02807)
+ 00h	DWORD	total number of sectors in drive's sector heap
+ 04h	DWORD	number of free sectors in drive's sector heap
+

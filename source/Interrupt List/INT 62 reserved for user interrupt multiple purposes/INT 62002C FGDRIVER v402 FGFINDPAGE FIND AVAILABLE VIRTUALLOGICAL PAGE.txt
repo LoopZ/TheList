@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62002C
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FINDPAGE" - FIND AVAILABLE VIRTUAL/LOGICAL PAGE
+	AX = 002Ch
+Return: AX = first available page number (virtual or logical page)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0028h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4601
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - MS Windows WINOLDAP - SWITCHING ???
+	AX = 4601h
+Return: ???
+Note:	the DOS 5+ kernel intercepts this function and copies the MCB
+	   following the caller's PSP memory block into the DOS data segment;
+	   in conjunction with AX=4602h, this intercept is used by DOS to
+	   avoid corruption of the Windows real-mode heap's end sentinel
+SeeAlso: AX=1700h,AX=4602h
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4309
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - HIMEM.SYS v3.09+ - GET XMS HANDLE TABLE
+	AX = 4309h
+Return: AL = 43h if function supported
+	    ES:BX -> XMS handle table (see #02747)
+Note:	HIMEM.SYS v3.09 is part of MS-DOS 6.0.
+SeeAlso: AX=4308h
+
+Format of XMS handle table:
+Offset	Size	Description	(Table 02747)
+ 00h	BYTE	??? (01h in HIMEM.SYS v3.09)
+ 01h	BYTE	size of one handle descriptor
+ 02h	WORD	number of handles (default = 20h)
+ 04h	DWORD	pointer to XMS handle array (see #02748)
+SeeAlso: #02777
+
+Format of XMS handle descriptor [array]:
+Offset	Size	Description	(Table 02748)
+ 00h	BYTE	flag
+		01h=free, 02h=used, 04h=in pool but not associated with any EMB
+ 01h	BYTE	lock count (00h=unlocked)
+ 02h	DWORD	address of XMS block in KB (shift left by 10 for abs. address)
+ 06h	DWORD	size of XMS block in KB
+

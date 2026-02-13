@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A1B
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - TASKID v1.0 - GET DIAGNOSTICS INFORMATION
+	AX = 7A1Bh
+	CX = desired information
+	    0000h supported functions
+	    0001h TASKID ID number
+		Return: CX = ID number
+	    0002h set-ID count
+		Return: CX = ID set count
+Return: AL = FFh
+	BX = highest supported subfunction number (0002h)
+SeeAlso: AX=7A14h,AX=7A18h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F9
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - SET TIMESHARING PRIORITY
+	AH = F9h
+	AL = priority
+	    00h visible program gets 70%, invisible gets 30% (default)
+	    01h visible program gets 50%, invisible gets 50%
+	    02h visible program gets 30%, invisible gets 70%
+	    03h Top program gets 70%, bottom program gets 30%
+	    04h Top program gets 30%, bottom program gets 70%
+	    05h get current priority
+		Return: AL = priority setting
+Note:	identical to AH=E9h
+SeeAlso: AH=E9h"DoubleDOS",AH=FAh"DoubleDOS",AH=FBh"DoubleDOS"
+

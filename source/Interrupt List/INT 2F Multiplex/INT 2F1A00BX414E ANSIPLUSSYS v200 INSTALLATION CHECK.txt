@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A00BX414E
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ANSIPLUS.SYS v2.00+ - INSTALLATION CHECK
+	AX = 1A00h
+	BX = 414Eh ('AN')
+	CX = 5349h ('SI')
+	DX = 2B2Bh ('++')
+Return: AL = FFh if installed
+	    CF clear
+	    ES:BX -> INT 29 entry point
+	    CX = ANSIPLUS BCD version number (v3.10+, CH=major, CL=minor)
+	    DL = capabilities (v4.00+)
+		00h full capability driver
+		01h reduced capability driver
+		2Bh full capability driver (before v4.00)
+Program: ANSIPLUS.SYS is a CON device driver by Kristofer Sweger which
+	  replaces the normal ANSI.SYS with a more powerful version having
+	  many additional features
+Notes:	ANSIPLUS also identifies itself as ANSI.SYS if BX,CX, or DX differ
+	  from the magic values above
+	an additional installation check is to test for the signature
+	  "ANSIPLUS" 12 bytes before the INT 29 entry point; the version
+	  number is also available as a four-character ASCII string (e.g.
+	  "4.00") four bytes before the entry point
+SeeAlso: AX=1AA5h,AX=1AA6h,AX=1AA7h,AX=1AA8h,AX=1AA9h,AX=1AAAh,AX=D44Fh
+

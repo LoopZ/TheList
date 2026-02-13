@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4D
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - KKCFUNC
+	AH = 4Dh
+	AL = function
+	    00h get function address
+	    01h get error number of last call to KKC DOS function
+	    02h	register/release KKC
+	    03h get table address
+	!!! details to follow
+Return: ???
+Notes:	This API is provided by KKCFUNC.SYS, a support driver for Kana Kanji
+	  Converters (KKC), which is used to handle multiple client KKCs and
+	  provide all the necessary framework to call DOS functions at any
+	  time.
+	also called by MSKK
+	For AL > 3, KKCFUNC passes the call down to the original INT 2Fh,
+	  as recorded at initialization.
+

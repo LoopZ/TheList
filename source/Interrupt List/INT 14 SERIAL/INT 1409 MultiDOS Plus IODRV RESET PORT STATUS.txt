@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1409
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus IODRV - RESET PORT STATUS
+	AH = 09h
+Return: modem status byte cleared
+Note:	the port number is stored at offset BEh in the Task Control Block
+SeeAlso: AH=04h"MultiDOS",AH=07h"MultiDOS",INT 15/AH=13h"MultiDOS"
+

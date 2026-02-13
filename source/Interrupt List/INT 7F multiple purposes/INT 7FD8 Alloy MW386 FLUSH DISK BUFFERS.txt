@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FD8
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - FLUSH DISK BUFFERS
+	AH = D8h
+Return: CF set on error
+Note:	forces all disk buffers to be written out immediately
+SeeAlso: INT 21/AH=0Dh,INT 21/AX=5D01h,INT 2F/AX=1120h
+

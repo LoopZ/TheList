@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FED03
+  Category: E 	DOS extenders
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - Phar Lap 386/DOS-Extender v4.1 - GET EXTENDER ENTRY POINT
+	AX = ED03h
+	CX = real-mode code segment
+	DX = real-mode data segment
+Return: CF clear if successful
+	    CX = protected-mode code segment selector
+	    DX = protected-mode data segment selector
+	    ES:DI -> real-mode entry point for calling protected-mode functions
+		      (see INT 21/AX=250Dh)
+	CF set on error
+	    AX = error code
+		0008h unable to allocate LDT descriptors
+

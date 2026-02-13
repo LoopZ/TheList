@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214BFE
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Hitchcock", "Dark Avenger-1028", "1193" - INSTALLATION CHECK
+	AX = 4BFEh
+Return: AX = 1234h if "Hitchcock" or "Storm" resident
+	AX = ABCDh if "1193"/"Copyright" resident
+	DI = 55BBh if "Dark Avenger-1028" resident
+SeeAlso: AX=4BDDh,AX=4BF1h"VIRUS",AX=4BFFh"Justice"
+

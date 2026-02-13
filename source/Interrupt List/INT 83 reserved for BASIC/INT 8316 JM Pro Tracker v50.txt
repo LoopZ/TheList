@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8316
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 83 - JM Pro Tracker v5.0 - ???
+	AH = 16h
+	AL = subfunction
+	    00h ???
+		Return: BX = ???
+			CX = ???
+			DX = ???
+			ES:DI -> ???
+			CF indicates ???
+	    01h ???
+		Return: BX = ???
+			CX = ???
+			DX = ???
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (FFxxh) (see #03976)
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DA88
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI PCI BIOS - GET EXTENDED MEMORY SIZE
+	AX = DA88h
+Return: CF clear (successful)
+	AX = 0000h
+	CL:BX = extended memory size in KBytes
+SeeAlso: AH=88h
+

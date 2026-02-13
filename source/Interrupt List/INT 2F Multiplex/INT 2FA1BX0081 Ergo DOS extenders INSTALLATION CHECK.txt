@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FA1--BX0081
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Ergo DOS extenders - INSTALLATION CHECK
+	AH = A1h
+	BX = 0081h
+	AL = which
+	    FEh OS/286,OS/386
+	    FFh HummingBoard DOS extender
+	ES:DI -> 16-byte buffer
+Return: if installed, first four bytes of ES:DI buffer are "IABH"
+Note:	since TKERNEL is a licensed version, it is likely that subfunctions
+	  BX=0082h and BX=0084h are present and function identically to the
+	  AX=FBA1h/BX=008xh calls
+SeeAlso: AX=ED00h,AX=FBA1h/BX=0081h,INT 15/AX=BF02h
+

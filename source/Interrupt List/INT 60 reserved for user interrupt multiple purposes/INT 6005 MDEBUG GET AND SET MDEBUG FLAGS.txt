@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6005
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - MDEBUG - GET AND SET MDEBUG FLAGS
+	AH = 05h
+	DS:SI -> password or a null byte
+	BL = new value for the semaphor of MDEBUG
+	     00h  enable popup of MDEBUG
+	     else disable popup of MDEBUG
+Return: AX = return code
+	    FFFEh password is invalid
+	    FFFDh display mode is invalid
+	    else successful
+		BL = old value of the semaphor of MDEBUG
+		BH = old value of the INT 08h semaphor
+		    (this semaphor is always reset after this function)
+

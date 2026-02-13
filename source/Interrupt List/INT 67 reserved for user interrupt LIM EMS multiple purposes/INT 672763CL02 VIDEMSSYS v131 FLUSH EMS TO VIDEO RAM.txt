@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 672763CL02
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - VIDEMS.SYS v1.31+ - FLUSH EMS TO VIDEO RAM
+	AX = 2763h
+	CL = 02h
+	BX = signature AAFFh
+Return: AH = 00h if successful
+Notes:	This call is normally used by Conea products only.
+SeeAlso: AX=2763h/CL=01h,AX=2763h/CL=03h
+

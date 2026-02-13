@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6612
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - PenDOS - TDMOUSE.EXE - INITIALIZE
+	AH = 12h
+Return: CF clear
+	AX = 0000h
+Note:	this function calls the old mouse handler with functions 0000h, 0002h,
+	  0007h, 0008h, 000Fh, 0004h, and 000Ch (in that order)
+SeeAlso: AH=13h
+

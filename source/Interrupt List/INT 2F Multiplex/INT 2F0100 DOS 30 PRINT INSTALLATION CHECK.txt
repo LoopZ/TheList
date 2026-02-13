@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0100
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.0+ PRINT - INSTALLATION CHECK
+	AX = 0100h
+Return: AL = status
+	    00h not installed
+	    01h not installed, but not OK to install
+	    FFh installed
+		AH = 00h (Novell DOS 7)
+SeeAlso: AX=0101h
+

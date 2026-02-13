@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212530
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Ext VMM v2.3+ - SET SIZE OF BUFFER FOR DOS CALLS
+	AX = 2530h
+	ECX = size of data buffer in bytes (1024 to 65536)
+Return: CF clear if successful
+	CF set on error
+	    EAX = error code
+		08h insufficient low memory
+		81h invalid size
+SeeAlso: AX=2517h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D804
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - EISA SYSTEM ROM - READ PHYSICAL SLOT
+	AX = D804h
+	CL = slot number (including embedded and virtual)
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code (80h,83h,86h) (see #00539)
+	SI:DI = 4-byte compressed ID (DI = bytes 0&1, SI = bytes 2&3)
+Note:	call with AL=84h if using 32-bit CS addressing mode instead of 16-bit
+SeeAlso: AX=D800h
+

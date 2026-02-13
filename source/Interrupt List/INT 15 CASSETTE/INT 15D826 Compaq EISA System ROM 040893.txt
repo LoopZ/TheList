@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D826
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq EISA System ROM 04/08/93 - ???
+	AX = D826h
+	BX = ???
+	CX = size of buffer in bytes
+	DS:SI -> buffer for ???
+	???
+Return: CF clear if successful
+	    AH = 00h
+	    CX = ???
+	CF set on error
+	    AH = error code
+		87h ??? failed
+		88h ???
+Note:	these functions are only available if ??? from keyboard controller
+	  command C0h
+

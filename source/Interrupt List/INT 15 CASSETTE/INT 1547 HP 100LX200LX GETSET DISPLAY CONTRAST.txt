@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1547
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - GET/SET DISPLAY CONTRAST
+	AH = 47h
+	AL = subfunction
+	   00h set contrast
+		BL = new contrast
+		    (00h-0Fh, 0Fh is darkest, 10h-FFh are same as 0Fh)
+	   other get current contrast
+Return: AL = contrast (00h-0Fh, 0Fh is darkest)
+Note:	may be for backward compatibility with HP95LX, as INT 15/AH=62h does
+	  substantially the same thing as this function
+SeeAlso: AH=45h"HP",AH=48h"HP",AH=62h"HP"
+

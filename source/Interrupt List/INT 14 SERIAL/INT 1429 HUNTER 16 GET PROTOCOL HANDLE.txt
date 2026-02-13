@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1429
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HUNTER 16 - GET PROTOCOL HANDLE
+	AH = 29h
+	DS:BX -> buffer containing the protocol name
+Return: AH = status
+	    00h successful
+		AL = handle
+	    FFh failed
+SeeAlso: AH=28h"HUNTER",AH=2Ah"HUNTER"
+

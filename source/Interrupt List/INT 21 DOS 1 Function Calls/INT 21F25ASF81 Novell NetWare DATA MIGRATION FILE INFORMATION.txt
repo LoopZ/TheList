@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F25ASF81
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DATA MIGRATION FILE INFORMATION
+	AX = F25Ah subfn 81h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02453)
+	ES:DI -> reply buffer (see #02454)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F25Ah/SF=80h,AX=F25Ah/SF=82h,AX=F25Ah/SF=83h
+
+Format of NetWare "Data Migration File Information" request packet:
+Offset	Size	Description	(Table 02453)
+ 00h	WORD	length of following data
+ 02h	BYTE	81h (subfunction "Data Migration File Information")
+ 03h	DWORD	volume number
+ 07h	DWORD	directory entry number
+ 0Bh	DWORD	name space (see #02387)
+SeeAlso: #02454
+
+Format of NetWare "Data Migration File Information" reply packet:
+Offset	Size	Description	(Table 02454)
+ 00h	DWORD	support module ID
+ 04h	DWORD	estimate restoration time
+ 08h	DWORD	bitmask of supported data streams
+SeeAlso: #02453
+

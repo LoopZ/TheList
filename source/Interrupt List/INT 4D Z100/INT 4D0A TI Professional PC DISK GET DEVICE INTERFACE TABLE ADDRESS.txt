@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4D0A
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4D - TI Professional PC - DISK - GET DEVICE INTERFACE TABLE ADDRESS
+	AH = 0Ah
+	DL = drive number (00h-07h)
+Return: AH = status
+	ES:BX -> Device Interface Table (see #03226)
+SeeAlso: AH=00h,AH=08h,AH=09h,INT 1E
+

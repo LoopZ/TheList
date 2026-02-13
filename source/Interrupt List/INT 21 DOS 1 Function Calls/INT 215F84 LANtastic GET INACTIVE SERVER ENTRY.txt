@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F84
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET INACTIVE SERVER ENTRY
+	AX = 5F84h
+	BX = server index not currently logged into
+	ES:DI -> 16-byte buffer for server name which is available for logging
+		in to ("\\" prefix omitted)
+Return: CF clear if successful
+	    DL = adapter number to non-logged in server is on
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F81h
+

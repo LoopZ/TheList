@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6150
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "nm_prs_addr" - TRANSLATE NUMERICAL IP ADDRESS
+	AH = 50h
+	DS:DX -> ASCIZ IP address as "dotted quad" (max 127 chars)
+Return: CF clear if successful
+	    DX:AX -> IP address
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Range:	INT 20 to INT E0, selected by configuration
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=54h
+

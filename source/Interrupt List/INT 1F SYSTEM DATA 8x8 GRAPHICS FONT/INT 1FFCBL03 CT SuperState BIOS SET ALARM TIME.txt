@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1FFC--BL03
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - SET ALARM TIME
+	AH = FCh
+	BL = 03h
+	CH = hour by BCD
+	CL = min by BCD
+	DH = sec by BCD
+Return: CF set on error (incorrect time format or Alarm is not enable)
+SeeAlso: AH=FCh/BL=01h,AH=FCh/BL=02h,AH=FCh/BL=05h
+

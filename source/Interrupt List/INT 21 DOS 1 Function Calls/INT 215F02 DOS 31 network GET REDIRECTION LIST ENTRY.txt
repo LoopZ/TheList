@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F02
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ network - GET REDIRECTION LIST ENTRY
+	AX = 5F02h
+	BX = zero-based redirection list index
+	CX = driver signature
+	    0000h LANtastic
+	    4E57h ('NW') NetWare
+	DS:SI -> 16-byte buffer for ASCIZ local device name or drive letter
+		  followed by colon
+	ES:DI -> 128-byte buffer for ASCIZ network name
+Return: CF clear if successful
+	    BH = device status
+		00h valid
+		01h invalid
+		02h valid (connected from inside Windows for Workgroups v3.11)
+	    BL = device type
+		03h printer
+		04h disk drive
+	    CX = user data previously set with AX=5F03h
+	    DS:SI and ES:DI buffers filled
+	    DX,BP destroyed
+	CF set on error
+	    AX = error code (01h,12h) (see #01680 at AH=59h/BX=0000h)
+Notes:	this function is passed through to INT 2F/AX=111Eh by the DOS kernel
+	error code 12h is returned if BX is greater than the size of the list
+	also supported by Banyan VINES, PC-NFS, LANtastic, and 10NET
+	supported by LapLink RemoteAccess but returns the local drive letter;
+	  the remote drive letter can be obtained with INT 2F/AX=Cxxxh
+	  (see INT 2F/AX=C000h"LapLink")
+	the returned device name may or may not include a colon, depending on
+	  the network software
+SeeAlso: AX=5F03h,AX=5F46h,INT 2F/AX=111Eh,INT 2F/AX=C000h"LapLink"
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0024
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 7A U - Novell NetWare - IPXODI v2.20+ - SET INTERNETWORK ADDRESS
+	BX = 0024h
+	ES:SI -> buffer containing internetwork address (see #03824)
+Return: BX,CX,SI,DI,ES destroyed
+Note:	this function differs from INT 7A/BX=000Ch in that it unconditionally
+	  sets the address
+SeeAlso: INT 7A/BX=000Ch
+

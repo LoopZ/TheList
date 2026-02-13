@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17A6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy MW386 - ENABLE/DISABLE BANNER PAGE
+	AH = A6h
+	AL = new state
+	    00h banner page before print job disabled
+	    01h banner page enabled
+Return: AL = status (see #00642)
+Note:	only affects the current logical LPT1
+SeeAlso: AH=A4h
+

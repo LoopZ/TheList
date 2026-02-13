@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB804
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - NETWORK - SET NETWORK EVENT POST HANDLER
+	AX = B804h
+	CX = (10NET) 0370h if 10Windows is hooking post handler
+	ES:BX -> new event post handler (see #02981)
+Notes:	used in conjunction with AX=B803h to hook into the network event post
+	  routine
+	this function is supported by PC LAN Program, 10NET v5.0,
+	  NetSoft DOS-NET v1.20+
+	The specified handler is called on any network event.  Two events are
+	  defined: message received and critical network error.
+SeeAlso: AX=B800h,AX=B803h,AX=B904h
+
+(Table 02981)
+Values network post routine is called with:
+	AX = 0000h single block message
+	    DS:SI -> ASCIZ originator name
+	    DS:DI -> ASCIZ destination name
+	    ES:BX -> text header (see #02982)
+	AX = 0001h start multiple message block
+	    CX = block group ID
+	    DS:SI -> ASCIZ originator name
+	    DS:DI -> ASCIZ destination name
+	AX = 0002h multiple block text
+	    CX = block group ID
+	    ES:BX -> text header (see #02982)
+	AX = 0003h end multiple block message
+	    CX = block group ID
+	AX = 0004h message aborted due to error
+	    CX = block group ID
+	AX = 0101h server received badly formatted network request
+	    Return: AX = FFFFh (PC LAN will process error)
+	AX = 0102h unexpected network error
+	    ES:BX -> NCB (see #03249 at INT 5C"NetBIOS")
+	AX = 0103h server received INT 24 error
+	    other registers as for INT 24, except AH is in BH
+	    Return: as below, but only 0000h and FFFFh allowed
+Return: AX = response code
+	    0000h user post routine processed message
+	    0001h PC LAN will process message, but message window not displayed
+	    FFFFh PC LAN will process message
+
+Format of text header:
+Offset	Size	Description	(Table 02982)
+ 00h	WORD	length of text (maximum 512 bytes)
+ 02h  N BYTEs	text of message
+Note:	all CRLF sequences in message text are replaced by 14h; all other
+	  values below 20h (space) are reserved
+

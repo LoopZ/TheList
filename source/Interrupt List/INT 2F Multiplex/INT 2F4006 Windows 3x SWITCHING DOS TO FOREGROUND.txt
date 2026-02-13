@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4006
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - Windows 3.x - SWITCHING DOS TO FOREGROUND
+	AX = 4006h
+Notes:	called by Windows when the DOS box is about to be placed in the
+	  foreground and the video driver should restore any necessary state
+	  information (this may be called only in Standard mode)
+	this callout is not made unless the application has first called
+	  AX=4000h
+SeeAlso: AX=4002h,AX=4005h
+

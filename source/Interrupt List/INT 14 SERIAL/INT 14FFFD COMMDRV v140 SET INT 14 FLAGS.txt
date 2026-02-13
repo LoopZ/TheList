@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FFFD
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - SET INT 14 FLAGS
+	AX = FFFDh
+	BX = flags (see #00403)
+	DX = port number
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+SeeAlso: AX=FFFCh
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213505
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - FlashTek X-32VM - SET SELECTOR LIMIT
+	AX = 3505h
+	BX = selector
+	ECX = desired limit
+Return: CF clear if successful
+	    ECX = actual limit set
+	CF set on error (no more selectors available)
+Note:	the limit will be rounded down to nearest 4K boundary if the requested
+	  limit is greater than 1MB
+SeeAlso: AX=3503h,INT 31/AX=0008h
+

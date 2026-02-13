@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF74
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - CHANGE TO CLIENT RIGHTS (OLD)
+	AH = E3h subfn 74h
+	DS:SI -> request buffer (see #01990)
+	ES:DI -> reply buffer (see #01989)
+Return: AL = status (00h,96h,D0h,D1h,D5h,D9h) (see #01961)
+Desc:	temporarily assume the login identity of the client submitting the
+	  job being serviced
+Notes:	this function is supported by Advanced NetWare 2.1+
+	caller must be a job server which has obtained a job for servicing
+SeeAlso: AH=E3h/SF=75h,AX=F217h/SF=74h
+
+Format of NetWare "Change to Client Rights (old)" request buffer:
+Offset	Size	Description	(Table 01990)
+ 00h	WORD	0007h (length of following data)
+ 02h	BYTE	74h (subfunction "Change To Client Rights (old)")
+ 03h	DWORD	(big-endian) object ID of queue
+ 07h	WORD	(big-endian) job number
+SeeAlso: #01989,#01991
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A84
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2A CU - NETWORK - KEYBOARD BUSY LOOP
+	AH = 84h
+Notes:	similar to DOS's INT 28h, called from inside the DOS keyboard input
+	  loop (i.e. INT 21/AH=07h or INT 21/AH=08h) to allow the network
+	  software to process requests
+	Novell DOS 7+ calls this function with AX=8400h from inside of
+	  the keyboard input loop.
+SeeAlso: INT 28
+

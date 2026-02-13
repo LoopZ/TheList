@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 156B
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET ROM BIOS VERSION
+	AH = 6Bh
+Return: BH = version number (ASCII)
+	BL = release number (ASCII)
+	CH = major??? release number (ASCII)
+	CL = minor??? release number (ASCII)
+SeeAlso: AH=6Ch
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7F04
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PRINDIR v9.0 - SET LOCK FILENAME
+	AX = 7F04h
+	CX:DX -> ASCIZ name of lock file
+Return: AX = status
+	    0000h successful
+	    FFFFh invalid device number
+SeeAlso: AX=7F00h"PRINDIR",AX=7F01h"PRINDIR",AX=7F03h"PRINDIR"
+SeeAlso: AX=7F05h,AX=7F06h,AX=7F08h,AX=7F0Ah,AX=7F0Bh
+

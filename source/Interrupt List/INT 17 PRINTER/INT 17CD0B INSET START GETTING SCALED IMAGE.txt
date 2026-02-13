@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17CD0B
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - INSET - START GETTING SCALED IMAGE
+	AX = CD0Bh
+	DS:SI -> ASCIZ pathname of .PIX file
+	BX = number of bitplanes
+	CX = number of rows in output bitmap
+	DX = number of columns in output bitmap
+Return: AX = status
+	    0000h OK
+	    FFFFh error
+Note:	image is returned in strips by repeated calls to AX=CD0Ch
+

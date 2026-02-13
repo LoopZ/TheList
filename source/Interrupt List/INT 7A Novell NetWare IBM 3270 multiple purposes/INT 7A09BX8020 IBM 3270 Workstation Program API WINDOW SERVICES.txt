@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09--BX8020
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - WINDOW SERVICES
+	AH = 09h
+	BX = 8020h (synchronous request)
+	CX = 00FFh
+	DX = ID of window service controller (WSCTRL)
+	AL = service number (see #03836)
+	ES:DI -> control block
+Return: ???
+
+(Table 03836)
+Values for 3270 Workstation Program window service:
+ 01h	connect to WS control
+ 02h	disconnect from WS control
+ 03h	add a window
+ 04h	change window's position on screen
+ 05h	change window's size
+ 06h	change window's color
+ 07h	change window's position in the presentation space
+ 08h	hide/unhide toggle
+ 09h	enlarge/reduce toggle
+ 0Ah	change screen background color
+ 0Bh	get window's position on screen
+ 0Ch	get window's size
+ 0Dh	get window's color
+ 0Eh	get window's position in the presentation space
+ 0Fh	determine whether hidden
+ 10h	determine whether enlarged
+ 11h	get background color
+ 12h	get window names
+ 13h	delete all windows from profile
+ 14h	pick active window
+ 15h	redraw screen
+ 16h	redraw window
+ 17h	delete a window from profile
+ 18h	get active window
+ 19h	get active screen
+ 1Ah	get window data
+ 1Bh	change window data
+ 1Ch	select active screen
+

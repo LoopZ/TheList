@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC058
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Explosiv v3.0+ - LOAD NEW ANIMATION DISPLAY CODE
+	AX = C058h
+	BX = file handle for file containing display code
+	CX = number of bytes to load
+	DX = offset at which animation code should be loaded
+Return: AL = status (see #03033)
+Note:	if AL=00h-03h on return, the file will be closed
+Index:	screen saver;Explosiv
+
+(Table 03033)
+Values for Explosiv function status:
+ 00h	successful
+ 01h	code too large to available space
+ 02h	no data read, load aborted
+ 03h	incomplete load, default blanking display loaded instead
+ 58h	unexpected offset in DX
+

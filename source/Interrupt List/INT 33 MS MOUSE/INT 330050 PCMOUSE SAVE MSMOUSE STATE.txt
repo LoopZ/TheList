@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330050
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - PCMOUSE - SAVE MSMOUSE STATE
+	AX = 0050h
+	BX = buffer size (ignored by some driver versions)
+	ES:DX -> buffer
+Return: AX = FFFFh if successful
+Notes:	the buffer must be large enough to hold the entire state, or following
+	  data will be overwritten by state data in versions which ignore BX;
+	  use INT 33/AX=0042h to get the required size
+	this function is also supported by the Genius Mouse 9.06 driver
+SeeAlso: AX=0042h,AX=0052h
+

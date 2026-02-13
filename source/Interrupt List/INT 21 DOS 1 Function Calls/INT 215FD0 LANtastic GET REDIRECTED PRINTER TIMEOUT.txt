@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FD0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - GET REDIRECTED PRINTER TIMEOUT
+	AX = 5FD0h
+Return: CF clear if successful
+	    CX = redirected printer timeout in clock ticks of 55ms
+		0000h if timeout disabled
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5FD1h
+

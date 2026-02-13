@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE18
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.20+ - internal - ???
+	AX = DE18h
+	BP = function number
+	    high byte must be 10h
+	    low byte is function
+		00h set ???
+		    BL = ???  (00h-10h, video mode???)
+		    BH = value to store
+		03h set ???
+		    BL = ??? (stored in driver)
+		0Ah get ???
+		    ES:DI -> 18-byte buffer to hold ???
+Note:	calls video driver (NOP for Hercules driver,probably CGA and MCGA also)
+

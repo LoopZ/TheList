@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE0B
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - SET 8259 INTERRUPT VECTOR MAPPINGS
+	AX = DE0Bh
+	BX = first vector used by master 8259
+	CX = first vector used by slave 8259
+	interrupts disabled
+Return: AH = 00h successful
+	AH nonzero: failed
+Notes:	This call merely informs the server that the client has changed the
+	  interrupt mappings.  The client may not change the mappings if they
+	  have already been changed by the server or another client, and is
+	  responsible for restoring the original mappings before terminating.
+SeeAlso: AX=DE0Ah,INT 2C/AX=002Ah
+

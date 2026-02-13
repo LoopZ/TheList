@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F48
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - LOCAL NetUseDel
+	AX = 5F48h
+	BX = force level
+	    0000h no force
+	    0001h force
+	    0002h lots of force
+	ES:DI -> buffer as either the local device name or UNC remote name
+Return: CF clear on success
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F46h,AX=5F48h,AX=5F49h
+

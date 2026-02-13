@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B6
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVICES - EXTENDED FILE ATTRIBUTES
+	AH = B6h
+	AL = subfunction
+	    00h get extended file attributes
+	    01h set extended file attributes
+		CL = extended file attributes (see #01804)
+	DS:DX -> ASCIZ pathname (max 255 bytes)
+Return: CF set on error
+	    AL = error code
+		8Ch caller lacks privileges
+		FEh not permitted to search directory
+		FFh file not found
+	CF clear if successful
+	    AL = 00h (success)
+	    CL = current extended file attributes (see #01804)
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AX=4300h,AH=E3h/SF=0Fh
+
+Bitfields for NetWare extended file attributes:
+Bit(s)	Description	(Table 01804)
+ 2-0	search mode (executables only)
+	000 none (use shell's default search)
+	001 search on all opens without path
+	010 do not search
+	011 search on read-only opens without path
+	100 reserved
+	101 search on all opens
+	110 reserved
+	111 search on all read-only opens
+ 3	reserved
+ 4	transactions on file tracked
+ 5	file's FAT indexed
+ 6	read audit (to be implemented)
+ 7	write audit (to be implemented)
+

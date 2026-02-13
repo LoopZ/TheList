@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21251F
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender VMM - EXHANGE TWO PAGE-TABLE ENTRIES
+	AX = 251Fh
+	BL = address type
+	    00h linear address
+		ECX = linear address of first page table entry
+		EDX = linear address of second page table entry
+	    01h pointer
+		ES:ECX -> first page table entry
+		ES:EDX -> second page table entry
+Return: CF clear if successful
+	CF set on error
+	    EAX = error code
+		09h invalid address or NOPAGE option set
+		82h not compatible with DPMI
+SeeAlso: AX=251Dh,AX=251Eh
+

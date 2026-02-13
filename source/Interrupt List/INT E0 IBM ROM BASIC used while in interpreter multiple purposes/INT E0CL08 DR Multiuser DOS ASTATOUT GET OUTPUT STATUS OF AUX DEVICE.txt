@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL08
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - DR Multiuser DOS - "A_STATOUT" - GET OUTPUT STATUS OF AUX DEVICE
+	CL = 08h
+Return: AL = status
+	    00h not ready
+	    FFh ready for output
+Desc:	determine whether the current AUX device is able to accept more output
+SeeAlso: INT E0/CL=04h,INT E0/CL=07h
+

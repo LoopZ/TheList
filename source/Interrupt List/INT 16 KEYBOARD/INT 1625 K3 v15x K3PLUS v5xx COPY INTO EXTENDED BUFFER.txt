@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1625
+  Category: K 	keyboard enhancers
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 16 O - K3 v1.5x, K3PLUS v5.xx - COPY INTO EXTENDED BUFFER
+	AH = 25h
+	CX = number of keystrokes to copy
+	ES:SI -> buffer containing keystrokes
+Return: CF clear if successful
+	CF set on error (i.e. buffer full)
+	    CX = number of keystrokes NOT transferred
+	    ES:SI -> first keystroke not transferred
+Note:	this function was normally unsupported under K3PLUS v6.00-v6.22 and
+	  is no longer supported by v6.30+; use AX=AF25h instead
+SeeAlso: AH=05h,AH=20h"K3",AX=AF25h,INT 2F/AX=D44Fh/BX=0001h
+

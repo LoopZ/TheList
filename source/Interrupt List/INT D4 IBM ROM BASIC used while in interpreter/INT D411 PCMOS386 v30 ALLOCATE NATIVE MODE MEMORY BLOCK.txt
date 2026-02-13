@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: D411
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v3.0+ - ALLOCATE NATIVE MODE MEMORY BLOCK
+	AH = 11h
+	EBX = block length in bytes
+Return: CF clear if successful
+	    EBX = number of bytes actually allocated
+	    ES = selector for allocated block
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+Program: PC-MOS/386 is a multitasking/multiuser MS-DOS-compatible operating
+	  system by The Software Link, Inc.
+Note:	the memory must be released before the program terminates
+SeeAlso: AH=10h,AH=12h,INT 38
+

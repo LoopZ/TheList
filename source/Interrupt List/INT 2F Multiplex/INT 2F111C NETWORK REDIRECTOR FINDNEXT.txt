@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F111C
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - FINDNEXT
+	AX = 111Ch
+	SS = DS = DOS DS
+	ES:DI -> CDS
+	ES:DI -> DTA (MSDOS v5.0)
+	[DTA] = 21-byte findfirst search data
+	      (see #01626 at INT 21/AH=4Eh)
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    [DTA] = updated findfirst search data
+		    (bit 7 of first byte must be set)
+	    [DTA+15h] = standard directory entry for file (see #01352)
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: AX=1119h,AX=111Bh,INT 21/AH=1Ah,INT 21/AH=4Fh
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: B37E
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - GET NAME OF PRIMARY CITY FOR A ZIPCODE REGION
+	AH = 7Eh
+	DX = zipcode region (0-999)
+	ES:DI -> buffer for name
+Return: CF set on error
+	    AL = FFh region does not exist
+	CF clear if successful
+	    AL = ZIPKEY state code
+	    ES:DI points one byte beyond end of name
+SeeAlso: AH=76h
+

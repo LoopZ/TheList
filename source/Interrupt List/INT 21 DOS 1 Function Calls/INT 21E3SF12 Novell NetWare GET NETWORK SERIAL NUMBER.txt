@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF12
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET NETWORK SERIAL NUMBER
+	AH = E3h subfn 12h
+	AL = 00h
+	BX = CX = DX = 0000h
+	DS:SI -> request buffer (see #01909)
+	ES:DI -> reply buffer (see #01910)
+Return: AL = status
+	    00h successful
+Desc:	return the serial number and application number for the software
+	  installed on the file server
+Notes:	this function is supported by Advanced NetWare 2.1+
+	reportedly, the workstation crashes if AL,BX,CX, and DX are not all
+	  zero
+SeeAlso: AH=E3h/SF=0Ch,AH=E3h/SF=11h,AX=F217h/SF=12h
+
+Format of NetWare "Get Serial Number" request buffer:
+offset	 size	description	(Table 01909)
+ 00h	 WORD	0001h (length of following data)
+ 02h	 BYTE	12h (subfunction "Get Serial Number")
+SeeAlso: #01910,#02167
+
+Format of NetWare "Get Serial Number" reply buffer:
+offset	 size	description	(Table 01910)
+ 00h	 WORD	(call) 0006h (size of following results buffer)
+ 02h   4 BYTEs	(big-endian) NetWare server serial number
+ 06h   2 BYTEs	(big-endian) NetWare application serial number
+SeeAlso: #01909,#02167
+

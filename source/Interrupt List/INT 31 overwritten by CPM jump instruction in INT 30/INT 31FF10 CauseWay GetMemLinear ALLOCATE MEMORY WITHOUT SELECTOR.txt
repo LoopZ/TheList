@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF10
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "GetMemLinear" - ALLOCATE MEMORY WITHOUT SELECTOR
+	AX = FF10h
+	CX:DX = size of block in bytes
+Return: CF clear if successful
+	    SI:DI = linear address of allocated block
+	CF set on error
+Note:	this function may return addresses above 16M
+SeeAlso: AX=FF0Bh,AX=FF11h,AX=FF12h,AX=FF14h
+

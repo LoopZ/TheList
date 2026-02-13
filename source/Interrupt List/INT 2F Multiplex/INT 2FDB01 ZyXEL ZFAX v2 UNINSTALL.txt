@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB01
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v2+ - UNINSTALL
+	AX = DB01h
+Return: AX = status
+	    0000h successful
+	    0001h ZFAX is busy
+	    0002h another program resident above ZFAX
+Note:	this function unhooks the vectors taken by the ZFAX TSR if they have
+	  not been hooked by other TSRs and releases the TSR's memory
+	ZFAX v2.x crashes the contributor's machine when this function is
+	  called
+SeeAlso: AX=DA01h,AX=DB00h"ZFAX",AX=DB02h"ZFAX"
+

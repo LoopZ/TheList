@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F40--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_STR_GET_FREE_INDEX" - FIND FREE STRING INDEX
+	AH = 40h
+	BP = 0012h (driver ID of V_SYSTEM)
+Return: AH = status (see #03744)
+	BX = next free string index
+	BP,DS destroyed
+Desc:	get the next string index available to user programs
+SeeAlso: AH=00h"HP Vectra",AH=42h/BP=0012h,AH=44h/BP=0012h,AH=46h/BP=0012h
+

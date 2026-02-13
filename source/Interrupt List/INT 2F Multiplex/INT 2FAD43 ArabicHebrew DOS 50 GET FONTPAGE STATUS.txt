@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD43
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Arabic/Hebrew DOS 5.0???+ - GET FONTPAGE STATUS???
+	AX = AD43h
+Return: AL = status
+	    00h successful
+	    01h-0Ah codepage info not found
+	    0Bh bad codepage info file
+	    0Ch font page not found or not available with codepage
+	    else device prepare error
+Note:	called by Arabic/Hebrew MS-DOS 5.0 CODEPAGE.COM when the sequence
+	  INT 2F/AX=AD42h & INT 21/AX=6602h to set fontpage & codepage returned
+	  with CF set and AX <> 2, and the following INT 21/AH=59h returned
+	  error code 41h (65) (that is, the codepage was prepared, but could
+	  not be set).
+SeeAlso: AX=AD41h,AX=AD42h,INT 21/AX=6601h,INT 21/AX=6602h
+

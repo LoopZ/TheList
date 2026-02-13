@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A17
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Windows95 - WRITE TO BOOT LOG
+	AX = 4A17h
+	CX = number of bytes to write
+	DS:DX -> message to write (must include CR-LF if it is desired)
+Return: AX = status
+	    0000h successful
+	    FFFFh boot log file not open
+	    else  DOS error code
+Note:	calls the code for INT 2F/AX=4A21h after writing to the file
+SeeAlso: AX=4A17h,AX=4A18h,AX=4A21h
+

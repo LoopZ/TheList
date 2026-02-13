@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620012
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_CLPRECT" - DRAW FILLED RECTANGLE IN SCREEN SPCE
+	AX = 0012h
+	BX = screen space column of left edge
+	CX = screen space column of right edge
+	DX = screen space row of top edge
+	SI = screen space row of bottom edge
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes
+SeeAlso: AX=0006h,AX=0010h,AX=0011h,AX=0023h,AX=009Bh,AX=00A9h
+

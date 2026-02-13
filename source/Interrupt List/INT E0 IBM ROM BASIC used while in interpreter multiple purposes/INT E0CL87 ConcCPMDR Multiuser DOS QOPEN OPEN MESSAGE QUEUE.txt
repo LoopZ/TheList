@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL87
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - ConcCP/M,DR Multiuser DOS - "Q_OPEN" - OPEN MESSAGE QUEUE
+	CL = 87h
+	DS:DX -> queue parameter block (QPB) (see #04044,#04045)
+Return: AX = status (0000h success, FFFFh failure)
+	CX = error code (see #04021)
+Note:	also supported by REAL/32
+SeeAlso: INT E0/CL=86h,INT E0/CL=88h,INT E0/CL=89h
+
+Format of DR Multiuser DOS queue parameter block:
+Offset	Size	Description	(Table 04044)
+ 00h	WORD	internal use, initialize to zero
+ 02h	WORD	queue ID (set by INT E0/CL=87h)
+ 04h	WORD	internal use, initialize to zero
+ 06h	WORD	offset of queue message buffer
+		(REAL/32) if FFFFh, then full address of buffer is stored at
+		  offest 10h
+ 08h  8 BYTEs	queue name
+---REAL/32 only----
+ 10h	DWORD	segment:offset of queue message buffer
+SeeAlso: #04045
+
+Format of protected-mode REAL/32 Queue Parameter Block (QPB):
+Offset	Size	Description	(Table 04045)
+ 00h	WORD	internal use
+ 02h	WORD	queue ID
+ 04h	WORD	internal use
+ 06h	DWORD	32-bit offset to buffer
+ 0Ah	WORD	selector for buffer
+ 0Ch  8 BYTEs	queue name
+SeeAlso: #04044
+

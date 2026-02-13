@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL80
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - INQUIRE VGA TYPE
+	AH = 12h
+	BL = 80h
+Return: AX = controller type in bits 13-0 (see #00029)
+	    bit 14: ???
+	    bit 15: ???
+	BL = silicon revision number (bit 7 set if not available)
+	BH = ???
+	    bit 2 set if using CL-GD 6340 LCD interface
+SeeAlso: AH=12h/BL=81h,AH=12h/BL=82h,AH=12h/BL=85h,AH=12h/BL=9Ah,AH=12h/BL=A1h
+
+(Table 00029)
+Values for Cirrus Logic video controller type:
+ 0000h	no extended alternate select support
+ 0001h	reserved
+ 0002h	CL-GD510/520
+ 0003h	CL-GD610/620
+ 0004h	CL-GD5320
+ 0005h	CL-GD6410
+ 0006h	CL-GD5410
+ 0007h	CL-GD6420
+ 0008h	CL-GD6412
+ 0010h	CL-GD5401
+ 0011h	CL-GD5402
+ 0012h	CL-GD5420
+ 0013h	CL-GD5422
+ 0014h	CL-GD5424
+ 0015h	CL-GD5426
+ 0016h	CL-GD5420r1
+ 0017h	CL-GD5402r1
+ 0018h	CL-GD5428
+ 0019h	CL-GD5429
+ 0020h	CL-GD6205/15/25
+ 0021h	CL-GD6215
+ 0022h	CL-GD6225
+ 0023h	CL-GD6235
+ 0024h	CL-GD6245
+ 0030h	CL-GD5432
+ 0031h	CL-GD5434
+ 0032h	CL-GD5430
+ 0033h	CL-GD5434 rev. E and F
+ 0035h	CL-GD5440
+ 0036h	CL-GD5436
+ 0039h	CL-GD5446
+ 0040h	CL-GD6440
+ 0041h	CL-GD7542 (Nordic)
+ 0042h	CL-GD7543 (Viking)
+ 0043h	CL-GD7541 (Nordic Lite)
+ 0050h	CL-GD5452 (Northstar)
+ 0052h	CL-GD5452 (Northstar) ???
+SeeAlso: #00732,#00743
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F121B
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - SET YEAR/LENGTH OF FEBRUARY
+	AX = 121Bh
+	CL = year - 1980
+Return: AL = number of days in February
+Note:	requires DS to be set to the DOS data segment
+SeeAlso: INT 21/AH=2Bh"DATE"
+

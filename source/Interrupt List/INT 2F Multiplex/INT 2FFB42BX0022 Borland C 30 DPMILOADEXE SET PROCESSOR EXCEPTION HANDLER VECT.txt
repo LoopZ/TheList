@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFB42BX0022
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F PU - Borland C++ 3.0 DPMILOAD.EXE - SET PROCESSOR EXCEPTION HANDLER VECT
+	AX = FB42h
+	BX = 0022h
+	CL = exception number (00h-1Fh)
+	SI:DX = selector:offset of new handler
+Return: DX = status (0000h,0004h,FFF2h) (see #03129)
+SeeAlso: AX=FB42h/BX=0021h,AX=FB42h/BX=0025h,INT 31/AX=0203h
+

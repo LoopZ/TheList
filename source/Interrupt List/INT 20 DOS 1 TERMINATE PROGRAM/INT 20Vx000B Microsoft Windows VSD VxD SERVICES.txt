@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx000B
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VSD - VxD SERVICES
+	VxD = 000Bh
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01274)
+Values for VSD (VxD ID 000Bh) service number:
+ 00h	get version
+ 01h	bell
+ 02h	sound on
+ 03h	"VSD_TakeSoundPort"
+SeeAlso: #01273,#01275
+

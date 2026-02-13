@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620097
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PRINTC" - DISPLAY STRING OF HW CHARS (CLIPPED)
+	AX = 0097h
+	CX = length of string
+	ES:BX -> string to display
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The string is displayed in the current color, and the graphics cursor
+	  is updated to be just to the right of the last displayed character;
+	  only the portion of the string that lies within the current clipping
+	  area is displayed
+	This function is ignored in text modes
+SeeAlso: AX=0096h
+

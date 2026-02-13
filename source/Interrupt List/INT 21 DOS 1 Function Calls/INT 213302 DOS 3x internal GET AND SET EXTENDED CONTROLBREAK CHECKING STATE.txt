@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213302
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.x+ internal - GET AND SET EXTENDED CONTROL-BREAK CHECKING STATE
+	AX = 3302h
+	DL = new state (00h for OFF, 01h for ON)
+Return: DL = old state of extended BREAK checking
+Notes:	this function does not use any of the DOS-internal stacks and may thus
+	  be called at any time; one possible use is modifying Control-Break
+	  checking from within an interrupt handler or TSR
+	not supported by DR DOS through version 6.0 (error code 01h);
+	  newly-supported by Novell DOS 7
+SeeAlso: AH=33h
+

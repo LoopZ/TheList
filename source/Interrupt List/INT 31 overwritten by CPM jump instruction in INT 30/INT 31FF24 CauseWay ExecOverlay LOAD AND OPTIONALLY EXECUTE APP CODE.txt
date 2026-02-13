@@ -1,0 +1,72 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF24
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "ExecOverlay" - LOAD AND OPTIONALLY EXECUTE APP CODE
+	AX = FF24h
+	EBX = flags
+	    bit 0: don't execute (overlay only)
+	    bit 1: don't preserve relocation information
+	ES:EDX -> filename (see also #03163)
+	FS:ESI -> commandline (ESI = 00000000h if no commandline)
+	GS:EDI -> name (CW's /o option)
+Return: CF clear if successful
+	    ---EBX bit 0 set---
+	    CX:EDX = program entry point (CS:EIP)
+	    SI = segment of PSP
+	    ---EBX bit 1 set---
+	    BX:EAX = initial SS:ESP
+	    EDI high word = base segment
+	    EDI low word = number of segments
+	    EBP = start of segment definitions
+	CF set on error
+	    AX = error code
+		0001h DOS file access error
+		0002h not a CuaseWay 3P file
+		0003h not enough memory
+SeeAlso: AX=FF2Ah,INT 21/AH=4Bh
+
+Format of CauseWay executable:
+Offset	Size	Description	(Table 03163)
+ 00h  2 BYTEs	signature "3P"
+ 02h	DWORD	size of header data in bytes
+ 06h	DWORD	size of EXE image data in bytes
+ 0Ah	DWORD	number of bytes of program memory required
+ 0Eh	WORD	number of segment definitions (see #03165)
+ 10h	DWORD	number of relocation table entries
+ 14h	DWORD	offset of program entry point
+ 18h	WORD	segment list entry number for entry point's CS
+ 1Ah	DWORD	initial ESP
+ 1Eh	WORD	segment list entry number for initial SS
+ 20h	DWORD	control flags (see #03164)
+ 24h	DWORD	automatic stack size in bytes if ESP entry = 00000000h
+ 28h	BYTE	length of name (name follows program image)
+ 29h 23 BYTEs	reserved
+SeeAlso: #01594,#01609 at INT 21/AH=4Bh
+
+Bitfields for CauseWay executable control flags:
+Bit(s)	Description	(Table 03164)
+ 0	16-bit interrupt stack frame
+ 7	descriptor table type (0 = GDT, 1 = LDT)
+ 14	16-bit default data size
+ 31	compressed EXE image
+Note:	bits 0 and 14 should always be equal
+SeeAlso: #03163
+
+Format of CauseWay segment definition [array]:
+Offset	Size	Description	(Table 03165)
+ 00h	DWORD	start offset within program image
+ 04h	DWORD	length and type
+		bits 0-19: length
+		bit 20:	   granularity (if set, length is in 4K pages)
+		bits 21-24: type
+			0000 code
+			0001 read/write data
+			0010 stack
+			0011 read-only data
+		bit 25: force segment descriptor's D bit to 0
+		bit 26: force segmetn descriptor's D bit to 1
+SeeAlso: #03163
+

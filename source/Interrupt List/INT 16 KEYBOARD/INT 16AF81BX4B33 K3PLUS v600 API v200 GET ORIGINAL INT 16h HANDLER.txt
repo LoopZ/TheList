@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16AF81BX4B33
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - K3PLUS v6.00+ (API v2.00+) - GET ORIGINAL INT 16h HANDLER
+	AX = AF81h
+	BX = 4B33h ('K3')
+Return: AL = status
+	    00h not supported
+	    82h if successful
+		ES:CX -> original INT 16 handler
+SeeAlso: AX=AF4Dh,AX=AF50h,AX=AF80h,AX=AF82h
+

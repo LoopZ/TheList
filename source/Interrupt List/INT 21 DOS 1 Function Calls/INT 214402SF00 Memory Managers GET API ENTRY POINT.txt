@@ -1,0 +1,63 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402SF00
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Memory Managers - GET API ENTRY POINT
+	AX = 4402h subfn 00h
+	BX = file handle for device "EMMXXXX0"
+	CX = 0006h (size of buffer in bytes)
+	DS:DX -> buffer for API entry point record (see #01512)
+		first byte must be 00h on entry
+Return: CF clear if successful
+	    buffer filled (see #03603 at INT 67/AH=3Fh)
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Notes:	this function is supported by Microsoft EMM386.EXE v4.45+ and
+	  CEMM v5.10+, and is intended for use by MS Windows as it starts up
+	if no other program has hooked INT 67, an alternate installation
+	  check for CEMM is testing for the string
+	  "COMPAQ EXPANDED MEMORY MANAGER 386" at offset 14h in the INT 67
+	  handler's segment; if present, the word at offset 12h contains the
+	  offset of the API entry point
+SeeAlso: AX=4402h/SF=01h,AX=4402h/SF=02h,AX=4402h"EMM386",INT 67/AH=3Fh
+
+Format of memory manager API entry point record:
+Offset	Size	Description	(Table 01512)
+ 00h	WORD	??? (0022h for CEMM 5.11, 0025h for MS EMM386 v4.45)
+ 02h	DWORD	manager's private API entry point
+		(see #01513,#03666 at INT 67/AX=FFA5h)
+
+(Table 01513)
+Call CEMM v5.10+ entry point with:
+	AH = 00h get memory manager's state
+	    Return: AH = state
+			bit 0: turned OFF
+			bit 1: AUTO mode enabled
+	AH = 01h set memory manager's state
+	    AL = new state (00h ON, 01h OFF, 02h AUTO)
+	    Return: CF clear if successful
+		    CF set on error
+	AH = 02h Weitek coprocessor support
+	    AL = subfunction
+		00h get Weitek support state
+		    Return: AL = status
+				bit 0: Weitek coprocessor is present
+				bit 1: Weitek support is enabled
+		01h turn on Weitek support
+		02h turn off Weitek support
+	    Return: CF clear if successful
+		    CF set on error
+			AH = error code (01h invalid subfunc, 02h no Weitek)
+	AH = 05h get statistics
+	    ???
+	AH > 06h
+	    Return: CF set
+		    AH = 01h (invalid function)
+Notes:	AH=03h,04h,06h are NOPs which return CF clear, presumably for backwards
+	  compatibility with earlier versions of CEMM
+	in v5.11, AH=05h merely prints an error message (using INT 21/AH=09h)
+	  stating that a different version of CEMM is installed and it is
+	  therefore not possible to display the statistics
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1320
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - DISK - ??? (Western Digital "Super BIOS")
+	AH = 20h
+	???
+Return: ???
+Notes:	returns some kind of status related to whether the drive contains its
+	  default media type
+	QEMM v6.00 calls INT 13/AX=2000h/DL=81h in some cases
+

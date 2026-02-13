@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15101D
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "STOP" - STOP TASK
+	AX = 101Dh
+	ES = segment of object handle for task to be stopped
+	    (== handle of main window for that task)
+Return: indicated task will not get any CPU time until restarted with AX=101Eh
+Note:	once a task has been stopped, additional "STOP"s are ignored
+BUG:	in DV 2.00, this function is ignored unless the indicated task is the
+	  current task
+SeeAlso: AX=101Eh,AX=102Bh,AH=12h"VMiX",INT 21/AH=81h
+

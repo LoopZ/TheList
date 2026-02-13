@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BX8001
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - Phoenix BIOS 4.0 Rel 6.0 - ???
+	AX = 5380h
+	BX = 8001h
+	CX = 0020h
+Return: ???
+Note:	although a check for the indicated value is present in the examined
+	  copy of the BIOS, no code was associated with it (possibly an OEM
+	  option not included in that copy)
+SeeAlso: AX=5380h/BX=8000h
+

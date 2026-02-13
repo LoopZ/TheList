@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F05
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - DRAW RECTANGLE
+	AH = 05h
+	AL = fill type
+	    00h outline, using current line type and color
+	    01h solid, using current color
+	    02h pattern, using current fill mask and color
+	DX,CX = row,column of other corner of rectangle
+Note:	the rectangle is drawn starting at the current pen position
+SeeAlso: AH=01h,AH=06h,AH=07h
+

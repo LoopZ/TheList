@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF09
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - REFRESH EMULATION SCREEN
+	AX = 0003h subfn 09h
+	DS:BX -> argument block (see #03384)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h,AX=0003h/SF=0Bh
+
+Format of VINES argument block for Function 0003h subfunction 09h:
+Offset	Size	Description	(Table 03384)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	09h (function "refresh emulation screen")
+

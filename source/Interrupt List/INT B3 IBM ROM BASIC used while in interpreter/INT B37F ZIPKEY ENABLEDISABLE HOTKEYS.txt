@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: B37F
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - ENABLE/DISABLE HOTKEYS
+	AH = 7Fh
+	BL = function
+	    00h turn off hotkeys
+	    01h turn on hotkeys
+	    02h return hotkey status
+	    03h toggle hotkey status
+Return: AL = hotkey status
+	    00h off
+	    01h on
+

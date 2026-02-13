@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--21
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - DTown Utilities v1.40+ - POP UP
+	AL = 21h
+	BL = which utility to bring up
+	    00h active utility
+	    01h help screen
+	    0Ah ASCII table
+	    0Bh memory view
+	    0Ch CPU status
+	    0Dh calculator
+	    0Eh miscellaneous
+	    0Fh file viewer
+	    10h disassembler
+Return: AL = status
+	    00h already active
+	    FFh popped up successfully
+	BX = 0000h
+Note:	this function is only available if the extended API has been installed
+	  in the resident portion
+SeeAlso: INT 2D/AL=10h"DTown",INT 2D/AL=20h,INT 2D/AL=50h
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 674E
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - GET OR SET PAGE MAP
+	AH = 4Eh
+	AL = subfunction
+	    00h get mapping registers
+	    01h set mapping registers
+	    02h get and set mapping registers at once
+	    03h get size of page-mapping array
+	DS:SI -> array holding information (AL=01h/02h)
+	ES:DI -> array to receive information (AL=00h/02h)
+Return: AH = status (00h,80h,81h,84h,8Fh,A3h) (see also AH=40h)
+	    00h successful
+		AL = bytes in page-mapping array (AL=03h only)
+		array pointed to by ES:DI receives mapping info (AL=00h/02h)
+Notes:	this function was designed to be used by multitasking operating systems
+	  and should not ordinarily be used by appplication software.
+	MD386 returns the size of the page-mapping array in AX instead of AL
+SeeAlso: AH=4Fh
+

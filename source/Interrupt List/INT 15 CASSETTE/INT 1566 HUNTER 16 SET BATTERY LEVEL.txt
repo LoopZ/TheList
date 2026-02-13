@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1566
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SET BATTERY LEVEL
+	AH = 66h
+	AL = level in percent of maximum (0..100)
+Return: AH = status
+SeeAlso: AH=61h,AH=65h
+

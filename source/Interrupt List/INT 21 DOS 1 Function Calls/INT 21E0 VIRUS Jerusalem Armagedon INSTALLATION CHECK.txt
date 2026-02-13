@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E0
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Jerusalem", "Armagedon" - INSTALLATION CHECK
+	AH = E0h
+Return: AX = 0300h if "Jerusalem" resident
+	AX = DADAh if "Armagedon" resident
+SeeAlso: AH=DEh"VIRUS",AX=DEDEh"VIRUS",AX=E00Fh
+

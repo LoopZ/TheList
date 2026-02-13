@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620005
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v3.03+ - "FG_BESTMODE" - GET BEST VIDEO MODE GIVEN RESOLUTN
+	AX = 0005h
+	BX = horizontal resolution
+	CX = vertical resolution
+	DX = number of video pages required (both physical and virtual)
+Return: AX = proposed video mode number or FFFFh if no matching video mode
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	You must first call "FG_SVGAINIT" (see AX=00C1h) to get SVGA video
+	  modes
+SeeAlso: AX=0004h,AX=004Bh,AX=00B0h,AX=00C1h,AX=00C7h
+

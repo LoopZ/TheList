@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1081
+  Category: f 	file manipulation
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4 only SHARE internal - TURN OFF FILE SHARING CHECKS
+	AX = 1081h
+Return: AL = status
+	    F0h successful
+	    FFh checking was already off
+Note:	(see AX=1080h)
+SeeAlso: AX=1000h,AX=1080h
+

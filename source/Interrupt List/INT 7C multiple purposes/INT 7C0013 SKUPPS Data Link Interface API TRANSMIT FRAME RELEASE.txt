@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0013
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - TRANSMIT FRAME RELEASE
+	AX = 0013h
+	ES:BX -> Mbuf (see #03847)
+Return: nothing
+Notes:	Returns immediately; The protocol's Transmit Upcall will NOT be called.
+	The Mbuf may no more be used by the protocol in any way (i.e. the
+	  Mbuf's IN USE field may not be polled).
+SeeAlso: AX=0004h,AX=0013h
+

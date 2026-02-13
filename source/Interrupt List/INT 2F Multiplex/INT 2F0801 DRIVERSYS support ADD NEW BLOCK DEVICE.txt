@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0801
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DRIVER.SYS support - ADD NEW BLOCK DEVICE
+	AX = 0801h
+	DS:DI -> drive data table (see #02601,#02602,#02603)
+Return: AX,BX,SI,ES destroyed
+Notes:	moves down internal list of drive data tables, copying and modifying
+	  the drive description flags word for tables referencing same physical
+	  drive
+	the data table is appended to the chain of tables
+	supported by DR DOS 5.0 and Novell DOS 7
+SeeAlso: AX=0803h
+

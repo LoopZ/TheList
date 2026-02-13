@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 326E12
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 32 - NOISE.SYS v0.53+ - ADD SAMPLE FROM FAST TIMER
+	AX = 6E12h
+Return: CF set on error
+	    AL = error code (FCh,FDh,FEh) (see #03166)
+	CF clear if successful
+	    CX = number of random bytes waiting
+Note:	subfunctions 12h and 13h are meant for applications or devices
+	  which are able to gather entropy from other sources which are
+	  not polled by NOISE.SYS (for example, a communications driver
+	  could use this call to sample packet arrival times).
+SeeAlso: AX=6E00h,AX=6E10h,AX=6E13h
+

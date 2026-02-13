@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610002
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - OPTIMA 1024 VGA-Sync,ET-3000 chipset - END ZOOM
+	AX = 0002h
+Desc:	switches off zoom and returns window to its original state
+Range:	unknown
+Notes:	INT 61h is the default interrupt; the actual interrupt number can be
+	  obtained by calling INT 16/AH=FFh
+	not all vendors include the Tseng TSR which supports these functions
+SeeAlso: AX=0000h"OPTIMA",INT 16/AH=FFh"OPTIMA"
+

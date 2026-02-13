@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: D41B
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - GET/SET TIME SLICE
+	AH = 1Bh
+	AL = subfunction (00h read, 01h set, 02h get and set)
+	BX = task ID (FFFFh for current task) (see AH=19h)
+	CL = new time slice value
+Return: CF clear if successful
+	    CL = current time slice value
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+SeeAlso: AH=1Ah,AH=1Ch
+

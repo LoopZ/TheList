@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D100DX0000
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - later PS/2s - GET NUMBER OF DEVICE DESCRIPTOR TABLE (DDT) ENTRIES
+	AX = D100h
+	DX = 0000h (reserved, must set to 0)
+Return: BL = size of one DDT entry, in bytes
+	CX = number of DDT entries
+	AH = return code (see #00534)
+	CF set on error
+	CF clear on success
+SeeAlso: AH=C0h,AH=C7h,AH=C9h,AX=D101h,AX=D102h,AX=D103h,AX=D104h
+
+(Table 00534)
+Values for return code:
+ 00h	success
+ 01h	requested DDT entry not found
+ 02h	DDT data not valid
+ 86h	function not supported
+

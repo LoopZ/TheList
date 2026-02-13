@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200A4
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SCRLOCK" - GET STATE OF SCROLL LOCK KEY
+	AX = 00A4h
+Return: AX = ScrollLock state (0000h off, 0001h on)
+Program: FGDRIVER is the external video driver for the shareware
+	  Fastgraph/Light by Ted Gruber Software
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=000Ah,AX=0082h,AX=00A8h,AX=00B1h
+

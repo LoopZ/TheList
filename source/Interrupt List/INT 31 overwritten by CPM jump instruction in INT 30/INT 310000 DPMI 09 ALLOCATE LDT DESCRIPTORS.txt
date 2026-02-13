@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310000
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - ALLOCATE LDT DESCRIPTORS
+	AX = 0000h
+	CX = number of descriptors to allocate
+Return: CF clear if successful
+	    AX = base selector
+	CF set on error
+	    AX = error code (DPMI 1.0+) (see #03143)
+Notes:	DPMI is the DOS Protected-Mode Interface
+	the base and limit of the returned descriptors will be 0, and the type
+	  will be "data"
+	add the value returned by INT 31/AX=0003h to move to subsequent
+	  descriptors if multiple descriptors were allocated
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0001h,AX=000Dh,INT 21/AX=3501h
+
+(Table 03143)
+Values for DPMI 1.0 error code:
+ 0000h-7FFFh DOS error passed through by DPMI
+ 8001h	unsupported function
+ 8002h	object in wrong state for function
+ 8003h	system integrity would be endangered
+ 8004h	deadlock detected
+ 8005h	pending serialization request cancelled
+ 8010h	out of DPMI internal resources
+ 8011h	descriptor unavailable
+ 8012h	linear memory unavailable
+ 8013h	physical memory unavailable
+ 8014h	backing store unavailable
+ 8015h	callback unavailable
+ 8016h	handle unavailable
+ 8017h	maximum lock count exceeded
+ 8018h	shared memory already serialized exclusively by another
+ 8019h	shared memory already serialized shared by another client
+ 8021h	invalid value for numeric or flag parameter
+ 8022h	invalid segment selector
+ 8023h	invalid handle
+ 8024h	invalid callback
+ 8025h	invalid linear address
+ 8026h	request not supported by hardware
+

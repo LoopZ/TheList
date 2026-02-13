@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A07
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - CANCEL ALARM (AT,XT286,PS)
+	AH = 07h
+Return: alarm disabled
+Note:	does not disable the real-time clock's IRQ
+SeeAlso: AH=06h,AH=0Dh,INT 70
+

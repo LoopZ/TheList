@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0102
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 3.0+ PRINT - REMOVE FILE FROM PRINT QUEUE
+	AX = 0102h
+	DS:DX -> ASCIZ filename (wildcards allowed)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #02594)
+SeeAlso: AX=0101h,AX=0103h,AH=01h"PRINT"
+

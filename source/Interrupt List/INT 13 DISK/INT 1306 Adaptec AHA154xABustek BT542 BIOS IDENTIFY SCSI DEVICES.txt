@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1306
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Adaptec AHA-154xA/Bustek BT-542 BIOS - IDENTIFY SCSI DEVICES
+	AH = 06h
+Return: AH = status code (see #00234)
+	CF clear if successful
+	    AL = first drive supported
+		(80h nonconcurrent operation, 81h concurrent operation)
+	CF set on error
+Desc:	determine the number of the first supported SCSI drive
+Note:	the return value is 80h when two SCSI drives are supported, 81h if
+	  only one SCSI drive is installed
+SeeAlso: AH=08h"PC",#00732 at INT 1A/AX=B102h
+

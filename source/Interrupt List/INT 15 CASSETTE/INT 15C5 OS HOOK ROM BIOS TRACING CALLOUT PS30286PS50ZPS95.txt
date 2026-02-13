@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C5
+  Category: B 	BIOS
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 15 UC - OS HOOK - ROM BIOS TRACING CALLOUT (PS30/286,PS50Z,PS95)
+	AH = C5h
+	AL = interrupt being invoked
+	    01h INT 19
+	    02h INT 14
+	    03h INT 16
+	    04h INT 40 (floppy INT 13)
+	    05h INT 17
+	    06h INT 10
+	    07h INT 12
+	    08h INT 11
+	    09h INT 1A
+Return: all registers except AX must be preserved
+Notes:	called as the very first action of the indicated ROM BIOS interrupt
+	  handlers on the PS/2 Models 30/286, 50Z, and 95
+	default handler does nothing and returns CF clear for the above
+	  subfunctions, CF set and AH=86h for all other subfunctions
+	value of AX passed to the original interrupt handler is pushed on
+	  stack immediately prior to call
+

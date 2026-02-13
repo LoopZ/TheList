@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 133C
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - QUICKCACHE II v4.20 - ENABLE/DISABLE ???
+	AH = 3Ch
+	AL = new state of ??? (01h enabled, else disabled)
+Return: AX = status (0000h successful)
+Note:	is affected by the flag reported at offset 05h of the system info
+	  returned by AH=30h, and sets the flag at offset 07h
+SeeAlso: AH=3Bh
+

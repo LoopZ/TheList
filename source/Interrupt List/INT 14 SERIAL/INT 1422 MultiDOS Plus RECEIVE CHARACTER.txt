@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1422
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus - RECEIVE CHARACTER
+	AH = 22h
+	DX = port number
+Return: AH = status (see also AH=21h"MultiDOS")
+	    00h successful
+		AL = character
+	    3Dh framing and parity error
+	    3Eh overrun error
+	    3Fh framing error
+	    40h parity error
+	    96h ring buffer overflow
+Note:	if no character is available, this function waits until a character
+	  arrives or an implementation-dependent timeout elapses
+SeeAlso: AH=20h"MultiDOS",AH=21h"MultiDOS",AH=27h
+

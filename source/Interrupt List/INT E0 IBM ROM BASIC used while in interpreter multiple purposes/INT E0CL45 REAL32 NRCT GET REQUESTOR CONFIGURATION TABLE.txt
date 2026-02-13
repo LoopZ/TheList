@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL45
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "N_RCT" - GET REQUESTOR CONFIGURATION TABLE
+	CL = 45h
+	DS:DX -> RCT Control Block (see #04031,#04032)
+Return: AX = status or error code (see #04033,#04030)
+	may destroy SI,DI,DS???
+SeeAlso: INT E0/CL=47h
+
+Format of REAL/32 RCT Control Block for Drives:
+Offset	Size	Description	(Table 04031)
+ 00h	BYTE	command byte
+		00h map disk drive
+		02h map list device
+ 01h	BYTE	local resource ID
+ 02h	BYTE	remote resource ID
+ 03h	BYTE	server node ID number
+Note:	the RCT Control Block is a union of two possible structures; this
+	  variant is used when mapping disk drives and list devices
+SeeAlso: #04032
+
+Format of REAL/32 RCT Control Block for Queues:
+Offset	Size	Description	(Table 04032)
+ 00h	BYTE	command byte
+		03h map local queue to server
+		04h unmap queue
+ 01h  8 BYTEs	local queue name (case-sensitive)
+ 09h  8 BYTEs	remote queue name (case-sensitive)
+ 11h	BYTE	server node ID number
+Note:	the RCT Control Block is a union of two possible structures; this
+	  variant is used when mapping queues
+SeeAlso: #04031
+
+(Table 04033)
+Values for REAL/32 "N_RCT" status:
+ 0000h	successful
+ 0001h	invalid local device
+ 0002h	invalid remote device
+ 0003h	no queue entry space
+

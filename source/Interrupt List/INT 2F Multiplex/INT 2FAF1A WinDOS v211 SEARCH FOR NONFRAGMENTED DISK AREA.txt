@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAF1A
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WinDOS v2.11 - SEARCH FOR NON-FRAGMENTED DISK AREA
+	AX = AF1Ah
+	BL = drive (00h = current, 01h = A:, etc.)
+	CX = number of clusters desired
+Return: CF clear if successful
+	    DI = first free cluster on logical drive
+	    BP = first cluster of contiguous free area
+	    AX destroyed
+	CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+Desc:	attempt to find an area of the disk containing the specified number
+	  of contiguous unallocated clusters
+SeeAlso: AX=AF00h"WinDOS"
+

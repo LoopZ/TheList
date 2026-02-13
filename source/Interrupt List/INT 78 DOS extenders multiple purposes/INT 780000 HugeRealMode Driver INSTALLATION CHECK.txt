@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 780000
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 78 - HugeRealMode Driver - INSTALLATION CHECK
+	AX = 0000h
+Return: AX = DBCAh if installed
+Program: the HugeRealMode driver was published in the German DOS Extra Nr. 20
+	  (1992), and makes a 4G flat address space (for both data and code)
+	  available to real-mode DOS programs
+SeeAlso: AX=0001h
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAE01
+  Category: l 	shells/command interpreters
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ internal - INSTALLABLE COMMAND - EXECUTE
+	AX = AE01h
+	DX = magic value FFFFh
+	CH = 00h
+	CL = length of command name (4DOS v4.0)
+	DS:BX -> command line buffer (see #02977)
+	DS:SI -> command name buffer (see #02978)
+Return: DS:SI buffer updated
+	  if length byte is nonzero, the following bytes contain the uppercase
+	  internal command to execute and the command line buffer contains the
+	  command's parameters (the first DS:[SI] bytes are ignored)
+Notes:	this call requests execution of the command which a previous call to
+	  AX=AE00h indicated was resident
+	APPEND hooks this call
+BUG:	Novell DOS 7.0's COMMAND.COM (prior to Update 12) will attempt to run
+	  a disk program with the indicated name even if the returned length
+	  byte is zero, because the register used to flag this case is
+	  clobbered without first checking it.	The workaround is to set the
+	  command name buffer to "REM" followed by enough blanks to pad out
+	  the original command's length, which will also work with MS-DOS 6.
+	  (from padgett@tccslr.dnet.mmc.com)
+SeeAlso: AX=AE00h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F05
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectra EX-BIOS - "F16_GET_MAPPING" - GET CURRENT KEY MAPPINGS
+	AX = 6F05h
+	ES:SI -> mapping buffer (see #00600)
+Return: AH = 00h (successful)
+	CX = 001Eh (number of bytes in buffer)
+	ES:SI buffer filled
+Note:	supported by the original HP Vectra AT and ES/QS/RS series HP Vectras
+SeeAlso: AX=6F04h,AX=6F06h
+

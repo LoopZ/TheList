@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC008
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AD-DOS - GET CURRENT HOT KEY
+	AX = C008h
+Return: AX = status
+	    0000h successful
+		BX = Hot Key
+		CL = Hot Key Shift Status
+	    0008h otherwise
+SeeAlso: AX=C000h"AD-DOS",AX=C007h"AD-DOS"
+Index:	screen saver;AD-DOS
+

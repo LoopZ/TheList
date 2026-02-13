@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310003
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET NEXT SELECTOR INCREMENT VALUE
+	AX = 0003h
+Return: CF clear
+	    AX = value to add to get next sequential selector
+Notes:	the increment will be a power of two
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0000h
+

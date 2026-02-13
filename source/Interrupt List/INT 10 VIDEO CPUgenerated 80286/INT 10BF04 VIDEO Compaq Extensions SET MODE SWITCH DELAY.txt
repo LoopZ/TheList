@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF04
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - SET MODE SWITCH DELAY
+	AX = BF04h
+	BH = new state of delay (00h enabled, 01h disabled)
+Return: nothing
+Note:	the 1993/04/08 sytem ROM appears to use BL instead of BH; a future
+	  version of the list will provide more definite information
+SeeAlso: AX=BF05h
+

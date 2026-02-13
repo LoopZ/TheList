@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330030
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.04+ - GET/SET BallPoint INFORMATION
+	AX = 0030h
+	CX = command
+	    0000h get status of BallPoint device
+	    other set rotation angle and masks
+		BX = rotation angle (-32768 to 32767 degrees)
+		CH = primary button mask
+		CL = secondary button mask
+Return: AX = button status (FFFFh if no BallPoint) (see #03181)
+	BX = rotation angle (0-360 degrees)
+	CH = primary button mask
+	CL = secondary button mask
+Note:	not supported by the ATI Mouse driver which calls itself v7.04
+
+Bitfields for BallPoint mouse button status:
+Bit(s)	Description	(Table 03181)
+ 5	button 1
+ 4	button 2
+ 3	button 3
+ 2	button 4
+ other	zero
+

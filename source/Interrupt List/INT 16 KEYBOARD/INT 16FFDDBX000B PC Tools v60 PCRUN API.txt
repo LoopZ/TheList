@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFDDBX000B
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v6.0+ PCRUN API - ???
+	AX = FFDDh
+	BX = 000Bh
+	???
+Return: CX = 5555h if PCRUN active
+	DX = 5555h
+Note:	also clears flag set by AX=FFDDh/BX=000Ah
+

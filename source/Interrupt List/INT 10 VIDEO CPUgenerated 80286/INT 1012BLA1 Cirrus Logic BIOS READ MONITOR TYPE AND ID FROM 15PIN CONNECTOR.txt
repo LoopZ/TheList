@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BLA1
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Cirrus Logic BIOS - READ MONITOR TYPE AND ID FROM 15-PIN CONNECTOR
+	AH = 12h
+	BL = A1h
+Return: BH = monitor ID (see #00034)
+	BL = monitor type (00h color, 01h grayscale, 02h no display)
+SeeAlso: AH=12h/BL=9Ah,AH=12h/BL=A2h
+
+(Table 00034)
+Values for Cirrus Logic monitor ID:
+ 00h-08h reserved
+ 09h	IBM 8604/8507 or equivalent
+ 0Ah	IBM 8514 or equivalent
+ 0Bh	IBM 8515 or equivalent
+ 0Dh	IBM 8503 or equivalent
+ 0Eh	IBM 8512/8513 or equivalent
+ 0Fh	no monitor
+

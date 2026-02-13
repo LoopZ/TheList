@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151018
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "LOCATE" - FIND WINDOW AT A GIVEN SCREEN LOCATION
+	AX = 1018h
+	BH = column
+	BL = row
+	ES = segment of object handle for window below which to search
+	    0000h = start search with topmost window
+Return: ES = segment of object handle for window which is visible at the
+	       indicated position, or covered by indicated window
+	    0000h if no window
+SeeAlso: AX=1023h,AX=1024h
+

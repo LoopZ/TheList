@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - MS SQL Server/Sybase DBLIBRARY interface - ???
+	AH = function (00h to 07h)
+	CX = FFFEh
+	DX = FFFFh
+	???
+Return: ???
+InstallCheck:	test for the string "DBLIBRARY" two bytes past the interrupt
+	  handler
+SeeAlso: AH=08h"SQL"
+Index:	installation check;MS SQL Server|installation check;Sybase DBLIBRARY
+

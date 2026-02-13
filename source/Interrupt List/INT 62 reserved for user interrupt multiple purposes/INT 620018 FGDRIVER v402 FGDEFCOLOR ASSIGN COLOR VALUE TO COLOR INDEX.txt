@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620018
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DEFCOLOR" - ASSIGN COLOR VALUE TO COLOR INDEX
+	AX = 0018h
+	BX = color index (0000h-00FFh)
+	CX = new color value (0 to maximum color value for current video mode)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes and 256-color graphics modes
+SeeAlso: AX=0040h,AX=0045h,AX=00AAh
+

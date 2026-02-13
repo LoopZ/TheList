@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33256CBX0002
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - LOGITECH MOUSE - SET PARAMETERS - SET REPORT RATE (SERIAL MOUSE ONLY)
+	AX = 256Ch
+	BX = 0002h
+	CX = rate (0=10, 1=20, 2=35, 3=50, 4=70, 5=100, 6=150)
+Return: AX = FFFFh if driver installed for serial mouse
+SeeAlso: AX=246Ch,AX=256Ch/BX=0001h,AX=256Ch/BX=0003h,AX=276Ch
+

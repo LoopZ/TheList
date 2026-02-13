@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200AA
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETCOLOR" - SET CURRENT COLOR
+	AX = 00AAh
+	BX = new color index (or text attribute in text modes)
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0018h,AX=0040h,AX=0045h
+

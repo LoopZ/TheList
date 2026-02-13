@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1300
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - DISK - RESET DISK SYSTEM
+	AH = 00h
+	DL = drive (if bit 7 is set both hard disks and floppy disks reset)
+Return: AH = status (see #00234)
+	CF clear if successful (returned AH=00h)
+	CF set on error
+Note:	forces controller to recalibrate drive heads (seek to track 0)
+	for PS/2 35SX, 35LS, 40SX and L40SX, as well as many other systems,
+	  both the master drive and the slave drive respond to the Reset
+	  function that is issued to either drive
+SeeAlso: AH=0Dh,AH=11h,INT 21/AH=0Dh,INT 4D/AH=00h"TI Professional"
+SeeAlso: INT 56"Tandy 2000",MEM 0040h:003Eh
+

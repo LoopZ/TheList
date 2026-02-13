@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1561
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - GET POWER LEVEL
+	AH = 61h
+Return: AH = percentage of full power left (0..100)
+Desc:	determine how much battery power is left
+SeeAlso: AH=62h,AH=66h,AH=73h"HUNTER"
+

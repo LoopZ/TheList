@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310006
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET SEGMENT BASE ADDRESS
+	AX = 0006h
+	BX = selector
+Return: CF clear if successful
+	    CX:DX = linear base address of segment
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8022h) (see #03143)
+Note:	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0007h,INT 21/AX=3504h
+

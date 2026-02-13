@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFC5
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - CHECK WHETHER DESKTOP LOADED RESIDENT
+	AX = FFC5h
+Return: BL = Desktop state
+	    00h if nonresident
+	    nonzero if loaded resident
+Note:	available only when popped up; should call AX=FFEFh first to ensure
+	  that DESKTOP is active
+SeeAlso: AX=FFEFh,AX=FFF3h
+

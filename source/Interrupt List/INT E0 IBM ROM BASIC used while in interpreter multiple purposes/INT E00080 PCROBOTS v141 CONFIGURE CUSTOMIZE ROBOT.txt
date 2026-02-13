@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00080
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "CONFIGURE" - CUSTOMIZE ROBOT
+	AX = 0080h
+	BX = basic configuration (see #04061)
+	CX = advanced configuration (see #04062)
+Return: AX = status (0001h OK, 0000h not first call in program)
+Program: PCROBOTS is P.D. Smith's adaptation of Tom Poindexter's CROBOTS, in
+	  which specially-written .COM or .EXE programs form robots battling
+	  each other in a user-defined arena
+Notes:	a maximum of ten points may be allocated to the robot; if you attempt
+	  to allocate more, some items will be given a value of zero.  If this
+	  function is not called, each attribute is set to the default value
+	  of 2.
+	if the invisibility option is chosen, the robot will start with only
+	  900 cannon shells instead of the default 1000
+
+Bitfields for PCROBOTS basic configuration:
+Bit(s)	Description	(Table 04061)
+ 0-3	maximum speed (0-4 = 50,75,100,150,200)
+ 4-7	maneuverability (0-4 = 20%,35%,50%,75%,100%)
+ 8-11	cannon range (0-4 = 300,500,700,1000,1500)
+ 12-15	robot armor (0-4 = 50,75,100,150,200)
+
+Bitfields for PCROBOTS advanced configuration:
+Bit(s)	Description	(Table 04062)
+ 0-2	robot acceleration (0-4 = 5,7,10,15,20)
+ 3	capable of invisibility
+

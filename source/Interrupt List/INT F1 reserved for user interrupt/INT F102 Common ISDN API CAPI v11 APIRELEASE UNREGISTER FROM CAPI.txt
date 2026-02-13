@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: F102
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v1.1 - "API-RELEASE" - UNREGISTER FROM CAPI
+	AH = 02h
+	DX = application ID (see AH=01h)
+Return: AX = status (0000h,1002h) (see #04069)
+Notes:	the caller is required to provide at least 512 bytes of stack space
+SeeAlso: AH=01h,INT F1/AL=02h
+
+(Table 04069)
+Values for CAPI v1.1 error code:
+ 0000h	successful
+ 1001h	registration error
+ 1002h	invalid application ID
+ 1003h	message too small or incorrectly coded message number
+ 1004h	invalid command or subcommand
+ 1005h	message queue full
+ 1006h	message queue empty
+ 1007h	message(s) lost due to queue overflow
+ 1008h	error uninstalling
+SeeAlso: #04070
+

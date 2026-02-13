@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: D422
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - ADD A TASK TO THE SYSTEM
+	AH = 22h
+	DS:SI -> addtask data structure (see #04018)
+Return: CF clear if successful
+	    ES = segment address of the new task's TCB data structure
+	CF set on error
+	    AX = error code (see #04017)
+SeeAlso: AH=21h
+
+(Table 04017)
+Values for PC-MOS/386 error code:
+ 08h	insufficient memory
+ 0Bh	invalid addtask structure format
+ 12h	insufficient available space in system memory pool
+ 1Fh	general failure
+ 55h	already allocated
+ 57h	if task already in use or invalid parameter
+
+Format of PC-MOS/386 addtask data structure:
+Offset	Size	Description	(Table 04018)
+ 00h	WORD	task size in KB (min 16KB)
+ 02h	WORD	task ID (0000h for automatic selection)
+ 04h	BYTE	task class (' ' or 'A'-'Z')
+ 05h	DWORD	-> ASCIZ name of task startup batchfile
+ 09h	DWORD	-> task's terminal driver (0000000h = background task)
+ 0Dh	WORD	task port
+ 0Fh	DWORD	task baud rate
+ 13h	DWORD	(ret) total extended memory
+ 17h	DWORD	(ret) number of 4K extended memory pages allocated
+ 1Bh	WORD	(ret) paragraphs of system memory pool allocated
+ 1Dh	WORD	(ret) system memory pool size in paragraphs
+ 1Fh	WORD	(ret) ASCII task percentage of system memory pool
+ 21h  3 BYTEs	reserved
+

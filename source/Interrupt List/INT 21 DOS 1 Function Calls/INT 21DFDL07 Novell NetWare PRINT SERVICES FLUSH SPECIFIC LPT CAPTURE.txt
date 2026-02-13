@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DF--DL07
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - FLUSH SPECIFIC LPT CAPTURE
+	AH = DFh
+	DL = 07h
+	DH = LPT port (00h-02h)
+Return: AL = status
+	    00h successful
+Desc:	this function closes the current capture file for the specified LPT
+	  and starts printing it if it is not a permanent capture file
+Notes:	this function is supported by Advanced NetWare 2.1+
+	if more data is sent to the LPT port after this call, a new capture
+	  file will be opeend
+SeeAlso: AH=DFh/DL=03h,AH=DFh/DL=04h,AH=DFh/DL=05h,AH=DFh/DL=06h
+

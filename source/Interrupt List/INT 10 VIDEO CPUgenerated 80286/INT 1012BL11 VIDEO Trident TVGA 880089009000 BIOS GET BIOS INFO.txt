@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1012--BL11
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Trident TVGA 8800/8900/9000 BIOS - GET BIOS INFO
+	AH = 12h
+	BL = 11h
+Return: AL = 12h if function supported
+	    BL = ??? (10h)
+	    ES:BP -> BIOS info structure (see #00025)
+SeeAlso: AH=12h/BL=12h"TRIDENT"
+
+Format of Trident BIOS Info structure:
+Offset	Size	 Description	(Table 00025)
+ 00h	BYTE	 ??? (0000h)
+ 01h	BYTE	 OEM Code (00h for original Trident)
+ 02h	WORD	 ID??? (1073h for 8800BR, 1074 for 8800CS)
+ 04h  8 BYTEs	 BIOS date ('mm/dd/yy')
+ 0Ch	WORD	 ???
+ 0Eh  8 BYTEs	 BIOS Version (' C3-128 ', ' C3-129 ')
+

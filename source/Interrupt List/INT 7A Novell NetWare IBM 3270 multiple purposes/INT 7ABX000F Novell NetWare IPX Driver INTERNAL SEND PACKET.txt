@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX000F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - INTERNAL - SEND PACKET
+	BX = 000Fh
+	ES:SI -> Event Control Block (see #03810 at BX=0003h)
+		IPX header's checksum field must be set to FFFFh (see #03815)
+		IPX header's total-length field must be set
+Note:	nearly identical to function 0003h, but does not copy address into
+	  the first fragment, and bypasses normal error checking
+SeeAlso: BX=0003h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF71
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2.1+ - SERVICE QUEUE JOB AND OPEN FILE
+	AX = F217h subfn 71h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #01986 at AH=E3h/SF=71h)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+Notes:	the caller must be on a workstation which is security-equivalent to a
+	  member of the queue's Q_USERS, Q_OPERATORS, or Q_SERVERS properties
+SeeAlso: AH=E3h/SF=71h,AX=F217h/SF=70h,AX=F217h/SF=72h
+

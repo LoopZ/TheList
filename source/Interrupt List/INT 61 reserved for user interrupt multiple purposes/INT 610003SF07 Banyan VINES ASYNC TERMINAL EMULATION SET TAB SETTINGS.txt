@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF07
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - SET TAB SETTINGS
+	AX = 0003h subfn 07h
+	DS:BX -> argument block (see #03382)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=05h,AX=0003h/SF=08h
+
+Format of VINES argument block for setting tab settings:
+Offset	Size	Description	(Table 03382)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	07h (function "set tab settings")
+ 02h	WORD	pointer to 80-byte buffer in caller's current DS
+		  each byte = 00h if no tab, 01h if tab at that position
+

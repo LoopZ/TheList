@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 137B00
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - NOW! v3.05 - GET INFORMATION
+	AX = 7B00h
+	CX:DX -> 1F8h-byte buffer for information record (see #00288)
+Return: AX = 0000h
+	BX = segment of main resident code
+	ES = ???
+Program: NOW! is a disk cache by Vertisoft Systems, Inc.
+SeeAlso: AX=7B02h,AH=EFh
+
+Format of NOW! information record:
+Offset	Size	Description	(Table 00288)
+ 00h 80 BYTEs	name of directory from which NOW! was started
+ 50h 424 BYTEs	???
+ 81h  ? BYTEs	array of bytes for ???
+ F7h 250 BYTEs	array of 25 entries, one per drive???
+	Offset	Size	Description
+	 00h  2 BYTEs	???
+	 02h	WORD	???
+	 04h	WORD	???
+	 06h  4 BYTEs	???
+1F1h  7 BYTEs	???
+

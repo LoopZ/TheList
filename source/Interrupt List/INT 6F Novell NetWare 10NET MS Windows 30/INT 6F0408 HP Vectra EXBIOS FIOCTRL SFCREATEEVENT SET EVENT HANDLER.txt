@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0408
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_CREATE_EVENT" - SET EVENT HANDLER
+	AX = 0408h
+	BP = driver ID (see #03741) for V_LPOINTER, V_LTOUCH, V_LTABLET
+	ES:SI -> new event handler (see AH=00h"HP Vectra")
+	DX = new handler's DS
+Return: AH = status (see #03744)
+	ES:SI -> old event handler
+	DX = old handler's DS
+	BP,DS destroyed
+Desc:	specify routine to be called on logical device events
+Note:	when events occur, the event handler is called with the same registers
+	  as the "F_ISR" function on AH=00h"HP Vectra"
+SeeAlso: AH=00h"HP Vectra",AX=0400h"SF_LOCK",AX=0406h"SF_TRACK_OFF"
+SeeAlso: AX=040Ah"SF_EVENT_ON",AX=040Ch"SF_EVENT_OFF",AH=06h"F_SAMPLE"
+

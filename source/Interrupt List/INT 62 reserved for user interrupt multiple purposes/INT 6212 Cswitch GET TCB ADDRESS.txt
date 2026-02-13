@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6212
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - GET TCB ADDRESS
+	AH = 12h
+	ES:BX -> a pointer which will be set to the tcb table address
+Return: AX = tcb indentifier
+SeeAlso: AH=11h"Cswitch"
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5C0100
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 5C C - TI Professional PC - KEYBOARD PAUSE KEY VECTOR
+	AX = 0100h
+	CF clear
+Return: CF clear
+	    AX = keystroke to be placed into keyboard buffer
+	CF set
+	    AX ignored
+Desc:	toggle a pause flag which is checked by the CRT Device Service Routine
+	  (see INT 49/AH=01h"TI") and causes it to temporarily halt the
+	  machine on the next video-related function (until a key is pressed)
+SeeAlso: INT 09"IRQ1",INT 4A/AH=00h"TI",INT 59"TI Professional"
+SeeAlso: INT 5B"TI Professional",INT 5D"TI Professional"
+SeeAlso: INT 5E"TI Professional",INT 5F"TI Professional"
+

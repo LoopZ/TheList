@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6108
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_release" - CLOSE A NETWORK DESCRIPTOR
+	AH = 08h
+	BX = network descriptor
+Return: CF clear if successful
+	    AX = 0000h (BWPCTCP shim)
+	CF set on error
+	    AX = error code (see #03319)
+Range:	INT 20 to INT E0, selected by configuration
+Note:	the descriptor will be closed and resources released.  If a stream
+	  descriptor, the protocol (FIN etc) is completed unless the
+	  non-blocking option has been set.
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=09h"PC/TCP"
+SeeAlso: INT 63/AH=0Eh"BW-TCP"
+

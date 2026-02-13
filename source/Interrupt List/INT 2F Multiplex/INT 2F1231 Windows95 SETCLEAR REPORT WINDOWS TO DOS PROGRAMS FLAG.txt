@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1231
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Windows95 - SET/CLEAR "REPORT WINDOWS TO DOS PROGRAMS" FLAG
+	AX = 1231h
+	DL = function
+	    00h set byte after "IsWIN386" to 01h
+	    01h set "IsWIN386" bit 1
+	    02h clear "IsWIN386" bit 1
+	    else
+		Return:	CF set
+			AX = 0001h
+Return: CF clear
+	AX = 0000h
+Note:	this function is not supported by DR-DOS 7.03 or earlier, by S/DOS 1.0,
+	  or by PTS-DOS 6.51
+BUG:	Windows98 will crash the system if DL>02h on entry due to an off-by-1
+	  conditional jump; if the jump were correct, the function would return
+	  CF set/AX=0001h as for Windows95
+SeeAlso: AX=1230h,AX=1200h
+

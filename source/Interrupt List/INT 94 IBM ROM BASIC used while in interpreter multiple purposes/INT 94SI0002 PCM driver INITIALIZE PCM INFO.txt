@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 94----SI0002
+  Category: s 	sound/speech
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 94 u - PCM driver - INITIALIZE PCM INFO
+	SI = 0002h
+	ES:BX -> parameters (see #03997)
+Return: ???
+SeeAlso: SI=0000h,SI=0001h,SI=0003h,SI=000Ah
+
+Format of PCM driver function 0002h parameters:
+Offset	Size	Description	(Table 03997)
+ 00h	DWORD	rate
+ 04h	WORD	channel number
+ 06h	WORD	"comp"
+ 08h	WORD	"dsize"
+

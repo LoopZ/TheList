@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC006
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AD-DOS - GET BLANKER STATUS
+	AX = C006h
+Return: AL = 00h if successful
+	    BX = current state of screen blanker (0000h inactive, 0001h active)
+Program: AD-DOS is the DOS version of the After Dark screen blanker for
+	  MS Windows
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+SeeAlso: AX=C000h"AD-DOS",AX=C005h"AD-DOS"
+Index:	screen saver;AD-DOS
+

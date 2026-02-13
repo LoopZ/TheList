@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62003B
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETBANKS" - GET SVGA READ AND WRITE BANKS
+	AX = 003Bh
+	ES:BX -> GETBANKS variable pointer record (see #03481)
+Return: nothing
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00A7h
+
+Format of FGDRIVER GETBANKS variable pointer record:
+Offset	Size	Description	(Table 03481)
+ 00h	WORD	segment of WORD buffer for read bank number
+ 02h	WORD	offset of WORD buffer for read bank number
+ 04h	WORD	segment of WORD buffer for write bank number
+ 06h	WORD	offset of WORD buffer for write bank number
+

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214B05
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 5+ - SET EXECUTION STATE
+	AX = 4B05h
+	DS:DX -> execution state structure (see #01625)
+Return: CF clear if successful
+	    AX = 0000h
+	CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+Note:	used by programs which intercept AX=4B00h to prepare new programs for
+	  execution (including setting the DOS version number).	 No DOS, BIOS
+	  or other software interrupt may be called after return from this call
+	  before commencement of the child process.  If DOS is running in the
+	  HMA, A20 is turned off on return from this call.
+SeeAlso: AH=4Bh
+
+Format of execution state structure:
+Offset	Size	Description	(Table 01625)
+ 00h	WORD	reserved (00h)
+ 02h	WORD	type flags
+		bit 0: program is an .EXE
+		bit 1: program is an overlay
+ 04h	DWORD	pointer to ASCIZ name of program file
+ 08h	WORD	PSP segment of new program
+ 0Ah	DWORD	starting CS:IP of new program
+ 0Eh	DWORD	program size including PSP
+

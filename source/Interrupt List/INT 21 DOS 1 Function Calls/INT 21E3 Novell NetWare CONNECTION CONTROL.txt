@@ -1,0 +1,96 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION CONTROL
+	AH = E3h
+	DS:SI -> request buffer (see #01885)
+	ES:DI -> reply buffer (see #01886)
+Return: AL = status
+	    00h successful
+	    else error code
+Note:	supported by NetWare 4.0+, Advanced NetWare 1.0+, and Alloy NTNX
+SeeAlso: AH=E3h/SF=0Ah,AH=E3h/SF=32h,AH=E3h/SF=64h,AH=E3h/SF=C8h
+
+Format of NetWare request buffer:
+Offset	Size	Description	(Table 01885)
+ 00h	WORD	length of following data
+ 02h	BYTE	subfunction number (see also AH=E3h/SF=01h,AH=E3h/SF=02h)
+		00h login
+		03h map object to number
+		04h map number to object
+		05h get station's logged information
+		06h get station's root mask (obsolete)
+		07h map group name to number
+		08h map number to group name
+		09h get memberset M of group G
+	var	depends on subfunction
+Notes:	the above subfunctions are not described in _NetWare_System_Calls--DOS_
+	see separate entries below for other subfunctions
+SeeAlso: #01886,#01887,#01890
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01886)
+ 00h	WORD	(call) length of following buffer space for results
+	var	depends on subfunction
+SeeAlso: #01885
+
+Format of NetWare object property:
+Offset	Size	Description	(Table 01887)
+ 00h 1-16 BYTEs property name (see also #01888)
+  N	BYTE	flags
+		bit 0: property is dynamic
+		bit 1: property is a set rather than an item
+ N+1	BYTE	security levels (see #01889)
+	???
+
+(Table 01888)
+Values for names of well-known NetWare properties:
+ ACCOUNT_BALANCE
+ ACCOUNT_SERVERS
+ GROUP_MEMBERS
+ GROUPS_I'M_IN
+ IDENTIFICATION		user's name
+ LOGIN_CONTROL
+ NET_ADDRESS
+ OPERATORS
+ PASSWORD
+ SECURITY_EQUALS
+
+(Table 01889)
+Values for NetWare security levels:
+ 00h	"anyone" everyone may access
+ 01h	"logged" only logged-in clients may access
+ 02h	"object" only clients logged-in with object's name, type, and password
+ 03h	"supervisor" only clients logged-in with supervisor privileges
+ 04h	"NetWare" only NetWare may access
+Note:	the above values are stored in a nybble; the high half-byte is write
+	  access and the low half-byte is read access
+
+(Table 01890)
+Values for NetWare object type:
+ 0000h	unknown
+ 0001h	user
+ 0002h	user group
+ 0003h	print queue / print server
+ 0004h	file server
+ 0005h	job server
+ 0006h	gateway
+ 0007h	print server
+ 0008h	archive queue
+ 0009h	archive server
+ 000Ah	job queue
+ 000Bh	administration
+ 0021h	NAS SNA gateway
+ 0024h	remote bridge server???
+ 0026h	remote bridge server
+ 0027h	TCPIP gateway
+ 002Dh	time synchronization server
+ 002Eh	archive server dynamic SAP
+ 0047h	advertising print server
+ 0053h	print queue uwer
+ 0048h-8000h reserved
+ FFFFh	wild (used only for finding objects)
+

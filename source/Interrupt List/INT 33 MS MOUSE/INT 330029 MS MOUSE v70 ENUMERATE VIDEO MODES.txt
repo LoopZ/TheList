@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330029
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.0+ - ENUMERATE VIDEO MODES
+	AX = 0029h
+	CX = previous video mode
+	    0000h get first supported video mode
+	    other get next supported mode after mode CX
+Return: CX = first/next video mode (0000h = no more video modes)
+	DS:DX -> description of video mode or 0000h:0000h if none
+Notes:	the enumerated video modes may be in any order and may repeat
+	the description string (if available) is terminated by '$' followed by
+	  a NUL byte
+SeeAlso: AX=0028h
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB80E
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS LAN Requester - GET XSI2 ADDRESS / DATA
+	AX = B80Eh
+Return: DS:DI -> XSI2 TSR's resident data (see #02983)
+Note:	this function is used by NET.COM to locate the USERID and DOMAIN of
+	  the logged-in user (which may differ from the NET START domain
+	  name from DOSLAN.INI which is returned by AX=B80Fh)
+SeeAlso: AX=B800h,AX=B80Fh
+
+Format of XSI2 resident data:
+Offset	Size	Description	(Table 02983)
+ 00h 254 BYTEs	???
+ FEh 10 BYTEs	user ID 1
+108h 10 BYTEs	user ID 2
+112h 10 BYTEs	domain name 1
+11Ch 10 BYTEs	domain name 2
+126h  ? BYTEs	domain controller
+

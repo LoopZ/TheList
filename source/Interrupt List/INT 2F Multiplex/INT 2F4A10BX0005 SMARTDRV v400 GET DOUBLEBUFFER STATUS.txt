@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A10BX0005
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SMARTDRV v4.00+ - GET DOUBLE-BUFFER STATUS
+	AX = 4A10h
+	BX = 0005h
+	BP = drive number (0=A, 1=B...)
+Return: AX = BABEh if double-buffered
+	    ES:DI -> 16-byte array of status bytes for fixed disks (see #02802)
+SeeAlso: AX=4A10h/BX=0000h,AX=4A10h/BX=0003h,AX=4A10h/BX=0006h
+
+(Table 02802)
+Values for SMARTDRV status byte:
+ 00h	state unknown
+ FFh	drive double-buffered
+ else	not double-buffered
+

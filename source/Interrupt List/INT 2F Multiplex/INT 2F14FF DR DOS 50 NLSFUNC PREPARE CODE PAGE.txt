@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F14FF
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DR DOS 5.0+ NLSFUNC - PREPARE CODE PAGE
+	AX = 14FFh
+	BX = code page (see #01757 at INT 21/AX=6602h)
+Return: AX = ???
+	ZF set if AX=0000h
+Notes:	DR DOS 5.0 NLSFUNC returns CF set and AX=0001h if AL was not 00h, FEh,
+	  or FFh on entry.
+	passes codepage preparation request to each character device supporting
+	  the generic IOCTL call
+BUG:	DR DOS 5.0 NLSFUNC 3.00 - Novell DOS 7 NLSFUNC 3.03, and OpenDOS 7.01 -
+	  DR-OpenDOS 7.02 NLSFUNC 3.02 requires DF cleared on entry, otherwise
+	  the system may crash.  However, since this function is called only by
+	  the BDOS, the problem never actually occurs.  DR-DOS 7.02/7.03
+	  NLSFUNC 4.00+ always clears DF by itself.
+SeeAlso: AX=1400h/BX=0EDCh,AX=14FEh,INT 21/AX=440Ch,INT 21/AX=6602h
+

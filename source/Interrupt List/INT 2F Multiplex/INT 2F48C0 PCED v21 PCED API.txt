@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F48C0
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PCED v2.1 - PCED API
+	AX = 48C0h
+	DX = API function code
+	other registers as required by the specified function
+Return: CF clear if successful
+	CF set on error
+	    AX = PCED error code
+	other registers as appropriate for API function
+Program: PCED v2.1 is a command line editor/history/macro facility by
+	  Cove Software.  It is the commercial version of the freeware CED.
+Note:	the full API information is available from Cove Software
+SeeAlso: AX=4800h"PCED",AX=48C1h,AX=48C2h,AX=48C3h
+

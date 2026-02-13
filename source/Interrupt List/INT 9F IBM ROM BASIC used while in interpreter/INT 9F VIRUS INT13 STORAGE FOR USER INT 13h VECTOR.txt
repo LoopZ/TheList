@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 9F
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 9F - VIRUS - "INT13" - STORAGE FOR USER INT 13h VECTOR
+Note:	while it is infecting a file, the INT13 virus grabs INT 13 and uses
+	  this interrupt to store the existing INT 13 vector for later
+	  restoration
+SeeAlso: INT 9C"VIRUS",INT 9D"VIRUS",INT D3"VIRUS"
+

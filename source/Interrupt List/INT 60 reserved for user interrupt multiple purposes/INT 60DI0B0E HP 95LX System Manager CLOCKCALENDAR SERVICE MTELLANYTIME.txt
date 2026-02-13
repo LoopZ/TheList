@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0B0E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CLOCK/CALENDAR SERVICE "M_TELL_ANYTIME"
+	DI = 0B0Eh
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	???
+		WORD	???
+		WORD	???
+		DWORD	pointer to ???
+		DWORD	pointer to ???
+Return: DX:AX -> ???
+	STACK unchanged
+

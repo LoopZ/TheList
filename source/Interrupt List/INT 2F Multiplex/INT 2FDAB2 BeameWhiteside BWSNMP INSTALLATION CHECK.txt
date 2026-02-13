@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDAB2
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Beame&Whiteside BWSNMP - INSTALLATION CHECK
+	AX = DAB2h
+Return: AX = 00FFh if installed
+	    BX:CX -> MIB table
+Program: BWSNMP is part of the BW-NFS package
+SeeAlso: INT 62/AH=00h"ETHDEV"
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF000C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - LOGOUT FROM VINES
+	AX = 0004h subfn 000Ch
+	DS:DX -> request block (see #03415)
+Return: AX = status 0000h (see #03400)
+Desc:	Terminates a running VINES session and clears all session specific
+	  buffers
+SeeAlso: AX=0004h/SF=0008h
+
+Format of VINES Function 0004h/Subfunction 000Ch request block:
+Offset	Size	Description	(Table 03415)
+ 00h	WORD	000Ch
+

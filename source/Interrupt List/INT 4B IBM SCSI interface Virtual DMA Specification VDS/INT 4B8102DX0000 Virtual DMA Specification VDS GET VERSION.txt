@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B8102DX0000
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification (VDS) - GET VERSION
+	AX = 8102h
+	DX = 0000h
+Return: CF clear if successful
+	    AH = major version number
+	    AL = minor version number
+	    BX = product number (see #03217)
+	    CX = product revision number
+		always 0000h for QMAPS and HPMM.SYS
+		always 0001h for Microsoft's EMM386.EXE v4.20-4.41
+	    DX = flags (see #03219)
+	    SI:DI = maximum DMA buffer size
+	CF set on error
+	    AL = error code (see #03218)
+Note:	bit 5 of 0040h:007Bh is supposed to be set if VDS is supported; this is
+	  apparently not always the case
+SeeAlso: INT 2C/AX=002Bh,INT 31/AX=0400h,MEM 0040h:007Bh"4Bh"
+Index:	installation check;Virtual DMA Specification
+
+(Table 03217)
+Values for VDS product number:
+ 0000h	for Quadtel's QMAPS and Hewlett-Packard's HPMM.SYS
+ 0001h	for Microsoft's EMM386.EXE
+ 0003h	for Windows 3.x WIN386.EXE
+ 0300h	OS/2 (all versions to date)
+ 0EDCh	for DR DOS 6.0 EMM386.SYS
+ 4560h	("E`") for Qualitas' 386MAX
+ 4D43h	("MC") for V Communications' Memory Commander
+ 5145h	("QE") for Quarterdeck's QEMM-386
+ 524Dh	("RM") for Helix's Netroom RM386
+
+(Table 03218)
+Values for VDS error code:
+ 01h	region not in contiguous memory
+ 02h	region crossed a physical alignment boundary
+ 03h	unable to lock pages
+ 04h	no buffer available
+ 05h	region too large for buffer
+ 06h	buffer currently in use
+ 07h	invalid memory region
+ 08h	region was not locked
+ 09h	number of physical pages greater than table length
+ 0Ah	invalid buffer ID
+ 0Bh	copy out of buffer range
+ 0Ch	invalid DMA channel number
+ 0Dh	disable count overflow
+ 0Eh	disable count underflow
+ 0Fh	function not supported
+ 10h	reserved flag bits set in DX
+
+Bitfields for VDS flags:
+Bit(s)	Description	(Table 03219)
+ 0	PC/XT bus (DMA in first megabyte only)
+ 1	physical buffer/remap region in first megabyte
+ 2	automatic remap enabled
+ 3	all memory is physically contiguous
+ 4-15	reserved (zero)
+

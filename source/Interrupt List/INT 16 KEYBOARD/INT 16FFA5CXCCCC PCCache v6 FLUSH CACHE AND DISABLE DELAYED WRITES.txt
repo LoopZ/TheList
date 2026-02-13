@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFA5CXCCCC
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - PC-Cache v6+ - FLUSH CACHE AND DISABLE DELAYED WRITES
+	AX = FFA5h
+	CX = CCCCh
+Return: AX = ??? (apparently either 0000h or sectors_in_cache - 5)
+Note:	delayed writes are automatically disabled on EXECing
+	  (see INT 21/AH=4Bh) a program named either WIN.CO? or DV.E??;
+	  however, delayed writes are not automatically reenabled upon the
+	  program's termination in v6.
+SeeAlso: AX=FFA5h/CX=AAAAh,AX=FFA5h/CX=FFFFh
+

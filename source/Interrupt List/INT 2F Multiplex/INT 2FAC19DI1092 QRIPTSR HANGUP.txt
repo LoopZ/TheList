@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC19DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - HANGUP
+	AX = AC19h
+	DI = 1092h
+Return: nothing
+Desc:	inform QRIP that carrier has been lost
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=ACF0h
+

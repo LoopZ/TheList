@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1209
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - FLUSH AND FREE DISK BUFFER
+	AX = 1209h
+	DS:DI -> disk buffer
+Return: disk buffer marked unused, contents written to disk if buffer dirty
+Note:	can be called only from within DOS
+SeeAlso: AX=120Eh,AX=1215h
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FF0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - RESTRICT DIRECTORY TO GROUP
+	AH = F0h
+	AL = group number
+	DS:DX -> ASCIZ directory name
+Return: CF clear if successful
+	    AX = status
+		0002h directory not found
+		0003h directory not found
+		0005h directory in use, cannot be restricted
+		02xxh restricted to group xxh
+	CF set on error
+Note:	the restriction on the directory may be removed by calling this
+	  function with group 0, then using AH=F1h to assign the directory to
+	  group 0
+SeeAlso: AH=F1h,AH=F2h,AH=F3h
+

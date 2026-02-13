@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 164254
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - TEXTCAP 2.0 - DUMP TEXT SCREEN TO FILE
+	AX = 4254h
+Return: AX = status
+	    4254h if screen dump will be written as soon as disk becomes idle
+	    5442h if screen dump written
+SeeAlso: AX=4252h,AX=4253h
+

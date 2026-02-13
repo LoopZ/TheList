@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F4A
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - LOCAL NetRemoteCopy
+	AX = 5F4Ah
+	DS:DX -> NetRemoteCopy parameter structure (see #01720)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+SeeAlso: AX=5F4Bh
+
+Format of LAN Manager NetRemoteCopy parameter structure:
+Offset	Size	Description	(Table 01720)
+ 00h	DWORD	-> source name as UNC
+ 04h	DWORD	-> destination name as UNC
+ 08h	DWORD	-> source password
+ 0Ch	DWORD	-> destination password
+ 10h	WORD	destination open bitmap
+		if destination path exists
+		    0000h open fails
+		    0001h file is appended
+		    0002h file is overwritten
+		if destination path doesn't exist
+		    0000h open fails
+		    0010h file is created
+ 12h	WORD	copy control bitmap (see #01721)
+ 14h	DWORD	-> copy_info buffer
+ 18h	WORD	length of copy_info buffer
+
+Bitfields for LAN Manager copy control:
+Bit(s)	Description	(Table 01721)
+ 0	destination must be a file
+ 1	destination must be a directory
+ 2	destination is opened in ascii mode instead of binary
+ 3	source is opened in ascii mode instead of binary
+ 4	verify all write operations
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 170B00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - DOSISODE to WATTCP TSR Interface - "ioctl"
+	AX = 0B00h
+	DX = local identifier of socket (0 - 31)
+Note:	this function sets the socket into non_block mode
+SeeAlso: AX=0A00h"DOSISODE",AX=0C00h"DOSISODE",AX=0E00h"DOSISODE"
+

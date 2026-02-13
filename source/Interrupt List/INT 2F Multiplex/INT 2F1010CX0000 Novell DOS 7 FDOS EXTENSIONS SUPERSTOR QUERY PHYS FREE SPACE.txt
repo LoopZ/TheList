@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1010CX0000
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - Novell DOS 7+ FDOS EXTENSIONS - SUPERSTOR - QUERY PHYS FREE SPACE
+	AX = 1010h
+	CX = 0000h
+Return: CX = free space
+	    0000h if no physical space left on the drive
+	    else there is still space available
+Notes:	This private function is internally called by the FDOS part of the
+	  OS kernel on "out of disk space" conditions.  It allows optimized
+	  behaviour of DELWATCH delete tracking software in conjunction with
+	  disk compression, and was implemented for SuperStor (but it would
+	  also work with other disk compression if they hook this function).
+	  If there truly is no physical space left on the drive, the FDOS asks
+	  DELWATCH to purge files in its queue until enough space has been
+	  freed, or there actually is no free disk space any more.
+	By using the INT 2F/AX=1001h FDOS hook, the call can be intercepted by
+	  external system components such as SuperStor, bundled with DR DOS
+	  "Panther" and Novell DOS 7 BETAs.
+	This function must under no circumstances be called by applications!
+SeeAlso: INT 2F/AX=1001h,AX=10FEh
+

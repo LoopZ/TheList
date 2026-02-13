@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 135501
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - Seagate ST01/ST02 - Inquiry
+	AX = 5501h
+	DH = number of bytes to transfer
+	DL = drive ID (80h, 81h, ...)
+	ES:BX -> buffer for results
+Return: ES:BX buffer filled with the Inquiry results
+Notes:	the ST01/ST02 BIOS does not return any success/failure indication,
+	  so all commands must be assumed to have been successful
+	the ST01/ST02 BIOS always maps its drives after the previous BIOS
+	  drives without changing the BIOS drive count at 0040h:0075h
+	this command is identical to the SCSI Inquiry command
+

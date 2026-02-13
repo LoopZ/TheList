@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14F4FF
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - IBM/Yale EBIOS SERIAL I/O - INSTALLATION CHECK
+	AX = F4FFh
+	DX = port (00h-03h)
+Return: CF clear if present
+	    AX = 0000h
+	CF set if not present
+	    AX <> 0000h
+SeeAlso: AH=36h"ComShare",AH=F9h,AH=FCh
+

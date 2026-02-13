@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F12FFBX0306
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell DOS 7+ - MEMORYMAX SET PAGE TABLE ENTRY
+	AX = 12FFh
+	BX = 0306h
+	ESI = linear address
+	EDI = page table entry
+Return: CF clear if successful
+	    AX = 0000h (successful)
+	    CX = 0000h
+	CF set on error
+	    AX = function status
+		0000h function supported
+		    CX error code
+		       80h if linear address has no mapping
+	        0001h (AX > 0) function not supported
+		    CX undefined
+Note:	This function is supported by Novell DOS 7+ EMM386.EXE 3.0+ and
+	  possibly by HIMEM.SYS 2.3+.
+SeeAlso: AX=12FFh/BX=0206h
+

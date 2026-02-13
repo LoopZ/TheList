@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F80
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - LOGIN
+	AH = 80h
+	DS:DX -> login record (see #03776)
+Return: CF clear if successful
+	    BL = number of days until password expires (00h = never)
+	    CL = security level
+	CF set on error
+	    AX = status (see #03740)
+SeeAlso: AH=00h,AH=81h
+
+Format of 10NET login record:
+Offset	Size	Description	(Table 03776)
+ 00h  8 BYTEs	user name
+ 08h  8 BYTEs	password
+ 10h 15 BYTEs	server node ID
+ 1Fh  8 BYTEs	new password
+ 27h	BYTE	invoke mode (00h command line, 01h interactive)
+

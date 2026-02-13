@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F06
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectra EX-BIOS - "F16_SET_MAPPING" - SET KEY MAPPINGS
+	AX = 6F06h
+	CX = number of bytes in buffer (001Eh)
+	ES:SI -> mapping buffer (see #00600)
+Return: AH = 00h (successful)
+Notes:	supported by the original HP Vectra AT and ES/QS/RS series HP Vectras
+	any application which modifies the key mappings should restore them
+	  before terminating
+	drivers installed with this function are assured of 32 bytes of stack
+	  space when they are invoked
+SeeAlso: AX=6F04h,AX=6F05h,AX=6F07h
+

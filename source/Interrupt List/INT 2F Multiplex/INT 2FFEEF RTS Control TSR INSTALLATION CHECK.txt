@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFEEF
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - RTS Control TSR - INSTALLATION CHECK
+	AX = FEEFh
+Return: AX = EFFEh if installed
+	    BX = port address
+Program: RTS Control TSR is a utility by Michal Szokolo to lower the RTS
+	  signal on a COM port during disk accesses to avoid losing incoming
+	  data
+

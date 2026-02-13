@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NetWare Support Kit (ANSK) v2.2+ - INSTALLATION CHECK
+Note:	a program may determine that it is running on an ANSK Slave by checking
+	  the five bytes at F000h:0000h for the ASCIZ signature "ANSK"; this
+	  address is RAM, and should not be written.  However, the above check
+	  will not work on Slaves with <1MB RAM or those using the SLIM.SYS
+	  device driver
+

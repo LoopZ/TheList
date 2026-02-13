@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0008
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - GET INTERVAL MARKER
+	BX = 0008h
+Return: AX = interval marker in clock ticks (big-endian???)
+Notes:	may be used to measure the time elapsed between two events, up to one
+	  hour
+	this function is supported by Advanced NetWare 1.02+
+SeeAlso: BX=0005h
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 154601
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq SLT/286 - MODIFY POWER CONSERVATION/MODEM CONFIGURATION
+	AX = 4601h
+	BL = system inactivity timeout (1-21 minutes)
+	    FFh do not change
+	CL = video display inactivity timeout (1-63 minutes)
+	    FFh do not change
+	DL = current fixed disk drive inactivity timeout (1-21 minutes)
+	    FFh do not change
+	DH = new modem state (00h turn off, 01h turn on, FFh don't change)
+Return: CF clear if successful
+	    AH = 00h
+	    BL = current system inactivity timeout (1-21 minutes)
+	    CL = current video display inactivity timeout (1-63 minutes)
+	    DL = current fixed disk drive inactivity timeout (1-21 minutes)
+	    DH = modem state (FFh unchanged, 00h turned off, 01h turned on)
+	CF set on error
+	    AH = error code
+		01h input is out of range
+		02h no modem present
+SeeAlso: AX=4600h,INT 77
+

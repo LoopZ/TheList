@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1111
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - NETWORK REDIRECTOR - RENAME REMOTE FILE
+	AX = 1111h
+	SS = DS = DOS DS
+	SDA first filename pointer = offset of fully-qualified old name
+	SDA second filename pointer = offset of fully-qualified new name
+	SDA CDS pointer -> current directory structure for drive with file
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+Note:	this function is called by the DOS 3.1+ kernel
+SeeAlso: AX=1112h,INT 21/AH=56h,INT 21/AH=60h
+

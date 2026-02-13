@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1073
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - TANDY 2000 only - SCROLL LEFT PART OR ALL OF SCREEN
+	AH = 73h
+	AL = number of columns to shift scroll area, 00h to clear entire area
+	BH = new attributes for blanked columns at right
+	CH,CL = row, column of upper left corner of scroll area
+	DH,DL = row, column of lower right corner of scroll area
+Return: nothing
+SeeAlso: AH=06h,AH=07h,AH=72h"TANDY",INT 15/AH=12h/BH=05h
+

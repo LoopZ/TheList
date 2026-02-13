@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15530B
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.0+ - GET POWER MANAGEMENT EVENT
+	AX = 530Bh
+Return: CF clear if successful
+	    BX = event code (see #00479)
+	    CX = event information (APM v1.2) if BX=0003h or BX=0004h
+		bit 0: PCMCIA socket was powered down in suspend state
+	CF set on error
+	    AH = error code (03h,0Bh,80h) (see #00473)
+Notes:	although power management events are often asynchronous, notification
+	  will not be made until polled via this call to permit software to
+	  only receive event notification when it is prepared to process
+	  power management events; since these events are not very time-
+	  critical, it should be sufficient to poll once or twice per second
+	the critical resume notification is made after the system resumes
+	  from an emergency suspension; normally, the system BIOS only notifies
+	  its partner that it wishes to suspend and relies on the partner to
+	  actually request the suspension, but no notification is made on an
+	  emergency suspension
+	should not be called from within a hardware interrupt handler to avoid
+	  reentrance problems
+SeeAlso: AX=5307h,AX=5307h/CX=0001h"STAND-BY",AX=5307h/CX=0002h"SUSPEND"
+
+(Table 00479)
+Values for APM event code:
+ 0001h	system stand-by request
+ 0002h	system suspend request
+ 0003h	normal resume system notification
+ 0004h	critical resume system notification
+ 0005h	battery low notification
+---APM v1.1---
+ 0006h	power status change notification
+ 0007h	update time notification
+ 0008h	critical system suspend notification
+ 0009h	user system standby request notification
+ 000Ah	user system suspend request notification
+ 000Bh	system standby resume notification
+---APM v1.2---
+ 000Ch	capabilities change notification (see AX=5310h)
+------
+ 000Dh-00FFh reserved system events
+ 01xxh	reserved device events
+ 02xxh	OEM-defined APM events
+ 0300h-FFFFh reserved
+

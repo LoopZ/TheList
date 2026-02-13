@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FE3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - SET MESSAGE SERVICE VECTOR
+	AX = 5FE3h
+	ES:BX -> FAR routine for processing network messages
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+Notes:	handler must chain to previous handler as its first action
+	on invocation, ES:BX -> just-received message
+SeeAlso: AX=5FE2h
+

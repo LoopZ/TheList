@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620066
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_KBINIT" - ENABLE/DISABLE LOW-LEVEL KBD HANDLER
+	AX = 0066h
+	BX = new state (0000h disabled, 0001h enabled)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	When the low-level handler is enabled, "FG_GETKEY", "FG_INTKEY",
+	  "FG_WAITKEY", and all other functions calling DOS or BIOS keyboard
+	  services become unavailable
+SeeAlso: AX=0067h,AX=0068h,AX=0069h
+

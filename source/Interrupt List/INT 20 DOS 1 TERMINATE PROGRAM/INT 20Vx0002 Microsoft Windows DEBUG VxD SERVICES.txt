@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0002
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - DEBUG - VxD SERVICES
+	VxD = 0002h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01266,#01340
+
+(Table 01266)
+Values for DEBUG (VxD ID 0002h) service number:
+ 0000h	get version
+ 0001h	"DEBUG_Fault"
+ 0002h	"DEBUG_CheckFault"
+ 0003h	"_DEBUG_LoadSyms"
+SeeAlso: #01265,#01267
+

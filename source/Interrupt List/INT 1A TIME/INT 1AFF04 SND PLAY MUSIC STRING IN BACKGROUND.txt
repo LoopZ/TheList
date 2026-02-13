@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AFF04
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SND - PLAY MUSIC STRING IN BACKGROUND
+	AX = FF04h
+	DS:DX -> ASCIZ music string
+Return: AH = status
+	    00h successful (music begins playing in background)
+	    01h busy
+Note:	the music string accepted by SND is not the same as that accepted by
+	  BASIC and other programs which process music strings
+SeeAlso: AX=FF00h,AX=FF05h,INT 80/BX=0006h
+

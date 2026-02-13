@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF--DH00
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 UP - Rational Systems DOS/4GW - GET VERSION???
+	AH = FFh
+	DH = 00h
+	DL = ??? (78h seen)
+Return: CF clear
+	EAX = 4734FFFFh (high word is byte-swapped "4G") if DOS/4G installed
+Note:	Quarterdeck's DESQview/X X Toolkit library uses this call to determine
+	  whether the direct-mapped linear 4GB segment's selector is 34h or 38h
+SeeAlso: INT 21/AH=FFh/DH=00h"DOS/4GW"
+

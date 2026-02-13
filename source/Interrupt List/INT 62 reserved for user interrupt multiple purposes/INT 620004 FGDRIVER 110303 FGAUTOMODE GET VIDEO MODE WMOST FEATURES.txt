@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620004
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER 1.10,3.03+ - "FG_AUTOMODE" - GET VIDEO MODE W/MOST FEATURES
+	AX = 0004h
+Return: AX = proposed video mode number (see #03500 at AX=00B0h)
+Program: FGDRIVER is the external video driver for the shareware
+	  Fastgraph/Light by Ted Gruber Software
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=0005h,AX=004Bh,AX=00B0h,AX=00C1h,AX=00C7h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC03DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - TURN ON GRAPHICS SCREEN
+	AX = AC03h
+	DI = 1092h
+Return: nothing
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	this function does not restore the contents of the screen (see AX=AC15h)
+SeeAlso: AX=AC02h,AX=AC14h,AX=AC15h
+

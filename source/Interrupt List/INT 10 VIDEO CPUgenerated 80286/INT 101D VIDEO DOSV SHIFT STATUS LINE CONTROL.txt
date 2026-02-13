@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101D
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - DOS/V - SHIFT STATUS LINE CONTROL
+	AH = 1Dh
+	AL = function
+	    00h enable shift status line(s)
+		BX = number of lines to reserve at bottom of screen (usu. 1)
+	    01h disable shift status line
+		BX = number of lines reserved at bottom of screen (usually 1)
+	    02h get number of status lines
+		Return: BX = number of lines reserved for shift status
+SeeAlso: AH=19h
+

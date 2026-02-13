@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 211A
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - SET DISK TRANSFER AREA ADDRESS
+	AH = 1Ah
+	DS:DX -> Disk Transfer Area (DTA)
+Notes:	the DTA is set to PSP:0080h when a program is started
+	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+SeeAlso: AH=11h,AH=12h,AH=2Fh,AH=4Eh,AH=4Fh
+

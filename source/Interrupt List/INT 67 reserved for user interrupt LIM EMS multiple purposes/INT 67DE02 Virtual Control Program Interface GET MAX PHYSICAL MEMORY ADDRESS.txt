@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE02
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - GET MAX PHYSICAL MEMORY ADDRESS
+	AX = DE02h
+Return: AH = 00h  successful
+	    EDX = physical address of highest 4K memory page
+	AH nonzero: failed
+SeeAlso: AH=3Fh
+

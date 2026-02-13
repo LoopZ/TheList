@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0018
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - SET UNIDENTIFIED INTERNAL FLAG
+	AX = 0004h subfn 0018h
+	DS:DX -> request block (see #03425)
+Return: AX = status
+	    0000h success
+Desc:	Sets an unidentified BYTE variable in the redirector data segment to 1.
+Note:	In the VINES 5.53 "REDIR4" redirector, this variable is located at
+	  DS:0B53.
+
+Format of request block:
+Offset	Size	Description	(Table 03425)
+ 00h	WORD	0018h
+SeeAlso: #03426
+

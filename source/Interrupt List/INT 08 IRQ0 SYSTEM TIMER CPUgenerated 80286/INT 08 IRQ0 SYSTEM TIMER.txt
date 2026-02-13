@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 08
+  Category: H 	hardware
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 08 C - IRQ0 - SYSTEM TIMER
+Desc:	generated 18.2 times per second by channel 0 of the 8254 system timer,
+	  this interrupt is used to keep the time-of-day clock updated
+Notes:	programs which need to be invoked regularly should use INT 1C unless
+	  they need to reprogram the timer while still keeping the time-of-day
+	  clock running at the proper rate
+	default handler is at F000h:FEA5h in IBM PC and 100%-compatible BIOSes
+	may be masked by setting bit 0 on I/O port 21h
+SeeAlso: INT 1C,INT 4A"SYSTEM",INT 50"DESQview",INT 58"DoubleDOS",INT 70"IRQ8"
+SeeAlso: INT 78"GO32",INT D8"Screen Thief",MEM 0040h:0040h,MEM 0040h:006Ch
+

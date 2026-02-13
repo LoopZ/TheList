@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SFF2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - GET SEMAPHORE INFORMATION
+	AX = F217h subfn F2h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02267)
+	ES:DI -> reply buffer (see #02268)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=E2h
+
+Format of NetWare "Get Semaphore Information" request buffer:
+Offset	Size	Description	(Table 02267)
+ 00h	WORD	length of following data (max 84h)
+ 02h	BYTE	F2h (subfunction "Get Semaphore Information")
+ 03h	WORD	last record seen (0000h on first call)
+ 05h	BYTE	length of semaphore name (max 128)
+ 06h  N BYTEs	semaphore name
+SeeAlso: #02268
+
+Format of NetWare "Get Semaphore Information" reply buffer:
+Offset	Size	Description	(Table 02268)
+ 00h	WORD	next request record
+ 02h	WORD	open count
+ 04h	BYTE	value of semaphore
+ 05h	WORD	number of records returned
+ 07h 2N WORDs	list of logical connection number/task number pairs
+SeeAlso: #02267
+

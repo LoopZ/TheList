@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6153
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05- - "nm_ien116" - RESOLVE HOST NAME USING IEN116
+	AH = 53h
+	DS:DX -> ASCIZ name to be resolved (max 127 chars)
+Return: CF clear if successful
+	    DX:AX -> IP address of host
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Range:	INT 20 to INT E0, selected by configuration
+Note:	this function is not supported by v2.10+
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=54h
+

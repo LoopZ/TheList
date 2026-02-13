@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE200
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SecureDevice - LOGIN TO DRIVE
+	AX = E200h
+	DL = drive number (0 = A:)
+	DS:SI -> 104-byte key
+Return: AL = status
+	    00h unable to determine key's validity
+	    01h key is valid
+	    FFh key is invalid
+Program: SecureDevice is a copylefted device driver by Max Loewenthal and
+	  Arthur Helwig which turns one or more disk files into encrypted
+	  logical drives
+SeeAlso: AX=E201h,AX=E203h,AX=E209h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F06
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies '64300' BIOS - GET XRAM INFORMATION
+	AX = 5F06h
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+		    BL = XRAM presence (00h no XRAM, 01h present)
+SeeAlso: AX=5F05h,AX=5F08h
+

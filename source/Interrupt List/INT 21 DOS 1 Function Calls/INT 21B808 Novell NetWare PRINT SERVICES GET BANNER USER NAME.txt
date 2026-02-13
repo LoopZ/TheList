@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B808
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - GET BANNER USER NAME
+	AX = B808h
+	ES:BX -> 12-byte buffer for user name
+Return: AL = status
+	    00h successful
+Desc:	get the user name which is printed on the banner page
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the default name is the login name of the user
+SeeAlso: AX=B809h
+

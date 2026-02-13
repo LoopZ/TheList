@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F9400
+  Category: e 	electronic mail
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MICRO.EXE - INSTALLATION CHECK
+	AX = 9400h
+Return: AL = 07h or 08h if installed
+Program: MICRO.EXE is a TSR of the Microsoft Mail part of Workgroup Connection
+SeeAlso: AH=92h"Network Courier",AX=9401h,AX=9402h,AX=9403h,AX=9404h
+SeeAlso: INT 21/AH=3Fh"WORKGRP.SYS"
+

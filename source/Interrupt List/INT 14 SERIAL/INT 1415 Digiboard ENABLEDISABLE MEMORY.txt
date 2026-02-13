@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1415
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard - ENABLE/DISABLE MEMORY
+	AH = 15h
+	AL = new state (00h disabled, 01h enabled)
+Return: AH = status
+	    00h successful
+	    80h error
+	    FFh error
+SeeAlso: AH=14h"Digiboard",AH=16h"Digiboard"
+

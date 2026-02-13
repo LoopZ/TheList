@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF0E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - DELETE TRUSTEE FROM DIRECTORY
+	AH = E2h subfn 0Eh
+	DS:SI -> request buffer (see #01862)
+	ES:DI -> reply buffer (see #01863)
+Return: AL = status (00h,98h,9Bh,9Ch) (see #01839)
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=0Ch,AH=E2h/SF=0Dh,AX=F216h/SF=0Eh
+
+Format of NetWare "Delete Trustee From Directory" request buffer:
+Offset	Size	Description	(Table 01862)
+ 00h	WORD	length of following data (max 107h)
+ 02h	BYTE	0Eh (subfunction "Delete Trustee From Directory")
+ 03h	BYTE	directory handle
+ 04h	DWORD	(big-endian) object ID of trustee
+ 08h	BYTE	unused
+ 09h	BYTE	length of directory path (00h-FFh)
+ 0Ah  N BYTEs	directory path
+SeeAlso: #01863
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01863)
+ 00h	WORD	(call) 0000h (no data returned)
+SeeAlso: #01862,#01864,#01865
+

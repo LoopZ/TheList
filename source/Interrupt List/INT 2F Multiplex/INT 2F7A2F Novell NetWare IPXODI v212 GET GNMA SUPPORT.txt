@@ -1,0 +1,117 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A2F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare - IPXODI v2.12 - GET GNMA SUPPORT
+	AX = 7A2Fh
+Return: AX = 0000h if supported and active
+	    BX = support level (0001h)
+	    ES:DI -> GNMA entry point (see #02898)
+Program: GNMA is the Generic NetWare Management Agent
+Note:	IPXODI v2.12 is distributed as part of the Personal NetWare system
+	  bundled with Novell DOS 7
+SeeAlso: INT 7A/BX=001Fh
+
+(Table 02898)
+Call IPXODI GNMA entry point with:
+	BX = function
+	    0000h Register Responder
+		ES:SI -> responder structure (see #02899)
+		Return: CF clear if successful
+			CF set on error
+			AX = status
+			    FFFFh if specified responder is already registered
+			interrupts enabled
+			all other registers except DS, CS:IP, SS:SP destroyed
+		Note:	the responder structure must not be deallocated until
+			  the responder is deregistered
+	    0001h Deregister Responder
+		AX = type of responder to deregister
+		Return: AX = status
+			    FFFFh if specified responder not registered
+			interrupts enabled
+			ES:SI buffer from original registration may now be
+			      freed
+			all other registers except DS, CS:IP, SS:SP destroyed
+	    0002h Get Responders
+		Return: ES:SI -> head of responder structure list (read-only)
+			interrupts enabled
+			all other registers except DS, CS:IP, SS:SP destroyed
+		Note:	the returned list may change as tasks are swapped in
+			  and out
+	    0003h Send Acknowledgement
+		AL = completion code
+		    00h successful
+		    01h-FCh responder-specific
+		    FDh invalid function
+		CX = length of return data (0000h if none)
+		DX:SI -> return data
+		Return: interrupts enabled
+			all other registers except DS, CS:IP, SS:SP destroyed
+
+Format of NetWare GNMA responder structure:
+Offset	Size	Description	(Table 02899)
+ 00h	DWORD	-> next responder structure (used by GNMA)
+ 04h	DWORD	-> responder's request handler (called by GNMA) (see #02900)
+ 08h	WORD	responder ID
+ 0Ah	WORD	number of functions supported by responder
+ 0Ch	DWORD	reserved for use by GNMA
+SeeAlso: #02898
+
+(Table 02900)
+Values GNMA responder's request handler is called with:
+	AL = function
+	    00h responder request
+		CX = length of request data (not including header) (see #02901)
+		DS:DI -> request data (see #02901)
+		DS:BX -> 528-byte reply buffer
+		ES:SI -> responder structure (see #02899) from registration
+		DF clear
+		interrupts disabled
+		Return: AH = acknowledement status
+			    00h acknowledgment being returned synchronously
+			    nonzero: acknowledgment will be sent via GNMA
+				  function 0003h (see #02898)
+				CX = length of acknowledement data
+				DX:BX -> acknowledgment (may use provided
+					  buffer or another buffer)
+			AL = completion code
+			    00h successful
+			    01h-FCh responder-specific
+			    FDh invalid request
+			DF clear
+			interrupts disabled
+			other registers may be destroyed
+	    01h responder acknowledgement complete
+		ES:SI -> responder structure (see #02899) from registration
+		DF clear
+		interrupts disabled
+		Return:	DF clear
+			interrupts disabled
+			all registers (except SS:SP) may be destroyed
+		Note:	this function is called if function 00h returned a
+			  responder-provided data buffer; once this function
+			  is called, the responder may deallocate the buffer
+	    02h responder reset
+		ES:SI -> responder structure (see #02899) from registration
+		DF clear
+		interrupts disabled
+		Return:	DF clear
+			interrupts disabled
+			all registers (except SS:SP) may be destroyed
+		Note:	called whenever a network managment application
+			  terminates
+Note:	the responder handler should switch to a local stack if it enables
+	  interrupts or uses more than a few words of stack space
+SeeAlso: #02899
+
+Format of GNMA responder request data:
+Offset	Size	Description	(Table 02901)
+ 00h	WORD	responder's assigned ID
+ 02h	WORD	function number (defined by responder)
+ 04h  N BYTEs	data for request (max 528 bytes; actual amount is determined
+		  by CX)
+SeeAlso: #02900
+

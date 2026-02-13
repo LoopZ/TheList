@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6759
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - GET EXPANDED MEMORY HARDWARE INFORMATION
+	AH = 59h
+	AL = subfunction
+	    00h get hardware configuration array
+		ES:DI -> buffer to be filled with array (see #03655)
+	    01h get unallocated raw page count
+		Return: BX = unallocated raw pages
+			DX = total raw pages
+Return: AH = status (see also AH=58h"EMS 4.0")
+	    A4h access denied by operating system
+Note:	subfunction 00h is for use by operating systems only, and can be
+	  enabled or disabled at any time by the operating system
+
+Format of EMS hardware configuration array:
+Offset	Size	Description	(Table 03655)
+ 00h	WORD	size of raw EMM pages in paragraphs
+ 02h	WORD	number of alternate register sets
+ 04h	WORD	size of mapping-context save area in bytes
+ 06h	WORD	number of register sets assignable to DMA
+ 08h	WORD	DMA operation type
+		0000h DMA with alternate register sets
+		0001h only one DMA register set
+

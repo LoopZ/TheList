@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101F00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - XGA - GET DMQS (Display Mode Query and Set) DATA LENGTH
+	AX = 1F00h
+Return: AL = 1Fh if supported
+	    BX = number of bytes of DMQS data
+Note:	not supported on the original IBM XGA, only on XGA-NI (non-interlaced)
+	  and later models.
+SeeAlso: AX=1F01h
+

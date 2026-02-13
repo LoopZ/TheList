@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1223
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - CHECK IF CHARACTER DEVICE
+	AX = 1223h
+	DS = DOS DS
+	SS = DOS DS (must be using a DOS internal stack)
+	SDA+218h (DOS 3.10-3.30) = eight-character blank-padded name
+	SDA+22Bh (DOS 4.0-6.0) = eight-character blank-padded name
+	SDA file attribute field set
+	direction flag clear (i.e. CLD)
+Return: CF set if no character device by that name found
+	CF clear if found
+	    BH bits 4-0 copied from low byte of device attribute word
+	    BH bit 5 set, bits 7-6 clear
+Notes:	can only be called from within DOS
+	the check is skipped (always says "not device") if the volume ID bit
+	  of the file attribute field is set on entry
+SeeAlso: INT 21/AX=5D06h,INT 21/AX=5D0Bh
+

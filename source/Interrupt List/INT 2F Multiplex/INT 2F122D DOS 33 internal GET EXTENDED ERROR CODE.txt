@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F122D
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ internal - GET EXTENDED ERROR CODE
+	AX = 122Dh
+	SS = DOS DS
+Return: AX = current extended error code
+SeeAlso: AX=1222h,INT 21/AH=59h/BX=0000h
+

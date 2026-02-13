@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL92
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - ConcCP/M,DR Multiuser DOS - "C_ATTACH" - ATTACH TO DEFAULT CONSOLE
+	CL = 92h
+Return: AX = status
+Notes:	also supported by REAL/32
+	if the console is currently owned by another process, this function
+	  waits until the console is available
+SeeAlso: INT E0/CL=93h,INT E0/CL=94h,INT E0/CL=99h,INT E0/CL=9Eh,INT E0/CL=A2h
+

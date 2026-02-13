@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 157001
+  Category: x 	non-volatile config storage
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Tandy 1000SL/TL - WRITE TO EEPROM
+	AX = 7001h
+	BL = number of word to read (00h-3Fh)
+	DX = new value for EEPROM word
+Return: CF clear if function supported
+Note:	the EEPROMs are normally written only by the system setup program;
+	  changing the values can badly mess up a Tandy
+SeeAlso: AX=7000h
+

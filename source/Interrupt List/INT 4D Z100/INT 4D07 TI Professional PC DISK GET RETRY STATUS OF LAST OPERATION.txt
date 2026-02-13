@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4D07
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4D - TI Professional PC - DISK - GET RETRY STATUS OF LAST OPERATION
+	AH = 07h
+	DL = drive (bit 7 set for hard disk)
+Return: CF clear if status unchanged
+	CF set if status changed since last call
+	AH = 00h
+	AL = status of previous operation (see #00234 at INT 13/AH=01h)
+Notes:	this function is nearly the same as INT 13/AH=01h on a standard PC BIOS
+	the TI's BIOS tranparently performs a number of retries; this function
+	  returns the error status of a failed operation even if the operation
+	  succeeded on a retry
+SeeAlso: AH=00h,AH=01h,INT 13/AH=01h
+

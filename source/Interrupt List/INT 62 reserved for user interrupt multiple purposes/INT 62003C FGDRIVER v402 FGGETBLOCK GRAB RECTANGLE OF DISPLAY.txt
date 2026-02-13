@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62003C
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETBLOCK" - GRAB RECTANGLE OF DISPLAY
+	AX = 003Ch
+	ES:BX -> buffer for screen contents
+	CX = leftmost column
+	DX = rightmost column
+	SI = top row
+	DI = bottom row
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	In text modes, coordinates are character positions; in graphics modes,
+	  they are defined in screen space, and the left and right edges are
+	  adjusted to a byte boundary if necessary
+	Use "FG_IMAGESIZ" (see AX=005Ch) to determine the required buffer size
+SeeAlso: AX=0044h,AX=005Ch,AX=0098h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200D5
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBOPEN" - MAKE VIRTUAL BUFFER ACTIVE
+	AX = 00D5h
+	BX = virtual buffer handle
+Return: AX = status
+	    0000h successful
+	    FFFEh no buffer defined for specified handle
+	    FFFFh invalid buffer handle
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=00CDh,AX=00CEh,AX=00D1h,AX=00D4h,AX=00D9h
+

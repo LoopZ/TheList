@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148100
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - VIDEO FOSSIL - RETURN VFOSSIL INFORMATION
+	AX = 8100h
+	ES:DI -> buffer for VFOSSIL information (see #00368)
+Return: AX = 1954h if installed
+SeeAlso: AH=7Eh,AX=8101h
+
+Format of VFOSSIL information:
+Offset	Size	Description	(Table 00368)
+ 00h	WORD	size of information in bytes, including this field
+ 02h	WORD	VFOSSIL major version
+ 04h	WORD	VFOSSIL revision level
+ 06h	WORD	highest VFOSSIL application function supported
+

@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217302
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - FAT32 - "Get_ExtDPB" - GET EXTENDED DPB
+	AX = 7302h
+	DL = drive number (00h=default, 01h=A:, etc.)
+	ES:DI -> buffer for returned data (see #01786)
+	CX = length of buffer (003Fh for Windows95)
+	SI = signature (undocumented, must be F1A6h to get device driver
+	      address and next-DBP pointer) (see #01787)
+Return: CF clear if successful
+	    ES:DI buffer filled
+	CF set on error
+	    AX = error code
+	       0018h bad buffer length
+SeeAlso: AX=7303h,AX=7304h,AH=1Fh,AH=32h
+
+Format of Get_ExtDPB data buffer:
+Offset	Size	Description	(Table 01786)
+ 00h	WORD	(call) length of following data (003Dh)
+ 02h 61 BYTEs	(ret) drive parameter block (DPB) (see #01787)
+ 
+Format of Extended Drive Parameter Block:
+Offset	Size	Description	(Table 01787)
+ 00h 24 BYTEs	standard DOS 4+ DPB
+ 18h	BYTE	"dpb_flags" (undocumented)
+		FFh force media check
+ 19h	DWORD	pointer to next DPB (see note)
+ 1Dh	WORD	cluster at which to start search for free space when writing,
+		usually the last cluster allocated
+ 1Fh	WORD	number of free clusters on drive, FFFFh = unknown
+ 21h	WORD	high word of free cluster count
+ 23h	WORD	active FAT/mirroring
+		bit 7: do not mirror active FAT to inactive FATs
+		bits 6-4: reserved (0)
+		bits 3-0: the 0-based FAT number of the active FAT
+		    (only meaningful if mirroring disabled)		
+ 25h	WORD	sector number of file system information sector, or
+		  FFFFh for none (see also #01788)
+ 27h	WORD	sector number of backup boot sector, or FFFFh for none
+ 29h	DWORD	first sector number of the first cluster
+ 2Dh	DWORD	maximum cluster number
+ 31h	DWORD	number of sectors occupied by FAT
+ 35h	DWORD	cluster number of start of root directory
+ 39h	DWORD	cluster number at which to start searching for free space
+Notes:	except for offset 18h, all of the first 33 bytes are identical to
+	  the standard DOS 4-6 DPB
+	unless the proper value is given in SI on entry to "Get_ExtDBP", the
+	  next-DPB pointer and device driver address are set to 0000h:0000h
+SeeAlso: #01786,#01395 at AH=32h,#01664
+
+Format of File System Information structure:
+Offset	Size	Description	(Table 01788)
+ 00h	DWORD	signature 61417272h
+ 04h	DWORD	number of free clusters (FFFFFFFFh if unknown)
+ 08h	DWORD	most recently allocated cluster
+ 0Ch 12 BYTEs	reserved
+SeeAlso: #01787
+

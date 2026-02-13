@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62005B
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_IMAGEBUF" - SPECIFY TEMPORARY IMAGE BUFFER
+	AX = 005Bh
+	ES:BX -> buffer to be used when creating or displaying GIF/PCX/PPR/SPR
+		  images
+	CX = size of buffer in bytes or 0000h to use internal buffer
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	Fastgraph's internal buffer is 4096 bytes; this function allows the
+	  application to define a larger buffer which will typically speed
+	  processing
+SeeAlso: AX=006Ch,AX=006Dh,AX=006Eh,AX=00B9h,AX=00BAh,AX=00BBh
+

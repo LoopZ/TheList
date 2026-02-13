@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1518
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_setcolors" - SET CONSOLE COLORS
+	AH = 18h
+	STACK:	WORD	new background/foreground colors
+			bits 3-0: foreground
+			bits 7-4: background
+			bits 15-8: unused
+Return: AX = color
+SeeAlso: AH=14h"VMiX",AH=17h"VMiX",AH=19h"VMiX"
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 0D
+  Category: H 	hardware
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 0D C - IRQ5 - Tandy 1000 60 Hz RAM REFRESH
+Desc:	used to ensure that the dynamic RAM retains its contents in earlier
+	  1000-series models; later models use normal DMA for RAM refresh
+	  (some early models have no DMA unless it is added via an expansion
+	  card)
+SeeAlso: INT 55
+

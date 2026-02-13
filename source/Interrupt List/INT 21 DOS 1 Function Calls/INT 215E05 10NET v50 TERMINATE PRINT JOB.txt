@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215E05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - 10NET v5.0 - TERMINATE PRINT JOB
+	AX = 5E05h
+	BX = zero-based redirection list index (see AX=5F02h)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+Note:	this call resets the spool termination mode to "truncate"
+	  (see AX=5D08h)
+SeeAlso: AX=5E04h"10NET",AX=5E06h
+

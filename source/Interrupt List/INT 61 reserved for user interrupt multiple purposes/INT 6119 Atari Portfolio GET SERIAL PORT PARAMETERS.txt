@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6119
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - GET SERIAL PORT PARAMETERS
+	AH = 19h
+	DX = serial port number
+Return: AH = status
+	    00h successful
+		AL = composite parameters (see #00300 at INT 14/AH=00h"SERIAL")
+	    other error
+SeeAlso: AH=00h"Portfolio",AH=15h"Portfolio",AH=1Ah"Portfolio"
+

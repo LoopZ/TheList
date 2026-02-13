@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8200
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - RESPLAY - SAMPLE/PLAYBACK
+	AX = 8200h
+	DX:DI -> start of sample space
+	CX:BX = length in bytes
+Return: AX = status (see #02958)
+Program: RESPLAY is a freeware sound sampling/playback utility by Mark J. Cox
+SeeAlso: AX=8201h"RESPLAY",AX=8210h
+
+(Table 02958)
+Values for RESPLAY status:
+ 1000h	successful
+ 2000h	not initialized (see AX=8210h)
+ other	RESPLAY not installed
+

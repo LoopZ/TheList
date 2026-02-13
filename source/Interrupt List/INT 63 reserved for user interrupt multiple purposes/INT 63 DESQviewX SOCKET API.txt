@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 63
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - DESQview/X - SOCKET API
+InstallCheck:	test for the string "dvxunix" (yes, lowercase) at offset 9
+	  from the interrupt handler start (see #03515)
+Notes:	parameters are passed by patching (!) data field immediately following
+	  the entry point, as detailed below (see #03515); the preferred
+	  method for calling the socket API is via INT 15/AX=DE2Eh
+SeeAlso: INT 15/AX=DE2Eh,INT BE"DESQview"
+Index:	installation check;DESQview/X socket interface
+
+Format of DESQview/X socket interrupt handler entry:
+Offset	Size	Description	(Table 03515)
+ 00h  3 BYTEs	near jump or short jump + NOP to actual interrupt handler
+ 03h	WORD	offset from following pointer for initial top of local stack
+ 05h	DWORD	pointer to argument/stack block (see INT 15/AX=DE2Eh)
+ 09h  7 BYTEs	signature "dvxunix"
+

@@ -1,0 +1,83 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - WORKGRP.SYS - GET API ENTRY POINT
+	AX = 4402h
+	BX = file handle for device "NET$HLP$"
+	CX = 0008h
+	DS:DX -> buffer for entry point record (see #01485)
+Return: CF clear if successful
+	    AX = number of bytes actually read
+	CF set on error
+	    AX = error code
+Program: WORKGRP.SYS is the portion of Microsoft's Workgroup Connection which
+	  permits communication with PCs running Windows for Workgroups or
+	  LAN Manager
+SeeAlso: AH=3Fh"WORKGRP.SYS"
+
+Format of WORKGRP.SYS entry point record:
+Offset	Size	Description	(Table 01485)
+ 00h	WORD	3633h  \ signature???
+ 02h	WORD	EF6Fh  /
+ 04h	DWORD	address of entry point (see #01486)
+Note:	first four bytes of buffer must be 6Fh E9h 33h 36h on entry when using
+	  IOCTL rather than READ to get the entry point record
+
+(Table 01486)
+Call WORKGRP entry point with:
+	STACK:	WORD	function number (0000h-0009h)
+Return: STACK unchanged
+SeeAlso: #01487,#01488,#01489,#01490,#01491,#01492,#01493,#01494
+
+(Table 01487)
+Call WORKGRP function 00h with:
+	STACK:	WORD	0000h (function "get ???")
+Return: DX:AX -> data table
+
+(Table 01488)
+Call WORKGRP function 01h with:
+	STACK:	WORD	0001h (function "hook ???")
+Return: STACK:	DWORD	pointer to ???
+		WORD	0001h (function number)
+
+(Table 01489)
+Call WORKGRP function 02h with:
+	STACK:	WORD	0002h (function "unhook ???")
+	???
+Return: ???
+
+(Table 01490)
+Call WORKGRP function 03h with:
+	STACK:	WORD	0003h (function "reenable printer port")
+		WORD	LPT port number
+Return: ???
+
+(Table 01491)
+Call WORKGRP function 04h with:
+	STACK:	WORD	0004h (function "disable printer port")
+		WORD	LPT port number
+Return: ???
+
+(Table 01492)
+Call WORKGRP function 05h with:
+	STACK:	WORD	0005h (function "???")
+		???
+Return: ???
+
+(Table 01493)
+Call WORKGRP function 06h with:
+	STACK:	WORD	0006h (function "???")
+Return: STACK unchanged
+	AX = 0000h
+	DX = 0000h
+
+(Table 01494)
+Call WORKGRP functions 07h-09h with:
+	STACK:	WORD	0007h-0009h (NOP functions)
+Return: STACK unchanged
+	AX = 0001h
+	DX = 0000h
+

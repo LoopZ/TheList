@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6003
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - BASIC FUNC - RELEASE TYPE
+	AH = 03h
+	BX = handle
+Return: CF set on error
+	   DH = error code (see #03305)
+	CF clear if successful
+SeeAlso: AH=02h"FTP"
+

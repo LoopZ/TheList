@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1690
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS-DOS 7 kernel - GET/SET ???
+	AX = 1690h
+	ES:BX -> ???
+Return: ES:BX -> ??? data (see #02722)
+SeeAlso: AX=1611h,AX=1614h
+
+Format of MS-DOS 7 kernel ??? data:
+Offset	Size	Description	(Table 02722)
+ 00h	DWORD	-> ??? data (appears to list the installed drivers)
+ 04h	DWORD	-> ??? (value passed in via ES:BX is stored here)
+

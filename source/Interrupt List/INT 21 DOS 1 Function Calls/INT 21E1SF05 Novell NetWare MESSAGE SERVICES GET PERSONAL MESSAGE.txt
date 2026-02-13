@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E1--SF05
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare - MESSAGE SERVICES - GET PERSONAL MESSAGE
+	AH = E1h subfn 05h
+	DS:SI -> request buffer (see #01828)
+	ES:DI -> reply buffer (see #01829)
+Return: AL = status
+	    00h successful
+	    FEh out of dynamic workspace
+Desc:	return the oldest message in the default file server's message queue
+	  for the calling workstation
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0-2.x
+SeeAlso: AH=E1h/SF=01h,AH=E1h/SF=04h,AH=E1h/SF=06h,AH=E1h/SF=08h
+
+Format of NetWare "Get Personal Message" request buffer:
+Offset	Size	Description	(Table 01828)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	05h (subfunction "Get Personal Message")
+SeeAlso: #01829
+
+Format of NetWare "Get Personal Message" reply buffer:
+Offset	Size	Description	(Table 01829)
+ 00h	WORD	(call) size of following results buffer (max 80h)
+ 02h	BYTE	connection number of sending station
+ 03h	BYTE	length of message (00h-7Eh)
+		00h if no personal messages pending
+ 04h  N BYTEs	message (no control characters or characters > 7Eh)
+SeeAlso: #01828
+

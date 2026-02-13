@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - VGAsave v1.93 - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    BX = segment of resident code
+Program: VGAsave is a freeware VGA-specific, mouse-aware screenblanker by Bill
+	  Javurek
+Range:	AH=C0h to AH=FFh, selected by scanning for a free multiplex number
+Note:	the transient portion of VGAsave compares the first 38 bytes of the
+	  resident code (addressed through BX) against its own copy of the
+	  resident code to complete the installation check
+SeeAlso: INT 14/AX=AA01h,INT 2F/AH=93h
+Index:	screen saver;VGAsave
+

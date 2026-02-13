@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14A7
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - 3com BAPI SERIAL I/O - READ STATUS
+	AH = A7h
+	DH = session ID (00h for external session managment)
+Return: AH = return code (00h,03h,07h,0Ah,0Bh) (see #00394)
+	CX = number of bytes available for reading
+Note:	Novell TELAPI.EXE v4.01 always returns either 0 or 1 bytes available
+SeeAlso: AH=A5h"BAPI"
+

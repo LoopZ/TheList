@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2187
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "GETPID" - GET PROCESS IDENTIFIER
+	AH = 87h
+Return: AX = PID
+	BX = parent process's PID
+	CX = Command Subgroup ID (CSID)
+Program: European MS-DOS 4.0 was written for Siemens in Germany and then used
+	  by several other European OEMs; its release falls between mainstream
+	  versions 3.2 and 3.3
+Desc:	determine an identifier by which to access the calling process
+Notes:	called by MS C v5.1 getpid() function
+	this function apparently must return AX=0001h for INT 21/AH=80h to
+	  succeed
+	one possible check for European MS-DOS 4.0 is to issue this call with
+	  AL=00h and check whether AL is nonzero on return
+SeeAlso: AH=30h,AH=62h,AH=80h
+Index:	installation check;European MS-DOS 4.0
+

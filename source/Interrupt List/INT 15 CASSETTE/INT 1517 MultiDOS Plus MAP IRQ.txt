@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1517
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - MAP IRQ
+	AH = 17h
+	AL = IRQ to map (01h-0Fh)
+	BX = offset of task control block (see #00456) to associate with IRQ
+Return: AX = status
+	    0000h successful
+	    other invalid IRQ
+Note:	the EMS map of the specified TCB is associated with the given interrupt
+SeeAlso: AH=18h"MultiDOS",AH=19h"MultiDOS"
+

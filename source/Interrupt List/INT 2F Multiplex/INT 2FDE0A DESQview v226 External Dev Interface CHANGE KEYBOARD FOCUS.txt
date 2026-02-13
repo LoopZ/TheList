@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE0A
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - CHANGE KEYBOARD FOCUS
+	AX = DE0Ah
+	BX = mapping context of task receiving focus
+	DX = handle of running task
+Notes:	driver should pass this call to previous handler before processing it
+	this call often occurs inside a keyboard interrupt
+	DV 2.42 does not provide this call to XDI handlers running inside a
+	  window; instead, it directly calls the INT 2F handler which was
+	  active at the time DV started
+SeeAlso: INT 15/AX=DE26h,INT 15/AX=DE2Fh
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A12CX4D52
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Microsoft Realtime Compression Interface (MRCI) - RAM-BASED SERVER
+	AX = 4A12h
+	CX = 4D52h ("MR")
+	DX = 4349h ("CI")
+Return: CX = 4943h ("IC") if installed
+	DX = 524Dh ("RM") if installed
+	    ES:DI -> MRCINFO structure (see #00725 at INT 1A/AX=B001h)
+Note:	this call is functionally identical to INT 1A/AX=B001h, but should be
+	  called first, as the latter call is used for the first, ROM-based
+	  MRCI server, while this call is used for RAM-based servers which
+	  may be partially or entirely replacing a prior server
+SeeAlso: AX=4A12h/CX=5354h,INT 1A/AX=B001h
+

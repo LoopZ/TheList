@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0207
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - LET SYSMGR PROCESS FILE SEL MENU KEYSTROKE
+	DI = 0207h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file menu structure (see #03282)
+		DWORD	pointer to edit record (see #03285 at INT 60/DI=0400h)
+		WORD	keystroke
+Return: AX = status (see #03284)
+	STACK unchanged
+SeeAlso: INT 60/DI=0205h,INT 60/DI=0208h
+
+(Table 03284)
+Values for HP 95LX System Manager status:
+ 0000h	keystroke processed, call INT 60/DI=0206h to refresh menu
+ 0001h	redisplay application area before refreshing menu
+ 0002h	user confirmed selection, filename is in edit record's buffer
+ 0003h	user aborted menu
+ FFFBh	bad filename
+ FFFCh	bad directory
+ FFFDh	bad drive
+ FFFEh	unknown keystroke
+ FFFFh	keystroke known but invalid in current context
+

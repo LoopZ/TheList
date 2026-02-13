@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620032
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FLICSIZE" - GET IMAGE SIZE
+	AX = 0032h
+	ES:BX -> FLICSIZE variable pointer record (see #03480)
+Return: image height/width buffers updated; height is set to FFFFh on error
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=002Eh,AX=0030h
+
+Format of FGDRIVER FLICSIZE variable pointer record:
+Offset	Size	Description	(Table 03480)
+ 00h	WORD	segment of buffer for 128-byte FLI/FLC file header
+ 02h	WORD	offset of buffer for 128-byte FLI/FLC file header
+ 04h	WORD	segment of WORD buffer for image width in pixels
+ 06h	WORD	offset of WORD buffer for image width in pixels
+ 08h	WORD	segment of WORD buffer for image height in pixels
+ 0Ah	WORD	offset of WORD buffer for image height in pixels
+

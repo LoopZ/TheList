@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2137DEBX899D
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DIET v1.43e - READ EMS STATUS
+	AX = 37DEh
+	BX = 899Dh ('DI' + 'ET')
+Return: AX = 0000h
+	CX = EMS status
+	    0000h not used
+	    0001h used as work area
+	    0002h used for code and as work area
+	DX = EMM handle when EMS is in use
+

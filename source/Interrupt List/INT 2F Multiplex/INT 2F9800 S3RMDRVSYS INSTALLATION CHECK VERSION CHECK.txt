@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F9800
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - S3RMDRV.SYS - INSTALLATION CHECK / VERSION CHECK
+	AX = 9800h
+	BX = function
+	    0000h installation check
+		Return: AX = 524Dh ('RM') if installed
+	    0001h get driver version
+		Return: AX = driver version (AH=major, AL=BCD minor)
+Program: S3RMDRV.SYS provides support for the S3 MPEG driver FMPDRV
+SeeAlso: AX=9803h
+

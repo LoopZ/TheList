@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2195
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - HARD ERROR PROCESSING
+	AH = 95h
+	AL = new state
+	   00h enabled
+	   01h disabled, automatically fail hard errors
+Return: AX = previous setting
+Desc:	specify whether hard (critical) errors should automatically fail the
+	  system call or invoke an INT 24
+SeeAlso: INT 24,INT 21/AH=59h/BX=0001h
+

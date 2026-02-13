@@ -1,0 +1,693 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F0105
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - IBM 8514/A Adapter Interface (HDILOAD.EXE)
+	AX = 0105h
+Return: CF set on error
+	CF clear if successful
+	    CX:DX -> array of FAR pointers to entry points (see #03877)
+Note:	most functions are invoked by pushing the DWORD parameter block pointer
+	  and then performing a FAR call via the appropriate vector of the
+	  entry point array, placing the FAR address of the function's
+	  parameter block on the top of the stack
+SeeAlso: AX=0104h,AX=0106h,AX=ABCDh
+
+(Table 03877)
+Values for HDILOAD function number: (do FAR call via entry_points+4*function)
+ 08h	HOPEN	Open Adapter (see #03909)
+ 09h	HSMX	Set Mix (see #03938)
+ 10h	HINT	Interrupt (see #03905)
+ 13h	HLDPAL	Load Palette (see #03906)
+ 15h	HBBW	BitBLT Write Image Data (see #03892)
+ 17h	HBBR	BitBLT Read Image Data (see #03893)
+ 18h	HBBCHN	Chained Data Go (see #03891)
+ 19h	HBBC	BitBLT Copy Data (see #03890)
+ 1Dh	HQMODE	Get Current Mode (see #03915)
+ 20h	HRECT	Fill Rectangle (see #03917)
+ 22h	HCLOSE	Close Adapter and place in quiescent state (see #03898)
+ 30h	HINIT	Initialize State (see #03904)
+ 31h	HSYNC	Synchronize Adapter (see #03943)
+ 39h	HSPAL	Save Palette (see #03940)
+ 3Ah	HRPAL	Restore Palette (see #03920)
+ ???	HSGQ	Set Graphics Quality (see #03929)
+ ???	HSCOORD	Set Coordinate Type (see #03926)
+ ???	HESC	Escape, Terminate Processing (see #03903)
+ ???	HSBCOL	Set Background Color (see #03921)
+ ???	HSBP	Set Bit Plane Controls (see #03922)
+ ???	HSCMP	Set Color Comparison Register (see #03924)
+ ???	HSCOL	Set Color (see #03925)
+ ???	HSHS	Set Scissors (clipping rectangle) (see #03930)
+ ???	HXLATE	Assign Text Color (see #03944)
+ ???	HQMODES	Get Adapter Modes (see #03916)
+ ???	HQDPS	Get Drawing Process State Size (see #03914)
+ ???	HQDFPAL	Get Default Palette (see #03913)
+ ???	HQCOORD	Get Coordinate Type (see #03911)
+ ???	HQCP	Get Current Position (see #03912)
+ ???	HSMODE	Change Mode (see #03936)
+ ???	HLINE	Draw Line at Given Position (see #03907)
+ ???	HCLINE	Draw Line at Current Position (see #03897)
+ ???	HRLINE	Draw Line Relative from Given Position (see #03918)
+ ???	HCRLINE	Draw Line Relative at Current Position (see #03900)
+ ???	HSLT	Set Line Type (see #03933)
+ ???	HSLW	Set Line Width (see #03935)
+ ???	HSLPC	Save Line Pattern Count (see #03932)
+ ???	HRLPC	Restore Line Pattern Count (see #03919)
+ ???	HCBBW	BitBLT Write Image Data at Current Position (see #03894)
+ ???	HBAR	Begin Area (see #03889)
+ ???	HEAR	End Area (see #03901)
+ ???	HSPATT	Set Pattern (see #03941)
+ ???	HSPATTO	Set Pattern Reference Point (see #03942)
+ ???	HEGS	Erase Graphics Screen (see #03902)
+ ???	HSCP	Set Current Position (see #03927)
+ ???	HMRK	Set Marker (see #03908)
+ ???	HCMRK	Set Marker at Current Position (see #03899)
+ ???	HSMARK	Set Marker Shape (see #03937)
+ ???	HSCS	Set Character Set (see #03928)
+ ???	HCHST	Write Character String at Given Position (see #03896)
+ ???	HCCHST	Write Character String at Current Position (see #03895)
+ ???	HSCELL	Set Cell Size for Alphanumeric Text (see #03923)
+ ???	ABLOCKMFI Write Character/Attribute Block MFI (see #03880)
+ ???	ABLOCKCGA Write Character Block CGA (see #03878)
+ ???	AERASE	Erase Rectangle (see #03883)
+ ???	ASCROLL Scroll Rectangle (see #03884)
+ ???	ACURSOR	Set Alphanumerics Cursor Position (see #03882)
+ ???	ASCUR	Set Alphanumeric Cursor Shape (see #03885)
+ ???	ASFONT	Set Font (see #03886)
+ ???	AXLATE	Assign Alphanumeric Color (see #03888)
+
+Format of ABLOCKCGA parameter block:
+Offset	Size	Description	(Table 03878)
+ 00h	WORD	000Ah (length of following data)
+ 02h	WORD	top-left coordinate of character block
+ 04h	WORD	width of block
+ 06h	DWORD	-> block of WORDs describing characters (see #03879)
+ 0Ah	BYTE	length of block in characters
+ 0Bh	BYTE	highlight attribute
+		bit 4: transparent background
+		bit 5: overstrike
+		bit 6: reverse video
+		bit 7: underscore
+SeeAlso: #03880
+
+Bitfields for one character in ABLOCKCGA character block:
+Bit(s)	Description	(Table 03879)
+ 3-0	foreground attribute
+ 7-4	background attribute
+ 15-8	character code
+
+Format of ABLOCKMFI parameter block:
+Offset	Size	Description	(Table 03880)
+ 00h	WORD	0009h (length of following data)
+ 02h	WORD	top-left coordinate of character block
+ 04h	WORD	width of block
+ 06h	DWORD	-> block of DWORDs describing characters (see #03881)
+ 0Ah	BYTE	length of block in characters
+SeeAlso: #03878
+
+Bitfields for one character in ABLOCKMFI character block:
+Bit(s)	Description	(Table 03881)
+ 7-0	reserved
+ 9-8	low two bits of font number
+ 12	transparent background
+ 13	overstrike
+ 14	reverse video
+ 15	underscore
+ 19-16	foreground color attribute
+ 23-20	background color attribute
+ 31-24	character code
+
+Format of ACURSOR parameter block:
+Offset	Size	Description	(Table 03882)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	column (0-based)
+ 03h	BYTE	row (0-based)
+SeeAlso: #03885
+
+Format of AERASE parameter block:
+Offset	Size	Description	(Table 03883)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	left-most column (0-based)
+ 03h	BYTE	top-most row (0-based)
+ 04h	BYTE	rectangle's width in character cells
+ 05h	BYTE	rectangle's height in character cells
+ 06h	BYTE	background color (bits 7-4)
+SeeAlso: #03884
+
+Format of ASCROLL parameter block:
+Offset	Size	Description	(Table 03884)
+ 00h	WORD	0006h (length of following data)
+ 02h	BYTE	left-most column (0-based) of source
+ 03h	BYTE	top-most row (0-based) of source
+ 04h	BYTE	rectangle's width in character cells
+ 05h	BYTE	rectangle's height in character cells
+ 06h	BYTE	left-most column (0-based) of destination
+ 07h	BYTE	top-most row (0-based) of destination
+SeeAlso: #03883
+
+Format of ASCUR parameter block:
+Offset	Size	Description	(Table 03885)
+ 00h	WORD	0003h (length of following data)
+ 02h	BYTE	cursor start line (00h = top of cell, FFh = keep current shape)
+ 03h	BYTE	cursor stop line
+ 04h	BYTE	cursor attribute
+		00h normal
+		01h hidden
+		02h left-arrow (requires start = 2 and stop = bottom of cell)
+		03h right-arrow (requires start = 2 and stop = bottom of cell)
+Notes:	no cursor is shown if the start line is greater than the stop line
+	the alphanumeric cursor is hidden after each mode change
+SeeAlso: #03882,INT 10/AH=01h
+
+Format of ASFONT parameter block:
+Offset	Size	Description	(Table 03886)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	font number (0-3)
+ 03h	DWORD	-> character set definition block (see #03887)
+
+Format of 8514/A character set definition block:
+Offset	Size	Description	(Table 03887)
+ 00h	BYTE	reserved
+ 01h	BYTE	type of character set
+		00h bitmapped, 01h&02h reserved, 03h short-stroke font
+ 02h	BYTE	reserved
+ 03h	DWORD	reserved
+ 07h	BYTE	cell width in pixels
+ 08h	BYTE	cell height in pixels
+ 09h	BYTE	reserved
+ 0Ah	WORD	cell size in bytes
+ 0Ch	WORD	flags
+		bit 15: reserved (0)
+		bit 14: color bitmap
+		bit 13: proportional spacing
+ 0Eh	DWORD	-> index table
+ 12h	DWORD	-> character width table
+ 16h	BYTE	initial code point
+ 17h	BYTE	final code point
+ 18h	DWORD	-> character definition table
+ 1Ch	WORD	reserved
+ 1Eh	DWORD	-> second character definition table
+ 22h	WORD	reserved
+ 24h	DWORD	-> third character definition table
+
+Format of AXLATE parameter block:
+Offset	Size	Description	(Table 03888)
+ 00h	WORD	0080h (length of following data)
+ 02h 64 BYTEs	character foreground translation table
+ 42h 64 BYTEs	character background translation table
+
+Format of HBAR parameter block:
+Offset	Size	Description	(Table 03889)
+ 00h	WORD	0000h (no data following)
+SeeAlso: #03901
+
+Format of HBBC parameter block:
+Offset	Size	Description	(Table 03890)
+ 00h	WORD	0010h (length of following data)
+ 02h	WORD	data format
+		0000h across-the-plane copy (color expansion)
+		0008h through-the-plane copy
+ 04h	WORD	data rectangle's width
+ 06h	WORD	data rectangle's height
+ 08h	BYTE	source bit plane number (across-the-plane copies only)
+ 09h	BYTE	reserved
+ 0Ah  2 WORDs	X,Y coordinates of source's upper-left corner in display memory
+ 0Eh  2 WORDs	X,Y coordinates of destination's upper-left corner in
+		  display memory
+Note:	copies data from one location in video memory to another
+SeeAlso: #03891
+
+Format of HBBCHN parameter block:
+Offset	Size	Description	(Table 03891)
+ 00h	WORD	0006h (length of following data)
+ 02h	DWORD	-> data buffer in system memory
+ 06h	WORD	number of bytes to transfer
+Note:	this function performs the actual data transfer for a bitBLT set up
+	  with HBBR, HBBW, or HCBBW
+SeeAlso: #03890,#03892,#03893,#03894
+
+Format of HBBR parameter block:
+Offset	Size	Description	(Table 03892)
+ 00h	WORD	000Ch or 0014h (length of following data)
+ 02h	WORD	data format
+		0000h across-the-plane copy (color expansion)
+		0008h through-the-plane copy
+ 04h	WORD	data rectangle's width
+ 06h	WORD	data rectangle's height
+ 08h	BYTE	source bit plane number
+ 09h	BYTE	reserved
+ 0Ah  2 WORDs	X,Y coordinates of destination's upper-left corner in
+		  display memory
+---optional---
+ 0Eh	WORD	sub-rectangle left margin in pixels
+ 10h	WORD	sub-rectangle top margin in pixels
+ 12h	WORD	sub-rectangle width
+ 14h	WORD	sub-rectangle height
+SeeAlso: #03891,#03892,#03894
+
+Format of HBBW parameter block:
+Offset	Size	Description	(Table 03893)
+ 00h	WORD	000Ah or 0012h (length of following data)
+ 02h	WORD	data format
+		0000h across-the-plane copy (color expansion)
+		0008h through-the-plane copy
+ 04h	WORD	data rectangle's width
+ 06h	WORD	data rectangle's height
+ 08h  2 WORDs	X,Y coordinates of destination in display memory
+---optional---
+ 0Ch	WORD	sub-rectangle left margin in pixels
+ 0Eh	WORD	sub-rectangle top margin in pixels
+ 10h	WORD	sub-rectangle width
+ 12h	WORD	sub-rectangle height
+SeeAlso: #03891,#03893,#03894
+
+Format of HCBBW parameter block:
+Offset	Size	Description	(Table 03894)
+ 00h	WORD	0006h or 000Eh (length of following data)
+ 02h	WORD	data format
+		0000h across-the-plane copy (color expansion)
+		0008h through-the-plane copy
+ 04h	WORD	data rectangle's width
+ 06h	WORD	data rectangle's height
+---optional---
+ 08h	WORD	sub-rectangle left margin in pixels
+ 0Ah	WORD	sub-rectangle top margin in pixels
+ 0Ch	WORD	sub-rectangle width
+ 0Eh	WORD	sub-rectangle height
+SeeAlso: #03891,#03892,#03893
+
+Format of HCCHST parameter block:
+Offset	Size	Description	(Table 03895)
+ 00h	WORD	length of following data
+ 02h  N BYTEs	ASCII string to display (length given by 'length' field above)
+SeeAlso: #03896
+
+Format of HCHST parameter block:
+Offset	Size	Description	(Table 03896)
+ 00h	WORD	length of following data
+ 02h  2 WORDs	X,Y of left-bottom corner of string on screen
+ 06h  N BYTEs	ASCII string to display (length given by 'length' field above)
+SeeAlso: #03895
+
+Format of HCLINE parameter block:
+Offset	Size	Description	(Table 03897)
+ 00h	WORD	length of following data (multiple of 4)
+ 02h 2N WORDs	X,Y coordinates for each of N points in polyline
+Notes:	the first line segment is drawn beginning at the current position
+	on completion, the current position is set to the last point drawn
+SeeAlso: #03907,#03918,#03900
+
+Format of HCLOSE parameter block:
+Offset	Size	Description	(Table 03898)
+ 00h	WORD	0001h (length of following data)
+ 01h	BYTE	(ret) return code
+SeeAlso: #03909
+
+Format of HCMRK parameter block:
+Offset	Size	Description	(Table 03899)
+ 00h	WORD	length of following data
+ 02h 2N WORDs	X,Y of N points
+Note:	draws N+1 marker symbols, the first one at the current position
+SeeAlso: #03908
+
+Format of HCRLINE parameter block:
+Offset	Size	Description	(Table 03900)
+ 00h	WORD	length of following data (multiple of 4)
+ 02h 2N WORDs	X,Y coordinates relative to the position of the previous point
+		  (current position for first point) for each of N points in
+		  polyline
+Notes:	the first line segment is drawn beginning at the current position
+	on completion, the current position is set to the last point drawn
+SeeAlso: #03907,#03897,#03918
+
+Format of HEAR parameter block:
+Offset	Size	Description	(Table 03901)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	area definition flags
+		bits 7-6: End Area type
+			00 complete, perform fill
+			01 suspend definition
+			10 complete, but don't fill
+SeeAlso: #03889
+
+Format of HEGS parameter block:
+Offset	Size	Description	(Table 03902)
+ 00h	WORD	0000h (no data following)
+
+Format of HESC parameter block:
+Offset	Size	Description	(Table 03903)
+ 00h	WORD	0000h (no data following)
+
+Format of HINIT parameter block:
+Offset	Size	Description	(Table 03904)
+ 00h	WORD	0002h (length of following data)
+ 02h	WORD	segment of task buffer
+SeeAlso: #03943
+
+Format of HINT parameter block:
+Offset	Size	Description	(Table 03905)
+ 00h	WORD	0004h (length of following data)
+ 02h	DWORD	interrupt/event identifier
+		bit 31: vertical blanking
+
+Format of HLDPAL parameter block:
+Offset	Size	Description	(Table 03906)
+ 00h	WORD	000Ah (length of following data)
+ 02h	BYTE	palette ID (00h = user, 01h = default)
+ 03h	BYTE	reserved
+ 04h	WORD	number of first palette entry
+ 06h	WORD	number of entries
+ 08h	DWORD	-> palette entries
+SeeAlso: #03940
+
+Format of HLINE parameter block:
+Offset	Size	Description	(Table 03907)
+ 00h	WORD	length of following data (multiple of 4)
+ 02h 2N WORDs	X,Y coordinates for each of N points in polyline
+Note:	on completion, the current position is set to the last point drawn
+SeeAlso: #03897,#03918,#03900
+
+Format of HMRK parameter block:
+Offset	Size	Description	(Table 03908)
+ 00h	WORD	length of following data (multiple of 4)
+ 02h 2N WORDs	X,Y for N points
+SeeAlso: #03899
+
+Format of HOPEN parameter block:
+Offset	Size	Description	(Table 03909)
+ 00h	WORD	0003h (length of following data)
+ 01h	BYTE	initialization flags
+		bit 6: don't load default palette
+		bit 7: clear bitplanes
+ 02h	BYTE	mode type (see #03910)
+ 03h	BYTE	(ret) return code
+		bit 7: no adapter (hardware mismatch)
+SeeAlso: #03898
+
+(Table 03910)
+Values for 8514/A display mode:
+ 0000h	12x20 characters, 1024x768
+ 0001h	8x14 characters, 640x480
+ 0002h	8x14 characters, 1024x768
+ 0003h	7x15 characters, 1024x768
+
+Format of HQCOORD parameter block:
+Offset	Size	Description	(Table 03911)
+ 00h	WORD	0004h (length of following data)
+ 02h	BYTE	(ret) coordinate format
+		bits 7-4: bytes per coordinate
+		bits 3-0: fraction bytes in coordinate
+ 03h	BYTE	(ret) relative coordinate format
+		bits 7-4: bytes per coordinate
+		bits 3-0: fraction bytes in coordinate
+ 04h	BYTE	(ret) number of dimensions (2-4)
+ 05h	BYTE	(ret) test results
+		bit 7: coordinate format not supported
+		bit 6: relative coordinate format not supported
+		bit 5: specified dimension not supported
+
+Format of HQCP parameter block:
+Offset	Size	Description	(Table 03912)
+ 00h	WORD	0004h (length of following data)
+ 02h	WORD	(ret) current X position
+ 04h	WORD	(ret) current Y position
+
+Format of HQDFPAL parameter block:
+Offset	Size	Description	(Table 03913)
+ 00h	WORD	0040h (length of following data)
+ 02h 16	DWORDs	(ret) color index values
+Note:	the default palette is set to match the default EGA/VGA 16-color
+	  palettes
+
+Format of HQDPS parameter block:
+Offset	Size	Description	(Table 03914)
+ 00h	WORD	0006h (length of following data)
+ 02h	WORD	(ret) size of data buffer in bytes
+ 04h	WORD	(ret) stack size in bytes
+ 06h	WORD	(ret) size of palette save buffer in bytes
+
+Format of HQMODE parameter block:
+Offset	Size	Description	(Table 03915)
+ 00h	WORD	0012h (length of following data)
+ 02h	BYTE	current video mode (see #03910)
+ 03h	WORD	driver version
+		bit 6: 80286/8086 CPU
+		bit 5: 8 bit planes instead of 4 planes
+		bits 4-0: hardware release number
+ 05h	BYTE	adapter type
+		03h 8514/A
+		04h XGA
+ 06h	BYTE	reserved (display type)
+ 07h	BYTE	character cell width
+ 08h	BYTE	character cell height
+ 09h	BYTE	number of bit planes
+ 0Ah	WORD	screen width (pixels)
+ 0Ch	WORD	screen height (pixels)
+ 0Eh	WORD	horizontal resolution (pixels/inch)
+ 10h	WORD	vertical resolution (pixels/inch)
+ 12h	BYTE	flag: 00h = monochrome, FFh = color
+ 13h	BYTE	intensity levels
+SeeAlso: #03916
+
+Format of HQMODES parameter block:
+Offset	Size	Description	(Table 03916)
+ 00h	WORD	0021h (length of following data)
+ 02h	BYTE	(ret) adapter type
+ 03h 32 BYTEs	(ret) available display modes (FFh byte marks end of data)
+SeeAlso: #03915
+
+Format of HRECT parameter block:
+Offset	Size	Description	(Table 03917)
+ 00h	WORD	0008h (legth of following data)
+ 02h  2 WORDs	X,Y coordinates of top left corner or rectangle
+ 06h	WORD	rectangle's width
+ 08h	WORD	rectangle's height
+Note:	the rectangle is filled using the current pattern, color, and mix
+
+Format of HRLINE parameter block:
+Offset	Size	Description	(Table 03918)
+ 00h	WORD	length of following data (multiple of 4)
+ 02h  2 WORDs	X,Y coordinates of starting point
+ 06h 2N WORDs	X,Y coordinates relative to the position of the previous point
+		  for each of N points in polyline
+Note:	on completion, the current position is set to the last point drawn
+SeeAlso: #03907,#03897,#03900
+
+Format of HRLPC parameter block:
+Offset	Size	Description	(Table 03919)
+ 00h	WORD	0000h (no data following)
+Note:	used for continuity of lines crossing scissors boundaries
+SeeAlso: #03932
+
+Format of HRPAL parameter block:
+Offset	Size	Description	(Table 03920)
+ 00h	WORD	0300h (length of following data)
+ 02h 768 BYTEs	buffer containing previously-saved palette table
+SeeAlso: #03940
+
+Format of HSBCOL parameter block:
+Offset	Size	Description	(Table 03921)
+ 00h	WORD	0004h (length of following data)
+ 02h	DWORD	color index for new background color
+SeeAlso: #03925
+
+Format of HSBP parameter block:
+Offset	Size	Description	(Table 03922)
+ 00h	WORD	000Ch (length of following data)
+ 02h	DWORD	bitmask for graphics updates
+ 06h	DWORD	bitmask for alphanumeric updates
+ 0Ah	DWORD	display bitmask
+
+Format of HSCELL parameter block:
+Offset	Size	Description	(Table 03923)
+ 00h
+
+Format of HSCMP parameter block:
+Offset	Size	Description	(Table 03924)
+ 00h	WORD	0005h (length of following data)
+ 02h	DWORD	comparison color
+ 06h	BYTE	logical operation
+		00h True
+		01h pel > testcolor
+		02h pel == testcolor
+		03h pel < testcolor
+		04h False
+		05h pel >= testcolor
+		06h pel <> testcolor
+		07h pel <= testcolor
+
+Format of HSCOL parameter block:
+Offset	Size	Description	(Table 03925)
+ 00h	WORD	0004h (length of following data)
+ 02h	DWORD	color index for new foreground color
+SeeAlso: #03921
+
+Format of HSCOORD parameter block:
+Offset	Size	Description	(Table 03926)
+ 00h	WORD	0003h (length of following data)
+ 02h	BYTE	coordinate format
+		bits 7-4: bytes per coordinate
+		bits 3-0: fraction bytes in coordinate
+ 03h	BYTE	relative coordinates format
+		bits 7-4: bytes per coordinate
+		bits 3-0: fraction bytes in coordinate
+ 04h	BYTE	number of dimensions (2-4)
+
+Format of HSCP parameter block:
+Offset	Size	Description	(Table 03927)
+ 00h	WORD	0004h (length of following data)
+ 02h  2 WORDs	X,Y or coordinate for new current position
+
+Format of HSCS parameter block:
+Offset	Size	Description	(Table 03928)
+ 00h	WORD	0004h (length of following data)
+ 02h	DWORD	-> character set definition
+
+Format of HSGQ parameter block:
+Offset	Size	Description	(Table 03929)
+ 00h	WORD	0002h (length of following data)
+ 02h	WORD	quality settings (see #03931)
+
+Format of HSHS parameter block:
+Offset	Size	Description	(Table 03930)
+ 00h	WORD	0008h (length of following data)
+ 02h	WORD	left edge of clipping rectangle (-2048 to +6143)
+ 04h	WORD	right edge
+ 06h	WORD	top edge
+ 08h	WORD	bottom edget
+
+Bitfields for 8514/A quality settings:
+Bit(s)	Description	(Table 03931)
+ 15	reserved
+ 14	high precision
+ 13	reserved
+ 12-11	pel code
+	00 not drawn
+	01 drawn
+	02 conditional on overpainting/mixes
+ 10	don't close areas to be filed
+ 9-0	reserved
+
+Format of HSLPC parameter block:
+Offset	Size	Description	(Table 03932)
+ 00h	WORD	0000h (no data following)
+Note:	used for continuity of lines crossing scissors boundaries
+SeeAlso: #03919
+
+Format of HSLT parameter block:
+Offset	Size	Description	(Table 03933)
+ 00h	WORD	0006h (length of following data)
+ 02h	BYTE	line type (see #03934)
+ 03h	BYTE	reserved
+ 04h	DWORD	-> user line-type definition (if user type)
+SeeAlso: #03935
+
+(Table 03934)
+Values for 8514/A line type:
+ 00h	user line type
+ 01h	dotted
+ 02h	short dashes
+ 03h	dash-dot
+ 04h	double dotted
+ 05h	dashed
+ 06h	dash double dot
+ 07h	solid
+ 08h	invisible
+SeeAlso: #03933
+
+Format of HSLW parameter block:
+Offset	Size	Description	(Table 03935)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	width of line in pixels
+SeeAlso: #03933
+
+Format of HSMODE parameter block:
+Offset	Size	Description	(Table 03936)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	new display mode number (see #03910)
+
+Format of HSMRK paramter block:
+Offset	Size	Description	(Table 03937)
+ 00h	WORD	000Eh (length of following data)
+ 02h	BYTE	cell width
+ 03h	BYTE	cell height
+ 04h	BYTE	flags
+ 05h	BYTE	reserved
+ 06h	WORD	length of marker symbol
+ 08h	DWORD	-> image definition data
+ 0Ch	DWORD	-> color definition data
+SeeAlso: #03941
+
+Format of HSMX parameter block:
+Offset	Size	Description	(Table 03938)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	foreground mix (see #03939)
+ 03h	BYTE	background mix (see #03939)
+
+(Table 03939)
+Values for 8514/A mix:
+ 00h	retain previous mix
+ 01h	source OR destination
+ 02h	source
+ 04h	source XOR destination
+ 05h	leave as-is
+ 06h	max(source,destination)
+ 07h	min(source,destination)
+ 08h	source+destination (clipped)
+ 09h	destination-source (clipped to zero)
+ 0Ah	source-destination (clipped to zero)
+ 0Bh	average source and destination
+ 10h	zero destination
+ 11h	source AND destination
+ 12h	source AND NOT destination
+ 13h	source
+ 14h	NOT source AND destination
+ 15h	leave as-is
+ 16h	source XOR destination
+ 17h	source OR destination
+ 18h	NOT source AND NOT destination
+ 19h	NOT (source XOR destination)
+ 1Ah	NOT destination
+ 1Bh	source OR NOT destination
+ 1Ch	NOT source
+ 1Dh	NOT source OR destination
+ 1Eh	NOT source OR NOT destination
+ 1Fh	set all bits of destination
+
+Format of HSPAL parameter block:
+Offset	Size	Description	(Table 03940)
+ 00h	WORD	0300h (length of following data)
+ 02h 768 BYTEs	buffer for palette table
+SeeAlso: #03906,#03920
+
+Format of HSPATT parameter block:
+Offset	Size	Description	(Table 03941)
+ 00h	WORD	000Eh (length of following data)
+ 02h	BYTE	cell width
+ 03h	BYTE	cell height
+ 04h	BYTE	flags
+ 05h	BYTE	reserved
+ 06h	WORD	length of marker symbol
+ 08h	DWORD	-> image definition data
+ 0Ch	DWORD	-> color definition data
+SeeAlso: #03937,#03942
+
+Format of HSPATTO parameter block:
+Offset	Size	Description	(Table 03942)
+ 00h	WORD	0004h (length of following data)
+ 02h  2 WORDs	X,Y of pattern reference point (origin)
+SeeAlso: #03941
+
+Format of HSYNC parameter block:
+Offset	Size	Description	(Table 03943)
+ 00h	WORD	0002h (length of following data)
+ 02h	WORD	segment of task state buffer
+SeeAlso: #03904
+
+Format of HXLATE parameter block:
+Offset	Size	Description	(Table 03944)
+ 00h	WORD	0020h (length of following data)
+ 02h 32 BYTEs	color index table
+

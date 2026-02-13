@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150F
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_getqkey" - GET KEY FIELD OF QUEUED ELEMENT
+	AH = 0Fh
+	STACK:	WORD	queue ID (0 = process queue, 1 = object q, 3 = type q)
+		WORD	ID of element in queue chain
+Return: AX = key
+SeeAlso: AH=0Ah"VMiX"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA11
+  Category: n 	non-traditional input devices
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - Pen Driver - SET THE COMMUNICATION LED STATE
+	AX = BA11h
+	BL = new LED state (00h steady, 01h flashing)
+Return: CF clear if successful
+	CF set on error
+Note:	this function is for use by communication software to give visual
+	  feedback of active communications even if the display is in standby
+	  mode.
+SeeAlso: AX=BA10h,AX=BA24h
+

@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1481
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV - EXTENDED INITIALIZATION
+	AH = 81h
+	BX:DI -> port control block (see #00367)
+	DX = port number
+Return: AH = line status register (see #00304)
+	    error if bit 7 set
+	AL = modem status register (see #00305)
+Program: COMM-DRV is a universal serial communications driver by Willies'
+	  Computer Software Company, which supports standard INT 14 and
+	  FOSSIL calls as well as its own interfaces
+Note:	AX=8001h should be called first to fill in the port control block
+SeeAlso: AH=00h,AX=8001h,AH=82h"COMM-DRV",AH=86h"COMM-DRV"
+
+Format of COMM-DRV port control block:
+Offset	Type	Description	(Table 00367)
+ 00h	WORD	port IO address
+ 02h	WORD	port IRQ
+ 04h	WORD	baud rate
+ 06h	WORD	parity
+ 08h	WORD	data bits
+ 0Ah	WORD	stop bits
+ 0Ch	WORD	break status (0000h off)
+ 0Eh	WORD	flow control protocol
+ 10h	BYTE	input block
+ 11h	BYTE	output block
+ 12h	WORD	low threshold
+ 14h	WORD	high threshold
+ 16h	WORD	segment of buffer
+ 18h	WORD	offset of buffer
+ 1Ah	WORD	input buffer length
+ 1Ch	WORD	output buffer length
+ 1Eh	BYTE	auxiliary address
+ 1Fh	BYTE	spare
+ 20h  4 WORDs	spares
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4002
+  Category: O 	other operating systems
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - OS/2 compatibility box - SWITCHING DOS TO FOREGROUND
+	AX = 4002h
+Note:	called by OS/2 when the DOS box is about to be placed in the foreground
+	  and the video driver should restore the previously-saved state
+SeeAlso: AX=4001h,AX=4006h
+

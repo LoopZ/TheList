@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 612C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Atari Portfolio - GET VERSION
+	AH = 2Ch
+Return: DS:BX -> BIOS version string ('$'-terminated)
+SeeAlso: AH=28h"Portfolio",AH=2Dh"Portfolio"
+

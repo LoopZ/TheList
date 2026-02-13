@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 06
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 06 C - HP 95LX - SLEEP/WAKEUP
+Desc:	this interrupt is called just before going into light or deep
+	  (shutdown) sleep and just after returning from light or deep sleep
+SeeAlso: INT 0B"HP 95LX",INT 15/AX=4DD4h,INT 15/AH=4Eh
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F39
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood TSR INTERFACE - APPLICATION-SPECIFIC FUNCTION CALLS
+	AH = 39h
+	BL = function number (02h-FFh)
+	AL = TSR ID number (01h-FFh) (see #02742)
+	CX,DX,SI,DI,DS,ES may contain parameters
+	BH reserved for use by the function dispatcher
+Return: as appropriate for the called function
+SeeAlso: AX=3900h,AH=39h/BL=00h,AX=3901h/BL=02h
+

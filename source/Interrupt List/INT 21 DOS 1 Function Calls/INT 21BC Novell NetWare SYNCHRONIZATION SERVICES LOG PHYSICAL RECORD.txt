@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21BC
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - LOG PHYSICAL RECORD
+	AH = BCh
+	AL = flags (see #01808)
+	BX = file handle
+	CX:DX = starting offset in file
+	SI:DI = length of region to lock
+	BP = timeout in timer ticks (1/18 sec)
+		0000h = don't wait if already locked
+Return: AL = status (see #01807)
+Desc:	add the specified physical record to the log table, optionally locking
+	  it
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=5Ch,AH=BDh,AH=BEh,AH=BFh,AH=C2h,AH=D0h
+
+(Table 01807)
+Values for NetWare status:
+ 00h	successful
+ 96h	no dynamic memory for file
+ FEh	timed out
+ FFh	failed
+
+Bitfields for NetWare flags:
+Bit(s)	Description	(Table 01808)
+ 0	lock as well as log record
+ 1	non-exclusive lock
+

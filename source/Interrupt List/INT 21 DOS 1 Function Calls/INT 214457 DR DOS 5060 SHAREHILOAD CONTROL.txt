@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214457
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DR DOS 5.0-6.0 - SHARE/HILOAD CONTROL
+	AX = 4457h
+	DH = subfunction
+	    00h enable/disable SHARE
+		DL = 00h disable
+		   = 01h enable
+		   else Return: AX = ???
+	    01h get HILOAD status
+		Return: AX = status
+			    0000h off
+			    0001h on
+	    02h set HILOAD status
+		DL = new state (00h off, 01h on)
+		Return: AX = ???
+	    other
+		Return: AX = ???
+Note:	This was seen called by COMMAND.COM of DR DOS 6.0; it does not seem
+	  to be supported by Novell DOS 7
+SeeAlso: AX=4457h/DX=FFFFh
+

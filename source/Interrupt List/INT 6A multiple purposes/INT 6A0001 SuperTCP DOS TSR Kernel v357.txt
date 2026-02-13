@@ -1,0 +1,116 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6A0001
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 6A U - Super-TCP DOS TSR Kernel v3.57 - ???
+	AX = 0001h
+	BH = function number
+	    01h ???
+		DS:SI -> ??? 24-byte record1 (see #03717)
+		ES:DI -> buffer containing ???
+	    02h ???
+		DS:SI -> ??? 18-byte record2 (see #03718)
+		ES:DI -> buffer containing ???
+	    04h ???
+		BL = subfunction
+		    01h
+			DS:SI -> ??? 28-byte record3 (see #03719)
+			ES:DI -> buffer containing ???
+		    02h
+			DS:SI -> ??? 28-byte record3 (see #03719)
+			ES:DI -> buffer containing ???
+		    03h
+			DS:SI -> ??? 28-byte record3 (see #03719)
+		    else Return: AX = 0005h
+	    05h ???
+		DS:SI -> ??? 20-byte record4 (see #03720)
+		ES:DI -> buffer containing ???
+	    06h ???
+		BL = subfunction
+		    01h
+			DS:SI -> ??? 40-byte record5 (see #03721)
+		    02h
+			DS:SI -> ??? 20-byte record6 (see #03722)
+			ES:DI -> ???
+		    03h
+			DS:SI -> ??? 20-byte record6 (see #03722)
+		    04h
+			DS:SI -> ??? 46-byte record7 (see #03723)
+		    else Return: AX = 0005h
+	    11h ???
+		DS:SI -> ??? 28-byte record8 (see #03724)
+		ES:DI -> ???
+Return: AX = function status (see #03716)
+SeeAlso: AX=0000h
+
+(Table 03716)
+Values for Super-TCP function status:
+ 0000h	successful
+ 0005h	unsupported function
+ 000Ah	out of memory
+
+Format of record1:
+Offset	Size	Description	(Table 03717)
+ 00h  4 BYTEs	???
+ 04h	WORD	size of ES:DI buffer
+ 06h 18 BYTEs	???
+
+Format of record2:
+Offset	Size	Description	(Table 03718)
+ 00h  4 BYTEs	???
+ 04h	WORD	size of ES:DI buffer
+ 06h 12 BYTEs	???
+
+Format of record3:
+Offset	Size	Description	(Table 03719)
+ 00h  2 BYTEs	???
+ 02h	WORD	???
+ 04h	WORD	size of ES:DI buffer
+ 06h	WORD	???
+ 08h	WORD	operation number (for function 0401h)
+ 0Ah	DWORD	-> ???
+ 0Eh	WORD	(ret) ???
+ 10h 12 BYTEs	???
+
+Format of record4:
+Offset	Size	Description	(Table 03720)
+ 00h  4 BYTEs	???
+ 04h	WORD	size of ES:DI buffer
+ 06h 14 BYTEs	???
+
+Format of record5:
+Offset	Size	Description	(Table 03721)
+ 00h	BYTE	operation??? (00h-07h)
+ 01h	BYTE	???
+ 02h	WORD	(ret) ???
+ 04h	DWORD	-> ???
+ 08h  4 BYTEs	???
+ 0Ch	DWORD	-> ??? or 0000h:0000h
+ 10h 16 BYTEs	???
+ 20h	DWORD	???
+ 24h  4 BYTEs	???
+
+Format of record6:
+Offset	Size	Description	(Table 03722)
+ 00h  4 BYTEs	???
+ 04h	WORD	size of ES:DI buffer
+ 06h 14 BYTEs	???
+
+Format of record7:
+Offset	Size	Description	(Table 03723)
+ 00h	WORD	???
+ 02h	WORD	???
+ 04h	WORD	???
+ 06h 40 BYTEs	???
+
+Format of record8:
+Offset	Size	Description	(Table 03724)
+ 00h  4 BYTEs	???
+ 04h	WORD	size of ES:DI buffer
+ 06h  6 BYTEs	???
+ 0Ch	WORD	(ret) ???
+ 0Eh	WORD	operation??? (01h-03h)
+ 10h 12 BYTEs	???
+

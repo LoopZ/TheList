@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620053
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETXJUST" - GET HORIZONTAL JUSTIFICATION
+	AX = 0053h
+Return: AX = string justification
+	    0000h strings are centered around current graphics X position
+	    0001h strings are right-justified at current graphics X position
+	    FFFFh strings are left-justified at current graphics X position
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=006Ch,AX=007Bh
+

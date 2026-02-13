@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7E5857BL5B
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7E - XLOAD - GET XLOAD MEMORY SIZE
+	AX = 5857h
+	BL = 5Bh
+Return: AX = 0000h
+	CX = segment of XLOAD TSR
+	DX = size of memory block in which XLOAD TSR is located
+SeeAlso: AX=5857h/BL=57h,AX=5857h/BL=5Ah
+

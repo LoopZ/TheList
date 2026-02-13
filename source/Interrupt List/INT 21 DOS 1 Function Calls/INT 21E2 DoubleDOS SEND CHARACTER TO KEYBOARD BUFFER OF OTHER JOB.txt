@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DoubleDOS - SEND CHARACTER TO KEYBOARD BUFFER OF OTHER JOB
+	AH = E2h
+	AL = character
+Return: AL = 00h successful
+	     01h buffer full (128 characters)
+SeeAlso: AH=E1h"DoubleDOS",AH=E3h"DoubleDOS",AH=E8h"DoubleDOS"
+SeeAlso: AH=F2h"DoubleDOS"
+

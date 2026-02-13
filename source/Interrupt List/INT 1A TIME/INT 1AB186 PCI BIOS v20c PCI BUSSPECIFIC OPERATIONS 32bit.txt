@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB186
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - PCI BUS-SPECIFIC OPERATIONS (32-bit)
+	AX = B186h
+	BH = bus number
+	EDX = Special Cycle data
+Return: as for AX=B106h
+Note:	the meanings of BL and BH on return were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B106h
+

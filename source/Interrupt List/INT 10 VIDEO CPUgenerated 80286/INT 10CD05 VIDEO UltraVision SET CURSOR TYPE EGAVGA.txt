@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CD05
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - SET CURSOR TYPE (EGA,VGA)
+	AX = CD05h
+	CL = type
+	    00h line cursor
+	    FFh box cursor
+Return: nothing
+Note:	sets default cursor type for text-based programs
+SeeAlso: AH=01h,AX=CD06h
+

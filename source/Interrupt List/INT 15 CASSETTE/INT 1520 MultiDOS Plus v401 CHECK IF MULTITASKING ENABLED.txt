@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1520
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus v4.01 - CHECK IF MULTITASKING ENABLED
+	AH = 20h
+Return: AX = current state
+	    0000h multitasking enabled
+	    other TCB of task that disabled multitasking
+SeeAlso: AH=0Dh"MultiDOS",AH=13h"MultiDOS"
+

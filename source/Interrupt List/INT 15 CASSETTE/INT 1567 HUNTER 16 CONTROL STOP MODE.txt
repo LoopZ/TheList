@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1567
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL STOP MODE
+	AH = 67h
+	AL = mode when waiting for input
+	    00h use STOP mode (allows communication)
+	    01h use HALT mode (disallows communication)
+Return: AH = status
+Desc:	select the power save mode to use when waiting for input
+SeeAlso: AH=69h
+

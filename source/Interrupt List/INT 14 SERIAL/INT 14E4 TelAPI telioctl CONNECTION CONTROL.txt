@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E4
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telioctl" - CONNECTION CONTROL
+	AH = E4h
+	BX = connection ID (see AH=E0h"TelAPI")
+	CX = Telnet command/option identifier (see #00400)
+	ES:SI -> buffer containing command/option argument (see #00399)
+Return: AX = status (0000h, etc.) (see #00397)
+Desc:	start filter control, initiate Telnet option negotiation, or get filter
+	  control status
+SeeAlso: AH=A9h,AH=E6h,AX=FF00h,INT 6B/AX=0600h
+
+Format of TelAPI Telnet command/option argument:
+Offset	Size	Description	(Table 00399)
+ 00h  5 WORD	numeric arguments
+ 0Ah	DWORD	-> ASCIZ string
+SeeAlso: #00400
+
+(Table 00400)
+Values for TelAPI Telnet command/option identifier:
+ 01h	ASCII		args: none
+ 02h	BINARY		args: none
+ 03h	LOCALECHO	args: none		client echos data
+ 04h	REMOTEECHO	args: none		server echos data
+ 05h	SGA		args: none		Suppress Go-Ahead signal
+ 07h	CHARMODE	args: none		no line-buffering
+ 08h	LINEMODE	args: -> erase-line ch	perform line-buffering
+ 09h	RECVEOL		args: EOL type
+ 0Ah	SENDEOL		args: EOL type
+ 0Bh	EOR		args: none		enable end-of-record sequence
+ 0Dh	BREAK		args: -> break char
+ 0Eh	VERBOSE		args: verbosity		display Telnet negotiations?
+ 0Fh	AYT		args: -> AYT escape ch
+ 10h	AO		args: -> AO escape char
+ 11h	IP		args: -> IP escape char
+ 12h	EC		args: -> escape char
+ 13h	EL		args: -> escape char
+ 14h	STATUS		args: type; returns data in structure
+ 18h	TERMTYPE	args: -> terminal type
+ 19h	ATTACHPORT	args: port number ; returns session number
+ 1Bh	TRANSMIT_EOR	args: EOR enabled	append EOR to every telwrite?
+SeeAlso: #00399
+

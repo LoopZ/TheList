@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14EA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "telstatus" - GET TELNET CONNECTION STATUS INFORMATION
+	AH = EAh
+	BX = connection ID (see AH=E0h"TelAPI")
+	ES:SI -> buffer for status info (see #00401)
+Return: AX = status (0000h,FFFFh,etc.)
+SeeAlso: AH=E9h,AH=EBh,AX=FF00h
+
+Format of TelAPI Telnet connection status information:
+Offset	Size	Description	(Table 00401)
+ 00h  4 BYTEs	remote host IP address
+ 04h 20 BYTEs	reserved
+ 18h	WORD	local port number
+ 1Ah	BYTE	connection mode (00h = ASCII, 01h = Binary)
+ 1Bh	BYTE	echo flag (00h local, 01h remote)
+ 1Ch	BYTE	SGA flag (00h will, 01h won't)
+ 1Dh	BYTE	EOR negotation flag (00h do negotiate, 01h don't)
+ 1Eh	BYTE	buffering (00h line mode, 01h character mode)
+ 1Fh	BYTE	reserved
+ 20h	BYTE	verbose flag (00h no, 01h verbose mode)
+ 21h	BYTE	received EOL (00h no xlat, 01h CR, 02h LF, 03h CRLF)
+ 22h	BYTE	sent EOL (00h no translation, 01h CR, 02h LF)
+ 23h	BYTE	break character
+ 24h	BYTE	IP escape character
+ 25h	BYTE	AO escape character
+ 26h	BYTE	AYT escape character
+ 27h	BYTE	EC escape character
+ 28h	BYTE	EL escape character
+ 29h 41 BYTEs	ASCIZ Telnet-negotiated terminal type
+ 52h  9 BYTEs	session ID
+SeeAlso: #00402
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62001E
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DRAWMAP" - DISPLAY MODE-INDEPENDENT BIT MAP
+	AX = 001Eh
+	ES:BX -> bitmap (each set bit is pixel drawn in current color)
+	CX = width of bitmap in bytes
+	DX = height of bitmap in pixel rows
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=0011h,AX=0024h,AX=0036h,AX=0044h,AX=0099h,AX=00A0h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 13A759
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - Novell DOS 7 - SDRes v27.03 - ???
+	AX = A759h
+Return: AX = 59A7h if installed
+	    DX:BX -> ??? data
+Program: SDRes is the resident portion of the Search&Destroy antiviral by
+	  Fifth Generation Systems, as bundled with Novell DOS 7
+SeeAlso: INT 21/AH=0Eh/DL=ADh
+

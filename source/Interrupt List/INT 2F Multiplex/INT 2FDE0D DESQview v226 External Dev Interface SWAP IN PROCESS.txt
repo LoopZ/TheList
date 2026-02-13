@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE0D
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - SWAP IN PROCESS
+	AX = DE0Dh
+	BX = mapping context of process just swapped in
+	      (see #00416 at INT 15/AX=1016h)
+	DX = handle of DESQview system task
+Note:	driver should pass this call to previous handler before processing it
+

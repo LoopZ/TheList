@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF24
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - SET DIRECTORY DISK SPACE RESTRICTION
+	AX = F216h subfn 24h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02136)
+	ES:DI -> reply buffer (ignored)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AX=F216h/SF=21h,AX=F216h/SF=22h,AX=F216h/SF=23h,AX=F216h/SF=25h
+
+Format of NetWare "Set Directory Disk Space Restriction" request buffer:
+Offset	Size	Description	(Table 02136)
+ 00h	WORD	0006h (length of following data)
+ 02h	BYTE	24h (subfunction "Set Directory Disk Space Restriction")
+ 03h	BYTE	directory handle
+ 04h	DWORD	(big-endian) disk space limit in 4K blocks
+		00000000h to remove restriction, negative to set to 0 blocks
+

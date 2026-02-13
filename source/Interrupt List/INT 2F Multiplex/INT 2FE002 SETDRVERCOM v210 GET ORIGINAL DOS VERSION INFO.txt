@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE002
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SETDRVER.COM v2.10+ - GET ORIGINAL DOS VERSION INFO
+	AX = E002h
+Return: AL = FFh if successful
+	    BH = major DOS version
+	    BL = minor DOS version
+	    CH = DOS version flag
+	    CL = OEM number
+	    DH = major DR DOS version number (FFh if unknown)
+	    DL = minor DR DOS version number (FFh if unknown)
+SeeAlso: AX=E003h,AX=E007h,INT 21/AH=30h
+

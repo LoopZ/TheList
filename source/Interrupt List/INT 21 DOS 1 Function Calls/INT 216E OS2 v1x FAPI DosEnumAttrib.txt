@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216E
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v1.x FAPI - "DosEnumAttrib"
+	AH = 6Eh
+	DS:SI -> parameter packet (see #01772)
+Return: CF clear if successful
+	    AX = 0000h
+	    DS:SI buffer updated
+	CF set on error
+	    AX = error code
+Note:	also supported by OS/2 v2.0+ Virtual DOS Machines
+SeeAlso: AX=5703h,AH=6Fh"OS/2",INT 2F/AX=112Dh
+
+Format of OS/2 DosEnumAttrib parameter packet:
+Offset	Size	Description	(Table 01772)
+ 00h	DWORD	reserved (0)
+ 04h	DWORD	info level (always 00000001h)
+ 08h	DWORD	(call) number of entries requested
+		(ret) actual number of entries returned
+ 0Ch	DWORD	length of buffer
+ 10h	DWORD	pointer to buffer for results
+ 14h	DWORD	number of first entry to return
+ 18h	DWORD	-> file handle or ASCIZ pathname
+ 1Ch	WORD	flag: 00h = previous field is file handle, 01h = pathname
+

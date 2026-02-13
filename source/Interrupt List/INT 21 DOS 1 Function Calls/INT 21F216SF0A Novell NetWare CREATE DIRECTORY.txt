@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CREATE DIRECTORY
+	AX = F216h subfn 0Ah
+	CX = length of request buffer in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #01856 at AH=E2h/SF=0Ah)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=39h,AH=F2h"Novell",AH=E2h/SF=0Ah,AX=F216h/SF=0Bh
+

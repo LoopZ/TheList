@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620041
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETDACS" - GET VIDEO DAC CONTENTS
+	AX = 0041h
+	CX = number of DAC registers to return (0001h to 0100h)
+	DX = starting DAC register number (0000h to 00FFh)
+	ES:BX -> buffer for DAC red/green/blue triples
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The register number wraps back to zero after FFh
+SeeAlso: AX=004Eh,AX=0086h,AX=00ABh
+

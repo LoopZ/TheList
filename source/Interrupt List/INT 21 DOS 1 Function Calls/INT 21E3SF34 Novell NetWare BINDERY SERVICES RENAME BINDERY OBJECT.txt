@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF34
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - RENAME BINDERY OBJECT
+	AH = E3h subfn 34h
+	DS:SI -> request buffer (see #01924)
+	ES:DI -> reply buffer (see #01922)
+Return: AL = status (see #01920)
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=E3h/SF=32h,AH=E3h/SF=33h,AX=F217h/SF=34h
+
+Format of NetWare "Rename Bindery Object" request buffer:
+Offset	Size	Description	(Table 01924)
+ 00h	WORD	length of following data (max 63h)
+ 02h	BYTE	34h (subfunction "Rename Bindery Object")
+ 03h	WORD	(big-endian) type of object
+ 05h	BYTE	length of object's name (01h-2Fh)
+ 06h  N BYTEs	object's name
+	BYTE	length of new name (01h-2Fh)
+      N BYTEs	new name
+SeeAlso: #01922
+

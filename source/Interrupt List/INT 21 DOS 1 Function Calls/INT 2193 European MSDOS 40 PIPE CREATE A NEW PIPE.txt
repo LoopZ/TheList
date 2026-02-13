@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2193
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "PIPE" - CREATE A NEW PIPE
+	AH = 93h
+	CX = size in bytes
+Return: CF clear if successful
+	    AX = read handle
+	    BX = write handle
+	CF set on error
+	    AX = error code (08h) (see #01680 at AH=59h/BX=0000h)
+Desc:	create a communications channel which may be used for interprocess
+	  data and command exchanges
+SeeAlso: AH=3Ch,AH=3Fh"DOS",AH=40h"DOS",AH=84h
+

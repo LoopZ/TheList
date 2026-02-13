@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33006C
+  Category: M 	mouse/pointing device
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 33 U - TRUEDOX Mouse driver v4.01 - GET/SET HARDWARE PARAMETERS
+	AX = 006Ch
+	BX = new IRQ (0003h or 0004h), or 0000h to get current values only
+	CL = new IRQmask (sent to 8259)
+	DX = new base I/O port
+Return: BX = current IRQ
+	DX = light pen state???
+Note:	this is the mouse driver for the Dell Dimension series of computers, by
+	  TRUEDOX Technology Corporation
+SeeAlso: AX=00A1h,AX=0666h
+

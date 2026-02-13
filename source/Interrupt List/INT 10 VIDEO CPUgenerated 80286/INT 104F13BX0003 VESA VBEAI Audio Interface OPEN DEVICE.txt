@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F13BX0003
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA VBE/AI (Audio Interface) - OPEN DEVICE
+	AX = 4F13h
+	BX = 0003h
+	CX = handle
+	DX = API set (16/32-bit)
+	SI = segment ???
+Return: AL = 4Fh if function supported
+	    AH = status
+		00h successful
+		    SI:CX -> memory ???
+		01h failed
+SeeAlso: AX=4F13h/BX=0000h,AX=4F13h/BX=0002h,AX=4F13h/BX=0004h
+

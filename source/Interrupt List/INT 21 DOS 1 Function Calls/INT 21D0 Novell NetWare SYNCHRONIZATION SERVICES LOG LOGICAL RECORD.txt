@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - LOG LOGICAL RECORD
+	AH = D0h
+	DS:DX -> record string (counted string, max 99 data bytes)
+	if function C6h lock mode 01h: (Novell, NTNX only)
+	    AL = flags
+		bit 0: lock as well as log the record
+		bit 1: non-exclusive lock
+	    BP = lock timeout in timer ticks (1/18 sec)
+Return: AL = status
+	    00h successful
+	    96h no dynamic memory for file
+	    FEh timed out
+	    FFh unsuccessful
+Desc:	add the specified logical record name to the log table, and optionally
+	  lock the record
+Notes:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+,
+	  Banyan VINES, and Alloy NTNX
+	locks on logical record names are advisory and may be ignored by other
+	  applications
+SeeAlso: AH=BCh,AH=D1h,AH=D2h,AH=D4h,AH=EBh
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151013
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "GETBIT" - DEFINE A 2ND-LEVEL INTERRUPT HANDLER
+	AX = 1013h
+	ES:DI -> FAR service routine
+Return: BX = bit mask indicating which bit was allocated
+	    0000h if no more bits available
+SeeAlso: AX=1014h,AX=1015h
+Note:	only a few TopView/DESQview API calls are allowed during a hardware
+	  interrupt; if other calls need to be made, the interrupt handler
+	  must schedule a 2nd-level interrupt with "SETBIT" (AX=1015h)
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 3D
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 3D - FLOATING POINT EMULATION - STANDALONE FWAIT
+Notes:	the floating-point emulators in Borland and Microsoft languages and
+	  Lahey FORTRAN use this interrupt
+	this vector is modified but not restored by Direct Access v4.0, and
+	  may be left dangling by other programs written with the same version
+	  of compiled BASIC
+SeeAlso: INT 3C,INT 3E
+

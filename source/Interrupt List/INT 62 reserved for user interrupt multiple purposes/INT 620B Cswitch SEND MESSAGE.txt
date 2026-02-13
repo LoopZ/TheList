@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620B
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - Cswitch - SEND MESSAGE
+	AH = 0Bh
+	CX = number of bytes to write
+	DS:SI -> buffer
+	DX = queue number (0-63)
+Return: AX = result/message size
+	    0000h no message was on queue
+	    FFFEh triggered by something arriving, redo the call
+	    FFFFh bad queue number
+	    else  number of bytes in message
+SeeAlso: AH=0Ah"Cswitch",AH=0Ch"Cswitch"
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6801--SF2000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - NETWORK DEVICE CONTROL - ATTACH PHYSICAL UNIT
+	AH = 01h subfn 2000h
+	DS:DX -> control block (see #03669)
+Return: control block updated
+SeeAlso: AH=01h/SF=2100h,AH=01h/SF=2B00h
+
+Format of APPC/PC "Attach Physical Unit" control block:
+Offset	Size	Description	(Table 03669)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	2000h (verb "Attach Physical Unit")
+ 0Eh  6 BYTEs	00h
+ 14h	DWORD	(big-endian) return code (see #03668)
+ 18h	WORD	00h
+ 1Ah	BYTE	version
+ 1Bh	BYTE	release
+ 1Ch  8 BYTEs	(big-endian) net name
+ 24h  8 BYTEs	(big-endian) physical unit name
+ 2Ch  8 BYTEs	00h
+ 34h	DWORD	pointer to SYSTEM_LOG_EXIT routine, FFFFFFFFh=don't log errors
+		(see also AH=01h/SF=2100h)
+ 38h	DWORD	00h
+ 3Ch	BYTE	00h RETURN_CONTROL: COMPLETE
+		01h RETURN_CONTROL: INCOMPLETE
+

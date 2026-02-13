@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620091
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_POLYEDGE" - SPECIFY INCLUSION OF FINAL PIXELS
+	AX = 0091h
+	BX = edge flag
+	    0000h include right- and bottom-edge pixels when drawing polygons
+		  with FG_POLYFILL
+	    0001h (default) exclue right- and bottom-edge pixels
+SeeAlso: AX=0092h
+

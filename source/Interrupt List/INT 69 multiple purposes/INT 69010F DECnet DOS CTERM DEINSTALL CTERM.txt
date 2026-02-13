@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 69010F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - DECnet DOS CTERM - DEINSTALL CTERM
+	AX = 010Fh
+Return: AH = status
+	    00h successful uninstall
+	    other error code (see #03711)
+Note:	CTERM must have been the last TSR loaded in order to deinstall it
+SeeAlso: AX=0100h
+Index:	uninstall;DECnet DOS CTERM
+

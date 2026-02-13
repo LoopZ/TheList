@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1076
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HUNTER 16 - LOOKING KEYS
+	AH = 76h
+	AL = action
+	     00h home the window
+	     01h move up one line
+	     02h move down one line
+	     03h move left one character
+	     04h move right one character
+	     05h flip window to other side of virtual screen
+Return: nothing
+Desc:	moves the displayed screen around the virtual screen
+SeeAlso: AH=74h,AH=75h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH01
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - SET SUSPEND/GLOBAL STANDBY MODE
+	AX = 5380h
+	BH = 01h
+	BL = sustdbymode (see #00481)
+Return: CF clear if successful
+SeeAlso: AX=5380h/BH=00h,AX=5380h/BH=7Fh
+

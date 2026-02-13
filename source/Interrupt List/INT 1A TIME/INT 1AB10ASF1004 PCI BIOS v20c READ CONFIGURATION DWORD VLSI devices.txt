@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB10ASF1004
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - READ CONFIGURATION DWORD (VLSI devices)
+	AX = B10Ah subfn 1004h
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (0000h-00FFh) (see #00878)
+Return: CF clear if successful
+	    ECX = dword read
+	CF set on error
+	AH = status (00h,87h) (see #00729)
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	the meanings of BL and BH on entry were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B10Ah,AX=B10Ah/SF=8086h
+
+Format of PCI Configuration Data for VLSI VL82C591 Host/PCI bridge:
+Offset	Size	Description	(Table 00919)
+ 00h 64 BYTEs	header (see #00878)
+		(vendor ID 1004h, device ID 0005h)
+ 40h	BYTE	bus number
+ 41h	BYTE	subordinate bus number
+ 42h	WORD	reserved
+ 44h  4 DWORDs	reserved
+ 54h  2 BYTEs	device-specific configuration registers
+ 56h	WORD	reserved
+ 58h  2 BYTEs	device-specific configuration registers
+ 5Ah	WORD	reserved
+ 5Ch  5 BYTEs	device-specific configuration registers
+	...
+ FFh	BYTE	device-specific configuration register
+SeeAlso: #00878,#00732,#00920
+
+Format of PCI Configuration data for VLSI VL82C593 PCI/ISA bridge:
+Offset	Size	Description	(Table 00920)
+ 00h 64 BYTEs	header (see #00878)
+		(vendor ID 1004, device ID 0006h)
+ 40h  4 DWORDs	reserved
+ 50h 11 BYTEs	device-specific configuration registers
+ 5Bh	BYTE	reserved
+ 5Ch 25 BYTEs	device-specific configuration registers
+ 75h 138 BYTEs	reserved
+ FFh	BYTE	device-specific configuration register
+SeeAlso: #00878,#00919
+

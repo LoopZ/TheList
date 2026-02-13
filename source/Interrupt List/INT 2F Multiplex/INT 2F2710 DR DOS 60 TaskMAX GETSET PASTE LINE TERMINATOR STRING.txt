@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2710
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - GET/SET PASTE LINE TERMINATOR STRING
+	AX = 2710h
+	CX = length of string (max 15 keystrokes, 0000h to get current string)
+	DS:SI -> pasting terminator string (character/scan-code pairs)
+Return: ES:DI -> current terminator string
+Note:	the specified sequence of keystrokes is sent to the application after
+	  every line of a spreadsheet paste operation
+SeeAlso: AX=270Eh,AX=270Fh,AX=2713h
+

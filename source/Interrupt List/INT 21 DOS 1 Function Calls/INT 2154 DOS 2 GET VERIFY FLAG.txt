@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2154
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET VERIFY FLAG
+	AH = 54h
+Return: AL = verify flag
+	    00h off
+	    01h on (all disk writes verified after writing)
+SeeAlso: AH=2Eh
+

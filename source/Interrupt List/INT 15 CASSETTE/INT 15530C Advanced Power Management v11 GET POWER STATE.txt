@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15530C
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Advanced Power Management v1.1+ - GET POWER STATE
+	AX = 530Ch
+	BX = device ID (see #00474)
+Return: CF clear if successful
+	    CX = system state ID (see #00475)
+	CF set on error
+	    AH = error code (01h,09h) (see #00473)
+SeeAlso: AX=5307h
+

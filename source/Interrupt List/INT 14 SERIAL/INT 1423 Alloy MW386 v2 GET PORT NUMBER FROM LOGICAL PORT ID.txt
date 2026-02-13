@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1423
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Alloy MW386 v2+ - GET PORT NUMBER FROM LOGICAL PORT ID
+	AH = 23h
+	AL = logical port (01h COM1, 02h COM2)
+	DH = user ID
+	DL = process ID (DH,DL both FFh for current task)
+Return: AL = MW386 port mode (see #00351)
+	CX = MW386 port number
+	DH = owner's user ID
+	DL = owner's task ID
+SeeAlso: AH=20h"Alloy",INT 17/AH=8Bh"Alloy"
+
+Bitfields for MW386 port mode:
+Bit(s)	Description	(Table 00351)
+ 0	port is shared (spooler only)
+ 1	port is spooled instead of direct (spooler only)
+ 2	port is assigned as logical COM device, not in spooler
+ 3	port is free
+

@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1548
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - HP 100LX/200LX - SET BUZZER VOLUME
+	AH = 48h
+	AL = volume (00h-03h; 03h is loudest, 04h-FFh are same as 03h)
+SeeAlso: AH=47h"HP"
+

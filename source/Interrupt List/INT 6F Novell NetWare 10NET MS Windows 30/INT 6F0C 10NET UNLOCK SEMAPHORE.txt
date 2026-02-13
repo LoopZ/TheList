@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - UNLOCK SEMAPHORE
+	AH = 0Ch
+	AL = drive number or 0
+	ES:SI = Ethernet address or 0
+	DS:BX -> 31-byte ASCIZ semaphore name
+Return: AL = status (see also #03767)
+	    01h semaphore not locked
+Note:	same as INT 60/AH=13h
+SeeAlso: AH=0Bh,INT 60/AH=13h
+

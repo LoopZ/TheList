@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 124350BX4920
+  Category: v 	virus/antivirus
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 12 C - CPI-standard virus - "FRIEND" CHECK
+	AX = 4350h
+	BX = 4920h
+	CX = AB46h
+	DX = 554Eh
+Return: if friendly (not to be infected)
+	    CX:DX -> ASCIZ identity code (changes yearly)
+SeeAlso: INT 13/AX=EC00h"VIRUS",INT 13/AX=5001h,INT 21/AX=0B56h
+

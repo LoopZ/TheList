@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213701
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "SWITCHAR" - SET SWITCH CHARACTER
+	AX = 3701h
+	DL = new switch character
+Return: AL = status
+	    00h successful
+	    FFh unsupported subfunction
+Notes:	documented in some OEM versions of some releases of DOS; DOS 2.x had
+	  a SWITCHAR=c setting in CONFIG.SYS
+	supported by OS/2 compatibility box and Novell DOS 7
+	ignored by MS-DOS 5+ and DR DOS 3.41-6.0; DR DOS 6.0 and Novell DOS 7
+	  leave AX unchanged
+SeeAlso: AX=3700h
+

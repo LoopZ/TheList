@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15101B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "BEGINC" - BEGIN CRITICAL REGION
+	AX = 101Bh
+Return: task-switching temporarily disabled
+Notes:	will not task-switch until "ENDC" (AX = 101Ch) called unless task
+	  voluntarily releases the CPU (upon regaining the CPU, task-switching
+	  will again be disabled)
+	suspends the caller until DOS is free
+SeeAlso: AH=0Dh"MultiDOS",AX=101Ch,AX=DE13h,AX=DE1Ch,INT 2F/AX=1681h
+SeeAlso: INT 60/DI=0602h
+

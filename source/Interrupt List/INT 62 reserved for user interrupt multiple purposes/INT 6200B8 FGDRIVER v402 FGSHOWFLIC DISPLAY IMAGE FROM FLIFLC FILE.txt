@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200B8
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SHOWFLIC" - DISPLAY IMAGE FROM FLI/FLC FILE
+	AX = 00B8h
+	ES:BX -> ASCIZ filename for FLI/FLC file
+	CX = number of times to display image file (0000h = continuously)
+	DX = control flags (see #03479 at AX=0031h)
+Return: AX = status
+	    0000h successful
+	    0001h file not found
+	    0002h not a valid FLI/FLC file
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	the FLI/FLC display may be stopped by the user by pressing Esc
+SeeAlso: AX=0030h,AX=0031h,AX=00B9h
+

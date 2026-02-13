@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216F00
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - OS/2 v1.x FAPI - "DosQMaxEASize" - GET MAXIMUM SIZE OF EXTENDED ATTR
+	AX = 6F00h
+	DS:SI -> DWORD buffer for maximum size of an extended attribute
+Return: CF clear if successful
+	    AX = 0000h
+	    buffer filled
+	CF set on error
+	    AX = error code
+Note:	also supported by OS/2 v2.0+ Virtual DOS Machines
+SeeAlso: AX=5703h,AX=6C01h,AH=6Eh"OS/2"
+

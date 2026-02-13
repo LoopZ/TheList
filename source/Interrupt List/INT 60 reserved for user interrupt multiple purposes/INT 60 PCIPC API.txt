@@ -1,0 +1,72 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - PC-IPC API
+	STACK:	DWORD	pointer to parameter block (see #03268)
+Return: STACK:	unchanged
+Program: PC-IPC is a shareware TSR by Donnelly Software Engineering which
+	  allows communication between independent programs
+Range:	INT 00 to INT FF, selected by commandline switch
+
+Format of PC-IPC parameter block:
+Offset	Size	Description	(Table 03268)
+ 00h	WORD	caller's ID
+ 02h	WORD	to ID
+ 04h	WORD	command code (see #03269)
+ 06h	WORD	returned status (see #03270)
+ 08h	WORD	returned error code (see #03271)
+ 0Ah	WORD	size of data
+ 0Ch	DWORD	pointer to data buffer
+
+(Table 03269)
+Values for PC-IPC command code:
+ 01h "IPC_CMND_INQUIRE"	 inquire current status
+	set status field, writes WORD to data buffer containing free
+	  message space in bytes, and sets the "size" field to the
+	  number of messages waiting
+ 02h "IPC_CMND_ENABLE"	reenable PC-IPC
+	ignored unless called with the same ID that disabled PC-IPC
+ 03h "IPC_CMND_DISABLE" disable PC-IPC
+ 04h "IPC_CMND_INSTALL" reset PC-IPC
+ 06h "IPC_CMND_RDATA"	read data
+	returns first message in data buffer, sets "size" to message length
+	  and "to ID" field to sender's ID
+	if no messages available, bit 4 of status is cleared and "size" is
+	  set to zero
+ 07h "IPC_CMND_SDATA"	send data
+ 08h "IPC_CMND_REQID"	require user ID
+	create a new recognized ID and return in "caller's ID" field
+ 09h "IPC_CMND_DELID"	cancel user ID
+	delete caller's ID from pool of recognized IDs
+ 0Ah "IPC_CMND_RDATAW"	read data, wait if no messages available
+ 0Bh "IPC_CMND_VERS"	get PC-IPC version
+	string representing version returned in data buffer, "size" field
+	  set to length of string
+
+Bitfields for returned status:
+Bit(s)	Description	(Table 03270)
+ 0	unused
+ 1	IPC enabled
+ 2	IPC installed
+ 3	error
+ 4	message(s) available
+
+(Table 03271)
+Values for PC-IPC error code:
+ 00h	no error
+ 01h	invalid command or parameter
+ 02h	only process 0 can install/reset IPC
+ 03h	process can not install/reset IPC
+ 04h	IPC is not enabled
+ 05h	process can not disable IPC
+ 06h	invalid destination process ID
+ 07h	invalid sending process ID
+ 08h	invalid data destination
+ 09h	no more process IDs available
+ 0Ah	can not relinquish that process ID
+ 0Bh	message space is full
+ 0Ch	IPC is not installed
+

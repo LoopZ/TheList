@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE01BX4450
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Quarterdeck QDPMI.SYS v1.0 - INSTALLATION CHECK
+	AX = DE01h
+	BX = 4450h ("DP")
+	CX = 4D49h ("MI")
+	DX = 3039h ("09")
+Return: AL = FFh if installed
+	    BX = 4D42h ("MB")
+	    CX = 4921h ("I!")
+	    DX = 8F4Fh
+	    ES:DI -> filename of DPMI host overlay
+InstallCheck:	test for the existence of the character device QDPMI$$$
+SeeAlso: INT 2F/AX=1687h,INT 31/AX=0000h
+Index:	installation check;QDPMI
+

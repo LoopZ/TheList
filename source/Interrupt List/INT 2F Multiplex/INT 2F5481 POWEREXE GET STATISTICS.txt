@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5481
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - POWER.EXE - GET STATISTICS
+	AX = 5481h
+	BX = which statistics
+	    0000h idle detection
+	    0001h APM statistics
+	CX = length of buffer in bytes
+	DS:SI -> buffer for statistics (see #02843,#02844)
+Return: AX = status
+	    0000h successful
+	    0071h "ERROR_PM_BUFFER_TOO_SMALL"
+	    0087h "ERROR_PM_INVALID_PARAMETER"
+SeeAlso: AH=53h,AX=5400h,AX=5480h,AX=5402h,AX=5482h
+
+Format of POWER.EXE idle detection statistics:
+Offset	Size	Description	(Table 02843)
+ 00h	DWORD	"CPU_ON_TIME" total time CPU is active with POWER.EXE idle
+		  detection enabled, in timer ticks
+ 04h	DWORD	"CPU_IDLE_TIME" timer ticks during which CPU was idle
+		(divide by previous to get idle	rate)
+ 08h	DWORD	total idle calls
+ 0Ch	DWORD	"TOTAL_APP_IDLE" total INT 2Fh idle calls
+ 10h	DWORD	"TOTAL_DOS_YIELD" total INT 28h idle calls
+ 14h	DWORD	"TOTAL_KEY_IDLE" total INT 16h idle calls
+ 18h	DWORD	"TOTAL_DOS_IDLE" total INT 2Ah idle calls
+
+Format of APM statistics:
+Offset	Size	Description	(Table 02844)
+ 00h	DWORD	"RESUME_COUNT" total number of resumes since last APM_ENABLE
+

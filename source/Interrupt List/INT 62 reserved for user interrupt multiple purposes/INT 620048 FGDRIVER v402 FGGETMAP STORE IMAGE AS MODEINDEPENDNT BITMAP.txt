@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620048
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETMAP" - STORE IMAGE AS MODE-INDEPENDNT BITMAP
+	AX = 0048h
+	ES:BX -> buffer for video mode-independent bitmap
+	CX = width of bitmap in bytes
+	DX = height of bitmap in pixel rows
+Return: each bit in bitmap is set if corresponding pixel is of the current
+	  color, cleared otherwise
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored in text modes
+SeeAlso: AX=0011h,AX=001Eh,AX=0024h
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104F08
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VESA SuperVGA BIOS v1.2+ - GET/SET DAC PALETTE CONTROL
+	AX = 4F08h
+	BL = subfunction
+	    00h set DAC palette width
+		BH = desired number of bits per primary color
+	    01h get DAC palette width
+Return: AL = 4Fh if function supported
+	AH = status
+	    00h successful
+		BH = current number of bits per primary (06h = standard VGA)
+	    01h failed
+

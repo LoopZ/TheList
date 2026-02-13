@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4910
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - WRITE BLOCK OF CHARACTERS WITH ATTRIBUTE
+	AH = 10h
+	AL = attribute (becomes new current attribute)
+	DX:BX -> string of characters to write
+	CX = length of string
+Return: nothing
+Note:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+BUG:	CX must not be 0000h on entry, or the system will crash
+SeeAlso: AH=01h,AH=02h,AH=09h,AH=0Eh,AH=11h
+

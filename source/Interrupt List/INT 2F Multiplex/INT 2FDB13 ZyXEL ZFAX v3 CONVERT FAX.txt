@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB13
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - CONVERT FAX
+	AX = DB13h
+	DS:SI -> source filename, including path (max 128 characters)
+	DS:BX -> destination filename, including path (max 80 characters)
+	CX = destination file format
+	    00h FAX, 01h PCX, 02h TIFF, 03h PRN
+Return: AX = status (see #03096)
+SeeAlso: AX=DB11h,AX=DB12h,AX=DB14h,AX=DB22h
+

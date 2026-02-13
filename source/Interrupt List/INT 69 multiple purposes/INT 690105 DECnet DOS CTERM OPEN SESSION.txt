@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 690105
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - DECnet DOS CTERM - OPEN SESSION
+	AX = 0105h
+	DS:BX -> ASCIZ node name
+	ES:DX -> buffer for session control block (see #03727 at INT 6A/AH=D0h)
+Return: AX <= 0 on error
+	AX > 0 session handle
+SeeAlso: AX=0103h,AX=0106h,AX=010Ah
+

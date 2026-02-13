@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - 10NET v5.0 - 10MEMMGR.SYS - API
+	AX = 4402h
+	BX = file handle referencing device "MEMMGR0$"
+	DS:DX -> 6-byte buffer for interface info (see #01496)
+	CX ignored
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4402h"10BEUI",INT 6F/AH=00h"10NET"
+
+Format of 10NET 10MEMMGR.SYS interface info:
+Offset	Size	Description	(Table 01496)
+ 00h	DWORD	address of entry point (see #01497)
+ 04h	WORD	version (0500h for v5.00)
+
+(Table 01497)
+Call 10NET 10MEMMGR.SYS entry point with:
+	AL = 01h ???
+	    BX = ???
+	    Return: CF clear if successful
+		    CF set on error
+			AX = error code
+	AL = 02h ???
+	    ???
+	AL = 03h ???
+	    ???
+	AL = 04h set/restore memory allocation strategy
+	    BX = subfunction
+		0000h set strategy
+		0001h restore strategy
+	    Return: CF clear if successful
+		    CF set on error (if function disabled)
+		    various registers destroyed
+	AL = other
+	    Return: CF set
+		    AX = 0000h
+		    BL = 01h
+

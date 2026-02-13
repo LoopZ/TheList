@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF29
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v3+ - GET OBJECT DISK USAGE AND RESTRICTIONS
+	AX = F216h subfn 29h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02144)
+	ES:DI -> reply buffer (see #02145)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+Note:	this function returns successfully, showing no restriction, if an
+	  invalid object ID is specified
+SeeAlso: AX=F216h/SF=24h,AX=F216h/SF=33h
+
+Format of NetWare "Get Object Disk Restrictions" request buffer:
+Offset	Size	Description	(Table 02144)
+ 00h	WORD	0006h (length of following data)
+ 02h	BYTE	21h (subfunction "Get Object Disk Restrictions")
+ 03h	BYTE	volume number
+ 04h	DWORD	(big-endian) object ID
+SeeAlso: #02145
+
+Format of NetWare "Get Object Disk Restrictions" reply buffer:
+Offset	Size	Description	(Table 02145)
+ 00h	DWORD	disk space limit
+ 04h	DWORD	disk space currently in use by object
+SeeAlso: #02144
+

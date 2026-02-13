@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FADC1
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 4.0+ SELECT - DISPLAY FORMAT DISK PROMPT
+	AX = ADC1h
+Return:	AX destroyed???
+Note:	This function is called by DOS 4.0+ FORMAT utility just as it prompts
+	  for a disk to be formatted.  It is only issued when the undocumented
+	  /SELECT option was specified and is intercepted by SELECT displaying
+	  the prompt.  However, the callout is still present in DOS 6.0 at
+	  least.
+

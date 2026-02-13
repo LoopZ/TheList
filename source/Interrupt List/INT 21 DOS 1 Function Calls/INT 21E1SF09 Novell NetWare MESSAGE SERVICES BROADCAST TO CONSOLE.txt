@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E1--SF09
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - MESSAGE SERVICES - BROADCAST TO CONSOLE
+	AH = E1h subfn 09h
+	DS:SI -> request buffer (see #01837)
+	ES:DI -> reply buffer (see #01838)
+Return: AL = status (see #01834)
+Desc:	send a one-line message to the system console on the default file
+	  server
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+SeeAlso: AH=DEh/DL=04h,AH=E1h/SF=00h,AH=E1h/SF=01h,AH=E3h/SF=D1h
+SeeAlso: AX=F215h/SF=09h
+
+Format of NetWare "Broadcast to Console" request buffer:
+Offset	Size	Description	(Table 01837)
+ 00h	WORD	length of following data (max 3Eh)
+ 02h	BYTE	09h (subfunction "Broadcast to Console")
+ 03h	BYTE	length of message (01h-3Ch)
+ 04h  N BYTEs	message (no control characters or characters > 7Eh)
+SeeAlso: #01838
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01838)
+ 00h	WORD	(call) 0000h (no results returned)
+SeeAlso: #01837
+

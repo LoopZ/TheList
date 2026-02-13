@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215FA2
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic - CONTROL QUEUE
+	AX = 5FA2h
+	BL = control command
+	    00h start despooling (privileged)
+	    01h halt despooling (privileged)
+	    02h halt despooling at end of job (privileged)
+	    03h pause despooler at end of job (privileged)
+	    04h print single job (privileged)
+	    05h restart current job (privileged)
+	    06h cancel the current job
+	    07h hold queue entry
+	    08h release a held queue entry
+	    09h make queue entry a rushed job (privileged)
+	CX:DX = sequence number to control (commands 06h-09h)
+	DX = physical printer number (commands 00h-05h)
+	    00h-02h LPT1-LPT3
+	    03h,04h COM1,COM2
+	    other	all printers
+	ES:DI -> ASCIZ server name in form "\\machine"
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+

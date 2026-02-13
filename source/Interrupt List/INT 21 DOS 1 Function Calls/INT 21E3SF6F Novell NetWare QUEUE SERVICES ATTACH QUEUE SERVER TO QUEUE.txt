@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF6F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - QUEUE SERVICES - ATTACH QUEUE SERVER TO QUEUE
+	AH = E3h subfn 6Fh
+	DS:SI -> request buffer (see #01984)
+	ES:DI -> reply buffer (see #01983)
+Return: AL = status (00h,96h,9Ch,D0h,D1h,D3h,DAh,DBh,FEh,FFh)
+		(see also AH=E3h/SF=64h)
+	    FFh bindery failure, or no such property, or no such member
+Desc:	attach the calling job server to the specified queue
+Notes:	this function is supported by Advanced NetWare 2.1+
+	a queue may have up to 25 job servers attached
+	the calling workstation must be security-equivalent to a member of the
+	  queue's Q_SERVERS property
+SeeAlso: AH=E3h/SF=70h,AH=E3h/SF=71h,AH=E3h/SF=72h,AH=E3h/SF=73h,AH=E3h/SF=76h
+SeeAlso: AX=F217h/SF=6Fh
+
+Format of NetWare "Attach Queue Server to Queue" request buffer:
+Offset	Size	Description	(Table 01984)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	6Fh (subfunction "Attach Queue Server To Queue")
+ 03h	DWORD	(big-endian) object ID of queue
+SeeAlso: #01983,#01985
+

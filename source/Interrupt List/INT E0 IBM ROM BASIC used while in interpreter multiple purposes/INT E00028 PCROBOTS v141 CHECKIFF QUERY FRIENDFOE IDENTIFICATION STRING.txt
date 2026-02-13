@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E00028
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "CHECK_IFF" - QUERY FRIEND/FOE IDENTIFICATION STRING
+	AX = 0028h
+	BX = robot ID to test
+Return: AX = status
+	    0000h IFF strings match
+	    0001h IFF strings differ or invalid robot ID
+SeeAlso: AX=0027h
+

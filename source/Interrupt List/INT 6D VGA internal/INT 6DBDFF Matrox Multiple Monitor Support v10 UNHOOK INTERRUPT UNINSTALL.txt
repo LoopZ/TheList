@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6DBDFF
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 6D U - Matrox Multiple Monitor Support v1.0 - UNHOOK INTERRUPT (UNINSTALL)
+	AX = BDFFh
+Return: AX = 00BDh if supported
+Note:	this function revectors INT 6D without checking that it points at the
+	  TSR, and does not release the memory occupied by the TSR
+SeeAlso: AX=BD60h,AX=BD61h,AX=BD6Fh
+

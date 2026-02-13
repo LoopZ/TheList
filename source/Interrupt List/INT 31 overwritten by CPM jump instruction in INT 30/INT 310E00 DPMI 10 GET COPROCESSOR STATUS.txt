@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310E00
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - GET COPROCESSOR STATUS
+	AX = 0E00h
+Return: CF clear
+	AX = coprocessor status (see #03160)
+Note:	supported by 386MAX v6.01, which otherwise only supports DPMI 0.9
+SeeAlso: AX=0E01h
+
+Bitfields for DPMI coprocessor status:
+Bit(s)	Description	(Table 03160)
+ 0	numeric coprocessor enabled for current client
+ 1	client is emulating coprocessor
+ 2	numeric coprocessor is present
+ 3	host is emulating coprocessor instructions
+ 4-7	coprocessor type
+	0000 none
+	0010 80287
+	0011 80387
+	0100 80486 with numeric coprocessor
+	other reserved
+ 8-15	not used
+

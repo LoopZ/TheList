@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C9
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare - END LOGICAL FILE LOCKING
+	AH = C9h
+Return: AL = error code
+Desc:	used to provide TTS support for applications which are not aware of
+	  Novell's Transaction Tracking System
+Note:	this function was added in NetWare 4.0, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+SeeAlso: AH=C8h
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62004F
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETVIEW" - GET VIEWPORT EXTREME LIMITS
+	AX = 004Fh
+	ES:BX -> variable pointer record (see #03487)
+Return: indicated variables updated
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=00B5h
+
+Format of FGDRIVER GETVIEW variable pointer record:
+Offset	Size	Description	(Table 03487)
+ 00h	WORD	segment of WORD buffer for viewport left edge (viewport units)
+ 02h	WORD	offset of WORD buffer for viewport left edge (viewport units)
+ 04h	WORD	segment of WORD buffer for viewport right edge (viewport units)
+ 06h	WORD	offset of WORD buffer for viewport right edge (viewport units)
+ 08h	WORD	segment of WORD buffer for viewport top edge (viewport units)
+ 0Ah	WORD	offset of WORD buffer for viewport top edge (viewport units)
+ 0Ch	WORD	segment of WORD buffer for viewport bottom edge (viewp. units)
+ 0Eh	WORD	offset of WORD buffer for viewport bottom edge (viewp. units)
+ 10h	WORD	segment of WORD buffer for viewport left edge (screen space)
+ 12h	WORD	offset of WORD buffer for viewport left edge (screen space)
+ 14h	WORD	segment of WORD buffer for viewport right edge (screen space)
+ 16h	WORD	offset of WORD buffer for viewport right edge (screen space)
+ 18h	WORD	segment of WORD buffer for viewport top edge (screen space)
+ 1Ah	WORD	offset of WORD buffer for viewport top edge (screen space)
+ 1Ch	WORD	segment of WORD buffer for viewport bottom edge (screen space)
+ 1Eh	WORD	offset of WORD buffer for viewport bottom edge (screen space)
+

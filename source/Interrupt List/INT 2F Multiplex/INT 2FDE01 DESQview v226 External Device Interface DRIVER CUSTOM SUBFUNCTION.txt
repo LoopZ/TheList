@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE01
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DESQview v2.26+ External Device Interface - DRIVER CUSTOM SUBFUNCTION
+	AX = DE01h
+	BX = driver ID
+	other registers as needed by driver
+Notes:	XDI drivers should pass this call through to previous handler if ID
+	  does not match
+	DESQview never calls this function
+

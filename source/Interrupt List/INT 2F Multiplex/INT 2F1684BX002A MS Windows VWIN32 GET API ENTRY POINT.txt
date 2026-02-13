@@ -1,0 +1,111 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX002A
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - VWIN32 - GET API ENTRY POINT
+	AX = 1684h
+	BX = 002Ah (virtual device ID for VWIN32 device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02669)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02669)
+Call VWIN32.VXD entry point with:
+	AH = function number
+	    00h get VWIN32 version and ???
+		Return: CF clear
+			AH = major version
+			AL = minor version
+			EDX = ???
+	    01h ???
+		EBX = ???
+		ECX = ???
+		Return: CF clear
+			EAX = ???
+	    02h ???
+		Return: CF clear
+			AX = ??? or 0000h
+	    03h address allocation
+		DS:??? -> buffer containing/for page data
+		ECX = length of buffer
+		AL = subfunction
+		    00h reserve page(s)
+		    01h commit page(s)
+		    02h decommit page(s)
+		    03h free page(s)
+		Return: CF clear if successful
+			CF set on error
+		Note:	this function uses ECX bytes of stack
+	    04h get ???
+		Return: CF clear
+			EAX = ???
+	    05h ???
+		EBX = ???
+		Return: CF clear
+			EAX = ???
+	    06h ???
+		EBX = ???
+		Return: CF clear
+			EAX = ???
+	    07h ???
+		EBX = ???
+		Return: CF clear
+			EAX = ???
+	    08h get ???
+		Return: CF clear
+			AX = ???
+	    09h ???
+		EBX = ???
+		ECX = ???
+		Return: CF clear
+	    0Ah ???
+		EBX = ???
+		Return: CF clear
+	    0Bh ???
+		EBX = ???
+		Return: CF clear
+	    0Ch ???
+		EBX = ???
+		ECX = ???
+		EDX = ???
+		???
+		Return: CF clear if successful
+			    EAX = ???
+			CF set on error
+	    0Dh clear ???
+		Return: CF clear
+	    0Eh ???
+		EBX = ???
+		ECX = ???
+		Return: CF clear
+	    0Fh ???
+		EBX = ???
+		ECX = ???
+		Return: CF clear
+	    10h ???
+		Return: CF clear
+		Note:	invokes VMMcall 00010184h
+	    11h ???
+		Return: CF clear
+		Note:	invokes VMMcall 00010160h
+	    12h ???
+		???
+	    13h pop up system error dialogue
+		Return: CF clear
+			AX = ??? or 0000h
+	    14h "IFSMgr_GetConversionTablePtrs"
+		Return:	CF clear
+			DX:AX -> ???
+		Note:	invokes VxDcall 00400051h
+	    15h "Boost_With_Decay"
+		EBX = ???
+		ECX = ???
+		EDX = ???
+		Return: CF clear
+	    else
+		Return: CF set
+SeeAlso: #02668,#02670
+

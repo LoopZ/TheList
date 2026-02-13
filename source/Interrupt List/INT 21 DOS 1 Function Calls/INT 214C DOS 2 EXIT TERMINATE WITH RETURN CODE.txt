@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "EXIT" - TERMINATE WITH RETURN CODE
+	AH = 4Ch
+	AL = return code
+Return: never returns
+Notes:	unless the process is its own parent
+	  (see #01378 [offset 16h] at AH=26h), all open files are closed and
+	  all memory belonging to the process is freed
+	all network file locks should be removed before calling this function
+SeeAlso: AH=00h,AH=26h,AH=4Bh,AH=4Dh,INT 15/AH=12h/BH=02h,INT 20,INT 22
+SeeAlso: INT 60/DI=0601h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: E680
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E6 - Linux DOSEMU - GET CURRENT UNIX DIRECTORY
+	AH = 80h
+Return: ES:DX -> current Unix directory
+	AX = length of current directory name
+SeeAlso: AH=00h,AH=81h
+

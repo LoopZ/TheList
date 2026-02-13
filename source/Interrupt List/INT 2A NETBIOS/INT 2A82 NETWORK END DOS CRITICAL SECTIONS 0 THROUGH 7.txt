@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A82
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2A CU - NETWORK - END DOS CRITICAL SECTIONS 0 THROUGH 7
+	AH = 82h
+Notes:	called by the INT 21h function dispatcher for function 0 and functions
+	  greater than 0Ch except 59h, and on process termination
+	the handler should reawaken any tasks which were suspended due to an
+	  attempt to enter one of the critical sections 0 through 7
+SeeAlso: AH=81h
+

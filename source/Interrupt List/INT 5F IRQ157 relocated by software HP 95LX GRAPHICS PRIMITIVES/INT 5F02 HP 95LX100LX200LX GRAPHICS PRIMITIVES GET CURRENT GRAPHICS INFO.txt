@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5F02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - GET CURRENT GRAPHICS INFO
+	AH = 02h
+	ES:DI -> graphics info record (see #03260)
+Return: DX:AX -> filled graphics info record (for return to high-level langs)
+
+Format of HP 95LX graphics info record:
+Offset	Size	Description	(Table 03260)
+ 00h	BYTE	current video mode
+ 01h	BYTE	default video mode
+ 02h	WORD	display width in pixels
+ 04h	WORD	display height in pixels
+ 06h	WORD	current pen column
+ 08h	WORD	current pen row
+ 0Ah	WORD	current line type
+ 0Ch	WORD	current replacement rule
+ 0Eh	WORD	current pen color
+ 10h	WORD	current leftmost column of clip region
+ 12h	WORD	current rightmost column of clip region
+ 14h	WORD	current topmost row of clip region
+ 16h	WORD	current bottommost row of clip region
+ 18h	WORD	current column of logical origin
+ 1Ah	WORD	current row of logical origin
+ 1Ch  8 BYTEs	current fill mask
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33002D
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v7.0+ - SELECT ACCELERATION PROFILE
+	AX = 002Dh
+	BX = acceleration level
+	    0001h-0004h to set profile, or FFFFh to get current profile
+Return: AX = status
+	    0000h successful
+		ES:SI -> 16-byte blank-padded name of acceleration profile
+	    FFFEh invalid acceleration curve number
+		ES:SI destroyed
+	BX = active acceleration curve number
+SeeAlso: AX=0013h,AX=002Bh,AX=002Ch,AX=002Eh
+

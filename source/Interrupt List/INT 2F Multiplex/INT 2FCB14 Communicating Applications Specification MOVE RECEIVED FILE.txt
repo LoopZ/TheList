@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB14
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - MOVE RECEIVED FILE
+	AX = CB14h
+	BX = event handle
+	CX = receive file number
+	    0001h first received file
+	    N	  Nth received file
+	DS:DX -> ASCIZ string specifying new name for file (must not exist)
+Return: AX = 0000h successful
+	AX < 0	   error code (see #03048)
+

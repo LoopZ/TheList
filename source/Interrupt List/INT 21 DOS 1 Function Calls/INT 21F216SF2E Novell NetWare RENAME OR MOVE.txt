@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF2E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - RENAME OR MOVE
+	AX = F216h subfn 2Eh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02151)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F217h/SF=34h,AX=F223h/SF=07h,AX=F244h
+
+Format of NetWare "Rename Or Move" request packet:
+Offset	Size	Description	(Table 02151)
+ 00h	WORD	length of following data
+ 02h	BYTE	2Eh (subfunction "Rename Or Move")
+ 03h	BYTE	source directory handle
+ 04h	BYTE	search attributes
+ 05h	BYTE	source path component count
+ 06h  N BYTEs	source path
+	BYTE	destination directory handle
+	BYTE	destination path component count
+      N BYTEs	destination path
+

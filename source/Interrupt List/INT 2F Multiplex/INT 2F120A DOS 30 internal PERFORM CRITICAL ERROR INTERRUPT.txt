@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F120A
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - PERFORM CRITICAL ERROR INTERRUPT
+	AX = 120Ah
+	DS = SS = DOS DS (must be using a DOS internal stack)
+	STACK: WORD extended error code
+Return: AL = user response (0=ignore, 1=retry, 2=abort, 3=fail)
+	CF clear if retry, set otherwise
+	STACK unchanged
+Notes:	can only be called during a DOS function call, as it uses various
+	  fields in the SDA to set up the registers for the INT 24
+	reportedly sets current DPB's first root directory sector to 1
+SeeAlso: INT 24
+

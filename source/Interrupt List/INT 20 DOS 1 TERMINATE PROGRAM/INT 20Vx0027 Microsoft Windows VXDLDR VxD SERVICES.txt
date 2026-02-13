@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0027
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VXDLDR - VxD SERVICES
+	VxD = 0027h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01291)
+Values for VXDLDR (VxD ID 0027h) service number:
+ 0000h	"VXDLDR_Get_Version"
+ 0001h	"VXDLDR_LoadDevice"
+ 0002h	"VXDLDR_UnloadDevice"
+ 0003h	"VXDLDR_DevInitSucceeded"
+ 0004h	"VXDLDR_DevInitFailed"
+ 0005h	"VXDLDR_GetDeviceList"
+ 0006h	"VXDLDR_UnloadMe"
+ 0007h	"PELDR_LoadModule"
+ 0008h	"PELDR_GetModuleHandle"
+ 0009h	"PELDR_GetModuleUsage"
+ 000Ah	"PELDR_GetEntryPoint"
+ 000Bh	"PELDR_GetProcAddress"
+ 000Ch	"PELDR_AddExportTable"
+ 000Dh	"PELDR_RemoveExportTable"
+ 000Eh	"PELDR_FreeModule"
+ 000Fh	"VXDLDR_Notify"
+ 0010h	"_PELDR_InitCompleted"
+ 0011h	"_PELDR_LoadModuleEx"
+SeeAlso: #01289,#01292
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F15--CL00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - GET CHANNEL STATUS
+	AH = 15h
+	CL = 00h
+	AL = channel number
+	DX:DI -> status structure (see #03958)
+Return: AL = status (00h-03h) (see #03954)
+SeeAlso: AH=15h/CL=01h
+
+Format of Alloy channel status structure:
+Offset	Size	Description	(Table 03958)
+ 00h	BYTE	channel status
+		bit 0: channel open
+		bit 1: channel buffer contains received data
+		bit 7: channel locked
+ 01h	BYTE	sender ID
+

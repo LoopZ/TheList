@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E906
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - PhysTechSoft PTS ROM-DOS - READ SETUP INFORMATION FROM FLASH-DISK
+	AX = E906h
+	DS:SI -> buffer
+Return:	AL = error code (00h = no error, 01h = setup information not found)
+SeeAlso: AX=E907h,INT 14/AH=05h"PTS ROM-DOS",INT 14/AH=06h"PTS ROM-DOS"
+

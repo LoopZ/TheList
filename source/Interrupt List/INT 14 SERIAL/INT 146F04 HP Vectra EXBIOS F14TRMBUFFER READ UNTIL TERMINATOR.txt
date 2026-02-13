@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 146F04
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - HP Vectra EX-BIOS - "F14_TRM_BUFFER" - READ UNTIL TERMINATOR
+	AX = 6F04h
+	BL = lowest termination character
+	BH = highest termination character
+	CX = size of buffer
+	DX = port number (0-3)
+	ES:DI -> buffer for received characters
+Return: AH = line status (see #00304)
+	---on error (AH bit 7 set)---
+	   AL = 00h
+	   ES:DI -> next byte to be transferred
+	---if successful---
+	   AL = last byte read
+	   ES:DI unchanged
+	CX = number of bytes read
+Desc:	read characters into the specified buffer until the buffer is filled,
+	  a character in the specified range is received, or a timeout occurs
+Notes:	supported by original HP Vectra AT and by ES/QS/RS series Vectras
+	polls the Data Set Ready modem status and Data Ready line status bits
+	  to determine when characters are available
+SeeAlso: AX=6F00h,AX=6F02h,AX=6F03h
+

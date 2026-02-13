@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310200
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET REAL MODE INTERRUPT VECTOR
+	AX = 0200h
+	BL = interrupt number
+Return: CF clear
+	CX:DX = segment:offset of real mode interrupt handler
+Note:	the DPMI implementation is required to support all 256 vectors
+SeeAlso: AX=0201h,AX=0204h,INT 21/AX=2503h
+

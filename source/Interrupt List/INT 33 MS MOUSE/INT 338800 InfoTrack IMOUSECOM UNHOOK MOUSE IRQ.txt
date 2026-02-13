@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 338800
+  Category: M 	mouse/pointing device
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 33 U - InfoTrack IMOUSE.COM - UNHOOK MOUSE IRQ
+	AX = 8800h
+	BX <> FFFFh
+Note:	the code is written to expect a subfunction number in AL, but only
+	  function 00h has been implemented
+SeeAlso: AX=8800h/BX=FFFFh
+

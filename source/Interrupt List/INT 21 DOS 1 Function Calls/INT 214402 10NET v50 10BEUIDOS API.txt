@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - 10NET v5.0 - 10BEUI.DOS - API
+	AX = 4402h
+	BX = file handle referencing device "10BEUI$"
+	DS:DX -> parameter record (see #01495)
+	CX ignored
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4402h"10MEMMGR",INT 6F/AH=00h"10NET"
+
+Format of 10NET 10BEUI.DOS parameter record:
+Offset	Size	Description	(Table 01495)
+ 00h	WORD	000Ah (function number???)
+ 02h	WORD	???
+ 04h	DWORD	pointer to buffer for ???
+ 08h  4 BYTEs	???
+ 0Ch	WORD	transfer size
+

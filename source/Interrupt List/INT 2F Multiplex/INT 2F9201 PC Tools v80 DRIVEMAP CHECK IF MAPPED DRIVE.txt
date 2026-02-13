@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F9201
+  Category: R 	remote control/file access
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PC Tools v8.0 DRIVEMAP - CHECK IF MAPPED DRIVE
+	AX = 9201h
+	DL = drive number (01h = A:, etc.)
+Return: AL = 92h if mapped drive
+	AH may be destroyed (v8.0 DRIVEMAP returns AX=0000h if not mapped)
+SeeAlso: AX=9204h,AX=920Bh
+

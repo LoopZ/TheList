@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCD04
+  Category: s 	sound/speech
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2F R - InterWave Game API - WAKE PROGRAM
+	AX = CD04h
+	BX = installed program identifier
+Return: AL = status
+	    00h successful
+	    else failed
+Note:	this function should only be called after the program has been
+	  suspended with AX=CD03h
+SeeAlso: AX=CD00h"InterWave",AX=CD01h"InterWave",AX=CD03h"InterWave"
+SeeAlso: AX=CD05h"InterWave",AX=CD21h"InterWave",AX=CD80h"InterWave"
+SeeAlso: INT 7E/AL=84h"IWSBSDRV"
+

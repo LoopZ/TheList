@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21251C
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender VMM v2.1c+ - FREE PHYSICAL MEMORY PAGES
+	AX = 251Ch
+	BH = preservation flag (00h preserve contents, 01h discard contents)
+	EDX = number of pages to free
+	BL = address type
+	    00h linear address
+		ECX = linear address of first page to be freed
+	    01h pointer
+		ES:ECX -> first page to be freed
+Return: CF clear if successful
+	CF set on error
+	    EAX = error code
+		08h memory error, swap space full, no VMM or DPMI
+		09h invalid address
+

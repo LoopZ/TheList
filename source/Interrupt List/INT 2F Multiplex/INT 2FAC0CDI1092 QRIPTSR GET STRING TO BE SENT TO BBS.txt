@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC0CDI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - GET STRING TO BE SENT TO BBS
+	AX = AC0Ch
+	DI = 1092h
+Return: AX = status
+	    0000h nothing to be sent
+	    0001h a string is waiting to be sent
+		DX:BX -> string to be sent (may contain NULs)
+		CX = length of string
+	    0002h special code waiting (call AX=AC06h)
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC06h,AX=ACF0h
+

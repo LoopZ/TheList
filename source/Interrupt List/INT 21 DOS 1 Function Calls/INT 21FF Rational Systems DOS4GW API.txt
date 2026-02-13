@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 UP - Rational Systems DOS/4GW - API
+	AH = FFh
+	DH = function (00h-17h) (also see separate entries below)
+	DL = subfunction or argument
+Return: CF clear if valid function number
+	    AX = status???
+	CF set if invalid function
+SeeAlso: INT 15/AX=BFDCh
+

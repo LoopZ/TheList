@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FB0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - RELEASE ALL SEMAPHORES FOR USER
+	AH = B0h
+	AL = user number
+	DS = code segment
+Note:	MW386 ignores AL and DS; it releases all semaphores locked using INT 67
+	  or INT 7F locking functions
+SeeAlso: AH=B1h,AH=B2h,AH=B3h,AH=B4h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B803
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - SET SPECIFIC CAPTURE FLAGS
+	AX = B803h
+	CX = size of buffer (01h-3Fh)
+	DH = LPT port (00h-02h)
+	ES:BX -> buffer containing capture flags table (see #01805)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AX=B800h,AX=B803h,AH=DFh/DL=00h,AH=DFh/DL=04h
+

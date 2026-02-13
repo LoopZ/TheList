@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 59
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 59 - TI Professional PC - COMMON ROM HARDWARE INTERRUPT EXIT VECTOR
+Desc:	all hardware interrupts on the TI Pro jump indirectly to the handler
+	  pointed at by this interrupt vector to finish their handling of
+	  the hardware interrupt
+Notes:	the default handler decrements the interrupt count, restores registers
+	  (including the stack pointer), sends an EOI to the interrupt
+	  controller, and finally does an IRET
+	can be used by multitaskers which need to get control after every
+	  hardware interrupt
+SeeAlso: INT 40"TI Professional",INT 47"TI Professional"
+SeeAlso: INT 53"TI Professional"
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214101DXFFFE
+  Category: y 	security
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - SoftLogic Data Guardian - ???
+	AX = 4101h
+	DX = FFFEh
+Return: AX = 0000h if installed
+Note:	resident code sets several internal variables on this call
+SeeAlso: AH=3Fh"NB.SYS",INT 16/AX=FFA3h/BX=0000h
+

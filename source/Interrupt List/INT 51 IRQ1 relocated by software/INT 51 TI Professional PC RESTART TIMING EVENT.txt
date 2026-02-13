@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 51
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 51 - TI Professional PC - RESTART TIMING EVENT
+	AX = timer count in 25ms intervals
+	DS:DI -> timing-event table (see #03244)
+Note:	documented as "for system use only"; intended for multi-tasking
+	  software
+SeeAlso: INT 50"TI Professional",INT 52"TI Professional"
+
+Format of TI Professional PC timing event table:
+Offset	Size	Description	(Table 03244)
+ 00h	WORD	offset of next event table entry
+ 02h	BYTE	normally unused (FFh)
+ 03h	BYTE	flags:
+		bit 7 set if timing event active
+		bits 6-0 not used by BIOS (0), but could be used by option ROMs
+ 04h	WORD	timeout count (decremented every 25ms when active)
+ 06h	WORD	offset of event handler (in segment F400h) to call on event
+		  timeout; the F400h segment allows addressing both system ROMs
+		  and the first 16K of memory (due to the 1M memory wraparound)
+

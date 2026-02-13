@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1587
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SET INT 72h VECTOR
+	AH = 87h
+	DS:DX = new service routine
+Desc:	set the INT 72h vector which is called in 2 cases:
+	  - when the machine is about to turn off or reboot, INT 72h is called
+	    with AH=0
+	  - when the machine is powering up INT 72h is called with AH=01h
+Note:	the actual INT 72h vector must also be changed with INT 21/AH=25h
+

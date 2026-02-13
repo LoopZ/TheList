@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0034
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking v1.01 - UNREGISTER CLOAKING CLIENT
+	AX = 0034h
+	DS:EDX -> client registration structure (see #02567)
+Return: CF clear if successful
+	CF set on error (linked list corrupt)
+Note:	the client must unregister before freeing the XMS block containing
+	  its registration structure(s)
+SeeAlso: AX=0033h,#02778 at INT 2F/AX=4310h"Cloaking"
+

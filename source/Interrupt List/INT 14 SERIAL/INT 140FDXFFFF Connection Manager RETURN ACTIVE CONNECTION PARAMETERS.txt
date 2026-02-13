@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 140F--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - RETURN ACTIVE CONNECTION PARAMETERS
+	AH = 0Fh
+	DX = FFFFh
+	AL = connection ID
+	CX = size of buffer or 0000h to get length of returned vector
+	ES:DI -> buffer for connection parameter vector (see #00311)
+Return: AH = return code (00h-02h,06h) (see #00303 at AH=00h/DX=FFFFh)
+	CX = number of bytes which could not be returned because the given
+	      buffer was too small
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+SeeAlso: AH=08h/DX=FFFFh,AH=0Ah/DX=FFFFh
+

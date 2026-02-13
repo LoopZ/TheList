@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AFF
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - RighTime v1.1 - PERMANENTLY DISABLE
+	AH = FFh
+Program: RighTime is a TSR by G.T. Becker which continuously adjusts the
+	  system time to correct for clock drift
+Note:	upon being permanently disabled, RighTime closes the file handle
+	  referencing its executable (which is updated with time correction
+	  information every two minutes while RighTime is enabled).
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0002D
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "REGISTER_X" - SELECT AUTOMATIC X POSITION UPDATES
+	AX = 002Dh
+	BX:CX -> X word variable
+Return: AX = status (0001h OK, 0000h problem with address)
+Note:	after this call, PCROBOTS will automatically update the specified
+	  word whenever the robot moves
+SeeAlso: AX=002Eh
+

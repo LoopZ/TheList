@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31000F
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - SET MULTIPLE DESCRIPTORS
+	AX = 000Fh
+	CX = number of descriptors to copy
+	ES:(E)DI -> descriptor buffer (see #03145)
+Return: CF clear if successful
+	    descriptors copied
+	CF set on error
+	    AX = error code (8021h,8022h,8025h) (see #03143)
+	    CX = number of descriptors successfully copied
+Notes:	16-bit programs use ES:DI as pointer, 32-bit must use ES:EDI
+	if the function fails, the first CX descriptors are valid; the
+	  remainder are not modified
+	DPMI 1.0+ automatically reloads any segment registers containing a
+	  selector being modified
+SeeAlso: AX=000Ch,AX=000Eh
+
+Format of DPMI descriptor buffer entry (one per descriptor to set):
+Offset	Size	Description	(Table 03145)
+ 00h	WORD	selector
+ 02h	QWORD	descriptor
+

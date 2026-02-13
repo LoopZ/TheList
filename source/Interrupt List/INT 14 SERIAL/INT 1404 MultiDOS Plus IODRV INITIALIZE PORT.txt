@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1404
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus IODRV - INITIALIZE PORT
+	AH = 04h
+Return: port initialized; if Hayes-compatible modem, a connection has been
+	  established
+Note:	the port number is stored at offset BEh in the Task Control Block
+	  (see #00456 at INT 15/AH=13h"MultiDOS")
+SeeAlso: AH=00h,AH=05h"MultiDOS",AH=20h"MultiDOS",INT 15/AH=13h"MultiDOS"
+

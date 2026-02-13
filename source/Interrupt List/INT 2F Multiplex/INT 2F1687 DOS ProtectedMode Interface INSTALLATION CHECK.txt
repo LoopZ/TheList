@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1687
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS Protected-Mode Interface - INSTALLATION CHECK
+	AX = 1687h
+Return: AX = 0000h if installed
+	    BX = flags
+		bit 0: 32-bit programs supported
+	    CL = processor type (02h=80286, 03h=80386, 04h=80486)
+	    DH = DPMI major version
+	    DL = two-digit DPMI minor version (binary)
+	    SI = number of paragraphs of DOS extender private data
+	    ES:DI -> DPMI mode-switch entry point (see #02718)
+	AX nonzero if not installed
+SeeAlso: AX=1686h,AX=43E0h,AX=DE01h/BX=4450h,AX=FB42h/BX=0001h
+SeeAlso: INT 31/AX=0400h,INT 31/AX=5702h,INT D4/AH=10h
+
+(Table 02718)
+Call DPMI mode switch entry point with:
+	AX = flags
+	    bit 0: set if 32-bit program
+	ES = real mode segment of buffer for DPMI private data (ignored if
+		SI was zero)
+Return: CF set on error
+	    program still in real mode
+	    AX = error code (DPMI 1.0+)
+	       8011h unable to allocate all necessary descriptors
+	       8021h 32-bit program specified, but 16-bit DPMI host
+	CF clear if successful
+	    CS = 16-bit selector corresponding to real-mode CS
+	    SS = selector corresponding to real-mode SS (64K limit)
+	    DS = selector corresponding to real-mode DS (64K limit)
+	    ES = selector to program's PSP (100h byte limit)
+	    FS = GS = 0
+	    high word of ESP = 0 if 32-bit program
+	    program now in protected mode
+Note:	this entry point is only called for the initial switch to protected
+	  mode
+

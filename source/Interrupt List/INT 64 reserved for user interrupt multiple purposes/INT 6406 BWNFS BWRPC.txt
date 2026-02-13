@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6406
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 64 U - BW-NFS - BWRPC - ???
+	AH = 06h
+	ES:SI -> ???
+Return: AL = 00h if CF clear
+Range:	INT 4E to INT FD, selected by configuration
+Note:	this call is passed directly through to INT 62/AH=14h
+SeeAlso: INT 62/AH=14h"ETHDEV"
+

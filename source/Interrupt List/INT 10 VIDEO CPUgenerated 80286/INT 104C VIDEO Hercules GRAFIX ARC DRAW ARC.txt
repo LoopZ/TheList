@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 104C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Hercules GRAFIX - "ARC" - DRAW ARC
+	AH = 4Ch
+	AL = quadrant (1 = upper right, 2 = upper left, etc)
+	DI = x coordinate of center
+	BP = y coordinate of center
+	BX = radius
+Return: nothing
+SeeAlso: AH=49h,AH=4Dh
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1623
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HUNTER 16 - CONTROL EMERGENCY BREAKOUT
+	AH = 23h
+	AL = new state of breakout (00h enabled, nonzero disabled)
+	BX = 0708h
+	CX = 0910h
+	DX = 1112h
+Return: AL = 00h if successful
+Desc:	Enables or disables the emergency breakout feature, where the
+	  Hunter 16 at power on checks whether the X and P keys are pressed.
+	  If so the machine will boot rather than continue the running program
+SeeAlso: AH=22h"HUNTER"
+

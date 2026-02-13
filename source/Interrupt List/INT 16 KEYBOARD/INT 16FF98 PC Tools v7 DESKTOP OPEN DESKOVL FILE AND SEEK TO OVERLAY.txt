@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FF98
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v7+ DESKTOP - OPEN \DESK.OVL FILE AND SEEK TO OVERLAY
+	AX = FF98h
+	DX = byte offset in file of overlay header (see #00619)
+Return: BX = file handle for DESK.OVL file
+Desc:	open the DESK.OVL file, seek to the specified offset, read in the
+	  overlay header, and seek to the offset specified by the header
+
+Format of PC Tools DESKTOP overlay header:
+Offset	Size	Description	(Table 00619)
+ 00h 12 BYTEs	NUL-padded ASCII overlay filename
+ 0Ch	DWORD	offset within DESK.OVL file of actual overlay
+

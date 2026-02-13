@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6700
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - PC-NET, Alloy NTNX - LOCK SEMAPHORE AND WAIT
+	AH = 00h
+	DS:DX -> ASCIZ semaphore name (max 64 bytes)
+Return: AL = status (see #03522)
+	AH = semaphore owner if status=02h
+SeeAlso: AH=01h,AH=02h"PC-NET",INT 7F/AH=00h
+
+(Table 03522)
+Values for PC-NET semaphore function status:
+ 00h	successful
+ 01h	invalid function
+ 02h	semaphore already locked
+ 03h	unable to lock semaphore
+ 04h	semaphore space exhausted
+

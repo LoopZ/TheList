@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B8104
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Virtual DMA Specification - UNLOCK DMA REGION
+	AX = 8104h
+	DX = flags
+	    bit 0: reserved (zero)
+	    bit 1: data should be copied out of buffer
+	    bits 2-15 reserved (zero)
+	ES:DI -> DMA descriptor structure (see #03221,#03222) with region size,
+		  physical address, and buffer ID fields set
+Return: CF clear if successful
+	    DDS physical address field set
+	    DDS buffer ID field set (0000h if no buffer allocated)
+	CF set on error
+	    AL = error code (see #03218)
+	    DDS region size field filled wth maximum contiguous length in bytes
+Note:	Windows 3.0 does not check whether the region extends beyond the end of
+	  a segment
+BUG:	Windows 3.0 in enhanced mode does not return a correct code on error
+SeeAlso: AX=8103h,AX=8106h
+

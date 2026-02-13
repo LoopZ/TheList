@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0022
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - APIX - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0022h (virtual device ID for APIX device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02663)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02663)
+Call APIX protected-mode entry point with:
+	AH = function number
+	    00h get APIX version
+		Return: CF clear
+			AH = major version
+			AL = minor version
+	    01h ???
+		Return: CF clear
+			AX = number of ???
+	    02h NOP
+		Return: CF clear
+	    03h ???
+		Return: CF clear
+			AX = 0000h/FFFFh
+	    else
+		Return: CF clear (bug?)
+SeeAlso: #02661,#02666
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216300
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2.25 only - GET LEAD BYTE TABLE ADDRESS
+	AX = 6300h
+Return: CF clear if successful
+	    DS:SI -> lead byte table (see #01746)
+	CF set on error
+	    AX = error code (01h) (see #01680 at AH=59h/BX=0000h)
+Notes:	does not preserve any registers other than SS:SP
+	the US version of MS-DOS 3.30 treats this as an unused function,
+	  setting AL=00h and returning immediately
+SeeAlso: AX=6301h,AH=07h,AH=08h,AH=0Bh
+
+Format of double-byte character set lead byte table entry:
+Offset	Size	Description	(Table 01746)
+ 00h  2 BYTEs	low/high ends of a range of leading byte of double-byte chars
+ 02h  2 BYTEs	low/high ends of a range of leading byte of double-byte chars
+	...
+  N   2 BYTEs	00h,00h end flag
+

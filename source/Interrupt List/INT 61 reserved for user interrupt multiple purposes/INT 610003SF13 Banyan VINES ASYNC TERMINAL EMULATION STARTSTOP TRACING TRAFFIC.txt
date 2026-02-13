@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF13
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - START/STOP TRACING TRAFFIC
+	AX = 0003h subfn 13h
+	DS:BX -> argument block (see #03397)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h,AX=0003h/SF=0Eh
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03397)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	13h (function "start/stop tracing data traffic in session")
+ 02h	BYTE	trace flag (00h=off, 01h=on)
+

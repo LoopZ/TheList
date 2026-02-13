@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 178B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy MW386 - GET PHYSICAL DEVICE NUMBER FROM NAME
+	AH = 8Bh
+	DS:DX -> ASCIZ printer name
+Return: AL = status (see also AH=81h)
+	    00h successful
+		DX = physical device number
+SeeAlso: AH=89h,AH=8Ch,INT 14/AH=20h"Alloy"
+

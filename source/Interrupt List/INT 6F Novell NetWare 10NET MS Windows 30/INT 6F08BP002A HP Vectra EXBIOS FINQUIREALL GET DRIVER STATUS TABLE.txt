@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F08--BP002A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_INQUIRE_ALL" - GET DRIVER STATUS TABLE
+	AH = 08h
+	BP = 002Ah (driver ID for V_SINPUT)
+	ES:SI -> buffer for device status table (see #03762)
+Return: AH = status (see #03744)
+	ES:SI buffer filled
+	BP,DS destroyed
+Note:	the returned physical describe record must not be modified
+SeeAlso: AH=00h"HP Vectra",AX=0400h/BP=002Ah,AH=06h/BP=002Ah,AH=0Ah/BP=002Ah
+SeeAlso: AH=0Ch/BP=002Ah
+
+Format of HP Vectra HP-HIL physical device status table:
+Offset	Size	Description	(Table 03762)
+ 00h	BYTE	status for HP-HIL device #1
+		bit 0: device present
+		bits 7-2 reserved
+ 01h	BYTE	device ID for HP-HIL device #1
+	...
+ 0Ch	BYTE	status for HP-HIL device #7
+ 0Dh	BYTE	device ID for HP-HIL device #7
+

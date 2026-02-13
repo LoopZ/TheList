@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 218401
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "GETMEM" - OBTAIN ACCESS TO SHARED MEMORY AREA
+	AX = 8401h
+	CX = flags
+	    bit 7: writable segment (ignored by MS-DOS 4.0)
+	DS:DX -> ASCIZ name (must begin with "\SHAREMEM\")
+Return: CF clear if successful
+	    AX = segment address of shared memory global object
+	    CX = size in bytes
+	CF set on error
+	    AX = error code (invalid name)
+Desc:	get address of a previously-created area of memory which may be
+	  accessed by multiple processes
+Note:	this call increments the reference count for the shared memory area
+SeeAlso: AX=8400h,AX=8402h
+

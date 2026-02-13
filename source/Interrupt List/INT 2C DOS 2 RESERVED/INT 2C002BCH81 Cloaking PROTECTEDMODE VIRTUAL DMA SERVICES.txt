@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C002BCH81
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - PROTECTED-MODE VIRTUAL DMA SERVICES
+	AX = 002Bh
+	CH = 81h
+	CL = subfunction (02h-0Ch)
+	other registers as appropriate for subfunction
+Return: varies by function
+	CF set on error
+Notes:	these functions are equivalent to the INT 4B/AX=81xxh subfunctions
+	  with the same numbers
+	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: INT 4B/AX=8102h,INT 4B/AX=810Ch
+

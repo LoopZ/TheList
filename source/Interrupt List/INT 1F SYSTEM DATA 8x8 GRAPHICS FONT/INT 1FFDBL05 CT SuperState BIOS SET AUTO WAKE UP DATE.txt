@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1FFD--BL05
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 1F U - C&T "SuperState" BIOS - SET AUTO WAKE UP DATE
+	AH = FDh
+	BL = 05h
+	CH = year century in BCD
+	CL = year low in BCD
+	DH = month in BCD
+	DL = date in BCD
+Return: CF set on error (incorrect date format or Auto Wake up is not enable)
+SeeAlso: AH=FDh/BL=03h"C&T",AH=FDh/BL=04h"C&T"
+

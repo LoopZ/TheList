@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1576
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - CONTROL POWER SAVE
+	AH = 76h
+	BX = power save control (see #00495)
+SeeAlso: AH=74h
+
+Bitfields for HUNTER 16 power save control:
+Bit(s)	Description	(Table 00495)
+ 0	power save enabled
+ 1	inhibit power save when waiting for COM1 data
+ 2	inhibit power save when waiting for COM2 data
+ 3	inhibit power save when waiting for data from barcode wand
+ 4	inhibit power up on timer tick
+

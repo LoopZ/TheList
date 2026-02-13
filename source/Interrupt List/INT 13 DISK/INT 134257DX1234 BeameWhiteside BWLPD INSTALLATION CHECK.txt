@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 134257DX1234
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - Beame&Whiteside BWLPD - INSTALLATION CHECK
+	AX = 4257h ("BW")
+	DX = 1234h
+Return: BX = 414Ch if installed
+Program: BWLPD is the printer daemon from the BW-NFS package
+SeeAlso: INT 62/AH=00h"ETHDEV"
+

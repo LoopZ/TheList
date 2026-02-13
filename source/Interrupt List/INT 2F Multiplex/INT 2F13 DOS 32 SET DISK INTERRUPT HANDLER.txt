@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F13
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.2+ - SET DISK INTERRUPT HANDLER
+	AH = 13h
+	DS:DX -> interrupt handler disk driver calls on read/write
+	ES:BX = address to restore INT 13 to on system halt (exit from root
+		 shell) or warm boot (INT 19)
+Return: DS:DX set by previous invocation of this function
+	ES:BX set by previous invocation of this function
+Notes:	IO.SYS hooks INT 13 and inserts one or more filters ahead of the
+	  original INT 13 handler.  The first is for disk change detection
+	  on floppy drives, the second is for tracking formatting calls and
+	  correcting DMA boundary errors, the third is for working around
+	  problems in a particular version of IBM's ROM BIOS
+	before the first call, ES:BX points at the original BIOS INT 13; DS:DX
+	  also points there unless IO.SYS has installed a special filter for
+	  hard disk reads (on systems with model byte FCh and BIOS date
+	  "01/10/84" only), in which case it points at the special filter
+	most DOS 3.2+ disk access is via the vector in DS:DX, although a few
+	  functions are still invoked via an INT 13 instruction
+	during Windows 3.1 startup this function seems to be used to
+	  temporarily point DOS to a dummy handler in WDCTRL.386 which always
+	  halts the system with a fatal error message.	If DS hasn't changed
+	  on return from the function, Windows will display the error message
+	  "Invalid DOS version".
+	this is a dangerous security loophole for any virus-monitoring software
+	  which does not trap this call ("INT13", "Nomenklatura", and many
+	  Bulgarian viruses are known to use it to get the original ROM entry
+	  point)
+	the preloadable Novell DOS 7+ SECURITY.BIN driver $SECURE$ traps
+	  this call.
+BUG:	Novell DOS 7 IBMBIO.COM before 1995-05-08 trashed AX on return from
+	  this function. VGACOPY by Thomas M”nkemeier's VGA Software GmbH
+	  crashed due to this.	Later releases of Novell DOS 7 preserved the
+	  contents of the AX register.
+SeeAlso: INT 13/AH=01h,INT 19,INT 9D"VIRUS"
+

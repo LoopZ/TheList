@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAE00
+  Category: l 	shells/command interpreters
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ internal - INSTALLABLE COMMAND - INSTALLATION CHECK
+	AX = AE00h
+	DX = magic value FFFFh
+	CH = FFh
+	CL = length of command line tail (4DOS v4.0)
+	DS:BX -> command line buffer (see #02977)
+	DS:SI -> command name buffer (see #02978)
+	DI = 0000h (4DOS v4.0)
+Return: AL = FFh if this command is a TSR extension to COMMAND.COM
+	AL = 00h if the command should be executed as usual
+Notes:	This call provides a mechanism for TSRs to install permanent
+	  extensions to the command repertoire of COMMAND.COM.	It appears
+	  that COMMAND.COM makes this call before executing the current
+	  command line, and does not execute it itself if the return is FFh.
+	APPEND hooks this call, to allow subsequent APPEND commands to
+	  execute without re-running APPEND
+SeeAlso: AX=AE01h
+
+Format of COMMAND.COM command line buffer:
+Offset	Size	Description	(Table 02977)
+ 00h	BYTE	max length of command line, as in INT 21/AH=0Ah
+ 01h	BYTE	count of bytes to follow, excluding terminating 0Dh
+      N BYTEs	command line text, terminated by 0Dh
+
+Format of command name buffer:
+Offset	Size	Description	(Table 02978)
+ 00h	BYTE	length of command name
+ 01h  N BYTEs	uppercased command name (blank-padded to 11 chars by 4DOS v4)
+

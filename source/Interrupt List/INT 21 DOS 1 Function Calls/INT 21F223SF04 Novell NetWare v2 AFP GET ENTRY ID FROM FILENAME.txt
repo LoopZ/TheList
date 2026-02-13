@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP GET ENTRY ID FROM FILENAME
+	AX = F223h subfn 04h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02307)
+	ES:DI -> reply buffer (see #02308)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=06h,AX=F223h/SF=0Ch,AX=F223h/SF=12h
+
+Format of NetWare "AFP Get Entry ID from Name" request packet:
+Offset	Size	Description	(Table 02307)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	04h (subfunction "AFP Get Entry ID from Name")
+ 03h	BYTE	volume number
+ 04h	DWORD	AFP entry ID
+ 08h	BYTE	path length
+ 09h  N BYTEs	AFP-style pathname (relative to AFP entry ID)
+SeeAlso: #02308,#02314
+
+Format of NetWare "AFP Get Entry ID from Name" reply packet:
+Offset	Size	Description	(Table 02308)
+ 00h	DWORD	AFP entry ID corresponding to specified file/directory
+SeeAlso: #02307,#02315
+

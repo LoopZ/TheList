@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B805
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - SET DEFAULT LOCAL PRINTER
+	AX = B805h
+	DH = new default LPT port (00h-02h)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AX=B800h,AX=B804h,AH=DFh/DL=00h
+

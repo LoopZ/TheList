@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215B
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.0+ - CREATE NEW FILE
+	AH = 5Bh
+	CX = file attribute (see #01420 at AX=4301h)
+	DS:DX -> ASCIZ filename
+Return: CF clear if successful
+	    AX = file handle opened for read/write in compatibility mode
+	CF set on error
+	    AX = error code (03h,04h,05h,50h) (see #01680)
+Notes:	unlike AH=3Ch, this function will fail if the specified file exists
+	  rather than truncating it; this permits its use in creating semaphore
+	  files because it is an atomic "test and set" operation
+	under the FlashTek X-32 DOS extender, the filename pointer is in DS:EDX
+SeeAlso: AH=3Ch,AH=5Ah
+

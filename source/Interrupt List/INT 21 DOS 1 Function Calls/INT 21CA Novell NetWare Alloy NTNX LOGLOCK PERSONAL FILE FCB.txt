@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21CA
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare, Alloy NTNX - LOG/LOCK PERSONAL FILE (FCB)
+	AH = CAh
+	DS:DX -> FCB (see #01345 at AH=0Fh)
+	if function C6h lock mode 01h:
+	    AL = log and lock flag
+		00h log file only
+		01h lock as well as log file
+	    BP = lock timeout in timer ticks (1/18 sec)
+Return: AL = error code
+	    00h successful
+	    96h no dynamic memory for file
+	    FEh timeout
+	    FFh failed
+Desc:	provides file locking support for FCBs
+Note:	this function was added in NetWare 4.0, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+SeeAlso: AH=CBh
+

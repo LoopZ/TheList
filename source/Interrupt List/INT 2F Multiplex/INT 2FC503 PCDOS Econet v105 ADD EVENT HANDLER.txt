@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC503
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-DOS Econet v1.05 - ADD EVENT HANDLER
+	AX = C503h
+	DS:DX -> event handler (see #03046)
+Return: AX = return code (see #03037)
+Note:	the interrupt-enable state will be preserved, but interrupts may be
+	  enabled during processing of this function
+SeeAlso: AX=C500h,AX=C504h,AX=C505h,AX=C508h
+
+Format of Econet event handler:
+Offset	Size	Description	(Table 03046)
+ 00h	DWORD	-> next handler's code (at offset 8, filled in by Econet)
+ 04h	DWORD	-> previous event handler (filled in by Econet)
+ 08h	var	entry point (executable code called on event) (see #03047)
+
+(Table 03047)
+Values Econet event handler is called with:
+	AL = event number
+	AH = timeout flag (01h if timeout, else 00h)
+Return:	all registers preserved
+	if event trapped by this handler, issue RETF
+	if event not trapped, jump to address stored at offset 0
+SeeAlso: #03046
+

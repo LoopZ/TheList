@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: FC
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT FC - DoubleDOS - GET CURRENT SCREEN BUFFER ADDRESS
+Return: ES = segment of display buffer
+Desc:	determine the address of the virtual screen to which the program
+	  should write instead of the actual video memory, so that the
+	  multitasked programs do not interfere with each other's output
+Note:	the display buffer may be moved if multitasking is enabled
+SeeAlso: INT 21/AH=ECh"DoubleDOS",INT FB"DoubleDOS"
+

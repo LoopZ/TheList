@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFF16
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - TopWare Network OS v5.10+ - SET CONTROL NUMBER OF "SHOW" SCREEN
+	AX = FF16h
+	BL = which to set (00h TopShow, FFh TopTerm)
+	CX = destination screen
+	    0000h all stations
+	    0000h-00FFh (TopTerm only) send to group CL
+	    8001h-80FEh send to station CL
+SeeAlso: AX=FF18h
+

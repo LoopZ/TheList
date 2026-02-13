@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14FFFF
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - GET INT 14 INFORMATION AREA
+	AX = FFFFh
+	BX:SI -> DWORD buffer for address of information area (see #00404)
+		  (initialized to zeros)
+Return: BX:SI buffer filled with nonzero value if installed
+Program: COMM-DRV is a universal serial communications driver by Willies'
+	  Computer Software Company, which supports standard INT 14 and
+	  FOSSIL calls as well as its own interfaces
+Index:	installation check;COMM-DRV
+
+Format of COMM-DRV information area:
+Offset	Size	Description	(Table 00404)
+ 00h  8 BYTEs	signature "COMM-DRV"
+ 08h  2 BYTEs	00h,00h
+ 0Ah	DWORD	-> direct address mapping table
+ 0Eh	DWORD	previous INT 14 vector
+

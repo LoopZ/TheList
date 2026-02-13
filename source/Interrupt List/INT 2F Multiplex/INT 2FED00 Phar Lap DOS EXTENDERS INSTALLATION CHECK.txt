@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FED00
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Phar Lap DOS EXTENDERS - INSTALLATION CHECK
+	AX = ED00h
+	BL = DOS extender ID (see #03110)
+Return: AL = status
+	    00h not installed
+	    FFh installed
+		SI = 5048h ("PH")
+		DI = 4152h ("AR")
+		CH = major version number
+		CL = minor version number
+		DX = flags
+		    bit 0: running under DPMI
+		    bit 1: running under Phar Lap VMM
+		if running under DPMI:
+		    BX = DPMI version (BH = major, BL = minor)
+SeeAlso: AH=A1h,AX=F100h,AX=FBA1h
+
+(Table 03110)
+Values for Phar Lap DOS extender ID:
+ 01h	286dosx v1.3+ (Software Development Kit)
+ 02h	286dosx v1.3+ (Run-Time Kit)
+ 03h	386dosx v4.0+ (SDK)
+ 04h	386dosx v4.0+ (RTK)
+

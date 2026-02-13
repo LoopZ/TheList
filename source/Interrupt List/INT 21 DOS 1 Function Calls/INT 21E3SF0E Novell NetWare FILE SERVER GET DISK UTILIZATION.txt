@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF0E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET DISK UTILIZATION
+	AH = E3h subfn 0Eh
+	DS:SI -> request buffer (see #01900)
+	ES:DI -> reply buffer (see #01901)
+Return: AL = status (00h,98h,F2h) (see #01899)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the caller must have bindery object read privileges
+SeeAlso: AH=E3h/SF=11h,AH=E3h/SF=D6h,AH=E3h/SF=D9h,AH=E3h/SF=E6h,AH=E3h/SF=E9h
+SeeAlso: AX=F217h/SF=0Eh
+
+(Table 01899)
+Values for NetWare function status:
+ 00h	successful
+ 98h	nonexistent volume
+ F2h	not permitted to read object
+SeeAlso: #01866,#01902
+
+Format of NetWare "Get Disk Utilization" request buffer:
+Offset	Size	Description	(Table 01900)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	0Eh (subfunction "Get Disk Utilization")
+ 03h	BYTE	volume number (00h-1Fh)
+ 04h	DWORD	(big-endian) object ID
+SeeAlso: #01901,#02164
+
+Format of NetWare "Get Disk Utilization" reply buffer:
+Offset	Size	Description	(Table 01901)
+ 00h	WORD	(call) 000Bh (size of following results buffer)
+ 02h	BYTE	volume number (00h-1Fh)
+ 03h	DWORD	(big-endian) object ID
+ 07h	WORD	(big-endian) directories used by object
+ 09h	WORD	(big-endian) files created by object
+ 0Bh	WORD	(big-endian) disk blocks used by object-created files
+SeeAlso: #01900,#02164
+

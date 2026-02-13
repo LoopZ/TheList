@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B19
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - READ DATA ON A VIRTUAL CIRCUIT
+	AH = 19h
+	AL = virtual circuit number
+	CX = number of characters to read
+	ES:BX -> buffer for received characters
+Return: CX = 0000h if failed
+	CX = nonzero (possibly number of characters received) if successful
+Note:	this function is also supported by TelAPI
+SeeAlso: AX=0100h,AH=12h,AH=18h
+

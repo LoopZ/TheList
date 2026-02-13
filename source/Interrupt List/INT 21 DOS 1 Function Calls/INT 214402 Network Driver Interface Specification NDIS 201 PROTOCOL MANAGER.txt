@@ -1,0 +1,322 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Network Driver Interface Specification (NDIS) 2.0.1 - PROTOCOL MANAGER
+	AX = 4402h
+	BX = file handle for device "PROTMAN$"
+	CX = 000Eh (size of request block)
+	DS:DX -> request block (see #01424,#01425,#01426,#01427,#01428,#01432,#01433)
+Return: CF clear if successful
+	    AX = number of bytes actually read
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4402h"FTPSOFT"
+
+Format of NDIS request block for GetProtocolManagerInfo:
+Offset	Size	Description	(Table 01424)
+ 00h	WORD	01h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	returned pointer to structure representing parsed user config
+ 08h	DWORD	unused
+ 0Ch	WORD	returned BCD version of NDIS on which Protocol Manager is based
+SeeAlso: #01425,#01426,#01427,#01428,#01429,#01430,#01431,#01432,#01433
+
+Format of NDIS request block for RegisterModule:
+Offset	Size	Description	(Table 01425)
+ 00h	WORD	02h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	pointer to module's common characteristics table (see #01435)
+ 08h	DWORD	pointer to list of modules to which the module is to be bound
+ 0Ch	WORD	unused
+SeeAlso: #01424,#01426,#01427,#01428,#01429,#01430,#01431,#01432,#01433
+
+Format of NDIS request block for BindAndStart:
+Offset	Size	Description	(Table 01426)
+ 00h	WORD	03h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	caller's virtual address in FailingModules structure
+ 08h	DWORD	unused
+ 0Ch	WORD	unused
+SeeAlso: #01424,#01425,#01427,#01428,#01429,#01430,#01431,#01432,#01433
+
+Format of NDIS request block for GetProtocolManagerLinkage:
+Offset	Size	Description	(Table 01427)
+ 00h	WORD	04h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	returned dispatch point
+ 08h	DWORD	unused
+ 0Ch	WORD	returned protocol manager DS
+Note:	the dispatch point may be called as follows instead of using this IOCTL
+	STACK: WORD  protocol manager DS
+	       DWORD pointer to request block
+	Return: AX = returned status
+		STACK popped
+SeeAlso: #01424,#01425,#01426,#01428,#01429,#01430,#01431,#01432,#01433
+
+Format of NDIS request block for GetProtocolIniPath:
+Offset	Size	Description	(Table 01428)
+ 00h	WORD	05h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	pointer to a buffer for the ASCIZ pathname of PROTOCOL.INI
+ 08h	DWORD	unused
+ 0Ch	WORD	buffer length
+SeeAlso: #01424,#01425,#01426,#01427,#01429,#01430,#01431,#01432,#01433
+
+Format of NDIS request block for RegisterProtocolManagerInfo:
+Offset	Size	Description	(Table 01429)
+ 00h	WORD	06h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	pointer to structure containing parsed user config file
+ 08h	DWORD	unused
+ 0Ch	WORD	length of structure
+SeeAlso: #01424,#01425,#01426,#01427,#01428,#01430,#01431,#01432,#01433
+
+Format of NDIS request block for InitAndRegister:
+Offset	Size	Description	(Table 01430)
+ 00h	WORD	07h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	unused
+ 08h	DWORD	poitner to ASCIZ name of the module to be prebind initialized
+ 0Ch	WORD	unused
+SeeAlso: #01424,#01425,#01426,#01427,#01428,#01429,#01431,#01432,#01433
+
+Format of NDIS request block for UnbindAndStop:
+Offset	Size	Description	(Table 01431)
+ 00h	WORD	08h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	failing modules as for BindAndStart
+ 08h	DWORD	if not 0000h:0000h, pointer to ASCIZ name of module to unbind
+		if 0000h:0000h, terminate a set of previously dynamically
+		  bound protocol modules
+ 0Ch	WORD	unused
+SeeAlso: #01424,#01425,#01426,#01427,#01428,#01429,#01430,#01432,#01433
+
+Format of NDIS request block for BindStatus:
+Offset	Size	Description	(Table 01432)
+ 00h	WORD	09h
+ 02h	WORD	returned status (see #01434)
+ 04h	DWORD	must be 0000h:0000h
+		on return, points to root tree
+ 08h	DWORD	0000h:0000h
+ 0Ch	WORD	unused under DOS
+SeeAlso: #01424,#01425,#01426,#01427,#01428,#01429,#01430,#01431,#01433
+
+Format of NDIS request block for RegisterStatus:
+Offset	Size	Description	(Table 01433)
+ 00h	WORD	0Ah
+ 02h	WORD	returned status (0000h, 0008h, 002Ch) (see #01434)
+ 04h	DWORD	0000h:0000h
+ 08h	DWORD	pointer to 16-byte ASCIZ module name
+ 0Ch	WORD	0000h
+Note:	not supported by the 10NET v5.0 PROTMAN$ driver
+SeeAlso: #01424,#01425,#01426,#01427,#01428,#01429,#01430,#01431,#01432
+
+(Table 01434)
+Values for NDIS status code:
+ 0000h	success
+ 0001h	wait for release--protocol has retained control of the data buffer
+ 0002h	request queued
+ 0003h	frame not recognized
+ 0004h	frame rejected
+ 0005h	frame should be forwarded
+ 0006h	out of resource
+ 0007h	invalid parameter
+ 0008h	invalid function
+ 0009h	not supported
+ 000Ah	hardware error
+ 000Bh	transmit error
+ 000Ch	unrecognized destination
+ 000Dh	buffer too small
+ 0020h	already started
+ 0021h	binding incomplete
+ 0022h	driver not initialized
+ 0023h	hardware not found
+ 0024h	hardware failure
+ 0025h	configuration failure
+ 0026h	interrupt conflict
+ 0027h	MAC incompatible
+ 0028h	initialization failed
+ 0029h	no binding
+ 002Ah	network may be disconnected
+ 002Bh	incompatible OS version
+ 002Ch	already registered
+ 002Dh	path not found
+ 002Eh	insufficient memory
+ 002Fh	info not found
+ 00FFh	general failure
+ F000h-FFFFh reserved for vendor-specific codes, treated as general failure
+
+Format of NDIS common characteristics table:
+Offset	Size	Description	(Table 01435)
+ 00h	WORD	size of table in bytes
+ 02h	BYTE	NDIS major version
+ 03h	BYTE	NDIS minor version
+ 04h	WORD	reserved
+ 06h	BYTE	module major version
+ 07h	BYTE	module minor version
+ 08h	DWORD	module function flag bits
+		bit 0: binding at upper boundary supported
+		bit 1: binding at lower boundary supported
+		bit 2: dynamically bound
+		bits 3-31 reserved, must be 0
+ 0Ch 16 BYTEs	ASCIZ module name
+ 1Ch	BYTE	upper boundary protocol level (see #01436)
+ 1Dh	BYTE	upper boundary interface type
+		for MACs: 1 = MAC
+		for data links and transports: to be defined
+		for session: 1 = NCB
+		any level: 0 = private (ISV-defined)
+ 1Eh	BYTE	lower boundary protocol level (see #01436)
+ 1Fh	BYTE	lower boundary interface type
+		same as offset 1Dh
+ 20h	WORD	module ID filled in by protocol manager
+ 22h	WORD	module DS
+ 24h	DWORD	system request entry point
+ 28h	DWORD	pointer to service-specific characteristics (see #01438,#01440)
+		0000h:0000h if none
+ 2Ch	DWORD	pointer to service-specific status, or 0000h:0000h if none
+		  (see #01441)
+ 30h	DWORD	pointer to upper dispatch table (see #01437)
+		0000h:0000h if none
+ 34h	DWORD	pointer to lower dispatch table (see #01437)
+		0000h:0000h if none
+ 38h  2 DWORDs	reserved, must be 0
+Note:	for compatibility with NDIS 1.x.x, a major version of 00h is
+	  interpreted as 01h
+
+(Table 01436)
+Values for NDIS boundary protocol level:
+ 00h	physical
+ 01h	Media Access Control
+ 02h	Data link
+ 03h	network
+ 04h	transport
+ 05h	session
+ FFh	not specified
+
+Format of NDIS dispatch table:
+Offset	Size	Description	(Table 01437)
+ 00h	DWORD	-> common characteristics table (see #01435)
+ 04h  4 BYTEs	???
+ 08h	DWORD	-> ??? function (called with 12 bytes of stack arguments)
+ 0Ch	DWORD	-> ??? function (called with 10 bytes of stack arguments)
+ 10h	DWORD	-> ??? function (called with 16 bytes of stack arguments)
+ 14h	DWORD	-> ??? function (called with 4 bytes of stack arguments)
+ 18h	DWORD	-> ??? function (called with 18 bytes of stack arguments)
+ 1Ch	DWORD	-> ??? function (called with 12 bytes of stack arguments)
+
+Format of MAC Service-Specific Characteristics Table:
+Offset	Size	Description	(Table 01438)
+ 00h	WORD	length of table in bytes
+ 02h 16 BYTEs	ASCIZ MAC type name, "802.3", "802.4", "802.5", "802.6", "DIX",
+		  "DIX+802.3", "APPLETALK", "ARCNET", "FDDI", "SDLC", "BSC",
+		  "HDLC", or "ISDN"
+ 12h	WORD	length of station addresses in bytes
+ 14h 16 BYTEs	permanent station address
+ 24h 16 BYTEs	current station address
+ 34h	DWORD	current functional adapter address (00000000h if none)
+ 38h	DWORD	pointer to multicast address list
+ 3Ch	DWORD	link speed in bits/sec
+ 40h	DWORD	service flags (see #01439)
+ 44h	WORD	maximum frame size which may be both sent and received
+ 46h	DWORD	total transmit buffer capacity in bytes
+ 4Ah	WORD	transmit buffer allocation block size in bytes
+ 4Ch	DWORD	total receive buffer capacity in bytes
+ 50h	WORD	receive buffer allocation block size in bytes
+ 52h  3 BYTEs	IEEE vendor code
+ 55h	BYTE	vendor adapter code
+ 56h	DWORD	pointer to ASCIZ vendor adapter description
+ 5Ah	WORD	IRQ used by adapter
+ 5Ch	WORD	transmit queue depth
+ 5Eh	WORD	maximum supported number of data blocks in buffer descriptors
+ 60h  N BYTEs	vendor-specific info
+SeeAlso: #01440
+
+Bitfields for service flags:
+Bit(s)	Description	(Table 01439)
+ 0	supports broadcast
+ 1	supports multicast
+ 2	supports functional/group addressing
+ 3	supports promiscuous mode
+ 4	station address software settable
+ 5	statistics always current
+ 6	supports InitiateDiagnostics
+ 7	supports loopback
+ 8	MAC does primarily ReceiveChain indications instead of ReceiveLookahead
+	indications
+ 9	supports IBM source routing
+ 10	supports MAC reset
+ 11	supports Open/Close adapter
+ 12	supports interrupt request
+ 13	supports source routing bridge
+ 14	supports GDT virtual addresses (OS/2 version)
+ 15	multiple TransferDatas allowed durign a single indication
+ 16	MAC normally sets FrameSize = 0 in ReceiveLookahead
+ 17-31	reserved, must be 0
+
+Format of NetBIOS Service-Specific Characteristics Table:
+Offset	Size	Description	(Table 01440)
+ 00h	WORD	length of table in bytes
+ 02h 16 BYTEs	ASCIZ type name of NetBIOS module
+ 12h	WORD	NetBIOS module code
+ 14h  N BYTEs	vendor-specific info
+SeeAlso: #01438
+
+Format of MAC Service-Specific Status Table:
+Offset	Size	Description	(Table 01441)
+ 00h	WORD	length of table in bytes
+ 02h	DWORD	seconds since 0:00 1/1/70 when diagnostics last run
+		(FFFFFFFFh = never)
+ 06h	DWORD	MAC status bits (see #01442)
+ 0Ah	WORD	current packet filter flags (see #01443)
+ 0Ch	DWORD	pointer to media-specific status table or 0000h:0000h
+ 10h	DWORD	seconds past 0:00 1/1/70 of last ClearStatistics
+ 14h	DWORD	total frames received (FFFFFFFFh = not counted)
+ 18h	DWORD	frames with CRC error (FFFFFFFFh = not counted)
+ 1Ch	DWORD	total bytes received (FFFFFFFFh = not counted)
+ 20h	DWORD	frames discarded--no buffer space (FFFFFFFFh = not counted)
+ 24h	DWORD	multicast frames received (FFFFFFFFh = not counted)
+ 28h	DWORD	broadcast frames received (FFFFFFFFh = not counted)
+ 2Ch	DWORD	frames with errors (FFFFFFFFh = not counted)
+ 30h	DWORD	overly large frames (FFFFFFFFh = not counted)
+ 34h	DWORD	frames less than minimum size (FFFFFFFFh = not counted)
+ 38h	DWORD	multicast bytes received (FFFFFFFFh = not counted)
+ 3Ch	DWORD	broadcast bytes received (FFFFFFFFh = not counted)
+ 40h	DWORD	frames discarded--hardware error (FFFFFFFFh = not counted)
+ 44h	DWORD	total frames transmitted (FFFFFFFFh = not counted)
+ 48h	DWORD	total bytes transmitted (FFFFFFFFh = not counted)
+ 4Ch	DWORD	multicast frames transmitted (FFFFFFFFh = not counted)
+ 50h	DWORD	broadcast frames transmitted (FFFFFFFFh = not counted)
+ 54h	DWORD	broadcast bytes transmitted (FFFFFFFFh = not counted)
+ 58h	DWORD	multicast bytes transmitted (FFFFFFFFh = not counted)
+ 5Ch	DWORD	frames not transmitted--timeout (FFFFFFFFh = not counted)
+ 60h	DWORD	frames not transmitted--hardware error (FFFFFFFFh = not countd)
+ 64h  N BYTEs	vendor-specific info
+
+Bitfields for MAC status bits:
+Bit(s)	Description	(Table 01442)
+ 0-2	operational status
+	000 hardware not installed
+	001 hardware failed startup diagnostics
+	010 hardware configuration problem
+	011 hardware fault
+	100 operating marginally due to soft faults
+	101 reserved
+	110 reserved
+	111 hardware fully operational
+ 3	MAC bound
+ 4	MAC open
+ 5	diagnostics in progress
+ 6-31	reserved
+
+Bitfields for packet filter flags:
+Bit(s)	Description	(Table 01443)
+ 0	directed/multicast or group/functional
+ 1	broadcast
+ 2	promiscuous
+ 3	all source routing
+ 4-15	reserved, must be zero
+

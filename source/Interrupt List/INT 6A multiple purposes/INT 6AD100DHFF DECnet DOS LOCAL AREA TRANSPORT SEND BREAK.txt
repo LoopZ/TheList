@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6AD100DHFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6A - DECnet DOS LOCAL AREA TRANSPORT - SEND BREAK
+	AX = D100h
+	DH = FFh
+	DL = handle
+Return: AX = 0000h if successful
+	AH bit 7 set if unable to send break
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2130
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Phar Lap 386/DOS-Extender, Intel Code Builder - INSTALLATION CHECK
+	AH = 30h
+	EAX = 00003000h
+	EBX = 50484152h ("PHAR")
+Return: AL = major DOS version
+	AH = minor DOS version
+	EAX bits 31-16 = 4458h ('DX') if 386/DOS-extender installed
+	    BL = ASCII major version number
+	EAX bits 31-16 = 4243h ('BC') if Intel Code Builder installed
+	    EDX = address of GDA
+SeeAlso: AX=2501h,AX=FF00h,INT 2F/AX=F100h
+

@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell NetWare Connect NETWARN - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    SI = segment of resident portion
+Program: NETWARN is a utility supplied with NetWare Connect to warn a
+	  remote dialup user when programs are about to be loaded slowly over
+	  the modem link.
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+Note:	on return, verify that it is NETWARN responding by examining signature
+	  at in NETWARN's data table in the resident segment (see #03027)
+SeeAlso: AX=C000h"ODI",AX=C000h"NESL"
+
+Format of NETWARN Configuration structure:
+Offset	Size	Description	(Table 03027)
+ 103h 7 BYTEs	signature string "NETWARN"
+ 10Ah	BYTE	major version in ASCII (="1")
+ 10Bh	BYTE	minor version in ASCII (="0")
+ 10Ch	DWORD	minimum size of EXE cared about in bytes (/S=xxxx)
+ 110h	WORD	same value in kilobytes (see #03028 [bit 4])
+ 112h	BYTE	multiplex code (AH value) actually being used
+ 113h	WORD	options (see #03028)
+ 115h	DWORD	INT 21h vector before NETWARN loaded
+ 119h	DWORD	INT 2Fh vector before NETWARN loaded
+ 11Dh 16 BYTEs	ASCIIZ local name of last device which was checked
+ 12Dh 128 BYTEs ASCIIZ remote name of last device which was checked
+Note:	the specified offsets are from the start of the resident segment
+
+Bitfields for NETWARN options:
+Bit(s)	Description	(Table 03028)
+ 0	??? (=0)
+ 1	/U (Unload) selected (never in resident)
+ 2	/E (Enabled) Will trap & check EXEC's
+ 3	/D (Disabled) No EXEC checking done
+ 4	/S (Size) was set (see #03027 [offsets 010Ch and 0110h])
+ 5	/P (Path shown)
+ 6	/H or /? (Help) (never in resident)
+SeeAlso: #03027
+

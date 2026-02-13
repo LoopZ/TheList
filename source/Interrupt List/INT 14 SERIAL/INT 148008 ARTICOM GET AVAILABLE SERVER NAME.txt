@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148008
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - ARTICOM - GET AVAILABLE SERVER NAME
+	AX = 8008h
+	BX = server index (0,1,...)
+	ES:DI -> server name structure (see #00365)
+Return: AX = error code, if error (see #00360)
+	BX = next remote port, repeat call to get next available server
+Note:	the wildcard '*' is supported in the server name field.	 Set the
+	  server name to FFh to search for all servers.
+SeeAlso: AX=8000h,AX=8003h,AX=8007h
+
+Format of ARTICOM server name structure:
+Offset	 Size	  Description	(Table 00365)
+  00h 16 BYTEs	  (call) ASCIZ server name
+  10h	 BYTE	  (ret) the adapter server is found
+

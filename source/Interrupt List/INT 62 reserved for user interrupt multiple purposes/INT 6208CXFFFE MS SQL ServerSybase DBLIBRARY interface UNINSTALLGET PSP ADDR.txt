@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6208--CXFFFE
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 62 - MS SQL Server/Sybase DBLIBRARY interface - UNINSTALL/GET PSP ADDR
+	AH = 08h
+	CX = FFFEh
+	DX = FFFFh
+Return: AX = PSP address of resident DBLIBRARY
+Note:	this call does not free the memory allocated to the TSR; the calling
+	  code must do the deallocation.
+SeeAlso: INT 62"DBLIBRARY"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFE3DL01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - END ACCESS TO SPECIFIC PACKET TYPE
+	AX = FFE3h
+	DL = 01h
+	BX = handle returned by AX=FFE3h/DL=00h
+Return: CF clear if successful
+	CF set on error
+	    DH = error code (01h,11h) (see #02541)
+Note:	the specified access handle will no longer be valid after this call
+SeeAlso: AX=FFE3h/DL=00h
+

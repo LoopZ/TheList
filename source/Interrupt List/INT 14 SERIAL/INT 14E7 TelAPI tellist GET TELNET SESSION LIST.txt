@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - TelAPI - "tellist" - GET TELNET SESSION LIST
+	AH = E7h
+	ES:SI -> 10-word buffer for session list
+Return: AX = 0000h (successful)
+	ES:SI buffer filled
+Desc:	determine, for each of the ten allowable sessions, whether the session
+	  is currently available
+Note:	each word in the buffer is filled with either 0000h to indicate that
+	 the corresponding sesion is unavailable, or 0001h if available
+SeeAlso: AH=E0h,AH=E5h,AX=FF00h
+

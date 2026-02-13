@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF21
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "GetMemDOS" - ALLOCATE CONVENTIONAL MEMORY
+	AX = FF21h
+	BX = number of paragraphs to allocate
+Return: CF clear if successful
+	    AX = real-mode segment of allocated block
+	    DX = initial selector for block
+	CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	    BX = size of largest available block
+Note:	if the requested size is greater than 64K, contiguous selectors will
+	  be allocated, one for each 64K; for 32-bit applications, the first
+	  selector's limit will be set to the size of the entire block, while
+	  that selector will have a limit of 64K for 16-bit applications.  All
+	  selectors after the first one have a limit of 64K except the final
+	  one
+SeeAlso: AX=FF22h,AX=FF23h,INT 21/AH=48h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DE
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SHELL TIMER INTERRUPT CHECKS
+	AH = DEh
+	DL = function
+	    05h disable shell timer interrupt checks
+	    06h enable shell timer interrupt checks
+Return: ???
+Note:	this function was added in NetWare 4.0, but is not listed in current
+	  Novell documentation and is probably no longer supported
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610007BX0006
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - TRANSLATE ERROR INTO ASCII STRING
+	AX = 0007h
+	BX = 0006h
+	SI = error code (>100)
+	DS:DX -> 80-byte buffer for error text
+Return: AX = status (see also #03432)
+	    0000h successful
+	    0001h network software not installed or incompatible
+

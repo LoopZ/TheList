@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0507
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - GET FILE POSITION
+	DI = 0507h "M_TELL"
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to file state record (see #03287)
+		DWORD	pointer to DWORD buffer for file position???
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0506h
+

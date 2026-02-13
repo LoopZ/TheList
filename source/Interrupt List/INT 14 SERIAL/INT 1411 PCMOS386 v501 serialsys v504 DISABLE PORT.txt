@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1411
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - PC-MOS/386 v5.01 $serial.sys v5.04 - DISABLE PORT
+	AH = 11h
+	DX = port number
+Return: AL = status
+	    00h successful
+	    01h IRQ for port is shared
+	    02h IRQ was reserved
+SeeAlso: AH=04h"SERIAL",AH=05h"SERIAL",AH=12h"PC-MOS"
+

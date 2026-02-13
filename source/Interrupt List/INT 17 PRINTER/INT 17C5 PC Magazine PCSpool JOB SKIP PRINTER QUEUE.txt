@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17C5
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - PC Magazine PCSpool - JOB SKIP PRINTER QUEUE
+	AH = C5h
+	DX = printer port (0-3)
+Note:	cancels up to the pause record
+

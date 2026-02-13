@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F216SF30
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET NAME SPACE DIRECTORY ENTRY
+	AX = F216h subfn 30h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #02154)
+	ES:DI -> reply buffer (see #02155)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F216h/SF=2Fh
+
+Format of NetWare "Get Name Space Directory Entry" request packet:
+Offset	Size	Description	(Table 02154)
+ 00h	WORD	length of following data
+ 02h	BYTE	30h (subfunction "Get Name Space Directory Entry")
+ 03h	BYTE	volume number
+ 04h	DWORD	sequence number (set to 00000000h before first call)
+ 08h	BYTE	name space (see #02387)
+SeeAlso: #02155
+
+Format of NetWare "Get Name Space Directory Entry" request packet:
+Offset	Size	Description	(Table 02155)
+ 00h	DWORD	next sequence number
+ 04h	DWORD	subdirectory
+ 08h	DWORD	attributes
+ 0Ch	BYTE	unique ID
+ 0Dh	BYTE	flags
+ 0Eh	BYTE	name space (see #02387)
+ 0Fh	BYTE	length of name
+ 10h 12 BYTEs	filename
+ 1Ch	DWORD	creation date and time
+ 20h	DWORD	(big-endian) owner ID
+ 24h	DWORD	last-backup date and time
+ 28h	DWORD	(big-endian) last-backup ID
+ 2Ch	DWORD	last-modification date and time
+---DOS file---
+ 30h	DWORD	(big-endian) last-modification ID
+ 34h	DWORD	file size
+ 38h 44 BYTEs	reserved
+ 64h	WORD	inherited rights mask
+ 66h	WORD	last-access date
+ 68h 28 BYTEs	reserved
+---DOS subdirectory---
+ 30h	DWORD	next trustee entry
+ 34h 48 BYTEs	reserved
+ 64h	WORD	maximum space
+ 66h	WORD	inherited rights mask
+ 68h 26 BYTEs	reserved
+---Macintosh subdirectory---
+ 10h 32 BYTEs	Mac filename
+ 30h	DWORD	resource fork
+ 34h	DWORD	resource fork size
+ 38h 32 BYTEs	Finder information
+ 58h  6 BYTEs	ProDOS information
+ 5Eh 38 BYTEs	reserved
+SeeAlso: #02154
+

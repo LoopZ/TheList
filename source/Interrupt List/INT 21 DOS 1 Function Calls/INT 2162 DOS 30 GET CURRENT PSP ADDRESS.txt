@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2162
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.0+ - GET CURRENT PSP ADDRESS
+	AH = 62h
+Return: BX = segment of PSP for current process
+Notes:	this function does not use any of the DOS-internal stacks and may
+	  thus be called at any time, even during another INT 21h call
+	the current PSP is not necessarily the caller's PSP
+	identical to the undocumented AH=51h
+SeeAlso: AH=50h,AH=51h
+

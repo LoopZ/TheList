@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2E
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 - GRAFTABL - GET FONT TABLE
+	AH = 2Eh
+	AL nonzero
+Return: AH = FFh if installed
+	    ES:BX -> graphics data (8 bytes per character from 80h to FFh)
+SeeAlso: AX=2E00h,AH=23h"GRAFTABL"
+

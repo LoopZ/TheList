@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106F03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HP Vectra EX-BIOS - MODIFY MONITOR INFO
+	AX = 6F03h
+	BH = exclude mask (set bits are not modified)
+	BL = new values for bits indicated by BH (see #00190)
+Return: AX destroyed
+Notes:	this function is only valid when an HP MultiMode Video Display Adapter
+	  is installed
+	supported by original HP Vectra AT and by ES/QS/RS series Vectras
+SeeAlso: AX=6F01h,AX=6F02h
+

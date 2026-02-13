@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0404BP001E
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_ENABLE_KBD" - UNMASK 8041 OBF INT
+	AX = 0404h
+	BP = 001Eh (driver ID for V_S8259)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AX=0400h"SF_ENABLE_SVC",AX=0406h"SF_DISABLE_KBD"
+SeeAlso: AX=0408h"SF_ENABLE_HPHIL"
+

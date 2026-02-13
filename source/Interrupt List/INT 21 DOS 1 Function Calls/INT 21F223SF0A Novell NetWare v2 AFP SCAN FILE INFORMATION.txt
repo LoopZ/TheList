@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF0A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP SCAN FILE INFORMATION
+	AX = F223h subfn 0Ah
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02321)
+	ES:DI -> reply buffer (see #02323)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=01h,AX=F223h/SF=03h,AX=F223h/SF=08h
+
+Format of NetWare "AFP Scan File Information" request packet:
+Offset	Size	Description	(Table 02321)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	0Ah (subfunction "AFP Scan File Information")
+ 03h	BYTE	volume number
+ 04h	DWORD	AFP entry ID
+ 08h	DWORD	AFP last-seen ID (from previous call)
+		FFFFFFFFh on first call
+ 0Ch	WORD	number of entries to return (max. 4)
+ 0Eh	WORD	search bitmap (see #02322)
+ 10h	WORD	request bitmap (see #02310)
+ 12h	BYTE	path length
+ 13h  N BYTEs	AFS-style directory path (relative to AFP entry ID)
+SeeAlso: #02323,#02336
+
+Bitfields for NetWare AFP search bitmap:
+Bit(s)	Description	(Table 02322)
+ 8	hidden files and directories
+ 9	system files and directories
+ 10	subdirectories
+ 11	files
+SeeAlso: #02321,#02336,#02310,#02312
+
+Format of NetWare "AFP Scan File Information" reply packet:
+Offset	Size	Description	(Table 02323)
+ 00h	WORD	number of entries returned
+ 02h 120N BYTEs	file information records (see #02324)
+SeeAlso: #02321
+
+Format of NetWare AFP file information:
+Offset	Size	Description	(Table 02324)
+ 00h	DWORD	AFP entry ID
+ 04h	DWORD	parent directory's AFP entry ID
+ 08h	WORD	directory/file attributes (see #02312)
+ 0Ah	DWORD	length of data fork
+ 0Eh	DWORD	length of resource fork
+ 12h	WORD	total files and subdirectories contained within entry
+		always 0000h if entry is a file
+ 14h	WORD	creation date in AFP format
+ 16h	WORD	last-access date in AFP format
+ 18h	WORD	last-modified date in AFP format
+ 1Ah	WORD	last-modified time in AFP format
+ 1Ch	WORD	last-backup date in AFP format
+ 1Eh	WORD	last-backup time in AFP format
+ 20h 32 BYTEs	Finder information
+ 40h 32 BYTEs	long filename
+ 60h	DWORD	NetWare object ID of owner
+ 64h 12 BYTEs	short filename (MS-DOS 8.3 format)
+ 70h	WORD	access privileges (see #02313)
+SeeAlso: #02323
+

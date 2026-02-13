@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE006
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SETDRVER.COM v2.10+ - GET TSR STATUS
+	AX = E006h
+Return: AL = FFh if successful
+	    BL = status
+		01h resident and active
+		02h resident and inactive
+

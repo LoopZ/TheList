@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1191
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - LAN Manager Enhanced DOS - DosWriteAsynchNmPipe2
+	AX = 1191h
+	DS:SI -> stack frame (see #02610)
+Return: CF clear if successful
+	CF set if error
+	    AX = error code
+SeeAlso: AX=118Fh,AX=1190h,INT 21/AX=5F3Ah
+
+Format of LAN Manager DosReadAsynchNmPipe2 stack frame:
+Offset	Size	Description	(Table 02610)
+ 00h	DWORD	-> number of bytes read
+ 04h	WORD	size of buffer
+ 06h	DWORD	-> buffer
+ 0Ah	DWORD	-> return code
+ 0Eh	DWORD	function to call on completion as function( char far *buffer )
+ 12h	WORD	handle
+ 14h	DWORD	???
+

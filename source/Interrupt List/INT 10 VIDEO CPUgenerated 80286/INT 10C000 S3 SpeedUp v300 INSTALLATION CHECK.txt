@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10C000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - S3 SpeedUp v3.00+ - INSTALLATION CHECK
+	AX = C000h
+Return: AX = FFFFh if installed
+	    DX = version number (binary, DH=major, DL=minor)
+	    BX = resident code segment
+Program: S3SPDUP is a freeware TSR by Dietmar Meschede to improve the speed
+	  of chained video modes (both VESA and VGA Mode 13) on S3-chipset
+	  video cards
+SeeAlso: AX=C001h,AX=C002h,AX=C003h,AX=D000h"S3VBE"
+

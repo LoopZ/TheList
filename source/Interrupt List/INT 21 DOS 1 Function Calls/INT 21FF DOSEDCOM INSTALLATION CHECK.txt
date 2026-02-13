@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FF
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOSED.COM - INSTALLATION CHECK
+	AH = FFh
+	DS:SI -> "DOSED"
+	ES = 0000h
+Return: ES:DI -> "DOSED" if installed
+Program: DOSED is a free DOS commandline editor/history buffer by Sverre H.
+	  Huseby
+

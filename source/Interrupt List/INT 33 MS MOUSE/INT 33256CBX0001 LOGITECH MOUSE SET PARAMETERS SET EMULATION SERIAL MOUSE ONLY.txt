@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33256CBX0001
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - LOGITECH MOUSE - SET PARAMETERS - SET EMULATION (SERIAL MOUSE ONLY)
+	AX = 256Ch
+	BX = 0001h
+	CX = emulation type (see #03191)
+Return: AX = FFFFh if driver installed for serial mouse
+SeeAlso: AX=246Ch,AX=256Ch/BX=0000h,AX=256Ch/BX=0003h,AX=276Ch
+
+(Table 03191)
+Values for Logitech mouse emulation type:
+ 00h	5 byte packed binary
+ 01h	3 byte packed binary
+ 02h	hexadecimal
+ 03h	relative bit pad
+ 04h	not supported
+ 05h	MM Series
+ 06h	not supported
+ 07h	Microsoft
+

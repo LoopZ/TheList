@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7FA3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - GET USER LOGIN STATE
+	AH = A3h
+	DL = user number
+	DH = machine number for user
+Return: CF clear if successful
+	    AL = login state
+		00h never logged in
+		01h currently logged out
+		03h currently logged in
+	CF set if invalid user number or user not active
+SeeAlso: AH=A2h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFF00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Topware Network Operating System - INSTALLATION CHECK
+	AX = FF00h
+Return: AL = status
+	    00h not installed, OK to install
+	    01h not installed, not OK to install
+	    FFh installed
+SeeAlso: AX=FF01h,AX=FF02h,AX=FF10h,INT 21/AX=FF00h"Topware",INT 7A"Topware"
+

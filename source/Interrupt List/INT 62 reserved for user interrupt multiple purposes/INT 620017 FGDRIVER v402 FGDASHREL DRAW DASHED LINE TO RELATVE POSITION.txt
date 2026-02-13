@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620017
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_DASHREL" - DRAW DASHED LINE TO RELATVE POSITION
+	AX = 0017h
+	BX = endpoint column offset
+	CX = endpoint row offset
+	DX = dash pattern (set bits cause drawn pixels)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+	This call is ignored in text modes
+	The starting point is the current graphics cursor position; the cursor
+	  position is updated
+SeeAlso: AX=0016h,AX=001Eh,AX=008Fh
+

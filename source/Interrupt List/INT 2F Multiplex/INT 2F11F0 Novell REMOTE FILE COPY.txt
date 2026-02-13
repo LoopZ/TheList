@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F11F0
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Novell ??? - REMOTE FILE COPY
+	AX = 11F0h
+	SI = source file handle
+	DI = destination file handle
+	DX:CX = number of bytes to copy, starting at current file position
+	CF cleared
+Return: CF clear:
+	    AX = 11F0h	"no network there"
+	    AX <> 11F0h if successful
+	CF set on error "the request could not be handled"
+	    AX = error code (05h,06h,0Bh,11h,3Bh) (see #01680)
+	DX:CX = number of bytes successfully copied (file position updated)
+Notes:	From the DR DOS "Panther" BETA COMMAND.COM (1992/06/22) up to some of
+	  the Novell DOS 7 COMMAND.COM updates (1994/09/12), the shell made
+	  calls to INT 2F/AX=11F0h to attempt "remote server COPYing". However,
+	  this was removed from later releases of the shell because it 
+	  interfered with Performance Technologies' PowerLAN 3.1. (A successor
+	  of the DR-DOS 7.03 COMMAND.COM may possibly reintroduce this remote
+	  copy feature. Probably it would then try both INT 2F/AX=1127h and
+	  INT 2F/AX=11F0h.)
+SeeAlso: INT 2F/AX=1127h
+

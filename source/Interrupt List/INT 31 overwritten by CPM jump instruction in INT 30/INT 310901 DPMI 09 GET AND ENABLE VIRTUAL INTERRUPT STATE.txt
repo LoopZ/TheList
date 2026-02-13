@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310901
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - GET AND ENABLE VIRTUAL INTERRUPT STATE
+	AX = 0901h
+Return: CF clear
+	virtual interrupts enabled
+	AL = previous interrupt state (00h disabled, 01h enabled)
+	AH preserved
+Notes:	the previous state may be restored simply by executing another INT 31
+	a STI instruction may be used if the previous state is unimportant,
+	  but should be assumed to be very slow due to trapping by the host
+SeeAlso: AX=0900h,AX=0902h
+

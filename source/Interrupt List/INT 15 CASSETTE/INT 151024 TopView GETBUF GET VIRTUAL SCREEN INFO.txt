@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 151024
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - "GETBUF" - GET VIRTUAL SCREEN INFO
+	AX = 1024h
+	BX = segment of object handle for window (0000h = use default)
+Return: ES:DI -> virtual screen
+	CX = size of virtual screen in bytes
+	DL = screen type
+	    00h text screen
+	    01h graphics screen
+SeeAlso: INT 10/AH=FEh,INT 21/AH=2Bh/CX=4445h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A9E
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCMCIA Socket Services v2.1 - ACKNOWLEDGE INTERRUPT
+	AH = 9Eh
+	AL = adapter number
+Return: CF clear if successful
+	    AH destroyed
+	    CX = bitmap representing sockets which have changed status
+	CF set on error
+	    AH = error code (01h) (see #00656)
+Note:	this API is supported by recent versions of the AMI BIOS
+

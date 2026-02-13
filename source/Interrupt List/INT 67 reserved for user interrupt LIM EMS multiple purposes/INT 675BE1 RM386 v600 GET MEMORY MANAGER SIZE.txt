@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675BE1
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 v6.00+ - GET MEMORY MANAGER SIZE
+	AX = 5BE1h
+Return: AH = 00h
+	CX = code and data size in bytes
+	DX:BX = physical address of RM386 code
+	DI:SI = total size of RM386 area including handle tables
+	BP = number of additional pages (high DOS, etc.)
+SeeAlso: AX=5BE0h,AX=5BE2h
+

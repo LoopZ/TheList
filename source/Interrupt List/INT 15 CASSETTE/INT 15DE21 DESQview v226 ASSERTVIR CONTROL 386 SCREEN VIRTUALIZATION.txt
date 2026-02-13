@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE21
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.26+ - "ASSERTVIR" - CONTROL 386 SCREEN VIRTUALIZATION
+	AX = DE21h
+	BX = new state
+	    0000h turn off
+	    nonzero turn on
+Return: BX = old state of virtualization
+Notes:	this API call may be made from within a hardware interrupt handler
+	under DV 2.40 and 2.42, this call appears to have no effect and always
+	  returns a nonzero value in BX which appears to be the offset within
+	  the DV common memory segment of the caller's task object; it may
+	  only have an effect within a hardware interrupt handler
+SeeAlso: AX=1117h,AX=DE17h
+

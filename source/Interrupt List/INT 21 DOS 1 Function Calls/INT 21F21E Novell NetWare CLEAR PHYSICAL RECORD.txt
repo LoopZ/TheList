@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F21E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CLEAR PHYSICAL RECORD
+	AX = F21Eh
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02278)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=5Ch,AH=BEh"NetWare",AH=F2h"Novell",AX=F20Bh,AX=F21Fh
+
+Format of NetWare "Clear Physical Record" request packet:
+Offset	Size	Description	(Table 02278)
+ 00h	BYTE	reserved for future use
+ 01h  6 BYTEs	NetWare file handle
+ 07h	DWORD	starting offset of locked region
+ 0Bh	DWORD	length of locked region
+SeeAlso: #02279
+

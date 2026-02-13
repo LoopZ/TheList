@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150D
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - DISABLE MULTITASKING
+	AH = 0Dh
+Return: nothing
+Note:	calling task receives all time slices until AH=0Eh is called; this
+	  allows time-critical events or nonreentrant code to be processed
+SeeAlso: AH=0Eh"MultiDOS",AH=10h"MultiDOS",AX=101Bh,AH=20h"MultiDOS"
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1798
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX,MW386 - RESTART PRINTER
+	AH = 98h
+	AL = 00h
+	DL = printer number (FFh=current)
+Return: AL = status
+	    00h successful
+	    01h incorrect printer
+	    02h task not found
+Note:	MW386 supports this function for compatibility only; it is a NOP
+

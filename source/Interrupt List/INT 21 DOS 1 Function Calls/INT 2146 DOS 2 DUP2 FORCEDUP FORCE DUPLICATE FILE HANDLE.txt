@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2146
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "DUP2", "FORCEDUP" - FORCE DUPLICATE FILE HANDLE
+	AH = 46h
+	BX = file handle
+	CX = file handle to become duplicate of first handle
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (04h,06h) (see #01680 at AH=59h/BX=0000h)
+Notes:	closes file with handle CX if it is still open
+	DOS 3.30 hangs if BX=CX on entry
+	moving file pointer for either handle will also move it for the other,
+	  because both will refer to the same system file table
+SeeAlso: AH=3Dh,AH=45h
+

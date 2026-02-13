@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F0100SI20D6
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PrintCache 3.1 PRINT.COM - INSTALLATION CHECK
+	AX = 0100h
+	SI = 20D6h
+	DI = 8761h
+Return: AX = 00FFh if installed
+	DI = 0001h if PrintCache's PRINT.COM installed and magic values match
+	    SI = resident code segment
+Program: PrintCache PRINT.COM is a DOS PRINT replacement included in
+	  LaserTools' PrintCache memory/disk-based print spooler package
+Note:	if either of SI or DI differ from the indicated magic values, only AX
+	  will be modified on return, for compatibility with DOS PRINT
+SeeAlso: AX=0101h/SI=20D6h,AX=C000h"PCACHE"
+

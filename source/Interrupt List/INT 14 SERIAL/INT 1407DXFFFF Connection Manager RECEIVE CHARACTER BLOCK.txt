@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1407--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - RECEIVE CHARACTER BLOCK
+	AH = 07h
+	DX = FFFFh
+	AL = connection ID
+	BL = flag
+	    00h wait for data
+	    nonzero do not wait if no data avaiable
+	CX = size of receive buffer
+	ES:DI -> buffer for received characters
+Return: AH = return code (00h-02h,04h,FFh) (see #00303)
+	BH = line status (see #00306)
+	CX = number of characters received
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+SeeAlso: AH=01h/DX=FFFFh,AH=04h/DX=FFFFh,AH=06h/DX=FFFFh
+

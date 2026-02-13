@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0015
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - DOSMGR - VxD SERVICES
+	VxD = 0015h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01282)
+Values for DOSMGR (VxD ID 0015h) service number:
+ 0000h	get version
+ 0001h	set exec VM data
+ 0002h	coyp VM drive state
+ 0003h	execute VM
+ 0004h	get InDOS pointer
+ 0005h	add device
+ 0006h	remove device
+ 0007h	instance device
+ 0008h	get DOS critical status
+ 0009h	enable InDOS polling
+ 000Ah	backfill allowed
+ 000Bh	"LocalGlobalReg"
+ 000Ch	"Init_UMB_Area"
+ 000Dh	"Begin_V86_App"
+ 000Eh	"End_V86_App"
+ 000Fh	"Alloc_Local_Sys_VM_Mem"
+	EAX = number of paragraphs??? to allocate
+ 0010h	"DOSMGR_Grow_CDSs"
+ 0011h	"DOSMGR_Translate_Server_DOS_Call"
+ 0012h	"DOSMGR_MMGR_PSP_Change_Notifier"
+SeeAlso: #01281,#02656 at INT 2F/AX=1684h/BX=0015h
+

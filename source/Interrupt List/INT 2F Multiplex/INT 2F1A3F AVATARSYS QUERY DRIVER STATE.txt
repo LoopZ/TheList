@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1A3F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AVATAR.SYS - QUERY DRIVER STATE
+	AX = 1A3Fh (AL='?')
+	ES:DI -> buffer
+	CX = length of buffer in bytes
+Return: CF clear
+	CX = actual size of returned info
+Note:	the returned information consists of multiple letters whose meanings
+	  are described under AX=1A21h
+SeeAlso: AX=1A00h/BX=4156h,AX=1A21h,AX=1A44h
+

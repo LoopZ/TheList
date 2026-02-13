@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A6108
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - SNAP.EXE 3.2+ - "SNAP_SENDWITHREPLY" - SEND MSG AND GET REPLY
+	AX = 6108h
+	STACK:	WORD	conversation ID (0000h-0009h)
+		DWORD	pointer to message buffer
+		WORD	length of message
+		DWORD	pointer to reply buffer
+		WORD	length of reply buffer
+		WORD	0000h (use default "Cparams" structure)
+Return: AX = status (see #00654)
+	STACK unchanged
+Program: SNAP.EXE is a TSR written by IBM and Carnegie Mellon University
+	  which implements the Simple Network Application Protocol
+SeeAlso: AX=6205h
+
+(Table 00654)
+Values for SNAP.EXE status:
+ 0000h	successful
+ F830h	"SNAP_ABORTED"
+ FC04h	"SNAP_SERVERDIED"
+ FC05h	"SNAP_RESEND"
+ FC06h	"SNAP_SELECTFAILED"
+ FC07h	"SNAP_WRONGVERSION"
+ FC08h	"SNAP_INVALIDACK"
+ FC09h	"SNAP_TIMEOUT"
+ FC0Ah	"SNAP_SERVERREJECT"
+ FC0Bh	"SNAP_NOREPLYDUE"
+ FC0Ch	"SNAP_NOAUTHENTICATE"/"SNAP_GUARDIAN_ERROR"
+ FC0Dh	"SNAP_NOINIT"
+ FC0Eh	"SNAP_SOCKETERROR"
+ FC0Fh	"SNAP_BUFFERLIMIT"
+ FC10h	"SNAP_INVALIDCID"
+ FC11h	"SNAP_INVALIDOP"
+ FC12h	"SNAP_XMITFAIL"
+ FC13h	"SNAP_NOMORERETRIES"
+ FC14h	"SNAP_BADPARMS"
+ FC15h	"SNAP_NOMEMORY"
+ FC16h	"SNAP_NOMORECONVS"
+ FFFFh	failed (invalid function/parameter)
+

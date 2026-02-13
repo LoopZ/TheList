@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - END ACTIVE SESSION
+	AX = 0003h subfn 04h
+	DS:BX -> argument block (see #03378)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=0Ah,AX=0003h/SF=0Dh,AX=0003h/SF=0Fh
+
+Format of VINES argument block for ending active session:
+Offset	Size	Description	(Table 03378)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	04h (function "end active session")
+

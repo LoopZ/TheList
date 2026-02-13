@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1D
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1D - SYSTEM DATA - VIDEO PARAMETER TABLES
+Notes:	the default parameter table (see #01263) is located at F000h:F0A4h for
+	  100% compatible BIOSes
+	Under PhysTechSoft's PTS ROM-DOS this table is fictitious.
+SeeAlso: INT 10/AH=00h
+
+Format of video parameters:
+Offset	Size	Description	(Table 01263)
+ 00h 16 BYTEs	6845 register values for modes 00h and 01h
+ 10h 16 BYTEs	6845 register values for modes 02h and 03h
+ 20h 16 BYTEs	6845 register values for modes 04h and 05h
+ 30h 16 BYTEs	6845 register values for modes 06h and 07h
+ 40h	WORD	bytes in video buffer for modes 00h and 01h (0800h)
+ 42h	WORD	bytes in video buffer for modes 02h and 03h (1000h)
+ 44h	WORD	bytes in video buffer for modes 04h and 05h (4000h)
+ 46h	WORD	bytes in video buffer for mode 06h (4000h)
+ 48h  8 BYTEs	columns on screen for each of modes 00h through 07h
+ 50h  8 BYTEs	CRT controller mode bytes for each of modes 00h through 07h
+Note:	QEMM v7.5 Stealth appears to copy only the first 40h bytes of this
+	  table into always-accessible memory
+

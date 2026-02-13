@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8304
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 83 - JM Pro Tracker v5.0 - SET DMA BUFFER???
+	AH = 04h
+	CX = number of bytes in suggested buffer
+	ES:DI -> suggested buffer for DMA transfers???
+Return: CF clear if successful
+	    ES:AX -> actual buffer (filled with bytes of 80h)
+	    CX = actual length (multiple of 4)
+	CF set on error
+	    AX = error code (see #03976)
+Note:	the buffer must not cross a 64K DMA page boundary
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2123
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - GET FILE SIZE FOR FCB
+	AH = 23h
+	DS:DX -> unopened FCB (see #01345), wildcards not allowed
+Return: AL = status
+	    00h successful (matching file found)
+		FCB random record field filled with size in records, rounded up
+		to next full record
+	    FFh failed (no matching file found)
+Notes:	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+	MS-DOS returns nonsense if the FCB record number field is set to a very
+	  large positive number, and status FFh if negative; DR DOS returns the
+	  correct file size in both cases
+BUG:	APPEND for DOS 3.3+ corrupts DX if the file is not found
+SeeAlso: AH=42h
+

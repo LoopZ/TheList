@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0E06
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - RESET COMMUNICATIONS CHANNEL
+	DI = 0E06h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	comm channel handle
+		WORD	reset options (see #03302)
+Return: ???
+	STACK unchanged
+
+Bitfields for HP 95LX reset options:
+Bit(s)	Description	(Table 03302)
+ 0	reset line
+ 1	flush transmit buffer
+ 2	flush receive buffer
+ 3	reset modem
+ 4	reset receiver's ^S state
+ 5	reset transmitter's ^S state
+

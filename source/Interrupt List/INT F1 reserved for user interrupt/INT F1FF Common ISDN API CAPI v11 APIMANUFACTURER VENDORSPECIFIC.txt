@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: F1FF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v1.1 - "API-MANUFACTURER" - VENDOR-SPECIFIC
+	AH = FFh
+	other registers vendor-specific
+Return: registers vendor-specific
+Range:	INT 00 to INT FF, selectable by program parameter
+Notes:	the caller is required to provide at least 512 bytes of stack space
+SeeAlso: AH=01h,AH=F0h,AH=F1h,AH=F2h,INT F1/AH=FFh
+

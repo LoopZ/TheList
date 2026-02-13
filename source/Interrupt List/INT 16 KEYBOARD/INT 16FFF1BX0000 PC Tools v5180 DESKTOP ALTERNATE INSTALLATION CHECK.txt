@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFF1BX0000
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - ALTERNATE INSTALLATION CHECK
+	AX = FFF1h
+	BX = 0000h  leave ??? flag as is
+	    nonzero set ??? flag
+Return: CX = 5555h if installed
+	DX = 5555h
+

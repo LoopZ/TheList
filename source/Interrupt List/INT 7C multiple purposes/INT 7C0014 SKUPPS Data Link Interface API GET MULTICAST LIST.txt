@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0014
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - GET MULTICAST LIST
+	AX = 0014h
+	BX = protocol ID (see #03849,AX=000Bh)
+	ES:DI -> multicast address buffer
+	CX = number of 6-byte multicast addresses that may be stored in buffer
+Return: AX = completion code (see #03846)
+	CX = number of registered multicast addresses for this protocol
+	  (regardless of value returned in AX)
+	multicast address buffer filled with multicast addresses registered for
+	  this protocol
+Note:	If the buffer supplied is too small, CX still contains the total number
+	  of registered multicast addresses for this protocol and the buffer
+	  has been completely filled
+SeeAlso: AX=000Bh,AX=0009h,AX=000Ch
+

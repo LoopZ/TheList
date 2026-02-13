@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC002
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QMR - DISABLE QMR
+	AX = C002h
+Return: ES = QMR code segment
+	AL destroyed
+Desc:	this call temporarily disables QMR
+SeeAlso: AX=C000h"QMR",AX=C003h"QMR"
+

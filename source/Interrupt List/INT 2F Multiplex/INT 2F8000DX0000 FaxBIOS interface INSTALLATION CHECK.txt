@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8000DX0000
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - FaxBIOS interface - INSTALLATION CHECK
+	AX = 8000h
+	DX = 0000h
+	DI = 0000h
+Return: AL = FFh if installed
+	DX:DI -> signature "FaxBiosjpc"
+Range:	AH=80h to AH=FFh, selected by scanning multiplex numbers for signature
+SeeAlso: AH=2Ah,AX=80FBh
+

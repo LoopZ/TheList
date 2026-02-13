@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1414
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - ENABLE OR DISABLE WATCHDOG PROCESSING
+	AH = 14h
+	AL = 01h enable watchdog
+	     00h disable watchdog
+	DX = port number
+Return: nothing
+SeeAlso: INT 21/AH=2Bh/CX=6269h"WDTSR"
+

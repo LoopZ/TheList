@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - BMB Compuscience Canada Utilities Interface - INSTALLATION CHECK
+	AH = xx (dynamically assigned based upon a search for a multiplex
+		 number which doesn't answer installed)
+	AL = 00h installation check
+	ES:DI = EBEBh:BEBEh
+Return: AL = 00h not installed
+	     01h not installed, not OK to install
+	     FFh installed; if ES:DI was EBEBh:BEBEh on entry, ES:DI will point
+		 to a string of the form 'MMMMPPPPPPPPvNNNN' where MMMM is a
+		 short form of the manufacturer's name, PPPPPPPP is a product
+		 name and NNNN is the product's version number
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 165758BX5859
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - Netroom POSTNET - GET OLD INTERRUPT VECTORS
+	AX = 5758h
+	BX = 5859h
+Return: CF clear
+	DX:BX -> saved copy of interrupt vector table
+InstallCheck:	call this function and compare BX against 5859h on return; if
+	  it has changed, POSTNET is installed
+SeeAlso: AX=5758h/BX=5858h
+Index:	installation check;Netroom POSTNET
+

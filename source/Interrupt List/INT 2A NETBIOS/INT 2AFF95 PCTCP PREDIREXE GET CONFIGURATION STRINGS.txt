@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2AFF95
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2A - PC/TCP PREDIR.EXE - GET CONFIGURATION STRINGS
+	AX = FF95h
+	CX = what to get
+	    0000h ??? (returned pointer to "C:\COMMAND.COM")
+	    0001h spooling program
+	    0002h ???
+	    0003h spool file name
+	    0004h swap file name
+Return: AX = status
+	    0000h successful
+	BX:DX -> ASCIZ configuration string
+

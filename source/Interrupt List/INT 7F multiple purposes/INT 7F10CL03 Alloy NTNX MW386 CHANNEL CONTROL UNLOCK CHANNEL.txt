@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F10--CL03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - CHANNEL CONTROL - UNLOCK CHANNEL
+	AH = 10h
+	CL = 03h
+	AL = channel number
+Return: AL = status (00h-03h,0Ah) (see #03951)
+Notes:	should only be used on channels locked with AH=10h/CL=02h, not on those
+	  locked by receipt of a datagram
+	may not be invoked from within a hardware interrupt handler
+SeeAlso: AH=10h/CL=02h,AH=10h/CL=04h,AH=10h/CL=09h
+

@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2153
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ internal - TRANSLATE BIOS PARAMETER BLOCK TO DRIVE PARAM BLOCK
+	AH = 53h
+	DS:SI -> BIOS Parameter Block (see #01663)
+	ES:BP -> buffer for Drive Parameter Block (see #01395 at AH=32h)
+	    DBP drive byte must be set to valid drive (Windows95-OSR2)
+	---Windows95---
+	CX = signature 4558h ('EX') for FAT32 extended BPB/DPB (see #01664)
+	DX = signature 4152h ('AR') for FAT32 extended BPB/DPB
+Return: ES:BP buffer filled
+Notes:	for DOS 3.0+, the cluster at which to start searching is set to 0000h
+	  and the number of free clusters is set to FFFFh (unknown)
+	if the number of sectors per cluster is set to zero, MS-DOS will hang
+	  at startup because it computes the internally-used shift count by
+	  shifting this value right until the carry flag is set; since this
+	  will never happen when the field is zero, MS-DOS hangs
+	not supported by Windows NT 3.1
+
+Format of BIOS Parameter Block:
+Offset	Size	Description	(Table 01663)
+ 00h	WORD	number of bytes per sector
+ 02h	BYTE	number of sectors per cluster
+ 03h	WORD	number of reserved sectors at start of disk
+ 05h	BYTE	number of FATs
+ 06h	WORD	number of entries in root directory
+ 08h	WORD	total number of sectors
+		for DOS 4.0+, set to zero if partition >32M, then set DWORD at
+		  15h to actual number of sectors
+ 0Ah	BYTE	media ID byte (see #01356)
+ 0Bh	WORD	number of sectors per FAT
+---DOS 2.13---
+ 0Dh	WORD	number of sectors per track
+ 0Fh	WORD	number of heads
+ 11h	WORD	number of hidden sectors
+---DOS 3.0+ ---
+ 0Dh	WORD	number of sectors per track
+ 0Fh	WORD	number of heads
+ 11h	DWORD	number of hidden sectors
+ 15h 11 BYTEs	reserved
+---DOS 4.0+ ---
+ 15h	DWORD	total number of sectors if word at 08h contains zero
+ 19h  6 BYTEs	???
+ 1Fh	WORD	number of cylinders
+ 21h	BYTE	device type
+ 22h	WORD	device attributes (removable or not, etc)
+---DR DOS 5+ ---
+ 15h	DWORD	total number of sectors if word at 08h contains zero
+ 19h  6 BYTEs	reserved
+---European MS-DOS 4.00---
+ 15h	DWORD	total number of sectors if word at 08h contains zero
+		(however, this DOS does not actually implement >32M partitions)
+SeeAlso: #01395,#01664
+
+Format of Extended BIOS Parameter Block:
+Offset	Size	Description	(Table 01664)
+ 00h 25 BYTEs	same as standard DOS 4-6 BPB (see #01663)
+ 19h	DWORD	sectors per FAT if WORD at 0Bh is 0000h
+ 1Dh	WORD	extended flags
+		bit 7: do not mirror active FAT to inactive FATs
+		bits 6-4: reserved (0)
+		bits 3-0: the 0-based FAT number of the active FAT
+		    (if mirroring disabled)
+ 1Fh	WORD	file system version (high byte=major, low byte=minor)
+		0000h = Win95-OSR2
+ 21h	DWORD	starting cluster number of root directory
+ 25h	WORD	file system information sector number (see also #01788)
+		FFFFh if none
+ 27h	WORD	sector number of backup boot sector (FFFFh if none)
+ 29h  6 WORDs	reserved
+SeeAlso: #01560,#01787
+

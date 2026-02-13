@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BFDEBX0001
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview/X 1.02+ - DVDOS4GX.DVR - GET PROCESS MANAGER NAME
+	AX = BFDEh
+	BX = 0001h
+Return: BX = 0000h (success)
+	CX:DX -> name of process manager executable
+SeeAlso: AX=BFDEh/BX=0000h
+

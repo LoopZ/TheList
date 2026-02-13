@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DB02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI BIOS - Flash ROM - GET SIZE OF FLASH ROM PROGRAMMING CODE
+	AX = DB02h
+Return: CF clear
+	AX = 0000h
+	BX = size of ROM programming code in bytes
+Note:	used by FMUP.EXE, Intel's Flash Memory Update utility
+SeeAlso: AX=DB00h,AX=DB03h
+

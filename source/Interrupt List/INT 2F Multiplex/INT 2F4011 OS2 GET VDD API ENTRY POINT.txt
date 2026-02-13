@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4011
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - OS/2 - GET VDD API ENTRY POINT
+	AX = 4011h
+	DS:(E)SI -> ASCIZ name of VDD registered with VDHRegisterAPI
+Return: ES:DI -> breakpoint address to call for VDD API, or 0000h:0000h
+Note:	this function may be invoked from either V86 or protected mode, and
+	  will return the appropriate address to call for invoking the VDD
+	  in that mode
+SeeAlso: AX=1684h"DEVICE API"
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 3F
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 3F - Overlay manager interrupt (Microsoft LINK.EXE, Borland TLINK VROOMM)
+Notes:	INT 3F is the default, and may be overridden while linking
+	this vector is modified but not restored by Direct Access v4.0, and
+	  may be left dangling by other programs written with the same version
+	  of compiled BASIC
+SeeAlso: INT FE"OVERLAY"
+

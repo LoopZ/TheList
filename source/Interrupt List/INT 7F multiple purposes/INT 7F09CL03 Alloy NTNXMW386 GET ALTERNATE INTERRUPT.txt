@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F09--CL03
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX,MW386 - GET ALTERNATE INTERRUPT
+	AH = 09h
+	CL = 03h
+	AL = default interrupt number (67h,7Fh,etc)
+Return: CL = actual interrupt which handles specified interrupt's calls
+SeeAlso: AH=08h
+

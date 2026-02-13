@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 219A
+  Category: D 	DOS kernel
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - European MS-DOS 4.0 - "PRUN" - UNBLOCK A PROCESS
+	AH = 9Ah
+	DS:BX -> memory location processes may have blocked on
+Return: AX = number of processes awakened
+	ZF set if no processes awakened
+Program: European MS-DOS 4.0 was written for Siemens in Germany and then used
+	  by several other European OEMs; its release falls between mainstream
+	  versions 3.2 and 3.3
+Desc:	restart all processes waiting for the specified "restart" signal
+SeeAlso: AH=99h,INT 2F/AX=0802h
+

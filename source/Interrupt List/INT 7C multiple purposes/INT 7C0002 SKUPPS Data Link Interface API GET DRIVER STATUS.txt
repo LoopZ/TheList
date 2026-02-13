@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - GET DRIVER STATUS
+	AX = 0002h
+	ES:DI -> Status Information Block (SIB) (see #03858)
+Return: AX = completion code (see #03846)
+Note:	GET DRIVER INFO (AX=000Eh) should be used instead.
+SeeAlso: AX=0000h,AX=000Bh,AX=000Dh,AX=000Eh
+

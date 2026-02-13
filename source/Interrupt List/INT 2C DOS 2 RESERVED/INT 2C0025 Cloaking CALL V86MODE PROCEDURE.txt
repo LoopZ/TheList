@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C0025
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - CALL V86-MODE PROCEDURE
+	AX = 0025h
+	DS:EBX -> client register structure (see #02559)
+Return: CF clear if successful
+	    client register structure updated
+	CF set if no more nested procedure call space available
+Notes:	this call uses the V86-mode stack supplied in the client structure, and
+	  calls the routine specified by CS:IP in the client structure
+	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: AX=0026h,AX=0027h,INT 31/AX=0301h
+

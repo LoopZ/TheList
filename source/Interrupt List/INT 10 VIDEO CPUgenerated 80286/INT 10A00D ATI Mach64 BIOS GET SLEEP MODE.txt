@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10A00D
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - ATI Mach64 BIOS - GET SLEEP MODE
+	AX = A00Dh
+Return: AH = 00h (successful)
+	CL = current power mode
+	    00h normal operation
+	    01h standby
+	    02h suspend
+	    03h off
+SeeAlso: AX=A00Ch,AX=4F10h/BL=02h
+SeeAlso: AX=A00Ch,AX=A00Dh"Rage128"AX=4F10h/BL=02h
+

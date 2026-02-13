@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7D01
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7D - SCSILink - CONNECT TO TARGET
+	AH = 01h
+	AL = target ID
+Return: CF clear if successful
+	CF set on error
+	    AL = initiator error
+	    AH = target error
+Desc:	arbitrate the use of the bus and select the specified target device
+

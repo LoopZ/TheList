@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E7
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER DATE AND TIME
+	AH = E7h
+	DS:DX -> date/time buffer (see #02087)
+Return: AL = error code
+	    00h successful
+	    FFh unsuccessful
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+,
+	  Alloy NTNX, and Banyan VINES
+SeeAlso: AH=2Ah,AH=2Ch,AX=5FC0h,AH=E3h/SF=CAh,AX=F214h
+
+Format of NetWare date/time buffer:
+Offset	Size	Description	(Table 02087)
+ 00h	BYTE	year (80-99 = 1980-1999, 0-79 = 2000-2079)
+ 01h	BYTE	month (1=Jan)
+ 02h	BYTE	day
+ 03h	BYTE	hours
+ 04h	BYTE	minutes
+ 05h	BYTE	seconds
+ 06h	BYTE	day of week (0 = Sunday) (Novell and NTNX only)
+SeeAlso: #02106
+

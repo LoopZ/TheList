@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4508
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Microsoft Profiler (PROF.COM/VPROD.386) - ALTERNATE SEGDEBUG IFACE
+	AX = 4508h
+	BX = ordinal (or 0000h)
+	CX = segment
+	DX = instance (or 0000h)
+	SI = type (or 0000h)
+	ES:DI -> ASCIZ module name
+Notes:	this call is an alternate entry to the profiler's SEGDEBUG
+	  interface, but only to function 0, for notifying the profiler of
+	  each new segment loaded.  The SHOWHITS utility then examines the
+	  profiler's output files (CSIPS.DAT and SEGENTRY.DAT) in conjunction
+	  with symbol files to provide information in a useful form.
+	this call does not have a corresponding Windows function
+SeeAlso: AX=4500h
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX31CF
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - STAT.386 - GET API ENTRY POINT
+	AX = 1684h
+	BX = 31CFh (virtual device ID for STAT.386) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02706)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02706)
+Call STAT.386 entry point with:
+	AX = function
+	    0000h get version
+		Return: AX = STAT.386 version (AH = major, AL = minor)
+	    0001h execute RDMSR/WRMSR/RDTSC
+		BH = 00h
+		BL = second opcode byte (30h=WRMSR,31h=RDTSC,32h=RDMSR)
+		EDX:EDI = value to be written (for BL=30h)
+		ECX = MSR number for RDMSR/WRMSR
+		Return: EDX:EAX = value read (RDTSR/RDMSR only)
+SeeAlso: #02703,#02707
+

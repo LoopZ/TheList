@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC15DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - RESTORE GRAPHICS SCREEN
+	AX = AC15h
+	DI = 1092h
+Return: nothing
+Desc:	restores the graphics screen saved by the last call to AX=AC14h
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC03h,AX=AC14h
+

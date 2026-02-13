@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF06
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET IPX/SPX Information
+	AX = F27Bh subfn 06h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02496)
+	ES:DI -> reply buffer (see #02497)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Get IPX/SPX Information" request buffer:
+Offset	Size	Description	(Table 02496)
+ 00h	WORD	0001h (length of following data)
+ 02h	BYTE	06h (subfunction "Get IPX/SPX Information")
+SeeAlso: #02497
+
+Format of NetWare "Get IPX/SPX Information" reply buffer:
+Offset	Size	Description	(Table 02497)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	DWORD	number of IPX packets sent
+ 0Ch	WORD	number of malformed IPX packets
+ 0Eh	DWORD	number of IPX Get-ECB requests
+ 12h	DWORD	number of failed IPX Get-ECB requests
+ 16h	DWORD	number of IPX AES events
+ 1Ah	WORD	number of postponed IPX AES events
+ 1Ch	WORD	maximum number of sockets (from configuration)
+ 1Eh	WORD	maximum number of open sockets
+ 20h	WORD	number of failed IPX socket opens
+ 22h	DWORD	number of IPX "listen" ECBs
+ 24h	WORD	number of failed IPX EBC cancels
+ 26h	WORD	number of failed IPX Get-Local-Target requests
+ 28h	WORD	maximum number of SPX connections (from configuration)
+ 2Ah	WORD	maximum number of SPX connections used
+ 2Ch	WORD	number of SPX Establish-Connection requests
+ 2Eh	WORD	number of failed SPX Establish-Connection requests
+ 30h	WORD	total number of SPX "listen-connect" requests
+ 32h	WORD	number of failed SPX "listen-connect" requests
+ 34h	DWORD	number of SPX sends
+ 38h	DWORD	number of SPX "window-choke"s
+ 3Ch	WORD	number of bad SPX sends
+ 3Eh	WORD	number of failed SPX sends
+ 40h	WORD	number of aborted SPX connections
+ 42h	DWORD	number of SPX packet listens
+ 46h	WORD	number of bad SPX packet listens
+ 48h	DWORD	number of incoming SPX packets
+ 4Ch	WORD	number of bad incoming SPX packets
+ 4Eh	WORD	number of supressed SPX packets
+ 50h	WORD	"SPXNoSesListenECBCount"
+ 52h	WORD	"SPXWatchDogDestSesCount"
+SeeAlso: #02496
+

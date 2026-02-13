@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1508
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CD-ROM - ABSOLUTE DISK READ
+	AX = 1508h
+	ES:BX -> buffer
+	CX = drive number (0=A:)
+	SI:DI = starting sector number
+	DX = number of sectors to read
+Return: CF set on error
+	    AL = error code (0Fh invalid drive,15h not ready)
+	CF clear if successful
+Note:	returns error 15h (not ready) under Windows95 if the starting sector
+	  number is less than 10h
+SeeAlso: AX=1509h
+

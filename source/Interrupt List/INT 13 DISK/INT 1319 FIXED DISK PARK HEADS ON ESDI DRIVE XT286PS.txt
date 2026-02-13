@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1319
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - FIXED DISK - PARK HEADS ON ESDI DRIVE (XT286,PS)
+	AH = 19h
+	DL = drive
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234 at AH=01h)
+SeeAlso: AH=11h
+

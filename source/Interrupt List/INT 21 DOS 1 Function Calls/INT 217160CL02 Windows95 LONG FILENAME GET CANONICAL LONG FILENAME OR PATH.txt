@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217160CL02
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - GET CANONICAL LONG FILENAME OR PATH
+	AX = 7160h
+	CL = 02h
+	CH = SUBST expansion flag
+	    00h return a path containing true path for a SUBSTed drive letter
+	    80h return a path containing the SUBSTed drive letter
+	DS:SI -> ASCIZ short filename or path
+	ES:DI -> 261-byte buffer for canonicalized long name
+Return: CF set on error
+	    AX = error code
+		02h invalid component in directory path or drive letter only
+		03h malformed path or invalid drive letter
+	    ES:DI buffer unchanged
+	CF clear if successful
+	    ES:DI buffer filled with qualified long name (can contain
+		  lowercase letters)
+Desc:	determine the canonical name of the specified filename or path,
+	  corresponding to the undocumented TRUENAME command in COMMAND.COM
+BUGS:	even though the maximum length of a complete long pathname is 260
+	  characters, Windows95 returns CF set/AX=0003h even if the file
+	  exists whenever the full pathname is more than 255 characters
+	Windows95 incorrectly treats filenames where the first two characters
+	  after the drive letter and colon are both slashes (either forward
+	  or backward) as a UNC (network name) and requires several seconds
+	  to attempt to resolve the name before returning an unchanged
+	  string
+SeeAlso: AH=60h,AX=7160h/CL=00h,AX=7160h/CL=01h
+

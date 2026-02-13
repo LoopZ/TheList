@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1625
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HUNTER 16 - RESET KEYBOARD
+	AH = 25h
+Return: AL = 00h
+Desc:	restores the standard keyboard layout after any remapping
+SeeAlso: AH=24h,AH=2Bh,AH=2Ch
+

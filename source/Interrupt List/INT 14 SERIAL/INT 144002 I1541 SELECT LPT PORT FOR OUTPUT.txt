@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144002
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - SELECT LPT PORT FOR OUTPUT
+	AX = 4002h
+	BL = LPT number (1..3)
+Return: CF clear if successful
+	CF set otherwise
+Desc:	force the input output routines to work on the cable placed on LPT BL
+SeeAlso: AX=4001h
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B804
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - GET DEFAULT LOCAL PRINTER
+	AX = B804h
+Return: DH = default LPT port (00h-02h)
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AX=B800h,AX=B805h,AH=DFh/DL=00h
+

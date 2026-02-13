@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB809
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - NETWORK - LANtastic, NetWare Lite - GET VERSION
+	AX = B809h
+Return: AH = major version
+	AL = minor version (decimal)
+Notes:	this function is supported in this form by LANtastic, NetWare Lite,
+	  SilverNET, ...
+	NetWare Lite returns its own version number rather than a PC LAN
+	  compatibility version
+SeeAlso: AX=4E53h,AX=B800h,AX=B809h"PC LAN Program"
+

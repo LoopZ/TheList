@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - KEYBIT Lite v5+ - GET POINTER TO STATUS BYTE
+	AL = 10h
+	AH = AMIS multiplex number for KEYBIT Lite
+Return: DX:BX -> status byte (see #02584)
+Program: KEYBIT Lite is an enhanced Italian keyboard driver by Pino Navato.
+SeeAlso: INT 2D"AMIS"
+
+Bitfields for KEYBIT Lite status byte:
+Bit(s)	Description	(Table 02584)
+ 7	KEYBIT Lite active
+ 6	E-mail support active
+ 5-0	reserved
+Notes:	E-mail support is one of the original features of KEYBIT Lite.	It is
+	  the automatic conversion of the 8-bits ASCII chars produced by some
+	  keys available on Italian keyboards to couples of 7-bits chars.
+	Message editors should always enable e-mail support, they should also
+	  restore its original status before exiting.
+	The user can change both status bits by hotkeys.
+

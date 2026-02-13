@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAB01
+  Category: f 	file manipulation
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Btrieve Multi-User - EXECUTE Btrieve OPERATION
+	AX = AB01h
+	BX = process ID
+	DS:DX -> 38-byte parameter record (see #03840 at INT 7B"Btrieve")
+Return: AL = status
+	    00h OK
+	    other retry after calling INT 7F/AX=0200h
+SeeAlso: AX=AB00h"Btrieve",AX=AB02h"Btrieve",INT 7B"Btrieve",INT 7F/AX=0200h
+

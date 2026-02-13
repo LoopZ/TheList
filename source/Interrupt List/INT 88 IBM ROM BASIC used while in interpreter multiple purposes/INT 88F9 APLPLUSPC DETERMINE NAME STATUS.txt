@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 88--F9
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 88 - APL*PLUS/PC - DETERMINE NAME STATUS
+	AL = F9h
+	ES:SI -> name
+	CX = length of name
+Return: CF set if name ill-formed or already in use
+	    BX = STPTR if already in symbol table
+	CF clear if name is available for use
+	    BX = 0000h
+Note:	does not force the name into the workspace
+SeeAlso: AL=FEh,AL=FFh,INT C8"APL"
+

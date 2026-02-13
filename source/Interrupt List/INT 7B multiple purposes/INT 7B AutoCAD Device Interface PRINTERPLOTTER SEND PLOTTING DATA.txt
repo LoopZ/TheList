@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7B
+  Category: A 	applications
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 7B CR - AutoCAD Device Interface - PRINTER/PLOTTER - SEND PLOTTING DATA
+	AX = data length (0000h-7FFFh)
+	CX:BX -> data to be plotted
+	DX = vertical position of line on page
+Return: nothing
+Notes:	This interrupt is called by AutoCAD to perform its output
+	A data length of 0000h indicates that a blank line is to be output
+SeeAlso: AX=8001h,AX=8002h,INT 78"AutoCAD",INT 7A/AX=0001h"AutoCAD"
+

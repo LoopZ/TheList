@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310B00
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - SET DEBUG WATCHPOINT
+	AX = 0B00h
+	BX:CX = linear address
+	DL = size (1,2,4 bytes)
+	DH = type (00h execute, 01h write, 02h read/write)
+Return: CF clear if successful
+	    BX = watchpoint handle
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8016h,8021h,8025h) (see #03143)
+SeeAlso: AX=0212h,AX=0601h
+

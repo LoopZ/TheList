@@ -1,0 +1,172 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB12
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - GET HARDWARE STATUS
+	AX = CB12h
+	DS:DX -> 128-byte status buffer (see #03054,#03056)
+Return: AX = 0000h successful
+	    DS:DX buffer filled with hardware-dependent status information
+	   < 0	   error code (see #03048)
+SeeAlso: AX=CB10h,AX=CB11h
+
+Format of status buffer for Intel Connection CoProcessor:
+Offset	Size	Description	(Table 03054)
+ 00h	BYTE	Connection CoProcessor connection status flags (see #03057)
+ 01h	BYTE	number of kilobytes of free buffer space
+ 02h	BYTE	page buffer status
+		bit 7: Connection CoProcessor has documents to send
+		bits 6-0: number of pages in buffer
+ 03h	BYTE	number of retries left for dialing number
+ 04h	BYTE	page number to retransmit
+ 05h	BYTE	communications status (see #03058)
+ 06h	BYTE	baud rate (see #03055)
+ 07h  3 BYTEs	reserved
+ 0Ah	BYTE	Connection CoProcessor hardware status (see #03059)
+ 0Bh	BYTE	Connection CoProcessor switch states (see #03060)
+ 0Ch	BYTE	communications flags (see #03061)
+ 0Dh	BYTE	reserved
+ 0Eh	WORD	error count (only valid while busy, reset when idle)
+ 10h	DWORD	size of nonstandard format (NSF) file in bytes
+ 14h	BYTE	'A' if Connection CoProcessor board present
+ 15h  9 BYTEs	reserved
+ 1Eh 21 BYTEs	ASCIZ CCITT identification
+ 33h 77 BYTEs	reserved
+Note:	the Intel Connection CoProcessor and SatisFAXtion may be distinguished
+	  by examining the byte at offset 14h
+
+Bitfields for Connection CoProcessor baud rate:
+Bit(s)	Description	(Table 03055)
+ 7	reserved
+ 6-4	baud rate
+	000 = 300 baud	(V.21 SDLC or HDLC mode)
+	100 = 2400 baud (V.27 ter)
+	101 = 4800 baud (V.27 ter)
+	110 = 7200 baud (V.29)
+	111 = 9600 baud (V.29)
+ 3-0	reserved, should be 0110
+
+Format of status buffer for Intel SatisFAXtion board:
+Offset	Size	Description	(Table 03056)
+ 00h	BYTE	SatisFAXtion connection status flags (see #03062)
+ 01h	BYTE	SatisFAXtion board state (see #03063)
+ 02h	BYTE	number of KB free in buffer
+ 03h	BYTE	number of pages or files in buffer
+ 04h	BYTE	number of redials remaining on current number
+ 05h	BYTE	FAX page number to retransmit
+ 06h	BYTE	current page/file in block transfer
+ 07h	BYTE	number of rings received (only if auto-answer enabled)
+ 08h	WORD	error count
+ 0Ah	DWORD	length of file being transferred
+ 0Eh  6 BYTEs	reserved
+ 14h	BYTE	'B' if SatisFAXtion board present
+ 15h 13 BYTEs	ASCIZ transfer agent name
+ 22h  5 BYTEs	ASCIZ transfer agent version number
+ 27h 13 BYTEs	ASCIZ resident loader name
+ 34h  5 BYTEs	ASCIZ resident loader version number
+ 39h 21 BYTEs	ASCIZ remote CSID
+ 4Eh 13 BYTEs	ASCIZ resident manager name
+ 5Bh  5 BYTEs	ASCIZ resident manager version number
+ 60h 32 BYTEs	reserved
+Note:	the Intel Connection CoProcessor and SatisFAXtion may be distinguished
+	  by examining the byte at offset 14h
+
+Bitfields for Connection CoProcessor connection status flags:
+Bit(s)	Description	(Table 03057)
+ 7	hardware busy sending or receiving
+ 6	last page of data
+ 5	no data on current page
+ 4	retransmit request for current page being transmitted
+ 3	NSF (nonstandard file) mode active
+ 2-0	reserved
+
+Bitfields for communications status:
+Bit(s)	Description	(Table 03058)
+ 7	originating call
+ 6	FAX message to be sent
+ 5	on line
+ 4	ring detected and receive enabled
+ 3	buffer dumped on receive
+ 2-0	hardware sequence state
+	000 idle
+	001 dial
+	010 answer
+	011 transmit
+	100 receive
+	101 pre-message
+	110 post-message
+	111 disconnect
+
+Bitfields for Connection CoProcessor hardware status:
+Bit(s)	Description	(Table 03059)
+ 7	modem option installed
+ 6	Connection CoProcessor has control of DAA (not latched)
+ 5	on line (not latched)
+ 4	ring detected (not latched)
+ 3	data in command buffer (not latched)
+ 2	set if using DMA channel 1, clear if using DMA channel 3
+ 1	line length compensation 1 set (not latched)
+ 0	line length compensation 0 set (not latched)
+
+Bitfields for Connection CoProcessor switch states:
+Bit(s)	Description	(Table 03060)
+ 7	reserved
+ 6	unused
+ 5	spare switch open
+ 4	FAX ADR1 switch open
+ 3	FAX ADR0 switch open
+ 2	alternate interrupt switch open
+ 1	COM SEL 1 switch open
+ 0	COM SEL 0 switch open
+Note:	valid combinations of 0-2 are
+	000  COM2 IRQ3 IObase 2F8h
+	001  COM1 IRQ4 IObase 3F8h
+	010  COM4 IRQ3 IObase 2E8h
+	011  COM3 IRQ4 IObase 3E8h
+	110  COM4 IRQ2 IObase 2E8h
+	111  COM3 IRQ5 IObase 3E8h
+
+Bitfields for communications flags:
+Bit(s)	Description	(Table 03061)
+ 7	reserved
+ 6	auxiliary relay forced ON
+ 5	modem select relay forced ON
+ 4	offhook relay forced ON
+ 3	9600 bps enabled
+ 2	7200 bps enabled
+ 1	4800 bps enabled
+ 0	2400 bps enabled
+
+Bitfields for SatisFAXtion connection status flags:
+Bit(s)	Description	(Table 03062)
+ 7	busy in T.30 CCITT fax protocol
+ 6	data on current page/file (only used for block xfers)
+ 5	retransmission of last page requested
+ 4	in file transfer mode
+ 3	data in buffer
+ 2	data buffer dumped on receive
+ 1	200x100 dpi resolution instead of 200x200 dpi
+ 0	data modem in use, FAX image modem not available
+
+Bitfields for SatisFAXtion board state:
+Bit(s)	Description	(Table 03063)
+ 7	reserved
+ 6	handset jack active, data and FAX modems not available
+ 5-3	current rate
+	000  300 bps (V.21 HDLC)
+	100 2400 bps (V.27 ter)
+	101 4800 bps (V.27 ter)
+	110 7200 bps (V.29)
+	111 9600 bps (V.29)
+ 2-0	T.30 CCITT protocol state
+	000 idle
+	001 dialing
+	010 answering
+	011 transmitting
+	100 receiving
+	101 pre-message
+	110 post-message
+	111 disconnect
+

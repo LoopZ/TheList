@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0C
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_GET_BUFFER" - READ A BUFFER OF DATA FROM DEVICE
+	AH = 0Ch
+	BP = driver ID (see #03741) for V_HPHIL (0114h), others
+	CX = number of bytes or blocks to read
+	DS:SI -> buffer for received data
+Return: AH = status (see #03744 at AH=00h"HP Vectra")
+	BP,DS destroyed
+SeeAlso: AH=08h"F_GET_BYTE",AH=0Ah"F_PUT_BUFFER",AH=0Ch"F_GET_BLOCK"
+SeeAlso: AH=10h"F_GET_WORD"
+

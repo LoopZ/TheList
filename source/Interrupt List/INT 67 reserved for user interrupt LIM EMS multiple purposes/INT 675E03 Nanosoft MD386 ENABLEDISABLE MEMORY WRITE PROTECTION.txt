@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675E03
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Nanosoft MD386 - ENABLE/DISABLE MEMORY WRITE PROTECTION
+	AX = 5E03h
+	BL = register map set number
+	BH = new state (00h read-only, else read-write)
+	CX = linear page number (linear address SHR 12)
+Note:	setting write protection in map set 0 will cause the setting to become
+	  the default for newly-allocated map sets
+

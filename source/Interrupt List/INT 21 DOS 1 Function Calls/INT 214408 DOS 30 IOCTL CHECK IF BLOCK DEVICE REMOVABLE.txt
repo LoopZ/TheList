@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214408
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.0+ - IOCTL - CHECK IF BLOCK DEVICE REMOVABLE
+	AX = 4408h
+	BL = drive number (00h = default, 01h = A:, etc)
+Return: CF clear if successful
+	    AX = media type (0000h removable, 0001h fixed)
+	CF set on error
+	    AX = error code (01h,0Fh) (see #01680 at AH=59h/BX=0000h)
+Notes:	in addition to the normal operation, if Stacker is installed, this
+	  call also sets the volume number at offset 58h in the Stacker
+	  device driver (except under DR DOS 3.41-5.0, which do not pass
+	  through this call to the driver; use AX=440Eh instead)
+	  (see AX=4404h"Stacker",AX=440Eh,INT 25/AX=CDCDh)
+	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AX=4400h,AX=4404h"Stacker",AX=4409h,INT 2F/AX=122Bh
+

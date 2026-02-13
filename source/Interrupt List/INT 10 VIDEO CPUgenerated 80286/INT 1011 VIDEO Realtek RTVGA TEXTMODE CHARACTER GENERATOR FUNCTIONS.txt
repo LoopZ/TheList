@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1011
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Realtek RTVGA - TEXT-MODE CHARACTER GENERATOR FUNCTIONS
+	AH = 11h
+	AL = 07h load user-specified patterns and recalculate mode parms
+		 parameters are the same as for AX=1110h
+	AL = 08h load monochrome patterns (8x14) and recalculate mode parms
+		 parameters are the same as for AX=1111h
+	AL = 09h load ROM 8 by 8 double-dot patterns and recalculate mode parms
+		 parameters are the same as for AX=1112h
+	AL = 0Bh load ROM 8x16 character set (VGA) and recalculate mode parms
+		 parameters are the same as for AX=1114h
+Note:	these functions should only be called under the same conditions as
+	  AL=1xh (see AX=1110h"EGA")
+SeeAlso: AX=1100h,AX=1110h"CHARGEN",AX=1110h"Realtek",MEM 0040h:0084h
+Index:	text mode;font|text mode;screen rows
+

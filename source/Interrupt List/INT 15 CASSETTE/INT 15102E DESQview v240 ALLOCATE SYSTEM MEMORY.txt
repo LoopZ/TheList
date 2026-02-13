@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15102E
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.40+ - ALLOCATE SYSTEM MEMORY
+	AX = 102Eh
+	BX = number of bytes
+Return: AX = status
+	    0000h successful
+		ES:DI -> allocated system memory (see #00433)
+	    0001h failed
+		ES:DI = 0000h:0000h
+Note:	under DV 2.42, this call is identical to AX=1001h
+SeeAlso: AX=1001h,AX=1002h,AX=DE0Ch
+
+Format of DESQview system memory block header:
+Offset	Size	Description	(Table 00433)
+ 00h	WORD	segment of next header or 0000h
+ 02h	WORD	segment of previous header or 0000h
+ 04h	WORD	size of block in paragraphs, including header
+ 06h	BYTE	availability flag (00h in use, 01h free)
+Note:	this header is located one paragraph before the memory block proper
+SeeAlso: #00423
+

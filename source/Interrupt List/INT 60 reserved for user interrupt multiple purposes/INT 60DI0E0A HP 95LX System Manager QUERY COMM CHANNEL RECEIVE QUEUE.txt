@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0E0A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - QUERY COMM CHANNEL RECEIVE QUEUE
+	DI = 0E0Ah
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		WORD	comm channel handle
+		DWORD	pointer to WORD to get receive buffer size
+		DWORD	pointer to WORD to get free bytes in receive buffer
+Return: ???
+	STACK unchanged
+SeeAlso: INT 60/DI=0E09h,INT 60/DI=0E0Bh
+

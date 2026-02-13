@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DA00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - AMI PCI BIOS - ???
+	AX = DA00h
+	CL = subfunction
+	    00h ???
+	    01h ???
+	    02h get ???
+	???
+Return: CF clear if successful
+	    ???
+	CF set on error
+	    AH = error code (86h unsupported subfunction)
+Note:	in the v1.00.05.AX1 BIOS, subfunctions 00h and 01h always return
+	  failure
+SeeAlso: AX=DA01h
+

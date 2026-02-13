@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 601A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver v1.10+ - EXTENDED FUNC - SEND RAW BYTES
+	AH = 1Ah
+	DS:SI -> buffer
+	CX = length of buffer
+Return: CF set on error
+	    DH = error code (see #03305 at AX=01FFh)
+	CF clear if successful
+SeeAlso: AH=1Ch
+

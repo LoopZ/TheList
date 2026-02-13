@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFA3BXFFA3
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v9 DSKLIGHT - INSTALLATION CHECK
+	AX = FFA3h
+	BX = FFA3h
+	CX = FFA3h
+Return: BX = CX = 5555h if installed
+	    AX = resident code segment
+Program: DSKLIGHT is a TSR included with PC Tools v9+ which displays a disk-
+	  access indicator on the screen; in v7 and v8, this function was
+	  provided by DATAMON
+Note:	DSKLIGHT chains to the previous handler if BX or CX is not FFA3h
+

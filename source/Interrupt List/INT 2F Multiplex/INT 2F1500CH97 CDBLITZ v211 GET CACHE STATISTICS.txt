@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1500CH97
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - CDBLITZ v2.11 - GET CACHE STATISTICS
+	AX = 1500h
+	CH = 97h (function number)
+	BX = 1234h (magic value for CDBLITZ)
+Return: CF clear
+	AL = cache mode (01h 'min', 02h 'max') (see also AX=1500h/CH=94h)
+	AH = cache state (00h disabled, 01h enabled)
+	BX = cache size in KB
+	DX:CX = total number of reads
+	DI:SI = number of cache hits
+SeeAlso: AX=1500h/CH=90h,AX=1500h/CH=91h
+

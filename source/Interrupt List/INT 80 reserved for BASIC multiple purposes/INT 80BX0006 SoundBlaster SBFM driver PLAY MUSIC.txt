@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 80----BX0006
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 80 - SoundBlaster SBFM driver - PLAY MUSIC
+	BX = 0006h
+	DX:AX -> music block
+Return: AX = status
+	    0000h successful
+	    0001h music already active
+SeeAlso: BX=0000h"SBFM",BX=0007h"SBFM",BX=000Ah"SBFM",INT 1A/AX=FF04h
+

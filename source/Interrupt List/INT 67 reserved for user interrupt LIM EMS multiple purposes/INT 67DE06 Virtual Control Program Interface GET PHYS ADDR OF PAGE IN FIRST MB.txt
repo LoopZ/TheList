@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 67DE06
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Virtual Control Program Interface - GET PHYS ADDR OF PAGE IN FIRST MB
+	AX = DE06h
+	CX = page number (linear address shifted right 12 bits)
+Return: AH = status
+	    00h successful
+		EDX = physical address of page
+	    nonzero invalid page number (AH = 8Bh recommended)
+SeeAlso: AX=5BE0h
+

@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1001
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DR DOS 6.0+ FDOS EXTENSIONS - INSTALL FDOS HOOK (SHARE / DELWATCH)
+	AX = 1001h
+	DX:BX -> new FDOS stub entry function
+Return: nothing
+Notes:	the default handler for the pointer set by this call under DELWATCH
+	  simply returns with CF set
+	In Digital Research terminology FDOS is the part of the BDOS kernel
+	  (IBMDOS.COM) responsible for the file system and related tasks, and
+	  its functionality is also used by the BDOS kernel itself. However,
+	  for reasons of performance and code size, it uses direct calling.
+	This interrupt allows external components like SHARE file locking or
+	  DELWATCH delete tracking software to hook into the internal backdoor
+	  INT 2F/AH=10h/AL<=09h chain in the kernel, so that they can actually
+	  allows the kernel to ensure that several conditions are met when
+	  passing control to these registered components including proper
+	  maintaining A20, re-enterancy, or critical section mutexing
+	  (e.g. getting the disk sub-system queue "MXdisk").
+	The default handler in the BDOS just sets the carry flag and returns.
+	Currently known clients to this shared interface are DR DOS 6.0
+	  SHARE 1.xx, DR DOS 6.0+ DELWATCH 1.00+, which both chain onto
+	  the same call far address, and the version of AddStor's SuperStor
+	  which is bundled with DR DOS 6.0
+	However, the DR PalmDOS, and Novell DOS 7 - DR-DOS 7.03 SHARE 2.00-2.05
+	  do not use this function to hook into the system. Instead they fix up
+	  the share stubs directly. DR PalmDOS SHARE 2.00 uses the stubs at
+	  Table !!! INT 21/AH=52h, while Novell DOS 7 - DR-DOS 7.03
+	  SHARE 2.01-2.05 use the private set of share stubs at Table !!! at
+	  INT 21/AX=4458h).  Future releases may possibly again fix up the
+	  share stubs at INT 21/AH=52h.
+SeeAlso: AX=1000h,AX=F800h
+

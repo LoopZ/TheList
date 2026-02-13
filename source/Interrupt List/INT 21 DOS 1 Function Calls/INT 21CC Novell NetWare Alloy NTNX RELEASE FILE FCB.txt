@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21CC
+  Category: N 	network
+      Flag: O 	obsolete (no longer present in current versions)
+--------------------------------------------------------------------------------
+
+INT 21 O - Novell NetWare, Alloy NTNX - RELEASE FILE (FCB)
+	AH = CCh
+	DS:DX -> FCB (see #01345 at AH=0Fh)
+Return: none
+Desc:	unlocks file, but does not remove it from the log table or close it
+Note:	this function was added in NetWare 4.0, but was removed some time prior
+	  to Advanced NetWare 2.15, and is no longer listed in current Novell
+	  documentation
+SeeAlso: AH=CAh,AH=CDh
+

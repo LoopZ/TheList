@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F1E--BP0012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_RAM_GET" - GET EX-BIOS FREE RAM AREA
+	AH = 1Eh
+	BP = 0012h (driver ID for V_SYSTEM)
+Return: AH = status (00h) (see #03744 at INT 6F/AH=00h"HP Vectra")
+	BX = last-used DS
+	DX = maximum DS
+	BP,DS destroyed
+SeeAlso: AH=00h"HP Vectra",AH=04h/BP=0012h,AH=20h/BP=0012h,AH=22h/BP=0012h
+

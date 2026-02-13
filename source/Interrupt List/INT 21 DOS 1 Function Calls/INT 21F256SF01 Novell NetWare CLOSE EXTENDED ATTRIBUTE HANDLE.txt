@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F256SF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CLOSE EXTENDED ATTRIBUTE HANDLE
+	AX = F256h subfn 01h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02360)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F256h/SF=02h,AX=F256h/SF=04h,AX=F256h/SF=05h
+
+Format of NetWare "Close Extended Attribute Handle" request packet:
+Offset	Size	Description	(Table 02360)
+ 00h	BYTE	01h (subfunction "Close Extended Attribute Handle")
+ 01h	WORD	reserved for future use
+ 03h	DWORD	extended attribute handle
+

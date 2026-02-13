@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0012
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - SPX Driver - LISTEN FOR SPX CONNECTION
+	BX = 0012h
+	AH = watchdog flag (00h disabled, 01h enabled)
+	AL = retry count (00h = default)
+	ES:SI -> Event Control Block (see #03810 at BX=0003h)
+Return: nothing
+Notes:	there should always be at least two SPX ECB's listening to a socket, so
+	  that NetWare can perform its internal packet exchanges
+	this function is supported by Advanced NetWare 2.1+
+SeeAlso: BX=0011h,BX=0013h,BX=0014h
+

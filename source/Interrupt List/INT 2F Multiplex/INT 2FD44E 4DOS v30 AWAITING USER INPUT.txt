@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD44E
+  Category: l 	shells/command interpreters
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - 4DOS v3.0+ - AWAITING USER INPUT
+	AX = D44Eh
+---4DOS v3.01+---
+	BX = condition
+	    0000h 4DOS is ready to display prompt
+	    0001h 4DOS has displayed the prompt, about to accept user input
+Return: the handler must preserve SI, DI, BP, SP, DS, ES, and SS
+Note:	v3.00 only makes the call corresponding to BX=0001h, does not set BX
+SeeAlso: AX=D44Dh
+

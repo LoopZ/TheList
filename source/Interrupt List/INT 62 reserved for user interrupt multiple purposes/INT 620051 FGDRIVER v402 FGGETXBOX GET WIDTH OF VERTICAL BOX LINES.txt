@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620051
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETXBOX" - GET WIDTH OF VERTICAL BOX LINES
+	AX = 0051h
+Return: AX = width (in pixels) of left and right edges of rectangles
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0006h,AX=0007h,AX=0008h,AX=006Bh
+

@@ -1,0 +1,89 @@
+--------------------------------------------------------------------------------
+ Unique ID: 61
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - XFS v1.76 - XFSKRNL.EXE - API
+	AX = function
+	    8000h installation check???
+		Return: AX = 0000h
+	    8001h ???
+		ES:DI -> DWORD ???
+		Return: AX = status???
+	    8002h ???
+		BX = ???
+		CX = ???
+		ES:DI -> ???
+		Return: AX = status???
+	    8003h ???
+		BX = ???
+		CX = ???
+		ES:DI -> ???
+		Return: AX = status???
+	    8004h ???
+		BX = ???
+		Return: AX = status???
+	    8005h wait until ???
+		Return: DX:AX = ???
+	    8006h get ???
+		Return: DX:AX -> ??? record
+	    8007h set IP address??? (or htonl/ntohl)
+		DX:BX = IP address???
+		Return: DX:AX = byte-swapped IP address
+	    8008h set IP address??? (or htonl/ntohl)
+		DX:AX = IP address???
+		Return: DX:AX = byte-swapped IP address
+	    8009h ???
+		ES:DI -> ???
+		Return: DX:AX = ???
+	    800Ah ???
+	    800Bh ???
+		Return: DX:AX = ???
+	    800Ch ???
+	    800Dh ???
+	    800Eh ???
+	    800Fh ???
+	    8010h get ??? record
+		Return: DX:AX -> ??? record
+	    8011h ???
+	    8012h ???
+		BX = ???
+		Return: DX:AX = ???
+	    8013h get ??? record
+		Return: DX:AX -> ??? record
+	    8014h ???
+		ES:DI -> ???
+		Return: nothing
+	    8015h get ??? record
+		Return: DX:AX -> 8-byte ??? record
+	    8016h get ??? record
+		Return: DX:AX -> 6-byte ??? record
+	    8017h ???
+		ES:DI -> ???
+		Return: DX:AX = ???
+	    8018h get ??? record
+		Return: DX:AX -> ??? record
+	    8019h get ??? record
+		Return: DX:AX -> 14-byte ??? record
+	    801Ah get ??? record
+		Return: DX:AX -> ??? record (max 98 bytes)
+	    801Bh get ??? record
+		Return: DX:AX -> ??? record
+	    801Ch ???
+		Return: nothing
+	    801Dh get ???
+		Return: AL = ???
+	    801Eh ???
+		Return: AX = ???
+	    801Fh uninstall
+		Return: AX = status
+			    0000h successful
+			    other interrupt which could not be released
+	AX = other
+		Return: AX:BX = ??? (0000h:0000h by default)
+Program: XFS is a shareware Network File System client by Robert Juhasz
+Range:	INT 60 to INT 65, selected by scanning for two consecutive free
+	  vectors and hooking the first
+SeeAlso: INT 62"XFS"
+

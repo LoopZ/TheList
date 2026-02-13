@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675C
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - PREPARE EXPANDED MEMORY HARDWARE FOR WARM BOOT
+	AH = 5Ch
+Return: AH = status (see #03663)
+Note:	when MS-DOS v6.xx EMM386 is loaded and the keyboard driver supports
+	  INT 15/AH=4Fh (keyboard intercept) calls, the system may hang
+	  instead of booting if this function is called just prior to a jump
+	  to F000h:FFF0h
+
+(Table 03663)
+Values for EMS function status:
+ 00h	successful
+ 80h	internal error
+ 81h	hardware malfunction
+ 84h	undefined function requested
+

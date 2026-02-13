@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1405--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - CLOSE COMMUNICATION
+	AH = 05h
+	DX = FFFFh
+	AL = connection ID
+Return: AH = return code
+	    00h successful
+	    01h no such connection
+	    02h invalid connection ID
+		AL = correct connection ID
+Desc:	terminate existing connection to allow another one to be established
+Note:	if DX is 0-3 on entry, Connection Manager emulates the standard BIOS
+	  function, but redirects the port over the network; if DX is any other
+	  value, the call is chained
+SeeAlso: AH=04h/DX=FFFFh,AH=0Dh/DX=FFFFh
+

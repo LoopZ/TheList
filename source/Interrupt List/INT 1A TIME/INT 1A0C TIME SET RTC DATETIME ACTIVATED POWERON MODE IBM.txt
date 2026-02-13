@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1A0C
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TIME - SET RTC DATE/TIME ACTIVATED POWER-ON MODE (IBM)
+	AH = 0Ch
+	CH = hours (BCD)
+	CL = minutes (BCD)
+	DH = seconds (BCD)
+	DL = day of month (BCD)
+Return: CF clear if successful
+	CF set on error (alarm already set or clock nonfunctional)
+Desc:	set an automatic power-on for a given time in the future
+Note:	IBM classifies this function as optional
+SeeAlso: AH=06h,AH=0Dh,AH=0Eh,INT 4A
+

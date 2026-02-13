@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F09
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectra EX-BIOS - "F16_KBD_RESET" - RESET KEYBOARD TO DEFAULTS
+	AX = 6F09h
+Return: AH = 00h (successful)
+Desc:	reset all keyboard mappings to their default translators, and reset
+	  typematic values to their defaults
+Note:	supported by the original HP Vectra AT and ES/QS/RS series HP Vectras
+SeeAlso: AX=6F04h,AX=6F07h,AX=6F08h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC07DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - GET FONT DIRECTORY
+	AX = AC07h
+	DI = 1092h
+Return: DX:BX -> 80-byte internal buffer containing ASCIZ font directory name
+Notes:	if DI <> 1092h on entry, QRIP chains the call
+	the application may change the font directory by overwriting the
+	  returned buffer, ensuring that it does not exceed 80 bytes incl. NUL
+	if changed, the new path will not become effective until the graphics
+	  screen is reinitialized
+SeeAlso: AX=AC08h,AX=ACF0h
+

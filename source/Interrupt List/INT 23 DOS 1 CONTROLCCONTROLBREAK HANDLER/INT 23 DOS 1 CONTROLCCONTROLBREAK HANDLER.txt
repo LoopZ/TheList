@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 23
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 23 - DOS 1+ - CONTROL-C/CONTROL-BREAK HANDLER
+---DOS 1.x---
+Return: AH = 00h abort program
+	if all registers preserved, restart DOS call
+---DOS 2+---
+	CF clear
+Return: all registers preserved
+	return via RETF with CF set or (MS-DOS 1,DR DOS) RETF 2 with CF set
+	    DOS will abort program with errorlevel 0
+	else (RETF/RETF 2 with CF clear or IRET with CF ignored)
+	    interrupted DOS call is restarted
+Notes:	this interrupt is invoked whenever DOS detects a ^C or ^Break; it
+	  should never be called directly
+	MS-DOS 1.25 also invokes INT 23 on a divide overflow (INT 00)
+	MS-DOS remembers the stack pointer before calling INT 23, and if it is
+	  not the same on return, pops and discards the top word; this is what
+	  permits a return with RETF as well as IRET or RETF 2
+	MS-DOS 2.1+ ignores the returned CF if SP is the same on return as it
+	  was when DOS called INT 23, so RETF 2 will not terminate the program
+	Novell DOS 7 always pops a word if CF is set on return, so one should
+	  not return with RETF 2 and CF set or IRET with the stored flags' CF
+	  set
+	any DOS call may safely be made within the INT 23 handler, although
+	  the handler must check for a recursive invocation if it does
+	  call DOS
+SeeAlso: INT 1B,INT 21/AH=92h"PTS-DOS"
+

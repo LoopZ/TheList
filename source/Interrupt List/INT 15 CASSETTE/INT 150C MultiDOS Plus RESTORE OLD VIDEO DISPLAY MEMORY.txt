@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150C
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - MultiDOS Plus - RESTORE OLD VIDEO DISPLAY MEMORY
+	AH = 0Ch
+Return: nothing
+Note:	restores task's screen pointer saved by AH=0Bh; must not be called
+	  unless AH=0Bh has been called first
+SeeAlso: AH=0Bh"MultiDOS"
+

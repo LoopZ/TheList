@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL5C
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_PATH" - SCAN PATH FOR EXECUTABLE FILE
+	CL = 5Ch
+	DS:DX -> Exec Parameter Block (EPB) (see #04035)
+Return:	AX = status
+	    FFFEh file not found
+	    FFFDh path not found
+	    FFFCh too many handles open
+	    FFFBh access denied
+	    FFF6h invalid environment
+	    FFDCh sharing conflict
+	    FFAAh invalid password
+	EPB updated (if successful)
+	may destroy SI,DI,DS
+SeeAlso: INT E0/CL=5Dh,INT E0/CL=5Eh,INT 21/AH=4Bh
+
+Format of REAL/32 Exec Parameter Block (EPB):
+Offset	Size	Description	(Table 04035)
+ 00h	DWORD	-> ASCIZ command to be executed
+ 04h	BYTE	type of exec
+		00h .CMD
+		01h .COM
+		02h .EXE
+		03h .BAT
+		04h RSP-type queue
+ 05h	BYTE	flags
+		bit 0: overlay existing program
+		bit 1: don't assign console to child
+		bit 2: allocate memory for .CMD within parent's memory space
+		bit 3: make full banked window available while loading child
+ 06h	DWORD	32-bit offset to ASCIZ command line
+ 0Ah	WORD	selector for ASCIZ command line
+

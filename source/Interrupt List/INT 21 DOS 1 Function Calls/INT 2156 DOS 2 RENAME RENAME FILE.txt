@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2156
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - "RENAME" - RENAME FILE
+	AH = 56h
+	DS:DX -> ASCIZ filename of existing file (no wildcards, but see below)
+	ES:DI -> ASCIZ new filename (no wildcards)
+	CL = attribute mask (server call only, see below)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (02h,03h,05h,11h) (see #01680)
+Notes:	allows move between directories on same logical volume
+	this function does not set the archive attribute
+	  (see #01420 at AX=4301h), which results in incremental backups not
+	  backing up the file under its new name
+	open files should not be renamed
+	(DOS 2.x only) this function renames file by creating a new directory
+	  entry with the new name, then marking the old entry deleted
+	(DOS 3.0+) allows renaming of directories
+	(DOS 3.1+) wildcards are allowed if invoked via AX=5D00h, in which case
+	  error 12h (no more files) is returned on success, and both source and
+	  destination specs must be canonical (as returned by AH=60h).
+	  Wildcards in the destination are replaced by the corresponding char
+	  of each source file being renamed.  Under DOS 3.x, the call will fail
+	  if the destination wildcard is *.* or equivalent; under DR DOS 5.0,
+	  the call will fail with error code 03h if any wildcards are used.
+	  When invoked via AX=5D00h, only those files matching the attribute
+	  mask in CL are renamed.
+	under the FlashTek X-32 DOS extender, the old-name pointer is in DS:EDX
+	  and the new-name pointer is in ES:EDI (DS must equal ES)
+BUG:	(DR DOS 3.41) when invoked via AX=5D00h, this function will generate
+	  a new directory entry with the new name (including any wildcards)
+	  which can only be removed with a sector editor
+SeeAlso: AH=17h,AX=4301h,AX=43FFh/BP=5053h,AX=5D00h,AH=60h,AX=7156h
+SeeAlso: AX=F257h/SF=04h
+

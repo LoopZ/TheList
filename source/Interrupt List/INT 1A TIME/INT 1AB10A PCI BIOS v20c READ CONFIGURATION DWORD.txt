@@ -1,0 +1,730 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB10A
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - READ CONFIGURATION DWORD
+	AX = B10Ah
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (0000h-00FFh, must be multiple of 4) (see #00878)
+Return: CF clear if successful
+	    ECX = dword read
+	CF set on error
+	AH = status (00h,87h) (see #00729)
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	the meanings of BL and BH on entry were exchanged between the initial
+	  drafts of the specification and final implementation
+BUG:	the Award BIOS 4.51PG (dated 05/24/96) incorrectly returns FFFFFFFFh
+	  for register 00h if the PCI function number is nonzero
+SeeAlso: AX=B108h,AX=B109h,AX=B10Ah/SF=8086h,AX=B18Ah,INT 2F/AX=1684h/BX=304Ch
+
+Format of PCI Configuration Data:
+Offset	Size	Description	(Table 00878)
+ 00h	WORD	vendor ID (read-only) (see #00732 at AX=B102h)
+		FFFFh returned if requested device non-existent
+ 02h	WORD	device ID (read-only)
+ 04h	WORD	command register (see #00879)
+ 06h	WORD	status register (see #00880)
+ 08h	BYTE	revision ID
+ 09h  3 BYTEs	class code
+		bits 7-0: programming interface
+		bits 15-8: sub-class
+		bits 23-16: class code (see also #F0085)
+ 0Ch	BYTE	cache line size
+ 0Dh	BYTE	latency timer
+ 0Eh	BYTE	header type
+		bits 6-0: header format
+			00h other
+			01h PCI-to-PCI bridge
+			02h PCI-to-CardBus bridge
+		bit 7: multi-function device
+ 0Fh	BYTE	Built-In Self-Test result (see #00881)
+---header type 00h---
+ 10h	DWORD	base address 0 (see #00882)
+		(OpenHCI) base address of host controller registers (see #00902)
+ 14h	DWORD	base address 1
+ 18h	DWORD	base address 2
+ 1Ch	DWORD	base address 3
+ 20h	DWORD	base address 4
+ 24h	DWORD	base address 5
+ 28h	DWORD	CardBus CIS pointer (read-only) (see #00889)
+ 2Ch	WORD	subsystem vendor ID or 0000h
+ 2Eh	WORD	subsystem ID or 0000h
+ 30h	DWORD	expansion ROM base address (see #00883)
+ 34h	BYTE	offset of capabilities list within configuration space (R/O)
+		(only valid if status register bit 4 set) (see #00884)
+ 35h  3 BYTEs	reserved
+ 38h	DWORD	reserved
+ 3Ch	BYTE	interrupt line
+		00h = none, 01h = IRQ1 to 0Fh = IRQ15
+ 3Dh	BYTE	interrupt pin (read-only)
+		(00h = none, else indicates INTA# to INTD#)
+ 3Eh	BYTE	minimum time bus master needs PCI bus ownership, in 250ns units
+		(read-only)
+ 3Fh	BYTE	maximum latency, in 250ns units (bus masters only) (read-only)
+ 40h 48 DWORDs	varies by device (see #00919,#00920,#01055,#01083)
+---header type 01h---
+ 10h	DWORD	base address 0 (see #00882)
+ 14h	DWORD	base address 1
+ 18h	BYTE	primary bus number (for bus closer to host processor)
+ 19h	BYTE	secondary bus number (for bus further from host processor)
+ 1Ah	BYTE	subordinate bus number
+ 1Bh	BYTE	secondary latency timer
+ 1Ch	BYTE	I/O base (see #00899)
+ 1Dh	BYTE	I/O limit (see #00899)
+ 1Eh	WORD	secondary status
+ 20h	WORD	memory base (see #00900)
+ 22h	WORD	memory limit
+ 24h	WORD	prefetchable memory base
+ 26h	WORD	prefetchable memory limit
+ 28h	DWORD	prefetchable base, upper 32 bits
+ 2Ch	DWORD	prefetchable limit, upper 32 bits
+ 30h	WORD	I/O base, upper 16 bits
+ 32h	WORD	I/O limit, upper 16 bits
+ 34h	DWORD	reserved
+ 38h	DWORD	expansion ROM base address
+ 3Ch	BYTE	interrupt line
+ 3Dh	BYTE	interrupt pin (read-only)
+ 3Eh	WORD	bridge control (see #00901)
+ 40h 48 DWORDs	varies by device (see #00919,#00920,#01055,#01083)
+---header type 02h---
+ 10h	DWORD	CardBus Socket/ExCa base address (see #00890)
+		bits 31-12: start address of socket interface register block
+			  in 4K blocks
+		bits 11-0: reserved (0)
+ 14h	BYTE	offset of capabilities list within configuration space (R/O)
+		(only valid if status register bit 4 set) (see #00884)
+ 15h	BYTE	reserved
+ 16h	WORD	secondary status
+ 18h	BYTE	PCI bus number
+ 19h	BYTE	CardBus bus number
+ 1Ah	BYTE	subordinate bus number
+ 1Bh	BYTE	CardBus latency timer
+ 1Ch	DWORD	memory base address 0
+ 20h	DWORD	memory limit 0
+ 24h	DWORD	memory base address 1
+ 28h	DWORD	memory limit 1
+ 2Ch	WORD	I/O base address 0
+ 2Eh	WORD	I/O base address 0 high word (optional)
+ 30h	WORD	I/O limit 0
+ 32h	WORD	I/O limit 0 high word (optional)
+ 34h	WORD	I/O base address 1
+ 36h	WORD	I/O base address 1 high word (optional)
+ 38h	WORD	I/O limit 1
+ 3Ah	WORD	I/O limit 1 high word (optional)
+ 3Ch	BYTE	interrupt line
+ 3Dh	BYTE	interrupt pin (read-only) (no interrupt used if 00h)
+ 3Eh	WORD	bridge control
+ 40h	WORD	subsystem vendor ID
+ 42h	WORD	subsystem device ID
+ 44h	DWORD	16-bit PC Card legacy mode base address (for accessing ExCa
+		  registers)
+ 48h 14 DWORDs	reserved
+ 80h 32 DWORDs	varies by device (see #00919,#00920,#01055,#01083)
+
+Bitfields for PCI Configuration Command Register:
+Bit(s)	Description	(Table 00879)
+ 0	I/O access enabled
+ 1	memory access enabled
+ 2	bus master enable
+ 3	special cycle recognition enabled
+ 4	memory write and invalidate enabled
+ 5	VGA palette snoop enabled
+ 6	parity error response enabled
+ 7	wait cycles enabled
+ 8	system error (SERR# line) enabled
+ 9	fast back-to-back transactions enabled
+ 15-10	reserved
+SeeAlso: #00878,#00880
+
+Format of PCI Configuration Status Register:
+Bit(s)	Description	(Table 00880)
+ 3-0	reserved (0)
+ 4	new capabilities list is present (first entry pointed at by byte at
+	  34h or 14h)
+ 5	capable of running at 66 MHz
+ 6	UDF supported
+ 7	capable of fast back-to-back transactions
+ 8	data parity error reported
+ 10-9	device select timing
+	00 fast
+	01 medium
+	10 slow
+	11 reserved
+ 11	signaled target abort
+ 12	received target abort
+ 13	received master abort
+ 14	signaled system error (device is asserting SERR# line)
+ 15	detected parity error (set even if parity error reporting is disabled)
+Note:	bits 12, 13 and 15 are cleared by writing a 1 into the corresponding
+	  bit
+SeeAlso: #00878,#00879
+
+Bitfields for PCI Configuration Built-In Self-Test register:
+Bit(s)	Description	(Table 00881)
+ 3-0	completion code (0000 = successful)
+ 5-4	reserved
+ 6	start BIST (set to one to start, cleared automatically on completion)
+ 7	BIST-capable
+Notes:	this register is hardwired to 00h if no BIST capability
+	software should timeout the BIST after two seconds
+SeeAlso: #00878
+
+Bitfields for PCI Configuration Base Address:
+Bit(s)	Description	(Table 00882)
+ 0	address type (0 = memory space, 1 = I/O space)
+---memory address---
+ 2-1	address type
+	00 anywhere in first 4GB
+	01 below 1MB
+	10 anywhere in 64-bit address space
+	11 reserved
+ 3	prefetchable
+ 31-4	bits 31-4 of base memory address if addressable in first 1MB or 4GB
+ 63-4	bits 63-4 of base memory address if addressable in 64-bit memory
+	(bits 63-32 are stored in the following base address DWORD)
+---I/O address---
+ 1	reserved
+ 31-2	bits 31-2 of base I/O port
+SeeAlso: #00878,#00902
+
+Bitfields for PCI Configuration Expansion ROM Address:
+Bit(s)	Description	(Table 00883)
+ 0	address decode enable (ROM address is valid)
+ 10-1	reserved
+ 31-11	bits 31-11 of ROM's starting physical address
+SeeAlso: #00878
+
+Format of PCI Capabilities List:
+Offset	Size	Description	(Table 00884)
+ 00h	BYTE	capability identifier
+		01h PCI Power Managment
+ 01h	BYTE	offset of next item (within configuration space) or 00h
+      N	BYTEs	varies by capability type
+---PCI Power Management---
+ 02h	WORD	power managment capabilities (see #00885) (read-only)
+ 04h	WORD	power managment capabilities status register (see #00886)
+ 06h	BYTE	PMCSR bridge support extensions (see #00887)
+ 07h	BYTE	(optional) read-only data register (see #00888)
+Note:	this information is from the v0.93 draft of the specification and is
+	  subject to change
+SeeAlso: #00878,#00880
+
+Bitfields for PCI Power Management Capabilities:
+Bit(s)	Description	(Table 00885)
+ 15	reserved (0)
+ 14-12	PME# support
+	bit 12: PME# can be asserted from power state D0
+	bit 13: PME# can be asserted from power state D1
+	bit 14: PME# can be asserted from power state D2
+ 11	reserved (0)
+ 10	D2 power state supported
+ 9	D1 power state supported
+ 8	full-speed clock is required in state D0 for proper operation
+	(if clear, device may be run at reduced clock except when actually
+	  being accessed)
+ 7-6	dynamic clock control support
+	00 not bridge, no dynamic clock control, or secondary bus' clock is
+	      is tied to primary bus' clock
+	01 bridge is capable of dynamic clock control
+	10 reserved
+	11 secondary bus has independent clock, but dynamic clock not supported
+ 5	device-specific initialization is required
+ 4	auxiliary power required for PME# generation
+ 3	PCI clock required for PME# generation
+ 2-0	specification version
+	001 = v1.0; four bytes of power management registers
+Note:	this information is from the v0.93 draft of the specification and is
+	  subject to change
+SeeAlso: #00884,#00886,#00887
+
+Bitfields for PCI Power Management Capabilities Status Register:
+Bit(s)	Description	(Table 00886)
+ 15	PME status: if set, PME# is (or would be) asserted
+	writing a 1 to this bit clears it
+ 14-13	(read-only) scale factor to apply to contents of Data register
+	00 unknown (or unimplemented data)
+	01 x0.1
+	10 x0.01
+	11 x0.001
+ 12-9	(read-write) data select (see #00888)
+ 8	(read-write) enable PME# assertion
+ 7-5	reserved (0)
+ 4	(read-write) enable dynamic data reporting
+	when set, PME# is asserted whenever the value in the Data register
+	  changes significantly
+ 3-2	reserved (0)
+ 1-0	(read-write) current power state
+	00 = D0
+	...
+	11 = D3
+Note:	this information is from the v0.93 draft of the specification and is
+	  subject to change
+SeeAlso: #00884,#00885,#00887
+
+Bitfields for PCI Power Management PMCSR bridge support extension:
+Bit(s)	Description	(Table 00887)
+ 7	(read-only) Bus Power Control Enable
+ 6	(read-only) Bus Power State B3 supported
+ 5	(read-only) Bus Power State B2 supported
+ 4	dynamic clock control enable
+ 3-0	reserved (0)
+Note:	this information is from the v0.93 draft of the specification and is
+	  subject to change
+SeeAlso: #00884,#00885,#00886
+
+(Table 00888)
+Values for PCI Power Management Data Select:
+ 00h	D0-state power consumed in watts (+20%/-10%)
+ 01h	D1-state power consumed in watts (+20%/-10%)
+ 02h	D2-state power consumed in watts (+20%/-10%)
+ 03h	D3-state power consumed in watts (+20%/-10%)
+ 04h	D0-state power dissipated into chassis in watts
+ 05h	D1-state power dissipated into chassis in watts
+ 06h	D2-state power dissipated into chassis in watts
+ 07h	D3-state power dissipated into chassis in watts
+ 08h-0Fh reserved
+SeeAlso: #00886
+
+Bitfields for PCI Configuration CardBus CIS Pointer:
+Bit(s)	Description	(Table 00889)
+ 2-0	address space
+	000 in device's device-specific configuration space
+	001 in memory pointed to by base address register 0
+	...
+	110 in memory pointed to by base address register 5
+	111 in device's expansion ROM
+ 27-3	offset within address space defined by bits 2-0
+ 31-28	ROM image number (when address space is expansion ROM)
+SeeAlso: #00878
+
+Format of CardBus Socket/ExCA socket interface register space:
+Offset	Size	Description	(Table 00890)
+ 00h	DWORD	Socket Event Register (see #00892)
+ 04h	DWORD	Socket Mask Register (see #00893)
+ 08h	DWORD	Socket Present State Register (see #00894)
+ 0Ch	DWORD	Socket Force Event Register (see #00895)
+ 10h	DWORD	Socket Control Register (see #00896)
+ 14h  3 DWORDs	reserved
+ 20h	DWORD	Socket Power Management Register
+ 90h	BYTE	(TI PCI1130) Retry Status Register
+ 91h	BYTE	(TI PCI1130) Card Control Register (see #00897)
+ 92h	BYTE	(TI PCI1130) Device Control Register (see #00898)
+ 93h	BYTE	(TI PCI1130) Buffer Control Register
+800h 64+ BYTEs	ExCa Socket Interface Registers (see #00891)
+
+Format of ExCa memory-mapped registers:
+Offset	Size	Description	(Table 00891)
+ 00h	BYTE	identification and revision register
+ 01h	BYTE	interface status register
+ 02h	BYTE	power control register
+ 03h	BYTE	interrupt and general control
+ 04h	BYTE	card status change
+ 05h	BYTE	card status change interrupt configuration
+ 06h	BYTE	address window enable
+ 07h	BYTE	I/O window control register
+ 08h	WORD	I/O window 0 start address
+ 0Ah	WORD	I/O window 0 end address
+ 0Ch	WORD	I/O window 1 start address
+ 0Eh	WORD	I/O window 1 end address
+ 10h	WORD	memory window 0 start address
+ 12h	WORD	memory window 0 end address
+ 14h	WORD	memory window 0 offset address
+ 16h  2 BYTEs	user-defined
+ 18h	WORD	memory window 1 start address
+ 1Ah	WORD	memory window 1 end address
+ 1Ch	WORD	memory window 1 offset address
+ 1Eh	BYTE	user-defined
+ 1Fh	BYTE	reserved
+ 20h	WORD	memory window 2 start address
+ 22h	WORD	memory window 2 end address
+ 24h	WORD	memory window 2 offset address
+ 26h  2 BYTEs	user-defined
+ 28h	WORD	memory window 3 start address
+ 2Ah	WORD	memory window 3 end address
+ 2Ch	WORD	memory window 3 offset address
+ 2Eh  2 BYTEs	user-defined
+ 30h	WORD	memory window 4 start address
+ 32h	WORD	memory window 4 end address
+ 34h	WORD	memory window 4 offset address
+ 36h 10 BYTEs	user-defined
+---optional---
+ 40h	BYTE	memory window 0 start address high byte
+ 41h	BYTE	memory window 1 start address high byte
+ 42h	BYTE	memory window 2 start address high byte
+ 43h	BYTE	memory window 3 start address high byte
+ 44h	BYTE	memory window 4 start address high byte
+ 45h-7FFh	user-defined
+SeeAlso: #00890
+
+Bitfields for CardBus Socket Event Register:
+Bit(s)	Description	(Table 00892)
+ 0	CSTSCHG pin asserted (status change)
+ 1	CCD1# (card detect 1) changed state
+ 2	CCD2# (card detect 2) changed state
+ 3	interface power cycle completed
+31-4	reserved (0)
+Note:	the bits in this register are set by the bridge, and cleared by writing
+	  a one into the bits one wishes to clear
+SeeAlso: #00890,#00893,#00895
+
+Bitfields for CardBus Socket Event Mask Register:
+Bit(s)	Description	(Table 00893)
+ 0	write-protect (enable status-change interrupt on WriteProtect switch)
+ 1	ready mask (allow status-change interrupt on Ready line change)
+ 3-2	battery condition (allow status-change int on battery-condition change)
+ 4	general wakeup enabled
+ 5	binary audio mode enabled on CAUDIO pin
+ 6	Pulse Width Modulation enabled on CAUDIO pin
+	(CAUDIO state undefined if both bits 5 and 6 set)
+ 13-7	reserved (0)
+ 14	Wakeup mask (enable wakeup events via status-change pin)
+ 15	enable card interrupts via CINT# pin and wakeup events
+ 31-16	reserved
+SeeAlso: #00890,#00892,#00894
+
+Bitfields for CardBus Socket Present State Register:
+Bit(s)	Description	(Table 00894)
+ 0	CSTSCHG pin asserted (status change)
+ 1	CCD1# (card detect 1) changed state
+ 2	CCD2# (card detect 2) changed state
+ 3	interface power cycle completed
+ 4	16-bit PC card inserted
+ 5	CardBus card inserted
+ 6	card's interrupt pin asserted
+ 7	card inserted but type can not be determined
+ 8	data may have been lost due to abrupt card removal
+ 9	attempted to apply Vcc voltage not supported by the card
+ 10	card can accept Vcc = 5.0 volts
+ 11	card can accept Vcc = 3.3 volts
+ 12	card can accept Vcc = X.X volts
+ 13	card can accept Vcc = Y.Y volts
+ 27-14	reserved (0)
+ 28	socket can accept Vcc = 5.0 volts
+ 29	socket can accept Vcc = 3.3 volts
+ 30	socket can accept Vcc = X.X volts
+ 31	socket can accept Vcc = Y.Y volts
+Note:	bits 0-3 may be cleared by writing a 1 into the respective bits
+SeeAlso: #00890,#00892,#00893,#00896
+
+Bitfields for CardBus Socket Force Event Register:
+Bit(s)	Description	(Table 00895)
+ 0	write-protect
+ 1	ready
+ 2	battery voltage detect 2
+ 3	battery voltage detect 1
+ 4	general wakeup
+ 14-5	reserved (0)
+ 15	enable card interrupts via CINT# pin
+ 31-16	reserved
+Note:	this register can simulate events by forcing the values of some of the
+	  bits in the Event Mask Register; any bit of this register which is
+	  set to 1 forces the corresponding bit in the Mask Register to 1,
+	  while bits set to 0 leave the corresponding bit unchanged
+SeeAlso: #00890,#00892,#00896
+
+Bitfields for CardBus Socket Control Register:
+Bit(s)	Description	(Table 00896)
+ 2-0	Vpp control
+	000 power off
+	001 12.0 Volts
+	010 5.0 Volts
+	011 3.3 Volts
+	100 reserved (X.X Volts)
+	101 reserved (Y.Y Volts)
+	110 reserved
+	111 reserved
+ 3	reserved (0)
+ 6-4	Vcc control (as for Vpp, but 12.0V not supported)
+ 31-7	reserved (0)
+SeeAlso: #00890,#00893,#00895
+
+Bitfields for TI PCI1130 Card Control Register:
+Bit(s)	Description	(Table 00897)
+ 0	interrupt pending
+ 1	speaker output enabled
+ 2	reserved
+ 3	enable status-change interrupt routing (to INTA# for socket A, INTB#
+	  for socket B)
+ 4	function interrupt routed to corresponding PCI interrupt pin
+ 5	PCI interrupts enabled
+ 6	ZOOM video mode enabled
+ 7	Ring Indicator enabled on IRQ15/RI_OUT pin
+SeeAlso: #00890,#00898
+
+Bitfields for TI PCI1130 Device Control Register:
+Bit(s)	Description	(Table 00898)
+ 0	reserved (0)
+ 2-1	interrupt mode enable
+	00 no interrupt
+	01 ISA mode (direct IRQ routing)
+	10 serialized interrupt mode
+	11 reserved
+ 4-3	reserved
+ 5	3volt Socket Capable force bit
+ 6	5volt Socket Capable force bit
+ 7	reserved
+SeeAlso: #00890,#00897
+
+Bitfields for PCI Configuration I/O base and limit:
+Bit(s)	Description	(Table 00899)
+ 3-0	(read-only) address decoding type
+	0000 16-bit
+	0001 32-bit
+	other reserved
+ 7-4	bits 15-12 of I/O address range
+SeeAlso: #00878,#00900
+
+Bitfields for PCI Configuration memory base and limit:
+Bit(s)	Description	(Table 00900)
+ 3-0	address decode type
+	0000 32-bit address decoder
+	0001 64-bit address decoder
+	other reserved
+ 15-4	bits 31-20 of memory address range
+SeeAlso: #00878,#00899
+
+Bitfields for PCI Configuration Bridge Control Register:
+Bit(s)	Description	(Table 00901)
+ 7	enable fast back-to-back cycles on secondary bus
+ 6	reset secondary bus
+ 5	master abort mode on secondary bus
+ 4	reserved
+ 3	VGA enable (when set, forward VGA memory and I/O ranges to seconary
+	  bus)
+ 2	ISA enable
+ 1	reserved
+ 0	enable parity error response
+SeeAlso: #00878,#01131
+
+Format of OpenHCI Host Controller memory-mapped registers:
+Offset	Size	Description	(Table 00902)
+ 00h	DWORD	"HcRevision"		OpenHCI revision (see #00903)
+ 04h	DWORD	"HcControl"		HC operating modes (see #00904)
+ 08h	DWORD	"HcCommandStatus"	command/status (see #00905)
+ 0Ch	DWORD	"HcInterruptStatus"	interrupt status (see #00906)
+ 10h	DWORD	"HcInterruptEnable"	enable interrupts (see #00907)
+ 14h	DWORD	"HcInterruptDisable"	disable interrupts (see #00907)
+ 18h	DWORD	"HcHCCA"		HC Communications Area (see #00908)
+ 1Ch	DWORD	"HcPeriodCurrentED"	Endpoint Descriptor addr (see #00909)
+ 20h	DWORD	"HcControlHeadED"	Control Endpoint Descriptor (see #00910)
+ 24h	DWORD	"HcControlCurrentED"	Control Endpoint Descriptor (see #00910)
+ 28h	DWORD	"HcBulkHeadED"		Bulk Endpoint Descriptor (see #00911)
+ 2Ch	DWORD	"HcBulkCurrentED"	Bulk Endpoint Descriptor (see #00911)
+ 30h	DWORD	"HcDoneHead"		last completed Xfer Descr. (see #00912)
+ 34h	DWORD	"HcFmInterval"		Frame bit-time interval (see #00913)
+ 38h	DWORD	"HcFmRemaining"		bit time remaining in Frame (see #00914)
+ 3Ch	DWORD	"HcFmNumber"		Frame Number (bits 15-0)
+ 40h	DWORD	"HcPeriodicStart"	earliest time to start periodic list
+					(bits 13-0)
+ 44h	DWORD	"HcLSThreshold"		threshold for Low Speed transaction
+					(bits 11-0)
+ 48h	DWORD	"HcRhDescriptorA"	Root Hub Descriptor A (see #00915)
+ 4Ch	DWORD	"HcRhDescriptorB"	Root Hub Descriptor B (see #00916)
+ 50h	DWORD	"HcRhStatus"		Root Hub status (see #00917)
+ 54h  N DWORDs	"HCRhPortStatus[1-N]"	Root Hub port status N (see #00918)
+Note:	OpenHCI reserves a full 4K page of the systems address space for its
+	  memory-mapped registers
+SeeAlso: #00878,#00882,#F0085,#00966
+
+Bitfields for OpenHCI "HcRevision" register:
+Bit(s)	Description	(Table 00903)
+ 31-8	reserved
+ 7-0	BCD OpenHCI specification number (10h = 1.0, 11h = 1.1)
+Note:	this register is read-only
+SeeAlso: #00902,#00904
+
+Bitfields for OpenHCI "HcControl" register:
+Bit(s)	Description	(Table 00904)
+ 31-11	reserved
+ 10	RWE	enable Remote Wakeup feature
+ 9	RWC	controller supports Remote Wakeup signalling
+ 8	IR	Interrupt Routing
+		0 normal host bus interrupt
+		1 System Managment Interrupt
+ 7-6	HCFS	USB Host Controller Functional State
+		00 USBReset
+		01 USBResume
+		10 USBOperational
+		11 USBSuspend
+ 5	BLE	enable Bulk List processing in next frame
+ 4	CLE	enable Control List processing in next frame
+ 3	IE	enable Isochronous ED processing
+ 2	PLE	enable processing of Periodic List in next frame
+ 1-0	CBSR	Control Bulk Service Ratio
+		00  1:1 Control EDs:Bulk EDs served
+		01  2:1
+		10  3:1
+		11  4:1
+SeeAlso: #00902,#00903,#00905
+
+Bitfields for OpenHCI "HcCommandStatus" register:
+Bit(s)	Description	(Table 00905)
+ 31-18	reserved
+ 17-16	SOC	scheduling-overrun count
+ 15-4	reserved
+ 3	OCR	ownership change request is pending
+ 2	BLF	bulk list contains TDs
+ 1	CLF	control list contains TDs
+ 0	HCR	host controller software reset
+Note:	writing a 1 bit sets the corresponding bit, while a 0 bit leaves the
+	  corresponding bit unchanged
+SeeAlso: #00902,#00903,#00906
+
+Bitfields for OpenHCI "HcInterruptStatus" register:
+Bit(s)	Description	(Table 00906)
+ 31	reserved (0)
+ 30	OC	ownership change
+ 29-7	reserved
+ 6	RHSC	Root Hub status changed
+ 5	FNO	frame number overflowed
+ 4	UE	unrecoverable error
+ 3	RD	resume detected
+ 2	SF	start of frame
+ 1	WDH	writeback done
+ 0	SO	scheduling overrun
+Note:	writing a 1 bit clears the corresponding bit of the register
+SeeAlso: #00902,#00903,#00905,#00907
+
+Bitfields for OpenHCI "HcInterruptEnable" and "HcInterruptDisable" registers:
+Bit(s)	Description	(Table 00907)
+ 31	MIE	master interrupt enable
+ 30	OC	ownership change
+ 29-7	reserved
+ 6	RHSC	Root Hub status change
+ 5	FNO	frame number overflow
+ 4	UE	unrecoverable error
+ 3	RD	Resume Detect
+ 2	SF	start of frame
+ 1	WDH	HcDoneHead writeback
+ 0	SO	scheduling overrun
+Note:	writing a 1 bit to HcInterruptEnable enables the corresponding
+	  interrupt, while writing a 1 bit to HcInterruptDisable disables it;
+	  zero bits are ignored.  On reading, both registers return the
+	  same value, which reflects the currently enabled interrupts
+SeeAlso: #00902
+
+Bitfields for OpenHCI "HcHCCA" register:
+Bit(s)	Description	(Table 00908)
+ 31-8	physical address of Host Controller Communications Area (bits 31-8)
+ 7-0	reserved (0)
+Note:	the required alignment for the HCCA may be determined by writing
+	  FFFFFFFFh to this register and determining the number of low-order
+	  zero bits
+SeeAlso: #00902,#00909,#00910
+
+Bitfields for OpenHCI "HcPeriodCurrentED" register:
+Bit(s)	Description	(Table 00909)
+ 31-4	physical address of current Isochronous/Interrupt Endpoint Descriptor
+	  (bits 31-4)
+ 3-0	reserved (0)
+SeeAlso: #00902,#00908,#00910
+
+Bitfields for OpenHCI "HcControlHeadED"/"HcControlCurrentED" register:
+Bit(s)	Description	(Table 00910)
+ 31-4	physical address of first/current Endpoint Descriptor (bits 31-4)
+ 3-0	reserved (0)
+Note:	HcControlCurrentED is set to 0000000h to indicate the end of the
+	  Control list
+SeeAlso: #00902,#00908,#00909
+
+Bitfields for OpenHCI "HcBulkHeadED"/"HcBulkCurrentED" register:
+Bit(s)	Description	(Table 00911)
+ 31-4	physical address of first/current Endpoint Descriptor in the Bulk
+	  list (bits 31-4)
+ 3-0	reserved (0)
+Note:	HcBulkCurrentED is set to 0000000h to indicate the end of the Bulk
+	  list
+SeeAlso: #00902,#00908,#00910
+
+Bitfields for OpenHCI "HcDoneHead" register:
+Bit(s)	Description	(Table 00912)
+ 31-4	physical address of most-recently completed Transfer Descriptor added
+	  to the Done queue (bits 31-4)
+ 3-0	reserved (0)
+SeeAlso: #00902,#00909,#00911
+
+Bitfields for OpenHCI "HcFmInterval" register:
+Bit(s)	Description	(Table 00913)
+ 31	"FIT"	toggled each time a new value is loaded into bits 13-0
+ 30-16	"FSMPS"	largest data packet in bits
+ 15-14	reserved
+ 13-0	"FI"	Frame Interval (between to consecutive SOFs)
+SeeAlso: #00902,#00914
+
+Bitfields for OpenHCI "HcFmRemaining" register:
+Bit(s)	Description	(Table 00914)
+ 31	"FRT"	loaded from bit 31 of HcFmInterval whenever FR reaches 0
+ 30-14	reserved
+ 13-0	"FR"	FrameRemaining -- bits times left in current frame
+SeeAlso: #00902,#00913
+
+Bitfields for OpenHCI "HcRhDescriptorA" register:
+Bit(s)	Description	(Table 00915)
+ 31-24	"POTPGT" power-on to power-good time in 2ms units
+ 23-13	reserved
+ 12	"NOCP"	no over-current protection supported
+ 11	"OCPM"	over-current status reported per-port
+ 10	"DT"	device type - is root hub compound device?
+ 9	"NPS"	NoPowerSwitching -- ports are always powered up
+ 8	"PSM"	power-switching mode -- if set, each port powered individually
+ 7-0	"NDP"	number of downstream ports
+SeeAlso: #00902,#00916,#00917
+
+Bitfields for OpenHCI "HcRhDescriptorB" register:
+Bit(s)	Description	(Table 00916)
+ 31-16	"PPCM"	PortPowerControlMask -- bitmask of ports NOT affected by global
+		  power control (bit 16 [port #0] is reserved)
+ 15-0	"DR"	DeviceRemovable -- bitmap of removable devices
+SeeAlso: #00902,#00915,#00917
+
+Bitfields for OpenHCI "HcRhStatus" register:
+Bit(s)	Description	(Table 00917)
+ 31	"CRWE"	Clear Remote Wakeup Enable
+		write 1 to disable remote wakeup (writes of 0 ignored)
+ 30-18	reserved
+ 17	"OCIC"	OverCurrent Indicator Change
+		write 1 to clear
+ 16   R	"LPSC"	Local Power Status Change
+      W		Set Global Power mode (write 1; writes of 0 ignored)
+ 15	"DRWE"	Device Remote Wakeup Enable
+		write 1 to enable (writes of 0 ignored)
+		read to get current status
+ 14-2	reserved
+ 1	"OCI"	OverCurrent Indicator
+ 0    R "LPS"	LocalPowerStatus (always 0 for Root Hub)
+      W		write 1 to turn off power to all ports/ports with clear
+		  PortPowerControlMask bits
+SeeAlso: #00902,#00915,#00916,#00918
+
+Bitfields for OpenHCI "HcRhPortStatusN" register:
+Bit(s)	Description	(Table 00918)
+ 31-21	reserved
+ 20	"PRSC"	Port Reset Status Change (write '1' to clear)
+ 19	"OCIC"	Port OverCurrent Indiactor Change (write '1' to clear)
+ 18	"PSSC"	Port Suspend Status Change (write '1' to clear)
+ 17	"PESC"	Port Enable Status Change (write '1' to clear)
+ 16	"CSC"	Connect Status Change (write '1' to clear)
+ 15-10	reserved
+ 9    R	"LSDA"	Low Speed Device Attached
+      W		clear port power by writing '1'
+ 8    R	"PPS"	Port Power Status
+      W		set port power by writing '1'
+ 7-5	reserved
+ 4    R	"PRS"	Port Reset Status
+      W		set port reset by writing '1'
+ 3    R	"POCI"	Port OverCurrent Indicator
+      W		clear suspend status by writing '1'
+ 2    R	"PSS"	Port Suspend Status
+      W		set port suspend by writing '1'
+ 1    R "PES"	Port Enable Status
+      W		set port enable by writing '1'
+ 0    R "CCS"	current connect status
+      W		clear port enable by writing '1'
+SeeAlso: #00902,#00915,#00916,#00917
+

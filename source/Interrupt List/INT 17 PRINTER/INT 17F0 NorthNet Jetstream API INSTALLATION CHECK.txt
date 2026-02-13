@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 17F0
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - NorthNet Jetstream API - INSTALLATION CHECK
+	AH = F0h
+	DX = printer port (0-3)
+Return: AX = 0001h Jetstream present
+	     else  non-Jetstream port
+Note:	NorthNet Jetstream is a high-performance DMA-driven parallel card able
+	  to drive printers at up to 80000 characters per second
+

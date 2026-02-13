@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2136
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET FREE DISK SPACE
+	AH = 36h
+	DL = drive number (00h = default, 01h = A:, etc)
+Return: AX = FFFFh if invalid drive
+	else
+	    AX = sectors per cluster
+	    BX = number of free clusters
+	    CX = bytes per sector
+	    DX = total clusters on drive
+Notes:	free space on drive in bytes is AX * BX * CX
+	total space on drive in bytes is AX * CX * DX
+	"lost clusters" are considered to be in use
+	according to Dave Williams' MS-DOS reference, the value in DX is
+	  incorrect for non-default drives after ASSIGN is run
+	this function does not return proper results on CD-ROMs;
+	  use AX=4402h"CD-ROM" instead
+	(FAT32 drive) the reported total and free space are limited to 2G-32K
+	  should they exceed that value
+SeeAlso: AH=1Bh,AH=1Ch,AX=4402h"CD-ROM",AX=7303h
+

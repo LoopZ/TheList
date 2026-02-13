@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F207
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CLEAR FILE
+	AX = F207h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02097)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=CEh,AH=EDh"NetWare",AH=F2h"NetWare",AX=F208h
+
+Format of NetWare "Clear File" request packet:
+Offset	Size	Description	(Table 02097)
+ 00h	BYTE	directory handle
+ 01h	BYTE	length of filename
+ 02h  N BYTEs	filename
+SeeAlso: #02098
+

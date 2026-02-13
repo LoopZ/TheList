@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0022
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPXODI v2.12+ - IPX VERIFY CHECKSUM
+	BX = 0022h
+	ES:SI -> ECB data (see #03810 at INT 7A/BX=0003h)
+Return: AX = status (0000h checksum matches)
+	DS,ES,SI preserved
+	BX,BP corrupted, all other registers potentially destroyed
+Note:	this function enables interrupts and is fully reentrant
+SeeAlso: BX=001Fh,BX=0020h,BX=0021h,INT 2F/AX=7A2Fh
+

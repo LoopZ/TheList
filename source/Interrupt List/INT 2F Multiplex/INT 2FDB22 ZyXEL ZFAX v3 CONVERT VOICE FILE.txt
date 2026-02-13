@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB22
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - CONVERT VOICE FILE
+	AX = DB22h
+	DS:SI -> source filename, including path (max 128 characters)
+	DS:BX -> destination filename, including path (max 80 characters)
+	CX = destination format
+	    00h two-bit ADPCM, 01h three-bit ADPCM, 02h VOC
+Return: AX = status (see #03096)
+SeeAlso: AX=DB13h,AX=DB20h,AX=DB21h,AX=DB23h
+

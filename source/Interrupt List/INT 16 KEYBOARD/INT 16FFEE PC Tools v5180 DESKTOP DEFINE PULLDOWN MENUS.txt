@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FFEE
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v5.1-8.0 DESKTOP - DEFINE PULLDOWN MENUS
+	AX = FFEEh
+	DS:SI -> pulldown menu system description (see #00625)
+Return: AX destroyed
+Notes:	available only when popped up
+	if the accessory does not need any menu items of its own, it should
+	  call AX=FFFAh instead
+SeeAlso: AX=FFF7h,AX=FFFAh
+
+Format of PC Tools DESKTOP pulldown menu system description:
+Offset	Size	Description	(Table 00625)
+ 00h	WORD	offset of menu bar contents (counted string)
+ 02h	WORD	number of items on menu bar
+ 04h 10 BYTEs	scan codes for hotkeying to each of up to ten menu items
+ 0Eh 10 BYTEs	which character to highlight in each menu item (01h=first)
+ 18h	WORD	offset of first menu definition (see #00626)
+ 1Ah	WORD	offset of second menu definition
+	...
+
+Format of PC Tools DESKTOP menu definition:
+Offset	Size	Description	(Table 00626)
+ 00h	WORD	offset of menu contents (see #00627)
+ 02h	WORD	number of entries in menu
+ 04h	for each entry:
+		Offset	Size	Description
+		 00h	BYTE	scancode of Alt-key to invoke entry
+		 01h	BYTE	character to highlight (01h=first, etc)
+		 02h	WORD	offset of FAR routine to handle selection
+
+Format of PC Tools DESKTOP menu contents:
+Offset	Size	Description	(Table 00627)
+ 00h	BYTE	number of lines in menu
+ 01h	BYTE	width of menu
+ 02h  N BYTEs	counted strings, one for each line in menu
+

@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F43E0BX0000
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS Protected Mode Services (DPMS) v1.0 - INSTALLATION CHECK
+	AX = 43E0h
+	BX = 0000h
+	CX = 4450h ('DP')
+	DX = 4D53h ('MS')
+Return: AX = 0000h if installed
+	    CF clear
+	    ES:DI -> server structure (see #02791)
+	    ES:BX -> registration structure (pre-NWDOS 7 beta spec) (see #02793)
+Note:	the DPMS 1.0 server included with the original release of Novell DOS
+	  7.0 supports both the beta and 1.0 specification, setting ES:BX even
+	  if CX and DX are not as specified on entry (since the beta
+	  specification did not use those registers).  However, the DPMS 1.1
+	  server included with the March 1994 update does not support the beta
+	  specification
+SeeAlso: AX=43E1h,AX=43E2h,AX=43E3h,INT 2F/AX=1687h
+Index:	signature strings;DPMS
+
+Format of DPMS 1.0 server structure:
+Offset	Size	Description	(Table 02791)
+ 00h  4 BYTEs	signature string "DPMS"
+ 04h  2 BYTEs	DPMS version (major,minor)
+ 06h  8 BYTEs	blank-padded server OEM name
+ 0Eh  2 BYTEs	OEM server version (major,minor)
+ 10h	WORD	DPMS flags (see #02792)
+ 12h	BYTE	CPU type
+		(02h = 286, 03h = 386 or higher, higher values allowed)
+
+Bitfields for DPMS flags:
+Bit(s)	Description	(Table 02792)
+ 0	fast processor reset available (286 only)
+ 1	DPMS server is enabled
+ 2	memory is remapped
+ 3-15	reserved (undefined)
+
+Format of beta DPMS registration structure:
+Offset	Size	Description	(Table 02793)
+ 00h	DWORD	real-mode API entry point (see #02795)
+ 04h	DWORD	16-bit protected-mode API entry point (see #02795)
+ 08h  8 BYTEs	reserved (0)
+ 10h  8 BYTEs	blank-padded server OEM name
+ 18h	WORD	flags
+		bit 0: fast processor reset available (286 only)
+		bits 1-15 reserved (undefined)
+ 1Ah  2 BYTEs	DPMS version (major,minor)
+ 1Ch	BYTE	CPU type (02h = 286, 03h = 386 or higher)
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1792
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX - CHECK PRINTER DRIVER
+	AH = 92h
+	AL = 00h
+	CL = 00h
+Return: CL = driver state
+	    01h initialized
+	    80h not initialized
+	AX = status (see #00642)
+SeeAlso: AH=8Ah
+

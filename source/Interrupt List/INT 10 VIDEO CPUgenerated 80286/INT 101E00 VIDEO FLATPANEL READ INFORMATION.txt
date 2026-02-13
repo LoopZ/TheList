@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101E00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - FLAT-PANEL - READ INFORMATION
+	AX = 1E00h
+Return: AL = 1Eh if function supported
+	    BL = flat-panel status (see #00052)
+	    ES:DI -> information table (see #00053)
+Note:	IBM classifies this function as optional
+SeeAlso: AX=1E01h,AX=1E02h,AX=1E03h,AX=1E04h,AX=1E05h,AX=1EFEh
+
+Bitfields for flat-panel status:
+Bit(s)	Description	(Table 00052)
+ 7-3	reserved
+ 2	color display
+ 1	flat panel is active
+ 0	flat panel is attached
+SeeAlso: #00053
+
+Format of flat-panel information table:
+Offset	Size	Description	(Table 00053)
+ 00h	BYTE	number of WORDs in the remainder of the table
+ 01h	WORD	number of vertical pixels per meter
+ 03h	WORD	number of horizontal pixels per meter
+ 05h	WORD	total number of vertical pixels
+ 07h	WORD	total number of horizontal pixels
+ 09h	WORD	vertical pixel separation in micrometers (center-to-center)
+ 0Bh	WORD	horizontal pixel separation in micrometers
+ 0Dh	WORD	range of gray levels available, less 1
+ 0Fh	WORD	number of red levels available, less 1 (0000h if nonochrome)
+ 11h	WORD	number of green levels available, less 1 (0000h if nonochrome)
+ 13h	WORD	number of blue levels available, less 1 (0000h if nonochrome)
+SeeAlso: #00052
+

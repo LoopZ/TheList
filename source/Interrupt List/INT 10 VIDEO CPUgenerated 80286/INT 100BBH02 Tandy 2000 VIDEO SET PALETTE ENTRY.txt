@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100B--BH02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Tandy 2000 - VIDEO - SET PALETTE ENTRY
+	AH = 0Bh
+	BH = 02h
+	BL = palette entry number
+	AL = new color value for palette entry
+Return: nothing
+Note:	this interrupt is identical to INT 52 for Tandy 2000
+SeeAlso: INT 10/AH=00h,INT 10/AH=0Bh/BH=01h,INT 52"Tandy 2000"
+

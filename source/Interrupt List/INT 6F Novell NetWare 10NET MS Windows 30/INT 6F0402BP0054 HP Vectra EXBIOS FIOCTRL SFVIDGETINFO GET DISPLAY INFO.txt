@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0402BP0054
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_VID_GET_INFO" - GET DISPLAY INFO
+	AX = 0402h
+	BP = 0054h (driver ID for V_SVIDEO)
+	???
+Return: AH = status (see #03744)
+	BP,DS destroyed
+	???
+Note:	only partially documented
+SeeAlso: AX=0400h/BP=0054h,AX=0404h/BP=0054h,AX=0406h/BP=0054h
+SeeAlso: AX=0408h/BP=0054h,AX=040Ah/BP=0054h
+

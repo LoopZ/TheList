@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 132C
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - SET BUFFERED WRITES
+	AH = 2Ch
+	AL = new state (00h disabled, 01h enabled)
+Return: AX = status (0000h successful)
+Desc:	specify whether the cache should delay disk writes
+Note:	this function enables or disables delayed writes for all drives; use
+	  AH=38h to change a single drive
+SeeAlso: AH=25h"QUICKCACHE",AH=2Dh,AH=2Eh,AH=38h
+

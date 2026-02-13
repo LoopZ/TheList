@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F96C7
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - STRETCH - INSTALLATION CHECK
+	AX = 96C7h
+Return: AX = AAAAh if installed
+Program: stretch.exe is a TSR for Toshiba Laptops with WD90C24 video chip
+	  to avoid blank screen areas in VGA text modes by increasing
+	  inter-line spacing
+

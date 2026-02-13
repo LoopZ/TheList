@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31EE41
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - DOS32 v3.0+ - ALLOCATE 16KB DMA BLOCK
+	AX = EE41h
+Return: CF clear if successful
+	    EBX -> 16KB DMA block (physical address)
+	    EDX -> 16KB DMA block (offset address)
+	CF set on error
+SeeAlso: AX=EE40h,AX=EE42h
+

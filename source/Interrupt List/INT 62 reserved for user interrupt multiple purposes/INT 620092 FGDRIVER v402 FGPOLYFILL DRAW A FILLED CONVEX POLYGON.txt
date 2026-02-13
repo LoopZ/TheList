@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620092
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_POLYFILL" - DRAW A FILLED CONVEX POLYGON
+	AX = 0092h
+	CX = number of vertices
+	ES:BX -> variable pointer record (see #03496)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The vertex array consists of pairs of words specifying the X and Y
+	  coordinates of each vertex; the work array is used internally and
+	  must contain at least four times as many bytes as the polygon is
+	  high in pixels
+	This function is ignored in text modes
+	If the polygon is non-convex, only a portion of it may be filled
+SeeAlso: AX=000Eh,AX=0027h,AX=0091h,AX=0093h,AX=0094h,AX=0095h
+
+Format of FGDRIVER POLYFILL variable pointer record:
+Offset	Size	Description	(Table 03496)
+ 00h	WORD	segment of vertex array (see #03498)
+ 02h	WORD	offset of vertex array
+ 04h	WORD	segment of work array
+ 06h	WORD	offset of work array
+SeeAlso: #03497
+

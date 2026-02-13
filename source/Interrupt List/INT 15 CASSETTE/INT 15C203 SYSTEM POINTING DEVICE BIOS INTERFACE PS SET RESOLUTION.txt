@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C203
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE (PS) - SET RESOLUTION
+	AX = C203h
+	BH = resolution (see #00523)
+Return: CF set on error
+	    AH = status (see #00522)
+
+(Table 00523)
+Values for pointing device resolution:
+ 00h	one count per mm
+ 01h	two counts per mm
+ 02h	four counts per mm
+ 03h	eight counts per mm
+

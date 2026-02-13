@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0404BP002A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - HP Vectra EX-BIOS - "F_IO_CTRL SF_SET_LINKS" - SET DRIVER LINK FIELDS
+	AX = 0404h
+	BP = 002Ah (driver ID for V_SINPUT)
+	ES:SI -> buffer containing link table (see #03759)
+Return: AH = status (see #03744)
+	BP,DS destroyed
+Desc:	specify the parent and child vectors for the seven supported physical
+	  device drivers
+SeeAlso: AH=00h"HP Vectra",AX=0400h"SF_DEF_LINKS",AX=0402h"SF_GET_LINKS"
+SeeAlso: AH=06h"F_INQUIRE"
+

@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC06DI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - RECEIVE CHARACTERS FROM QRIP
+	AX = AC06h
+	DI = 1092h
+Return: AX = character to send to BBS (0001h-00FFh) or special code (see #02967)
+	BX = string-waiting flag
+	    0001h entire string waiting to be sent to terminal (call AX=AC0Ch)
+	CX = DX = AX
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC04h,AX=AC05h,AX=AC0Ch,AX=AC16h,AX=AC18h,AX=AC1Ah
+
+(Table 02967)
+Values for QRIP special codes:
+ 0000h	if none
+ 0100h	wait for user keypress (must call AX=AC16h/BL=00h or AX=AC18h)
+ 0101h	both/middle mouse button pressed
+ 0102h	entering block mode (up/download) (call AX=AC1Ah)
+ 0103h	right mouse button pressed
+ 0104h	BBS requested status bar on
+ 0105h	BBS requested status bar off
+ 0106h	BBS requested VT-102 terminal emulation
+	(keypad keys should send VT-102 escape codes)
+ 0107h	BBS requested VT-102 mode off
+ 0108h	BBS requested doorway mode (raw IBM keyboard ASCII/scan code pairs)
+ 0109h	BBS requested doorway mode off
+ 010Ah	hotkey mode on
+ 010Bh	hotkey mode off
+ 010Ch	BBS requested Tab-key button changing on
+ 010Dh	BBS requested Tab-key mode off
+ 010Eh	XOFF (use flow control to stop incoming characters)
+ 010Fh	XON (use flow control to resume incoming characters)
+ 0110h-0119h BBS requested application (0-9) be run
+	application 0 should be a standard text editor
+ 01FFh	send ASCII 00h to BBS
+Note:	for special codes 0104h to 010Dh, the terminal program should report
+	  any mode changes it make in response by calling AX=AC16h
+

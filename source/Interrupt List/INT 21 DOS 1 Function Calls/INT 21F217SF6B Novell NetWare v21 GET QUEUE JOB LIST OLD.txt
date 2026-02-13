@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF6B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2.1+ - GET QUEUE JOB LIST (OLD)
+	AX = F217h subfn 6Bh
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01976 at AH=E3h/SF=6Bh)
+	ES:DI -> reply buffer (see #02201)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=6Bh,AX=F217h/SF=6Ah,AX=F217h/SF=6Ch
+SeeAlso: AX=F217h/SF=81h
+
+Format of NetWare "Get Queue Job List (old)" reply packet:
+Offset	Size	Description	(Table 02201)
+ 00h	WORD	(big-endian) job count
+ 02h  N WORDs	(big-endian) list of job numbers by position in queue
+SeeAlso: #01976,#01977 at AH=E3h/SF=6Bh
+

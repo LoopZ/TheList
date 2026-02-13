@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 676100
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - EEMS - STB GENERIC ACCELERATOR CARD SUPPORT - INSTALLATION CHECK???
+	AX = 6100h
+Return: AH = status (00h if installed???)
+Note:	STB's RAPIDMAP.SYS EMS driver calls this function and AX=6101h if
+	  the signature "GACXXX" is found at offset 0Ah in the INT 67 handler's
+	  segment (i.e. a device driver named GACXXX?? has hooked INT 67)
+SeeAlso: AX=6101h,INT 02/SI=0714h
+

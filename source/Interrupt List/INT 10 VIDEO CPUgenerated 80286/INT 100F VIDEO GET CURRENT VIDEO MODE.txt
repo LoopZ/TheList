@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - GET CURRENT VIDEO MODE
+	AH = 0Fh
+Return: AH = number of character columns
+	AL = display mode (see #00010 at AH=00h)
+	BH = active page (see AH=05h)
+Notes:	if mode was set with bit 7 set ("no blanking"), the returned mode will
+	  also have bit 7 set
+	EGA, VGA, and UltraVision return either AL=03h (color) or AL=07h
+	  (monochrome) in all extended-row text modes
+	HP 200LX returns AL=07h (monochrome) if mode was set to AL=21h
+	  and always 80 resp. 40 columns in all text modes regardless of
+	  current zoom setting (see AH=D0h)
+	when using a Hercules Graphics Card, additional checks are necessary:
+	    mode 05h: if WORD 0040h:0063h is 03B4h, may be in graphics page 1
+		  (as set by DOSSHELL and other Microsoft software)
+	    mode 06h: if WORD 0040h:0063h is 03B4h, may be in graphics page 0
+		  (as set by DOSSHELL and other Microsoft software)
+	    mode 07h: if BYTE 0040h:0065h bit 1 is set, Hercules card is in
+		  graphics mode, with bit 7 indicating the page (mode set by
+		  Hercules driver for Borland Turbo C)
+	the Tandy 2000 BIOS is only documented as returning AL, not AH or BH
+SeeAlso: AH=00h,AH=05h,AX=10F2h,AX=1130h,AX=CD04h,MEM 0040h:004Ah
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31EE11
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - DOS32 v3.2+ - LOAD LIBRARY FILE
+	AX = EE11h
+	EDX -> near pointer of memory block to store library
+Return: CF clear if successful
+	    EDX = near pointer to the dynamic library public
+	CF set on error
+Note:	must first successfuly call function AX=EE10h before calling this
+	  function
+SeeAlso: AX=EE00h,AX=EE10h
+

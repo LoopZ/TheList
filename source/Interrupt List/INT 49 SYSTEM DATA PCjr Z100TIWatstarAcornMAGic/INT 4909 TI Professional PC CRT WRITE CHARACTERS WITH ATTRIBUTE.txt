@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4909
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - WRITE CHARACTER(S) WITH ATTRIBUTE
+	AH = 09h
+	AL = character to write
+	BL = attribute to use (becomes new current attribute)
+	CX = number of times to write character
+Return: nothing
+Desc:	write CX copies of the character in AL beginning at the current cursor
+	  position
+Note:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+SeeAlso: AH=01h,AH=08h,AH=0Ah,AH=0Eh,INT 10/AH=09h
+

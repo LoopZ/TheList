@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2173
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7 - DRIVE LOCKING AND FLUSHING
+	AH = 73h
+	DL = drive (0=current, 1=A:, etc.)
+	CL = which flag to get or set
+	    00h drive flag???
+	    01h drive's dirty-buffers flag
+	AL = subfunction
+	    00h get indicated flag
+	    01h set ???
+		CH = new value for indicated flag
+		    bit 1: ??? (CL=00h only)
+		    bit 3: dirty buffers exist for selected drive (CL=01h only)
+Return: CF clear if successful
+	    for AL=00h:
+		AL = value of CL on entry
+		for CL=00h: AH = new flag and 06h (i.e. bits 1 and 2 used)
+		for CL=01h: AH = new flag and 08h (i.e. bit 3 used)
+		(flag being taken from a table of bytes)
+	CF set on error
+	    AX = error code (01h,0Fh,etc.) (see #01680)
+		7300h if function not supported
+Note:	these two subfunctions are available even when only the MS-DOS kernel
+	  is running
+

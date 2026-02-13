@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF16
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - GET CONNECTION INFORMATION
+	AH = E3h subfn 16h
+	DS:SI -> request buffer (see #01917)
+	ES:DI -> reply buffer (see #01918)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=D7h,AH=DCh"NetWare",AH=E3h/SF=14h
+
+Format of NetWare "Get Connection Information" request buffer:
+Offset	Size	Description	(Table 01917)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	16h (subfunction "Get Connection Information")
+ 03h	BYTE	logical connection number (01h-64h)
+
+Format of NetWare "Get Connection Information" reply buffer:
+Offset	Size	Description	(Table 01918)
+ 00h	WORD	(call) 003Eh (length of following results buffer)
+ 02h	DWORD	(big-endian) object ID for object logged in on the connection
+		00000000h if no object logged in
+ 06h	WORD	(big-endian) type of object
+ 08h 48 BYTEs	name of object
+ 38h  7 BYTEs	login time (see #01919)
+Note:	much of the Novell documentation incorrectly states the reply buffer
+	  length as 3Fh instead of 40h, which corresponds to a results length
+	  of 3Dh (61) bytes instead of the correct 3Eh (62) bytes
+
+Format of NetWare login time:
+Offset	Size	Description	(Table 01919)
+ 00h	BYTE	year (80-99 = 1980-1999, 00-79 = 2000-2079)
+ 01h	BYTE	month (1-12)
+ 02h	BYTE	day (1-31)
+ 03h	BYTE	hour (0-23)
+ 04h	BYTE	minute (0-59)
+ 05h	BYTE	second (0-59)
+ 06h	BYTE	day of week (0 = Sunday)
+

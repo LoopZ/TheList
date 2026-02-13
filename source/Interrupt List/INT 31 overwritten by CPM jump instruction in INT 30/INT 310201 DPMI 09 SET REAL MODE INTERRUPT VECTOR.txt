@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310201
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - SET REAL MODE INTERRUPT VECTOR
+	AX = 0201h
+	BL = interrupt number
+	CX:DX = segment:offset of real mode handler
+Return: CF clear
+Note:	all memory that may be touched by a hardware interrupt handler must be
+	  locked down with INT 31/AX=0600h
+SeeAlso: AX=0200h,AX=0205h,AX=0600h,INT 21/AX=2505h
+

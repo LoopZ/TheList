@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F07
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - GET LIST OF SHARED DRIVES
+	AH = 07h
+Return: ES:DI -> shared drive list (see #03947)
+Note:	MW386 considers all fixed disks to be shared drives; only C and D will
+	  be returned as shared
+
+Format of Alloy shared drive list:
+Offset	Size	Description	(Table 03947)
+ 00h	BYTE	string length
+ 01h	BYTE	number of shared drives
+ 02h  N BYTEs	one byte per shared drive
+

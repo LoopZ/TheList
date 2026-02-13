@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8300
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 83 - JM Pro Tracker v5.0 - ???
+	AH = 00h
+	???
+Return: CF clear (successful)
+	AX = ??? (0302h)
+Program: JM Pro Tracker is a public-domain resident .MOD (digital music)
+	  player by Josha Munnik
+
+(Table 03976)
+Values for JM Pro Tracker error code:
+ 000Ah	???
+ 000Bh	???
+ 0014h	???
+ 001Eh	some required parameters have not yet been set
+ 001Fh	already playing???
+ FExxh	busy (API call already in progress)
+ FFxxh	invalid function number
+

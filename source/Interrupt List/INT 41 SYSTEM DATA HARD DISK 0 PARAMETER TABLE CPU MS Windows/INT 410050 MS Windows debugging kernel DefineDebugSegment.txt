@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 410050
+  Category: G 	debuggers/debugging tools
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 41 P - MS Windows debugging kernel - "DefineDebugSegment"
+	AX = 0050h
+	BX = segment number in executable (0-based)
+	CX = selector
+	DX = instance handle
+	SI = segment flags (0=code, 1=data)
+	ES:DI -> module name of owner
+Return: ???
+SeeAlso: AX=0012h,AX=004Fh
+

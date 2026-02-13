@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F24
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - ATTACH OR RELEASE DRIVE FOR LOW-LEVEL WRITE ACCESS
+	AH = 24h
+	CL = function
+	    00h attach
+	    01h release
+	CH = drive (0=A:,1=B:,etc)
+Return: AX = status (see #03963)
+Note:	only drives on the current machine may be attached
+
+(Table 03963)
+Values for Alloy function status:
+ 00h	successful
+ 01h	invalid request
+ 02h	already attached
+ 03h	not attached
+ 04h	lock table full
+

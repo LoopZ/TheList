@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10BF05
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Compaq Extensions - ENABLE/DISABLE DISPLAY
+	AX = BF05h
+	BH = new state of video
+	    00h off
+	    01h on
+Return: nothing
+Note:	the 1993/04/08 sytem ROM appears to use BL instead of BH; a future
+	  version of the list will provide more definite information
+SeeAlso: AH=12h/BL=36h,AX=BF04h
+

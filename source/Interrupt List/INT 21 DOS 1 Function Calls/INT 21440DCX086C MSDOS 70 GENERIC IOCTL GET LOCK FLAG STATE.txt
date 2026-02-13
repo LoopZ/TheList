@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440DCX086C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - MS-DOS 7.0+ - GENERIC IOCTL - GET LOCK FLAG STATE
+	AX = 440Dh
+	CX = 086Ch / 486Ch
+	    (category code 08h for FAT12/16, 48h for FAT32; minor code 6Ch)
+	BL = drive number (00h=default,01h=A:,etc)
+Return: CF set on error
+	    AX = error code (01h,02h,etc.) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = access flag (see #01576)
+SeeAlso: AX=440Dh"DOS 3.2+",AX=440Dh/CX=084Ah,AX=440Dh/CX=084Bh
+SeeAlso: AX=440Dh/CX=0870h
+
+(Table 01576)
+Values for drive access flag:
+ 0000h	no writes/file mappings since last call
+ 0001h	write operation has occurred since last call
+ 0002h	file mapping has occurred since last call
+Note:	function 6Ch resets the access flag every time it is called
+

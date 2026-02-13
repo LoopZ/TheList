@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1419
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - SPECIAL CHARACTER INTERRUPT
+	AH = 19h
+	BL = flag
+	    00h disable special character interrupt
+	    FFh enable interrupt
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AH = status
+	    00h successful
+	    FFh failed
+SeeAlso: AH=1Ah"Digiboard"
+

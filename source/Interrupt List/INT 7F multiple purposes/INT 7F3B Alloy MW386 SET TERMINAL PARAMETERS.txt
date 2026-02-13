@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F3B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy MW386 - SET TERMINAL PARAMETERS
+	AH = 3Bh
+	AL = baud rate (00h = 38400, 01h = 19200, etc)
+	CL = parity (00h none, 01h even, 02h odd)
+	CH = handshaking (00h none, 01h XON/XOFF, 02h DTR/DSR, 03h XPC)
+	DL = user number (FFh = caller)
+	DH = machine number for user
+Return: CF set if invalid user number
+Notes:	only available to supervisors
+	the new parameters will take effect immediately if the user's terminal
+	  has not been started, else AH=3Dh must be called to post the changes
+SeeAlso: AH=3Ah,AH=3Dh
+

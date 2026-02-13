@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A01
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DOS 5+ - QUERY FREE HMA SPACE
+	AX = 4A01h
+Return: BX = number of bytes available in HMA (0000h if DOS not using HMA)
+	ES:DI -> start of available HMA area (FFFFh:FFFFh if not using HMA)
+Notes:	called by Windows 3.1 DOSX.EXE
+	supported by Novell DOS 7
+SeeAlso: AX=4310h,AX=4A02h
+

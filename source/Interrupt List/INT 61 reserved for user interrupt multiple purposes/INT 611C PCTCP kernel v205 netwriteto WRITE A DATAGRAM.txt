@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 611C
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "net_writeto" - WRITE A DATAGRAM
+	AH = 1Ch
+	BX = network descriptor
+	CX = number of bytes to transmit (0000h allowed)
+	DX = send options (see #03464)
+	DS:SI -> data to be written
+	ES:DI -> "addr" structure (see #03462)
+Return: CF clear if successful
+	    AX = number of bytes actually written
+	    DX = ???
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	this function differs from AH=1Ah in that the address and socket
+	  numbers can be overridden
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=1Ah,INT 61/AH=1Dh
+SeeAlso: INT 63/AH=21h"BW-TCP"
+

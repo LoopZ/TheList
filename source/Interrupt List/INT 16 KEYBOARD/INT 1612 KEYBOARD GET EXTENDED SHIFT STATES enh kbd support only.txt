@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1612
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - GET EXTENDED SHIFT STATES (enh kbd support only)
+	AH = 12h
+Return: AL = shift flags 1 (same as returned by AH=02h) (see #00587)
+	AH = shift flags 2 (see #00588)
+Notes:	AL bit 3 set only for left Alt key on many machines
+	AH bits 7 through 4 always clear on a Compaq SLT/286
+	INT 16/AH=09h can be used to determine whether this function is
+	  supported, but only on later model PS/2s
+	many BIOSes (including at least some versions of Phoenix and AMI) will
+	  destroy AH on return from functions higher than AH=12h, returning
+	  12h less than was in AH on entry (due to a chain of DEC/JZ
+	  instructions)
+SeeAlso: AH=02h,AH=09h,AH=22h,AH=51h,INT 17/AH=0Dh,MEM 0040h:0017h
+
+Bitfields for keyboard shift flags 1:
+Bit(s)	Description	(Table 00587)
+ 7	Insert active
+ 6	CapsLock active
+ 5	NumLock active
+ 4	ScrollLock active
+ 3	Alt key pressed (either Alt on 101/102-key keyboards)
+ 2	Ctrl key pressed (either Ctrl on 101/102-key keyboards)
+ 1	left shift key pressed
+ 0	right shift key pressed
+SeeAlso: #00582,#00588,MEM 0040h:0017h,#M0010
+
+Bitfields for keyboard shift flags 2:
+Bit(s)	Description	(Table 00588)
+ 7	SysReq key pressed (SysReq is often labeled SysRq)
+ 6	CapsLock pressed
+ 5	NumLock pressed
+ 4	ScrollLock pressed
+ 3	right Alt key pressed
+ 2	right Ctrl key pressed
+ 1	left Alt key pressed
+ 0	left Ctrl key pressed
+SeeAlso: #00587,MEM 0040h:0018h,#M0011
+

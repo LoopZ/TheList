@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB12
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - PRINT FAX
+	AX = DB12h
+	DS:SI -> filename, including path (max 128 characters)
+Return: AX = status (see #03096)
+SeeAlso: AX=DB11h,AX=DB13h,AX=DB14h
+

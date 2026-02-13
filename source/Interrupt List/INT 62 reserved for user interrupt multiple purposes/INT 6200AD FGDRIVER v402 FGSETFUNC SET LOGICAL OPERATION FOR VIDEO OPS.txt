@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200AD
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SETFUNC" - SET LOGICAL OPERATION FOR VIDEO OPS
+	AX = 00ADh
+	BX = operation
+	    0000h replacement
+	    0001h AND
+	    0002h OR
+	    0003h XOR
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function is only available in native EGA/VGA graphics modes
+	  (0Dh to 12h)
+SeeAlso: AX=001Eh,AX=008Fh
+

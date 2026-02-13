@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2131
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - TERMINATE AND STAY RESIDENT
+	AH = 31h
+	AL = return code
+	DX = number of paragraphs to keep resident
+Return: never
+Notes:	the value in DX only affects the memory block containing the PSP;
+	  additional memory allocated via AH=48h is not affected
+	the minimum number of paragraphs which will remain resident is 11h
+	  for DOS 2.x and 06h for DOS 3.0+
+	most TSRs can save some memory by releasing their environment block
+	  before terminating (see #01378 at AH=26h,AH=49h)
+	any open files remain open, so one should close any files which will
+	  not be used before going resident; to access a file which is left
+	  open from the TSR, one must switch PSP segments first (see AH=50h)
+SeeAlso: AH=00h,AH=4Ch,AH=4Dh,INT 20,INT 22,INT 27
+

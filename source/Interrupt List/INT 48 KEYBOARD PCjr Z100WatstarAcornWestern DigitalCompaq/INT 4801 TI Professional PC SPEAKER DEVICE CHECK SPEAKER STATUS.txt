@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4801
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 48 - TI Professional PC - SPEAKER DEVICE - CHECK SPEAKER STATUS
+	AH = 01h
+Return: ZF clear if speaker is currently on
+	ZF set if speaker is currently off
+SeeAlso: AH=00h,AH=02h,AH=03h,AH=04h,AH=06h,AH=08h,AH=0Ah,AH=0Bh
+

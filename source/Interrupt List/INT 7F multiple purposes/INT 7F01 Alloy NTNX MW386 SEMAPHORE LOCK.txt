@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX, MW386 - SEMAPHORE LOCK
+	AH = 01h
+	DS:DX -> ASCIZ semaphore name (max 64 bytes)
+Return: AL = status (see #03871)
+	AH = semaphore owner if status=02h
+SeeAlso: AH=00h,AH=02h,AH=41h
+

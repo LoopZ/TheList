@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1511
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_system" - EXECUTE SHELL SYSTEM COMMANDS
+	AH = 11h
+	STACK:	DWORD	pointer to ASCIZ string containing a VMiX shell
+			request (max len = 127)
+Return: AX = status (SYS_OK or SYS_ERROR)
+SeeAlso: AH=0Ch"VMiX"
+

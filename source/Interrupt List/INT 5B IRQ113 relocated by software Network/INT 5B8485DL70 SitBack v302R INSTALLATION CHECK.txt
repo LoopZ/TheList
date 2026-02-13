@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5B8485DL70
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 5B U - SitBack v3.02R - INSTALLATION CHECK
+	AX = 8485h
+	DL = 70h
+Return: CX = 8485h if installed
+	    DX:AX -> ??? (configuration data?)
+Program: SitBack is a background file backup utility by SitBack Technologies,
+	  Inc. which initiates backups whenever the system is idle
+SeeAlso: AX=5254h/DL=04h,AX=8485h/DL=78h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1980
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - IBM ROM-DOS v4.0 - INSTALLATION CHECK
+	AX = 1980h
+Return: AL = FFh if ??? installed/supported
+Note:	called at the very beginning of SHELLSTB.COM, which exits if AL is not
+	  FFh on return
+SeeAlso: AX=1981h,AX=1982h
+

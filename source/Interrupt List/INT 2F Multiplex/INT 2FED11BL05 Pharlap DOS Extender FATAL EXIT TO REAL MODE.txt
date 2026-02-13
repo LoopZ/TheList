@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FED11BL05
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Pharlap DOS Extender - FATAL EXIT TO REAL MODE ???
+	AX = ED11h
+	BL = 05h
+	CX = ???
+	DX = ???
+	ES:SI -> ??? structure
+	SS:SP = new stack ???
+Return: ???
+Note:	called immediately prior to terminating program with INT 21/AX=4CFFh
+SeeAlso: AX=ED00h,AX=ED10h
+

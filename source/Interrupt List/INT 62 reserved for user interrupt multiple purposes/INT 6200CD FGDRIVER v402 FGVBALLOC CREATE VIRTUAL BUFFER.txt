@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200CD
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBALLOC" - CREATE VIRTUAL BUFFER
+	AX = 00CDh
+	BX = width of virtual buffer in pixels
+	CX = height in pixels
+Return: AX = handle for virtual buffer, or
+	    FFFEh out of memory
+	    FFFFh virtual buffer table full
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=00CCh,AX=00CEh,AX=00D0h,AX=00D1h,AX=00D2h,AX=00D4h
+

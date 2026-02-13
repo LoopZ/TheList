@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6746
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS - GET EMM VERSION
+	AH = 46h
+Return: AH = status (00h,80h,81h,84h) (see #03648)
+	AL = EMM version number if AH=00h
+

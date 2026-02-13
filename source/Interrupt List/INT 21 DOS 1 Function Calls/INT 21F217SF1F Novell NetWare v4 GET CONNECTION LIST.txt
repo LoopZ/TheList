@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF1F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4 - GET CONNECTION LIST
+	AX = F217h subfn 1Fh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02182)
+	ES:DI -> reply buffer (see #02183)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+
+Format of NetWare "Get Connection List" request buffer:
+Offset	Size	Description	(Table 02182)
+ 00h	WORD	length of following data
+ 02h	BYTE	1Fh (subfunction "Get Connection List")
+ 03h	DWORD	object ID
+ 07h	DWORD	??? (initialize to FFFFFFFFh before first call)
+SeeAlso: #02183
+
+Format of NetWare "Get Connection List" reply buffer:
+Offset	Size	Description	(Table 02183)
+ 00h	WORD	number of connections following (max 50)
+ 02h 50 DWORDs	connection numbers
+SeeAlso: #02182
+

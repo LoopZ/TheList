@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6002
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - FTP Packet Driver - BASIC FUNC - ACCESS TYPE
+	AH = 02h
+	AL = interface class
+	BX = interface type
+	DL = interface number
+	DS:SI -> type
+	CX = length of type (0000h for all packets)
+	ES:DI -> receiver function (see #03308)
+Return: CF set on error
+	    DH = error code (see #03305)
+	CF clear if successful
+	    AX = handle
+SeeAlso: AH=03h"FTP"
+
+(Table 03308)
+Values packet driver receiver is called with when a packet is received:
+	AX = subfunction
+	    00h get packet buffer
+		CX = buffer length
+		DX = lookahead length (v1.10+)
+		DS:SI -> lookahead buffer if DX nonzero (v1.10+)
+		DI = error flags (class dependent) (v1.10+)
+		Return: ES:DI -> packet buffer
+				0000h:0000h means throw away packet
+			CX = size of buffer (v1.10+), may be smaller than
+			      incoming data
+	    01h copy completed
+		DS:SI -> buffer
+		CX = bytes actually copied (v1.10+)
+	BX = handle
+

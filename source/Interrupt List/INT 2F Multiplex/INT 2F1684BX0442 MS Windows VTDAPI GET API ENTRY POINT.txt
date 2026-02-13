@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0442
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - VTDAPI - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0442h (virtual device ID for VTDAPI device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02682)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02682)
+Call VTDAPI.VXD entry point with:
+	EAX = function number
+	    0000h
+	    0001h
+	    0002h
+	    0003h
+	    0004h
+	    0005h
+	    0006h
+	    0007h
+	    0008h
+	    0009h
+	    000Ah
+	    000Bh
+	    else
+		Return: nothing???
+SeeAlso: #02682
+

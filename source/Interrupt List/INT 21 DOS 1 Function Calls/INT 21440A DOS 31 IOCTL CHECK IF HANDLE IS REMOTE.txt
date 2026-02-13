@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21440A
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ - IOCTL - CHECK IF HANDLE IS REMOTE
+	AX = 440Ah
+	BX = handle
+Return: CF clear if successful
+	    DX = attribute word (as stored in SFT)
+		bit 15: set if remote
+		bit 14: date/time not set on close
+	CF set on error
+	    AX = error code (01h,06h) (see #01680 at AH=59h/BX=0000h)
+Notes:	if file is remote, Novell Advanced NetWare 2.0 returns the number of
+	  the file server on which the handle is located in CX
+	DR DOS 3.41 and 5.0 clear all bits of DX except bit 15; Novell DOS 7
+	  fully supports this function
+	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AX=4400h,AX=4409h,AH=52h,INT 2F/AX=122Bh
+

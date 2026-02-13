@@ -1,0 +1,91 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F41
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - LOCAL NetServiceEnum
+	AX = 5F41h
+	BL = level of detail (0000h, 0001h or 0002h)
+	CX = buffer length
+	ES:DI -> buffer of service_info_0, service_info_1, or service_info_2
+		(see #01707,#01708,#01709)
+Return: CF clear if successful
+	    CX = entries read
+	    DX = total available
+	CF set on error
+	    AX = error code
+
+Format of LAN Manager service_info_0 structure:
+Offset	Size	Description	(Table 01707)
+ 00h 16 BYTEs	name
+SeeAlso: #01708,#01709
+
+Format of service_info_1 structure:
+Offset	Size	Description	(Table 01708)
+ 00h 16 BYTEs	name
+ 10h	WORD	status bitmask (see #01710)
+ 12h	DWORD	status code (see #01711)
+		(also see Microsoft LAN Manager Programmer's Reference)
+ 16h	WORD	process id
+SeeAlso: #01707,#01709
+
+Format of service_info_2 structure:
+Offset	Size	Description	(Table 01709)
+ 00h 16 BYTEs	name
+ 10h	WORD	status bitmask (see #01710)
+ 12h	DWORD	status code (see #01711)
+ 16h	WORD	process id
+ 18h 64 BYTEs	text
+SeeAlso: #01707,#01708
+
+Bitfields for LAN Manager status bitmask:
+Bit(s)	Description	(Table 01710)
+ 0,1	00 uninstall
+		01 install pending
+		10 uninstall pending
+		11 installed
+ 2,3	00 active
+		01 Continue pending
+		10 Pause pending
+		11 paused
+ 4	uninstallable
+ 5	pausable
+ 8	disk redirector paused
+ 9	spooled device redirector paused (printing)
+ 10	communication device redirector paused
+
+(Table 01711)
+Values for LAN Manager status code:
+ high word
+    3051 Bad parameter value
+    3052 A parameter is missing
+    3053 An unknown parameter was specified
+    3054 The resource is insufficient
+    3055 Configuration is faulty
+    3056 An MS-DOS or MS OS/2 error occured
+    3057 An internal error occured
+    3058 An ambiguous parameter name was given
+    3059 A duplicate parameter exists
+    3060 The service was terminated by NetSeviceControl when it did not respond
+    3061 The service program file could not be executed
+    3062 The subservice failed to start
+    3063 There is a conflict in the value or use of these parameters
+    3064 There is a problem with the file
+ low word
+    3070 There is insufficient memory
+    3071 There is insufficeient disk space
+    3072 Unable to create thread
+    3073 Unable to create process
+    3074 A security failure occured
+    3075 There is bad or missing default path
+    3076 Network software is not installed
+    3077 Server software is not installed
+    3078 The server could not access the UAS database
+    3079 The action requires user-level security
+    3080 The log directory is invalid
+    3081 The LAN group specificed could not be used
+    3082 The computername is being used as a message alias on another computer
+    3083 The workstation failed to announce the servername
+    3084 The user accounts system is not configured properly
+

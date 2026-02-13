@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: EF----CX00C8
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT EF - GEM - AES INTERFACE
+	CX = 00C8h
+	DX = 0000h
+	ES:BX -> AES parameter block (see #04064)
+SeeAlso: INT EF/CX=00C9h,INT EF/CX=0473h
+
+Format of AES parameter block:
+Offset	Size	Description	(Table 04064)
+ 00h	DWORD	-> control array (see #04065)
+ 04h	DWORD	-> global variables (15 WORDs)
+ 08h	DWORD	-> integer input parameters
+ 0Ch	DWORS	-> buffer for integer results
+ 10h	DWORD	-> address (DWORD) input parameters
+ 14h	DWORD	-> buffer for address (DWORD) results
+SeeAlso: #04066
+
+Format of AES control array:
+Offset	Size	Description	(Table 04065)
+ 00h	WORD	function number (000Ah-0084h)
+ 02h	WORD	number of words of integer input parameters
+ 04h	WORD	number of words available for integer results
+ 06h	WORD	number of words of address input parameters
+ 08h	WORD	number of words available for address results
+SeeAlso: #04064
+

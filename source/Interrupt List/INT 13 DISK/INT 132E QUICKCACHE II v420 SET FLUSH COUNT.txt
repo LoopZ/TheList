@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 132E
+  Category: c 	caches/spoolers
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 13 u - QUICKCACHE II v4.20 - SET FLUSH COUNT
+	AH = 2Eh
+	BX = flush count
+Return: AX = status (0000h successful)
+Desc:	specify how many dirty sectors the cache should write after each flush
+	  interval (see AH=25h"QUICKCACHE") when buffered writes are enabled
+SeeAlso: AH=21h"QUICKCACHE",AH=25h"QUICKCACHE",AH=2Ch
+

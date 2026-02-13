@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F0D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.07+ - HOST MODE - ALLOCATE/DEALLOCATE STREAM
+	AH = 0Dh
+	AL = stream number (01h-FFh)
+	CL = function
+	    01h allocate stream
+		Return: CX = status (0000h successful, else already in use)
+	    02h deallocate stream
+SeeAlso: AX=0D00h
+

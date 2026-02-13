@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX8888
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VbillD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 8888h (virtual device ID for VbillD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02716)
+		  0000h:0000h if the VxD does not support an API
+
+(Table 02716)
+Call VbillD entry point with:
+	AX = function
+	    0001h set reverse video
+	    0002h set normal video
+Return: ???
+SeeAlso: #02715
+

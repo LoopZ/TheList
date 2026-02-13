@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI1005
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - "M_DIRTY_SYNC" - FORCE SCREEN UPDATE
+	DI = 1005h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 10/AH=FFh,INT 60/DI=0300h,INT 60/DI=0301h
+

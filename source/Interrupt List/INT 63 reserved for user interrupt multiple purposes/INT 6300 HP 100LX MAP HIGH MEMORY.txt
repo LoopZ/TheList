@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6300
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - HP 100LX - MAP HIGH MEMORY
+	AH = 00h
+	AL = physical page (00h seg C000, 01h seg C400h, ...)
+	BX = zero-based logical page
+	CX = page number
+	DX = device ID (00h system ROM, 05h plugin, etc.)
+Return: ???
+SeeAlso: AH=01h
+

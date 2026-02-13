@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL59
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - ConcCP/M,DR Multiuser DOS - "S_MEMORY" - RESERVE MEMORY IN GLOBAL AREA
+	CL = 59h
+	DX = size in bytes
+Return: AX = status
+	    FFFFh failed
+	    other successful
+		ES:BX -> reserved memory
+

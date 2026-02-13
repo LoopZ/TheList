@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC009
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PrintCache v3.1 PCACHE.EXE - SET ??? FLAG
+	AX = C009h
+Return: BX destroyed
+Program: PCACHE is the resident print spooler portion of PrintCache by
+	  LaserTools; it may use either memory or disk space to spool output
+Range:	AH=C0h to AH=FFh, selected by commandline switch
+SeeAlso: AX=C000h"PCACHE",AX=C008h"PCACHE"
+

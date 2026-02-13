@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC100
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Personal NetWare - STPIPX v1.00 - INSTALLATION CHECK
+	AX = C100h
+Return: AL = FFh if installed
+	    ES:SI -> signature string "STP-IPX$"
+	    BX = version??? (0001h for v1.00)
+	    DI corrupted
+Note:	AH=C1h is the default value; STPIPX probably scans a range of
+	  multiplex numbers to find a free one, as LSL does
+SeeAlso: AX=C000h"LSL",AX=C101h
+

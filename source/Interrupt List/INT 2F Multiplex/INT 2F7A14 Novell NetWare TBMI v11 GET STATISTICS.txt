@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A14
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell NetWare - TBMI v1.1+ - GET STATISTICS
+	AX = 7A14h
+	CX = statistic to retrieve
+	    0000h available diagnostic functions???
+		Return: CX = maximum available function??? (000Ch for v2.0)
+	    0001h buffers in use
+		Return: CX = TBMI buffers currently in use
+	    0002h maximum buffers used
+		Return: CX = maximum number of buffers ever in use
+	    0003h unavailable buffers
+		Return: CX = count of unavailable TBMI buffers
+	    0004h old interrupt usage
+		Return: CX = TBMI accesses to intercepted old vectors INT 2F,
+			      INT 64, and INT 7A
+	    0005h far call usage
+		Return: CX = TBMI accesses to IPX/SPX far call handler (not
+			      including internal accesses)
+	    0006h task buffering
+		Return: CX = TBMI task buffering status (enabled/disabled or
+			      disable/enable switch count???)
+	    0007h current task ID
+		Return: CX = TBMI current task ID number (0000h if ???)
+	    0008h outstanding ID count
+		Return: CX = number of outstanding TBMI IDs
+	    0009h configured ECBs
+		Return: CX = number of TBMI Event Control Blocks configured
+	    000Ah configured data ECBs
+		Return: CX = number of TBMI data ECBs configured
+	    000Bh configured sockets
+		Return: CX = number of TBMI sockets configured (from NETCFG)
+	    000Ch current sockets
+		Return: CX = number of TBMI sockets currently in use
+Return: BX = maximum supported subfunction (000Ch)
+SeeAlso: AX=7A10h
+

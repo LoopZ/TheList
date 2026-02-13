@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6125
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - PC/TCP kernel v2.05+ - "ad_res_name" - GET HOST NAME GIVEN ADDRESS
+	AH = 25h
+	DX,BX = IP address in network order
+	CX = length of buffer for name
+	DS:SI -> buffer for host name
+Return: CF clear if successful
+	   buffer filled with ASCIZ host name
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	this function will use the host table and or DNS to resolve the
+	  address, depending on kernel configuration.  Use this call for the
+	  normal gethostbyaddr function.
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=26h,INT 61/AH=27h
+

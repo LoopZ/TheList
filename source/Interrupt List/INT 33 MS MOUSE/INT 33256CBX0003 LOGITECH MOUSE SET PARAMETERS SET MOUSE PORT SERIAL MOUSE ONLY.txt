@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33256CBX0003
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - LOGITECH MOUSE - SET PARAMETERS - SET MOUSE PORT (SERIAL MOUSE ONLY)
+	AX = 256Ch
+	BX = 0003h
+	CX = port (1, 2)
+Return: AX = FFFFh if driver installed for serial mouse
+SeeAlso: AX=246Ch,AX=256Ch/BX=0000h,AX=256Ch/BX=0004h,AX=276Ch
+

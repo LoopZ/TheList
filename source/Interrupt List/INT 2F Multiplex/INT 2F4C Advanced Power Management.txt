@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4C
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Advanced Power Management
+	AH = 4Ch
+	AL = function
+	    00h version check
+	    01h suspend system requested
+	    FFh suspend/resume battery notification
+	???
+Return: ???
+

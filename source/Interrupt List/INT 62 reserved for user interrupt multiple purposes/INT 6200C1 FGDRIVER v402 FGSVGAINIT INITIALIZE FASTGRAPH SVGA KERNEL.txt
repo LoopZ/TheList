@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200C1
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_SVGAINIT" - INITIALIZE FASTGRAPH SVGA KERNEL
+	AX = 00C1h
+	BX = method (see #03505)
+Return: AX = status
+	    0000h no VESA BIOS or supported SVGA chipset
+	    0001h using VESA BIOS
+	    0002h-0016h specific chipset being used (same as "method" below)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function must be called before attempting to set SVGA graphics
+	  modes (18h to 1Dh) or using "FG_BESTMODE", "FG_TESTMODE", or
+	  "FG_MEMORY"
+SeeAlso: AX=0025h,AX=00C2h,AX=00C3h
+
+(Table 03505)
+Values for FGDRIVER SVGA method:
+ 0000h	autodetect, give chipset-specific code priority over VESA
+ 0001h	autodetect, give VESA priority over chipset-specific code
+ 0002h	Ahead type "A"
+ 0003h	Ahead type "B"
+ 0004h	ATI 18800
+ 0005h	ATI 18800-1
+ 0006h	ATI 28800
+ 0007h	Chips & Technologies 82c451/455/456
+ 0008h	C&T 82c452
+ 0009h	C&T 82c453
+ 000Ah	Genoa 6000 series
+ 000Bh	Oak OTI-067
+ 000Ch	Paradise PVGA1a
+ 000Dh	Paradise WD90C00/WD90C10
+ 000Eh	Paradise WD90C11/WD90C30/WD90C31
+ 000Fh	Trident 8800
+ 0010h	Trident 8900
+ 0011h	Tseng ET3000
+ 0012h	Tseng ET4000
+ 0013h	Video7
+ 0014h	Cirrus Logic 5400 series
+ 0015h	S3
+ 0016h	Trident 8900B/8900C/9000
+

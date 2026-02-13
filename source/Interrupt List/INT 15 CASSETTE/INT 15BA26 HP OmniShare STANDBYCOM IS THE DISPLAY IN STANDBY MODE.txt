@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15BA26
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HP OmniShare - STANDBY.COM - IS THE DISPLAY IN STANDBY MODE?
+	AX = BA26h
+Return: CF clear if successful
+	    AL	= display state (00h active, 01h in standby mode)
+	CF set on error (function not supported)
+SeeAlso: AX=BA20h,AX=BA23h
+

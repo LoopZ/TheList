@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1410
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - EXTENDED ^C/^K CHECKING AND TRANSMIT ON/OFF
+	AH = 10h
+	AL = bit mask
+	    bit 0: enable/disable ^C/^K checking
+	    bit 1: enable/disable the transmitter
+	DX = port number
+Return: nothing
+SeeAlso: AH=0Fh"FOSSIL"
+

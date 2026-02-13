@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F26FSF00
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - OPEN SEMAPHORE
+	AX = F26Fh subfn 00h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02481)
+	ES:DI -> reply buffer (see #02482)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F26Fh/SF=01h,AX=F26Fh/SF=02h
+
+Format of NetWare "Open Semaphore" request packet:
+Offset	Size	Description	(Table 02481)
+ 00h	BYTE	00h (subfunction "Open Semaphore")
+ 01h	BYTE	initial semaphore value
+ 02h	BYTE	length of semaphore's name
+ 03h  N BYTEs	semaphore name
+SeeAlso: #02482
+
+Format of NetWare "Open Semaphore" request packet:
+Offset	Size	Description	(Table 02482)
+ 00h	DWORD	semaphore handle
+ 04h	BYTE	number of clients using semaphore (including caller)
+SeeAlso: #02481
+

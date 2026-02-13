@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAD01
+  Category: O 	other operating systems
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Novell DOS 7 KEYB - GET/SET??? CONFIGURATION
+	AX = AD01h
+	CX = ??? (0000h)
+Return: AX = FFFFh if Novell DOS 7 KEYB installed
+	BX = current code page (see #01757 at INT 21/AX=6602h)
+	CX = current keyboard layout (0100h = US, 0102h = foreign)
+	ES = resident code segment
+SeeAlso: AX=AD01h"DR DOS",AX=AD00h"KEYB",AX=AD02h"KEYB",AX=AD83h"KEYB"
+

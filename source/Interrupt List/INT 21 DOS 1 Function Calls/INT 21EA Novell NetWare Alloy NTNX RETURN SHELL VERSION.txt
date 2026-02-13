@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EA
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare, Alloy NTNX - RETURN SHELL VERSION
+	AH = EAh
+	AL = return version environment string
+	    00h		don't return string
+	    nonzero	get environment string
+		ES:DI -> 40-byte buffer for string
+		Return: buffer filled with three null-terminated entries:
+			major operating system
+			version
+			hardware type
+Return: AH = operating system (00h = MS-DOS)
+	AL = hardware type
+	    00h IBM PC
+	    01h Victor 9000
+	BH = major shell version
+	BL = minor shell version
+	CH = (v3.01+) shell type
+	    00h conventional memory
+	    01h expanded memory
+	    02h extended memory
+	CL = shell revision number
+Note:	this function is supported by NetWare 4.6 and Advanced NetWare 1.0+
+SeeAlso: INT DF"Victor"
+

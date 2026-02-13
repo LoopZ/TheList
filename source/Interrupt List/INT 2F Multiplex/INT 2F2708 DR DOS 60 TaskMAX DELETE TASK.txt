@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2708
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - DELETE TASK
+	AX = 2708h
+	DX = task index
+Return: DX = FFFFh (task deleted)
+Notes:	this call should only be used for abnormal task termination, after
+	  first checking for open files with AX=270Ch; should not be used
+	  with programs that allocate EMS or XMS memory
+	switches to specified task first
+SeeAlso: AX=2707h
+

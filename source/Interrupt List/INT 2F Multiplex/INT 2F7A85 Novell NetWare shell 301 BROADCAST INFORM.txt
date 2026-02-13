@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A85
+  Category: N 	network
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - Novell NetWare - shell 3.01 - BROADCAST INFORM
+	AX = 7A85h
+	CX = broadcast server number
+Return: CX = 0000h if broadcast message handled by another program
+	CX unchanged if broadcast not handled
+SeeAlso: AX=7A21h
+

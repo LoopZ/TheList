@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F11
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectras RS/20C and RS/25C - GET MEMORY CACHING STATE
+	AX = 6F11h
+Return: AH = 00h (successful)
+	AL bit 0 = cache state
+	    0 cache disabled
+	    1 cache enabled
+SeeAlso: AX=6F00h,AX=6F0Fh,AX=6F10h
+

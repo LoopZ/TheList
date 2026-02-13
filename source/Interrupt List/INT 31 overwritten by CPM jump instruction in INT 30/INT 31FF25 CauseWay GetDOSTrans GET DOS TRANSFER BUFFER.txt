@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31FF25
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - CauseWay - "GetDOSTrans" - GET DOS TRANSFER BUFFER
+	AX = FF25h
+Return: BX = real-mode segment of transfer buffer
+	ECX = transfer buffer size
+	DX = protected-mode selector for transfer buffer
+Note:	the default buffer size of 8K is sufficient for most applications,
+	  but an application performing large amounts of file I/O may benefit
+	  from allocating its own, larger buffer
+SeeAlso: AX=FF00h,AX=FF26h
+

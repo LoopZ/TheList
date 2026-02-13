@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--51
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - DTown Utilities v1.40+ - MEMORY VIEW SET REFERENCE
+	AL = 51h
+	BL = reference ("bookmark") number
+	CX:DX = new address for reference
+Return: AL = status
+	    00h invalid index
+	    FFh reference set
+Note:	this function is only available if the extended API has been installed
+	  in the resident portion
+Program: DTown Utilities is a shareware programmer's utility TSR by Jeroen van
+	  Disseldorp
+SeeAlso: INT 2D/AL=10h"DTown",INT 2D/AL=20h,INT 2D/AL=50h
+

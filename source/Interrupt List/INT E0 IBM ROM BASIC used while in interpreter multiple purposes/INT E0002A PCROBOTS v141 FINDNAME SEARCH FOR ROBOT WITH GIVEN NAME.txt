@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0002A
+  Category: g 	games
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - PCROBOTS v1.41 - "FIND_NAME" - SEARCH FOR ROBOT WITH GIVEN NAME
+	AX = 002Ah
+	BX:CX -> ASCIZ name string
+	DX = first ID to check
+Return: AX = robot ID or FFFFh if no robot with specified name
+SeeAlso: AX=0028h,AX=0029h,AX=002Bh
+

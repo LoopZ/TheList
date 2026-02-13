@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1349
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - IBM/MS INT 13 Extensions - EXTENDED MEDIA CHANGE
+	AH = 49h
+	DL = drive number
+Return: CF clear if media has not changed
+	    AH = 00h
+	CF set if media may have changed
+	    AH = 06h (see #00234)
+Note:	unlike AH=16h, any drive number may be specified
+SeeAlso: AH=16h,AH=41h"INT 13 Ext",AH=46h
+

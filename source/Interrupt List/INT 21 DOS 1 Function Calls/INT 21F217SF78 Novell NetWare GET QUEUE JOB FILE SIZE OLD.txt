@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF78
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - GET QUEUE JOB FILE SIZE (OLD)
+	AX = F217h subfn 78h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01996 at AH=E3h/SF=78h)
+	ES:DI -> reply buffer (see #02204)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=78h,AX=F217h/SF=71h,AX=F217h/SF=79h
+
+Format of NetWare "Get Queue Job File Size (old)" reply packet:
+Offset	Size	Description	(Table 02204)
+ 00h	DWORD	(big-endian) object ID of queue
+ 04h	WORD	(big-endian) job number
+ 06h	DWORD	(big-endian) size of job file in bytes
+SeeAlso: #01996,#01997 at AH=E3h/SF=78h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1486
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COURIERS.COM - START OUTPUT
+	AH = 86h
+	ES:BX -> output buffer
+	CX = length of output buffer
+Return: nothing
+SeeAlso: AH=19h,AH=83h"COURIERS",AH=A4h"BAPI"
+

@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: 8F
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 8F - IBM ROM BASIC - used while in interpreter
+Notes:	called by ROM BASIC, but pointed at IRET by BASIC.COM/BASICA.COM
+	BASIC.COM/BASICA.COM do not restore vector on termination
+SeeAlso: INT 8E,INT 90
+

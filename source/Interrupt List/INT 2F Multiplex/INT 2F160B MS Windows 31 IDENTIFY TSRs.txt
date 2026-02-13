@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F160B
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows 3.1 - IDENTIFY TSRs
+	AX = 160Bh
+	ES:DI = 0000h:0000h
+Return: ES:DI -> TSR information structure (see #02638)
+Desc:	this call allows Windows-aware TSRs to make themselves known to
+	  Windows.
+Note:	the TSR should first chain to the previous INT 2F handler, then
+	  allocate a communication structure, place the returned ES:DI
+	  pointer in the first field, and return a pointer to the new
+	  structure
+SeeAlso: AX=1605h,AX=160Ch,AX=4B01h,AX=4B05h
+
+Format of TSR-to-Windows information structure:
+Offset	Size	Description	(Table 02638)
+ 00h	DWORD	pointer to next structure
+ 04h	WORD	PSP segment
+ 06h	WORD	API version ID (0100h)
+ 08h	WORD	EXEC flags (how to load command specified by "exec_cmd")
+		bit 0: "WINEXEC"
+		bit 1: "LOADLIBRARY"
+		bit 2: "OPENDRIVER"
+ 0Ah	WORD	"exec_cmd_show" (see #02639)
+ 0Ch	DWORD	"exec_cmd" pointer to command line to be executed
+ 10h  4 BYTEs	reserved (0)
+ 14h	DWORD	pointer to TSR ID block (see #02640)
+ 18h	DWORD	pointer to TSR data block or 0000h:0000h
+
+(Table 02639)
+Values for TSR information structure "exec_cmd_show":
+ 00h	HIDE
+ 01h	SHOWNORMAL
+ 02h	SHOWMINIMIZED
+ 03h	SHOWMAXIMIZED
+ 04h	SHOWNOACTIVE
+ 05h	SHOW
+ 06h	MINIMIZE
+ 07h	SHOWMINNOACTIVE
+ 08h	SHOWNA
+ 09h	RESTORE
+Note:	this value is passed as the second parameter to the WinExec(),
+	  LoadLibrary(), or OpenDriver() call used to execute a requested
+	  command line
+SeeAlso: #02638
+
+Format of Norton Utilities 6.0 TSR ID block:
+Offset	Size	Description	(Table 02640)
+ 00h	WORD	length of name string
+ 02h  N BYTEs	name of TSR's executable
+SeeAlso: #02638
+

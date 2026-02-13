@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15C4
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - PROGRAMMABLE OPTION SELECT (PS50+)
+	AH = C4h
+	AL = subfunction
+	    00h return base POS register address
+	    01h enable selected slot for setup
+		BL = slot number (1 to 8)
+	    02h disable setup for all slots (enable adapter)
+Return: CF set on error
+	DX = base POS register address (if subfunction 00h)
+SeeAlso: AH=C6h
+

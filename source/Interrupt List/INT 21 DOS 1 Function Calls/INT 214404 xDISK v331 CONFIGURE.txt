@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214404
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - xDISK v3.31 - CONFIGURE
+	AX = 4404h
+	BL = drive number (00h = default, 01h = A:, etc)
+	CX = 0047h (length of version string)
+	DS:DX -> 79-byte buffer for version string and ???
+	DS:0081h = commandline containing new switches for driver
+Return: CF clear if successful
+	    AX = number of bytes actually transferred
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Program: xDISK is a shareware resizeable EMS RAMdisk by FM de Monasterio
+SeeAlso: AX=4405h"xDISK",INT 2F/AH=DDh/BX=7844h"xDISK"
+

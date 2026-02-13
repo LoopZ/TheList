@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BH02
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - APM SL Enhanced v1.0 - GET GLOBAL STANDBY TIMER
+	AX = 5380h
+	BH = 02h
+Return: CF clear if successful
+	SI:DI = timer count in seconds (actually 1.024 seconds)
+Desc:	reads the value of 82360SL GSTDBY_TMRH & GSTDBY_TMRL registers
+SeeAlso: AX=5380h/BH=00h,AX=5380h/BH=03h,AX=5380h/BH=04h,AX=5380h/BH=7Fh
+

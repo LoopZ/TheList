@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF14
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - DEALLOCATE DIRECTORY HANDLE
+	AH = E2h subfn 14h
+	DS:SI -> request buffer (see #01872)
+	ES:DI -> reply buffer (see #01873)
+Return: AL = status (00h,9Bh) (see #01839)
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=E2h/SF=12h,AH=E2h/SF=13h,AX=F216h/SF=14h
+
+Format of NetWare "Deallocate Directory Handle" request buffer:
+Offset	Size	Description	(Table 01872)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	14h (subfunction "Deallocate Directory Handle")
+ 03h	BYTE	directory handle
+SeeAlso: #01873
+
+Format of NetWare reply buffer:
+Offset	Size	Description	(Table 01873)
+ 00h	WORD	(call) 0000h (no returned data)
+SeeAlso: #01872
+

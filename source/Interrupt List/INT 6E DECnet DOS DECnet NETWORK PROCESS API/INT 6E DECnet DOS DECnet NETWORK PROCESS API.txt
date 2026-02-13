@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6E
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6E - DECnet DOS - DECnet NETWORK PROCESS API
+InstallCheck:	test for the signature/data area (see #03737) immediately prior
+	  to the interrupt handler
+Note:	this is the main DECnet DOS access, and is described in Digital manual
+	  AA-EB46B-TV ("DECnet-DOS Programmer's Reference Manual")
+Index:	installation check;DECnet DOS
+
+Format of DECnet DOS signature area:
+Offset	Size	Description	(Table 03737)
+ -5	BYTE	major version number
+ -4	BYTE	minor version number
+ -3   3 BYTEs	signature (ASCII "DNP")
+

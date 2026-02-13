@@ -1,0 +1,77 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215758
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Headroom - API
+	AX = 5758h
+	BL = function
+	    00h ???
+	    01h get Headroom location
+		Return: CF clear if installed
+			    AX = PSP segment of Headroom TSR
+			    BX = paragraphs of memory used by Headroom
+			CF set if not (normal DOS return)
+		Note:	this function is also used as an installation check
+	    02h get INT 21 handler
+		Return: CF clear
+			ES:BX -> Headroom's INT 21 handler
+		Note: also sets unknown flag
+	    03h launch application???
+		DS:SI -> 233-byte application record
+		Return: ???
+	    04h ???
+		???
+		Return: CF clear
+	    05h get swap directory
+		Return: CF clear
+			DX:AX -> ASCIZ swap directory name
+	    06h ???
+		DX = ???
+		Return: CF clear
+	    07h ???
+	    08h ???
+	    09h get current application
+		Return: BX = application number
+	    0Ah ???
+		DX = application number
+		DS:SI = ???
+		Return: ???
+	    0Bh ???
+	    0Ch ???
+		DX = application number
+		???
+		Return: ???
+	    0Dh ???
+		DX = application number
+		???
+		Return: ???
+	    0Eh get ???
+		Return: CF clear
+			AX = ???
+	    0Fh set ??? flag
+	    10h clear ??? flag
+	    11h find application by name
+		DS:SI -> ASCIZ application name
+		Return: CF clear
+			AX = application number or FFFFh if not loaded
+	    12h ???
+		DX = application number
+		Return: CF clear
+			???
+	    13h ???
+		Return: CF clear
+	    14h ???
+		same as function 13h
+	    15h set ???
+		DX = ???
+	    16h get ???
+		Return: AX = ??? set by function 15h
+	    17h get ???
+		Return: BX = ???
+			CX = ??? (may be pointer in BX:CX)
+	    18h BUG: branches incorrectly due to fencepost error
+Program: Headroom is a TSR/task switcher by Helix Software
+SeeAlso: AX=4C57h,AX=5757h,INT 2F/AX=5758h
+

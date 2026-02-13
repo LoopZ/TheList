@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10CC00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - UltraVision - GET STATUS (INSTALLATION CHECK)
+	AX = CC00h
+	SI = magic value 0000h (if checking version)
+Return: CX = product signature
+	    ABCDh UltraVision
+	    5546h ('UF') UltraFont
+	AL = Ultravision extensions
+	    00h enabled
+	    FFh disabled
+	AH = card designator
+	BX:00F0h -> palette values (for compatibility with NEWFONT)
+	DX = support for high resolution modes
+	    00h not active
+	    01h active
+	SI = UltraVision version number (v1.2+), high byte=major,low byte=minor
+	    unchanged for versions <1.2
+Note:	UltraFont is a simplified version of UltraVision for Toshiba;
+	  only the signature in CX and the status in AL will be returned
+SeeAlso: AX=CC01h,AX=CC02h
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10DFA5
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 10 U - VIDEO - Compaq ADAPT.COM - GET ??? DATA AREA
+	AX = DFA5h
+Return: AX = BDBFh if supported
+	    ES:DI -> ??? data area
+	    BX = ES
+SeeAlso: AX=BFA0h
+

@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: D42C
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT D4 - PC-MOS/386 v5.01 - GET/SET SPOOLER PARAMETERS
+	AH = 2Ch
+	AL = function
+	    00h set spooler timeout
+		CX = timout value in seconds
+	    01h get spooler timeout
+		Return: CX = current timeout in seconds
+	    02h get spooler parameters
+		Return: CH = priority (00h-09h)
+			CL = disposition (d, h, i, n, s)
+			SI = class (a - z)
+	    03h set spooler parameters
+		CH = priority (00h-09h)
+		CL = disposition (d, h, i, n, s)
+		SI = class (a - z)
+		BX = task ID (FFFFh for current task)
+		DX = LPT number
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+SeeAlso: AH=00h,AH=02h,AH=03h
+

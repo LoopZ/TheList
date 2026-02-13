@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6751
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - REALLOCATE PAGES
+	AH = 51h
+	DX = handle
+	BX = number of pages to be allocated to handle
+Return: AH = status (00h,80h,81h,83h,84h,87h,88h) (see #03650)
+	BX = actual number of pages allocated to handle
+
+(Table 03650)
+Values for EMS function status:
+ 00h	successful
+ 80h	internal error
+ 81h	hardware malfunction
+ 83h	invalid handle
+ 84h	undefined function requested
+ 87h	more pages requested than present in system
+ 88h	more pages requested than currently available
+ 8Ah	invalid logical page number encountered
+ 8Bh	invalid physical page number encountered
+ 8Fh	undefined subfunction
+ 90h	undefined attribute type
+ 91h	feature not supported
+ A0h	no such handle name
+ A1h	duplicate handle name
+

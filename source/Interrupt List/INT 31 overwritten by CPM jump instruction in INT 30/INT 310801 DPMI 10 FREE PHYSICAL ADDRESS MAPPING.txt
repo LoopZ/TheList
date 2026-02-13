@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310801
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - FREE PHYSICAL ADDRESS MAPPING
+	AX = 0801h
+	BX:CX = linear address returned by AX=0800h
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (8025h) (see #03143)
+Note:	should be called at end of access to device mapped with AX=0800h
+SeeAlso: AX=0508h,AX=0509h,AX=0800h,INT 21/AX=EB03h
+

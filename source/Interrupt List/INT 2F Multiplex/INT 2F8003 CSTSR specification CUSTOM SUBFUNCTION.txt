@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F8003
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - CS_TSR specification - CUSTOM SUBFUNCTION
+	AX = 8003h
+	BX = process handle for TSR (see AX=8001h"CS_TSR")
+	other registers vary by TSR
+Return: vary by TSR, unchanged if not supported
+Program: the CS_TSR specification is a standardized TSR interface by Compact
+	  Soft group in Kiev, Ukraine
+SeeAlso: AX=8000h"CS_TSR",AX=8001h"CS_TSR",AX=8002h"CS_TSR"
+

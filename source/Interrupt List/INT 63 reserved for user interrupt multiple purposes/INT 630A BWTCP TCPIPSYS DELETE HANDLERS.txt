@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 630A
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 63 - BW-TCP - TCPIP.SYS - DELETE ??? HANDLERS
+	AH = 0Ah
+	BL = handler type
+Return: CF clear if successful
+	CF set on error (no handler of specified type installed)
+SeeAlso: AH=09h
+

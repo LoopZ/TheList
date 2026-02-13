@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFFF
+  Category: v 	virus/antivirus
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - VIRUS - "Ontario", "Year 1992"/"B1M92" - INSTALLATION CHECK
+	AX = FFFFh
+Return: AX = 0000h if "Ontario" resident
+	AX = 1992h if "Year 1992"/"B1M92" resident
+SeeAlso: AX=FF0Fh,AX=FFFFh/CX=0000h,INT 6B"VIRUS"
+

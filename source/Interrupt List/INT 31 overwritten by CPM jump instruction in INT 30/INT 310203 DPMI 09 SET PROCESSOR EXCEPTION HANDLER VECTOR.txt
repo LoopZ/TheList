@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310203
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 0.9+ - SET PROCESSOR EXCEPTION HANDLER VECTOR
+	AX = 0203h
+	BL = exception number (00h-1Fh)
+	CX:(E)DX = selector:offset of handler
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (DPMI 1.0+) (8021h,8022h) (see #03143)
+Notes:	32-bit programs must supply an offset in EDX and use a 32-bit interrupt
+	  stack frame on chaining to the next exception handler
+	the handler should return using a FAR return
+	all fault stack frames contain an error code, but it is only valid for
+	  exceptions 08h and 0Ah-0Eh
+	handlers will only be called if the exception occurs in protected mode,
+	  and the DPMI host does not transparently handle the exception
+	the handler may change certain values on the stack frame
+	  (see #03146,#03147)
+	DPMI 1.0+ supports this function only for backward compatibility; use
+	   AX=0212h or AX=0213h instead
+	not supported by MS Windows 3.0 in Standard mode
+SeeAlso: AX=0202h,AX=0212h,AX=0213h,INT 2F/AX=FB42h/BX=0022h
+
+Format of stack frame for 16-bit programs: (offset from SS:SP)
+Offset	Size	Description	(Table 03146)
+ 00h	DWORD	return CS:IP (do not change)
+ 04h	WORD	error code
+ 06h	DWORD	CS:IP of exception
+ 0Ah	WORD	flags
+ 0Ch	DWORD	SS:SP
+
+Format of stack frame for 32-bit programs: (offset from SS:ESP)
+Offset	Size	Description	(Table 03147)
+ 00h	DWORD	return EIP (do not change)
+ 04h	WORD	return CS selector (do not change)
+ 06h	WORD	reserved (do not change)
+ 08h	DWORD	error code
+ 0Ch	DWORD	EIP of exception
+ 10h	WORD	CS selector of exception
+ 12h	WORD	reserved (do not change)
+ 14h	DWORD	EFLAGS
+ 18h	DWORD	ESP
+ 1Ch	WORD	SS
+ 1Eh	WORD	reserved (do not change)
+

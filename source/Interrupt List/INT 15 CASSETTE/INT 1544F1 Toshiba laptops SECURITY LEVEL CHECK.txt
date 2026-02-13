@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1544F1
+  Category: B 	BIOS
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - Toshiba laptops - SECURITY LEVEL CHECK
+	AX = 44F1h
+	DS:DX -> byte with 00h ???
+Return: ???
+Note:	used by Toshiba BIOS setup utility TSETUP.EXE to distinguish
+	  between USER and SUPERVISOR security level
+SeeAlso: AX=44F2h,AX=44F3h
+

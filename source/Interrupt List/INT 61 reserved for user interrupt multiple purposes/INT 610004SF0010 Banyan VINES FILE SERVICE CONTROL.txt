@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610004SF0010
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - FILE SERVICE CONTROL - ???
+	AX = 0004h subfn 0010h
+	DS:DX -> request block (see #03420)
+Return: AX = status (see also #03400)
+	    0000h request has been processed
+SeeAlso: AX=0004h/SF=000Fh
+
+Format of VINES Function 0004h/Subfunction 0010h request block:
+Offset	Size	Description	(Table 03420)
+ 00h	WORD	0010h
+ 02h	BYTE	drive number (0=default, 1=A, ...)
+ 03h	BYTE	reserved
+ 04h 64	BYTEs	???
+ 44h 16	BYTEs	IPC port (see #03328 at AX=0001h"Sosock")
+

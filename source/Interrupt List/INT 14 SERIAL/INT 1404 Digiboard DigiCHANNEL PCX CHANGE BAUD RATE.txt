@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1404
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Digiboard DigiCHANNEL PC/X* - CHANGE BAUD RATE
+	AH = 04h
+	AL = initializing parameters (see #00310)
+	BX = baud rate
+	DX = port number (00h-03h) (04h-43h for XAPCM232.SYS)
+Return: AH = status
+	    00h successful
+	    FFh error
+SeeAlso: AH=05h"Digiboard"
+
+Bitfields for Digiboard initializing parameters:
+Bit(s)	Description	(Table 00310)
+ 7-5	unused
+ 4-3	parity (00 none, 01 odd, 11 even)
+ 2	stop bits (0 = one, 1 = two)
+ 1-0	data bits (00 = five, 01 = six, 10 = seven, 11 = eight)
+SeeAlso: #00307,#00308
+

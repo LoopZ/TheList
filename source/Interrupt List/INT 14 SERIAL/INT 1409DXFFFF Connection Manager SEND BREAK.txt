@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1409--DXFFFF
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - Connection Manager - SEND BREAK
+	AH = 09h
+	DX = FFFFh
+	AL = connection ID
+Return: AH = return code (00h-02h) (see #00303 at AH=00h/DX=FFFFh)
+Program: Connection Manager by Softwarehouse Corp. permits the sharing of
+	  serial ports over an IPX or NetBIOS-based network
+SeeAlso: AH=02h/DX=FFFFh,AH=03h/DX=FFFFh
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F223SF0D
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v2+ - AFP 2.0 CREATE DIRECTORY
+	AX = F223h subfn 0Dh
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02330)
+	ES:DI -> reply buffer (see #02331)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F223h/SF=01h,AX=F223h/SF=0Eh
+
+Format of NetWare "AFP 2.0 Create Directory" request buffer:
+Offset	Size	Description	(Table 02330)
+ 00h	WORD	(big-endian) length of following data
+ 02h	BYTE	0Dh (subfunction "AFP 2.0 Create Directory")
+ 03h	BYTE	volume number
+ 04h	DWORD	AFP entry ID
+ 08h	BYTE	reserved for future use
+ 09h 32	BYTEs	Finder information
+ 29h  6 BYTEs	ProDOS information
+ 2Fh	BYTE	path length
+ 30h	var	AFS-style directory path (relative to AFP entry)
+SeeAlso: #02331,#02302
+
+Format of NetWare "AFP 2.0 Create Directory" reply buffer:
+Offset	Size	Description	(Table 02331)
+ 00h	DWORD	new directory ID
+SeeAlso: #02330,#02303
+

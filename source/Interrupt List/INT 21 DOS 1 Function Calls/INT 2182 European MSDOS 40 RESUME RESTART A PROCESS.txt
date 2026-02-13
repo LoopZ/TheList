@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2182
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "RESUME" - RESTART A PROCESS
+	AH = 82h
+	BX = flag (00h resume command subtree, 01h only specified process)
+	CX = Process ID of head of command subtree
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (no such process)
+Desc:	restart a previously-suspended process or a process and all of its
+	  children
+SeeAlso: AH=81h,INT 15/AX=101Eh
+

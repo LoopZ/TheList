@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDA00
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v1.x - INSTALLATION CHECK
+	AX = DA00h
+Return: AH = enabled state (00h = enabled, 01h = disabled)
+	AL = 5Ah installed
+Program: ZFAX is the bundled FAX software which comes with the ZyXEL model
+	  fax modems.
+Note:	This function, and the other DAxxh functions, may apply only to version
+	  1 of the software; see AX=DB00h for the version 2 installation check
+SeeAlso: AX=CBDCh,AX=DA01h,AX=DA02h,AX=DA03h,AX=DB00h
+

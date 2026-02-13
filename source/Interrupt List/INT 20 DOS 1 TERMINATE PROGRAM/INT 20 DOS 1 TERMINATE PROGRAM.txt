@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 20 - DOS 1+ - TERMINATE PROGRAM
+	CS = PSP segment
+Return: never
+Notes:	(see INT 21/AH=00h)
+	this function sets the program's return code (ERRORLEVEL) to 00h
+SeeAlso: INT 21/AH=00h,INT 21/AH=4Ch
+

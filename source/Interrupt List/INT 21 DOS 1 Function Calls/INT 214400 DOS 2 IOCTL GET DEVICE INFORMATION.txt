@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214400
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - IOCTL - GET DEVICE INFORMATION
+	AX = 4400h
+	BX = handle
+Return: CF clear if successful
+	    DX = device information word (see #01423)
+	    AX destroyed
+	CF set on error
+	    AX = error code (01h,05h,06h) (see #01680 at AH=59h/BX=0000h)
+Notes:	value in DH corresponds to high byte of device driver's attribute word
+	  if handle refers to a character device
+	Novell NetWare reportedly does not return a drive number in bits 5-0
+	  for a disk file
+	this function was not supported by Digital Research's DOS Plus
+SeeAlso: AX=4401h,INT 2F/AX=122Bh
+
+Bitfields for device information word:
+Bit(s)	Description	(Table 01423)
+ character device
+  14	device driver can process IOCTL requests (see AX=4402h"DOS 2+")
+  13	output until busy supported
+  11	driver supports OPEN/CLOSE calls
+   8	??? (set by MS-DOS 6.2x KEYB)
+   7	set (indicates device)
+   6	EOF on input
+   5	raw (binary) mode
+   4	device is special (uses INT 29)
+   3	clock device
+   2	NUL device
+   1	standard output
+   0	standard input
+ disk file
+  15	file is remote (DOS 3.0+)
+  14	don't set file date/time on closing (DOS 3.0+)
+  11	media not removable
+   8	(DOS 4 only) generate INT 24 if no disk space on write or read past
+	  end of file
+   7	clear (indicates file)
+   6	file has not been written
+  5-0	drive number (0 = A:)
+SeeAlso: INT 29
+

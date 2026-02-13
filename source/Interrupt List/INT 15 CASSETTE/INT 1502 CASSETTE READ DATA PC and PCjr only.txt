@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1502
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - CASSETTE - READ DATA (PC and PCjr only)
+	AH = 02h
+	CX = number of bytes to read
+	ES:BX -> buffer
+Return: CF clear if successful
+	    DX = number of bytes read
+	    ES:BX -> byte following last byte read
+	CF set on error
+	AH = status (see #00409)
+SeeAlso: AH=00h"CASSETTE",AH=03h"CASSETTE",MEM 0040h:0069h,MEM 0040h:006Bh"PC"
+
+(Table 00409)
+Values for Cassette status:
+ 00h	successful
+ 01h	CRC error
+ 02h	bad tape signals
+ 04h	no data
+ 80h	invalid command
+ 86h	no cassette present
+

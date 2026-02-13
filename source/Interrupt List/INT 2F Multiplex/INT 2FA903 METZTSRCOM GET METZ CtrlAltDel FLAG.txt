@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FA903
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - METZTSR.COM - GET METZ Ctrl-Alt-Del FLAG
+	AX = A903h
+	CF set
+Return: CF clear if successful
+	    AX = 97FFh if Ctrl-Alt-Del allowed
+	    AX = 0000h if Ctrl-Alt-Del not allowed
+	CF set if not resident
+SeeAlso: AX=A902h
+

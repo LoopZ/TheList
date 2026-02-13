@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1403
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - SERIAL - GET PORT STATUS
+	AH = 03h
+	AL = 00h (ArtiCom)
+	DX = port number (00h-03h) (04h-43h for Digiboard XAPCM232.SYS)
+Return: AH = line status (see #00304)
+	AL = modem status (see #00305)
+	AX = 9E00h if disconnected (ArtiCom)
+Note:	the 1993/04/08 Compaq system ROM uses only the low two bits of DX
+SeeAlso: AH=00h,AH=07h"MultiDOS",AX=8000h"ARTICOM",AH=81h"COURIERS",AX=FD02h
+
+Bitfields for serial line status:
+Bit(s)	Description	(Table 00304)
+ 7	timeout
+ 6	transmit shift register empty
+ 5	transmit holding register empty
+ 4	break detected
+ 3	framing error
+ 2	parity error
+ 1	overrun error
+ 0	receive data ready
+Note:	for COMM-DRV, if bit 7 is set, an error occurred, and may be retrieved
+	  through a separate call (see AX=8000h"COMM-DRV")
+
+Bitfields for modem status:
+Bit(s)	Description	(Table 00305)
+ 7	carrier detect
+ 6	ring indicator
+ 5	data set ready
+ 4	clear to send
+ 3	delta carrier detect
+ 2	trailing edge of ring indicator
+ 1	delta data set ready
+ 0	delta clear to send
+

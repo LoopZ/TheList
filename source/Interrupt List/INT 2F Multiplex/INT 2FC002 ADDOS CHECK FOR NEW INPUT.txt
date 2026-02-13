@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC002
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - AD-DOS - CHECK FOR NEW INPUT
+	AX = C002h
+Return: AL = 00h if successful
+	    BX = status
+		0000h no input since last check
+		0001h new input available
+Note:	this call also resets the new-input flag
+SeeAlso: AX=C000h"AD-DOS",AX=C004h
+Index:	screen saver;AD-DOS
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6007
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - MDEBUG v1.70+ - GET ACTIVE PART OF MDEBUG
+	AH = 07h
+Return: AL = active part for the next popup session of MDEBUG:
+	    bit 0: the next popup session will start in the interpreter rather
+		  than in the monitor
+	    bit 1: the next popup session will sart in the online-help
+SeeAlso: AH=03h"MDEBUG",AH=04h"MDEBUG"
+

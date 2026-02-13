@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF15
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - RESET ERROR
+	AX = 0003h subfn 15h
+	DS:BX -> argument block (see #03399)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=00h,AX=0003h/SF=12h
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03399)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	15h (function "reset error")
+

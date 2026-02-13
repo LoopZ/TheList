@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FCB07
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Communicating Applications Specification - OPEN FILE
+	AX = CB07h
+	BX = event handle from find (AL=05h,06h) or submit task (AL=01h)
+	CX = receive file number (ignored for task queue and log queue)
+	    0000h  open receive control file
+	    N	   open Nth received data file
+	DL = queue
+	    00h task queue
+	    01h receive queue control file or received file, as given by CX
+	    02h log queue
+	    03h group file in task queue (v1.2+)
+	    04h group file in log queue (v1.2+)
+Return: AX = 0000h successful
+	    BX = DOS file handle for requested file
+	AX < 0	   error code (see #03048)
+Note:	the returned file handle has been opened in read-only mode and should
+	  be closed with INT 21/AH=3Eh after use
+SeeAlso: AX=CB01h,AX=CB05h,AX=CB14h
+

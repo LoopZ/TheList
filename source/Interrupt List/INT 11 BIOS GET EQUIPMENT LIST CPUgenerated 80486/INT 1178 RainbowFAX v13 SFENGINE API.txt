@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1178
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 11 - RainbowFAX v1.3 - SFENGINE API - ???
+	AH = 78h
+	AL = subfunction
+	    01h set ???
+		BX = new state for ???
+		    0000h ???
+		    else ???
+		Return: AX = 0001h
+	    02h set ???
+		BX = ???
+		CX = ???
+		Return: AX = 0001h
+	    03h set ???
+		BX = new state for ???
+		    0000h ???
+		    else ???
+		Return: AX = 0001h
+	    else
+		Return: AX = FFFFh (invalid subfunction)
+SeeAlso: AH=77h,AH=79h,AH=7Ah,AH=7Ch
+

@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - STATUS OF NODE
+	AH = 02h
+	DS:DX -> 512-byte status record (see #03753)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03740)
+SeeAlso: INT 21/AX=5E01h"10NET"
+
+(Table 03752)
+Values for 10NET station type:
+ 00h	workstation
+ 01h	superstation
+ 02h	gateway station
+ 03h	gateway active
+ 04h	logged into multiple superstations
+ 05h	reserved
+
+Format of 10NET node status record:
+Offset	Size	Description	(Table 03753)
+ 00h  8 BYTEs	user name (0 if none)
+ 08h	BYTE	station type (see #03752)
+ 09h 24 BYTEs	list of superstations logged into more than one superstation
+ 21h 12 BYTEs	node ID
+ 2Dh	WORD	message count for this station (send for user node, receive for
+		  superstations)
+---for superstations only---
+ 2Fh	WORD	drives allocated (bit 0=A:, bit 1=B:,...)
+ 31h	BYTE	user service flags (see #03754)
+ 32h	BYTE	printers allocated (bit 0=LPT1,...)
+ 33h	BYTE	number of unprinted spool files
+ 34h	BYTE	number of opened files
+ 35h	BYTE	number of logged on nodes
+ 36h	BYTE	primary drive (1=A:)
+ 37h	BYTE	reserved
+ 38h  N BYTEs	list of logged on node IDs (each 12 bytes, max 37 IDs)
+1F4h  3 BYTEs	time: sec/min/hrs
+1F7h  3 BYTEs	date: day/mon/year-1980
+
+Bitfields for 10NET user service flags:
+Bit(s)	Description	(Table 03754)
+ 7	gate
+ 6	print permit on
+ 4	SUBMIT is on
+ 3	mail waiting for node
+ 2	calendar waiting for you
+ 1	news waiting for you
+ 0	mail waiting for you
+

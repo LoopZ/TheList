@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2135
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET INTERRUPT VECTOR
+	AH = 35h
+	AL = interrupt number
+Return: ES:BX -> current interrupt handler
+Note:	under DR DOS 5.0+, this function does not use any of the DOS-internal
+	  stacks and may thus be called at any time
+SeeAlso: AH=25h,AX=2503h
+

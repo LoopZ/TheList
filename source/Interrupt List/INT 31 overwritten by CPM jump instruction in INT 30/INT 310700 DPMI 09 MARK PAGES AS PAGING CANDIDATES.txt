@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310700
+  Category: E 	DOS extenders
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 31 Pu - DPMI 0.9+ - MARK PAGES AS PAGING CANDIDATES
+	AX = 0700h
+	BX:CX = starting linear page number
+	SI:DI = number of pages to mark as paging candidates
+Return: ???
+Note:	although marked as reserved in versions 0.9 and 1.0 of the DPMI
+	  specification, this function is called by MS Windows TASKMAN,
+	  PROGMAN, and KERNEL
+SeeAlso: AX=0701h,AX=0702h
+

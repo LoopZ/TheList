@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F2718
+  Category: T 	DOS-based task switchers/multitaskers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DR DOS 6.0 TaskMAX - COPY DATA DIRECTLY INTO PASTE BUFFER
+	AX = 2718h
+	CX = bytes in source buffer
+	DS:SI -> source buffer (plain ASCII, lines terminated with CR LF)
+Return: AX = 0000h if function supported
+	    CX = bytes actually copied
+	    DX = current generation number for paste buffer
+BUG:	Novell DOS 7 TASKMGR returns AX=0000h even though it does not support
+	  this call (it does support the remainder of the TaskMAX API)
+SeeAlso: AX=2712h,AX=2716h,AX=2717h
+

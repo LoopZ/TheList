@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7C0004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7C - SK-UPPS Data Link Interface API - REQUEST BUFFER
+	AX = 0004h
+	DX = protocol ID (see AX=0007h,#03849)
+Return: AX = completion code (see also #03846)
+	    0000h successful
+		ES:BX -> Memory Buffer (Mbuf) (see #03847)
+Note:	if the DLI has no free Mbufs, it will set an internal flag for the
+	  protocol and later call the protocol's Event Upcall with
+	  EV_BUFFER_AVAILABLE (see #03853,#03854) as soon as an Mbuf becomes
+	  available.  There will only be one "buffer available" Upcall, even
+	  if this function has been called several times before.
+SeeAlso: AX=0005h,AX=0006h,AX=0012h,AX=0013h
+
+Format of SK-UPPS Memory Buffer (Mbuf):
+Offset	Size	Description	(Table 03847)
+ 00h	DWORD	-> NEXT Mbuf (linked list)
+ 04h	WORD	OFFSET of actual data within DATA area
+ 06h  2 BYTEs	reserved (currently unused)
+ 08h	WORD	LENGTH of actual data found in DATA area starting at OFFSET
+ 0Ah  2 BYTEs	reserved (currently unused)
+ 0Ch	DWORD	-> DATA area (size can be obtained via AX=000Eh call)
+ 10h	WORD	PROTOCOL ID of protocol currently "owning" the Mbuf
+ 12h	BYTE	IN USE flag; nonzero if Mbuf still in use by DLI (see AX=0006h)
+ 13h	BYTE	RECEIVE STATUS (bit 0-7 only; see AX=0007h - Receive Upcall)
+

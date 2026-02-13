@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1323
+  Category: d 	disk I/O enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 13 U - HARD DISK - PS/1 and newer PS/2 - SET CONTROLLER FEATURES REGISTER
+	AH = 23h
+	AL = feature number (see #00266)
+	DL = drive number (80h,81h)
+	???
+Return: CF clear if successful
+	CF set on error
+	AH = status (see #00234 at AH=01h)
+SeeAlso: AH=21h"PS/1",AH=22h"PS/1",AH=24h"PS/1",AH=25h"PS/1"
+
+(Table 00266)
+Values for PS/1 hard disk feature number:
+ 01h	select 8-bit data transfers instead of 16-bit
+ 02h	enable write cache
+ 22h	Write Same, user-specified area
+ 33h	disable retries
+ 44h	set number of ECC bytes for read long/write long (see AH=0Ah,AH=0Bh)
+ 54h	set cache segments
+ 55h	disable lookahead
+ 66h	disable reverting to power-on defaults
+ 77h	disable error correctioni
+ 81h	select 16-bit data transfers (default)
+ 82h	disable write cache
+ 88h	enable error correction (default)
+ 99h	enable retries (default)
+ AAh	enable lookahead
+ BBh	set ECC length for read long/write long to four bytes
+ CCh	enable reverting to power-on defaults
+ DDh	Write Same, entire disk
+SeeAlso: #P0535
+

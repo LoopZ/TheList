@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F08
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Alloy NTNX (Host) - GET INTERRUPT VECTORS
+	AH = 08h
+	CL = function
+	    00h get original interrupt vector
+	    01h get Network Executive interrrupt
+	AL = interrupt number
+	DX:SI -> DWORD to hold interrupt vector
+Return: AL = status
+	    00h successful
+	    01h interrupt vector not used by network executive
+	    02h invalid subfunction
+Note:	the network executive uses interrupts 02h,08h,09h,0Fh,10h,13h,16h-19h,
+	  1Ch,20h,28h,2Ah,2Fh,5Bh,67h,7Fh,ECh, and F0h-FFh
+SeeAlso: AH=09h/CL=03h,INT 21/AH=35h
+

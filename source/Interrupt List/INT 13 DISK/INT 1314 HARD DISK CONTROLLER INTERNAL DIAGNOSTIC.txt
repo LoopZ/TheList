@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1314
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - HARD DISK - CONTROLLER INTERNAL DIAGNOSTIC
+	AH = 14h
+Return: CF set on error
+	CF clear if successful
+	AH = status code (see #00234 at AH=01h)
+	AL = 00h
+SeeAlso: AH=12h,AH=13h
+

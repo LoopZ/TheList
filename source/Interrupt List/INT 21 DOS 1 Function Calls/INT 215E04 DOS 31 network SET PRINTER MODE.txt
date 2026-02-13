@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215E04
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 3.1+ network - SET PRINTER MODE
+	AX = 5E04h
+	BX = redirection list index (see AX=5F02h)
+	DX = mode
+	    bit 0: set if binary, clear if text (tabs expanded to blanks)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+Notes:	calls INT 2F/AX=111Fh with 5E04h on stack
+	supported by DR DOS 3.41+
+SeeAlso: AX=5E05h"DOS",INT 2F/AX=111Fh
+

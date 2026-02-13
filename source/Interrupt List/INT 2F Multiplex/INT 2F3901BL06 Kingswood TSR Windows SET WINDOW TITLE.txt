@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F3901BL06
+  Category: r 	runtime support
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Kingswood TSR Windows - SET WINDOW TITLE
+	AX = 3901h
+	BL = 06h
+	DS:SI -> title string
+Return: AX = error code (0000h if successful)
+	SI,DI,DS,ES preserved
+SeeAlso: AH=39h/BL=00h,AX=3901h/BL=02h
+

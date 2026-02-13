@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6012
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - 3com, 10NET, Banyan VINES - LOCK
+	AH = 12h
+	AL = drive number or 00h
+	ES:SI = Ethernet address or 0000h:0000h
+	DS:BX -> 31-byte ASCIZ semaphore name
+Return: AL = status (see also #03314)
+	    01h semaphore currently locked by another PC
+Note:	unlike function 11h, this function returns immediately
+SeeAlso: AH=11h,AH=13h
+

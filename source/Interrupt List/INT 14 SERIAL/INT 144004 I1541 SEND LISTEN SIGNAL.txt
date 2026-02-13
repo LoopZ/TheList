@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144004
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - SEND LISTEN SIGNAL
+	AX = 4004h
+	BH = device number (0..15)
+Return: CF clear if successful
+	CF set on error
+	    AL = error number (see #00354)
+SeeAlso: AX=4005h,AX=4006h
+
+(Table 00354)
+Values for I1541 error number:
+ 00h	device not present
+ 01h	listener not ready
+ 02h	missing EOI time-out
+ 03h	EOI not completed
+ 04h	data not released
+ 05h	frame error
+

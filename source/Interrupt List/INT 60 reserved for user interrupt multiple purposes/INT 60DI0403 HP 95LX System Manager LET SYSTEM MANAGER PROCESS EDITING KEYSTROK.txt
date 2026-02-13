@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0403
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - LET SYSTEM MANAGER PROCESS EDITING KEYSTROK
+	DI = 0403h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD	pointer to edit record (see #03285)
+		WORD	keystroke
+		DWORD	pointer to WORD buffer for result code
+Return: result code buffer filled with 0001h if editing complete
+	STACK unchanged
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6B16
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6B - NPC NCSI EXTENDED SERIAL I/O - LOG AND/OR INITIALIZE VIRTUAL CIRCUIT
+	AH = 16h
+	AL = virtual circuit number
+	CL = ??? switch (00h, ???)
+Return: CF clear if successful
+	    AL = virtual circuit number
+	CF set on error
+	    ???
+Note:	this function is also supported by TelAPI, which always returns CF
+	  clear and AL=00h
+SeeAlso: AH=11h,AH=12h,AH=17h
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A----BX0004
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - Novell NetWare - IPX Driver - LISTEN FOR PACKET
+	BX = 0004h
+	ES:SI -> Event Control Block (see BX=0003h)
+Return: AL = status
+	    00h successful
+	    FFh no listening socket for packet
+Desc:	this function provides IPX with an ECB for receiving an IPX packet, but
+	  does not wait for a packet to arrive
+Notes:	the application must open a socket and initialize the ECB's ESR
+	  address, socket number, fragment count, and fragment descriptor
+	  fields before invoking this function
+	there is no limit on the number of ECBs which may simultaneously be
+	  listening on a socket
+	this function is supported by Advanced NetWare 1.02+
+SeeAlso: BX=0000h,BX=0003h
+

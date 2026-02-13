@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1783
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Alloy NTNX, MW386 - SET NUMBER OF COPIES
+	AH = 83h
+	AL = mode
+	    00h NTNX compatibility
+		CL = number of copies (max 99, default 1)
+	    02h MW386 v2+
+		BX = logical device number
+		    00h-03h = LPT1-LPT4
+		    04h-07h = COM1-COM4
+		CX = number of copies
+Return: AL = status (see #00642)
+Note:	in NTNX compatibility mode, this function only affects LPT1
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH03
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.26+ - "CONNECT" - CONNECT TWO WINDOWS
+	AH = 12h
+	BH = 03h
+	BL = window to be connected
+	    00h handle of window to be attached in DWORD on top of stack
+	    01h attach current task's main window
+	STACK: DWORD handle of window to attach to or 00000000h to detach
+Return: STACK popped
+Notes:	when two windows are connected, both will move if the user moves either
+	multiple windows may be attached to a single window, but each window
+	  may only be attached to one window at a time
+SeeAlso: AH=12h/BH=83h
+

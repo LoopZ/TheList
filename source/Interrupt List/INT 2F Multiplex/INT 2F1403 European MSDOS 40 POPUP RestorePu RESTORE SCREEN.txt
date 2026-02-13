@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1403
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - European MS-DOS 4.0 POPUP - "RestorePu" - RESTORE SCREEN
+	AX = 1403h
+	ES:DI -> buffer containing saved screen
+		(0000h:0000h for default buffer in POPUP)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #02625)
+SeeAlso: AX=1400h"POPUP",AX=1401h"POPUP",AX=1402h"POPUP"
+

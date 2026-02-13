@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C
+  Category: m 	memory management
+      Flag: R 	available only in real or V86 mode
+--------------------------------------------------------------------------------
+
+INT 2C R - Cloaking - CALL PROTECTED-MODE PASSALONG CHAIN
+Notes:	when this interrupt is invoked in V86 mode, RM386 will invoke the first
+	  in a chain of protected-mode handlers, and will only pass execution
+	  to the V86-mode INT 2C handler if none of the handlers in the
+	  passalong chain handle the call instead.  This is the method by which
+	  the real-mode stub of a cloaked application communicates with the
+	  protected-mode portion.
+	the cloaking host calls the passalong chain with EAX=58494E33h ('WIN3')
+	  when MS Windows starts up and with EAX=334E4958h ('3NIW') when
+	  Windows shuts down; between these two broadcasts, the additional
+	  Windows-only Cloaking services are available
+	this function was first introduced with RM386 (RAM-MAN/386) v6.00, the
+	  memory manager included in Helix Software's Netroom
+SeeAlso: INT 2C/AX=0009h,INT 2F/AX=4310h"Cloaking"
+

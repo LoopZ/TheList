@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SFE1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - FILE SERVER - GET CONNECTION'S SEMAPHORES
+	AH = E3h subfn E1h
+	DS:SI -> request buffer (see #02067)
+	ES:DI -> reply buffer (see #02068)
+Return: AL = status (00h,C6h) (see #02053)
+Notes:	this function is supported by Advanced NetWare 2.1+
+	the calling workstation must have console operator privileges
+SeeAlso: AH=E3h/SF=C8h,AH=E3h/SF=DBh,AH=E3h/SF=DFh,AH=E3h/SF=E2h
+SeeAlso: AX=F217h/SF=E1h
+
+Format of NetWare "Get Connection's Semaphores" request buffer:
+Offset	Size	Description	(Table 02067)
+ 00h	WORD	0005h (length of following data)
+ 02h	BYTE	E1h (subfunction "Get Connection's Semaphores")
+ 03h	WORD	(big-endian) logical connection number
+ 05h	WORD	(big-endian) last record seen (0000h on first call)
+SeeAlso: #02068,#02240 at AX=F217h/SF=E1h
+
+Format of NetWare "Get Connection's Semaphores" reply buffer:
+Offset	Size	Description	(Table 02068)
+ 00h	WORD	(call) size of following results record (max 1FEh)
+ 02h	WORD	next request record (place in "last record" field on next call)
+ 04h	BYTE	number of records following
+ 05h	var	array of Semaphore Information Records (see #02069)
+SeeAlso: #02067,#02240 at AX=F217h/SF=E1h
+
+Format of NetWare Semaphore Information Record:
+Offset	Size	Description	(Table 02069)
+ 00h	WORD	(big-endian) open count
+ 02h	BYTE	semaphore value (-128 to 127)
+ 03h	BYTE	task number
+ 04h	BYTE	lock type
+ 05h	BYTE	length of semaphore's name
+ 06h  N BYTEs	semaphore's name
+     14 BYTEs	filename
+SeeAlso: #02068
+

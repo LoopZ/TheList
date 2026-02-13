@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE19
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.23+ - "GETCOMMON" - ALLOCATE "COMMON" MEMORY
+	AX = DE19h
+	BX = number of bytes to allocate
+Return: AX = 0000h successful
+		ES:DI -> allocated block
+	     nonzero insufficient memory
+Note:	this API call may be made from within a hardware interrupt handler
+SeeAlso: AX=DE0Ch,AX=DE15h,AX=DE1Ah
+

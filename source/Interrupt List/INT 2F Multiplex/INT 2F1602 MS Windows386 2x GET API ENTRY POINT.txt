@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1602
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows/386 2.x - GET API ENTRY POINT
+	AX = 1602h
+Return: ES:DI -> Windows/386 2.x API procedure entry point
+Notes:	this interface is supported in Windows 3.x and Windows95 only for 2.x
+	  compatibility
+	to get the current virtual machine (VM) ID in Windows/386 2.x:
+	    AX = 0000h
+	    ES:DI -> return address
+	    JUMP to address returned from INT 2F/AX=1602h
+	After JUMP, at return address:
+	    BX = current VM ID.
+SeeAlso: AX=C020h
+

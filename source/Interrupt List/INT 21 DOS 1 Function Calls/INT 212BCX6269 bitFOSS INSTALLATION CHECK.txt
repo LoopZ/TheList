@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212B--CX6269
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - bitFOSS - INSTALLATION CHECK
+	AH = 2Bh
+	CX = 6269h ('bi')
+	DX = 7446h ('tF')
+Return: AL = FFh if not installed
+	AL = 4Fh ('O') if bitFOSS is installed
+	    CX = 5353h ('SS')
+	    DX = 494Ch ('IL')
+	    ES = resident code segment
+	    ES:DI -> identification data
+Program: bitFOSS is a revision 5 FOSSIL driver
+SeeAlso: AH=2Bh/CX=6269h"bitFOSSI",INT 11/AH=BCh
+

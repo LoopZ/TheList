@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDE0B
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - DESQview v2.26+ External Dev Interface - DVP PROCESSING COMPLETE
+	AX = DE0Bh
+	BX = mapping context of DESQview system task
+	CX = number of system memory paragraphs required for the use of all
+	      XDI drivers (DV will add this to system memory in DVP buffer)
+	DX = handle of DESQview system task
+	SI = mapping context of new process if it starts
+	ES:DI -> DVP buffer
+Return: CX incremented as needed
+Notes:	once DV invokes this function, the DVP buffer contents may be changed
+	driver should pass this call to previous handler before processing it
+

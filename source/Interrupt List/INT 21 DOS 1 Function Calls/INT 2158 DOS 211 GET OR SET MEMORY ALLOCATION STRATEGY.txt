@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2158
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2.11+ - GET OR SET MEMORY ALLOCATION STRATEGY
+	AH = 58h
+	AL = subfunction
+	    00h get allocation strategy
+		Return: AX = current strategy (see #01679)
+	    01h set allocation strategy
+		BL = new allocation strategy (see #01679)
+		BH = 00h (DOS 5+)
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (01h) (see #01680)
+Notes:	the Set subfunction accepts any value in BL for DOS 3.x and 4.x;
+	  2 or greater means last fit
+	the Get subfunction returns the last value set
+	setting an allocation strategy involving high memory does not
+	  automatically link in the UMB memory chain; this must be done
+	  explicitly with AX=5803h in order to actually allocate high memory
+	a program which changes the allocation strategy should restore it
+	  before terminating
+	Toshiba MS-DOS v2.11 supports subfunctions 00h and 01h, as does the
+	  TI Professional MS-DOS v2.13
+	DR DOS 3.41 reportedly reverses subfunctions 00h and 01h
+SeeAlso: AH=48h,AH=49h,AH=4Ah,INT 2F/AX=4310h"XMS",INT 67/AH=3Fh
+
+(Table 01679)
+Values for DOS memory allocation strategy:
+ 00h low memory first fit
+ 01h low memory best fit
+ 02h low memory last fit
+---DOS 5+ ---
+ 40h high memory first fit
+ 41h high memory best fit
+ 42h high memory last fit
+ 80h first fit, try high then low memory
+ 81h best fit, try high then low memory
+ 82h last fit, try high then low memory
+

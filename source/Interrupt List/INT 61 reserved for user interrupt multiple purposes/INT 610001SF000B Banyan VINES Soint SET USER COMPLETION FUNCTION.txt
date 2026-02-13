@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610001SF000B
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - "Soint" - SET USER COMPLETION FUNCTION
+	AX = 0001h subfn 000Bh
+	DS:DX -> communications control block (function 000Bh) (see #03343)
+Return: AX = status (00h-0Ah,A2h) (see #03339)
+Range:	INT 60h to INT 66h
+Note:	The Banyan interrupt handler is identified by the string "BANV" in
+	  the four bytes immediately preceding the interrupt handler
+SeeAlso: AX=0001h/SF=0005h,AX=0001h/SF=0008h
+
+Format of VINES control block for subfunction 000Bh:
+Offset	Size	Description	(Table 03343)
+ 00h	WORD	000Bh
+ 02h	WORD	pointer to argument block (see #03344)
+ 04h	WORD	error return code (see #03325)
+ 06h  2 BYTEs	reserved
+ 08h	WORD	user CS register
+SeeAlso: #03342
+
+Format of VINES argument block for subfunction 000Bh:
+Offset	Size	Description	(Table 03344)
+ 00h	WORD	pointer to user interrupt function (see #03345)
+ 02h	WORD	pointer to user stack
+ 04h	WORD	initial timeout value in multiples of 200ms, FFFFh = infinite
+SeeAlso: #03344
+
+(Table 03345)
+Values FAR user function is invoked with:
+	SS = DS = ES = segment of control block
+	STACK:	DWORD	return address
+		WORD	argument pointer (sosend or sorec argument block)
+		WORD	error return code
+			0000h argument pointer is valid
+			00A3h timeout
+

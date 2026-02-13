@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21DE--DL04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - MESSAGE SERVICES - GET BROADCAST MODE
+	AH = DEh
+	DL = 04h
+Return: AL = current broadcast mode
+	    00h receive server and workstation broadcasts (default)
+	    01h receive server broadcasts, discard user message
+	    02h store server broadcasts for retrieval
+	    03h store all broadcasts for retrieval
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+

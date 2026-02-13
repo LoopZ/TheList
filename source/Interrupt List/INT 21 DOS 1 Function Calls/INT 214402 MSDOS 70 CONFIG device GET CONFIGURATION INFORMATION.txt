@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - MS-DOS 7.0+ - CONFIG$ device - GET CONFIGURATION INFORMATION
+	AX = 4402h
+	BX = file handle for character device "CONFIG$"
+	CX = number of bytes to read (at least 5)
+	DS:DX -> buffer for ??? data (see #01444)
+Return: CF clear if successful
+	    AX = number of bytes actually read
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+SeeAlso: AX=4403h"CONFIG$"
+
+Format of MS-DOS 7.0 CONFIG$ ??? data:
+Offset	Size	Description	(Table 01444)
+ 00h	WORD	??? (0000h)
+ 02h	WORD	??? (0000h or value read from IO.SYS segment 70h)
+ 04h	BYTE	??? (value read from IO.SYS segment 70h)
+

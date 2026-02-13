@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620089
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_PATTERN" - SPECIFY DISPLAY PATTERN FOR COLOR
+	AX = 0089h
+	BX = index of pattern to define
+	CX = number of predefined display pattern
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	When displaying a pixel run map, Fastgraph uses the pattern associated
+	  with each color index rather than displaying the actual color
+	This call has no effect in text and 256-color graphics modes
+SeeAlso: AX=0023h,AX=0045h
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1222
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - SET EXTENDED ERROR INFO
+	AX = 1222h
+	SS = DOS data segment
+	SS:SI -> 4-byte records
+		BYTE	error code, FFh = last record
+		BYTE	error class, FFh = don't change
+		BYTE	suggested action, FFh = don't change
+		BYTE	error locus, FFh = don't change
+	SDA error code set
+Return: SI destroyed
+	SDA error class, error locus, and suggested action fields set
+Note:	can be called only from within DOS
+SeeAlso: AX=122Dh,INT 21/AH=59h/BX=0000h,INT 21/AX=5D0Ah
+

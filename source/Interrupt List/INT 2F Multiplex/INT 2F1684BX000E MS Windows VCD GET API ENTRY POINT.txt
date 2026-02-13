@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX000E
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2F P - MS Windows - VCD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 000Eh (virtual device ID for VCD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02652)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02652)
+Call VCD entry point with:
+	EDX = function number
+	    0000h get VCD version
+		Return: CF clear
+			AH = major version
+			AL = minor version
+	    0001h get ???
+		Return: CF clear
+			AX = bit mask of ???
+	    0002h get ???
+		CX = COM port number
+		Return: CF clear
+			DX:AX -> ???
+	    0003h set ???
+		CX = COM port number
+		DX:AX -> new ???
+		Return: CF clear
+	    0004h acquire COM port
+		AX = ???
+		CX = COM port number
+		Return: CF clear
+			AX = ???
+			EBX = ???
+			DX = ???
+	    0005h release COM port
+		CX = COM port number
+		Return: CF clear
+	    0006h ???
+		Return: CF set
+			AL = 00h
+	    else
+		Return: CF set
+			EAX = FFFFFFFFh
+Note:	these functions are apparently only available from the system VM,
+	  returning CF set and EAX=FFFFFFFFh otherwise
+SeeAlso: #02651,#02653
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E4
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Tandy??? - ???
+	AH = E4h
+	AL = subfunction
+	    21h, 89h, 8Ah, 8Bh called by 386MAX v6.01
+	DL = ???
+Return: DL = 00h if successful???
+Note:	the section of code in 386MAX which calls these functions also checks
+	  whether the ROM BIOS has both Tandy and Phoenix Technologies
+	  signatures if these calls fail; the Tandy 1000SL/TL BIOS does not
+	  support this function, however, returning the usual CF set/AH=86h for
+	  "unsupported function".
+

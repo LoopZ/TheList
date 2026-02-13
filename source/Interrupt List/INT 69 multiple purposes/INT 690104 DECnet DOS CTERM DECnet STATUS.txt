@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 690104
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 69 - DECnet DOS CTERM - DECnet STATUS
+	AX = 0104h
+	DX = session handle
+Return: AX = reason code (see #03711)
+Note:	use this call when AX=0103h returns a DECnet error
+SeeAlso: AX=0103h
+

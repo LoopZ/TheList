@@ -1,0 +1,82 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1607BX0015
+  Category: D 	DOS kernel
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MS Windows - "DOSMGR" VIRTUAL DEVICE API
+	AX = 1607h
+	BX = 0015h (VxD identifier of "DOSMGR")
+	CX = function
+	    0000h query instance processing
+		DX = 0000h
+		Return: CX = state
+			    0000h not instanced
+			    other instanced (DOS 5+ kernel returns 0001h)
+				DX = segment of DOS drivers or 0000h for
+					default of 0070h
+				ES:BX -> patch table (see #02637)
+	    0001h set patches in DOS
+		DX = bit mask of patch requests (see #02636)
+		Return: AX = B97Ch
+			BX = bit mask of patches applied (see #02636)
+			DX = A2ABh
+	    0002h remove patches in DOS (ignored by DOS 5.0 kernel)
+		DX = bit mask of patch requests (see #02636)
+		Return: CX = 0000h (DOS 5-6)
+		Note:	return values are ignored by DOSMGR in Windows 3.1
+	    0003h get size of DOS data structures
+		DX = bit mask of request (only one bit can be set)
+		    bit 0: Current Directory Structure size
+		Return: if supported request:
+			    AX = B97Ch
+			    CX = size in bytes of requested structure
+			    DX = A2ABh
+			else:
+			    CX = 0000h
+			    all other registers preserved
+	    0004h determine instanced data structures
+		Return: AX = B97Ch if supported
+			DX = A2ABh if supported (DOS 5+ kernel returns 0000h)
+			BX = bit mask of instanced items
+			    bit 0: CDS
+			    bit 1: SFT
+			    bit 2: device list
+			    bit 3: DOS swappable data area
+	    0005h get device driver size
+		ES = segment of device driver
+		Return: DX:AX = 0000h:0000h on error (not dev. driver segment)
+			DX:AX = A2ABh:B97Ch if successful
+			    BX:CX = size of device driver in bytes
+Notes:	DOSMGR (DOS Manager) will check whether the OEM DOS/BIOS data has
+	  been instanced via this API and will not perform its own default
+	  instancing of the normal DOS/BIOS data if so; if this API is not
+	  supported, DOSMGR will also try to access instancing data through
+	  INT 2F/AX=1603h
+	these functions are supported by the DOS 5+ kernel; DOSMGR contains
+	  tables of instancing information for earlier versions of DOS
+	see Geoff Chappell's book _DOS_Internals_ for additional discussions of
+	  DOSMGR's behavior and instancing in general
+SeeAlso: AX=1603h,AX=1605h,AX=1607h/BX=000Ch,AX=1607h/BX=0014h
+SeeAlso: AX=1684h"DEVICE API"
+
+Bitfields for DOSMGR patch requests:
+Bit(s)	Description	(Table 02636)
+ 0	enable critical sections
+ 1	NOP setting/checking user ID
+ 2	turn INT 21/AH=3Fh on STDIN into polling loop
+ 3	trap stack fault in "SYSINIT" to WIN386
+ 4	BIOS patch to trap "Insert disk X:" to WIN386
+
+Format of DOSMGR patch table:
+Offset	Size	Description	(Table 02637)
+ 00h  2 BYTEs	DOS version (major, minor)
+ 02h	WORD	offset in DOS data segment of "SAVEDS"
+ 04h	WORD	offset in DOS data segment of "SAVEBX"
+ 06h	WORD	offset in DOS data segment of InDOS flag
+ 08h	WORD	offset in DOS data segment of User ID word
+ 0Ah	WORD	offset in DOS data segment of "CritPatch" table to enable
+		  critical section calls (see INT 2A/AH=80h)
+ 0Ch	WORD	(DOS 5+ only) offset in DOS data segment of "UMB_HEAD",
+		  containing segment of last MCB in conventional memory
+

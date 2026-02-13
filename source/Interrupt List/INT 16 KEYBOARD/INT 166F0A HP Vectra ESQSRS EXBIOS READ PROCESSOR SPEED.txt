@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 166F0A
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - HP Vectra ES/QS/RS EX-BIOS - READ PROCESSOR SPEED
+	AX = 6F0Ah
+Return: AH = 00h (successful)
+	BX = speed code
+	    0Bh for low speed (see #00604)
+	    12h for medium speed (see #00604)
+	    0Ch for high speed (see #00604)
+Note:	supported by ES, QS, and RS series of HP Vectras
+SeeAlso: AX=6F00h
+
+(Table 00604)
+Values for HP Vetra CPU speed:
+	Vectra		Low	    Medium	High
+	ES		8 MHz	     -		 8 MHz
+	ES/12		8 MHz	     -		12 MHz
+	QS/16, RS/16	8 MHz	     -		16 MHz
+	QS/16S		8 MHz	     -		16 MHz
+	QS/20, RS/20	8 MHz	     -		20 MHz
+	RS/20C		5 MHz	    10 MHz	20 MHz
+	RS/25C		5 MHz	    12.5 MHz	25 MHz
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1622
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - KEYBOARD - GET 122-KEY SHIFT STATUS (122-key kbd support only)
+	AH = 22h
+Return: AL = shift flags 1 (see #00587)
+	AH = shift flags 2 (see #00588)
+Notes:	use AH=09h to determine whether this function is supported
+	K3PLUS v6.00+ supports this function as an alias of AH=12h
+SeeAlso: AH=02h,AH=09h,AH=12h,AH=20h,AH=21h
+

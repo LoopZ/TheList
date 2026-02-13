@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675DE3
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - RM386 - SET PAGE TABLE
+	AX = 5DE3h
+	ES:DI -> 1088-byte buffer containing page table
+Notes:	only the access bits of the page table are used, the remainder is
+	  ignored
+	RM386 traps this function on the initial transition to protected
+	  mode caused by the INT instruction, which means it can not be
+	  overridden simply by hooking the interrupt
+SeeAlso: AX=5DE2h
+

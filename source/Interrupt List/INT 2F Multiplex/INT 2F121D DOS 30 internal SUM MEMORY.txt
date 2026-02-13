@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F121D
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - SUM MEMORY
+	AX = 121Dh
+	DS:SI -> memory to add up
+	CX = 0000h
+	DX = limit
+Return: AL = byte which exceeded limit
+	CX = number of bytes before limit exceeded
+	DX = remainder after adding first CX bytes
+	DS:SI -> byte beyond the one which exceeded the limit
+Notes:	used by DOS to determine year or month given day count since 1980/1/1
+	supported by DR DOS 5.0+
+SeeAlso: AX=121Ch
+

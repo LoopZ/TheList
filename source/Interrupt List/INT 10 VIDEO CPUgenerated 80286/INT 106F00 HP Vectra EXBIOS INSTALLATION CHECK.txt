@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106F00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - HP Vectra EX-BIOS - INSTALLATION CHECK
+	AX = 6F00h
+	BX <> 4850h (usually set to 0000h for simplicity)
+Return: BX = 4850h ('HP') indicates HP Extended BIOS video functions present
+	AX destroyed
+SeeAlso: AX=6F00h"Video7",AX=6F01h,AX=6F02h,AX=6F03h,AX=6F04h,AX=6F05h
+SeeAlso: INT 14/AX=6F00h,INT 16/AX=6F00h,INT 17/AX=6F00h,INT 33/AX=6F00h
+

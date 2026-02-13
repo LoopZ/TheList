@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 107F05
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - SOLLEX SuperVGA - LOAD REGISTER
+	AX = 7F05h
+	ES:DI -> register value table (see #00209)
+Return: AL <> 7Fh if not supported
+	AL = 7Fh if supported
+	    AH = status
+		00h successful
+		01h failed
+SeeAlso: AH=F1h,AH=F3h,AH=F5h
+
+Format of SOLLEX SuperVGA register value table:
+Offset	Size	Description	(Table 00209)
+ 00h	WORD	base I/O register (FFFFh = end of list)
+ 02h 2N BYTEs	pairs of values to be written to the base I/O register as an
+		  index value and the following register as a data byte
+ 2N+2	WORD	FFFFh (end of data list)
+	... (repeats until FFFFh base address)
+

@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F87
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - LANtastic v3+ - GET ACCOUNT
+	AX = 5F87h
+	DS:SI -> 128-byte buffer for account information (see #01728)
+	ES:DI -> ASCIZ machine name in form "\\machine"
+Return: CF clear if successful
+	CF set on error
+	    AX = error code
+	BX destroyed
+Note:	must be logged into the specified machine
+
+Format of LANtastic user account structure:
+Offset	Size	Description	(Table 01728)
+ 00h 16 BYTEs	blank-padded username (zero-padded for v4.x)
+ 10h 16 BYTEs	reserved (00h)
+ 20h 32 BYTEs	user description
+ 40h	BYTE	privilege bits (see #01729)
+ 41h	BYTE	maximum concurrent users
+ 42h 42 BYTEs	bit map for disallowed half hours, beginning on Sunday
+		(bit set if half-hour not an allowed time)
+ 6Ch	WORD	internal (0002h)
+ 6Eh  2 WORDs	last login time
+ 72h  2 WORDs	account expiration date (MS-DOS-format year/month:day)
+ 76h  2 WORDs	password expiration date (0 = none)
+ 7Ah	BYTE	number of days to extend password after change (1-31)
+		00h if no extension required
+---v3.x---
+ 7Bh  5 BYTEs	reserved
+---v4.x---
+ 7Bh	BYTE	storage for first letter of user name when deleted (first
+		  character is changed to 00h when deleting account)
+ 7Ch	BYTE	extended privileges
+ 7Dh  3 BYTEs	reserved
+
+Bitfields for LANtastic privilege bits:
+Bit(s)	Description	(Table 01729)
+ 7	bypass access control lists
+ 6	bypass queue protection
+ 5	treat as local process
+ 4	bypass mail protection
+ 3	allow audit entry creation
+ 2	system manager
+ 0	user cannot change password
+

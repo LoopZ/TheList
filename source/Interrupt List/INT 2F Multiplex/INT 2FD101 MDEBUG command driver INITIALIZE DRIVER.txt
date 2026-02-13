@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD101
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MDEBUG command driver - INITIALIZE DRIVER
+	AX = D101h
+	CX = command driver counter
+Return: DL = status
+	    FFh if successful
+		CX incremented
+	    else error: all registers unchanged
+Note:	this function must end with a  far call to the old INT 2F handler after
+	  changing the registers
+	this function must be reentrant
+

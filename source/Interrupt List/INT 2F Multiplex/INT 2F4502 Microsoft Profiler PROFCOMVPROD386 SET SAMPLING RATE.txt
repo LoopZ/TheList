@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4502
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Microsoft Profiler (PROF.COM/VPROD.386) - SET SAMPLING RATE
+	AX = 4502h
+	BL = sampling rate for PROF.COM (0 < BL <= 13)
+	    (01h = 8192/s, 04h = 1024/s, 08h = 32/s, 0Dh = 1/s)
+	CX = sampling rate for VPROD.386
+Note:	for PROF.COM, this programs the CMOS clock by setting BL+2 as the
+	  low four bits of CMOS register 0Ah.  The interruption rate is
+	  1 SHL (15 - BL) per second.
+SeeAlso: AX=4501h,AX=4503h
+

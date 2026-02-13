@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62002A
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_FADEOUT" - FADE OUT TO CURRENT COLOR
+	AX = 002Ah
+	BX = delay (0000h = fastest possible fade-out)
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	The current visible page is filled with pixels of the current color in
+	  small random sections to give a fade-out effect
+	This call is ignored in text modes
+SeeAlso: AX=0028h,AX=0029h,AX=002Bh
+

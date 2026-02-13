@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6102
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET REVISION NUMBER
+	AH = 02h
+	DS:DX -> 2-byte buffer for result
+Return: AX = 0000h installed
+	    DS:DX buffer contains revision number as
+		10000d * major_ver + 100d * minor_ver + patch_revision
+SeeAlso: AH=01h"VINES",AH=04h"VINES",AH=07h"VINES"
+

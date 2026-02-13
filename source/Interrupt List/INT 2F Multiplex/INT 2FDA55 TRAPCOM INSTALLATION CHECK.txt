@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDA55
+  Category: G 	debuggers/debugging tools
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - TRAP.COM - INSTALLATION CHECK
+	AX = DA55h
+	DL = interrupt number
+	DH = ???
+Return: if installed
+	    AH = interrupt number
+	    AL = ???
+	    ES:BX -> ???
+Program: TRAP is an interrupt call tracer by Patrick Phillipot/Udo Chrosziel
+Note:	a separate copy of TRAP is loaded for each interrupt to be traced; thus
+	  the interrupt number is part of the installation check
+

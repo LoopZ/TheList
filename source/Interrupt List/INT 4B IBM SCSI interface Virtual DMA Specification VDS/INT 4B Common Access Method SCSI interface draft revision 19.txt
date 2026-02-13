@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4B
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4B - Common Access Method SCSI interface (draft revision 1.9)
+	ES:DI -> CAM Control Block (see #03229 at INT 4F/AX=8100h)
+InstallCheck:	test for the string "SCSI_CAM" eight bytes past the INT 4Bh
+	  handler
+Notes:	the CAM committee moved the interface to INT 4F after revision 1.9
+	  to avoid conflicting with the IBM SCSI interface and the Virtual
+	  DMA specification
+	the only driver to date reported to use the CAM interface on INT 4B
+	  instead of INT 4F is from Future Domain (which has drivers for CAM
+	  on either interrupt)
+SeeAlso: INT 4F/AX=8100h
+Index:	installation check;Common Access Method SCSI interface
+

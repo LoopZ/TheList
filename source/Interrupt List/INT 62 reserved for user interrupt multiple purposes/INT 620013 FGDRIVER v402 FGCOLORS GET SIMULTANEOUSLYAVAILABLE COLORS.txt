@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620013
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_COLORS" - GET SIMULTANEOUSLY-AVAILABLE COLORS
+	AX = 0013h
+Return: AX = number of colors available at one time
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+

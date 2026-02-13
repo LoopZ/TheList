@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FB701
+  Category: f 	file manipulation
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - APPEND v3.21 only - GET APPEND PATH
+	AX = B701h
+Return: ES:DI -> active APPEND path
+Notes:	the only version of APPEND known to support this call is the APPEND
+	  shipped with Microtek MS-DOS 3.21; MS-DOS 3.30-6.00 APPEND displays
+	  "Incorrect APPEND Version" and aborts the caller
+	use AX=B704h first, and only call this function if that one is not
+	  supported
+SeeAlso: AX=B700h,AX=B704h
+

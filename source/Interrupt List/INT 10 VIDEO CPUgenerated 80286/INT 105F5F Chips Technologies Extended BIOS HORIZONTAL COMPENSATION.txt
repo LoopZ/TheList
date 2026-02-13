@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F5F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - HORIZONTAL COMPENSATION
+	AX = 5F5Fh
+	BL = horizontal compensation type
+	    00h none
+	    01h automatic centering
+	    02h set centering register
+		DL = centering value
+	    03h non-automatic centering
+	    04h enable text compression (force 8xN fonts)
+	    05h disable text compression (allow 9xN fonts)
+	    06h enable auto doubling
+	    07h disable auto doubling
+	    0Fh disable all horizontal and vertical compensation
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F50h,AX=5FA0h
+

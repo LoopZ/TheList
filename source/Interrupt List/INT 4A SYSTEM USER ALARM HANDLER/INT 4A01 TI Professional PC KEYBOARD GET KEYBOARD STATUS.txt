@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4A01
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4A - TI Professional PC - KEYBOARD - GET KEYBOARD STATUS
+	AH = 01h
+Return: ZF set if no keystroke available
+	ZF clear if keystrokes in buffer
+	    AX = next keystroke (AH=00h for ASCII keys -- no scan code)
+SeeAlso: AH=00h,AH=02h,AH=03h,AH=04h,AH=05h,INT 16/AH=01h
+

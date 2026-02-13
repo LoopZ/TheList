@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL05
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "L_WRITE" - WRITE CHARACTER TO DEFAULT LIST DEVICE
+	CL = 05h
+	DL = char to write
+Return: nothing
+	may destroy SI,DI???
+Note:	if another process owns the list device, this call blocks until the
+	  device becomes available
+SeeAlso: INT 21/AH=05h
+

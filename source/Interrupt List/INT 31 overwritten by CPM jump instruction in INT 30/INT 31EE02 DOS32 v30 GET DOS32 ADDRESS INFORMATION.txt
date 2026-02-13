@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 31EE02
+  Category: E 	DOS extenders
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 31 - DOS32 v3.0+ - GET DOS32 ADDRESS INFORMATION
+	AX = EE02h
+Return: AX = real-mode segment of temporary 8K buffer (v3.1+)
+	EBX = 32bit linear address of the program segment
+	EDX = Total size in bytes of the programs .EXE file after linking.
+	ESI = offset address of PSP
+	EDI = offset address of program environment
+	ECX = offset address of the program's .EXE ASCIZ file name and path
+SeeAlso: AX=EE00h,AX=EE20h
+

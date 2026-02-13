@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152301
+  Category: B 	BIOS
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 15 u - IBM BIOS - SMART ENERGY SYSTEM - SET ??? CMOS DATA
+	AX = 2301h
+	CL = new value for CMOS location 2Dh
+	CH = new value for CMOS location 2Eh
+Return: CF clear if successful
+	CF set on error
+	    AH = error code (80h,86h)
+Notes:	sets the contents of CMOS locations 2Dh and 2Eh
+	IBM classifies this function as optional
+SeeAlso: AX=2300h,AX=2304h,AX=2305h
+

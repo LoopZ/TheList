@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AE11D
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - TheGrab v4.60 - INSTALLATION CHECK
+	AX = E11Dh
+Return: ES:DI -> signature block (see #01261) if installed
+	    CX = length of signature block (000Fh)
+Program: TheGrab is a resident ANSI screen grabber bundled with TheDraw
+SeeAlso: AX=E11Bh
+
+Format of TheGrab signature block:
+Offset	Size	Description	(Table 01261)
+ 00h	BYTE	08h
+ 01h  8 BYTEs	ASCIZ "THEGRAB"
+ 09h  6 BYTEs	??? (zeros)
+

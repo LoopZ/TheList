@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D5
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - CLEAR LOGICAL RECORD SET
+	AH = D5h
+Return: AL = error code (00h,FFh) (see #01811)
+Desc:	unlock and remove all logical record name from the log table
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+,
+	  Banyan VINES, and Alloy NTNX
+	locks on logical record names are advisory and may be ignored by other
+	  applications
+SeeAlso: AH=D1h,AH=D3h,AH=D4h
+

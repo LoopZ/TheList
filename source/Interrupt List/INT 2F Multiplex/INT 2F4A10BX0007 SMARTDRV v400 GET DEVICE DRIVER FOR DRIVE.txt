@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A10BX0007
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - SMARTDRV v4.00+ - GET DEVICE DRIVER FOR DRIVE
+	AX = 4A10h
+	BX = 0007h
+	BP = drive number (00h=A:)
+Return: DL = unit number within device driver
+	ES:DI -> device driver header for drive (see #01646)
+Note:	this function is also supported by PC-Cache v8.0.
+	this call is reported to always return the driver header of the
+	  standard block driver (A:-C:+) for SmartDrive v5.00 from MS-DOS 6.2
+SeeAlso: AX=4A10h/BX=0000h,AX=4A11h/BX=0003h,AX=4A11h/BX=0004h
+

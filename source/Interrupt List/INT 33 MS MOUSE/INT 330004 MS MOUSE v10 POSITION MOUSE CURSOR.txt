@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330004
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v1.0+ - POSITION MOUSE CURSOR
+	AX = 0004h
+	CX = column
+	DX = row
+Note:	the row and column are truncated to the next lower multiple of the cell
+	  size (typically 8x8 in text modes); however, some versions of the
+	  Microsoft documentation incorrectly state that the coordinates are
+	  rounded
+SeeAlso: AX=0003h,INT 62/AX=0081h,INT 6F/AH=10h"F_PUT_SPRITE"
+

@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A15BX0000
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS EMM386.EXE v4.46+ - INSTALL I/O VIRTUALIZATION HANDLER
+	AX = 4A15h
+	BX = 0000h (function number)
+	DX = starting I/O address
+	EDX high word = ending I/O address
+	CX = number of ports to trap
+	DS:SI -> I/O dispatch table (see #02815)
+	DI = size of client's code and data (size of DS segment which must be
+	      made available to I/O dispatch function in protected mode)
+Return: CF clear if successful
+	CF set on error
+Notes:	this interface is only available in virtual-86 mode; the I/O handlers
+	  will be called in protected mode
+	only ports 0100h-FFFFh may be trapped; EMM386 reserved ports 0000h-
+	  00FFh
+
+Format of EMM386 I/O dispatch table [array]:
+Offset	Size	Description	(Table 02815)
+ 00h	WORD	I/O port number
+ 02h	WORD	offset of I/O handler for port (see #02816)
+
+(Table 02816)
+Values EMM386 I/O dispatch function is called with:
+	CX = Ring0 code selector for I/O handler's segment
+	DS = Ring0 data selector for I/O handler's segment (alias of CS)
+	EDX = faulting I/O address
+	ECX = direction (00000008h for byte output, 00000000h for byte input)
+		(reportedly 00h for byte/word input, 04h for byte/word output
+		  under DOS 6.22 EMM386)
+	EAX = data in/out
+Return: (via FAR RET)
+	CF clear if I/O access successfully virtualized
+	CF set if access not virtualized (default handler will be called to
+	      perform the I/O)
+BUG:	32-bit I/O on trapped ports hangs the DOS 6.22 EMM386
+SeeAlso: #02815
+

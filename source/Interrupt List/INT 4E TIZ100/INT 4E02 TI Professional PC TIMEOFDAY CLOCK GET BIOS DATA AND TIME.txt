@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4E02
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 4E - TI Professional PC - TIME-OF-DAY CLOCK - GET BIOS DATA AND TIME
+	AH = 02h
+Return: AX = number of days since January 1, 1980
+	CH = hours
+	CL = minutes
+	DH = seconds
+	DL = hundredths
+SeeAlso: AH=00h,AH=01h
+

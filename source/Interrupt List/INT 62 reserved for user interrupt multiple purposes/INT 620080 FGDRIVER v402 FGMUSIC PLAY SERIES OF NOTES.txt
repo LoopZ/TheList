@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620080
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_MUSIC" - PLAY SERIES OF NOTES
+	AX = 0080h
+	ES:BX -> '$'-terminated music string in BASIC PLAY format
+Return: after music completed
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This call is ignored if asynchronous sound (AX=00A5h,AX=00A8h,
+	  AX=00AAh) is already in progress
+SeeAlso: AX=0081h,AX=00BCh,AX=00DBh
+

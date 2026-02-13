@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 62006A
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_LOADPCX" - LOAD .PCX INTO ACTIVE VIRTUAL BUFFER
+	AX = 006Ah
+	ES:BX -> ASCIZ filename for PCX image
+	CX = control flags
+	    bit 0: use current palette, overriding stored .PCX palette
+	    bit 1: load at current graphics position, not stored position
+	    bit 2: load image from FG_IMAGEBUF buffer instead of .PCX file
+Return: AX = status
+	    0000h successful
+	    0001h file not found
+	    0002h not a .PCX file
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=006Ch,AX=00B9h,AX=00D5h
+

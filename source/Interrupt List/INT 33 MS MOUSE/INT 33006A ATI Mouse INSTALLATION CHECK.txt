@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33006A
+  Category: M 	mouse/pointing device
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 33 U - ATI Mouse - INSTALLATION CHECK
+	AX = 006Ah
+Return: AL = AAh
+	AH = ???
+	BH = ???
+	BL = ???
+	CL = ???
+	CH = ???
+Program: ATI's MOUSE.COM and MOUSE.SYS are drivers for the mouse port found on
+	  some of ATI's video adapters
+SeeAlso: AX=006Dh
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 155380BX8000
+  Category: p 	power management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - Phoenix BIOS 4.0 Rel 6.0 - ???
+	AX = 5380h
+	BX = 8000h
+	CX = 0020h
+Return: ???
+Note:	although a check for the indicated value is present in the examined
+	  copy of the BIOS, no code was associated with it (possibly an OEM
+	  option not included in that copy) and this function always returns
+	  CF set/AH=03h if CX=0020h and CF set/AH=86h for CX<>0020h
+SeeAlso: AX=5380h/BX=8001h
+

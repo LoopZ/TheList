@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F92
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - RESTORE SUPERVGA STATE
+	AX = 5F92h
+	CX = state mask (see #00185)
+	ES:BX -> previously-filled save buffer
+Return: AL = 5Fh if function supported
+SeeAlso: AH=1Ch,AX=5F03h,AX=5F90h,AX=5F92h,AX=5FA2h
+

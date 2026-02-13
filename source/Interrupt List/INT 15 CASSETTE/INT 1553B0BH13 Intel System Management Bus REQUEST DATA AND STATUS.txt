@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1553B0BH13
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Intel System Management Bus - REQUEST DATA AND STATUS
+	AX = 53B0h
+	BH = 13h
+	BL = protocol (see #00487)
+	CH = device address
+	CL = device command
+Return: CF clear if successful
+	    AH = 00h (SMBus OK)
+	    CH = status
+		00h no data pending, transaction complete
+		01h no data pending, transaction continues
+		02h data pending
+	    CL = number of valid bytes in DX (0-2)
+	    DH = MSB data
+	    DL = LSB data
+	CF set if error
+	    AH = error code (05h,10h,11h,13h,15h,16h,18h,1Bh,86h) (see #00484)
+Desc:	determine when a transaction is complete, gather data returned by read
+	  transactions
+Note:	for Block Read protocol (08h), first call returns block	length in DH
+	  and the first byte of the block in DL
+

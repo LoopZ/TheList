@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D803
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - EISA SYSTEM ROM - WRITE NONVOLATILE MEMORY
+	AX = D803h
+	CX = length of data structure (0000h = empty slot)
+		includes two bytes for config file checksum
+	DS:SI -> configuration data
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = error code (84h-86h) (see #00539)
+Note:	call with AL=83h if using 32-bit CS addressing mode instead of 16-bit
+SeeAlso: AX=D802h
+

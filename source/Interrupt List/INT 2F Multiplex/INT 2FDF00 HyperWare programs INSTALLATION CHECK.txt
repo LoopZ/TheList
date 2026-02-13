@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDF00
+  Category: c 	caches/spoolers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - HyperWare programs - INSTALLATION CHECK
+	AX = DF00h
+	BX = product code (see #03105)
+	CX = 0000h
+	DX = 0000h
+Return: AL = status
+	    00h not installed
+	    FFh multiplex number in use
+		CX = 5948h ('YH') if selected product installed
+		---HyperDisk---
+		BX = code segment of resident portion
+		DX = HyperDisk local data version
+Program: HyperDisk is a shareware disk cache by HyperWare (Roger Cross)
+Range:	AH=C0h to AH=FFh, selected by scanning AH=DFh, then AH=C0h-FFh
+SeeAlso: INT 13/AX=8EEDh
+Index:	installation check;HyperDisk|installation check;HyperStb
+Index:	installation check;HyperKey|installation check;HyperScreen
+Index:	HyperDisk;installation check|HyperStb;installation check
+Index:	HyperKey;installation check|HyperScreen;installation check
+
+(Table 03105)
+Values for HyperWare product code:
+ 4248h	('BH') HyperStb
+ 4448h	('DH') HyperDisk v4.20+
+ 4B48h	('KH') HyperKey
+ 5348h	('SH') HyperScreen
+

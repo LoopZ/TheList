@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 660696
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 66 - DIGPAK - GET AUDIO PENDING STATUS
+	AX = 0696h
+Return: AX = status
+	    0000h no sound is playing
+	    0001h sound playing, and a sound is pending
+	    0002h sound playing, no sound pending
+SeeAlso: AX=0695h
+

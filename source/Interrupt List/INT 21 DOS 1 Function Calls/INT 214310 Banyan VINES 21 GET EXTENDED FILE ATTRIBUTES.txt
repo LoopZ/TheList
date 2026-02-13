@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214310
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Banyan VINES 2.1+ - GET EXTENDED FILE ATTRIBUTES
+	AX = 4310h
+	DS:DX -> ASCIZ filename
+Return: CF clear if successful
+	    CH = attributes (see #01422)
+	CF set on error
+	    AX = error code (01h,02h,03h,05h) (see #01680 at AH=59h/BX=0000h)
+Note:	the filename may be a directory but must be on a VINES file service
+SeeAlso: AX=4300h,AX=4311h,AH=B6h,INT 2F/AX=110Fh
+

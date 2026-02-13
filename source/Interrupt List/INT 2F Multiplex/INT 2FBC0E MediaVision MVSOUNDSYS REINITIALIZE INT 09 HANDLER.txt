@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC0E
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MediaVision MVSOUND.SYS - RE-INITIALIZE INT 09 HANDLER
+	AX = BC0Eh
+Return: BX = status
+	    0000h on failure
+		AX = 0000h
+	    FFFFh if successful
+		DX:AX -> prior INT 09 handler
+Desc:	re-initialize INT 09 handler to re-enable hotkeys (e.g. after loading
+	  KEYB)
+

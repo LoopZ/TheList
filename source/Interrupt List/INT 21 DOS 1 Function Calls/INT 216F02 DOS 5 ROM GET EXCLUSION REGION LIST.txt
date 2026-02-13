@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216F02
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 5+ ROM - GET EXCLUSION REGION LIST
+	AX = 6F02h
+	ES:BX -> buffer for exclusion region list (see #01773)
+Return: CF clear
+	AL = 00h
+	ES:BX = 0000h:0000h on error, unchanged if buffer filled
+Note:	for DOS versions which do not support this function, the return value
+	  is AL=00h, CF unchanged, ES:BX unchanged, and the ES:BX buffer
+	  unchanged
+SeeAlso: AX=6F00h,AX=6F03h
+
+Format of ROM exclusion region list:
+Offset	Size	Description	(Table 01773)
+ 00h	WORD	number of entries
+ 02h 2N WORDs	start/end segments of N excluded regions
+

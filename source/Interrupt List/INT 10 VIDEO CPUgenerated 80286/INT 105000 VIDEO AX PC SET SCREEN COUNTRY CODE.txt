@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105000
+  Category: J 	Japanese
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - AX PC - SET SCREEN COUNTRY CODE
+	AX = 5000h
+	BX = country code
+	    0001h USA (English), 0051h Japan
+Return: AL = status
+	    00h successful
+	    01h bad country code
+	    02h other error
+Note:	This function is called with BX=0051h by Japanese versions of
+	  MS-DOS/PC DOS/DR DOS IO.SYS/IBMBIO.COM at initialization time.
+SeeAlso: AX=5001h,INT 16/AX=5000h
+

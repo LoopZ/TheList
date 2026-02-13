@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F5201
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - JAM.SYS v1.10+ - "GetInfo" - GET COMPRESSED DRIVE INFORMATION
+	AX = 5201h
+	DL = compressed drive number (0-default, 1-A:, etc.)
+	DS:BX -> buffer for JAMINFO structure (see #02831,#02832)
+Return: AH = status (00h,01h) (see #02835)
+SeeAlso: AX=5200h
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A81
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - RESOLVE A GATE NAME
+	AH = 81h
+	ES:DI -> 8-char blank-padded gate name (see #03838)
+Return: DX = gate ID
+
+(Table 03838)
+Values for 3270 Workstation Program gate name:
+ "SESSMGR "
+ "KEYBOARD"
+ "WSCTRL  "
+ "MFIC	  "
+ "PCPSM	  "
+ "3270EML "
+ "COPY	  "
+ "XLATE	  "
+ "OIAM	  "
+ "MEMORY  "
+ "INDJQRY "
+ "INDJASY "
+

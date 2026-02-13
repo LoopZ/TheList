@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FBC06
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - MS Windows 3.0, DOS 5+ EGA.SYS - GET VERSION INFO
+	AX = BC06h
+Return: BX = 5456h ("TV")
+	CH = major version
+	CL = minor version
+	DL = revision
+SeeAlso: AX=BC00h"EGA",INT 10/AH=FAh"EGA"
+

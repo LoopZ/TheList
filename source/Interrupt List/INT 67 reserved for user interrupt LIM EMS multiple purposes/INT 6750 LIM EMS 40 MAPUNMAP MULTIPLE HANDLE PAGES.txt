@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6750
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - MAP/UNMAP MULTIPLE HANDLE PAGES
+	AH = 50h
+	AL = subfunction
+	    00h use physical page numbers
+	    01h use segment addresses
+	DX = handle
+	CX = number of entries in array
+	DS:SI -> mapping array (see #03649)
+Return: AH = status (00h,80h,81h,83h,84h,8Ah,8Bh,8Fh) (see #03648)
+SeeAlso: AH=40h
+
+Format of EMS mapping array entry:
+Offset	Size	Description	(Table 03649)
+ 00h	WORD	logical page number or FFFFh to unmap physical page
+ 02h	WORD	physical page number or segment address
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FA4E0
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Futurus Team - INSTALLATION CHECK
+	AX = A4E0h
+Return: AL = 52h ("R") if installed
+	    AH = major version plus 30h ("0")
+	    ES:BX -> ??? (INT A4 handler???)
+Note:	older versions of Right Hand Man (from which Team evolved) store the
+	  signature "RH" at offset 103h in the INT 2F handler's segment
+SeeAlso: INT A4"Right Hand Man"
+

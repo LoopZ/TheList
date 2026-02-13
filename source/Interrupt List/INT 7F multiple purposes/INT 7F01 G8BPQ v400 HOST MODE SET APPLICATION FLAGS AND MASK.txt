@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - G8BPQ v4.00+ - HOST MODE - SET APPLICATION FLAGS AND MASK
+	AH = 01h
+	AL = stream number (01h-40h)
+	CL = new application flags
+	    bit 7: monitored frames available via AH=0Bh"G8BPQ"
+	DL = new application mask
+Program: the G8BPQ AX25 Networking Package is amateur packet radio software by
+	  John Wiseman which allows a PC to act as a node in an AX.25 network
+Range:	INT 00h to INT FFh, set in configuration file BPQCFG.TXT for v4.03+
+	  (earlier versions were hard-wired for INT 7F)
+SeeAlso: AH=00h"G8BPQ",AH=02h"G8BPQ",AH=0Bh"G8BPQ"
+

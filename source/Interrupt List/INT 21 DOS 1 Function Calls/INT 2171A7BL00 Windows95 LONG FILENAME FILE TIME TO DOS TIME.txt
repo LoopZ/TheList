@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2171A7BL00
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Windows95 - LONG FILENAME - FILE TIME TO DOS TIME
+	AX = 71A7h
+	BL = 00h
+	DS:SI -> QWORD file time
+Return: CF clear if successful
+	    CX = DOS time (see #01665)
+	    DX = DOS date (see #01666)
+	    BH = hundredths (10-millisecond units past time in CX)
+	CF set on error
+	    AX = error code
+		7100h if function not supported
+Desc:	convert Win95 64-bit file time (UTC) into DOS-style date and time
+	  (local timezone)
+Note:	the conversion fails if the file time's value is outside the range
+	  01jan1980 and 31dec2107
+SeeAlso: AX=71A6h,AX=71A7h/BL=01h
+

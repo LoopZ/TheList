@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 610003SF10
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - ASYNC TERMINAL EMULATION - START/STOP PRINTING
+	AX = 0003h subfn 10h
+	DS:BX -> argument block (see #03392)
+Return: AX = status (see #03369)
+SeeAlso: AX=0003h/SF=06h,AX=0003h/SF=13h
+
+Format of VINES argument block:
+Offset	Size	Description	(Table 03392)
+ 00h	BYTE	session ID (00h)
+ 01h	BYTE	10h (function "start/stop printing of data received from host")
+ 02h	WORD	print capture flag (00h=off, 01h=on)
+

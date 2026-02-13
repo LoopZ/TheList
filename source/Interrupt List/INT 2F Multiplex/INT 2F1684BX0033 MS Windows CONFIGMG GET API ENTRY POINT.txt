@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0033
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - CONFIGMG - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0033h (virtual device ID for CONFIGMG device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02672)
+		  0000h:0000h if the VxD does not support API in current mode
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02672)
+Call CONFIGMG.VXD entry point with:
+	AX = function number
+	    0000h get CONFIGMG version
+		Return: CF clear
+			AH = major version
+			AL = minor version
+	    ...
+	    005Ah
+	    else
+		Return: CF set
+			AX = 0020h
+SeeAlso: #01297 at INT 20"Windows",#02671,#02673
+

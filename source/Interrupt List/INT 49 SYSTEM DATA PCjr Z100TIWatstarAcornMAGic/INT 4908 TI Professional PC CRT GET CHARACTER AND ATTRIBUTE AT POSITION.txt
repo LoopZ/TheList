@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4908
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - GET CHARACTER AND ATTRIBUTE AT POSITION
+	AH = 08h
+Return: AL = character at current cursor position
+	AH = attribute
+Note:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+SeeAlso: AH=01h,AH=09h,AH=0Ah,AH=0Eh,INT 10/AH=08h
+

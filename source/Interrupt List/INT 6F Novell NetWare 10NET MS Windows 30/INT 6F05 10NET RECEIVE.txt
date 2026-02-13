@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F05
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - RECEIVE
+	AH = 05h
+	CX = number of seconds before timeout
+	DS:DX -> receive buffer (see #03761)
+Return: CF clear if successful
+	    AH = FEh if dequeued message is a CB message
+	CF set on error
+	    AX = error code (see #03740)
+SeeAlso: AH=04h"10NET"
+
+Format of 10NET receive buffer:
+Offset	Size	Description	(Table 03761)
+ 00h 12 BYTEs	sending node's ID
+ 0Ch	WORD	length of message
+ 0Eh  N BYTEs	message (maximum 1024 bytes)
+

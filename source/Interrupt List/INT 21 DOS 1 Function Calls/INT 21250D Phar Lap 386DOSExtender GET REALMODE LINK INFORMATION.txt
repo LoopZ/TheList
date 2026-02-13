@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21250D
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 21 P - Phar Lap 386/DOS-Extender - GET REAL-MODE LINK INFORMATION
+	AX = 250Dh
+Return: CF clear
+	EAX = CS:IP of real-mode callback procedure (see #01358) that will
+		  call through from real mode to a protected-mode routine
+	EBX = 32-bit real-mode address of intermode call data buffer
+	ECX = size in bytes of intermode call data buffer
+	ES:EDX = protected-mode address of intermode call data buffer
+Notes:	this function is also supported by FlashTek X-32VM
+	X-32VM guarantees the intermode buffer to be at least 4 KB
+SeeAlso: AX=250Eh
+
+(Table 01358)
+Call Phar Lap real-mode callback with:
+	STACK:	DWORD	offset to protected-mode code
+		WORD	placeholder for protected-mode CS
+		DWORD	pointer to selector structure (see #01359)
+			or 0000h:0000h for defaults
+		var	parameters for protected-mode procedure
+Return: via FAR return
+
+Format of Phar Lap selector structure:
+Offset	Size	Description	(Table 01359)
+ 00h	WORD	protected-mode GS selector
+ 02h	WORD	protected-mode FS selector
+ 04h	WORD	protected-mode ES selector
+ 06h	WORD	protected-mode DS selector
+

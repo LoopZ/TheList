@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FE102
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - Phantom2 v1.1+ - UNINSTALL
+	AX = E102h
+Return: AX = status
+	    0001h removal successful
+	    0002h not installed as TSR
+	    FFFFh disabled but not removed
+SeeAlso: AX=E100h
+

@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD001
+  Category: G 	debuggers/debugging tools
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - MDEBUG display driver - INITIALIZE DRIVER
+	AX = D001h
+Return: CF set on error
+	AL = driver semaphor
+	AH = buffer semaphor
+Range:	AH=C0h to AH=FFh, selected by switch or programmatically
+Notes:	MDEBUG calls this function after every successful call of the function
+	  00h. The function should reset all internal data and the status of
+	  the driver. If this function returns an error, MDEBUG will not call
+	  the other functions in this popup session.
+	MDEBUG can use any two consecutive multiplex numbers between C0h and
+	  FFh; the default is D0h for the display driver and D1h for the
+	  command driver
+SeeAlso: AX=D000h
+

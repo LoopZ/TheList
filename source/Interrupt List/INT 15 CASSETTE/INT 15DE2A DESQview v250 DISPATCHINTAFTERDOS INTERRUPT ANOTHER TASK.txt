@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE2A
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.50+ - "DISPATCHINTAFTERDOS" - INTERRUPT ANOTHER TASK
+	AX = DE2Ah
+	BX = segment of handle for task to interrupt or 0000h for caller
+	DX:CX -> interrupt routine
+	BP,SI,DI,DS,ES as required by interrupt routine
+Return: nothing
+Notes:	DESQview 2.50-2.52 are distributed as part of DESQview/X v1.0x.
+	this call is the same as AX=DE20h except that it will delay
+	  interrupting the specified task until after it has exited DOS
+SeeAlso: AX=1021h,AX=DE20h
+

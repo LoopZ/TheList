@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16F0
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 16 - Compaq 386 and newer - SET CPU SPEED
+	AH = F0h
+	AL = speed code (see #00614)
+	if AL=09h,
+	    CX = speed value, 1 (slowest) to 50 (full), 3 ~= 8088
+Note:	also supported by some versions of AMI BIOS dated June 1992 or later;
+	  speed codes 0 or 1 are used for Low Speed, 2 for High Speed
+SeeAlso: AH=F1h,AH=F3h
+
+(Table 00614)
+Values for speed code:
+ 00h	equivalent to 6 MHz 80286 (COMMON)
+ 01h	equivalent to 8 MHz 80286 (FAST)
+ 02h	full 16 MHz (HIGH)
+ 03h	toggles between 8 MHz-equivalent and speed set by system board switch
+	  (AUTO or HIGH)
+ 08h	full 16 MHz except 8 MHz-equivalent during floppy disk access
+ 09h	specify speed directly
+

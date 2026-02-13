@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10FF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - TopView - UPDATE SCREEN FROM SHADOW BUFFER
+	AH = FFh
+	CX = number of consecutive changed characters
+	ES:DI -> first changed character in shadow buffer
+Return: nothing
+Notes:	avoid CX=0000h
+	DESQview will discontinue the automatic screen updating initiated by
+	  AH=FEh after this call
+	not supported (ignored) by DESQview/X 1.0x
+SeeAlso: AH=93h,AH=FEh
+

@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1600
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - WINDOWS ENHANCED MODE INSTALLATION CHECK
+	AX = 1600h
+Return: AL = status
+	    00h neither Windows 3.x enhanced mode nor Windows/386 2.x running
+	    01h Windows/386 2.x running
+	    80h XMS version 1 driver installed (neither Windows 3.x enhanced
+		  mode nor Windows/386 2.x running) (obsolete--see note)
+	    FFh Windows/386 2.x running
+	AL = anything else
+	    AL = Windows major version number >= 3
+	    AH = Windows minor version number
+Notes:	INT 2F/AH=16h comprises an API for non-Windows programs (DOS device
+	  drivers, TSRs, and applications) to cooperate with multitasking
+	  Windows/386 2.x and Windows 3.x and higher enhanced mode.
+	certain calls are also supported in the Microsoft 80286 DOS extender in
+	  Windows standard mode
+	this function served as the installation check and AX=1610h served to
+	  get the driver entry point for XMS version 1, which is now obsolete.
+	  Use AX=4300h and AX=4310h instead
+	Windows95 reports version 4.00, Windows95B reports version 4.03
+SeeAlso: AX=160Ah,AX=1610h,AX=4300h,AX=4680h
+Index:	installation check;XMS version 1
+

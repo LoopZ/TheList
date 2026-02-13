@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A11BX0004
+  Category: k 	file/disk compression
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - DBLSPACE.BIN - "DSSetEntryPoints" - SET DEVICE DRIVER ENTRY POINTS
+	AX = 4A11h
+	BX = 0004h
+	CL = drive number (0=A:) of compressed drive
+	DL = unit number for new driver entry points
+	DH = 00h
+	ES:SI -> device driver strategy routine to call for drive
+	ES:DI -> device driver interrupt routine to call for drive
+Return: CL = FFh on error (not a compressed drive)
+	BX destroyed
+Program: DBLSPACE.BIN is the resident driver for DoubleSpace, the
+	  disk-compression software bundled with MS-DOS 6.0
+Note:	in conjunction with subfunction 0003h, this call allows disk caches
+	  like SMARTDRV to apply a device driver wrapper to DoubleSpaced
+	  drives just like SMARTDRV applies to regular block devices
+SeeAlso: AX=4A10h/BX=0007h,AX=4A11h/BX=0000h,AX=4A11h/BX=0003h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F09
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET - SUBMIT
+	AH = 09h
+	DS:BX -> submit record (see #03763)
+SeeAlso: AH=04h"10NET"
+
+Format of 10NET submit record:
+Offset	Size	Description	(Table 03763)
+ 00h 12 BYTEs	destination node ID (must be logged in)
+ 0Ch	WORD	length+2 of following 'command line' text
+ 0Eh  N BYTEs	command line text (<=100 bytes), system adds CR
+

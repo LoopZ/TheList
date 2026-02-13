@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 60 - ATI M64VBE.COM - INSTALLATION SIGNATURE
+Program: M64VBE is a VESA VBE 2.0 driver TSR for ATI's Mach64 video chip
+InstallCheck:	scan for an interrupt with the ASCIZ signature "M64VBE" three
+	  bytes past the interrupt handler
+Range:	INT 60 to INT 66, selected by searching for first free vector
+SeeAlso: INT 10/AX=4FDDh"M64VBE",INT 10/AX=4FFFh/BX=364Dh"M64VBE"
+

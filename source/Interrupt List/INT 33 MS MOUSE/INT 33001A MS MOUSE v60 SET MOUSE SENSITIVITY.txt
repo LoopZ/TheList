@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33001A
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - SET MOUSE SENSITIVITY
+	AX = 001Ah
+	BX = horizontal speed \
+	CX = vertical speed   / (see AX=000Fh)
+	DX = double speed threshold (see AX=0013h)
+SeeAlso: AX=0013h,AX=001Bh,INT 62/AX=0082h
+

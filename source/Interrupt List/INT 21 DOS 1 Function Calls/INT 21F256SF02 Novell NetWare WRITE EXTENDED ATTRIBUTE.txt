@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F256SF02
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WRITE EXTENDED ATTRIBUTE
+	AX = F256h subfn 02h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02361)
+	ES:DI -> reply buffer (see #02362)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F256h/SF=01h,AX=F256h/SF=03h,AX=F256h/SF=05h
+
+Format of NetWare "Write Extended Attribute" request packet:
+Offset	Size	Description	(Table 02361)
+ 00h	BYTE	02h (subfunction "Write Extended Attribute")
+ 01h	WORD	flags (see #02372)
+ 03h  8 BYTEs	extended attribute handle structure (see #02373)
+ 0Bh	DWORD	write size
+ 0Fh	DWORD	write position
+ 13h	DWORD	access flag
+ 17h	WORD	length of value
+ 19h	WORD	key length
+ 1Bh  N BYTEs	key
+      N BYTEs	value
+SeeAlso: #02361,#02363
+
+Format of NetWare "Write Extended Attribute" reply packet:
+Offset	Size	Description	(Table 02362)
+ 00h	DWORD	error code
+ 04h	DWORD	number of bytes written
+ 08h	DWORD	new extended attribute handle
+SeeAlso: #02361
+

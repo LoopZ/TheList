@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 144003
+  Category: t 	TSR libraries
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - I1541 - RESET ALL DEVICES
+	AX = 4003h
+Return: nothing
+Desc:	send a reset pulse of 100ms to all CBM devices
+Note:	it is necessary to wait about 2 seconds after reset before executing
+	  other	instructions
+SeeAlso: AX=4000h,AX=4004h
+

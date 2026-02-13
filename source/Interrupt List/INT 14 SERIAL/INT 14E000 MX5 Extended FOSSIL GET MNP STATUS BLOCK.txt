@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: 14E000
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MX5 Extended FOSSIL - GET MNP STATUS BLOCK
+	AX = E000h
+	DX = port number (0-3)
+Return: ES:BX -> status block (see #00398)
+Program: MX5 is a FOSSIL driver by MagicSoft which emulates MNP Level 5, and
+	  ships with the METZ terminal program as MTEMNP.DRV (a TSR despite
+	  the .DRV extension)
+SeeAlso: AX=E006h
+
+Format of MX5 Extended FOSSIL status block:
+Offset	Size	Description	(Table 00398)
+ 00h	BYTE	flag: active (00h no, 01h yes)
+ 01h	BYTE	MNP level (2,4,5)
+ 02h	BYTE	series ID from remote MNP
+ 03h	DWORD	total packets transmitted
+ 07h	DWORD	duplicate packets transmitted
+ 0Bh	DWORD	maximum speed
+ 0Fh	DWORD	total packets received
+ 13h	DWORD	duplicate packets received
+ 17h	DWORD	maximum speed
+

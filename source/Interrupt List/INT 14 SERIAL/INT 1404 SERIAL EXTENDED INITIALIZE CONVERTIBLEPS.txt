@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1404
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - SERIAL - EXTENDED INITIALIZE (CONVERTIBLE,PS)
+	AH = 04h
+	AL = break status
+	    00h if break
+	    01h if no break
+	BH = parity (see #00307)
+	BL = number of stop bits
+	    00h one stop bit
+	    01h two stop bits (1.5 if 5 bit word length)
+	CH = word length (see #00308)
+	CL = bps rate (see #00309)
+	DX = port number
+Return: AX = port status code (see #00304,#00305)
+SeeAlso: AH=00h,AH=1Eh,AX=8000h"ARTICOM"
+
+(Table 00307)
+Values for serial port parity:
+ 00h	no parity
+ 01h	odd parity
+ 02h	even parity
+ 03h	stick parity odd
+ 04h	stick parity even
+SeeAlso: #00300,#00308,#00309,#00310
+
+(Table 00308)
+Values for serial port word length:
+ 00h	5 bits
+ 01h	6 bits
+ 02h	7 bits
+ 03h	8 bits
+SeeAlso: #00300,#00307,#00309,#00345
+
+(Table 00309)
+Values for serial port bps rate:
+ 00h	110 (19200 if ComShare installed)
+ 01h	150 (38400 if ComShare installed)
+ 02h	300
+ 03h	600 (14400 if ComShare installed)
+ 04h	1200
+ 05h	2400
+ 06h	4800 (28800 if ComShare installed)
+ 07h	9600
+ 08h	19200
+---ComShare---
+ 09h	38400
+ 0Ah	57600
+ 0Bh	115200
+SeeAlso: #00300,#00307,#00309,#00346,#00353,AH=36h,#00364,#00606,#02923
+

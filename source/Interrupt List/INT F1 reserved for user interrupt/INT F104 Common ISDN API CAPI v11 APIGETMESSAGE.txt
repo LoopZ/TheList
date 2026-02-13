@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: F104
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT F1 - Common ISDN API (CAPI) v1.1 - "API-GET-MESSAGE"
+	AH = 04h
+	DX = application ID (see AH=01h)
+Return: AX = status (0000h,1002h,1006h,1007h) (see #04069)
+	ES:BX -> message if successful (see #04071)
+Range:	INT 00 to INT FF, selectable by program parameter
+Notes:	the caller is required to provide at least 512 bytes of stack space
+	the returned message may be overwritten by the next call to this
+	  function
+SeeAlso: AH=03h
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 100B--BH01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET PALETTE
+	AH = 0Bh
+	BH = 01h
+	BL = palette ID
+	    00h background, green, red, and brown/yellow
+	    01h background, cyan, magenta, and white
+Return: nothing
+Note:	this call was only valid in 320x200 graphics on the CGA, but newer
+	  cards support it in many or all graphics modes
+SeeAlso: AH=0Bh/BH=00h,MEM 0040h:0066h
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FAC0EDI1092
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - QRIP/TSR - WRITE ASCIZ STRING IN PROTECTED AREA
+	AX = AC0Eh
+	DI = 1092h
+	DX:BX -> ASCIZ string to be written
+	CL = column at which to begin writing
+	CH = row number within protected area (00h = first line)
+Return: nothing
+Note:	if DI <> 1092h on entry, QRIP chains the call
+SeeAlso: AX=AC0Dh,AX=AC0Fh,AX=AC10h,AX=ACF0h
+

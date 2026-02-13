@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - Non-dedicated NetWare 2.x File Server - ENTER CONSOLE MODE
+InstallCheck:	test for the signature "Lynn" in the four bytes preceding the
+	  interrupt handler; if present, the current program is running as a
+	  DOS task on a non-dedicated NetWare 2.x file server.
+Note:	Before placing the server into "console" mode, it is recommended that
+	  NetWare broadcast messages be disabled with INT 21/AH=DEh/DL=00h.
+SeeAlso: INT 21/AH=DEh/DL=04h
+Index:	installation check;non-dedicated NetWare server
+

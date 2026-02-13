@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FDB23
+  Category: F 	FAX
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - ZyXEL ZFAX v3+ - RECORD VOICE FILE
+	AX = DB23h
+	DS:SI -> destination filename, including path (max 128 characters)
+	CX = recording channel (0 = telephone line, 1 = microphone/speaker)
+	DX = voice file format
+	    00h CELP, 01h two-bit ADPCM, 02h three-bit ADPCM
+Return: AX = status (see #03096)
+SeeAlso: AX=DB21h,AX=DB22h,AX=DB24h
+

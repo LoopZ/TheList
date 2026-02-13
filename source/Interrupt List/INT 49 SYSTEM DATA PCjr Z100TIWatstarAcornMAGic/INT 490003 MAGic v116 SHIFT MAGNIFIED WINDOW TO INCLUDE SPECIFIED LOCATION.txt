@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 490003
+  Category: a 	access software (screen readers, etc)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - MAGic v1.16+ - SHIFT MAGNIFIED WINDOW TO INCLUDE SPECIFIED LOCATION
+	AX = 0003h
+	BX = vertical position (character row [text] or pixel row [graphics])
+	DX = horizontal position (char column [text] or 8-pixel units [gr])
+Return: AX = status
+	    0000h successful
+	    FFFFh MAGic busy, retry later
+	BX,CX,DX destroyed
+Note:	window is not moved if the position is inside the current window
+SeeAlso: AX=0001h,AX=0004h,AX=0005h
+

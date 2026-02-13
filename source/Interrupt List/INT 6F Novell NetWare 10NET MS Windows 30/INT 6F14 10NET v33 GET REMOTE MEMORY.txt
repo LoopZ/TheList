@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F14
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v3.3+ - GET REMOTE MEMORY
+	AH = 14h
+	BX:SI = address of remote memory
+	CX = length (<=1024 bytes)
+	DS:DX -> node ID, 12 bytes blank-padded
+	DS:DI -> area to receive remote memory image
+Return: CF clear if successful
+	    CX = amount of memory copied to DS:SI
+	CF set on error
+	    AX = error code (see #03740)
+

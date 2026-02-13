@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1316
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - FLOPPY DISK - DETECT DISK CHANGE (XT 1986/1/10 or later,XT286,AT,PS)
+	AH = 16h
+	DL = drive number (00h-7Fh)
+	SI = 0000h (to avoid crash on AT&T 6300)
+Return: CF clear if change line inactive
+	    AH = 00h (disk not changed)
+	CF set if change line active
+	    AH = status
+		01h invalid command (SyQuest)
+		06h change line active or not supported
+		80h drive not ready or not present
+Notes:	call AH=15h first to determine whether the drive supports a change
+	  line
+	this call also clears the media-change status, so that a disk change
+	  is only reported once
+BUGS:	some versions of Award 386 Modular BIOS and AMI BIOS fail to clear
+	  the media-change status
+	AT&T 6300 WGS systems crash if SI <> 0 on entry.
+	some pre 1986/08/04 Compaq ROM BIOS have a serious bug where this
+	  function may re-configure a hard disk depending on what is located
+	  at ES:[BX] and data indexed to by it. MS-DOS/PC DOS IO.SYS/IBMBIO.COM
+	  install a special filter when they detect Compaq ROM BIOSes with
+	  earlier dates.
+	some Compaq 286 systems have a bug in all INT 13h functions >= 16h,
+	  which causes the byte at DS:0074h to be destroyed when called for
+	  hard disks (DL >= 80h). MS-DOS/PC DOS IO.SYS/IBMBIO.COM performs a
+	  test on this bug using this sub-function, and if found installs a
+	  special filter which points DS into ROM, so that it cannot cause
+	  any harm.
+	some drives (or controllers???) forget the change line status
+	  if another drive is accessed afterwards. The DOS BIOS takes care
+	  of this by not relying on the reported change line status when
+	  the change line is not active and a different drive is accessed,
+	  instead it reports "don't know" to the DOS kernel.
+SeeAlso: AH=15h,AH=49h
+

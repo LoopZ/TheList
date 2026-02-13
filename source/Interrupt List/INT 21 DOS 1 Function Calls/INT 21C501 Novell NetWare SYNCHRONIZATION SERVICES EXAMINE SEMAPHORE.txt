@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C501
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - EXAMINE SEMAPHORE
+	AX = C501h
+	CX:DX = semaphore handle
+Return: AL = status
+	    00h successful
+		CX = semaphore value (-127 to 127)
+		DL = count of processes which have the semaphore open
+	    FFh invalid handle
+Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AX=C500h"NetWare",AX=C502h,AX=C504h,AX=F220h/SF=01h
+

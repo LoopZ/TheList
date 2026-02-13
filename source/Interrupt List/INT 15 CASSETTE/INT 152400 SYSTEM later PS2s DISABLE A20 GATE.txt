@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152400
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - SYSTEM - later PS/2s - DISABLE A20 GATE
+	AX = 2400h
+Return: CF clear if successful
+	    AH = 00h
+	CF set on error
+	    AH = status
+		01h keyboard controller is in secure mode
+		86h function not supported
+Notes:	also supported by AMI PCI BIOS and Qualitas 386MAX v6.01+
+	IBM classifies this function as optional
+BUG:	AMI BIOS v1.00.03.AV0M never reports an error on failure to disable
+	  the A20 gate; it simply writes 0 to PORT 0092h
+SeeAlso: AX=2401h,AX=2402h,AX=2403h,PORT 0092h
+

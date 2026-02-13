@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F7A81
+  Category: N 	network
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 2F C - Novell NetWare - SHELL 3.01d BROADCAST - SET SHELL INT 21 HANDLER
+	AX = 7A81h
+	CX:DX -> shell's INT 21h entry point
+Return: nothing
+Notes:	the shell calls this function as it loads to allow interested TSRs
+	  and drivers to make a local copy of the shell's entry point
+	must be passed through so that all interested programs see it
+

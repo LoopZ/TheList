@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6106
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 61 - Banyan VINES - GET PCCONFIG BASE ADDRESS
+	AH = 06h
+	DS:DX -> 4-byte buffer for far pointer to PCCONFIG area
+Return: AX = 0000h successful
+Note:	The PCCONFIG area is located in the code segment of the BANV handler
+SeeAlso: AH=05h"VINES",AH=0Bh"VINES"
+

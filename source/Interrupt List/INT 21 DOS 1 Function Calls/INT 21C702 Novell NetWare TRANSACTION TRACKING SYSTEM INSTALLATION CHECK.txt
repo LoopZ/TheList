@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21C702
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - TRANSACTION TRACKING SYSTEM - INSTALLATION CHECK
+	AX = C702h
+Return: AL = status
+	    00h not available
+	    01h available
+	    FDh available but disabled
+Desc:	determine whether the default file server supports TTS
+Note:	this function is supported by NetWare 4.0+ and Advanced NetWare 1.0+
+SeeAlso: AX=C700h,AX=C701h,AX=C703h,AX=F222h/SF=00h
+

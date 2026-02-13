@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 105F02
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Chips & Technologies Extended BIOS - AUTO EMULATION CONTROL
+	AX = 5F02h
+	BL = new state of autmatic emulation (00h enabled, 01h disabled)
+Return: AL = 5Fh if function supported
+	    AH = status
+		00h unsuccessful
+		01h successful
+SeeAlso: AX=5F01h,AX=5F03h
+

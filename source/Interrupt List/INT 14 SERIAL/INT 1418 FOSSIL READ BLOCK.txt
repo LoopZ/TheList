@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1418
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - FOSSIL - READ BLOCK
+	AH = 18h
+	CX = maximum number of characters to transfer
+	DX = port number
+	ES:DI -> user buffer
+Return: AX = number of characters transferred
+SeeAlso: AH=19h"FOSSIL",AH=83h"COURIERS",AX=FF02h,INT 6B/AX=0100h
+

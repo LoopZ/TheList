@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 150E
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - VMiX - "sys_kill" - HARD TERMINATE PROCESS
+	AH = 0Eh
+	STACK:	WORD	process ID
+Return: AX = status (SYS_OK or SYS_ERROR)
+SeeAlso: AH=0Bh"VMiX",AH=0Dh"VMIX"
+

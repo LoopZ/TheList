@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16FA04DX5945
+  Category: v 	virus/antivirus
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - PC Tools v8+ VSAFE - GET HOTKEY DISABLE FLAG
+	AX = FA04h
+	DX = 5945h
+Return: CF clear
+	DI = 4559h
+	BL = hotkey disable flag (nonzero if hotkey disabled)
+Note:	this function is a NOP under VWATCH, merely returning CF clear/DI=4559h
+SeeAlso: AX=FA00h,AX=FA05h
+

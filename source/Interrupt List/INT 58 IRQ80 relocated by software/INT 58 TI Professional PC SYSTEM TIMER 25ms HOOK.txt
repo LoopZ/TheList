@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 58
+  Category: b 	vendor-specific BIOS extensions
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 58 C - TI Professional PC - SYSTEM TIMER 25ms HOOK
+Desc:	called from the hardware timer tick interrupt, after executing the
+	  first four BIOS timing events, updating the system clock, invoking
+	  INT 5A if required, saving registers, and switching to a temporary
+	  stack (the one reserved for IRQ3)
+Notes:	the handler for this interrupt may destroy AX,BX,DI,ES but must
+	  preserve all other registers; 8 WORDs of stack space are available,
+	  of which at most 4 may be used if the handler enables interrupts
+	if the handler switches stacks (because more than 4/8 WORDs are
+	  required), the original stack must be restored before chaining to
+	  the previous handler
+SeeAlso: INT 43"TI Professional",INT 4C"TI Professional"
+SeeAlso: INT 5A"TI Professional"
+

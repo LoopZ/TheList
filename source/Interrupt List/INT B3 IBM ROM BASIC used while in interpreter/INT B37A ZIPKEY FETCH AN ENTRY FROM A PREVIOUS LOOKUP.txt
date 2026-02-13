@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: B37A
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT B3 - ZIPKEY - FETCH AN ENTRY FROM A PREVIOUS LOOKUP
+	AH = 7Ah
+	BL = case number (0 to one less than value returned in BH by lookup)
+Return: AL = ZIPKEY state code
+	DX = zipcode region (0-999)
+	CL = last two digits of first zipcode in the range (0-99)
+	CH = last two digits of last zipcode in the range (0-99)
+SeeAlso: AH=78h,AH=79h
+

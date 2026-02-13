@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------
+ Unique ID: 215F4C
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 21 u - LAN Manager Enhanced DOS - LOCAL NetServerEnum
+	AX = 5F4Ch
+	BX = level (0000h or 0001h)
+	CX = buffer length
+	ES:DI -> buffer in which to store information
+Return: CF clear if successful
+	    ES:DI -> server_info_X structures (depending on level)
+		  (see #01723,#01724)
+	    BX = entries read
+	    CX = total entries available
+	CF set on error
+	    AX = error code
+Notes:	this function is also supported by the Novell DOS Named Pipe Extender
+	this function has been obseleted by NetServerEnum2
+SeeAlso: AX=5F53h
+
+Format of LAN Manager server_info_0 structure:
+Offset	Size	Description	(Table 01723)
+ 00h 16 BYTEs	name
+SeeAlso: #01724
+
+Format of LAN Manager server_info_1 structure:
+Offset	Size	Description	(Table 01724)
+ 00h 16 BYTEs	name
+ 10h	BYTE	major version in lower nibble
+ 11h	BYTE	minor version
+ 12h	DWORD	server type bitmask (see #01725)
+ 16h	DWORD	-> comment string
+SeeAlso: #01723
+
+Bitfields for LAN Manager server type:
+Bit(s)	Description	(Table 01725)
+ 0	workstation
+ 1	server
+ 2	SQL server
+ 3	primary domain controller
+ 4	backup domain controller
+ 5	time server
+ 6	Apple File Protocol (AFP) server
+ 7	Novell server
+ 8	Domain Member (v2.1+)
+ 9	Print Queue server (v2.1+)
+ 10	Dialin server (v2.1+)
+ 11	Unix server (v2.1+)
+Note:	set all (FFFFFFFFh) for All Types
+

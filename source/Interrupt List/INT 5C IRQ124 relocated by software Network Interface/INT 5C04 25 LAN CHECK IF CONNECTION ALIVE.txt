@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 5C04
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 5C - $25 LAN - CHECK IF CONNECTION ALIVE
+	AH = 04h
+	AL = COM port (0 = default)
+	CX = wait count in character times (should be at least 100)
+Return: ZF set if link alive
+

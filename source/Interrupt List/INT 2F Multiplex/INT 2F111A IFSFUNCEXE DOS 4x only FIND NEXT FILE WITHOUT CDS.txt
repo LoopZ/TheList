@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F111A
+  Category: N 	network
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F CU - IFSFUNC.EXE (DOS 4.x only) - FIND NEXT FILE WITHOUT CDS
+	AX = 111Ah
+	???
+Return: CF set
+	    AX = error code (03h for DOS 4.01 IFSFUNC)
+Note:	use AX=111Ch for DOS 5+
+SeeAlso: AX=1119h,AX=111Ch
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 212A
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 1+ - GET SYSTEM DATE
+	AH = 2Ah
+Return: CX = year (1980-2099)
+	DH = month
+	DL = day
+---DOS 1.10+---
+	AL = day of week (00h=Sunday)
+SeeAlso: AH=2Bh"DOS",AH=2Ch,AH=E7h"Novell",INT 1A/AH=04h,INT 2F/AX=120Dh
+

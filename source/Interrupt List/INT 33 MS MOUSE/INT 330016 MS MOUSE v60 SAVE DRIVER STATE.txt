@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330016
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - MS MOUSE v6.0+ - SAVE DRIVER STATE
+	AX = 0016h
+	BX = size of buffer (see AX=0015h)
+	ES:DX -> buffer for driver state
+Note:	although not documented (since the Microsoft driver does not use it),
+	  many drivers appear to require BX on input
+SeeAlso: AX=0015h,AX=0017h
+

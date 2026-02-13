@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - WANG_ER.COM - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    ES = segment of resident code
+Program: WANG_ER is a TSR from Compaq which permits Compaq systems equipped
+	  with 3-mode floppy drives to read Wang document diskettes
+Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
+Note:	The installation check is completed by comparing the resident code
+	  with the copy in the transient program
+

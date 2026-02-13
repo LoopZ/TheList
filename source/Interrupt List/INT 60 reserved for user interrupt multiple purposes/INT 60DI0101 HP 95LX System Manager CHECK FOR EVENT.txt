@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0101
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - CHECK FOR EVENT
+	DI = 0101h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+		DWORD pointer to event record (INT 60/DI=0100h)
+Return: event record filled
+	STACK unchanged
+Note:	this call returns immediately if no event is available
+SeeAlso: INT 60/DI=0100h
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21D1
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - LOCK LOGICAL RECORD SET
+	AH = D1h
+	AL = lock type (00h exclusive, 01h shareable)
+	if function C6h lock mode 00h:
+	    DL = mode (00h no wait, 01h wait)
+	if function C6h lock mode 01h: (Novell only)
+	    BP = lock timeout in timer ticks (1/18 sec), 0000h no wait
+Return: AL = status (see #01810)
+Desc:	attempt to lock all logical record names listed in the log table
+Notes:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+,
+	  Banyan VINES, and Alloy NTNX
+	status FFh will be returned if one or more logical records have been
+	  exclusively locked by another process
+	locks on logical record names are advisory and may be ignored by other
+	  applications
+SeeAlso: AH=C2h,AH=CBh,AH=D0h,AH=D3h,AH=D5h
+

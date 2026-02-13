@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: 310D00
+  Category: E 	DOS extenders
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 31 P - DPMI 1.0+ - ALLOCATE SHARED MEMORY
+	AX = 0D00h
+	ES:(E)DI -> shared memory allocation request structure (see #03159)
+Return: CF clear if successful
+	    request structure updated
+	CF set on error
+	    AX = error code (8012h,8013h,8014h,8016h,8021h) (see #03143)
+Note:	first 16 bytes of memory block will be initialized to zeros on the
+	  first allocation
+SeeAlso: AX=0501h,AX=0D01h,AX=0D02h
+
+Format of DPMI shared memory allocation request structure:
+Offset	Size	Description	(Table 03159)
+ 00h	DWORD	requested length of shared memory block in bytes
+ 04h	DWORD	(ret) allocated length of block
+ 08h	DWORD	(ret) shared memory handle
+ 0Ch	DWORD	(ret) linear address of memory block
+ 10h	PWORD	selector:offset32 of ASCIZ name for memory block
+		(name max 128 bytes)
+ 16h  2 BYTEs	reserved
+ 18h  4 BYTEs	reserved (00h)
+

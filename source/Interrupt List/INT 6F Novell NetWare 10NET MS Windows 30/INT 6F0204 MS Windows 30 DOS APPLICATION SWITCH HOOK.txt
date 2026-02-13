@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F0204
+  Category: W 	MS Windows
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 6F C - MS Windows 3.0 - DOS APPLICATION SWITCH HOOK
+	AX = 0204h
+Return: AX = status
+	    0000h switch is allowed
+	    other switch not allowed
+Note:	intercepting this call will allow a DOS application to ensure that
+	  Windows will not switch away from it.
+

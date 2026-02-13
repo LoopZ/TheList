@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH17
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.42-2.52 - BUG
+	AH = 12h
+	BH = 17h
+	BL = object
+	    00h DWORD on top of stack
+		mailbox, keyboard, or pointer only
+	    02h mailbox for task whose handle is on top of stack
+	    03h mailbox for current task
+	    04h keyboard for task whose handle is on top of stack
+	    05h keyboard for current task
+Return: STACK popped if handle passed on stack
+Notes:	due to a fencepost error, message 17h is accepted for mailboxes,
+	  keyboards, and pointers, but causes a random branch
+	DESQview v2.50-2.52 are distributed as part of DESQview/X v1.02
+

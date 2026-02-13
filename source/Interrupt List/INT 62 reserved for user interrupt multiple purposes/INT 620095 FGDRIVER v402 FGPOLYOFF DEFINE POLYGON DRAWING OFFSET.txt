@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620095
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_POLYOFF" - DEFINE POLYGON DRAWING OFFSET
+	AX = 0095h
+	BX = horizontal offset (default 0)
+	CX = vertical offset (default 0)
+Desc:	define the offsets applied to all vertices of polygons drawn with
+	  "FG_POLYFILL" or "FG_POLYLINE"
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=0092h,AX=0094h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214403SF05
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - Qualitas 386MAX v7.00+ - LIMIT AUTOMATIC ACTIVATION TO STD EMS CALLS
+	AX = 4403h subfn 05h
+	BX = handle for device "386MAX$$"
+	DS:DX -> BYTE 05h
+	CX ignored
+Return: CF clear if successful
+	    AX destroyed
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+Desc:	specifies that 386MAX will only shift from AUTO to ON mode on standard
+	  EMS calls INT 67/AH=40h-5Dh
+SeeAlso: AX=4403h/SF=02h,AX=4403h/SF=03h,AX=4403h/SF=06h
+

@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF37
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - BINDERY SERVICES - SCAN BINDERY OBJECT
+	AH = E3h subfn 37h
+	DS:SI -> request buffer (see #01930)
+	ES:DI -> reply buffer (see #01931)
+Return: AL = status (see #01927)
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+	the requesting workstation must be logged into the file server with
+	  read access to the bindery object
+SeeAlso: AH=E3h/SF=32h,AH=E3h/SF=33h,AH=E3h/SF=38h,AH=E3h/SF=3Ch
+SeeAlso: AX=F217h/SF=37h
+
+Format of NetWare "Scan Bindery Object" request buffer:
+Offset	Size	Description	(Table 01930)
+ 00h	WORD	length of following data (max 37h)
+ 02h	BYTE	37h (subfunction "Scan Bindery Object")
+ 03h	DWORD	(big-endian) last object ID
+ 07h	WORD	(big-endian) type of object
+ 09h	BYTE	length of object's name
+ 0Ah  N BYTEs	object's name
+SeeAlso: #01931,#02186
+
+Format of NetWare "Scan Bindery Object" reply buffer:
+Offset	Size	Description	(Table 01931)
+ 00h	WORD	(call) 0039h (length of following buffer space)
+ 02h	DWORD	(big-endian) object ID
+		FFFFFFFFh for first call
+ 06h	WORD	(big-endian) type of object
+ 08h 48 BYTEs	object name (counted string)
+ 38h	BYTE	object flag (00h static, 01h dynamic)
+ 39h	BYTE	object's security levels
+ 3Ah	BYTE	object properties flag (00h no, FFh yes)
+SeeAlso: #01930,#02186
+

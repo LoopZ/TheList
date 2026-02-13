@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1571
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - HUNTER 16 - SELECT POWER UP KEYS
+	AH = 71h
+	BL = column
+	BH = row
+	AL = column switch (00h disable, 01h enable)
+	CL = row switch (00h disable, 01h enable)
+Return: AH = status
+SeeAlso: AH=7Bh,AH=88h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F122B
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.3+ internal - IOCTL
+	AX = 122Bh
+	BP = 44xxh
+	SS = DOS DS (must be using a DOS internal stack)
+	additional registers as appropriate for INT 21/AX=44xxh
+Return: as for INT 21/AH=44h
+Notes:	equivalent to INT 21/AH=44h, but may only be called when already inside
+	  a DOS function call
+	sets user stack frame pointer to dummy buffer, moves BP to AX, performs
+	  IOCTL, and restores frame pointer
+	used by NLSFUNC in accessing COUNTRY.SYS when invoked by the DOS kernel
+SeeAlso: INT 21/AH=44h
+

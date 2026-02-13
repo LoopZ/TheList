@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 172401
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 17 - Shamrock Software NET.24 v3.11+ - RECEIVE BLOCK, NO HANDSHAKE
+	AX = 2401h
+	BL = timeout in clock ticks
+Return: AL = status (see #00640)
+	DX:BX -> receive buffer
+SeeAlso: AX=2402h,AX=2404h,AX=2408h
+

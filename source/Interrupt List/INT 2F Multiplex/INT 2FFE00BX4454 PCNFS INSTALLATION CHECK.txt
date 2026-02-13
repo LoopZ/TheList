@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFE00BX4454
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-NFS ??? - INSTALLATION CHECK
+	AX = FE00h
+	BX = 4454h ("DT")
+	CX = 4B52h ("KR")
+	DX = 4E4Dh ("NM")
+Return: AL = FFh if installed
+	   BX = 524Eh ("RM")
+	   CX = 4D44h ("MD")
+	   DX = 544Bh ("TK")
+Note:	DV/X 1.10 DVPCNFS.DVR searches AH=FEh,FFh,C0h-FDh for a valid response
+SeeAlso: AX=FE08h
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+ Unique ID: 2FFE00BX4454
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - PC-NFS ??? - INSTALLATION CHECK
+	AX = FE00h
+	BX = 4454h ("DT")
+	CX = 4B52h ("KR")
+	DX = 544Dh ("TM")
+Return: AL = FFh if installed
+	   BX = 5254h ("RT")
+	   CX = 4D44h ("MD")
+	   DX = 544Bh ("TK")
+Note:	DV/X 1.10 DVPCNFS.DVR searches AH=FEh,FFh,C0h-FDh for a valid response
+SeeAlso: AX=FE08h
+

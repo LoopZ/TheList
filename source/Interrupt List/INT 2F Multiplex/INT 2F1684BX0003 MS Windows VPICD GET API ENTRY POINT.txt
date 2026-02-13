@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0003
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows - VPICD - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0003h (virtual device ID for VPICD device) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02645)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02645)
+Call VPICD API entry point with:
+	EAX = function number
+	    0000h get version
+		Return: AX = binary version (AH=major, AL=minor)
+	    0001h virtualize timer???
+	    0002h unvirtualize timer???
+

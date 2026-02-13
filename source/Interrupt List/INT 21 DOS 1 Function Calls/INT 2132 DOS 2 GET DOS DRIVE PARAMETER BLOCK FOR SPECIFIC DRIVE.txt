@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2132
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - DOS 2+ - GET DOS DRIVE PARAMETER BLOCK FOR SPECIFIC DRIVE
+	AH = 32h
+	DL = drive number (00h = default, 01h = A:, etc)
+Return: AL = status
+	    00h successful
+		DS:BX -> Drive Parameter Block (DPB) (see #01395) for specified
+			  drive
+	    FFh invalid or network drive
+Notes:	the OS/2 compatibility box supports the DOS 3.3 version of this call
+	  except for the DWORD at offset 12h
+	this call updates the DPB by reading the disk; the DPB may be accessed
+	  via the DOS list of lists (see #01627 at AH=52h) if disk access is not
+	  desirable.
+	undocumented prior to the release of DOS 5.0; only the DOS 4.0+
+	  version of the DPB has been documented, however
+	supported by DR DOS 3.41+; DR DOS 3.41-6.0 return the same data as
+	  MS-DOS 3.31
+	IBM ROM-DOS v4.0 also reports invalid/network (AL=FFh) on the ROM drive
+SeeAlso: AH=1Fh,AH=52h,AX=7302h
+
+Format of DOS Drive Parameter Block:
+Offset	Size	Description	(Table 01395)
+ 00h	BYTE	drive number (00h = A:, 01h = B:, etc)
+ 01h	BYTE	unit number within device driver
+ 02h	WORD	bytes per sector
+ 04h	BYTE	highest sector number within a cluster
+ 05h	BYTE	shift count to convert clusters into sectors
+ 06h	WORD	number of reserved sectors at beginning of drive
+ 08h	BYTE	number of FATs
+ 09h	WORD	number of root directory entries
+ 0Bh	WORD	number of first sector containing user data
+ 0Dh	WORD	highest cluster number (number of data clusters + 1)
+		16-bit FAT if greater than 0FF6h, else 12-bit FAT
+ 0Fh	BYTE	number of sectors per FAT
+ 10h	WORD	sector number of first directory sector
+ 12h	DWORD	address of device driver header (see #01646)
+ 16h	BYTE	media ID byte (see #01356)
+ 17h	BYTE	00h if disk accessed, FFh if not
+ 18h	DWORD	pointer to next DPB
+---DOS 2.x---
+ 1Ch	WORD	cluster containing start of current directory, 0000h=root,
+		FFFFh = unknown
+ 1Eh 64 BYTEs	ASCIZ pathname of current directory for drive
+---DOS 3.x---
+ 1Ch	WORD	cluster at which to start search for free space when writing
+ 1Eh	WORD	number of free clusters on drive, FFFFh = unknown
+---DOS 4.0-6.0---
+ 0Fh	WORD	number of sectors per FAT
+ 11h	WORD	sector number of first directory sector
+ 13h	DWORD	address of device driver header (see #01646)
+ 17h	BYTE	media ID byte (see #01356)
+ 18h	BYTE	00h if disk accessed, FFh if not
+ 19h	DWORD	pointer to next DPB
+ 1Dh	WORD	cluster at which to start search for free space when writing,
+		usually the last cluster allocated
+ 1Fh	WORD	number of free clusters on drive, FFFFh = unknown
+SeeAlso: #01357,#01663,#01787 at AX=7302h,#04039 at INT E0/CL=71h
+

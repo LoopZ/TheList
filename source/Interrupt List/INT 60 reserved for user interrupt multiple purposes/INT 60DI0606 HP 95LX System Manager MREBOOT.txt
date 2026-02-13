@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 60----DI0606
+  Category: b 	vendor-specific BIOS extensions
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 60 u - HP 95LX System Manager - "M_REBOOT"
+	DI = 0606h
+	STACK:	2 WORDs unused dummies (for calls from high level languages)
+Return: ???
+	STACK unchanged
+SeeAlso: INT 14/AH=17h"FOSSIL",INT 19
+

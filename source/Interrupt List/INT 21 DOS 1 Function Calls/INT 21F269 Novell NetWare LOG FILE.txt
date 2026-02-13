@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F269
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - LOG FILE
+	AX = F269h
+	CX = length of request packet in bytes
+	DX = 0000h (no reply packet)
+	DS:SI -> request packet (see #02477)
+	ES:DI ignored
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F203h,AX=F26Ah,AH=EBh"NetWare"
+
+Format of NetWare "Log File" request packet:
+Offset	Size	Description	(Table 02477)
+ 00h	BYTE	directory handle
+ 01h	BYTE	lock flag
+		00h log only
+		01h log and lock
+ 02h	WORD	lock timeout in clock ticks (0000h = don't wait)
+ 04h	BYTE	length of filename
+ 05h  N BYTEs	filename
+

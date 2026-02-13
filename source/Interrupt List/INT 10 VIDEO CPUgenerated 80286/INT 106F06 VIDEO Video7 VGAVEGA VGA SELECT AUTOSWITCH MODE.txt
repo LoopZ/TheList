@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 106F06
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Video7 VGA,VEGA VGA - SELECT AUTOSWITCH MODE
+	AX = 6F06h
+	BL = Autoswitch mode select
+	     00h select EGA/VGA-only modes
+	     01h select Autoswitched VGA/EGA/CGA/MGA modes
+	     02h select 'bootup' CGA/MGA modes
+	BH = enable/disable (00h enable, 01h = disable selection)
+Return: nothing
+

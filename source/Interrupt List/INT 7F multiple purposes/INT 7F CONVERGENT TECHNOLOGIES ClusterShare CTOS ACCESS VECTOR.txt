@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7F - CONVERGENT TECHNOLOGIES ClusterShare CTOS ACCESS VECTOR
+	AL = request ID
+	    01h "Request"/"RequestDirect"
+		ES:BX -> pRq
+		DX ignored
+	    04h "Wait"
+		ES:BX -> ppMsgRet
+		DX = exchange
+	    05h "AllocExch"
+		ES:BX -> pExchRet
+	    06h "DeAllocExch"
+		DX = exchange
+	    07h "Check"
+		ES:BX -> ppMsgRet
+		DX = exchange
+	CX = 4354h ('CT')
+Return: AX = status
+	    0000h successful
+

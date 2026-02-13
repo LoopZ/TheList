@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 20----Vx0481
+  Category: W 	MS Windows
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 20 P - Microsoft Windows - VREDIR - VxD SERVICES
+	VxD = 0481h
+Note:	the desired VxD and service number are identified by the data
+	  immediately following the INT 20 instruction, as in:
+		INT	20h
+		DW	service number
+		DW	VxD identifier
+SeeAlso: INT 2F/AX=1684h"DEVICE API",INT 30"Windows",#01265,#01340
+
+(Table 01315)
+Values for VREDIR (VxD ID 0481h) service number:
+ 0000h	"VRedir_Get_Version"
+ 0001h	"VRedir_Register"
+ 0002h	"VRedir_MakeMailSlot"
+ 0003h	"VRedir_DeleteMailSlot"
+ 0004h	"VRedir_ServerEnum"
+ 0010h	...last service for Windows95 SP1
+SeeAlso: #01314,#01316
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620028
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_ERASE" - CLEAR THE ACTIVE VIDEO PAGE
+	AX = 0028h
+Notes:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+	This function sets each pixel to 0 in graphics modes, each character
+	  cell to a blank with a gray foreground attribute in text modes
+SeeAlso: AX=0029h,AX=002Bh,AX=0035h
+

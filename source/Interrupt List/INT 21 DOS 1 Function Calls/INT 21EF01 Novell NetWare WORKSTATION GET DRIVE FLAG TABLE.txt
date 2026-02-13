@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21EF01
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - WORKSTATION - GET DRIVE FLAG TABLE
+	AX = EF01h
+Return: ES:SI -> network shell's 32-byte drive flag table (see #02091)
+	AX = 0000h
+Notes:	this function is supported by Advanced NetWare 1.0+
+	each byte in the drive flag table corresponds to a drive
+SeeAlso: AX=EF00h,AX=EF02h,AX=EF03h
+
+(Table 02091)
+Values in NetWare drive flag table:
+ 00h	drive is not mapped
+ 01h	permanent network drive
+ 02h	temporary network drive
+ 80h	mapped to local drive
+ 81h	local drive used as permanent network drive
+ 82h	local drive used as temporary network drive
+

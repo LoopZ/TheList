@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: E0----CL90
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT E0 - REAL/32 - "P_CREATE" - CREATE A PROCESS
+	CL = 90h
+	DS:DX -> process descriptor in calling process' system memory area
+		(see #04026)
+Return: AX = status
+Notes:	this call can create more than one process if the specied process
+	  descriptor's link (next-process) field is nonzero
+	all reserved and unused fields in the process descriptor should be
+	  filled with zeros; passing an invalid descriptor or pointer may
+	  crash the system because the descriptor is not checked by the OS
+	the newly-created process(es) is always a native process, which can not
+	  make DOS calls
+SeeAlso: INT E0/CL=8Fh
+

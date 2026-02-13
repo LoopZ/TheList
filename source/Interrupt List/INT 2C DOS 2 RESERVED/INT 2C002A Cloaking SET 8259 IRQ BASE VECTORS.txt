@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2C002A
+  Category: m 	memory management
+      Flag: P 	available only in protected mode
+--------------------------------------------------------------------------------
+
+INT 2C P - Cloaking - SET 8259 IRQ BASE VECTORS
+	AX = 002Ah
+	BL = base vector of master interrupt controller
+	CL = base vector of slave interrupt controller
+Notes:	this call merely informs RM386 that the caller has changed the
+	  interrupt mappings
+	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+SeeAlso: INT 67/AX=DE0Bh
+

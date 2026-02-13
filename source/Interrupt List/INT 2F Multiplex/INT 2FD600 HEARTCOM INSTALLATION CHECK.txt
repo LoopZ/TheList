@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD600
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - HEART.COM - INSTALLATION CHECK
+	AX = D600h
+Return: AX = 0303h (two hearts) if installed
+	    ES:DI -> buffer (see #03088)
+Program: HEART.COM is a CPU lock-up/critical indicator utility by Mitch Davis.
+Notes:	Once the host program has identified the address of the data area, it
+	  can change this to indicate safe/critical, alternate colours, etc.
+	The entries for the color table are in char/attrib form.  Every two
+	  entries form a pair which is alternated between 68 times a minute.
+	  The first half of the table is for color videos, the second mono.
+	  Within each half, the first half is for the safe chars, and the
+	  second for the critical chars.
+
+Format of HEART.COM buffer:
+Offset	Size	Description	(Table 03088)
+ 00h  8 WORDs	table of colors/attributes (refer to notes above)
+ 10h	BYTE	flags
+		bit 0: program is in critical section, so flash double
+		      exclamation mark
+		bit 1: program is in safe code, so flash the heart character
+ 11h	WORD	position of heartbeat on screen, normally 009Eh (last column
+		of second line)
+

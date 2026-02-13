@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 00
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 00 - Zenith - ROM DEBUGGER
+Desc:	invokes the ROM Debugger when at the BIOS level; equivalent to
+	  pressing Ctrl-Alt-Ins on booting.
+Note:	since DOS revectors INT 00, it is necessary to restore this vector to
+	  its original ROM BIOS value in order to invoke the debugger once DOS
+	  loads
+SeeAlso: INT 03"Columbia"
+

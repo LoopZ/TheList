@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE2D
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 15 U - DESQview v2.50+ - GET/SET SOCKET HANDLER
+	AX = DE2Dh
+	CX = direction
+	    FFFFh set socket handler
+		DX:BX -> FAR function for socket interface
+			must be of the format described under INT 63"DESQview"
+			  at #03515
+	    other get socket handler
+		Return: DX:BX -> socket handler (see #03515)
+Notes:	DESQview 2.50-2.52 are distributed as part of DESQview/X v1.0x.
+	the "set" subfunction is normally called only by SOCKET.DVR
+SeeAlso: AX=DE2Eh,INT 63"DESQview",#03515
+

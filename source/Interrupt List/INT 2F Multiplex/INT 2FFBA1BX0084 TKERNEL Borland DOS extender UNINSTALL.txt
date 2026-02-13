@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FFBA1BX0084
+  Category: E 	DOS extenders
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - TKERNEL (Borland DOS extender) - UNINSTALL
+	AX = FBA1h
+	BX = 0084h
+	ES:DI -> response buffer (see #03137)
+Return: ES:DI buffer filled
+SeeAlso: AX=FBA1h/BX=0081h,AX=FBA1h/BX=0084h
+
+Format of TKERNEL response buffer:
+Offset	Size	Description	(Table 03137)
+ 00h  4 BYTEs	signature "IABH"
+ 04h	WORD	success indicator
+		0001h failed (INT 2F hooked by another program)
+		unchanged if successful
+ 06h	WORD	segment of ???
+ 08h	WORD	segment of ??? memory block to free if nonzero
+ 0Ah	WORD	segment of ??? memory block to free if nonzero
+

@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6122
+  Category: N 	network
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 61 u - PC/TCP kernel v2.05+ - "net_getdesc" - ALLOCATE NETWORK DESCRIPTOR
+	AH = 22h
+Return: CF clear if successful
+	    AX = network descriptor
+	CF set on error
+	    AX = error code (see #03319 at INT 61"FTP Software")
+Note:	the descriptor will be an integer in the range 00h-1Fh, and a DOS call
+	  is made to allocate this as a file descriptor.  Hence a number may
+	  not refer to a PC/TCP network descriptor and a DOS file handle
+	  simultaneously.
+SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=13h,INT 61/AH=29h
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: 216B
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 21 U - DOS 4.0 internal - IFS IOCTL
+	AH = 6Bh
+	AL = subfunction
+	    00h ???
+		DS:SI -> Current Directory Structure???
+		CL = drive (1=A:)
+	    01h ???
+		DS:SI -> ???
+		CL = file handle???
+	    02h ???
+		DS:SI -> Current Directory Structure???
+		DI = ???
+		CX = drive (1=A:)
+Return: CF set on error
+	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+Notes:	passed through to INT 2F/AX=112Fh with AX on top of stack
+	Novell DOS 7 Update 15 returns CF set/AX=0001h (invalid function)
+SeeAlso: AH=6Bh"DOS 5",INT 2F/AX=112Fh
+

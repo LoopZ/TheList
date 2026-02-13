@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10007FBH61
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - Paradise VGA - ???
+	AX = 007Fh
+	BH = 61h
+	ES:DI -> buffer for list of ??? (see #00012)
+Return: BH = status (00h failed or not supported, 7Fh successful)
+	???
+Note:	this function is supported by the 1993/5/14 ROM for the Dell 486D
+SeeAlso: AX=007Fh/BH=60h
+
+Format of Paradise VGA list entry:
+Offset	Size	Description	(Table 00012)
+ 00h	BYTE	??? or 00h if end of list
+ 01h	BYTE	???
+ 02h	WORD	???
+ 04h	WORD	???
+ 06h	WORD	???
+

@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214402
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - HIGHUMM.SYS v1.17+ - IOCTL - GET API ADDRESS
+	AX = 4402h
+	BX = handle for device "KSP$UMM"
+	CX = 0004h
+	DS:DX -> DWORD to hold entry point (see #01446)
+Return: CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    AX = number of bytes read
+Program: HIGHUMM.SYS is part of the shareware "The Last Byte" memory
+	  management package by Key Software Products
+SeeAlso: AX=4402h"LASTBYTE"
+
+(Table 01446)
+Call HIGHUMM.SYS entry point with:
+	AH = 00h allocate UMB (same as XMS function 10h) (see INT 2F/AX=4310h)
+	    DX = size in paragraphs
+	    Return: BX = segment number (if successful)
+		    DX = size of requested block/size of largest block
+	AH = 01h deallocate UMB (same as XMS func 11h) (see INT 2F/AX=4310h)
+	    DX = segment number of UMB
+	AH = 02h request a bank-switched memory block
+	    DX = size in paragraphs
+	    Return: BX = segment number (if successful)
+		    DX = size of requested block/size of largest block
+	AH = 03h release a bank-switched memory block
+	    DX = segment number
+	AH = 04h transfer data to/from high memory
+	    DS:SI -> source
+	    ES:DI -> destination
+	    CX = length in bytes
+	    Note: enables bank-switched memory, does the copy, then disables
+		bank-switched memory
+	AH = 05h get a word from bank-switched memory
+	    ES:DI -> word to read
+	    Return: DX = word
+	AH = 06h put a word to bank-switched memory
+	    ES:DI -> word to write
+	    DX = word
+	AH = 07h put a byte to bank-switched memory
+	    ES:DI -> byte to write
+	    DL = byte
+	AH = 08h enable bank-switched memory
+	    DS:SI -> 6-byte status save area
+	AH = 09h disable bank-switched memory
+	    DS:SI -> 6-byte save area from enable call (AH=08h)
+	AH = 0Ah assign name to UMB or high bank-switched block
+	    DX = segment number
+	    DS:SI -> 8-byte blank-padded name
+	AH = 0Bh locate UMB block by name
+	    DS:SI -> 8-byte blank-padded name
+	    Return: BX = segment number (if successful)
+		    DX = size of block
+	AH = 0Ch locate bank-switched block by name
+	    DS:SI -> 8-byte blank-padded name
+	    Return: BX = segment number (if successful)
+		    DX = size of block
+Return: AX = status code
+	    0001h successful
+	    0000h failed
+		BL = error code
+		    80h not implemented
+		    B0h insufficient memory, smaller block available
+		    B1h insufficient memory, no blocks available
+		    B2h invalid segment number
+Note:	only functions 00h and 01h are always available; the remaining
+	  functions are only enabled if the proper commandline switch is given
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FED58
+  Category: K 	keyboard enhancers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - K5.COM - INSTALLATION CHECK
+	AX = ED58h
+Return: AX = 000Dh if installed
+	    ES = resident code segment
+	    BX = ??? (9999h)
+	    ???
+Program: K5 is an extended keyboard driver by Martin Gerdes, based on his K3
+SeeAlso: AX=E337h,INT 16/AX=AF20h
+

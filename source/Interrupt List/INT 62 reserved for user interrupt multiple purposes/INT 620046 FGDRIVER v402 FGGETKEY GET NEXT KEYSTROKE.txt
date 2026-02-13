@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: 620046
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_GETKEY" - GET NEXT KEYSTROKE
+	AX = 0046h
+	ES:BX -> variable pointer record (see #03485)
+Return: (after next keystroke if no typeahead) variables updated
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474 at AX=0000h)
+SeeAlso: AX=000Ah,AX=0063h,AX=0069h,AX=00DEh,INT 16/AH=00h
+
+Format of FGDRIVER GETKEY variable pointer record:
+Offset	Size	Description	(Table 03485)
+ 00h	WORD	segment of BYTE buffer for ASCII keycode
+ 02h	WORD	offset of BYTE buffer for ASCII keycode
+ 04h	WORD	segment of BYTE buffer for extended keycode
+ 06h	WORD	offset of BYTE buffer for extended keycode
+

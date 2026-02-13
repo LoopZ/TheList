@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AB10ASF1022
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - PCI BIOS v2.0c+ - READ CONFIGURATION DWORD (AMD devices)
+	AX = B10Ah subfn 1022h
+	BH = bus number
+	BL = device/function number (bits 7-3 device, bits 2-0 function)
+	DI = register number (0000h-00FFh) (see #00878)
+Return: CF clear if successful
+	    ECX = dword read
+	CF set on error
+	AH = status (00h,87h) (see #00729)
+	EAX, EBX, ECX, and EDX may be modified
+	all other flags (except IF) may be modified
+Notes:	this function may require up to 1024 byte of stack; it will not enable
+	  interrupts if they were disabled before making the call
+	the meanings of BL and BH on entry were exchanged between the initial
+	  drafts of the specification and final implementation
+SeeAlso: AX=B10Ah,AX=B10Ah/SF=1042h,AX=B10Ah/SF=8086h
+
+Format of AMD Am53C974A PC-SCSI PCI configuration data:
+Offset	Size	Description	(Table 00925)
+ 00h 64 BYTEs	header (see #00878)
+		(vendor ID 1022h, device ID 2020h)
+ 10h	DWORD	I/O base address (see PORT xxxxh"Am53C974A")
+ 40h 16 BYTEs	scratch registers
+		(used by AMD's PC-SCSI drivers as follows:
+		    40h/41h  SCSI configuration register 0 (see #00926,#00927)
+		    ...
+		    4Eh/4Fh  SCSI configuration register 7)
+SeeAlso: #00747
+
+Bitfields for AMD Am53C974A Target Device Configuration Register:
+Bit(s)	Description	(Table 00926)
+ 15-14	reserved
+ 13	"FSCSI" Fast SCSI drive is present
+ 12-8	"SPD" synchronous period
+ 7-4	synchronous offset (0 = asynchronous transfers)
+ 3-1	SCSI bus status
+ 0	target device is present and active
+	if 0, all other bits must be cleared to zero for target devices
+SeeAlso: #00925,#00927
+
+Bitfields for AMD Am53C974A Host Configuration Register:
+Bit(s)	Description	(Table 00927)
+ 15-9	reserved
+ 8	SCSI bus has been reset
+ 7	starting BIOS number (bits 6-4) is valid
+ 6-4	starting BIOS number (000 = BIOS drive 80h, 001 = drive 81h, etc)
+ 3	this device is a SCSI host
+ 2	protected-mode driver initialized
+ 1	real-mode driver initialized
+ 0	target device present
+	=0 indicates that this is a host if bit 3 is set
+SeeAlso: #00925,#00926
+

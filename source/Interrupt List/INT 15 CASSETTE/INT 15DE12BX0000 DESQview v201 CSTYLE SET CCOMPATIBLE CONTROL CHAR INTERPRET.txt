@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE12BX0000
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.01+ - "CSTYLE" - SET "C"-COMPATIBLE CONTROL CHAR INTERPRET
+	AX = DE12h
+	BX = 0000h    select normal style (linefeed only moves down)
+	     nonzero  select C style (linefeed moves to start of next line)
+Return: nothing
+Note:	set on a per-task basis, and inherited from the parent task
+

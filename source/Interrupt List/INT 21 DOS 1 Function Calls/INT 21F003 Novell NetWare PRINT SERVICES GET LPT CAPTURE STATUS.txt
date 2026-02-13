@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F003
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - GET LPT CAPTURE STATUS
+	AX = F003h
+Return: AH = status
+	    00h not active
+	    FFh active
+		AL = connection ID (01h-08h)
+Note:	this function is supported by Advanced NetWare 1.0+
+SeeAlso: AX=B800h,AX=B804h,AH=DFh/DL=00h,AH=DFh/DL=04h
+

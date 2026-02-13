@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4A04
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - Windows95 - DOS KERNEL - GET START OF HMA MEMORY CHAIN
+	AX = 4A04h
+Return: AX = 0000h if function supported
+	    ES:DI -> first HMA memory control block (see #02800)
+
+Format of Windows95 HMA memory control block:
+Offset	Size	Description	(Table 02800)
+ 00h  2 BYTEs	signature "MS" (4Dh 53h)
+ 02h	WORD	segment of owner (or segment at which to address block???)
+		0000h = free
+		0001h = DOS???
+		FF33h = IO.SYS
+		FFFFh = MSDOS.SYS
+ 04h	WORD	size of memory block (not including this header)
+ 06h	WORD	offset of next memory block in segment FFFFh, or 0000h if last
+ 08h  8 BYTEs	unused (explicitly set to 0 for MS-DOS 7.10)
+

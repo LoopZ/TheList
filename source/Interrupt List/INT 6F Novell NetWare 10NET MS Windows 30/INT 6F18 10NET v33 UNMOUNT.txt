@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F18
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v3.3+ - UNMOUNT
+	AH = 18h
+	AL = local drive number (0=A:)
+	BL = type
+	    00h	    disk
+	    01h-03h LPTn
+	    04h,05h COMx
+Return: CF clear if successful
+	CF set on error
+	    AX = error code (see #03740)
+SeeAlso: AH=17h
+

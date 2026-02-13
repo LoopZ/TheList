@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6F9502
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 6F - 10NET v5.0 - SET SHARED DEVICE ENTRY
+	AX = 9502h
+	DS:SI -> server's node ID
+	ES:DI -> shared device structure (see #03783)
+Return: CF clear if successful
+	CF set on error
+	    AX = status (see #03740)
+SeeAlso: AX=1502h,AX=9501h,AX=9503h,AX=9504h
+

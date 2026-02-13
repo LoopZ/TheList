@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1512--BH14
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - TopView - SEND MESSAGE - "LOCK" - REQUEST EXCLUSIVE ACCESS TO RESOURCE
+	AH = 12h
+	BH = 14h
+	BL = object
+	    00h mailbox handle is DWORD on top of stack
+	    02h use given task's mailbox (task's handle on top of stack)
+	    03h use current task's default mailbox
+Return: STACK popped if BL=00h
+Note:	release exclusive access by sending CLOSE message to mailbox
+	access may be requested multiple times, and requires multiple CLOSEs
+SeeAlso: AH=12h/BH=0Dh
+

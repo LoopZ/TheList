@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 42
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 42 - VIDEO - RELOCATED DEFAULT INT 10 VIDEO SERVICES (EGA,VGA)
+Desc:	contains the address of the original INT 10 handler which an EGA+
+	  video adapter replaces with its own on-board BIOS code
+SeeAlso: INT 10/AH=00h,INT 10/AH=0Eh,INT 6D"VGA"
+Note:	not used by PS/2 built-in VGA or XGA
+

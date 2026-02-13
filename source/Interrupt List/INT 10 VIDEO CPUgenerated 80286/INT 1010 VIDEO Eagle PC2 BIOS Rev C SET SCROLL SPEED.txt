@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1010
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - Eagle PC2 BIOS Rev. C - SET SCROLL SPEED
+	AH = 10h
+	AL = speed
+	    00h fast
+	    01h slow (scrolling only moves characters during vertical retrace)
+Return: AH = previous speed
+

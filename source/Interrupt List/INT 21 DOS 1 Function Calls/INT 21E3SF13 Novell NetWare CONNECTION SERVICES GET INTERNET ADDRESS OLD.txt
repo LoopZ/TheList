@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E3--SF13
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - CONNECTION SERVICES - GET INTERNET ADDRESS (OLD)
+	AH = E3h subfn 13h
+	DS:SI -> request buffer (see #01911)
+	ES:DI -> reply buffer (see #01912)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+SeeAlso: AH=DCh"NetWare",AH=E3h/SF=16h,AH=EEh"NetWare",AX=F217h/SF=13h
+
+Format of NetWare "Get Internet Address (old)" request buffer:
+Offset	Size	Description	(Table 01911)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	13h (subfunction "Get Internet Address")
+ 03h	BYTE	logical connection number (01h-64h)
+SeeAlso: #01912,#02168
+
+Format of NetWare "Get Internet Address (old)" reply buffer:
+Offset	Size	Description	(Table 01912)
+ 00h	WORD	(call) 000Ch (length of following results buffer)
+ 02h  4 BYTEs	network number
+ 06h  6 BYTEs	physical node address
+ 0Ch  2 BYTEs	socket number
+SeeAlso: #01911,#02168 at AX=F217h/SF=13h
+

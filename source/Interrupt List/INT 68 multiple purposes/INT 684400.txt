@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 684400
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 68 U - ???
+	AX = 4400h
+	BX = ???
+	CX = ???
+	DX = ???
+	DS:SI = real-mode address of protected-mode GDT
+	ES:DI = real-mode address of protected-mode IDT
+Return: ???
+Note:	called by Novell DOS 7.0 EMM386.EXE if AX=4300h returns AX=F386h
+SeeAlso: AX=4300h
+

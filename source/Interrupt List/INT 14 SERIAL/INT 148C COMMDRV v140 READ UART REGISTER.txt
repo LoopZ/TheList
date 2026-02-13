@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 148C
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - COMM-DRV v14.0 - READ UART REGISTER
+	AH = 8Ch
+	AL = register offset
+	DX = port number
+Return: AH bit 7 set on error
+	AH bit 7 clear if successful
+	    AL = contents of UART register
+SeeAlso: AH=8Dh"COMM-DRV"
+

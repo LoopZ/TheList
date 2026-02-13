@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1423
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 14 - MultiDOS Plus - GET PORT STATUS
+	AH = 23h
+	DX = port number
+Return: AH = line status (see #00304 at AH=03h)
+	AL = modem status (see #00305 at AH=03h)
+SeeAlso: AH=03h,AH=07h"MultiDOS",AH=20h"MultiDOS"
+

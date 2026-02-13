@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6200CC
+  Category: V 	video
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 62 u - FGDRIVER v4.02 - "FG_VBADDR" - GET ADDRESS OF VIRTUAL BUFFER
+	AX = 00CCh
+	BX = virtual buffer handle (0000h-001Fh)
+Return: DX:AX -> virtual buffer
+Note:	the FGDRIVER functions are rearranged with each major release, but
+	  their parameters do not change (see #03474)
+SeeAlso: AX=00CDh,AX=00CEh,AX=00CFh,AX=00D3h
+

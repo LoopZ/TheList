@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 675E02
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - Nanosoft MD386 - SET DEBUG EXCEPTION HANDLER
+	AX = 5E02h
+	CX:BX -> exception handler
+Note:	the specified exception handler is called with a simulated interrupt
+	  whenever a debug exception occurs which was caused by a hardware
+	  breakpoint set with the debug registers
+SeeAlso: AX=5E04h,AX=5E05h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B801
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - SET DEFAULT CAPTURE FLAGS
+	AX = B801h
+	CX = size of buffer (01h-3Fh)
+	ES:BX -> buffer containing capture flags table (see #01805)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by Advanced NetWare 2.0+
+SeeAlso: AX=B800h,AX=B803h,AH=DFh/DL=00h,AH=DFh/DL=04h
+

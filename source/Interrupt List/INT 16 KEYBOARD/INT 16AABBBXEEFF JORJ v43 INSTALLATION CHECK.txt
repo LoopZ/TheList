@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 16AABBBXEEFF
+  Category: U 	resident utilities
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 16 U - JORJ v4.3 - INSTALLATION CHECK
+	AX = AABBh
+	BX = EEFFh
+Return: AX = EEFFh if installed
+	BX = AABBh if installed
+	    CL = hotkey name (default 6Ah 'j' for Alt-J)
+Program: JORJ is a shareware dictionary with phonetic lookup by Jorj Software
+	  Co.
+Index:	hotkeys;JORJ
+

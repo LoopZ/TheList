@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7F564DBHC1
+  Category: s 	sound/speech
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 7F U - Voyetra Multimedia Player - VMP.EXE API
+	AX = 564Dh ('VM')
+	BH = C1h
+	BL = function (00h-1Bh)
+	    00h ???
+		Return: CF clear
+			AX = 0000h
+	???
+Return: AX = FFFFh if invalid function
+	???
+SeeAlso: AX=4331h,AX=5658h
+

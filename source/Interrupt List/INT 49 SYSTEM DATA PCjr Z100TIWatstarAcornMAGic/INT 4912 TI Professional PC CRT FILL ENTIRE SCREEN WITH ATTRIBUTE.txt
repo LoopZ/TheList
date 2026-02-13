@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: 4912
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 49 - TI Professional PC - CRT - FILL ENTIRE SCREEN WITH ATTRIBUTE
+	AH = 12h
+	AL = attribute (see #03210)
+Return: nothing
+Note:	AH=00h,04h,05h,0Bh,0Ch,0Dh,0Fh are documented as NOPs
+SeeAlso: AH=01h,AH=02h
+
+Bitfields for TI Professional PC screen attribute:
+Bit(s)	Description	(Table 03210)
+ 7	alternate character set (requires user-supplied ROM)
+ 6	blink
+ 5	underline
+ 4	reverse video
+ 3	character enable
+ 2	green (color) or 58% intensity (gray-scale)
+ 1	red (color)  or 27.5% intensity
+ 0	blue (color) or 14.5% intensity
+

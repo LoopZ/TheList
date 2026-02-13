@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 10C003
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - S3 SpeedUp v3.10+ - GET FLAGS
+	AX = C003h
+Return: AX = FFFFh if function supported
+	    BX = flags
+		bit 0: SpeedUp is active
+		bit 1: Windows run after SpeedUp
+SeeAlso: AX=C000h,AX=C001h,AX=C002h,AX=D005h"S3VBE"
+

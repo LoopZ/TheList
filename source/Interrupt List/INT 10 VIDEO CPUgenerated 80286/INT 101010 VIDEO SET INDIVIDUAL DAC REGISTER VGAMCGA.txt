@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 101010
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 10 - VIDEO - SET INDIVIDUAL DAC REGISTER (VGA/MCGA)
+	AX = 1010h
+	BX = register number
+	CH = new value for green (0-63)
+	CL = new value for blue (0-63)
+	DH = new value for red (0-63)
+Return: nothing
+SeeAlso: AX=1012h,AX=1015h
+

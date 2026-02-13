@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: 131A
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - ESDI FIXED DISK - FORMAT UNIT (PS)
+	AH = 1Ah
+	AL = defect table entry count
+	CL = format modifiers (see #00250)
+	DL = drive (80h,81h)
+	ES:BX -> defect table (see #00251), ignored if AL=00h
+Return: CF set on error
+	CF clear if successful
+	AH = status (see #00234 at AH=01h)
+Note:	if periodic interrupt selected, INT 15/AH=0Fh is called after each
+	  cylinder is formatted
+SeeAlso: AH=07h,INT 15/AH=0Fh
+
+Bitfields for ESDI format modifiers:
+Bit(s)	Description	(Table 00250)
+ 4	generate periodic interrupt
+ 3	perform surface analysis
+ 2	update secondary defect map
+ 1	ignore secondary defect map
+ 0	ignore primary defect map
+
+Format of defect table entry [array]:
+Offset	Size	Description	(Table 00251)
+ 00h  3 BYTEs	relative sector address (little-endian)
+ 03h	BYTE	flags and defect count
+		bit 7: last logical sector on track
+		bit 6: first logical sector on track
+		bit 5: last logical sector on cylinder
+		bit 4: logical sectors are pushed onto next track
+		bits 3-0: number of defects pushed from previous cylinder
+

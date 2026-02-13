@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6802--SF0700
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 68 - APPC/PC - CONNECTION CONTROL - GET ATTRIBUTES
+	AH = 02h subfn 0700h
+	DS:DX -> control block (see #03687)
+Return: control block updated
+SeeAlso: AH=02h/SF=0300h
+
+Format of APPC/PC "Get_Attributes" control block:
+Offset	Size	Description	(Table 03687)
+ 00h 12 BYTEs	reserved
+ 0Ch	WORD	0700h (verb "Get_Attributes" or "MC_Get_Attributes")
+ 0Eh	BYTE	1 if MC_ (mapped conversation) form of verb
+		0 if basic verb
+ 0Fh  5 BYTEs	reserved (0)
+ 14h	WORD	(big-endian) primary return code (see #03681)
+ 16h	DWORD	(big-endian) error code (see #03682)
+ 1Ah  8 BYTEs	(big-endian) TP_ID
+ 22h	DWORD	(big-endian) conversation ID
+ 26h  8 BYTEs	(big-endian) logical unit ID
+ 2Eh	BYTE	00h
+ 2Fh	BYTE	SYNC_LEVEL (0=none, 1=confirm)
+ 30h  8 BYTEs	(big-endian) mode name
+ 38h  8 BYTEs	(big-endian) own net name
+ 40h  8 BYTEs	(big-endian) own logical unit name
+ 48h  8 BYTEs	(big-endian) partner logical unit name
+ 50h 18 BYTEs	(counted string) partner's fully qualified logical unit name
+ 62h	BYTE	00h
+ 63h 11 BYTEs	(counted string) user ID
+

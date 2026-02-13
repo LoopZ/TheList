@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15E820
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - newer BIOSes - GET SYSTEM MEMORY MAP
+	AX = E820h
+	EAX = 0000E820h
+	EDX = 534D4150h ('SMAP')
+	EBX = continuation value or 00000000h to start at beginning of map
+	ECX = size of buffer for result, in bytes (should be >= 20 bytes)
+	ES:DI -> buffer for result (see #00581)
+Return: CF clear if successful
+	    EAX = 534D4150h ('SMAP')
+	    ES:DI buffer filled
+	    EBX = next offset from which to copy or 00000000h if all done
+	    ECX = actual length returned in bytes
+	CF set on error
+	    AH = error code (86h) (see #00496 at INT 15/AH=80h)
+Notes:	originally introduced with the Phoenix BIOS v4.0, this function is
+	  now supported by most newer BIOSes, since various versions of Windows
+	  call it to find out about the system memory
+	a maximum of 20 bytes will be transferred at one time, even if ECX is
+	  higher; some BIOSes (e.g. Award Modular BIOS v4.50PG) ignore the
+	  value of ECX on entry, and always copy 20 bytes
+	some BIOSes expect the high word of EAX to be clear on entry, i.e.
+	  EAX=0000E820h
+	if this function is not supported, an application should fall back
+	  to AX=E802h, AX=E801h, and then AH=88h
+	the BIOS is permitted to return a nonzero continuation value in EBX
+	  and indicate that the end of the list has already been reached by
+	  returning with CF set on the next iteration
+	this function will return base memory and ISA/PCI memory contiguous
+	  with base memory as normal memory ranges; it will indicate
+	  chipset-defined address holes which are not in use and motherboard
+	  memory-mapped devices, and all occurrences of the system BIOS as
+	  reserved; standard PC address ranges will not be reported
+SeeAlso: AH=C7h,AX=E801h"Phoenix",AX=E881h,MEM xxxxh:xxx0h"ACPI"
+
+Format of Phoenix BIOS system memory map address range descriptor:
+Offset	Size	Description	(Table 00580)
+ 00h	QWORD	base address
+ 08h	QWORD	length in bytes
+ 10h	DWORD	type of address range (see #00581)
+
+(Table 00581)
+Values for System Memory Map address type:
+ 01h	memory, available to OS
+ 02h	reserved, not available (e.g. system ROM, memory-mapped device)
+ 03h	ACPI Reclaim Memory (usable by OS after reading ACPI tables)
+ 04h	ACPI NVS Memory (OS is required to save this memory between NVS
+	  sessions)
+ other	not defined yet -- treat as Reserved
+SeeAlso: #00580
+

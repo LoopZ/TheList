@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1221
+  Category: D 	DOS kernel
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - DOS 3.0+ internal - CANONICALIZE FILE NAME
+	AX = 1221h
+	DS:SI -> file name to be fully qualified
+	ES:DI -> 128-byte buffer for resulting canonical file name
+	SS = DOS DS (must be using a DOS internal stack)
+Return: (see INT 21/AH=60h)
+Note:	identical to INT 21/AH=60h
+SeeAlso: AX=1123h,INT 21/AH=60h
+

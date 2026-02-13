@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21E2--SF15
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DIRECTORY SERVICES - GET VOLUME INFO WITH HANDLE
+	AH = E2h subfn 15h
+	DS:SI -> request buffer (see #01874)
+	ES:DI -> reply buffer (see #01875)
+Return: AL = status
+	    00h successful
+Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+	  Alloy NTNX
+SeeAlso: AH=DAh,AH=E2h/SF=02h,AH=E2h/SF=06h,AH=E2h/SF=19h,AH=E3h/SF=E9h
+SeeAlso: AX=F216h/SF=15h
+
+Format of NetWare "Get Volume Info with Handle" request buffer:
+Offset	Size	Description	(Table 01874)
+ 00h	WORD	0002h (length of following data)
+ 02h	BYTE	15h (subfunction "Get Volume Info With Handle")
+ 03h	BYTE	directory handle
+SeeAlso: #01875,#02119
+
+Format of NetWare "Get Volume Info with Handle" reply buffer:
+Offset	Size	Description	(Table 01875)
+ 00h	WORD	(call) 001Ch (length of following results buffer)
+ 02h	WORD	(big-endian) sectors per block
+ 04h	WORD	(big-endian) total blocks on volume
+ 06h	WORD	(big-endian) blocks available on volume
+ 08h	WORD	(big-endian) total directory slots
+ 0Ah	WORD	(big-endian) directory slots available
+ 0Ch 16 BYTEs	NUL-padded volume name
+ 1Ch	WORD	(big-endian) flag: volume removable if nonzero
+SeeAlso: #01874,#02119
+

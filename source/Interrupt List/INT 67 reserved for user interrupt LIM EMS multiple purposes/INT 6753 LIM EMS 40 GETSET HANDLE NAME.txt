@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 6753
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 67 - LIM EMS 4.0 - GET/SET HANDLE NAME
+	AH = 53h
+	AL = subfunction
+	    00h get handle name
+	       ES:DI -> 8-byte buffer for handle name
+	    01h set handle name
+	       DS:SI -> 8-byte handle name
+	DX = handle
+Return: AH = status (00h,80h,81h,83h,84h,8Fh,A1h) (see #03648)
+SeeAlso: AH=52h
+

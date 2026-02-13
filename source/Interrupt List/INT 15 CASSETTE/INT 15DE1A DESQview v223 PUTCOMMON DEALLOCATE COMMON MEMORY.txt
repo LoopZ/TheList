@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15DE1A
+  Category: Q 	DESQview/TopView and Quarterdeck programs
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - DESQview v2.23+ - "PUTCOMMON" - DEALLOCATE "COMMON" MEMORY
+	AX = DE1Ah
+	ES:DI -> previously allocated block
+Return: AX = 0000h (successful)
+Note:	this function may be called from within a hardware interrupt handler
+SeeAlso: AX=DE0Dh,AX=DE19h
+

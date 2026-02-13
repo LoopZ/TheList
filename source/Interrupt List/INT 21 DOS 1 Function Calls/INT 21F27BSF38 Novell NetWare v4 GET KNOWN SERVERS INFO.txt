@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F27BSF38
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare v4+ - GET KNOWN SERVERS INFO
+	AX = F27Bh subfn 38h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02521)
+	ES:DI -> reply buffer (see #02522)
+Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+	reply buffer filled
+SeeAlso: AX=F27Bh/SF=35h
+
+Format of NetWare "Get Known Servers" request buffer:
+Offset	Size	Description	(Table 02521)
+ 00h	WORD	0009h (length of following data)
+ 02h	BYTE	38h (function "Get Known Servers")
+ 03h	DWORD	start number
+ 07h	DWORD	server type
+SeeAlso: #02522
+
+Format of NetWare "Get Known Servers" reply buffer:
+Offset	Size	Description	(Table 02522)
+ 00h	DWORD	current server time
+ 04h	BYTE	vconsole version
+ 05h	BYTE	vconsole revision
+ 06h	WORD	reserved
+ 08h	DWORD	number of records following (max 20)
+ 0Ch	var	server record(s)
+		Offset	Size	Description
+		 00h	DWORD	network number
+		 04h  6 BYTEs	node number
+		 0Ah	WORD	socket number
+		 0Ch	WORD	hops to server
+		 0Eh 48 BYTEs	object name
+SeeAlso: #02521
+

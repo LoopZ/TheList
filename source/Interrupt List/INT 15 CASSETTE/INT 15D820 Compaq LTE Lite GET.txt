@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15D820
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - Compaq LTE Lite - GET ???
+	AX = D820h
+	DS:SI -> 17-byte buffer for ???
+Return: DS:SI buffer filled (first byte is length of remaining data, unless
+	  it is greater than 10h, in which case the second byte is 00h and no
+	  other data is returned)
+Note:	this function is also supported by Compaq's EISA System ROM, Contura
+	  486/486c/486cx and recent DESKPRO/i ROMs
+SeeAlso: AX=D821h
+

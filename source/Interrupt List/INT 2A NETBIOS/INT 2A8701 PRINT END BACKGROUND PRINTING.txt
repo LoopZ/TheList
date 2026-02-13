@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2A8701
+  Category: P 	printer enhancements
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2A CU - PRINT - END BACKGROUND PRINTING
+	AX = 8701h
+Desc:	used to inform interested programs that PRINT has completed its
+	  background processing
+Note:	called by PRINT after it has performed some background printing; not
+	  called if AX=8700h returned with CF set.
+SeeAlso: AX=8700h
+

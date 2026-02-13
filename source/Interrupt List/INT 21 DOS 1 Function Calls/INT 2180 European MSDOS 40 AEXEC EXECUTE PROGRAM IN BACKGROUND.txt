@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2180
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - European MS-DOS 4.0 - "AEXEC" - EXECUTE PROGRAM IN BACKGROUND
+	AH = 80h
+	CX = mode
+	    0000h place child in zombie mode on exit to preserve exit code
+	    0001h discard child process and exit code on termination
+	DS:DX -> ASCIZ full program name
+	ES:BX -> parameter block (as for AX=4B00h)
+Return: CF clear if successful
+	    AX = Command Subgroup ID (CSID)
+	CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+Program: European MS-DOS 4.0 was written for Siemens in Germany and then used
+	  by several other European OEMs; its release falls between mainstream
+	  versions 3.2 and 3.3
+Desc:	asynchronously execute a program, creating a new process for it
+Notes:	this function is called by the DETACH command
+	there is a system-wide limit of 32 processes
+	the CSID is used to identify all processes that have been spawned by
+	  a given process, whether directly or indirectly
+	programs to be run in the background must use the new executable format
+	  (see #01596 at AH=4Bh)
+	background processes may only perform asynchronous (background) EXECs,
+	  either this function or AX=4B04h
+	background processes may execute INT 11, INT 12, INT 21, INT 2A, and
+	  INT 2F at any time; they may execute INT 10 and INT 16 only while
+	  they have opened a popup screen via INT 2F/AX=1401h; no other
+	  interrupts may be executed from the background
+	background processes may not use drive B: or overlay their code
+	  segments
+	see AX=8700h for an installation check
+	the "NE" new executable format made its first appearance in European
+	  MS-DOS 4.0
+SeeAlso: AH=4Bh,AH=87h,INT 2F/AX=1400h"POPUP"
+

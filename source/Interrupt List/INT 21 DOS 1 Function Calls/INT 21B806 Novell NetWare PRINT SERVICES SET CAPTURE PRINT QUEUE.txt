@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21B806
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - PRINT SERVICES - SET CAPTURE PRINT QUEUE
+	AX = B806h
+	DH = LPT port (00h-02h)
+	BX:CX = print queue's object ID
+Return: AL = status
+	    00h successful
+	    FFh job already set
+Desc:	specify the print queue on which a print job is to be placed the next
+	  time a capture is started on the given printer port
+Note:	this function is supported by Advanced NetWare 2.1+
+SeeAlso: AX=B801h,AX=B807h,AH=E0h/SF=09h
+

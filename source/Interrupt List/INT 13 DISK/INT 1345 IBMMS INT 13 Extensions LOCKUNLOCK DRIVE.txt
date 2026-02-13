@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1345
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 13 - IBM/MS INT 13 Extensions - LOCK/UNLOCK DRIVE
+	AH = 45h
+	AL = operation
+	    00h lock media in drive
+	    01h unlock media
+	    02h check lock status
+	DL = drive number
+Return: CF clear if successful
+	    AH = 00h
+	    AL = lock state (00h = unlocked)
+	CF set on error
+	    AH = error code (see #00234)
+Notes:	this function is required to be supported for any removable drives
+	  numbered 80h or higher
+	a device may be locked even if no media is present in the drive
+	up to 255 locks may be placed on a drive, and the media will not
+	  be physically unlocked until all locks have been removed
+SeeAlso: AH=41h"INT 13 Ext",AH=46h,AH=49h,INT 15/AH=52h"INT 13 Extensions"
+

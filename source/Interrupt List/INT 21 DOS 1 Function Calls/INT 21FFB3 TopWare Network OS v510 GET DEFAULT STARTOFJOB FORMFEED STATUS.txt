@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21FFB3
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - TopWare Network OS v5.10+ - GET DEFAULT START-OF-JOB FORMFEED STATUS
+	AX = FFB3h
+Return: AL = starting formfeed status (see #02534)
+SeeAlso: AX=FFB4h,AX=FFC0h
+
+Bitfields for TopWare printer start-of-job formfeed status:
+Bit(s)	Description	(Table 02534)
+ 2	LPT3 has formfeed enabled
+ 1	LPT2 has formfeed enabled
+ 0	LPT1 has formfeed enabled
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F4308
+  Category: m 	memory management
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - HIMEM.SYS v2.77+ - GET A20 HANDLER NUMBER
+	AX = 4308h
+Return: AL = 43h if supported
+	    BL = A20 handler number (value of /MACHINE:nn switch)
+	    BH = AT A20 switch time (00h medium, 01h fast, 02h slow)
+Note:	if the A20 handler number returned in BL is 00h, an external handler
+	  is being used (see AX=4330h)
+SeeAlso: AX=4309h,AX=4330h
+

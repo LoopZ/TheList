@@ -1,0 +1,79 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2F1684BX0001
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MS Windows95 - VMM - GET API ENTRY POINT
+	AX = 1684h
+	BX = 0001h (virtual device ID for VMM) (see #02642)
+	ES:DI = 0000h:0000h
+Return: ES:DI -> VxD API entry point (see #02643)
+		  0000h:0000h if the VxD does not support an API
+SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"
+
+(Table 02643)
+Call Windows VMM 16-bit entry point with:
+	AX = function number
+	    ---registry functions---
+	    0100h "RegOpenKey"
+		STACK:	DWORD	-> DWORD for returned key handle
+			DWORD	-> ASCIZ registry key name
+			DWORD	HKEY (see #02644)
+	    0101h "RegCreateKey"
+		STACK:	DWORD	-> DWORD for returned key handle
+			DWORD	-> ASCIZ registry key name
+			DWORD	HKEY (see #02644)
+	    0102h "RegCloseKey"
+		STACK:	DWORD	key handle from RegOpenKey or RegCreateKey
+	    0103h "RegDeleteKey"
+		STACK:	DWORD	-> ASCIZ registry key name
+			DWORD	HKEY (see #02644)
+	    0104h "RegSetValue"
+		STACK:	DWORD	???
+			DWORD	-> ???
+			DWORD	???
+			DWORD	-> ???
+			DWORD	HKEY (see #02644)
+	    0105h "RegQueryValue"
+		STACK:	DWORD	-> DWORD for ???
+			DWORD	-> ASCIZ ???
+			DWORD	-> ASCIZ ???
+			DWORD	HKEY (see #02644)
+	    0106h "RegEnumKey"
+		STACK:	DWORD	???
+			DWORD	-> ASCIZ ???
+			DWORD	???
+			DWORD	HKEY (see #02644)
+	    0107h "RegDeleteValue"
+	    0108h "RegEnumValue"
+		STACK:	DWORD	-> DWORD for ???
+			DWORD	-> BYTE ???
+			DWORD	-> DWORD for ???
+			DWORD	-> DWORD for ???
+			DWORD	-> DWORD for ???
+			DWORD	-> ASCIZ ???
+			DWORD	???
+			DWORD	HKEY (see #02644)
+	    0109h "RegQueryValueEx"
+	    010Ah "RegSetValueEx"
+	    010Bh "RegFlushKey"
+	    010Ch "RegLoadKey"
+	    010Dh "RegUnLoadKey"
+	    010Eh "RegSaveKey"
+	    010Fh "RegRestore"
+	    0110h "RegRemapPreDefKey"
+Return: parameters popped from stack
+	DX:AX = return value
+
+(Table 02644)
+Values for Windows95 VMM predefined HKEY values:
+ 80000000h	HKEY_CLASSES_ROOT
+ 80000001h	HKEY_CURRENT_USER
+ 80000002h	HKEY_LOCAL_MACHINE
+ 80000003h	HKEY_USERS
+ 80000004h	HKEY_PERFORMANCE_DATA
+ 80000005h	HKEY_CURRENT_CONFIG
+ 80000006h	HKEY_DYN_DATA
+SeeAlso: #02643
+

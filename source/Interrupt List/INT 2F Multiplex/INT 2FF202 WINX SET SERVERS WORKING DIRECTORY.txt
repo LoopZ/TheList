@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FF202
+  Category: W 	MS Windows
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - WINX - SET SERVER'S WORKING DIRECTORY
+	AX = F202h
+	BX:CX -> directory
+Return: AX = status
+	    FFFFh if WINX is busy processing a different request
+	    0000h if successful
+SeeAlso: AX=F200h,AX=F203h
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 1AF7
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 1A - RighTime v1.1 - TEMPORARILY DISABLE
+	AH = F7h
+Program: RighTime is a TSR by G.T. Becker which continuously adjusts the
+	  system time to correct for clock drift
+Note:	any AH value from F0h-F7h or F9h-FEh will perform this function in
+	  version 1.1, but F7h is the function called by transient portion
+SeeAlso: AH=F8h,AH=FFh"RighTime"
+

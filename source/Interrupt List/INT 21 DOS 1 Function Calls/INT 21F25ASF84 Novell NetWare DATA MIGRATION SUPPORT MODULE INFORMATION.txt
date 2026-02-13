@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F25ASF84
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - DATA MIGRATION SUPPORT MODULE INFORMATION
+	AX = F25Ah subfn 84h
+	CX = length of request buffer in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request buffer (see #02459)
+	ES:DI -> reply buffer (see #02460)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AX=F25Ah/SF=82h,AX=F25Ah/SF=83h,AX=F25Ah/SF=86h
+
+Format of NetWare "Data Migration Support Module Information" request packet:
+Offset	Size	Description	(Table 02459)
+ 00h	WORD	length of following data
+ 02h	BYTE	84h (subfunction "Data Migration Support Module Information")
+ 03h	DWORD	information level
+		0000h get data migration NLM info
+		0001h get loaded support modules
+		0002h get name of support module
+ 07h	DWORD	support module ID
+SeeAlso: #02460
+
+Format of NetWare "Data Migration Support Module Information" request packet:
+Offset	Size	Description	(Table 02460)
+---information level 0---
+ 00h	DWORD	read/write access status
+ 04h	DWORD	length of Specific Device Information block (max 384)
+ 08h	DWORD	space available on support module
+ 0Ch	DWORD	amount of space used
+ 10h	BYTE	length of support module's name
+ 11h 14 BYTEs	support module name
+ 1Fh 128 BYTEs	support module information
+---information level 1---
+ 00h	DWORD	number of support modules
+ 04h 32 BYTEs	support module IDs
+---information level 2---
+ 00h	BYTE	length of module name
+ 01h 32 BYTEs	support module name
+SeeAlso: #02459
+

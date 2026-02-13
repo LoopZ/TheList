@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21F217SF76
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - Novell NetWare - READ QUEUE SERVER CURRENT STATUS (OLD)
+	AX = F217h subfn 76h
+	CX = length of request packet in bytes
+	DX = length of reply buffer in bytes
+	DS:SI -> request packet (see #01992 at AH=E3h/SF=76h)
+	ES:DI -> reply buffer (see #02203)
+Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
+SeeAlso: AH=F2h"Novell",AH=E3h/SF=76h,AX=F217h/SF=74h,AX=F217h/SF=77h
+
+Format of NetWare "Read Queue Server Current Status (old)" reply packet:
+Offset	Size	Description	(Table 02203)
+ 00h 64 BYTEs	server status record (format depends on server)
+		first four bytes should contain estimated "price" for an
+		  average job
+SeeAlso: #01992,#01993 at AH=E3h/SF=76h
+

@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FD103
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2F - MDEBUG command driver - EXECUTE KEY IN THE MONITOR
+	AX = D103h
+	BX = key code (like result of an interrupt 16h call)
+	CX = cursor position
+	    0000h in the ASCII column of the monitor
+	    0001h in one of the hex fields of the monitor
+	DS:SI -> MDEBUG data structure (see #03078)
+	ES:DI -> actual byte in the monitor
+Return: AL = FFh
+	AH = return code
+	    00h key processed, read next key
+	    01h leave MDEBUG popup session
+	    02h leave MDEBUG popup session and automatically popup again if DOS
+		  is not busy
+	    03h signal an error (beep)
+	    04h driver has redefined the key, proceed with the new key
+		BX = new key code
+		MDEBUG will not pass the new key to the command driver(s)
+	   else treat like code 00h
+Note:	this function must end with a far call to the old INT 2F handler (with
+	  registers unchanged) if the driver does not support the key in BX.
+	  Otherwise, the driver must not chain to the old INT 2F.
+SeeAlso: AX=D104h
+

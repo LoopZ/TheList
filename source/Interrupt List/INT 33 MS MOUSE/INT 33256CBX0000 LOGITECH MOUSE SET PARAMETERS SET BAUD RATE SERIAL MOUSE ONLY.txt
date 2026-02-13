@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33256CBX0000
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - LOGITECH MOUSE - SET PARAMETERS - SET BAUD RATE (SERIAL MOUSE ONLY)
+	AX = 256Ch
+	BX = 0000h
+	CX = rate (0=1200, 1=2400, 2=4800, 3=9600)
+Return: AX = FFFFh if driver installed for serial mouse
+SeeAlso: AX=246Ch,AX=256Ch/BX=0001h,AX=256Ch/BX=0002h,AX=276Ch
+

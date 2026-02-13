@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 152305
+  Category: B 	BIOS
+      Flag: u 	partially documented function
+--------------------------------------------------------------------------------
+
+INT 15 u - IBM BIOS - SMART ENERGY SYSTEM - GET PROCESSOR SPEED
+	AX = 2305h
+Return: CF clear if successful
+	    AL = processor speed in MHz
+	CF set on error
+	    AL = FFh (speed unknown or >80 MHz)
+	    AL = error code (80h,86h = unsupported function)
+Note:	IBM classifies this function as optional
+SeeAlso: AX=2301h,AX=2304h,AH=BCh
+

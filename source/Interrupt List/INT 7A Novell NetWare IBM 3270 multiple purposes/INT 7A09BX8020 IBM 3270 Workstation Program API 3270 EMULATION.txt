@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 7A09--BX8020
+  Category: I 	IBM workstation/terminal emulators
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 7A - IBM 3270 Workstation Program API - 3270 EMULATION
+	AH = 09h
+	BX = 8020h
+	CX = 00FFh
+	DX = ID of 3270EML
+	AL = service
+	    01h connect
+	    02h disconnect
+	ES:DI -> control block
+Return: ???
+
