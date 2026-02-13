@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00260027
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0026-0027 - INTEL 82347 POWER MANAGEMENT PERIPHERAL
+SeeAlso: PORT 0178h-0179h
+
+0026  -W  index for data port (see #P0377)
+0027  RW  power management data
+
+(Table P0377)
+Values for Intel 82437 Power Management Peripheral register index:
+ C0h	suspend/wakeup status, system state
+ C1h	power supply and activity status, general-purpose output/control
+ C2h	control bits
+ C3h	activity mask
+ C4h	NMI mask
+ C5h	I/O range for activity monitor
+ C6h	power output control bits, ON state
+ C7h	power output control bits, Doze state
+ C8h	power output control bits, Sleep state
+ C9h	power output control bits, Suspend state
+ CAh	power control bits polarity control
+ CBh	current output bits
+ CCh	Doze timeout
+ CDh	Sleep timeout
+ CEh	Suspend timeout
+ CFh	LCD display power timeout
+ D0h	EL display power timeout
+

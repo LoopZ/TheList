@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400089
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+MEM 0040h:0089h U - VIDEO (MCGA/VGA) - MODE-SET OPTION CONTROL
+Size:	BYTE
+SeeAlso: MEM 0040h:0087h,MEM 0040h:0088h
+
+Bitfields for Video mode-set option control:
+Bit(s)	Description	(Table M0027)
+ 7,4	requested scan lines
+	0 0  350-line mode requested
+	0 1  400-line mode at next mode set
+	1 0  200-line mode requested
+	1 1  reserved
+	Note:	Apparently VGA BIOS mode set disregards bit 7 and uses
+		  byte 40h:88h to determine 200/350 selection when bit 4
+		  is zero. Presumably bit 7 is a convenience for other
+		  purposes. Bit 7 is reset to zero after the mode set.
+ 6	display switching enabled
+ 5	reserved
+ 4	if set:	  use 400-line mode at next mode set
+	if clear: [VGA] emulate EGA at next mode set
+		[MCGA] emulate CGA, digital monitor, 200 lines, 8x8 text
+	Note: this bit is set by the video mode set on VGA, unchanged on MCGA
+ 3	default palette loading DISabled at mode set
+ 2	mono display
+ 1	gray scale summing enabled
+ 0	[VGA] =1 if VGA active, =0 if not
+	[MCGA] reserved, zero
+Note:	the Tseng ET4000 BIOS v3.00 uses bits 6-4 of 88h and bits 6-5 of 89h
+	  to specify graphics-mode refresh rates as follows
+		88h/6		640x480:  1 for 72Hz,0 for 60Hz
+		88h/5+89h/6	800x600:  00  60Hz
+					  01  56Hz
+					  11  72Hz
+		88h/4+89h/5	1024x768: 00  interlaced
+					  01  60Hz
+					  10  72Hz???
+					  11  70Hz
+

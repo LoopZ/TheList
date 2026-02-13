@@ -1,0 +1,640 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0060006F
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0060-006F - KEYBOARD CONTROLLER 804x (8041, 8042) (or PPI (8255) on PC,XT)
+Note:	XT uses ports 60h-63h, AT uses ports 60h-64h
+
+0060  RW  KB controller data port or keyboard input buffer (ISA, EISA)
+		should only be read from after status port bit0 = 1
+		should only be written to if status port bit1 = 0
+0060  R-  KeyBoard or KB controller data output buffer (via PPI on XT)
+		PC: input from port A of 8255, if bit7 in 61h set (see #P0396)
+		get scancodes, special codes (in PC: with bit7 in 61h cleared)
+		  (see #P0390)
+
+0061  R-  KB controller port B control register (ISA, EISA)
+		system control port for compatibility with 8255 (see #P0393)
+0061  -W  KB controller port B (ISA, EISA)   (PS/2 port A is at 0092)
+		system control port for compatibility with 8255 (see #P0392)
+0061  -W  PPI Programmable Peripheral Interface 8255 (XT only)
+		system control port (see #P0394)
+0062  RW  PPI (XT only) data port C (see #P0395)
+0063  RW  PPI (XT only) command mode register (see #P0397)
+
+0064  R-  keyboard controller read status (see #P0398,#P0399,#P0400)
+0064  -W  keyboard controller input buffer (ISA, EISA) (see #P0401)
+
+0064  -W  (Amstrad/Schneider PC1512) set 'DIP switch S1' setting
+	  stored in CMOS RAM that PPI should report for compatibility
+0065  -W  (Amstrad/Schneider PC1512) set 'DIP switch S2' RAM size setting
+	  stored in CMOS RAM, that PPI port C (PORT 0064h) should report for
+	  compatibility
+
+0065  R-  communications port (Olivetti M24)
+0066  R?  configuration port (Olivetti M24 with model byte 0)
+		bit 5 set if 8530 SIO present (see also PORT 0065h"Olivetti")
+
+Bitfields for AT keyboard controller input port:
+Bit(s)	Description	(Table P0381)
+ 7	keyboard enabled
+ 6	=0  CGA, else MDA
+ 5	=0  manufacturing jumper installed
+ 4	=0  system RAM 512K, else 640K
+ 3-0	reserved
+SeeAlso: #P0382,#P0384
+
+Bitfields for AT keyboard controller input port (Compaq):
+Bit(s)	Description	(Table P0382)
+ 7	security lock is unlocked
+ 6	=0  Compaq dual-scan display, 1=non-Compaq display
+ 5	system board dip switch 5 is OFF
+ 4	=0  auto speed selected, 1=high speed selected
+ 3	=0  slow (4MHz), 1 = fast (8MHz)
+ 2	no math coprocessor installed
+ 1-0	reserved
+SeeAlso: #P0383
+
+Bitfields for AT keyboard controller output port:
+Bit(s)	Description	(Table P0383)
+ 7	keyboard data output
+ 6	keyboard clock output
+ 5	input buffer NOT full
+ 4	output buffer NOT empty
+ 3	reserved (see note)
+ 2	reserved (see note)
+ 1	gate A20
+ 0	system reset
+Note:	bits 2 and 3 are the turbo speed switch or password lock on
+	  Award/AMI/Phoenix BIOSes.  These bits make use of nonstandard
+	  keyboard controller BIOS functionality to manipulate
+		pin 23 (8041 port 22) as turbo switch for AWARD
+		pin 35 (8041 port 15) as turbo switch/pw lock for Phoenix
+SeeAlso: #P0381,#P0384
+
+Bitfields for HP Vectra keyboard controller output port:
+Bit(s)	Description	(Table P0384)
+ 7-5	reserved
+ 4	output buffer full (OBF) interrupt
+ 3	HP SVC interrupt
+ 2	HP-HIL controller AutoPoll
+ 1	A20 gate
+ 0	system reset
+SeeAlso: #P0383,#P0385
+
+Bitfields for HP Vectra command byte:
+Bit(s)	Description	(Table P0385)
+ 7	reserved (0)
+ 6	scancode conversion mode (1 = PC/XT, 0 = PC/AT)
+ 5	unused
+ 4	disable keyboard (unless bit 3 set)
+ 3	override keyboard disable
+ 2	System Flag (may be read from PORT 0060h)
+ 1	reserved
+ 0	OBF interrupt enable
+SeeAlso: #P0384
+
+(Table P0386)
+Values for keyboard commands (data also goes to PORT 0060h):
+Value	Count	Description
+ EDh	double	set/reset mode indicators Caps Num Scrl
+		bit 2 = CapsLk, bit 1 = NumLk, bit 0 = ScrlLk
+		all other bits must be zero.
+ EEh	sngl	diagnostic echo. returns EEh.
+ EFh	sngl	NOP (No OPeration). reserved for future use
+ EF+26h	double	[Cherry MF2 G80-1501HAD] read 256 bytes of chipcard data
+		keyboard must be disabled before this and has to
+		be enabled after finished.
+ F0h	double	get/set scan code set
+		00h get current set
+		01h scancode set 1 (PCs and PS/2 mod 30, except Type 2 ctrlr)
+		02h scancode set 2 (ATs, PS/2, default)
+		03h scancode set 3
+ F1h	???	select menu command
+ F2h	sngl	read keyboard ID (read two ID bytes)
+		AT keyboards returns FA (ACK)
+		MF2 returns AB 41 (translation) or
+			    AB 83 (pass through)
+ F3h	double	set typematic rate/delay
+		format of the second byte:
+		bit7=0 : reserved
+		bit6-5 : typemativ delay
+			 00b=250ms     10b= 750ms
+			 01b=500ms     11b=1000ms
+		bit4-0 : typematic rate (see #P0391)
+ F4h	sngl	enable keyboard
+ F5h	sngl	disable keyboard. set default parameters (no keyboard scanning)
+ F6h	sngl	set default parameters
+ F7h	sngl	[MCA] set all keys to typematic (scancode set 3)
+ F8h	sngl	[MCA] set all keys to make/release
+ F9h	sngl	[MCA] set all keys to make only
+ FAh	sngl	[MCA] set all keys to typematic/make/release
+ FBh	sngl	[MCA] set al keys to typematic
+ FCh	double	[MCA] set specific key to make/release
+ FDh	double	[MCA] set specific key to make only
+ FEh	sngl	resend last scancode
+ FFh	sngl	perform internal power-on reset function
+Note:	each command is acknowledged by FAh (ACK), if not mentioned otherwise.
+	  See PORT 0060h-R for details.
+SeeAlso: #P0387
+
+(Table P0387)
+Values for Mouse functions (for PS/2-like pointing devices):
+Value	Count	Description
+ E6h	sngl	set mouse scaling to 1:1
+ E7h	sngl	set mouse scaling to 2:1
+ E8h	double	set mouse resolution
+		(00h=1/mm, 01h=2/mm, 02h=4/mm, 03h=8/mm)
+ E9h	sngl	get mouse information
+		read two status bytes:
+		  byte 0: flags (see #P0388)
+		  byte 1: resolution
+ EAh	sngl	set mouse to stream mode (mouse sends data on any changes)
+ EBh	sngl	get mouse data (from mouse to controller) (see #P0389)
+		on reading, each data packet consists of 8 bytes:
+ ECh	sngl	reset mouse wrap mode (to normal mode)
+ EEh	sngl	set wrap mode
+ F0h	sngl	set remote mode (instead of stream mode), mouse sends data
+		  only on issueing command EBh.
+ F2h	sngl	read mouse ID (read one, two?? ID bytes)
+		00h=mouse
+ F3h	double	set mouse sample rate in reports per second
+		0Ah=10/s	   50h= 80/s
+		14h=20/s	   64h=100/s
+		28h=40/s	   C8h=200/s
+		3Ch=60/s
+ F4h	sngl	enable mouse (in stream mode)
+ F5h	sngl	disable mouse (in steam mode), set default parameters
+ F6h	sngl	reset to defaults: 100/s, scaling 1:1, stream-mode, 4/mm,
+		  disabled
+ FEh	sngl	resend last mouse data (8 bytes, see EBh)
+ FFh	sngl	reset mouse
+Notes:	 must issue command D4h to PORT 0064h first to access mouse functions
+	 all commands except ECh and FFh are acknowledged by FAh (ACK) or
+	   FEh (Resend); get mouse ID (F2h) returns mouse ID.
+SeeAlso: #P0386
+
+Bitfields for mouse status byte 0:
+Bit(s)	Description	(Table P0388)
+ 7	unused
+ 6	remote rather than stream mode
+ 5	mouse enabled
+ 4	scaling set to 2:1
+ 3	unused
+ 2	left button pressed
+ 1	unused
+ 0	right button pressed
+SeeAlso: #P0387,#P0389
+
+Format of mouse data packet:
+Offset	Size	Description	(Table P0389)
+ 00h	BYTE	status
+		bit7	: y-data overrun
+		bit6	: x-data overrun
+		bit5	: y-data negative
+		bit4	: x-data negative
+		bit3-2=0: reserved
+		bit1	: right button pressed
+		bit0	: left button pressed
+ 01h	BYTE	reserved
+ 02h	BYTE	x-data
+ 03h	BYTE	reserved
+ 04h	BYTE	y-data
+ 05h	BYTE	reserved
+ 06h	BYTE	z-data (0)
+ 07h	BYTE	reserved
+SeeAlso: #P0387,#P0388
+
+(Table P0390)
+Values for keyboard special codes:
+ 00h	(MF2 in codeset2&3 or AT keyboards) keydetection/overrun error
+ 00h	(mouse) ID
+ AAh	BAT completion code (sent after errorfree Basic Assurance Test)
+ ABh	first byte of general MF2 keyboard ID
+ EEh	Echo command return
+ F0h	keyboard break code
+ FAh	Acknowledge (all general commands except Resend and Echo)
+ FAh	(mouse) Acknowledge (all commands except commands ECh,F2h,FFh)
+ FCh	(MF2) BAT Failure Code (error in second half of the power on self test)
+ FDh	(AT-keyboard) BAT Failure Code (error in the second half of the
+	  power-on self test)
+ FEh	Resend: CPU to controller should resend last keyboard-command
+ FEh	(mouse) CPU to controller should resend last mouse-command
+ FFh	(MF2 in codeset1) keydetection/overrun error
+Note:	keyboard stops scanning and waits for next command after returning
+	  code FCh or FDh
+SeeAlso: PORT 0060h-R
+
+(Table P0391)
+Values for keyboard typematic rate:
+ 00000b=30.0   10000b=7.5
+ 00001b=26.7   10001b=6.7
+ 00010b=24.0   10010b=6.0
+ 00011b=21.8   10011b=5.5
+ 00100b=20.0   10100b=5.0
+ 00101b=18.5   10101b=4.6
+ 00110b=17.1   10110b=4.3
+ 00111b=16.0   10111b=4.0
+ 01000b=15.0   11000b=3.7
+ 01001b=13.3   11001b=3.3
+ 01010b=12.0   11010b=3.0
+ 01011b=10.9   11011b=2.7
+ 01100b=10.0   11100b=2.5
+ 01101b= 9.2   11101b=2.3
+ 01110b= 8.5   11110b=2.1
+ 01111b= 8.0   11111b=2.0
+SeeAlso: #P0386
+
+Bitfields for KB controller port B (system control port) [output]:
+Bit(s)	Description	(Table P0392)
+ 7	pulse to 1 for IRQ1 reset (PC,XT)
+ 6-4	reserved
+ 3	I/O channel parity check disable
+ 2	RAM parity check disable
+ 1	speaker data enable
+ 0	timer 2 gate to speaker enable
+SeeAlso: PORT 0061h-W,#P0393
+
+Bitfields for KB ctrller port B control register (system control port) [input]:
+Bit(s)	Description	(Table P0393)
+ 7	RAM parity error occurred
+ 6	I/O channel parity error occurred
+ 5	mirrors timer 2 output condition
+ 4	toggles with each refresh request
+ 3	NMI I/O channel check status
+ 2	NMI parity check status
+ 1	speaker data status
+ 0	timer 2 clock gate to speaker status
+Note:	also supported by OPTi 82C392
+SeeAlso: PORT 0061h-R,#P0392
+
+Bitfields for Progr. Peripheral Interface (8255) system control port [output]:
+Bit(s)	Description	(Table P0394)
+ 7	clear keyboard (only pulse, normally kept at 0)
+ 6	=0  hold keyboard clock low
+ 5	NMI I/O parity check disable
+ 4	NMI RAM parity check disable
+ 3	=0 read low nybble of switches S2
+	=1 read high nybble of switches S2
+ 2	reserved, often used as turbo switch
+	original PC: cassette motor off
+ 1	speaker data enable
+ 0	timer 2 gate to speaker enable
+Note:	bits 2 and 3 are sometimes used as turbo switch
+SeeAlso: PORT 0061h-W,#P00051,#P0395,#P0396,#P0397
+
+Bitfields for PPI (XT only) data port C:
+Bit(s)	Description	(Table P0395)
+ 7	RAM parity error occurred
+ 6	I/O channel parity error occurred
+ 5	timer 2 channel out
+ 4	reserved
+	original PC: cassette data input
+---
+ 3	system board RAM size type 1
+ 2	system board RAM size type 2
+ 1	coprocessor installed
+ 0	loop in POST
+---
+ 3-0	DIL switch S2 high/low nybble (depending on PORT 0061h bit 3)
+SeeAlso: PORT 0062h-RW,#P0394,#P0396,#P0397
+
+Bitfields for PPI (PC,XT only) equipment switches [input]:
+Bit(s)	Description	(Table P0396)
+ 7-6	number of disk drives
+	00  1 diskette drive
+	01  2 diskette drives
+	10  3 diskette drives
+	11  4 diskette drives
+ 5-4	initial video
+	00  reserved (video adapter has on-board BIOS)
+	01  40*25 color (mono mode)
+	10  80*25 color (mono mode)
+	11  MDA 80*25
+ 3-2	memory size (using 256K chips)
+	00  256K
+	01  512K
+	10  576K
+	11  640K
+ 3-2	memory size (using 64K chips)
+	00  64K
+	01  128K
+	10  192K
+	11  256K
+ 3-2	memory size (original PC)
+	00  16K
+	01  32K
+	10  48K
+	11  64K
+ 1-0	reserved
+ 1	NPU (math coprocessor) present
+ 0	boot from floppy
+SeeAlso: #P0395,#P0397,PORT 0060h-R
+
+Bitfields for PPI (8255) command mode register:
+Bit(s)	Description	(Table P0397)
+ 7	activation function (0 = bit set/reset, 1 = mode set function)
+ 6,5	port A mode: 00 = mode0, 01 = mode1, 1x = mode2
+ 4	port A direction: 0 = output, 1 = input
+ 3	port C bits 7-4 direction: 0 = output, 1 = input
+ 2	port B mode: 0 = mode0, 1 = mode1
+ 1	port B direction: 0 = output, 1 = input
+ 0	port C bits 3-0 direction: 0 = output, 1 = input
+Note:	Attention: Never write anything other than 99h to this port
+	  (better: never write anything to this port, only during BIOS
+	  init), as other values may connect multiple output drivers
+	  and will cause hardware damage in PC/XTs!  By setting command
+	  word to 99h, PPI will be set in input/output modes as it is
+	  necessary to support the commonly known IO-ports 60, 61, 62
+	  as desired.
+SeeAlso: #P0394,#P0395,#P0396
+
+Bitfields for keyboard controller read status (ISA, EISA):
+Bit(s)	Description	(Table P0398)
+ 7	parity error on transmission from keyboard
+ 6	receive timeout
+ 5	transmit timeout
+ 4	keyboard interface inhibited by keyboard lock
+	or by password server mode (IBM PS/2-286 [model bytes FCh/09h],
+	  "Tortuga" [model F8h/19h]) (see #00515 at INT 15/AH=C0h)
+ 3	=1 data written to input register is command (PORT 0064h)
+	=0 data written to input register is data (PORT 0060h)
+ 2	system flag status: 0=power up or reset	 1=selftest OK
+ 1	input buffer full (input 60/64 has data for 8042)
+	no write access allowed until bit clears
+ 0	output buffer full (output 60 has data for system)
+	bit is cleared after read access
+SeeAlso: PORT 0064h-R,#P0399,#P0400,#P0401
+
+Bitfields for keyboard controller read status (MCA):
+Bit(s)	Description	(Table P0399)
+ 7	parity error on transmission from keyboard
+ 6	general timeout
+ 5	mouse output buffer full
+ 4	keyboard interface inhibited by keyboard lock
+ 3	=1 data written to input register is command (PORT 0064h)
+	=0 data written to input register is data (PORT 0060h)
+ 2	system flag status: 0=power up or reset	 1=selftest OK
+ 1	input buffer full (60/64 has data for 804x)
+	no write access allowed until bit clears
+ 0	output buffer full (output 60 has data for system)
+	bit is cleared after read access
+SeeAlso: #P0398,#P0400,#P0401
+
+Bitfields for keyboard controller read status (Compaq):
+Bit(s)	Description	(Table P0400)
+ 7	parity error detected (11-bit format only). If an
+	  error is detected, a Resend command is sent to the
+	  keyboard once only, as an attempt to recover.
+ 6	receive timeout. transmission didn't finish in 2mS.
+ 5	transmission timeout error
+	bit 5,6,7  cause
+		1 0 0  No clock
+		1 1 0  Clock OK, no response
+		1 0 1  Clock OK, parity error
+ 4	=0 security lock engaged
+ 3	=1 data in OUTPUT register is command
+	=0 data in OUTPUT register is data
+ 2	system flag status: 0=power up or reset	 1=soft reset
+ 1	input buffer full (60/64 has data for 804x)
+	no write access allowed until bit clears
+ 0	output buffer full (PORT 0060h has data for system)
+	bit is cleared after read access
+SeeAlso: #P0398,#P0399,#P0401
+
+(Table P0401)
+Values for keyboard controller commands (data goes to PORT 0060h):
+Value		Description
+ 20h	read	read byte zero of internal RAM, this is the last KB command
+		  sent to the 8041/8042
+	Compaq	put current command byte on PORT 0060h (see #P0403,#P0404)
+ 21-3F	read	reads the byte specified in the lower 5 bits of the command
+		  in the 804x's internal RAM (see #P0407)
+ 60-7F	double	writes the data byte to the address specified in the 5 lower
+		  bits of the command
+ 60h	Compaq	Load new command (60 to [64], command to [60]) (see #P0404)
+		(also general AT-class machines)
+ A0h	AMI	get ASCIZ copyright message on PORT 0060h
+ A1h	AMI	get controller version byte on PORT 0060h
+ A1h	Compaq	unknown speedfunction ??
+ A1h	C&T	CHIPS extensions (see #P0402)
+ A2h	Compaq	unknown speedfunction ??
+ A2h	AMI	set keyboard controller pins 22 and 23 low
+ A2h	C&T	turn on turbo LED
+ A3h	Compaq	Enable system speed control
+ A3h	AMI	set keyboard controller pins 22 and 23 high
+ A3h	C&T	turn off turbo LED
+ A4h	MCA	check if password installed
+		returns PORT 0060h code F1h if no password, FAh if installed
+ A4h	Compaq	Toggle speed
+ A4h	AMI	set internal system speed flag to low
+ A5h	MCA	load password
+		write successive scan codes to PORT 0060h, terminate with 00h
+ A5h	AMI	set internal system speed flag to high
+ A5h	Compaq	Special read. the 8042 places the real values of port 2
+		  except for bits 4 and 5 wich are given a new definition in
+		  the output buffer. No output buffer full is generated.
+			if bit 5 = 0, a 9-bit keyboard is in use
+			if bit 5 = 1, an 11-bit keyboard is in use
+			if bit 4 = 0, output-buff-full interrupt disabled
+			if bit 4 = 1, output-buffer-full interrupt enabled
+ A6h	MCA	check password
+ A6h	AMI	get internal system speed flag on PORT 0060h
+ A6h	Compaq	unknown speedfunction ??
+ A7h	MCA	disable mouse port
+ A7h	AMI	set internal flag indicating bad write cache
+ A8h	MCA	enable mouse port
+ A8h	AMI	set internal flag indicating good write cache
+ A9h	MCA	test mouse port, return test result on PORT 0060h (see #P0406)
+ A9h	AMI	get internal flag indicating cache OK to PORT 0060h
+ AAh	sngl	initiate self-test. will return 55h to data port if self-test
+		  successful, FCh if failed
+ AAh	Compaq	initializes ports 1 and 2, disables the keyboard and clears
+		  the buffer pointers. It then places 55h in the output buffer.
+ ABh	sngl	initiate interface test, return result value on PORT 0060h
+		  (see #P0406)
+ ACh	read	diagnostic dump. the contents of the 804x RAM, output port,
+		  input port, status word are sent to PORT 0060h in scan-code
+		  format; Chips&Technologies 8042's append "CHIPS Vxxx" where
+		  "xxx" is the controller version number
+ ADh	sngl	disable keyboard (sets bit 4 of commmand byte)
+ ADh	Vectra	HP Vectra diagnostic dump
+ AEh	sngl	enable keyboard	 (resets bit 4 of commmand byte)
+ AFh	AWARD	Enhanced Command: read keyboard version
+ AFh	AMI	set extended controller RAM
+		write address to PORT 0060h, wait for controller ready, then
+		  write value to PORT 0060h
+ B1h	AMI	set keyboard controller P11 line low
+ B2h	AMI	set keyboard controller P12 line low
+ B3h	AMI	set keyboard controller P13 line low
+ B4h	AMI	set keyboard controller P22 line low
+ B5h	AMI	set keyboard controller P23 line low
+ B8h	AMI	set keyboard controller P10 line high
+ B9h	AMI	set keyboard controller P11 line high
+ BAh	AMI	set keyboard controller P12 line high
+ BBh	AMI	set keyboard controller P13 line high
+ BCh	AMI	set keyboard controller P22 line high
+ BDh	AMI	set keyboard controller P23 line high
+ C0h	read	read input port and place on PORT 0060h
+		bit 7	keyboard NOT locked
+		bit 6	=0 first video is CGA
+			=1 first video is MDA
+		bit 5	=0 factory testmode
+			=1 normal
+		bit 4	=0 256KB RAM, 1=512KB
+		bit 5,3-0 are used in Intel chipset 386sx machines with
+			AMI/Phoenix BIOSes for BIOS specific hardware settings
+		bit 2	(MCA) no keyboard power
+		bit 1	(MCA) current mouse serial data input state
+		bit 0	(MCA) current keyboard serial input state
+ C0h	Compaq	places status of input port in output buffer.  Use this
+		  command only when the output buffer is empty
+ C1h	MCA	Enhanced Command: poll input port Low nibble, continuously
+		  place in PORT 0064h bits 7-4 until next command
+ C2h	MCA	Enhanced Command: poll input port High nibble, continuously
+		  place in PORT 0064h bits 7-4 until next command
+ C8h	AMI	unblock keyboard controller lines P22 and P23
+ C9h	AMI	block keyboard controller lines P22 and P23
+ CAh	AMI	read keyboard mode, return in 0060 bit 0
+		  (bit clear if ISA mode, set if PS/2 mode)
+ CBh	AMI	set keyboard mode (write back mode byte returned by CAh,
+		  modifying only bit 0)
+ CCh	AMI	??? (used by AMI BIOS v1.00.12.AX1T APM code)
+ D0h	read	read output port and place on PORT 0060h (see #P0405)
+ D0h	Compaq	places byte in output port in output buffer. Use this command
+		  only when the output buffer is empty
+ D1h	double	write output port.  The next byte written to PORT 0060h will
+		  be written to the 804x output port; the original IBM AT and
+		  many compatibles such as the OPTi 82C392 use bit 1 of the
+		  output port to control the A20 gate.
+		Important: bit 0 (system reset) should always be set here, as
+			  the system may hang constantly; use pulse output port
+			  (FEh) instead.
+ D1h	Compaq	the system speed bits are not set by this command use
+		  commands A1-A6 (!) for speed functions.
+ D2h	MCA	Enhanced Command: write keyboard output buffer
+ D3h	MCA	Enhanced Command: write pointing device out.buf.
+ D4h	MCA	write to mouse/pointing device instead of to keyboard; this
+		  controller command must precede every PORT 0060h command
+		  directed to the mouse, otherwise it will be sent to the
+		  keyboard
+ D4h	AWARD	Enhanced Command: write to auxiliary device
+ DDh	sngl	disable address line A20 (HP Vectra only???)
+		default in Real Mode
+ DFh	sngl	enable address line A20 (HP Vectra only???)
+ E0h	read	read test inputs, and place in PORT 0060h
+		bit0 = kbd clock, bit1 = kbd data
+ Exxx	AWARD	Enhanced Command: active output port
+ E5h	GoldStar set turbo LED color to yellow (turbo off)
+ E7h	GoldStar set turbo LED color to yellow (turbo off)
+ E8h	GoldStar set turbo LED color to green (turbo on)
+ EAh	GoldStar set turbo LED color to green (turbo on)
+ EDh	double	this is a two part command to control the state of the
+		  NumLock, CpasLock and ScrollLock LEDs
+		The second byte contains the state to set LEDs.
+		    bit 7-3	reserved. should be set to 0.
+		    bit 2 = 0	Caps Lock LED off
+		    bit 1 = 0	Num Lock LED off
+		    bit 0 = 0	Scroll Lock LED off
+ F0-FF	sngl	pulse output port low for 6 microseconds.
+		bits 0-3 contain the mask for the bits to be pulsed.  A bit is
+		  pulsed if its mask bit is zero
+		bit0=system reset. Don't set to zero. Pulse only!
+Note:	 keyboard controllers are widely different from each other.  You
+	   cannot generally exchange them between different machines.
+	 (Award) Derived from Award's Enhanced KB controller advertising sheet.
+	 (Compaq) Derived from the Compaq Deskpro 386 Tech. Ref. Guide.
+
+(Table P0402)
+Values for Chips&Technologies extension commands:
+ 00h	return ID - returns A6h for a C&T controller, part # N93N8042/A
+ 02h	write input port
+	next data byte to PORT 0060h is written to the controller's input port
+	Warning: the system must be designed to support output devices
+		  connected to the input port to avoid potential damage
+ 04h	select turbo switch input
+	next byte selects input:
+	    bit 7: switch polarity
+		(=0 input low = high speed, =1 input low = low speed)
+	    bits 6-0: one bit set selects corresponding bit in Port1 as turbo
+ 05h	select turbo LED output
+	next byte selects output:
+	    bit 7: LED polarity	(=0 output low=LED on, =1 output low=LED off)
+	    bit 6: LED port (=0 Port1, =1 Port2)
+	    bits 5-0: one bit set selects corresponding bit in Port1/Port2 as
+		LED output
+Note:	these commands and any arguments are sent to PORT 0060h after writing
+	  command A1h to PORT 0064h
+SeeAlso: #P0401
+
+Bitfields for Compaq keyboard command byte:
+Bit(s)	Description	(Table P0403)
+ 7	reserved
+ 6	=1 convert KB codes to 8086 scan codes
+ 5	=0 use 11-bit codes, 1=use 8086 codes
+ 4	=0 enable keyboard, 1=disable keyboard
+ 3	ignore security lock state
+ 2	this bit goes into bit2 status reg.
+ 1	reserved (0)
+ 0	generate interrupt (IRQ1) when output buffer full
+SeeAlso: #P0404
+
+Bitfields for keyboard command byte (alternate description):
+Bit(s)	Description	(Table P0404)
+ 7	reserved (0)
+ 6	IBM PC compatibility mode
+ 5	IBM PC mode
+	no parity, no stop bits, no translation
+	(PS/2) force mouse clock low
+ 4	disable keyboard (clock)
+ 3	(AT) inhibit override -- ignore keyboard lock switch
+	(PS/2) reserved
+ 2	system flag
+ 1	(AT) reserved (0)
+	(PS/2) enable mouse output buffer full interrupt (IRQ12)
+ 0	enable output buffer full interrupt (IRQ1)
+SeeAlso: #P0403,#P0405
+
+Bitfields for keyboard controller output port:
+Bit(s)	Description	(Table P0405)
+ 7	keyboard data (output)
+ 6	keyboard clock (output)
+ 5	(AT) =0 input buffer empty
+	(MCA) outptu buffer full with mouse byte (connected to IRQ12)
+ 4	output buffer full with keyboard byte (connected to IRQ1)
+ 3	(MCA) mouse data (output)
+ 2	(MCA) mouse clock (output)
+	used by Intel 386sx Chipset with AMI/Phoenix BIOSes for BIOS-specific
+	  configuration of turbo switch
+ 1	gate address A20
+ 0	system reset
+Note:	bit 0 (system reset) should always be set when writing the output
+	  port, as the system may hang constantly; use pulse output port
+	  (command FEh) instead.
+SeeAlso: #P0404
+
+(Table P0406)
+Values for keyboard/mouse test result on PORT 0060h:
+ 00h	no error
+ 01h	keyboard clock line stuck low
+ 02h	keyboard clock line stuck high
+ 03h	keyboard data line is stuck low
+ 04h	keyboard data line stuck high
+ 05h	(Compaq only) diagnostic feature
+SeeAlso: #P0401
+
+(Table P0407)
+Values for keyboard controller RAM location:
+ 00h	command byte (see #P0403,#P0404)
+---MCA systems---
+ 13h	security on
+	nonzero if password enabled
+ 14h	security off
+	nonzero if password matched
+ 16h	password discard scancode 1
+ 17h	password discard scancode 2
+Note:	make codes matching either discard scancode are ignored during password
+	  entry
+

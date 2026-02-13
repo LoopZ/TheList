@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: P7AEE
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 7AEE - ATI Mach8/Mach32 - EXTENDED GRAPHICS ENGINE CONGIFURATION
+SeeAlso: PORT 8EEEh
+
+7AEEw -W  extended graphics engine configuration (see #P1025)
+
+Bitfields for Mach8/Mach32 extended graphics engine configuration:
+Bit(s)	Description	(Table P1025)
+ 15	drawing pixel size to be written next (68800-6 only)
+ 14	enable 8-bit DAC (Mach-32 only)
+ 13-12	DAC address inputs RS(3:2) control (Mach-32 only)
+ 11	display pixel size to be written next (68800-6 only)
+ 10	24-bit color order (Mach-32 only)
+	0 = RGB
+	1 = BGR
+ 9	24-bit color configuration: pixels use 4 bytes instead of three
+ 8	DAC processes four pixels in parallel (Mach-32 only)
+ 7-6	16-bits-per-color word format (Mach-32 only)
+	00 RGB(5,5,5)
+	01 RGB(5,6,5)
+	10 RGB(6,5,5)
+	11 RGB(6,6,4)
+ 5-4	number of bits per pixel (Mach-32 only)
+	00 four
+	01 eight
+	10 sixteen
+	11 twenty-four
+ 3	report monitor alias instead of actual monitor
+ 2-0	alternate monitor ID (alias)
+

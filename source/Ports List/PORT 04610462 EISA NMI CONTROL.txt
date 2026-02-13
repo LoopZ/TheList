@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: P04610462
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0461-0462 - EISA NMI CONTROL
+
+0461  RW  Extended NMI status/control register (see #P0890)
+0462  -W  Software NMI register. writing to this register causes an NMI	if
+	  NMIs are enabled
+	bit 7 = 1  generates an NMI
+
+Bitfields for EISA extended NMI status control register:
+Bit(s)	Description	(Table P0890)
+ 7  R-	NMI pending from fail-safe (watchdog) timer
+ 6  R-	NMI pending from bus timeout NMI status
+ 5  R-	NMI pending from I/O port status
+ 4  R-	busmaster preemption timeout if bit 6 set
+ 3  RW	bus timeout NMI enable
+ 2  RW	fail-safe (watchdog) NMI enable
+ 1  RW	NMI I/O port enable
+ 0  RW	RSTDRV. bus reset
+	=0  NORMAL bus reset operation
+	=1  reset bus asserted
+

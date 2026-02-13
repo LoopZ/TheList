@@ -1,0 +1,94 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0040005F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0040-005F - PIT - PROGRAMMABLE INTERVAL TIMER (8253, 8254)
+Notes:	XT & AT use ports 40h-43h; PS/2 uses ports 40h, 42h-44h, and 47h
+	the counter chip is driven with a 1.193 MHz clock (1/4 of the
+	original PC's 4.77 MHz CPU clock)
+SeeAlso: PORT 0044h,PORT 0048h
+
+0040  RW  PIT  counter 0, counter divisor	      (XT, AT, PS/2)
+	Used to keep the system time; the default divisor of (1)0000h
+	produces the 18.2Hz clock tick.
+0041  RW  PIT  counter 1, RAM refresh counter	(XT, AT)
+	don't set below 3 on PCs (default 12h), and don't mess with this
+	counter at all unless you really know what you're doing....
+0042  RW  PIT  counter 2, cassette & speaker	(XT, AT, PS/2)
+	During normal operation mode (8253) 40h-42h set the counter values on
+	write and get the current counter value on read. In 16bit modes two
+	consequtive writes/reads must be issued, first with the low byte,
+	followed by the high byte. In 8254 read back modes, all selected
+	counters and status are latched and must be read out completely
+	before normal operation is valid again.	 Each counter switches back
+	to normal operation after read out.  In 'get status and counter'
+	mode the first byte read is the status, followed by one or two
+	counter values. (see #P0379)  Note that 16-bit reads performed
+	without using the "latch" command will get the current high/low
+	portion of the counter at the instant of the port read, so it is
+	possible for the low part of the counter to wrap around before the
+	high part gets read, resulting in a significant measurement error
+0043  RW  PIT  mode port, control word register for counters 0-2 (see #P0380)
+	Once a control word has been written (43h), it must be followed
+	immediately by performing the corresponding action to the counter
+	registers (40h-42h), else the system may hang!!
+
+Bitfields for 8254 PIT counter status byte:
+Bit(s)	Description	(Table P0379)
+ 7	PIN status of OUTx Pins (1=high, 0=low)
+ 6	counter start value loaded
+	=0: yes, so counter latch is valid to be read
+	=1: no, wait for counter latch to be set (may last a while)
+5-0	counter mode, same as bit5-0 at 43h
+SeeAlso: #P0380
+
+Bitfields for 8253/8254 PIT mode control word:
+Bit(s)	Description	(Table P0380)
+ 7-6	counter select
+	00  counter 0 select
+	01  counter 1 select	  (not PS/2)
+	10  counter 2 select
+	11  (8253) reserved
+	    (8254) read back counter (see #P0379)
+---if counter select---
+ 5-4	counter access
+	00  counter latch command
+		BUG:	Intel Neptune/Mercury/Aries Chipset 8237IB (SIO) needs
+			  a short delay after issuing this command, else the
+			  latched MSB may be outdated with respect to the LSB,
+			  resulting in large measuring errors.
+			Workaround: Check for this condition by comparing
+			  results with last results and don't use erroneous
+			  results.
+	01  read/write counter bits 0-7 only
+	10  read/write counter bits 8-15 only
+	11  read/write counter bits 0-7 first, then 8-15
+ 3-1	counter mode
+	000 mode 0 select - zero detection interrupt
+	001 mode 1 select - programmable one shot
+	x10 mode 2 select - rate generator
+	x11 mode 3 select - square wave generator
+		counts down twice by two at a time; latch status and check
+		  value of OUT pin to determine which half-cycle is active
+		divisor factor 3 not allowed!
+	100 mode 4 select - software triggered strobe
+	101 mode 5 select - hardware triggered strobe
+ 0	counting style
+	0  binary counter 16 bits
+	1  BCD counter (4 decades)
+---if read back---
+ 5-4	what to read
+	00 counter status, then value
+	01 counter value
+	10 counter status
+	11 reserved
+ 3	select counter 2
+ 2	select counter 1
+ 1	select counter 0
+ 0	reserved (0)
+Note:	after issuing a read back 'get status' command, any new read back
+	  command is ignored until the status is read from all selected
+	  counters.
+

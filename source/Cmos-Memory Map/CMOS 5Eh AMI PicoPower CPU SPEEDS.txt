@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: R5E
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 5Eh - AMI (PicoPower) - CPU SPEEDS
+
+Bitfields for AMI (PicoPower) CPU speeds:
+Bit(s)	Description	(Table C0084)
+ 7	suspend warning beeps enabled
+ 6-4	"full on" CPU CLK speed
+	000 MAX
+	001 MAX/2
+	010 MAX/4
+	011 MAX/8
+ 1-0	power management mode
+	00 disabled
+	01 Auto
+	10 enabled
+SeeAlso: #C0081
+

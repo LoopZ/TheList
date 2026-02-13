@@ -1,0 +1,238 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/28h - ITT VPX 32xx - FPRAM data transfer
+Size:	16 bits, big-endian
+Note:	this register is also present on the ITT VDP 3108
+SeeAlso: I2C 86h/26h"VPX 32xx",I2C 86h/27h"VPX 32xx",I2C 86h/29h"VPX 32xx"
+SeeAlso: I2C 8Ah/28h
+
+(Table I0014)
+Values for ITT VPX 32xx FPRAM index:
+ 00h	???
+ 01h	???
+ 02h	???
+ 03h	???
+ 04h	???
+ 05h	???
+ 06h	???
+ 07h	???
+ 08h	???
+ 09h	???
+ 0Ah	???
+ 0Bh	???
+ 0Ch	???
+ 0Dh	???
+ 0Eh	???
+ 0Fh	???
+ 10h	???
+ 11h	??? status
+ 12h	??? status
+ 13h	??? status
+ 14h	??? (read-only)
+ 15h	???
+ 16h	??? status
+ 17h	???
+ 18h	???
+ 19h	colorburst frequency (low)			(see I2C 86h/28h/19h)
+ 1Ah	colorburst frequency (high)			(see I2C 86h/28h/1Ah)
+ 1Bh	standard select					(see I2C 86h/28h/1Bh)
+ 1Ch	NTSC tint angle (color balance)			(see I2C 86h/28h/1Ch)
+ 1Dh	???
+ 1Eh	???
+ 1Fh	???
+ 20h	current AGC gain value (read-only)		(see I2C 86h/28h/20h)
+ 21h	???
+ 22h	??? status (read-only)
+ 23h	???
+ 24h	???
+ 25h	??? status
+ 26h	crystal oscillator line-locked mode		(see I2C 86h/28h/26h)
+ 27h	??? status
+ 28h	??? vsync reference level?
+ 29h	???
+ 2Ah	???
+ 2Bh	???
+ 2Ch	???
+ 2Dh	???
+ 2Eh	??? status
+ 2Fh	??? status
+ 30h	??? status
+ 31h	???
+ 32h	??? status
+ 33h	??? (read-only)
+ 34h	???
+ 35h	???
+ 36h	??? status (signed?)
+ 37h	??? status
+ 38h	???
+ 39h	??? status
+ 3Ah	??? status (signed?)
+ 3Bh	??? (read-only)
+ 3Ch	??? (read-only)
+ 3Dh	???
+ 3Eh	???
+ 3Fh	??? status
+ 40h	??? status (signed?)
+ 41h	measured sync amplitude				(see I2C 86h/28h/41h)
+ 42h	??? status (signed)
+ 43h	??? position of hsync color attenuation? (signed)
+ 44h	??? (032h)
+ 45h	??? status (000h/004h)
+ 46h	??? status
+ 47h	??? adj for hsync rate (507h for 525/60 standards, 510h for 625/50)
+ 48h	??? status
+ 49h	??? status
+ 4Ah	??? status
+ 4Bh	Horizontal PLL control				(see I2C 86h/28h/4Bh)
+ 4Ch	???
+ 4Dh	???
+ 4Eh	???
+ 4Fh	???
+ 50h	???
+ 51h	??? status
+ 52h	??? status
+ 53h	automatic standard recognition status		(see I2C 86h/28h/53h)
+ 54h	???
+ 55h	???
+ 56h	???
+ 57h	???
+ 58h	crystal oscillator center frequency adjust (signed)
+ 59h	crystal oscillator center frequency adjust for line-locked mode
+ 5Ah	??? status
+ 5Bh	???
+ 5Ch	???
+ 5Dh	???
+ 5Eh	??? status (bits 4-0 always 0)
+ 5Fh	??? status
+ 60h	??? (read-only)
+ 61h	??? (read-only)
+ 62h-6Fh unused???
+ 70h	Window#1 Read Table: Vertical Begin		(see I2C 86h/28h/70h)
+ 71h	Window#1 Read Table: Vertical Lines In		(see I2C 86h/28h/71h)
+ 72h	Window#1 Read Table: Vertical Lines Out		(see I2C 86h/28h/72h)
+ 73h	Window#1 Read Table: Horizontal Begin		(see I2C 86h/28h/73h)
+ 74h	Window#1 Read Table: Horizontal Length		(see I2C 86h/28h/74h)
+ 75h	Window#1 Read Table: Horizontal Number of Pixels (see I2C 86h/28h/75h)
+ 76h	Window#1 Read Table: ???
+ 77h	Window#1 Read Table: ???
+ 78h	Window#1 Read Table: ???
+ 79h	Window#1 Read Table: ???
+ 7Ah	Window#1 Read Table: ???
+ 7Bh	Window#1 Read Table: Blurring/Aliasing Filter	(see I2C 86h/28h/7Bh)
+ 7Ch	Window#2 Read Table: Vertical Begin		(see I2C 86h/28h/7Ch)
+ 7Dh	Window#2 Read Table: Vertical Lines In		(see I2C 86h/28h/7Dh)
+ 7Eh	Window#2 Read Table: Vertical Lines Out		(see I2C 86h/28h/7Eh)
+ 7Fh	Window#2 Read Table: Horizontal Begin		(see I2C 86h/28h/7Fh)
+ 80h	Window#2 Read Table: Horizontal Length		(see I2C 86h/28h/80h)
+ 81h	Window#2 Read Table: Horizontal Number of Pixels (see I2C 86h/28h/81h)
+ 82h	Window#2 Read Table: ???
+ 83h	Window#2 Read Table: ???
+ 84h	Window#2 Read Table: ???
+ 85h	Window#2 Read Table: ???
+ 86h	Window#2 Read Table: ???
+ 87h	Window#2 Read Table: Blurring/Aliasing Filter	(see I2C 86h/28h/87h)
+ 88h	Window#1 Load Table: Vertical Begin		(see I2C 86h/28h/88h)
+ 89h	Window#1 Load Table: Vertical Lines In		(see I2C 86h/28h/89h)
+ 8Ah	Window#1 Load Table: Vertical Lines Out		(see I2C 86h/28h/8Ah)
+ 8Bh	Window#1 Load Table: Horizontal Begin		(see I2C 86h/28h/8Bh)
+ 8Ch	Window#1 Load Table: Horizontal Length		(see I2C 86h/28h/8Ch)
+ 8Dh	Window#1 Load Table: Horizontal Number of Pixels (see I2C 86h/28h/8Dh)
+ 8Eh	Window#2 Load Table: Vertical Begin		(see I2C 86h/28h/8Eh)
+ 8Fh	Window#2 Load Table: Vertical Lines In		(see I2C 86h/28h/8Fh)
+ 90h	Window#2 Load Table: Vertical Lines Out		(see I2C 86h/28h/90h)
+ 91h	Window#2 Load Table: Horizontal Begin		(see I2C 86h/28h/91h)
+ 92h	Window#2 Load Table: Horizontal Length		(see I2C 86h/28h/92h)
+ 93h	Window#2 Load Table: Horizontal Number of Pixels (see I2C 86h/28h/93h)
+ 94h	???
+ 95h	detected scan lines per field??? (usually 106h for NTSC)
+ 96h	??? status
+ 97h	??? (read-only)
+ 98h	???
+ 99h	[3220 only] InfoWord status register		(see I2C 86h/28h/99h)
+ 9Ah	[3220 only] CommandWord control register	(see I2C 86h/28h/9Ah)
+ 9Ah	[3220A] ???
+ 9Bh	??? (read-only)
+ 9Ch-9Fh unused???
+ A0h	ACC reference level (color saturation)		(see I2C 86h/28h/A0h)
+ A1h	??? status
+ A2h	??? status
+ A3h	ACC multiplier for SECAM Dr to adjust Cr level	(see I2C 86h/28h/A3h)
+ A4h	ACC multiplier for SECAM Db to adjust Cb level	(see I2C 86h/28h/A4h)
+ A5h	measured color-burst amplitude			(see I2C 86h/28h/A5h)
+ A6h	???
+ A7h	???
+ A8h	amplitude color killer threshold		(see I2C 86h/28h/A8h)
+ A9h	amplitude color killer hysteresis		(see I2C 86h/28h/A9h)
+ AAh	??? status
+ ABh	??? status
+ ACh	??? status
+ ADh	??? status
+ AEh	???
+ AFh	???
+ B0h	??? status
+ B1h	??? status
+ B2h	Sync Amplitude reference			(see I2C 86h/28h/B2h)
+ B3h	???
+ B4h	???
+ B5h	secondary Sync Amplitude reference???
+ B6h	??? status
+ B7h	??? status
+ B8h	field counter???
+ B9h	??? status
+ BAh	???
+ BBh	??? status
+ BCh	???
+ BDh	???
+ BEh	start value for Automatic Gain Control gain	(see I2C 86h/28h/BEh)
+ BFh	??? (read-only)
+ C0h	horizontal retrace frequency			(see I2C 86h/28h/C0h)
+ C1h	horizontal offset				(see I2C 86h/28h/C1h)
+ C2h	??? affects colors
+ C3h	???
+ C4h	???
+ C5h	??? status
+ C6h	??? status
+ C7h	??? black level expander?
+ C8h	??? black level expander?
+ C9h	???
+ CAh	???
+ CBh	??? status
+ CCh	??? status
+ CDh	??? status
+ CEh	???
+ CFh	???
+ D0h-DFh blurring/aliasing filter setup (array of 6-bit values)
+ E0h	???
+ E1h	???
+ E2h	??? status
+ E3h	??? status
+ E4h	??? status
+ E5h	???
+ E6h	???
+ E7h	vertical standard lock				(see I2C 86h/28h/E7h)
+ E8h	??? status (signed?)
+ E9h	??? (read-only)
+ EAh	??? status
+ EBh	number of horizontal syncs detected in last frame (see I2C 86h/28h/EBh)
+ ECh	??? (read-only)
+ EDh	??? (read-only)
+ EEh	??? status
+ EFh	???
+ F0h	[3220A] CommandWord control register		(see I2C 86h/28h/F0h)
+ F1h	[3220A] InfoWord status register		(see I2C 86h/28h/F1h)
+ F2h	[not 3220] TV standard - write			(see I2C 86h/28h/F2h)
+ F3h	[not 3220] TV standard - read			(see I2C 86h/28h/F3h)
+ F4h	???
+ F5h-F8h unused???
+ F9h	??? status
+ FAh	??? status
+ FBh	???
+ FCh	???
+ FDh	???
+ FEh	???
+ FFh	???
+

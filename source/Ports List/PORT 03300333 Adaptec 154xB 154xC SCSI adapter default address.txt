@@ -1,0 +1,726 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03300333
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0330-0333 - Adaptec 154xB/154xC SCSI adapter (default address)
+Range:	four ports at any of 0130, 0134, 0230, 0234, 0330 (default) or 0334
+Notes:	Adaptec AHA-154x adapters use ISA bus-mastering mechanism, and so
+	  require the DMA channel to be programmed to the cascaded mode
+	the original AHA-1540 only supported asynchronous SCSI data transfers,
+	  and did not support scatter/gather operation
+	AHA-154xA+ supports the target mode implementing the SCSI-2 processor
+	  device model; it executes INQUIRY, TEST UNIT READY, and REQUEST SENSE
+	  commands received from the initiators without CPU intervention; the
+	  CPU is required to provide information only for the SEND/RECEIVE
+	  commands; other commands are treated by the host adapter as invalid
+	AHA-154xCF supports Fast SCSI data transfer; AHA-154xCP additionally
+	  supports SCSI Configured AutoMagically (SCAM) protocol
+	AHA-174x EISA SCSI adapters in "standard" mode "look like" AHA-154x
+	there was also an AHA-1640, an MCA version of the AHA-154x
+	BusLogic BT-545S and DTC 3290 seem to be "almost" compatible with
+	  the Adaptec AHA-154x
+
+0330  R-  status register (see #P0577)
+0330  -W  control register (see #P0578)
+0331  R-  data in register
+0331  -W  command / data out register (see #P0580)
+0332  R-  interrupt status register (see #P0579)
+0333  R-  (AHA-154xC+) diagnostic register
+	  cycles thru bytes 41h,44h,41h,50h when read ("ADAP")
+
+Bitfields for AHA-154x status register:
+Bit(s)	Description	(Table P0577)
+ 7	self-test in progress (STST)
+ 6	diagnostic failure (DIAGF)
+ 5	mailbox initialization required (INIT)
+ 4	adapter idle (IDLE)
+ 3	command register full (CDF)
+ 2	data register full (DF)
+ 1	reserved
+ 0	invalid command (INVDCMD)
+Notes:	bit 0 is only valid from the time the host adapter command complete
+	  interrupt is set (bit 2 in the interrupt flag register) until it is
+	  reset
+	the data in register should only be read if bit 2 is set; reading the
+	  data in register resets this bit
+	command / data out register should only be written if bit 3 is zero;
+	  the host adapter usually clears this bit within 100 mcs after CPU
+	  writes to the command / data out register
+	bit 4 indicates that the host adapter has no outstanding adapter or
+	  SCSI commands
+	bit 5 indicates that the mailbox initialization command (01h) required
+	bit 7 is asserted after a power-on or hard reset (bit 7 in the control
+	  register); when diagnostics is complete, this bit is reset and bit 5
+	  or bit 6 is set to indicate seccessful or unsuccessful completion;
+	  if the bit remain set, then initialization/diagnostic could not be
+	  completed
+	if bit 6 is set indication failed diagnostics, only the hard reset
+	  (bit 7 in the control register) will clear it
+SeeAlso: #P0578,#P0579,#P0580
+
+Bitfields for AHA-154x control register:
+Bit(s)	Description	(Table P0578)
+ 7	hardware reset (HRST)
+ 6	software reset (SRST)
+ 5	interrupt reset (IRST)
+ 4	SCSI bus reset (SCRST)
+ 0-3	reserved
+Notes:	setting bit 4 causes the host adapter to assert the RST signal on the
+	  SCSI bus for 25 microseconds (reset hold time); the reset is
+	  managed as a SCSI soft reset, and will allow partially completed
+	  operations to continue; use bit 7 to force a SCSI hard reset
+	setting bit 5 clears all bits in the interrupt flag register and resets
+	  the interrupt
+	setting bit 6 clears all ongoing SCSI and host adapter commands
+	setting bit 7 forces the host adapter into a state identical to a
+	  normal power on state: diagnostic functions are executed and all
+	  status for ongoing SCSI operations is lost, a reset condition is
+	  generated on the SCSI bus; while the reset is being processed, bit 7
+	  on the status register is set
+	when soft/hard reset is complete, bits 4 and 5 of the status register
+	  are set
+SeeAlso: #P0577
+
+Bitfields for AHA-154x interrupt status register:
+Bit(s)	Description	(Table P0579)
+ 7	any interrupt (ANYINTR)
+ 4-6	reserved
+ 3	SCSI reset detected (SCRD)
+ 2	host adapter command complete (HACC)
+ 1	mailbox out available (MBOA)
+ 0	mailbox in full (MBIF)
+Notes:	bit 0 indicates that an entry has been placed by the host adapter in
+	  the mailbox in; this interrupt should be reset as soon as possible
+	bit 1 indicates that an outbound mailbox entry is now available for use
+	bit 2 indicates that an adapter command has been completed; bit 0 of
+	  the status register will indicate success or failure; during the
+	  parameter transfers to/from the host adapter, this bit should be
+	  examined to verify that the command has not been ended abnormally
+	bit 3 indicates that a SCSI reset has been received on the SCSI bus;
+	  CPU can convert the SCSI soft reset to the SCSI hard reset by setting
+	  bit 6 of the control register upon the detection of the SCSI reset
+	  interrupt; it is not set for the CPU-initiated SCSI reset (via bit
+	  4 of the control register)
+	if the host adapter command complete and SCSI reset detected interrupts
+	  are present, the mailbox in full and mailbox out available interrupts
+	  are not presented until the former are cleared
+	if bit 7 of this register or bit 2 of the status register is set, host
+	  adapter command complete and SCSI reset detected interrupts will not
+	  be presented until the interrupts already present are cleared
+SeeAlso: #P0577,#P0581
+
+(Table P0580)
+Values for AHA-154x host adapter commands:
+Command	Description		   Parameters		Results
+ 00h	no operation		   -			-
+ 01h	mailbox initialization	   MBC,MBA0..MBA2	-
+ 02h	start SCSI command	   -			-
+ 03h	start PC/AT BIOS command   BFN,TRG,CH,CLHH,	-
+				   HL,SN,SC,BA0..BA2
+ 04h	adapter inquiry		   -			BID,SOID,FWR0,FWR1
+ 05h	enable mailbox out	   E/D			-
+	  interrupt
+ 06h	set selection time-out	   E/D,00h,TO0,TO1	-
+ 07h	set bus on time		   BON			-
+ 08h	set bus off time	   BOFF			-
+ 09h	set AT bus transfer speed  ATBS			-
+ 0Ah	return installed devices   -			TC0..TC7
+ 0Bh	return configuration data  -			DAP,IC,SID
+ 0Ch	enable target mode	   E/D,LUM		-
+	  (not AHA-1540/W1542A)
+ 0Dh	return setup data	   DIL			SPS,ATBS,BON,BOFF,
+							MBC,MBA0..MBA2,
+							STA0..STA7,DS
+							(see #P9001)
+ 10h	intialize SCSI subsystem   ???			???
+	  (AHA-174x in std mode)
+ 11h	return formware checksum   -			CS0,CS1
+	  (AHA-174x in std mode)
+ 1Ah	write adapter channel 2	   BA0..BA2		-
+	  buffer
+ 1Bh	read  adapter channel 2	   BA0..BA2		-
+	  buffer
+ 1Ch	write adapter FIFO buffer  BA0..BA2		-
+ 1Dh	read  adapter FIFO buffer  BA0..BA2		-
+ 1Fh	echo command data	   EV			EV
+ 20h	run adapter diagnostics	   -			-
+	  (AHA-1542B+)
+ 21h	set adapter options	   ESG,DS		-
+ 21h	set adapter options	   NOB, adapter opts	-
+	  (AHA-1542B+)			(see #P9005)
+ 22h	program EEPROM		   00h,NED,SEA,
+	  (AHA-1542C+)		   EEPROM data		-
+				   (see #P9002)
+ 23h	return EEPROM data	   D/C,NED,EA		EEPROM data bytes
+	  (AHA-1542C+)					(see #P9002)
+ 24h	set shadow RAM parameters  SRP			-
+	  (AHA-1542C+)
+ 25h	BIOS mailbox initializa-   MBC,MBA0..MBA2	-
+	  tion (since AHA-1540B
+	  rev. 1.4?)
+ 26h	set BIOS bank 1		   -			-
+	  (AHA-1542C+)
+ 27h	set BIOS bank 2		   -			-
+	  (AHA-1542C+)
+ 28h	return extended BIOS	   -			F,MBLT
+	  information (since
+	  AHA-1540B rev. 1.4?)
+ 29h	enable mailbox interface   MBU,MBLT		-
+	  (since AHA-1540B
+	  rev. 1.4?)
+ 2Ah	??? (AHA-154xC)		   -			-
+ 2Ch	detect termination
+	  setting??? (AHA-1542CP)  -			TS
+ 2Dh	detect SCAM devices???	   -			IDA,???
+	  (AHA-1542CP)
+ 34h	set SCSI ID configuration  SID,IDC		-
+	  (AHA-154xCF+)
+ 41h	AMI inquiry (AMI-4448)	   SL			C0..C3,M0..M5,
+							S0..S5,V0..V5
+							(see #P9003)
+ 82h	start BIOS SCSI command	   -			-
+	  (since AHA-1540B
+	  rev. 1.4?)
+ 8Dh	exteded setup information  DIL?			???
+	  (since AHA-1540B
+	  rev. 1.4?)
+Note:	ATBS	   AT bus transfer speed (see #P9004)
+		   00h,AAh 5.0	MB/s
+		   01h,99h 6.7	Mb/s
+		   02h	   8.0	Mb/s
+		   03h,88h 10.0 Mb/s
+		   04h	   5.7	Mb/s
+		   BBh	   4.0	Mb/s?
+		   CCh	   3.3	Mb/s?
+		   DDh	   2.9	Mb/s?
+		   EEh	   2.5	Mb/s?
+		   FFh	   2.2	Mb/s?
+	BA0..BA2   MSB..LSB of the physical address of the data buffer
+	BFN	   BIOS function number (00h-04h,08h,09h,0Ch-11h,14h,15h)
+	BID	   board ID
+		   00h AHA-1540 (16-head BIOS)
+		   20h BusLogic BT-545S
+		   30h AHA-1540 (64-head BIOS)
+		   31h AHA-1540
+		   41h AHA-154xA/154xB (64-head BIOS)
+		   42h AHA-1640 (64-head BIOS)
+		   43h AHA-174x
+		   44h AHA-1542C
+		   45h AHA-1542CF
+	BOFF	   bus off time (in microseconds)
+		   time the adapter stays off the AT bus when transferring data
+		     1..64 mcs, default 4 mcs
+	BON	   bus on time (in microseconds)
+		   time the adapter stays on the AT bus when transferring data
+		     2..15 mcs, default 11 mcs
+	CH	   bits 7-4: reserved
+		   bits 3-0: bits 9-6 of cylinder number
+	CLHH	   bits 7-2: bits 5-0 of cylinder number
+		   bits 1-0: bits 5-4 of head number
+	CS0,CS1	   checksum of the standard mode microcode
+	D/C	   default/current EEPROM data (00h default, 01h current)
+	DAP	   DRQ arbitration priority
+		   bit 7: channel 7
+		   bit 6: channel 6
+		   bit 5: channel 5
+		   bits 4-1: reserved (0)
+		   bit 0: channel 0
+	DIL	   data in length
+		   number of bytes to return (0 means 256 bytes)
+	DS	   (AHA-154xB+?) disconnect status
+		   bit N is set if target ID N is unable to disconnect?
+	E/D	   enable/diable parameter
+		   00h disable
+		   01h enable
+	EA	   EEPROM address to read data from
+	ESG	   01h: enable scatter/gather
+	EV	   echo value (to be echoed back)
+	F	   flags
+		   bits 7-4: reserved??? (0)
+		   bit 3: extended BIOS translation (255 heads / 63 sectors)
+		   bits 2-0: reserved??? (0)
+	FWR0,FWR1  firmware revision (alphanumeric)
+	GS	   global setting byte
+		   bits 7-6: reserved (0)
+		   bit 5: enable parity check
+		   bit 4: reserved (0)
+		   bit 3: enable synchronous transfer
+		   bit 2: enable disconnection
+		   bits 1-0: reserved (0)
+	HL	   bits 7-4: reserved
+		   bits 3-0: bits 3-0 of head number
+	IDA	   SCAM IDs assigned
+		   bit N is set if a target ID N was assigned to a SCAM device
+	IDC	   SCSI ID configuration (see #P9006)
+	IRQ	   interrupt channel
+		   bit 7: reserved (0)
+		   bit 6: IRQ15
+		   bit 5: IRQ14
+		   bit 4: reserved (0)
+		   bit 3: IRQ12
+		   bit 2: IRQ11
+		   bit 1: IRQ10
+		   bit 0: IRQ9
+	LUM	   logical unit mask
+		   bit N is set if LUN N is to respond in target mode
+	MBA0..MBA2 MSB..LSB of the physical address of the mailbox area
+		     (see #P0581)
+	MBC	   mailboxes count (nonzero), max. 1 for BIOS mailboxes
+	MBLT	   mailbox lock type
+		   01h translation  lock (for extended BIOS)
+		   02h dynamic scan lock
+		   others reserved
+	MBU	   00h: mailbox unlock
+	NED	   number of EEPROM data bytes to read/write
+	NOB	   number of adapter option bytes
+	SC	   sector count
+	SEA	   starting EEPROM address
+	SID	   SCSI ID
+		   bits 7-3: reserved (0)
+		   bits 2-0: binary value of SCSI ID
+	SL	   string length
+	SN	   sector number - 1
+	SOID	   special options ID
+		   30h ???
+		   41h standard model
+	SPS	   SDT and parity status
+		   bits 7-2: reserved (0)
+		   bit 1: SCSI parity check enabled
+		   bit 0: synchronous negotiation initiated
+	SRP	   shadow RAM parameters
+	STA0..STA7 synchronous transfer agreements for target ID 0..7
+		   bit 7: synchronous transfer negotiated
+		   bits 6-4: value defining synchronous transfer period
+			     period in ns can be calculated as 200+50*value
+		   bits 3-0: negotiated offset value
+	TC0..TC7   target 0..7 configuration
+		   bit M in byte N is set if SCSI ID N LUN M is installed
+	TO0,TO1	   MSB, LSB of the time-out value (in ms)
+		   default 250 ms
+	TRG	   bits 7-5: target ID
+		   bits 4-0: reserved
+	TS	   termination setting (see #P9004)
+Notes:	all commands except 02h, 05h, 82h should only be issued if the host
+	  adapter is idle (bit 4 in the status register set)
+	command 02h can be issued even if the command / data out register is
+	  full (bit 3 in the status register may be set)
+	command 02h causes host adapter to scan both its SCSI and BIOS mailbox
+	  areas; command 82h causes host adapter to scan only BIOS mailbox area
+	all commands except 02h and 05h cause host adapter command complete
+	  interrupt (bit 2 in the interrupt flag register) after completetion;
+	  command 05h will still generate the interrupt if its parameter was
+	  invalid
+	return installed devices command (0Ah) results in the host adapter
+	  issuing the TEST UNIT READY command to each target/LUN combination
+	return setup data command (0Dh) returns the number of bytes requested
+	  with DIL parameter
+	for read/write channel 2 buffer commands (1Bh/1Ah) data buffer must be
+	  64 bytes long; for read/write FIFO buffer commands (1Dh/1Ch) it must
+	  be 54 bytes long
+	set adapter options command (21h) takes the number of option bytes
+	  specified with NOB parameter
+	BusLogic BT-545S gets the adapter inquiry command (04h) wrong returning
+	  only one byte instead of four; DTC 3290 gets this command wrong too
+	AMI inquiry command (41h) returns the number of bytes requested
+	  with SL parameter
+SeeAlso: #P0577,#P0579
+
+(Table P9000)
+Values for AHA-154x AT bus transfer speed:
+ 00h	5.0 MB/s
+ 01h	6.7 MB/s
+ 02h	8.0 MB/s
+ 03h	10.0 MB/s
+ 04h	5.7 MB/s
+ 88h	10.0 MB/s
+ 99h	6.7 MB/s
+ AAh	5.0 MB/s
+ BBh	4.0 MB/s???
+ CCh	3.3 MB/s???
+ DDh	2.9 MB/s???
+ EEh	2.5 MB/s???
+ FFh	2.2 or 3.3 MB/s???
+SeeAlso: #P0580
+
+Format of AHA-154x setup data:
+Offset	Size	Description	(Table P9001)
+ 00h	BYTE	SDT and parity status
+		bits 7-2: reserved (0)
+		bit 1: SCSI parity check enabled
+		bit 0: synchronous negotiation initiated
+ 01h	BYTE	AT bus transfer speed (see #P9000)
+ 02h	BYTE	bus on	time (in mcs)
+ 03h	BYTE	bus off time (in mcs)
+ 04h	BYTE	number of mailboxes (00h = the mailbox initialization command
+		  has not yet been successfully completed)
+ 05h  3 BYTEs	big-endian physical address of the mailbox area (see #P0581)
+ 08h  8 BYTEs	synchronous transfer agreements for target ID 0-7
+		bit 7: synchronous transfer negotiated
+		bits 6-4: value defining synchronous transfer period
+			    period (in ns) can be calculated as 200+50*value
+		bits 3-0: negotiated offset value
+ 10h	BYTE	(AHA-154xB+?) disconnect status
+		bit N is set if target ID N is unable to disconnect?
+ 11h 20 BYTEs	reserved (0)
+ 25h	BYTE	???
+ 26h	BYTE	???
+ 27h	WORD	??? (big-endian)
+ 29h 3 BYTEs	big-endian physical address of the BIOS mailbox (see #P0581)
+SeeAlso: #P9002,#P9005,#P0580
+
+Format of AHA-154xC+ EEPROM data:
+Offset	Size	Description	(Table P9002)
+ 00h	BYTE	bit 7: (AHA-154xCF) floppy controller I/O port
+			 (0 = 3F0h, 1 = 370h)
+		bit 6: ???
+		bit 5: EDD support enabled
+		bit 4: ???
+		bit 3: ???
+		bits 2-0: host adapter SCSI ID
+ 01h	BYTE	bit 7: ???
+		bits 6-4: DMA priority (0 and 5-7 are valid)
+		bit 3: ???
+		bits 2-0: interrupt channel (IRQ) (IRQ - 9; 7/4 invalid)
+			  000 IRQ9
+			  001 IRQ10
+			  010 IRQ11
+			  011 IRQ12
+			  100 reserved
+			  101 IRQ14
+			  110 IRQ15
+			  111 reserved
+ 02h	BYTE	BIOS features
+		bit 7: extended BIOS translation for drives >1G enabled
+		bit 6: ???
+		bit 5: immediate return on seek command enabled
+		bit 4: BIOS support for more than 2 drives enabled
+		bit 3: dynamically scan SCSI bus for BIOS devices
+		bit 2: system boot (INT 19h) controlled by host adapter BIOS
+		bit 1: host adapter BIOS (configuration utility reserved BIOS
+			 space) enabled
+		bit 0: support removable disks under BIOS as fixed disks
+ 03h	BYTE	DMA transfer rate (see #9001)
+ 04h	BYTE	bit 7: BIOS support for the floptical drives enabled
+		bit 6: don't display <Ctrl-A> message during BIOS initialization
+		bits 5-4: ???
+		bits 3-0: bus on  time
+ 05h	BYTE	bit 7: ???
+		bits 6-0: bus off time
+ 06h	BYTE	bit 7: (AHA-154xCP) somehow related to SCSI termination???
+		bit 6: (AHA-154xCP) somehow related to SCAM???
+		bit 5: ???
+		bits 4-3: reserved??? (0)
+		bit 2: reset SCSI bus at power-on
+		bit 1: host adapter SCSI termination enabled
+		bit 0: SCSI parity checking enabled
+ 07h  7 BYTEs	???
+ 0Eh  8 BYTEs	SCSI ID 0-7 configuration (see #P9006)
+ 16h  8 BYTEs	reserved??? (0)
+ 1Eh	BYTE	??? (41h)
+ 1Fh	BYTE	??? (06h)
+SeeAlso: #P9001,#P0580
+
+Format of AHA-154xC+ SCSI ID configuration:
+Offset	Size	Description	(Table P9006)
+ 7-5:	???
+ 4	ignore	in BIOS scan
+ 3	send START UNIT command
+ 2	enable Fast SCSI
+ 1	enable disconnection
+ 0	enable synchronous negotation
+SeeAlso: #P9002
+
+Format of AMI ID string:
+Offset	Size	Description	(Table P9003)
+ 00h  4 BYTEs	ASCIZ company string ("AMI")
+ 04h  6 BYTEs	ASCIZ model string
+ 0Ah  6 BYTEs	ASCIZ series string ("48")
+ 10h  6 BYTEs	ASCIZ version string ("1.00")
+SeeAlso: #P0580
+
+Format of AHA-154xCP termination setting byte:
+Offset	Size	Description	(Table P9004)
+ 7-6	detection result
+	00 fewer than 2 terminators
+	01 2 terminators
+	10 unable to detect
+	11 more than 2 terminators
+ 5-4	???
+ 3-0	???
+Note:	if bits 7-6 are zero and bits 5-4 are not, ASPI4DOS.SYS complains that
+	  fewer than 2 terminators detected
+SeeAlso: #P0580
+
+Format of AHA-154xB+ adapter options:
+Offset	Size	Description	(Table P9005)
+ 00h	BYTE	disconnect status
+		bit N is set if target ID N is unable to disconnect?
+ 01h	BYTE	(AHA-154xC) ???
+Note:	byte at offset 01h is the same as at offset 25h in the setup data
+SeeAlso: #P9004
+
+Format of AHA-154x mailbox array:
+Offset	Size	Description	(Table P0581)
+ 00h  N*4 BYTEs	array of N "out" mailboxes (MBO) (see #P0582)
+ N*4  N*4 BYTEs	array of N "in" mailboxes (MBI) (see #P0584)
+Notes:	the MBO entries are scanned by the host adapter in a round-robin
+	  fashion, i.e. the host adapter first looks into an MBO which follows
+	  the one least recently used (and wraps around if it was the last one)
+	the MBI entries are filled in a round-robin fashion, so the CPU should
+	  check the next MBI entry after the last one that was found when a new
+	  mailbox in full (bit 0 in the interrupt flag register) interrupt; CPU
+	  should also check the next MBI entries to determine if more than one
+	  MBI is ready
+	MBI entries are absent in case of BIOS mailboxes; in this case MBI
+	  status code is returned in the command linking ID field of the
+	  command control block (CCB)
+	target mode CCB may be posted to the host adapter in anticipation of
+	  the SCSI command reception, with the direction bits indicating the
+	  expected transfer directiin (i.e. SEND or RECEIVE command); if a SCSI
+	  command is received by the host adapter before the CCB is prepared,
+	  it requests a CCB from the host through the MBI
+SeeAlso: #P0577,#P0579,#P0583,#P0585,#P0587
+
+Format of AHA-154x mailbox-out (MBO) entry:
+Offset	Size	Description	(Table P0582)
+ 00h	BYTE	mailbox command/status code (see #P0583,#P0585)
+ 01h  3 BYTEs	address of the command control block (CCB) (see #P0586)
+		physical address in big-endian format
+SeeAlso: #P0577,#P0581,#P0584
+
+(Table P0583)
+Values for mailbox out command codes:
+ 00h	mailbox/CCB is free
+ 01h	start CCB
+ 02h	abort CCB
+SeeAlso: #P0577,#P0581,#P0585
+
+Format of mailbox-in (MBI) entry:
+Offset	Size	Description	(Table P0584)
+ 00h	BYTE	MBI status code (see #0584)
+---MBI status code 10h---
+ 01h	BYTE	initiator and LUN
+		bits 7-5: SCSI initiator ID
+		bit 4: RECEIVE command received
+		bit 3: SEND command received
+		bits 2-0: LUN
+ 02h	WORD	data length
+		2 high bytes of the data length in SCSI SEND/RECEIVE command
+		in big-endian format
+---other MBI status codes---
+ 01h  3 BYTEs	CCB pointer
+		physical address in big-endian format
+SeeAlso: #P0582,#P0577,#P0581,#P0587
+
+(Table P0585)
+Values for mailbox in status codes:
+ 00h	command in progress
+ 01h	CCB completed
+ 02h	CCB aborted
+ 03h	CCB abort failed
+ 04h	CCB completed with error
+SeeAlso: #P0584,#P0581,#P0583
+
+Format of AHA-154x command control block (CCB):
+Offset	Size	Description	(Table P0586)
+ 00h	BYTE	CCB operation code (see #P0587)
+---operation code 00h---
+ 01h	BYTE	address and control (see #P0601)
+ 02h	BYTE	SCSI command length
+ 03h	BYTE	request sense allocation length
+		00h request 14 bytes of sense data
+		01h disable auto-sense
+		02h-07h reserved
+		08h-FFh sense data length
+ 04h  3 BYTEs	data length
+		in big-endian format
+ 07h  3 BYTEs	data pointer
+		physical address in big-endian format
+ 0Ah  3 BYTEs	link pointer (link to the next CCB for the linked commands)
+		physical address in big-endian format
+ 0Dh	BYTE	command linking ID (for the linked commands)
+		(return) MBI status code if this CCB is in a BIOS mailbox
+		  (see #P0585)
+ 0Eh	BYTE	(return) host adapter status (HASTAT) (see #P0589)
+ 0Fh	BYTE	(return) target device status (TARSTAT)
+		SCSI status byte
+ 10h  2 BYTEs	reserved
+ 12h  N BYTEs	SCSI command descriptor block (CDB)
+ 12h+N M BYTEs	allocated for sense data
+		(return) sense data (if requested)
+---operation code 01h---
+ 01h	BYTE	address and control
+		bits 7-5: initiator ID
+		bits 4-3: transfer direction
+			  01 SEND command
+			  10 RECEIVE command
+			  00,11 illegal combination
+		bits 2-0: LUN
+ 02h	BYTE	SCSI command length
+ 03h	BYTE	request sense allocation length
+ 04h  3 BYTEs	data length
+ 07h  3 BYTEs	data pointer
+ 0Ah  4 BYTEs	reserved
+ 0Eh	BYTE	(return) host adapter status (see #P0589)
+ 0Fh	BYTE	(return) target device status
+ 10h  2 BYTEs	reserved
+ 12h  N BYTEs	(return) SCSI CDB
+ 12h+N M BYTEs	allocated for sense data
+		(return) sense data (to be sent to the initiator)
+---operation code 02h---
+ 01h	BYTE	address and control (see #P0601)
+ 02h	BYTE	SCSI command length
+ 03h	BYTE	request sense allocation length
+ 04h  3 BYTEs	data segment list length (in bytes)
+		in big-endian format
+ 07h  3 BYTEs	data segment list pointer
+		physical address in big-endian format
+ 0Ah  3 BYTEs	link pointer
+ 0Dh	BYTE	command linking ID
+		(return) MBI status code if this CCB is in a BIOS mailbox
+		  (see #P0585)
+ 0Eh	BYTE	(return) host adapter status (see #P0589)
+ 0Fh	BYTE	(return) target device status
+ 10h  2 BYTEs	reserved
+ 12h  N BYTEs	SCSI CDB
+ 12h+N M BYTEs	allocated for sense data
+		(return) sense data (if requested)
+---operation code 03h---
+ 01h	BYTE	address and control (see #P0601)
+ 02h	BYTE	SCSI command length
+ 03h	BYTE	request sense allocation length
+ 04h  3 BYTEs	data length
+		(return) residual length
+ 07h  3 BYTEs	data pointer
+ 0Ah  3 BYTEs	link pointer
+ 0Dh	BYTE	command linking ID
+		(return) MBI status code if this CCB is in a BIOS mailbox
+		  (see #P0585)
+ 0Eh	BYTE	(return) host adapter status (see #P0589)
+ 0Fh	BYTE	(return) target device status
+ 10h  2 BYTEs	reserved
+ 12h  N BYTEs	SCSI CDB
+ 12h+N M BYTEs	allocated for sense data
+		(return) sense data (if requested)
+---operation code 04h---
+ 01h	BYTE	address and control (see #P0601)
+ 02h	BYTE	SCSI command length
+ 03h	BYTE	request sense allocation length
+ 04h  3 BYTEs	data segment list length (in bytes)
+		(return) residual length
+ 07h  3 BYTEs	data segment list pointer
+ 0Ah  3 BYTEs	link pointer
+ 0Dh	BYTE	command linking ID
+		(return) MBI status code if this CCB is in a BIOS mailbox
+		  (see #P0583)
+ 0Eh	BYTE	(return) host adapter status (see #P0589)
+ 0Fh	BYTE	(return) target device status
+ 10h  2 BYTEs	reserved
+ 12h  N BYTEs	SCSI CDB
+ 12h+N M BYTEs	allocated for sense data
+		(return) sense data (if requested)
+---operation code 81h---
+ 01h	BYTE	address and control
+		bits 7-5: target ID
+		bits 4-0: reserved
+Note:	if a SCSI command completes with the BUSY status, the host adapter
+	  periodically restarts it until it completes with other status
+	if a SCSI command completes with the CHECK CONDITION status, the host
+	  adapter automatically issues a REQUEST SENSE command with the data
+	  length specified by request sense allocation length field; the actual
+	  bytes returned are placed in the area allocated for sense data; but
+	  if the request sense allocation length was 01h, no REQUEST SENSE
+	  command is issued
+	if the host adapter completes a SCSI command with the CHECK CONDITION
+	  status while it is operating in the target mode, the same sense data
+	  that will later be received by the initiator is also placed in the
+	  area allocated for sense data
+	command linking is not supported in target mode
+	for a target mode CCB target device status field is used to indicate
+	  to the host what status the host adapter returned to the initiator;
+	  SCSI CDB field is used to return the CDB from the initiator
+SeeAlso: #P0577,#P0582,#P0584
+
+(Table P0587)
+Values for CCB type:
+ 00h	initiator CCB
+ 01h	target CCB (not on AHA-1540/W1542A)
+ 02h	initiator CCB with scatter/gather (see #P0590) (not on AHA-1540)
+ 03h	initiator CCB with residual length (AHA-154xB or higher)
+ 04h	initiator CCB with scatter/gather and residual length (see #P0590)
+	(AHA-154xB or higher)
+ 81h	bus device reset CCB
+Note:	residual length is returned in the data length field of CCB
+	initiator CCB with scatter/gather cannot have a zero data length or
+	  contain more than 16 entries
+SeeAlso: #P0577,#P0586
+
+Bitfields for the initiator mode address and control CCB field:
+Bit(s)	Description	(Table P0601)
+ 7-5	target ID
+ 4-3	transfer direction
+	00 determined by the SCSI command
+	01 inbound data	 transfer, length is checked
+	10 outbound data transfer, length is checked
+	11 no data transfer (suppress inbound data transfer)
+ 2-0	LUN
+SeeAlso: #P0586,#P0589
+
+(Table P0589)
+Values for host adapter status:
+ 00h	command complete
+ 0Ah	linked command complete (linked CCBs only)
+ 0Bh	linked command complete with flag (linked CCBs only)
+ 11h	selection time out
+ 12h	data overrun/underrun
+ 13h	unexpected bus free
+ 14h	target bus phase sequence failure
+ 15h	invalid mailbox out command
+ 16h	invalid CCB operation code
+ 17h	linked CCB does not have the same LUN
+ 18h	(not AHA-1540/W1542A) invalid target direction received from host
+	  (target mode)
+ 19h	(not AHA-1540/W1542A) duplicate CCB received (target mode)
+ 1Ah	invalid CCB or segment list parameter
+Notes:	in the initiator mode, if the target attempted to transfer more data
+	  than was allocated by the data length field or the sum of the data
+	  segment length fields, and the length checking was enabled via bits
+	  4-3 of the address and control field, the CCB will be returned with a
+	  host status of 12h; if the length checking was not enabled, command
+	  will be completed without error
+	in the target mode, if the transfer length specified by the SEND/
+	  RECEIVE command is not equal to that specified in the target mode CCB
+	  the host adapter will notify the CPU, setting the incorrect length
+	  indication bit (ILI), bit 5 of byte 2 in the area allocated for sense
+	  data; also, bytes 3..6 in this area will contain the residue of the
+	  length requested in the SSCI command and the data length in the CCB
+	  (MSB first); if it is negative the GOOD status will be returned to
+	  the initiator, else the CHECK CONDITION status will be returned (with
+	  subsequent REQUEST SENSE returning ILI in byte 2 and residue in bytes
+	  3..6 of the sense data); the CCB will be returned with a host status
+	  of 12h in both cases
+	  will be completed without error
+	in case of target bus sequence failure host adapter will generate a
+	  SCSI reset condition setting bit 3 in the interrupt flag register and
+	  generating an interrupt
+	in target mode one CCB may be presented for each unique combination of
+	  LUN, Initiator, and direction; if a second CCB to the same LUN and
+	  initiator with the same direction bit is sent to the host adapter,
+	  the CCB will be returned with a host status of 19h
+	if a segment list with a zero length segment or invalid segment list
+	  boundaries was received or a CCB parameter was invalid, the CCB will
+	  be returned with a host status of 1Ah
+SeeAlso: #P0577,#P0586,#P0601
+
+Format of AHA-154x scatter/gather segment:
+Offset	Size	Description	(Table P0590)
+ 00h  3 BYTEs	data length
+		in big-endian format
+ 03h  3 BYTEs	data pointer
+		physical address in big-endian format
+Note:	if the segment ends at odd/even bondary, the next segment must begin
+	  on the same boundary
+SeeAlso: #P0577
+

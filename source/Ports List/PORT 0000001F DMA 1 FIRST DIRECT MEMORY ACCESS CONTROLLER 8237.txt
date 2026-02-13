@@ -1,0 +1,129 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0000001F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0000-001F - DMA 1 - FIRST DIRECT MEMORY ACCESS CONTROLLER (8237)
+SeeAlso: PORT 0080h-008Fh"DMA",PORT 00C0h-00DFh
+
+0000  R-  DMA channel 0	current address		byte  0, then byte 1
+0000  -W  DMA channel 0	base address		byte  0, then byte 1
+0001  RW  DMA channel 0 word count		byte 0, then byte 1
+0002  R-  DMA channel 1	current address		byte  0, then byte 1
+0002  -W  DMA channel 1	base address		byte  0, then byte 1
+0003  RW  DMA channel 1 word count		byte 0, then byte 1
+0004  R-  DMA channel 2	current address		byte  0, then byte 1
+0004  -W  DMA channel 2	base address		byte  0, then byte 1
+0005  RW  DMA channel 2 word count		byte 0, then byte 1
+0006  R-  DMA channel 3	current address		byte  0, then byte 1
+0006  -W  DMA channel 3	base address		byte  0, then byte 1
+0007  RW  DMA channel 3 word count		byte 0, then byte 1
+
+0008  R-  DMA channel 0-3 status register (see #P0001)
+0008  -W  DMA channel 0-3 command register (see #P0002)
+0009  -W  DMA channel 0-3 write request register (see #P0003)
+000A  RW  DMA channel 0-3 mask register (see #P0004)
+000B  -W  DMA channel 0-3 mode register (see #P0005)
+
+000C  -W  DMA channel 0-3 clear byte pointer flip-flop register
+	  any write clears LSB/MSB flip-flop of address and counter registers
+000D  R-  DMA channel 0-3 temporary register
+000D  -W  DMA channel 0-3 master clear register
+	  any write causes reset of 8237
+000E  -W  DMA channel 0-3 clear mask register
+	  any write clears masks for all channels
+000F  rW  DMA channel 0-3 write mask register (see #P0006)
+Notes:	the temporary register is used as holding register in memory-to-memory
+	  DMA transfers; it holds the last transferred byte
+	channel 2 is used by the floppy disk controller
+	on the IBM PC/XT channel 0 was used for the memory refresh and
+	  channel 3 was used by the hard disk controller
+	on AT and later machines with two DMA controllers, channel 4 is used
+	  as a cascade for channels 0-3
+	command and request registers do not exist on a PS/2 DMA controller
+
+Bitfields for DMA channel 0-3 status register:
+Bit(s)	Description	(Table P0001)
+ 7	channel 3 request active
+ 6	channel 2 request active
+ 5	channel 1 request active
+ 4	channel 0 request active
+ 3	channel terminal count on channel 3
+ 2	channel terminal count on channel 2
+ 1	channel terminal count on channel 1
+ 0	channel terminal count on channel 0
+SeeAlso: #P0002,#P0481
+
+Bitfields for DMA channel 0-3 command register:
+Bit(s)	Description	(Table P0002)
+ 7	DACK sense active high
+ 6	DREQ sense active high
+ 5	=1 extended write selection
+	=0 late write selection
+ 4	rotating priority instead of fixed priority
+ 3	compressed timing (two clocks instead of four per transfer)
+	=1 normal timing (default)
+	=0 compressed timing
+ 2	=1 enable controller
+	=0 enable memory-to-memory
+ 1-0	channel number
+SeeAlso: #P0001,#P0004,#P0005,#P0482
+
+Bitfields for DMA channel 0-3 request register:
+Bit(s)	Description	(Table P0003)
+ 7-3	reserved (0)
+ 2	=0 clear request bit
+	=1 set request bit
+ 1-0	channel number
+	00 channel 0 select
+	01 channel 1 select
+	10 channel 2 select
+	11 channel 3 select
+SeeAlso: #P0004
+
+Bitfields for DMA channel 0-3 mask register:
+Bit(s)	Description	(Table P0004)
+ 7-3	reserved (0)
+ 2	=0 clear mask bit
+	=1 set mask bit
+ 1-0	channel number
+	00 channel 0 select
+	01 channel 1 select
+	10 channel 2 select
+	11 channel 3 select
+SeeAlso: #P0001,#P0002,#P0003,#P0484
+
+Bitfields for DMA channel 0-3 mode register:
+Bit(s)	Description	(Table P0005)
+ 7-6	transfer mode
+	00 demand mode
+	01 single mode
+	10 block mode
+	11 cascade mode
+ 5	direction
+	=0 increment address after each transfer
+	=1 decrement address
+ 3-2	operation
+	00 verify operation
+	01 write to memory
+	10 read from memory
+	11 reserved
+ 1-0	channel number
+	00 channel 0 select
+	01 channel 1 select
+	10 channel 2 select
+	11 channel 3 select
+SeeAlso: #P0002,#P0485
+
+Bitfields for DMA channel 0-3 write mask register:
+Bit(s)	Description	(Table P0006)
+ 7-4	reserved
+ 3	channel 3 mask bit
+ 2	channel 2 mask bit
+ 1	channel 1 mask bit
+ 0	channel 0 mask bit
+Note:	each mask bit is automatically set when the corresponding channel
+	  reaches terminal count or an extenal EOP sigmal is received
+SeeAlso: #P0004,#P0486
+

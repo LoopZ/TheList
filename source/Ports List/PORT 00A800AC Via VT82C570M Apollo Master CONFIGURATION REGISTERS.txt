@@ -1,0 +1,256 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00A800AC
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 00A8-00AC - Via VT82C570M "Apollo Master" - CONFIGURATION REGISTERS
+SeeAlso: PORT 00A8h"VT82C486G"
+
+00A8  ?W  configuration register index (see #P0461)
+00A9  RW  configuration register 00h-9Fh data
+00AC  RW  configuration register FBh-FFh data
+
+(Table P0461)
+Values for Via VT82C570M configuration registers:
+ 02h	clock throttling control (see #P0420)
+ 03h	I/O recovery (see #P0421)
+ 10h	bus speed (see #P0422)
+ 11h	ISA bus clock frequency control (see #P0423)
+ 20h	pair 0/1 row/column address (see #P0424)
+ 21h	pair 2/3 row/column address (see #P0425)
+ 22h	RAS#/CAS# pulse control (see #P0426)
+ 30h	C0000h-CFFFFh shadow control (see #P0427)
+ 31h	D0000h-DFFFFh shadow control (see #P0428)
+ 32h	E0000h-FFFFFh shadow control (see #P0429)
+ 33h	ROM decoding and memory relocation (see #P0430)
+ 40h	ROM cacheable control (see #P0431)
+ 41h	programmable non-cacheable region ???
+ 42h	programmable non-cacheable region ???
+ 43h	pair 0/1 DRAM size and configuration (see #P0432)
+ 44h	pair 2/3 DRAM size and configuration (see #P0433)
+ 47h	DRAM type (see #P0462)
+ 48h	DRAM control (see #P0463)
+ 49h	cache control (see #P0464)
+ 50h	cache access mode (see #P0434)
+ 51h	cache timing/size control (see #P0435)
+ 52h	primary idle timer reloading control (see #P0436)
+ 53h	primary idle timer reload distinguish (see #P0437)
+ 54h	SMI triggering control (see #P0438)
+ 55h	SMI trigger distinguish (see #P0439)
+ 56h	clock frequency control (see #P0440)
+ 58h	general purpose timer (see #P0442)
+ 59h	timer control (see #P0443)
+ 5Ah	power/peripheral control (see #P0444)
+ 5Bh	system management control (see #P0445)
+ 5Eh	misc. cache control (see #P0448)
+ 5Fh	conserve mode/secondary idle timer control (see #P0449)
+ 60h	IRQ7-0 primary interrupt selection (see #P0450)
+ 61h	IRQ15-8 primary interrupt selection (see #P0451)
+ 63h	IRQ15-9 interrupt mode (see #P0453)
+ 64h	(see #P0454)
+ 65h	peripheral timer control (see #P0455)
+ 66h	(see #P0465)
+ 67h	peripheral timer (see #P0441)
+ 68h	multiple SMI triggering ???
+ 69h	multiple SMI triggering ???
+ 6Ah	multiple SMI triggering ???
+ 7Bh	general purpose input and output port ???
+ 7Ch	general purpose input and output port ???
+ 7Eh	general purpose output port ???
+ 7Fh	general purpose input and output port ???
+ 82h	PCI buffer control (see #P0466)
+ 83h	PCI data link control (see #P0467)
+ 84h	PCI interface timing (see #P0468)
+ 85h	PCI arbitration (see #P0469)
+ 86h	(see #P0470)
+ 93h	(see #P0471)
+ 9Ch	programmable chipselect A (see #P0472)
+ 9Dh	programmable chipselect A address mask (see #P0473)
+ 9Eh	programmable chipselect B (see #P0474)
+ 9Fh	programmable chipselect B address mask (see #P0475)
+ FBh	plug and play DRQ routing (see #P0476)
+ FCh	PCI interrupt polarity (see #P0477)
+ FDh	plug and play IRQ routing (see #P0478)
+ FEh	PCI IRQ routing 1 (see #P0479)
+ FFh	PCI IRQ routing 2 (see #P0480)
+SeeAlso: #P0419
+
+Bitfields for Via VT82C570M DRAM type:
+Bit(s)	Description	(Table P0462)
+ 7	Bank 3 DRAM type (used with bit 3)
+	bits 7 and 3:
+	00 = standard DRAM
+	01 = burst EDO DRAM
+	10 = EDO DRAM
+	11 = illegal
+ 6	Bank 2 DRAM type (used with bit 2)
+	bits 6 and 2: same values as for bits 7 and 3
+ 5	Bank 1 DRAM type (used with bit 1)
+	bits 5 and 1: same values as for bits 7 and 3
+ 4	Bank 0 DRAM type (used with bit 0)
+	bits 4 and 0: same values as for bits 7 and 3
+ 3	Bank 3 DRAM type (used with bit 7)
+ 2	Bank 2 DRAM type (used with bit 6)
+ 1	Bank 1 DRAM type (used with bit 5)
+ 0	Bank 0 DRAM type (used with bit 4)
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M register 48h:
+Bit(s)	Description	(Table P0463)
+ 7	reserved
+ 6	eight CWE# pins for each byte in addition to global GWE# ???
+ 5-4	reserved
+ 3-0	DRAM operation width (if register 20h bit 0 = 1)
+	0 = 64 bit operation for corresponding DRAM bank
+	1 = 32 bit operation for corresponding DRAM bank
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M register 49h:
+Bit(s)	Description	(Table P0464)
+ 5	0 = cache SRAM write enable for each bank
+	1 = cache SRAM byte write enable
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M register 66h:
+Bit(s)	Description	(Table P0465)
+ 3-2	peripheral timer (register 67h) time base
+	00 = disable
+	01 = 32.768 KHz
+	10 = 1 sec
+	11 = 1 min
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M PCI buffer control:
+Bit(s)	Description	(Table P0466)
+ 7	CPU to PCI write buffer enable
+ 6	PCI to memory write buffer enable
+ 5	reserved
+ 4	PCI accessing memory prefetch buffer enable
+ 3	PCI accelerated decoding enable
+ 2	reserved
+ 1	on-board memory burst write enable
+ 0	on-board memory burst read enable
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M PCI data link control:
+Bit(s)	Description	(Table P0467)
+ 7	data link write cycle
+	0 = 1 wait state
+	1 = 0 wait state
+ 6-4	reserved
+ 3	on-board memory detection point for PCI master
+	0 = first address phase
+	1 = first data phase
+ 2-1	reserved
+ 0	reserved (must be 0)
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M PCI interface timing:
+Bit(s)	Description	(Table P0468)
+ 7	slave mode lock function enable
+ 6	retry count
+	0 = 16 times
+	1 = 64 times
+ 5	retry deadlock error reporting enable
+ 4	retry status occurred (write 1 to reset)
+ 3	CPU to PCI fast back to back enable
+ 2	fast FRAME# generation enable
+ 1-0	DEVSEL# decoding
+	00 = fast
+	01 = medium
+	10 = slow
+	11 = subtractive
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M PCI arbitration:
+Bit(s)	Description	(Table P0469)
+ 7	0 = priority on PCI bus
+	1 = fairness between CPU and PCI bus
+ 6	0 = REQ# based
+	1 = FRAME# based
+ 5-4	CPU time slot in unit of
+	00 = 4 PCI clocks
+	01 = 8 PCI clocks
+	10 = 16 PCI clocks
+	11 = 32 PCI clocks
+ 3-0	PCI master bus time out
+	0000 = disable
+	0001-1111 = 1x32 - 15x32 PCI clocks
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M register 86h:
+Bit(s)	Description	(Table P0470)
+ 7	PCI configuration mechanism #1/#2 (default #1)
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M register 93h:
+Bit(s)	Description	(Table P0471)
+ 5	parity or system error at PCI bus signify
+	0 = I/O channel check
+	1 = NMI
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M programmable chipselect A:
+Bit(s)	Description	(Table P0472)
+ 7-0	chipselect A address (high two bits in register 9Dh bits 1-0)
+SeeAlso: #P0461,#P0473,#P0474
+
+Bitfields for Via VT82C570M programmable chipselect A address mask:
+Bit(s)	Description	(Table P0473)
+ 7-2	chipselect A address mask
+ 1-0	chipselect A address (low eight bits in register 9Dh)
+SeeAlso: #P0461,#P0472,#P0474
+
+Bitfields for Via VT82C570M programmable chipselect B:
+Bit(s)	Description	(Table P0474)
+ 7-0	chipselect B address (high two bits in register 9Fh bits 1-0)
+SeeAlso: #P0461,#P0472,#P0475
+
+Bitfields for Via VT82C570M programmable chipselect B address mask:
+Bit(s)	Description	(Table P0475)
+ 7-2	chipselect B address mask
+ 1-0	chipselect B address (low eight bits in register 9Eh)
+SeeAlso: #P0461,#P0473,#P0474
+
+Bitfields for Via VT82C570M plug and play DRQ routing:
+Bit(s)	Description	(Table P0476)
+ 7-6	reserved
+ 5-3	PDRQ1 routing
+	000-011 = DRQ0-3
+	100 = reserved
+	101-111 = DRQ5-7
+ 2-0	PDRQ0 routing
+	000-011 = DRQ0-3
+	100 = reserved
+	101-111 = DRQ5-7
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M PCI interrupt polarity:
+Bit(s)	Description	(Table P0477)
+ 7-4	reserved
+ 3	INTA# polarity (refer to note below)
+ 2	INTB# polarity
+ 1	INTC# polarity
+ 0	INTD# polarity
+Note:	for bits 3-0, 0 = non-invert (level-sensitive), 1 = inverted (edge)
+SeeAlso: #P0461
+
+Bitfields for Via VT82C570M plug and play IRQ routing:
+Bit(s)	Description	(Table P0478)
+ 7-4	INTD# routing (value indicates desired IRQ number; 0,2,13 are reserved)
+ 3-0	PIRQ0 routing (value indicates desired IRQ number; 0,2,13 are reserved)
+SeeAlso: #P0461,#P0479,#P0480
+
+Bitfields for Via VT82C570M PCI IRQ routing 1:
+Bit(s)	Description	(Table P0479)
+ 7-4	INTA# routing (value indicates desired IRQ number; 0,2,13 are reserved)
+ 3-0	INTB# routing (value indicates desired IRQ number; 0,2,13 are reserved)
+SeeAlso: #P0461,#P0478,#P0480
+
+Bitfields for Via VT82C570M PCI IRQ routing 2:
+Bit(s)	Description	(Table P0480)
+ 7-4	INTC# routing (value indicates desired IRQ number; 0,2,13 are reserved)
+ 3-0	PIRQ1 routing (value indicates desired IRQ number; 0,2,13 are reserved)
+SeeAlso: #P0461,#P0478,#P0479
+

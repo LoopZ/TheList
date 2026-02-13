@@ -1,0 +1,71 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Chips&Technologies 82C100/110 - CONFIGURATION REGISTERS
+Note:	each access to PORT 0023h must immediately follow a write to
+	  PORT 0022h (this is to avoid accidental accesses)
+
+0022  -W  configuration register index (see #P0058)
+0023  RW  configuration register data
+
+(Table P0058)
+Values for Chips&Technologies 82C100/110 configuration register index:
+ 40h	clock mode/size (see #P0059)
+ 41h	system configuration (see #P0060)
+ 42h	configuration valid (see #P0061)
+ 43h	DIP switch emulation (see #P0062)
+ 44h-47h substitute NMI vector, bytes 0-3
+	(these specify the vector to be substituted at the INT 02 vector's
+	  memory address whenever an NMI occurs, preventing application
+	  software from modifying the NMI handler)
+ 48h	refresh timer counter (see #P0063)
+ 49h	wait state select, refresh enable, keyboard type (see #P0064)
+ 4Ah	reserved
+ 4Bh	sleep/memory configuration (see #P0065)
+ 4Ch	EMS configuration (see #P0066)
+ 4Dh-4Fh reserved
+
+Bitfields for Chips&Technologies 82C100 clock mode/size register:
+Bit(s)	Description	(Table P0059)
+ !!!
+!!!chips\82c110.pdf p.35
+SeeAlso: #P0058
+
+Bitfields for Chips&Technologies 82C100 system configuration register:
+Bit(s)	Description	(Table P0060)
+ !!!
+SeeAlso: #P0058
+
+Bitfields for Chips&Technologies 82C100 configuration valid register:
+Bit(s)	Description	(Table P0061)
+ !!!
+SeeAlso: #P0058
+
+Bitfields for Chips&Technologies 82C110 DIP Switch Emulation register:
+Bit(s)	Description	(Table P0062)
+ !!!chips\82c110.pdf p.36
+SeeAlso: #P0058
+
+Bitfields for Chips&Technologies 82C100 refresh timer count register:
+Bit(s)	Description	(Table P0063)
+ !!!
+SeeAlso: #P0058
+
+Bitfields for Chips&Technologies 82C100 wait state select register:
+Bit(s)	Description	(Table P0064)
+ !!!
+SeeAlso: #P0058
+
+Bitfields for Chips&Technologies 82C100 sleep/memory configuration:
+Bit(s)	Description	(Table P0065)
+ !!!
+SeeAlso: #P0058
+
+Bitfields for Chips&Technologies 82C100 EMS configuration register:
+Bit(s)	Description	(Table P0066)
+ !!!
+SeeAlso: #P0058
+

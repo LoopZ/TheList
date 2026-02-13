@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: mFEC00010
+  Category: H 	hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM FEC00010h - Pentium - 82379AB I/O APIC - I/O WINDOW
+Size:	DWORD
+Range:	the Multiprocessor Specification calls for I/O APICs to be memory-
+	  mapped on 4K boundaries between FEC00000h and FEDFC000h
+Note:	this memory-mapped register is also supported by the Intel 82093AA
+	  I/O APIC
+SeeAlso: MEM FEC00010h
+
+(Table M0118)
+Values for Intel 82379AB/82093AA I/O APIC registers:
+ 00h	APIC ID
+ 01h	APIC version (read-only)
+	bits 31-24: reserved
+	bits 23-16: maximum redirection entry
+	bits 15-8: reserved
+	bits 7-0: APIC version (11h for 82093AA)
+ 02h	APIC arbitration ID (read-only)
+	bits 31-28: reserved
+	bits 27-24: arbitration ID
+	bits 23-0: reserved
+ 10h-11h	redirection table entry 0 (10h=low DWORD, 11h=high DWORD)
+ 12h-13h	redirection table entry 1 (see !!!)
+ ...
+ 2Eh-2Fh	redirection table entry 15
+---82093AA only---
+ 30h-31h	redirection table entry 16
+ ...
+ 3Eh-3Fh	redirection table entry 23
+
+Bitfields for APIC redirection table entry:
+Bit(s)	Description	(Table M0119)
+ 63-56	destination
+!!!29056601.pdf pg. 10
+ 55-17	reserved
+ 16	interrupt mask
+ 15	trigger mode
+ 14	remote IRR (read-only)
+ 13	interrupt input pin polarity
+ 12	delivery status (read-only)
+ 11	destination mode
+ 10-8	delivery mode
+ 7-0	interrupt vector (10h-FEh)
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: @0060002A
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:002Ah - Eagle MS-DOS v1.25 IO.SYS - SEARCH FOR NEXT DISK FORMAT
+InstallCheck:	MS-DOS v1.25 must be installed
+SeeAlso: @0060h:0000h,@0060h:001Bh
+
+(Table F0014)
+Call Eagle MS-DOS entry point 002Ah with:
+	AL = drive table number
+Return: AL = next drive table number with matching disk sector size and media
+	      ID byte
+

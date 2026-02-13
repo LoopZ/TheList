@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400044
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0044h - DISK CONTROLLER STATUS REGISTER 2
+Size:	BYTE
+SeeAlso: MEM 0040h:0043h
+
+Bitfields for diskette controller status register 0:
+Bit(s)	Description	(Table M0017)
+ 7	unused
+ 6	found deleted data address mark
+ 5	CRC error in data field
+ 4	wrong cylinder number read
+ 3	verify equal
+ 2	can't find sector matching verify condition
+ 1	bad cylinder
+ 0	unable to find address mark
+SeeAlso: #M0016
+

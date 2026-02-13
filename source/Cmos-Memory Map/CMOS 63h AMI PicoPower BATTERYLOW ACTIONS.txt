@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: R63
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 63h - AMI (PicoPower) - BATTERY-LOW ACTIONS
+
+Bitfields for AMI (PicoPower) battery-low actions:
+Bit(s)	Description	(Table C0093)
+ 5-3	battery-very-low action
+	000  MAX
+	001  MAX/2
+	010  MAX/4
+	011  MAX/8
+	100  MAX/16
+	101  MAX/32
+	110  MAX/64
+	111  suspend
+ 2-0	battery-low action (same as battery-very-low action)
+

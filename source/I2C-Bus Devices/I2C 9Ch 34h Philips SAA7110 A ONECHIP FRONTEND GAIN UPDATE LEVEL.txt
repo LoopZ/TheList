@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C34
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/34h - Philips SAA7110(A) ONE-CHIP FRONT-END - GAIN UPDATE LEVEL
+Access:	Write-Only
+Note:	gain update level uses control bits 5-0,
+	  MUXC phase delay uses control bits 7-6
+SeeAlso: I2C 9Eh
+
+Bitfields for MUXC Phase Delay/Gain Update Level:
+Bit(s)	Description	 (Table I0102)	(Table I0103)
+7-6	MUXC phase delay
+	00  no phase delay
+	01  1 LLC cycle
+	10  2 LLC cycle
+	11  3 LLC cycle
+5-0	gain update level
+

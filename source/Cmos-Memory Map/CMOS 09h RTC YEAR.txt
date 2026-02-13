@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: R09
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 09h - RTC - YEAR
+Desc:	(BCD 00-99, Hex 00-63)	  
+Notes:	BCD/Hex selection depends on Bit 2 of register B (0Bh)
+	12/24 Hr selection depends on Bit 1 of register B (0Bh)
+	Alarm will trigger when contents of all three Alarm byte registers
+	  match their companions.
+SeeAlso: CMOS 06h,CMOS 07h,CMOS 08h
+
+The following is the on-chip status register information. 
+
+

@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: m80C00000
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 80C00000h - COMPAQ DIAGNOSTICS REGISTER
+Size: WORD
+Note:	Writing to F000h:FFE0h seems to involve unlocking the memory by writing
+	  FEFEh to this address first. The write-protection can be
+	  reestablished by writing FCFCh to this address???  This was seen done
+	  by MS HIMEM.SYS.
+SeeAlso: F000h:FFE0h
+
+Bitfields for Compaq Diagnostics Register:
+Bit(s)	Description	(Table M0132)
+ 15-10	unknown purpose (should remain set???)
+ 9	=1 memory is read-write???
+	=0 memory is read-only???
+ 8	=1 to disable ROM replacement???
+	=0 normal???
+ 7-2	unknown purpose (should remain set???)
+ 1	=1 memory is read-write
+	=0 memory is read-only
+ 0	=1 to disable ROM replacement???
+	=0 normal
+Note:	Writing to F000h:FFE0h seems to involve unlocking the memory by writing
+	  FEFEh to this address first. The write-protection can be
+	  reestablished by writing FCFCh to this address??? 
+	  Microsoft HIMEM.SYS was seen to do this.
+SeeAlso: F000h:FFE0h
+

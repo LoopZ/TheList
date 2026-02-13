@@ -1,0 +1,94 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03C403C5
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03C4-03C5 - Cirrus Logic GRAPHICS - EXTENDED SEQUENCER REGISTERS
+SeeAlso: PORT 03C4h"EGA",PORT 03C4h"S3",PORT 03C4h"Tseng"
+
+03C4  RW  sequencer register index (see #P0696)
+03C5  RW  sequencer register data
+
+(Table P0675)
+Values for Cirrus CL-GD7556 extended sequencer registers:
+ 00h-04h same as EGA/VGA (see #P0670) 
+ 06h	"SR6" key register -- enable access to extension registers
+	set to xxx1x010 to unlock extended sequencer and CRTC registers
+ 07h	"SR7" extended sequencer mode (see #P0676)
+ 08h	"SR8" DDC2B control (see #P0677)
+ 09h	"SR9" scratch pad #0
+ 0Ah	"SRA" scratch pad #1
+ 0Bh	"SRB" VCLK0 numerator  !!!gd7556hrm.pdf p.239
+ 0Ch	"SRC" VCLK1 numerator
+ 0Dh	"SRD" VCLK2 numerator
+ 0Eh	"SRE" VCLK3 numerator
+ 0Fh	"SRF" display memory control (see #P0678)
+ 10h	"SR10" hardware cursor/icon coarse horizontal position
+ 11h	"SR11" hardware cursor/icon coarse vertical position
+ 12h	"SR12" hardware cursor attributes
+ 13h	"SR13" hardware cursor pattern address
+ 14h	"SR14" scratch pad #2
+ 15h	"SR15" scratch pad #3
+ 17h	"SR17" BitBLT memory map I/O address
+ 18h	"SR18" signature generator control
+ 19h	"SR19" signature generator result (low)
+ 1Ah	"SR1A" signature generator result (high)
+ 1Bh	"SR1B" VLK0 denominator/post scaler
+ 1Ch	"SR1C" VLK1 denominator/post scaler
+ 1Dh	"SR1D" VLK2 denominator/post scaler
+ 1Eh	"SR1E" VLK3 denominator/post scaler
+ 1Fh	"SR1F" MCLK frequency / VCLK source select
+ 20h	"SR20" miscellaneous control 2
+ 21h	"SR21" test bus control
+ 22h	"SR22" hardware configuration read 1
+ 23h	"SR23" software configuration 1
+ 24h	"SR24" flat panel type switches enable
+ 25h	"SR25" FasText(tm) mode control
+ 26h	"SR26" shader signature (low)
+ 27h	"SR27" shader signature (high)
+ 28h	"SR28" scratch pad #4
+ 29h	"SR29" scratch pad #5
+ 2Ah	"SR2A" hardware icon #0 control
+ 2Bh	"SR2B" hardware icon #1 control
+ 2Ch	"SR2C" hardware icon #2 control / byte-swap enable
+ 2Dh	"SR2D" hardware icon #3 control / cursor memory access
+ 2Eh	"SR2E" hardware cursor horizontal position extension
+ 2Fh	"SR2F" half-frame accel. FIFO threshold for surrounding graphics
+ 32h	"SR32" half-frame accel. FIFO threshold in video window
+ 33h	"SR33" spare register
+ 34h	"SR34" Host CPU cycle stop control
+Note:	the scratch pad registers are reserved for use by the VGA BIOS
+SeeAlso: #P0670,#P0685,#P0696
+
+Bitfields for Cirrus CL-GD7556 extended sequencer mode register:
+Bit(s)	Description	(Table P0676)
+ 7-4	display memory segment
+ 3-1	CRT Controller character clock divisor
+ 0	select high-resolution packed-pixel mode
+!!!gd7556hrm.pdf p.234
+SeeAlso: #P0675
+
+Bitfields for Cirrus CL-GD7556 DDC2B Control register:
+Bit(s)	Description	(Table P0677)
+ 7	DDCD output status (read-only)
+ 6-3	reserved
+ 2	DDCC output status (read-only)
+ 1	DDCD (I2C SDA) output control
+ 0	DDCC (I2C SCL) output control
+Notes:	bits 1 and 0 are used to drive the I2C bus used for DDC communications;
+	  bits 7 and 2 are used to read back the current state of the bus lines
+	SR24 bit 7 must be cleared to enable access to the bus
+SeeAlso: #P0675,#M0079,I2C A0h"DDC"
+
+Bitfields for Cirrus CL-GD7556 Display Memory Control register:
+Bit(s)	Description	(Table P0678)
+ 7	bank select for display memory
+ 6	!!!gd7556hrm.pdf p.241
+ 5	reserved
+ 4-3	display memory data width
+ 2	RAS# cycle select for display memory
+ 1	display memory configuration symmetry
+ 0	multiple-CAS# / multiple-WE# select for display memory
+SeeAlso: #P0823
+

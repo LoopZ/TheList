@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: Mxxxxxxx0
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM xxxxh:xxx0h - Desktop Management Interface / System Management BIOS
+InstallCheck:	scan paragraph boundaries F000h to FFFFh for signature string
+	   "_DMI_", followed by a valid header structure (see #M0111,#M0112)
+
+Format of Desktop Management Interface entry-point structure:
+Offset	Size	Description	(Table M0111)
+ 00h  5 BYTEs	signature "_DMI_"
+ 05h	BYTE	checksum of this structure (forces 8-bit sum of bytes to 00h)
+ 06h	WORD	total length of SMBIOS structure table, in bytes
+ 08h	DWORD	32-bit physical address of read-only SMBIOS structure table
+		(see #F0059)
+ 0Ch	WORD	number of SMBIOS structures
+ 0Eh	BYTE	BCD SMBIOS revision (high nybble = major, low = minor)
+!!!ftp://download.intel.com/ial/wfm/smbios.pdf
+SeeAlso: #M0112
+
+Format of System Management BIOS entry-point structure:
+Offset	Size	Description	(Table M0112)
+ 00h  4 BYTEs	signature "_SM_"
+ 04h	BYTE	checksum of this structure (forces 8-bit sum of bytes to 00h)
+ 05h	BYTE	length of structure in bytes (1Fh for v2.1+)
+ 06h	BYTE	major version of specification
+ 07h	BYTE	minor version of specification (01h = vX.1, 16h = vX.22)
+ 08h	WORD	size of largest SMBIOS structure (see also #F0046)
+ 0Ah	BYTE	revision of this data structure
+		00h SMBIOS v2.1-2.3
+		01h-FFh reserved for future versions
+ 0Bh  5 BYTEs	revision-specific data (currently unused)
+ 10h  5 BYTEs	intermediate anchor string "_DMI_"
+ 15h	BYTE	checksum of intermediate entry-point structure
+		(forces 8-bit sum of bytes 10h-1Eh to 00h)
+ 16h	WORD	total length of SMBIOS structure table, in bytes
+ 18h	DWORD	32-bit physical address of read-only SMBIOS structure table
+		(see #F0059)
+ 1Ch	WORD	number of SMBIOS structures
+ 1Eh	BYTE	BCD SMBIOS revision (high nybble = major, low = minor)
+		00h if specification version only given in bytes 06h/07h
+BUG:	due to an error in the v2.1 specification, some implementations might
+	  indicate a length of 1Eh bytes instead of 1Fh
+SeeAlso: #M0111
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0200020F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0200-020F - Game port reserved I/O address space
+0200-0207 - Game port, eight identical addresses on some boards
+
+0201  R-  read joystick position and status (see #P0542)
+0201  -W  fire joystick's four one-shots
+0201  RW  gameport on mc-soundmachine, mc 03-04/1992: Adlib-compatible,
+		Covox 'voice master' & 'speech thing' compatible soundcard.
+		(enabled if bit1=1 in PORT 038Fh. Because it is disabled on
+		power-on, it cannot be found by BIOS) (see PORT 0388h-038Fh)
+
+Bitfields for joystick position and status:
+Bit(s)	Description	(Table P0542)
+ 7	status B joystick button 2 / D paddle button
+ 6	status B joystick button 1 / C paddle button
+ 5	status A joystick button 2 / B paddle button
+ 4	status A joystick button 1 / A paddle button
+ 3	B joystick Y coordinate	   / D paddle coordinate
+ 2	B joystick X coordinate	   / C paddle coordinate
+ 1	A joystick Y coordinate	   / B paddle coordinate
+ 0	A joystick X coordinate	   / A paddle coordinate
+

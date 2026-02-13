@@ -1,0 +1,107 @@
+--------------------------------------------------------------------------------
+ Unique ID: PBEE8BEE9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT BEE8-BEE9 - 8514/A and compatible - MULTIFUNCTION CONTROL
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+	writes to the registers accessed via this port are pipelined; a NOP
+	  command (see PORT 9AE8h) is required to ensure correct read-back
+	  immediately after a write
+
+BEE8w -W  drawing control: multi-function control (see #P1048)
+BEE8w R-  (S3) value of register specified by current value of multi-function
+	  read select register (index 0Fh bits 3-0) (see #P1048)
+
+(Table P1047)
+Values for index into 8514/A multi-function drawing control registers:
+ 00h RW minor axis pixel count
+ 01h RW top scissors
+ 02h RW left scissors
+ 03h RW bottom scissors
+ 04h RW right scissors
+ 05h -W memory control register
+ 08h -W fixed pattern low
+ 09h -W fixed pattern high
+ 0Ah RW data manipulation control
+---S3 chipsets---
+ 0Dh RW (S3 864/964) miscellaneous 2
+ 0Eh RW (S3 801+) miscellaneous
+ 0Fh -W (S3 801/805/928) read register select (see #P1049)
+SeeAlso: #P1048
+
+Bitfields for 8514/A Multi-Function Control registers:
+Bit(s)	Description	(Table P1048)
+ 15-12	register index (see #P1047)
+---register 00h: minor axis pixel count---
+ 11-0	rectangle height - 1
+---register 01h: top scissors---
+ 11-0	top edge of clipping box
+---register 02h: left scissors---
+ 11-0	left edge of clipping box
+---register 03h: bottom scissors---
+ 11-0	bottom edge of clipping box
+---register 04h: right scissors---
+ 11-0	right edge of clipping box
+---register 05h: memory control---
+ ???
+---register 08h: fixed pattern low---
+ 11-8	(S3 Trio32/64) reserved
+ 7-6	mix register
+	00 always select Foreground Mix register
+	01 reserved
+	10 mix register selected by CPU data
+	11 mix register selected by display memory value
+ 5-0	(S3 Trio32/64) reserved
+---register 09h: fixed pattern high---
+ ???
+---register 0Ah: data manipulation control---
+ ???
+---register 0Dh: miscellaneous 2---
+ 11-7	reserved
+ 6-4	source base address
+	000 in first meg of display memory
+	001 in second meg
+	010 in third meg
+	011 in fourth meg
+ 3	reserved
+ 2-0	destination base address (settings as for bits 6-4)
+---register 0Eh: miscellaneous---
+ 11-10	reserved (0)
+ 9	select 32-bit command registers; disable byte and word writes to regs
+	(see PORT A2E8h,PORT A6E8h,PORT AAE8h,PORT B2E8h)
+ 8	enable color comparison
+ 7	don't update bitmap if source color differs from Color Compare register
+	  (see PORT B2E8h)
+ 6	slow Graphics Engine read/modify/write cycle (adds one wait state)
+ 5	clipping direction
+	=0 draw only inside clip rectangle
+	=1 draw only outside clip rectangle
+ 4	select upper 16 bits of 32-bit registers in 32 bpp graphics mode
+ 3-2	source base address, bits 21-20
+ 1-0	destination base address, bits 21-20
+	Note:	these base addresses are ignored if the corresponding base
+		  address in register 0Dh is nonzero
+---register 0Fh: multifunction read select---
+ 11-4	reserved
+ 3-0	(S3)	read select (see #P1049)
+ 2-0	(8514/A) read select (see #P1049)
+
+(Table P1049)
+Values for S3 multifunction read select register:
+ 00h	PORT BEE8h register 00h
+ 01h	PORT BEE8h register 01h
+ 02h	PORT BEE8h register 02h
+ 03h	PORT BEE8h register 03h
+ 04h	PORT BEE8h register 04h
+ 05h	PORT BEE8h register 0Ah
+ 06h	PORT BEE8h register 0Eh
+ 07h	PORT 9AE8h (bits 11-0 only)
+---S3 864/964 only---
+ 08h	PORT 42E8h (bits 11-0 only)
+ 09h	PORT 46E8h
+ 0Ah	PORT BEE8h register 0Dh
+SeeAlso: #P1047,#P1048
+

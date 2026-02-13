@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C0F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/0Fh - Philips SAA7110(A) ONE-CHIP FRONT-END - CONTROL #1
+Access:	Write-Only
+SeeAlso: I2C 9Eh
+
+Bitfields for Control Number 1:
+Bit(s)	Description    (Table I0078)	(Table I0079)
+ 7	automatic field detection (if not set, field state controled by bit 6)
+ 6	field select
+	0  50 Hz, 625 lines
+	1  60 Hz, 525 lines
+ 5	SECAM cross colour reduction
+ 4	enable sync (HSY) and clamp (HCL) pulses
+ 3	reserved (must be set to LOW)
+ 2-0	lminance delay compensation (steps in 2/LLC)
+	000  0 steps
+	011  3 steps
+	100 -4 steps
+

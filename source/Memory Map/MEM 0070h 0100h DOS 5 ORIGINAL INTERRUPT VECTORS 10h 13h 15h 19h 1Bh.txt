@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00700100
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0070h:0100h - DOS 5+ - ORIGINAL INTERRUPT VECTORS 10h,13h,15h,19h,1Bh
+Size:	25 BYTEs
+Note:	each value is stored as a BYTE for the interrupt number followed by
+	  a DWORD for the vector
+	these values are restored on INT 19 by recent versions of
+	  DR/Novell/PC/MS-DOS (MS-DOS 3.x used this area to support HIMEM.SYS)
+	not supported by OS/2 MDOS
+SeeAlso: MEM 0080h:0000h,INT 2F/AH=13
+

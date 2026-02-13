@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C21
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/21h - Philips SAA7110(A) ONE-CHIP FRONT-END - ANALOG CONTROL #2
+Access:	Write-Only
+SeeAlso: I2C 9Eh
+
+Bitfields for Analog Control #2:
+Bit(s)	Description	 (Table I0084)	(Table I0085)
+ 7	Vertical blanking control off
+ 6	MUXC channel 34
+	0 MX34 controls analog MUX3
+	1 MUXC controls analog MUX3
+ 5-4	Analog MUX2 control
+	00  adder mode
+	01  Ch 2 ON,  Ch 4 OFF
+	10  Ch 2 OFF, Ch 4 ON
+	11  both channels OFF
+ 3	MUXC channel 24
+	0 MX24 controls analog MUX2
+	1 MUXC controls analog MUX2
+ 2	Channel 4 reference select
+	0 automatic clamping
+	1 reference level
+ 1	Channel 3 reference select
+	0 automatic clamping
+	1 reference level
+ 0	Channel 2 reference select
+	0 automatic clamping
+	1 reference level
+SeeAlso: #I0082
+

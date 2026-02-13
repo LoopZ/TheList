@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: mFEE00000
+  Category: H 	hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM FEE00000h - Pentium - LOCAL APIC
+Size:	4096 BYTEs
+Notes:	the Advanced Programmable Interrupt Controller built into
+	  multiprocessor-capable Pentiums (P54C, etc. -- basically 75MHz and
+	  faster Pentiums) maps its registers into the top of the physical
+	  address space on data reads and writes, but not on code reads;
+	  data accesses to the APIC registers do not cause external bus
+	  cycles
+	the APIC's registers are only visible when the APIC is enabled (which
+	  occurs at CPU reset when external data lines contain proper signals);
+	  all accesses to APIC registers should use 32-bit reads or writes, as
+	  8-bit and 16-bit accesses may produce unpredictable results
+	the PentiumPro (P6) permits the address at which the local APIC
+	  appears to be changed with Model-Specific Register 0000001Bh
+SeeAlso: MEM FEC00000h,MEM FEE00020h,MEM xxxxh:xxx0h"Multiprocessor"
+SeeAlso: MSR 0000001Bh
+

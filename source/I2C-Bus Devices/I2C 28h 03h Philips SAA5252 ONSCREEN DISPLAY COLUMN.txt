@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: I2803
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 28h/03h - Philips SAA5252 - ON-SCREEN DISPLAY COLUMN
+Access:	Write-Only
+Size:	5 bits
+Desc:	specify the column (0-31) at which to start the on-screen display
+Note:	writes to register 4 increment this register; on overflow, register 2
+	  is incremented.  This allows text to be displayed without constantly
+	  updating registers 2 and 3
+SeeAlso: I2C 28h/00h,I2C 28h/02h
+

@@ -1,0 +1,102 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0240024F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0240-024F - Gravis Ultra Sound by Advanced Gravis
+Range:	The I/O address range is dipswitch selectable from:
+	   0200-020F and 0300-030F
+	   0210-021F and 0310-031F
+	   0220-022F and 0320-032F
+	   0230-023F and 0330-033F
+	   0240-024F and 0340-034F
+	   0250-025F and 0350-035F
+	   0260-026F and 0360-036F
+	   0270-027F and 0370-037F
+SeeAlso: PORT 0340h-034Fh,PORT 0746h
+
+0240  -W  Mix Control register (see #P0545)
+0241  R-  Read Data
+0241  -W  Trigger Timer
+0246  R-  IRQ Status Register (see #P0546)
+0248  RW  Timer Control Reg
+	  Same as ADLIB Board (see PORT 0200h)
+0249  -W  Timer Data (see #P0547)
+024B  -W  IRQ Control Register (0240 bit 6 = 1) (see #P0548)
+024B  -W  DMA Control Register (0240 bit 6 = 0) (see #P0549)
+024F  RW  Register Controls (rev 3.4+)
+
+Bitfields for Gravis Ultra Sound mix control register:
+Bit(s)	Description	(Table P0545)
+ 6	   Control Register Select (see 024B)
+ 5	   Enable MIDI Loopback
+ 4	   Combine GF1 IRQ with MIDI IRQ
+ 3	   Enable Latches
+ 2	   Enable MIC IN
+ 1	   Disable LINE OUT
+ 0	   Disable LINE IN
+SeeAlso: #P0546
+
+Bitfields for Gravis Ultra Sound IRQ status register:
+Bit(s)	Description	(Table P0546)
+ 7	   DMA TC IRQ
+ 6	   Volume Ramp IRQ
+ 5	   WaveTable IRQ
+ 3	   Timer 2 IRQ
+ 2	   Timer 1 IRQ
+ 1	   MIDI Receive IRQ
+ 0	   MIDI Transmit IRQ
+SeeAlso: #P0545,#P0548,#P0549
+
+Bitfields for Gravis Ultra Sound timer data:
+Bit(s)	Description	(Table P0547)
+ 7	   Reset Timr IRQ
+ 6	   Mask Timer 1
+ 5	   Mask Timer 2
+ 1	   Timer 2 Start
+ 0	   Timer 1 Start
+SeeAlso: #P0546,#P0548
+
+Bitfields for Gravis Ultra Sound IRQ control register:
+Bit(s)	Description	(Table P0548)
+ 6	Combine Both IRQ
+ 5-3	MIDI IRQ Selector
+	000  No IRQ
+	001  IRQ 2
+	010  IRQ 5
+	011  IRQ 3
+	100  IRQ 7
+	101  IRQ 11
+	110  IRQ 12
+	111  IRQ 15
+ 2-0	GF1 IRQ Selector
+	000  No IRQ
+	001  IRQ 2
+	010  IRQ 5
+	011  IRQ 3
+	100  IRQ 7
+	101  IRQ 11
+	110  IRQ 12
+	111  IRQ 15
+SeeAlso: #P0546,#P0549
+
+Bitfields for Gravis Ultra Sound DMA Control Register:
+Bit(s)	Description	(Table P0549)
+ 6	Combine Both DMA
+ 5-3	DMA Select Register 2
+	000  No DMA
+	001  DMA 1
+	010  DMA 3
+	011  DMA 5
+	100  DMA 6
+	101  DMA 7
+ 2-0	DMA Select Register 1
+	000  No DMA
+	001  DMA 1
+	010  DMA 3
+	011  DMA 5
+	100  DMA 6
+	101  DMA 7
+SeeAlso: #P0546,#P0548,#P0591
+

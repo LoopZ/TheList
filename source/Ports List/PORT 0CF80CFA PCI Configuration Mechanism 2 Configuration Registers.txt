@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0CF80CFA
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0CF8-0CFA - PCI Configuration Mechanism 2 - Configuration Registers
+Notes:	this configuration mechanism is deprecated as of PCI version 2.1;
+	  only mechanism 1 should be used for new systems
+	to access the configuration space, write the target bus number to
+	  the Forward Register, then write to the Configuration Space
+	  Enable register, and finally read or write the appropriate I/O
+	  port(s) in the range C000h to CFFFh (where Cxrrh accesses location
+	  'rr' in physical device 'x's configuration data)
+	the Intel "Saturn" and "Neptune" chipsets use configuration mechanism 2
+SeeAlso: PORT 0CF8h"Mechanism 1",PORT C000h"PCI Configuration",PORT 0CFBh
+
+0CF8  RW  Configuration Space Enable (CSE) (see #P0945)
+0CFA  RW  Forward Register (selects target bus number)
+
+Bitfields for PCI Configuration Space Enable:
+Bit(s)	Description	(Table P0945)
+ 0	Special Cycle Enable (SCE)
+ 3-1	target function number (PCI logical device within physical device)
+ 7-4	key (non-zero to allow configuration)
+SeeAlso: #P0944
+

@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8634
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/34h - ITT VPX 32xx - Standard Select
+SeeAlso: I2C 8Ah/34h
+
+Bitfields for VDP 3108/VPX 32xx standard select:
+Bit(s)	Description	(Table I0033)
+ 1-0	television standard
+	00 SECAM
+	01 PAL
+	   or NTSC compensated (VDP3108 only???)
+	10 NTSC (standard)
+	   or simple PAL (VDP3108 only???)
+	11 NTSC (comb filter)
+ 2	S-VHS mode
+ 3	chroma polarity
+	0 signed
+	1 binary offset
+ 4	(VPX 32xx only) PAL/MAC mode
+ 5	force color decoder (YCbCr-to-output bypass)
+ 7-6	reserved
+

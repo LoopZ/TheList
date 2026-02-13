@@ -1,0 +1,70 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0279
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0279 - Plug-and-Play - CONFIGURATION REGISTER
+SeeAlso: PORT 0A79h
+
+0279  -W  index into Plug-and-Play register set for Read Data Port and
+	  Write Data Port I/O (see #P0550,#P0551)
+
+(Table P0550)
+Values for Plug-and-Play Card-Level Registers:
+ 00h	set Read Port address
+	bits 9-2 of Read Data port address (bits 15-10 are always 0, bits 1-0
+	  are always 11); valid Read Port addresses are 0203h-03FFh
+ 01h	serial isolation
+ 02h	configuration control
+ 03h	Wake command
+	(specifies which card is accessed through configuration registers)
+ 04h	resource data
+ 05h	status
+ 06h	Card Select Number (CSN)
+ 07h	logical device number
+	(selects which logical device on card is accessed at locations 30h-FFh)
+	(see #P0551)
+ 08h-1Fh reserved
+ 20h-2Fh vendor-specific
+Note:	there is one set of these registers per installed card
+SeeAlso: #P0551
+
+(Table P0551)
+Values for Plug-and-Play Logical Device Registers:
+ 30h	activate
+	bit 0: device is active on ISA bus
+	bits 7-1: reserved (0)
+ 31h	I/O range check
+	bit 0: I/O Read Pattern select (if bit 1 set, then I/O reads return
+		55h if this bit is set, AAh if this bit is clear)
+	bit 1: I/O Range Check Enable: if set, all reads from device I/O
+		  registers return 55h or AAh, depending on bit 0
+	bits 7-2: reserved (0)
+ 32h-37h reserved
+ 38h-3Fh vendor-specific
+ 40h-44h 24-bit ISA memory descriptor 0
+ 45h-47h reserved
+ 48h-4Ch 24-bit ISA memory descriptor 1
+ 4Dh-4Fh reserved
+ 50h-54h 24-bit ISA memory descriptor 2
+ 55h-57h reserved
+ 58h-5Ch 24-bit ISA memory descriptor 3
+ 5Dh-5Fh reserved
+ 60h-6Fh I/O configuration registers 0-7
+ 70h-71h IRQ channel select 0
+ 72h-73h IRQ channel select 1
+ 74h-75h DMA configuration registers 0-1
+ 76h-7Eh 32-bit memory range configuration register 0
+ 7Fh	 reserved
+ 80h-88h 32-bit memory range configuration register 1
+ 89h-8Fh reserved
+ 90h-98h 32-bit memory range configuration register 2
+ 99h-9Fh reserved
+ A0h-A8h 32-bit memory range configuration register 3
+ A9h-EFh reserved for logical device configuration
+ F0h-FEh vendor-specific
+ FFh	reserved
+Note:	there is one set of these registers per logical device
+SeeAlso: #P0550
+

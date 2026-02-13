@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400067
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0067h - RESET RESTART ADDRESS
+Size:	DWORD
+Desc:	this address stores the address at which to resume execution after a
+	  CPU reset (or jump to F000h:FFF0h) when certain magic values are
+	  stored at 0040h:0072h or in CMOS RAM location 0Fh
+SeeAlso: MEM 0040h:0072h,MEM F000h:FFF0h,CMOS 0Fh,INT 19
+

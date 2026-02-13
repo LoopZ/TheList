@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: mFEE00320
+  Category: H 	hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM FEE00320h - Pentium + - LOCAL APIC - LOCAL VECTOR TABLE ENTRY 0 (TIMER)
+Size:	DWORD
+SeeAlso: MEM FEE00350h,MEM FEE00370h,MEM FEE003E0h,INT 70h
+
+Bitfields for Pentium APIC timer local vector entry:
+Bit(s)	Description	(Table M0123)
+ 7-0	interrupt vector number
+ 11-8	reserved
+ 12	delivery status (read-only)
+	1 = interrupt being sent to APIC
+ 15-13	reserved
+ 16	interrupt delivery disabled
+ 17	timer mode (0=one-shot, 1=periodic)
+ 31-18	reserved
+SeeAlso: #M0125,#M0124
+

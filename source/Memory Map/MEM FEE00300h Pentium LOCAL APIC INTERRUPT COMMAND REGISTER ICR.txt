@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+ Unique ID: mFEE00300
+  Category: H 	hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM FEE00300h - Pentium + - LOCAL APIC - INTERRUPT COMMAND REGISTER (ICR)
+Size:	DWORD
+Note:	this is the low half of the 64-bit ICR
+SeeAlso: MEM FEE00310h,#M0121
+
+Bitfields for Pentium APIC Interrupt Command Register:
+Bit(s)	Description	(Table M0121)
+ 7-0	interrupt vector number
+ 10-8	delivery mode (see #M0122)
+ 11	destination mode
+ 12	delivery status (read-only)
+	1 = transfer pending
+ 13	reserved
+ 14	level (0 = INIT Level Deassert message, 1 = anything else)
+ 15	trigger mode (1)
+ 17-16	remote read status (read-only)
+ 19-18	destination shorthand
+	00 as specified by destination field
+	01 self
+	10 all including self
+	11 all except self
+ 55-20	reserved
+ 63-56	destination for interrupt request or message
+SeeAlso: #M0124
+
+(Table M0122)
+Values for Pentium APIC delivery mode:
+ 000b	fixed
+ 001b	lowest-priority
+ 010b	SMI
+ 011b	remote read
+ 100b	NMI
+ 101b	INIT
+ 110b	start up
+ 111b	reserved
+SeeAlso: #M0121
+

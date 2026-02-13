@@ -1,0 +1,67 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0010001F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0010-001F - DMA CONTROLLER (8237) ON PS/2 MODEL 60 & 80
+SeeAlso: PORT 0000h-001Fh,PORT 0080h-008Fh"DMA",PORT 00C0h-00DFh
+
+0018  -W  extended function register (see #P0007)
+001A  -W  extended function execute register
+
+Bitfields for DMA extended function register:
+Bit(s)	Description	(Table P0007)
+ 7-4	function code (see #P0008)
+ 3	reserved (0)
+ 2-0	channel number
+	000 channel 0 select
+	001 channel 1 select
+	010 channel 2 select
+	011 channel 3 select
+	100 channel 4 select
+	101 channel 5 select
+	110 channel 6 select
+	111 channel 7 select
+
+(Table P0008)
+Values for DMA extended function codes (data go to/from PORT 001Ah):
+Value	Description		  Parameters  Results
+ 00h	current address register      -	      CA0,CA1
+ 02h	write address		      -	      A0,A1,P
+ 03h	read  address		   A0,A1,P	 -
+ 04h	write word count register   C0,C1	 -
+ 05h	read  word count register     -	       C0,C1
+ 06h	read status register	      -		 S
+ 07h	mode register		      -		 M
+ 09h	mask channel		      -		 -
+ 0Ah	unmask channel		      -		 -
+ 0Dh	master clear		      -		 -
+Note:	CA0/CA1	  LSB/MSB of the current address register
+	A0/A1	  LSB/MSB of the base address register
+	P	  DMA page address
+	C0/C1	  LSB/MSB of the word count register
+	S	  status register value (see #P0001, #P0481)
+	M	  mode register value (see #P0005, #P0485)
+	first, the extended function register is written, then the extended
+	  function register execute register is read/written if the function
+	  being executing requires
+
+Bitfields for DMA extended mode register:
+Bit(s)	Description	(Table P0009)
+ 7	reserved (0)
+ 6	=0 8-bit transfer
+	=1 16-bit transfer
+ 5-4	reserved (0)
+ 3	transfer type
+	=0 read from memory
+	=1 write to memory
+ 2	=0 disable memory write
+	=1 enable  memory write
+ 1	reserved (0)
+ 0	address select
+	=0 use 0 as base address
+	=1 use a value from base address register
+Note:	the IBM PS/2 model 80 technical reference doesn't seem to mention this
+	  register's address
+

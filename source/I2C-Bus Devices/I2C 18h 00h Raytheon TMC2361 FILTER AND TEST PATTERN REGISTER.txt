@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+ Unique ID: I1800
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 18h/00h - Raytheon TMC2361 - FILTER AND TEST PATTERN REGISTER
+Access:	Read/Write
+Desc:	the TMC2361 is a VGA-to-Television encoder
+Range:	I2C addresses 18h, 1Ah, 1Ch, or 1Eh may be selected by external pins
+Note:	the second byte of a 'write' telegram sets the register to be accessed;
+	  this pointer auto-increments on each transfer until the highest
+	  register is reached (it will not wrap back to register 0)
+SeeAlso: I2C 18h/01h,I2C 18h/02h,I2C 18h/05h,I2C 18h/06h
+
+Bitfields for Raytheon TMC2361 Filter and Test Pattern Register:
+Bit(s)	Description	(Table I0001)
+ 7-5	test pattern foreground color select
+	bit 7: red
+	bit 6: green
+	bit 5: blue
+ 4-3	video source
+	00 normal video from VGA
+	01 color bars
+	10 '+' symbols on complementary color
+	11 flat field of color selected by bits 7-5
+ 2-1	filter mode
+	00 three-line filter
+	01 pass-through
+	10 two-line filter
+	11 three-line filter
+ 0	reserved
+SeeAlso: #I0062,#I0061
+

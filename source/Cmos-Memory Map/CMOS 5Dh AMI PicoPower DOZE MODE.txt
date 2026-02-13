@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: R5D
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 5Dh - AMI (PicoPower) - DOZE MODE
+
+Bitfields for AMI (PicoPower) doze mode control:
+Bit(s)	Description	(Table C0081)
+ 7	APM enabled
+ 6-4	doze mode CPU clock speed (see #C0082)
+ 3	hotkey setup enabled
+ 2-0	"sleep mode" CPU CLK speed (see #C0082)
+SeeAlso: #C0084
+
+(Table C0082)
+Values for AMI (PicoPower) CPU clock speeds:
+ 000	MAX
+ 001	MAX/2
+ 010	MAX/4
+ 011	MAX/8
+ 100	MAX/16
+ 101	MAX/32
+ 110	MAX/64
+SeeAlso: #C0081,#C0084
+

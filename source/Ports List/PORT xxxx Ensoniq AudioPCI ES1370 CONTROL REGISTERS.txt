@@ -1,0 +1,379 @@
+--------------------------------------------------------------------------------
+ Unique ID: Pxxxx
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT xxxx - Ensoniq AudioPCI ES1370 - CONTROL REGISTERS
+Range:	anywhere on 64 byte boundary
+
++000d RW  interrupt/chip select control register (see #P1076)
++004d R-  interrupt/chip select status register (see #P1077)
++008  RW  UART data register (MIDI data)
++009  -W  UART control register (see #P1078)
++009  R-  UART status register (see #P1079)
++00A  RW  UART reserved register (see #P1080)
++00Cd RW  memory page register (see #P1081)
++010d -W  CODEC write register (see #P1082)
++020d RW  serial interface control register (see #P1083)
++024d RW  DAC1 channel sample count register (see #P1084)
++028d RW  DAC2 channel sample count register (see #P1084)
++02Cd RW  ADC channel sample count register (see #P1084)
++030d RW  internal memory 1 (see #P1085)
++034d RW  internal memory 2 (see #P1086)
++038d RW  internal memory 3 (see #P1087)
++03Cd RW  internal memory 4 (see #P1088)
+
+Bitfields for Ensoniq ES1370/ES1371 interrupt/chip select control register:
+Bit(s)	Description	(Table P1076)
+---AudioPCI ES1370---
+ 31	record buffer transfer disable (ADC stop)
+ 30	(bit 0 = 0) general purpose output
+	(bit 0 = 1) external IRQ output
+ 29	reserved
+ 28-16	programmable clock divide ratio (DAC2)
+---AudioPCI-97 ES1371---
+ 31-26	reserved
+ 25-24	joystick base I/O address
+	00 = 200h
+	01 = 208h
+	10 = 210h
+	11 = 218h
+ 23-20	GPIO pin 3-0 (read-only)
+ 19-16	GPIO pin 3-0 output
+------
+ 15	MPEG data format
+	0 = Sony (lrclk high = left channel; data left justified)
+	1 = I2S (lrclk low = left channel; data 1 bit clock delayed)
+---AudioPCI ES1370---
+ 14	CODEC DAC (DAC2) source
+	0 = programmable clock generator
+	1 = MPEG clocks
+ 13-12	fixed frequency clock generator frequency (DAC1)
+	00 = 5.512 KHz
+	01 = 11.025 KHz
+	10 = 22.05 KHz
+	11 = 44.1 KHz
+ 11	CODEC DACs synchronous with fixed frequency clock generator
+---AudioPCI-97 ES1371---
+ 14	AC97 warm reset
+ 13	CCB record transfer disable
+ 12	power management level change interrupt enable
+ 11	record channel source
+	0 = CODEC ADC
+	1 = I2S
+------
+ 10	CCB voice interrupts enable
+---AudioPCI ES1370---
+ 9	record channel source in serial module
+	0 = CODEC ADC
+	1 = MPEG
+ 8	general purpose output
+---AudioPCI-97 ES1371---
+ 9-8	current power down level
+	00-11 = D0-D3
+------
+ 7	memory bus request enable (disables memory access) (test purposes only)
+ 6	DAC1 (CODEC FM DAC) playback channel enable
+ 5	DAC2 (CODEC DAC) playback channel enable
+ 4	CODEC ADC record channel enable
+ 3	UART enable
+ 2	joystick enable
+---AudioPCI ES1370---
+ 1	CODEC interface enable
+ 0	PCI serr signal disable
+---AudioPCI-97 ES1371---
+ 1	crystal clock input disable
+ 0	PCI clock input disable
+------
+Note:	this register is addressable as byte, word and dword
+
+Bitfields for Ensoniq ES1370/ES1371 interrupt/chip select status register:
+Bit(s)	Description	(Table P1077)
+---AudioPCI ES1370---
+ 31	DAC1, DAC2, ADC, UART or CCB interrupt occurred
+ 30-11	reserved
+ 10	CODEC busy or register write in progress
+ 9	CODEC busy
+ 8	CODEC register write in progress
+ 7	reserved
+ 6-5	CCB voice code (if bit 4 = 1)
+	00 = DAC1
+	01 = DAC2
+	10 = ADC
+	11 = reserved
+---AudioPCI-97 ES1371---
+ 31	DAC1, DAC2, ADC, UART, CCB or power management interrupt occurred
+ 30-9	reserved
+ 8	CODEC synchronization error
+ 7-6	CCB voice code (if bit 4 = 1)
+	00 = DAC1
+	01 = DAC2
+	10 = ADC
+	11 = reserved
+ 5	power level interrupt status
+------
+ 4	CCB interrupt status
+ 3	UART interrupt status
+ 2	DAC1 playback channel interrupt status
+ 1	DAC2 playback channel interrupt status
+ 0	ADC record channel interrupt status
+
+Bitfields for Ensoniq ES1370/ES1371 UART control register:
+Bit(s)	Description	(Table P1078)
+ 7	UART receiver interrupt enable
+ 6-5	UART transmitter operation
+	01 = Txrdy interrupts enabled
+ 4-2	reserved
+ 1-0	UART control
+	11 = software reset
+
+Bitfields for Ensoniq ES1370/ES1371 UART status register:
+Bit(s)	Description	(Table P1079)
+ 7	UART receiver interrupt status
+ 6-3	reserved
+ 2	UART transmitter interrupt status
+ 1	UART transmitter ready
+ 0	UART receiver ready
+
+Bitfields for Ensoniq ES1370/ES1371 UART reserved register:
+Bit(s)	Description	(Table P1080)
+ 7-1	reserved
+ 0	UART test mode enable (UART clock switched to PCI bus clock)
+
+Bitfields for Ensoniq ES1370/ES1371 memory page register:
+Bit(s)	Description	(Table P1081)
+ 31-4	reserved
+ 3-0	memory page select (accessed in registers 30h-3Fh)
+	0000 = DAC1 sample bytes 15-0 (lower half buffer)
+	0001 = DAC1 sample bytes 31-16
+	0010 = DAC1 sample bytes 47-32 (upper half buffer)
+	0011 = DAC1 sample bytes 63-48
+	0100 = DAC2 sample bytes 15-0 (lower half buffer)
+	0101 = DAC2 sample bytes 31-16
+	0110 = DAC2 sample bytes 47-32 (upper half buffer)
+	0111 = DAC2 sample bytes 63-48
+	1000 = ADC sample bytes 15-0 (lower half buffer)
+	1001 = ADC sample bytes 31-16
+	1010 = ADC sample bytes 47-32 (upper half buffer)
+	1011 = ADC sample bytes 63-48
+	1100 = DAC1/DAC2 frame information
+	1101 = ADC frame information
+	1110 = UART FIFO
+	1111 = UART FIFO
+Note:	this register is addressable as byte, word and dword
+
+Bitfields for Ensoniq ES1370/ES1371 CODEC write register:
+Bit(s)	Description	(Table P1082)
+---AudioPCI ES1370---
+ 31-16	reserved
+ 15-8	CODEC register index
+---AudioPCI-97 ES1371---
+ 31-24	reserved
+ 23	AC97 CODEC read/write
+	0 = write
+	1 = read
+ 22-16	AC97 CODEC register index
+------
+ 7-0	CODEC register data
+---index 16h---
+ 1	0 = CODEC power down
+------
+Note:	(AudioPCI ES1370) this register is addressable as word and dword
+
+Bitfields for Ensoniq ES1370/ES1371 serial interface control register:
+Bit(s)	Description	(Table P1083)
+ 31-22	reserved
+ 22	(ES1371) DAC test mode enable (selects I2S lrclk input as  source for
+	  playback and record channels)
+ 21-19	sample address counter loop binary offset
+ 18-16	sample address counter channel start/restart binary offset
+ 15	ADC channel action when sample count reaches zero
+	0 = loop (interrupt set, keep recording)
+	1 = stop (inteerupt set, stop recording)
+ 14	DAC2 channel action when sample count reaches zero
+	0 = loop (interrupt set, keep playing)
+	1 = stop (inteerupt set, play last sample)
+ 13	DAC1 channel action when sample count reaches zero (same values as
+	  bit 14)
+ 12	DAC2 channel playback pause
+ 11	DAC1 channel playback pause
+ 10	ADC interrupt enable
+ 9	DAC2 interrupt enable
+ 8	DAC1 interrupt enable
+ 7	DAC1 sample counter reload
+ 6	DAC2 sample counter reload
+ 5-4	ADC channel data format
+	00 = 8-bit mono
+	01 = 8-bit stereo
+	10 = 16-bit mono
+	11 = 16-bit stereo
+ 3-2	DAC2 channel data format (same values as bits 5-4)
+ 1-0	DAC1 channel data format (same values as bits 5-4)
+Note:	this register is addressable as byte, word and dword
+
+Bitfields for Ensoniq ES1370/ES1371 DAC1/2/ADC channel sample count register:
+Bit(s)	Description	(Table P1084)
+ 31-16	sample counter current value (read-only)
+ 15-0	sample counter (samples - 1)
+Note:	these registers are addressable as word and dword
+
+Bitfields for Ensoniq ES1370/ES1371 internal memory 1:
+Bit(s)	Description	(Table P1085)
+---register +00Ch bits 3-0 = 0000---
+ 31-0	DAC1 sample bytes 3-0
+---register +00Ch bits 3-0 = 0001---
+ 31-0	DAC1 sample bytes 19-16
+---register +00Ch bits 3-0 = 0010---
+ 31-0	DAC1 sample bytes 35-32
+---register +00Ch bits 3-0 = 0011---
+ 31-0	DAC1 sample bytes 51-48
+---register +00Ch bits 3-0 = 0100---
+ 31-0	DAC2 sample bytes 3-0
+---register +00Ch bits 3-0 = 0101---
+ 31-0	DAC2 sample bytes 19-16
+---register +00Ch bits 3-0 = 0110---
+ 31-0	DAC2 sample bytes 35-32
+---register +00Ch bits 3-0 = 0111---
+ 31-0	DAC2 sample bytes 51-48
+---register +00Ch bits 3-0 = 1000---
+ 31-0	ADC sample bytes 3-0
+---register +00Ch bits 3-0 = 1001---
+ 31-0	ADC sample bytes 19-16
+---register +00Ch bits 3-0 = 1010---
+ 31-0	ADC sample bytes 35-32
+---register +00Ch bits 3-0 = 1011---
+ 31-0	ADC sample bytes 51-48
+---register +00Ch bits 3-0 = 1100---
+ 31-0	DAC1 sample buffer memory address
+---register +00Ch bits 3-0 = 1101---
+ 31-0	ADC sample buffer memory address
+---register +00Ch bits 3-0 = 1110---
+ 31-9	reserved
+ 8	UART data valid
+ 7-0	UART data received through MIDI interface
+---register +00Ch bits 3-0 = 1111---
+ 31-9	reserved
+ 8	UART data valid
+ 7-0	UART data received through MIDI interface
+------
+SeeAlso: #P1086
+
+Bitfields for Ensoniq ES1370/ES1371 internal memory 2:
+Bit(s)	Description	(Table P1086)
+---register +00Ch bits 3-0 = 0000---
+ 31-0	DAC1 sample bytes 7-4
+---register +00Ch bits 3-0 = 0001---
+ 31-0	DAC1 sample bytes 23-20
+---register +00Ch bits 3-0 = 0010---
+ 31-0	DAC1 sample bytes 39-36
+---register +00Ch bits 3-0 = 0011---
+ 31-0	DAC1 sample bytes 55-52
+---register +00Ch bits 3-0 = 0100---
+ 31-0	DAC2 sample bytes 7-4
+---register +00Ch bits 3-0 = 0101---
+ 31-0	DAC2 sample bytes 23-20
+---register +00Ch bits 3-0 = 0110---
+ 31-0	DAC2 sample bytes 39-36
+---register +00Ch bits 3-0 = 0111---
+ 31-0	DAC2 sample bytes 55-52
+---register +00Ch bits 3-0 = 1000---
+ 31-0	ADC sample bytes 7-4
+---register +00Ch bits 3-0 = 1001---
+ 31-0	ADC sample bytes 23-20
+---register +00Ch bits 3-0 = 1010---
+ 31-0	ADC sample bytes 39-36
+---register +00Ch bits 3-0 = 1011---
+ 31-0	ADC sample bytes 55-52
+---register +00Ch bits 3-0 = 1100---
+ 31-16	DAC1 dwords transferred
+ 15-0	DAC1 dwords in buffer - 1
+---register +00Ch bits 3-0 = 1101---
+ 31-16	ADC dwords transferred
+ 15-0	ADC dwords in buffer - 1
+---register +00Ch bits 3-0 = 1110---
+ 31-9	reserved
+ 8	UART data valid
+ 7-0	UART data received through MIDI interface
+---register +00Ch bits 3-0 = 1111---
+ 31-9	reserved
+ 8	UART data valid
+ 7-0	UART data received through MIDI interface
+------
+SeeAlso: #P1085,#P1087
+
+Bitfields for Ensoniq ES1370/ES1371 internal memory 3:
+Bit(s)	Description	(Table P1087)
+---register +00Ch bits 3-0 = 0000---
+ 31-0	DAC1 sample bytes 11-8
+---register +00Ch bits 3-0 = 0001---
+ 31-0	DAC1 sample bytes 27-24
+---register +00Ch bits 3-0 = 0010---
+ 31-0	DAC1 sample bytes 43-40
+---register +00Ch bits 3-0 = 0011---
+ 31-0	DAC1 sample bytes 59-56
+---register +00Ch bits 3-0 = 0100---
+ 31-0	DAC2 sample bytes 11-8
+---register +00Ch bits 3-0 = 0101---
+ 31-0	DAC2 sample bytes 27-24
+---register +00Ch bits 3-0 = 0110---
+ 31-0	DAC2 sample bytes 43-40
+---register +00Ch bits 3-0 = 0111---
+ 31-0	DAC2 sample bytes 59-56
+---register +00Ch bits 3-0 = 1000---
+ 31-0	ADC sample bytes 11-8
+---register +00Ch bits 3-0 = 1001---
+ 31-0	ADC sample bytes 27-24
+---register +00Ch bits 3-0 = 1010---
+ 31-0	ADC sample bytes 43-40
+---register +00Ch bits 3-0 = 1011---
+ 31-0	ADC sample bytes 59-56
+---register +00Ch bits 3-0 = 1100---
+ 31-0	DAC2 sample buffer memory address
+---register +00Ch bits 3-0 = 1101---
+ 31-0	reserved
+---register +00Ch bits 3-0 = 1110---
+ 31-9	reserved
+ 8	UART data valid
+ 7-0	UART data received through MIDI interface
+---register +00Ch bits 3-0 = 1111---
+ 31-9	reserved
+ 8	UART data valid
+ 7-0	UART data received through MIDI interface
+------
+SeeAlso: #P1086,#P1088
+
+Bitfields for Ensoniq ES1370/ES1371 internal memory 4:
+Bit(s)	Description	(Table P1088)
+---register +00Ch bits 3-0 = 0000---
+ 31-0	DAC1 sample bytes 15-12
+---register +00Ch bits 3-0 = 0001---
+ 31-0	DAC1 sample bytes 31-28
+---register +00Ch bits 3-0 = 0010---
+ 31-0	DAC1 sample bytes 47-44
+---register +00Ch bits 3-0 = 0011---
+ 31-0	DAC1 sample bytes 63-60
+---register +00Ch bits 3-0 = 0100---
+ 31-0	DAC2 sample bytes 15-12
+---register +00Ch bits 3-0 = 0101---
+ 31-0	DAC2 sample bytes 31-28
+---register +00Ch bits 3-0 = 0110---
+ 31-0	DAC2 sample bytes 47-44
+---register +00Ch bits 3-0 = 0111---
+ 31-0	DAC2 sample bytes 63-60
+---register +00Ch bits 3-0 = 1100---
+ 31-16	DAC2 dwords transferred
+ 15-0	DAC2 dwords in buffer - 1
+---register +00Ch bits 3-0 = 1101---
+ 31-0	reserved
+---register +00Ch bits 3-0 = 1110---
+ 31-9	reserved
+ 8	UART data valid
+ 7-0	UART data received through MIDI interface
+---register +00Ch bits 3-0 = 1111---
+ 31-9	reserved
+ 8	UART data valid
+ 7-0	UART data received through MIDI interface
+------
+SeeAlso: #P1087
+

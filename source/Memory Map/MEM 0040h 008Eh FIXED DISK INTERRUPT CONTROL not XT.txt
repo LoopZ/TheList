@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040008E
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:008Eh - FIXED DISK - INTERRUPT CONTROL [not XT]
+Size:	BYTE
+Note:	cleared to 00h at start of disk operation, set to FFh by IRQ14
+	  handler when hard disk controller completes command
+SeeAlso: MEM 0040h:008Ch,MEM 0040h:008Dh,MEM 0040h:008Fh
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: M004000B0
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:00B0h - Phoenix 386 BIOS 1.10 10a - LOOP COUNT FOR HARD DISK TIMEOUT
+Size:	BYTE
+Desc:	number of times a tight software delay loop should be executed to
+	  generate the sub-55ms delays used internally by the BIOS
+Note:	also used for delaying when beeping due to full keyboard buffer
+SeeAlso: MEM 0040h:00ECh"Dell",INT 15/AH=BCh
+

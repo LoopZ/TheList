@@ -1,0 +1,831 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03D603D7
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03D6-03D7 - Chips&Technologies VGA - EXTENSION REGISTERS
+
+03D6  -W  extension register index (see #P0762,#P0763)
+03D7  RW  extension register data
+
+(Table P0762)
+Values for Chips&Technologies 64200 extension register index:
+ 00h	"XR00"	chip version (see #P0764)
+ 01h	"XR01"	configuration (see #P0765)
+ 02h	"XR02"	CPU interface control (see #P0767)
+ 03h	"XR03"	master control (see #P0768)
+ 04h	"XR04"	memory control (see #P0770)
+ 05h	"XR05"	clock control (see #P0771)
+ 06h	"XR06"	color palette control / DRAM interface
+ 07h	"XR07"	reserved
+ 08h	"XR08"	general purpose output select B
+ 09h	"XR09"	general purpose output select A
+ 0Ah	"XR0A"	cursor address top
+ 0Bh	"XR0B"	CPU paging (see #P0777)
+ 0Ch	"XR0C"	start address top (see #P0778)
+ 0Dh	"XR0D"	auxiliary offset (see #P0780)
+ 0Eh	"XR0E"	text mode control (see #P0781)
+ 0Fh	"XR0F"	configuration register 2
+ 10h	"XR10"	single/low map register (see #P0782)
+ 11h	"XR11"	high map register (see #P0783)
+ 14h	"XR14"	emulation mode (see #P0784)
+ 15h	"XR15"	write protect (see #P0785)
+ 16h	"XR16"	trap enable
+ 17h	"XR17"	trap status
+ 18h	"XR18"	alternate horizontal display end
+ 19h	"XR19"	alternate horizontal sync start / half-line
+ 1Ah	"XR1A"	alternate horizontal sync end (see #P0789)
+ 1Bh	"XR1B"	alternate horizontal total
+ 1Ch	"XR1C"	alternate horizontal blank start / horizontal panel size
+ 1Dh	"XR1D"	alternate horizontal blank end (see #P0790)
+ 1Eh	"XR1E"	alternate offset
+ 1Fh	"XR1F"	virtual EGA switch (see #P0791)
+ 20h	"XR20"	453 Interface ID
+ 21h	"XR21"	Sliding Hold A
+ 22h	"XR22"	Sliding Hold B
+ 23h	"XR23"	SHC / WBM Control
+ 24h	"XR24"	Flat-Panel Alternate Max Scanline / SHD / WBM Pattern
+ 25h	"XR25"	Flat-Panel "AltGrHVirtPanelSize" / 453 Pin Definition
+ 26h	"XR26"	453 Configuration
+ 27h	"XR27"	reserved
+ 28h	"XR28"	video interface (see #P0792)
+ 29h	"XR29"	function control
+ 2Ah	"XR2A"	frame interrupt count
+ 2Bh	"XR2B"	default video color (to be displayed when screen blanked)
+ 2Ch	"XR2C"	Flat-Panel VSync (FLM) Delay / force H high
+ 2Dh	"XR2D"	Flat-Panel HSync (LP) delay / force H low
+ 2Eh	"XR2E"	Flat-Panel HSync (LP) delay / force V high
+ 2Fh	"XR2F"	Flat-Panel HSync (LP) width / force V low
+ 30h	"XR30"	graphics cursor start address (high)
+ 31h	"XR31"	graphics cursor start address (low)
+ 32h	"XR32"	graphics cursor end address
+ 33h	"XR33"	graphics cursor X (high)
+ 34h	"XR34"	graphics cursor X (low)
+ 35h	"XR35"	graphics cursor Y (high)
+ 36h	"XR36"	graphics cursor Y (low)
+ 37h	"XR37"	graphics cursor mode
+ 38h	"XR38"	graphics cursor mask
+ 39h	"XR39"	graphics cursor color 0
+ 3Ah	"XR3A"	graphics cursor color 1
+ 3Bh	"XR3B"	reserved
+ 3Ch	"XR3C"	serial / row count (see #P0799)
+ 3Dh	"XR3D"	multiplexor mode (see #P0801)
+ 41h	"XR41"	virtual EGA switch register (82C453)
+ 44h	"XR44"	software flag register 1
+ 45h	"XR45"	software flag register 2 / foreground color
+ 50h	"XR50"	panel format
+ 51h	"XR51"	display type
+ 52h	"XR52"	power-down control / panel size
+ 53h	"XR53"	line graphics override
+ 54h	"XR54"	flat-panel interface / alternate miscellaneous output
+ 55h	"XR55"	horizontal compensation / text 350_A compensation
+ 56h	"XR56"	horizontal centering / text 350_B compensation
+ 57h	"XR57"	vertical compensation / text 400 compensation
+ 58h	"XR58"	vertical centering / graphics 350 compensation
+ 59h	"XR59"	vertical line insertion / graphics 400 compensation
+ 5Ah	"XR5A"	vertical line replication / FP vertical display start 400
+ 5Bh	"XR5B"	flat-panel vertical display end 400 
+ 5Ch	"XR5C"	weight control clock A
+ 5Dh	"XR5D"	weight control clock B
+ 5Eh	"XR5E"	ACDCLK control
+ 5Fh	"XR5F"	power-down mode refresh
+ 60h	"XR60"	blink rate control
+ 61h	"XR61"	SmartMap(tm) control
+ 62h	"XR62"	SmartMap(tm) shift parameter
+ 63h	"XR63"	SmartMap(tm) color mapping control
+ 64h	"XR64"	flat-panel alternate vertical total
+ 65h	"XR65"	flat-panel alternate overflow
+ 66h	"XR66"	flat-panel alternate vertical sync start
+ 67h	"XR67"	flat-panel alternate vertical sync end
+ 68h	"XR68"	flat-panel vertical panel size / alternate vertical DE end
+ 69h	"XR69"	flat-panel vertical display start 350
+ 6Ah	"XR6A"	flat-panel vertical display end 350
+ 6Bh	"XR6B"	flat-panel vertical overflow 2
+ 6Ch	"XR6C"	weight control clock C
+ 6Dh	"XR6D"	FRC control
+ 6Eh	"XR6E"	polynomial FRC control
+ 6Fh	"XR6F"	frame buffer control
+ 70h	"XR70"	setup/disable control (see #P0807)
+ 71h-7Ch	reserved
+ 7Dh	"XR7D"	flat-panel compensation diagnostic
+ 7Eh	"XR7E"	CGA/Hercules color selection (see #P0815)
+ 7Fh	"XR7F"	diagnostics (see #P0816)
+!!! chips\64200.pdf p.28, p.72
+Note:	not all C&T chips support all of the above registers; see the tables
+	  for the individual registers for a list of supporting chipsets
+SeeAlso: #P0763
+
+(Table P0763)
+Values for Chips&Technologies 64310 extension register index:
+ 00h	"XR00"	chip version (see #P0764)
+ 01h	"XR01"	configuration (see #P0766)
+ 02h	"XR02"	CPU interface control (see #P0767)
+ 03h	"XR03"	CPU interface control 2 (see #P0769)
+ 04h	"XR04"	memory control (see #P0770)
+ 05h	"XR05"	memory control 2 (see #P0772)
+ 06h	"XR06"	color palette control / DRAM interface (see #P0773)
+ 07h	"XR07"	DRxx I/O base ???
+ 08h	"XR08"	linear frame buffer base address low register (see #P0774)
+ 09h	"XR09"	linear frame buffer base address high register (see #P0775)
+ 0Ah	"XR0A"	XRAM mode register (see #P0776)
+ 0Bh	"XR0B"	CPU paging (see #P0777)
+ 0Ch	"XR0C"	start address top (see #P0779)
+ 0Dh	"XR0D"	auxiliary offset (see #P0780)
+ 0Eh	"XR0E"	text mode control (see #P0781)
+ 0Fh	"XR0F"	software flag register 0 (reserved for BIOS/driver use)
+ 10h	"XR10"	single/low map register (see #P0782)
+ 11h	"XR11"	high map register (see #P0783)
+ 12h-13h	reserved
+ 14h	"XR14"	emulation mode (see #P0784)
+ 15h	"XR15"	write protect (see #P0785)
+ 16h	"XR16"	vertical overflow register (see #P0786)
+ 17h	"XR17"	horizontal overflow register (see #P0787)
+ 18h	"XR18"	reserved
+ 19h	"XR19"	alternate horizontal sync start / half-line (see #P0788)
+ 1Ah-1Bh	reserved
+ 1Ch	"XR1C"	alternate horizontal blank start / horizontal panel size
+ 1Dh-27h	reserved
+ 28h	"XR28"	video interface (see #P0792)
+ 29h-2Ah	reserved
+ 2Bh	"XR2B"	software flag register 1 (used by device drivers)
+ 2Ch-2Fh	reserved
+ 30h	"XR30"	clock divide control register (see #P0793)
+ 31h	"XR31"	clock M-divisor register (see #P0794)
+ 32h	"XR32"	clock N-divisor register (see #P0795)
+ 33h	"XR33"	clock control register (see #P0796)
+ 34h-39h	reserved
+ 3Ah	"XR3A"	color key compare data 0 (see #P0797)
+ 3Bh	"XR3B"	color key compare data 1 (see #P0798)
+ 3Ch	"XR3C"	color key compare data 2 (see #P0800)
+ 3Dh	"XR3D"	color key compare mask 0 (see #P0802)
+ 3Eh	"XR3E"	color key compare mask 1 (see #P0803)
+ 3Fh	"XR3F"	color key compare mask 2 (see #P0804)
+ 40h	"XR40"	BitBlt config register (see #P0805)
+ 41h	"XR41"	reserved
+ 42h-43h	reserved
+ 44h	"XR44"	software flag register 2 (reserved for BIOS/driver use)
+ 45h	"XR45"	reserved
+ 46h-4Fh	reserved
+ 50h-51h	reserved
+ 52h	"XR52"	refresh control register (see #P0806)
+ 53h-5Fh	reserved
+ 60h	"XR60"	blink rate control
+ 61h-6Fh	reserved
+ 70h	"XR70"	setup/disable control (see #P0807)
+ 71h	"XR71"	GPIO control register (see #P0808)
+ 72h	"XR72"	GPIO data register (see #P0809)
+ 73h	"XR73"	misc control register (see #P0810)
+ 74h	"XR74"	configuration register 2 (see #P0811)
+ 75h	"XR75"	software flag register 3 (reserved for BIOS/driver use)
+ 76h-79h	reserved
+ 7Ah	"XR7A"	test index register (see #P0812)
+ 7Bh	"XR7B"	test control register (see #P0813)
+ 7Ch	"XR7C"	test data register (see #P0814)
+ 7Dh	"XR7D"	diagnostic register (reserved; should not be read or written)
+ 7Eh	"XR7E"	reserved
+ 7Fh	"XR7F"	diagnostic register (reserved; should not be read or written)
+SeeAlso: #P0762
+
+Bitfields for Chips&Technologies "XR00" chip version:
+Bit(s)	Description	(Table P0764)
+ 7-4	chip type
+	0000 = 82C451
+	0001 = 82C452
+	0010 = 82C455
+	0011 = 82C453
+	0100 = 82C450
+	0101 = 82C456
+	0110 = 82C457
+	0111 = 65520
+	1000 = 65530 / 65525
+	1001 = 65510 Flat-Panel Controller
+	1010 = 64200 Wingine
+	1011 = 64300/301 Wingine DGX (if bit 3 clear)
+	1011 = 64310 Wingine DGX-PCI (if bit 3 set)
+ 3-0	chip revision (0000 = first silicon)
+Note:	this register is read-only
+SeeAlso: #P0762,#P0765
+
+Bitfields for Chips&Technologies 64200 "XR01" configuration:
+Bit(s)	Description	(Table P0765)
+ 7-4	configuration bits 7-4 (latched from pins on falling edge of RESET)
+ 3	memory configuration
+	0 video memory pins always drive
+	1 video memory pins only driven when XR03 bit 0 is clear (VGA mode)
+ 2	source of pixel clock
+	0 oscillator (CLK0-CLK3 are pixel-clock inputs, which are selected by
+	  MSR bits 3-2)
+	1 clock chip (CLK0 is pixel clock input, CLK1-CLK3 are CSELx outputs)
+ 1-0	bus type
+	00 PCI
+	01 Microchannel
+	10 local bus
+	11 ISA
+Note:	this register is read-only
+SeeAlso: #P0762,#P0764,#P0767,#P0766
+
+Bitfields for Chips&Technologies 64300/64310 "XR01" configuration:
+Bit(s)	Description	(Table P0766)
+ 7-6	(64310) reserved (0)
+ 7	(64300) VL-Bus CPU speed???
+ 6	(64300) VL-Bus zero wait state???
+ 5	(64310) OSC source
+	0 = external
+	1 = internal
+ 4	(64310) clock source
+	0 = external (82C404C)
+	1 = internal
+ 3	(64310) chip (bus interface and RAMDAC) enable
+ 2	(64310) 64310 isolate
+	0 = 64310 cannot be disabled
+	1 = 64310 can be disabled using port 106h in setup mode
+	(64310 may also be disabled using PCI configuration registers)
+ 1-0	(64310) bus type
+	00 reserved
+	01 32-bit PCI
+	10 reserved
+	11 32-bit local bus
+SeeAlso: #P0763,#P0765
+
+Bitfields for Chips&Technologies "XR02" CPU interface register:
+Bit(s)	Description	(Table P0767)
+ 7	status of attribute flip-flop (read-only) (0 = index, 1 = data)
+ 6	(64200) palette address decoding
+	0 access only at PORT 03C6h-03C9h
+	1 also access at PORT 83C6h-83C9h (for RAMDACs with 8 registers)
+	(64310) reserved (0)
+ 5	I/O address decoding
+	0 decode all 16 bits of address
+	1 only decode low ten bits of address for 3B4h,3B5h,3B8h,3BAh,3BFh,
+	  3C0h-3C2h,3C4h,3C5h,3CEh,3CFh,3D4h,3D5h,3D8h-3DAh
+ 4-3	mapping of Attribute Controller
+	00 VGA mapping - write index and data at 03C0h (8-bit only)
+	01 16-bit mapping - write index at 03C0h, data at 03C1h
+	10 (64200 only) EGA mapping - write index at 03C0h, data at 03C0h or
+		  03C1h (8-bit)
+	11 reserved
+ 2-0	reserved (0)
+SeeAlso: #P0762,#P0765,PORT 83C6h
+
+Bitfields for Chips&Technologies "XR03" Master Control register:
+Bit(s)	Description	(Table P0768)
+ 7	XREQ# direction (=0 input, =1 output)
+ 6	XREQ# divide (=0 DispEnable for all lines, =1 even-numbered lines)
+ 5	XREQ# mode (=0 DispEnable only, =1 split-buffer VRAM transfer timing)
+	(see #P0799"XR3C",#P0801"XR3D")
+ 4	alternate VGA address
+	=1 map at PORT 02C6h-02C9h instead of 03C6h-03C9h
+ 3-2	reserved
+ 1	alternate palette address
+	=1 map at PORT 02Bxh or PORT 02Dxh instead of 03Bxh/03Dxh
+ 0	Wingine/VGA select
+	=0 VGA
+	=1 Wingine (memory pins are tri-stated)
+Note:	a write-only copy of this register may be accessed at PORT 0022h
+	  (index E0h) and PORT 0023h; a read-write copy exists in systems with
+	  built-in Wingine support
+SeeAlso: #P0762,#P0767,#P0770,#P0769
+
+Bitfields for Chips&Technologies 64310 "XR03" CPU interface register 2:
+Bit(s)	Description	(Table P0769)
+ 7-2	reserved (0)
+ 1	DRxx register access enable (I/O port defined in XR07 ???)
+ 0	palette write shadow
+SeeAlso: #P0763,#P0768
+
+Bitfields for Chips&Technologies "XR04" Memory Control register:
+Bit(s)	Description	(Table P0770)
+ 7-6	(64200) reserved (0)
+ 7	(64310) FIFO depth
+	0 = bus FIFO is 8 deep
+	1 = bus FIFO is 4 deep
+ 6	(64310) PCI burst enable
+ 5	(64200) enable CPU memory write buffer
+	(64310) CPU bus FIFO enable
+ 4-3	reserved (0)
+ 2	memory wraparound
+	=1 enable bit 17 of CRTC address counter
+ 1-0	(64310) memory configuration
+	   data path  chips   config   total
+	00    16-bit	  4  256Kx4   1/2 MB
+			  1  256Kx16  1/2 MB
+	01    32-bit	  8  256Kx4	1 MB
+			  2  256Kx16	1 MB
+	10    32-bit	 16  256Kx4	2 MB
+			  4  256Kx16	2 MB
+	11  reserved
+ 1	(64200) reserved (0)
+ 0	(64200) memory configuration
+	=0 8-bit data, two DRAM chips of 256Kx4
+	=1 16-bit data, four DRAM chips of 256Kx4
+SeeAlso: #P0762,#P0768,#P0763
+
+Bitfields for Chips&Technologies "XR05" Clock Control register:
+Bit(s)	Description	(Table P0771)
+ !!!
+SeeAlso: #P0762
+
+Bitfields for Chips&Technologies 64310 "XR05" Memory Control register 2:
+Bit(s)	Description	(Table P0772)
+ 7	VAFC PCLK/2
+	0 = DCLK=PCLK
+	1 = DCLK=PCLK/2
+ 6	VAFC enable (XR71 bits 5, 3 and 2 must be 0)
+ 5	reserved (0)
+ 4	256Kx16 access format
+	0 = 2 CAS / 1 WE
+	1 = 2 WE / 1 CAS
+ 3-0	reserved
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies "XR06" color palette control / DRAM interface:
+Bit(s)	Description	(Table P0773)
+ 7-5	(64310) reserved (0)
+ 4	(64310) video overlay on color key enable
+ 3-2	(64310) display mode color depth
+	00 = 4BPP / 8BPP
+	01 = 15BPP (5-5-5) Sierra compatible
+	10 = 24BPP
+	11 = 16BPP (5-6-5) XGA compatible
+ 1	(64310) internal DAC disable
+ 0	(64310) enable external pixel data
+	0 = VID15-0 and KEY inputs for live video overlay
+	1 = P7-0 and BLANK# outputs for external feature connector/external
+	  color keying (XR73 bit 5 must be set)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR08" linear frame buffer base low:
+Bit(s)	Description	(Table P0774)
+ 7-6	linear frame buffer base address low (VL-Bus only)
+	(bits 23-22 of linear frame buffer base address)
+	(LFB is 4 MB boundary within 4 GB address space. Upper 2 MB is used
+	  for memory mapped I/O.)
+ 5-0	reserved (0)
+SeeAlso: #P0763,#P0775
+
+Bitfields for Chips&Technologies 64310 "XR09" linear frame buffer base high:
+Bit(s)	Description	(Table P0775)
+ 7-0	linear frame buffer base address high (VL-Bus only)
+	(bits 23-22 of linear frame buffer base address)
+	(LFB is 4 MB boundary within 4 GB address space. Upper 2 MB is used
+	  for memory mapped I/O.)
+SeeAlso: #P0763,#P0774
+
+Bitfields for Chips&Technologies 64310 "XR0A" XRAM mode register:
+Bit(s)	Description	(Table P0776)
+ 7	reserved (0)
+ 6	disable upper XRAM in 2MB modes
+	0 = upper XRAM not enabled
+	1 = upper XRAM enabled
+	(used in systems with 2MB frame buffer but only single 256Kx4 XRAM)
+ 5	XRAM diagnostic 64 (0)
+ 4	synchronous XRAM enable
+ 3	asynchronous XRAM enable
+ 2-1	BitBlt update
+	00 = no update during BitBlt
+	11 = BitBlt update enabled
+ 0	XRAM test enable
+	0 = XRAM normal mode
+	1 = XRAM read/write
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies "XR0B" CPU Paging register:
+Bit(s)	Description	(Table P0777)
+ 7-3	(64200) reserved (0)
+ 7	(64310) big-endian byte swap (32 bpp swap)
+	0 = no swap
+	1 = swap bytes 0-3 and 1-2
+ 6	(64310) big-endian byte swap (16 bpp swap)
+	0 = no swap
+	1 = swap bytes 0-1 and 2-3
+ 4	(64310) linear addressing enable
+ 3	(64310) reserved (0)
+ 2	divide CPU addresses by 4 (chain-4 mode)
+ 1	use two maps for CPU to access extended video memory (see #P0782,#P0783)
+ 0	memory-mapping mode
+	=0 VGA-compatible
+	=1 extended mapping for >= 512K video memory
+SeeAlso: #P0762,#P0778,#P0763
+
+Bitfields for Chips&Technologies 64200 "XR0C" Start Address Top register:
+Bit(s)	Description	(Table P0778)
+ 7-1	reserved (0)
+ 0	high-order bit of display start address when 512K display memory used
+SeeAlso: #P0762,#P0777,#P0779
+
+Bitfields for Chips&Technologies 64310 "XR0C" Start Address Top register:
+Bit(s)	Description	(Table P0779)
+ 7	reserved
+ 6	high map bit 8
+ 4	low map bit 8
+ 3-0	high-order bits of display start address
+SeeAlso: #P0763,#P0778
+
+Bitfields for Chips&Technologies "XR0D" Auxiliary Offset register:
+Bit(s)	Description	(Table P0780)
+ 7-3	reserved (0)
+ 2	(64200) reserved (0)
+	(64310) msb of row offset register (CRT controller register 13h)
+ 1-0	(64310) reserved (0)
+ 1	(64200) LSB of memory offset (CR13) in Chain and Chain-4 modes
+ 0	(64200) LSB of alternate memory offset (XR1E) in Chain/Chain-4 modes
+SeeAlso: #P0762
+
+Bitfields for Chips&Technologies "XR0E" Text Mode Control register:
+Bit(s)	Description	(Table P0781)
+ 7-4	reserved (0)
+ 3	cursor style (0 = replace, 1 = XOR)
+ 2	disable cursor blink
+ 1	reserved (0)
+ 0	(64200) reserved (0)
+	(64310) extended text mode font scrambling in plane 2 enable
+SeeAlso: #P0762,#P0763
+
+Bitfields for Chips&Technologies "XR10" Single/Low Map register:
+Bit(s)	Description	(Table P0782)
+ 7-0	(64310) single/low map base address bits 17-10
+	(single map mode base address if XR0B bit 1 = 0, dual map mode lower
+	  map base address if XR0B bit 1 = 1)
+!!!chips\64200.pdf p.80
+SeeAlso: #P0762,#P0783,#P0763
+
+Bitfields for Chips&Technologies "XR11" High Map register:
+Bit(s)	Description	(Table P0783)
+ 7-0	(64310) dual map mode high map base address bits 17-10
+	  (if XR0B bit 1 = 1)
+SeeAlso: #P0762,#P0782
+
+Bitfields for Chips&Technologies "XR14" Emulation Mode register:
+Bit(s)	Description	(Table P0784)
+ 7	enable interrupt output function (=0 tri-state IRQ# line)
+ 6	(64200) enable VSync status bit at PORT 03BAh/03DAh
+	(64310) reserved (0)
+ 5	vertical retrace status
+	=0 PORT 03BAh/03DAh bit 3 is vertical retrace (CGA/EGA/VGA)
+	=1 PORT 03BAh/03DAh bit 3 is video active (MDA/Herc)
+ 4-0	(64310) reserved (0)
+ 4	(64200) display enable status
+	=0 PORT 03BAh/03DAh bit 0 is display enable (CGA/EGA/VGA)
+	=1 PORT 03BAh/03DAh bit 0 is HSync (MDA/Herc)
+ 3-2	(64200) (read-only) Hercules configuration register readback
+	  (see PORT 03BFh)
+ 1-0	(64200) emulation mode
+	00 VGA
+	01 CGA
+	10 MDA/Hercules
+	11 EGA
+SeeAlso: #P0762,#P0763
+
+Bitfields for Chips&Technologies "XR15" Write Protect register:
+Bit(s)	Description	(Table P0785)
+ 7	write protect AR11 (both bits 7 and 0 must be clear to write AR11)
+ 6
+ 5
+ 4
+ 3
+ 2
+ 1
+ 0	!!!chips\64200.pdf p.82
+SeeAlso: #P0762
+
+Bitfields for Chips&Technologies 64310 "XR16" vertical overflow register:
+Bit(s)	Description	(Table P0786)
+ 7	resrved (0)
+ 6	line compare bit 10
+ 5	resrved (0)
+ 4	vertical blank start bit 10
+ 3	resrved (0)
+ 2	vertical sync start bit 10
+ 1	vertical display enable end bit 10
+ 0	vertical total bit 10
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR17" horizontal overflow register:
+Bit(s)	Description	(Table P0787)
+ 7	half line compare bit 8 (bits 7-0 in XR19)
+ 6	overflow end bits (XR17 bits 5 and 3) enable
+ 5	horizontal blank end bit 6
+ 4	horizontal blank start bit 8
+ 3	horizontal sync end bit 5
+ 2	horizontal sync start bit 8
+ 1	horizontal display enable end bit 8
+ 0	horizontal total bit 8
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies "XR19" alt. horizontal sync start/half-line:
+Bit(s)	Description	(Table P0788)
+ 7-0	(64310) CRT half-line value
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies "XR1A" Alternate Horizontal Sync End register:
+Bit(s)	Description	(Table P0789)
+ 7
+ 6-5
+ 4-0
+SeeAlso: #P0762,#P0790
+
+Bitfields for Chips&Technologies "XR1D" Alternate Horizontal Blank End reg:
+Bit(s)	Description	(Table P0790)
+ 7
+ 6-5
+ 4-0
+SeeAlso: #P0762,#P0789
+
+Bitfields for Chips&Technologies "XR1F" Virtual EGA Switch register:
+Bit(s)	Description	(Table P0791)
+ 7
+ 6-4	reserved (0)
+ 3-0	virtual EGA switches
+SeeAlso: #P0762
+
+Bitfields for Chips&Technologies "XR28" Video Interface register:
+Bit(s)	Description	(Table P0792)
+ 7	reserved
+ 6	(64310) wide video pixel panning (if bit 4 = 1 and port 3C0h
+	  register 10h bit 6 = 1)
+	0 = pixel panning controlled by port 3C0h register 13h bits 2-1
+	1 = pixel panning controlled by port 3C0h register 13h bits 2-0
+ 5	interlaced video
+ 4	(64310) wide video path (doubles values in all horizontal CRTC
+	  registers)
+	0 = 4-bit video data path
+	1 = 8-bit video data path (horizontal pixel panning controlled by
+	  bit 6; port 3CEh register 5h bit 5 must be 0)
+ 3	reserved (0)
+ 2	shut off video
+ 1	(64310) BLANK#/display enable select
+	0 = BLANK# pin outputs BLANK#
+	1 = BLANK# pin outputs display enable
+ 0	(64310) BLANK#/display enable polarity
+	0 = negative polarity
+	1 = positive polarity
+SeeAlso: #P0762,#P0763
+
+Bitfields for Chips&Technologies 64310 "XR30" clock divide control register:
+Bit(s)	Description	(Table P0793)
+ 7-4	reserved (0)
+ 3-1	post divisor select
+	000 = divide by 1
+	001 = divide by 2
+	010 = divide by 4
+	011 = divide by 8
+	100 = divide by 16
+	101 = divide by 32
+	110-111 = reserved
+ 0	reference divisor select
+	0 = divide by 4
+	1 = divide by 1
+Note:	Registers XR30-32 are used to program either memory clock or video
+	  clock VCO, selected by XR33 bit 5. Data must be written in sequence
+	  to all three registers, after which they are transferred to VCO
+	  simultaneously.
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR31" clock M-divisor register:
+Bit(s)	Description	(Table P0794)
+ 7	reserved (0)
+ 6-0	VCO M-divisor (program value - 2)
+Note:	Registers XR30-32 are used to program either memory clock or video
+	  clock VCO, selected by XR33 bit 5. Data must be written in sequence
+	  to all three registers, after which they are transferred to VCO
+	  simultaneously.
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR32" clock N-divisor register:
+Bit(s)	Description	(Table P0795)
+ 7	reserved (0)
+ 6-0	VCO N-divisor (program value - 2)
+Note:	Registers XR30-32 are used to program either memory clock or video
+	  clock VCO, selected by XR33 bit 5. Data must be written in sequence
+	  to all three registers, after which they are transferred to VCO
+	  simultaneously.
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR33" clock control register:
+Bit(s)	Description	(Table P0796)
+ 7-6	reserved (0)
+ 5	clock register program pointer
+	0 = VCLK VCO
+	1 = MCLK VCO
+ 4	PCLK equals MCLK instead of VCLK
+ 3	reserved (0)
+ 2	OSC enable (if XR01 bit 5 = 1)
+ 1	MCLK VCO enable (if XR01 bit 4 = 1)
+ 0	VCLK VCO enable (if XR01 bit 4 = 1)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR3A" color key compare data 0:
+Bit(s)	Description	(Table P0797)
+ 7-0	color compare data 0
+	(Compared to lowest 8 bits of 64310 memory data, masked with XR3D. If
+	  match occurs and XR06 bit 4 = 1, external video is sent to screen.
+	  Color comparison occurs before RAMDAC. Palette LUT index is used in
+	  4BPP and 8BPP modes.)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR3B" color key compare data 1:
+Bit(s)	Description	(Table P0798)
+ 7-0	color compare data 1
+	(Compared to bits 15-8 of 64310 memory data, masked with XR3E. If
+	  match occurs and XR06 bit 4 = 1, external video is sent to screen.
+	  This register should be masked in 4BPP and 8BPP modes by setting
+	  XR3E to FFh.)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64200 "XR3C" Serial/Row Count register:
+Bit(s)	Description	(Table P0799)
+ 7-6	reserved (0)
+ 5-3	row count (number of transfer cycles)
+	000 = 64
+	001 = 128
+	010 = 256
+	011 = 512
+	1x0 = 1024
+	1x1 = 2048
+ 2-0	serial count (same as for bits 5-3, but in units of serial clocks)
+SeeAlso: #P0762,#P0801,#P0768
+
+Bitfields for Chips&Technologies 64310 "XR3C" color key compare data 2:
+Bit(s)	Description	(Table P0800)
+ 7-0	color compare data 2
+	(Compared to bits 23-16 of 64310 memory data, masked with XR3F. If
+	  match occurs and XR06 bit 4 = 1, external video is sent to screen.
+	  This register should only be used in 24BPP modes, and masked in
+	  other modes by setting XR3F to FFh.)
+SeeAlso: #P0763,#P0802
+
+Bitfields for Chips&Technologies 64200 "XR3D" Multiplexer Mode register:
+Bit(s)	Description	(Table P0801)
+ 7-5	reserved
+ 4
+ 3
+ 2-0	multiplexer mode
+SeeAlso: #P0762,#P0799,#P0768
+
+Bitfields for Chips&Technologies 64310 "XR3D" color key compare mask 0:
+Bit(s)	Description	(Table P0802)
+ 7-0	color compare mask 0 (masks XR3A)
+	0 = bit compared
+	1 = bit masked from comparison
+SeeAlso: #P0763,#P0800,#P0803
+
+Bitfields for Chips&Technologies 64310 "XR3E" color key compare mask 1:
+Bit(s)	Description	(Table P0803)
+ 7-0	color compare mask 1 (masks XR3B)
+	0 = bit compared
+	1 = bit masked from comparison
+SeeAlso: #P0763,#P0802,#P0804
+
+Bitfields for Chips&Technologies 64310 "XR3F" color key compare mask 2:
+Bit(s)	Description	(Table P0804)
+ 7-0	color compare mask 2 (masks XR3C)
+	0 = bit compared
+	1 = bit masked from comparison
+SeeAlso: #P0763,#P0802,#P0803
+
+Bitfields for Chips&Technologies 64310 "XR40" BitBlt config register:
+Bit(s)	Description	(Table P0805)
+ 7-2	reserved (0)
+ 1-0	BitBlt draw mode
+	00 = reserved
+	01 = 8bpp
+	10 = 16bpp
+	11 = reserved
+	(24bpp handled in 8bpp mode; no nibble mode for 4bpp)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR52" refresh control register:
+Bit(s)	Description	(Table P0806)
+ 7-3	reserved (0)
+ 2-0	VGA refresh cycles per scan line
+	000 = default
+	001-101 = 1-5 refresh cycles
+	110-111 = illegal
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies "XR70" Setup/Disable Control register:
+Bit(s)	Description	(Table P0807)
+ 7
+ 6-0	reserved (0)
+SeeAlso: #P0762
+
+Bitfields for Chips&Technologies 64310 "XR71" GPIO control register:
+Bit(s)	Description	(Table P0808)
+ 7-5	GPOE
+	0 = respective GPIO pin is input
+	1 = respective GPIO pin is output
+	(if standard feature connector is enabled (XR73 bit 5 = 1), GPIO pin 5
+	  becomes an alternate fixed function input (ECLK#) and bit 5 must be
+	  set to 0)
+	(if external clock is selected (XR01 bit 4 = 0), bits 7-6 have no
+	  effect and GPIO pins 7-6 become CLKSEL1-0 and output contents of
+	  port 3CCh bits 3-2)
+ 4	reserved (0)
+ 3-2	GPOE
+	0 = respective GPIO pin is input
+	1 = respective GPIO pin is output
+	(if standard feature connector is enabled (XR73 bit 5 = 1), GPIO pins
+	  3 and 2 become alternate fixed function inputs (EVIDEO#, ESYNC#) and
+	  bits 3-2 must be set to 0)
+ 1-0	reserved (0)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR72" GPIO data register:
+Bit(s)	Description	(Table P0809)
+ 7-5	GPIO (input from/output to respective GPIO pin)
+	(if standard feature connector is enabled (XR73 bit 5 = 1), GPIO pin 5
+	  becomes an alternate fixed function input (ECLK#))
+	(if external clock is selected (XR01 bit 4 = 0), GPIO pins 7-6 become
+	  CLKSEL1-0 and output contents of port 3CCh bits 3-2)
+ 4	reserved (0)
+ 3-2	GPIO (input from/output to respective GPIO pin)
+	(if standard feature connector is enabled (XR73 bit 5 = 1), GPIO pins
+	  3 and 2 become alternate fixed function inputs (EVIDEO#, ESYNC#))
+ 1-0	reserved (0)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR73" misc control register:
+Bit(s)	Description	(Table P0810)
+ 7	ROMCS# write access enable
+ 6	external color key enable
+ 5	standard feature connector enable (must be set before XR06 bit 0)
+ 4	reserved (0)
+ 3	VSYNC control
+	0 = CRTC VSYNC is output on VSYNC pin 126
+	1 = bit 2 is output on VSYNC pin 126
+ 2	VSYNC data (if bit 3 = 1, this bit will be output on VSYNC pin)
+ 1	HSYNC control
+	0 = CRTC HSYNC is output on HSYNC pin 125
+	1 = bit 0 is output on HSYNC pin 125
+ 0	HSYNC data (if bit 1 = 1, this bit will be output on HSYNC pin)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR74" configuration register 2:
+Bit(s)	Description	(Table P0811)
+ 7-0	(64300) ???
+	(64310) reserved (0)
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR7A" test index register:
+Bit(s)	Description	(Table P0812)
+ 7-0	test index (select XR7B function)
+	00h = reserved
+	01h = CRC signature analysis
+	02h-FFh = reserved
+SeeAlso: #P0763
+
+Bitfields for Chips&Technologies 64310 "XR7B" test control register:
+Bit(s)	Description	(Table P0813)
+---XR7A = 01h---
+ 7	CRC status (read-only)
+	0 = CRC ARM=0 or CRC data is being generated (CRC data should not be
+	  read)
+	1 = CRC ARM=1 and CRC data is ready
+ 6	CRC arm
+	1 = arm CRC generation to start after the next VSYNC and stop after the
+	  VSYNC following that (should not be set to 0 until entire CRC value
+	  is read)
+ 5-4	CRC data select (select data to be read from XR7C)
+	00 = CRC bit 7-0
+	01 = CRC bits 15-8
+	10 = 0 and CRC bits 22-16
+	11 = 00h
+ 3-2	CRC qualification
+	00 = take all data
+	01 = take data when not blank (DE + overscan)
+	10 = take data when DE is active
+	11 = take data in PC Video window only
+ 1-0	video data select
+	00 = red video data before DAC output
+	01 = green video data before DAC output
+	10 = blue video data before DAC output
+	11 = control data (VSYNC, HSYNC, blank, internal display enable,
+	  0, 0, 0, 0)
+SeeAlso: #P0763,#P0812
+
+Bitfields for Chips&Technologies 64310 "XR7C" test data register:
+Bit(s)	Description	(Table P0814)
+---XR7A = 01h---
+ 7-0	CRC data (read-only)
+SeeAlso: #P0763,#P0812
+
+Bitfields for Chips&Technologies "XR7E" CGA Color Select register:
+Bit(s)	Description	(Table P0815)
+ 7-6	reserved
+ 5
+ 4
+ 3-0
+Note:	this is a mirror of the register accessed via PORT 03D9h, which is
+	  always visible, while PORT 03D9h is only visible in CGA emulation
+SeeAlso: #P0762,PORT 03D9h
+
+Bitfields for Chips&Technologies "XR7F" Diagnostic register:
+Bit(s)	Description	(Table P0816)
+ 7	special test function (should remain cleared)
+ 6	enable test function in bits 5-2
+ 5-2	test function
+ 1	tri-state output pins: !!!
+ 0	tri-state output pins: !!! chips\64200.pdf p.90
+SeeAlso: #P0762
+

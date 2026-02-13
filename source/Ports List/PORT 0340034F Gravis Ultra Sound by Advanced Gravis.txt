@@ -1,0 +1,248 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0340034F
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0340-034F - Gravis Ultra Sound by Advanced Gravis
+Range: The I/O address range is dipswitch selectable from:
+	   0200-020F and 0300-030F
+	   0210-021F and 0310-031F
+	   0220-022F and 0320-032F
+	   0230-023F and 0330-033F
+	   0240-024F and 0340-034F
+	   0250-025F and 0350-035F
+	   0260-026F and 0360-036F
+	   0270-027F and 0370-037F
+Note:	the AMD InterWave chip provides a superset of the UltraSound's
+	  functionality, including these ports
+SeeAlso: PORT 0240h-024Fh,PORT 0746h
+
+0340  -W  MIDI Control (see #P0591)
+0340  R-  MIDI Status (see #P0592)
+0341  -W  MIDI Transmit Data
+0341  R-  MIDI Receive Data
+0342  RW  GF1 Page Register / Voice Select
+0343  RW  GF1/Global Register Select (see #P0593)
+0344  RW  GF1/Global Data Low Byte (16 bits)
+0345  RW  GF1/Global Data High Byte (8 bits)
+0346  -W  Mixer Data Port
+0347  RW  GF1 DRAM
+		 Direct Read Write at Loction pointed with regs 43 and 44
+
+Bitfields for Gravis Ultra Sound MIDI control register:
+Bit(s)	Description	(Table P0591)
+ 7	   Receive IRQ (1 = enabled)
+ 5-6   Xmit IRQ
+ 0-1   Master Reset (1 = enabled)
+SeeAlso: #P0546,#P0548,#P0592
+
+Bitfields for Gravis Ultra Sound MIDI status register:
+Bit(s)	Description	(Table P0592)
+ 7	Interrupt pending
+ 5	Overrun Error
+ 4	Framing Error
+ 1	Transmit Register Empty
+ 0	Receive Register Empty
+SeeAlso: #P0591,#P0593
+
+(Table P0593)
+Values for Gravis Ultra Sound GF1/Global Registers:
+---Voice specific registers---
+ 00h  w	    Voice Control (see #P0595)
+ 01h  w	    Frequency Control
+	     bit 15-10	 Integer Portion
+	     bit 9-1	 Fractional Portion
+ 02h  w	    Start Address HIGH
+	     bit 12-0	 Address Lines 19-7
+ 03h  w	    Start Address LOW
+	     bit 15-9	 Address Lines 6-0
+	     bit 8-5	 Fractional Part of Start Address
+ 04h  w	    End Address HIGH
+	     bit 12-0	 Address Lines 19-7
+ 05h  w	    End Address LOW
+	     bit 15-9	 Address Lines 6-0
+	     bit 8-5	 Fractional Part of End Address
+ 06h  w	    Volume Ramp Rate
+	     bit 5-0	 Amount added
+	     bit 7-6	 Rate
+ 07h  w	    Volume Ramp Start
+	     bit 7-4	 Exponent
+	     bit 3-0	 Mantissa
+ 08h  w	    Volume Ramp End
+	     bit 7-4	 Exponent
+	     bit 3-0	 Mantissa
+ 09h  w	    Current Volume
+	     bit 15-12	 Exponent
+	     bit 11-4	 Mantissa
+ 0Ah  w	    Current Address HIGH
+	     bit 12-0	 Address Lines 19-7
+ 0Bh  w	    Current Address LOW
+	     bit 15-9	 Address Lines 6-0
+	     bit 8-0	 Fractional Position
+ 0Ch  w	    Pan Position
+	     bit 3-0	 Pan Postion
+ 0Dh  w	    Volume Control (see #P0596)
+ 0Eh  w	    Active Voices
+	     bit 5-0	 #Voices -1  (allowed 13 - 31)
+ 0Fh  w	    IRQ Source Register (see #P0597)
+---NOT voice specific---
+ 41h  r/w   DRAM DMA Control (see #P0598)
+ 42h  w	    DMA Start Address
+	     bits 15-0	 DMA Address Lines 19-4
+ 43h  w	    DRAM I/O Address LOW
+ 44h  w	    DRAM I/O Address HIGH
+	     bits 0-3	 Upper 4 Address Lines
+ 45h  r/w   Timer Control
+	     bit 3	 Enable Timer 2
+	     bit 2	 Enable Timer 1
+ 46h  w	    Timer 1 Count (granularity of 80 micro sec)
+ 47h  w	    Timer 2 Count (granulatity of 320 micro sec)
+ 48h  w	    Sampling Frequency
+	     rate = 9878400 / (16 * (FREQ + 2))
+ 49h  r/w   Sampling Control (see #P0599)
+ 4Bh  w	    Joystick Trim DAC
+ 4Ch  r/w   RESET
+	     bit 2	 GF1 Master IRQ Enable
+	     bit 1	 DAC Enable
+	     bit 0	 Master Reset
+---Voice specific registers---
+ 80h  r	    Voice Control (see 00h)
+ 81h  r	    Frequency Control (see 01h)
+ 82h  r	    Start Address HIGH (see 02h)
+ 83h  r	    Start Address LOW (see 03h)
+ 84h  r	    End Address HIGH (see 04h)
+ 85h  r	    End Address LOW (see 05h)
+ 86h  r	    Volume Ramp Rate (see 06h)
+ 87h  r	    Volume Ramp Start (see 07h)
+ 88h  r	    Volume Ramp End (see 08h)
+ 89h  r	    Current Volume (see 09h)
+ 8Ah  r	    Current Address HIGH (see 0Ah)
+ 8Bh  r	    Current Address LOW (see 0Bh)
+ 8Ch  r	    Pan Position (see 0Ch)
+ 8Dh  r	    Volume Control (see 0Dh)
+ 8Eh  r	    Active Voices (see 0Eh)
+ 8Fh  r	    IRQ Status (see 0Fh)
+SeeAlso: #P0592,#P0594
+
+(Table P0594)
+Values for InterWave synthesizer registers:
+---voice-specific registers---
+ 10h  w	    synthesizer	 upper address
+ 11h  w	    synthesizer effects address high (16 bits)
+ 12h  w	    synthesizer effects address low (16 bits)
+ 13h  w	    synthesizer left offset (16 bits)
+ 14h  w	    synthesizer effects output accumulator select
+ 15h  w	    synthesizer mode select
+ 16h  w	    synthesizer effects volume (16 bits)
+ 17h  w	    synthesizer frequency LFO
+ 18h  w	    synthesizer volume LFO
+---NOT voice-specific---
+ 19h  w	    synthesizer global mode
+ 1Ah  w	    synthesizer LFO base address (16 bits)
+---voice-specific registers---
+ 1Bh  w	    synthesizer right offset (16 bits)
+ 1Ch  w	    synthesizer left offset (16 bits)
+ 1Dh  w	    synthesizer effect volume final (16 bits)
+---NOT voice-specific---
+ 41h  r/w   local memory control: DMA control
+ 42h  r/w   local memory control: DMA start address bits 19-4 (16 bits)
+ 43h  w	    local memory control: I/O address low (16 bits)
+ 44h  w	    local memory control: I/O address high (16 bits)
+ 45h  r/w   AdLib/SoundBlaster control
+ 46h  r/w   AdLib timer 1
+ 47h  r/w   AdLib timer 2
+ 49h  r/w   ADC sample control
+ 4Bh  r/w   joystick trim
+ 4Ch  w	    GUS reset
+ 50h  r/w   local memory control: DMA start address bits 23-20/3-0 (16 bits)
+ 51h  r/w   local memory control: 16-bit access
+ 52h  r/w   local memory control: configuration
+ 53h  r/w   local memory control: control
+ 54h  r/w   local memory control: record FIFO base address bits 23-8 (16-bit)
+ 55h  r/w   local memory control: playback FIFO base address bits 23-8 (16-bit)
+ 56h  r/w   local memory control: FIFO size (16-bit)
+ 57h  r/w   local memory control: DMA interleave control (16-bit)
+ 58h  r/w   local memory control: DMA interleaev base address bits 23-8
+ 59h  r/w   compatibility control
+ 5Ah  r/w   decode control
+ 5Bh  r/w   version number
+ 5Ch  r/w   MPU-401 emulation control A
+ 5Dh  r/w   MPU-401 emulation control B
+ 5Eh  w	    MIDI receive FIFO access
+ 5Fh  -	    reserved
+ 60h  r/w   emulation IRQ
+---voice-specific registers---
+ 90h  r	    synthesizer	 upper address
+ 91h  r	    synthesizer effects address high (16 bits)
+ 92h  r	    synthesizer effects address low (16 bits)
+ 93h  r	    synthesizer left offset (16 bits)
+ 94h  r	    synthesizer effects output accumulator select
+ 95h  r	    synthesizer mode select
+ 96h  r	    synthesizer effects volume (16 bits)
+ 97h  r	    synthesizer frequency LFO
+ 98h  r	    synthesizer volume LFO
+---NOT voice-specific---
+ 99h  r	    synthesizer global mode
+ 9Ah  r	    synthesizer LFO base address (16 bits)
+---voice-specific registers---
+ 9Bh  r	    synthesizer right offset (16 bits)
+ 9Ch  r	    synthesizer left offset (16 bits)
+ 9Dh  r	    synthesizer effect volume final (16 bits)
+---NOT voice-specific---
+ 9Fh  r	    synthesizer voices IRQ
+Note:	these registers are *in*addition* to the Gravis UltraSound registers
+SeeAlso: #P0593
+
+Bitfields for Gravis Ultra Sound voice control global register:
+Bit(s)	Description	(Table P0595)
+ 7	 IRQ pending
+ 6	 Direction
+ 5	 Enable WAVE IRQ
+ 4	 Enable bi-directional Looping
+ 3	 Enable Looping
+ 2	 Size data (8/16 bits)
+ 1	 Stop Voice
+ 0	 Voice Stopped
+SeeAlso: #P0593,#P0596
+
+Bitfields for Gravis Ultra Sound volume control global register:
+Bit(s)	Description	(Table P0596)
+ 7	 IRQ Pending
+ 6	 Direction
+ 5	 Enable Volume Ramp IRQ
+ 4	 Enable bi-directional Looping
+ 3	 Enable Looping
+ 2	 Rollover Condition
+ 1	 Stop Ramp
+ 0	 Ramp Stopped
+SeeAlso: #P0593,#P0595
+
+Bitfields for Gravis Ultra Sound IRQ source register:
+Bit(s)	Description	(Table P0597)
+ 7	 WaveTable IRQ pending
+ 6	 Volume Ramp IRQ pending
+ 4-0	 Voice Number
+SeeAlso: #P0593,#P0595,#P0598
+
+Bitfields for Gravis Ultra Sound DRAM DMA control register:
+Bit(s)	Description	(Table P0598)
+ 7	 Invert MSB
+ 6	 Data Size (8/16 bits)
+ 5	 DMA Pending
+ 3-4	 DMA Rate Divider
+ 2	 DMA Channel Width (8/16 bits)
+ 1	 DMA Direction (1 = read)
+ 0	 DMA Enable
+SeeAlso: #P0593,#P0597
+
+Bitfields for Gravis Ultra Sound sampling control register:
+Bit(s)	Description	(Table P0599)
+ 7	 Invert MSB
+ 6	 DMA IRQ pending
+ 5	 DMA IRQ enable
+ 2	 DMA width (8/16 bits)
+ 1	 Mode (mone/stereo)
+ 0	 Start Sampling
+SeeAlso: #P0593
+

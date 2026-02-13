@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: P002E002F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 002E-002F - Intel "Nonolet" Motherboard - POWER MANAGEMENT
+
+002E  ?W  index for data port
+002F  ?W  data port
+
+code sequence posted in fido7.nice.sources by Konstantin Mohorea:
+     out 2Eh,0Ch
+     out 2Fh,75h
+     out 2Eh,11h
+     out 2Fh,00h
+     out 2Eh,0Dh
+     out 2Fh,A0h
+

@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0388038F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0388-038F - mc-soundmachine, mc 03-04/1992 - SPEECH I/O
+Note:	Adlib-compatible, Covox 'voice master' & 'speech thing' compatible
+	  soundcard
+SeeAlso: PORT 022Fh"soundmachine",PORT 0278h"Covox"
+
+0388  -W  Covox 'speech thing' compatible speech output via printer port?
+	    enabled if bit 6 set in PORT 038Fh
+0388  RW  Adlib compatible (YM3812), enabled if bit 0 set in PORT 038Fh
+	    (see PORT 0388h-0389h"Sound Blaster")
+0389  -W  Adlib compatible (YM3812), enabled if bit 0 set in PORT 038Fh
+	    (see PORT 0388h-0389h"Sound Blaster")
+038A  -W  IýC control for TDA7302 NF-MUX and X24C04 EEPROM
+	    bit 7: IýC bus SDA out (data),  enabled if bit2=1 in PORT 038Fh
+	    bit 0: IýC bus SCL out (clock), enabled if bit2=1 in PORT 038Fh
+038B  R-  IýC status for TDA7302 NF-MUX and X24C04 EEPROM
+	    bit 7: IýC bus SDA in (data),  enabled if bit2=1 in PORT 038Fh
+	    bit 0: IýC bus SCL in (clock), enabled if bit2=1 in PORT 038Fh
+038F  RW  configuration port (power on default=0, all features disabled)
+	(see #P0647)
+
+Bitfields for mc-soundmachine configuration port:
+Bit(s)	Description	(Table P0647)
+ 7	Covox 'voice master' enabled at PORT 022Fh
+ 6	 ""   'speech thing' enabled at PORT 03BCh
+ 5	 ""		     enabled at PORT 0278h
+ 4	 ""		     enabled at PORT 0378h
+ 3	not used (0388???)
+ 2	IýC bus enabled (see PORT 038Ah,PORT 038Bh)
+ 1	gameport enabled (see PORT 0201h)
+ 0	AdLib registers (see PORT 0388h,PORT 0389h) enabled
+

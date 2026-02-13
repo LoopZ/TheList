@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00A000AF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 00A0-00AF - Chips&Technologies 82C100/110 - NMI CONTROL
+SeeAlso: PORT 0072h"82C100",PORT 007Fh"82C100"
+
+00A0  RW  NMI mask register (XT only)
+	 bit 7 = 0 NMI signal disabled from reaching CPU
+	       = 1 NMI signal enabled
+00Ax  RW  mirrors of PORT 00A0h
+

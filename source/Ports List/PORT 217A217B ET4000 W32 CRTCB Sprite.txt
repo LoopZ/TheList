@@ -1,0 +1,88 @@
+--------------------------------------------------------------------------------
+ Unique ID: P217A217B
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 217A-217B - ET4000/W32 CRTC-B/Sprite
+Note:	Alternative addresses may depend on adapter manufacturer,
+	  Tseng claims 21xA with x=three address bits, selected by IOD2..0
+	  during power up reset.
+
+21xA  RW  ET4000/W32(i) CRTC-B/Sprite index register
+	bit7-0: index
+21xB  RW  ET4000/W32(i) CRTC-B/Sprite data register (see #P1017)
+
+(Table P1017)
+Values for ET4000/W32(i) CRTC-B/Sprite data register index:
+ E0h	CRTC-B / Sprite Horizontal Pixel Position, Low
+	   bit7-0: horizontal pixel position bit7-0
+ E1h	CRTC-B / Sprite Horizontal Pixel Position, High
+	   bit7-4: reserved
+	   bit3-0: horizontal pixel position bit11-8
+ E2h	CRTC-B Width Low / Sprite Horizontal Preset
+	   bit7-0: width of CRTC-B bit7-0
+	   bit5-0: horizontal preset for sprite
+ E3h	CRTC-B Width High / Sprite Horizontal Preset
+	   bit7-4: reserved
+	   bit3-0: width of CRTC-B bit11-8
+ E4h	CRTC-B / Sprite Vertical Pixel Position, Low
+	   bit7-0: vertical pixel position bit7-0
+ E5h	CRTC-B / Sprite Vertical Pixel Position, High
+	   bit7-4: reserved
+	   bit3-0: vertical pixel position bit11-8
+ E6h	CRTC-B Height Low / Sprite Vertical Preset
+	   bit7-0: height of CRTC-B bit7-0
+	   bit5-0: vertical preset for sprite
+ E7h	CRTC-B Height High / Sprite Vertical Preset
+	   bit7-4: reserved
+	   bit3-0: height of CRTC-B bit11-8
+ E8h	CRTC-B / Sprite Starting Address Low
+	   pointer to CRTC-B / sprite image in display memory.
+	   (maximum size of sprites 64x64x4=1KB with 4 colors:
+	    00b=color-0, 01b=color-255, 10b=transparent, 11b=reserved)
+	   bit7-0: startaddress bit7-0
+ E9h	CRTC-B / Sprite Starting Address Middle
+	   bit7-0: startaddress bit15-8
+ EAh	CRTC-B / Sprite Starting Address High
+	   bit7-4: reserved
+	   bit3-0: startaddress bit19-16
+ EBh	CRTC-B / Sprite Row Offset Low
+	   bit7-0: offset bit7-0
+ ECh	CRTC-B / Sprite Row Offset High
+	   bit7-4: revision ID (any ET4000/W32)
+		    0000b=W32	     0100b-1111b reserved
+		    0001b=W32i
+		    0010b=W32p
+		    0011b=W32i, new
+	   bit3-0: offset bit11-8
+ EDh	CRTC-B Pixel Panning
+	   bit7-3: reserved
+	   bit2-0: CRTC-B pixel panning
+ EEh	CRTC-B Color-Depth-Register / Hardware-Zoom
+	   bit7-4: reserved (concerning databook ET4000/W32)
+	   bit7-6: vertical zoom (undocumented)
+		   (original ET4000/W32 ok, doesn't work properly
+		    with some ET4000/W32i)
+		    00b=zoomx1	   10b=zoomx3
+		    01b=zoomx2	   11b=zoomx4
+	   bit5-4: horizontal zoom (undocumented)
+		   (original ET4000/W32 ok, doesn't work properly
+		    with some ET4000/W32i)
+		    00b=zoomx1	   10b=zoomx3
+		    01b=zoomx2	   11b=zoomx4
+	   bit3-0: bit/pixel
+		    0000b=1	   0011b=8
+		    0001b=2	   0100b=16
+		    0010b=4
+ EFh	CRTC-B / Sprite Control
+	   bit7-2: reserved
+	   bit1	 : 1=2nd CRTC-B image overlays main CRTC-A image
+		   0=CRTC-B image at pin SP1/0
+	   bit0	 : 1=enable CRTC-B
+		   0=enable sprite (see F7h)
+ F7h	Image Port Control
+	   bit7	 : 1=CRTC-B or sprite active
+		   0=CRTC-B and sprite not active
+	   bit6-0: reserved
+

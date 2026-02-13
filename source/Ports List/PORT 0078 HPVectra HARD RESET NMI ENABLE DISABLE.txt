@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0078
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0078 - HP-Vectra - HARD RESET: NMI ENABLE/DISABLE
+
+0078  ?W  NMI enable/disable
+		bit 7 = 0  disable & clear hard reset from HP-HIL controller
+		      = 1  enable hard reset from HP-HIL controller chip
+		bit 6-0	   reserved
+

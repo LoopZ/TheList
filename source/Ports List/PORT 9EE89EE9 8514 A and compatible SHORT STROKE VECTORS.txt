@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: P9EE89EE9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 9EE8-9EE9 - 8514/A and compatible - SHORT STROKE VECTORS
+Desc:	specify two short-stroke vectors to be drawn one after the other
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+	bit 12 of the command register (see PORT 9AE8h,#P1036) specifies which
+	  vector is drawn first
+
+9EE8w -W  short line vector transfer (see #P1040)
+
+Bitfields for 8514/A short-stroke vector:
+Bit(s)	Description	(Table P1040)
+ 15-13	second vector: drawing direction
+ 12	second vector: draw/move
+ 11-0	second vector: length in pixels (less 1)
+ 7-5	first vector: drawing direction
+	000  zero degrees = right
+	001  45 degress = up and right
+	010  90 degrees = up
+	...
+	111 315 degrees = down and right
+ 4	first vector: draw/move (=0 move only, =1 draw and move)
+ 3-0	first vector: length in pixels (less 1)
+

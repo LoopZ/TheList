@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0601
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0601 - Headland HL21, Acer M5105 chipsets - SYSTEM CONTROL
+
+0601  -W  system control (see #P0914)
+0601  R-  status (see #P0915)
+
+Bitfields for Headland HL21/Acer M5105 system control register:
+Bit(s)	Description	(Table P0914)
+ 7	=1  power LED on
+ 6	=1  LCD backlight off
+ 5	???
+ 4	???
+ 3	???
+ 2	=1  video chips disabled, screen blanked.
+ 1	???
+ 0	=1  will lock up your machine!
+SeeAlso: #P0915
+
+Bitfields for Headland HL21/Acer M5105 status register:
+Bit(s)	Description	(Table P0915)
+ 7	=0  if screen enabled always these values
+ 6	=0
+ 5	=0
+ 4	=0
+ 3	=0
+ 2	=1  (=0 at low power)
+ 1	=0  power OK
+ 0	=0
+SeeAlso: #P0914
+

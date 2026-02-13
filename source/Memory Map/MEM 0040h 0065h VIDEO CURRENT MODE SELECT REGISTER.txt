@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400065
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0065h - VIDEO - CURRENT MODE SELECT REGISTER
+Size:	BYTE
+Desc:	contains last value written to I/O port 03B8h / 03D8h
+SeeAlso: MEM 0040h:0063h,MEM 0040h:0066h
+
+Bitfields for current video mode select register:
+Bit(s)	Description	(Table M0018)
+ 7-6	unused
+ 5	attribute bit 7 controls blinking instead of background
+ 4	mode 6 graphics in monochrome
+ 3	video signal enabled
+ 2	monochrome
+ 1	graphics
+ 0	80x25 text
+

@@ -1,0 +1,232 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0380038C
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0380-038C - 2nd SDLC (Synchronous Data Link Control) adapter
+Notes:	Initialization of the SDLC adapter is performed in a typical
+	  sequence like this: Setup 8255 port A-C configuration by writing
+	  98h to 383h, followed by initializing 8255 port C by writing 0Dh
+	  to 382h. Reset 8273 internal registers by pulsing 8255 port B4.
+	  After this the 8253 has to be programmed to the desired values
+	  (counter 0 in mode 3). Now the 8273 is ready to be configured for
+	  the operating mode that defines the communication environment in
+	  which it will be used.
+	Note on 8273: Each 8273 protocol controllers internal register is
+	  programmed by individual set/reset commands (via 388h) in
+	  conjunction with a parameter (via 389h) that give an OR/AND mask
+	  to the internal register value.
+	  Although the 8273 is a full duplex device, there is only one
+	  command register. Thus, the command register must be used for
+	  only one command sequence at a time and the transmitter and
+	  receiver may never be simultaneously in a command phase.
+	  The system software starts the command phase by writing a command
+	  byte into the command register. If further information is required
+	  by the 8273 prior to execution of the command, the system software
+	  must write the list of parameters into the parameter register.
+SeeAlso: PORT 03A0h"SDLC"
+
+0380  R-   on adapter 8255(A5) port A: internal/external sensing (see #P0632)
+0381  -W   on adapter 8255(A5) port B: external modem interface (see #P0633)
+0382  RW   on adapter 8255(A5) port C: internal control (see #P0634)
+0383  ?W   on adapter 8255(A5) mode initialization
+0384  RW   on adapter 8253 (programmable counter) counter 0:
+		LSB / MSB square wave generator (input for timer 2, connected
+		  to 8255 bitC5)
+0385  RW   on adapter 8253 counter 1: LSB / MSB inactivity time-outs
+		(connected to 8255 bitA7, IRQ4 level)
+0386  RW   on adapter 8253 counter 2: LSB / MSB inactivity time-outs
+		(connected to 8255 bitA6, IRQ4 level)
+0387  ?W   on adapter 8253 mode register (see #P0635)
+0388  R-   on adapter 8273 status register (see #P0636)
+0388  -W   on adapter 8273 command register (see #P0637)
+0389  R-   on adapter 8273 (immediate) result register (see #P0644)
+0389  -W   on adapter 8273 parameter register
+	    Commands issued via PORT 0388h may need additional parameters,
+	      which have to be passed through this port (see table).
+038A  R-   on adapter 8273 transmit INT status (DMA/INT)
+038A  -W   on adapter 8274 reset
+038B  R-   on adapter 8273 receive INT status (DMA/INT)
+038C  -W   on adapter 8273 data: direct program control (DPC)
+	  scratch-pad
+
+Bitfields for SDLC 8255 port A:
+Bit(s)	Description	(Table P0632)
+ 7	=1 timer 1 output active
+ 6	=1 timer 2 output active
+ 5	=1 modem status changed
+ 4	receive clock active (if pulsing)
+ 3	=0 clear to send is on from interface
+ 2	transmit clock active (if pulsing)
+ 1	=0 data carrier detect is on from interface
+ 0	=0 ring indicator is on from interface
+SeeAlso: #P0633,#P0634
+
+Bitfields for SDLC 8255 port B:
+Bit(s)	Description	(Table P0633)
+ 7	enable IRQ 4 level interrupt
+ 6	=1 gate timer 1
+ 5	=1 gate timer 2
+ 4	=1 reset 8273
+ 3	=1 reset modem status changed logic
+ 2	=0 turn on test
+ 1	=0 turn on select standby at modem interface
+ 0	=0 turn on data signal rate select at modem interface
+SeeAlso: #P0632,#P0634
+
+Bitfields for SDLC 8255 port C:
+Bit(s)	Description	(Table P0634)
+ 7 R-	=? not used (detection: =1 SDLC, =0 may be SDLC or BSC??)
+ 6 R-	=0 test indicate active
+ 5 R-	timer 0 output (if pulsing)
+ 4 R-	receive data (if pulsing)
+ 3 -W	=0 gate interrupts 3 and 4
+ 2 -W	=1 electronic wrap
+ 1 -W	=1 gate external clock
+ 0 -W	=1 gate internal clock
+SeeAlso: #P0632,#P0633
+
+Bitfields for SDLC 8253 mode register:
+Bit(s)	Description	(Table P0635)
+ 7-6	SC1-SC0	 00, 01, 10= select counter 0,1,2; 11=illegal
+ 5-4	RL1-RL0	 00= couner latching operation
+		 01= read/load most significant byte (MSB)
+		 10= read/load least significant byte (LSB)
+		 11= read/load LSB first, then MSB
+ 3-1	M2-M0	 000= mode 0
+		 001= mode 1
+		 x10= mode 2
+		 x11= mode 3
+		 100= mode 4
+		 101= mode 5
+ 0	BCD	 0= binary counter 16bits
+		 1= BCD counter 4 decades
+
+Bitfields for SDLC 8273 status register:
+Bit(s)	Description	(Table P0636)
+ 7	=1 command busy (CBSY)
+ 6	=1 command buffer full (CBF)
+ 5	=1 command parameter buffer full (CPBF)
+ 4	=1 command result buffer full (CRBF)
+ 3	=1 Rx interupt (RxINT)
+ 2	=1 Tx interupt (TxINT)
+ 1	=1 RxINT result available (RxIRA)
+ 0	=1 TxINT result available (TxIRA)
+SeeAlso: #P0637
+
+(Table P0637)
+Values for SDCL 8273 command register:
+ commands:		   parameters:	results:   result port: int:
+  A4: set one-bit delay	    set mask	 -	       -	no
+  64: reset one-bit delay   reset mask	 -	       -	no
+  97: set data transfer	    set mask	 -	       -	no
+  57: reset data transfer   reset mask	 -	       -	no
+  91: set operating mode    set mask	 -	       -	no
+  51: reset operating mode  reset mask	 -	       -	no
+  A0: set serial I/O mode   set mask	 -	       -	no
+  60: reset serial I/O mode reset mask	 -	       -	no
+  C0: general receive	    B0,B1	 RIC,R0,R1,A,C RXI/R   yes
+  C1: selective receive	    B0,B1,A1,A2	 RIC,RD,R1,A,C RXI/R   yes
+  C5: receive disable	    -		 -	       -	no
+  C8: transmit frame	    L0, L1, A, C TIC	       TXI/R   yes
+  C9: transmit transparent  L0, L1	 TIC	       TXI/R   yes
+  CC: abort transmit frame  -		 TIC	       TXI/R   yes
+  CD: abort transmit	    -		 TIC	       TXI/R   yes
+  22: read 8273 port A	    -		 port value    result	no
+  23: read 8273 port B	    -		 port value    result	no
+  A3: set 8273 port A bit   set mask	 -	       -	no
+  63: set 8273 port B bit   reset mask	 -	       -	no
+Notes:	B0/B1 LSB/MSB of the receiver buffer length
+	L0/L1 LSB/MSB of the Tx buffer length
+	A1/A2 receive frame address match field one/two
+	A     address fieldof received frame. In non-buffered mode, this
+	      result is not provided.
+	C     control field of received frame. In non-buffered mode, this
+	      result is not provided.
+	RXI/R TXI/R receive/transmit interrupt result register
+	R0/R1 LBS/MSB of the length of the frame received
+	RIC/TIC receiver/transmitter interrupt result code
+SeeAlso: #P0638,#P0639,#P0640,#P0641,#P0642,#P0643
+
+Bitfields for SDLC 8273 interal port A: Modem Control Input Port:
+Bit(s)	Description	(Table P0638)
+ 7-5	not used
+ 4	DSR change (PA4)
+ 3	CTS change (PA3)
+ 2	Data Set Ready (PA2)
+ 1	Carrier Detect (PA1)
+ 0	Clear to Send (PA0)
+SeeAlso: #P0637
+
+Bitfields for SDLC 8273 interal port B: Modem Control Output Port:
+Bit(s)	Description	(Table P0639)
+ 7-6	not used
+ 5	Flag Detect (PB5)
+ 4-3	reserved
+ 2	Data Terminal Ready (PB2)
+ 1	reserved (PB1)
+ 0	Request to Send (PB0)
+SeeAlso: #P0637
+
+Bitfields for SDLC 8273 internal: Operating Mode Register:
+Bit(s)	Description	(Table P0640)
+ 7-6	not used
+ 5	=1 HDLC abort enable
+ 4	=1 EOP interrupt enable
+ 3	=1 enable early Tx interrupt
+ 2	=1 Buffered Mode
+ 1	=1 Two Preframe Sync Characters
+ 0	=1 Flag Stream Mode
+SeeAlso: #P0637
+
+Bitfields for SDLC 8273 internal: Serial I/O Register:
+Bit(s)	Description	(Table P0641)
+ 7-3	not used
+ 2	=1 Data Loopback
+ 1	=1 Clock Loopback
+ 0	=1 NRZI Mode
+SeeAlso: #P0637
+
+Bitfields for SDLC 8273 internal: Data Transfer Mode Register:
+Bit(s)	Description	(Table P0642)
+ 7-1	not used
+ 0	=1 Interrupt Data Transfers
+SeeAlso: #P0637
+
+Bitfields for SDLC 8273 internal: One-Bit Delay Mode Register:
+Bit(s)	Description	(Table P0643)
+ 7 =1	One-Bit Delay Enable
+ 6-0	not used
+SeeAlso: #P0637
+
+(Table P0644)
+Values for SDLC 8273 result register:
+ transmit result codes:		 status after interrupt:
+  0C: early transmit interrupt	  transmitter active
+  0D: frame transmit complete	  idle or flags
+  0E: DMA underrun		  abort
+  0F: clear to send error	  abort
+  10: abort complete		  idle or flags
+ receive result codes:
+  X0: A1 match / general receive  active
+  X1: A2 match			  active
+  03: CRC error			  active
+  04: abort detected		  active
+  05: idle detected		  disabled
+  06: EOP detected		  disabled
+  07: frame less than 32 bits	  active
+  08: DMA overrun		  disabled
+  09: memory buffer overflow	  disabled
+  0A: carrier detect failure	  disabled
+  0B: receiver interrupt overrun  disabled
+ X bits received inlast byte:
+   E: all eight bits of last byte (bit7-0)
+   0: bit0 only
+   8: bit1-0
+   4: bit2-0
+   C: bit3-0
+   2: bit4-0
+   A: bit5-0
+   6: bit6-0
+

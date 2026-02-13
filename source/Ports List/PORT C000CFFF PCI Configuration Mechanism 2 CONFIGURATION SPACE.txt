@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: PC000CFFF
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT C000-CFFF - PCI Configuration Mechanism 2 - CONFIGURATION SPACE
+Note:	to access the configuration space, write the target bus number to
+	  PORT 0CFAh, then write to the Configuration Space Enable register
+	  (PORT 0CF8h), and finally read or write the appropriate I/O
+	  port(s) in the range C000h to CFFFh (where Cxrrh accesses location
+	  'rr' in physical device 'x's configuration data)
+SeeAlso: PORT 0CF8h"Mechanism 2",PORT 0CFAh"Mechanism 2"
+SeeAlso: #00878 at INT 1A/AX=B10Ah
+

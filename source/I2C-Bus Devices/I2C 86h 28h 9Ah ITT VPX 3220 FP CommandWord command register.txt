@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SF9A
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/9Ah - ITT VPX 3220 - FP - "CommandWord" command register
+SeeAlso: I2C 86h/28h/99h,I2C 86h/28h/F0h,I2C 86h/28h,I2C 86h/29h
+
+Bitfields for VPX 3220 CommandWord command register:
+Bit(s)	Description	(Table I0022)
+ 0	line standard (for back end)
+ 1	transport rate
+	0  20.25 MHz
+	1  13.5 MHz
+ 3-2	functional mode
+	00 open
+	01 forced
+	10 scan
+ 4	Window#1 latch
+	=1 latch new window definition on next vertical retrace; autom. cleared
+ 5	Window#2 latch
+	=1 latch new window definition on next vertical retrace; autom. cleared
+ 11-6	reserved
+SeeAlso: #I0035
+

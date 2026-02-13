@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: R2F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 2Fh - IBM - Standard CMOS Checksum, Low Byte
+
+ 2Eh and 2Fh are as defined by the original IBM PC/AT specification and
+ represent a byte-wise additive sum of the values in locations 10h-2Dh only,
+ 00h-0Fh and 30h-33h are not included. This definition is used by most
+ clone manufacturers including AMI, Compaq, Tandon, NEC, and Zenith. The 
+ IBM PS/2 line does not follow this standard with the range 19h-31h being 
+ undefined.  On the original HP Vectra, this checksum only covers locations
+ 10h to 20h, with a separate checksum for bytes 29h-2Ch (see offset 28h).
+
+

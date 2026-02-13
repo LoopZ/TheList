@@ -1,0 +1,150 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220024
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0024 - OPTi 82C281/282/283 CHIPSETS - CONFIGURATION REGISTERS
+Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+	  even if the same register is being accessed a second time
+SeeAlso: PORT 0022h"82C206"
+
+0022  ?W  index for accesses to data port (see #P0099)
+0024  RW  chip set data
+
+(Table P0099)
+Values for OPTi 82C281/82C282/82C283 configuration register index:
+ 10h	DRAM configuration register (see #P0100)
+ 11h	Shadow RAM control register (see #P0101)
+ 12h	Shadow RAM control register 2 (see #P0102)
+ 13h	Shadow RAM control register 3 (see #P0103)
+ 14h	miscellaneous control register (see #P0104)
+ 15h	cache control register (see #P0105)
+ 16h	cache control register 2 (see #P0106)
+
+Bitfields for OPTi 82C281/282/283 DRAM configuration register:
+Bit(s)	Description	(Table P0100)
+ 7-6	82C281/2 revision number (read-only)
+ 7	82C283 revision (0 = A, 1 = B)
+ 6	82C283A: reserved
+	82C283B: DRAM is pipelined
+ 5	local DRAM read wait states
+	82C281/2: 0=one, 1=two	  82C283: 0=none, 1=one
+ 4	local DRAM write wait states
+	82C281/2: 0=one, 1=two	  82C283: 0=none, 1=one
+ 3-0	local DRAM memory configuration
+	(val)	Bank0	Bank1	Bank2	Bank3
+	0001	256K	256K	256K	256K
+	0010	256K	256K	1M	-
+	0011	256K	256K	1M	1M
+	0100	256K	256K	4M	-
+	0101	1M	-	-	-
+	0110	1M	1M	-	-
+	0111	1M	1M	1M	-
+	1000	1M	1M	1M	1M
+	1001	1M	4M	-	-
+	1010	1M	1M	4M	-
+	1011	4M	4M	-	-
+	1100	4M	-	-	-  (82C283B only)
+	1111	256K	256K	-	-
+SeeAlso: #P0099
+
+Bitfields for OPTi 82C281 shadow RAM control register:
+Bit(s)	Description	(Table P0101)
+ 7	BIOS ROM F000-FFFF shadowing
+	0 read-only from shadow RAM
+	1 read from ROM, write to shadow RAM
+ 6	adapter ROM at E000-EFFF
+	0 disable shadow RAM
+	1 shadow RAM selectively enabled by configuration register 12h
+	  (see #P0102)
+ 5	adapter ROM at D000-DFFF
+	0 disable shadow RAM
+	1 shadow RAM selectively enabled by configuration register 12h
+ 4	adapter ROM at C000-CFFF
+	0 disable shadow RAM
+	1 shadow RAM selectively enabled by configuration register 13h
+	  (see #P0103)
+ 3	shadow RAM Copy Enable control (C000-EFFF)
+	0 write to expansion bus
+	1 write to local DRAM
+ 2	shadow RAM E000-EFFF writeability
+	0 read/write
+	1 read-only
+ 1	shadow RAM D000-DFFF writeability
+	0 read/write
+	1 read-only
+ 0	shadow RAM C000-CFFF writeability
+	0 read/write
+	1 read-only
+SeeAlso: #P0099,#P0102
+
+Bitfields for OPTi 82C281 shadow RAM control register 2:
+Bit(s)	Description	(Table P0102)
+ 7	enable EC00-EFFF
+ 6	enable E800-EBFF
+ 5	enable E400-E7FF
+ 4	enable E000-E3FF
+ 3	enable DC00-DFFF
+ 2	enable D800-DBFF
+ 1	enable D400-D7FF
+ 0	enable D000-D3FF
+Note:	bits 7-4 are only in effect when register 11h bit 6 is set; bits 3-0
+	  are only in effect when register 11h bit 5 is set
+SeeAlso: #P0099,#P0101,#P0103
+
+Bitfields for OPTi 82C281 shadow RAM control register 3:
+Bit(s)	Description	(Table P0103)
+ 7	enable CC00-CFFF
+ 6	enable C800-CBFF
+ 5	enable C400-C7FF
+ 4	enable C000-C3FF
+ 3-0	unused shadow RAM remap address; supplies bits 23-20 of
+	  address at which to map A000-BFFFF and D000-EFFF is not used
+	  for shadowing (except if this field is set to 0, the remapping
+	  is disabled)
+SeeAlso: #P0099,#P0101,#P0102
+
+Bitfields for OPTi 82C281 miscellaneous control register:
+Bit(s)	Description	(Table P0104)
+ 7	allow F0000-F0FFF to be written even while F0000-FFFFF is
+	  write-protected ("Zenith mode")
+ 6	keyboard reset control
+	=1 HLT must be executed before 82C281 generates CPU reset from
+	    keyboard controller Reset command
+ 5	master byte swap enable
+ 4	82C281/2: fast NMI request
+	82C283A: reserved (0)
+	82C283B: ATCLK setting (=0 from register 14h bit 0; =1 CLK/8)
+ 3	82C281/2/3A: reserved
+	82C283B: on-board DRAM parity error enable
+ 2	enable slow refresh mode
+	(every 95.5 us (281/282) or 63.6 us (283) instead of 15.9 us)
+ 1	enable turbo switch function
+ 0	clock select
+	=0 ATCLK2 = CPUCLK2 / 6
+	=1 ATCLK2 = CPUCLK2 / 4
+SeeAlso: #P0099
+
+Bitfields for OPTi 82C281/82C282 cache control register:
+Bit(s)	Description	(Table P0105)
+ 7	enable cache
+ 6	reserved (0)
+ 5	enable posted write (82C281 only)
+ 4	ALL accesses are non-cacheable
+ 3	reserved (0)
+ 2-0	non-cacheable region size (see also #P0106)
+	000  64K
+	001 128K
+	...
+	101  4M
+	110  8M
+	111 disabled
+SeeAlso: #P0099,#P0106
+
+Bitfields for OPTi 82C281/82C282 cache control register 2:
+Bit(s)	Description	(Table P0106)
+ 7-0	starting address bits 23-16 of non-cacheable region
+Note:	the specified starting address must be a multiple of the region size
+SeeAlso: #P0099,#P0105
+

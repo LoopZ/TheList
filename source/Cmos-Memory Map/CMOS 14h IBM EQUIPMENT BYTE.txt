@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: R14
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 14h - IBM - EQUIPMENT BYTE 
+
+Bitfields for IBM equipment byte:
+Bit(s)	Description	(Table C0019)
+ 7-6	number of floppy drives (system must have at least one)
+	00b   1 Drive
+	01b   2 Drives
+	10b ??? 3 Drives
+	11b ??? 4 Drives
+ 5-4	monitor type
+	00b Not CGA or MDA (observed for EGA & VGA)
+	01b 40x25 CGA
+	10b 80x25 CGA
+	11b MDA (Monochrome)
+ 3	display enabled (turned off to enable boot of rackmount)
+ 2	keyboard enabled (turn off to enable boot of rackmount)
+ 1	math coprocessor installed
+ 0	floppy drive installed (turned off for rackmount boot)
+

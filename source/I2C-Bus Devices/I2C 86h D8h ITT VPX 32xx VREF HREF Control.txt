@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: I86D8
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/D8h - ITT VPX 32xx - VREF/HREF Control
+
+Bitfields for VPX 32xx VREF/HREF control:
+Bit(s)	Description	(Table I0036)
+ 0	reserved
+ 1	HREF polarity (=0 active high, =1 active low)
+ 2	VREF polarity (=0 active high, =1 active low)
+ 5-3	length of HREF pulse (+2 clocks)
+ 6	PREF select
+	0 odd/even flag
+	1 Pintr (programmable interrupt)
+ 7	PREF polarity (=1 invert polarity)
+Note:	the Stealth64 Video 2001TV uses the PREF output to control the
+	  audio signal; set bit 6 to select programmable interrupt on PREF,
+	  then set bit 7 to mute, clear bit 7 to enable sound
+

@@ -1,0 +1,688 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00A800A9
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 00A8-00A9 - Via VT82C496G "Pluto" - CONFIGURATION REGISTERS
+SeeAlso: PORT 00A8h"VT82C570M"
+
+00A8  ?W  configuration register index (see #P0419)
+00A9  RW  configuration register data
+
+(Table P0419)
+Values for Via VT82C496G configuration registers:
+ 02h	clock throttling control (see #P0420)
+ 03h	I/O recovery (see #P0421)
+ 10h	bus speed (see #P0422)
+ 11h	ISA bus clock frequency control (see #P0423)
+ 20h	pair 0/1 row/column address (see #P0424)
+ 21h	pair 2/3 row/column address (see #P0425)
+ 22h	RAS#/CAS# pulse control (see #P0426)
+ 30h	C0000h-CFFFFh shadow control (see #P0427)
+ 31h	D0000h-DFFFFh shadow control (see #P0428)
+ 32h	E0000h-FFFFFh shadow control (see #P0429)
+ 33h	ROM decoding and memory relocation (see #P0430)
+ 40h	ROM cacheable control (see #P0431)
+ 41h	programmable non-cacheable region ???
+ 42h	programmable non-cacheable region ???
+ 43h	pair 0/1 DRAM size and configuration (see #P0432)
+ 44h	pair 2/3 DRAM size and configuration (see #P0433)
+ 50h	cache access mode (see #P0434)
+ 51h	cache timing/size control (see #P0435)
+ 52h	primary idle timer reloading control (see #P0436)
+ 53h	primary idle timer reload distinguish (see #P0437)
+ 54h	SMI triggering control (see #P0438)
+ 55h	SMI trigger distinguish (see #P0439)
+ 56h	clock frequency control (see #P0440)
+ 57h	peripheral timer (see #P0441)
+ 58h	general purpose timer (see #P0442)
+ 59h	timer control (see #P0443)
+ 5Ah	power/peripheral control (see #P0444)
+ 5Bh	system management control (see #P0445)
+ 5Ch	clock switching control (see #P0446)
+ 5Dh	peripheral timer control (see #P0447)
+ 5Eh	misc. cache control (see #P0448)
+ 5Fh	conserve mode/secondary idle timer control (see #P0449)
+ 60h	IRQ7-0 primary interrupt selection (see #P0450)
+ 61h	IRQ15-8 primary interrupt selection (see #P0451)
+ 62h	IRQ7-3 interrupt mode and global control (see #P0452)
+ 63h	IRQ15-9 interrupt mode (see #P0453)
+ 64h	(see #P0454)
+ 65h	peripheral timer control (see #P0455)
+ 68h	port 070h write shadow
+ 69h	port 2F8h write shadow
+ 6Ah	port 3F8h write shadow
+ 6Bh	port 372h write shadow
+ 6Ch	port 377h write shadow
+ 6Dh	port 171h write shadow
+ 6Eh	port 177h write shadow
+ 6Fh	port 376h write shadow
+ 71h	IDE controller/cache control (see #P0456)
+ 72h	non-1F0/170h port access timing (see #P0457)
+ 73h	drive #0 read timing for 1F0/170h access (see #P0458)
+ 74h	drive #0 write timing for 1F0/170h access (see #P0459)
+ 77h	drive #0 address setup time (see #P0460)
+ 78h	drive #1 read timing for 1F0/170h access (see #P0458)
+ 79h	drive #1 write timing for 1F0/170h access (see #P0459)
+ 7Ch	drive #1 address setup time (see #P0460)
+SeeAlso: #P0461
+
+Bitfields for Via VT82C496G/VT82C570M clock throttling control:
+Bit(s)	Description	(Table P0420)
+ 4	STPCLK# throttling period (enabled by register 5Bh bit 0)
+	0 = 3.35 æs * 16
+	1 = 1.7 ms * 16
+ 3-0	duty cycle for STPCLK# (1/16 - 15/16) (enabled by register 5Bh bit 0)
+SeeAlso: #P0419,#P0445
+
+Bitfields for Via VT82C496G/VT82C570M register 03h:
+Bit(s)	Description	(Table P0421)
+ 7-1	(VT82C496G) command delay, wait state and I/O recovery time for normal
+	  ISA cycles ???
+ 0	decoupled DRAM refresh enable
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M register 10h:
+Bit(s)	Description	(Table P0422)
+ 6	DMA controller runs at ISA clock speed/half ISA clock speed
+SeeAlso: #P0419,#P0423
+
+Bitfields for Via VT82C496G/VT82C570M ISA bus clock frequency control:
+Bit(s)	Description	(Table P0423)
+ 6	flash EPROM write cycle support enable
+ 3-0	ISA bus clock frequency
+	0xxx = CLKIN / 8
+	1000 = CLKIN / 3
+	1001 = CLKIN / 2
+	1010 = CLKIN / 4
+	1011 = CLKIN / 6
+	1100 = CLKIN / 5
+	1101 = CLKIN / 10
+	1110 = CLKIN / 12
+	1111 = OSC / 2 (asynchronous)
+SeeAlso: #P0419,#P0422
+
+Bitfields for Via VT82C496G/VT82C570M pair 0/1 row/column address:
+Bit(s)	Description	(Table P0424)
+ 7-5	number of column address bits for pair 0
+	000 = disabled
+	001 = 9 bit
+	010 = 10 bit
+	011 = 11 bit
+	100 = 12 bit
+	101-111 = illegal
+ 4	page mode operation enable
+ 3-1	number of column address bits for pair 1 (same values as above)
+ 0	(VT82C496G) reserved
+	(VT82C570M) DRAM bus width
+	0 = 32 bit
+	1 = 64 bit (operation width set in register 48h bits 3-0)
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M pair 2/3 row/column address:
+Bit(s)	Description	(Table P0425)
+ 7-5	number of column address bits for pair 2
+	000 = disabled
+	001 = 9 bit
+	010 = 10 bit
+	011 = 11 bit
+	100 = 12 bit
+	101-111 = illegal
+ 4	reserved
+ 3-1	number of column address bits for pair 3 (same values as above)
+ 0	reserved
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M RAS#/CAS# pulse control:
+Bit(s)	Description	(Table P0426)
+ 7-6	RAS# precharge time
+	00-11 = (VT82C496G) 1-4 cycles
+		(VT82C570M) 2-8 cycles
+ 5-4	RAS# pulse width
+	00-11 = (VT82C496G) 2-5 cycles
+		(VT82C570M) 4-10 cycles
+ 3-2	read cycle CAS# pulse width
+	00-11 = 1-4 cycles
+ 1	write cycle CAS# pulse width
+	0 = 1 cycle
+	1 = 2 cycles
+ 0	RAS# to column address/column address to CAS#
+	0 = 1 cycle
+	1 = 2 cycles
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M C0000h-CFFFFh shadow control:
+Bit(s)	Description	(Table P0427)
+ 7	CC000h-CFFFFh read shadow enable
+ 6	CC000h-CFFFFh write shadow enable
+ 5	C8000h-CBFFFh read shadow enable
+ 4	C8000h-CBFFFh write shadow enable
+ 3	C4000h-C7FFFh read shadow enable
+ 2	C4000h-C7FFFh write shadow enable
+ 1	C0000h-C3FFFh read shadow enable
+ 0	C0000h-C3FFFh write shadow enable
+SeeAlso: #P0419,#P0428,#P0429
+
+Bitfields for Via VT82C496G/VT82C570M D0000h-DFFFFh shadow control:
+Bit(s)	Description	(Table P0428)
+ 7	DC000h-DFFFFh read shadow enable
+ 6	DC000h-DFFFFh write shadow enable
+ 5	D8000h-DBFFFh read shadow enable
+ 4	D8000h-DBFFFh write shadow enable
+ 3	D4000h-D7FFFh read shadow enable
+ 2	D4000h-D7FFFh write shadow enable
+ 1	D0000h-D3FFFh read shadow enable
+ 0	D0000h-D3FFFh write shadow enable
+SeeAlso: #P0419,#P0427,#P0429
+
+Bitfields for Via VT82C496G/VT82C570M E0000h-FFFFFh shadow control:
+Bit(s)	Description	(Table P0429)
+ 7	E0000h-EFFFFh read shadow enable
+ 6	E0000h-EFFFFh write shadow enable
+ 5	F0000h-FFFFFh read shadow enable
+ 4	F0000h-FFFFFh write shadow enable
+ 3	???
+ 2	memory range F00000h-FFFFFFh decode as ISA cycle enable
+ 1	(VT82C496G) burstable DRAM cycles enable
+	(VT82C570M) ???
+ 0	???
+SeeAlso: #P0419,#P0427,#P0428,#P0430
+
+Bitfields for Via VT82C496G/VT82C570M ROM decoding and memory relocation:
+Bit(s)	Description	(Table P0430)
+ 7	C8000h-CFFFFh decoded as ROM cycle enable
+ 6	C0000h-C7FFFh decoded as ROM cycle enable
+ 5	E8000h-EFFFFh decoded as ROM cycle enable
+ 4	E0000h-E7FFFh decoded as ROM cycle enable
+ 3-2	memory relocation
+	00 = disable
+	01 = illegal
+	10 = 256K relocation
+	11 = 384K relocation
+ 1	(VT82C496G) RAS time-out
+	(VT82C570M) ???
+ 0	???
+SeeAlso: #P0419,#P0429,#P0431
+
+Bitfields for Via VT82C496G/VT82C570M ROM cacheable control:
+Bit(s)	Description	(Table P0431)
+ 7	C0000h-C7FFFh cacheable and write-protect enable
+ 6	F0000h-FFFFFh cacheable and write-protect enable
+ 5	E0000h-EFFFFh cacheable and write-protect enable
+ 4	???
+ 3	CAS-to-RAS refresh enable
+ 2	(VT82C570M) secondary cache fill for CACHE# inactive memory cycles
+	  enable
+ 1-0	???
+SeeAlso: #P0419,#P0430
+
+Bitfields for Via VT82C496G/VT82C570M pair 0/1 DRAM size and configuration:
+Bit(s)	Description	(Table P0432)
+ 7-5	(VT82C496G) bank-pair 0 DRAM size (x2 if double bank)
+	000 = 512 KB
+	001 = 1 MB
+	010 = 2 MB
+	011 = 4 MB
+	100 = 8 MB
+	101 = 16 MB
+	110 = 32 MB
+	111 = 64 MB
+	(VT82C570M) bank-pair 0 DRAM size (x2 if double bank)
+	000 = 1 MB
+	001 = 2 MB
+	010 = 4 MB
+	011 = 8 MB
+	100 = 16 MB
+	101 = 32 MB
+	110 = 64 MB
+	111 = 128 MB
+ 4	number of banks in pair 0
+	(0 bank if register 20h bit 7-5 = 0)
+	0 = 1 bank
+	1 = 2 banks
+ 3-1	(VT82C496G) bank-pair 1 DRAM size (x2 if double bank)
+	(VT82C570M) bank-pair 1 DRAM size (x2 if double bank)
+ 0	number of banks in pair 1
+	(0 bank if register 20h bit 3-1 = 0)
+	0 = 1 bank
+	1 = 2 banks
+SeeAlso: #P0419,#P0433
+
+Bitfields for Via VT82C496G/VT82C570M pair 2/3 DRAM size and configuration:
+Bit(s)	Description	(Table P0433)
+ 7-5	(VT82C496G) bank-pair 2 DRAM size (x2 if double bank)
+	000 = 512 KB
+	001 = 1 MB
+	010 = 2 MB
+	011 = 4 MB
+	100 = 8 MB
+	101 = 16 MB
+	110 = 32 MB
+	111 = 64 MB
+	(VT82C570M) bank-pair 2 DRAM size (x2 if double bank)
+	000 = 1 MB
+	001 = 2 MB
+	010 = 4 MB
+	011 = 8 MB
+	100 = 16 MB
+	101 = 32 MB
+	110 = 64 MB
+	111 = 128 MB
+ 4	number of banks of pair 2 (no banks if register 21h bit 7-5 = 0)
+	0 = 1 bank
+	1 = 2 banks
+ 3-1	(VT82C496G) bank-pair 3 DRAM size (x2 if double bank)
+	(VT82C570M) bank-pair 3 DRAM size (x2 if double bank)
+	(same values as for bits 7-5)
+ 0	number of banks of pair 3 (no banks if register 21h bit 3-1 = 0)
+	0 = 1 bank
+	1 = 2 banks
+SeeAlso: #P0419,#P0432
+
+Bitfields for Via VT82C496G/VT82C570M cache access mode:
+Bit(s)	Description	(Table P0434)
+ 7-6	cache mode
+	0x = disabled
+	10 = enabled
+	11 = initialization
+ 5	(VT82C496G) direct data SRAM access
+	(VT82C570M) Cyrix CPU linear burst order enable
+ 4	(VT82C496G) write-back cache alter bit control (don't care for write
+	  through)
+	0 = combined tag/alter bit
+	1 = no alter bit
+ 4-3	(VT82C570M) number of tag/alter bits
+	  write-back (register 5Eh bit 6 = 0)
+	       tag   alter   total
+	  00	 8	 0	 8
+	  01	 7	 1	 8
+	  10	 8	 1	 9
+	  11	10	 1	11
+	  write-through (register 5Eh bit 6 = 1)
+	       tag   alter   total
+	  x0	 8	 -	 8
+	  01	 7	 -     N/A
+	  11	10	 -	10
+ 3-2	(VT82C496G) cache line size
+	00 = 4 bytes
+	01 = 8 bytes
+	10 = 16 bytes
+	11 = 4 bytes
+ 2	(VT82C570M) data synchronous SRAM type (if register 51h bit 4 = 0)
+	0 = standard synchronous SRAM
+	1 = pipelined burst synchronous SRAM
+ 1	(VT82C496G) burst write enable
+	(VT82C570M) cache read wait state for PCI masters (PCI clock)
+	0 = zero wait state (2-1-1-1)
+	1 = one wait state (3-2-2-2)
+ 0	(VT82C496G) data streaming enable
+	(VT82C570M) cache write wait state for PCI masters (PCI clock)
+	0 = zero wait state (2-1-1-1)
+	1 = one wait state (3-2-2-2)
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M cache timing/size control:
+Bit(s)	Description	(Table P0435)
+ 7	(VT82C496G) read hit timing
+	0 = 2-X-X-X
+	1 = 3-X-X-X
+	(VT82C570M) read hit timing for first cycle (CPU clock) for
+	  asynchronous SRAM
+	0 = 1 wait state (2-X-X-X)
+	1 = 2 wait state (3-X-X-X)
+ 6	(VT82C496G) write hit timing
+	0 = 2-X-X-X
+	1 = 3-X-X-X
+	(VT82C570M) write hit timing for first cycle (CPU clock) for
+	  asynchronous SRAM
+	0 = 1 wait state (3-X-X-X)
+	1 = 2 wait state (4-X-X-X)
+ 5	(VT82C496G) read hit timing
+	0 = X-1-1-1
+	1 = X-2-2-2
+	(VT82C570M) read hit timing for second-fourth burst cycle (CPU clock)
+	  for asynchronous SRAM
+	0 = 1 wait state (X-2-2-2)
+	1 = 2 wait state (X-3-3-3)
+ 4	(VT82C496G) write hit timing
+	0 = X-1-1-1
+	1 = X-2-2-2
+	(VT82C570M) data SRAM type
+	0 = synchronous SRAM (type set in register 50h bit 2)
+	1 = asynchronous SRAM
+ 3	bank of data SRAM
+	0 = 1 bank
+	1 = 2 banks
+ 2-0	cache size
+	000 = no cache
+	001 = (VT82C496G) 32 KB
+	010 = (VT82C496G) 64 KB
+	011 = 128 KB
+	100 = 256 KB
+	101 = 512 KB
+	110 = 1 MB
+	111 = (VT82C570M) 2 MB
+Note:	(VT82C570M) write hit timing is always 1 wait state (X-2-2-2) for
+	  asynchronous SRAM; read/write hit timing is always 3-1-1-1 for
+	  synchronous SRAM
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M primary idle timer reloading control:
+Bit(s)	Description	(Table P0436)
+ 7	reload primary idle timer on keyboard access
+ 6	reload primary idle timer on serial port access
+ 5	reload primary idle timer on parallel port access
+ 4	reload primary idle timer on video access
+ 3	reload primary idle timer on hard disk and floppy access
+ 2	reload primary idle timer on IO port 100h-3FFh access
+ 1	reload primary idle timer on external input
+ 0	reload primary idle timer on DRQ/LREQ (DMA/local bus master request)
+SeeAlso: #P0419,#P0437,#P0438
+
+Bitfields for Via VT82C496G/VT82C570M primary idle timer reload distinguish:
+Bit(s)	Description	(Table P0437)
+ 7	primary idle timer reloaded by keyboard access
+ 6	primary idle timer reloaded by serial port access
+ 5	primary idle timer reloaded by parallel port access
+ 4	primary idle timer reloaded by video access
+ 3	primary idle timer reloaded by hard disk and floppy access
+ 2	primary idle timer reloaded by IO port 100h-3FFh access
+ 1	primary idle timer reloaded by external input
+ 0	primary idle timer reloaded by DRQ/LREQ (DMA/local bus master request)
+SeeAlso: #P0419,#P0436,#P0438
+
+Bitfields for Via VT82C496G/VT82C570M SMI triggering control:
+Bit(s)	Description	(Table P0438)
+ 7	trigger SMI on primary idle timer time-out
+ 6	trigger SMI on general purpose timer time-out
+ 5	trigger SMI on primary activity occurrence
+ 4	trigger SMI on primary interrupt occurrence
+ 3	trigger SMI on external pin (Turbo) toggle
+ 2	(VT82C496G) trigger SMI on DRQ/LREQ occurrence
+	(VT82C570M) trigger SMI on DRQ/PREQ occurrence
+ 1	trigger SMI on peripheral timer or secondary idle timer
+	  time-out
+	(VT82C496G) (use register 65h bits 3 and 2 to distinguish)
+ 0	trigger SMI on software SMI
+SeeAlso: #P0419,#P0436,#P0438,#P0439
+
+Bitfields for Via VT82C496G/VT82C570M SMI trigger distinguish:
+Bit(s)	Description	(Table P0439)
+ 7	SMI triggered by primary idle timer time-out
+ 6	SMI triggered by general purpose timer time-out
+ 5	SMI triggered by primary activity occurrence
+ 4	SMI triggered by primary interrupt occurrence
+ 3	SMI triggered by external pin (Turbo) toggle
+ 2	(VT82C496G) SMI triggered by DRQ/LREQ occurrence
+	(VT82C570M) SMI triggered by DRQ/PREQ occurrence
+ 1	SMI triggered by peripheral timer or secondary idle timer
+	  time-out
+	(VT82C496G) (use register 65h bits 1 and 0 to distinguish)
+ 0	SMI triggered by software SMI
+SeeAlso: #P0419,#P0438
+
+Bitfields for Via VT82C496G/VT82C570M clock frequency control:
+Bit(s)	Description	(Table P0440)
+ 7-5	(VT82C496G) CPU clock frequency
+	000 = CLKIN
+	001 = CLKIN / 4
+	010 = CLKIN / 8
+	011 = CLKIN / 16
+	100 = CLKIN / 32
+	101 = CLKIN / 64
+	110 = CLKIN / 2
+	111 = 0
+ 3-0	CLKIN frequency
+	0000 = 16 MHz
+	0001 = 40 MHz
+	0010 = 50 MHz
+	0011 = 80 MHz
+	0100 = 66 MHz
+	0101 = 100 MHz
+	0110 = 8 MHz
+	0111 = 60 MHz
+	1000 = 8 MHz
+	1001 = 20 MHz
+	1010 = 25 MHz
+	1011 = 40 MHz
+	1100 = 33 MHz
+	1101 = 50 MHz
+	1110 = 4 MHz
+	1111 = 30 MHz
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M peripheral timer:
+Bit(s)	Description	(Table P0441)
+ 7-0	(VT82C496G) peripheral timer (time base determined in register 5Dh
+	  bits 1-0)
+	(VT82C570M) peripheral timer (time base determined in register 66h
+	  bits 3-2)
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M general purpose timer:
+Bit(s)	Description	(Table P0442)
+ 7-0	general purpose timer (time base determined in register 59h bits 7-6)
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M timer control:
+Bit(s)	Description	(Table P0443)
+ 7-6	general purpose timer (register 58h) time base
+	00 = disable
+	01 = 32.768 KHz
+	10 = 1 sec
+	11 = 1 min
+ 3-1	primary idle timer time-out
+	000 = disable
+	001 = 1 sec
+	010 = 8 sec
+	011 = 32 sec
+	100 = 1 min
+	101 = 8 min
+	110 = 16 min
+	111 = 32 min
+ 0	(VT82C496G) leakage control mode
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M power/peripheral control:
+Bit(s)	Description	(Table P0444)
+ 7-4	general purpose output ports ???
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M system management control:
+Bit(s)	Description	(Table P0445)
+ 7	(VT82C496G) power management mode enable
+ 6	(VT82C496G) SMI type
+	0 = Intel 2-pin SMI (SMI#/SMIACT#)
+	  (pin 112 used as SMIACT#, SM base = 30000h to 4FFFFh)
+	1 = TI/AMD/Cyrix 3-pin SMI (SMI#/SMIADS#/SMIRDY#)
+	  (pin 112 used as SMIADS#, SM base = 60000h to 7FFFFh)
+ 5	(VT82C496G) SMI target
+	0 = SMI output to CPU
+	1 = SMI redirected to interrupt 15 of internal 8259 interrupt
+	  controller (for non-SMI CPU support)
+ 4	SM memory remap enable (SM base memory mapped to A0000h to BFFFFh)
+ 3	(VT82C496G) direct DRAM access to SMI target memory A0000h-BFFFFh
+	  enable
+ 2	???
+ 1	(VT82C496G) force 3000h-4FFFFh to map to A0000h-BFFFFh
+	(move SM code without causing local bus device conflict with
+	  A0000h-BFFFFh)
+ 0	clock throttling enable
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G clock switching control:
+Bit(s)	Description	(Table P0446)
+ 7	wait for a HALT cycle to start clock switching
+ 6	wait for an acknowledgment to start clock switching
+ 5	clock switching protocol
+	0 = Intel STPCLK# protocol (pin 117 used as STPCLK# output)
+	1 = TI/Cyrix SUSP#/SUSPA# protocol (pin 117 used as SUSP# input)
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G peripheral timer control:
+Bit(s)	Description	(Table P0447)
+ 7-2	???
+ 1-0	peripheral timer (register 57h) time base
+	00 = disable
+	01 = 32.768 KHz
+	10 = 1 sec
+	11 = 1 min
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M misc. cache control:
+Bit(s)	Description	(Table P0448)
+ 7	(VT82C496G) CPU internal cache
+	0 = write-through
+	1 = write-back
+ 6	external cache
+	0 = write-back
+	1 = write-through
+ 5	(VT82C496G) pin 72 usage
+	0 = BLAST# (burst last input from the CPU)
+	1 = CACHE# (P24T) (burst cycle indicator)
+ 4	(VT82C496G) snoop filtering enable
+ 3	???
+ 2	slow refresh enable
+ 1-0	???
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M conserve mode/secondary idle timer:
+Bit(s)	Description	(Table P0449)
+ 7-6	(VT82C496G) conserve mode active period
+	00 = 1/16 sec
+	01 = 1/8 sec
+	10 = 1 sec
+	11 = 1 min
+ 5	conserve mode enable
+ 4	(VT82C496G) conserve mode clock select
+	0 = CLKIN / 2
+	1 = CLKIN / 4
+ 3-2	secondary idle timer time-out
+	00 = 2 ms
+	01 = 16 ms
+	10 = 64 ms
+	11 = EOI + 0.125 ms
+ 1	secondary events handler enable (secondary interrupt reloads secondary
+	  idle timer)
+ 0	(VT82C496G) change clock speed on secondary interrupt to
+	0 = CLKIN
+	1 = CLKIN / 2
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M IRQ7-0 primary interrupt selection:
+Bit(s)	Description	(Table P0450)
+ 7	IRQ7 is primary interrupt
+ 6	IRQ6 is primary interrupt
+ 5	IRQ5 is primary interrupt
+ 4	IRQ4 is primary interrupt
+ 3	IRQ3 is primary interrupt
+ 2	IRQ1 is primary interrupt
+ 1	IRQ0 is primary interrupt
+ 0	(VT82C496G) reload primary idle timer on primary interrupt
+SeeAlso: #P0419,#P0451,#P0452
+
+Bitfields for Via VT82C496G/VT82C570M IRQ15-8 primary interrupt selection:
+Bit(s)	Description	(Table P0451)
+ 7	IRQ15 is primary interrupt
+ 6	IRQ14 is primary interrupt
+ 5	IRQ13 is primary interrupt
+ 4	IRQ12 is primary interrupt
+ 3	IRQ11 is primary interrupt
+ 2	IRQ10 is primary interrupt
+ 1	IRQ9 is primary interrupt
+ 0	IRQ8 is primary interrupt
+SeeAlso: #P0419,#P0450,#P0453
+
+Bitfields for Via VT82C496G IRQ7-3 interrupt mode and global control:
+Bit(s)	Description	(Table P0452)
+ 7	IRQ7 interrupt mode (refer to note below)
+ 6	IRQ6 interrupt mode
+ 5	IRQ5 interrupt mode
+ 4	IRQ4 interrupt mode
+ 3	IRQ3 interrupt mode
+ 2	IRQ8 treated as
+	0 = sub-secondary interrupt (CPU clock speed unchanged)
+	1 = secondary interrupt
+ 1	IRQ0 treated as
+	0 = sub-secondary interrupt (CPU clock speed unchanged)
+	1 = secondary interrupt
+ 0	interrupt mode global control
+	0 = 8259A compatible mode (all interrupt edge triggered)
+	1 = extended mode (enables selection with registers 62h and 63h)
+Note:	for bits 7-3, 0 = edge-triggered, 1 = level-sensitive
+SeeAlso: #P0419,#P0450,#P0453
+
+Bitfields for Via VT82C496G/VT82C570M IRQ15-9 interrupt mode:
+Bit(s)	Description	(Table P0453)
+ 7	IRQ15 interrupt mode (refer to note below)
+ 6	IRQ14 interrupt mode
+ 5	reserved
+ 4	IRQ12 interrupt mode
+ 3	IRQ11 interrupt mode
+ 2	IRQ10 interrupt mode
+ 1	IRQ9 interrupt mode
+ 0	???
+Note:	for bits 7-6 and 4-1, 0 = edge-triggered, 1 = level-sensitive
+SeeAlso: #P0419,#P0451,#P0452
+
+Bitfields for Via VT82C496G/VT82C570M register 64h:
+Bit(s)	Description	(Table P0454)
+ 3-0	MA0-3 jumper setting ???
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G/VT82C570M peripheral timer control:
+Bit(s)	Description	(Table P0455)
+ 7	reload peripheral timer on keyboard access
+ 6	reload peripheral timer on serial port access
+ 5	reload peripheral timer on video access
+ 4	reload peripheral timer on hard disk and floppy access
+ 3	(VT82C496G) trigger SMI on peripheral timer time-out
+	(VT82C570M) reload peripheral timer on parallel port access
+ 2	(VT82C496G) trigger SMI on secondary idle timer time-out
+	(VT82C570M) reserved
+ 1	(VT82C496G) SMI triggered by peripheral timer time-out
+	(VT82C570M) reload peripheral timer on speaker access
+ 0	(VT82C496G) SMI triggered by secondary idle timer time-out
+	(VT82C570M) reserved
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G IDE controller/cache control:
+Bit(s)	Description	(Table P0456)
+ 7	reserved
+ 6	channel and I/O port selection
+	0 = primary channel (1F0h-1F7h)
+	1 = secondary channel (170h-177h)
+ 5	write buffer enable
+ 4	prefetch buffer enable
+ 3	internal LRDY# for write cycles (0 = second T2, 1 = first T2)
+ 2	internal LRDY# for read cycles	(0 = second T2, 1 = first T2)
+ 1	read data to be presented to CPU data bus
+	0 = second T2
+	1 = first T2
+ 0	internal IDE controller enable
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G non-1F0/170h port access timing:
+Bit(s)	Description	(Table P0457)
+ 7-4	number of CPU clocks as command active time
+ 3-0	number of CPU clocks as command recovery time
+SeeAlso: #P0419
+
+Bitfields for Via VT82C496G drive #0/1 read timing for 1F0/170h access:
+Bit(s)	Description	(Table P0458)
+ 7-4	number of CPU clocks as command active time
+ 3-0	number of CPU clocks as command recovery time
+SeeAlso: #P0419,#P0459,#P0460
+
+Bitfields for Via VT82C496G drive #0/1 write timing for 1F0/170h access:
+Bit(s)	Description	(Table P0459)
+ 7-4	number of CPU clocks as command active time
+ 3-0	number of CPU clocks as command recovery time
+SeeAlso: #P0419,#P0458,#P0460
+
+Bitfields for Via VT82C496G drive #0/1 address setup time:
+Bit(s)	Description	(Table P0460)
+ 1-0	number of CPU clocks as address setup time
+SeeAlso: #P0419,#P0458,#P0459
+

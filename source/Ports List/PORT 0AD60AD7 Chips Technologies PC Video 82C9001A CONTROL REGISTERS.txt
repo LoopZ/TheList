@@ -1,0 +1,337 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0AD60AD7
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0AD6-0AD7 - Chips & Technologies PC Video (82C9001A) - CONTROL REGISTERS
+Range:	Address determined by status of CS# input at RESET. If CS# input is
+	  low on falling edge of RESET, then address is fixed at 0AD6-0AD7h;
+	  otherwise, the programmable address is used.
+Note:	register FFh is write-only and all other registers are disabled if
+	  register FFh bit 0 is cleared.
+SeeAlso: PORT 03D4h
+
+0AD6  -W  index for accesses to data port (see #P0924)
+0AD7  RW  data port
+
+(Table P0924)
+Values for Chips & Technologies PC Video (82C9001A) control registers:
+ 00h	I/O Address Register (see #P0925)
+ 01h	Memory Access Register (see #P0926)
+ 06h	Linear Memory Base Address Register (see #P0927)
+ 07h	Luminance Data Mask Register (enabled by register 01h bit 4)
+	(0 prevents data modification during video data acquisition
+	  in corresponding bit position)
+ 08h	Chrominance Data Mask Register (enabled by register 01h bit 4)
+	(0 prevents data modification during video data acquisition
+	  in corresponding bit position)
+ 09h	Interupt Mask/Polling Register (see #P0928)
+ 10h	General Purpose I/O Register 0
+ 11h	General Purpose I/O Register 1
+ 12h	General Purpose I/O Register 2
+ 13h	General Purpose I/O Register 3
+ 18h	General Purpose I/O Control Register (see #P0929)
+ 20h	Video Acquisition Mode Register (see #P0930)
+ 21h	Acquisition Window Control Register (see #P0931)
+ 22h	Acquisition Window X-Start Low Byte Register
+	(X-Start is measured in input pixel clocks, referenced to trailing
+	  edge of video Hsync)
+ 23h	Acquisition Window X-Start High Byte Register (two high order bits)
+ 24h	Acquisition Window Y-Start Low Byte Register
+	(Y-Start is measured in input lines, referenced to trailing edge of
+	  video Vsync + V Start Adjust (register 30h))
+ 25h	Acquisition Window Y-Start High Byte Register (two high order bits)
+ 26h	Acquisition Window X-End Low Byte Register
+	(X-End is measured in input pixel clocks, referenced to trailing edge
+	  of video Hsync)
+ 27h	Acquisition Window X-End High Byte Register (two high order bits)
+ 28h	Acquisition Window Y-End Low Byte Register
+	(measured in input lines, referenced to trailing edge of
+	  video Vsync + V Start Adjust (register 30h))
+ 29h	Acquisition Window Y-End High Byte Register (two high order bits)
+ 2Ah	Acquisition Write Address Low Register
+	(points to frame memory location where video acquisition starts;
+	  at end of video line reset to beginning and offset of 1024 bytes
+	  is added for start address of next line)
+ 2Bh	Acquisition Write Address Middle Register
+ 2Ch	Acquisition Write Address High Register (4 high order bits)
+ 2Dh	Acquisition Horizontal-Scaling Register (see #P0932)
+ 2Eh	Acquisition Vertical-Scaling Register (see #P0933)
+ 2Fh	Scaling Field Adjust Register (see #P0934)
+ 30h	Input Video Start Adjust (see #P0935)
+ 38h	Scaling Control Register (see #P0936)
+ 40h	Display Area Control Register (see #P0937)
+ 41h	Display Window X-Start Low Byte Register
+	(defines start of horizontal display window; measured in VGA pixel
+	  clocks, referenced to trailing edge of VGA Hsync)
+ 42h	Display Window X-Start High Byte Register (three high order bits)
+ 43h	Display Window Y-Start Low Byte Register
+	(defines start of vertical display window; measured in VGA lines,
+	  referenced to trailing edge of VGA Vsync)
+ 44h	Display Window Y-Start High Byte Register (two high order bits)
+ 45h	Display Window X-End Low Byte Register
+	(defines end of horizontal display window; measured in VGA pixel
+	  clocks, referenced to trailing edge of VGA Hsync)
+ 46h	Display Window X-End High Byte Register (three high order bits)
+ 47h	Display Window Y-End Low Byte Register
+	(defines start of vertical display window; measured in VGA lines,
+	  referenced to trailing edge of VGA Vsync)
+ 48h	Display Window Y-End High Byte Register (two high order bits)
+ 49h	Display Window X-Panning Low Register
+	(defines display buffer column address times 2, loaded during data
+	  transfer cycle in VRAMs; for 4:1:1 encoding bit 0 should be set to 0)
+ 4Ah	Display Window Y-Panning Low Register
+	  (defines display buffer row, loaded for first active display line)
+ 4Bh	Display Window X/Y-Panning High Register (see #P0938)
+ 4Ch	Shift Clock Start Register (7 bits)
+	  (defines end of display blank relative to VGA Hsync trailing edge)
+ 4Dh	Sync Polarity/Zoom Register (see #P0939)
+ 4Eh	VGA Color Compare Register (see #P0940)
+ 4Fh	VGA Color Mask Register (see #P0941)
+ 50h	Display Window Interlace Control (see #P0942)
+ FFh	Version/Global Enable Register (see #P0943)
+
+Bitfields for Chips & Technologies PC Video (82C9001A) I/O Address Register:
+Bit(s)	Description	(Table P0925)
+ 7-1	I/O address bits 7-1
+	(These bits are compared with address inputs (A7-1) to detect
+	  valid I/O address. If CS# is low on RESET, this register is
+	  initialized to D6h. If CS# is high on RESET, this register is
+	  loaded with value present on data inputs (D7-1) during first
+	  I/O on the chip (IOWR# = 0 and CS# = 0).)
+ 0	reserved
+SeeAlso: #P0924,#P0926,#P0927
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Memory Access Register:
+Bit(s)	Description	(Table P0926)
+ 7-5	reserved
+ 4	VRAM write mask enable (enables registers 07h and 08h)
+ 3-0	reserved
+SeeAlso: #P0924,#P0925,#P0927,#P0928
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Linear Memory Base:
+Bit(s)	Description	(Table P0927)
+ 7-5	reserved
+ 4	reserved (1)
+ 3-0	linear memory space starting address (in 1MB units)
+SeeAlso: #P0924,#P0925
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Interupt Mask/Polling:
+Bit(s)	Description	(Table P0928)
+ 7-6	reserved
+ 5	VGA Hsync status
+ 4	VGA Vsync status
+ 3	video field status
+	0 = even
+	1 = odd
+ 2	video Vsync status
+ 1	video odd Vsync interrupt enable
+ 0	video even Vsync interrupt enable
+SeeAlso: #P0924,#P0221
+
+Bitfields for Chips & Technologies PC Video (82C9001A) General Purpose I/O:
+Bit(s)	Description	(Table P0929)
+ 7	general purpose I/O 3
+	0 = output decode of register 13h on GPIO3
+	1 = reserved
+ 6	general purpose I/O 2
+	0 = output decode of register 12h on GPIO2
+	1 = reserved
+ 5	general purpose I/O 1
+	0 = output "PLLHREF" on GPIO1
+	1 = output decode of register 11h on GPIO1
+ 4	general purpose I/O 0
+	0 = output decode of register 10h on GPIO0
+	1 = reserved
+ 3	reserved
+ 2	I2C bus read back
+	  (status of I2CI pin when I2CK pin goes from 0 to 1)
+ 1	I2C bus data (refer to I2C.LST for more details on the I2C bus)
+ 0	I2C bus clock
+SeeAlso: #P0924
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Video Acquisition Mode:
+Bit(s)	Description	(Table P0930)
+ 7	video input is non-interlace
+ 6	reserved
+ 5	video input Vsync polarity is active high
+ 4	video input Hsync polarity is active high
+ 3	video input even/odd acquire
+	0 = even (first) field
+	1 = odd (second) field
+ 2	video acquire field/frame
+	0 = frame
+	1 = field (interlaced mode only)
+ 1	video acquisition single/continuous
+	0 = continuous
+	1 = single (bit 0 cleared at the end)
+ 0	video acquisition start/stop
+	0 = stop (allows CPU access to frame buffer)
+	1 = start
+SeeAlso: #P0924
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Window Control:
+Bit(s)	Description	(Table P0931)
+ 7	invert field polarity
+ 6	select external field
+	0 = internal field (field detected 1 XCLK after trailing edge of
+	  XVSYNC input bit)
+	1 = field bit input through XFLD pin and reclocked by XCLK before
+	  XFLD use (XFLD input transition after trailing edge of XVSYNC; 
+	  0 on XFLD = even field, 1 on XFLD = odd field)
+ 5	multiplexing ratio for luminance and chrominance input data
+	  (active if bit 4 = 0)
+	0 = 4:1:1 / 2:1:1
+	1 = 4:2:2
+ 4	video input data multiplexing
+	0 = multiplexed (YUV)
+	1 = non-multiplexed (RGB)
+ 3	video input vertical scaling enable
+ 2	video input horizontal scaling enable
+ 1	video capture
+	0 = inside cropping window
+	1 = outside cropping window
+ 0	video input cropping enable
+SeeAlso: #P0924,#P0935,#P0937
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Horizontal Scaling:
+Bit(s)	Description	(Table P0932)
+ 7-6	reserved
+ 5-0	number of pixels written per 64 input pixels
+	(valid values are 1-63; enabled by register 21h bit 2)
+SeeAlso: #P0924,#P0933,#P0934
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Vertical Scaling:
+Bit(s)	Description	(Table P0933)
+ 7	reserved
+ 6-0	number of pixels written per 64 input pixels
+	(valid values are 1-63; enabled by register 21h bit 3)
+SeeAlso: #P0924,#P0932,#P0934
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Scaling Field Adjust:
+Bit(s)	Description	(Table P0934)
+ 7	reserved
+ 6-0	modify scaling value for odd field during acquisition
+	(diagnostic register, set to same value as register 2Eh for normal
+	  operation)
+SeeAlso: #P0924,#P0932,#P0936
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Input Video Start:
+Bit(s)	Description	(Table P0935)
+ 7-6	reserved
+ 5-0	number of scan lines from trailing edge of video Vsync to start of
+	  active video frame
+	(should always be programmed with non-zero value)
+SeeAlso: #P0924,#P0931
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Scaling Control:
+Bit(s)	Description	(Table P0936)
+ 7	fast write enable
+ 6-5	reserved (0 for normal operation)
+ 4	Y-max enable
+	(prevents wrap around of memory Y-address; should be enabled for
+	  PAL video data)
+ 3	X-max enable (prevents wrap around of memory X-address)
+ 2	Y-over-write mode
+	(should be set to 1 when vertical scaling less than 1/2 to reduce
+	  motion artifacts)
+	0 = normal scaling
+	1 = modified scaling
+ 1-0	chrominance multiplex adjust bits
+	(adjust to maintain luminance/chrominance alignment)
+SeeAlso: #P0924,#P0934
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Display Area Control:
+Bit(s)	Description	(Table P0937)
+ 7-6	skew between VGA data input and multiplexer control output
+	00 = 2 VGA clock delay
+	01 = 3 VGA clock delay
+	10 = 4 VGA clock delay
+	11 = 5 VGA clock delay
+ 5	both X-Y window and color key area (function 3)
+	(does not exist if bit 0 = 0 or bit 1 = 0)
+	0 = display VGA
+	1 = display frame buffer data
+ 4	color key only area (function 2)
+	(does not exist if bit 1 = 0)
+	0 = display VGA
+	1 = display frame buffer data
+ 3	X-Y window only area (function 1)
+	(does not exist if bit 0 = 0)
+	0 = display VGA
+	1 = display frame buffer data
+ 2	non-color key or X-Y window area (function 0)
+	0 = display VGA
+	1 = display frame buffer data
+ 1	overlay window using color keying enable
+ 0	overlay window using X-Y window enable
+SeeAlso: #P0924,#P0931
+
+Bitfields for Chips & Technologies PC Video (82C9001A) X/Y-Panning High:
+Bit(s)	Description	(Table P0938)
+ 7-5	reserved
+ 4	high bit of row offset (register 4Ah)
+ 3-1	reserved
+ 0	high bit of column offset (register 49h)
+SeeAlso: #P0924
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Sync Polarity/Zoom:
+Bit(s)	Description	(Table P0939)
+ 7-6	reserved
+ 5	VGA Vsync polarity is active high
+ 4	VGA Hsync polarity is active high
+ 3-2	vertical zoom
+	00 = no zoom
+	01 = 2x
+	10 = 4x
+	11 = 8x
+ 1-0	horizontal zoom (same values as vertical zoom)
+SeeAlso: #P0924
+
+Bitfields for Chips & Technologies PC Video (82C9001A) VGA Color Compare:
+Bit(s)	Description	(Table P0940)
+ 7-0	defines values VGA data must have for color match
+	0 = VGA data must be 0
+	1 = VGA data must be 1
+SeeAlso: #P0924,#P0941
+
+Bitfields for Chips & Technologies PC Video (82C9001A) VGA Color Mask Register:
+Bit(s)	Description	(Table P0941)
+ 7-0	defines bit position where VGA and color value must match
+	0 = VGA data must match color value
+	1 = don't care
+SeeAlso: #P0924,#P0940
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Interlace Control:
+Bit(s)	Description	(Table P0942)
+ 7-5	reserved
+ 4	replicate odd/even field (if bit 3 = 1)
+	0 = odd
+	1 = even
+ 3	replicate field
+	0 = do not replicate
+	1 = replicate even/odd (depending on bit 4)
+ 2	invert display window field signal polarity (if bit 0 = 1)
+	0 = do not modify
+	1 = invert
+ 1	select external display window field signal (if bit 0 = 1)
+	0 = internal
+	1 = VFLD input
+ 0	display window is interlaced
+SeeAlso: #P0924
+
+Bitfields for Chips & Technologies PC Video (82C9001A) Version/Global Enable:
+Bit(s)	Description	(Table P0943)
+ 7-4	PC Video version number
+ 3	reserved
+ 2	IOWR# delay (write-only)
+	0 = IOWR# input delayed inside chip by 2 XCLK cycles
+	1 = IOWR# input not delayed
+ 1	enable memory (write-only)
+ 0	PC Video global enable (write-only)
+	0 = index register and register FFh are write only and all other
+	  registers are disabled
+	1 = all registers are read/write
+SeeAlso: #P0924
+

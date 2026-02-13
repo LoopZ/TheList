@@ -1,0 +1,180 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03C403C5
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03C4-03C5 - S3 GRAPHICS - EXTENDED SEQUENCER REGISTERS
+SeeAlso: PORT 03C4h"EGA",PORT 03C4h"Cirrus",PORT 03C4h"Tseng",PORT 03C4"NVIDIA"
+
+03C4  RW  sequencer register index (see #P0685)
+03C5  RW  sequencer register data
+
+(Table P0685)
+Values for S3 extended sequencer registers:
+ 00h-04h same as EGA/VGA (see #P0670) 
+ 08h	S3 864/964/765 (Trio64V): key register -- enable access to S3 extended
+	  registers when set to x6h
+---S3 Trio32/Trio64/Trio64V+ ---
+ 09h	"SR9" MMIO-Only
+	bit 7: disable port I/O when memory-mapped I/O is enabled
+	bits 6-0: reserved
+	bit 1: ??? (set by Stealth64 Video 2001)
+ 0Ah	"SRA" external bus request control register (see #P0686)
+ 0Bh	"SRB" miscellaneous extended sequencer register (see #P0687)
+ 0Dh	"SRD" VSYNC/HSYNC control (see #P0689)
+ 10h	"SR10" MCLK value (low) (see #P0690)
+ 11h	"SR11" MCLK value (high) (see #P0691)
+ 12h	"SR12" DCLK value (low) (see #P0690)
+ 13h	"SR13" DCLK value (high) (see #P0691)
+ 14h	"SR14" CLKSYN control 1 (see #P0692)
+ 15h	"SR15" CLKSYN control 2 (see #P0693)
+ 16h	"SR16" CLKSYN Test (high) (reserved for testing of clock synth)
+ 17h	"SR17" CLKSYN Test (low) (reserved for testing of clock synth)
+ 18h	"SR18" RAMDAC/CLKSYN Control (see #P0694)
+---S3 Trio64V+ ---
+ 1Ch	"SR1C" signal select (see #P0695)
+SeeAlso: #P0670,#P0675,#P0696
+
+Bitfields for S3 Trio32/64/64V+ "SRA" external bus request control register:
+Bit(s)	Description	(Table P0686)
+ 7	fast CPU writes
+	when set and MCLK is less than 57 MHz, CPU writes take 2 MCLKs instead
+	  of 3 MCLKs (for MCLKs of 55-57 MHz, SR15 bit 7 should also be set)
+ 6	(Trio64) Pin50 function select
+	=0 (CR36 bit 2=1) Pin50 outputs a second -OE0 signal
+	=1 (CR36 bit 2=1) Pin50 outputs -RAS1
+ 5	=0 tri-state pixel-data lines (reduces power consumption)
+ 4-0	maximum 2*MCLKs that secondary memory controllers are granted access to
+	  Trio's memory bus
+Note:	bit 6 must be set for 4M fast page-mode memory; it has no effect if
+	  EDO memory is selected via CR36 bit 2
+SeeAlso: #P0685
+
+Bitfields for S3 Trio32/64/64V+ "SRB" misc extended sequencer register:
+Bit(s)	Description	(Table P0687)
+ 7-4	alternate color mode (for feature connector input) (see #P0688)
+ 3	(Trio32 only) enable packed 24 bpp (mode 12); also requires CR67 bits
+		  7-4=0000
+ 2	reserved
+ 1	VAFC clocking
+	=0 latch pixel data from pass-through feature connector on VCLK
+	=1 latch pixel data from VAFC on VCLKI
+ 0	dot clock select (testing only)
+	=0 use internal dot clock
+	=1 use VCLKI
+SeeAlso: #P0685,#P0751
+
+(Table P0688)
+Values for S3 Trio32/Trio64 color mode:
+0000	mode 0 = 8-bit, 1 pixel/VCLK
+0001	mode 8 = 8-bit, 2 pixels/VCLK
+0011	mode 9 = 15-bit, 1 pixel/VCLK
+0101	mode 10 = 16-bit, 1 pixel/VCLK
+0111	mode 12 = 640x480x24-bit (packed), 1 pixel/3 DCLKs (Trio32 only)
+1101	mode 13 = 24-bit, 1 pixel/VCLK
+else	reserved
+Note:	mode 8 also requires SR18 bit 7=1 and either SR15 bit 4=1 or
+	  SR15 bit 6=1
+SeeAlso: #P0687,#P0751
+
+Bitfields for S3 "SRD" Trio32/Trio64 VSYNC/HSYNC control:
+Bit(s)	Description	(Table P0689)
+ 7-6	vertical sync control
+	00 normal operation
+	01 force to 0
+	10 force to 1
+	11 reserved
+ 5-0	horizontal sync control (settings as for vsync)
+ 3-1	reserved
+ 1	(Trio64V+) feature connector type
+	=0 Trio64-compatible
+	=1 new LPB type
+ 0	enable feature connector
+Note:	bits 7-4 are used to select the DPMS power mode as follows:
+	    0000 On
+	    0001 Standby
+	    0100 Suspend
+	    0101 Off
+SeeAlso: #P0685
+
+Bitfields for S3 Trio32/Trio64 "SR10"/"SR12" MCLK/DCLK value (low):
+Bit(s)	Description	(Table P0690)
+ 7	reserved
+ 6-5	PLL R value
+ 4-0	PLL N-divider value
+SeeAlso: #P0691,#P0685
+
+Bitfields for S3 Trio32/Trio64 "SR11"/"SR13" MCLK/DCLK value (high):
+Bit(s)	Description	(Table P0691)
+ 7	reserved
+ 6-0	PLL M-divider value
+SeeAlso: #P0690,#P0685
+
+Bitfields for S3 Trio32/Trio64 "SR14" CLKSYN control 1:
+Bit(s)	Description	(Table P0692)
+ 7	select external DCLK (testing only; also requires external strapping)
+ 6	select external MCLK (testing only)
+ 5	select Pin146 function
+	=0 use as -STRD
+	=1 tri-state output; use as input (required to enable bit 6)
+ 4	clear clock synthesizer counters (testing only)
+ 3	"M TEST" MCLK test
+	=0 test DCLK
+	=1 test MCLK
+ 2	enable clock synthesizer counters (testing only)
+ 1	power down MCLK PLL (testing only)
+ 0	power down DCLK PLL (testing only)
+SeeAlso: #P0693,#P0685
+
+Bitfields for S3 Trio32/Trio64 "SR15" CLKSYN control 2:
+Bit(s)	Description	(Table P0693)
+ 7	enable fast memory writes (2 MCLKs instead of 3 MCLKs) by bypassing
+	  VGA lienar addressing logic (requires SRA bit 7 set)
+ 6	invert DCLK
+ 5	load MCLK and DCLK immediately on transition from 1 to 0
+ 4	divide DCLK by 2
+ 3	VLCK direction
+	=0 Pin148 always outputs internal VCLK
+	=1 -EVCLK signal determines VLCK direction
+ 2	MCLK output (testing only)
+	=0 Pin147 acts as STWR strobe
+	=1 Pin147 outputs internal MCLK
+ 1	enable new DCLK frequency load (asynchronous)
+ 0	enable new MCLK frequency load
+Notes:	bits 1 and 5 also require that PORT 03C2h bits 3-2=11
+	bit 5 must never be left set; it should only be pulsed to cause the
+	  MCLK/DCLK load
+	bit 0 should be cleared after loading the new MCLK value to avoid
+	  repeated loading
+	either bit 4 or 6 must be set for clock-doubled RAMDAC operation
+	  (see #P0686)
+SeeAlso: #P0692,#P0694,#P0685
+
+Bitfields for S3 Trio32/Trio64 "SR18" RAMDAC/CLKSYN control:
+Bit(s)	Description	(Table P0694)
+ 7	enable clock-doubled mode (see also #393)
+ 6	fast LUT write cycle (1 DCLK instead of default 2 DCLKs)
+ 5	power down RAMDAC (RAMDAC memory is retained even when powered down)
+ 4	(testing only) place blue data on internal data bus
+ 3	(testing only) place green data on internal data bus
+ 2	(testing only) place red data on internal data bus
+ 1	(testing only) reset RAMDAC test counter
+ 0	(testing only) enable test counter
+SeeAlso: #P0693
+
+Bitfields for S3 Trio64V+ "SR1C" signal select:
+Bit(s)	Description	(Table P0695)
+ 7-2	reserved
+ 1-0	signal select
+	VL-Bus:
+	    00 Pin151 is ENFEAT#, Pin153 is ROMCS# (default)
+	    01 Pin151 is GPIOSTR#, Pin153 is ROMCS#
+	    10 Pin151 is GOP0, Pin153 is ROMCS#
+	    11 Pin151 is GOP0, Pin153 is GOP1
+	PCI:
+	    00 Pin151 is ENFEAT#, Pin190 is STWR#, Pin153 is ROMEN# (default)
+	    01 Pin151 is reserved, Pin190 is STWR#, Pin153 is ROMEN#
+	    1x Pin151 is GOP0, Pin190 is GOP1, Pin153 is ROMEN#
+SeeAlso: #P0073
+

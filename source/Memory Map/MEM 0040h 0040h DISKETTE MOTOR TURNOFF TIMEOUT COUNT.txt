@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400040
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0040h - DISKETTE - MOTOR TURN-OFF TIMEOUT COUNT
+Size:	BYTE
+Desc:	number of clock ticks until diskette motor is turned off
+Note:	the typical implementation of the timeout is to have the INT 08 
+	  handler decrement this byte on every clock tick, and force the
+	  diskette motor off if the result is equal to zero
+SeeAlso: MEM 0040h:003Eh,MEM 0040h:003Fh,MEM 0040h:0041h,INT 08"IRQ0"
+

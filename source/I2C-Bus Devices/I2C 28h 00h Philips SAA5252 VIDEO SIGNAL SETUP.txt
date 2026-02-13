@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: I2800
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 28h/00h - Philips SAA5252 - VIDEO SIGNAL SETUP
+Access:	Write-Only
+Desc:	the SAA5252 is a closed-captioning text decoder
+Note:	on writes, the register index auto-increments until it reaches 4; this
+	  permits all of the write-only registers to be updated in a single I2C
+	  telegram
+SeeAlso: I2C 28h/01h,I2C 28h/02h,I2C 28h/80h
+
+Bitfields for Philips SAA5252 video signal setup:
+Bit(s)	Description	(Table I0004)
+ 3-0	offset from start of horizontal sync pulse
+ 4	vertical sync pulse has positive polarity
+ 5	horizontal sync pulse has positive polarity
+ 6	video output is negative-going instead of positive
+ 7	read Closed-Captioning data from second field instead of first
+SeeAlso: #I0011
+

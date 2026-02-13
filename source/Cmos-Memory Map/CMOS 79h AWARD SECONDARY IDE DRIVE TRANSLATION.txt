@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: R79
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 79h - AWARD - SECONDARY IDE DRIVE TRANSLATION
+
+Bitfields for AWARD Secondary IDE drive translation:
+Bit(s)	Description	(Table C0098)
+ 7-4    ??? Default = 1111
+ 3-2    translation used for secondary master
+	00 normal, 01 LBA, 10 Large, 11 Autio
+ 1-0    translation used for secondary slave (as for bits 3-2)
+

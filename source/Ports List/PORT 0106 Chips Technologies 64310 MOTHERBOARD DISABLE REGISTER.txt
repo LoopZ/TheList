@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0106
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0106 - Chips & Technologies 64310 - MOTHERBOARD DISABLE REGISTER
+SeeAlso: PORT 0102"Chips"
+
+0106  RW  motherboard disable register (see #P0495)
+
+Bitfields for Chips & Technologies 64310 motherboard disable register:
+Bit(s)	Description	(Table P0495)
+ 7-2	reserved (0)
+ 1	sleep control
+	0 = port 102h bit 0 controls VGA sleep (default)
+	1 = port 106h bit 0 controls VGA sleep
+ 0	VGA sleep (used if bit 1 = 1)
+	0 = VGA disabled
+	1 = VGA enabled
+Note:	Only accessible in setup mode (port 46E8h bit 4 = 1),
+	  if XR01 bit 2 = 1.
+SeeAlso: #P0494
+

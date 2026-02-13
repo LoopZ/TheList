@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00440047
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0044-0047 - Microchannel - PROGRAMMABLE INTERVAL TIMER 2
+SeeAlso: PORT 0040h,PORT 0048h
+
+0044  RW  PIT  counter 3 (PS/2)
+		used as fail-safe timer. generates an NMI on time out.
+		for user generated NMI see at 0462.
+0047  -W  PIT  control word register counter 3 (PS/2, EISA)
+	bit 7-6 = 00  counter 3 select
+		= 01  reserved
+		= 10  reserved
+		= 11  reserved
+	bit 5-4 = 00  counter latch command counter 3
+		= 01  read/write counter bits 0-7 only
+		= 1x  reserved
+	bit 3-0 = 00
+

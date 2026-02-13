@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: R2D
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 2Dh - AMI Hi-Flex BIOS - CONFIGURATION OPTIONS 
+
+Bitfields for AMI Hi-Flex BIOS configuration options:
+Bit(s)	Description	(Table C0032)
+ 7	Weitek Installed
+ 6	Floppy Drive Seek - turn off for fast boot
+ 5	Boot Order
+	0 - Drive C:, then A:
+	1 - Drive A:, then C:
+ 4	Boot Speed (0 - Low; 1 - High)
+ 3	External Cache Enable (1 = On)
+ 2	Internal Cache Enable (1 = On)
+ 1	Use Fast Gate A20 after boot (1 = On)
+ 0	Turbo Switch (1 = On)
+

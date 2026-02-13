@@ -1,0 +1,901 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220024
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0024 - OPTi "Vendetta" (82C750) CHIPSET - SYSTEM CONTROL REGISTERS
+Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+	  even if the same register is being accessed a second time
+SeeAlso: PORT 0022h"82C206"
+
+0022  ?W  index for accesses to data port (see #P0219)
+0023  RW  DMA clock select (see #P0087)
+0024  RW  chip set data
+
+(Table P0219)
+Values for OPTi "Vendetta" (82C750) system control registers:
+ 00h	DRAM control register 1 (see #P0220)
+ 01h	DRAM control register 2 (see #P0192)
+ 02h	cache control register 1 (see #P0193)
+ 03h	cache control 2 (see #P0194)
+ 04h	shadow RAM control register 1 (see #P0195)
+ 05h	shadow RAM control register 2 (see #P0197)
+ 06h	shadow RAM control register 3 (see #P0198)
+ 07h	tag test register (see #P0199)
+ 08h	CPU cache control register (see #P0200)
+ 09h	system memory function register (see #P0201)
+ 0Ah	DRAM hole A address decode register 1 (see #P0202)
+ 0Bh	DRAM hole B address decode register 2 (see #P0203)
+ 0Ch	DRAM hole higher address (see #P0204)
+ 0Dh	clock control register (see #P0205)
+ 0Eh	PCI master burst control register 1 (see #P0206)
+ 0Fh	PCI master burst control register 2 (see #P0207)
+ 10h	miscellaneous control register 1 (see #P0208)
+ 11h	miscellaneous control register 2 (see #P0209)
+ 12h	miscellaneous control register 3 (see #P0221)
+ 13h	memory decode control register 1 (see #P0211)
+ 14h	memory decode control register 2 (see #P0213)
+ 15h	PCI cycle control register 1 (see #P0214)
+ 16h	dirty/tag RAM control register (see #P0215)
+ 17h	PCI cycle control register 2 (see #P0216)
+ 18h	tristate control register (see #P0217)
+ 19h	memory decode control register 3 (see #P0218)
+ 1Ah	memory shadow control register 1 (see #P0222)
+ 1Bh	memory shadow control register 2 (see #P0223)
+ 1Ch	EDO SDRAM control register (see #P0224)
+ 1Dh	miscellaneous control register 4 (see #P0225)
+ 1Eh	BOFF# control register (see #P0226)
+ 1Fh	EDO timing control register (see #P0227)
+ 20h	DRAM burst control register (see #P0228)
+ 21h	PCI concurrence control register (see #P0229)
+ 22h	inquire cycle control register (see #P0230)
+ 23h	pre-snoop control register (see #P0231)
+ 24h	asymmetric DRAM configuration register (see #P0232)
+ 25h	GUI memory location register (see #P0233)
+ 26h	UMA control register (see #P0234)
+ 27h	self refresh timing register (see #P0235)
+ 28h	SDRAM burst and latency control register (see #P0236)
+ 29h	SDRAM selection register (see #P0237)
+ 2Ah	PCI-to-DRAM deep buffer size register (see #P0238)
+ 2Bh	EDO/SDRAM time-out register (see #P0239)
+ 2Ch	CPU-to-DRAM buffer control register (see #P0240)
+ 2Dh	bank-wise EDO timing selection register (see #P0241)
+ 2Eh	PCI master - GUI retry control register (see #P0242)
+ 2Fh	CAS address setup time control register (see #P0243)
+ 30h-7Fh reserved
+ 80h	PIC 1 ICW1 read-back register (read-only)
+ 81h	PIC 1 ICW2 read-back register (read-only)
+ 82h	PIC 1 ICW3 read-back register (read-only)
+ 83h	PIC 1 ICW4 read-back register (read-only)
+ 84h	reserved
+ 85h	PIC 1 OCW2 read-back register (read-only)
+ 86h	PIC 1 OCW3 read-back register (read-only)
+ 87h	reserved
+ 88h	PIC 2 ICW1 read-back register (read-only)
+ 89h	PIC 2 ICW2 read-back register (read-only)
+ 8Ah	PIC 2 ICW3 read-back register (read-only)
+ 8Bh	PIC 2 ICW4 read-back register (read-only)
+ 8Ch	reserved
+ 8Dh	PIC 2 OCW2 read-back register (read-only)
+ 8Eh	PIC 2 OCW3 read-back register (read-only)
+ 8Fh	refresh address register (see #P0244)
+ 90h	CTSC0LB (PIT counter 0 low byte) read-back register (read-only)
+ 91h	CTSC0HB (PIT counter 0 high byte) read-back register (read-only)
+ 92h	CTSC1LB (PIT counter 1 low byte) read-back register (read-only)
+ 93h	CTSC1HB (PIT counter 1 high byte) read-back register (read-only)
+ 94h	CTSC2LB (PIT counter 2 low byte) read-back register (read-only)
+ 95h	CTSC2HB (PIT counter 2 high byte) read-back register (read-only)
+ 96h	byte pointer register (read-only)
+	(byte 2 pointer value)
+ 97h-ACh reserved
+ ADh	general purpose chip select control register (see #P0270)
+ AEh-DFh reserved
+ E0h	GREEN mode control/enable status (see #P0245)
+ E1h	EPMI control/GREEN event timer (see #P0246)
+ E2h	GREEN event timer initial count register (see #P0247)
+ E3h	IRQ event enable register 1 (see #P0248)
+ E4h	IRQ event enable register 2 (see #P0249)
+ E5h	DREQ event enable register (see #P0250)
+ E6h	device cycle monitor enable register (see #P0251)
+ E7h	wake-up source/programmable IO/memory address mask register (see #P0252)
+ E8h	programmable I/O/MEM address range register (see #P0253)
+ E9h	programmable I/O/MEM address range register (see #P0254)
+ EAh	enter GREEN state port register (see #P0255)
+ EBh	return to NORMAL state configuration port register (see #P0256)
+ ECh	shadow register for external power control latch register (see #P0257)
+ EDh	device cycle detection enable/status register (see #P0258)
+ EEh	STPCLK# modulation register (see #P0259)
+ EFh	miscellaneous register (see #P0260)
+ F0h	device timer CLK select/enable status register (see #P0261)
+ F1h	device timer 0 initial count register
+ F2h	device timer 1 initial count register
+ F3h	device timer IO/MEM select, mask bits register (see #P0262)
+ F4h	device 0 IO/MEM address register (see #P0263)
+ F5h	device 0 IO/MEM address register (see #P0264)
+ F6h	device 1 IO/MEM address register (see #P0265)
+ F7h	device 1 IO/MEM address register (see #P0266)
+ FAh-FBh reserved
+ FCh	power management control register 1 (see #P0267)
+ FDh	power management control register 2 (see #P0268)
+ FEh	power management control register 3 (see #P0269)
+ FFh	general purpose chip select control register (see #P0270)
+
+Bitfields for OPTi "Vendetta" DRAM control register 1:
+Bit(s)	Description	(Table P0220)
+ 7	reserved
+ 6	SDRAM pipeline fix (1)
+ 5-0	reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" miscellaneous control register 3:
+Bit(s)	Description	(Table P0221)
+ 7	buffered DMA register 8Fh latch to bits 23-16 of SA lines disable
+ 6-0	reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" memory shadow control register 1:
+Bit(s)	Description	(Table P0222)
+ 7	reserved
+ 6-5	CPU bus utilization time guarantee
+	00 = no guarantee
+	01 = 1 of every 15 microseconds
+	10 = 2 of every 15 microseconds
+	11 = 4 of every 15 microseconds
+ 4	C8000-DFFFF shadow granularity
+	0 = 16 KB
+	1 =  8 KB
+ 3-2	CE000-CFFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM; applicable if bit 4 is set (see #P0196)
+ 1-0	CA000-CBFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM; applicable if bit 4 is set (see #P0196)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" memory shadow control register 2:
+Bit(s)	Description	(Table P0223)
+ 7-6	DE000-DFFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM; applicable if register 1Ah bit 4 is set
+	  (see #P0196)
+ 5-4	DA000-DBFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM; applicable if register 1Ah bit 4 is set
+	  (see #P0196)
+ 3-2	D6000-D7FFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM; applicable if register 1Ah bit 4 is set
+	  (see #P0196)
+ 1-0	D2000-D3FFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM; applicable if register 1Ah bit 4 is set
+	  (see #P0196)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" EDO SDRAM control register:
+Bit(s)	Description	(Table P0224)
+ 7-2	bank 5-0 EDO SDRAM usage
+	0 = standard page mode DRAM
+	1 = EDO SDRAM
+ 1	reserved
+ 0	DRAM access CAS pulse width
+	0 = determined by register 01h bit 3
+	1 = 1 CPUCLK
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" miscellaneous control register 4:
+Bit(s)	Description	(Table P0225)
+ 7-6	reserved
+ 5	DWE# timing
+	0 = normal
+	1 = removed 1 CLK earlier
+ 4	DRAM read leadoff cycle
+	0 = normal
+	1 = 1 CLK reduced
+ 3	system memory DMA access disable
+ 2	reserved
+ 1	SMM mode B0000-BFFFF access
+	0 = main memory
+	1 = PCI bus
+ 0	SMM mode A0000-AFFFF access
+	0 = main memory
+	1 = PCI bus
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" BOFF# control register:
+Bit(s)	Description	(Table P0226)
+ 7	PCI master read cycle
+	0 = wait IRDY# assert before TRDY# assert
+	1 = generate TRDY# when checking IRDY# status
+ 6	reserved (1)
+ 5	reserved
+ 4	A0000-BFFFF PCI retry cycle BOFF# generation
+	0 = not generated if bit 3 set
+	1 = generated if bit 3 set
+ 3	deadlock situation avert
+	0 = no avert
+	1 = assert BOFF#
+ 2	reserved (1)
+ 1-0	reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" EDO timing control register:
+Bit(s)	Description	(Table P0227)
+ 7	0 = normal
+	1 = EDO detection conflict generation (bit 6 set)
+ 6	0 = normal fast page mode
+	1 = detect EDO
+ 5	NA# generation
+	0 = aggresive
+	1 = normal
+ 4	DRAM read cycle lead-off 1 CLK reduce enable
+ 3-2	reserved
+ 1	hidden refresh block AHOLD disable
+ 0	D0000-DFFFF cacheable in L1 and L2
+	0 = not cacheable
+	1 = cacheable; area has to be read/writable and shadowed
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" DRAM burst control register:
+Bit(s)	Description	(Table P0228)
+ 7	reserved (1)
+ 6	PCI master access HITM# cycle DRAM write post enable
+ 5	reserved
+ 4	PCI master parity enable
+ 3-2	PCI master cycle DRAM write burst cycle
+	00 = reserved
+	01 = X-3-3-3
+	10 = X-2-2-2
+	11 = X-1-1-1
+ 1-0	PCI master cycle DRAM read burst cycle
+	00 = reserved
+	01 = X-3-3-3
+	10 = X-2-2-2
+	11 = X-1-1-1
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" PCI concurrence control register:
+Bit(s)	Description	(Table P0229)
+ 7	concurrence timer
+	0 = conservative
+	1 = aggressive
+ 6-5	PCI master and CPU/L2 concurrence
+	00 = no concurrence
+	x1 = PCI write invalid cycles
+	1x = PCI read multiple and read line cycles
+ 4-3	reserved
+ 2	0 = if tag = 11011111b => invalid combination
+	1 = if cache = 256K, tag = 00001100b => invalid combination (CF0000h).
+	    if cache > 256K, tag = 10111111b => invalid combination
+	  (valid only when bit 1 set)
+ 1-0	reserved (1)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" inquire cycle control register:
+Bit(s)	Description	(Table P0230)
+ 7	reserved
+ 6-5	new mode pre-snoop function
+	00 = disable
+	11 = enable
+ 4	HRQ synchronous to LCLK enable (must be 1 for ISA retry)
+ 3-1	reserved
+ 0	write hit cycle lead-off time when combining Dirty/Tag RAM
+	0 = single write hit lead-off cycle = 5 cycles
+	1 = single write hit lead-off cycle = 4 cycles
+Note:	bit 0 should be set same as register 16h bit 4
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" pre-snoop control register:
+Bit(s)	Description	(Table P0231)
+ 7	reserved
+ 6	0 = bank 0 selected as first bank
+	1 = bank 0 selected as last bank
+ 5	PCI X-1-1-1 write invalidate pre-snoop enable
+ 4	PCI X-1-1-1 read multiple and read line pre-snoop enable
+ 3	fast NA cache hit half clock shift enable
+ 2-1	reserved (1)
+ 0	reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" asymmetric DRAM configuration register:
+Bit(s)	Description	(Table P0232)
+ 7-6	logical bank 3 DRAM type
+	00 = symmetric
+	01 = asymmetric x8
+	10 = asymmetric x9
+	11 = asymmetric x10
+ 5-4	logical bank 2 DRAM type
+ 3-2	logical bank 1 DRAM type
+ 1-0	logical bank 0 DRAM type
+Note:	banks 4 and 5 do not support asymmetric DRAM
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" GUI memory location register:
+Bit(s)	Description	(Table P0233)
+ 7-3	GUI memory location bits 31-27
+ 2	UMA size
+	0 = decided by register 26h bits 5-4
+	1 = 0.5MB (register 26h bits 5-4 = 00)
+ 1-0	reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" UMA control register:
+Bit(s)	Description	(Table P0234)
+ 7	ISA master to DRAM cycle CAS width
+	0 = controlled by ISA read/write command pulse width
+	1 = 2 LCLKs
+ 6	ISA SA address latch
+	0 = pass-through
+	1 = on only for retry
+ 5-4	GUI memory size
+	00 = 1MB (0.5MB if register 25h bit 2 set)
+	01 = 2MB
+	10 = 3MB
+	11 = 4MB
+ 3	66MHz 5-2-2-2 EDO DRAM read timing enable
+ 2-1	GUI priority
+	00 = normal
+	01 = wait 2 CLKs for low priority GUI request
+	11 = high
+ 0	UMA support enable
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" self refresh timing register:
+Bit(s)	Description	(Table P0235)
+ 7-6	reserved
+ 5	PCI master write line invalid cycle HITM# or L2 dirty no stop enable
+ 4	CPU single write hit not dirty cycle second T2 AHOLD generate enable
+ 3	fast NA# with L2 cache enable
+ 2-0	self refresh
+	000 = disable, use external refresh pin
+	001-011 = reserved
+	100 = 66MHz external CPU clock
+	101 = 60MHz external CPU clock
+	110 = 50MHz external CPU clock
+	111 = 40MHz external CPU clock
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" SDRAM burst and latency control register:
+Bit(s)	Description	(Table P0236)
+ 7	CS# delay enable
+ 6-4	SDRAM CAS# latency
+	000 = reserved
+	001 = 1
+	010 = 2
+	011 = 3
+	100-111 = reserved
+ 3	0 = sequential write-through
+	1 = interleaved write-through
+ 2-0	SDRAM burst length
+	000 = 1
+	001 = reserved
+	010 = 4
+	011-111 = reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" SDRAM selection register:
+Bit(s)	Description	(Table P0237)
+ 7	pipeline read
+	0 = 7-1-1-1-5-1-1-1-1
+	1 = 7-1-1-1-2-1-1-1-1
+ 6	reserved
+ 5	timing
+	     tRP     tRAS    tMRS
+	00 = 2 CLKs  4 CLKs  3 CLKs
+	01 = 4 CLKs  5 CLKs  3 CLKs
+	10 = 3 CLKs  6 CLKs  2 CLKs
+	11 = rsvd    7 CLKs  rsvd
+	tRP: command activate precharge time
+	tRAS: command precharge RAS active time
+	tMRS: mode register set cycle time
+ 4-0	bank 4-0 SDRAM enable
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" PCI-to-DRAM deep buffer size register:
+Bit(s)	Description	(Table P0238)
+ 7	reserved
+ 6-5	PCI master read cycle GUI request time-out
+	00 = FP mode, grant DRAM bus when possible
+	01 = SDRAM or EDO time-out
+	10-11 = FP mode, SDRAM, or EDO time-out
+ 4	PCI-to-DRAM deep buffer PCI TRDY# wait state
+	0 = 0 wait state (X-1-1-1)
+	1 = 1 wait state (X-2-2-2)
+ 3	PCI-to-DRAM deep buffer write burst enable
+ 2	PCI-to-DRAM deep buffer read burst enable
+ 1-0	PCI-to-DRAM deep buffer size
+	00 = 16 dwords
+	01 = 24 dwords
+	10-11 = reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" EDO/SDRAM time-out register:
+Bit(s)	Description	(Table P0239)
+ 7-4	SDRAM time-out count on GUI request - 9 CLKs
+	  (delay count +9 CLKs)
+ 3-0	EDO time-out count on GUI request
+	  (delay count +6 CLKs)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" CPU-to-DRAM buffer control register:
+Bit(s)	Description	(Table P0240)
+ 7	concurrent CPU-to-PCI read and CPU-to-DRAM write enable
+ 6	reserved
+ 5	cache miss dirty cycle CPU-to-DRAM buffer control
+	1 = supply data to CPU before previous data write-back
+	  (CPU-to-DRAM buffer must be enabled)
+ 4-3	reserved
+ 2	DRAM read cycle BOFF# assert enable
+ 1	CPU DRAM bus ownership data merge enable
+ 0	write data while buffer flush enable
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" bank-wise EDO timing selection register:
+Bit(s)	Description	(Table P0241)
+ 7	reserved
+ 6	predictive reading enable
+ 5-0	bank 5-0 EDO DRAM read cycle
+	0 = default
+	1 = 5-X-X-X (66MHz)/4-X-X-X (50MHz) enable
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" PCI master - GUI retry control register:
+Bit(s)	Description	(Table P0242)
+ 7-6	reserved
+ 5	USB module enable
+ 4	reserved
+ 3	CPU-to-PCI FIFO control module enable
+ 2	reserved
+ 1	PCI master HITM# cycle, GUI high priority request before first BRDY#
+	0 = retry all
+	1 = retry only PCI master read
+ 0	GUI cycle PCI master request retry
+	0 = retry all
+	1 = retry reads, accept writes
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" CAS address setup time control register:
+Bit(s)	Description	(Table P0243)
+ 7	page miss cycle CAS column address delay
+	0 = default
+	1 = 1 CLK
+ 6	burst mode and length
+ 5	reserved
+ 4-3	burst mode and length
+	bits 6 and 4-3:
+	000 = mode 0, RWM 5
+	001 = mode 1, RWM 5, BLEN 2
+	010 = BLEN 3
+	011 = BLEN 4
+	100 = mode 0, RWM 4
+	101 = mode 2, RWM 4, BLEN 1
+	110 = BLEN 2
+	111 = BLEN 3
+	RWM: refresh request water mark
+	BLEN: minimum number of burst refresh cycles
+	mode 0: generate refresh request on RWM reach/cross; if high priority
+		GUI request pending, preempt refresh burst at end of current
+		cycle; if CPU/PCI request pending, preempt refresh burst when
+		count<RWM; else refresh until count=0, then refresh ahead up
+		to 3/7
+	mode 1: generate refresh request on RWM reach/cross; if high priority
+		GUI request pending, preempt refresh burst at end of current
+		cycle; if CPU/PCI request pending, preempt refresh burst when
+		count<RWM and performed refresh cycles>=BLEN; else refresh
+		until count=0, then refresh ahead up to 3/7
+	mode 2: generate refresh request on RWM reach/cross; if high priority
+		GUI request pending, preempt refresh burst at end of current
+		cycle; if CPU request pending, preempt refresh burst when
+		performed refresh cycles>=BLEN; if PCI request pending,
+		preempt refresh burst when count<RWM and performed refresh
+		cycles>=BLEN; else refresh until count=0, then refresh ahead
+		up to 3/7
+ 2-0	refresh ahead
+	000 = burst refresh disable
+	001 = starting bank 0, no refresh ahead
+	010 = starting bank 0, refresh ahead up to 3
+	011 = starting bank 0, refresh ahead up to 7
+	100 = burst refresh disable
+	101 = starting bank dynamic, no refresh ahead
+	110 = starting bank dynamic, refresh ahead up to 3
+	111 = starting bank dynamic, refresh ahead up to 7
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" refresh address register:
+Bit(s)	Description	(Table P0244)
+ 7-0	during buffered DMA cycle reflected on bits 23-16 of SA lines,
+	  bits 15-10 of SA lines cleared
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" GREEN mode control/enable status:
+Bit(s)	Description	(Table P0245)
+ 7	power management SMI# generation enable
+ 6	GREEN event SMI# generation
+	(read)
+	0 = GREEN event did not generate SMI#
+	1 = GREEN event generated SMI#
+	(write)
+	0 = disable GREEN event SMI# generation
+	1 = enable GREEN event SMI# generation (if bit 7 set)
+ 5	reload GREEN event timer/wake-up event SMI# generation
+	(read)
+	0 = wake-up event did not generate SMI#
+	1 = wake-up event generated SMI#
+	(write)
+	0 = disable wake-up event SMI# generation
+	1 = enable wake-up event SMI# generation (if bit 7 set)
+ 4	power management status (read-only)
+	0 = NORMAL
+	1 = GREEN
+ 3	power management PPWRL# generation enable
+ 2	GREEN event PPWRL# generation enable (if bit 3 set)
+ 1	reload GREEN event timer/wake-up event PPWRL# generation enable
+	  (if bit 3 set)
+ 0	software generation of GREEN event
+	0 = no action
+	1 = generate GREEN event (if register E1h bit 0 set)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" EPMI control/GREEN event timer:
+Bit(s)	Description	(Table P0246)
+ 7-6	GREEN event timer CLK period
+	00 = 119 microseconds
+	01 = 12.25 ms
+	10 = 1.94 s
+	11 = 62.5 s
+ 5	EPMI0# polarity
+	0 = EPMI0# triggered on falling edge
+	1 = EPMI0# triggered on rising edge
+ 4	EPMI0# debounce enable
+ 3	EPMI0# polarity
+	0 = determined by bit 5
+	1 = EPMI0# triggered on transition
+ 2	GREEN event timer time-out GREEN event generation
+	(read)
+	0 = GREEN event timer time-out did not cause GREEN event
+	1 = GREEN event timer time-out did cause GREEN event
+	(write)
+	0 = disable GREEN event timer time-out GREEN event generation
+	1 = enable GREEN event timer time-out GREEN event generation
+ 1	EPMI0# trigger GREEN event generation
+	(read)
+	0 = EPMI0# trigger did not cause GREEN event
+	1 = EPMI0# trigger did cause GREEN event
+	(write)
+	0 = disable EPMI0# trigger GREEN event generation
+	1 = enable EPMI0# trigger GREEN event generation
+ 0	software trigger GREEN event generation
+	(read)
+	0 = software trigger did not cause GREEN event
+	1 = software trigger did cause GREEN event
+	(write)
+	0 = disable software trigger GREEN event generation
+	1 = enable software trigger GREEN event generation
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" GREEN event timer initial count register:
+Bit(s)	Description	(Table P0247)
+ 7-0	time-out timer count - 2
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" IRQ event enable register 1:
+Bit(s)	Description	(Table P0248)
+ 7-3	IRQ7-IRQ3 monitoring enable
+ 2	IRQ15-IRQ0 deglitch enable
+ 1-0	IRQ1-IRQ0 monitoring enable
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" IRQ event enable register 2:
+Bit(s)	Description	(Table P0249)
+ 7-0	IRQ15-IRQ8 monitoring enable
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" DREQ event enable register:
+Bit(s)	Description	(Table P0250)
+ 7-5	DREQ7-DREQ5 monitoring enable (if register EFh bit 6 set)
+ 4	reserved
+ 3-0	DREQ3-DREQ0 monitoring enable (if register EFh bit 6 set)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" device cycle monitor enable register:
+Bit(s)	Description	(Table P0251)
+ 7	programmable IO/MEM monitoring enable
+ 6	parallel ports monitoring enable
+ 5	video monitoring enable
+ 4	hard disk monitoring enable
+ 3	floppy disk monitoring enable
+ 2	keyboard monitoring enable
+ 1	COM1/COM3 monitoring enable
+ 0	COM2/COM4 monitoring enable
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" wake-up source/programmable IO/memory address:
+Bit(s)	Description	(Table P0252)
+ 7	PREQ# monitoring enable (if register EFh bit 7 set)
+ 6	LDEV#/DEVSEL# monitoring enable
+ 5	EPMI0# trigger monitoring enable
+ 4	reserved
+ 3	programmable IO/MEM address type
+	0 = I/O
+	1 = non-system memory
+ 2-0	programmable IO/MEM address mask bits 2-0 (bit 3 = register FFh bit 0)
+	  (mask lowest n bits)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" programmable I/O/MEM address range register:
+Bit(s)	Description	(Table P0253)
+ 7-0	I/O address bits 7-0 or non-system memory address bits 23-16
+	  (use register E7h bit 3 to select I/O or non-system memory address)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" programmable I/O/MEM address range register:
+Bit(s)	Description	(Table P0254)
+ 7-0	I/O address bits 15-8 or non-system memory address bits 31-24
+	  (use register E7h bit 3 to select I/O or non-system memory address)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" enter GREEN state port register:
+Bit(s)	Description	(Table P0255)
+ 7-0	GREEN state values for external power control latch
+	  (transfered to register ECh on enter GREEN state PPWRL#)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" return to NORMAL state configuration port:
+Bit(s)	Description	(Table P0256)
+ 7-0	NORMAL state values for external power control latch
+	  (transfered to register ECh on return to NORMAL state PPWRL#)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" shadow register for external power control latch:
+Bit(s)	Description	(Table P0257)
+ 7-0	external power control latch value
+	  (write generates PPWRL#)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" device cycle detection enable/status register:
+Bit(s)	Description	(Table P0258)
+ 7	programmed range access SMI# generation
+	(read)
+	0 = programmed range access did not generate SMI#
+	1 = programmed range access generated SMI#
+	(write)
+	0 = disable programmed range access SMI# generation
+	1 = enable programmed range access SMI# generation
+ 6	LPT access SMI# generation
+	(read)
+	0 = LPT access did not generate SMI#
+	1 = LPT access generated SMI#
+	(write)
+	0 = disable LPT access SMI# generation
+	1 = enable LPT access SMI# generation
+ 5	video access SMI# generation
+	(read)
+	0 = video access did not generate SMI#
+	1 = video access generated SMI#
+	(write)
+	0 = disable video access SMI# generation
+	1 = enable video access SMI# generation
+ 4	hard disk access SMI# generation
+	(read)
+	0 = hard disk access did not generate SMI#
+	1 = hard disk access to generated SMI#
+	(write)
+	0 = disable hard disk access SMI# generation
+	1 = enable hard disk access SMI# generation
+ 3	floppy disk access SMI# generation
+	(read)
+	0 = floppy disk access did not generate SMI#
+	1 = floppy disk access generated SMI#
+	(write)
+	0 = disable floppy disk access SMI# generation
+	1 = enable floppy disk access SMI# generation
+ 2	keyboard access SMI# generation
+	(read)
+	0 = keyboard access did not generate SMI#
+	1 = keyboard access generated SMI#
+	(write)
+	0 = disable keyboard access SMI# generation
+	1 = enable keyboard access SMI# generation
+ 1	COM1/COM3 access SMI# generation
+	(read)
+	0 = COM1/COM3 access did not generate SMI#
+	1 = COM1/COM3 access generated SMI#
+	(write)
+	0 = disable COM1/COM3 access SMI# generation
+	1 = enable COM1/COM3 access SMI# generation
+ 0	COM2/COM4 access SMI# generation
+	(read)
+	0 = COM2/COM4 access did not generate SMI#
+	1 = COM2/COM4 access generated SMI#
+	(write)
+	0 = disable COM2/COM4 access SMI# generation
+	1 = enable COM2/COM4 access SMI# generation
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" STPCLK# modulation register:
+Bit(s)	Description	(Table P0259)
+ 7	CPU STOPCLK state support enable
+ 6	STOPCLK state CPU hold enable
+ 5-4	reserved
+ 3	STPCLK# modulation enable
+ 2-0	STPCLK# modulation duty cycle; in effect if bit 3 set
+	000 = STPCLK# = 1 always (no modulation)
+	001 = STPCLK# = 1 for 1/2 period
+	010 = STPCLK# = 1 for 1/4 period
+	011 = STPCLK# = 1 for 1/8 period
+	100 = STPCLK# = 1 for 1/16 period
+	101-111 = reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" miscellaneous register:
+Bit(s)	Description	(Table P0260)
+ 7	PREQ# wake-up enable
+ 6	DREQ# wake-up enable
+ 5	reserved
+ 4	GPCS1# and GPCS#2 generation for addresses in registers F4h-F7h enable
+ 3	reserved
+ 2	PPWRL# inititiate clock
+	0 = 14 MHz
+	1 = 33 KHz
+ 1	timer count read (registers E0h-E2h, EDh, F0h-F2h, FCh-FEh)
+	0 = return current value
+	1 = return original value
+ 0	reserved
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" device timer CLK select/enable status register:
+Bit(s)	Description	(Table P0261)
+ 7-6	device timer 1 CLK period
+	00 = 119 microseconds
+	01 = 12.25 ms
+	10 = 1.94 s
+	11 = 62.5 s
+ 5-4	device timer 0 CLK period
+	00 = 119 microseconds
+	01 = 12.25 ms
+	10 = 1.94 s
+	11 = 62.5 s
+ 3	device timer 1 time-out GREEN event generation
+	(read)
+	0 = device timer 1 time-out did not cause GREEN event
+	1 = device timer 1 time-out did cause GREEN event
+	(write)
+	0 = disable device timer 1 time-out GREEN event generation
+	1 = enable device timer 1 time-out GREEN event generation
+ 2	device timer 0 time-out GREEN event generation
+	(read)
+	0 = device timer 0 time-out did not cause GREEN event
+	1 = device timer 0 time-out did cause GREEN event
+	(write)
+	0 = disable device timer 0 time-out GREEN event generation
+	1 = enable device timer 0 time-out GREEN event generation
+ 1	device 1 access wake-up event generation
+	(read)
+	0 = device 1 access did not cause wake-up event
+	1 = device 1 access did cause wake-up event
+	(write)
+	0 = disable device 1 access wake-up event generation
+	1 = enable device 1 access wake-up event generation
+ 0	device 0 access wake-up event generation
+	(read)
+	0 = device 0 access did not cause wake-up event
+	1 = device 0 access did cause wake-up event
+	(write)
+	0 = disable device 0 access wake-up event generation
+	1 = enable device 0 access wake-up event generation
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" device timer IO/MEM select, mask bits register:
+Bit(s)	Description	(Table P0262)
+ 7	device 1 address type
+	0 = I/O
+	1 = memory
+ 6-4	device 1 IO/MEM address mask bits 2-0 (bit 3 = register FFh bit 2)
+	  (mask lowest n bits)
+ 3	device 0 address type
+	0 = I/O
+	1 = memory
+ 2-0	device 0 IO/MEM address mask bits 2-0 (bit 3 = register FFh bit 2)
+	  (mask lowest n bits)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" device 0 IO/MEM address register:
+Bit(s)	Description	(Table P0263)
+ 7-0	I/O address bits 7-0 or memory address bits 23-16
+	  (use register F3h bit 3 to select I/O or memory address)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" device 0 IO/MEM address register:
+Bit(s)	Description	(Table P0264)
+ 7-0	I/O address bits 15-8 or memory address bits 31-24
+	  (use register F3h bit 3 to select I/O or memory address)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" device 1 IO/MEM address register:
+Bit(s)	Description	(Table P0265)
+ 7-0	I/O address bits 7-0 or memory address bits 23-16
+	  (use register F3h bit 7 to select I/O or memory address)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" device 1 IO/MEM address register:
+Bit(s)	Description	(Table P0266)
+ 7-0	I/O address bits 15-8 or memory address bits 31-24
+	  (use register F3h bit 7 to select I/O or memory address)
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" power management control register 1:
+Bit(s)	Description	(Table P0267)
+ 7	EPMI1# GREEN event generation
+	(read)
+	0 = EPMI1# did not cause GREEN event
+	1 = EPMI1# caused GREEN event
+	(write)
+	0 = disable EPMI1# GREEN event generation
+	1 = enable EPMI1# GREEN event generation
+ 6	EPMI1# reload wake-up GREEN state timer enable
+ 5	EPMI1# polarity
+	0 = determined by bit 4
+	1 = EPMI1# triggered on transition
+ 4	EPMI1# polarity
+	0 = EPMI1# triggered on falling edge
+	1 = EPMI1# triggered on rising edge
+ 3	EPMI1# debounce enable
+ 2-0	reserved
+Note:	bits 7 and 6 cannot both be set at the same time
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" power management control register 2:
+Bit(s)	Description	(Table P0268)
+ 7	EPMI2# GREEN event generation
+	(read)
+	0 = EPMI2# did not cause GREEN event
+	1 = EPMI2# caused GREEN event
+	(write)
+	0 = disable EPMI2# GREEN event generation
+	1 = enable EPMI2# GREEN event generation
+ 6	EPMI2# reload wake-up GREEN state timer enable
+ 5	EPMI2# polarity
+	0 = determined by bit 4
+	1 = EPMI2# triggered on transition
+ 4	EPMI2# polarity
+	0 = EPMI2# triggered on falling edge
+	1 = EPMI2# triggered on rising edge
+ 3	EPMI2# debounce enable
+ 2-0	reserved
+Note:	bits 7 and 6 cannot both be set at the same time
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" power management control register 3:
+Bit(s)	Description	(Table P0269)
+ 7	EPMI3# GREEN event generation
+	(read)
+	0 = EPMI3# did not cause GREEN event
+	1 = EPMI3# caused GREEN event
+	(write)
+	0 = disable EPMI3# GREEN event generation
+	1 = enable EPMI3# GREEN event generation
+ 6	EPMI3# reload wake-up GREEN state timer enable
+ 5	EPMI3# polarity
+	0 = determined by bit 4
+	1 = EPMI3# triggered on transition
+ 4	EPMI3# polarity
+	0 = EPMI3# triggered on falling edge
+	1 = EPMI3# triggered on rising edge
+ 3	EPMI3# debounce enable
+ 2-0	reserved
+Note:	bits 7 and 6 cannot both be set at the same time
+SeeAlso: #P0219
+
+Bitfields for OPTi "Vendetta" general purpose chip select control register:
+Bit(s)	Description	(Table P0270)
+ 7	CPU type
+	0 = Intel/AMD
+	1 = Cyrix M1
+ 6	reserved
+ 5-4	IDE module device ID
+	00 = C621h
+	01 = D568h
+	10 = D768h (ultra DMA)
+	11 = reserved
+ 3	reserved
+ 2	GPCS2# address bit masking (fourth bit to register F3h bits 6-4)
+ 1	GPCS1# address bit masking (fourth bit to register F3h bits 2-0)
+ 0	GPCS0# address bit masking (fourth bit to register E7h bits 2-0)
+Note:	indexes ADh and FFh address same register
+SeeAlso: #P0219
+

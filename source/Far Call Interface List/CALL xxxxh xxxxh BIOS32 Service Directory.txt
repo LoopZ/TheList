@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+ Unique ID: @xxxxxxxx
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL xxxxh:xxxxh - BIOS32 Service Directory
+InstallCheck:	scan paragraph boundaries E000h to FFFFh for signature string
+	"_32_", followed by a valid header structure (see #F0021)
+Notes:	a 32-bit-code alternate PCI BIOS entry point may be found (if
+	  supported) by requesting the entry point for the API with
+	  identifier "$PCI"
+	an alternate entry point for INT 1A/AH=B4h may be found (if
+	  supported) by requesting the entry point for the API with identifier
+	  "$ACF"
+	other known identifiers are "$WDS" and "MPTN"
+SeeAlso: INT 1A/AX=B100h
+
+Format of BIOS32 Service Directory header structure:
+Offset	Size	Description	(Table F0021)
+ 00h  4 BYTEs	signature "_32_"
+ 04h	DWORD	physical address of BSD entry point (see #F0022)
+ 08h	BYTE	header structure version number (currently 00h)
+ 09h	BYTE	header structure length in paragraphs (currently 01h)
+ 0Ah	BYTE	checksum (8-bit sum of all bytes in structure, including this
+		  one, should equal zero)
+ 0Bh  5 BYTEs	reserved (0)
+
+(Table F0022)
+Call BIOS32 Service Directory entry point with:
+	EBX = function
+	    00000000h get service entry point
+		EAX = service identifier
+		    46434124h ("FCA$") Plug-and-Play Auto-Configuration
+		    49435024h ("ICP$") PCI BIOS
+		    4E54504Dh ("NTPM") ??? MPTN [PhoenixBIOS4 Rev. 6.0]
+		    54435724h ("SDW$") ??? WDS$ [PhoenixBIOS4 Rev. 6.0]
+		Return: AL = status
+			    00h successful
+				 EBX = base address of handler's code seg
+				 ECX = size of code segment
+				 EDX = offset of handler in code seg
+			    80h unknown service identifier
+	    else
+		Return: AL = 81h invalid function
+Notes:	the BSD handler assumes that it is running in a 32-bit code segment
+	the returned entry points for PCI BIOS and Auto-Config must be called
+	  with the same registers as the real-mode INT 1Ah interface,
+	  including the value B1h or B4h in AH (AMI BIOS v1.00.05.AX1 returns
+	  the same entry point for both interfaces and uses AH to distinguish
+	  which API is desired)
+	some references indicate that only BL is used for the function number,
+	  though at least one implementation actually checks the entire EBX
+	  register; for maximum compatibility, the upper 24 bits of EBX should
+	  be cleared when calling the entry point
+SeeAlso: #F0021
+

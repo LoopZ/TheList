@@ -1,0 +1,224 @@
+--------------------------------------------------------------------------------
+ Unique ID: Pxxxx
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT xxxx -  Adaptec AIC-78xx PCI SCSI controller
+Range:	anywhere on 256-byte boundary
+Note:	Adaptec AIC-78xx SCSI controllers are basically compatible with the
+	  AIC-777x SCSI controllers
+SeeAlso: PORT 0340h-035Fh"Adaptec AHA-152x",PORT 1C00h-1CBFh"Adaptec AIC-777x"
+
++000  RW  SCSI sequence control register (SCSISEQ) (see #P0600)
++001  RW  SCSI transfer control register 0 (SXFRCTL0) (see #P0979)
++002  RW  SCSI transfer control register 1 (SXFRCTL1) (see #P0980)
++003  R-  SCSI control signal read  register (SCSISIGI) (see #P0603)
++003  -W  SCSI control signal write register (SCSISIGO) (see #P0604)
++004  RW  SCSI rate control register (SCSIRATE) (see #P0981)
++005  RW  SCSI ID register (SCSIID) (see #P0982)
++006  RW  SCSI latched data low register (SCSIDATL)
+	  read/write causes -ACK to pulse
++007  RW  (Wide SCSI) SCSI latched data high register (SCSIDATH)
+	  read/write causes -ACK to pulse
++008  RW  SCSI transfer count register (STCNT) (3 bytes long)
++00B  R-  SCSI status register 0 (SSTAT0) (see #P0607)
++00B  -W  clear SCSI interrupt register 0 (CLRSINT0) (see #P0983)
++00C  R-  SCSI status register 1 (SSTAT1) (see #P0609)
++00C  -W  clear SCSI interrupt register 1 (CLRSINT1) (see #P0610)
++00D  R-  SCSI status register 2 (SSTAT2) (see #P0984)
++00E  R-  SCSI status register 3 (SSTAT3) (see #P0612)
++00F  RW  SCSI test control register (SCSITEST) (see #P0985)
++010  RW  SCSI interrupt mode register 0 (SIMODE0) (see #P0616)
++011  RW  SCSI interrupt mode register 1 (SIMODE1) (see #P0617)
++012  RW  SCSI data bus low register (SCSIBUSL)
++013  RW  (Wide SCSI) SCSI data bus high register (SCSIBUSH)
++014d R-  SCSI/host address register (SHADDR)
++018  RW  selection timeout timer  register (SELTIMER) (see #P0986)
++019  RW  selection/reselection ID register (SELID)  (see #P0987)
++01D  ??  (AIC-7870) board control register (BRDCTL) (see #P1051)
++01E  RW  (AIC-787x/788x) serial EEPROM control register (SEECTL) (see #P1052)
++01F  RW  SCSI block control register (SBLKCTL) (see #P1053)
++020  RW  scratch RAM (64 bytes) (see #P1002)
++060  RW  sequencer control  register (SEQCTL)	(see #P0989)
++061  RW  sequencer RAM data register (SEQRAM)
++062w RW  sequencer address  register (SEQADDR) (see #P0990)
++064  RW  accumulator  register (ACCUM)
++065  RW  source index register (SINDEX)
++066  RW  destination index register (DINDEX)
++069  R-  all ones register (ALLONES)
+	  always reads as FFh
++06A  R-  all zeros register (ALLZEROS)
+	  always reads as 00h
++06B  R-  flags register (FLAGS) (see #P0991)
+	  PhaseEngine processor's flags
++06C  R-  source indirect register (SINDIR)
++06D  -W  destination indirect register (DINDIR)
++06E  RW  function 1 register (FUNCTION1)
++06F  R-  "STACK"
++084  RW  DSCommand register (DSCOMMAND) (see #P1054)
++085  RW  bus on/off time register (BUSTIME) (see #P0993)
++086  RW  (AIC-7870) "DSPCISTATUS"
++087  RW  host control register (HCNTRL) (see #P0995)
++088d RW  host address register (HADDR)
++08C  RW  host counter register (HCNT) (3 bytes long)
++090  RW  sequence control block (SCB) pointer register (SCBPTR)
++091  RW  interrupt status register (INTSTAT) (see #P0996)
++092  R-  hard error register (ERROR) (see #P0997)
++092  -W  clear interrupt status register (CLRINT) (see #P0998)
++093  RW  DMA FIFO control register (DFCNTRL)  (see #P0999)
++094  R-  DMA FIFO status  register (DFSTATUS) (see #P1000)
++099  RW  DMA FIFO data register (DFDAT)
++09A  RW  SCB auto-increment register (SCBCNT) (see #P1001)
++09B  RW  queue in FIFO register (QINFIFO)
+	  write places the value into the FIFO, read removes
++09C  R-  queue in count register (QINCNT)
+	  number of the SCBs in the queue in
++09D  -W  queue out FIFO register (QOUTFIFO)
+	  read removes the value from the FIFO
++09E  R-  queue out count register (QOUTCNT)
+	  number of the SCBs in the queue out
++0A0  RW  SCB array (32 bytes) (see #P1003)
+Note:	AIC-7850 SCSI controllers sporatically get garbage in the MSBs of the
+	  queue in/out count registers (QINCNT/QOUTCNT)
+
+Bitfields for AIC-7870 board control register (BRDCTL):
+Bit(s)	Description	(Table P1051)
+ 7	"BRDDAT7"
+	(read) (ROM bank 0) internal 68-pin connector (INT68)
+	=0 present
+	=1 absent
+	(read) (ROM bank 1) EPROM present (EPROMPS)
+ 6	"BRDDAT6"
+	(read) (ROM bank 0) internal 50-pin connector (INT50)
+	(read) (ROM bank 1) external 68-pin connector (EXT68)
+	=0 present
+	=1 absent
+	(write) wide termination enable
+ 5	(write) "BRDDAT5"
+	ROM bank setting
+	=0 select bank 0
+	=1 select bank 1
+ 4	strobe (BRDSTB)
+ 3	chip select (BRDCS)
+ 2	"BRDRW"
+	=0 write
+	=1 read
+ 1	"BRDCTL1"
+ 0	"BRDCTL0"
+Notes:	accessing this register requires prior setting of bits 3 and 5 of the
+	  serial EEPROM control register (SEECTL)
+	bit 3 must be set to read/write bits 7-5, and reset afterwards
+	bit 4 must be set along with bit 3 for writes, then value must be set
+	  into the bits 7-5, and then bit 4 must be reset
+	to read from bits 7-6 first perform a write operation of bit 5 in order
+	  to select the ROM bank 0, then bit 2 must be set along with bit 3,
+	  and then the data can be read
+SeeAlso: #P1052
+
+Bitfields for AIC-787x/788x serial EEPROM control register (SEECTL):
+Bit(s)	Description	(Table P1052)
+ 7	"EXTARBACK"
+ 6	"EXTARBREQ"
+ 5	serial EEPROM memory port select? (SEEMS)
+ 4	serial EEPROM ready (SEERDY)
+ 3	serial EEPROM chip select (SEECS)
+ 2	serial EEPROM clock (SEECK)
+ 1	serial EEPROM data out (SEEDO)
+ 0	serial EEPROM data in  (SEEDI)
+Notes:	AIC-7873/7883 use 93C56/93C66 serial EEPROM chips, others use 93C46;
+	  93C46 serial EEPROM chips have 1024 bits organized into 64 16-bit
+	  words and use 6 bits to address each word, while 93C56/93C66 chips
+	  have 2048 bits organized into 128 16-bit words and use 8 bits to
+	  address each word
+	only the first 32 words of serial EEPROM are used by the Adaptec BIOS
+	bits 3-0 are connected to the chip select, clock, data out, and data in
+	  pins of the serial EEPROM respectively
+	data in pin of the serial EEPROM can be read through the bit 0 of this
+	  register after the clock pin goes from high to low
+	bit 2 must be pulled high and then low for a minimum of 750 and 250 ns
+	  to provide clocking for the EEPROM chip
+	bit 2 going from low to high causes the EEPROM chip to sample the data
+	  out pin and initiates the next bit to be sent through the data in pin
+	bit 3 must be set for a minimum of 1 mcs with the bit 2 goig high and
+	  then low for the EEPROM chip to be selected; then the instruction can
+	  be sent to the EEPROM chip
+	instruction can be terminated by taking the EEPROM chip select pin low,
+	  with the bit 2 going high and low
+	bit 5 requests access to the memory port; when access is granted, bit 4
+	  will be set; during the EEPROM access bit 4 is cleared after writing
+	  this register and goes high 800 ns later
+SeeAlso: #P1007,#P1051,#P1055,#P1056
+
+Bitfields for SCSI block control register (SBLKCTL):
+Bit(s)	Description	(Table P1053)
+ 7	diagnostic LED enable (DIAGLEDEN)
+ 6	diagnostic LED on (DIAGLEDON)
+ 5	auto flush disable (AUTOFLUSHDIS)
+ 4	reserved
+ 3	select bus (SELBUS)
+	=0 select bus A
+	=1 select bus B (SELBUSB)
+ 2	reserved
+ 1	"SELWIDE"
+ 0	reserved
+Note:	clearing bits 7-6 will take the card out of diagnostic mode and make
+	  the host adapter LED follow bus activity
+SeeAlso: #P0988
+
+Bitfields for DSCommand register (DSCOMMAND):
+Bit(s)	Description	(Table P1054)
+ 7	cache threshold enable (CACHETHEN)
+ 6	data   parity check enable (DPARCKEN)
+ 5	memory parity check enable (MPARCKEN)
+ 4	external request lock (EXTREQLCK)
+ 3-0	reserved
+
+(Table P1055)
+Values for the 93C56/93C66 serial EEPROM instructions:
+Opcode	     Function  Parameter  Description
+0000xxxxxxb  EWDS      -	  disable all programming instructions
+0001xxxxxxb  WRAL      D15..D0	  write to all registers
+0010xxxxxxb  ERAL      -	  erase all registers
+0011xxxxxxb  EWEN      -	  write enable
+				  must precede all programming modes
+01AAAAAAAAb  WRITE     D15..D0	  write register with address A7..A0
+10AAAAAAAAb  READ      -	  read registers starting with address A7..A0
+11AAAAAAAAb  ERASE     -	  erase register with address A7..A0
+SeeAlso: #P1007,#P1052
+
+Format of the serial EEPROM:
+Address	Size	Description	(Table P1056)
+ 00h  16 WORDs	SCSI ID configuration (see #P1009)
+ 10h	WORD	BIOS control (see #P1057)
+ 11h	WORD	host adapter control (see #P1058)
+ 12h	WORD	bus release time / host adapter ID (see #P1013)
+ 13h	WORD	maximum targets (see #P1014)
+ 14h  11 WORDs	reserved
+ 1Fh	WORD	checksum
+SeeAlso: #P1052
+
+Bitfields for the serial EEPROM BIOS control word:
+Bit(s)	Description	(Table P1057)
+ 15-8	reserved
+ 7	extended translation enabled (CFEXTEND)
+ 6-5	reserved
+ 4	support more than 2 drives (CFSM2DRV)
+ 3	reserved
+ 2	BIOS enabled (CFBIOSEN)
+ 1	support removable drives for boot only (CFSUPREMB)
+ 0	support all removable drives (CFSUPREM)
+SeeAlso: #P1056
+
+Bitfields for the serial EEPROM host adapter control word:
+Bit(s)	Description	(Table P1058)
+ 15-7	reserved
+ 6	reset SCSI bus at IC initialization (CFRESETB)
+ 5	reserved
+ 4	SCSI parity (CFSPARITY)
+ 3	SCSI high byte termination (CFWSTERM)
+ 2	SCSI low  byte termination (CFSTERM)
+ 1	(Ultra SCSI) Ultra SCSI speed enable (CFULTRAEN)
+ 0	reserved
+SeeAlso: #P0600,#P0979,#P0980,#P0994,#P1056
+

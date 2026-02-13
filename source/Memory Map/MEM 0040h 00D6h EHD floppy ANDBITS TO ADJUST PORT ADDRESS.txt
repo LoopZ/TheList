@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: M004000D6
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:00D6h	- EHD floppy - AND-BITS TO ADJUST PORT ADDRESS
+Size:	BYTE
+Note:	this byte contains FFh if controller at 03Fxh and 7Fh if at 037xh; the
+	  value is ANDed with DL prior to using IN A?,DX or OUT DX,A?
+	  instructions
+

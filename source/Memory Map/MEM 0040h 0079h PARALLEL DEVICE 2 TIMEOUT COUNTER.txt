@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400079
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0079h - PARALLEL DEVICE 2 TIME-OUT COUNTER
+Size:	BYTE
+Note:	Under DR-OpenDOS 7.02+ this setting can be changed with the
+	  undocumented CONFIG.SYS LPT2=[port_address|logical_no][,[timeout]]
+	  directive, whereby port_address = 200h..3FCh, logical_no = 0 or 1..3,
+	  timeout=0..255 (default 20).
+SeeAlso: MEM 0040h:0078h,MEM 0040h:007Ah,INT 17/AH=00h
+

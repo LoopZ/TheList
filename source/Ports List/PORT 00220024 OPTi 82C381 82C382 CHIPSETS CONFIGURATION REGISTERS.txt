@@ -1,0 +1,218 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220024
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0024 - OPTi 82C381/82C382 CHIPSETS - CONFIGURATION REGISTERS
+Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+	  even if the same register is being accessed a second time
+SeeAlso: PORT 0022h"82C206"
+
+0022  ?W  index for accesses to data port (see #P0121)
+0024  RW  chip set data
+
+(Table P0121)
+Values for OPTi 82C381/82C382 configuration register index:
+ 00h	clock selects (see #P0122)
+ 01h	reset control (see #P0123)
+ 10h	remapping address (see #P0124)
+ 11h	shadow RAM (see #P0125)
+ 12h	memory enable (see #P0126)
+ 13h	bank configuration (see #P0127)
+ 14h	DRAM configuration (see #P0128)
+ 15h	video adapter shadow (see #P0129)
+ 16h	fast GateA20 (see #P0130)
+ 17h	cache configuration (see #P0131)
+ 18h	non-cacheable block 1 size (see #P0132)
+ 19h	non-cacheable block 1 address (see #P0133)
+ 1Ah	non-cacheable block 2 size (see #P0132)
+ 1Bh	non-cacheable block 2 address (see #P0133)
+ 1Ch	cacheable area (see #P0134)
+Note:	registers 00h and 01h address the 82C381, the remaining registers
+	  address the 82C382
+SeeAlso: #P0189
+
+Bitfields for OPTi 82C381/82C382 clock selects:
+Bit(s)	Description	(Table P0122)
+ 7-6	cache controller enable
+	00 cache controller disabled (default)
+	01 cache controller disabled; PPCS#, SPCS#, NPCS# signals are
+	      active if selected
+	10 external cache controller installed
+	11 on-chip cache controller installed
+ 5	hot CPU reset (low->high transition generates reset)
+ 4	enable ATCLK stretch
+ 3	turbo clock
+	=0 CLKIN is CPU clock
+	=1 HIGH pin selected clock (HIGH=0: CLKIN, HIGH=1: ICLK)
+ 2-1	ICLK clock select
+	00 CLKIN/4 (default)
+	01 CLKIN/3
+	10 CLKIN/2
+	11 reserved
+ 0	master byte swap enable (default = 0)
+SeeAlso: #P0121,#P0123
+
+Bitfields for OPTi 82C381/82C382 reset control:
+Bit(s)	Description	(Table P0123)
+ 7-2	reserved
+ 1	RESET3 control
+	=1 generate RESET3 on RESET2 only after a HLT instruction
+	=0 generate RESET3 immediately on RESET2 (default)
+ 0	activate cache controller FLUSH# pin (default = 1)
+SeeAlso: #P0121,#P0122,#P0124
+
+Bitfields for OPTi 82C381/82C382 remapping address:
+Bit(s)	Description	(Table P0124)
+ 7-5	reserved
+ 4	enable remapping
+ 3-0	remap address range, bits 23-20
+	0000  no mapping
+	0001  1M
+	0010  2M
+	...
+	1111 15M
+SeeAlso: #P0121
+
+Bitfields for OPTi 82C381/82C382 shadow RAM control:
+Bit(s)	Description	(Table P0125)
+ 7	BIOS ROM at F0000-FFFFF Shadowing
+	0 read only from shadow RAM
+	1 read from ROM, write to shadow RAM
+ 6	ROM at D0000-DFFFF
+	0 disable shadow RAM
+	1 shadow RAM selectively enabled by configuration register 12h
+ 5	Adaptor ROM at E0000-EFFFF
+	0 disable shadow RAM
+	1 shadow RAM selectively enabled by configuration register 12h
+ 4	write-protect shadow RAM at D0000h-DFFFFh (default = not protected)
+ 3	write-protect shadow RAM at E0000h-EFFFFh
+ 2	enable Timeout precharge counter 
+ 1-0	reserved
+SeeAlso: #P0121
+
+Bitfields for OPTi 82C381/82C382 memory enable:
+Bit(s)	Description	(Table P0126)
+ 7	enable EC000-EFFFF
+ 6	enable E8000-EBFFF
+ 5	enable E4000-E7FFF
+ 4	enable E0000-E3FFF
+ 3	enable DC000-DFFFF
+ 2	enable D8000-DBFFF
+ 1	enable D4000-D7FFF
+ 0	enable D0000-D3FFF
+Note:	0 = disable Shadow RAM (default), 1 = enable Shadow RAM
+SeeAlso: #P0121
+
+Bitfields for OPTi 82C381/82C382 memory bank configuration:
+Bit(s)	Description	(Table P0127)
+ 7	Reserved
+ 6-4	Bank0 and Bank1 configuration
+	(val)	Bank0	 Bank1 
+	000	256K	 -  
+	001	256K	 256K
+	010	256K	 1M  
+	011	1M	 256K
+	100	1M	 -  
+	101	1M	 1M 
+	110	-	 -  
+	111	256K	 - 
+ 3	reserved
+ 2-0	Bank2 and Bank3 configuration
+	(val)	Bank2	 Bank3 
+	000	256K	 -  
+	001	256K	 256K
+	010	-	 -  
+	011	1M	 256K
+	100	1M	 -  
+	101	1M	 1M 
+	11X	-	 -  
+SeeAlso: #P0121,#P0128
+
+Bitfields for OPTi 82C381/82C382 DRAM configuration:
+Bit(s)	Description	(Table P0128)
+ 7,6	number of read cycle wait states (default = 01)
+ 5	write cycle wait state
+	0 = 0 wait 
+	1 = 1 wait (default)	  
+ 4-0	reserved	
+SeeAlso: #P0121
+
+Bitfields for OPTi 82C381/82C382 video adapter shadow:
+Bit(s)	Description	(Table P0129)
+ 7	reserved
+ 6	copy enable for C0000-EFFFF
+	0 write to AT Channel (default) 
+	1 write to local DRAM
+ 5	Shadow RAM at C0000-CFFFF writability
+	0 read/write (default)
+	1 read only
+ 4	ROM at C0000-CFFFF
+	0 disable shadow RAM
+	1 shadow RAM selectively enabled by Bits<0:3> (default)
+ 3	enable Shadow RAM at CC000-CFFFF
+ 2	enable Shadow RAM at C8000-CbFFF
+ 1	enable Shadow RAM at C4000-C7FFF
+ 0	enable Shadow RAM at C0000-C3FFF
+SeeAlso: #P0121
+
+Bitfields for OPTi 82C381/82C382 fast GateA20 control:
+Bit(s)	Description	(Table P0130)
+ 7-4	Reserved
+ 3	Fast GateA20 Control  
+	0 Signal controled by GATEA20 signal from Keyboard Controler
+	1 CPUA20 enabled onto GA20
+ 2-0	reserved	
+SeeAlso: #P0121
+
+Bitfields for OPTi 82C381/82C382 cache configuration:
+Bit(s)	Description	(Table P0131)
+ 7	force NCA* Output Pin low
+	if this bit is clear, it has no effect on NCA* Output Pin
+ 6	enable Cache
+ 5	write-through cache (Note: this bit must be set)
+ 4-3	line size
+	00  4 bytes 
+	01  8 bytes
+	10  16 bytes
+	11  reserved
+ 2-0	reserved	
+SeeAlso: #P0121
+
+Bitfields for OPTi 82C381/82C382 non-cacheable block size:
+Bit(s)	Description	(Table P0132)
+ 7-5	block size
+	000 64K
+	001 128K
+	010 256K
+	011 512K
+	100 1M
+	101 4M (block 1 only)
+	101 reserved (block 2 only)
+	110 8M (block 1 only)
+	110 reserved (block 2 only)
+	111 disabled (default)
+ 4-0	reserved (0)
+SeeAlso: #P0121,#P0131,#P0133
+
+Bitfields for OPTi 82C381/82C382 non-cacheable block address:
+Bit(s)	Description	(Table P0133)
+ 7-0	bits 23-16 of non-cacheable block's address
+Note:	the selected address must be a multiple of the block size
+	  selected by register 18h/1Ah
+SeeAlso: #P0121,#P0132,#P0134
+
+Bitfields for OPTi 82C381/82C382 cacheable area:
+Bit(s)	Description	(Table P0134)
+ 7-4	cacheable address range
+	0000 16M
+	0001 1M
+	0010 2M
+	0011 3M
+	...
+	1111 15M
+ 3	256K remapped area is cacheable
+ 2-0	reserved
+SeeAlso: #P0121
+

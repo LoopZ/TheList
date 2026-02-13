@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A09
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/09h - Philips TDA8366 - VERTICAL AMPLITUDE
+Access:	Write-Only
+SeeAlso: I2C 8Ah/00h"TDA8366",I2C 8Ah/08h"TDA8366",I2C 8Ah/0Ah"TDA8366"
+
+Bitfields for TDA8366 Vertical Amplitude Control:
+Bit(s)	Description	(Table I0053)
+ 7	"VID" disable video identification mode
+ 6	"LBM" force long blanking mode to 50 Hz standard
+	=0 adapt to either 50 or 60 Hz
+ 5-0	vertical amplitude
+SeeAlso: #I0108,#I0110
+

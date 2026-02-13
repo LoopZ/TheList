@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400097
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0097h - KEYBOARD STATUS BYTE 2
+Size:	BYTE
+SeeAlso: MEM 0040h:0096h,INT 16/AH=11h
+
+Bitfields for keyboard status byte 2:
+Bit(s)	Description	(Table M0034)
+ 7	=1 keyboard transmit error flag
+ 6	=1 LED update in progress
+ 5	=1 RESEND received from keyboard
+ 4	=1 ACK received from keyboard
+ 3	reserved, must be zero
+ 2	Caps Lock LED
+ 1	Num Lock LED
+ 0	Scroll Lock LED
+SeeAlso: #M0033,#M0010
+

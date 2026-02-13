@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: R64
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 64h - AWARD - POWER MANAGEMENT - IRQ activity events #1
+SeeAlso: CMOS 65h"AWARD"
+
+Bitfields for AWARD power management IRQ activity events:
+Bit(s)	Description	(Table C0095)
+ 7	Disable PM Event on IRQ11 Activity (1=disable)
+ 6	Disable PM Event on IRQ10 Activity (1=disable)
+ 5	Disable PM Event on IRQ9 Activity (IRQ2 Redir) (1=disable)
+ 4	Disable PM Event on IRQ8 Activity (RTC Alarm) (1=disable)
+ 3	Disable PM Event on IRQ7 Activity (LPT1) (1=disable)
+ 2	Disable PM Event on IRQ6 Activity (Floppy) (1=disable)
+ 1	Disable PM Event on IRQ5 Activity (LPT2) (1=disable)
+ 0	Disable PM Event on IRQ4 Activity (COM1) (1=disable)
+

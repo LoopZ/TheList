@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/01h - Philips TDA8366 - DECODER MODE / STATUS 2
+SeeAlso: I2C 8Ah/00h"TDA8366",I2C 8Ah/02h"TDA8366"
+
+Bitfields for TDA8366 Decoder Mode (write-only):
+Bit(s)	Description	(Table I0048)
+ 7-6	field frequency
+	00 auto-detect, 60 Hz when not synchronized
+	01 60 Hz
+	10 50 Hz
+	11 auto-detect, 50 Hz when not synchronized
+ 5	de-interlace
+ 4	standby status
+	0 standby
+	1 normal
+ 3	disable synchronization mode
+ 2-0	color decoder mode (see #I0122)
+Note:	when bits 7-6 are changed, a new frequency is only set when not
+	  currently synchronized
+SeeAlso: #I0104,#I0106,#I0121
+
+Bitfields for TDA8366 Status 2 (read-only):
+Bit(s)	Description	(Table I0049)
+ 7	"NDF" vertical output stage has failed
+ 6	"IN1" RGB insertion (Pin24) is active
+ 5	reserved
+ 4	"IFI" video signal identified
+ 3-2	AFC output
+	00 too low
+	01 too high
+	10 in window but below reference
+	11 in window but above reference
+ 1-0	reserved
+SeeAlso: #I0120,#I0105
+Note:	!!!philips\2086.pdf p.14
+

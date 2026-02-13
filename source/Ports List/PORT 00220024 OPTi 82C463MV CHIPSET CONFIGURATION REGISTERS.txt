@@ -1,0 +1,792 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220024
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0024 - OPTi 82C463MV CHIPSET - CONFIGURATION REGISTERS
+Desc:	the 82C463MV contains a memory control unit (MCU), an AT Bus
+	  Control Unit (BCU), a Power Management Unit (PMU), data
+	  buffers and a 82C206 type IPC (without real time clock)
+Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+	  even if the same register is being accessed a second time
+SeeAlso: PORT 0022h"82C206"
+
+0022  ?W  index for accesses to data port (see #P0135)
+0024  RW  chip set data
+
+(Table P0135)
+Values for OPTi 82C463MV configuration register index:
+ 30h	general control 1 (see #P0136)
+ 31h	general control 2 (see #P0137)
+ 32h	shadow RAM control 1 (see #P0138)
+ 33h	shadow RAM control 2 (see #P0139)
+ 34h	DRAM size (see #P0140)
+ 35h	DRAM timing and caching control (see #P0141)
+ 36h	shadow RAM control 3 (see #P0142)
+ 37h	D000h and E000h segment access control (see #P0143)
+ 38h	non-cacheable block 1 size, controls and address bit A24 (see #P0144)
+ 39h	non-cacheable block 1 address bits A23-A16
+ 3Ah	non-cacheable block 2 size and address bit A24 (see #P0145)
+ 3Bh	non-cacheable block 2 address bits A23-A16
+ 3Ch-3Fh	reserved
+ 40h	PMU control 1 (see #P0146)
+ 41h	PMU control 2: doze timer (see #P0147)
+ 42h	PMU control 3: other timers (see #P0148)
+ 43h	PMU control 4 (see #P0149)
+ 44h	LCD timer count (should not be loaded with a value <5)
+ 45h	disk timer count (should not be loaded with a value <5)
+ 46h	keyboard timer count (should not be loaded with a value <5)
+ 47h	GNR_ACCESS timer count (should not be loaded with a value <5)
+ 48h	GNR_ACCESS I/O base address (lines A8-A1, A0 is a "don't care")
+ 49h	GNR_ACCESS control and I/O base address line A9 (see #P0150)
+ 4Ah	CSG0# base address (lines A8-A1, A0 is a "don't care")
+ 4Bh	CSG0# control and base address line A9 (see #P0151)
+ 4Ch	CSG1# base address (lines A8-A1, A0 is a "don't care")
+ 4Dh	CSG1# control and base address line A9 (see #P0152)
+ 4Eh	idle timer control (see #P0153)
+ 4Fh	idle timer count (should not be loaded with a value <5)
+ 50h	suspend/resume control (see #P0154)
+ 51h	beeper/sequencer control (see #P0155)
+ 52h	PMU general-purpose storage 1
+ 53h	PMU general-purpose storage 2
+ 54h	PMU Periferal Power (PPWR) control 1 (see #P0156)
+ 55h	PMU Periferal Power (PPWR) control 2 (see #P0157)
+ 56h	PIO control 1 (see #P0158)
+ 57h	PIO control 2 (see #P0159)
+ 58h	PMU event control 1 (see #P0160)
+ 59h	PMU event control 2 (see #P0161)
+ 5Ah	PMU event control 3 (see #P0162)
+ 5Bh	PMU event control 4 (see #P0163)
+ 5Ch	SMI source (low) (see #P0164)
+ 5Dh	SMI source (high) (see #P0165)
+ 5Eh	clock stretching control (see #P0166)
+ 5Fh	resume interrupt control (see #P0167)
+ 60h	software sequencer address (write only)
+ 61h	debounce control (see #P0168)
+ 62h	doze-mode IRQ selects (see #P0169)
+ 63h	idle timer IRQ selects (see #P0170)
+ 64h	PMI#6 IRQ select (see #P0171)
+ 65h	doze-mode configuration (see #P0172)
+ 66h	suspend control (see #P0173)
+ 67h	CPU frequency (see #P0174)
+ 68h	timer clock source (see #P0175)
+ 69h	R_TIMER count (should not be loaded with a value <5)
+ 6Ah	resume IRQ selects (see #P0176)
+ 6Bh	resume sources (see #P0177)
+ 6Ch-6Fh	TMP0 - TMP3
+
+Bitfields for 82C463MV general control 1 (register 30h):
+Bit(s)	Description	(Table P0136)
+ 7-6	chipset revision number (read only)
+ 5	MASTER#/RI pin function (RI = modem Ring Indicator)
+	=1 RI (default)
+	=0 MASTER#
+ 4	enable turbo VGA
+ 3	enable global relocation/translation for SMI addresses (see also
+	  register 31h bit 4 at #P0137)
+ 2	enable extra wait state in AT cycle
+ 1	fast reset control
+	  =1 does not require Halt instruction
+	  =0 requires Halt instruction before generation of CPURST (SRESET
+	       if Intel SL Enhanced or Cyrix Cx486S/S2 CPUs
+ 0	reserved (0)
+SeeAlso: #P0135
+
+Bitfields for 82C463MV general control 2 (register 31h):
+Bit(s)	Description	(Table P0137)
+ 7	enable master byte swap
+ 6	reserved, read-only (1)
+ 5	disable parity check
+ 4	Dynamic SMI relocation
+	  if no SMI sequence is running
+	    =1 allow relocation of addresses from the CPU in the 3000h/4000h
+	       segment to the B000h/A000h SMI memory space
+	    =0 disable relocation
+	  if SMI sequence is running (qualified by SMIACT#)
+	    =1 allow data accesses to the 3000h and 4000h segments
+	    =0 relocate all accesses in the 3000h/4000h segment to the
+	       B000h/A000h SMI segment (normal operation)
+	  if SMI sequence is running (qualified by SMIADS#)
+	    =1 not allowed
+	    =0 for a SMIADS# cycle, relocate all accesses in the 6000h/7000h
+	       segment to the A000h/B000h SMI segment
+	       for a normal ADS# operation, there is no relocation
+ 3	EC000h-EFFFFh access control
+	if register 36h bit 6=0
+	  =1 R/W from ROMCS#
+	  =0 R/W from AT-Bus
+	if register 36h bit 6=1
+	  =1 Read from ROMCS# if not shadowed (see register 33h bits 7-4),
+		write to DRAM
+	  =0 Read from AT-Bus if not shadowed (see register 33h bits 7-4),
+		write to DRAM
+ 2	E8000h-EBFFFh access control (see bit 3)
+ 1	E4000h-E7FFFh access control (see bit 3)
+ 0	E0000h-E3FFFh access control (see bit 3)
+SeeAlso: #P0135,#P0139,#P0142
+
+Bitfields for 82C463MV shadow RAM control 1 (register 32h):
+Bit(s)	Description	(Table P0138)
+ 7	segment F000h access control
+	  =1 read from ROMCS#, write to ROMCS# (if register 36h bit 7=1)
+	     or DRAM (if register 36h bit 7=0)
+	  =0 read from DRAM and write protect (enable shadowing)
+ 6-5	reserved (1)
+ 4	write protect segment D000h
+ 3	write protect segment E000h
+ 2	reserved, read-only (1)
+ 1	reserved (0)
+ 0	ALE control
+	  =1 single ALE during bus conversion
+	  =0 multiple ALE
+SeeAlso: #P0135,#P0142,#P0139
+
+Bitfields for 82C463MV shadow RAM control 2 (register 33h):
+Bit(s)	Description	(Table P0139)
+ 7	enable shadowing for EC000h-EFFFFh
+ 6	enable shadowing for E8000h-EBFFFh
+ 5	enable shadowing for E4000h-E7FFFh
+ 4	enable shadowing for E0000h-E3FFFh
+ 3	enable shadowing for DC000h-DFFFFh
+ 2	enable shadowing for D8000h-DBFFFh
+ 1	enable shadowing for D4000h-D7FFFh
+ 0	enable shadowing for D0000h-D3FFFh
+SeeAlso: #P0135,#P0138
+
+Bitfields for 82C463MV DRAM size (register 34h):
+Bit(s)	Description	(Table P0140)
+ 7-4	DRAM Bank 0 and 1 Size
+	0000 256K, unused
+	0001 256K, 256K
+	0010 256K, 1M
+	0011 256K, 4M
+	0100 512K, unused
+	0101 512K, 512K
+	0110 512K, 1M
+	0111 512K, 4M
+	1000 1M, unused
+	1001 1M, 1M
+	1010 1M, 4M
+	1011 4M, 1M
+	1100 4M, unused
+	1101 4M, 4M
+	1110 1M, 2M
+	1111 both unused
+ 3-0	DRAM Bank 2 and 3 Size
+	0000 1M, unused
+	0001 1M, 1M
+	0010 1M, 4M
+	0011 4M, 4M
+	0100 4M, unused
+	0101 both unused
+	0110 1M, 2M
+	0111 512K, 512K
+	10xx both unused
+	110x both unused
+	1110 2M, unused
+	1111 2M, 2M (default)
+SeeAlso: #P0135
+
+Bitfields for 82C463MV DRAM timing and caching control (register 35h):
+Bit(s)	Description	(Table P0141)
+ 7-6	DRAM read wait states
+	00 = 0 wait states, burst mode 2-1-1-1
+	01 = 1 wait state, burst mode 3-1-1-1
+	10 = 1 wait state, burst mode 3-2-2-2
+	11 = 2 wait states, burst mode 4-3-3-3 (default)
+ 5-4	DRAM write wait states
+	00 = 0 wait states
+	01 = 1 wait state
+	10 = 2 wait states
+	11 = reserved (default)
+ 3	MP2/STRAP2 status (read-only)
+	=1 1X Clock
+	=0 2X Clock
+ 2	disable caching of F000h segment (this bit is effective only when
+	  register 32h bit 7 =0)
+ 1	global DRAM cache control (1=disable, default)
+ 0	disable caching of C0000h-C7FFFh (default)
+SeeAlso: #P0135,#P0138
+
+Bitfields for 82C463MV shadow RAM control 3 (register 36h):
+Bit	Description	(Table P0142)
+ 7	segment F000h write control
+	=1 write to ROMCS#
+	=0 write to DRAM
+	don't care if register 32h bit 7=0
+ 6	C0000h-EFFFFh control
+	=1 read from AT-Bus or ROMCS# (if ROMCS# is enabled to that block),
+	  write to DRAM
+	=0 R/W from AT bus or ROMCS# (if ROMCS# is enabled to that block)
+ 5	write protect segment C000h
+ 4	reserved (1)
+ 3	enable shadowing for CC000h-CFFFFh
+ 2	enable shadowing for C8000h-CBFFFh
+ 1	enable shadowing for C4000h-C7FFFh
+ 0	enable shadowing for C0000h-C3FFFh
+SeeAlso: #P0135,#P0138
+
+Bitfields for 82C463MV D000h and E000h segments access control (register 37h):
+Bit	Description	(Table P0143)
+ 7	DC000h-DFFFFh access control
+	if register 36h bit 6=1
+	    =1 read from ROMCS# if not shadowed, write to DRAM
+	    =0 read from AT-Bus if not shadowed, write to DRAM
+	if register 36h bit 6=0
+	    =1 R/W from ROMCS#
+	    =0 R/W from AT-Bus
+ 6	D8000h-DBFFFh access control (see bit 7)
+ 5	D4000h-D7FFFh access control (see bit 7)
+ 4	D0000h-D3FFFh access control (see bit 7)
+ 3	disable caching for EC000h-EFFFFh (default)
+ 2	disable caching for E8000h-EBFFFh (default)
+ 1	disable caching for E4000h-E7FFFh (default)
+ 0	disable caching for E0000h-E3FFFh (default)
+SeeAlso: #P0135,#P0142
+
+Bitfields for non-cacheable block 1 size, control and A24 (register 38h):
+Bit(s)	Description	(Table P0144)
+ 7-5	size of non-cacheable memory block 1
+	000 64K
+	001 128K
+	010 256K
+	011 1M
+	1xx disabled (default)
+ 4	CC000h-CFFFFh access control
+	if register 36h bit 6=1
+	    =1 read from ROMCS# if not shadowed, write to DRAM
+	    =0 read from AT-Bus if not shadowed, write to DRAM
+	if register 36h bit 6=0
+	    =1 R/W from ROMCS#
+	    =0 R/W from AT-Bus
+ 3	C8000h-CBFFFh access control (see bit 4)
+ 2	C4000h-C7FFFh access control (see bit 4)
+ 1	C0000h-C3FFFh access control (see bit 4)
+ 0	address bit A24 of non-cacheable memory block 1
+SeeAlso: #P0135,#P0142
+
+Bitfields for non-cacheable block 2 size and A24 (register 3Ah):
+Bit(s)	Description	(Table P0145)
+ 7-5	size of non-cacheable memory block 2
+	000 64K
+	001 128K
+	010 256K
+	011 1M
+	1xx disabled (default)
+ 4	unused
+ 3	enable internal HLDA latch during stop clock (must be disabled
+	  before DMA transfers are performed)
+ 2	reserved (1)
+ 1	unused
+ 0	address bit A24 of non-cacheable memory block 2
+SeeAlso: #P0135
+
+Bitfields for 82C463MV PMU control 1 (register 40h):
+Bit	Description	(Table P0146)
+ 7	Reset/SMI indication (read-only)
+	=1 the last read or fetch from address XXXFFFF0h was a SMIADS#
+	     cycle
+	=0 the last read or fetch from address XXXFFFF0h was a regular
+	     ADS# cycle
+ 6	divide global timer by 4
+ 5	LLOWBAT polarity selector
+	=1 low active
+	=0 high active
+ 4	LOWBAT polarity selector (see bit 5)
+ 3	SQWIN input clock frequency
+	=1 128KHz
+	=0 32KHz
+ 2	external EPMI2 pin polarity
+	=1 active low
+	=0 active high
+ 1	external EPMI1 pin polarity (see bit 2)
+ 0	send reset pulse during resume
+Note:	for 1X clock with Intel SL Enhanced CPU, bit 6 must be =1
+SeeAlso: #P0135,#P0147,#P0148
+
+Bitfields for 82C463MV PMU control 2 (doze timer, register 41h):
+Bit(s)	Description	(Table P0147)
+ 7-5	hardware doze time-out selector
+	101 512 ms
+	110 2 sec
+	111 8 sec
+ 4-2	hardware doze-mode CPU clock selector
+	000 CPUCLK/1
+	001 CPUCLK/2
+	010 CPUCLK/4
+	011 CPUCLK/8 (should be used during CPU stop clock only)
+	100 CPUCLK/16 (should be used during CPU stop clock only)
+	101 CPUCLK/3
+	110 reserved
+	111 reserved
+ 1	enable LCD_ACCESS, KBD_ACCESS, DSK_ACCESS access to auto trigger
+	  the hardware doze timer
+ 0	disable hardware doze-mode (enable APM doze-mode support)
+SeeAlso: #P0135,#P0146,#P0148
+
+Bitfields for 82C463MV PMU control 3 (timers other than doze, register 42h):
+Bit(s)	Description	(Table P0148)
+ 7-6	clock source for general-purpose timer
+	00 SQW0
+	01 SQW1
+	10 SQW2
+	11 SQW3
+ 5-4	clock source for keyboard timer (see bits 7-6)
+ 3-2	clock source for disk timer (see bits 7-6)
+ 1-0	clock source for LCD timer (see bits 7-6)
+SeeAlso: #P0135,#P0147,#P0149
+
+Bitfields for 82C463MV PMU control 4 (register 43h):
+Bit(s)	Description	(Table P0149)
+ 7	disable monitoring of PORT 3B0h-3DFh
+ 6	disable monitoring of memory range A0000h-BFFFFh
+ 5-4	LOWBAT pin sample rate
+	if register 40h bit 6 =1
+	    00 32 seconds
+	    01 64 seconds
+	    10 128 seconds
+	    11 reserved
+	if register 40h bit 6	 =0
+	    00 8 seconds
+	    01 16 seconds
+	    10 32 seconds
+	    11 reserved
+ 3	reserved (0)
+ 2-0	AT clock select
+	000 OSCCLK2/8
+	001 OSCCLK2/6
+	010 OSCCLK2/4
+	011 OSCCLK2/3
+	100 OSC14/2 (7.2 MHz)
+	111 stop
+SeeAlso: #P0135,#P0146,#P0149,#P0150
+
+Bitfields for 82C463MV GNR_ACCESS control, I/O base address line A9 (reg. 49h):
+Bit(s)	Description	(Table P0150)
+ 7	GNR_ACCESS I/O base address bit A9
+ 6	enable compare in WRITE cycle
+ 5	enable compare in READ cycle
+ 4-0	I/O address A5-A1 mask bits. For each bit =1, the corresponding bit
+	  in register 48h is not compared (this is used to determine I/O
+	  address block size)
+SeeAlso: #P0135,#P0149
+
+Bitfields for 82C463MV CSG0# control and base address line A9 (register 4Bh):
+Bit(s)	Description	(Table P0151)
+ 7	Programmable Chip Select 0 (CSG0#) - I/O base address line A9
+ 6	enable CSG0# for I/O write cycles
+ 5	enable CSG0# for I/O read cycles
+ 4	=1 CSG0# active before ALE
+	=0 CSG0# active just like I/O command pulse
+ 3-0	I/O address A4-A1 mask bits. For each bit =1, the corresponding bit
+	  in register 4Ah (bits 4-1) is not compared (this is used to
+	  determine I/O address block size)
+SeeAlso: #P0135,#P0152
+
+Bitfields for 82C463MV CSG1# control and base address line A9 (register 4Dh):
+Bit(s)	Description	(Table P0152)
+ 7	Programmable Chip Select 1 (CSG1#) - I/O base address line A9
+ 6	enable CSG1# for I/O write cycles
+ 5	enable CSG1# for I/O read cycles
+ 4	=1 CSG1# active before ALE
+	=0 CSG1# active just like I/O command pulse
+ 3-0	I/O address A4-A1 mask bits. For each bit =1, the corresponding bit
+	in register 4Ch (bits 4-1) is not compared (this is used to
+	determine I/O address block size)
+SeeAlso: #P0135,#P0151
+
+Bitfields for OPTi 82C463MV idle timer control (register 4Eh):
+Bit	Description	(Table P0153)
+ 7	CSG1 access
+ 6	CSG0 access
+ 5	LPT access (it refers to PORT 378h-37Fh, PORT 278h-27Fh and
+	  PORT 3BCh-3BFh)
+ 4	COM access (it refers to PORT 3F8h-3FFh and PORT 2F8h-2FFh)
+ 3	GNR_ACCESS
+ 2	KBD_ACCESS
+ 1	DSK_ACCESS
+ 0	LCD_ACCESS
+Note:	If a bit is =1, the corresponding access will reload IDLE_TIMER
+	  otherwise not.
+SeeAlso: #P0135
+
+Bitfields for 82C463MV suspend/resume control (register 50h):
+Bit	Description	(Table P0154)
+ 7	software generation of SMI (enabled by bit 7 of register 59h)
+	  writing 1 asserts SMI to CPU to start SMM operation
+	  writing 0 clears the SMI (the SMI routine must clear this bit)
+ 6	reserved (0)
+ 5	IRQ8 active level
+	=1 high active
+	=0 low active
+ 4	disable the internal 14.3MHz clock (to conserve power)
+ 3	start doze-mode / read DOZE_TIMER status
+	write: start APM doze-mode
+	    =1 start doze-mode (if register 40h bit 0 =1)
+	    =0 no effect
+	read: hardware DOZE_TIMER time-out status bit
+	    =1 hardware DOZE_TIMER has timed out
+	    =0 hardware DOZE_TIMER still counting
+ 2	Ready To Resume (RTR), read-only
+ 1	PMU mode (read-only)
+	=1 suspend-mode still active
+	=0 all other modes
+ 0	start suspend-mode (write only)
+	=1 start suspend-mode
+	=0 no effect
+SeeAlso: #P0135,#P0146,#P0161
+
+Bitfields for 82C463MV beeper/sequencer control (register 51h):
+Bit(s)	Description	(Table P0155)
+ 7-2	sequencer base address translated-to A17-A12 (A19-A18 are always 1
+	  during this operation)
+ 1-0	beeper control (independent from PORT 61h)
+	if register 40h bit 6 =1
+	    00 no action
+	    01 1KHz
+	    10 off
+	    11 2KHz
+	if register 40h bit 6 =0
+	    00 no action
+	    01 4KHz
+	    10 off
+	    11 8KHz
+SeeAlso: #P0135,#P0146
+
+Bitfields for 82C463MV PMU Periferal Power (PPWR) control 1 (register 54h):
+Bit(s)	Description	(Table P0156)
+ 7-4	write mask of PPWR low nibble
+	=1 enable write on corresponding bit
+	=0 write disable
+ 3-0	read/write data bits for PPWR (low nibble)
+SeeAlso: #P0135,#P0157
+
+Bitfields for 82C463MV PMU Periferal Power (PPWR) control 2 (register 55h):
+Bit(s)	Description	(Table P0157)
+ 7-4	write mask of PPWR high nibble
+	=1 enable write on corresponding bit
+	=0 write disable
+ 3-0	read/write data bits for PPWR (high nibble) (default =1)
+SeeAlso: #P0135,#P0156
+
+Bitfields for OPTi 82C463MV PIO control 1 (register 56h):
+Bit(s)	Description	(Table P0158)
+ 7-4	write mask of PIO bits 3-0
+	=1 enable write on corresponding bit
+	=0 write disable
+ 3-0	read/write data bits for PIO
+SeeAlso: #P0135,#P0159,#P0173
+
+Bitfields for OPTi 82C463MV PIO control 2 (register 57h):
+Bit	Description	(Table P0159)
+ 7	enable refresh (BIOS must set this bit to 1 after power up)
+ 6	enable interrupts to generate PMI #6 (see also #P0167,#P0171)
+ 5	disable monitoring floppy drive accesses
+ 4	disable monitoring hard drive accesses
+ 3	PIO3/STPGNT# pin direction
+	=1 output
+	=0 input
+ 2	PIO2/CPUSPD pin direction (see bit 3)
+ 1	PIO1/NOWS# pin direction (see bit 3)
+ 0	PIO0 pin direction (see bit 3)
+SeeAlso: #P0135,#P0158
+
+Bitfields for OPTi 82C463MV PMU event control 1 (register 58h):
+Bit(s)	Description	(Table P0160)
+ 7-6	LOWBAT PMI #3 configuration
+	00 disable
+	01 sequencer
+	10 reserved
+	11 SMI
+ 5-4	EPMI2 PMI #2 configuration (see bits 7-6)
+ 3-2	EPMI1 PMI #1 configuration (see bits 7-6)
+ 1-0	LLOWBAT PMI #0 configuration (see bits 7-6)
+SeeAlso: #P0135
+
+Bitfields for OPTi 82C463MV PMU event control 2 (register 59h):
+Bit(s)	Description	(Table P0161)
+ 7	global software SMI enable (see also bit 7 of register 50h at #P0154)
+ 6	reload timers during a resume sequence
+ 5-4	resume or INTR PMI #6 and Suspend PMI #7 configuration
+	00 disable
+	01 sequencer
+	10 reserved
+	11 SMI
+ 3-2	R_TIMER PMI #5 configuration (see bits 5-4)
+ 1-0	IDLE_TIMER PMI #4 configuration (see bits 5-4)
+SeeAlso: #P0135
+
+Bitfields for OPTi 82C463MV PMU event control 3 (register 5Ah):
+Bit(s)	Description	(Table P0162)
+ 7-6	GNR_TIMER time out PMI #11 and access PMI #15 configuration
+	00 disable
+	01 sequencer
+	10 reserved
+	11 SMI
+ 5-4	KBD_TIMER time out PMI #10 and access PMI #14 cfg (see bits 7-6)
+ 3-2	DSK_TIMER time out PMI #9 and access PMI #13 cfg (see bits 7-6)
+ 1-0	LCD_TIMER time out PMI #8 and access PMI #12 cfg (see bits 7-6)
+SeeAlso: #P0135,#P0163
+
+Bitfields for OPTi 82C463MV PMU event control 4 (register 5Bh):
+Bit	Description	(Table P0163)
+ 7	IRQ15 SMI select
+	=1 enable SMI select (SMI internally connected to IRQ15) and
+	  disable IRQ15 hardware pin function
+	=0 disable SMI select (enable IRQ15 pin function as normal)
+ 6	disable all SMI
+ 5	enable sequencer
+ 4	SMI Type
+	=0 Intel style SMI (SMM identified by SMIACT#)
+	=1 AMD DXLV or Cyrix style SMI (SMM identified by SMIADS#)
+	Note:	for Intel-style SMI, the 3000h/4000h segments will relocate to
+		  B000h/A000h when in SMM; for AMD/Cyrix, the 7000h/6000h
+		  segments will relocate to B000h/A000h when in SMM
+ 3	enable PMI source #15
+ 2	enable PMI source #14
+ 1	enable PMI source #13
+ 0	enable PMI source #12
+SeeAlso: #P0135,#P0162,#P0164
+
+Bitfields for OPTi 82C463MV SMI source (low) (register 5Ch):
+Bit	Description	(Table P0164)
+ 7	PMI #7 - SUSPEND
+ 6	PMI #6 - RESUME or INTR
+ 5	PMI #5 - R_TIMER time out
+ 4	PMI #4 - IDLE_TIMER time out
+ 3	PMI #3 - LOWBAT pin
+ 2	PMI #2 - EPMI2 pin (external PMI source)
+ 1	PMI #1 - EPMI1 pin (external PMI source)
+ 0	PMI #0 - LLOWBAT pin
+SeeAlso: #P0135,#P0165
+
+Bitfields for OPTi 82C463MV SMI source (high) (register 5Dh):
+Bit	Description	(Table P0165)
+ 7	PMI #15 - GNR_ACCESS
+ 6	PMI #14 - KBD_ACCESS
+ 5	PMI #13 - DSK_ACCESS
+ 4	PMI #12 - LCD_ACCESS
+ 3	PMI #11 - GNR_TIMER
+ 2	PMI #10 - KBD_TIMER
+ 1	PMI #9 - DSK_TIMER
+ 0	PMI #8 - LCD_TIMER
+SeeAlso: #P0135,#P0164
+
+Bitfields for OPTi 82C463MV clock stretching control (register 5Eh):
+Bit	Description	(Table P0166)
+ 7	enable CPU clock stretch memory code cycle
+ 6	enable CPU clock stretch write cycle
+ 5	enable CPU clock stretch read cycle
+ 4	enable CPU clock stretch I/O cycle
+ 3	enable CPU clock stretch memory data cycle
+ 2	enable stop ATCLK when not in AT bus cycle
+ 1	ATCLK stretch
+	=1 synchronous
+	=0 asynchronous
+ 0	reserved (0)
+SeeAlso: #P0135
+
+Bitfields for OPTi 82C463MV resume interrupt control (register 5Fh):
+Bit(s)	Description	(Table P0167)
+ 7	LCD_ACCESS includes AT bus video access
+ 6	LCD_ACCESS includes Local bus video access
+ 5	enable all resume sources of register 6Ah (see also #P0176,#P0159)
+ 4	RI counter count out will generate resume
+ 3-0	number of RI counts
+SeeAlso: #P0135
+
+Bitfields for OPTi 82C463MV debounce control (register 61h):
+Bit(s)	Description	(Table P0168)
+ 7-6	LOWBAT and LLOWBAT pin debounce rate select
+	if register 40h bit 6 =1
+	    00 no debounce
+	    01 250 microseconds
+	    10 8ms
+	    11 500ms
+	if register 40h bit 6 =0
+	    00 no debounce
+	    01 62.5 microseconds
+	    10 2 ms
+	    11 125 ms
+ 5-4	SUSP/RSM pin debounce rate select
+	if register 40h bit 6 =1
+	    00 reserved
+	    01 latch high to low edge
+	    10 4 ms (low to high)
+	    11 8 ms (low to high)
+	if register 40h bit 6 =0
+	    00 reserved
+	    01 latch high to low edge
+	    10 1 ms (low to high)
+	    11 2 ms (low to high)
+ 3	reserved (0)
+ 2	enable STPCLK protocol for switching CPU clock frequencies
+ 1-0	STPCLK# delay (for use when STPCLK protocol is enabled)
+	00 no delay
+	01 120 microseconds
+	10 240 microseconds
+	11 1ms, if register 40h bit 6 set; 240 microseconds if clear
+SeeAlso: #P0135,#P0146
+
+Bitfields for OPTi 82C463MV doze-mode IRQ selects (register 62h):
+Bit	Description	(Table P0169)
+ 7	enable IRQ13
+ 6	enable IRQ8
+ 5	enable IRQ7
+ 4	enable IRQ12
+ 3	enable IRQ5
+ 2	enable IRQ4
+ 1	enable IRQ3
+ 0	enable IRQ0
+Notes:	in hardware doze-mode the selected interrupts will be used to re-load
+	  the hardware DOZE_TIMER and/or trigger the system out of doze-mode
+	in APM doze-mode the selected interrupts will be used to trigger the
+	  system out of doze-mode only
+SeeAlso: #P0135,#P0172,#P0170
+
+Bitfields for OPTi 82C463MV idle timer IRQ selects (register 63h):
+Bit	Description	(Table P0170)
+ 7	enable EPMI1 (level trigger)
+ 6	enable IRQ13
+ 5	enable IRQ8
+ 4	enable IRQ7
+ 3	enable IRQ5
+ 2	enable IRQ4
+ 1	enable IRQ3
+ 0	enable IRQ0
+SeeAlso: #P0135,#P0169,#P0171
+
+Bitfields for OPTi 82C463MV PMI#6 IRQ selects (register 64h):
+Bit	Description	(Table P0171)
+ 7	enable IRQ14
+ 6	enable IRQ8
+ 5	enable IRQ7
+ 4	enable IRQ6
+ 3	enable IRQ5
+ 2	enable IRQ4
+ 1	enable IRQ3
+ 0	enable IRQ1
+Note:	the value written into this register selects which IRQs generate
+	  PMI#6 in normal mode, the value read from this register indicates
+	  active IRQs at the time of the read
+SeeAlso: #P0135,#P0159,#P0170
+
+Bitfields for OPTi 82C463MV doze-mode configuration (register 65h):
+Bit	Description	(Table P0172)
+ 7	enable monitoring all interrupt signals during hw or sw doze-mode
+ 6	doze-mode STPCLK protocol selector (see also #P0168)
+	=1 STPCLK will latch for stopping the CPU clock (APM)
+	     The delay is determined by register 61h bits 1-0
+	=0 STPCLK will pulse for changing the frequency of the CPU clock
+	  (hw doze-mode).
+	     The pulse width is determined by register 61h bits 1-0
+ 5	enable EPMI1 to reload hardware DOZE_TIMER and exit from hardware or
+	  software doze-mode
+ 4	enable recognition of SMI during APM stop clock
+ 3	allow IRQ1 to exit from hw or sw doze-mode (write-only)
+	(see also #P0169)
+ 2-0	reserved (0)
+SeeAlso: #P0135,#P0173
+
+Bitfields for OPTi 82C463MV suspend control (register 66h):
+Bit	Description	(Table P0173)
+ 7	refresh type during suspend
+	=1 self refresh
+	=0 normal refresh (refresh rate selected by register 67h bit 6)
+ 6	KBCLK during suspend
+	=1 16 KHz
+	=0 7.16 MHz (14.318 MHz /2)
+ 5	software (APM) CPU stop-clock control
+	=1 the CPU clock can be stopped by entering APM doze-mode (that is
+	  setting register 50h bit 3 to 1)
+	=0 APM doze-mode will use the hw doze-mode clock selected by
+	  bits 4-2 of register 41h
+ 4	avoid asserting HOLD before stopping the clock
+ 3	PIO3/STPGNT# pin selector
+	=1 STPGNT# function (set register 57h bit 3 to input mode)
+	    This is for use with CPUs that use the hw stop grant signal
+	      to acknowledge stop request
+	=0 PIO3 function (set register 57h bit 3 to determine input or
+	  output mode)
+ 2	PIO2/CPUSPD pin selector
+	=1 CPUSPD function, CPU speed indicator output (set register 57h
+	  bit 2 to output mode)
+	=0 PIO2 function (set register 57h bit 2 to determine input or
+	  output mode)
+ 1	PIO1/NOWS# pin selector
+	=1 NOWS# function (set register 57h bit 1 to input mode)
+	=0 PIO1 function (set register 57h bit 1 to determine input or
+	  output mode)
+ 0	enable CPU clock change request protocol
+Note:	for hardware doze mode, bit 5 must be 0
+SeeAlso: #P0135,#P0147,#P0154,#P0159,#P0174
+
+Bitfields for OPTi 82C463MV CPU frequency (register 67h):
+Bit(s)	Description	(Table P0174)
+ 7	CPU clock control during suspend
+	=1 dynamic CPU (in suspend-mode, bits 2-0 select the CPU clock)
+	=0 static CPU (in suspend-mode, 82C463MV stops the CPU clock)
+ 6	refresh control
+	=1 slow refresh (128 ms)
+	=0 normal refresh (15 ms for normal operation, 30 ms for suspend mode)
+ 5	PMU global enabler
+ 4	reserved (1)
+ 3	reserved (0)
+ 2-0	CPU clock frequency
+	000 CPUCLK/1
+	001 CPUCLK/2
+	010 CPUCLK/4
+	101 CPUCLK/3
+	else reserved
+SeeAlso: #P0135
+
+Bitfields for OPTi 82C463MV timer clock source (register 68h):
+Bit(s)	Description	(Table P0175)
+ 7-6	R_TIMER clock source selector
+	00 SQW0
+	01 SQW1
+	10 SQW2
+	11 SQW3
+ 5-4	IDLE_TIMER clock source selector (see bits 7-6)
+ 3-2	resume recovery time
+	if register 40h bit 6 =1
+	    00 8 ms
+	    01 32 ms
+	    10 128 ms
+	    11 256 ms
+	if register 40h bit 6 =0
+	    00 2 ms
+	    01 8 ms
+	    10 32 ms
+	    11 64 ms
+ 1	enable PPWR bit 1 suspend auto toggle (see also #P0156)
+ 0	enable PPWR bit 0 suspend auto toggle (see also #P0156)
+Note:	bits 1 and 0 are not influenced by mask bits 5 and 4 of register 54h
+SeeAlso: #P0135,#P0146
+
+Bitfields for OPTi 82C463MV resume IRQ selects (register 6Ah):
+Bit	Description	(Table P0176)
+ 7	enable EPMI2 (resume on a rising edge)
+ 6	enable EPMI1 (resume on a rising edge)
+ 5	enable IRQ8 (resume on a falling edge)
+ 4	enable IRQ7 (resume on a rising edge)
+ 3	enable IRQ5 (resume on a rising edge)
+ 2	enable IRQ4 (resume on a rising edge)
+ 1	enable IRQ3 (resume on a rising edge)
+ 0	enable IRQ1 (resume on a rising edge)
+SeeAlso: #P0135
+
+Bitfields for OPTi 82C463MV resume sources (register 6Bh):
+Bit(s)	Description	(Table P0177)
+ 7	refresh pulse width during sequencer operation
+	=1 6 AT clocks
+	=0 4 AT clocks
+ 6-3	reserved (0)
+ 2-0	resume sources (read-only)
+	001 RI
+	010 INTR (as selected in register 6Ah)
+	100 SUSP/RSM pin
+	else reserved
+SeeAlso: #P0135,#P0176
+

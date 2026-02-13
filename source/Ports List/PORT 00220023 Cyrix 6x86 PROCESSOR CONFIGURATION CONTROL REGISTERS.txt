@@ -1,0 +1,78 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Cyrix 6x86 PROCESSOR - CONFIGURATION CONTROL REGISTERS
+SeeAlso: PORT 0022h"Cx486",PORT 0022h"5x86"
+
+0022  -W  index for accesses to next port (see #P0023)
+0023  RW  configuration control register array (indexed by PORT 0022h)
+	Note:	the index must be written to PORT 0022h before every access
+		  to PORT 0023h; out-of-sequence accesses or index values
+		  not supported by the processor generate external I/O cycles
+
+(Table P0031)
+Values for Cyrix 6x86 configuration registers:
+ C0h	Configuration Control Register 0 (CCR0) (see #P0032)
+ C1h	Configuration Control #1 (CCR1) (see #P0024)
+ C2h	Configuration Control #2 (CCR2) (see #P0025)
+ C3h	Configuration Control #3 (CCR3) (see #P0026)
+ C4h	Address region 0 (bits 31-24)
+ C5h	Address region 0 (bits 23-16)
+ C6h	Address region 0 (bits 15-12 and size)
+ C7h	Address region 1 (bits 31-24)
+ C8h	Address region 1 (bits 23-16)
+ C9h	Address region 1 (bits 15-12 and size)
+ CAh	Address region 2 (bits 31-24)
+ CBh	Address region 2 (bits 23-16)
+ CCh	Address region 2 (bits 15-12 and size)
+ CDh	Address region 3 (bits 31-24)
+ CEh	Address region 3 (bits 23-16)
+ CFh	Address region 3 (bits 15-12 and size)
+ D0h	Address region 4 (bits 31-24)
+ D1h	Address region 4 (bits 23-16)
+ D2h	Address region 4 (bits 15-12 and size)
+ D3h	Address region 5 (bits 31-24)
+ D4h	Address region 5 (bits 23-16)
+ D5h	Address region 5 (bits 15-12 and size)
+ D6h	Address region 6 (bits 31-24)
+ D7h	Address region 6 (bits 23-16)
+ D8h	Address region 6 (bits 15-12 and size)
+ D9h	Address region 7 (bits 31-24)
+ DAh	Address region 7 (bits 23-16)
+ DBh	Address region 7 (bits 15-12 and size)
+ DCh	Region Control 0
+ DDh	Region Control 1
+ DEh	Region Control 2
+ DFh	Region Control 3
+ E0h	Region Control 4
+ E1h	Region Control 5
+ E2h	Region Control 6
+ E3h	Region Control 7
+ E8h	Configuration Control Register 4 (see #P0027)
+ E9h	Configuration Control Register 5 (see #P0033)
+ FEh R	Device Identification #0 (see #P0022)
+	CPU device ID
+ FFh R	Device Identification #1
+	bits 3-0: revision
+	bits 7-4: stepping
+SeeAlso: #P0017,#P0023
+
+Bitfields for Cyrix 6x86 Configuration Control Register 0:
+Bit(s)	Description	(Table P0032)
+ 7-2	???
+ 1	address region 640K-1M is noncacheable
+ 0	???
+SeeAlso: #P0019
+
+Bitfields for Cyrix 6x86 Configuration Control Register 5:
+Bit(s)	Description	(Table P0033)
+ 7-6	reserved
+ 5	enable all address-region registers (control registers C4h-DBh)
+ 4	assert LBA# pin on all accesses to 640K-1M
+ 3-1	reserved
+ 0	allocate new cache lines only on read misses
+SeeAlso: #P0032,#P0027,#P0031
+

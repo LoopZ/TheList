@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: @00600018
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:0018h - Eagle MS-DOS v1.25 IO.SYS - WRITE ABSOLUTE SECTOR(S)
+InstallCheck:	MS-DOS v1.25 must be installed
+SeeAlso: @0060h:0000h,@0060h:0015h,@0060h:001Bh
+
+(Table F0008)
+Call Eagle MS-DOS entry point 0018h with:
+	AL = drive table number
+	ES:BX -> data to be written
+	CX = number of sectors to write
+	DX = logical sector number of first sector
+	AH = verify flag
+Return: CF clear if successful
+	CF set on error
+	    AL = error code
+		0Ch drive table number out of range
+Note:	the drive number in AL is *not* the logical DOS drive number, but
+	  the number of an internal data table; multiple data tables, each
+	  describing a distinct disk format, may be shared by one logical
+	  drive
+

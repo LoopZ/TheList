@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400072
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0072h - POST RESET FLAG
+Size:	WORD
+Desc:	specify the action the BIOS should take at the beginning of the
+	  power-on self-test when the machine is reset
+SeeAlso: INT 19,MEM F000h:FFF0h
+
+(Table M0021)
+Values for POST reset flag:
+ 0000h	cold boot
+ 0064h	Burn-in mode
+ 1234h	to bypass memory test (warm boot)
+ 4321h	[PS/2 except Mod 25,30] to preserve memory
+ 5678h	[Conv] system suspended
+ 9ABCh	[Conv] manufacturing test mode
+ ABCDh	[Conv] POST loop mode
+

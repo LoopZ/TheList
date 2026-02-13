@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: P02F802FF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 02F8-02FF - serial port, same as 02E8, 03E8 and 03F8 (COM2)
+
+02F8  -W  transmitter holding register
+02F8  R-  receiver buffer register
+02F8  RW  divisor latch, low byte	when DLAB=1
+02F9  RW  divisor latch, high byte	when DLAB=1
+02F9  RW  interrupt enable register when DLAB=0
+02FA  R-  interrupt identification register
+02FB  RW  line control register
+02FC  RW  modem control register
+02FD  R-  line status register
+02FF  RW  scratch register
+

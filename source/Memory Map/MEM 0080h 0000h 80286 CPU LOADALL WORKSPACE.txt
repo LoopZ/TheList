@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00800000
+  Category: H 	hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0080h:0000h - 80286 CPU - LOADALL WORKSPACE
+Size:	102 BYTEs
+Desc:	on the 80286 (unlike 80386), the state buffer from which the LOADALL
+	  instruction loads all internal registers is hardwired to physical
+	  address 000800h
+Note:	several versions 3.x of MS-DOS leave an empty space at offset 100h in
+	  IO.SYS (which is loaded at 0070h:0000h) so that HIMEM.SYS can use
+	  LOADALL on 80286 machines without having to save/restore the area
+	  of memory that LOADALL uses
+SeeAlso: MEM 0070h:0100h
+

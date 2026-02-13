@@ -1,0 +1,146 @@
+--------------------------------------------------------------------------------
+ Unique ID: MBFF00000
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM BFF0h:0000h - ET4000/W32 ACL accelerator
+Size:	169 BYTES
+
+Format of ET4000/W32 memory-mapped registers:
+Offset	Size	Description	(Table M0080)
+ 00h	DWORD	MMU Registers: memory base pointer register 0 (see #M0081)
+ 04h	DWORD	MMU Registers: memory base pointer register 1 (see #M0081)
+ 08h	DWORD	MMU Registers: memory base pointer register 2 (see #M0081)
+ 0Ch  7 BYTEs	???
+ 13h	BYTE	MMU Registers: MMU control register (see #M0082)
+ 14h 28 BYTEs	???
+ 30h	BYTE	Non-Queued Registers: suspend/terminate
+ 31h	BYTE	Non-Queued Registers: operation state (see #M0083) (write-only)
+ 32h	BYTE	Non-Queued Registers: sync enable
+ 33h	BYTE	???
+ 34h	BYTE	Non-Queued Registers: interrupt mask
+ 35h	BYTE	Non-Queued Registers: interrupt status
+ 36h	BYTE	Non-Queued Registers: ACL status (read-only)
+		bit 1: read status (RDST) 1=ACL active, queue not empty
+		bit 0: write status (WRST) 1=queue full
+ 37h 73 BYTEs	???
+ 80h	DWORD	Queued Registers: pattern address (see #M0084)
+ 84h	DWORD	Queued Registers: source address (see #M0084)
+ 88h	WORD	Queued Registers: pattern Y offset (see #M0085)
+ 8Ah	WORD	Queued Registers: source Y offset (see #M0085)
+ 8Ch	WORD	Queued Registers: destination y offset (see #M0085)
+ 8Eh	BYTE	Queued Registers: virtual bus size
+ 8Fh	BYTE	Queued Registers: X/Y direction (see #M0086)
+ 90h	BYTE	Queued Registers: pattern wrap (see #M0087)
+ 91h	BYTE	???
+ 92h	BYTE	Queued Registers: source wrap (see #M0087)
+ 93h	BYTE	???
+ 94h	WORD	Queued Registers: X position
+ 96h	WORD	Queued Registers: Y position
+ 98h	WORD	Queued Registers: X count (see #M0088)
+ 9Ah	WORD	Queued Registers: Y count (see #M0088)
+ 9Ch	BYTE	Queued Registers: routine control (see #M0089)
+ 9Dh	BYTE	Queued Registers: reload control
+ 9Eh	BYTE	Queued Registers: background ROP for mixing
+ 9Fh	BYTE	Queued Registers: foreground ROP for mixing
+ A0h	DWORD	Queued Registers: destination address
+ A4h	DWORD	Queued Registers: internal pattern address
+ A8h	DWORD	Queued Registers: internal source address
+
+Bitfields for ET4000/W32 memory base pointer register:
+Bit(s)	Description	(Table M0081)
+ 31-22	reserved
+ 21-0	memory base pointer
+SeeAlso: #M0080
+
+Bitfields for ET4000/W32 MMU control register:
+Bit(s)	Description	(Table M0082)
+ 7	reserved
+ 6-4	linear address control (LAC)
+	  bit 6: MMU aperture 2
+	  bit 5: MMU aperture 1
+	  bit 4: MMU aperture 0
+ 3	reserved
+ t2-0	aperture type (APT)
+	  bit 2: MMU aperture 2
+	  bit 1: MMU aperture 1
+	  bit 0: MMU aperture 0
+SeeAlso: #M0080 
+
+Bitfields for ET4000/W32 operation state register:
+Bit(s)	Description	(Table M0083)
+ 7-4	reserved
+ 3	restart operation after ACL-interruption
+ 2-1	reserved
+ 0	restore status before ACL-interruption
+SeeAlso: #M0080
+
+Bitfields for ET4000/W32 memory address register:
+Bit(s)	Description	(Table M0084)
+ 31-22	reserved
+ 21-0	memory base pointer
+SeeAlso: #M0080
+
+Bitfields for ET4000/W32 offset register:
+Bit(s)	Description	(Table M0085)
+ 15-12	reserved
+ 11-0	Y offset
+SeeAlso: #M0080
+
+Bitfields for ET4000/W32 X/Y direction register:
+Bit(s)	Description	(Table M0086)
+ 7-2	reserved
+ 1	X direction
+ 0	Y direction
+SeeAlso: #M0080
+
+Bitfields for ET4000/W32 wrap register:
+Bit(s)	Description	(Table M0087)
+ 7	reserved
+ 6-4	pattern Y wrap
+	000 = 1 line	
+	001 = 2 lines	
+	010 = 4 lines	
+	011 = 8 lines	
+	100 = reserved
+	101 = reserved
+	110 = reserved
+	111 = no wrap 
+ 3	reserved
+ 2-0	pattern X wrap
+	000 = reserved	
+	001 = reserved	
+	010 = 4 byte	
+	011 = 8 byte	
+	100 = 16 byte	
+	101 = 32 byte	
+	110 = 64 byte	
+	111 = no wrap	
+SeeAlso: #M0080
+
+Bitfields for ET4000/W32 count register:
+Bit(s)	Description	(Table M0088)
+ 15-12	reserved
+ 11-0	pixel count
+SeeAlso: #M0080
+
+Bitfields for ET4000/W32 routine control register:
+Bit(s)	Description	(Table M0089)
+ 7-6	reserved			   
+ 5-4	routing of CPU address (ADRO)	   
+	00 don't use CPU address	   
+	01 CPU address is destination	
+	10 reserved			   
+	11 reserved			   
+ 3	reserved			   
+ 2-0	routing of CPU data (DARQ)	   
+	000 don't use CPU data	   
+	001 CPU data is source data	   
+	010 CPU data is mixed data	   
+	011 reserved			   
+	100 CPU data is x-count	   
+	101 CPU data is y-count	   
+	10x reserved			
+SeeAlso: #M0080 
+

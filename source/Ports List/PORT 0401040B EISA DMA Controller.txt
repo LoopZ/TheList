@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0401040B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0401-040B - EISA DMA Controller
+SeeAlso: PORT 0481h-048Bh"EISA",PORT 04D4h-04D6h"EISA"
+
+0401  RW  DMA channel 0 word count byte 2 (high)
+0403  RW  DMA channel 1 word count byte 2 (high)
+0405  RW  DMA channel 2 word count byte 2 (high)
+0407  RW  DMA channel 3 word count byte 2 (high)
+040A  -W  extended DMA chaining mode register, channels 0-3 (see #P0884)
+040A  R-  channel interrupt (IRQ13) status register (see #P0885)
+040B  -W  DMA extended mode register for channels 0-3 (see #P0886)
+	(bit settings same as PORT 04D6h)
+
+Bitfields for EISA extended DMA chaining mode register (channels 0-3):
+Bit(s)	Description	(Table P0884)
+ 7-5	reserved
+ 4	=0  generate IRQ13
+	=1  generate terminal count
+ 3	=0  do not start chaining
+	=1  programming complete
+ 2	=0  disable buffer chaining mode (default)
+	=1  enable buffer chaining mode
+ 1-0	DMA channel select
+SeeAlso: #P0885,#P0886,#P0893
+
+Bitfields for EISA channel interrupt (IRQ13) status register:
+Bit(s)	Description	(Table P0885)
+ 7-5  interrupt on channels 7-5
+ 4	  reserved
+ 3-0  interrupt on channels 3-0
+SeeAlso: #P0884
+
+Bitfields for EISA DMA extended mode register (channels 0-3):
+Bit(s)	Description	(Table P0886)
+ 7	=0 enable stop register
+ 6	=0 terminal count is an output for this channel	(default)
+ 5-4	DMA cycle timing
+	00 ISA-compatible (default)
+	01 type A timing mode
+	10 type B timing mode
+	11 burst DMA mode
+ 3-2	Address mode
+	00 8-bit I/O, count by bytes (default)
+	01 16-bit I/O, count by words, address shifted
+	10 32-bit I/O, count by bytes
+	11 16-bit I/O, count by bytes
+ 1-0	DMA channel select
+SeeAlso: #P0884,#P0894
+

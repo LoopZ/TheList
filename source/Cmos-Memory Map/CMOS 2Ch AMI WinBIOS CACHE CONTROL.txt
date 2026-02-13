@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: R2C
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 2Ch - AMI WinBIOS - CACHE CONTROL
+
+Bitfields for AMI WinBIOS cache control:
+Bit(s)	Description	(Table C0030)
+ 7	external RAM cache enabled
+ 6	internal RAM cache enabled
+ 5	shadowing of E000h enabled
+ 4	shadowing of CC00h enabled
+ 3	shadowing of C800h enabled
+ 2	shadowing of C400h (video ROM) enabled
+ 1	shadowing of C000h (video ROM) enabled
+ 0	shadowing of system BIOS (F000h, 64K) enabled
+SeeAlso: #C0029
+

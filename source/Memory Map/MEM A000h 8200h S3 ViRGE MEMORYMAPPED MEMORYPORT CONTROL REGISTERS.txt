@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: MA0008200
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM A000h:8200h - S3 ViRGE - MEMORY-MAPPED MEMORY-PORT CONTROL REGISTERS
+Size:	40 BYTEs
+Note:	the S3 graphics processor registers can be mapped at either
+	  linear 000A0000h or at offset 16M from the start of the linear
+	  frame buffer
+
+Format of S3 memory-maped port control registers:
+Offset	Size	Description	(Table M0070)
+8200h	DWORD	FIFO control
+8204h	DWORD	MIU control
+8208h	DWORD	streams timeout
+820Ch	DWORD	miscellaneous timeout
+8210h 4 DWORDs	???
+8220h	DWORD	DMA read base address
+8224h	DWORD	DMA read stride width
+SeeAlso: #M0057
+

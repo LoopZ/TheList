@@ -1,0 +1,103 @@
+--------------------------------------------------------------------------------
+ Unique ID: Pxxxx
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT xxxx - Ensoniq AudioPCI-97 ES1371 - CONTROL REGISTERS
+Range:	anywhere on 64 byte boundary
+
++000d RW  interrupt/chip select control register (see #P1076)
++004d R-  interrupt/chip select status register (see #P1077)
++008  RW  UART data register (MIDI data)
++009  -W  UART control register (see #P1078)
++009  R-  UART status register (see #P1079)
++00A  RW  UART reserved register (see #P1080)
++00Cd RW  memory page register (see #P1081)
++010d RW  sample rate converter interface register (see #P1089)
++014d -W  CODEC write register (see #P1082)
++014d R-  CODEC read register (see #P1090)
++018d RW  legacy control/status register (see #P1091)
++020d RW  serial interface control register (see #P1083)
++024d RW  DAC1 channel sample count register (see #P1084)
++028d RW  DAC2 channel sample count register (see #P1084)
++02Cd RW  ADC channel sample count register (see #P1084)
++030d RW  internal memory 1 (see #P1085)
++034d RW  internal memory 2 (see #P1086)
++038d RW  internal memory 3 (see #P1087)
++03Cd RW  internal memory 4 (see #P1088)
+
+Bitfields for Ensoniq AudioPCI-97 ES1371 sample rate converter interface:
+Bit(s)	Description	(Table P1089)
+ 31-25	sample rate converter RAM address
+ 24	sample rate converter read/write control
+ 23	sample rate converter busy (read-only)
+ 22	sample rate converter disable
+ 21	playback channel 1 accumulator update disable
+ 20	playback channel 2 accumulator update disable
+ 19	record channel accumulator update disable
+ 18-16	reserved
+ 15-0	sample rate converter RAM data
+
+Bitfields for Ensoniq AudioPCI-97 ES1371 CODEC read register:
+Bit(s)	Description	(Table P1090)
+ 31	AC97 CODEC data ready
+ 30	AC97 CODEC register access in progress
+ 29-24	reserved
+ 23	AC97 CODEC read/write
+	0 = write
+	1 = read
+ 22-16	AC97 CODEC register index
+ 7-0	AC97 CODEC register data
+
+Bitfields for Ensoniq AudioPCI-97 ES1371 legacy control/status register:
+Bit(s)	Description	(Table P1091)
+ 31	joystick timing
+	0 = ISA
+	1 = fast
+ 30	host interrupt blocking enable ???
+ 29	Sound Blaster capture address range
+	0 = 220h-22Fh
+	1 = 240h-24Fh
+ 28-27	SoundScape base register capture address range
+	00 = 320h-327h
+	01 = 330h-337h
+	10 = 340h-347h
+	11 = 350h-357h
+ 26-25	CODEC capture address range
+	00 = 530h-537h
+	01 = reserved
+	10 = E80h-E87h
+	11 = F40h-F47h
+ 24	force interrupt
+ 23	slave DMA controller event capture enable (address range C0h-DFh)
+ 22	slave interrupt controller event capture enable (address range A0h-A1h)
+ 21	master DMA controller event capture enable (address range 0h-Fh)
+ 20	master interrupt controller event capture enable (address range
+	  20h-21h)
+ 19	AdLib register event capture enable (address range 388h-38Bh)
+ 18	Sound Blaster register event capture enable (address range selected by
+	  bit 29)
+ 17	CODEC event capture enable (address range selected by bits 26-25)
+ 16	SoundScape base address register event capture enable (address range
+	  selected by bits 28-27)
+ 15-11	reserved
+ 10-8	captured event (read-only)
+	000 = SoundScape base address
+	001 = CODEC
+	010 = Sound Blaster register
+	011 = AdLib register
+	100 = master interrupt controller
+	101 = master DMA controller
+	110 = slave interrupt controller
+	111 = slave DMA controller
+ 7-3	captured event I/O address bits 4-0 (read-only)
+ 2	captured event read/write (read-only)
+	0 = read
+	1 = write
+ 1	reserved
+ 0	interrupt flag (write to reset)
+	0 = interrupt occurred
+	0 = interrupt not occurred
+Note:	this register is addressable as byte, word and dword
+

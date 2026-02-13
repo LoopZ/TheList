@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: MF000xxxx
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM F000h:xxxxh - AWARD Flash Hook
+
+Format of AWARD Flash BIOS interface:
+Offset	Size	Description	(Table M0092)
+ 00h  8 BYTEs	signature "AWDFLASH"
+ 08h	WORD	offset in F000h of FAR function: Get ???
+		Return: BL = ??? (00h)
+ 0Ah	WORD	offset in F000h of FAR function: ???
+ 0Ch	WORD	offset in F000h of FAR function: ???
+ 0Eh	WORD	offset in F000h of FAR function: ???
+ 10h	WORD	offset in F000h of FAR function: ???
+ 12h	WORD	offset in F000h of FAR function: Disable Shadowing
+ 14h	WORD	offset in F000h of FAR function: Enable Shadowing
+ 16h	WORD	offset in F000h of FAR function: Get ???
+		Return: DS:SI -> ??? (30 bytes?)
+ 18h	WORD	offset in F000h of FAR function: Set ???
+		DS:SI -> ??? (appears to be same as previous function)
+Note:	the AWDFLASH utility copies the ROM from F000h and uses the copy
+	  instead of the original F000h:xxxxh addresses
+

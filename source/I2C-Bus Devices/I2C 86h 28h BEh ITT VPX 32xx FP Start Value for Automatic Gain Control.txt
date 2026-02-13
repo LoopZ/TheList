@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SFBE
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/BEh - ITT VPX 32xx - FP - Start Value for Automatic Gain Control
+Size:	6 bits
+Note:	if automatic gain control has been disabled by writing 000h to FP-RAM
+	  locations B2h and B5h, then the actual gain value can be adjusted
+	  by writing this location; the current gain value may be read from
+	  location 20h
+SeeAlso: I2C 86h/28h/B2h,I2C 86h/28h/B5h,I2C 86h/28h/20h,I2C 86h/29h,#I0019
+

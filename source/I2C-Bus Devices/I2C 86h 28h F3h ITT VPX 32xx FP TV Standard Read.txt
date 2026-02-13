@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SFF3
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/F3h - ITT VPX 32xx - FP - TV Standard, Read
+SeeAlso: I2C 86h/28h,I2C 86h/29h
+
+Bitfields for VPX 32xx TV standard, read:
+Bit(s)	Description	(Table I0028)
+ 0	VACT (video active) suppressed
+ 1	recognition routine is running
+ 4-2	detected TV standard (see #I0039)
+ 5	'no video' flag
+ 9-6	high score from recognition routine
+	1111 'perfect' (maximum score)
+	0000 'no video' (minimum score)
+ 10	line standard
+	0 525 lines / 60 fps
+	1 625 lines / 50 fps
+ 11	reserved
+SeeAlso: #I0040
+

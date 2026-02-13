@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------
+ Unique ID: P42E8
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 42E8 - 8514/A and hardware-compatible video cards
+Note:	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+
+42E8w R-  Misc. control: Subsystem Status (see #P1018)
+42E8w -W  Misc. control: Subsystem Control (see #P1019)
+
+Bitfields for 8514/A Subsystem Status register:
+Bit(s)	Description	(Table P1018)
+ 15-8	(8514/A) reserved
+ 13	(S3) ???
+ 12-8	(S3) ???
+ 7	pixel length (0 = four bits, 1 = eight bits)
+ 6-4	reserved
+ 3	FIFO empty (interrupt generated if enabled)
+ 2	FIFO overflow (interrupt generated if enabled)
+ 1	Graphics Engine busy (interrupt generated if enabled)
+ 0	vertical sync (interrupt generated if enabled)
+SeeAlso: #P1019
+
+Bitfields for 8514/A Subsystem Control Register:
+Bit(s)	Description	(Table P1019)
+ 15-14	GP_RESET
+      W	00 no change
+	01 normal operation
+	10 reset graphics processor and FIFO
+	11 reserved
+ 13-12	reserved
+ 11   W	enable interrupt when graphics processor idle
+ 10   W	enable interrupt on invalid I/O (FIFO overlow)
+ 9    W	enable interrupt if inside scissors region
+ 8    W	enable vertical blanking interval interrupt
+ 6-4 R	monitor ID (8514/A)
+ 7-4	reserved (S3)
+ 3	acknowledge idle interrupt (and clear)
+ 2	acknowledge invalid I/O interrupt (and clear)
+ 1	acknowledge inside-scissors interrupt (and clear)
+ 0	acknowledge vertical blanking interrupt (and clear)
+SeeAlso: #P1018
+

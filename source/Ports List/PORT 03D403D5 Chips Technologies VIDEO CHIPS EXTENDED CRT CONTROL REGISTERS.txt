@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03D403D5
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03D4-03D5 - Chips&Technologies VIDEO CHIPS - EXTENDED CRT CONTROL REGISTERS
+SeeAlso: PORT 03D4h"COLOR VIDEO",PORT 03D4h"Tseng"
+
+03D4  RW  CRT control register index (see #P0715)
+03D5  RW  CRT control register value
+
+(Table P0715)
+Values for Chips&Technologies CRT Controller register index:
+ 00h-18h same as EGA/VGA (see #P0708)
+ 22h	same as VGA (see #P0708)
+ 24h	same as VGA (see #P0708)
+---C&T 82C4xx---
+ D3h RW "RD3" 82C426: gray-level control 1 !!!chips\82c426.pdf p.16
+ D4h RW "RD4" 82C426: gray-level control 2
+ D5h RW "RD5" 82C426: general purpose
+ D6h RW "RD6" 82C426: sleep
+ D7h RW "RD7" 82C426: panel size
+ D8h RW "RD8" 82C426: panel configuration
+ D9h RW "RD9" AC control   !!!chips\82c425.pdf p.27
+ DAh RW "RDA" threshold
+ DBh RW "RDB" shift parameter
+ DCh RW "RDC" horizontal sync width
+ DDh RW "RDD" vertical sync width / blink control
+ DEh RW "RDE" timing control
+ DFh RW "RDF" function control
+SeeAlso: #P0654,#P0710,#P0756,#P0716
+

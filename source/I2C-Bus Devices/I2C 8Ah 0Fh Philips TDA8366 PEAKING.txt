@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A0F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/0Fh - Philips TDA8366 - PEAKING
+Access:	Write-Only
+SeeAlso: I2C 8Ah/00h"TDA8366",I2C 8Ah/0Eh"TDA8366",I2C 8Ah/10h"TDA8366"
+
+Bitfields for TDA8366 Peaking:
+Bit(s)	Description	(Table I0059)
+ 7-4	Y-delay adjustment (bits 7-5 * 40 ns + bit 4 * 40ns) [*]
+	(normally set to 1000)
+ 3-0	peaking value
+Note:	[*] the weights given for bits 7-4 are as in the official
+	  documentation; bit 4 may actually be 20ns
+SeeAlso: #I0114,#I0116
+

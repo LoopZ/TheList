@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400006
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0006h - BASE I/O ADDRESS OF FOURTH SERIAL I/O PORT
+Size:	WORD
+Notes:	the BIOS sets this word to zero if is unable to find more than three
+	  serial ports at the addresses it is programmed to check at boot
+	Under DR-OpenDOS 7.02+ this setting can be changed with the
+	  undocumented CONFIG.SYS COM4=[port_address|logical_no][,[timeout]]
+	  directive, whereby port_address = 200h..3F8h, logical_no = 0 or 1..4,
+	  timeout=0..255 (default 1).
+SeeAlso: MEM 0040h:0000h,MEM 0040h:0002h,MEM 0040h:0004h,MEM 0040h:0008h
+SeeAlso: MEM 0040h:007Fh,PORT 02E8h"SERIAL"
+

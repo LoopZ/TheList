@@ -1,0 +1,147 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040000E
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:000Eh - SEGMENT OF EXTENDED BIOS DATA SEGMENT (PS/2, newer BIOSes)
+Size:	WORD
+SeeAlso: MEM 0040h:000Eh"PARALLEL",INT 15/AH=C1h
+
+Format of Extended BIOS Data Area (IBM):
+Offset	Size	Description	(Table M0001)
+ 00h	BYTE	length of EBDA in kilobytes
+ 01h 15 BYTEs	reserved
+ 17h	BYTE	number of entries in POST error log (0-5)
+ 18h  5 WORDs	POST error log (each word is a POST error number)
+ 22h	DWORD	Pointing Device Driver entry point
+ 26h	BYTE	Pointing Device Flags 1 (see #M0002)
+ 27h	BYTE	Pointing Device Flags 2 (see #M0003)
+ 28h  8 BYTEs	Pointing Device Auxiliary Device Data
+ 30h	DWORD	Vector for INT 07h stored here during 80387 interrupt
+ 34h	DWORD	Vector for INT 01h stored here during INT 07h emulation
+ 38h	BYTE	Scratchpad for 80287/80387 interrupt code
+ 39h	WORD	Timer3: Watchdog timer initial count
+ 3Bh	BYTE	??? seen non-zero on Model 30
+ 3Ch	BYTE	???
+ 3Dh 16 BYTEs	Fixed Disk parameter table for drive 0 (for older machines
+		  which don't directly support the installed drive)
+ 4Dh 16 BYTEs	Fixed Disk parameter table for drive 1 (for older machines
+		  which don't directly support the installed drive)
+ 5Dh-67h	???
+ 68h	BYTE	cache control
+		bits 7-2 unused (0)
+		bit 1: CPU cache failed test
+		bit 0: CPU cache disabled
+ 69h-6Bh	???
+ 6Ch	BYTE	Fixed disk: (=FFh on ESDI systems)
+		    bits 7-4: Channel number 00-0Fh
+		    bits 3-0: DMA arbitration level 00-0Eh
+ 6Dh	BYTE	???
+ 6Eh	WORD	current typematic setting (see INT 16/AH=03h)
+ 70h	BYTE	number of attached hard drives
+ 71h	BYTE	hard disk 16-bit DMA channel
+ 72h	BYTE	interrupt status for hard disk controller (1Fh on timeout)
+ 73h	BYTE	hard disk operation flags
+		bit 7: controller issued operation-complete INT 76h
+		bit 6: controller has been reset
+		bits 5-0: unused (0)
+ 74h	DWORD	old INT 76h vector
+ 78h	BYTE	hard disk DMA type
+		typically 44h for reads and 4Ch for writes
+ 79h	BYTE	status of last hard disk operation
+ 7Ah	BYTE	hard disk timeout counter
+ 7Bh-7Dh
+ 7Eh  8 WORDs	storage for hard disk controller status
+ 8Eh-E6h
+ E7h	BYTE	floppy drive type
+		bit 7: drive(s) present
+		bits 6-2: unused (0)
+		bit 1: drive 1 is 5.25" instead of 3.5"
+		bit 0: drive 0 is 5.25"
+ E8h  4 BYTEs	???
+ ECh	BYTE	hard disk parameters flag
+		bit 7: parameters loaded into EBDA
+		bits 6-0: unused (0)
+ EDh	BYTE	???
+ EEh	BYTE	CPU family ID (03h = 386, 04h = 486, etc.) (see INT 15/AH=C9h)
+ EFh	BYTE	CPU stepping (see INT 15/AH=C9h)
+ F0h 39 BYTEs	???
+117h	WORD	keyboard ID (see INT 16/AH=0Ah)
+		(most commonly 41ABh)
+119h	BYTE	???
+11Ah	BYTE	non-BIOS INT 18h flag
+		bits 7-1: unused (0)
+		bit 0: set by BIOS before calling user INT 18h at offset 11Dh
+11Bh  2 BYTE	???
+11Dh	DWORD	user INT 18h vector if BIOS has re-hooked INT 18h
+121h and up:	??? seen non-zero on Model 60
+3F0h	BYTE	Fixed disk buffer (???)
+SeeAlso: #M0004
+
+Bitfields for Pointing Device Flags 1:
+Bit(s)	Description	(Table M0002)
+ 7	command in progress
+ 6	resend byte (FAh) received
+ 5	acknowledge byte (FEh) received
+ 4	error byte (FCh) received
+ 3	unexpected value received
+ 2-0	index count for auxiliary device data at 28h
+SeeAlso: #M0001,#M0003
+
+Bitfields for Pointing Device Flags 2:
+Bit(s)	Description	(Table M0003)
+ 7	device driver far call flag
+ 6-3	reserved
+ 2-0	package size (number of bytes received) - 1
+SeeAlso: #M0001,#M0002
+
+Format of Extended BIOS Data Area (AMI v1.00.12.AX1T):
+Offset	Size	Description	(Table M0004)
+ 00h	BYTE	length of XBDA in kilobytes
+ 01h 15 BYTEs	reserved
+ 17h	BYTE	number of entries in POST error log (0-10)
+ 18h 10 BYTEs	unused???
+ 22h	DWORD	Pointing Device Driver entry point
+ 26h	BYTE	Pointing Device Flags 1 (see #M0002)
+ 27h	BYTE	Pointing Device Flags 2 (see #M0003)
+ 28h  8 BYTEs	Pointing Device Auxiliary Device Data
+ 30h 13 BYTEs	???
+ 3Dh 16 BYTEs	Fixed Disk parameter table for drive 0
+ 4Dh 16 BYTEs	Fixed Disk parameter table for drive 1
+ 5Dh 16 BYTEs	parameter table for drive 2???
+ 6Dh 16 BYTEs	parameter table for drive 3???
+ 80h 56 BYTEs?	IDE drive 0 manufacturer/model string
+ B8h 41 BYTEs	AMIBIOS copyright string
+ E1h		unused???
+102h	WORD	??? flags
+		bit 15: ???
+108h	WORD	offset of IntelIDECfgTbl (IDE configuration settings) within
+		  segment F000h
+10Ah  2 BYTEs	???
+10Ch	DWORD	pointer to routine to call for language-specific error messages
+110h	WORD	offset in segment F000h of end of currently-loaded optional
+		  BIOS subsystems (language, APM, etc.)
+112h	WORD	offset in segment F000h of end of area avaiable for loading
+		  optional BIOS subsystems
+1F0h	BYTE	APM status flags
+1F1h  8 BYTEs	APM power-state data for device classes 01h-06h
+		bits 0-3: current power state for devices 00h-03h in class
+		bits 7-4: current engaged state for devices 00h-03h in class
+1F9h  4 BYTEs	APM power-state data for device classes 01h-08h (four devices
+		  per class)
+1FDh  3 BYTEs	???
+200h 10 WORDs	POST error log
+214h	???
+SeeAlso: #M0001,#M0005
+
+Format of Extended BIOS Data Area (PhoenixBIOS 4.0):
+Offset	Size	Description	(Table M0005)
+ 00h	BYTE	length of XBDA in kilobytes
+ 01h 33 BYTEs	reserved
+ 22h	DWORD	Pointing Device Driver entry point
+ 26h	BYTE	Pointing Device Flags 1 (see #M0002)
+ 27h	BYTE	Pointing Device Flags 2 (see #M0003)
+ 28h  8 BYTEs	Pointing Device Auxiliary Device Data
+SeeAlso: #M0001,#M0004
+

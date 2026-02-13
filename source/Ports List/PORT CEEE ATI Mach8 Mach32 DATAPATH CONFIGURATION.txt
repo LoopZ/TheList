@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: PCEEE
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT CEEE - ATI Mach8/Mach32 - DATAPATH CONFIGURATION
+SeeAlso: PORT 8EEEh
+
+CEEEw -W  datapath configuration (see #P1050)
+
+Bitfields for ATI Mach8/Mach32 datapath configuration:
+Bit(s)	Description	(Table P1050)
+ 15-13	foreground color source
+	000 background color reg
+	001 foreground color reg
+	010 pixel transfer reg
+	011 VRAM BitBlt source
+	101 color pattern shift register
+ 12	least-significant byte first
+ 9	data width is 16 bits instead of 8 bits
+ 8-7	background color source
+	00 background color reg
+	01 foreground color reg
+	10 pixel transfer reg
+	11 VRAM BitBlt source
+ 6-5	monochrome data source
+	00 always one
+	01 mono pattern register
+	10 pixel transfer register
+	11 VRAM BitBlt source
+ 4	enable drawing
+ 2	read color data instead of monochrome data
+ 1	enable polygon fill BitBlt
+ 0	write data to drawing trajectory instead of reading from trajectory
+

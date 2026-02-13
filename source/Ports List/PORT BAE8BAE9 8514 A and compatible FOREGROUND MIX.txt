@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: PBAE8BAE9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT BAE8-BAE9 - 8514/A and compatible - FOREGROUND MIX
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+SeeAlso: PORT B6E8h
+
+BAE8w -W  drawing control: foreground mix (see #P1046)
+Note:	this register may be read on S3 chipsets
+
+Bitfields for 8514/A color mix register:
+Bit(s)	Description	(Table P1046)
+ 15-7	reserved
+ 6-5	color source
+	00 background color
+	01 foreground color
+	10 CPU data
+	11 display memory
+ 4	reserved
+ 3-0	mix type
+	0000 negate current color
+	0001 logical zero
+	0010 logical one
+	0011 leave unchanged
+	0100 negate new color
+	0101 current XOR new
+	0110 negate (current XOR new)
+	0111 new color
+	1000 (NOT current) OR (NOT new)
+	1001 current OR (NOT new)
+	1010 (NOT current) OR new
+	1011 current OR new
+	1100 current AND new
+	1101 (NOT current) AND new
+	1110 current AND (NOT new)
+	1111 (NOT current) AND (NOT new)
+

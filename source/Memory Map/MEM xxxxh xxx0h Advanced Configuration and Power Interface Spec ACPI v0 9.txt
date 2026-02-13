@@ -1,0 +1,253 @@
+--------------------------------------------------------------------------------
+ Unique ID: Mxxxxxxx0
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM xxxxh:xxx0h - Advanced Configuration and Power Interface Spec (ACPI) v0.9+
+Range: any paragraph boundary in the first kilobyte of the XBDA, the last
+	kilobyte of conventional memory, or from E000h:0000h to F000h:FFE0h
+Note:	scan paragraph boundaries for the signature string "RSD PTR ", followed
+	  by a valid Root System Description Pointer structure (see #M0094)
+SeeAlso: INT 15/AX=E820h
+!!!acpi\acpi10.pdf p.194
+
+Format of ACPI Root System Description Pointer structure:
+Offset	Size	Description	(Table M0094)
+ 00h  8 BYTEs	signature "RSD PTR "
+ 08h	BYTE	checksum (entire structure, including this byte, must
+		  add up to zero)
+ 09h  6 BYTEs	OEM identifier
+ 0Fh	BYTE	reserved (0)
+ 10h	DWORD	physical address of Root System Description Table (see #M0096)
+SeeAlso: #M0096
+
+Format of ACPI System Description Table header:
+Offset	Size	Description	(Table M0095)
+ 00h  4 BYTEs	signature
+ 04h	DWORD	length of table in bytes, including this header
+ 08h	BYTE	revision of specification corresponding to signature
+		01h for both v0.9 and v1.0
+ 09h	BYTE	checksum (set such that entire table sums to 00h)
+ 0Ah  6 BYTEs	OEM identification
+ 10h  8 BYTEs	OEM table identifier
+ 18h  4 BYTEs	OEM revision number
+---ACPI v1.0---
+ 1Ch  4 BYTEs	vendor ID for table-creation utility used
+ 20h  4 BYTEs	revision of table-creation utility
+SeeAlso: #M0094,#M0096,#M0099,#M0097,#M0100,#M0105,#M0108,#M0110
+
+Format of ACPI Root System Description Table:
+Offset	Size	Description	(Table M0096)
+ 00h 36 BYTEs	System Description Table Header (see #M0095)
+		signature "RSDT"
+ 24h  N DWORDs	physical addresses of other description tables
+		(see #M0099,#M0097,#M0100,#M0105,#M0108,#M0109)
+Notes:	the number of table pointers is implied by the table length
+	  field in the header (at offset 04h)
+	for ACPI v0.9, the header is eight bytes smaller and thus all
+	  following offsets are 8 less
+SeeAlso: #M0094
+
+Format of ACPI Fixed ACPI Description Table:
+Offset	Size	Description	(Table M0097)
+ 00h 36 BYTEs	System Description Table Header (see #M0095)
+		signature "FACP"
+ 24h	DWORD	physical address of the Firmware ACPI Control Structure
+		  (see #M0105)
+ 28h	DWORD	physical address of the Differentiated System Description Table
+		  (see #M0099)
+ 2Ch	BYTE	interrupt mode
+		00h dual PIC (industry-standard AT-type)
+		01h multiple APIC (see #M0100)
+		else reserved
+ 2Dh	BYTE	reserved
+ 2Eh	WORD	system vector of SCI interrupt
+ 30h	DWORD	I/O port address of SMI command port
+ 34h	BYTE	value to write to SMI comamnd port to disable SMI ownership
+		  of ACPI hardware registers
+ 35h	BYTE	value to write to SMI comamnd port to re-enable SMI ownership
+		  of ACPI hardware registers
+ 36h	BYTE	(v1.0) value to write to SMI command port to enter S4BIOS state
+		00h if not supported
+ 37h	BYTE	reserved
+ 38h	DWORD	I/O port address of Power Management 1a Event Register Block
+ 3Ch	DWORD	I/O port address of Power Management 1b Event Register Block
+		(optional, 00000000h if not supported)
+ 40h	DWORD	I/O port address of Power Management 1a Control Register Block
+ 44h	DWORD	I/O port address of Power Management 1b Control Register Block
+		(optional, 00000000h if not supported)
+ 48h	DWORD	I/O port address of Power Management 2 Control Register Block
+		(optional, 00000000h if not supported)
+ 4Ch	DWORD	I/O port address of Power Management Timer Control Reg. Block
+ 50h	DWORD	I/O port address of Generic Purpose Event 0 Register Block
+		(optional, 00000000h if not supported)
+ 54h	DWORD	I/O port address of Generic Purpose Event 1 Register Block
+		(optional, 00000000h if not supported)
+ 58h	BYTE	size of Power Management 1a/1b Event Register Block (>= 4)
+ 59h	BYTE	size of Power Management 1a/1b Control Register Block (>= 1)
+ 5Ah	BYTE	size of Power Management 2 Control Register Block (>= 1)
+ 5Bh	BYTE	size of Power Management Timer Control Register Block (>= 4)
+ 5Ch	BYTE	size of Generic Purpose Event 0 Register Block (multiple of 2)
+ 5Dh	BYTE	size of Generic Purpose Event 1 Register Block (multiple of 2)
+ 5Eh	BYTE	offset within General Purpose Event model for GPE1-based events
+ 5Fh	BYTE	reserved
+ 60h	WORD	worst-case hardware latency (microseconds) for entering/leaving
+		  state C2; >100 if C2 not supported
+ 62h	WORD	worst-case hardware latency (microseconds) for entering/leaving
+		  state C3; >1000 if C3 not supported
+ 64h	WORD	size of contiguous cacheable memory which must be read to flush
+		  all dirty lines from a processor's memory cache; use if
+		  fixed feature flag WBINVD (see #M0098) is clear
+		0000h if flushing not supported
+ 66h	WORD	memory stride size (in bytes) to flush processor's memory cache
+ 68h	BYTE	bit index of processor's duty cycle setting within the
+		  processor's P_CNT register
+ 69h	BYTE	size of processor's duty cycle setting in bits
+ 6Ah	BYTE	index within RTC CMOS RAM of the day-of-month alarm value
+		00h = not supported
+ 6Bh	BYTE	index within RTC CMOS RAM of the month-of-year alarm value
+		00h = not supported
+ 6Ch	BYTE	index within RTC CMOS RAM of the century alarm value
+		00h = not supported
+ 6Dh	BYTE	reserved
+ 6Eh	DWORD	fixed feature flags (see #M0098)
+SeeAlso: #M0094,CMOS 7Dh,CMOS 7Eh,CMOS 7Fh
+
+Bitfields for ACPI Fixed Feature Flags:
+Bit(s)	Description	(Table M0098)
+ 0	WBINVD instruction is correctly supported by processor
+ 1	WBINVD instruction flushes all caches and maintains coherency, but
+	  does not guarantee invalidation of all caches
+ 2	all processors support C1 sleep state
+ 3	C2 sleep state is configured to work on multiprocessor system
+---v0.9---
+ 4	power button is handled as a generic feature
+ 5	RTC wake-up state is not supported in fixed register space
+ 6	TMR_VAL size
+	=0 24 bits
+	=1 32 bits
+ 7-31	reserved
+---v1.0---
+ 4	power button is handled as a control method device
+ 5	=0 sleep button is handled as a fixed feature programming mode
+	=1 control method device, or no sleep button
+ 6	RTC wake-up state is not supported in fixed register space
+ 7	RTc alarm can wake system from S4 state
+ 8	TMR_VAL size
+	=0 24 bits
+	=1 32 bits
+ 9-31	reserved
+SeeAlso: #M0097
+
+Format of ACPI Differentiated System Description Table:
+Offset	Size	Description	(Table M0099)
+ 00h 36 BYTEs	System Description Table Header (see #M0095)
+		signature "DSDT"
+ 24h		complex byte stream; refer to ACPI document and software
+SeeAlso: #M0094
+
+Format of ACPI Multiple APIC Description Table:
+Offset	Size	Description	(Table M0100)
+ 00h 36 BYTEs	System Description Table Header (see #M0095)
+		signature "APIC"
+ 24h	DWORD	physical address of the local APIC in each processor's address
+		  space
+ 28h	DWORD	multiple-APIC flags (see #M0101)
+ 2Ch 12N BYTEs	APIC structures (see #M0102,#M0104)
+		first byte of each is type, second is length; types other than
+		  00h and 01h are currently reserved and should be skipped
+SeeAlso: #M0094
+
+Bitfields for ACPI Multiple APIC Description Table flags:
+Bit(s)	Description	(Table M0101)
+ 0	system contains AT-compatible dual 8259 interrupt controllers in
+	  addition to APICs
+ 1-31	reserved (0)
+SeeAlso: #M0100
+
+Format of ACPI Local APIC Structure:
+Offset	Size	Description	(Table M0102)
+ 00h	BYTE	structure type (00h = Processor Local APIC)
+ 01h	BYTE	length of this structure (0Ch for v0.9, 08h for v1.0)
+ 02h	BYTE	processor ID
+ 03h	BYTE	processor's local APIC ID
+---v0.9---
+ 04h	DWORD	physical address of APIC
+ 08h	DWORD	flags (TBD)
+--v1.0---
+ 04h	DWORD	flags (see #M0103)
+SeeAlso: #M0100,#M0104
+
+Bitfields for ACPI Local APIC flags:
+Bit(s)	Description	(Table M0103)
+ 0	APIC enabled
+ 1-31	reserved (0)
+SeeAlso: #M0102
+
+Format of ACPI I/O APIC Structure:
+Offset	Size	Description	(Table M0104)
+ 00h	BYTE	structure type (00h = Processor Local APIC)
+ 01h	BYTE	0Ch (length of this structure)
+ 02h	BYTE	I/O APIC's ID
+ 03h	BYTE	reserved (0)
+ 04h	DWORD	physical address of the APIC
+ 08h	DWORD	number of first system interrupt vector for APIC
+SeeAlso: #M0100,#M0102
+
+Format of ACPI Firmware ACPI Control Structure:
+Offset	Size	Description	(Table M0105)
+ 00h  4 BYTEs	signature "FACS"
+ 04h	DWORD	length of entire structure in bytes (>= 40h)
+ 08h	DWORD	value of system's hardware signature at last boot
+ 0Ch	DWORD	real-mode ACPI OS waking vector
+		if nonzero, control is transferred to this address on next BIOS
+		  POST
+ 10h	DWORD	global lock (see #M0107)
+ 14h	DWORD	(v1.0) firmware control structure flags (see #M0106)
+ 18h 44 BYTEs	reserved (0)
+Notes:	this structure is located on a 64-byte boundary anywhere in the
+	  first 4GB of memory
+	the BIOS is required to omit the address space containing this
+	  structure from system memory in the system's memory map
+SeeAlso: #M0094,INT 15/AX=E820h
+
+Bitfields for ACPI Firmware Control Structure Feature flags:
+Bit(s)	Description	(Table M0106)
+ 0	system supports S4BIOS_REQ
+	=0 operating system must save/restore memory state in order to go to S4
+ 1-31	reserved (0)
+SeeAlso: #M0105
+
+Bitfields for ACPI Embedded Controller Arbitration Structure:
+Bit(s)	Description	(Table M0107)
+ 0	request for Global Lock ownership is pending
+ 1	Global Lock is currently owned
+ 2-31	reserved
+SeeAlso: #M0105
+
+Format of ACPI Persistent System Description Table:
+Offset	Size	Description	(Table M0108)
+ 00h 36 BYTEs	System Description Table Header (see #M0095)
+		signature "PSDT"
+ 24h		complex byte stream; refer to ACPI document and software
+SeeAlso: #M0094
+
+Format of ACPI Secondary System Description Table:
+Offset	Size	Description	(Table M0109)
+ 00h 36 BYTEs	System Description Table Header (see #M0095)
+		signature "SSDT"
+ 24h		complex byte stream; refer to ACPI document and software
+SeeAlso: #M0094
+
+Format of ACPI Smart Battery Description Table:
+Offset	Size	Description	(Table M0110)
+ 00h 36 BYTEs	System Description Table Header (see #M0095)
+		signature "SBST"
+ 24h	DWORD	energy level in mWh at which system should warn user
+ 28h	DWORD	energy level in mWh at which system should automatically enter
+		  sleep state
+ 2Ch	DWORD	energy level in mWh at which system should perform an emergency
+		  shutdown
+SeeAlso: #M0094
+

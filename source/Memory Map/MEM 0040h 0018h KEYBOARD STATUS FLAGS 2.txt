@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400018
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0018h - KEYBOARD - STATUS FLAGS 2
+Size:	BYTE
+SeeAlso: MEM 0040h:0017h,INT 16/AH=12h
+
+Bitfields for keyboard status flags 2 :
+Bit(s)	Description	(Table M0011)
+ 7	INSert pressed
+ 6	Caps Lock pressed
+ 5	Num Lock pressed
+ 4	Scroll Lock pressed
+ 3	Pause state active
+ 2	Sys Req pressed
+ 1	Left Alt pressed
+ 0	Left Ctrl pressed
+SeeAlso: #M0010,#00588
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: I86EA
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/EAh - ITT VPX 32xx - Diverse Settings
+
+Bitfields for VPX 32xx diverse settings:
+Bit(s)	Description	(Table I0039)
+ 2-0	reserved (0)
+ 3	connect LLC2 to ALPHA/TDO pin
+ 4	LLC/2 polarity
+ 5	output FIFO pointer reset select
+	0 on positive edge of VACTref
+	1 on VRF=0
+ 7-6	officially reserved
+ 6	=1 wraps to top before bottom of image (3220A)
+ 7	=1 freeze image (3220A)
+

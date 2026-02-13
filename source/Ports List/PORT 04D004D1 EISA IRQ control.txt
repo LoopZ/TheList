@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: P04D004D1
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 04D0-04D1 - EISA IRQ control
+Note:	these registers are also supported on many non-EISA machines, e.g. by
+	  most machines using Intel PCI chipsets
+SeeAlso: PORT 04D4h-040Bh"EISA"
+
+04D0  -W  IRQ 0-7 interrupt edge/level registers (see #P0891)
+04D1  -W  IRQ 8-15 interrupt edge/level registers (see #P0892)
+
+Bitfields for EISA IRQ 0-7 interrupt edge/level register:
+Bit(s)	Description	(Table P0891)
+ 7	IRQ 7 is level sensitive
+ 6	IRQ 6 is level sensitive
+ 5	IRQ 5 is level sensitive
+ 4	IRQ 4 is level sensitive
+ 3	IRQ 3 is level sensitive
+ 2-0	reserved
+SeeAlso: #P0892
+
+Bitfields for EISA IRQ 8-15 interrupt edge/level register:
+Bit(s)	Description	(Table P0892)
+ 7	IRQ 15 is level sensitive
+ 6	IRQ 14 is level sensitive
+ 5	reserved (1)
+ 4	IRQ 12 is level sensitive
+ 3	IRQ 11 is level sensitive
+ 2	IRQ 10 is level sensitive
+ 1	IRQ 9  is level sensitive
+ 0	reserved
+SeeAlso: #P0891
+

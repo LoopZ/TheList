@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00500052
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0050-0052 - Olivetti M24 - 8530 SIO CHIP
+SeeAlso: PORT 0065h"Olivetti"
+
+0050  RW  8530 serial communications chip
+Note:	At least MS-DOS 6 bypasses the initialization of serial devices if
+	  it finds an Olivetti M24 machine with an 8630 SIO port present at
+	  this address.
+	An Olivetti-approved presence detection is to write 0Fh to port 50h
+	  and check if bit 0 is still cleared when reading port 50h again.
+SeeAlso: PORT 0066h, INT 14h/00h,INT 15h/C0h INTER 60 table 0515
+

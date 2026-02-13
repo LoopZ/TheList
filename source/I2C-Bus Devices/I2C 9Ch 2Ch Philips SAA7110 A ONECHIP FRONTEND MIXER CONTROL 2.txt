@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C2C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/2Ch - Philips SAA7110(A) ONE-CHIP FRONT-END - MIXER CONTROL #2
+Access:	Write-Only
+Note:	Reserved bits 2,3 and 6 must be set to LOW
+SeeAlso: I2C 9Eh
+
+Bitfields for Mixer Control #2:
+Bit(s)	Description	 (Table I0094)	(Table I0095)
+ 7	Clamping level select channel 4 (=0 CLL2n, =1 CLL3n)
+ 6	reserved
+ 5	Clamping level select channel 3 (=0 CLL31, =1 CLL32)
+ 4	Clamping level select channel 2 (=0 CLL21, =1 CLL22)
+ 3	reserved
+ 2	reserved
+ 1	Two's complement channel 3
+ 0	Two's complement channel 2
+

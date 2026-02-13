@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SF71
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/71h U - ITT VPX 32xx - FP - Window#1 Read Table: Vertical Lines In
+Note:	this register is updated whenever the Window#1 Load Table is latched
+	  via the CommandWord, by copying FPRAM 89h (inverting bits 11 and 10)
+SeeAlso: I2C 86h/28h/89h,I2C 86h/28h/F0h,I2C 86h/28h,I2C 86h/29h
+
+Bitfields for VPX 32xx Vertical Lines In (Latched):
+Bit(s)	Description	(Table I0020)
+ 8-0	number of lines (vertical begin + lines_in <= lines_per_field)
+ 9	unused???
+ 10	enable on even fields
+ 11	enable on odd fields
+

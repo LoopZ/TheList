@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/00h - Philips TDA8366 - SOURCE SELECT / STATUS 1
+Desc:	the TDA8366 is an I2C-bus controlled PAL/NTSC TV Processor
+Note:	subaddresses auto-increment, allowing any or all of registers 00h to
+	  13h to be written in a single I2C telegram
+SeeAlso: I2C 8Ah/01h"TDA8366",I2C 8Ah/03h"TDA8366"
+
+Bitfields for TDA8366 Source Select (write-only):
+Bit(s)	Description	(Table I0045)
+ 7-6	source select 1: decoder and text
+	00 CVBS(int)
+	01 CVBS(ext)
+	10 S-VHS
+	11 S-VHS (CVBSext)
+ 5-4	source select 2: picture-in-picture
+	(same values as bits 7-6)
+ 3-2	phase 1 time constant
+	00 normal
+	01 slow
+	1x fast
+ 1-0	crystal
+	00 two 3.58 MHz
+	01 one 3.58 MHz (on Pin32)
+	10 one 3.58 MHz (on Pin33)
+	11 3.58 MHz on Pin32 and 4.4 MHz on Pin33
+SeeAlso: #I0105,#I85
+
+Bitfields for TDA8366 Status 1 (read-only):
+Bit(s)	Description	(Table I0046)
+ 7	"POR" power-on reset flag
+ 6	"FSI" field frequency (0 = 50 Hz, 1 = 60 Hz)
+ 5	"STS" S-VHS input signal present
+ 4	"SL" Phase 1 is locked
+ 3	"XPR" X-ray protection: overvoltage detected
+ 2-0	color decoder mode (see #I0122)
+SeeAlso: #I0104,#I0121
+
+(Table I0047)
+Values for TDA8366 color decoder mode:
+ 000b	automatic detection (write) / none identified (read)
+ 001b	force NTSC 3.58 MHz
+ 010b	force PAL 4.4 MHz
+ 011b	force SECAM
+ 100b	force NTSC 4.4 MHz
+ 101b	force PAL 3.58 MHz (crystal on Pin32) 
+ 110b	force PAL 3.58 MHz (crystal on Pin33) 
+ 111b	reserved
+SeeAlso: #I0120,#I0105
+

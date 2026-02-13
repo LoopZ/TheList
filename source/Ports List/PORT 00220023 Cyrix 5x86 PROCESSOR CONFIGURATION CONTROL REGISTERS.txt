@@ -1,0 +1,108 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Cyrix 5x86 PROCESSOR - CONFIGURATION CONTROL REGISTERS
+SeeAlso: PORT 0022h"Cx486SLC",PORT 0022h"486S2",PORT 0022h"6x86"
+
+0022  -W  index for accesses to next port (see #P0023)
+0023  RW  configuration control register array (indexed by PORT 0022h)
+	Note:	the index must be written to PORT 0022h before every access
+		  to PORT 0023h; out-of-sequence accesses or index values
+		  not supported by the processor generate external I/O cycles
+
+(Table P0023)
+Values for Cyrix 5x86 configuration registers:
+ 20h	Performance Control (see #P0028)
+ C1h	Configuration Control #1 (CCR1) (see #P0024)
+ C2h	Configuration Control #2 (CCR2) (see #P0025)
+ C3h	Configuration Control #3 (CCR3) (see #P0026)
+ CDh	System Memory Management address region #0 (smar0) (see #P0029)
+ CEh	System Memory Management address region #1 (smar1)
+ CFh	System Memory Management address region #2 (smar2)
+ E8h	Configuration Control Register 4
+ F0h	Power Management (see #P0030)
+ FEh R	Device Identification #0 (see #P0022)
+	CPU device ID
+ FFh R	Device Identification #1
+	bits 3-0: revision
+	bits 7-4: stepping
+SeeAlso: #P0017,#P0021,#P0031
+
+Bitfields for Cyrix 5x86,6x86 Configuration Control Register 1 (CCR1):
+Bit(s)	Description	(Table P0024)
+ 0	reserved
+ 1	enable SMM pins
+ 2	system management memory access
+ 3	main memory access
+ 4	(6x86) no LOCK during bus cycles
+ 6-5	reserved
+ 7	(6x86) use address region 3 as SMM space
+Note:	bits 1,2,7 may only be written when CCR3 bit 0 is enabled
+SeeAlso: #P0020,#P0025,#P0026,#P0027
+
+Bitfields for Cyrix 5x86,6x86 Configuration Control Register 2 (CCR2):
+Bit(s)	Description	(Table P0025)
+ 0	reserved
+ 1	enable write-back cache interface pins
+ 2	lock NW bit
+ 3	suspend on HLT instruction
+ 4	write-through region 1
+ 5	reserved
+ 6	enable burst write cycles
+ 7	enable suspend pins
+SeeAlso: #P0024,#P0026,#P0027
+
+Bitfields for Cyrix 5x86,6x86 Configuration Control Register 3 (CCR3):
+Bit(s)	Description	(Table P0026)
+ 0	SMM register lock (can only be cleared in SMM mode or by CPU reset)
+ 1	NMI enable
+ 2	linear address burst cycles (5x86,6x86 only)
+	=0 Pentium-compatible
+	=1 linear sequencing
+ 3	SMM mode (5x86 only)
+	=0 486SL
+	=1 Cyrix
+ 7-4	map enable (5x86,6x86 only)
+	0000 only allow access to configuration registers C0h-CFh,FEh,FFh
+	0001 enable access to all configuration registers
+SeeAlso: #P0024,#P0025,#P0027,#P0028,#P0030
+
+Bitfields for Cyrix 5x86,6x86 Configuration Control Register 4 (CCR4):
+Bit(s)	Description	(Table P0027)
+ 2-0	I/O recovery time (000 = none, else 2^N clocks)
+ 3	enable memory-read bypassing (5x86 only)
+ 4	enable directory table entry cache
+ 6-5	reserved
+ 7	enable CPUID instruction (stepping 1+ and Cx6x86)
+Note:	this register is only accessible when bits 7-4 of CCR3 are 0001
+SeeAlso: #P0024,#P0025,#P0026
+
+Bitfields for Cyrix 5x86 Performance Control register:
+Bit(s)	Description	(Table P0028)
+ 0	return stack enabled (speculatively execute code after current CALL)
+ 1	branch-target buffer enabled
+ 2	loop enable
+ 6-3	reserved (0)
+ 7	load-store serialization enabled
+	(memory reads and writes may be reorganized into optimum order)
+Note:	this register is only accessible when bits 7-4 of CCR3 are 0001
+SeeAlso: #P0030,#P0024
+
+Bitfields for Cyrix 5x86 SMM Address Region register:
+Bit(s)	Description	(Table P0029)
+ 3-0	block size
+ 23-4	starting address
+
+Bitfields for Cyrix 5x86 Power Management register:
+Bit(s)	Description	(Table P0030)
+ 1-0	core clock to bus clock ratio
+	00 1:1
+	01 2:1
+	10 reserved
+	11 3:1
+ 2	CPU running at half bus speed, ignore bits 1-0
+Note:	this register is only accessible when bits 7-4 of CCR3 are 0001
+

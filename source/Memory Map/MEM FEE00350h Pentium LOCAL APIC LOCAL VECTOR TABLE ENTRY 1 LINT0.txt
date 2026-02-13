@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: mFEE00350
+  Category: H 	hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM FEE00350h - Pentium + - LOCAL APIC - LOCAL VECTOR TABLE ENTRY 1 (LINT0)
+Size:	DWORD
+SeeAlso: MEM FEE00320h,MEM FEE00360h
+
+Bitfields for Pentium APIC LINTx local vector entry:
+Bit(s)	Description	(Table M0124)
+ 7-0	interrupt vector number
+ 10-8	delivery mode
+	000 fixed
+	100 NMI
+	111 external interrupt (8259A-compatibility)
+ 11	reserved
+ 12	delivery status (read-only)
+	1 = interrupt being sent to APIC
+ 13	interrupt pin is active low
+ 14	remote IRR
+ 15	trigger mode
+	0 edge-sensitive
+	1 level-sensitive
+ 16	interrupt delivery disabled
+ 31-17	reserved
+SeeAlso: #M0123
+

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0068006F
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0068-006F - HP Vectra Human Interface Link
+SeeAlso: PORT 0060h"KEYBOARD"
+
+0068  -W  (HP-Vectra) control buffer (HP commands) (see #P0408)
+0069  R-  (HP-Vectra) SVC (keyboard request SerViCe port)
+006A  -W  (HP-Vectra) Acknowledge (clear processing, done)
+006C-006F	HP-HIL	(Human Interface Link = async. serial inputs 0-7)
+
+(Table P0408)
+Values for HP Vectra control buffer command code:
+ 00h-54h insert standard key make code into 8041 scancode buf
+ 55h-77h insert HP key make code into 8041 scancode buffer
+ 7Ah	pass through next data byte
+ 7Bh	set RAM Switch to 0
+ 7Ch	set RAM Switch to 1 (default)
+ 7Dh	set CRT Switch to 0
+ 7Eh	set CRT Switch to 1 (default)
+ 7Fh	reserved
+ 80h-D4h insert standard key break code into scancode buffer
+ D5h-F7h insert HP key break code into scancode buffer
+ F8h	enable AutoPoll
+ F9h	disable AutoPoll
+ FAh-FEh reserved
+ FFh	keyboard overrun
+

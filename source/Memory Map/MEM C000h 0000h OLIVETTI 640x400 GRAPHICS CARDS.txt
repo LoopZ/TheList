@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: MC0000000
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM C000h:0000h  OLIVETTI 640x400 GRAPHICS CARDS
+Size: 62 BYTEs
+SeeAlso: MEM 0040h:0088h"Olivetti"
+
+Format of Olivetti 640x480 ROM signatures:
+Offset	Size	Description	(Table M0133)
+ 00h	WORD	55AAh adapter ROM signature (check this!)
+	...
+ 10h  2 BYTEs	"OL" if Olivetti EGA or VGA card
+	...
+ 22h  2 BYTEs	(Olivetti EGA/VGA)
+		"VG" for Olivetti VGA (supports 640x400 mode)
+		"EG" for Olivetti EGA including Olivetti EGA card 2
+	...
+ 3Ch  2 BYTEs	"PA" if Paradise card (supports 640x400 mode)
+Note:	These signatures can aid in the presence detection of an EGA or VGA
+	  adapter supporting the 640x400 mode.
+	Olivetti PC models M15 and M19 do not support the 640x400 mode
+	  (see INT 15h/C0h).
+	To decide if the 640x400 mode is supported by an Olivetti EGA card
+	  (only the Olivetti EGA card 2 supports it), also check that bit 7
+	  and 5 are set at 0040h:0088h.
+

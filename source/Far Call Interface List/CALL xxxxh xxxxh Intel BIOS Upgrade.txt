@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: @xxxxxxxx
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL xxxxh:xxxxh - Intel BIOS Upgrade
+InstallCheck:	scan paragraph boundaries from 0F0000h to 0FFFFFh for signature
+	  string "$IBU" (see #F0023)
+SeeAlso: INT 15/AX=D042h/BL=00h
+!!! IAL\PROCESSR\PPROBIOS.PDF page 60
+
+Format of Intel BIOS Upgrade header:
+Offset	Size	Description	(Table F0023)
+ 00h  4 BYTEs	signature "$IBU"
+ 04h	BYTE	IBU specification version (currently 01h = 1.0)
+ 05h	BYTE	length of entire header structure in bytes (currently 17h)
+ 06h	BYTE	checksum (forces 8-bit sum of all header bytes to 00h)
+ 07h	DWORD	real-mode entry point address
+ 0Bh	WORD	offset of 16-bit protected mode entry point
+ 0Dh	DWORD	segment base address of 16-bit protected-mode entry point
+ 11h	WORD	real-mode data segment address
+ 13h	DWORD	segment base address of 16-bit protected-mode data segment
+Notes:	calls from 32-bit protected mode may be made to the 16-bit entry
+	  point, but must ensure that any stack arguments are pushed as
+	  16-bit values instead of 32-bit values
+	the entry point uses standard C calling conventions to implement
+	  functions prototyped as
+		int far (*entrypoint)(int function, ...)
+

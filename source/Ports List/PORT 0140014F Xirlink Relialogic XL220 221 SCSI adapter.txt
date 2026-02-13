@@ -1,0 +1,106 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0140014F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0140-014F - Xirlink/Relialogic XL-220/221 SCSI adapter
+Range:	alternate address at 0150, 0160, 0170
+Notes:	XL-220/221 are based on LOGIC Devices L53C80JC4 SCSI controller which
+	  is compatible with Symbios Logic (formaerly NCR) 53C80
+	each SCSI data pin is inverted and compared with correcponding bit
+	  in the ID select register; if any matches are found while a bus free
+	  condition exists and SEL is active, SCSI controller will genarate an
+	  interrupt to indicate a selection or reselection
+	pseudo-DMA register is provided by some on-card PLM, and decodes any
+	  address in the range 01x8-01xF; it should be accessed with 16-bit
+	  I/O instructions only causing 2 SCSI REQ/ACK hanshakes (8-bit I/O
+	  is treated as 16-bit, and second byte is lost); delayed assertion of
+	  the REQ signal or bus free condition on the SCSI bus causes the
+	  pseudo-DMA register to prolong ISA I/O cycle not asserting IOCHRDY
+	  signal (SCSI phase mismatch doesn't), and so may cause ISA bus to
+	  hang in not ready state!
+	SCSI BIOS is an 8K ROM located at C8000-CBFFF if I/O port range
+	  0140-014F is selected, at CC000-CFFFF if I/O port range 0150-015F
+	  is selected, at D8000-DBFFF if I/O port range 0160-016F is selected,
+	  and at DC000-DFFFF if I/O port range 0170-017F is selected
+
+0140  R-  current SCSI data bus register
+0140  -W  output data register
+0141  RW  initiator command register (see #P0496)
+0142  RW  mode register (see #P0497)
+0143  RW  target command register (see #P0498)
+0144  R-  current SCSI control register (see #P0499)
+0144  -W  ID select register
+0145  R-  DMA status register (see #P0500)
+0145  -W  start DMA send register
+	  any write starts DMA send
+0146  R-  input data register
+	  temporarily holds data byte received from the SCSI bus in DMA mode
+0146  -W  start DMA target receive register
+	  any write starts target mode DMA receive
+0147  R-  reset error/interrupt register
+	  any read resets the interrupt request latch and the error latches
+0147  -W  start DMA initiator mode receive register
+	  any write starts initiator mode DMA receive
+0148w RW  pseudo-DMA register
+
+Bitfields for initiator command register:
+Bit(s)	Description	(Table P0496)
+ 7	assert RST
+ 6	(read) arbitration in progress
+	(write) test mode
+ 5	(read) lost arbitration
+ 4	assert ACK
+ 3	assert BSY
+ 2	assert SEL
+ 1	assert ATN
+ 0	assert data bus
+SeeAlso: #P0497,#P0498,#P0499,#P0500
+
+Bitfields for mode register:
+Bit(s)	Description	(Table P0497)
+ 7	block mode
+ 6	target mode
+ 5	enable parity check
+ 4	enable parity interrupt
+ 3	enable end of DMA interrupt
+ 2	monitor BSY
+ 1	DMA mode
+ 0	arbitrate
+SeeAlso: #P0496
+
+Bitfields for target command register:
+Bit(s)	Description	(Table P0498)
+ 7	(read) last byte sent
+ 6-4	reserved
+ 3	assert REQ
+ 2	assert MSG
+ 1	assert C/D
+ 0	assert I/O
+SeeAlso: #P0496
+
+Bitfields for current SCSI control register:
+Bit(s)	Description	(Table P0499)
+ 7	RST
+ 6	BSY
+ 5	REQ
+ 4	MSG
+ 3	C/D
+ 2	I/O
+ 1	SEL
+ 0	parity
+SeeAlso: #P0496
+
+Bitfields for DMA status register:
+Bit(s)	Description	(Table P0500)
+ 7	end of DMA
+ 6	DMA request
+ 5	parity error
+ 4	interrupt request
+ 3	phase match
+ 2	BSY error
+ 1	ATN
+ 0	ACK
+SeeAlso: #P0496
+

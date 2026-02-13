@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03CE03CF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03CE-03CF - Chips&Technologies - GRAPHICS CONTROLLER EXTENDED REGISTERS
+SeeAlso: PORT 03CE"EGA"
+
+03CE  RW  graphics address register / GDC index
+03CF  RW  other graphics register (see #P0706)
+
+(Table P0706)
+Values for Cirrus CL-GD7556 extended GDC registers:
+ 00h-08h same as EGA/VGA (see #P0700)
+ 09h	"GR9" display memory offset 0
+ 0Ah	"GRA" display memory offset 1
+ 0Bh	"GRB" graphics controller mode extensions
+ 0Ch	"GRC" color key compare value / chroma key Y minimum
+ 0Dh	"GRD" color key compare mask / chroma key Y maximum
+ 0Eh	"GRE" DPMS control
+ 10h	"GR10" background color expansion 1
+ 11h	"GR11" foreground color expansion 1
+ 13h	"GR13" foreground color expansion 2
+ 16h	"GR16" scanline counter readback (low)
+ 17h	"GR17" scanline counter readback (high)
+ 18h	"GR18" EDO RAM control
+ 1Ah	"GR1A" scratch pad #6
+ 1Bh	"GR1B" scratch pad #7
+ 1Ch	"GR1C" chroma-key U minimum
+ 1Dh	"GR1D" chroma-key U maximum
+ 1Eh	"GR1E" chroma-key V minimum
+ 1Fh	"GR1F" chroma-key V maximum
+ 20h	"GR20" BitBLT width (low)
+ 21h	"GR21" BitBLT width (high)
+ 22h	"GR22" BitBLT height (low)
+ 23h	"GR23" BitBLT height (high)
+ 24h	"GR24" BitBLT destination pitch (low)
+ 25h	"GR25" BitBLT destination pitch (high)
+ 26h	"GR26" BitBLT source pitch (low)
+ 27h	"GR27" BitBLT source pitch (high)
+ 28h	"GR28" BitBLT destination address (low)
+ 29h	"GR29" BitBLT destination address (middle)
+ 2Ah	"GR2A" BitBLT destination address (high)
+ 2Ch	"GR2C" BitBLT source address (low)
+ 2Dh	"GR2D" BitBLT source address (middle)
+ 2Eh	"GR2E" BitBLT source address (high)
+ 2Fh	"GR2F" BitBLT destination write mask
+ 30h	"GR30" BitBLT mode
+ 31h	"GR31" BitBLT start/status
+ 32h	"GR32" BitBLT raster operation
+ 33h	"GR33" BitBLT mode extensions
+!!! (details to be added)
+Note:	the scratch pad registers are reserved for use by the VGA BIOS
+SeeAlso: #P0700
+

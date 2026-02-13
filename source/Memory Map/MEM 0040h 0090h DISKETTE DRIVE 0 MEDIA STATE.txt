@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400090
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0090h - DISKETTE DRIVE 0 MEDIA STATE
+Size:	BYTE
+SeeAlso: MEM 0040h:0091h
+
+Bitfields for diskette drive media state:
+Bit(s)	Description	(Table M0030)
+ 7-6	data rate
+	00=500kbps, 01=300kbps, 10=250kbps, 11=1Mbps
+ 5	double stepping required (e.g. 360kB in 1.2MB)
+ 4	media type established
+ 3	drive capable of supporting 4MB media
+ 2-0	on exit from BIOS, contains
+	000 trying 360kB in 360kB
+	001 trying 360kB in 1.2MB
+	010 trying 1.2MB in 1.2MB
+	011 360kB in 360kB established
+	100 360kB in 1.2MB established
+	101 1.2MB in 1.2MB established
+	110 reserved
+	111 all other formats/drives
+SeeAlso: #M0031,#M0032
+

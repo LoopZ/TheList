@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SFF0
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/F0h - ITT VPX 32xx - FP - "CommandWord" control register
+SeeAlso: I2C 86h/28h/F1h,I2C 86h/28h/99h,I2C 86h/28h,I2C 86h/29h
+
+Bitfields for VPX 32xx CommandWord control register:
+Bit(s)	Description	(Table I0024)
+ 0	transport rate
+	0  20.25 MHz
+	1  13.5 MHz
+ 1	transport rate latch
+	=1 latch new transport rate (automatically cleared)
+ 3-2	timing mode
+	00 open	  (always synchronized to video)
+	01 forced (sync to video within certain limits)
+	1x scan	  (free-running, no video data output)
+ 4	timing mode latch
+	=1 latch new timing mode on next vertical retrace (autom. cleared)
+ 5	Window#1 latch
+	=1 latch new window definition on next vertical retrace; autom. cleared
+ 6	Window#2 latch
+	=1 latch new window definition on next vertical retrace; autom. cleared
+ 7	(undoc) if set, image freezes
+ 8	odd/even mode
+	=0 always toggles
+	=1 follows video signal's odd/even fields
+ 11-9	reserved (0)
+SeeAlso: #I0038,#I0035
+

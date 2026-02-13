@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400041
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0041h - DISKETTE - LAST OPERATION STATUS
+Size:	BYTE
+SeeAlso: MEM 0040h:003Eh,MEM 0040h:0042h,INT 13/AH=01h
+
+Bitfields for diskette last operation status:
+Bit(s)	Description	(Table M0014)
+ 7	drive not ready
+ 6	seek error
+ 5	general controller failure
+ 4-0	error reason
+	00h no error
+	01h invalid request/parameter
+	02h address mark not found
+	03h write-protect error
+	04h sector not found
+	06h diskette change line active
+	08h DMA overrun
+	09h DMA across 64k boundary
+	0Ch media type unknown
+	10h CRC error on read
+Note:	the following values for this byte differ somewhat from the
+	  bitfield definition above:
+	    30h drive does not support media sense
+	    31h no media in drive
+	    32h drive does not support media type
+	    AAh diskette drive not ready
+

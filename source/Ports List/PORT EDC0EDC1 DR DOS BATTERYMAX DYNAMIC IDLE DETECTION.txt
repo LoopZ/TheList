@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: PEDC0EDC1
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT EDC0-EDC1 - DR DOS BATTERYMAX - DYNAMIC IDLE DETECTION
+Note:	These ports are emulated by the IDLE386 dynamic idle detection of the
+	  DR DOS BatteryMAX component. The actual definition of the bits is up
+	  to the OEMs
+
+EDC0  R-  emulated I/O address for video/serial activity status check
+	  bit 6: screen RAM updated since last query
+	  bit 1: COM2??? activity detected since last query
+	  bit 0: COM1??? activity detected since last query
+	  Note: Reading resets the IDLE386 video/serial internal setting
+EDC1  -W  emulated I/O address for idle port
+	  sets wakeup alarm on specified hardware event
+	  bit 1: keyboard INT 09h
+	  bit 0: timer INT 08h
+

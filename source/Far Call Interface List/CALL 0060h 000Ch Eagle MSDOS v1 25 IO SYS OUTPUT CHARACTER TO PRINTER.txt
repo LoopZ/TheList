@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: @0060000C
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:000Ch - Eagle MS-DOS v1.25 IO.SYS - OUTPUT CHARACTER TO PRINTER
+InstallCheck:	MS-DOS v1.25 must be installed
+Note:	this entry point is able, if set by configuration (see @0060h:0039h),
+	  to strip linefeed characters following carriage returns
+SeeAlso: @0060h:0000h,@0060h:0009h
+
+(Table F0004)
+Call Eagle MS-DOS entry point 000Ch with:
+	AL = character to be printed
+Return: flags modified
+

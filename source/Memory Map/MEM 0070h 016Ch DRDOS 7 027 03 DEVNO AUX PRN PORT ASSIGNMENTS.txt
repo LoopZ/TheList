@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0070016C
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0070h:016Ch - DR-DOS 7.02-7.03 - "DEVNO" AUX/PRN PORT ASSIGNMENTS
+Size:	2 BYTEs
+
+016Ch	BYTE  PRN: assignment (0..2 for LPT1:..LPT3: (3 for LPT4:); default: 1)
+016Dh	BYTE  AUX: assignment (0..3 for COM1:..COM4:; default: 1)
+
+Notes:	As long as the built-in AUX: or PRN: drivers are in effect, these
+	  settings can be transparently reassigned at the DR-OpenDOS 7.02 /
+	  DR-DOS 7.03 DOS BIOS device driver level (that is below DOS
+	  redirection etc., but above ROM BIOS) using the undocumented
+	  CONFIG.SYS AUX=0|1..4 and PRN=0|1..3|4 directive, where 1..4 
+	  specifies COM1:..COM4: or LPT1:..LPT4: and the high speed bypass 0
+	  selects the previous hardwired equivalence of AUX: with COM1: and
+	  PRN: with LPT1: at this level, saving a few clock cycles. The system
+	  defaults to AUX=1 and PRN=1 (that is 0 in the internal variables).
+	If the high speed bypass was not enabled, the assigment can be changed
+	  anytime later by updating these bytes, e.g. by a future issue of the
+	  MODE utility. If the highspeed bypass has been enabled, changes have
+	  no effect.
+	The LPT4 setting (or corresponding value 3) is valid for
+	  DR-OpenDOS 7.02 and DR-DOS 7.02, but due to a bug introduced with the
+	  partial removal of the LPT4: device, it must not be used under
+	  DR-DOS 7.03.
+	The address 0070h:016Ch is only valid for DR-OpenDOS 7.02 up to
+	  DR-DOS 7.03 (BDOS 73h), and will most probably change with future
+	  releases of DR-DOS!
+	These bytes are local for each task running.
+SeeAlso: INT 21h/03h, INT 21h/04h, INT 21h/05h, MEM 0040h:0000h etc.
+

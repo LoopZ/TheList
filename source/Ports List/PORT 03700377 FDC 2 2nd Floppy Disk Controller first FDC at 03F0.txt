@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03700377
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0370-0377 - FDC 2	(2nd Floppy Disk Controller)	first FDC at 03F0
+Note:	floppy disk controller is usually an 8272, 8272A, NEC765 (or
+	  compatible), or an 82072 or 82077AA for perpendicular recording at
+	  2.88M
+SeeAlso: PORT 03F0h-03F7h
+
+0370  R-  diskette Extra High Density controller board jumpers (AT)
+0370  R-  diskette controller status A (PS/2, PS/2 model 30)
+0371  R-  diskette controller status B (PS/2, PS/2 model 30)
+0372  -W  diskette controller DOR (Digital Output Register)
+0374  R-  diskette controller main status register
+0374  -W  diskette controller datarate select register
+0375  RW  diskette controller command/data register
+0376  RW  (2nd FIXED disk controller status/data register)
+0377  RW  (2nd FIXED disk controller drive address register)
+0377  R-  diskette controller DIR (Digital Input Register)
+0377  -W  select register for diskette data transfer rate
+

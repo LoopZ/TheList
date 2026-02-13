@@ -1,0 +1,174 @@
+--------------------------------------------------------------------------------
+ Unique ID: M004000A8
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:00A8h - VIDEO (EGA/MCGA/VGA) - POINTER TO VIDEO SAVE POINTER TABLE
+Size:	DWORD
+SeeAlso: INT 10/AH=1Ch
+
+Format of Video Save Pointer Table [EGA/VGA/MCGA only]:
+Offset	Size	Description	(Table M0037)
+ 00h	DWORD	ptr to Video Parameter Table
+ 04h	DWORD	ptr to Parameter Dynamic Save Area, else 0 [EGA/VGA only]
+ 08h	DWORD	ptr to Alphanumeric Character Set Override, else 0
+ 0Ch	DWORD	ptr to Graphics Character Set Override, else 0
+ 10h	DWORD	[VGA only] ptr to Secondary Save Pointer Table, must be valid
+ 14h	DWORD	reserved, zero
+ 18h	DWORD	reserved, zero
+Note: table initially in ROM, copy to RAM to alter, then update 40h:A8h.
+ 
+Format of Secondary Video Save Pointer Table [VGA only]:
+Offset	Size	Description	(Table M0038)
+ 00h	WORD	Length of this table in bytes, including this word (1Ah)
+ 02h	DWORD	ptr to Display Combination Code Table, must be valid
+ 06h	DWORD	ptr to second Alphanumeric Character Set Override, else 0
+ 0Ah	DWORD	ptr to User Palette Profile Table, else 0
+ 0Eh	DWORD	reserved, zero
+ 12h	DWORD	reserved, zero
+ 16h	DWORD	reserved, zero
+Note: table initially in ROM, copy to RAM to alter, then alter Save Ptr Table.
+ 
+Format of Display Combination Code Table [VGA only]:
+Offset	Size	Description	(Table M0039)
+ 00h	BYTE	Number of entries in the DCC table at offset 04h
+ 01h	BYTE	Version number
+ 02h	BYTE	Maximum display type code that can appear in DCC table
+ 03h	BYTE	reserved
+ 04h 2N BYTEs	Each pair of bytes gives a valid display combination, one
+		  display type per byte (see #M0040)
+
+(Table M0040)
+Values for Display Combination display type:
+ 00h	 no display
+ 01h	 MDA with mono display
+ 02h	 CGA with color display
+ 03h	 reserved
+ 04h	 EGA with color display
+ 05h	 EGA with mono display
+ 06h	 Professional Graphics Controller
+ 07h	 VGA with mono display
+ 08h	 VGA with color display
+ 09h	 reserved
+ 0Ah	 MCGA with digital color display
+ 0Bh	 MCGA with analog mono display
+ 0Ch	 MCGA with analog color display
+ FFh	 unrecognised video system
+SeeAlso: #M0039
+ 
+Format of Video Parameter Table [EGA, VGA only]:
+Offset	Size	Description	(Table M0041)
+ 00h-03h	Modes 00h-03h in 200-line CGA emulation mode
+ 04h-0Eh	Modes 04h-0Eh
+ 0Fh-10h	Modes 0Fh-10h when only 64kB RAM on adapter
+ 11h-12h	Modes 0Fh-10h when >64kB RAM on adapter
+ 13h-16h	Modes 00h-03h in 350-line mode
+ 17h		VGA Modes 00h or 01h in 400-line mode
+ 18h		VGA Modes 02h or 03h in 400-line mode
+ 19h		VGA Mode  07h in 400-line mode
+ 1Ah-1Ch	VGA Modes 11h-13h
+Note:	An array of 23 [EGA] or 29 [VGA] elements, each element being 64
+	  bytes long.  Elements appear in the above order.
+ 
+Format of Video Parameter Table element [EGA, VGA only]:
+Offset	Size	Description	(Table M0042)
+ 00h	BYTE	Columns on screen		  (see 40h:4Ah)
+ 01h	BYTE	Rows on screen minus one	  (see 40h:84h)
+ 02h	BYTE	Height of character in scan lines (see 40h:85h)
+ 03h	WORD	Size of video buffer		  (see 40h:4Ch)
+ 05h  4 BYTEs	Values for Sequencer Registers 1-4
+ 09h	BYTE	Value for Miscellaneous Output Register
+ 0Ah 25 BYTEs	Values for CRTC Registers 00h-18h
+ 23h 20 BYTEs	Values for Attribute Controller Registers 00h-13h
+ 37h  9 BYTEs	Values for Graphics Controller Registers 00h-08h
+ 
+Format of Video Parameter Table [MCGA only] {guesswork from inspection}:
+Offset	Size	Description	(Table M0043)
+    - 16 triplet BYTEs of R,G,B DAC info for 16 colors;
+    - An array of 11 elements, each element being 32 bytes long.
+	  Elements appear in the order:
+		Modes 00h,01h in 200-line mode for digital displays
+		Modes 00h,01h in 400-line mode for analog displays
+		Modes 02h,03h in 200-line mode for digital displays
+		Modes 02h,03h in 400-line mode for analog displays
+		Modes 04h,05h in 200-line mode for digital displays
+		Modes 04h,05h in 400-line mode for analog displays
+		Mode  06h in 200-line mode for digital displays
+		Mode  06h in 400-line mode for analog displays
+		Mode  11h
+		Mode  13h in 200-line mode for digital displays
+		Mode  13h in 400-line mode for analog displays
+ 
+Format of Video Parameter Table element [MCGA only]:
+Offset	Size	Description	(Table M0044)
+ 00h	BYTE	Columns on screen		  (see 40h:4Ah)
+ 01h	BYTE	Rows on screen minus one	  (see 40h:84h)
+ 02h	BYTE	Height of character in scan lines (see 40h:85h)
+ 03h	WORD	Size of video buffer		  (see 40h:4Ch)
+ 05h	WORD	??? always zero
+ 07h 21 BYTEs	Video data registers 00h-14h to port 3D5h indexed by 3D4h
+ 1Ch	BYTE	PEL Mask to port 3C6h
+ 1Dh	BYTE	CGA Mode Control to port 3D8h
+ 1Eh	BYTE	CGA Border Control to port 3D9h
+ 1Fh	BYTE	Extended Mode Control to port 3DDh
+ 
+Format of Video Parameter Dynamic Save Area [EGA, VGA only]:
+Offset	Size	Description	(Table M0045)
+ 00h 16 BYTEs	Last data written to Attribute Contr. Palette Registers 0-15
+ 10h	BYTE	Last data written to Attribute Controller Overscan Register
+ 11h-FFh	Reserved
+		Note: Need for table was that EGA registers were write-only.
+		Note: If default values (from the Video Parameter Table) are
+		      over-ridden at a mode set by the VGA User Palette Profile
+		      Table, then the Dynamic Save Area is updated with the
+		      default values, not the User Profile ones.
+ 
+Format of Alphanumeric Character Set Override:
+Offset	Size	Description	(Table M0046)
+ 00h	BYTE	Length in bytes of each character in font table
+ 01h	BYTE	Character generator RAM bank to load, 0=normal
+ 02h	WORD	Number of characters in font table, normally 256
+ 04h	WORD	Code of first character in font table, normally 0
+ 06h	DWORD	ptr to font table
+ 0Ah	BYTE	Displayable rows (FFh=use maximum calculated value)
+ 0Bh	BYTEs	Array of mode values to which this font is to pertain
+	BYTE	FFh end of array
+ 
+Format of Second Alphanumeric Character Set Override:
+Offset	Size	Description	(Table M0047)
+ 00h	BYTE	Length in bytes of each character in font table
+ 01h	BYTE	Character generator RAM bank to load, normally non-zero
+ 02h	BYTE	reserved
+ 03h	DWORD	ptr to font table
+ 07h	BYTEs	Array of mode values to which this font is to pertain
+	BYTE	FFh end of array
+Note:	Authorities differ, some say same as first override above, but IBM
+	  says it is as shown above
+ 
+Format of Graphics Character Set Override:
+Offset	Size	Description	(Table M0048)
+ 00h	BYTE	Number of displayable character rows
+ 01h	WORD	Length in bytes of each character in font table
+ 03h	DWORD	ptr to font table
+ 07h	BYTEs	Array of mode values to which this font is to pertain
+	BYTE	FFh end of array
+ 
+Format of User Palette Profile Table [VGA only]:
+Offset	Size	Description	(Table M0049)
+ 00h	BYTE	Underlining: 01h=enable in all alphanumeric modes
+			     00h=enable in monochrome alphanumeric modes only
+			     FFh=disable in all alphanumeric modes
+ 01h	BYTE	reserved
+ 02h	WORD	reserved
+ 04h	WORD	Number (0-17) of Attribute Controller registers in table
+ 06h	WORD	Index (0-16) of first Attribute Controller register in table
+ 08h	DWORD	ptr to table of Attribute Controller registers to override
+			Table is an array of BYTEs.
+ 0Ch	WORD	Number (0-256) of video DAC Color registers in table
+ 0Eh	WORD	Index (0-255) of first video DAC Color register in table
+ 10h	DWORD	ptr to table of video DAC Color registers to override
+			Table is ??? triplets ??? of BYTEs???
+ 14h	BYTEs	array of mode values to which this profile is to pertain
+	BYTE	FFh end of array
+

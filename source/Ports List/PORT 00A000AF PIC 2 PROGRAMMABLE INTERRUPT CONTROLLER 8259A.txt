@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00A000AF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 00A0-00AF - PIC 2 - PROGRAMMABLE INTERRUPT CONTROLLER (8259A)
+SeeAlso: PORT 0020h-003Fh"PIC 1",INT 70"IRQ8",INT 77"IRQ15"
+
+00A0  RW  PIC 2	 same as 0020 for PIC 1
+00A1  RW  PIC 2	 same as 0021 for PIC 1 except for OCW1 (see #P0418)
+
+Bitfields for PIC2 output control word OCW1:
+Bit(s)	Description	(Table P0418)
+ 7	disable IRQ15 (reserved)
+ 6	disable IRQ14 (fixed disk interrupt)
+ 5	disable IRQ13 (coprocessor exception interrupt)
+ 4	disable IRQ12 (mouse interrupt)
+ 3	disable IRQ11 (reserved)
+ 2	disable IRQ10 (reserved)
+ 1	disable IRQ9  (redirect cascade)
+ 0	disable IRQ8  (real-time clock interrupt)
+SeeAlso: #P0014
+

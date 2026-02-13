@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: P1C84
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 1C84 - EISA CONFIGURATION FLAGS (board in slot 1)
+
+1C84  RW  configuration flags (see #P1016)
+
+Bitfields for EISA Add-in Card configuration flags:
+Bit(s)	Description	(Table P1016)
+ 0	enable
+ 1	IOCHKERR (read-only) card is generating CHCHK#, causing an NMI
+ 2	IOCHKRST reset card
+ 7-3	card-specific
+

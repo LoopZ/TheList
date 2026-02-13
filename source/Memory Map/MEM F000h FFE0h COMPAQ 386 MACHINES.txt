@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: MF000FFE0
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM F000h:FFE0h - COMPAQ 386 MACHINES
+Size: 16 BYTEs
+SeeAlso: MEM 80C00000h
+
+Format of Compaq 386 Memory Configuration Data:
+Offset	Size	Description	(Table M0134)
+ 00h	WORD	Compaq 32-bit extra built-in memory available (FFFFh if not)
+ 02h	WORD	Total size of Compaq extra memory
+ 04h	WORD	Count of available paragraphs of Compaq extra memory
+ 06h	WORD	Paragraph address of last paragraph in use as Compaq extra
+		  memory
+ 08h  2 BYTEs	product class signature "03"
+ 0Ah  6 BYTEs	signature "03COMPAQ"
+Notes:	The full "03COMPAQ" signature can be found in (at least) Compaq 386
+	  machines which have dual harddisk controller. (see also CMOS 70h)
+	However, the 6-byte "COMPAQ" signature also seems to be available
+	  in other Compaq machines with dual hard disk controllers, at least
+	  the MS-DOS/PC DOS IO.SYS/IBMBIO.COM checks for if before it calls
+	  INT 15/AX=E400h and INT 15/AX=E480h.
+	Compaq's extra memory is mappable memory starting at FE00h:0000h
+	  growing downwards. It can be made available for example with
+	  Novell DOS 7+ EMM386.EXE /COMPAQ=ON.
+	Although this structure resides at a ROM-address it is actually write-
+	  protected RAM. To write to the structure to map in Compaq extra
+	  memory the write-protection must be temporarily disabled by setting
+	  bit 1 at WORD 80C00000h.
+

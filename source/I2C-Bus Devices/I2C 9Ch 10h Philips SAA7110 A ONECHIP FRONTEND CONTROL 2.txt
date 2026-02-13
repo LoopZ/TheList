@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C10
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/10h - Philips SAA7110(A) ONE-CHIP FRONT-END - CONTROL #2
+Access:	Write-Only
+SeeAlso: I2C 9Eh
+
+Bitfields for Control Number 2:
+Bit(s)	Description    (Table I0080)	(Table I0081)
+ 7-3	reserved (must be set to LOW)
+ 2-1	vertical noise reduction mode
+	00  normal
+	01  search
+	10  free running
+	11  bypass vertical noise reduction
+ 0	HREF select
+	0  HREF matched to YUV output
+	1  HREF matched to CVBS output
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: MF000C000
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM F000h:C000h - Tandy ROM BIOS ID BYTE
+Size:	BYTE
+Note:	If the BYTE at this location is equal to 21h, some Microsoft software
+	  assumes this is a Tandy machine, and for example trusts the bits 1-0
+	  at 0040h:00B5h.
+SeeAlso: MEM 0040h:00B5h"Tandy",INT 15/AH=C0h
+

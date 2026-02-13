@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: @00600021
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:0021h - Eagle MS-DOS v1.25 IO.SYS - SET SYSTEM TIME
+InstallCheck:	MS-DOS v1.25 must be installed
+SeeAlso: @0060h:0000h,@0060h:001Eh,@0060h:0024h
+
+(Table F0011)
+Call Eagle MS-DOS entry point 0021h with:
+	CH = hours
+	CL = minutes
+	DH = seconds
+	DL = hundredths
+Return: flags modified
+

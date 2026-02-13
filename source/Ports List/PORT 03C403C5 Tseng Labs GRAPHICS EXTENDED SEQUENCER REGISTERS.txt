@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03C403C5
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03C4-03C5 - Tseng Labs GRAPHICS - EXTENDED SEQUENCER REGISTERS
+SeeAlso: PORT 03C4h"EGA",PORT 03C4h"Cirrus",PORT 03C4h"S3"
+
+03C4  RW  sequencer register index (see #P0696)
+03C5  RW  sequencer register data
+
+(Table P0696)
+Values for Tseng Labs extended sequencer registers:
+ 00h-04h same as EGA/VGA (see #P0670)
+ 06h	ET3000 only: Zoom control register
+ 06h	ET4000 only: TS state control (protected by 'key')
+	bit7-3 : reserved
+	bit2-1 : timing sequencer state bit2-1
+		   (bit0 is bit0 TS mode register)
+		   00 0b=  9 dots
+		   00 1b=  8 dots
+		   01 0b= 10	  (10-16 are ET4000 only)
+		   01 1b= 11
+		   10 0b= 12
+		   11 1b= 16
+	bit0	: reserved
+ 07h	ET3000/ET4000 only: TS auxiliary mode (see #P0697)
+SeeAlso: #P0670,#P0675,#P0685
+
+Bitfields for ET3000/ET4000 sequencer auxiliary mode:
+Bit(s)	Description	(Table P0697)
+ 7	compatibility mode (1=VGA, 0=EGA)
+ 6	select MCLK/2 (with bit0=0)
+ 5	BIOS ROM address map 2
+ 4	reserved
+ 3	BIOS ROM address map 1
+ 2	reserved (1)
+ 1	select SCLK input from MCLK
+ 0	select MCLK/4 (with bit6=1)
+ 5+3	ROM address
+	00 C0000-C3FFF
+	01 disabled
+	10 C0000-C5FFF, C6800-C7FFF
+	11 C0000-C7FFF (default)
+Notes:	at least on the ET4000, this register is protected by a 'key'
+	this register is also supported by ET3000, but the above description
+	  is based on the ET4000
+SeeAlso: #P0670
+

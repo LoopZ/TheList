@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C30
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/30h - Philips SAA7110(A) ONE-CHIP FRONT-END - ADCs GAIN CONTROL
+Access:	Write-Only
+SeeAlso: I2C 9Eh
+
+Bitfields for ADCs Gain Control:
+bit(s)	Description	 (Table I0096)	(Table I0097)
+ 7	reserved (must be set to LOW)
+ 6	white peak mode select
+	0  difference value integration
+	1  fix value integration
+ 5	select gain ADC channel 3 (0=fix via I2C-bus, 1=automatic via loop)
+ 4-3	fix gain ADC channel 3
+	00     0 dB
+	01  0.05 dB
+	10  0.10 dB
+	11  0.15 dB
+ 2	select gain ADC channel 2 (0=fix via I2C-bus, 1=automatic via loop)
+ 1-0	fix gain ADC channel 2
+	00     0 dB
+	01  0.05 dB
+	10  0.10 dB
+	11  0.15 dB
+

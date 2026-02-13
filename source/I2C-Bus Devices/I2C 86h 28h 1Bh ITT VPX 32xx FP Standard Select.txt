@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SF1B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/1Bh U - ITT VPX 32xx - FP - Standard Select
+Note:	this register is documented for the VDP 3108, but not the VPX 32xx
+SeeAlso: I2C 86h/28h,I2C 86h/29h,#I0019,I2C 86h/28h/19h,I2C 86h/28h/1Ah
+
+Bitfields for VDP 3108/VPX 32xx standard select register:
+Bit(s)	Description	(Table I0016)
+ 2-0	television standard (see #I0039)
+ 8	no HPLL setup
+ 9	no vertical setup
+ 10	no ACC setup
+ 11	write 0 to initialize standard
+	this bit is set to 1 once standard-setting is complete
+

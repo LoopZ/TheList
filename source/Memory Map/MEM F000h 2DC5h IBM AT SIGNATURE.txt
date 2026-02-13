@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: MF0002DC5
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM F000h:2DC5h - IBM AT SIGNATURE
+Size:	??? signature
+Note:	Original IBM ATs with a multi-sector hard disk ROM-BIOS bug can be
+	  identified by checking a (currently unknown) signature at this
+	  location.  This is known to be done by the Concurrent CP/M-86 family.
+	  Presumably the OS will then prohibit timer ISR dispatches within
+	  a code window of F000h:2D95h..F000h:2DD4h.
+

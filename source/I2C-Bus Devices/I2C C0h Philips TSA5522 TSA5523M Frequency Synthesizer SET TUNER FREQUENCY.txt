@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+ Unique ID: IC0
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C C0h - Philips TSA5522/TSA5523M Frequency Synthesizer - SET TUNER FREQUENCY
+Access:	Write
+Size:	4 BYTEs
+Range:	I2C addresses C0h, C2h, C4h, or C6h, selectable by external pin
+Desc:	the tuner is programmed by writing four bytes: high byte of Freq
+	  (bit 7 must be 0), low byte of Freq, high byte of band (bit 7 must
+	  be 1), and low byte of band.
+Notes:	Freq is the 16 * (desired frequency in MHz + IF frequency), assuming
+	  a reference divisor of 512; multiply by 20 or 32 for divisors 640
+	  and 1024.  (IF = 47 [2Fh] typically)
+	the FI1236MK2 is software-compatible with the TSA5523M
+	the TSA5055T is also software-compatible, with the exception that the
+	  step size is fixed at 125 kHz (for a 4MHz external crystal) in order
+	  to provide a top frequency of 2.5 GHz
+	the TSA5512 and TSA5515T are also software-compatible, with a step size
+	  fixed at 62.5 kHz (with a 4MHz external crystal); on the 5515T, only
+	  output ports P1, P2, and P7 are available
+	because the high bits of the first and third data bytes distinguish
+	  between frequency and control bytes, either half may be programmed
+	  independently; when switching bands and the new frequency is less
+	  than the current frequency, Philips recommends sending the control
+	  bytes first to avoid unnecessary charge pump action which can push
+	  the tuner into extreme states
+Index:	TSA5505T;TSA5512;TSA5515T;FI1236MK2
+
+Bitfields for Philips TSA5523M Tuner band:
+Bit(s)	Description	(Table I0118)
+ 7-0	open-collector control bits
+	each bit turns on one NPN transistor
+ 2-0	(TSA5522) band-switch
+	001 Band C (430-810 MHz)
+	010 Band A (50-180 MHz)
+	100 Band B (160-470 MHz)
+ 3	(TSA5522) don't care -- no external connection
+ 7,5,4	(TSA5523M) band-switch
+	011 put 0.8V on Pin BS (Philips Mixer/Oscillator Band C)
+	101 put 0.4V on Pin BS (Philips M/O Band B)
+	110 put 0.25V on Pin BS (Philips M/O Band A)
+	111 put Vcc on Pin BS (Philips Mixer/Oscillator Band C)
+	other: same as 111
+ 8	tuning amplifier control
+	=0 normal operation (on)
+	=1 disable charge pump (off)
+ 10-9	reference divider ratio select
+	x0 = 640 (yields 50 kHz step size)
+	01 = 1024 (yields 31.25 kHz step size)
+	11 = 512 (yields 62.5 kHz step size)
+	(TSA5055T) these bits are officially supposed to be 11
+	(TSA5512) these bits are officially supposed to be 11
+ 13-11	test bits
+	001 normal operation
+	01x charge pump off
+	100 f_ref is available on P6 output (5523M) or LOCK output (5522)
+	101 f_div2 is available on P6 output (5523M) or LOCK output (5522)
+	110 charge pump is sinking current
+	111 charge pump is sourcing current
+ 14	charge-pump current (0 = 50 microamperes, 1 = 250 uA)
+	=1 gives faster tuning, =0 better residual FM
+ 15	must be set (indicates control byte for partial programming)
+Note:	on the Stealth64 Video 2001TV, bits 7-3 appear to be ignored
+SeeAlso: #I0064
+

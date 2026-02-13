@@ -1,0 +1,85 @@
+--------------------------------------------------------------------------------
+ Unique ID: @xxxxxxxx
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL xxxxh:xxxxh - POST Memory Manager Specification (PMM) v1.0
+InstallCheck:	scan paragraph boundaries E000h to FFFFh for signature string
+	  "$PMM" followed by a valid PMM header structure (see #F0092)
+Note:	the PMM is only available at system boot -- between the completion
+	  of the memory check and the call to INT 19; this includes Option
+	  ROM initialization and Plug-and-Play Boot Connection Vectors, but
+	  not the Bootstrap Entry Vector (which is called after INT 19)
+SeeAlso: INT 2F/AX=4300h,INT 67/AH=40h
+
+Format of POST Memory Manager Specification structure:
+Offset	Size	Description	(Table F0092)
+ 00h  4 BYTEs	signature "$PMM"
+ 04h	BYTE	structure version number (01h)
+ 05h	BYTE	length of structure in bytes
+ 06h	BYTE	checksum of structure (value needed to force byte-wise sum
+		of entire structure to be 00h)
+ 07h	DWORD	-> PMM entry point (real mode only) (see #F0093)
+ 0Bh  5 BYTEs	reserved (0)
+SeeAlso: #F0024
+
+(Table F0093)
+Call POST Memory Manager Specification entry point with:
+	STACK:	WORD	function number
+			0000h pmmAllocate (see #F0094)
+			0001h pmmFind (see #F0095)
+			0002h pmmDeallocate (see #F0096)
+		additional parameters vary by function
+Notes:	PMM calls use standard large-model C-language calling conventions
+	the caller must provide at least 256 bytes of stack space; BIOSes
+	  which support this specification will provide at least 1024 bytes
+	  of stack space when calling a ROM initialization vector, Boot
+	  Connection Vector, or Bootstrap Entry Vector (thus allowing the
+	  Option ROM's code to provide sufficient stack space when calling
+	  the PMM)
+
+(Table F0094)
+Call PMM "pmmAllocate" entry point with:
+	STACK:	WORD	0000h (function "pmmAllocate")
+		DWORD	length of memory block, in paragraphs
+			if 00000000h, only get size of largest available block
+		DWORD	handle to assign to memory block, or FFFFFFFh for
+			  "anonymous" block
+		WORD	option flags
+			bit 0: allocate from conventional memory
+			bit 1: allocate from extended memory
+			bit 2: use alignment based on least-significant set
+				bit of requested length
+Return: DX:AX = 32-bit physical address of allocated memory block, or
+	      size of largest available block in paragraphs, or
+	      00000000h if specified handle is already in use, or
+	      FFFFFFFFh if allocation failed
+Notes:	at least one of bits 0 and 1 must be set in the option flags; both
+	  may be set if the location of the memory block is not important
+	the specification requires that an Option ROM must use handles
+	  compliant with the Plug-and-Play specification (high 16 bits are
+	  manufacturer's vendor ID, low 16 bits are vendor-defined); handles
+	  whose highest bit is set or highest six bits are all clear are
+	  reserved for the BIOS, and the BIOS may flag attempts to use such
+	  reserved handles
+SeeAlso: #F0093,#F0095,#F0096
+
+(Table F0095)
+Call PMM "pmmFind" entry point with:
+	STACK:	WORD	0001h (function "pmmFind")
+		DWORD	handle to be found
+Return: DX:AX = 32-bit physical address of allocated memory block, or
+	      00000000h if handle is not in use
+Desc:	get the address of the memory block associated with the given handle
+SeeAlso: #F0093,#F0094,#F0096
+
+(Table F0096)
+Call PMM "pmmDeallocate" entry point with:
+	STACK:	WORD	0002h (function "pmmDeallocate")
+		DWORD	physical address of block (as returned by pmmAllocate)
+Return: DX:AX = FFFFFFFFh on error
+Notes:	the memory block is cleared to all zeros by the PMM
+	invalid functions (0003h-FFFFh) return DX:AX = FFFFFFFFh
+SeeAlso: #F0093,#F0094,#F0095
+

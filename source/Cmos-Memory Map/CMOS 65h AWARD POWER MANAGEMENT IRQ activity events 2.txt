@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: R65
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 65h - AWARD - POWER MANAGEMENT - IRQ activity events #2
+SeeAlso: CMOS 64h"AWARD"
+
+Bitfields for AWARD power management:
+Bit(s)	Description	(Table C0096)
+ 7-4	??? may be unused.  Defaults to all 1's
+ 3	Disable PM Event on IRQ15 Activity (1=disable)
+ 2	Disable PM Event on IRQ14 Activity (Hard Disk) (1=disable)
+ 1	Disable PM Event on IRQ13 Activity (Coprocessor) (1=disable)
+ 0	Disable PM Event on IRQ12 Activity (PS/2 Mouse) (1=disable)
+

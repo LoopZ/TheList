@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: P4AE84AE9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 4AE8-4AE9 - 8514/A and compatible - CRT CONTROL
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+SeeAlso: #P0749
+
+4AE8w -W  CRT control: Advanced function control (see also #P1022)
+	(02h = VGA mode, 03h = 480-line mode, 07h = 768-line mode)
+
+Bitfields for S3 8514/A-compatible Advanced Function Control register:
+Bit(s)	Description	(Table P1022)
+ 15-7	reserved
+ 6	(928 only) enable Write Posting
+ 5	(928+) enable memory-mapped I/O
+ 4	(928+) enable linear addressing (see also #P0741)
+ 3	reserved
+ 2	(911-928) screen size (1 = 800x600 or 1024x768, 0=640x480)
+	(Trio32/Trio64) enhanced modes pixel length (0 = 8+ bpp, 1 = 4 bpp)
+ 1	reserved (1)
+ 0	enable enhanced functions
+Note:	bit 4 is ORed with CR58 bit 4; bit 5 is ORed with CR53 bit 4
+

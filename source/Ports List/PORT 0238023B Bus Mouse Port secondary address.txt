@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0238023B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0238-023B - Bus Mouse Port (secondary address)
+InstallCheck: read the ID Port twice; if installed, the first byte
+	  returned will be DEh, and the second will vary by card
+	  (revision number???)
+Note:	secondary address for bus mice from MS and Logitech, and the ATI
+	  video adapter mouse
+SeeAlso: PORT 023Ch"Mouse"
+
+0238  ?W  Command port
+0239  ?W  Data port
+023A  R?  ID Port 
+

@@ -1,0 +1,106 @@
+--------------------------------------------------------------------------------
+ Unique ID: P83D09FD3
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 83D0-9FD3 - Chips&Techs 64310 - 32-BIT EXTENSION REGS - BitBLT
+Notes:	All ports are word or dword accessible.
+	These registers are also accessible in the upper 2 MB of the 4 MB
+	  linear memory frame buffer (address specified in PCI configuration
+	  registers).
+SeeAlso: PORT 03D6h"Chips",PORT A3D0h"Chips"
+
+83D0d RW  "DR00"  BitBlt offset register (see #P1026)
+87D0d RW  "DR01"  BitBlt pattern ROP register (see #P1027)
+8BD0d RW  "DR02"  BitBlt background color register (see #P1028)
+8FD0d RW  "DR03"  BitBlt foreground color register (see #P1029)
+93D0d RW  "DR04"  BitBlt control register (see #P1030)
+97D0d RW  "DR05"  BitBlt source register (see #P1031)
+9BD0d RW  "DR06"  BitBlt destination register (see #P1032)
+9FD0d RW  "DR07"  BitBlt command register (see #P1033)
+
+Bitfields for Chips&Technologies 64310 "DR00" BitBlt offset register:
+Bit(s)	Description	(Table P1026)
+ 31-28	reserved (0)
+ 27-16	destination offset
+ 15-12	reserved (0)
+ 11-0	source offset
+
+Bitfields for Chips&Technologies 64310 "DR01" BitBlt pattern ROP register:
+Bit(s)	Description	(Table P1027)
+ 31-21	reserved (0)
+ 20-0	pattern pointer (must be pattern size aligned)
+Note:	Do not read this register while BitBlt is active.
+
+Bitfields for Chips&Technologies 64310 "DR02" BitBlt background color register:
+Bit(s)	Description	(Table P1028)
+ 31-16	reserved (contents of bits 15-0 on read)
+ 15-0	background color for opaque mono-color expansions
+	(all bits must be used; use same data in bits 15-8 and 7-0 for 8BPP)
+
+Bitfields for Chips&Technologies 64310 "DR03" BitBlt foreground color register:
+Bit(s)	Description	(Table P1029)
+ 31-16	reserved (contents of bits 15-0 on read)
+ 15-0	foreground color for mono-color expansions/color for solid paint
+	  operations
+	(all bits must be used; use same data in bits 15-8 and 7-0 for 8BPP)
+
+Bitfields for Chips&Technologies 64310 "DR04" BitBlt control register:
+Bit(s)	Description	(Table P1030)
+ 31-28	reserved (0)
+ 27-24	buffer status (number of dwords that can be written to the chip)
+ 23-21	reserved (0)
+ 20	BitBlt status (read-only)
+	0 = idle
+	1 = active (do not write BitBlt registers)
+ 19	0 = bitmap pattern
+	1 = solid pattern (brush)
+ 18-16	pattern starting row
+ 15-14	BitBlt source (destination always video frame buffer)
+	00 = video frame buffer
+	01 = system memory
+	1x = reserved
+ 13	background for monochrome pattern and font expansion
+	0 = opaque (color in DR02)
+	1 = transparent (unchanged)
+ 12	pattern depth
+	0 = color
+	1 = monochrome
+ 11	source depth
+	0 = color
+	1 = monochrome (font expansion only if bit 9 = 1)
+ 10	source data
+	0 = selected by bit 14
+	1 = foreground color reg (DR03)
+ 9	X direction (use when source and destination areas overlap)
+	0 = decrement (right to left)
+	1 = increment (left to right)
+ 8	Y direction (use when source and destination areas overlap)
+	0 = decrement (bottom to top)
+	1 = increment (top to bottom)
+ 7-0	raster operation (as defined by Windows)
+SeeAlso: #P1031,#P1033
+
+Bitfields for Chips&Technologies 64310 "DR05" BitBlt source register:
+Bit(s)	Description	(Table P1031)
+ 31-21	reserved (0)
+ 20-0	source block address (must be byte aligned)
+Note:	Do not read this register while BitBlt is active.
+SeeAlso: #P1030,#P1032
+
+Bitfields for Chips&Technologies 64310 "DR06" BitBlt destination register:
+Bit(s)	Description	(Table P1032)
+ 31-21	reserved (0)
+ 20-0	destination block address (must be byte aligned)
+Note:	Do not read this register while BitBlt is active.
+SeeAlso: #P1031,#P1033
+
+Bitfields for Chips&Technologies 64310 "DR07" BitBlt command register:
+Bit(s)	Description	(Table P1033)
+ 31-28	reserved (0)
+ 27-16	lines per block
+ 15-12	reserved (0)
+ 11-0	bytes per line
+SeeAlso: #P1031,#P1032
+

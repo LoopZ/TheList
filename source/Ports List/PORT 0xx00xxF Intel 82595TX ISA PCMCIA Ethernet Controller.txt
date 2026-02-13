@@ -1,0 +1,194 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0xx00xxF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0xx0-0xxF - Intel 82595TX - ISA/PCMCIA Ethernet Controller
+Range:	at any multiple of 16 in first 1024 I/O addresses
+
++000  RW  command register (see #P0965)
+--- I/O bank 0 ---
++001  RW  status register (see #P0966)
++002  RW  id register (see #P0967)
++003  RW  mask register (see #P0968)
++004  RW  RCV CAR/BAR low
++005  RW  RCV CAR/BAR high
++006  RW  RCV STOP REG low
++007  RW  RCV STOP REG high
++008  RW  RCV copy treshold REG
++009  RW  reserved
++00A  RW  XMT CAR/BAR low
++00B  RW  XMT CAR/BAR high
++00C  RW  host address reg/32-bit I/O (byte 0) low
++00D  RW  host address reg/32-bit I/O (byte 1) high
++00E  RW  local memory/32-bit I/O (byte 2) IO port low
++00F  RW  local memory/32-bit I/O (byte 3) IO port high
+--- I/O bank 1 ---
++001  RW  bank 1 register 1 (see #P0969)
++002  RW  int select register (see #P0970)
++003  RW  I/O mapping register (see #P0971)
++004  RW  reserved
++005  RW  reserved
++006  RW  reserved
++007  RW  RCV BOF treshold reg
++008  RW  RCV lower limit reg high byte
++009  RW  RCV upper limit reg high byte
++00A  RW  XMT lower limit reg high byte
++00B  RW  XMT upper limit reg high byte
++00C  RW  FLASH control register (see #P0972)
++00D  RW  bank 1 register 13 (see #P0973)
++00E  RW  reserved
++00F  RW  reserved
+--- I/O bank 2 ---
++001  RW  bank 2 register 1 (see #P0974)
++002  RW  bank 2 register 2 (see #P0975)
++003  RW  bank 2 register 3 (see #P0976)
++004  RW  individual address register 0
++005  RW  individual address register 1
++006  RW  individual address register 2
++007  RW  individual address register 3
++008  RW  individual address register 4
++009  RW  individual address register 5
++00A  RW  bank 2 register 10 (see #P0977)
++00B  RW  RCV NO resource counter
++00C  RW  IAPROM IO port
++00D  RW  reserved
++00E  RW  reserved
++00F  RW  reserved
+------
+
+Bitfields for Intel 82595TX command register:
+Bit(s)	Description	(Table P0965)
+ 7-6	bank pointer (if switch bank command written; ignored for other
+	  commands)
+	00 = bank 0
+	01 = bank 1
+	10 = bank 2
+ 5	command (other than transmit) aborted (read-only; should be written 0)
+ 4-0	(write) command OP code
+	00h = switch bank/nop
+	03h = MC-setup
+	04h = transmit
+	05h = TDR
+	06h = dump
+	07h = diagnose
+	08h = RCV enable
+	0Ah = RCV disable
+	0Bh = RCV stop
+	0Dh = abort
+	0Eh = reset
+	14h = XMT no CRC/SA
+	15h = cont XMT test
+	16h = set tristate
+	17h = reset tristate
+	18h = power down
+	1Ch = resume XMT list
+	1Eh = sel reset
+	(read) execution event (MC done, init done, TDR done, DIAG done)
+	  (if bank 0 register 1 bit 3 = 1)
+SeeAlso: #P0966,#P0968
+
+Bitfields for Intel 82595TX status register:
+Bit(s)	Description	(Table P0966)
+ 7-6	RCV states
+ 5-4	EXEC states
+ 3	EXEC INT
+ 2	TX INT
+ 1	RX INT
+ 0	RX STP INT
+SeeAlso: #P0965,#P0967,#P0968
+
+Bitfields for Intel 82595TX id register:
+Bit(s)	Description	(Table P0967)
+ 7-6	counter
+ 5	reserved (1)
+ 4	auto enable
+ 3-2	reserved (01)
+ 1-0	reserved (0)
+SeeAlso: #P0965,#P0966,#P0968
+
+Bitfields for Intel 82595TX mask register:
+Bit(s)	Description	(Table P0968)
+ 7-6	reserved
+ 5	cur/base
+ 4	32IO/HAR
+ 3	EXEC mask
+ 2	TX mask
+ 1	RX mask
+ 0	RX STP mask
+SeeAlso: #P0965,#P0966,#P0969
+
+Bitfields for Intel 82595TX bank 1 register 1:
+Bit(s)	Description	(Table P0969)
+ 7	tri-st INT
+ 6	alt RDY tm
+ 5-2	reserved
+ 1	host bus wd
+ 0	reserved
+SeeAlso: #P0965,#P0967,#P0970
+
+Bitfields for Intel 82595TX int select register:
+Bit(s)	Description	(Table P0970)
+ 7	FL/BT detect
+ 6-4	boot EPROM/FLASH decode window
+ 3	reserved
+ 2-0	INT select
+
+Bitfields for Intel 82595TX I/O mapping register:
+Bit(s)	Description	(Table P0971)
+ 7-6	reserved
+ 5-0	I/O mapping window
+
+Bitfields for Intel 82595TX FLASH control register:
+Bit(s)	Description	(Table P0972)
+ 7-6	FLASH page select high
+ 5-4	FLASH write enable
+ 3-0	FLASH page select
+
+Bitfields for Intel 82595TX bank 1 register 13:
+Bit(s)	Description	(Table P0973)
+ 7-3	reserved
+ 2	SMOUT out en
+ 1	AL RDY test
+ 0	AL RDY PAS/FL
+
+Bitfields for Intel 82595TX bank 2 register 1:
+Bit(s)	Description	(Table P0974)
+ 7	disc bad fr
+ 6	TX chn ErStp
+ 5	TX chn int md
+ 4	PCMCIA/ISA
+ 3-1	reserved
+ 0	TX con proc en
+
+Bitfields for Intel 82595TX bank 2 register 2:
+Bit(s)	Description	(Table P0975)
+ 7-6	loopback
+ 5	multi IA
+ 4	no SA ins
+ 3	length enable
+ 2	RX CRC InMem
+ 1	BC DIS
+ 0	PRMSC mode
+
+Bitfields for Intel 82595TX bank 2 register 3:
+Bit(s)	Description	(Table P0976)
+ 7	test 1
+ 6	test 2
+ 5	BNC/TPE
+ 4	APORT
+ 3	jabber disable
+ 2	TPE/AUI
+ 1	pol/corr
+ 0	lnk in disable
+
+Bitfields for Intel 82595TX bank 2 register 10:
+Bit(s)	Description	(Table P0977)
+ 7-5	stepping
+ 4	trnoff enable
+ 3	EEDO
+ 2	EEDI
+ 1	EECS
+ 0	EESK
+

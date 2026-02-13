@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03BF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03BF - Hercules configuration switch register
+Note:	can also be found on EGA and VGA clones in Hercules emulation
+
+03BF  -W  configuration switch register (see #P0660)
+03BF  -W  (ET4000) Hercules compatibility register (see #P0661)
+03BF  RW  (Genoa SuperEGA) miscellaneous register
+	Note: only available in MDA, HGC, and CGA emulation; should be
+	  compatible with Hercules configuration register, but may contain
+	  additional features
+
+Bitfields for Hercules configuration switch register:
+Bit(s)	Description	(Table P0660)
+ 7-2	reserved
+ 1	=0  disables upper 32K of graphics mode buffer
+	=1  enables upper 32K of graphics mode buffer
+ 0	=0  prevents graphics mode
+	=1  allows graphics mode
+SeeAlso: #P0661
+
+Bitfields for ET4000 compatibility register:
+Bit(s)	Description	(Table P0661)
+ 1	=0 disables upper 32K of graphics mode buffer
+	=1 enables upper 32K of graphics mode buffer
+ 0	reserved (not needed for HGC graphics)
+ 7-0	=03h: first part of 'key' for access to some extra
+	     ET4000 regs. To issue the 'key', the following
+	     code must be executed:
+	      MOV DX, 3BFh
+	      MOV AL, 3
+	      OUT DX, AL
+	      MOV DX, 3D8h  (3B8h in mono mode)
+	      MOV AL, 0A0h
+	      OUT DX, AL
+SeeAlso: #P0660
+

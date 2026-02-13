@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: m80C00000
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 80C00000h - Compaq Deskpro 386 system memory board register
+Size:	BYTE
+
+80C00000  R   Diagnostics register (see #M0055)
+80C00000   W  RAM relocation register (see #M0056)
+
+Bitfields for Compaq Deskpro 386 diagnostics register:
+Bit(s)	Description	(Table M0055)
+ 7	=0 memory expansion board is installed
+ 6	=0 second 1 MB of system memory board is installed
+ 5-4	base memory
+	00 set to 640 KB
+	01 invalid
+	10 set to 512 KB
+	11 set to 256 KB
+ 3	parity correct in byte 3
+ 2	parity correct in byte 2
+ 1	parity correct in byte 1
+ 0	parity correct in byte 0 (in 32-bit double word)
+SeeAlso: #M0056
+
+Bitfields for Compaq Deskpro 386 RAM relocation register:
+Bit(s)	Description	(Table M0056)
+ 7-2	reserved, always write 1's.
+ 1	=0  Write-protect 128-Kbyte RAM at FE0000.
+	=1  Do not write-protect RAM at FE0000.
+ 0	=0  Relocate 128-Kbyte block at FE0000 to address 0E0000
+	=1  128-Kbyte RAM is addressed only at FE0000.
+SeeAlso: #M0055
+

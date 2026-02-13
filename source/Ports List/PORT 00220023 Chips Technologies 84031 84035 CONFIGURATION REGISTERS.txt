@@ -1,0 +1,140 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: h 	vendor-specific hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Chips&Technologies 84031/84035 - CONFIGURATION REGISTERS
+Note:	each access to PORT 0023h must immediately follow a write to
+	  PORT 0022h (this is to avoid accidental accesses)
+SeeAlso: PORT 0022h"82C311",PORT 0022h"82C315"
+
+0022  -W  configuration register index (see #P0077)
+0023  RW  configuration register data
+
+(Table P0077)
+Values for Chips&Technologies 84031/84035 configuration register index:
+ 01h	(84035) IPC DMA controller wait states and clock (see #P0078)
+!!!chips\82310.pdf p.71
+!!!chips\api22.pdf p.33
+ 05h	(84031) ISA-bus command delays (see #P0079)
+ 06h	(84031) ISA-bus wait states (see #P0080)
+ 07h	(84031) ISA-bus clock select (see #P0081)
+ 08h	(84035) performance control (see #P0082)
+ 09h	(84035) miscellaneous control (see #P0083)
+ 0Ah	(84035) DMA clock select (see #P0084)
+ 10h	(84031) DRAM timing (see #P0085)
+!!!chips\api22.pdf p.49
+ 11h	(84031) DRAM setup
+ 12h	(84031) block 0/1 DRAM configuration
+ 13h	(84031) block 2/3 DRAM configuration
+ 14h	(84031) DRAM block 0 start address
+ 15h	(84031) DRAM block 1 start address
+ 16h	(84031) DRAM block 2 start address
+ 17h	(84031) DRAM block 3 start address
+ 18h	(84031) video shadow / local bus control
+ 19h	(84031) shadow RAM read enable
+ 1Ah	(84031) shadow RAM write enable
+ 1Bh	(84031) ROMCS enable
+ 1Ch	(84031) soft reset / GATEA20
+
+Bitfields for C&T 84035 IPC DMA controller configuration:
+Bit(s)	Description	(Table P0078)
+ 7-6	reserved
+ 5-4	wait states for 16-bit DMA
+	00 one (default)
+	01 two
+	10 three
+	11 four
+ 3-2	wait states for 8-bit DMA (settings same as bits 5-4)
+ 1	disable one-cycle delay of MEMR# signal	after IOR#
+ 0	DMA clock (0 = BUSCLK/2 [default], 1 = BUSCLK)
+SeeAlso: #P0077,#P0082
+
+Bitfields for C&T 84031 ISA-bus command delays:
+Bit(s)	Description	(Table P0079)
+ !!!
+SeeAlso: #P0077,#P0080,#P0081
+
+Bitfields for C&T 84031 ISA-bus wait states:
+Bit(s)	Description	(Table P0080)
+ !!!
+SeeAlso: #P0077,#P0079,#P0081
+
+Bitfields for C&T 84031 ISA-bus clock select:
+Bit(s)	Description	(Table P0081)
+ !!!
+SeeAlso: #P0077,#P0079,#P0080
+
+Bitfields for C&T 84035 performance control:
+Bit(s)	Description	(Table P0082)
+ 7	flush 486 cache during every slow-mode hold (keeps CPU from running out
+	  of L1 cache during holds)
+ 6-0	width of CPU hold pulse in BUSCLKs (0-127)
+SeeAlso: #P0077,#P0078,#P0083
+
+Bitfields for C&T 84035 miscellaneous control:
+Bit(s)	Description	(Table P0083)
+ 7	floating-point error mode
+	=0 generate IRQ13 internally on FERR#
+	=1 use external logic to generate IRQ13
+ 6	keyboard interrupt mode
+	=0 receive IRQ1 directly on IRQ1 pin
+	=1 receive IRQ1 over control link
+ 5	disable GATEA20 emulation
+	=0 A20 controlled solely by PORT 0092h
+	=1 A20 is OR of PORT 0092h and emulated 8042 A20 control
+ 4	A20M#/TEST# function
+	=0 pin is TEST# input
+	=1 pin is A29M# output
+ 3	reserved
+ 2	enable 8254 Timer 1 refresh requests
+	clearing this bit prevents problems that may be caused by a refresh
+	  request which occurs during a reset sequence
+ 1	use VL-bus-compatible preemptive arbitration for LGNT#
+ 0	deturbo mode (enable CPU holds as specified by performance-control
+	  register) (see #P0082)
+Note:	the documentation says that bit 6 should remain clear
+SeeAlso: #P0077,#P0082
+
+Bitfields for C&T 84035 DMA clock select:
+Bit(s)	Description	(Table P0084)
+ 7	disable internal real-time clock
+ 6-4	reserved (0)
+ 3-0	DMA clock
+	0000 SCLK/10
+	0001 SCLK/8
+	0010 SCLK/6
+	1000 SCLK/5 (use with 40 MHz SCLK)
+	1001 SCLK/4 (use with 33 MHz SCLK)
+	1010 SCLK/3 (use with 25 MHz SCLK)
+	1011 SCLK/2.5 (for 20 MHz SCLK)
+	1100 SCLK/2 (for 16 MHz SCLK)
+	1101 SCLK/1.5
+	else reserved
+Note:	bits 3-0 should normally be set the same as register 07h bits 3-0
+SeeAlso: #P0077
+
+Bitfields for C&T 84031 DRAM timing:
+Bit(s)	Description	(Table P0085)
+ 7-6	reserved (0)
+ 5
+ 4
+ 3
+ 2	!!!
+ 1	reserved (0)
+ 0	read timing
+	0 = 3-2-2-2
+	1 = 4-3-3-3
+SeeAlso: #P0077,#P0086
+
+Bitfields for C&T 84031 DRAM setup:
+Bit(s)	Description	(Table P0086)
+ 7	enable DRAM parity
+	(PORT 0061h bits 7 and 2 must also both be clear to enable parity)
+ 6-4	reserved (0)
+ 3-0	enable interleave for banks 3-0
+	(enabling interleave doubles address range for bank; banks 0/2 and 1/3
+	  may be interleaved with each other)
+SeeAlso: #P0077,#P0085
+

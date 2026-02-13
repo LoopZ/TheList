@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - OPTi 82C206 chipset - CONFIGURATION REGISTERS
+Note:	many other OPTi chipsets integrate the functionality of the 82C206, and
+	  thus support the 82C206's configuration register (e.g. the
+	  82C558 from the Viper chipset)
+
+0022  ?W  index for accesses to data port (set to 01h)
+0023  RW  chip set data
+
+Bitfields for OPTi 82C206 configuration register 01h:
+Bit(s)	Description	(Table P0087)
+ 7-6	82C206 wait states
+	00 1 SYSCLK
+	01 2 SYSCLKs
+	10 3 SYSCLKs
+	11 4 SYSCLKs (default)
+ 5-4	number of wait states for 16-bit DMA cycles
+	00 1 wait state (default)
+	01 2 wait states
+	10 3 wait states
+	11 4 wait states
+ 3-2	number of wait states for 8-bit DMA cycles
+	00 1 wait state (default)
+	01 2 wait states
+	10 3 wait states
+	11 4 wait states
+ 1	enable early DMAMEMR#
+ 0	DMA speed
+	0 SYSCLK/2
+	1 SYSCLK
+

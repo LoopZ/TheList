@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Hewlett-Packard Hornet chipset (HP 100LX/200LX)
+
+0022  RW  index for accesses to data port (see Table P189)
+0023  RW  chip set data
+
+(Table P0057)
+Values for HP Hornet chipset register index:
+ 1Eh	buzzer volume/clock oscillator speed
+	bit 7-6: buzzer volume
+	bit 5-4: system oscillator speed
+		00: 10.738636MHz
+		01: 15.836773MHz(HP 100/200LX has oscillator with this speed)
+		10: 21.477272MHz
+		11: 31.673550MHz
+ 21h	display timing???
+ 23h	LCD contrast (see INT15h AH=62h)
+	valid values: 00h-1fh (1fh is the darkest)
+ 51h	power adapter status
+	bit 7-1: ???
+	bit 0: power adapter status(0=inactive/1=active)
+ 52h	nicad charge status
+	bit 7-3: ???
+	bit 2: battery charging status(0=???/1=slow charge)
+	bit 1-0: ???
+ 53h	nicad charge status
+	bit 7-1: ???
+	bit 0: battery charging status(0=???/1=fast charge)
+ 80h	memory wait for internal ROM
+	valid values: 00h-07h
+ 81h	memory wait for internal RAM
+	valid values: 00h-03h
+ 82h	memory wait for external RAM
+	valid values: 00h-0fh
+ 87h	battery status???
+

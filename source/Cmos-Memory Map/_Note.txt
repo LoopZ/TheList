@@ -166,3 +166,13 @@ AMSTAD definitions appear to relate to 8088/8086 (PC and PC/XT class)
 mchines only. AT class machines appear to adhere to IBM PC/AT fornat.
 
 
+--------------------------------------------------------------------------------
+
+
+ End of original 64 CMOS RAM bytes. Many modern chips now contain 128
+ bytes and the IBM PS/2 has provision for 2k of "Expansion CMOS". 
+ The AMI HI-FLEX description is below. If the chip does have only
+ 64 bytes, addresses will wrap so that requests for bytes 40h-7Fh will 
+ return the same values as 00h-3Fh.
+
+

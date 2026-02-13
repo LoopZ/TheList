@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400074
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0074h - FIXED DISK LAST OPERATION STATUS (except ESDI drives)
+Size:	BYTE
+SeeAlso: INT 13/AH=01h,INT 13h/AH=0Ah,MEM 0040h:0041h
+
+(Table M0022)
+Values for fixed disk last operation status:
+ 00h	no error
+ 01h	invalid function request
+ 02h	address mark not found
+ 03h	write protect error
+ 04h	sector not found
+ 05h	reset failed
+ 06h	diskette removed
+ 07h	drive parameter activity failed
+ 08h	DMA overrun
+ 09h	DMA data boundary error
+ 0Ah	bad sector flag detected
+ 0Bh	bad track detected
+ 0Ch	requested diskette media type not found
+	(PS/2 or extended BIOS only) unsupported track
+ 0Dh	invalid number of sectors for Format
+ 0Eh	control data address mark detected
+ 0Fh	DMA arbitration level out of range
+ 10h	uncorrectable ECC or CRC error
+ 11h	ECC corrected data error
+ 20h	general controller failed
+ 40h	seek failed
+ 80h	time out
+ AAh	drive not ready
+ B0h	volume not locked in drive (INT 13 extensions)
+ B1h	volume locked in drive (INT 13 extensions)
+ B2h	volume not removable (INT 13 extensions)
+ B3h	volume in use (INT 13 extensions)
+ B4h	lock count exceeded (INT 13 extensions)
+ B5h	valid eject request failed (INT 13 extensions)
+ BBh	undefined error
+ CCh	write fault on selected drive
+ E0h	status error/error register is zero
+ FFh	sense failed
+SeeAlso: #00234
+

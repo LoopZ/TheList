@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: P3518351B
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 3518-351B - ESDI secondary harddisk controller
+Range:	PORT 3510h-3513h (primary) or PORT 3518h-351Bh (secondary)
+SeeAlso: PORT 3510h,PORT 01F0h-01F7h
+
+3518w R-  status word
+3518w -W  command word
+351A  R-  basis status
+351A  -W  basic control
+351B  R-  interrupt status
+351B  -W  attention
+

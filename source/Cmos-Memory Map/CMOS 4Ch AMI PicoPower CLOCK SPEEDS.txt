@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: R4C
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 4Ch - AMI (PicoPower) - CLOCK SPEEDS
+
+Bitfields for AMI (PicoPower) clock speeds:
+Bit(s)	Description	(Table C0066)
+ 7-6	back-to-back I/O delay
+	00  none
+	01  1 SYSCLK
+	10  2 SYSCLKs
+	11  3 SYSCLKs
+ 5-3	Turbo clock select
+	001 CLK2IN/3
+	010 CLK2IN/4
+	011 CLK2IN/5
+	100 CLK2IN/6
+	101 CLK2IN/7
+	110 CLK2IN/8
+	111 CLK2IN/9
+ 2-0	SYSCLK select (same as for Turbo clock select)
+

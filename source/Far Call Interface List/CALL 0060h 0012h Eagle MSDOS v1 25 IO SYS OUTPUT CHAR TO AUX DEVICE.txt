@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: @00600012
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:0012h - Eagle MS-DOS v1.25 IO.SYS - OUTPUT CHAR TO AUX: DEVICE
+InstallCheck:	MS-DOS v1.25 must be installed
+Note:	if the port is busy, this function waits until the port becomes
+	  available or the user presses Esc or Ctrl-Break
+SeeAlso: @0060h:0000h
+
+(Table F0006)
+Call Eagle MS-DOS entry point 0012h with:
+	AL = character to output
+Return: flags modified
+

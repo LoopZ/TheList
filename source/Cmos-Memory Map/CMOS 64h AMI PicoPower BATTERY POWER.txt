@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: R64
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 64h - AMI (PicoPower) - BATTERY POWER
+
+Bitfields for AMI (PicoPower) battery power:
+Bit(s)	Description	(Table C0094)
+ 6	extended battery debounce enabled
+ 4-3	resume with modem ring
+	00 disabled
+	01 one ring
+	10 two rings
+	11 three rings
+ 2	365SL power on during suspend
+ 1-0	suspend-mode DRAM refresh cycle
+	00 15 usec
+	01 120 usec (1/8 normal)
+	10 self
+

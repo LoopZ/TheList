@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0070007F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0070-007F - CMOS RAM/RTC (REAL TIME CLOCK)
+Note:	the real-time clock may be either a discrete MC146814, MC146818, or
+	  an emulation thereof built into the motherboard chipset
+SeeAlso: PORT 00A0h"XT"
+
+0070  -W  CMOS RAM index register port (ISA, EISA)
+		 bit 7	= 1  NMI disabled from reaching CPU
+			= 0  NMI enabled
+		 bit 6-0     CMOS RAM index
+			(64 bytes in early systems, now usually 128 bytes)
+	Note:	any write to PORT 0070h should be followed by an action to
+		  PORT 0071h or the RTC wil be left in an unknown state.
+0071  RW  CMOS RAM data port (ISA, EISA) (see #P0409)
+
+(Table P0409)
+Values for Real-Time Clock register number (see also CMOS.LST):
+ 00h-0Dh clock registers
+ 0Eh	diagnostics status byte
+ 0Fh	shutdown status byte
+ 10h	diskette drive type for A: and B:
+ 11h	reserved / IBM fixed disk / setup options
+ 12h	fixed disk drive type for drive 0 and drive 1
+ 13h	reserved / AMI Extended CMOS setup (AMI Hi-Flex BIOS)
+ 14h	equipment byte
+ 15h	LSB of system base memory in Kb
+ 16h	MSB of system base memory in Kb
+ 17h	LSB of total extended memory in Kb
+ 18h	MSB of total extended memory in Kb
+ 19h	drive C extension byte
+ 1Ah	drive D extension byte
+ 1Bh-2Dh reserved
+ 20h-27h commonly used for first user-configurable drive type
+ 2Eh	CMOS MSB checksum over 10-2D
+ 2Fh	CMOS LSB checksum over 10-2D
+ 30h	LSB of extended memory found above 1Mb at POST
+ 31h	MSB of extended memory found above 1Mb at POST
+ 32h	date century in BCD
+ 33h	information flags
+ 34h-3Fh	reserved
+ 35h-3Ch commonly used for second user-configurable drive type
+ 3Dh-3Eh word to 82335 MCR memory config register at [22] (Phoenix)
+ 42h-4Ch AMI 1990 Hyundai super-NB368S notebook
+	???
+ 54h-57h AMI 1990 Hyundai super-NB368S notebook
+	???
+ 5Ch-5Dh AMI 1990 Hyundai super-NB368S notebook
+	???
+ 60h-61h AMI 1990 Hyundai super-NB368S notebook
+	???
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040006B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:006Bh - POST LAST UNEXPECTED INTERRUPT (XT and later)
+Size:	BYTE
+Desc:	this is a bitmask of IRQs which have occurred while the corresponding
+	  interrupt vector points at the default system BIOS handler
+	  (bit 0 = IRQ0 to bit 7 = IRQ7; bit 2 = IRQ8-15 on AT and later)
+SeeAlso: INT 0F"IRQ7",INT 70"IRQ8",INT 77"IRQ15"
+

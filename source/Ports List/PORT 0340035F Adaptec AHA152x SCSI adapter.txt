@@ -1,0 +1,356 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0340035F
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0340-035F -  Adaptec AHA-152x SCSI adapter
+Range:	alternate address at 0140
+Note:	Adaptec AHA-152x SCSI adapter series are based upon Adaptec
+	  AIC-6260/6360/6370 SCSI controllers
+SeeAlso: PORT xxxxh"Adaptec AIC-78xx"
+
++000  RW  SCSI sequence control register (SCSISEQ) (see #P0600)
++001  RW  SCSI transfer control register 0 (SXFRCTL0) (see #P0601)
++002  RW  SCSI transfer control register 1 (SXFRCTL1) (see #P0602)
++003  R-  SCSI control signal read  register (SCSISIGI) (see #P0603)
++003  -W  SCSI control signal write register (SCSISIGO) (see #P0604)
++004  RW  SCSI rate control register (SCSIRATE) (see #P0605)
++005  RW  SCSI ID register (SCSIID) (see #P0606)
++006  RW  SCSI latched data register (SCSIDAT)
+	  read/write causes -ACK to pulse
++007  R?  SCSI data bus register (SCSIBUS)
++008  RW  SCSI transfer count register (STCNT) (3 bytes long)
++00B  R-  SCSI status register 0 (SSTAT0) (see #P0607)
++00B  -W  clear SCSI interrupt register 0 (CLRSINT0) (see #P0608)
++00C  R-  SCSI status register 1 (SSTAT1) (see #P0609)
++00C  -W  clear SCSI interrupt register 1 (CLRSINT1) (see #P0610)
++00D  R-  SCSI status register 2 (SSTAT2) (see #P0611)
++00E  R-  SCSI status register 3 (SSTAT3) (see #P0612)
++00E  ?W  SCSI test control register (SCSITEST) (see #P0613)
++00F  R-  SCSI status register 4 (SSTAT4) (see #P0614)
++00F  -W  clear SCSI interrupt register 4 (CLRSINT4) (see #P0615)
++010  RW  SCSI interrupt mode register 0 (SIMODE0) (see #P0616)
++011  RW  SCSI interrupt mode register 1 (SIMODE1) (see #P0617)
++012  RW  DMA control register 0 (DMACNTRL0) (see #P0618)
++013  RW  DMA control register 1 (DMACNTRL1) (see #P0619)
++014  RW  DMA status register (DMASTAT) (see #P0620)
++015  RW  FIFO status register (FIFOSTAT)
++016w RW  data port register (DATAPORT)
++018  RW  burst control register (BRSTCNTRL) (see #P0621)
++01A  RW  port A register (PORTA) (see #P0622)
++01B  RW  port B register (PORTB) (see #P0623)
++01C  RW  revision register (REV)
++01D  RW  stack register (STACK)
++01E  RW  test register (TEST) (see #P0624)
++01F  R?  (AIC-6360+) ID register (ID)
+	  32-byte ID string can be read here
+Notes:	the SCSI latched data register is used to transfer data on the SCSI bus
+	  during automatic or manual PIO mode
+	the SCSI data bus register reflects the state of SCSI data bus lines
+	  directly
+
+Bitfields for SCSI sequence control register (SCSISEQ):
+Bit(s)	Description	(Table P0600)
+ 7	enable target mode (TEMODEO)
+ 6	enable selection out (ENSELO)
+ 5	enable selection in  (ENSELI)
+ 4	enable reselection in (ENRESELI)
+ 3	"ENAUTOATNO"
+ 2	"ENAUTOATNI"
+ 1	enable auto -ATN on parity error (ENAUTOATNP)
+ 0	SCSI reset out (SCSIRSTO)
+Note:	each bit when set starts a specific SCSI sequence on the bus
+SeeAlso: #P0602,#P0607,#P0608,#P0616
+
+Bitfields for SCSI transfer control register 0 (SXFRCTL0):
+Bit(s)	Description	(Table P0601)
+ 7	SCSI FIFO enable (SCSIEN)
+ 6	DMA  FIFO enable (DMAEN)
+ 5	channel enable (CHEN)
+ 4	clear SCSI transfer counter (CLRSTCNT)
+ 3	SCSI PIO enable (SPIOEN)
+ 2	SCAM enable (SCAMEN)
+ 1	clear channel (CLRCH)
+ 0	reserved
+SeeAlso: #P0602,#P0607,#P0611,#P0618,#P0620
+
+Bitfields for SCSI transfer control register 1 (SXFRCTL1):
+Bit(s)	Description	(Table P0602)
+ 7	bit bucket (BITBUCKET)
+ 6	SCSI counter wrap enable (SWRAPEN)
+ 5	enable SCSI parity check (ENSPCHK)
+ 4-3	selection time-out select (STIMESEL)
+	00 256 ms
+	01 128 ms
+	10 64  ms
+	11 32  ms
+ 2	enable selection timer (ENSTIMER)
+ 1	byte align (BYTEALIGN)
+ 0	reserved
+SeeAlso: #P0600,#P0601
+
+Bitfields for SCSI control signal read register (SCSISIGI):
+Bit(s)	Description	(Table P0603)
+ 7	-C/D input (CDI)
+ 6	-I/O input (IOI)
+ 5	-MSG input (MSGI)
+ 4	-ATN input (ATNI)
+ 3	-SEL input (SELI)
+ 2	-BSY input (BSYI)
+ 1	-REQ input (REQI)
+ 0	-ACK input (ACKI)
+Note:	this register reflects the actual state of the SCSI bus control lines
+SeeAlso: #P0604
+
+Bitfields for SCSI control signal write register (SCSISIGO):
+Bit(s)	Description	(Table P0604)
+ 7	-C/D output (CDO)
+ 6	-I/O output (IOO)
+ 5	-MSG output (MSGO)
+ 4	-ATN output (ATNO)
+ 3	-SEL output (SELO)
+ 2	-BSY output (BSYO)
+ 1	-REQ output (REQO)
+ 0	-ACK output (ACKO)
+Notes:	writing to this register modifies the control signals on the bus; only
+	  those signals that are allowed in the current mode (initiator/target)
+	  are asserted
+	bits 7-5 in initiator mode represent the expected SCSI bus phase and
+	  can be used to trigger phase mismatch and phase change interrupts
+SeeAlso: #P0603
+
+Bitfields for SCSI rate control register (SCSIRATE):
+Bit(s)	Description	(Table P0605)
+ 7	reserved
+ 6-4	synchronous transfer rate (SXFR)
+	rate = 100 + SXFR * 25 (ns)
+ 3-0	synchronous offset (SOFS)
+Note:	contents of this register determine the synchronous SCSI data transfer
+	  rate and the maximum synchronous -REQ/-ACK offset; an offset of 0 in
+	  the bits 3-0 disables synchronous data transfers, any offset value
+	  greater than 0 enables snchronous transfers
+SeeAlso: #P0611
+
+Bitfields for SCSI ID register (SCSIID):
+Bit(s)	Description	(Table P0606)
+ 7	reserved
+ 6-4	our ID (OID)
+ 3	reserved
+ 2-0	target ID (TID)
+Note:	this register contains the SCSI ID of the board and the current target
+	  on the selected channel
+SeeAlso: #P0982
+
+Bitfields for SCSI status register 0 (SSTAT0):
+Bit(s)	Description	(Table P0607)
+ 7	target mode (TARGET)
+ 6	selection out done (SELDO)
+ 5	selection in  done (SELDI)
+ 4	selection in progress (SELINGO)
+ 3	SCSI counter wrap (SWRAP)
+ 2	SCSI PIO done  (SDONE)
+ 1	SCSI PIO ready (SPIORDY)
+ 0	DMA done (DMADONE)
+Note:	bits 1-0 and 6-4 are self-clearing
+	bit 2 is set when the SCSI transfer count register decrements to 0
+SeeAlso: #P0600,#P0601,#P0608,#P0616
+
+Bitfields for clear SCSI interrupt register 0 (CLRSINT0):
+Bit(s)	Description	(Table P0608)
+ 7	set SCSI PIO done? (SETSDONE)
+ 6	clear selection out done (CLRSELDO)
+ 5	clear selection in  done (CLRSELDI)
+ 4	clear selection in progress (CLRSELINGO)
+ 3	clear SCSI counter wrap (CLRSWRAP)
+ 2	clear SCSI PIO done (CLRSDONE)
+ 1	clear SCSI PIO ready (CLRSPIORDY)
+ 0	reserved
+Note:	writing 1 to a bit clears the associated SCSI interrupt; writing 1 to
+	  the bits 3-2 also clears the asscoiated bits in SSTAT0
+SeeAlso: #P0600,#P0601,#P0607,#P0616
+
+Bitfields for SCSI status register 1 (SSTAT1):
+Bit(s)	Description	(Table P0609)
+ 7	selection time-out (SELTO)
+ 6	(target) "ATNTARG"
+ 5	SCSI reset in (SCSIRSTI)
+ 4	phase mismatch (PHASEMIS)
+ 3	bus free (BUSFREE)
+ 2	SCSI parity error (SCSIPERR)
+ 1	phase changed (PHASECHG)
+ 0	-REQ asserted (REQINIT)
+Notes:	bit 0 can be cleared by setting bit 0 in the clear SCSI interrupt 1
+	  register (CLRSINT1), and by asserting -ACK as well
+	bit 4 is self-clearing
+SeeAlso: #P0602,#P0603,#P0604,#P0610,#P0617
+
+Bitfields for clear SCSI interrupt register 1 (CLRSINT1):
+Bit(s)	Description	(Table P0610)
+ 7	clear selection time-out (CLRSELTIMEO)
+ 6	clear -ATN output (CLRATNO)
+ 5	clear SCSI reset in (CLRSCSIRSTI)
+ 4	reserved
+ 3	clear bus free (CLRBUSFREE)
+ 2	clear SCSI parity error (CLRSCSIPERR)
+ 1	clear phase changed (CLRPHASECHG)
+ 0	clear -REQ asserted (CLRREQINIT)
+Note:	writing 1 to a bit clears the associated SCSI interrupt; writing 1 to
+	  the bits 3-0, 5, and 7 also clears the associated bits in SSTAT1
+SeeAlso: #P0603,#P0604,#P0609,#P0617
+
+Bitfields for SCSI status register 2 (SSTAT2):
+Bit(s)	Description	(Table P0611)
+ 7-6	reserved
+ 5	"SOFFSET"
+ 4	SCSI FIFO empty (SEMPTY)
+ 3	SCSI FIFO full	(SFULL)
+ 2-0	SCSI FIFO count (SFCNT)
+Note:	the SCSI FIFO is 8 bytes long; bit 3 is set when all the 8 bytes are
+	  full (bits 2-0 are clear)
+SeeAlso: #P0601,#P0605,#P0614,#P0615
+
+Bitfields for SCSI status register 3 (SSTAT3):
+Bit(s)	Description	(Table P0612)
+ 7-4	"SCSICNT"
+ 3-0	"OFFCNT"
+SeeAlso: #P0605,#P0611
+
+Bitfields for SCSI test control register (SCSITEST):
+Bit(s)	Description	(Table P0613)
+ 7-4	reserved
+ 3	"SCTESTU"
+ 2	"SCTESTD"
+ 1	reserved
+ 0	"STCTEST"
+SeeAlso: #P0624
+
+Bitfields for SCSI status register 4 (SSTAT4):
+Bit(s)	Description	(Table P0614)
+ 7-3	reserved
+ 2	"SYNCERR"
+ 1	FIFO write error? (FWERR)
+ 0	FIFO read  error? (FRERR)
+SeeAlso: #P0611,#P0615
+
+Bitfields for clear SCSI interrupt register 4 (CLRSINT4):
+Bit(s)	Description	(Table P0615)
+ 7-3	reserved
+ 2	"CLRSYNCERR"
+ 1	clear FIFO write error? (CLRFWERR)
+ 0	clear FIFO read	 error? (CLRFRERR)
+SeeAlso: #P0611,#P0614
+
+Bitfields for SCSI interrupt mode register 0 (SIMODE0):
+Bit(s)	Description	(Table P0616)
+ 7	reserved
+ 6	enable selection out done (ENSELDO)
+ 5	enable selection in  done (ENSELDI)
+ 4	enable selection in progress (ENSELINGO)
+ 3	enable SCSI counter wrap (ENSWRAP)
+ 2	enable SCSI PIO done  (ENSDONE)
+ 1	enable SCSI PIO ready (ENSPIORDY)
+ 0	enable DMA done (ENDMADONE)
+Note:	setting any bit will enable the corresponding function to interrupt
+	  via the IRQ pin
+SeeAlso: #P0607,#P0608,#P0617,#P0618
+
+Bitfields for SCSI interrupt mode register 1 (SIMODE1):
+Bit(s)	Description	(Table P0617)
+ 7	enable selection time-out (ENSELTIMO)
+ 6	(target) "ENATNTARG"
+ 5	enable SCSI reset (ENSCSIRST)
+ 4	enable phase mismatch (ENPHASEMIS)
+ 3	enable bus free (ENBUSFREE)
+ 2	enable SCSI parity error (ENSCSIPERR)
+ 1	enable phase changed (ENPHASECHG)
+ 0	enable -REQ asserted (ENREQINIT)
+Note:	setting a bit enables the corresponding function to interrupt via the
+	  IRQ pin
+SeeAlso: #P0609,#P0610,#P0616
+
+Bitfields for DMA control register 0 (DMACNTRL0):
+Bit(s)	Description	(Table P0618)
+ 7	enable DMA (ENDMA)
+ 6	=0 16-bit mode
+	=1 8-bit mode (8BIT)
+ 5	=0 PIO mode
+	=1 DMA mode
+ 4	double word PIO (DWORDPIO)
+ 3	=0 read
+	=1 write
+ 2	interrupt enable (INTEN)
+ 1	reset FIFO (RSTFIFO)
+ 0	software interrupt (SWINT)
+Note:	write to this register takes the controller from the power down mode
+SeeAlso: #P0601
+
+Bitfields for DMA control register 1 (DMACNTRL1):
+Bit(s)	Description	(Table P0619)
+ 7	power down (PWRDWN)
+ 6	"ENSTK32"
+ 5	reserved
+ 4-0	stack pointer? (STK)
+
+Bitfields for DMA status register (DMASTAT):
+Bit(s)	Description	(Table P0620)
+ 7	"ATDONE"
+ 6	word ready (WORDRDY)
+ 5	interrupt status (INTSTAT)
+ 4	DMA FIFO full  (DFIFOFULL)
+ 3	DMA FIFO empty (DFIFOEMP)
+ 2	(AIC-6360+?) DMA FIFO half-full? (DFIFOHF)
+ 1	(AIC-6360+?) double word ready (DWORDRDY)
+ 0	reserved
+SeeAlso: #P0601,#P0618
+
+Bitfields for burst control register (BRSTCNTRL):
+Bit(s)	Description	(Table P0621)
+ 7-4	bus on	time (BON)
+ 3-0	bus off time (BOFF)
+Note:	the bus on/off times are in microseconds
+SeeAlso: #P0624
+
+Bitfields for port A register (PORTA):
+Bit(s)	Description	(Table P0622)
+ 7	transfer mode
+	=0 PIO
+	=1 DMA
+ 6	boot enabled (BOOT)
+ 5-4	message classes (MSGCLASSES)
+	00 #4
+	01 #0, #1, #2, #3, #4
+	10 #0, #3, #4
+	11 #0, #4
+ 3	initial synchronous negotiation enabled (SYNCNEG)
+ 2	target disconnect enabled (TARDISC)
+ 1-0	reserved
+SeeAlso: #P0623
+
+Bitfields for port B register (PORTB):
+Bit(s)	Description	(Table P0623)
+ 7	SCSI parity enabled (PARITY)
+ 6-5	DMA channel (DMACHAN)
+	00 DMA channel 0
+	01 DMA channel 5
+	10 DMA channel 6
+	11 DMA channel 7
+ 4-3	"IRQ"
+	00,11 IRQ12
+	01 IRQ10
+	10 IRQ11
+ 2-0	SCSI ID
+SeeAlso: #P0622
+
+Bitfields for test register (TEST):
+Bit(s)	Description	(Table P0624)
+ 7	reserved
+ 6	bus off timer test (BOFFTMR)
+ 5	bus on	timer test (BONTMR)
+ 4	SCSI transfer count register high   byte test (STCNTH)
+ 3	SCSI transfer count register middle byte test (STCNTM)
+ 2	SCSI transfer count register low    byte test (STCNTL)
+ 1	SCSI block test (SCSIBLK)
+ 0	DMA  block test (DMABLK)
+SeeAlso: #P0613,#P0621
+

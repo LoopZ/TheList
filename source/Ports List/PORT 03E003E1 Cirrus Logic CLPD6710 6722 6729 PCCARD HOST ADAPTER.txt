@@ -1,0 +1,584 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03E003E1
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03E0-03E1 - Cirrus Logic CL-PD6710/6722/6729 - PC-CARD HOST ADAPTER
+Notes:	the CL-PD6729 has compatible registers, but the port address
+	  is set via the PCI configuration space (two consecutive ports
+	  starting at Base Address 0)
+	the CL-PD6832 supports a superset of this register set
+SeeAlso: PORT 03E0h"CardBus"
+
+03E0  ?W  index for data register (see #P0822)
+03E1  RW  register data
+
+Bitfields for Cirrus Logic CL-PD6710/6722 index register:
+Bit(s)	Description	(Table P0822)
+ 7	device number (when dual CL-PD67xx's are used)
+	(CL-PD6729) reserved
+ 6	socket number (CL-PD6722 dual-socket adapter only)
+ 5-0	register index (see #P0823)
+
+(Table P0823)
+Values for Cirrus Logic CL-PD6710/6722 register number:
+ 00h	chip revision (affects both sockets) (see #P0824)
+ 01h	interface status (see #P0825)
+ 02h	power control (see #P0826)
+ 03h	interrupt and general control (see #P0827)
+ 04h	card status change (see #P0828)
+ 05h	management interrupt configuration (see #P0829)
+ 06h	mapping enable (see #P0830)
+ 07h	I/O window control (see #P0831)
+ 08h	system I/O map 0 start address low
+ 09h	system I/O map 0 start address high
+ 0Ah	system I/O map 0 end address low
+ 0Bh	system I/O map 0 end address high
+ 0Ch	system I/O map 1 start address low
+ 0Dh	system I/O map 1 start address high
+ 0Eh	system I/O map 1 end address low
+ 0Fh	system I/O map 1 end address high
+ 10h	system memory map 0 start address low (address bits 19-12)
+ 11h	system memory map 0 start address high (see #P0832)
+ 12h	system memory map 0 end address low (address bits 19-12)
+ 13h	system memory map 0 end address high (see #P0833)
+ 14h	card memory map 0 offset address low (address bits 19-12)
+ 15h	card memory map 0 offset address high (see #P0834)
+ 16h	misc control 1 (see #P0835)
+ 17h	FIFO control (see #P0836)
+ 18h	system memory map 1 start address low (address bits 19-12)
+ 19h	system memory map 1 start address high (see #P0832)
+ 1Ah	system memory map 1 end address low (address bits 19-12)
+ 1Bh	system memory map 1 end address high (see #P0833)
+ 1Ch	card memory map 1 offset address low (address bits 19-12)
+ 1Dh	card memory map 1 offset address high (see #P0834)
+ 1Eh	misc control 2 (affects both sockets) (see #P0837)
+ 1Fh	chip information (affects both sockets) (see #P0838)
+ 20h	system memory map 2 start address low (address bits 19-12)
+ 21h	system memory map 2 start address high (see #P0832)
+ 22h	system memory map 2 end address low (address bits 19-12)
+ 23h	system memory map 2 end address high (see #P0833)
+ 24h	card memory map 2 offset address low (address bits 19-12)
+ 25h	card memory map 2 offset address high (see #P0834)
+ 26h	ATA control (see #P0839)
+ 27h	scratchpad
+ 28h	system memory map 3 start address low (address bits 19-12)
+ 29h	system memory map 3 start address high (see #P0832)
+ 2Ah	system memory map 3 end address low (address bits 19-12)
+ 2Bh	system memory map 3 end address high (see #P0833)
+ 2Ch	card memory map 3 offset address low (address bits 19-12)
+ 2Dh	card memory map 3 offset address high (see #P0834)
+ 2Eh	(CL-PD6722/6729) extended index for extended data register (see #P0842)
+ 2Fh	extended data
+ 30h	system memory map 4 start address low (address bits 19-12)
+ 31h	system memory map 4 start address high (see #P0832)
+ 32h	system memory map 4 end address low (address bits 19-12)
+ 33h	system memory map 4 end address high (see #P0833)
+ 34h	card memory map 4 offset address low (address bits 19-12)
+ 35h	card memory map 4 offset address high (see #P0834)
+ 36h	card I/O map 0 offset address low (see #P0840)
+ 37h	card I/O map 0 offset address high (address bits 15-8)
+ 38h	card I/O map 1 offset address low (see #P0840)
+ 39h	card I/O map 1 offset address high (address bits 15-8)
+ 3Ah	setup timing 0 (see #P0841)
+ 3Bh	command timing 0 (see #P0841)
+ 3Ch	recovery timing 0 (see #P0841)
+ 3Dh	setup timing 1 (see #P0841)
+ 3Eh	command timing 1 (see #P0841)
+ 3Fh	recovery timing 1 (see #P0841)
+SeeAlso: #P0822
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 chip revision:
+Bit(s)	Description	(Table P0824)
+ 7-6	interface ID (read-only)
+	00 = I/O only
+	01 = memory only
+	10 = I/O and memory
+	11 = reserved
+ 5-4	reserved (read-only)
+ 3-0	revision (read-only)
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 interface status:
+Bit(s)	Description	(Table P0825)
+ 7	-VPP_VALID pin status
+	0 = -VPP_VALID high
+	1 = -VPP_VALID low (asserted)
+	(CL-PD6729) reserved (1)
+ 6	card power on
+ 5	(memory card) ready
+ 4	(memory card) write protect
+ 3-2	card detect status
+	00 = no card or card not fully inserted
+	01 = card not fully inserted
+	10 = card not fully inserted
+	11 = card fully inserted
+ 1-0	(memory card) battery voltage
+	00 = card data lost
+	01 = battery low warning
+	10 = card data lost
+	11 = battery/data ok
+	(I/O card) status change (ignore bit 1)
+Note:	this register is read-only
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 power control:
+Bit(s)	Description	(Table P0826)
+ 7	card enable (if card present (register 01h bits 3-2 = 11) and power
+	  supplied (bit 4 = 1))
+ 6	reserved (82365SL compatibility)
+ 5	auto-power enable
+ 4	Vcc power on (if bit 5 = 0, or bit 5 = 1 and register 01h
+	  bits 3-2 = 11) (voltage selected by register 16h bit 1)
+ 3-2	reserved (82365SL compatibility)
+ 1-0	Vpp1 power
+	00 = zero V
+	01 = selected card Vcc
+	10 = +12V
+	11 = zero V
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 interrupt and general control:
+Bit(s)	Description	(Table P0827)
+ 7	(I/O card) ring indicate enable
+ 6	card reset signal
+	0 = active
+	1 = inactive
+ 5	card interface mode
+	0 = memory card
+	1 = I/O card
+ 4	management interrupt
+	0 = selected by register 05h bits 7-4
+	1 = redirected to -INTR line
+	    (CL-PD6729) reserved
+ 3-0	card IRQ select
+	0000 = IRQ disabled
+	0001-0010 = reserved
+	0011-0101 = IRQ3-IRQ5 (INTA#-INTC# on CL-PD6729)
+	0110 = reserved
+	0111 = IRQ7 (INTD# on CL-PD6729)
+	1000 = reserved
+	1001 = IRQ9 (may be used as ISA bus DACK on CL-PD6722)
+	1010 = IRQ10 (may be used as ISA bus DRQ on CL-PD6722)
+	1011 = IRQ11
+	1100 = IRQ12 (may be used for LED on CL-PD6710/6722)
+	1101 = reserved
+	1110 = IRQ14 (may be used as external clock input on CL-PD6729)
+	1111 = IRQ15 (may be used as ring indicate output)
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 card status change:
+Bit(s)	Description	(Table P0828)
+ 7-4	reserved (0)
+ 3	card detect change
+ 2	ready change (always 0 for I/O card)
+ 1	battery warning change (ignore on I/O card)
+ 0	(memory card) battery dead change
+	(I/O card) status change
+Note:	reading this read-only register resets all bits to 0
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 management interrupt config:
+Bit(s)	Description	(Table P0829)
+ 7-4	management IRQ
+	0000 = IRQ disabled
+	0001-0010 = reserved
+	0011-0101 = IRQ3-IRQ5 (INTA#-INTC# on CL-PD6729)
+	0110 = reserved
+	0111 = IRQ7 (INTD# on CL-PD6729)
+	1000 = reserved
+	1001 = IRQ9 (on CL-PD6722 may be used as ISA bus DACK)
+	1010 = IRQ10 (on CL-PD6722 may be used as ISA bus DRQ)
+	1011 = IRQ11
+	1100 = IRQ12 (on CL-PD6710/6722 may be used for LED)
+	1101 = reserved
+	1110 = IRQ14 (on CL-PD6729 may be used as external clock input)
+	1111 = IRQ15 (may be used as ring indicate output)
+ 3	management interrupt on card detect change enable
+ 2	management interrupt on ready change enable
+ 1	management interrupt on battery warning change enable (ignored on
+	  I/O card)
+ 0	(memory card) management interrupt on battery dead change enable
+	(I/O card) management interrupt on status change enable
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 mapping enable:
+Bit(s)	Description	(Table P0830)
+ 7	I/O map 1 enable
+ 6	I/O map 0 enable
+ 5	reserved (82365SL compatibility: MEMCS16 full decode)
+ 4	memory map 4 enable
+ 3	memory map 3 enable
+ 2	memory map 2 enable
+ 1	memory map 1 enable
+ 0	memory map 0 enable
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 I/O window control:
+Bit(s)	Description	(Table P0831)
+ 7	timing register select 1
+	0 = accesses made with timings specified in timer set 0
+	1 = accesses made with timings specified in timer set 1
+ 6	reserved (82365SL compatibility)
+ 5	I/O window 1 auto-size enable (size determined by -IOIS16 signal) (set
+	  for proper ATA operation)
+ 4	I/O window 1 size (if bit 5 = 0)
+	0 = 8-bit data path
+	1 = 16-bit data path
+ 3	timing register select 0 (same values as bit 7)
+ 2	reserved (82365SL compatibility)
+ 1	I/O window 0 auto-size enable (size determined by -IOIS16 signal)
+ 0	I/O window 0 size (if bit 1 = 0) (same values as bit 4)
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 system memory map start high:
+Bit(s)	Description	(Table P0832)
+ 7	window data size
+	0 = 8-bit
+	1 = 16-bit
+ 6	reserved (82365SL compatibility)
+ 5-4	scratchpad
+ 3-0	start address bits 23-20
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 system memory map end high:
+Bit(s)	Description	(Table P0833)
+ 7-6	card timer
+	00 = timer set 0
+	01-11 = timer set 1
+ 5-4	scratchpad
+ 3-0	end address bits 23-20
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 card memory map offset high:
+Bit(s)	Description	(Table P0834)
+ 7	window write protect enable
+ 6	-REG active for window accesses
+ 5-0	offset address bits 25-20
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 misc control 1:
+Bit(s)	Description	(Table P0835)
+ 7	INPACK enable (no effect on CL-PD6729)
+ 6-5	scratchpad
+ 4	speaker enable
+ 3	system IRQ triggering
+	0 = level
+	1 = pulse
+ 2	management interrupt triggering (as for bit 3)
+ 1	Vcc voltage
+	0 = 5V
+	1 = 3.3V
+ 0	(CL-PD6710) voltage detect
+	0 = 3.3V card detected
+	0 = old or 5V card detected
+	(CL-PD6722) reserved (A_GPSTB/B_GPSTB level read on some versions)
+	(CL-PD6729) multimedia enable (tri-state socket address lines A25-4)
+	  (register 2Fh extended index 25h bit 7 must be 1)
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 FIFO control:
+Bit(s)	Description	(Table P0836)
+ 7	(read) FIFO status
+	0 = data in FIFO
+	1 = FIFO empty
+	(write) FIFO flush
+	0 = no operation
+	1 = flush FIFO
+ 6-0	scratchpad
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 misc control 2:
+Bit(s)	Description	(Table P0837)
+ 7	IRQ15 connected to ring indicate pin
+ 6	(CL-PD6710/6729) reserved
+	(CL-PD6722) DMA system enable
+ 5	floppy change bit compatibility enable (tri-state bit 7 of socket I/O
+	  at addresses 3F7h and 377h)
+	(CL-PD6729) reserved
+ 4	drive LED enable (should be set to 0 in memory card interface mode)
+	(CL-PD6729) reserved
+ 3	core voltage
+	0 = 3.3V
+	1 = 5V
+ 2	suspend mode enable
+ 1	low-power dynamic mode
+	0 = clock always runs
+	1 = stop clock when possible (normal operation)
+ 0	frequency synthesizer bypass
+	0 = internal clock = CLK input * 7/4 (normal operation)
+	1 = internal clock = CLK input
+	(CL-PD6729) external clock enable
+	0 = internal clock = PCI_CLK input / 2
+	1 = internal clock = IRQ14/EXT_CLK / 2
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 chip information:
+Bit(s)	Description	(Table P0838)
+ 7-6	Cirrus Logic host-adapter identification (read-only)
+	00 = second read after I/O write to this register
+	11 = first read after I/O write to this register
+ 5-0	(CL-PD6729) CL-PD6729 revision (read-only)
+	21h = register 2Fh extended indexes 34h-3Bh indicate chip revision and
+	  features
+ 5	(CL-PD6710/6722) CL-PD67xx sockets (read-only)
+	0 = single (CL-PD6710)
+	1 = dual (CL-PD6722)
+ 4-1	(CL-PD6710/6722) CL-PD67xx revision (read-only)
+ 0	(CL-PD6710) reserved (0) (read-only)
+	(CL-PD6722) reserved (1) (read-only)
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 ATA control:
+Bit(s)	Description	(Table P0839)
+ 7	(ATA mode) A25 / CSEL pin value (vendor specific)
+ 6	(ATA mode) A24 / M/S pin value (vendor specific)
+ 5	(ATA mode) A23 / VU pin value (vendor specific)
+ 4	(ATA mode) A22 pin value (vendor specific)
+ 3	(ATA mode) A21 pin value (vendor specific)
+ 2	scratchpad
+ 1	speaker is LED input (if register 1Eh bit 4 = 1) (should be set to 0
+	  in memory card interface mode)
+	(CL-PD6729) speaker is LED input (if register 2Fh extended index 03h
+	  bit 4 = 1) (should be set to 0 in memory card interface mode)
+ 0	ATA mode enable
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 card I/O map offset address low:
+Bit(s)	Description	(Table P0840)
+ 7-1	offset address bits 7-1
+ 0	reserved (must be 0)
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6710/6722/6729 setup/command/recovery timing:
+Bit(s)	Description	(Table P0841)
+ 7-6	prescaler
+	00 = 1
+	01 = 16
+	10 = 256
+	11 = (CL-PD6710/6722) 8192
+	     (CL-PD6729) 4096
+ 5-0	multiplier value
+Notes:	internal clock cycles = (prescalar * multiplier) + 1
+	changes take effect immediately and should only be changed when FIFO
+	  is empty (register 17h bit 7 = 1)
+SeeAlso: #P0823
+
+(Table P0842)
+Values for Cirrus Logic CL-PD6722/6729 extended index:
+ 00h	scratchpad
+ 01h	(CL-PD6722) data mask 0 (see #P0843)
+	(CL-PD6729) reserved
+ 02h	(CL-PD6722) data mask 1 (see #P0843)
+	(CL-PD6729) reserved
+ 03h	extension control 1 (see #P0844)
+ 04h	(CL-PD6722) maximum DMA acknowledge delay (see #P0845)
+	(CL-PD6729) reserved
+ 05h-09h (CL-PD6722) reserved
+ 05h	(CL-PD6729) system memory map 0 upper address (start/end address
+	  bits 31-24)
+ 06h	(CL-PD6729) system memory map 1 upper address (start/end address
+	  bits 31-24)
+ 07h	(CL-PD6729) system memory map 2 upper address (start/end address
+	  bits 31-24)
+ 08h	(CL-PD6729) system memory map 3 upper address (start/end address
+	  bits 31-24)
+ 09h	(CL-PD6729) system memory map 4 upper address (start/end address
+	  bits 31-24)
+ 0Ah	(CL-PD6722) external data (see #P0846)
+	(CL-PD6729 socket B) external data (see #P0847)
+ 0Bh	(CL-PD6722) extension control 2 (see #P0848)
+ 25h	(CL-PD6729) misc. control 3 (see #P0849)
+---CL-PD6729 socket A---
+ 34h	mask revision byte (read-only)
+ 35h	product ID byte (read-only) (see #P0850)
+ 36h	device capability byte A (read-only) (see #P0851)
+ 37h	device capability byte B (read-only) (see #P0852)
+ 38h	device implementation byte A (see #P0853)
+ 39h	device implementation byte B (see #P0854)
+ 3Ah	device implementation byte C (see #P0855)
+ 3Bh	device implementation byte D (see #P0856)
+SeeAlso: #P0823
+
+Bitfields for Cirrus Logic CL-PD6722 data mask:
+Bit(s)	Description	(Table P0843)
+ 7-0	data mask for corresponding I/O map
+	0 = no mask
+	1 = mask corresponding bit from data
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6722/6729 extension control 1:
+Bit(s)	Description	(Table P0844)
+ 7-6	(CL-PD6722) DMA mode
+	00 = disabled
+	01 = enabled, INPACK used as active-low DREQ input
+	10 = enabled, WP/IOIS16 used as active-low DREQ input
+	11 = enabled, BVD2/SPKR used as active-low DREQ input
+	(CL-PD6729) reserved
+ 5	pull-ups disable
+ 4-3	(CL-PD6722) reserved
+ 4	(CL-PD6729) management IRQ output invert
+	0 = management IRQ is active-high
+	1 = management IRQ is active-low and open-drain
+ 3	(CL-PD6729) card IRQ output invert
+	0 = card IRQ is active-high
+	1 = card IRQ is active-low and open-drain
+ 2	LED activity enable
+ 1	auto power clear disable (register 02h bit 4 is not cleared when card
+	  is removed)
+ 0	Vcc power bit (register 02h bit 4) lock enable
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6722 maximum DMA acknowledge delay:
+Bit(s)	Description	(Table P0845)
+ 7-0	maximum DMA acknowledge delay
+	10h = 14 clocks
+	20h = 10 clocks
+	30h = 18 clocks
+	40h = 8 clocks
+	50h = 16 clocks
+	60h = 12 clocks
+	80h = 7 clocks
+	90h = 15 clocks
+	A0h = 11 clocks
+	B0h = 19 clocks
+	C0h = 9 clocks
+	D0h = 17 clocks
+	E0h = 13 clocks
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6722 external data (socket A):
+Bit(s)	Description	(Table P0846)
+--- register 2Fh extended index 0Bh bits 4-3 = 00 ---
+ 7-0	(socket A) scratchpad
+ 7-4	(socket B) scratchpad
+ 3	(socket B) socket B VS2# input level (read-only)
+ 2	(socket B) socket B VS1# input level (read-only)
+ 1	(socket B) socket A VS2# input level (read-only)
+ 0	(socket B) socket A VS1# input level (read-only)
+--- register 2Fh extended index 0Bh bits 4-3 = 01 ---
+ 7-0	external read port
+--- register 2Fh extended index 0Bh bits 4-3 = 10 ---
+ 7-0	external write port (read returns value written)
+--- register 2Fh extended index 0Bh bits 4-3 = 10 ---
+ 7-0	reserved
+------
+Note:	for software compatibility this register should only be used as write
+	  port, and bits 7-4 should be ignored
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 external data:
+Bit(s)	Description	(Table P0847)
+ 7-4	reserved
+ 3	socket B VS2# input level (read-only)
+ 2	socket B VS1# input level (read-only)
+ 1	socket A VS2# input level (read-only)
+ 0	socket A VS1# input level (read-only)
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6722 extension control 2:
+Bit(s)	Description	(Table P0848)
+ 7-6	reserved (0)
+ 5	GPSTB output
+	0 = active-low
+	1 = active-high
+ 4	GPSTB on IOW
+	0 = A_GPSTB used as voltage sense
+	1 = A_GPSTB used to strobe I/O writes on SD15-8
+ 3	GPSTB on IOR
+	0 = B_GPSTB used as voltage sense
+	1 = B_GPSTB used to strobe I/O writes on SD15-8
+ 2	totem-pole GPSTB
+	0 = GPSTB outputs are open-collector
+	1 = GPSTB outputs are totem-pole (high level driven to +5V pin level
+	  instead of high-impedance)
+ 1-0	reserved (0)
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 misc. control 3:
+Bit(s)	Description	(Table P0849)
+ 7	multimedia arm enable
+ 6	multimedia expand enable (allows 24-bit video)
+ 5-0	reserved
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 product ID byte:
+Bit(s)	Description	(Table P0850)
+ 7-4	family code (read-only)
+	2h = CL-PD6729 family
+ 3-0	product code (read-only)
+--- family code = 2h ---
+	0h = CL-PD6729 PCI/PCMCIA controller, dual isolated sockets, 208 pin
+	1h-Fh = reserved
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 device capability byte A:
+Bit(s)	Description	(Table P0851)
+ 7	output LEDs (read-only)
+	0 = single LED
+	1 = LED per socket
+ 6	reserved (read-only)
+ 5	general purpose strobe (GPSTB) capable (read-only)
+ 4	reserved (read-only)
+ 3	DMA slave (read-only)
+ 2	IDE interface (read-only)
+ 1-0	number of sockets (read-only)
+	00 = two
+Note:	CL-PD6729 does not support GPSTB even if bit 5 = 1
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 device capability byte B:
+Bit(s)	Description	(Table P0852)
+ 7	extended definitions (read-only)
+	0 = not available (device capability and implementation definitions
+	  stop to extended register 3Bh)
+ 6-3	reserved (read-only)
+ 2	CLKRUN support (read-only)
+ 1	LOCK# support (read-only)
+ 0	CardBus transfer cycle support (read-only)
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 device implementation byte A:
+Bit(s)	Description	(Table P0853)
+ 7	RI_OUT wired to ring indicate circuitry
+ 6	hardware suspend wired to power management circuitry
+ 5	GBSTB B wired
+ 4	GBSTB A wired
+ 3	VS1/VS2 wired
+ 2	slave DMA wired
+ 1	sockets present 1
+ 0	sockets present 0
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 device implementation byte B:
+Bit(s)	Description	(Table P0854)
+ 7	reserved
+ 6	radio frequency rated sockets
+ 5	VPP_VCC 1A capable
+ 4	VPP 12V support
+ 3	x.xV capable
+ 2	y.yV capable
+ 1	5.0V capable
+ 0	3.3V capable
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 device implementation byte C:
+Bit(s)	Description	(Table P0855)
+ 7-5	reserved
+ 4	socket B wired for ZV operation
+ 3	socket A wired for ZV operation
+ 2	speaker wired to SPKR_OUT
+ 1	separate status LED for each socket
+ 0	status LED wired to LED_OUT#
+SeeAlso: #P0842
+
+Bitfields for Cirrus Logic CL-PD6729 device implementation byte D:
+Bit(s)	Description	(Table P0856)
+ 7	reserved
+ 6	external clock wired to EXT_CLK
+ 5-2	reserved
+ 1	LOCK# wired
+ 0	CLKRUN wired
+SeeAlso: #P0842
+

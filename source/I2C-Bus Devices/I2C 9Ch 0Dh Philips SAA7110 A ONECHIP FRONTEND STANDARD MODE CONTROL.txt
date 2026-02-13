@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C0D
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/0Dh - Philips SAA7110(A) ONE-CHIP FRONT-END - STANDARD/MODE CONTROL
+Access:	Write-Only
+Note:	Reset to 7Dh after RESET = 0 or power-on
+	  (refer to I2C 9Dh/00h and 9Dh/01h)
+SeeAlso: I2C 9Eh
+
+Bitfields for SAA7110(A) Standard/Mode Control:
+Bit(s)	Description (Table I0074)	(Table I0075)
+ 7	TV/VCR mode (=0 TV, =1 VCR)
+ 6-4	reserved (must be set to LOW)
+ 3	real time outputs mode
+	0 PLIN switched to output pin 39
+	1 ODD  switched to output pin 40
+ 2	HREF position select
+	0 position HREF as SAA7191
+	1 normal HREF position
+ 1	status byte select (refer to transmitter I2C 9Dh and 9Fh)
+	0 version status byte (refer to: I2C 9Dh/00h)
+	1 function status byte (refer to: I2C 9Dh/01h)
+ 0	SECAM mode
+

@@ -1,0 +1,162 @@
+--------------------------------------------------------------------------------
+ Unique ID: Mxxxxxxx0
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM xxxxh:xxx0h - Multiprocessor Specification - FLOATING POINTER STRUCTURE
+InstallCheck: scan paragraph boundaries for the signature string "_MP_",
+	  followed by a valid floating pointer structure (see #M0113)
+Range: any paragraph boundary in the first kilobyte of the XBDA, the last
+	kilobyte of conventional memory, or from F000h:0000h to F000h:FFE0h
+SeeAlso: MEM FEE00000h
+
+Format of Multiprocessor Specification Floating Pointer structure:
+Offset	Size	Description	(Table M0113)
+ 00h  4 BYTEs	signature "_MP_"
+ 04h	DWORD	physical address of MP configuration table (see #M0114)
+		00000000h if no configuration table
+ 08h	BYTE	length of this structure in paragraphs (currently 01h)
+ 09h	BYTE	revision of MP specification supported
+		01h = v1.1
+		04h = v1.4
+ 0Ah	BYTE	checksum (8-bit sum of entire structure, including this
+		  byte, must equal 00h)
+ 0Bh	BYTE	MP feature byte 1: system configuration type
+		00h: MP configuration table present
+		nonzero: default configuration implemented by system
+ 0Ch	BYTE	MP feature byte 2
+		bit 7: IMCR present
+		bits 6-0: reserved (0)
+ 0Dh  3	BYTEs	MP feature bytes 3-5 (reserved, must be 00h)
+
+Format of Multiprocessor Specification configuration table header:
+Offset	Size	Description	(Table M0114)
+ 00h  4 BYTEs	signature "PCMP"
+ 04h	WORD	length of base configuration table in bytes, including
+		  this header
+ 06h	BYTE	revision of MP specification supported
+		01h = v1.1
+		04h = v1.4
+ 07h	BYTE	checksum of entire base configuration table
+ 08h  8 BYTEs	OEM identifier
+ 10h 12 BYTEs	product ID
+ 1Ch	DWORD	physical address to OEM-defined configuration table
+		00000000h if not present
+ 20h	WORD	size of base OEM table in bytes (0000h if not present)
+ 22h	WORD	number of entries in variable portion of base table
+ 24h	DWORD	address of local APIC (see also MEM FEE0h:0020h)
+ 28h	WORD	length of extended entries following end of base table
+		  (in bytes)
+ 2Ah	BYTE	checksum for extended table entries (includes only
+		  extended entries following base table)
+ 2Ch	var	configuration table entries (see #M0115)
+SeeAlso: #M0113
+
+Format of Multiprocessor Specification configuration table entries:
+Offset	Size	Description	(Table M0115)
+ 00h	BYTE	entry type code
+		00h processor
+		01h bus
+		02h I/O APIC
+		03h I/IO interrupt assignment
+		04h local interrupt assignment
+		80h system address space mapping
+		81h bus hierarchy descriptor
+		82h compatibility bus address space modifier
+---processor---
+ 01h	BYTE	local APIC identifier
+ 02h	BYTE	local APIC version
+ 03h	BYTE	CPU flags
+		bit 0: processor usable
+		bit 1: bootstrap processor
+ 04h	WORD	CPU type
+		bits 11-8: CPU family
+		bits 7-4: CPU model
+		bits 3-0: stepping
+		(bits 11-0 all set indicate non-Intel-compatible CPU)
+ 06h  2 BYTEs	unused
+ 08h	DWORD	feature flags (as returned by Pentium CPUID instruction)
+ 0Ch  8 BYTEs	reserved
+---bus---
+ 01h	BYTE	bus ID (assigned sequentially from 00h by BIOS)
+ 02h  6 BYTEs	bus type (blank-padded ASCII string) (see #M0116)
+---I/O APIC---
+ 01h	BYTE	APIC identifier
+ 02h	BYTE	APIC version
+ 03h	BYTE	I/O APIC flags
+		bit 0: enabled
+		bits 7-1: reserved
+ 04h	DWORD	base address for APIC
+---I/O,local interrupt assignment---
+ 01h	BYTE	interrupt type
+		00h vectored interrupt (from APIC)
+		01h NMI
+		02h system management interrupt
+		03h vectored interrupt (from external PIC)
+ 02h	BYTE	APIC control (see #M0117)
+ 03h	BYTE	unused
+ 04h	BYTE	source bus identifier
+ 05h	BYTE	source bus IRQ
+ 06h	BYTE	destination I/O APIC identifier
+ 07h	BYTE	destination I/O APIC interrupt pin number
+---system address space mapping---
+ 01h	BYTE	entry length (14h)
+ 02h	BYTE	bus ID
+ 03h	BYTE	address type (00h I/O, 01h memory, 02h prefetch)
+ 04h	QWORD	starting address of region visible to bus
+ 0Ch	QWORD	length of region visible to bus
+---bus hierarchy descriptor---
+ 01h	BYTE	entry length (08h)
+ 02h	BYTE	bus ID
+ 03h	BYTE	bus information
+		bit 0: subtractive decoding
+ 04h	BYTE	ID of parent bus
+ 05h  3 BYTEs	reserved
+---compatibility bus address space modifier---
+ 01h	BYTE	entry length (08h)
+ 02h	BYTE	bus ID
+ 03h	BYTE	address modifier
+		bit 0: remove address ranges in predefined range list from
+			  bus's address space
+ 04h	DWORD	number indicating predefined address space range to be removed
+		00h ISA-compatible I/O range (x100h-x3FFh and aliases)
+		01h VGA-compatible I/O range (x3B0h-x3BBh,x3C0h-x3DFh,aliases)
+SeeAlso: #M0114
+
+(Table M0116)
+Values for Multiprocessor Specification bus name:
+ "CBUS"		Corollary CBus
+ "CBUSII"	Corollary CBus II
+ "EISA"
+ "FUTURE"	IEEE FutureBus
+ "INTERN"	internal bus
+ "ISA"
+ "MBI"		Multibus I
+ "MBII"		Multibus II
+ "MCA"		Microchannel
+ "MPI"
+ "MPSA"
+ "NUBUS"	Apple Macintosh NuBus
+ "PCI"
+ "PCMCIA"
+ "TC"		DEC TurboChannel
+ "VL"		VESA Local Bus
+ "VME"		VMEbus
+ "XPRESS"	Express System Bus
+SeeAlso: #M0115
+
+Bitfields for Multiprocessor Specification APIC control:
+Bit(s)	Description	(Table M0117)
+ 1-0	input signal polarity
+	00 conforms to bus specification
+	01 active high
+	10 reserved
+	11 active low
+ 3-2	trigger mode
+	00 conforms to bus specification
+	01 edge-triggered
+	10 reserved
+	11 level-triggered
+SeeAlso: #M0115
+

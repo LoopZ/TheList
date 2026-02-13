@@ -1,0 +1,158 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00240029
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0024-0029 - HEADLAND HTK340 SHASTA 386/486 CHIPSET
+
+0024  Rw  data port
+0028  ?W  index port to chipset registers (see #P0369,#P0370)
+
+(Table P0369)
+Values for Headland HT321 register index:
+ 00h R	chip/revision,read-only
+	  bit7-4: reserved (=0)
+	  bit3-0: chip revision, 0=A, 1=B, 3=D
+ 01h RW system clocking (default=00h)
+	  bit7-4: reserved (=0)
+	  bit3-0: ISA speed set
+ 02h RW system parameters (default=00h) (see #P0371)
+ 04h RW co-processor (default=00h)
+	  bit7-3: reserved (=0)
+	  bit2=1: soft-NPU reset blocked (386 only)
+	  bit1=1: weitek installed
+	  bit0=1: 387 installed
+ 06h RW DMA (default=00h) (see #P0372)
+ 07h RW EPROM (default=00h) (see #P0373)
+ 08h RW I/O and memory map holes (default=00h)
+	  bit7-4: reserved (=0)
+	  bit3	: 0/1 I/O map hole-A
+	  bit2	: reserved (=0)
+	  bit1	: 0/1 memory map hole-B
+	  bit0	: reserved (=0)
+ 10h RW hole-A low address (default=00h)
+ 11h RW hole-A high address (default=00h)
+ 19h RW mem hole-B start address, lower (default=00h)
+ 1Ah RW mem hole-B start address, higher (default=00h)
+	  bit7-6: reserved (=0)
+	  bit5-0: address of mem hole-B start
+ 1Ch RW mem hole-B end address, lower (default=00h)
+ 1Dh RW mem hole-B end address, higher (default=00h)
+	  bit7-6: reserved (=0)
+	  bit5-0: address of mem hole-B end
+SeeAlso: #P0370
+
+(Table P0370)
+Values for Headland HT342 register index:
+ 20h R	identifier port read
+	  bit7-4: DRAM controller identifier (0010b)
+	  bit3-0: revision number (0=A)
+ 21h R	feature port read    (default=00h)
+ 24h RW DRAM options port #1 (default=00h)
+	  bit7	: 0/1 staggered refresh
+	  bit6	: refresh type
+	  bit5	: 0/1 DRAM paging
+	  bit4-2: CAS interleave
+	  bit1-0: banks
+ 25h	DRAM options port #2 (default=00h)
+	  bit7-6: DRAM bank 1 type
+	  bit5-4: DRAM bank 2 type
+	  bit3-2: DRAM bank 1?? type
+	  bit1-0: DRAM bank 0 type
+ 26h RW DRAM options port #3 (default=FFh) (see #P0374)
+ 27h RW DRAM options port #4 (default=FFh) (see #P0375)
+ 28h RW data transfer control port (default=00h)
+	doubled indexed registers (28h-2Ah)
+	  bit7	: initiate transfer
+	  bit6	: read/write transfer
+	  bit5-4: reserved
+	  bit3-0: transfer/destination
+ 29h RW RAM address register (default=00h)
+	doubled indexed registers (28h-2Ah)
+	  bit7-5: reserved
+	  bit4-0: RAM address registers contents
+ 2Ah RW data transfer port   (default=00h)
+	doubled indexed registers (28h-2Ah)
+	  bit7-6: reserved
+	  bit5	: EMS translation
+	  bit4	: reserved
+	  bit3	: 0/1 cacheing
+	  bit2	: 0/1 write
+	  bit1	: 0/1 read
+	  bit0	: 0/1 shadow
+ 2Bh RW other options	      (default=00h) (see #P0376)
+ 2Dh RW DRAM options port #5 (default=03h)
+	  bit7-5: reserved
+	  bit4	: 0/1 10æs RAS timeout
+	  bit3-2: BUS speed
+	  bit1-0: BUS recovery for DRAM cycles
+		   00b=0: 4-1-1-1    10b=0.5
+		   01b=1: 4-2-2-2    11b=1??
+ 82h	read transfer
+ C2h	write transfer
+SeeAlso: #P0369
+
+Bitfields for Headland HT321 register 02h (system parameters):
+Bit(s)	Description	(Table P0371)
+ 7-6	IO recovery time (rev. D+)
+ 5	parity override
+ 4-3	cycle-width
+ 2	0/1 PORT 0092h functionality
+ 1	IO decode
+ 0	0/1 posted backplane MEMWN cycles
+SeeAlso: #P0369
+
+Bitfields for Headland HT321 register 06h (DMA control):
+Bit(s)	Description	(Table P0372)
+ 7	reserved (=0)
+ 6	1/0 IOCHRDY during master cycle (rev. C+)
+ 5	0/1 fast sample DMA
+ 4-3	DMA waitstate 00b=3 .. 11b=0
+ 2	0/1 DMA flow-through mode
+ 1	0/1 extended DMA page register
+ 0	DMA clock
+SeeAlso: #P0369
+
+Bitfields for Headland HT321 register 07h (EPROM control):
+Bit(s)	Description	(Table P0373)
+ 7-6	reserved (=0)
+ 5	0/1 EADS CACHE invalidation for EPROM writes (rev. D+)
+ 4	0/1 ROMEN for EPROM writes (rev. C+)
+ 3	0/1 middle BIOS region of 64KB space below 16MB
+ 2	ROM-size (0=64KB, 1=128KB)
+ 1	V-BIOS-add (0=separate, 1=same device)
+ 0	ROM-access time (0=250ns, 1=125ns)
+SeeAlso: #P0369
+
+Bitfields for Headland HT342 register 26h (DRAM CAS control):
+Bit(s)	Description	(Table P0374)
+ 7	CAS hold on RAS (CAS before RAS refresh)
+ 6	CAS precharge
+ 5	CAS burst delay
+ 4	CAS delay (writes)
+ 3	CAS delay (reads)
+ 2	CAS active time (writes)
+ 1-0	CAS active time (reads)
+SeeAlso: #P0370,#P0375
+
+Bitfields for Headland HT342 register 27h (DRAM RAS control):
+Bit(s)	Description	(Table P0375)
+ 7	RAS delay
+ 6-5	RAS active (writes)
+ 4-2	RAS active (reads)
+ 1-0	RAS precharge
+SeeAlso: #P0370,#P0374
+
+Bitfields for Headland HT342 register 2Bh (other options):
+Bit(s)	Description	(Table P0376)
+ 7	reserved
+ 6	0/1 middle BIOS
+ 5	0/1 data pipeline
+ 4	0/1 data pipeline
+ 3	IO-decode
+ 2	reserved
+ 1	16bit DMA bridge
+ 0	0/1 write buffering
+SeeAlso: #P0370
+

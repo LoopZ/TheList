@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: I86F2
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/F2h - ITT VPX 32xx - Output Enable
+SeeAlso: I2C 86h/F0h,I2C 86h/F1h,I2C 86h/F8h
+
+Bitfields for VPX 32xx Output Enable:
+Bit(s)	Description	(Table I0042)
+ 0	enable Video Port A
+ 1	enable Video Port B
+ 2	enable PIXCLK output (322xD only)
+	reserved (32xx)
+ 3	enable controls (=0 freezes current image)
+ 4	(3220) enable LLC2 to TDO pin
+	(32xx) enable LLC clock to HF# pad
+ 5	eanble FSY-Data to HF# pad
+ 6	(3220) reserved (0)
+	(32xx) synchronize HREF and VREF with PIXCLK
+ 7	(3220) disable FE# low-pass filter
+	(32xx/322xD) disable OEQ pin function
+SeeAlso: #I0025
+

@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C31
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/31h - Philips SAA7110(A) ONE-CHIP FRONT-END - MIXER CONTROL #3
+Access:	Write-Only
+Notes:	Reset to 00h after RESET = 0 or power-on
+	  (refer to: I2C 9Dh/00h and 9Dh/01h)
+	The AFCCS bit is not included in the SAA7110A due to advanced
+	  anti-alias filter characteristic.
+SeeAlso: I2C 9Eh
+
+Bitfields for Mixer Control #3:
+Bit(s)	Description	 (Table I0098)	(Table I0099)
+ 7-6	Analog test select (AOUT connected to:)
+	00  ground
+	01  input AD2
+	10  input AD3
+	11  channel 4
+ 5	white peak slow up integration select
+	0  slow up by using 1 value in H (line)
+	1  slow up by using 1 value in V (field)
+ 4	white peak slow up integration enable
+	0  Hold in white peak mode
+	1  slow up using method selected at bit 5
+ 3	DMSD-SQP bypassed
+	0  DMSD data to YUV output (normal)
+	1  A/D data to YUV output (for testing only, do not use)
+ 2	AFCCS bit
+ 1	pin function switch  (refer to I2C 9Ch/0Eh bit 0)
+	0  GPSW (general purpose switch) active
+	1  VBLK (vertical blanking) test output active
+ 0	pulses IO control (HCL and HSY)
+	0  to input pins
+	1  to output pins
+

@@ -1,0 +1,90 @@
+--------------------------------------------------------------------------------
+ Unique ID: Pxxxx
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT xxxx - Intel 82371SB - USB Host I/O Registers
+InstallCheck: see #01215 at INT 1A/AX=B10Ah
+SeeAlso: #01215
+
++000w RW  USB command register (see #P1095)
++002w Rw  USB status (see #P1096)
++004w RW  USB interrupt enable (see #P1097)
++006w RW  Frame Number (see #P1098)
++008d RW  Frame List Base Address
+	   (bits 11-0 must be written as zeros)
++00C  RW  Start of Frame Modify (see #P1099)
++010w RW  port 1 status/control (see #P1100)
++012w RW  port 2 status/control (see #P1100)
+
+Bitfields for Intel 82371SB USB command register:
+Bit(s)	Description	(Table P1095)
+ 15-8	reserved
+ 7	maximum packet size (0=32 bytes, 1=64 bytes)
+ 6	Host Controller has been configured (set by software)
+ 5	software debug mode
+ 4	force global resume
+ 3	enter global suspend mode
+ 2	global reset
+ 1	host controller reset
+ 0	run/stop schedule (0=stop, 1=run)
+SeeAlso: #P1096
+
+Bitfields for Intel 82371SB USB status register:
+Bit(s)	Description	(Table P1096)
+ 15-6	reserved
+ 5	host controller halted
+ 4	host controller process error
+ 3	PCI bus error
+ 2	resume received
+ 1	USB error interrupt
+ 0	USB interrupt
+Note:	to clear a bit in this register, write a 1 to it
+SeeAlso: #P1095
+
+Bitfields for Intel 82371SB USB interrupt enable register:
+Bit(s)	Description	(Table P1097)
+ 15-4	reserved
+ 3	enable short packet interrupts
+ 2	enable Interrupt On Complete
+ 1	enable Resume
+ 0	enable Timeout/CRC
+SeeAlso: #P1096,#P1098
+
+Bitfields for Intel 82371SB Frame Number register:
+Bit(s)	Description	(Table P1098)
+ 15-11	reserved
+ 10-0	Frame List Current Index/Frame Number
+	incremented at end of each time frame (~1ms)
+Note:	only WORD writes are allowed to this register
+SeeAlso: #P1095,#P1097
+
+Bitfields for Intel 82371SB Start of Frame Modify register:
+Bit(s)	Description	(Table P1099)
+ 7	reserved
+ 6-0	SOF timing value (default 64)
+Note:	SOF cycle time equals 11936+timing value
+SeeAlso: #P1095
+
+Bitfields for Intel 82371SB Port 1/2 status/control register:
+Bit(s)	Description	(Table P1100)
+ 15-13	reserved (0)
+ 12	suspend port
+ 11-10	reserved
+ 9	port in Reset State
+ 8	low-speed device is attached (read-only)
+ 7	reserved (1)
+ 6	resume detected (read-only)
+ 5-4	line status (read-only)
+	bit 4: D+ signal line
+	bit 5: D- signal line
+ 3	port enabled/disabled status has changed
+	write 1 to this bit to clear it
+ 2	port is enabled
+ 1	connect status has changed
+	write 1 to this bit to clear it
+ 0	current connect status (read-only)
+Note:	only WORD writes are permitted to this register
+SeeAlso: #P1095
+

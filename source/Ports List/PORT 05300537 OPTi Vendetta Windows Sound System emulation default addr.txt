@@ -1,0 +1,269 @@
+--------------------------------------------------------------------------------
+ Unique ID: P05300537
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0530-0537 - OPTi "Vendetta" Windows Sound System emulation (default addr)
+SeeAlso: PORT 0530h"WSS",PORT 0F8Dh"Vendetta",PORT 0F8Eh"Vendetta"
+
+0530  -W  (OPTi "Vendetta") WSS configuration register (see #P0898)
+0530  R-  (OPTi "Vendetta") WSS version register (see #P0899)
+0534  RW  (OPTi "Vendetta") codec index address register (see #P0900)
+0535  RW  (OPTi "Vendetta") codec indexed data register
+0536  RW  (OPTi "Vendetta") codec status register (see #P0901)
+0537  R-  (OPTi "Vendetta") codec direct data register - capture mode
+0537  -W  (OPTi "Vendetta") codec direct data register - playback mode
+
+Bitfields for OPTi "Vendetta" WSS configuration register:
+Bit(s)	Description	(Table P0898)
+ 7	reserved
+ 6	IRQ sense source
+	0 = normal
+	1 = interrupt auto-selection
+ 5-3	WSS IRQ
+	000 = disable
+	001 = IRQ7
+	010-100 = IRQ9-IRQ11
+	101 = IRQ5
+	110-111 = reserved
+ 2-0	WSS DRQ
+	      playback	capture
+	000 = disable	disable
+	001 = DRQ0	disable
+	010 = DRQ1	disable
+	011 = DRQ3	disable
+	100 = disable	DRQ1
+	101 = DRQ0	DRQ1
+	110 = DRQ1	DRQ0
+	111 = DRQ3	DRQ0
+SeeAlso: PORT 0530-0537
+
+Bitfields for OPTi "Vendetta" WSS version register:
+Bit(s)	Description	(Table P0899)
+ 7	available channel
+	0 = DRQ0/1/3 and IRQ7/9/10/11 available
+	1 = DRQ1/3 and IRQ7/9 available
+ 6	IRQ sense
+	0 = no interrupt
+	1 = WSS interrupt active
+ 5-0	version (04h)
+SeeAlso: PORT 0530-0537
+
+Bitfields for OPTi "Vendetta" codec index address register:
+Bit(s)	Description	(Table P0900)
+ 7	initialization
+	1 = codec cannot respond to parallel bus cycles
+ 6	mode change enable
+ 5	transfer request
+	0 = transfers enabled during interrupt
+	1 = transfers disabled by interrupt
+ 4-0	index address (see #P0902)
+	  (audio module control register 5 bit 5 must be set in order
+	  to access indexes 10h-1Fh)
+SeeAlso: PORT 0530-0537
+
+Bitfields for OPTi "Vendetta" codec status register:
+Bit(s)	Description	(Table P0901)
+ 7	PIO capture data ready (read-only)
+	0 = lower byte
+	1 = upper byte (or 8-bit)
+ 6	PIO capture data ready (read-only)
+	0 = right
+	1 = left (or mono)
+ 5	PIO capture data register data ready (read-only)
+	0 = stale ADC data (do not re-read)
+	1 = fresh ADC data (ready for host data read)
+ 4	sample ADC capture overrun/DAC playback underrun occurred (read-only)
+ 3	PIO playback data needed (read-only)
+	0 = lower byte
+	1 = upper byte (or 8-bit)
+ 2	PIO playback data needed (read-only)
+	0 = right
+	1 = left (or mono)
+ 1	PIO playback data register ready for data (read-only)
+	0 = valid DAC data (do not overwrite)
+	1 = stale DAC data (ready for host data write)
+ 0	interrupt enable
+SeeAlso: PORT 0530-0537
+
+(Table P0902)
+Values for OPTi "Vendetta" (82C750) codec indirect registers:
+ 00h	MIXOUTL output control register (see #P0903)
+ 01h	MIXOUTR output control register (see #P0903)
+ 02h	CDL input control register (see #P0904)
+ 03h	CDR input control register (see #P0904)
+ 04h	FML input control register (see #P0904)
+ 05h	FMR input control register (see #P0904)
+ 06h	DACL input control register (see #P0905)
+ 07h	DACR input control register (see #P0905)
+ 08h	frequency synthesizer and playback data format register (see #P0906)
+ 09h	interface configuration register (see #P0907)
+ 0Ah	pin control register (see #P0908)
+ 0Bh	error status and initialization register (read-only) (see #P0909)
+ 0Ch	ID register (see #P0910)
+ 0Dh	reserved
+ 0Eh	playback upper base count register
+	  (used for playback and capture in SB mode)
+ 0Fh	playback lower base count register
+	  (used for playback and capture in SB mode)
+ 10h	AUXL input control register (see #P0904)
+ 11h	AUXR input control register (see #P0904)
+ 12h	LINEL input control register (see #P0904)
+ 13h	LINER input control register (see #P0904)
+ 14h	MICL input control register (see #P0911)
+ 15h	MICR input control register (see #P0912)
+ 16h	OUTL output control register (see #P0913)
+ 17h	OUTR output control register (see #P0913)
+ 18h-1Bh reserved
+ 1Ch	capture data format register (see #P0906)
+ 1Dh	reserved
+ 1Eh	capture upper base count register
+ 1Fh	capture lower base count register
+Note:	To access expanded mode registers (10h-1Fh), audio module control
+	  register 5 bit 5 must be set.
+SeeAlso: #P0900
+
+Bitfields for OPTi "Vendetta" MIXOUTL/R output control register:
+Bit(s)	Description	(Table P0903)
+ 7-6	source select
+	00 = LINE
+	01 = CD
+	10 = MIC
+	11 = MIXER
+ 5	MIC +20dB gain enable
+ 4	reserved
+ 3-0	gain select for MIXOUTL/R
+	0000-1111 = 0dB to +22.5dB in 1.5dB steps
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" CD/FM/AUX/LINE L/R input control register:
+Bit(s)	Description	(Table P0904)
+ 7	mute enable
+ 6-5	reserved
+ 4-1	gain select for CD/FM/AUX/LINE L/R
+	0000-1111 = +12dB to -33dB in 3dB steps
+ 0	reserved
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" DACL/R input control register:
+Bit(s)	Description	(Table P0905)
+ 7	mute enable
+ 6-5	reserved
+ 4-0	gain select for DACL/R
+	00000-11111 = 0dB to -46.5dB in 1.5dB steps
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" frequency synth and playback/capture data format:
+Bit(s)	Description	(Table P0906)
+ 7-5	audio data format
+	000 = linear, 8-bit unsigned
+	001 = æ-law, 8-bit companded
+	010 = linear, 16-bit two's complement, little endian
+	011 = A-law, 8-bit companded
+	100 = reserved
+	101 = ADPCM, 4-bit, IMA compatible
+	110 = linear, 16-bit two's complement, big endian
+	111 = reserved
+	  (bit 7 forced to 0 in mode 1)
+ 4	0 = mono
+	1 = stereo
+ 3-0	(playback) clock frequency divide/audio sample rate frequency
+	0000 = 8.0kHz
+	0001 = 5.5125kHz
+	0010 = 16.0kHz
+	0011 = 11.025kHz
+	0100 = 27.42857kHz
+	0101 = 18.9kHz
+	0110 = 32.0kHz
+	0111 = 22.05kHz
+	1000 = reserved
+	1001 = 37.8kHz
+	1010 = reserved
+	1011 = 44.1kHz
+	1100 = 48.0kHz
+	1101 = 33.075kHz
+	1110 = 9.6kHz
+	1111 = 6.615kHz
+	(capture) reserved
+Note:	the contents of these registers can be changed only if mode change bit
+	  is set (see #P0900).
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" interface configuration register:
+Bit(s)	Description	(Table P0907)
+ 7	capture data transfer method (0 = DMA, 1 = PIO)
+ 6	playback data transfer method (0 = DMA, 1 = PIO)
+ 5-4	reserved
+ 3	autocalibration enable
+ 2	DMA channel mode (0 = dual, 1 = single)
+ 1	capture data in selected format enable
+ 0	playback data in selected format enable
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" pin control register:
+Bit(s)	Description	(Table P0908)
+ 7-2	reserved
+ 1	interrupt pin enable
+	  (goes active high on reaching the number of samples in base count
+	  register)
+ 0	reserved
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" error status and initialization register:
+Bit(s)	Description	(Table P0909)
+ 7	capture overrun
+ 6	playback underrun
+ 5	autocalibration state
+	0 = in progress
+	1 = not in progress
+ 4	current PDRQ/CDRQ status
+	0 = inactive (low)
+	1 = active (high)
+ 3-2	under/over range on right input channel
+	00 = less than -1dB under range
+	01 = between -1dB and 0dB under range
+	10 = between 0dB and +1dB over range
+	11 = greater than +1dB over range
+ 3-2	under/over range on left input channel
+	00 = less than -1dB under range
+	01 = between -1dB and 0dB under range
+	10 = between 0dB and +1dB over range
+	11 = greater than +1dB over range
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" ID register:
+Bit(s)	Description	(Table P0910)
+ 7-4	reserved
+ 3-0	codec revision ID (read-only)
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" MICL input control register:
+Bit(s)	Description	(Table P0911)
+ 7	mute enable
+ 6	MICR mix into OUTL enable
+ 5	reserved
+ 4-1	gain select for MICL
+	0000-1111 = +12dB to -33dB in 3dB steps
+ 0	reserved
+SeeAlso: #P0902
+
+Bitfields for OPTi "Vendetta" MICR input control register:
+Bit(s)	Description	(Table P0912)
+ 7	mute enable
+ 6	MICL mix into OUTR enable
+ 5	reserved
+ 4-1	gain select for MICR
+	0000-1111 = +12dB to -33dB in 3dB steps
+ 0	reserved
+SeeAlso: #P0902,#P0913
+
+Bitfields for OPTi "Vendetta" OUTL/R output control register:
+Bit(s)	Description	(Table P0913)
+ 7	mute enable
+ 6	reserved
+ 5-1	gain select for OUTL/R
+	00000-11111 = 0dB to -93dB in 3dB steps
+ 0	reserved
+SeeAlso: #P0902,#P0913
+

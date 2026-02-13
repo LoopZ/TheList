@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Chips&Technologies 82C311 - CONFIGURATION REGISTERS
+Note:	each access to PORT 0023h must immediately follow a write to
+	  PORT 0022h (this is to avoid accidental accesses)
+
+0022  -W  configuration register index (see #P0068)
+0023  RW  configuration register data
+
+(Table P0068)
+Values for Chips&Technologies 82C311 configuration register index:
+ 04h	version (read-only)   !!!chips\82c311.pdf p.65
+ 05h	AT-bus command delay
+ 06h	AT-bus wait-state control
+ 08h	identification
+ 09h	low RAM/ROM configuration
+ 0Ch	memory enable map (80000h-9FFFFh)
+ 0Dh	memory enable map (A0000h-BFFFFh)
+ 0Eh	memory enable map (C0000h-DFFFFh)
+ 0Fh	memory enable map (E0000h-FFFFFh)
+ 10h	block 0 type and start address
+ 11h	block 0 DRAM timing
+ 12h	block 1 type and start address
+ 13h	block 1 DRAM timing
+ 14h	block 2 type and start address
+ 15h	block 2 DRAM timing
+ 16h	block 3 type and start address
+ 17h	block 3 DRAM timing
+ 18h	memory block types
+ 20h	cache control
+ 21h	directory RAM control 1
+ 22h	tag RAM directory address (low)
+ 23h	reference location
+ 24h	SRAM configuration/direct access address
+ 25h	directory RAM control 2
+ 26h	READY timeout
+ 28h	error source/address
+ 29h	error address (bits 23-16)
+ 2Ah	memory enable map (00000h-7FFFFh)
+ 2Bh	miscellaneous control
+ 2Ch	middle RAM/ROM configuration
+ 2Fh	page mode posted-write control (82C311 rev. C only)
+ 30h	block 0 non-cacheable address (bits 23-16)
+ 31h	block 0 non-cacheable address (bits 15-12) and size
+ 32h	block 1 non-cacheable address (bits 23-16)
+ 33h	block 1 non-cacheable address (bits 15-12) and size
+ 34h	block 2 non-cacheable address (bits 23-16)
+ 35h	block 2 non-cacheable address (bits 15-12) and size
+ 36h	block 3 non-cacheable address (bits 23-16)
+ 37h	block 3 non-cacheable address (bits 15-12) and size
+ 38h	block 0/1 non-cacheable addresses (bits 26-24)
+ 39h	block 2/3 non-cacheable addresses (bits 26-24)
+ 60h	fast reset control
+!!!chips\82c311.pdf p.76, p.115
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0078
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0078 - Intel 82378IB ("Saturn"/"Neptune" chipsets) - BIOS COUNT-DOWN TIMER
+Notes:	the BIOS uses this port for certain fine timings; presumably it is
+	  independent of processor speed (it appears to decrement at 1 MHz)
+	the address at which this port appears may be set via the 82378's
+	  PCI configuration space word at offset 0080h (see #01064), or the
+	  timer may be disabled entirely
+SeeAlso: PORT 0075h
+
+0078w -W  set count-down timer
+0078w R-  get current count (timer stops when it reaches 0000h)
+

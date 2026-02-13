@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SF59
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/59h - ITT VPX 32xx - FP - Crystal Oscil. Center Freq Adj (Locked)
+Note:	to set the center frequency adjust in FPRAM location 58h, set 58h to
+	  000h, set lock mode via FPRAM 26h, then read this register and write
+	  the negative of the value to FRPAM 58h
+SeeAlso: I2C 86h/28h/26h,I2C 86h/28h/58h,I2C 86h/28h,I2C 86h/29h,#I0019
+

@@ -1,0 +1,86 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03C403C5
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03C4-03C5 - EGA/VGA - SEQUENCER REGISTERS
+Range:	PORT 03C4h or PORT 02C4h (alternate EGA)
+SeeAlso: PORT 03C0h,PORT 03C2h,PORT 03C4h"Cirrus",PORT 03C4h"S3"
+SeeAlso: PORT 03C4h"Tseng",PORT 03C6h,PORT 03D0h
+
+03C4  -W  EGA	TS index register
+		bit7-3 : reserved (VGA only)
+		bit2-0 : current TS index
+03C4  RW  VGA	sequencer register index (see #P0670)
+03C5  -W  EGA	TS data register
+03C5  RW  VGA	sequencer register data
+
+(Table P0670)
+Values for EGA/VGA indexed TS (sequencer) registers:
+ 00h	reset register
+	bit7-2 : reserved
+	bit1 =0: synchronous reset (EGA/VGA)
+	bit0 =0: asynchronous reset (EGA, ET4000)
+		 synchronous reset, also (VGA)
+ 01h	clocking mode register / TS mode (see #P0671)
+ 02h	map mask register (see #P0672)
+ 03h	character map select register / font select (see #P0673)
+ 04h	memory mode register (see #P0674)
+ 07h	(undoc VGA) reset horizontal character counter
+	any write to this register holds horizontal character counter at 00h
+	  until any other sequencer register is written
+Note:	register 07h is documented in the C&T Wingine documentation
+SeeAlso: #P0675,#P0696,#P0685
+
+Bitfields for EGA/VGA sequencer clocking mode register:
+Bit(s)	Description	(Table P0671)
+ 7-6	reserved
+ 5	(VGA) =1: screen refresh off
+ 4	(VGA) shift load (0=4x8, 1=1x32)
+ 3	internal character clock (0=normal, 1=dotclock/2)
+ 2	serial shift video load (0=4x8, 1=2x16)
+ 1	(EGA) CRTC bandwidth (0=4/5, 1=2/5)
+ 0	dot clocks per character (0=9, 1=8) (ET4000: see 06h)
+SeeAlso: #P0670
+
+Bitfields for EGA/VGA sequencer map mask register:
+Bit(s)	Description	(Table P0672)
+ 7-4	reserved
+ 4	Genoa SuperEGA only: plane4 ???
+ 3	write enable display memory plane 3
+ 2	write enable display memory plane 2
+ 1	write enable display memory plane 1
+ 0	write enable display memory plane 0
+SeeAlso: #P0670
+
+Bitfields for EGA/VGA sequencer character map select register:
+Bit(s)	Description	(Table P0673)
+ 7-6	reserved
+ 5	(VGA) bit3 for second text-font
+ 4	(VGA) bit3 for first text-font
+ 3-2	second text-font (attr bit3=1)
+ 1-0	first text-font (attr bit3=0)
+	offset in font memory (4-7: VGA only)
+	   0 00b =  0KB
+	   0 01b = 16KB
+	   0 10b = 32KB
+	   0 11b = 48KB
+	   1 00b =  8KB
+	   1 01b = 24KB
+	   1 10b = 40KB
+	   1 11b = 56KB
+SeeAlso: #P0670
+
+Bitfields for EGA/VGA sequencer memory mode register:
+Bit(s)	Description	(Table P0674)
+ 7-4	reserved
+ 3	=1 (VGA) enable chain 4 linear graphics mode
+	(when set, low two bits of CPU address select the plane)
+ 2	addressing mode
+	0 odd/even mode (even addresses access planes 0/2, odd planes 1/3)
+	1 sequential mode
+ 1	=1 extended memory (0=64KB, 1=more)
+ 0	(EGA) 1=textmode, 0=graphics mode
+SeeAlso: #P0670
+

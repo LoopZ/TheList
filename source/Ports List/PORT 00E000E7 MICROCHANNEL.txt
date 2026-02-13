@@ -1,0 +1,83 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00E000E7
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 00E0-00E7 - MICROCHANNEL
+
+00E0  RW  split address register, memory encoding registers PS/2m80 only
+	(see #P0487)
+00E1  RW  memory register (see #P0488,#P0489)
+00E3  RW  error trace (bits 23-16 of address on last rising edge of ERS line)
+00E4  RW  error trace (bits 15-8 of address on last rising edge of ERS line)
+00E5  RW  error trace (see #P0490)
+00E7  RW  error trace (see #P0491)
+
+Bitfields for Microchannel Split Address Register:
+Bit(s)	Description	(Table P0487)
+ 7-6	unused
+ 5-4	2MB memory for connector 2 on Type2 motherboard
+	bit 5: second MB disabled or not present
+	bit 4: first MB disabled or not present
+ 3-0	address at which to place leftover from split in first MB, in MB
+	(1-15, 0 is invalid when split is active)
+SeeAlso: #P0488,#P0489
+
+Bitfields for Microchanel Memory Register, Type1 motherboard:
+Bit(s)	Description	(Table P0488)
+ 7-6	1 MB memory for connector 2
+	10 installed
+	11 not installed
+ 5-4	1 MB memory for connector 1
+	10 installed
+	11 not installed
+ 3-1	split memory select
+		ROM   convmem	over1M
+	001	ON	640K	384K
+	011	ON	512K	512K
+	100	shadow	640K	0K
+	101	ON	640K	0K
+	110	shadow	512K	0K
+	111	ON	512K	0K
+ 0	parity checking
+	=0 enable
+	=1 clear parity error (write 0 to re-enable parity checking)
+SeeAlso: #P0487,#P0489
+
+Bitfields for Microchannel Memory Register, Type2 motherboard:
+Bit(s)	Description	(Table P0489)
+ 7-6	unused
+ 5-4	memory connector 1
+	bit 5: second MB disabled or not present
+	bit 4: first MB disabled or not present
+ 3-1	split memory select
+		ROM   convmem	over1M
+	000	shadow	640K	256K
+	001	ON	640K	384K
+	010	shadow	512K	384K
+	011	ON	512K	512K
+	100	shadow	640K	0K
+	101	ON	640K	0K
+	110	shadow	512K	0K
+	111	ON	512K	0K
+ 0	parity checking
+	=0 enable
+	=1 clear parity error (write 0 to re-enable parity checking)
+SeeAlso: #P0487,#P0488
+
+Bitfields for Microchannel Error Trace register E5h:
+Bit(s)	Description	(Table P0490)
+ 7-2	bits 7-2 of address on last rising edge of ERS line
+ 1	address space (0=I/O, 1=memory)
+ 0	=1 bus-master arbitration cycle
+SeeAlso: #P0491
+
+Bitfields for Microchannel Error Trace register E7h:
+Bit(s)	Description	(Table P0491)
+ 7-1	unused
+ 0	bus cycle type
+	=0 control (instruction fetch, halt, interrupt acknowledge)
+	=1 data
+SeeAlso: #P0490
+

@@ -1,0 +1,482 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0080
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0080 - MANUFACTURING DIAGNOSTICS PORT
+Note:	sometimes used for a POST hex display
+
+0080  -W  Manufacturing Diagnostics port
+0080  R-  ???
+
+(Table P0410)
+Values for AMI BIOS diagnostics codes:
+ 00h	system boot completed, control passed to INT 19 bootstrap loader
+ 01h	register test
+ 02h	video initialization; NMIs disabled
+ 03h	power-on delay complete
+ 04h	pre-keyboard-test initializations complete
+ 05h	soft-reset/power-on setting determined
+ 06h	ROM enabled
+ 07h	ROM BIOS checksum test passed
+ 08h	keyboard BAT command issued
+ 09h	keyboard controller BAT result verified
+ 0Ah	keyboard controller command code issued
+ 0Bh	keyboard controller command byte written
+ 0Ch	keyboard controller pins 23/24 blocked and unblocked
+ 0Dh	keyboard controller NOP processing in progress
+ 0Eh	CMOS RAM shutdown register read/write test passed
+ 0Fh	CMOS RAM checksum calculation complete
+ 10h	CMOS RAM initialization complete
+ 11h	CMOS RAM status register initialized
+ 12h	DMA controllers 1/2 and interrupt controllers 1/2 disabled
+ 13h	video display disabled, port B initialized
+ 14h	chipset initialization, auto memory detection
+ 15h	8254 channel 2 test half complete
+ 16h	8254 channel 2 test completed
+ 17h	8254 channel 1 test completed
+ 18h	8254 channel 0 test completed
+ 19h	memory refresh started
+ 1Ah	memory refresh line is toggling
+ 1Bh	memory refresh test completed
+ 20h	base 64K memory test started
+ 21h	address line test passed
+ 22h	parity toggle complete
+ 23h	base 64K sequential read/write test passed
+ 24h	pre-interrupt-vector-initialization configuration complete
+ 25h	interrupt vectors initialized
+ 26h	8042 input port read
+ 27h	global data initialization complete
+ 28h	post-interrupt-vector-initialization initialization complete
+ 29h	monochrome mode set
+ 2Ah	color mode set
+ 2Bh	parity toggle on option video ROM test complete
+ 2Ch	initialization before video ROM control complete
+ 2Dh	video ROM check complete
+ 2Eh	!!!
+ A9h	returned from E0000h adapter ROM
+ AAh	final initializations after adapter ROM initializations complete
+SeeAlso: #P0411,#P0412,#P0413
+
+(Table P0411)
+Values for AWARD (non-PnP) diagnostic code:
+ 01h	Processor Test 1
+ 02h	Processor Test 2
+ 03h	initialize chips
+ 04h	test memory refresh toggle
+ 05h	blank video, initialize keyboard
+ 06h	reserved
+ 07h	test CMOS and CMOS batter status
+ 08h	setup low memory
+ 09h	early cache initialization
+ 0Ah	interrupt vector initialization
+ 0Bh	test CMOS RAM checksum
+ 0Ch	initialize keyboard
+ 0Dh	initialize video interface
+ 0Eh	test video memory
+ 0Fh	test DMA channel 0
+ 10h	test DMA channel 1
+ 11h	test DMA page registers
+ 12h	reserved
+ 13h	reserved
+ 14h	test timer channel 2
+ 15h	test master PIC mask bits
+ 16h	test slave PIC mask bits
+ 17h	test 8259 stuck interrupt bits
+ 18h	test 8259 interrupt functionality
+ 19h	test for stuck NMI
+ 1Ah	display CPU clock
+ 1Bh-1Eh reserved
+ 1Fh	set EISA mode
+ 20h	enable Slot 0 (system board)
+ 21h-2Fh enable Slots 1-15
+ 30h	get base and extended memory size
+ 31h	test base and extended memory
+ 32h	test EISA memory
+ 33h-3Bh reserved
+ 3Ch	set allow-setup flag
+ 3Dh	initialize / install mouse
+ 3Eh	initialize cache controller
+ 3Fh	reserved
+ 41h	initialize floppy controller and drives
+ 42h	initialize hard disk controller and drives
+ 43h	detect / initialize serial and parallel ports
+ 44h	reserved
+ 45h	initialize math coprocessor
+ 46h-4Dh reserved
+ 4Eh	Manufacturing Post loop / or / display any error messages
+ 4Fh	ask for password, if enabled
+ 50h	update CMOS RAM
+ 51h	pre-boot enable of parity, NMI, cache
+ 52h	initialize option ROMs
+ 53h	initialize BIOS time from RTC
+ 60h	setup boot-sector protection
+ 61h	set boot CPU speed
+ 62h	setup NumLock
+ 63h	attempt to boot via INT 19h
+ B0h	spurious interrupt while in protected mode
+ B1h	unclaimed NMI
+ BEh	chipset default initialization
+ BFh	chipset initialization
+ C0h	turn off chipset cache
+ C1h	check on-board memory size
+ C5h	early shadow-RAM enable for faster boot
+ C6h	detect external cache size
+ E1h-EFh setup utility pages 1-15
+ FFh	system booting operating system
+SeeAlso: #P0410,#P0412,#P0413
+
+(Table P0412)
+Values for AWARD (Plug-and-Play) POST code:
+ 01h-02h reserved
+ 03h	initialize EISA register (if applicable)
+ 04h	reserved
+ 05h	keyboard controller test, initialize keyboard
+ 06h	reserved
+ 07h	test CMOS and CMOS batter status
+ 09h	program Cyrix CPU configuration; OEM-specific cache initialization
+ 0Ah	initialize interrupt vectors; early power management initialization
+ 0Bh	check CMOS RAM; assign I/O and memory to PCI devices
+ 0Ch	initialize BIOS data area
+ 0Dh	early chipset setup; measure CPU speed; video initialization
+ 0Eh	display Award logo, OEM-specific sign-on messages
+ 0Fh	test DMA channel 0
+ 10h	test DMA channel 1
+ 11h	test DMA page registers
+ 12h-13h reserved
+ 14h	test timer channel 2
+ 15h	test master PIC mask bits
+ 16h	test slave PIC mask bits
+ 17h	reserved
+ 19h	test 8259 functionality
+ 1Ah-1Dh reserved
+ 1Eh	EISA initialization (if applicable and EISA NVRAM checksum is good)
+ 1Fh-29h reserved
+ 30h	get base and extended memory size
+ 31h	test base and extended memory
+ 32h	program on-board serial/parallel ports, floppy controller
+ 33h-3Bh reserved
+ 3Ch	set allow-setup flag
+ 3Dh	initialize keyboard, install PS/2 mouse if attached
+ 3Eh	try to turn on L2 cache
+ 3Fh-40h reserved
+ 41h	initialize floppy controller, drives
+ 42h	initialize hard disk controller, drives
+ 43h	initialize serial/parallel ports (if PnP)
+ 44h	reserved
+ 45h	initialize math coprocessor
+ 46h-4Dh reserved
+ 4Eh	display any error messages
+ 4Fh	ask for password, if required
+ 50h	update CMOS RAM
+ 51h	reserved
+ 52h	initialize expansion ROMs, PCI, PnP, shadow RAM, power management
+ 53h	if not PnP, initialize serial/parallel ports; set BIOS time
+ 54h-5Fh reserved
+ 60h	set boot-sector protection
+ 61h	turn on L2 cache; set boot speed; final chipset/PM initialization
+ 62h	setup daylight savings time; set NumLock, typematic
+ 63h	update ESCD (PnP only) if changes; boot system via INT 19h
+ B0h	spurious interrupt while in protected mode
+ B1h	unclaimed NMI
+ BEh	chipset default initialization
+ BFh	chipset initialization
+ C0h	turn off chipset cache, init DMA/PIC/timer/RTC with default values
+ C1h	check on-board DRAM and cache size
+ C3h	test first 256K DRAM, expand compressed BIOS image into DRAM
+ C5h	early shadow-RAM enable for faster boot
+ FFh	system is booting operating system
+SeeAlso: #P0410,#P0411,#P0413
+
+(Table P0413)
+Values for Chips&Technologies 82C100/82C235 POST code:
+ 01h	flags register failed
+ 02h	a CPU register failed
+ 03h	incorrect ROM checksum
+ 04h	DMA controller failed
+ 05h	system timer failed
+ 06h	first 64K of RAM failed address test
+ 07h	first 64K of RAM failed RAM test
+ 08h	interrupt controller failed
+ 09h	"Hot Interrupt" occurred
+ 0Ah	reserved
+ 0Bh	CPU still in protected mode
+ 0Ch	DMA page register failed
+ 0Dh	no RAM refresh
+ 0Eh	no response from keyboard controller
+ 0Fh	unable to enter protected mode
+ 10h	GDT or IDT register failed
+ 11h	LDT register failed
+ 12h	task register failed
+ 13h	LSL instruction failed
+ 14h	LAR instruction failed
+ 15h	VERR or VERW instruction failed
+ 16h	keyboard controller A20 gate failed
+ 17h	exception failed, or shutduwon on unexpected exception
+ 18h	shutdown during memory test
+ 19h	checksum error in copyright string
+ 1Ah	BMS checksum error
+---POST progress codes---
+ 50h	initialize hardware
+ 51h	initialize timer
+ 52h	initialize DMA controller
+ 53h	initialize 8259
+ 54h	initialize chipset
+ 55h	reserved
+ 56h	first entry into protected mode
+ 57h	memory-chip sizing
+ 58h	reserved
+ 59h	first exit from protected mode
+ 5Ah	system-board memory size determination
+ 5Bh	shadow RAM relocation
+ 5Ch	configure possible EMS
+ 5Dh	reserved
+ 5Eh	re-test lowest 64K of RAM
+ 5Fh	test shadow RAM
+ 60h	test CMOS RAM
+ 61h	test video
+ 63h	test protected mode interrupts
+ 64h	test A20
+ 65h	memory address line tests
+ 66h	test base memory
+ 67h	test extended memory
+ 68h	test timer interrupt
+ 69h	test real-time clock
+ 6Ah	test keyboard controller
+ 6Bh	test 80287
+ 6Ch	test RS232
+ 6Dh	test parallel port
+ 6Eh	reserved
+ 6Fh	test floppy disk controller
+ 70h	test fixed disk controller
+ 71h	test keylock
+ 72h	test mouse / pointing device
+ 73h-8Fh reserved
+ 90h	setup RAM
+ 91h	determine CPU speed
+ 92h	configuration check
+ 93h	initialize BIOS
+ 94h	POD bootstrap
+ 95h	reset ICs
+ 96h	setup cache controller
+SeeAlso: #P0410,#P0411,#P0412,#P0414,#P1017
+
+(Table P0414)
+Values for Intel SE440BX ("Seattle") motherboard POST codes:
+ 02h	verify real mode
+ 03h	disable NMI
+ 04h	CPU type determination
+ 06h	system hardware initialization
+ 08h	chipset initialization (initial POST values)
+ 09h	set IN-POST flag
+ 0Ah	CPU register initialization
+ 0Bh	enable CPU cache
+ 0Ch	cache initialization (initial POST values)
+ 0Eh	I/O component initialization
+ 0Fh	local-bus IDE initialization
+ 10h	power management initialization
+ 11h	load alternate rgisters with initial POST values
+ 12h	warm boot: restore CPU control word
+ 13h	PCI bus-mastering device initialization
+ 14h	keyboard controller initialization
+ 16h	checksum BIOS ROM
+ 17h	cache initialization (before memory autosizing)
+ 18h	initialize 8254 timer
+ 1Ah	8237 DMA controller initialization
+ 1Ch	programmable interrupt controller reset
+ 20h	DRAM refresh test
+ 22h	keyboard controller test
+ 24h	ES register set to 4G flat
+ 26h	A20 enabled
+ 28h	DRAM autosizing
+ 29h	POST memory manager initialization
+ 2Ah	512K base RAM cleared
+ 2Ch	RAM failure on address line xxxx
+ 2Eh	RAM failure on data bits xxxx of memory bus low byte
+ 2Fh	cache enabled before system BIOS shadowing
+ 30h	RAM failure on data bits xxxx of memory bus high byte
+ 32h	CPU bus-clock frequency test
+ 33h	POST dispatch manager initialization
+ 34h	CMOS RAM test
+ 35h	alternate chipset register initialization
+ 36h	warm start shutdown
+ 37h	chipset reinitialization (motherboard)
+ 38h	system BIOS ROM shadowing
+ 39h	cache reinitialization (motherboard)
+ 3Ah	cache autosizing
+ 3Ch	advanced chipset register configuration
+ 3Dh	load alternate registers with CMOS values
+ 40h	initial CPU speed set
+ 42h	interrupt vector initialization
+ 44h	BIOS interrupt initialization
+ 45h	POST device initialization
+ 46h	ROM copyright notice check
+ 47h	PCI option ROM manager initialization
+ 48h	check video configuration against CMOS RAM data
+ 49h	PCI bus and device initialization
+ 4Ah	video adapter initialization
+ 4Bh	display QuietBoot screen
+ 4Ch	vidoe BIOS ROM shadowing
+ 4Eh	display BIOS copyright notice
+ 50h	display CPU type and speed
+ 51h	EISA motherboard initialization
+ 52h	keyboard test
+ 54h	set key click (if enabled)
+ 56h	enable keyboard
+ 58h	test for unexpected interrupts
+ 59h	POST display service initialization
+ 5Ah	display prompt "Press F2 to enter SETUP"
+ 5Bh	disable CPU cache
+ 5Ch	RAM test (512K-640K)
+ 60h	extended memory test
+ 62h	extended memory address line test
+ 64h	jump to UserPatch1
+ 66h	advanced cache register configuration
+ 67h	multiprocessor APIC initialization
+ 68h	enable L1 and L2 caches
+ 69h	SMM area setup
+ 6Ah	display L2 cache size
+ 6Ch	display	shadow-area message
+ 6Eh	display possible UMB recovery high address
+ 70h	display error messages
+ 72h	configuration error check
+ 74h	real-time clock test
+ 76h	keyboard-error check
+ 7Ah	test for key lock on
+ 7Ch	hardware interrupt vector setup
+ 7Eh	coprocessor initialization (if present)
+ 80h	disable onboard SuperI/O ports and IRQs
+ 81h	late POST device initialization
+ 82h	detect/install external serial ports
+ 83h	non-MCD IDE controller configuration
+ 84h	detect/install external parallel ports
+ 85h	PC-compatible PnP ISA device initialization
+ 86h	onboard I/O port reinitialization
+ 87h	configure motherboard configurable devices
+ 88h	BIOS data area initialization
+ 89h	enable NMI
+ 8Ah	extended BIOS data area initialization
+ 8Bh	test/initialize PS/2 mouse
+ 8Ch	diskette controller initialization
+ 8Fh	determine number of ATA drives
+ 90h	hard-disk controller initialization
+ 91h	local-bus hard-disk controller initialization
+ 92h	jump to UserPatch2
+ 93h	build MPTABLE for multiprocessor boards
+ 94h	disable A20 (Release 5.1 and earlier)
+ 95h	install CD-ROM for boot
+ 96h	clear ES 4G segment register
+ 97h	multiprocessor table fixup
+ 98h	option ROM search
+ 99h	check for SMART drive
+ 9Ah	option ROM shadowing
+ 9Ch	power management setup
+ 9Eh	enable hardware interrupts
+ 9Fh	determine number of ATA and SCSI devices
+ A0h	set time of day
+ A2h	check key lock
+ A4h	typematic rate initialization
+ A8h	erase F2 prompt
+ AAh	test for F2 keystroke
+ ACh	enter SETUP
+ AEh	clear IN-POST flag
+ B0h	check for errors
+ B2h	preparing to boot OS - POST complete
+ B4h	short beep before booting
+ B5h	terminate QuietBoot
+ B6h	password check (optional)
+ B8h	clear global descriptor table
+ B9h	clean up all graphics
+ BAh	DMI parameter initialization
+ BBh	PnP option ROM initialization
+ BCh	clear parity checkers
+ BDh	display MultiBoot menu
+ BEh	clear screen (optional)
+ BFh	check virus and backup reminders
+ C0h	INT 19 boot attempt
+ C1h	POST Error Manager (PEM) initialization
+ C2h	error logging initialization
+ C3h	error display function initialization
+ C4h	system error handler initialization
+ E0h	chipset initialization
+ E1h	bridge initialization
+ E2h	processor initialization
+ E3h	system timer initialization
+ E4h	system I/O initialization
+ E5h	check force recovery boot
+ E6h	BIOS ROM checksumming
+ E7h	go to BIOS
+ E8h	set huge segment
+ E9h	multiprocessor initialization
+ EAh	OEM special code initialization
+ EBh	PIC and DMA initialization
+ ECh	memory type initialization
+ EDh	memory size initialization
+ EEh	boot block shadowing
+ EFh	system memory test
+ F0h	interrupt vector initialization
+ F1h	real-time clock initialization
+ F2h	video initialization
+ F3h	beeper initialization
+ F4h	initialize boot
+ F5h	clear huge segment
+ F6h	boot to mini-DOS
+ F7h	boot to full DOS
+SeeAlso: #P0413,#P1017
+
+(Table P1017)
+Values for Microid Research MR-BIOS POST codes:
+ 00h	starting cold boot
+ 01h	OEM-specific hook #0 (typically chipset reset)
+ 02h	disable critical I/O devices (6845, 8327s, floppy, and parity latches)
+ 03h	BIOS checksum test (beep code LH-LLL; L=low tone, H=high tone)
+ 04h	test page registers (PORT 0081h-008Fh) (beep code LH-HLL)
+ 05h	keyboard controller self-test (beep code LH-LHL)
+ 06h	gang port initialization (both 8237s, both 7254s, RTC registers
+	  0Fh/0Ah, and both 8259s)
+ 07h	OEM-specific hook #1 (typically cache and shadow RAM disable)
+ 08h	test refresh toggle (beep code LH-HHL)
+ 09h	pattern test both 8237s (beep code LH-LLH)	
+ 0Ah	test first 64K RAM (beep code LH-LLLL or LH-HLLL)
+ 0Bh	pattern test both 8259s mask registers
+	(beep code LH-HHHL [master] or LH-LLLH [slave])
+ 0Ch	test 8259 IRQs and purge powerup interrupts
+ 0Dh	test and init 8254 channel 0
+ 0Eh	test 8254 channel 2 and speaker circuitry
+ 0Fh	test and init RTC
+ 10h	initialize video
+ 11h	text CMOS checksum
+ 12h	display signon message, accept keyboard selftest result, attempt
+	  to initialize keyboard
+ 13h	OEM-specific hook #2 (typically 8MHz-bus select)
+ 14h	size and test base memory
+ 15h	second attempt to initialize keyboard, if necessary
+ 16h	OEM-specific hook #3 (typically cache sizing/test)
+ 17h	test A20 gate
+ 18h	size and test extended memory
+ 19h	OEM-specific hook #4 (size/test "special" OEM memory)
+ 1Ah	test RTC update-in-progress flag and validate time
+ 1Bh	determine serial ports
+ 1Ch	determine parallel ports
+ 1Dh	determine/initialize coprocessor
+ 1Eh	floppy controller test/determination and CMOS validation
+ 1Fh	determine/test fixed disk controller, validate CMOS settings
+ 20h	rigorous CMOS parameter validation
+ 21h	check frnot-panel lock, wait for user acknowledgement of errors
+ 22h	set NumLock, password-security trap, dispatch to setup utility
+ 23h	OEM-specific hook #5
+ 24h	set keyboard typematic rate
+ 25h	initialize floppy subsystem
+ 26h	initialize fixed-disk subsystem
+ 27h	ACK errors, set primary adapter's video mode
+ 28h	OEM-specific hook #6 (typically enable shaow RAM, cache, turbo mode)
+ 29h	disable A20, set low stack, init ROMs at C800-E000
+ 2Ah	ACK errors, set video mode, set DOS time from RTC
+ 2Bh	enable parity checking and NMI
+ 2Ch	init ROM at E000
+ 2Dh	ACK errors
+ 2Eh	OEM-specific hook #7 (typically init built-in EMS)
+ 2Fh	passing control to INT 19h
+SeeAlso: #0410,#0414
+

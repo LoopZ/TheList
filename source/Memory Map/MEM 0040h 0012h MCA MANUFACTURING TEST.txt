@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400012
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0012h - MCA - MANUFACTURING TEST
+Size:	BYTE
+
+Bitfields for MCA manufacturing test flags :
+Bit(s)	Description	(Table M0008)
+ 7	POST flag, ???
+ 6-5	unused
+ 4	POST flag, slot 4 has adapter identifier EDAFh
+ 3	POST flag, 80x25 color video
+ 2	POST flag, ???
+ 1	unused
+ 0	manufacturing test mode rather than normal operation
+

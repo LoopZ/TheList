@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: @00600009
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:0009h - Eagle MS-DOS v1.25 IO.SYS - OUTPUT CHARACTER TO SCREEN
+InstallCheck:	MS-DOS v1.25 must be installed
+Note:	this entry point supports most of the ANSI.SYS control sequences,
+	  plus several additional escape sequences
+SeeAlso: @0060h:0000h,@0060h:0003h,@0060h:000Ch
+
+(Table F0003)
+Call Eagle MS-DOS entry point 0009h with:
+	AL = character to output
+Return: flags modified
+

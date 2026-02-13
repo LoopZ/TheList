@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: @0060000F
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:000Fh - Eagle MS-DOS v1.25 IO.SYS - INPUT CHAR FROM AUX: DEVICE
+InstallCheck:	MS-DOS v1.25 must be installed
+Note:	if the configured AUX: device is a parallel port, this call always
+	  returns a Ctrl-Z as the "read" character; Ctrl-Z is also returned
+	  if the user presses Esc or Ctrl-Break while waiting for a character
+	  to arrive on a serial port
+SeeAlso: @0060h:0000h
+
+(Table F0005)
+Call Eagle MS-DOS entry point 000Fh with:
+	nothing
+Return: AL = received character
+

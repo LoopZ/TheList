@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: I2801
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 28h/01h - Philips SAA5252 - CAPTION MODE
+Access:	Write-Only
+Desc:	the SAA5252 is a closed-captioning text decoder
+SeeAlso: I2C 28h/00h,I2C 28h/04h,I2C 28h/80h
+
+Bitfields for Philips SAA5252 caption mode:
+Bit(s)	Description	(Table I0005)
+ 1-0	enhanced display mode
+	00 video only
+	01 text only
+	10 normal caption mode
+	11 enhanced caption mode
+ 3-2	enhanced caption mode
+	00 shadowed character, video background
+	01 shadowed character, mesh background
+	10 normal character, video background
+	11 normal character, mesh background
+ 4	disable CC decoding and acquisition
+ 5	check lines 19-23, not just line 21
+ 6	user channel selection (0=Ch2, 1=Ch1)
+ 7	clear page memory
+SeeAlso: #I0010
+

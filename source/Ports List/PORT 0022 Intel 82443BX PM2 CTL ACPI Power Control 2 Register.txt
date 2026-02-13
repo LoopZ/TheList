@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0022
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022 - Intel 82443BX - "PM2_CTL" ACPI Power Control 2 Register
+SeeAlso: PORT 0022h"82439TX",#01142 at INT 1A/AX=B10Ah/SF=8086h
+
+0022  RW  ACPI Power Control Register 2
+	bits 7-1: reserved
+	bit 0:	disable primary PCI and AGP arbiter requests
+

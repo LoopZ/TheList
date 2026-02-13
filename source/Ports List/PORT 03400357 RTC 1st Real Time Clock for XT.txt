@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03400357
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0340-0357 - RTC (1st Real Time Clock for XT)
+		(used by TIMER.COM v1.2 which is the 'standard' timer program)
+Range:	alternate at 0240-0257
+SeeAlso:  PORT 0240h-0257h
+
+0340  RW  0.001 seconds		0-99
+0341  RW  0.1 and 0.01 seconds	0-99
+0342  RW  seconds		0-59
+0343  RW  minutes		0-59
+0343  RW  hours			0-23
+0345  RW  day of week		1-7
+0346  RW  day of month		1-31
+0347  RW  month			1-12
+0348  RW  RAM (upper nybble only)
+0349  RW  year			0-99
+034A  RW  RAM last month storage
+034B  RW  RAM year storage (-80)
+034C  RW  RAM reserved
+034D  RW  RAM not used
+034E  RW  RAM not used
+034F  RW  RAM not used
+0350  R-  interrupt status register
+0351  -W  interrupt control register
+0352  -W  counter reset
+0353  -W  RAM reset
+0354  R-  status bit
+0355  -W  GO command
+0356  ??  standby interrupt
+0357  ??  test mode
+

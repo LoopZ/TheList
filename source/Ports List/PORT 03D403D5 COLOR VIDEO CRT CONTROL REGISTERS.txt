@@ -1,0 +1,162 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03D403D5
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03D4-03D5 - COLOR VIDEO - CRT CONTROL REGISTERS
+
+03D4  rW  CRT (6845) register index   (CGA/MCGA/color EGA/color VGA)
+	selects which register (0-11h) is to be accessed through 03D5
+	this port is r/w on some VGA, e.g. ET4000
+	    bit 7-6 =0: (VGA) reserved
+	    bit 5   =0: (VGA) reserved for testage
+	    bit 4-0   : selects which register is to be accessed through 03D5
+03D5  -W  CRT (6845) data register   (CGA/MCGA/color EGA/color VGA) (see #P0708)
+	selected by PORT 03D4h. registers 0C-0F may be read
+	  (see also PORT 03B5h)
+	MCGA, native EGA and VGA use very different defaults from those
+	  mentioned for the other adapters; for additional notes and
+	  registers 00h-0Fh and EGA/VGA registers 10h-18h and ET4000
+	  registers 32h-37h see PORT 03B5h (see #P0654)
+	registers 10h-11h on CGA, EGA, VGA and 12h-14h on EGA, VGA are
+	  conflictive with MCGA (see #P0710)
+
+(Table P0708)
+Values for EGA/VGA+ CRT Controller register index:
+ 00h-0Fh	same as MDA/CGA (see #P0654)
+ 10h R-	native VGA with bit7=1 in end horizontal blanking (03h) and ET4000:
+	       start vertical retrace
+ 10h -W start vertical retrace
+ 11h R- native VGA with bit7=1 in end horizontal blanking (03h):
+	       end vertical retrace
+ 11h -W end vertical retrace
+	       bit7  : VGA: protection bit
+			    =0 enable write access to 00h-07h
+			    =1 read only regs 00h-07h with the exception
+			       of bit4 in 07h. ET4000: protect 35h also.
+	       bit6  : VGA: =0 three, =1 five refreshcycles/line
+		       ET4000: reserved
+	       bit5=0: (MCGA also) enable vertical interrupt
+	       bit4=0: (MCGA also) clear vertical interrupt
+		   =1:		   no effect
+	       bit3-0: (MCGA also) vertical retrace end
+ 12h	vertical display end register
+ 13h	row offset register
+	       logical screen line width in
+		byte mode : bytes/(line/2)
+		word mode : bytes/(line/4)
+		dword mode: bytes/(line/8)
+ 14h	underline location register
+	       bit7: reserved (0)
+	       bit6: (VGA) 0=word-mode, 1=dword-mode (see 17h, bit6)
+	       bit5: (VGA) 0=standard address counter clock
+			   1=address counter clock/4 (see 17h, bit3)
+	       bit4-0: horizontal underline row scan
+ 15h	(EGA,VGA) start vertical blanking-1
+ 16h	(EGA,VGA) end vertical blanking register
+	       bit7-5 : EGA: reserved, but used on original EGA???
+	       bit4-0 : end vertical blanking
+ 17h	(EGA,VGA) "CR17" mode control register (see #P0657)
+ 18h	(EGA,VGA) "CR18" line compare register
+ 19h	Genoa SuperEGA only: double scan control
+	       at 3B5h only in MDA, HGC emulation, but at 3D5h even in
+	       mono EGA modes.
+	       bit7-5 : reserved
+	       bit4   : HR/VR width adjust flag for double scan mode
+	       bit3-1 : 1=test, 0=normal
+	       bit0   : double scan enable
+ 1Dh	Elsa Victory Erazor only: video page select for writing
+		bits 7-1 = offset into video memory in 64K units
+		bit 0: ???
+ 1Eh	Elsa Victory Erazor only: video page select for reading
+		bits 7-1 = offset into video memory in 64K units
+		bit 0: ???
+ 22h	(VGA) "CR22" CPU Latch Data Register (read-only)
+ 24h	(VGA) "CR24" Attribute Controller Toggle register (R-O) (see #P0709)
+ 3xh	(VGA)  !!!chips\64200.pdf p.57
+Notes:	registers 10h-14h on the MCGA have conflicting uses (see #P0710)
+	registers 22h,24h, and 3xh exist on the standard IBM VGA but were not
+	  documented
+SeeAlso: #P0756,#P0716,#P0717
+
+Bitfields for VGA "CR24" Attribute Controller Toggle register:
+Bit(s)	Description	(Table P0709)
+ 7-3	current attribute controller index
+ 2	palette address source
+ 1	reserved
+ 0	state of attribute-controller flip-flop (0 = index, 1 = data)
+Note:	this register was not documented for the original IBM VGA; this
+	   description is from the C&T Wingine documentation
+SeeAlso: #P0708,#P0718
+
+(Table P0710)
+Values for MCGA (only) CRT Controller register index:
+ 00h-0Fh	same as MDA/CGA (see #P0654)
+ 10h -W mode control register (defaults 18h, 1Ah, 19h) (see #P0711)
+ 10h R-	mode control status register (see #P0712)
+ 11h -W	interrupt control register (default 30h) (see #P0713)
+ 12h RW	character generator/sync polarity register (see #P0714)
+ 12h R-	display sense register (int. control reg [11h] bit7=1)
+	bit 7-2	 : not used
+	bit 1-0	 : pins 11 & 12 in monitor cable
+		00b = reserved
+		01b = analogue monochrom monitor
+		10b = analogue color graphics monitor
+		11b = no monitor
+ 13h -W character font pointer register (see #P0710)
+	only 00h, 10h, 20h, 30h (default 00h) are allowed here
+	  for textmode fonts at A0000, A2000, A4000, A6000
+ 14h -W	number of characters to load during vert. retrace period (default FFh)
+Note:	registers 10h-14h can appear at PORT 03D5h only, not at 03B5h
+SeeAlso: #P0654,#P0708,#P0756,#P0715
+
+Bitfields for MCGA (only) CRT mode control register:
+Bit(s)	Description	(Table P0711)
+ 7	suppress hsync/vsync
+ 6	reserved (0)
+ 5	reserved
+ 4	dot clock rate
+ 3	refresh calculations in 80x25 modes
+ 2	reserved
+ 1	videomode 11h active
+ 0	videomode 13h active
+SeeAlso: #P0710,#P0712
+
+Bitfields for MCGA (only) CRT mode control status register:
+Bit(s)	Description	(Table P0712)
+ 7	status bit0 CGA mode control register
+ 6	reserved
+ 5	clockrate 640 pixel, =0: clockrate/2 320 pixel
+ 4	clock rate is 25,175Mhz
+ 3	currently in textmode
+ 2	double-scan activated
+ 1	videomode 11h active
+ 0	videomode 13h active
+SeeAlso: #P0710,#P0711
+
+Bitfields for MCGA (only) CRT interrupt control register:
+Bit(s)	Description	(Table P0713)
+ 7	set output driver to tristate
+	=0: for reading of character generator reg (12h)
+	=1: for reading of display sense register (12h)
+ 6   R	intr generated by memory controller
+ 5	=0 requested intr ok to handle
+ 4	=0 free interrupt latch register
+ 3-0	reserved
+SeeAlso: #P0710
+
+Bitfields for MCGA (only) CRT character generator/sync polarity register:
+Bit(s)	Description	(Table P0714)
+ 7	character generator active
+ 6	=1 load codepage during display
+	=0 load codepage during retrace
+ 5	codepage number (0,1)
+ 4	512 characters active
+ 3	reserved (0)
+ 2	enable hsync/vsync
+ 1	positive vsync polarity
+ 0	positive hsync polarity
+Note:	default 46h in all modes, except 04h in mode 11h)
+SeeAlso: #P0710
+

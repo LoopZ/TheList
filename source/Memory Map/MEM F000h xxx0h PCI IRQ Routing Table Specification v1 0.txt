@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: MF000xxx0
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM F000h:xxx0h - PCI IRQ Routing Table Specification v1.0
+Size:	N paragraphs (N >= 2)
+InstallCheck: scan for the signature string "$PIR" followed by a valid
+	  PCI IRQ Routing Table
+Range:	any paragraph boundary within the range F0000h to FFFFFh
+
+Format of PCI IRQ Routing Table v1.0:
+Offset	Size	Description	(Table M0090)
+ 00h  4 BYTEs	signature "$PIR"
+ 04h	WORD	version (0100h for v1.0)
+ 06h	WORD	table size in bytes
+ 08h	BYTE	bus number for PCI Interrupt Router
+ 09h	BYTE	device/function number for PCI Interrupt Router
+ 0Ah	WORD	bitmap of PCI-exclusive IRQs (bit 0 = IRQ0, etc.)
+ 0Ch	WORD	PCI vendor ID for compatible PCI Interrupt Router
+ 0Eh	WORD	PCI device ID for compatible PCI Interrupt Router
+ 10h	DWORD	Miniport data
+ 14h 11 BYTEs	reserved (0)
+ 1Fh	BYTE	checksum (set to make 8-bit sum of bytes in entire structure
+		  equal 00h)
+--- optional data ---
+ 20h 16 BYTEs	first slot entry (see #M0091)
+	...
+     16 BYTEs	Nth slot entry
+
+Format of PCI IRQ Routing Table slot entry:
+Offset	Size	Description	(Table M0091)
+ 00h	BYTE	PCI bus number
+ 01h	BYTE	PCI device number (bits 7-3)
+ 02h	BYTE	link value for INTA#
+ 03h	WORD	IRQ bitmap for INTA#
+ 05h	BYTE	link value for INTB#
+ 06h	WORD	IRQ bitmap for INTB#
+ 08h	BYTE	link value for INTC#
+ 09h	WORD	IRQ bitmap for INTC#
+ 0Bh	BYTE	link value for INTD#
+ 0Ch	WORD	IRQ bitmap for INTD#
+ 0Eh	BYTE	slot number (00h = motherboard, other = vendor-specific)
+ 0Fh	BYTE	reserved
+SeeAlso: #M0090,#01260 at INT 1A/AX=B406h
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0F8D
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0F8D - OPTi 82C750 (Vendetta) - AUDIO MODULE BASE ADDRESS REGISTER
+SeeAlso: PORT 0F8Eh,PORT 0530h"Vendetta"
+
+0F8D  RW  "MCBase" base register (see #P0948)
+
+Bitfields for OPTi "Vendetta" (82C750) audio module base register:
+Bit(s)	Description	(Table P0948)
+ 7	index/data port access protection disable
+ 6-5	reserved
+ 4-0	index/data port address bits 8-4
+	  (bits 15-9 = 0000111; bits 3-0 = 1110 for index port, data port +1)
+SeeAlso: #P0949
+

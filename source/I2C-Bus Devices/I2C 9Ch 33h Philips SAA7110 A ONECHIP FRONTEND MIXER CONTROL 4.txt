@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C33
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/33h - Philips SAA7110(A) ONE-CHIP FRONT-END - MIXER CONTROL #4
+Access:	Write-Only
+SeeAlso: I2C 9Eh
+
+Bitfields for Mixer Control #4:
+Bit(s)	Description	 (Table I0100)	(Table I0101)
+ 7	output format (0 = 4.1.1 format, 1 = 4.2.2 format)
+ 6	reserved (0)
+ 5	sign bit UV data
+	0  UV output unipolar
+	1  UV output two's complement
+ 4	reserved (0)
+ 3	clock select AD3
+	0  LLC for testing only, (do not use)
+	1  LLC/2 (normal)
+ 2	clock select AD2
+	0  LLC for testing only, (do not use)
+	1  LLC/2 (normal)
+ 1-0	reserved (0)
+

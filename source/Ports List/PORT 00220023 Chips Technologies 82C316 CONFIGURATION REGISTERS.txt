@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Chips&Technologies 82C316 - CONFIGURATION REGISTERS
+Note:	each access to PORT 0023h must immediately follow a write to
+	  PORT 0022h (this is to avoid accidental accesses)
+SeeAlso: PORT 0022h"82C311",PORT 0022h"82C315",PORT 0022h"82C811"
+
+0022  -W  configuration register index (see #P0071)
+0023  RW  configuration register data
+
+(Table P0071)
+Values for Chips&Technologies 82C316 configuration register index:
+ 01h	clock/wait-state control	!!!chips\cs8233.pdf p.178
+ 26h	RTC/NMI/Coprocessor reset	!!!chips\cs8233.pdf p.231
+ 71h	programmable I/O port 1 address, bits 15-8
+ 72h	programmable I/O port 1 address, bits 7-0
+ 73h	programmable I/O port 1 enable
+ 74h	programmable I/O port 2 address, bits 15-8
+ 75h	programmable I/O port 2 address, bits 7-0
+ 76h	programmable I/O port 2 enable
+ 77h	programmable I/O port 3 address, bits 15-8
+ 78h	programmable I/O port 3 address, bits 7-0
+ 79h	programmable I/O port 3 enable
+SeeAlso: #P0069
+

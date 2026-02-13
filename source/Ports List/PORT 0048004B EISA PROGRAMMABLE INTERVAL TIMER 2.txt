@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0048004B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0048-004B - EISA - PROGRAMMABLE INTERVAL TIMER 2
+Note:	this second timer is also supported by many Intel chipsets
+SeeAlso: PORT 0040h,PORT 0044h
+
+0048  RW  EISA PIT2 counter 3 (Watchdog Timer)
+0049  ??  EISA 8254 timer 2, not used (counter 4)
+004A  RW  EISA PIT2 counter 5 (CPU speed control)
+004B  -W  EISA PIT2 control word
+

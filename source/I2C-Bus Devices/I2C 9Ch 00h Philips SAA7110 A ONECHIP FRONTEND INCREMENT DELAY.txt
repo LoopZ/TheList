@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/00h - Philips SAA7110(A) ONE-CHIP FRONT-END - INCREMENT DELAY
+Access:	Write-Only
+Range:	I2C addresses 9Ch or 9Eh, determined by external pin
+Notes:	Values will always be negative as determined by internal sign bit.
+	valid decimal multiplier range 50 Hz mode = -1 to -236(max.)
+	valid decimal multiplier range 60 Hz mode = -1 to -195(max.)
+	step size = 4/LLC
+Example: mode	bit value  multiplier  delay
+	 50 Hz	3Dh	   -236	       -944 (max. value for 50 Hz)
+SeeAlso: I2C 9Eh
+

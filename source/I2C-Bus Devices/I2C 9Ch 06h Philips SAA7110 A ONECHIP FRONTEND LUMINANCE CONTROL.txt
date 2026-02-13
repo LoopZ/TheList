@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C06
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/06h - Philips SAA7110(A) ONE-CHIP FRONT-END - LUMINANCE CONTROL
+Access:	Write-Only
+SeeAlso: I2C 9Eh,I2C 9Ch/07h
+
+Bitfields for Luminance Control:
+Bit(s)	Description	(Table I0071)
+ 7	chrominance trap bypass (=0 CVBS mode, =1 S-Video mode)
+ 6	prefilter
+ 5-4	aperture bandpass; centre frequency
+	     (50 Hz)  (60 Hz)
+	00   4.6 MHz  3.8 MHz
+	01   4.3 MHz  3.4 MHz
+	10   3.0 MHz  2.5 MHz
+	11   3.2 MHz  2.7 MHz
+ 3-2	corner correction
+	00   0(off)
+	01   1
+	10   2
+	11   3
+ 1-0	aperture factor
+	00   0(off)
+	01   0.25
+	10   0.5
+	11   1.0
+

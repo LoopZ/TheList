@@ -1,0 +1,1200 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00240027
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0024-0027 - PicoPower Vesuvius - V1-LS
+Note:	software must use 16-bit accesses to these ports; 8-bit accesses will
+	  be directed to the V3-LS chip in the chipset instead of the V1-LS
+SeeAlso: PORT 0024h"V3-LS"
+
+0024w  ?W  V1-LS register index (see #P0294)
+0026w  RW  V1-LS register data
+
+(Table P0294)
+Values for PicoPower Vesuvius V1-LS register index:
+ 01xxh	(reset sampling and miscellaneous)
+ 0100h	revision ID register (see #P0295)
+ 0101h	V1 power on register (see #P0296)
+ 0108h	V2 version ID register (see #P0297)
+ 0109h	V2 configuration register (see #P0298)
+ 010Ah	V2 miscellaneous status register (see #P0299)
+ 0110h	programmable region 1 register (see #P0300)
+ 0111h	programmable region 2 register (see #P0300)
+ 0112h	programmable region 3 register (see #P0300)
+ 0113h	programmable region 4 register (see #P0300)
+ 0114h	programmable region control register (see #P0301)
+ 0118h	SMM control register (see #P0302)
+ 0119h	processor control register (see #P0303)
+ 011Ah	write FIFO control register (see #P0304)
+ 011Bh	PCI control register (see #P0305)
+ 011Ch	clock skew adjust register (see #P0306)
+ 011Dh	bus master and snooping control register (see #P0307)
+ 011Eh	arbiter control register (see #P0308)
+ 011Fh	docking control register (see #P0309)
+ 02xxh	(DRAM registers)
+ 0200h	shadow RAM read enable control register (see #P0310)
+ 0201h	shadow RAM write enable control register (see #P0311)
+ 0202h	bank 0 control register (see #P0312)
+ 0203h	bank 1 control register (see #P0312)
+ 0204h	bank 0/1 timing control register (see #P0313)
+ 0205h	bank 2 control register (see #P0312)
+ 0206h	bank 3 control register (see #P0312)
+ 0207h	bank 2/3 timing control register (see #P0313)
+ 0208h	bank 4 control register (see #P0312)
+ 0209h	bank 5 control register (see #P0312)
+ 020Ah	bank 4/5 timing control register (see #P0313)
+ 020Bh	bank 6 control register (see #P0312)
+ 020Ch	bank 7 control register (see #P0312)
+ 020Dh	bank 6/7 timing control register (see #P0313)
+ 020Eh	DRAM configuration register 1 (see #P0314)
+ 020Fh	DRAM configuration register 2 (see #P0315)
+ 0210h	DRAM configuration register 3 (see #P0316)
+ 0211h	DRAM refresh control register (see #P0317)
+ 0212h	burst EDO control register (see #P0318)
+ 03xxh	(Power Management control)
+ 0300h	clock control register (see #P0319)
+ 0301h	clock throttling period control register (see #P0320)
+ 0302h	conserve clock throttling ratio/control register (see #P0321)
+ 0303h	heat regulator clock throttling ratio/control register (see #P0322)
+ 0304h	doze/sleep mode clock throttling ratio/control register (see #P0323)
+ 0310h	wake/SMI source register (see #P0324)
+ 0311h	power management timer status register (see #P0326)
+ 0312h	power management pin status register (see #P0327)
+ 0313h	wake mask control register (see #P0328)
+ 0314h	activity flag register 1 (see #P0329)
+ 0315h	activity flag register 2 (see #P0330)
+ 0316h	I/O trap SMI mask register (see #P0331)
+ 0317h	external SMI trigger mask register (see #P0332)
+ 0318h	internal SMI trigger mask register (see #P0333)
+ 0319h	software SMI trigger mask register (see #P0334)
+ 031Ah	primary activity option control register (see #P0335)
+ 031Bh	primary activity mask register 1 (see #P0336)
+ 031Ch	primary activity mask register 2 (see #P0337)
+ 031Dh	secondary activity mask register (see #P0338)
+ 031Eh	RING count control register (see #P0339)
+ 0320h	programmable range monitor control register 1 (see #P0340)
+ 0321h	programmable range monitor control register 2 (see #P0341)
+ 0322h	programmable range monitor 0 address register (see #P0342)
+ 0323h	programmable range monitor 0 compare register (see #P0343)
+ 0324h	programmable range monitor 1 address register (see #P0342)
+ 0325h	programmable range monitor 1 compare register (see #P0343)
+ 0326h	programmable range monitor 2 address register (see #P0342)
+ 0327h	programmable range monitor 2 compare register (see #P0343)
+ 0328h	programmable range monitor 3 address register (see #P0342)
+ 0329h	programmable range monitor 3 compare register (see #P0343)
+ 032Ah	programmable range monitor 4 address register (see #P0342)
+ 032Bh	programmable range monitor 4 compare register (see #P0343)
+ 032Ch	programmable range monitor 5 address register (see #P0342)
+ 032Dh	programmable range monitor 5 compare register (see #P0343)
+ 0330h	power management mode register (see #P0344)
+ 0331h	on/doze mode power control register (see #P0345)
+ 0332h	sleep mode power control register (see #P0346)
+ 0333h	suspend mode power control register (see #P0347)
+ 0335h	doze mode timer register (see #P0348)
+ 0336h	sleep mode timer register (see #P0349)
+ 0337h	suspend mode timer register (see #P0349)
+ 0338h	secondary activity timer register (see #P0350)
+ 0339h	power on demand primary activity timer register (see #P0351)
+ 0340h	general purpose control register (see #P0352)
+ 0341h	general purpose counter/timer control register (see #P0353)
+ 0342h	general purpose counter/timer current value register (see #P0354)
+ 0343h	general purpose counter/timer compare register (see #P0355)
+ 0344h	device timer 0 time-out register (see #P0356)
+ 0345h	device timer 1 time-out register (see #P0356)
+ 0346h	device timer 2 time-out register (see #P0356)
+ 0347h	device timer 3 time-out register (see #P0356)
+ 0348h	device timer 4 time-out register (see #P0356)
+ 0349h	device timer 5 time-out register (see #P0356)
+ 034Ah	device timer time-out source register 1 (see #P0357)
+ 034Bh	device timer time-out source register 2 (see #P0358)
+ 034Ch	device timer time-out source register 3 (see #P0359)
+ 034Dh	device timer time-out source register 4 (see #P0360)
+ 0350h	LED indicator control register (see #P0361)
+ 0351h	leakage control register (see #P0362)
+ 0352h	pin multiplexing control register (see #P0363)
+ 0353h	debounce control register (see #P0364)
+ 0354h	edge detect control register (see #P0365)
+ 04xxh	(Level-2 Cache)
+ 0400h	L2 cache configuration register (see #P0366)
+ 0401h	L2 cache timing register (see #P0367)
+ 0402h	L2 cache miscellaneous register (see #P0368)
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V1-LS revision ID register:
+Bit(s)	Description	(Table P0295)
+ 15-4	reserved
+ 3-0	V1-LS metal-mask version ID
+	3h = revision AA
+	4h = revision BB
+	5h = revision CC
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS V1 power on register:
+Bit(s)	Description	(Table P0296)
+ 15-12	reserved
+ 11	use internal clocks for simulation
+	0 = internal clock speedup disabled
+	0 = internal clock speedup enabled
+ 10	tristate all outputs
+	0 = no tristate condition
+	1 = tristate condition
+ 9	reserved
+ 8	(revision CC and later) snooping scheme
+	0 = HOLD/HLDA
+	1 = BOFF#/LOCK#
+ 7	(revision BB and later) PCI power plane voltage
+	0 = 3.3 V
+	1 = 5 V
+ 6	(revision BB and later) DRAM power plane voltage
+	0 = 3.3 V
+	1 = 5 V
+ 5-3	clock skew adjust
+	000 = 0.0 ns
+	001 = +0.55 ns
+	010 = +1.10 ns
+	011 = +1.65 ns
+	100 = -2.20 ns
+	101 = -1.65 ns
+	110 = -1.10 ns
+	111 = -0.55 ns
+ 2-0	miscellaneous configuration
+Note:	this register is read-only
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V2-LS V2 version ID register:
+Bit(s)	Description	(Table P0297)
+ 15-12	reserved
+ 11-8	V2-LS version ID (even)
+	3h = revision AA
+	4h = revision BB
+ 7-4	reserved
+ 3-0	V2-LS version ID (odd) (same values as bits 11-8)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V2-LS V2 configuration register:
+Bit(s)	Description	(Table P0298)
+ 15	V2-LS process monitor enable (odd)
+ 14-9	reserved
+ 8	fast PCI master address transfer enable (odd)
+ 7	V2-LS process monitor enable (even)
+ 6-1	reserved
+ 0	fast PCI master address transfer enable (even)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V2-LS V2 miscellaneous status register:
+Bit(s)	Description	(Table P0299)
+ 15-10	reserved
+ 9	(revision BB & later) PCI power plane voltage (odd)
+	0 = 3.3 V
+	1 = 5 V
+ 8	(revision BB & later) DRAM power plane voltage (odd) (as for bit 9)
+ 7-2	reserved
+ 1	(revision BB & later) PCI power plane voltage (even) (as for bit 9)
+ 0	(revision BB & later) DRAM power plane voltage (even) (as for bit 9)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS programmable region register:
+Bit(s)	Description	(Table P0300)
+ 15-3	programmable region starting address bits 27-15 (bits 31-28 = 0)
+	(starting address must be a multiple of block size)
+ 2-0	programmable region block size
+	000 = 32 KB
+	001 = 64 KB
+	010 = 128 KB
+	011 = 256 KB
+	100 = 512 KB
+	101 = 1 MB
+	110-111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS programmable region control register:
+Bit(s)	Description	(Table P0301)
+ 15-8	reserved
+ 7-6	programmable region 4 select
+	00 = disable
+	01 = write-through
+	10 = non-cacheable
+	11 = reserved
+ 5-4	programmable region 3 select (same values as bits 7-6)
+ 3-2	programmable region 2 select (same values as bits 7-6)
+ 1-0	programmable region 1 select (same values as bits 7-6)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS SMM control register:
+Bit(s)	Description	(Table P0302)
+ 15	SMM RAM access in normal mode lock (can only be written once)
+	0 = bit 14 not locked
+	1 = bit 14 locked to disabled
+ 14	load SMI handler into SMM RAM
+	0 = access to SMM RAM during normal cycle disabled
+	1 = access to SMM RAM during normal cycle enabled
+ 13	(revision BB and later) swap SMM D/E mapping
+	0 = D0000h-DFFFFh mapped to A0000h-AFFFFh and E0000h-EFFFFh mapped to
+	  B0000h-BFFFFh
+	1 = D0000h-DFFFFh mapped to B0000h-BFFFFh and E0000h-EFFFFh mapped to
+	  A0000h-AFFFFh
+ 12	(revision BB and later) swap SMM 2/3 mapping
+	0 = 20000h-2FFFFh mapped to A0000h-AFFFFh and 30000h-3FFFFh mapped to
+	  B0000h-BFFFFh
+	1 = 20000h-2FFFFh mapped to B0000h-BFFFFh and 30000h-3FFFFh mapped to
+	  A0000h-AFFFFh
+ 11-10	SMM E8000h-EFFFFh select
+	00 = normal memory space
+	01 = reserved
+	10 = SMM space (remap to B8000h-BFFFFh; E8000h-EFFFFh automatically set
+	  to non-cacheable)
+	11 = reserved
+ 9-8	SMM E0000h-E7FFFh select
+	00 = normal memory space
+	01 = reserved
+	10 = SMM space (remap to B0000h-B7FFFh; E0000h-E7FFFh automatically set
+	  to non-cacheable)
+	11 = reserved
+ 7-6	SMM D8000h-DFFFFh select
+	00 = normal memory space
+	01 = reserved
+	10 = SMM space (remap to A8000h-AFFFFh; D8000h-DFFFFh automatically set
+	  to non-cacheable)
+	11 = reserved
+ 5-4	SMM D0000h-D7FFFh select
+	00 = normal memory space
+	01 = reserved
+	10 = SMM space (remap to A0000h-A7FFFh; D0000h-D7FFFh automatically set
+	  to non-cacheable)
+	11 = reserved
+ 3	reserved
+ 2	20000h-3FFFFh remap to A0000h-BFFFFh in SMM mode disable
+	(can be used only when L1 and L2 are disabled)
+ 1	SMRAM KEN disable
+ 0	reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS processor control register:
+Bit(s)	Description	(Table P0303)
+ 15-10	reserved
+ 9	FPU error clearing by writing to I/O port F1h disable
+ 8	FPU error clearing by writing to I/O port F0h disable
+ 7	reserved
+ 6	assert INV for write cycle only
+ 5	write FIFO
+	0 = disabled (FIFO forced to one level)
+	1 = enabled (FIFO forced to eight level)
+ 4	combine KEN# and INV pins
+ 3	linear burst enable
+ 2	processor pipeline mode enable
+ 1	L1 write-back enable
+ 0	CACHE enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS write FIFO control register:
+Bit(s)	Description	(Table P0304)
+ 15-7	reserved
+ 6-5	PCI write buffering select
+	00 = disable
+	01 = post-write PCI IO write cycle only
+	10 = post-write PCI memory write cycle only
+	11 = post-write all PCI write cycles
+ 4	(revision BB and later) PCI read reordering enable
+ 3	(revision BB and later) DRAM read reordering enable
+ 2-0	reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS PCI control register:
+Bit(s)	Description	(Table P0305)
+ 15-4	reserved
+ 3	optimized address transfer between V1-LS and V2-LS enable
+ 2	reserved
+ 1	PCI master-to-DRAM burst enable
+ 0	reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS clock skew adjust register:
+Bit(s)	Description	(Table P0306)
+ 15-3	reserved
+ 2-0	L2CLK skew adjust
+	000 = 0.0 ns
+	001 = +0.55 ns
+	010 = +1.10 ns
+	011 = +1.65 ns
+	100 = -2.20 ns
+	101 = -1.65 ns
+	110 = -1.10 ns
+	111 = -0.55 ns
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS bus master and snooping control register:
+Bit(s)	Description	(Table P0307)
+ 15-14	reserved
+ 13	early DRAM cycle when PCI master accessing DRAM disable
+ 12-0	reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS arbiter control register:
+Bit(s)	Description	(Table P0308)
+ 15-7	reserved
+ 6	REQ2# as FLOAT_REQ# and GNT2# as FLOAT_GNT# enable
+ 5-4	SIO request/grant source
+	00 = none
+	01 = BSER interface (normal operation)
+	10-11 = reserved
+ 3	preemptability of PCI request/grant 3 disable
+ 2	preemptability of PCI request/grant 2 disable
+ 1	preemptability of PCI request/grant 1 disable
+ 0	preemptability of PCI request/grant 0 disable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS docking control register:
+Bit(s)	Description	(Table P0309)
+ 15	system docked
+ 14-4	reserved
+ 3	DOCK_PCICLK follows state of PCICLK enable
+ 2	deassert DOCK_PCIRST#
+ 1	reserved
+ 0	tristate DOCK_PCIRST# and DOCK_PCICLK in normal operating mode enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS shadow RAM read enable control register:
+Bit(s)	Description	(Table P0310)
+ 15	local memory FC000h-FFFFFh read enable
+ 14	local memory F8000h-FBFFFh read enable
+ 13	local memory F4000h-F7FFFh read enable
+ 12	local memory F0000h-F3FFFh read enable
+ 11	local memory EC000h-EFFFFh read enable
+ 10	local memory E8000h-EBFFFh read enable
+ 9	local memory E4000h-E7FFFh read enable
+ 8	local memory E0000h-E3FFFh read enable
+ 7-4	local memory Dx000h-DyFFFh read enable
+	  (x/y = 0/3 for bit 4, 4/7 for bit 5, etc.)
+ 3-0	local memory Cx000h-CyFFFh read enable
+	  (x/y = 0/3 for bit 0, 4/7 for bit 1, etc.)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS shadow RAM write enable control:
+Bit(s)	Description	(Table P0311)
+ 15	local memory FC000h-FFFFFh write enable
+ 14	local memory F8000h-FBFFFh write enable
+ 13	local memory F4000h-F7FFFh write enable
+ 12	local memory F0000h-F3FFFh write enable
+ 11	local memory EC000h-EFFFFh write enable
+ 10	local memory E8000h-EBFFFh write enable
+ 9	local memory E4000h-E7FFFh write enable
+ 8	local memory E0000h-E3FFFh write enable
+ 7-4	local memory Dx000h-DyFFFh write enable
+	  (x/y = 0/3 for bit 4, 4/7 for bit 5, etc.)
+ 3-0	local memory Cx000h-CyFFFh write enable
+	  (x/y = 0/3 for bit 0, 4/7 for bit 1, etc.)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS bank control register:
+Bit(s)	Description	(Table P0312)
+ 15	reserved
+ 14-12	number of column address bits for bank
+	000 = 8 bits
+	001 = 9 bits
+	010 = 10 bits
+	011 = 11 bits
+	100 = 12 bits
+	101-111 = reserved
+ 11-9	bank DRAM size
+	000 = 1 MB
+	001 = 2 MB
+	010 = 4 MB
+	011 = 8 MB
+	100 = 16 MB
+	101 = 32 MB
+	110 = 64 MB
+	111 = reserved
+ 8	reserved
+ 7-0	bank starting address bits 27-20
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS bank timing control register:
+Bit(s)	Description	(Table P0313)
+ 15-14	reserved
+ 13-12	bank 0/2/4/6 and 1/3/5/7 CAS write pulse width
+	00 = 0.5T (EDO or burst EDO only)
+	01 = 1.0T
+	10 = 1.5T
+	11 = 2.0T
+ 11-9	bank 0/2/4/6 and 1/3/5/7 CAS read pulse width
+	000 = 0.5T (EDO or burst EDO only)
+	001 = 1.0T
+	...
+	111 = 4.0T
+ 8	bank 0/2/4/6 and 1/3/5/7 CAS precharge time
+	0 = 0.5T
+	1 = 1.0T
+ 7	bank 0/2/4/6 and 1/3/5/7 CAS address hold time (same values as bit 8)
+ 6-5	bank 0/2/4/6 and 1/3/5/7 RAS address setup time
+	00 = 0.0T
+	01 = 0.5T
+	10 = 1.0T
+	11 = 1.5T
+ 4-3	bank 0/2/4/6 and 1/3/5/7 RAS address hold time = N/2 + 0.5T
+ 2-0	bank 0/2/4/6 and 1/3/5/7 RAS precharge time    = N/2 + 1.5T
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS DRAM configuration register 1:
+Bit(s)	Description	(Table P0314)
+ 15-9	reserved
+ 8	fast cacheless read enable (L2 must be disabled and L2 read lead-off
+	  must be 2T)
+ 7-6	DRAM auto-detect mode
+	00 = normal mode
+	01 = setup for auto-detect
+	10 = reserved
+	11 = auto-detect read mode
+ 5-3	DRAM inactive time-out
+	000 = never
+	001 = 8 T
+	010 = 32 T
+	011 = 128 T
+	100 = 512 T
+	101-110 = reserved
+	111 = immediate
+ 2-0	reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS DRAM configuration register 2:
+Bit(s)	Description	(Table P0315)
+ 15-12	reserved
+ 11	banks 6 and 7
+	0 = two 32-bit banks
+	1 = one 64-bit bank (bits 7-6 ignored; bank 6 DRAM parameters used;
+	  programmed bank 6 size doubled)
+ 10	banks 4 and 5 (same settings as for bit 11)
+ 9	banks 2 and 3 (same settings as for bit 11)
+ 8	banks 0 and 1
+	0 = two 32-bit banks
+	1 = one 64-bit bank (bits 1-0 ignored; bank 0 DRAM parameters used;
+	  programmed bank 0 size doubled)
+ 7-0	corresponding bank enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS DRAM configuration register 3:
+Bit(s)	Description	(Table P0316)
+ 15-14	bank 7 DRAM type
+	00 = standard
+	01 = EDO
+	10 = burst EDO
+	11 = reserved
+ 13-12	bank 6 DRAM type (same values as bits 15-14)
+ 11-10	bank 5 DRAM type (same values as bits 15-14)
+ 9-8	bank 4 DRAM type (same values as bits 15-14)
+ 7-6	bank 3 DRAM type (same values as bits 15-14)
+ 5-4	bank 2 DRAM type (same values as bits 15-14)
+ 3-2	bank 1 DRAM type (same values as bits 15-14)
+ 1-0	bank 0 DRAM type (same values as bits 15-14)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS DRAM refresh control register:
+Bit(s)	Description	(Table P0317)
+ 15-14	reserved
+ 13-12	refresh stagger select
+	00 = no staggering
+	01 = reserved
+	10 = stagger active edge of RAS
+	11 = stagger both edges of RAS
+ 11	reserved
+ 10	suspend mode self-refresh enable
+ 9-8	reserved
+ 7-5	refresh period
+	000 = 3.75 æs
+	001 = 7.5 æs
+	010 = 15 æs
+	011 = 30 æs
+	100 = 120 æs
+	101 = stopped
+	110-111 = reserved
+ 4-3	RAS pulse width for refresh cycles
+	00 = 6T
+	01 = 5T
+	10 = 4T
+	11 = 3T
+ 2-1	RAS precharge time for refresh cycles
+	00 = 5T
+	01 = 4T
+	10 = 3T
+	11 = 2T
+ 0	DRAM refresh scheme
+	0 = CAS-before-RAS
+	1 = RAS-only
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS burst EDO control register:
+Bit(s)	Description	(Table P0318)
+ 15-4	MA setting during write CAS-before-RAS cycle
+ 3	trigger write CAS-before-RAS configuration cycle
+ 2-1	DRAM bank configuration select
+	00 = bank 0/1
+	01 = bank 2/3
+	10 = bank 4/5
+	11 = bank 6/7
+ 0	burst EDO write CAS-before-RAS configuration cycle enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS clock control register:
+Bit(s)	Description	(Table P0319)
+ 15	modular clocking on V2 clock enable
+ 14-12	reserved
+ 11	PCI clock control CLKRUN# method enable
+ 10	reserved
+ 9	PCI clock goes back to full speed on PCI LOCK# enable
+ 8	PCI clock goes back to full speed on PCI request/grant enable
+ 7-6	reserved
+ 5-4	PCI idle count (PCI clocks)
+	00 = immediate
+	01 = 8
+	10 = 32
+	11 = 256
+ 3-2	reserved
+ 1-0	PCI clock divisor during idle
+	00 = 1
+	01 = 2
+	10 = 32
+	11 = 256
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS clock throttling period control:
+Bit(s)	Description	(Table P0320)
+ 15-3	reserved
+ 2-0	clock throttling period select (T = CPU bus frequency period)
+	000 = 800T
+	001 = 1600T
+	010 = 3200T
+	011 = 6400T
+	100 = 12800T
+	101 = 25600T
+	110 = 102400T
+	111 = 409600T
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS conserve clock throttling ratio/control register:
+Bit(s)	Description	(Table P0321)
+ 15-5	reserved
+ 4	conserve clock throttling enable
+ 3-0	conserve clock throttling ratio
+	0000 = 5% duty cycle
+	0001-1001 = 10%-90% duty cycle
+	1010-1111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS heat regulator clock throttling:
+Bit(s)	Description	(Table P0322)
+ 15-13	reserved
+ 12	THERM input enable
+ 11-4	reserved
+ 3-0	heat regulator clock throttling ratio
+	0000 = 5% duty cycle
+	0001-1001 = 10%-90% duty cycle
+	1010-1111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS doze/sleep mode clock throttling:
+Bit(s)	Description	(Table P0323)
+ 15-11	reserved
+ 10-8	STPCLK release latency (PLL stabilization delay)
+	000 = 0 s
+	001 = 1 æs
+	010 = 45 æs
+	011 = 1 ms
+	100 = 2 ms
+	101-111 = reserved
+ 7-5	sleep mode clock throttling enable
+	000 = disable
+	001 = enable in ratio set in bits 3-0
+	010 = enable LessStop mode (CPU stop grant state)
+	011 = enable MoreStop mode (CPU stop clock state)
+	100 = enable Deep Sleep mode (MoreStop and high speed oscillator off,
+	  only 32 kHz running)
+ 4	doze mode clock throttling enable
+ 3-0	doze/sleep mode clock throttling ratio
+	0000 = 5% duty cycle
+	0001-1001 = 10%-90% duty cycle
+	1010-1111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS wake/SMI source register:
+Bit(s)	Description	(Table P0324)
+ 15-11	reserved
+ 10-8	wake-up source
+	000 = none
+	001 = RING
+	010 = SWTCH
+	011 = GP timer compare
+	100 = WAKE0
+	101 = WAKE1
+	110 = reserved
+	111 = clear wake-up source (write to clear)
+ 7-5	reserved
+ 4-0	SMI source (see #00671)
+SeeAlso: #P0294
+
+(Table P0325)
+Values for PicoPower Vesuvius V1-LS SMI source:
+ 00h	none
+ 01h	primary activity
+ 02h	I/O trap
+ 03h	device timer time-out
+ 04h	doze time-out
+ 05h	sleep time-out
+ 06h	suspend time-out
+ 07h	GP timer compare
+ 08h	SWTCH input toggling
+ 09h	reserved
+ 0Ah	WAKE0 input toggling
+ 0Bh	WAKE1 input toggling
+ 0Ch	EXTACT0 toggling
+ 0Dh	reserved
+ 0Eh	rescheduled SMI
+ 0Fh	software SMI
+ 10h	V3-LS INT SMI
+ 11h-1Eh reserved
+ 1Fh	clear SMI source (write to clear)
+SeeAlso: #P0324
+
+Bitfields for PicoPower Vesuvius V1-LS power management timer status register:
+Bit(s)	Description	(Table P0326)
+ 15-3	reserved
+ 2	suspend time-out status (write 0 to clear)
+ 1	sleep time-out status (write 0 to clear)
+ 0	doze time-out status (write 0 to clear)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS power management pin status register:
+Bit(s)	Description	(Table P0327)
+ 15-6	reserved
+ 5	SWTCH pin status (read-only)
+ 4	RING pin status (read-only)
+ 3	reserved
+ 2	EXTACT0 pin status (read-only)
+ 1	WAKE1 pin status (read-only)
+ 0	WAKE0 pin status (read-only)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS wake mask control register:
+Bit(s)	Description	(Table P0328)
+ 15-5	reserved
+ 4	mask GP timer compare from resume
+ 3	mask RING from resume
+ 2	mask SWTCH from resume
+ 1	mask WAKE1 from resume
+ 0	mask WAKE0 from resume
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS activity flag register 1:
+Bit(s)	Description	(Table P0329)
+ 15-10	programmable range 5-0 monitor active (write 0 to clear)
+ 9	reserved
+ 8	HOLD active (write 0 to clear)
+ 7	parallel I/O active (write 0 to clear)
+ 6	serial I/O 2 active (write 0 to clear)
+ 5	serial I/O 1 active (write 0 to clear)
+ 4	keyboard active (write 0 to clear)
+ 3	floppy disk active (write 0 to clear)
+ 2	hard disk 2 active (write 0 to clear)
+ 1	hard disk 1 active (write 0 to clear)
+ 0	video active (write 0 to clear)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS activity flag register 2:
+Bit(s)	Description	(Table P0330)
+ 15-14	reserved
+ 13-8	device timer 5-0 time-out (write 0 to clear)
+ 7	FLOAT_REQ# active (write 0 to clear)
+ 6	EXTACT0 active (write 0 to clear)
+ 5	WAKE1 active (write 0 to clear)
+ 4	WAKE0 active (write 0 to clear)
+ 3	SWTCH active (write 0 to clear)
+ 2	RING active (write 0 to clear)
+ 1	reserved
+ 0	V3-LS active (write 0 to clear)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS I/O trap SMI mask register:
+Bit(s)	Description	(Table P0331)
+ 15-10	programmable range 5-0 device on
+ 9-8	reserved
+ 7	parallel I/O on
+ 6	serial I/O 2 on
+ 5	serial I/O 1 on
+ 4	keyboard on
+ 3	floppy disk on
+ 2	hard disk 2 on
+ 1	hard disk 1 on
+ 0	video on
+Note:	No group mask for I/O trap.
+	SMI generated if a bit is 0 and corresponding device is accessed.
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS external SMI trigger mask register:
+Bit(s)	Description	(Table P0332)
+ 15-4	reserved
+ 3	mask EXTACT0 from SMI
+ 2	mask SWTCH from SMI
+ 1	mask WAKE1 from SMI
+ 0	mask WAKE0 from SMI
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS internal SMI trigger mask register:
+Bit(s)	Description	(Table P0333)
+ 15-10	reserved
+ 9	mask GP timer compare from SMI
+ 8	mask suspend time-out from SMI
+ 7	mask sleep time-out from SMI
+ 6	mask doze time-out from SMI
+ 5-0	mask device timer 5-0 time-out from SMI
+Note:	Primary activity mask is in register 31Ah bit 1.
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS software SMI trigger mask register:
+Bit(s)	Description	(Table P0334)
+ 15-10	reserved
+ 9	soft SMI on I/O write to port B0h enable
+ 8	soft SMI immediate (write 1 to trigger SMI; read value has no meaning)
+ 7-5	reserved
+ 4	reschedule SMI prescalar
+	0 = 10 ms
+	1 = 100 ms
+ 3-0	reschedule SMI select
+	0000 = disable
+	0001-1001 = 1-9
+	1010-1111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS primary activity option control:
+Bit(s)	Description	(Table P0335)
+ 15-5	reserved
+ 4	(revision BB and later) mask SMI from primary activity
+ 3	primary activity on disable
+ 2	primary activity latching in SMM mode enable
+ 1	mask primary activity from SMI
+ 0	primary activity flag enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS primary activity mask register 1:
+Bit(s)	Description	(Table P0336)
+ 15-10	primary activity mask programmable range 5-0 accesses
+ 9	reserved
+ 8	primary activity mask HOLD
+ 7	primary activity mask parallel I/O accesses
+ 6	primary activity mask serial I/O 2 accesses
+ 5	primary activity mask serial I/O 1 accesses
+ 4	primary activity mask keyboard accesses
+ 3	primary activity mask floppy disk accesses
+ 2	primary activity mask hard disk 2 accesses
+ 1	primary activity mask hard disk 1 accesses
+ 0	primary activity mask video accesses
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS primary activity mask register 2:
+Bit(s)	Description	(Table P0337)
+ 15-13	reserved
+ 12	primary activity mask FLOAT_REQ#
+ 11	primary activity mask SWTCH
+ 10	primary activity mask WAKE1
+ 9	primary activity mask WAKE0
+ 8	primary activity mask RING
+ 7	reserved
+ 6	primary activity mask EXTACT0
+ 5-0	reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS secondary activity mask register:
+Bit(s)	Description	(Table P0338)
+ 15-7	reserved
+ 6	mask EXTACT0 from secondary activity
+ 5-2	reserved
+ 1	mask HOLD from secondary activity
+ 0	mask SMI from secondary activity
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS RING count control register:
+Bit(s)	Description	(Table P0339)
+ 15-5	reserved
+ 4	RINGS ten's digit
+	0 = 0
+	1 = 1
+ 3-0	RINGS one's digit
+	0000 = disabled (ring counter reset, if bit 4 = 0)
+	0001-1001 = 1-9
+	1010-1111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS programmable range monitor control 1:
+Bit(s)	Description	(Table P0340)
+ 15-14	reserved
+ 13-8	programmable range monitor 5-0 enable
+ 7-6	reserved
+ 5-0	programmable range monitor 5-0 memory or I/O compare
+	0 = I/O
+	1 = memory
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS programmable range monitor control 2:
+Bit(s)	Description	(Table P0341)
+ 15-14	reserved
+ 13-8	programmable range monitor 5-0 read enable
+ 7-6	reserved
+ 5-0	programmable range monitor 5-0 write enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS programmable range monitor address:
+Bit(s)	Description	(Table P0342)
+ 15-0	programmable range monitor address (I/O address bits 15-0; memory
+	  address bits 31-16)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS programmable range monitor compare:
+Bit(s)	Description	(Table P0343)
+ 15-0	programmable range monitor compare enable (I/O address bits 15-0;
+	  memory address bits 31-16)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS power management mode register:
+Bit(s)	Description	(Table P0344)
+ 15-4	reserved
+ 3	resume
+ 2-0	system management mode
+	000 = on
+	001 = doze
+	010 = sleep or deep sleep
+	011 = suspend
+	100-111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS on/doze mode power control register:
+Bit(s)	Description	(Table P0345)
+ 15-6	reserved
+ 5-0	power control on/doze mode (if on/doze mode active, 1 means
+	  corresponding power control pin is active)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS sleep mode power control register:
+Bit(s)	Description	(Table P0346)
+ 15-6	reserved
+ 5-0	power control sleep mode (if sleep mode active, 1 means corresponding
+	  power control pin is active)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS suspend mode power control register:
+Bit(s)	Description	(Table P0347)
+ 15-6	reserved
+ 5-0	power control suspend mode (if suspend mode active, 1 means
+	  corresponding power control pin is active)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS doze mode timer register:
+Bit(s)	Description	(Table P0348)
+ 15-10	reserved
+ 9	doze mode timer enable
+ 8	doze mode timer reset by primary activity enable
+ 7	doze mode timer clock prescalar
+	0 = 100 ms
+	1 = 1 s
+ 6-4	doze mode timer ten's digit
+	000-111 = 0-7
+ 3-0	doze mode timer one's digit
+	0000-1001 = 0-9
+	1010-1111 = reserved
+Note:	the timer is disabled when both ten's and one's digits are 0
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS sleep/suspend mode timer register:
+Bit(s)	Description	(Table P0349)
+ 15-10	reserved
+ 9	sleep/suspend mode timer enable
+ 8-7	reserved
+ 6-4	sleep/suspend mode timer ten's digit (0-7)
+ 3-0	sleep/suspend mode timer one's digit
+	0000-1001 = 0-9
+	1010-1111 = reserved
+Note:	the timer is disabled when both ten's and one's digits are 0
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS secondary activity timer register:
+Bit(s)	Description	(Table P0350)
+ 15-10	reserved
+ 9	secondary activity timer enable
+ 8	reset secondary activity on SMI
+ 7	secondary activity timer clock prescalar
+	0 = 100 æs
+	1 = 1 ms
+ 6-4	secondary activity timer ten's digit (0-7)
+ 3-0	secondary activity timer one's digit
+	0000-1001 = 0-9
+	1010-1111 = reserved
+Note:	the timer is disabled when both ten's and one's digits are 0
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS power on demand primary activity timer:
+Bit(s)	Description	(Table P0351)
+ 15-10	reserved
+ 9	primary activity timer enable
+ 8	reserved
+ 7	primary activity timer clock prescalar
+	0 = 100 æs
+	1 = 1 ms
+ 6-4	primary activity timer ten's digit (0-7)
+ 3-0	primary activity timer one's digit
+	0000-1001 = 0-9
+	1010-1111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS general purpose control register:
+Bit(s)	Description	(Table P0352)
+ 15-14	reserved
+ 13-8	general purpose I/O 5-0 direction
+	0 = corresponding GPIO pin is an input
+	1 = corresponding GPIO pin is an output
+ 7-6	reserved
+ 5-0	general purpose I/O 5-0 data
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS general purpose counter/timer control:
+Bit(s)	Description	(Table P0353)
+ 15-8	reserved
+ 7	general purpose counter/timer enable
+ 6-5	general purpose counter/timer select
+	     bit 4 = 0	     bit 4 = 1
+	00 = 16-bit counter  16-bit counter  (GPIO3 is counter clock)
+	01 = 24-bit counter  24-bit counter  (GPIO3 is counter clock)
+	10 = 1 second timer  31.25 æs timer
+	11 = 1 minute timer  1.875 ms timer
+ 4	general purpose counter/timer clock select
+	0 = 1 Hz
+	1 = 32 kHz
+ 3-0	reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS general purpose counter/timer value:
+Bit(s)	Description	(Table P0354)
+ 15-0	general purpose counter/timer current value (24-bit counter bits
+	  23-8, otherwise counter/timer bits 15-0; any write resets
+	  counter/timer)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS general purpose counter/timer compare:
+Bit(s)	Description	(Table P0355)
+ 15-0	general purpose counter/timer compare (24-bit counter compare value
+	  bits 23-8, otherwise compare value bits 15-0)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS device timer 5-0 time-out register:
+Bit(s)	Description	(Table P0356)
+ 15-6	reserved
+ 5-4	device timer time-out prescalar
+	00 = 1 s
+	01 = 10 s
+	10 = 1 min.
+	11 = 10 min.
+ 3-0	device timer time-out select
+	0000 = disable
+	0001-1001 = 1-9
+	1010-1111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS device timer time-out source register 1:
+Bit(s)	Description	(Table P0357)
+ 15	reserved
+ 14-12	keyboard activity device timer select
+	000 = none
+	001-110 = 0-5
+	111 = reserved
+ 11-9	floppy disk activity device timer select (same values as bits 14-12)
+ 8-6	hard disk 2 activity device timer select (same values as bits 14-12)
+ 5-3	hard disk 1 activity device timer select (same values as bits 14-12)
+ 2-0	video activity device timer select (same values as bits 14-12)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS device timer time-out source register 2:
+Bit(s)	Description	(Table P0358)
+ 15	reserved
+ 14-12	programmable range 1 activity device timer select
+	000 = none
+	001-110 = 0-5
+	111 = reserved
+ 11-9	programmable range 0 activity device timer select (same values as
+	  bits 14-12)
+ 8-6	parallel port activity device timer select (same values as bits 14-12)
+ 5-3	serial port 2 activity device timer select (same values as bits 14-12)
+ 2-0	serial port 1 activity device timer select (same values as bits 14-12)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS device timer time-out source register 3:
+Bit(s)	Description	(Table P0359)
+ 15-12	reserved
+ 11-9	programmable range 5 activity device timer select
+	000 = none
+	001-110 = 0-5
+	111 = reserved
+ 8-6	programmable range 4 activity device timer select (same values as
+	  bits 11-9)
+ 5-3	programmable range 3 activity device timer select (same values as
+	  bits 11-9)
+ 2-0	programmable range 2 activity device timer select (same values as
+	  bits 11-9)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS device timer time-out source register 4:
+Bit(s)	Description	(Table P0360)
+ 15-3	reserved
+ 2-0	EXTACT0 activity device timer select
+	000 = none
+	001-110 = 0-5
+	111 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS LED indicator control register:
+Bit(s)	Description	(Table P0361)
+ 15-13	reserved
+ 12-11	LED1 flash duration
+	00 = 256 ms (cannot be set if flash rate is 2 or 4 Hz)
+	01 = 128 ms (cannot be set if flash rate is 4 Hz)
+	10 = 62.5 ms
+	11 = 31.25 ms
+ 10-9	LED1 flash rate select
+	00 = 0.5 Hz
+	01 = 1 Hz
+	10 = 2 Hz
+	11 = 4 Hz
+ 8	LED1 flasher enable
+ 7-5	reserved
+ 4-3	LED0 flash duration (same values as bits 12-11)
+ 2-1	LED0 flash rate select (same values as bits 10-9)
+ 0	LED0 flasher enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS leakage control register:
+Bit(s)	Description	(Table P0362)
+ 15-2	reserved
+ 1	input leakage control during 5 V suspend enable
+ 0	output leakage control during 5 V suspend enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS pin multiplexing control register:
+Bit(s)	Description	(Table P0363)
+ 15	PC5 function
+	0 = PC5
+	1 = reserved
+ 14	PC4 function
+	0 = PC4
+	1 = LED1 output
+ 13	PC3 function
+	0 = PC3
+	1 = LED0 output
+ 12	reserved
+ 11-10	GPIO5 function
+	00 = GPIO5
+	01 = reserved
+	10 = THERM input active-high
+	11 = THERM input active-low
+ 9-8	GPIO4 function
+	00 = GPIO4
+	01 = reserved
+	10 = (revision BB and later) SUSPA# input
+	11 = reserved
+ 7-6	GPIO3 function
+	00 = GPIO3
+	01 = SUPPRESS_RESUME input
+	10-11 = reserved
+ 5-4	GPIO2 function
+	00 = GPIO2
+	01 = DDMA_RETRY input
+	10 = DPSLP_IRQPA input
+	11 = reserved
+ 3-2	GPIO1 function
+	00 = GPIO1
+	01 = LED1 output
+	10 = (revision BB and later) FLOAT_GNT# output
+	11 = reserved
+ 1-0	GPIO0 function
+	00 = GPIO0
+	01 = LED0 output
+	10 = (revision BB and later) FLOAT_REQ# input
+	11 = reserved
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS debounce control register:
+Bit(s)	Description	(Table P0364)
+ 15-5	reserved
+ 4	EXTACT0 debounce select
+	0 = 0 s
+	1 = 20 ms
+ 3	RING debounce select (same values as bit 4)
+ 2	WAKE1 debounce select (same values as bit 4)
+ 1	WAKE0 debounce select (same values as bit 4)
+ 0	SWTCH debounce select (same values as bit 4)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS edge detect control register:
+Bit(s)	Description	(Table P0365)
+ 15-10	reserved
+ 9-8	EXTACT0 edge detect
+	00 = reserved
+	01 = falling
+	10 = rising
+	11 = rising and falling
+ 7-6	RING edge detect
+	00 = reserved
+	01 = falling
+	10 = rising
+	11 = reserved
+ 5-4	WAKE1 edge detect (same values as bits 9-8)
+ 3-2	WAKE0 edge detect (same values as bits 9-8)
+ 1-0	SWTCH edge detect (same values as bits 9-8)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS L2 cache configuration register:
+Bit(s)	Description	(Table P0366)
+ 15-10	reserved
+ 9	TAG initialization enable
+ 8	NALE mode select
+	0 = TAGCS#/NALE# pin is in TAGCS# mode
+	1 = TAGCS#/NALE# pin is in NALE# mode
+ 7	pipelined burst SRAM enable (if bits 5-4 = 01)
+ 6	reserved
+ 5-4	L2 cache type
+	00 = standard asynchronous
+	01 = standard synchronous
+	10-11 = reserved
+ 3-1	L2 cache size select
+	000 = 128 KB
+	001 = 256 KB
+	010 = 512 KB
+	011 = 1 MB
+	100-111 = reserved
+ 0	L2 cache enable
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS L2 cache timing register:
+Bit(s)	Description	(Table P0367)
+ 15-8	reserved
+ 7-6	L2 cache write follow-on
+	00 = 1T
+	01-11 = reserved
+ 5-4	L2 cache write leadoff
+	00 = 2T
+	01 = 3T
+	10 = 4T
+	11 = reserved
+ 3-2	L2 cache read follow-on (same values as bits 7-6)
+ 1-0	L2 cache read leadoff (same values as bits 5-4)
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V1-LS L2 cache miscellaneous register:
+Bit(s)	Description	(Table P0368)
+ 15-10	reserved
+ 9-8	(revision BB and later) pipeline on memory read-miss cycle enable
+	x0 = disable
+	01 = enable (NA generated same time as first BRDY#)
+	11 = enable (NA generated as soon as internal read request recognized)
+ 7	power management on CE# only for 50 MHz operation disable
+ 6	advanced synchronous power enhanced cache timing enable
+ 5-2	reserved
+ 1	invalidation of ROM address disable
+ 0	dead clock enable
+SeeAlso: #P0294
+

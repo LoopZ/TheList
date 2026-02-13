@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: R13
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 13h - AWARD - Configuration Bits
+
+Bitfields for AWARD configuration bits:
+Bit(s)	Description	(Table C0018)
+ 7	set keyboard typematic rate
+ 4-6	keyboard repeat rate
+	000 =  6 cps
+	001 =  8 cps
+	010 = 10 cps
+	011 = 12 cps
+	100 = 15 cps
+	101 = 20 cps
+	110 = 24 cps
+	111 = 30 cps
+ 2-3	keyboard typematic delay
+	00 =  250 Msec
+	01 =  500 Msec
+	10 =  750 Msec
+	11 = 1000 Msec
+ 1	???
+ 0	boot up floppy seek
+

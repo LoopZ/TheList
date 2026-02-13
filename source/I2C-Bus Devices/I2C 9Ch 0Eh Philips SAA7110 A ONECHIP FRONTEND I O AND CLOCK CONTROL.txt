@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C0E
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/0Eh - Philips SAA7110(A) ONE-CHIP FRONT-END - I/O AND CLOCK CONTROL
+Access:	Write-Only
+Notes:	reset to 00h after RESET = 0  or power-on
+	  (refer to I2C 9Dh/00h and 9Dh/01h)
+	all reserved bits must be set to LOW
+SeeAlso: I2C 9Eh,I2C 9Dh/00h
+
+Bitfields for I/O and Clock Control:
+Bit(s)	Description (Table I0076)	(Table I0077)
+ 7	horizontal PLL clock
+	0 closed
+	1 open
+ 6-5	reserved
+ 4	HS, HREF and VS output enable
+ 3	YUV-bus output enable (refer to: I2C 9Ch/10h bit 0 and 9Ch/31h bit 3)
+ 2	Select chrominance input
+	0 controlled by chrominance trap bypass (refer to: I2C 9Ch/06h bit 7)
+	1 second input channel
+ 1	reserved
+ 0	general purpose switch
+	0 switches pin 64 (general purpose switch output) directly
+	1 VBLKA = 0  (refer to: I2C 9Ch/31h bit 1)
+

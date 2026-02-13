@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: P063E063F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 063E-063F - WINTEL.VXD - API
+Note:	the WinTel remote-control program uses these two virtualized ports
+	  as an API between it main application HOST.EXE and the WINTEL.VXD
+	  driver
+Index:	installation check;WinTel
+
+063E  R-  always reads 42h if WinTel.VXD is loaded (installation check)
+063E  -W  simulate keystroke to current Windows VM (scan code as it would
+		  be read from keyboard, including make/break in bit 7)
+		  (see also INT 09)
+063F  RW  watchdog/scratchpad (see #P0916)
+
+Bitfields for WimTel watchdog/scratchpad byte:
+Bit(s)	Description	(Table P0916)
+ 7-4	scratchpad; HOST.EXE uses as follows:
+	bit 7: physical connection is active
+	bit 6: sending file
+	bit 5: receiving file
+	bit 4: session is active
+ 1	retrigger watchdog (write 03h to PORT 063Fh to avoid reboot)
+ 0	enable watchdog (PC is rebooted if watchdog not retriggered every 20s)
+

@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SF1A
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/1Ah U - ITT VPX 3220A - FP - Colorburst Frequency (High)
+Note:	this register is updated whenever the television standard is set
+	  via FP-RAM location 1Bh
+SeeAlso: I2C 86h/28h/19h,I2C 86h/28h/1Bh
+
+(Table I0015)
+Values for ITT VPX 3220A colorburst frequency:
+ 2D33EAh  = 3.575611 MHz  (TV standard 4)
+ 2D40A5h  = 3.579545 MHz  (TV standards 1,7)
+ 2D48C6h  = 3.582056 MHz  (TV standard 5)
+ 362EFAh  = 4.286    MHz  (TV standard 2)
+ 380CB8h  = 4.433618 MHz  (TV standards 0,3,6)
+Note:	the frequency in Hz is equal to 1.206944 * setting
+

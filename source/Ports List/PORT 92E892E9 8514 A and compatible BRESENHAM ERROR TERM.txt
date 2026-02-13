@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: P92E892E9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 92E8-92E9 - 8514/A and compatible - BRESENHAM ERROR TERM
+Desc:	specify the initial error term for drawing a line using the Bresenham
+	  algorithm
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+	the error term is 2*min(|dx|,|dy|) - max(|dx|,|dy|) - 1 [startX < endX]
+	or 2*min(|dx|,|dy|) - max(|dx|,|dy|) [startX >= endX]
+SeeAlso: PORT 92EAh
+
+92E8w -W  drawing control: Bresenham error term (bits 13-0)
+

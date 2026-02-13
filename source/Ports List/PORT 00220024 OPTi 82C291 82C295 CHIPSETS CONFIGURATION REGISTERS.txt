@@ -1,0 +1,219 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220024
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0024 - OPTi 82C291/82C295 CHIPSETS - CONFIGURATION REGISTERS
+Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+	  even if the same register is being accessed a second time
+SeeAlso: PORT 0022h"82C206"
+
+0022  ?W  index for accesses to data port (see #P0107)
+0024  RW  chip set data
+
+(Table P0107)
+Values for OPTi 82C291/82C295 configuration register index:
+ 20h	Revision/AT Bus configuration register (see #P0108)
+ 21h	System Control register (see #P0109)
+ 22h	DRAM configuration register (see #P0110)
+ 23h	ROM Chip Select Control register (see #P0111)
+ 24h	Shadow RAM control register E (see #P0112)
+ 25h	Shadow RAM control register D (see #P0113)
+ 26h	Shadow RAM control register C (see #P0114)
+ 27h	Shadow RAM Write Protect/Remap Area (see #P0115)
+ 28h	Cache Control register (see #P0116)
+ 29h	Cacheable Upper Bound register (see #P0117)
+ 2Ah	Non-Cacheable Segments register 1 (see #P0118)
+ 2Bh	Non-Cacheable Segments register 2 (see #P0119)
+ 2Ch	Non-Cacheable Segments register 3 (see #P0120)
+
+Bitfields for OPTi 82C291/82C295 AT Bus configuration register:
+Bit(s)	Description	(Table P0108)
+ 7-6	82C291/295 revision (read-only)
+ 5-4	back-to-back I/O recovery time
+	00-11 = 3-6 ATCLKs between I/O accesses
+ 3	enable slow refresh mode
+ 2	enable hidden refresh
+ 1-0	AT clock selection
+	00 ATCLK = CLK2 / 10
+	01 ATCLK = CLK2 / 8
+	10 ATCLK = CLK2 / 6
+	11 ATCLK = CLK2 / 4
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 System Control register:
+Bit(s)	Description	(Table P0109)
+ 7	AT bus master byte swap enabled
+ 6	ALE generation for each AT cycle
+	0 a new ALE will be generated during bus conversion cycles
+	1 multiple ALEs will be generated during bus conversion cycles
+ 5	keyboard fast reset emulation control
+	0 enable, a "Halt" is required before a fast CPU reset is generated
+	1 disable, fast CPU reset is generated directly after the "FE" I/O
+	  command to port 64h is decoded
+ 4	AT cycle additional wait state
+	0 disable, standard AT cycle
+	1 enable, inserts one extra wait state in standard AT bus cycle
+ 3-2	reserved
+ 1	local device ready control
+	0 RDYI# input to the 82C291 will be synchronized and set as RDY# to
+	  the CPU one T-state delayed
+	1 RDYI# input to the 82C291 will not be output to the CPU. RDY# from
+	  the local device must be directed to the 82C291 and the CPU
+ 0	system memory parity checking
+	0 disable, no parity checking	     
+	1 enable, will check parity
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 DRAM Configuration register:
+Bit(s)	Description	(Table P0110)
+ 7-6	number of DRAM read cycle wait states
+ 5-4	number of DRAM write cycle wait states
+ 3-0	Banks 0 thru 3 DRAM configuration
+	(val)	Bank0	Bank1	Bank2	Bank3
+	0000	256K	256KB	-	-
+	0001	256K	256K	256K	256K
+	0010	256K	256K	1M	-
+	0011	256K	256K	1M	1M
+	0100	256K	256K	4M	-
+	0101	1M	-	-	-
+	0110	1M	1M	-	-
+	0111	1M	1M	1M	-
+	1000	1M	1M	1M	1M
+	1001	1M	4M	-	-
+	1010	1M	1M	4M	-
+	1011	4M	-	-	-
+	1100	4M	4M	-	-
+	1101	reserved
+	1110	reserved
+	1111	reserved
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 ROM Chip Select Control register:
+Bit(s)	Description	(Table P0111)
+ 7	enable ROM Chip Select for write cycles (to support flash ROMs)
+ 6	enable ROMCS# for 0F0000-0FFFFF segments
+ 5	enable ROMCS# for 0E8000-0EFFFF segments
+ 4	enable ROMCS# for 0E0000-0E7FFF segments
+ 3	enable ROMCS# for 0D8000-0DFFFF segments
+ 2	enable ROMCS# for 0D0000-0D7FFF segments
+ 1	enable ROMCS# for 0C8000-0CFFFF segments
+ 0	enable ROMCS# for 0C0000-0C7FFF segments
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 Shadow RAM control register E:
+Bit(s)	Description	(Table P0112)
+ 7	enable shadow RAM reads for EC000-EFFFF segments
+ 6	enable shadow RAM reads for E8000-EBFFF segments
+ 5	enable shadow RAM reads for E4000-E7FFF segments
+ 4	enable shadow RAM reads for E0000-E3FFF segments
+ 3	enable shadow RAM writes for EC000-EFFFF segments
+ 2	enable shadow RAM writes for E8000-EBFFF segments
+ 1	enable shadow RAM writes for E4000-E7FFF segments
+ 0	enable shadow RAM writes for E0000-E3FFF segments
+Note:	OPTi documentation incorrectly states the segment range for bits 5
+	  and 1 as E4000-E7000.
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 Shadow RAM control register D:
+Bit(s)	Description	(Table P0113)
+ 7	enable shadow RAM reads for DC000-DFFFF segments
+ 6	enable shadow RAM reads for D8000-DBFFF segments
+ 5	enable shadow RAM reads for D4000-D7FFF segments
+ 4	enable shadow RAM reads for D0000-D3FFF segments
+ 3	enable shadow RAM writes for DC000-DFFFF segments
+ 2	enable shadow RAM writes for D8000-DBFFF segments
+ 1	enable shadow RAM writes for D4000-D7FFF segments
+ 0	enable shadow RAM writes for D0000-D3FFF segments
+Note:	OPTi documentation incorrectly states the segment range for bits 5
+	  and 1 as D4000-D7000.
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 Shadow RAM control register C:
+Bit(s)	Description	(Table P0114)
+ 7	enable shadow RAM reads for CC000-CFFFF segments
+ 6	enable shadow RAM reads for C8000-CBFFF segments
+ 5	enable shadow RAM reads for C4000-C7FFF segments
+ 4	enable shadow RAM reads for C0000-C3FFF segments
+ 3	enable shadow RAM writes for CC000-CFFFF segments
+ 2	enable shadow RAM writes for C8000-CBFFF segments
+ 1	enable shadow RAM writes for C4000-C7FFF segments
+ 0	enable shadow RAM writes for C0000-C3FFF segments
+Note:	OPTi documentation incorrectly states the segment range for bits 5
+	  and 1 as C4000-C7000.
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 Shadow RAM Write Protect/Remap Area:
+Bit(s)	Description	(Table P0115)
+ 7	enable Write Protect for F0000-FFFFF segments
+ 6	enable Write Protect for E0000-EFFFF segments
+ 5	enable Write Protect for D0000-DFFFF segments
+ 4	enable Write Protect for C0000-CFFFF segments
+ 3-0	DRAM remap starting address, bits 23-20
+	0000  disabled, no mapping
+	0001  1M
+	0010  2M
+	...
+	1111 15M
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 Cache Control register:
+Bit(s)	Description	(Table P0116)
+ 7	enable write-back cache controller operation
+ 6	enable DRAM performance mode
+	this bit should not be enabled unless external cache is disabled
+	  (intended to optimize DRAM performance)
+ 5	enable all memory accesses no-cacheable mode
+ 4	enable 640K-1M area no-cacheable mode
+ 3-2	cache timing control bits
+	00 invalid
+	01 0 wait state cache write w/o CAWE# extended, use when 8K*8 SRAMs
+	10 1 wait state cache write hit
+	11 0 wait state cache write hit with CAWE# extended when 32K*8 SRAMs
+ 1-0	cache size/cacheable DRAM
+	00  16K /  2M
+	01  32K /  4M
+	10  64K /  8M
+	11 128K / 16M
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 Cacheable Upper Bound register:
+Bit(s)	Description	(Table P0117)
+ 7-4	reserved
+ 3-0	cacheable upper bound address, bits 23-20
+	0000  feature disabled
+	0001  1M
+	0010  2M
+	...
+	1111 15M
+SeeAlso: #P0107
+
+Bitfields for OPTi 82C291/82C295 Non-Cacheable Segments register 1:
+Bit(s)	Description	(Table P0118)
+ 7	enable non-cacheable segment A
+ 6-4	size of no-cacheable memory segment A
+	000  64K
+	001 128K
+	010 256K
+	011 512K
+	100   1M
+	101   2M
+	110   4M
+	111   8M
+ 3	enable non-cacheable segment B
+ 2-0	size of no-cacheable memory segment B (same values as bits 6-4)
+SeeAlso: #P0107,#P0119
+    
+Bitfields for OPTi 82C291/82C295 Non-Cacheable Segments register 2:
+Bit(s)	Description	(Table P0119)
+ 7-0	address bits 23-16 for starting address of non-cacheable memory
+	  segment A
+SeeAlso: #P0107,#P0118,#P0120
+
+Bitfields for OPTi 82C291/82C295 Non-Cacheable Segments register 3:
+Bit(s)	Description	(Table P0120)
+ 7-0	address bits 23-16 for starting address of non-cacheable memory
+	  segment B
+SeeAlso: #P0107,#P0118,#P0119
+

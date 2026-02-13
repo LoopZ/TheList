@@ -1,0 +1,101 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0360036F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0360-036F - National Semiconductor DP8390(1)C/NS3249C network chipset
+Note:	cards based on this IEEE 802.3 networking chipset can use any range
+	  of 16 consecutive addresses, and provide a total of four pages of
+	  sixteen registers (see #P0627,#P0628,#P0629,#P0759)
+
+(Table P0627)
+Values for NS DP8390C/NS3249C network chipset Page 0 registers:
+Number	Read Register				Write Register
+ 00h	Command reg. (see #P0631)	CR	Command reg.		CR
+ 01h	current local DMA address 0	CLDA0	page start reg.		PSTART
+ 02h	current local DMA address 1	CLDA1	page stop reg.		PSTOP
+ 03h	boundary pointer		BNRY	boundary pointer	BNRY
+ 04h	transmit status reg.		TSR	Tx page start address	TPSR
+ 05h	number of collisions reg.	NCR	Tx byte count reg.0	TBCR0
+ 06h	FIFO					Tx byte count reg.1	TBCR1
+ 07h	interrupt status reg.		ISR	interrupt status reg.	ISR
+ 08h	current remote DMA address 0	CRDA0	remote start addr.reg.0 RSAR0
+ 09h	current remote DMA address 1	CRDA1	remote start addr.reg.1 RSAR1
+ 0Ah	reserved				remote byte count reg.0 RBCR0
+ 0Bh	reserved				remote byte count reg.1 RBCR1
+ 0Ch	receive status reg.		RSR	Rx configuration reg.	RCR
+ 0Dh	tally counter 0 (frame errors)	CNTR0	Tx configuration reg.	TCR
+ 0Eh	tally counter 1 (CRC errors)	CNTR1	data configuration reg. DCR
+ 0Fh	tally counter 2 (missed pkt)	CNTR2	interrupt mask reg.	IMR
+SeeAlso: #P0628,#P0629,#P0630
+
+(Table P0628)
+Values for NS DP8390C/NS3249C network chipset Page 1 registers:
+Number	Read/Write
+ 00h	Command			CR (see #P0631)
+ 01h	physical address reg.0	PAR0
+ 02h	physical address reg.1	PAR1
+ 03h	physical address reg.2	PAR2
+ 04h	physical address reg.3	PAR3
+ 05h	physical address reg.4	PAR4
+ 06h	physical address reg.5	PAR5
+ 07h	current page reg.	CURR
+ 08h	multicast address reg.0 MAR0
+ 09h	multicast address reg.1 MAR1
+ 0Ah	multicast address reg.2 MAR2
+ 0Bh	multicast address reg.3 MAR3
+ 0Ch	multicast address reg.4 MAR4
+ 0Dh	multicast address reg.5 MAR5
+ 0Eh	multicast address reg.6 MAR6
+ 0Fh	multicast address reg.7 MAR7
+SeeAlso: #P0627,#P0629,#P0630
+
+(Table P0629)
+Values for NS DP8390C/NS3249C network chipset Page 2 registers:
+Number	Read Register				Write Register
+ 00h	Command				CR	Command			 CR
+ 01h	page start reg.			PSTART	current local DMA addr.0 CLDA0
+ 02h	page stop reg.			BPSTOP	current local DMA addr.1 CLDA1
+ 03h	remote next packet pointer		remote next packet pointer
+ 04h	Tx page start address		TPSR	reserved
+ 05h	local next packet pointer		local next packet pointer
+ 06h	address counter (upper)			address counter (upper)
+ 07h	address counter (lower)			address counter (lower)
+ 08h	reserved				reserved
+ 09h	reserved				reserved
+ 0Ah	reserved				reserved
+ 0Bh	reserved				reserved
+ 0Ch	Rx configuration reg.		RCR	reserved
+ 0Dh	Tx configuration reg.		TCR	reserved
+ 0Eh	data configuration reg.		DCR	reserved
+ 0Fh	interrupt mask reg.		IMR	reserved
+Note:	this is a diagnostics page, and should never be modfied under normal
+	  operation.
+SeeAlso: #P0627,#P0628,#P0630
+
+(Table P0630)
+Values for NS DP8390C/NS3249C network chipset Page 3 registers:
+Number	Read Register				Write Register
+ 00h	Command CR (see #P0631)			Command CR
+Note:	Test Page - should never be modified!
+SeeAlso: #P0627,#P0628,#P0629
+
+Bitfields for NS DP8390C/NS3249C network chipset command register (00h):
+Bit(s)	Description	(Table P0631)
+ 0	software reset command (1=offline, 0=online)
+ 1	do not activate NIC after reset command
+ 2	start transmision of a packet
+ 3-5	remote DMA command
+	000 not allowed
+	001 remote read
+	010 remote write
+	011 send packet
+	1xx abort/complete rmote DMA
+ 6-7	page select
+	00 register page 0
+	01 register page 1
+	10 register page 2
+	11 register page 3
+SeeAlso: #P0630
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400019
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0019h - KEYBOARD - ALT-nnn KEYPAD WORKSPACE
+Size:	BYTE
+Desc:	holds the current value of an Alt-NNN keypad sequence; when Alt is
+	  released and this byte is non-zero, the appropriate character is
+	  placed in the keyboard buffer
+SeeAlso: INT 16/AH=00h,MEM 0040h:001Ah
+

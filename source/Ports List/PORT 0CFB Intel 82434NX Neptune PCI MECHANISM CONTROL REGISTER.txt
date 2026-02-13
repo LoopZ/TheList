@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0CFB
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0CFB - Intel 82434NX (Neptune) - PCI MECHANISM CONTROL REGISTER
+Note:	not present on the 82434LX (Mercury), which supports only mechanism #2
+SeeAlso: PORT 0CF8h
+
+0CFB  RW  specify which PCI access mechanism is to be enabled
+
+Bitfields for Intel 82434NX PCI mechanism control register:
+Bit(s)	Description	(Table P0947)
+ 7-1	reserved
+ 0	PCI Configuration Access Mechanism Select
+	=0 use PCI configuration access mechanism #2 (0CF8/0CFA) (default)
+	=1 use PCI configuration access mechanism #1 (0CF8/0CFC)
+

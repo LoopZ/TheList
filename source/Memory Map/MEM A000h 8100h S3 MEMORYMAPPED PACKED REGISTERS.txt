@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+ Unique ID: MA0008100
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM A000h:8100h - S3 - MEMORY-MAPPED PACKED REGISTERS
+Size:	80 BYTEs
+Access:	Write-Only
+Desc:	these registers pack two 16-bit I/O registers into a single DWORD
+	  for faster writes
+Note:	the S3 graphics processor registers can be mapped at either
+	  linear 000A0000h or at offset 16M from the start of the linear
+	  frame buffer
+SeeAlso: MEM A000h:8180h
+
+Format of S3 Trio32/Trio64 packed memory-mapped registers:
+Offset	Size	Description	(Table M0057)
+8100h	DWORD	drawing control: row (low word), column (high word)
+		"CUR_X" and "CUR_Y" (see PORT 82E8h,PORT 86E8h)
+8104h	DWORD	(Trio64) drawing control: row 2 (low word), column 2 (high word)
+8108h	DWORD	drawing control: destination Y and axial step constant (low
+		  word), destination X and axial step constant (high word)
+		(see PORT 8AE8h,PORT 8EE8h)
+810Ch	DWORD	(Trio64 only) destination Y 2 and axial step constant 2 (low
+		  word), destination X 2 and axial step constant 2 (high word)
+		(see PORT 8AEAh,PORT 8EEAh)
+8110h	WORD	error term (see PORT 92E8h)
+8112h	WORD	(Trio64) error term 2 (see PORT 92EAh)
+8114h	DWORD	unused??? (would correspond to PORT 96E8h)
+8118h	WORD	drawing control: command register (see PORT 9AE8h)
+811Ah	WORD	(Trio64) command register 2 (see PORT 9AEAh)
+811Ch	DWORD	short stroke (see PORT 9EE8h)
+8120h	DWORD	background color (see PORT A2E8h)
+8124h	DWORD	foreground color (see PORT A6E8h)
+8128h	DWORD	write mask (see PORT AAE8h)
+812Ch	DWORD	read mask (see PORT AEE8h)
+8130h	DWORD	color compare (see PORT B2E8h)
+8134h	DWORD	background mix (low word) and foreground mix (high word)
+		(see PORT B6E8h,PORT BAE8h)
+8138h	DWORD	top scissors (low word) and left scissors (high word)
+		(see PORT BEE8h,#P1047)
+813Ch	DWORD	bottom scissors (low word) and right scissors (high word)
+		(see PORT BEE8h,#P1047)
+8140h	DWORD	data manipulation control (low word) and miscellaneous 2 (high
+		  word) (see PORT BEE8h,#P1047)
+8144h	DWORD	miscellaneous (low word) and read register select (high word)
+		(see PORT BEE8h,#P1047)
+8148h	DWORD	minor axis pixel count (low word) and major axis pixel count
+		  (high word) (see PORT BEE8h,#P1047,PORT 96E8h)
+814Ch	WORD	(Trio64) major axis pixel count 2 (see PORT 96EAh)
+8150h	DWORD	pixel data transfer (see PORT E2E8h,PORT E2EAh)
+8154h 4 DWORDs	???
+8164h	DWORD	??? (written by STLTH64.DRV for Win95)
+8168h	DWORD	(Trio64 only) Pattern Y (low word), Pattern X (high word)
+		(see PORT EAE8h,PORT EAEAh)
+816Ch	DWORD	??? (written by STLTH64.DRV for Win95)
+Note:	setting 8138h to 0 and 813Ch to 12345678h may be a magic value to unlock
+	  some S3 features
+SeeAlso: #M0073,#M0070
+

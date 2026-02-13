@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: P01700176
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0170-0176 - OPTi "Vendetta" (82C750) CHIPSET - SECONDARY IDE CONTROLLER
+Note:	to unlock access to these ports, you must perform two immediately
+	  successive 16-bit INs from PORT 0171h, followed by 8-bit OUT of 03h
+	  to PORT 172h
+SeeAlso: PORT 01F0h"Vendetta"
+
+0170  RW  read cycle timing register (see #P0536)
+0171  RW  write cycle timing register (see #P0537)
+0172  RW  internal ID register (see #P0538)
+0173  RW  control register (see #P0539)
+0175  RW  strap register (see #P0540)
+0176  RW  miscellaneous register (see #P0541)
+

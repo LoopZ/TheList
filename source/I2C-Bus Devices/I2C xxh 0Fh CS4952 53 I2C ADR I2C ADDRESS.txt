@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: Ixx0F
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C xxh/0Fh - CS4952/53 - "I2C_ADR" I2C ADDRESS
+Desc:	specify the I2C bus address to which the CS4952 responds (see #I0066)
+	the CS4952 and CS4953 are NTSC/PAL video encoders
+Note:	the power-up default is 00h
+
+Bitfields for CS4952/CS4953 I2C bus address:
+Bit(s)	Description	(Table I0122)
+ 7	unused???
+ 6-0	high seven bits of I2C address to which the chip should respond
+

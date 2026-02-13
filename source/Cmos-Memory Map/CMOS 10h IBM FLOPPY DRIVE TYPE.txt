@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: R10
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 10h - IBM - FLOPPY DRIVE TYPE
+Note:	a PC having a 5 1/4 1.2 Mb A: drive and a 1.44 Mb B: drive will
+	  have a value of 24h in byte 10h. With a single 1.44 drive: 40h.
+
+Bitfields for floppy drives A/B types:
+Bit(s)	Description	(Table C0007)
+ 7-4	first floppy disk drive type (see #C0008)
+ 3-0	second floppy disk drive type (see #C0008)
+
+(Table C0008)
+Values for floppy drive type:
+ 00h	no drive
+ 01h	360 KB 5.25 Drive
+ 02h	1.2 MB 5.25 Drive - note: not listed in PS/2 technical manual
+ 03h	720 KB 3.5 Drive
+ 04h	1.44 MB 3.5 Drive
+ 05h	2.88 MB 3.5 drive
+ 06h-0Fh unused
+SeeAlso: #C0007
+

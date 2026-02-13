@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400093
+  Category: B 	BIOS
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+MEM 0040h:0093h U - DISKETTE DRIVE 1 MEDIA STATE AT START OF OPERATION
+Size:	BYTE
+Note:	officially "Drive 3 media state"
+SeeAlso: MEM 0040h:0092h"DRIVE 0"
+
+Bitfields for diskette drive 1 media state at start of operation:
+Bit(s)	Description	(Table M0032)
+ 7-3	(see #M0030)
+ 2	multiple data rate capability determined
+ 1	multiple data rate capability
+ 0	=1 if drive has 80 tracks, =0 if 40 tracks
+--HP 100LX/200LX--
+	display control status
+ 0	=1 if DISPCTL -K
+ 1	=1 if DISPCTL -C
+

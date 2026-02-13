@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: R4A
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 4Ah - AMI (Saturn) - BUS CONFIGURATION
+
+Bitfields for AMI (Saturn) bus configuration:
+Bit(s)	Description	(Table C0063)
+ 7	ISA enhanced performance mode
+ 6	ISA bus master installed
+ 5-4	PCI slot IRQ
+	00 IRQ5
+	01 IRQ9
+	10 IRQ15
+	11 IRQ15
+ 3	PCI on-board SCSI controller enabled
+ 1-0	ISA frame buffer
+	00 disabled
+	01 1MB at 15MB
+	10 2MB at 14MB
+	11 4MB at 12MB
+SeeAlso: #C0062
+

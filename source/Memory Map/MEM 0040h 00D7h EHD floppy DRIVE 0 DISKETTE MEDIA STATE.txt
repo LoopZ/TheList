@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: M004000D7
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:00D7h - EHD floppy - DRIVE 0 DISKETTE MEDIA STATE
+Size:	BYTE
+Note:	the value in this byte is copied into 0040h:0090h (diskette 0 status)
+SeeAlso: MEM 0040h:00D8h"EHD",MEM 0040h:00D9h"EHD",MEM 0040h:00DAh"EHD"
+
+Bitfields for EHD diskette media state:
+Bit(s)	Description	(Table M0052)
+ 7-6	data rate: 00=500kbps,01=300kbps,10=250k,11=1M/S
+ 5	double stepping required (e.g. 360kB in 1.2MB)
+ 4	media type established
+ 3	reserved
+ 2-0	on exit from BIOS, contains:
+	000 trying 360kB in 360kB
+	001 trying 360kB in 1.2MB
+	010 trying 1.2MB in 1.2MB
+	011 360kB in 360kB established
+	100 360kB in 1.2MB established
+	101 1.2MB in 1.2MB established
+	110 reserved (2M8?)
+	111 all other formats/drives
+

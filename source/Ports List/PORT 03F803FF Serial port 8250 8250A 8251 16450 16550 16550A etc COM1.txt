@@ -1,0 +1,226 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03F803FF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03F8-03FF - Serial port (8250,8250A,8251,16450,16550,16550A,etc.) COM1
+Range:	PORT 02E8h-02EFh (COM2), PORT 02F8h-02FFh (typical non-PS/2 COM3), and
+	  PORT 03E8h-03EFh (typical non-PS/2 COM4)
+Note:	chips overview:
+	 8250  original PC, specified up to 56Kbd, but mostly runs
+	       only 9600Bd, no scratchregister, bug: sometimes shots
+	       ints without reasons
+	 8250A, 16450, 16C451: ATs, most chips run up to 115KBd,
+	       no bug: shots no causeless ints
+	 8250B: PC,XT,AT, pseudo bug: shots one causeless int for
+		compatibility with 8250, runs up to 56KBd
+	 16550, 16550N, 16550V: early PS/2, FIFO bugs
+	 16550A,16550AF,16550AFN,16550C,16C551,16C552: PS/2, FIFO ok
+	 82510: laptops & industry, multi emulation mode
+		(default=16450), special-FIFO.
+	 8251: completely different synchronous SIO chip, not compatible!
+SeeAlso: INT 14/AH=00h"SERIAL"
+
+03F8  -W  serial port, transmitter holding register (THR), which contains the
+	  character to be sent. Bit 0 is sent first.
+		bit 7-0	  data bits when DLAB=0 (Divisor Latch Access Bit)
+03F8  R-  receiver buffer register (RBR), which contains the received
+	  character. Bit 0 is received first
+		 bit 7-0   data bits when DLAB=0 (Divisor Latch Access Bit)
+03F8  RW  divisor latch low byte (DLL) when DLAB=1 (see #P0876)
+03F9  RW  divisor latch high byte (DLM) when DLAB=1 (see #P0876)
+03F9  RW  interrupt enable register (IER) when DLAB=0 (see #P0877)
+03FA  R-  interrupt identification register (see #P0878)
+	Information about a pending interrupt is stored here. When the ID
+	  register is addressed, thehighest priority interrupt is held, and
+	  no other interrupts are acknowledged until the CPU services that
+	  interrupt.
+03FA  -W  16650 FIFO Control Register (FCR) (see #P0879)
+03FB  RW  line control register (LCR) (see #P0880)
+03FC  RW  modem control register (see #P0881)
+03FD  R-  line status register (LSR) (see #P0882)
+03FE  R-  modem status register (MSR) (see #P0883)
+03FF  RW  scratch register (SCR)
+	(not used for serial I/O; available to any application using 16450,
+	  16550) (not present on original 8250)
+
+(Table P0876)
+Values for serial port divisor latch registers:
+ Some baudrates (using standard 1.8432 Mhz clock):
+       baudrate	   divisor	 DLM  DLL
+	    50	   2304		  09h 00h
+	    75	   1536		  06h 00h
+	   110	   1047		  04h 17h
+	   134,5    857		  03h 59h
+	   150	    768		  03h 00h
+	   300	    384		  01h 80h
+	   600	    192		  00h C0h
+	  1200	     96		  00h 60h
+	  1800	     64		  00h 40h
+	  2000	     58		  00h 3Ah
+	  2400	     48		  00h 30h
+	  3600	     32		  00h 20h
+	  4800	     24		  00h 18h
+	  7200	     16		  00h 10h
+	  9600	     12		  00h 0Ch
+	 19200	      6		  00h 06h
+	 38400	      3		  00h 03h
+	 57600	      2		  00h 02h
+	115200	      1		  00h 01h
+Note:	MIDI baudrate 32250Bd with 4Mhz quarz for c't MIDI interface
+	  following c't 01/1991:   '14400'	  00h 08h
+
+Bitfields for serial port interrupt enable register (IER):
+Bit(s)	Description	(Table P0877)
+ 7-6	reserved (0)
+ 5	(82510) "timer"
+	(other) reserved (0)
+ 4	(82510) "transmit machine"
+	(other) reserved (0)
+ 3	modem-status interrupt enable
+ 2	receiver-line-status interrupt enable
+ 1	transmitter-holding-register empty interrupt enable
+ 0	received-data-available interrupt enable
+	  (also 16550(A) timeout interrupt)
+Note:	16550(A) will interrupt with a timeout if data exists in the FIFO
+	  and isn't read within the time it takes to receive four bytes or if
+	  no data is received within the time it takes to receive four bytes
+SeeAlso: #P0878
+
+Bitfields for serial port interrupt identification register (IIR):
+Bit(s)	Description	(Table P0878)
+ 7-6	=00  reserved on 8250, 8251, 16450
+	=01  if FIFO queues enabled but unusable (16550 only)
+	=11  if FIFO queues are enabled (16550A only) (see also #P0879)
+ 6-5	used by 82510 for bank select (00 = default bank0)
+ 5-4	reserved (0)
+ 3-1	identify pending interrupt with the highest priority
+	110	(16550,82510) timeout interrupt pending
+	101	(82510) timer interrupt (see #P0877)
+	100	(82510) transmit machine (see #P0877)
+	011	receiver line status interrupt. priority=highest
+	010	received data available register interrupt. pr.=second
+	001	transmitter holding register empty interrupt. pr.=third
+	000	modem status interrupt. priority=fourth
+ 0	=0 interrupt pending. contents of register can be used as a pointer
+	  to the appropriate interrupt service routine
+	=1 no interrupt pending
+Notes:	interrupt pending flag uses reverse logic, 0=pending, 1=none
+	interrupt will occur if any of the line status bits are set
+	THRE bit is set when THRE register is emptied into the TSR
+SeeAlso: #P0877
+
+Bitfields for serial port FIFO control register (FCR):
+Bit(s)	Description	(Table P0879)
+ 7-6	received data available interrupt trigger level (16550)
+	00  1 byte
+	01  4 bytes
+	10  8 bytes
+	11 14 bytes
+ 6-5	=00  (used to enable 4 byte Rx/Tx FIFOs on 82510???)
+	=10 ???
+ 5-4	reserved (00)
+ 3	change RXRDY  TXRDY pins from mode 0 to mode 1
+ 2	clear XMIT FIFO
+ 1	clear RCVR FIFO
+ 0	enable clear XMIT and RCVR FIFO queues
+ 4-0	(other purpose on 82510???)
+Notes:	bit 0 must be set in order to write to other FCR bits
+	bit 1 when set	the RCVR FIFO is cleared and this bit is reset
+	  the receiver shift register is not cleared
+	bit 2 when set	the XMIT FIFO is cleared and this bit is reset
+	  the transmit shift register is not cleared
+	due to a hardware bug, 16550 FIFOs don't work correctly (this
+	  was fixed in the 16550A)
+SeeAlso: #P0878
+
+Bitfields for serial port Line Control Register (LCR):
+Bit(s)	Description	(Table P0880)
+ 7	=1  divisor latch access bit (DLAB)
+	=0  receiver buffer, transmitter holding, or interrupt enable register
+	  access
+ 6	set break enable. serial ouput is forced to spacing state and remains
+	  there.
+ 5-3	PM2 PM1 PM0
+	 x   x	 0 = no parity
+	 0   0	 1 = odd parity
+	 0   1	 1 = even parity
+	 1   0	 1 = high parity (sticky)
+	 1   1	 1 = low parity (sticky)
+	 x   x	 1 = software parity
+ 2	stop bit length (STB/SBL)
+	0  one stop bit
+	1  2 stop bits with (word length 6, 7, 8)
+	   1.5 stop bits with word length 5
+ 1-0	(WLS1-0, CL1-0)
+	00 word length is 5 bits
+	01 word length is 6 bits
+	10 word length is 7 bits
+	11 word length is 8 bits
+SeeAlso: #P0881,#P0882,#P0883
+
+Bitfields for serial port Modem Control Register (MCR):
+Bit(s)	Description	(Table P0881)
+ 7-6	reserved (0)
+ 5	(82510 only) state of OUT0 pin
+ 4	loopback mode for diagnostic testing of serial port
+	output of transmitter shift register is looped back to receiver
+	  shift register input. In this mode, transmitted data is received
+	  immediately so that the CPU can verify the transmit data/receive
+	  data serial port paths.
+	If OUT2 is disabled, there is no official way to generate an IRQ
+	  during loopback mode.
+ 3	auxiliary user-designated output 2 (OUT2)
+	because of external circuity OUT2 must be 1 to master-intr-enableing.
+	BUG: Some Toshiba Laptops utilize this bit vice versa, newer Toshiba
+	  machines allow assignment of the bit's polarity in system setup.
+	82050: This bit is only effective, if the chip is being used with an
+	  externally-generated clock.
+ 2	=1/0  auxiliary user-designated output 1 (OUT1)
+	should generally be cleared!!
+	Some external hardware, e.g. c't MIDI interface (and compatibles) use
+	  this bit to change the 8250 input clock from 1,8432 MHz to 4Mhz
+	  (enabling MIDI-conformant baudrates) and switching to
+	  MIDI-compatible current loop connectors.
+ 1	force request-to-send active (RTS)
+ 0	force data-terminal-ready active (DTR)
+SeeAlso: #P0880,#P0882,#P0883
+
+Bitfields for serial port Line Status Register (LSR):
+Bit(s)	Description	(Table P0882)
+ 7	=0  reserved
+	=1  on some chips produced by UMC
+ 6	transmitter shift and holding registers empty
+ 5	transmitter holding register empty (THRE)
+	Controller is ready to accept a new character to send.
+ 4	break interrupt. the received data input is held in the zero bit
+	  state longer than the time of start bit + data bits + parity bit +
+	  stop bits.
+ 3	framing error (FE). the stop bit that follows the last parity or data
+	  bit is a zero bit
+ 2	parity error (PE). Character has wrong parity
+ 1	overrun error (OE). a character was sent to the receiver buffer
+	  before the previous character in the buffer could be read. This
+	  destroys the previous character.
+ 0	data ready. a complete incoming character has been received and sent
+	  to the receiver buffer register.
+SeeAlso: #P0880,#P0881,#P0883
+
+Bitfields for serial port Modem Status Register (MSR):
+Bit(s)	Description	(Table P0883)
+ 7	data carrier detect (-DCD)
+ 6	ring indicator (-RI)
+ 5	data set ready (-DSR)
+ 4	clear to send (-CTS)
+ 3	delta data carrier detect (DDCD)
+ 2	trailing edge ring indicator (TERI)
+ 1	delta data set ready (DDSR)
+ 0	delta clear to send (DCTS)
+Notes:	bits 0-3 are reset when the CPU reads the MSR
+	bit 4 is the Modem Control Register RTS during loopback test
+	bit 5 is the Modem Control Register DTR during loopback test
+	bit 6 is the Modem Control Register OUT1 during loopback test
+	bit 7 is the Modem Control Register OUT2 during loopback test
+SeeAlso: #P0880,#P0881,#P0882
+

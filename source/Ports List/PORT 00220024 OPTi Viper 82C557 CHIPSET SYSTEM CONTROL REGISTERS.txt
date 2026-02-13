@@ -1,0 +1,698 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220024
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0024 - OPTi "Viper" (82C557) CHIPSET - SYSTEM CONTROL REGISTERS
+Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+	  even if the same register is being accessed a second time
+SeeAlso: PORT 0022h"82C206"
+
+0022  ?W  index for accesses to data port (see #P0189)
+0023  RW  DMA clock select (see #P0087)
+0024  RW  chip set data
+
+(Table P0189)
+Values for OPTi "Viper" (82C557) system control registers:
+ 00h	Byte Merge/Prefetch and Sony Cache Module Control register (see #P0190)
+ 00h	Compatible DRAM Configuration register 1 (see #P0191) (refer to note)
+ 01h	DRAM Control register 1 (see #P0192)
+ 02h	Cache Control register 1 (see #P0193)
+ 03h	Cache Control register 2 (see #P0194)
+ 04h	Shadow RAM Control register 1 (see #P0195)
+ 05h	Shadow RAM Control register 2 (see #P0197)
+ 06h	Shadow RAM Control register 3 (see #P0198)
+ 07h	Tag Test register (see #P0199)
+ 08h	CPU Cache Control register (see #P0200)
+ 09h	System Memory Function register (see #P0201)
+ 0Ah	DRAM Hole A Address Decode register 1 (see #P0202)
+ 0Bh	DRAM Hole B Address Decode register 2 (see #P0203)
+ 0Ch	Extended DMA register (see #P0204)
+ 0Dh	Clock Control register (see #P0205)
+ 0Eh	Cycle Control register 1 (see #P0206)
+ 0Fh	Cycle Control register 2 (see #P0207)
+ 10h	Miscellaneous Control register 1 (see #P0208)
+ 11h	Miscellaneous Control register 2 (see #P0209)
+ 12h	Refresh Control register (see #P0210)
+ 13h	Memory Decode Control register 1 (see #P0211)
+ 14h	Memory Decode Control register 2 (see #P0213)
+ 15h	PCI Cycle Control register 1 (see #P0214)
+ 16h	Dirty/Tag RAM Control register (see #P0215)
+ 17h	PCI Cycle Control register 2 (see #P0216)
+ 18h	Tristate Control register (see #P0217)
+ 19h	Memory Decode Control register 3 (see #P0218)
+ 1Ah-1Fh reserved
+Note:	Byte Merge/Prefetch and Sony Cache Module Control register is accessed
+	  through register 00h when bit 7 of register 13h is set, otherwise
+	  Compatible DRAM Configuration register 1 is accessed as register 00h
+	reserved registers 1Ah-1Fh must be written to 0
+SeeAlso: #P0121,#P0211
+
+Bitfields for OPTi "Viper" Byte Merge / Sony Cache Module Control register:
+Bit(s)	Description	(Table P0190)
+ 7	enable pipelining of single CPU cycles to memory
+ 6	enable video memory byte/word read prefetch. Enables the prefetching
+	  of bytes/words from PCI video memory to the CPU
+ 5	enable Sony SONIC-2WP support. If set, the ensure that the L2 cache
+	  has been disabled (register 02h bits 3-2)
+ 4	enable byte/word merge support
+ 3	enable byte/word merging with CPU pipelining (NA# generation) support
+ 2-1	time-out counter for byte/word merge. Determines the maximum time
+	  difference between two consecutive PCI bye/word writes to allow
+	  merging
+	00  4 CPU CLKs
+	01  8 CPU CLKs
+	10 12 CPU CLKs
+	11 16 CPU CLKs
+ 0	enable internal hold requests to be blocked while performing byte merge
+SeeAlso: #P0189
+
+Bitfields for OPTi "Viper" Compatible DRAM Configuration register 1:
+Bit(s)	Description	(Table P0191)
+ 7	enable pipelining of single CPU cycles to memory
+ 6	second bank SIMM selection. SIMMs need to be single sided
+	0 single sided SIMM not installed in bank 0
+	1 single sided SIMM installed in bank 0
+ 5	first bank SIMM selection. SIMMs need to be single sided
+	0 single sided SIMM not installed in bank 0
+	1 single sided SIMM installed in bank 0
+ 4-0	banks 0 thru 3 DRAM configuration
+	(val)	Bank0	Bank1	Bank2	Bank3
+	00000	256K	256KB	-	-
+	00001	512K	512K	-	-
+	00010	1M	1M	-	-
+	00011	2M	2M	-	-
+	00100	4M	4M	-	-
+	00101	8M	8M	-	-
+	00110	256K	256K	256K	256K
+	00111	256K	256K	512K	512K
+	01000	512K	512K	512K	512K
+	01001	256K	256K	1M	1M
+	01010	512K	512K	1M	1M
+	01011	1M	1M	1M	1M
+	01100	256K	256K	2M	2M
+	01101	512K	512K	2M	2M
+	01110	1M	1M	2M	2M
+	01111	2M	2M	2M	2M
+	10000	256K	256K	4M	4M
+	10001	512K	512K	4M	4M
+	10010	1M	1M	4M	4M
+	10011	2M	2M	4M	4M
+	10100	4M	4M	4M	4M
+	10101	256K	256K	8M	8M
+	10110	512K	512K	8M	8M
+	10111	1M	1M	8M	8M
+	11000	2M	2M	8M	8M
+	11001	4M	4M	8M	8M
+	11010	8M	8M	8M	8M
+Note:	these settings maintain backward compatibility with the "Python"
+	  (82C546/82C547) chipset, and they do not allow for much flexibility
+SeeAlso: #P0189
+
+Bitfields for OPTi "Viper" (82C557) DRAM Control register 1:
+Bit(s)	Description	(Table P0192)
+ 7	row address hold after RAS# active in CLKs
+	0 2 CLKs
+	1 1 CLK
+ 6	RAS# active/inactive on entering master mode
+	0 normal page mode when starting a master cycle, RAS# will remain
+	1 RAS# inactive when starting a master cycle
+ 5-4	RAS pulse width used during refresh
+	00 7 CLKs
+	01 6 CLKs
+	10 5 CLKs
+	11 4 CLKs
+ 3	CAS pulse width during reads
+	0 3 CLKs
+	1 2 CLKs
+ 2	CAS pulse width during writes 
+	0 3 CLKs
+	1 2 CLKs
+ 1-0	RAS precharge time
+	00 6 CLKs
+	01 5 CLKs
+	10 4 CLKs
+	11 3 CLKs
+SeeAlso: #P0189,#P0193,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Cache Control register 1:
+Bit(s)	Description	(Table P0193)
+ 7-6	cache size selection; determines size of the L2 cache, along with
+	  register 0Fh bit 0. When set, it works as a *16 multiplier
+	00 (Viper)  64K (1M when register 0Fh bit 0 set)
+	   (Vendetta) reserved
+	01 (Viper) 128K (2M when register 0Fh bit 0 set)
+	   (Vendetta) reserved
+	10 256K (reserved when register 0Fh bit 0 set)
+	11 512K (reserved when register 0Fh bit 0 set)
+ 5-4	cache write policy; determines the write policy for the L2 cache
+	00 L2 cache write-through
+	01 Adaptive Write-back Mode 1
+	10 Adaptive Write-back Mode 2
+	11 L2 cache write-back
+ 3-2	cache mode select; determines the operating mode of the L2 cache
+	00 disable
+	01 Test Mode 1, External Tag Write (Tag data write-through reg. 07h)
+	10 Test Mode 2, External Tag Read (Tag data read from register 07h)
+	11 enable L2 cache
+ 1	enable DRAM posted write
+ 0	CAS precharge time
+	0 2 CLKs
+	1 1 CLK
+SeeAlso: #P0189,#P0199,#P0207,#P0194,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Cache Control register 2:
+Bit(s)	Description	(Table P0194)
+ 7-6	L2 cache write burst mode timings
+	00 X-4-4-4
+	01 X-3-3-3
+	10 X-2-2-2
+	11 X-1-1-1
+ 5-4	L2 cache write lead-off cycle timings
+	00 5-X-X-X
+	01 4-X-X-X
+	10 3-X-X-X
+	11 2-X-X-X
+ 3-2	L2 cache read burst mode timings
+	00 X-4-4-4
+	01 X-3-3-3
+	10 X-2-2-2
+	11 X-1-1-1
+ 1-0	L2 cache read lead-off cycle timings
+	00 5-X-X-X
+	01 4-X-X-X
+	10 3-X-X-X
+	11 2-X-X-X
+Note:	SRAM double bank implementation does not support lead-off timing
+SeeAlso: #P0189,#P0193,#P0219
+
+Bitfields for OPTi "Viper"/"Vendetta" Shadow RAM Control register 1:
+Bit(s)	Description	(Table P0195)
+ 7-6	CC000-CFFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+ 5-4	C8000-CBFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+ 3	enable synchronous SRAM pipelined read cycle 1-1-1-1
+ 2	E0000-EFFFF range selection
+	0 area will always be non-cacheable
+	1 are will be treated like the F0000h BIOS area
+ 1-0	C0000-C7FFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+Note:	bit 3 will act only when register 11h bit 3 and register 03h bits 3-2
+	  are all set
+	when bit 2 is set, register 06h bits 3-0 should be set identically
+SeeAlso: #P0189,#P0197,#P0219
+
+(Table P0196)
+Values for OPTi "Viper"/"Vendetta" Shadow RAM Control setting:
+ 00	read/write PCI bus
+ 01	read from DRAM/write to PCI
+ 10	read from PCI/write to DRAM
+ 11	read from/write to DRAM
+SeeAlso: #P0195,#P0197,#P0198,#P0219
+
+Bitfields for OPTi "Viper"/"Vendetta" Shadow RAM Control register 2:
+Bit(s)	Description	(Table P0197)
+ 7-6	DC000-DFFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+ 5-4	D8000-DBFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+ 3-2	D4000-D7FFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+ 1-0	D0000-D3FFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+SeeAlso: #P0189,#P0195,#P0198,#P0219
+
+Bitfields for OPTi "Viper"/"Vendetta" Shadow RAM Control register 3:
+Bit(s)	Description	(Table P0198)
+ 7	DRAM hole in system memory from 80000-9FFFF; gives the user the option
+	  to have some other device in this address range instead of system
+	  memory. When set, the SYSC will not start the system DRAM controller
+	  for accesses to this particular address range
+	0 no memory hole
+	1 enable memory hole
+ 6	wait state addition for PCI master snooping
+	0 do not add a wait state
+	1 add a wait state for the cycle access to finish and then do snooping
+ 5	enable C0000-C7FFF cacheability in L1 and L2 cache memory
+ 4	enable F0000-FFFFF cacheability in L1 and L2 cache memory
+ 3-2	F0000-FFFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+ 1-0	E0000-EFFFF read/write control; determines the R/W control for these
+	  segments of the shadow RAM (see #P0196)
+Note:	L1 cacheability can be disabled thru register 08h bit 0
+	If register 04h bit 2 is set, then F0000-FFFFF and E0000-EFFFF R/W
+	control settings should have similar values
+SeeAlso: #P0189,#P0197,#P0219
+
+Bitfields for OPTi "Viper"/"Vendetta" Tag Test register:
+Bit(s)	Description	(Table P0199)
+ 7-0	Tag Test register; when in cache Test Mode, data is read from/written
+	  to this register
+SeeAlso: #P0189,#P0193,#P0219
+
+Bitfields for OPTi "Viper"/"Vendetta" CPU Cache Control register:
+Bit(s)	Description	(Table P0200)
+ 7	L2 cache single/double bank select
+	0 (Viper) two banks of L2 cache
+	  (Vendetta) reserved
+	1 single bank of L2 cache (non-interleaved)
+ 6	enable snoop filtering for bus masters
+ 5	CPU HITM# pin sample timing
+	0 (Viper) delay one clock, therefore HITM# sampled on the third rising
+	    edge of LCLK after EADS# has been asserted
+	  (Vendetta) reserved
+	1 do not delay, therefore HITM# sampled on the second rising edge
+ 4	enable parity checking
+ 3	Tag/Dirty RAM implementation
+	0 (Viper) Tag and Dirty are on separate chips
+	  (Vendetta) reserved
+	1 Tag and Dirty are on the same chip
+ 2	enable CPU address pipelining
+ 1	enable L1 cache write-back and write-through control
+	0 write-through only
+	1 write-back enabled
+ 0	disable BIOS and Video BIOS areas cacheability in L1 cache
+Notes:	If asynchronous SRAM, then cache memory banks (when two are present)
+	  are interleaved, otherwise, they are not
+	When register 04h bit 2 is set, bit 0 affects BIOS area
+	  E0000-EFFFF; when clear, bit 0 affects area F0000-FFFFF
+SeeAlso: #P0189,#P0201,#P0219
+
+Bitfields for OPTi "Viper" (82C557) System Memory Function register:
+Bit(s)	Description	(Table P0201)
+ 7-6	DRAM Hole B size
+	(address specified by register 0Bh, and register 0Ch bits 3-2)
+	00 512K
+	01   1M
+	10   2M
+	11   4M
+ 5-4	DRAM Hole B control mode
+	00 disable
+	01 write-through for L1 and L2 cache
+	10 non-cacheable for L1 and L2 cache
+	11 enable hole in DRAM
+ 3-2	DRAM Hole A size (settings same as bits 7-6)
+	(address specified by register 0Ah, and register 0Ch bits 1-0)
+ 1-0	DRAM Hole A control mode (settings same as bits 5-4)
+SeeAlso: #P0189,#P0203,#P0204,#P0219
+
+Bitfields for OPTi "Viper" (82C557) DRAM Hole A Address Decode register 1:
+Bit(s)	Description	(Table P0202)
+ 7-0	DRAM Hole A address, bits 26-19
+	(bits 1-0 of register 0Ch map onto bits 28-27 of HA lines)
+SeeAlso: #P0189,#P0204,#P0203,#P0219
+
+Bitfields for OPTi "Viper" (82C557) DRAM Hole B Address Decode register 2:
+Bit(s)	Description	(Table P0203)
+ 7-0	DRAM Hole B address, bits 26-19
+	(bits 3-2 of register 0Ch map onto bits 28-27 of HA lines)
+SeeAlso: #P0189,#P0204,#P0202,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Extended DMA register:
+Bit(s)	Description	(Table P0204)
+ 7	reserved (0)
+ 6	Fast BRDY# generation for DRAM write page hits
+	0 BRDY# for DRAM writes generated on the fourth clock
+	1 BRDY# for DRAM writes generated on the third clock
+ 5	(Viper) HACALE one-half a clock cycle earlier
+	    0 HACALE normal timing
+	    1 HACALE one-half a clock cycle early enabled
+	(Vendetta) reserved
+ 4	(Viper) wider cache WE# pulse
+	    0 cache WE# pulse width is normal (~15ns)
+	    1 cache WE# pulse is wider (~17.5ns)
+	(Vendetta) reserved
+ 3-2	DRAM Hole B starting address, bits 28-27 (see also #P0202)
+ 1-0	DRAM Hole A starting address, bits 28-27 (see also #P0203)
+Note:	bits 26-19 of memory holes A and B are mapped from Indices 0Ah and 0Bh
+SeeAlso: #P0189,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Clock Control register:
+Bit(s)	Description	(Table P0205)
+ 7	(Viper) clock source for generation the syncronous SRAM timing
+	    0 CPU clock is the source for the timing and control signals
+	    1 ECLK is the source for the timing and control signals
+	(Vendetta) reserved (1)
+ 6	(Viper) this bit is set if the skew between ECLK and CPU clock is too
+	  large (read-only bit, set by the 82C557 chip)
+	(Vendetta) reserved (read-only)
+ 5	(Viper) enable auto skew detect; when this bit is set, bit 4 will be
+	  set automatically if the skew between CLK and ECLK is too large
+	(Vendetta) BRDY# PCI-to-ISA bridge request remove BOFF# disable
+ 4	(Viper) ECLK - CLK skew, activated when synchronou SRAMs are being used
+	    0 skew between CLK and ECLK is not too large
+	    1 skew is too large
+	(Vendetta) 
+	    0 preemption when CPU needs memory
+	    1 reserved
+ 3	enable A0000-BFFFF as system memory
+ 2	wait state addition for PCI master doing address toggling as a 486
+	0 linear burst mode style address toggling - no wait state addition
+	1 i486 burst style address toggling - one wait state needs to be added
+ 1	(Viper) PCI cycle claimed by the 82C557 during PCI pre-snoop cycle
+	    0 82C557 does not claim the PCI cycle after it asserts STOP#
+	    1 82C557 claims the PCI cycle after it asserts STOP#
+	(Vendetta) reserved
+ 0	slow CPU clock; should be set if the CPU clock frequency has been
+	  reduced
+	    0 CPU clock frequency is normal
+	    1 CPU clock has been slowed down
+	(Vendetta) reserved
+SeeAlso: #P0189,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Cycle Control register 1:
+Bit(s)	Description	(Table P0206)
+ 7-6	(Viper) PCI master read burst wait state control
+	    00 4 cycles
+	    01 3 cycles
+	    10 2 cycles
+	    11 reserved
+	(Vendetta) reserved
+ 5-4	(Viper) PCI master write burst wait state control (same settings as
+	  bits 7-6)
+	(Vendetta) reserved
+ 3	master cycle parity enable; this bit becomes applicable when bit 4 of
+	  register 08h is set
+	0 enable parity check during master cycles
+	1 disable parity check during master cycles
+ 2	(Viper) HACALE timing control
+	    0 HACALE high during HITM# before CPU ADS#
+	    1 HACALE low and CA4 always enabled during HITM cycle
+	(Vendetta) fast NA# generation enable
+ 1	enable write protection for L1 BIOS
+ 0	PCI line comparator; this bit is only valid when bit 6 of register 08h
+	  is set
+	0 use line comparator in PCI master
+	1 generate inquire cycle for every new FRAME#
+SeeAlso: #P0189,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Cycle Control register 2:
+Bit(s)	Description	(Table P0207)
+ 7	enable PCI pre-snooping feature
+ 6	(Viper) AT master wait state control
+	    0 do not add any wait states for AT master cycles
+	    1 add wait wait states for AT master cycles
+	(Vendetta) ISA master access wait states enable (use if PCICLK <33MHz)
+ 5	(Viper) wait state addition for synchronous SRAM even byte access
+	    0 do not add a wait state for a synchronous SRAM even byte access
+	    1 add one wait state for a synchronous SRAM even byte access
+	(Vendetta) L2 write-through mode CPU-to-DRAM deep buffer enable
+ 4	PCI wait state addition for synchronous SRAM L2 cache implementation
+	0 master does not wait for end of current cycle + CPU-PCI clock to
+	  become synchronous
+	1 master waits for end of current cycle + wait for CPU-PCI clock to
+	  become synchronous
+ 3	(Viper) reserved
+	(Vendetta) L2 single cycle write hit when line already dirty
+	    0 = 5 CLKs
+	    1 = 3 CLKs
+ 2	(Viper) ADSC# generation for synchronous SRAM read cycle
+	    0 generate ADSC# immediately after CPU ADS# goes active
+	    1 generate ADSC# one clock after CPU ADS# goes active
+	(Vendetta) CPU to L2 cache hit cycle chipset ADSC# generation disable
+ 1	(Viper) reserved
+	(Vendetta) two-PCI master fix
+	    0 revision 2.0
+ 0	L2 cache size selector; works along with bits 1-0 of register 02h
+	0 below 1M
+	1 1M and above (Viper only)
+SeeAlso: #P0189,#P0193,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Miscellaneous Control register 1:
+Bit(s)	Description	(Table P0208)
+ 7	(Viper) early decode of PCI/VL/AT cycle
+	(Vendetta) early decode of PCI/ISA cycle
+	0 CPU to <bus> slave cycle triggered after second T2
+	1 CPU to <bus> slave cycle triggered after first T2
+ 6	(Viper) cache modified write cycle timing
+	    0 use the old address changing method, as in the 82C546/82C547
+	    1 two bank cache, CA4 delayed one-half a clock for write cycles
+	(Vendetta) reserved
+ 5	pipelined read cycle timing; determines the lead-off cycle
+	0 3-X-X-X read followed by a 3-X-X-X piped read cycle
+	1 3-X-X-X read followed by a 2-X-X-X piped read cycle
+ 4	(Viper) enable write hit pipelined
+	    0 do not enable 2-X-X-X pipelined write hit cycles
+	    1 enable 2-X-X-X pipelined write hit cycles
+	(Vendetta) reserved
+ 3	(Viper) write pulse timing control for cache write hit cycles
+	    0 do not change the write pulse timing during X-2-2-2 write hit
+	      cycles
+	    1 move the write pulse one-half a clock later in X-2-2-2 write hit
+	      cycles
+	(Vendetta) reserved
+ 2	(Viper) write pulse timing control for cache write hit cycles
+	    0 do not change the write pulse timing during 3-X-X-X write hit
+	      cycles
+	    1 move the write pulse one-half a clock later in 3-X-X-X write hit
+	      cycles
+	(Vendetta) reserved
+ 1	(Viper) external 74F126 select
+	    0 an external 74F126 is installed for CA3 and CA4
+	    1 an external 74F126 is not installed for CA3 and CA4
+	(Vendetta) reserved (1)
+ 0	LCLK select control; when this bit is set, the timing constraints
+	  between the LCLK and the CPUCLK inputs to the SYSC need to be met.
+	  This constraints are: LCLK <= 1/2 CPUCLK period before CPUCLK, and
+	  LCLK <= 0.5ns after CPUCLK
+	0 LCLK is asynchronous to the CPUCLK
+	1 LCLK is synchronous to the CPUCLK; LCLK = CPUCLK/2
+Note:	bit 1 should always be set to 1
+SeeAlso: #P0189,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Miscellaneous Control register 2:
+Bit(s)	Description	(Table P0209)
+ 7-6	reserved; must be set to 0
+ 5	cache inactive during Idle state control
+	0 SRAM always active
+	1 SRAM inactive during Idle state (Viper only)
+ 4	next address (NA#) mode control
+	0 normal NA# timing used with asynchronous SRAMs
+	1 new NA# timing for synchronous SRAMs; used only when CPU operating
+	  at 50MHz
+ 3	SRAM type
+	0 asynchronous SRAM (Viper only)
+	1 synchronous SRAM
+ 2	(Viper) enable page miss posted write
+	(Vendetta) reserved
+ 1	(Viper) ISA/DMA IOCHRDY control
+	    0 old mode, no IOCHRDY during line hit
+	    1 drive IOCHRDY low until cycle is finished
+	(Vendetta) reserved
+ 0	(Viper) delay start
+	    0 old mode, do not delay internal master cycle after an inquire
+	      cycle
+	    1 delay internal master cycles by one LCLK after an inquire cycle
+	(Vendetta) reserved
+SeeAlso: #P0189,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Refresh Control register:
+Bit(s)	Description	(Table P0210)
+ 7	REFRESH#/32KHz source selection
+	0 REFRESH# source is REFRESH# pulse from the 82C558 or the ISA master
+	1 REFRESH# pulse source is a 32KHz clock
+ 6	reserved; must be written to 0
+ 5-4	suspend mode refresh
+	00 from CLK state machine
+	01 slef refresh based on 32KHz only
+	10 normal refresh based on 32KHz only
+	11 undefined
+ 3-2	slow refresh
+	00 refresh on every REFRESH#/32KHz falling edge
+	01 refresh on alternate REFRESH#/32KHz falling edge
+	10 refresh on one in four REFRESH#/32KHz falling edge
+	1 refresh on every REFRESH#/32KHz toggle
+ 1	enable bits 23-17 of LA from Refresh Page register (8Fh) during refresh
+ 0	enable output of bits 7-4 of DBC MP during master write
+	0 disable the DBC from generation the MP[7:4] lines during PCI master
+	  writes; there must be a pull-up on MP0
+	1 enable the DBC to generate the MP[7:4] lines during PIC master
+	  writes; there must be a pull-down on MP0
+SeeAlso: #P0189,#P0211
+
+Bitfields for OPTi "Viper" (82C557) Memory Decode Control register 1:
+Bit(s)	Description	(Table P0211)
+ 7	(Viper) memory decode select
+	0 Byte Merge/Prefetch and Sony Cache Module Control register is
+	  available in register 00h; compatible to 82C547 DRAM configurations
+	1 Compatible DRAM Configuration register is available in register 00h;
+	  full decode option; this gives the user maximum flexibility in
+	  choosing different DRAM configurations
+	(Vendetta) reserved (1)
+ 6-4	full decode for logical bank 1 (RAS#1), if bit 7 set. This settings
+	  apply to 36-pin banks only (see #P0212)
+ 3	enable SMRAM
+ 2-0	full decode for logical bank 0 (RAS#0), if bit 7 set. This settings
+	  apply to 36-pin banks only (see #P0212)
+SeeAlso: #P0189,#P0190,#P0191,#P0219
+
+(Table P0212)
+Values for OPTi "Viper" (82C557) Memory Bank Decode Control registers:
+ 000	  0K
+ 001	256K
+ 010	512K
+ 011	  1M
+ 100	  2M
+ 101	  4M
+ 110	  8M
+ 111	 16M
+SeeAlso: #P0211,#P0213,#P0216
+
+Bitfields for OPTi "Viper" (82C557) Memory Decode Control register 2:
+Bit(s)	Description	(Table P0213)
+ 7	(Viper) reserved; must be written to 0
+	(Vendetta) reserved (1)
+ 6-4	full decode for logical bank 3 (RAS#3), if register 13h bit 7 is set
+	  (see #P0212)
+ 3	SMRAM control
+	0 disable SMRAM (enable SMRAM for both Code and Data if SMIACT# is
+	  active and register 13h bit 3 is set)
+	1 enable SMRAM (enable SMRAM for Code only if SMIACT# is active and
+	  register 13h bit 3 is set)
+ 2-0	full decode for logical bank 2 (RAS#2), if register 13h bit 7 is set
+	  (see #P0212)
+SeeAlso: #P0189,#P0219
+
+Bitfields for OPTi "Viper" (82C557) PCI Cycle Control register 1:
+Bit(s)	Description	(Table P0214)
+ 7-6	CPU master to PCI memory slave, write IRDY# control
+	00 3 LCLKs after end of address phase
+	01 2 LCLKs after end of address phase
+	10 1 LCLK after end of address phase
+	11 0 LCLK after end of address phase
+ 5-4	CPU master to PCI slave write posting, bursting control
+	00 PCI slave write, no posting, no bursting
+	01 PCI slave write, posting enabled, no bursting
+	10 PCI slave write, posting enabled, conservative bursting
+	11 PCI slave write, posting enabled, aggressive bursting
+ 3-2	master retry timer
+	00 retries unmasked after 10 PCICLKs
+	01 retries unmasked after 18 PCICLKs
+	10 retries unmasked after 34 PCICLKs
+	11 retries unmasked after 66 PCICLKs
+ 1	reserved; must be written to 0
+ 0	PCI cycle, FRAME# timing control for pipelined cycles
+	0 PCI cycle FRAME# assertion is done in the conservative mode style
+	1 PCI cycle FRAME# assertion is done in the aggressive mode style
+SeeAlso: #P0189,#P0216,#P0219
+
+Bitfields for OPTi "Viper"/"Vendetta" Dirty/Tag RAM Control register:
+Bit(s)	Description	(Table P0215)
+ 7	(Viper) Dirty pin selection; reflects the kind of SRAM chosen to
+	  implement the Dirty RAM; it also determines the functionality of the
+	  DIRTYI pin of the 82C557
+	    0 DIRTYI pin is input-only
+	    1 DIRTYI pin is bidirectional
+	(Vendetta) reserved (1)
+ 6	reserved; must be written to 0
+ 5	Tag RAM size
+	0 = 8-bit Tag (Viper only)
+	1 = 7-bit Tag
+ 4	write hit cycle lead-off time when combining Dirty/Tag RAM
+	0 single write hit lead-off cycle = 5 cycles
+	1 single write hit lead-off cycle = 4 cycles
+ 3	pre-snoop control
+	0 pre-snoop for starting address 0 only
+	1 pre-snoop for all addresses except those on the line boundary
+ 2	(Viper) reserved; must be written to 0
+	(Vendetta) synchronization between LCLK and CLK
+	    0 LCLK is asynchronous to CLK
+	    1 LCLK is synchronous to CLK
+ 1	(Viper) CPU to VL read access, DBC DLE# bits 1-0 timing
+	    0 LCLK high
+	    1 LCLK low
+	(Vendetta) reserved
+ 0	(Viper) HDOE# timing control
+	    0 HDOE# is negated normally
+	    1 HDOE# is negated one clock before the cycle finishes
+	(Vendetta) reserved
+Note:	(Vendetta) bit 4 should be set same as register 22h bit 0
+SeeAlso: #P0189,#P0219
+
+Bitfields for OPTi "Viper"/"Vendetta" PCI Cycle Control register 2:
+Bit(s)	Description	(Table P0216)
+ 7	(Vipder) NA# assertion control for PCI slave accesses when synchronous
+	  PCI clock is used
+	    0 no pipelining for accesses to PCI slave
+	    1 pipelining enabled for accesses to PCI slave for both synchronous
+	      and asynchronous PCI solutions; if set, overrides bit 6
+	(Vendetta) MD drive strength
+	    0 =	 8 mA
+	    1 = 12 mA
+ 6	NA# assertion control for PCI slave accesses when asynchronous PCI
+	  clock is used
+	0 no pipelining for accesses to PCI slave
+	1 pipelining enabled for accesses to PCI slave for an asynchronous PCI
+	  implementation; this bit is overridden if bit 7 is set
+ 5	(Viper) enable support for Intel standard BSRAM
+	    0 no support for Intel standard BSRAM
+	    1 support for Intel standard BSRAM; should be set only if using two
+	      banks of synchronous SRAM
+	(Vendetta) reserved
+ 4	(Viper only) enable fast BRDY# generation for PCI cycles
+ 3	(Viper only) enable fast FRAME# generation for PCI cycles	    
+ 2	(Viper only) byte merging/piping control
+	0 no pipelining when byte merging is on
+	1 pipelining enabled along with byte merging
+ 1	pipelined synchronous SRAM support; this bit is applicable only if
+	  register 11h bit 3 is set
+	0 standard synchronous SRAM installed (Viper only)
+	1 pipelined synchronous SRAM installed
+ 0	Cyrix linear burst mode support
+	0 normal Intel standard burst mode
+	1 support for Cyrix linear burst mode
+SeeAlso: #P0189,#P0214,#P0219
+
+Bitfields for OPTi "Viper"/"Vendetta" Tristate Control register:
+Bit(s)	Description	(Table P0217)
+  7	(Viper) reserved; must be written to 0
+	(Vendetta) ISA retry (1)
+ 6	(Viper) reserved; must be written to 0
+	(Vendetta) RAS line drive strength
+	    0 = 16 mA
+	    1 =	 4 mA
+ 5	(Viper) voltage selection for the CAS# lines 7-0
+	    0 CAS# lines 7-0 are driven out at 5.0V logic level
+	    1 CAS# lines 7-0 are driven out at 3.3V logic level
+	(Vendetta) CAS1# and CAS5# drive strength
+	    0 =	 8 mA
+	    1 = 16 mA
+ 4	(Viper) programmable current drive for the MA[X], RAS[X]# and the DWE#
+	  lines
+	(Vendetta) memory address lines and write enable line drive strength
+	0 driving capability on these lines is 4mA
+	1 driving capability on these lines is 16mA
+ 3	enable tristate CPU interface during Suspend and during CPU power-off
+ 2	enable tristate PCI interface during Suspend and during PCI power-off
+ 1	enable tristate cache interface during Suspend and cache power-off
+ 0	enable the pull-up/pull-down resistors during Suspend and power-off
+SeeAlso: #P0189,#P0219
+
+Bitfields for OPTi "Viper" (82C557) Memory Decode Control register 3:
+Bit(s)	Description	(Table P0218)
+ 7	DIRTYWE# RAS5# selection; if six DRAM banks are chosen, then the line
+	  will become RAS#5, if this bit is set
+	0 DIRTYWE# functions as DIRTYWE# (six banks of DRAM are not chosen)
+	1 DIRTYWE# functions as RAS#5 (six banks of DRAM are chosen)
+	(Vendetta must be set to RAS5# function (1))
+ 6-4	(Viper) full decode for logical bank 5 (RAS#5) if register 13h bit 7
+	  and register 19h bit 7 are set (see #P0212)
+	(Vendetta) full decode for logical bank 5 (RAS5#) if register 13h
+	  bit 7 set (see #P0212)
+ 3	MA11/RAS#4 selection; if five DRAM banks are chosen, then the MA11 line
+	  will become RAS#4, if this bit is set
+	0 MA11 functions as MA11 (the fifth bank of DRAM is not chosen)
+	1 MA11 functions as RAS#4 (five banks of DRAM have been chosen)
+	(Vendetta must be set to RAS4# function (1))
+ 2-0	(Viper) full decode for logical bank 4 (RAS#4) if register 13h bit 7
+	  and register 19h bit 3 are set (see #P0212)
+	(Vendetta) full decode for logical bank 4 (RAS4#) if register 13h
+	  bit 7 set (see #P0212)
+Notes:	(Viper) if bit 7 is set, then a combined Dirty/Tag SRAM solution must
+	   be implemented or else it will not have a Dirty RAM
+	(Viper) if bit 3 is set, then none of the DRAM banks will support the
+	  8M*36 or 16M*36 options
+SeeAlso: #P0189,#P0219
+

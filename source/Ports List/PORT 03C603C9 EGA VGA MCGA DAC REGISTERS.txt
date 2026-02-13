@@ -1,0 +1,136 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03C603C9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03C6-03C9 - EGA/VGA/MCGA - DAC REGISTERS
+Range:	PORT 03C6h or PORT 02C6h (alternate)
+SeeAlso: PORT 03C0h,PORT 03C2h,PORT 03C4h,PORT 03CAh,PORT 03CEh"EGA",PORT 03D0h
+SeeAlso: PORT 83C6h"Wingine"
+
+03C6  RW  (VGA, MCGA) PEL mask register (default FFh)
+		 VGA:	AND mask for color-register address.
+		 MCGA:	Never change from the default FFh.
+03C6  RW  HiColor ET4000 (Sierra RAMDACs e.g. SC11486, SC11481, SC11488):
+		 Enable HiColor feature: beside other assignments,
+		 consequtive read 3C6h 4 times and write magic value 80h to it.
+03C7  -W  (VGA,MCGA,CEG-VGA) PEL address register (read mode)
+		 Sets DAC in read mode and assign start of color register
+		 index (0..255) for following read accesses to 3C9h.
+		 Don't write to 3C9h while in read mode. Next access to
+		 03C8h will stop pending mode immediatly.
+03C7  -W  (CEG-Color VGA w/ Edsun Labs RAMDACs)
+		 Enable and set Countinous Edge Graphics Mode:
+		 Consecutive writely the following three key sequences in read
+		 mode (!) to 3C9h register DEh : 'CEG', 'EDS', 'UNx' (x see
+		 below). Current CEG mode can be read from palette register
+		 BFh 'blue', write access to that register will disable CEG
+		 features.
+		 In CEG modes by combining old with new colors and dynamically
+		 changing palette values, the effective colors displayable
+		 are enhanced dramatically (in EDP modes up to virtually 32bit
+		 truecolor) on standard 16/256 color VGA. Also, effective
+		 resolution enhancement takes effect by anti-aliasing.
+		 Necessary EDP escape sequences should be moved to image
+		 border or single colored areas, if possible.
+
+		 REP-mode: if pixel are doubled in current video mode
+		 EDP-mode: pseudo-truecolor with Edsun dynamic palette
+		 (see #P0698,#P0699)
+
+		 Palette-color-register single-byte-format (each 3 times):
+		  Mode A:		  Mode C:
+		   bit7-4: mix code	   bit3	 : 0=color, 1=code
+		   bit3-0: color code	   bit2-0: color / mix code
+		  Mode B:		  Mode D:
+		   bit7-5: mix code	   bit7-0: see mix code table
+		   bit4	 : 0=new, 1=old	  Non-CEG modes:
+		   bit3-0: color code	   bit7-0: as usual
+
+		 In EDP modes, video-memory-palette-changing escape-sequences:
+		  Mode A:     Mode B:	  Mode C:     Mode D:
+		   7/escape    7/escape	   7/escape    0BFh
+		   red	       red	   red7-4      red
+		   green       green	   red3-0      green
+		   blue	       blue	   green7-4    blue
+		   address     address	   green3-0    address
+					   blue7-4
+					   blue3-0
+					   address
+03C7  R-  VGA	DAC state register
+		bit7-2 reserved
+		bit1-0: 00b write palette cycle (write mode)
+			01h reserved
+			10b reserved
+			11b read palette cycle (read mode)
+03C8  RW  (VGA,MCGA) PEL address register (write mode)
+		 Sets DAC in write mode and assign start of color register
+		 index (0..255) for following write accesses to 3C9h.
+		 Don't read from 3C9h while in write mode. Next access to
+		 03C8h will stop pending mode immediatly.
+03C8  RW  (Genoa SuperEGA) SuperEGA control register (all emulation modes)
+		  bit7-2: reserved
+		  bit1	: 0=EGA mode, 1=backward compatibility mode
+		  bit0	: not used
+03C8  R?  (S3 Trio32/64) General Input Port (see #P0738)
+03C9  RW  (VGA,MCGA) PEL data register
+		 Three consequtive reads (in read mode) or writes (in write
+		 mode) in the order: red, green, blue. The internal DAC index
+		 is incremented each 3rd access.
+		  bit7-6: HiColor VGA DACs only: color-value bit7-6
+		  bit5-0:			 color-value bit5-0
+
+(Table P0698)
+Values for EDSUN CEG (Continuous Edge Graphics) modes::
+ x:  mode:	 colors:  mix:	pixel depth:  effective colors:
+ 0 = disabled	   256	   -	     8		    256
+ 1 = A		    16	  16	     8		   1920
+ 2 = A+REP	    16	  16	  8 dblscn	   1920
+ 3 = A+EDP	    15	  16			truecolor
+ 4 = reserved	     -	   -	     -		     -
+ 5 = B		    16	   8	     8		    960
+ 6 = B+REP	    16	   8	  8 dblscn	    960
+ 7 = B+EDP	    15	   8			truecolor
+ 8 = reserved	     -	   -	     -		     -
+ 9 = C		     8	   8	     4		    224
+ 10 = C+REP	     8	   8	  4 dblscn	    224
+ 11 = C+EDP	     7	   8			truecolor
+ 12 = reserved	     -	   -	     -		     -
+ 13 = D		   223	  32	     8		 792096
+ 14 = D+REP	   223	  32	  8 dblscn	 792096
+ 15 = D+EDP	   223	  32			truecolor
+SeeAlso: #P0699
+
+(Table P0699)
+Values for EDSUN CEG mixing codes:
+ Mode A:	       |  Mode C:
+ mix: new:	old:   |   mix: new:   old:   colorcode:
+   0 = 32/32	0/32   |    0 =	  -	 -     0
+   1 = 30/32	2/32   |    1 =	  -	 -     1
+   2 = 28/32	4/32   |    2 =	  -	 -     2
+   3 = 26/32	6/32   |    3 =	  -	 -     3
+   4 = 24/32	8/32   |    4 =	  -	 -     4
+   5 = 22/32   10/32   |    5 =	  -	 -     5
+   6 = 20/32   12/32   |    6 =	  -	 -     6
+   7 = 18/32   14/32   |    7 =	  -	 -     7/EDP
+   8 = 16/32   16/32   |    8 = 30/32	2/32   -
+   9 = 14/32   18/32   |    9 = 28/32	4/32   -
+  10 = 12/32   20/32   |   10 = 26/32	6/32   -
+  11 = 10/32   22/32   |   11 = 24/32	8/32   -
+  12 =	8/32   24/32   |   12 = 22/32  10/32   -
+  13 =	6/32   26/32   |   13 = 20/32  12/32   -
+  14 =	4/32   28/32   |   14 = 18/32  14/32   -
+  15 =	2/32   30/32   |   15 = 16/32  16/32   -
+---Mode B:	       |  Mode D:
+ mix: new:	old:   |   mix:	      new:   old:  description:
+   0 = 30/32	2/32   |   00h..BEh =	-      -   normal color
+   1 = 26/32	6/32   |   BFh	    =	-      -   EDP
+   2 = 22/32   10/32   |   C0h	    = 32/32   0/32
+   3 = 18/32   14/32   |   C1h	    = 31/32   1/32
+   4 = 14/32   18/32   |   C2h	    = 30/32   2/32
+   5 = 10/32   22/32   |   ...	    =  ...    ...
+   6 =	6/32   26/32   |   DFh	    =  0/32  32/32
+   7 =	2/32   30/32   |   E0h-FFh  =	-      -   normal color
+SeeAlso: #P0698
+

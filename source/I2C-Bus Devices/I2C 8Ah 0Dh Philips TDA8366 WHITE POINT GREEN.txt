@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A0D
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/0Dh - Philips TDA8366 - WHITE POINT (GREEN)
+Access:	Write-Only
+SeeAlso: I2C 8Ah/00h"TDA8366",I2C 8Ah/0Ch"TDA8366",I2C 8Ah/0Eh"TDA8366"
+
+Bitfields for TDA8366 White Point (Green):
+Bit(s)	Description	(Table I0057)
+ 7	"SFM" start-up horizontal frequency
+	=0 maximum
+	=1 nominal
+ 6	"CVS" Y-input mode
+	=0 Y/C
+	=1 CVBS
+ 5-0	white point (green) value
+SeeAlso: #I0112,#I0114
+

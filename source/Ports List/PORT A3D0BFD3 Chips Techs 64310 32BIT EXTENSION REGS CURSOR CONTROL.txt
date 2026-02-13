@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+ Unique ID: PA3D0BFD3
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT A3D0-BFD3 - Chips&Techs 64310 - 32-BIT EXTENSION REGS - CURSOR CONTROL
+Notes:	All ports are word or dword accessible.
+	These registers are also accessible in the upper 2 MB of the 4 MB
+	  linear memory frame buffer (address specified in PCI configuration
+	  registers).
+SeeAlso: PORT 03D6h"Chips",PORT 83D0h"Chips"
+
+A3D0d RW  "DR08"  cursor control register (see #P1042)
+A7D0d RW  "DR09"  cursor color register (see #P1043)
+ABD0d --  "DR0A"  reserved
+AFD0d RW  "DR0B"  cursor position register (see #P1044)
+B3D0d RW  "DR0C"  cursor base address (see #P1045)
+B7D0d --  "DR0D"  reserved
+BBD0d --  "DR0E"  reserved
+BFD0d --  "DR0F"  reserved
+
+Bitfields for Chips&Technologies 64310 "DR08" cursor control register:
+Bit(s)	Description	(Table P1042)
+ 31-8	reserved (0)
+ 7-6	test (must be 0)
+ 5	upper left corner (ULC) select
+	(all x, y positioning is relative to selected ULC)
+	0 = active display (BLANK#) (cursor can be positioned in overscan
+	  area)
+	1 = display enable (cursor cannot be positioned to overscan area)
+ 4-2	reserved (must be 0)
+ 1-0	hardware cursor enable
+	00 = disable
+	01 = 32x32 cursor enable
+	10 = 64x64 cursor enable
+	11 = illegal/reserved
+
+Bitfields for Chips&Technologies 64310 "DR09" cursor color register:
+Bit(s)	Description	(Table P1043)
+ 31-27	cursor color 1 red
+ 26-21	cursor color 1 green
+ 20-16	cursor color 1 blue
+ 15-11	cursor color 0 red
+ 10-5	cursor color 0 green
+ 4-0	cursor color 0 blue
+SeeAlso: #P1044,#P1045
+
+Bitfields for Chips&Technologies 64310 "DR0B" cursor position register:
+Bit(s)	Description	(Table P1044)
+ 31	Y sign
+ 30-27	reserved (0)
+ 26-16	cursor position Y offset from ULC (DR08 bit 5)
+ 15	X sign
+ 14-11	reserved (0) (ignored)
+ 10-0	cursor position X offset from ULC (DR08 bit 5)
+SeeAlso: #P1043,#P1045
+
+Bitfields for Chips&Technologies 64310 "DR0C" cursor base address:
+Bit(s)	Description	(Table P1045)
+ 31-21	reserved (0)
+ 20-10	base address for cursor data in display memory
+	(cursor data must be at 1K boundary in off-screen memory)
+ 9-0	reserved (0)
+SeeAlso: #P1043,#P1044
+

@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03F003F1
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03F0-03F1 - PCTech RZ1000 IDE controller
+Note:	to unlock access to these ports instead of the standard floppy
+	  controller status ports at these two addresses, you must perform
+	  two immediately successive 8-bit OUTs of 55h to PORT 03F0h (there
+	  is a fairly small time limit between the two accesses, so there
+	  should be no other instructions between the two OUTs); after
+	  that, values written to PORT 03F0h select the data accessed through
+	  PORT 03F1h until an AAh is written to 03F0h
+SeeAlso: #00732
+
+03F0  ?W  index port (see #P0875)
+03F1  RW  data port
+
+(Table P0875)
+Values for RZ1000 IDE controller registers:
+ 00h	???
+	bit 7:
+	bit 1:
+	bit 0:
+ 01h	???
+ 02h	???
+ 03h	???
+ 04h	???
+ 05h	???
+	bit 1:
+ AAh	lock control port
+

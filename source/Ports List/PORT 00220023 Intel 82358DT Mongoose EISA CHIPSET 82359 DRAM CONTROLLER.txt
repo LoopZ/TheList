@@ -1,0 +1,128 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Intel 82358DT 'Mongoose' EISA CHIPSET - 82359 DRAM CONTROLLER
+Notes:	this chip uses a chip ID of 01
+	the LIM register herein use a chip ID of 1A
+Index: Intel 82351
+
+0022  -W  index for accesses to data port (see #P0036,#P0037,#P0038)
+0023  RW  chip set data
+
+(Table P0035)
+Values for Intel 82351/82359 chip ID:
+ 01h	82359 DRAM controller, general registers
+ 02h	82351 EISA local I/O support
+ A1h	82359 DRAM controller, EMS registers
+ FFh	no chip accessible (default)
+SeeAlso: #P0036,#P0037,#P0038
+
+(Table P0036)
+Values for 82359 DRAM controller general register index:
+ 00h	DRAM bank 0 type
+	bit 7	unknown
+	bit 6-4	000 DRAM in bank 0 (standard)
+		001 bank 1
+		010 bank 2
+		011 bank 3
+		100 banks 0,1
+		101 banks 2,3
+		110 banks 0,1,2,3
+		111 empty (standard for 1,2,3)
+	bit 3-2	unknown
+	bit 1-0	00 64K chips used
+		01 256K
+		10 1M
+		11 4M
+ 01h	DRAM bank 1 type
+ 02h	DRAM bank 2 type
+ 03h	DRAM bank 3 type
+ 04h	DRAM speed detection/selection
+ 05h	DRAM interleave control
+ 06h	RAS line mode
+ 07h	cache-enable selection
+ 08h	mode register A (DRAM, cache)
+ 09h	mode register B (cache, burst modes, BIOS size)
+ 0Ah	mode register C (concurrency control, burst/cycle speed)
+ 10h	host timing
+ 11h	host-system delay timing
+ 12h	system timing
+ 13h	DRAM row precharge time
+ 14h	DRAM row timing
+ 15h	DRAM column timing
+ 16h	CAS pulse width
+ 17h	CAS-to-MDS delay
+ 21h	chip ID register -- selects which chip responds on these ports
+	(see #P0035)
+ 28h-2Ch	parity-error trap address
+ 30h	page hit cycle length (read)
+ 31h	page miss cycle length (read)
+ 32h	row miss cycle length (read)
+ 33h	page hit cycle length (write)
+ 34h	page miss cycle length (write)
+ 35h	row miss cycle length (write)
+ 40h	memory enable 00000h-7FFFFh
+ 41h	memory enable 80000h-9FFFFh
+ 42h	memory enable A0000h-AFFFFh
+ 43h	memory enable B0000h-BFFFFh
+ 44h	memory enable C0000h-CFFFFh
+ 45h	memory enable D0000h-DFFFFh
+ 46h	memory enable E0000h-EFFFFh
+ 47h	memory enable F0000h-FFFFFh
+ 4Eh	remap 80000h-FFFFFh to extended memory
+ 50h-53h	programmable attribute map 1
+ 54h-57h	programmable attribute map 2
+ 58h-5Bh	programmable attribute map 3
+ 5Ch-5Fh	programmable attribute map 4
+ 83h-84h	split address register (address bits A31-A20)
+ 85h	cache control
+ 8Bh	system throttle
+ 8Ch	host throttle
+ 8Dh	host memory throttle watchdog
+ 8Eh	host system throttle
+ 8Fh	host system throttle watchdog
+ 90h	RAM enable
+ 91h	RAM disable
+ 92h-93h	elapsed-time registers
+ 94h-95h	host memory ownership request
+ 96h-97h	system memory ownership request
+ 98h-99h	host memory ownership
+ 9Ah-9Bh	system bus ownership
+ 9Ch-9Dh	host system bus request
+ 9Eh-9Fh	memory ownership transfer
+SeeAlso: #P0037,#P0038
+
+(Table P0037)
+Values for Intel 82359 DRAM controller EMS register index:
+ 00h	EMS cotnrol
+ 21h	chip ID register -- selects which chip responds on these ports
+	(see #P0035)
+ 80h-8Fh	EMS page registers, pages 0-7
+SeeAlso: #P0036,#P0038
+
+(Table P0038)
+Values for Intel 82351 EISA Local I/O register index:
+ 21h	chip ID register -- selects which chip responds on these ports
+	(see #P0035)
+ C0h	peripheral enable register A
+ C1h	peripheral enable register B
+ C2h	parallel configuration register
+ C3h	serial configuration register A
+ C4h	floppy disk controller configuration register
+ C5h	serial configuration register B
+ C6h	COM3 port address (low)
+ C7h	COM3 port address (high)
+ C8h	COM4 port address (low)
+ C9h	COM4 port address (high)
+ D0h-D3h	general chip select lines 0-3 (mask registers)
+ D4h-D7h	general chip select line addresses 0-3 (low bytes)
+ D8h-DBh	general chip select line addresses 0-3 (high bytes)
+ DCh	extended CMOS RAM page port address (low)
+ DDh	extended CMOS RAM page port address (high)
+ DFh	extended CMOS RAM access select address (high byte)
+ E8h-EBh	EISA ID configuration registers (reflect at PORT 0C80h)
+SeeAlso: #P0036,#P0037
+

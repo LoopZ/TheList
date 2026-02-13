@@ -1,0 +1,113 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - CHIPSET FROM ETEC CHEETAH ET6000 (SINGLE CHIP)
+
+0022  RW  chip set data
+0023  ?W  index for accesses to data port (see #P0051)
+
+(Table P0051)
+Values for Etec Cheetah ET6000 chip set register index:
+ 10h	system configuration register (see #P0052)
+ 11h	cache configuration & non-cacheable block size register (see #P0053)
+ 12h	non-cacheable block address register
+	bit 7-1	non-cacheable address, A25-A19
+	bit 0	reserved
+ 13h	DRAM bank & type configuration register (see #P0054)
+ 14h	DRAM configuration register (see #P0055)
+ 15h	shadow RAM configuration register (see #P0056)
+
+Bitfields for Etec Cheetah ET6000 system configuration register:
+Bit(s)	Description	(Table P0052)
+ 7-6	00 turbo/non-turbo
+	01 local device supported
+	10 suspend mode
+	11 illegal
+ 5	reserved
+ 4	refresh selection
+	0 = AT type refresh
+	1 = concurrent refresh
+ 3	slow refresh  95mSec enabled
+ 2	fast reset delay
+	0 = do not use delay
+	1 = wait for 2mSec delay
+ 1	wait for HALT after KBDRST
+ 0	RAM at A0000-BFFFF
+	0 = AT bus cycle
+	1 = local bus cycle
+SeeAlso: #P0051
+
+Bitfields for Etec Cheetah ET6000 cache configuration register:
+Bit(s)	Description	(Table P0053)
+ 7-5	000 disabled
+	001 512K
+	010 1M
+	011 2M
+	100 4M
+	101 8M
+	110 16M
+	111 32M
+ 4	DRAM banks
+	0 = 2-bank DRAM
+	1 = 4-bank DRAM
+ 3-0	reserved
+SeeAlso: #P0051
+
+Bitfields for Etec Cheetah ET6000 DRAM bank & type configuration register:
+Bit(s)	Description	(Table P0054)
+ 7-6	bank 3 DRAM type
+	00 none
+	01 256K
+	10 1M
+	11 4M
+ 5-4	bank 2 DRAM type
+ 3-2	bank 1 DRAM type
+ 1-0	bank 0 DRAM type
+SeeAlso: #P0051
+
+Bitfields for Etec Cheetah ET6000 DRAM configuration register:
+Bit(s)	Description	(Table P0055)
+ 7	on-board memory range 15M to 16M disabled
+ 6	on-board memory range 512K-640K disabled
+ 5	ROM chip select at C0000-DFFFF enabled
+ 4	RAS to CAS time
+	0 = 1 SYSCLCK,	not for R0WS
+	1 = 2 SYSCLCK
+ 3	RAS precharge time
+	0 = 1.5 SYSCLCK
+	1 = 2.5 SYSCLCK
+ 2-1	read cycle wait state
+	00 = 0 wait state
+	01 = 1 ws
+	10 = 2 ws
+	11 = 3 ws
+ 0	write cycle wait state
+	0 = 0 ws
+	1 = 1 ws
+SeeAlso: #P0051
+
+Bitfields for Etec Cheetah ET6000 shadow RAM configuration register:
+Bit(s)	Description	(Table P0056)
+ 7	shadow at C0000-FFFFF
+	0 = non-cacheable
+	1 = cacheable and cache-write-proteced
+ 6	access ROM/RAM at F0000-FFFFF
+	0 = read from ROM, write to RAM
+	1 = read from shadow, write is protected
+ 5	access ROM/RAM at E0000-EFFFF
+	0 = access on-board ROM, AT bus cycle
+	1 = access shadow E0000-EFFFF enabled
+ 4	RAM at E0000-EFFFF is read-only
+ 3	access ROM/RAM at D0000-DFFFF
+	0 = access on-board ROM, AT bus cycle
+	1 = access shadow D0000-DFFFF enabled
+ 2	RAM at D0000-DFFFF is read-only
+ 1	access ROM/RAM at C0000-CFFFF
+	0 = access on-board ROM, AT bus cycle
+	1 = access shadow C0000-CFFFF enabled
+ 0	RAM at C0000-CFFFF is read-only
+SeeAlso: #P0051
+

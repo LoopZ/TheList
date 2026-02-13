@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400096
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0096h - KEYBOARD STATUS BYTE 1
+Size:	BYTE
+SeeAlso: MEM 0040h:0097h,INT 16/AH=11h
+
+Bitfields for keyboard status byte 1:
+Bit(s)	Description	(Table M0033)
+ 7	=1 read-ID in progress
+ 6	=1 last code read was first of two ID codes
+ 5	=1 force Num Lock if read-ID and enhanced keyboard
+ 4	=1 enhanced keyboard installed
+ 3	=1 Right Alt pressed
+ 2	=1 Right Ctrl pressed
+ 1	=1 last code read was E0h
+ 0	=1 last code read was E1h
+SeeAlso: #M0034,#M0010
+

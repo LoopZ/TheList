@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+ Unique ID: P040A043F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 040A-043F - Intel 82378ZB embedded DMA controller
+Range:	relocatable via Relocation Base Address register (see #01075)
+SeeAlso: PORT 0401h"EISA",#01064,#01075
+
+040A  R-  scatter/gather interrupt status (see #P0887)
+040B  -W  DMA1 extended mode
+0410  -W  CH0 scatter/gather command (see #P0888)
+0411  -W  CH1 scatter/gather command
+0412  -W  CH2 scatter/gather command
+0413  -W  CH3 scatter/gather command
+0414  -W  CH4 scatter/gather command
+0415  -W  CH5 scatter/gather command
+0416  -W  CH6 scatter/gather command
+0417  -W  CH7 scatter/gather command (see #P0888)
+0418  R-  CH0 scatter/gather status (see #P0889)
+0419  R-  CH1 scatter/gather status
+041A  R-  CH2 scatter/gather status
+041B  R-  CH3 scatter/gather status
+041C  R-  CH4 scatter/gather status
+041D  R-  CH5 scatter/gather status
+041E  R-  CH6 scatter/gather status
+041F  R-  CH7 scatter/gather status (see #P0889)
+0420d RW  CH0 scatter/gather descriptor table address
+0424d RW  CH1 scatter/gather descriptor table address
+0428d RW  CH2 scatter/gather descriptor table address
+042Cd RW  CH3 scatter/gather descriptor table address
+0430d RW  CH4 scatter/gather descriptor table address
+0434d RW  CH5 scatter/gather descriptor table address
+0438d RW  CH6 scatter/gather descriptor table address
+043Cd RW  CH7 scatter/gather descriptor table address
+
+(Table P0887)
+Call Intel 82378ZB Scatter/Gather Interrupt Status Register with:
+ 7	channel 7 has interrupt due to S/G transfer
+ ...
+ 0	channel 0 has interrupt due to S/G transfer
+SeeAlso: #P0888,#P0889
+
+Bitfields for Intel 82378ZB Scatter/Gather Command Register:
+Bit(s)	Description	(Table P0888)
+  7	select last-buffer termination type
+	=0 assert IRQ13 on completion
+	=1 assert EOP on completion
+ 6	enable bit 7 termination-type selection
+ 5-2	reserved (0)
+ 1-0	scatter-gather command
+	00 none
+	01 start S/G command
+	10 stop S/G command
+	11 reserved
+SeeAlso: #P0887,#P0889,#01075
+
+Bitfields for Intel 82378ZB Scatter/Gather Status Register:
+Bit(s)	Description	(Table P0889)
+ 7	no next link
+ 6	reserved
+ 5	issue IRQ13 instead of EOP at end of last buffer
+ 4	reserved
+ 3	scatter/gather Base Register status
+	=1 buffer link has been loaded
+	=0 empty
+ 2	scatter/gather Current Register status
+	=1 buffer link has been loaded
+	=0 empty
+ 1	reserved
+ 0	scatter/gather is active
+SeeAlso: #P0888
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C27
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/27h - Philips SAA7110(A) ONE-CHIP FRONT-END - GAIN CONTROL ANALOG #1
+Access:	Write-Only
+SeeAlso: I2C 9Eh
+
+Bitfields for Gain Control Analog #1:
+Bit(s)	Description	 (Table I0088)	(Table I0089)
+ 7	automatic gain control integration hold
+ 6	AGC integration mode (=0 difference value, =1 fix value)
+ 5-0	static gain control channel 2
+	 decimal	gain
+	multiplier  (.19 dB step)
+	0	      -2.82 dB
+	15	       0.0 dB
+	31	       3.0 dB
+	47	       6.0 dB
+	63	       9.0 dB
+

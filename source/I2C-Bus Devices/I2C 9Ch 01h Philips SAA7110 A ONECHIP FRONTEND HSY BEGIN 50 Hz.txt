@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/01h - Philips SAA7110(A) ONE-CHIP FRONT-END - HSY BEGIN 50 Hz
+Access:	Write-Only
+Desc:	allows programming of the horizontal synchronization signal at the
+	  beginning of its high period in 50 Hz mode.
+Notes:	valid decimal multiplier range +191 to -64
+	step size = 2/LLC
+Example: bit value  multiplier	delay
+	 BFh	    +191	-382
+	 C0h	    -64		+128
+SeeAlso: I2C 9Ch/02h,I2C 9Eh
+

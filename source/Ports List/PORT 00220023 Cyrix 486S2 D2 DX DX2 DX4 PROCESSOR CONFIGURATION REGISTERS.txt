@@ -1,0 +1,69 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Cyrix 486S2/D2/DX/DX2/DX4 PROCESSOR - CONFIGURATION REGISTERS
+SeeAlso: PORT 0022h"Cx486SLC",PORT 0022h"5x86",PORT 0022h"6x86"
+
+0022  -W  index for accesses to next port (see #P0021)
+0023  RW  cache configuration register array (indexed by PORT 0022h)
+	Note:	the index must be written to PORT 0022h before every access
+		  to PORT 0023h; out-of-sequence accesses or index values
+		  not supported by the processor generate external I/O cycles
+
+(Table P0021)
+Values for Cyrix 486S2/D2/DX/DX2/DX4 configuration register number:
+ C2h	CR2 (see #P0025)
+ C3h	CR3 (see #P0026)
+ CDh	SMM region, start address bits 31-24
+ CEh	SMM region, start address bits 23-16
+ CFh	SMM region, start addr 15-12, size (low nibble) (see #P0018)
+ FEh R	Device Identification #0 (see #P0022)
+	CPU device ID
+ FFh R	Device Identification #1
+	bits 3-0: revision
+	bits 7-4: stepping
+SeeAlso: #P0017,#P0023,#P0031
+
+(Table P0022)
+Values for Cyrix device identification:
+(#0 /#1)
+ 00h	Cx486SLC
+ 01h	Cx486DlC
+ 02h	Cx486SLC2
+ 03h	Cx486DLC2
+ 04h	Cx486SRx
+ 05h	Cx486DRx
+ 06h	Cx486SRx2
+ 07h	Cx486DRx2
+ 10h	Cx486S (B-step)
+ 11h	Cx486S2 (B-step)
+ 12h	Cx486Se (B-step)
+ 13h	Cx486S2e (B-step)
+1Ah/05h	Cx486DX-40
+1Bh/08h	Cx486DX2-50
+1Bh/0Bh	Cx486DX2-66
+1Bh/31h	Cx486DX2-v80
+1Fh/36h	Cx486DX4-v100
+ 28h	5x86 1xs
+ 29h	5x86 2xs
+ 2Ah	5x86 1xp
+ 2Bh	5x86 2xp
+ 2Ch	5x86 4xs
+ 2Dh	5x86 3xs
+ 2Eh	5x86 4xp
+ 2Fh	5x86 3xp
+ 30h	6x86 1xs
+ 31h	6x86 2xs
+ 32h	6x86 1xp
+ 33h	6x86 2xp
+ 34h	6x86 4xs
+ 35h	6x86 3xs
+ 36h	6x86 4xp
+ 37h	6x86 3xp
+Note:	#0 is the value in configuration register FEh, while #1 is the value
+	  in configuration register FFh
+SeeAlso: #P0021
+

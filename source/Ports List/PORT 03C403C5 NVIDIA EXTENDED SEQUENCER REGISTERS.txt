@@ -1,0 +1,71 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03C403C5
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03C4-03C5 - NVIDIA - EXTENDED SEQUENCER REGISTERS
+SeeAlso: PORT 03C4h"EGA",PORT 03C4h"S3",PORT 03C4h"Tseng"
+
+03C4  RW  sequencer register index (see #P0679)
+03C5  RW  sequencer register data
+
+(Table P0679)
+Values for NVIDIA NV3/RIVA128 extended sequencer registers:
+ 06h	key register (enable access to extended registers when set to 57h,
+	  disable access when set to any other value)
+ 19h	extended start address and offset
+	bits 7-5: offset bits 10-8
+	bits 4-0: address bits 20-16
+ 1Ah	flags (see #P0680)
+ 1Bh	refresh FIFO control (see #P0681)
+ 20h	FIFO watermark (see #P0682)
+ 25h	miscellaneous extension bits (see #P0683)
+ 28h	framebuffer format
+ 2Dh	extended horizontal bits (see #P0684)
+ 30h	graphics cursor control 0
+ 31h	graphics cursor control 1
+ ???
+
+Bitfields for NVIDIA NV3 flags:
+Bit(s)	Description	(Table P0680)
+ !!!nv3ref.h
+SeeAlso: #P0679
+
+Bitfields for NVIDIA NV3 refresh FIFO control:
+Bit(s)	Description	(Table P0681)
+ 7	underflow warning
+ 2-0	burst length
+	000 eight
+	001 32
+	010 64
+	011 128
+	100 256
+SeeAlso: #P0679,#P0682
+
+Bitfields for NVIDIA NV3 FIFO watermark:
+Bit(s)	Description	(Table P0682)
+ 7	reset FIFO
+ 5-0	watermark, in eight-byte units (refresh FIFO will start refilling
+	  when occupancy falls below twice this value)
+SeeAlso: #P0679,#P0681
+
+Bitfields for NVIDIA NV3 miscellaneous extension bits:
+Bit(s)	Description	(Table P0683)
+ 5	offset bit 11
+ 4	horizontal blanking end, bit 6
+ 3	vertical blanking start, bit 10
+ 2	vertical retrace start, bit 10
+ 1	vertical display end, bit 10
+ 0	vertical total, bit 10
+SeeAlso: #P0679,#P0684
+
+Bitfields for NVIDIA NV3 extended horizontal bits:
+Bit(s)	Description	(Table P0684)
+ 4	"inter_half_start" bit 8
+ 3	horizontal retrace start, bit 8
+ 2	horizontal blanking start, bit 8
+ 1	display end, bit 8
+ 0	display total, bit 8
+SeeAlso: #P0679,#P0683
+

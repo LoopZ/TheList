@@ -1,0 +1,124 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0678067A
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0678-067A - Intel 82091AA - ECP-mode PARALLEL PORT
+Range:	PORT 0678h or PORT 0378h, depending on the base address of the parallel
+	  port (0278h or 0378h)
+SeeAlso: PORT 0278h,PORT 0778h,PORT 07BCh
+
+0278  RW  (when ECR bits 7-5=011) ECP Address/RLE FIFO (see #P0917)
+	(this is the same address normally used for parallel port data)
+0678  RW  (when ECR bits 7-5=010) standard parallel port data FIFO (see #P0918)
+0678  RW  (when ECR bits 7-5=011) ECP data FIFO (see #P0919)
+0678  RW  (when ECR bits 7-5=110) test FIFO (see #P0920)
+0678  RW  (when ECR bits 7-5=111) ECP configuration A (see #P0921)
+0679  RW  (when ECR bits 7-5=111) ECP configuration B (see #P0922)
+067A  RW  extended control register (ECR) (see #P0923)
+
+Bitfields for ECP Address/RLE FIFO:
+Bit(s)	Description	(Table P0917)
+ 7	address/RLE-count select
+	=0 RLE count
+	=1 channel address
+ 6-0	channel address (bit 7 set)
+	RLE count, less 1 (bit 7 clear)
+Notes:	when using hardware RLE decompression, the associated data is written
+	  to the data FIFO (see #P0919) after the count is set here
+	an RLE count of 1 (two identical bytes) will cause unnecessary
+	  expansions
+	the peripheral device performs the interpretation of this byte as
+	  address or RLE count; writing to this port simply causes the AUTOFD#
+	  line to be asserted to tell the peripheral that the byte is not data
+SeeAlso: #P0923,#P0918
+
+Bitfields for ECP Standard Parallel Port data FIFO:
+Bit(s)	Description	(Table P0918)
+ 7-0	standard parallel port data
+Notes:	data written or DMAed to this port are buffered in the FIFO and
+	  transmitted to the peripheral using a standard ISA-compatible
+	  hardware handshake
+	PORT 027Ah bit 5 must be clear to enable the forward transfer direction
+SeeAlso: #P0917,#P0918,#P0923
+
+Bitfields for ECP data FIFO:
+Bit(s)	Description	(Table P0919)
+ 7-0	ECP-mode data
+Notes:	data written or DMAed to this port are buffered in the FIFO and
+	  transmitted to the peripheral using an ECP hardware handshake;
+	  PORT 027Ah bit 5 must be clear to enable the forward transfer
+	  direction
+	when PORT 027Ah bit 5 is set (reverse transfer), data is read from the
+	  peripheral and placed in the FIFO, from which it may be read by
+	  reading this port
+SeeAlso: #P0917,#P0923,#P0920
+
+Bitfields for ECP test FIFO:
+Bit(s)	Description	(Table P0920)
+ 7-0	test FIFO data
+Notes:	writes to this port write to the FIFO, reads from this port read from
+	  the FIFO, without actually transferring any data out the parallel
+	  port; FIFO overruns and underruns are ignored, simply reading/writing
+	  over the same slots again and again
+	the ECR "full" and "empty" bits always keep track of the current state
+	  of the FIFO; the write threshold can be determined by filling the
+	  FIFO and then reading a byte at a time until a service interrupt is
+	  set in the ECR.  Similarly, the read threshold can be determined by
+	  emptying the FIFO, setting the direction bit in PORT 027Ah, and
+	  writing a byte at a time until a service interrupt is set.
+SeeAlso: #P0917,#P0923,#P0919
+
+Bitfields for ECP configuration A:
+Bit(s)	Description	(Table P0921)
+ 7-4	(read-only) implementation identification
+	bit 7: ISA-style interrupt
+	bit 4: eight-bit implementation
+ 3-0	reserved
+Note:	this register can only be accessed when the Extended Control
+	  Register bits 7-5 are set to 111
+SeeAlso: #P0923,#P0922,#P0917,#P0919,#P0920
+
+Bitfields for ECP configuration B:
+Bit(s)	Description	(Table P0922)
+ 7	reserved (0)
+ 6	IRQ status (reflects actual value driven onto either IRQ5 or IRQ7; used
+	  to check for interrupt conflicts)
+ 5-0	reserved (0)
+Notes:	this register can only be accessed when the Extended Control
+	  Register bits 7-5 are set to 111
+	bit 4 of the parallel control port (027Ah/037Ah) must be cleared before
+	  bit 6 will show the interrupt status
+SeeAlso: #P0923,#P0921
+
+Bitfields for ECP Extended Control Register (ECR):
+Bit(s)	Description	(Table P0923)
+ 7-5	ECP mode
+	000 ISA-compatible
+	001 PS/2-compatible (bidirectional port)
+	010 ISA-compatible FIFO
+	011 ECP
+	100 reserved
+	101 reserved
+	110 test
+	111 configuration
+ 4	disable ERROR interrupts
+ 3	enable DMA
+	when bit 3 set and bit 2 clear, an interrupt is generated on the DMA
+	  terminal-count condition; this bit must be cleared to reset the TC
+	  interrupt
+ 2	disable FIFO/TerminalCount service interrupts
+ 1	(read-only) FIFO is full
+ 0	(read-only) FIFO is empty
+Notes:	if the port is currently in modes 000 or 001, it may be switched into
+	  any other mode; if it is in a mode other than 000 or 001, it must
+	  first be switched into either mode 000 or 001 before selecting a mode
+	  other than one of those two
+	if currently in an extended forward mode (010-111 and direction bit
+	  clear), software should wait for the FIFO to clear before switching
+	  back to modes 000 or 001
+	if a FIFO overrun or underrun occurs, BOTH bits 1 and 0 are set; to
+	  clear the FIFO error condition, switch the port to mode 000 or 001
+SeeAlso: #P0921,#P0922,#P0919
+

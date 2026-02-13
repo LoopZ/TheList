@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0278027A
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0278-027A - PARALLEL PRINTER PORT (usually LPT1, sometimes LPT2)
+Range:	usually PORT 03BCh, PORT 0278h, or PORT 0378h
+SeeAlso: PORT 0278h"EPP",MEM 0040h:0008h,INT 17/AH=00h
+
+0278  -W  data port
+0279  R-  status port (see #P0658 at PORT 03BCh)
+027A  RW  control port (see #P0659 at PORT 03BCh)
+

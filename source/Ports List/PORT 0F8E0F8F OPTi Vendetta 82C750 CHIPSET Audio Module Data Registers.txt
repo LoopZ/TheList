@@ -1,0 +1,229 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0F8E0F8F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0F8E-0F8F - OPTi "Vendetta" (82C750) CHIPSET - Audio Module Data Registers
+Range:	The I/O address range is selectable using port 0F8Dh from among
+	  0ExE-0ExF and 0FxE-0FxF
+SeeAlso: PORT 0F8Dh,PORT 0530h"Vendetta"
+
+0F8E  RW  "MCIdx" index register (see #P0949)
+0F8F  RW  "MCData" data register
+
+(Table P0949)
+Values for OPTi "Vendetta" (82C750) Audio Module configuration registers:
+ 00h	disable
+ 01h	base/type configuration register (see #P0950)
+ 02h	reserved
+ 03h	Sound Blaster/Windows Sound System configuration register (see #P0951)
+ 04h	user programmable general purpose register (see #P0952)
+ 05h	option register (see #P0953)
+ 06h	MIDI interface register (write-only) (see #P0954)
+ 07h	semaphore software register
+ 08h	reserved
+ 09h	test control register 1 (see #P0955)
+ 0Ah	test control register 2 (see #P0956)
+ 0Bh	status register (read-only) (see #P0957)
+ 0Ch	test register (see #P0958)
+ 0Dh	PNP status register (read-only) (see #P0959)
+ 0Eh	PNP card select number register (read-only)
+ 0Fh	PNP read port address register (read-only)
+ 10h	volume control register (see #P0960)
+ 11h	reserved (serial EEPROM)
+ 12h	CONFIG status register (see #P0961)
+ 13h	FM control register (see #P0962)
+ 14h	reserved (GPIO control)
+ 15h	serial audio control register 0 (see #P0963)
+ 16h	serial audio control register 1 (see #P0964)
+ 17h	reserved
+
+Bitfields for OPTi "Vendetta" Audio Module base/type configuration register:
+Bit(s)	Description	(Table P0950)
+ 7	Sound Blaster base I/O address
+	0 = 220h
+	1 = 240h
+ 6	reserved
+ 5-4	Windows Sound System base I/O address
+	00 = 530h
+	01 = E80h
+	10 = F40h
+	11 = 640h
+ 3-1	reserved
+ 0	game port enable
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module SB/WSS configuration register:
+Bit(s)	Description	(Table P0951)
+ 7	reserved
+ 6	reserved (0 for normal WSS operation)
+ 5-3	digital audio processor IRQ
+	000 = disable
+	001 = IRQ7
+	010-100 = IRQ9-IRQ11
+	101 = IRQ5
+	110-111 = reserved
+ 2-0	digital audio processor DMA
+	000 = disable
+	001-010 = QRQ0-DRQ1
+	011 = DRQ3
+	100 = disable, DRQ1 (if dual channel DMA mode)
+	101 = DRQ0, DRQ1 (if dual channel DMA mode)
+	110 = DRQ1, DRQ0 (if dual channel DMA mode)
+	111 = DRQ3, DRQ0 (if dual channel DMA mode)
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module user programmable general purpose:
+Bit(s)	Description	(Table P0952)
+ 7-6	playback FIFO flow
+	00 = empty
+	01 = full-2
+	10 = full-4
+	11 = not full
+ 5-4	OPL select
+	00 = OPL2
+	01 = OPL3
+	10 = OPL4
+	11 = OPL5
+ 3	D/A controller zero
+	0 = hold
+	1 = clear
+ 2	audio enable
+ 1-0	Sound Blaster version
+	00 = 2.1
+	01 = 1.5
+	10 = 3.2
+	11 = 4.4
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module option register:
+Bit(s)	Description	(Table P0953)
+ 7-6	reserved
+ 5	codec expanded mode enable
+	  (must be set to access expanded mode codec indirect registers
+	  10h-1Fh)
+ 4	Sound Blaster ADPCM enable
+ 3	Sound Blaster command FIFO enable
+ 2	Sound Blaster Pro mixer voice volume emulation volume effect enable
+ 1	DMA watchdog timer enable
+ 0	reserved
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module MIDI interface register:
+Bit(s)	Description	(Table P0954)
+ 7	MPU-401 enable
+ 6-5	MPU-401 base address
+	00 = 330h
+	01 = 320h
+	10 = 310h
+	11 = 300h
+ 4-3	MPU-401 IRQ
+	00 = IRQ9
+	01 = IRQ10
+	10 = IRQ5
+	11 = IRQ7
+ 2	reserved
+ 1	Windows Sound System mode enable
+ 0	Sound Blaster mode enable
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module test control register 1:
+Bit(s)	Description	(Table P0955)
+ 7	digital power-down
+ 6	analog power-down
+ 5-2	reserved
+ 1	software reset enable
+ 0	reserved
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module test control register 2:
+Bit(s)	Description	(Table P0956)
+ 7	playback reset
+ 6	capture reset
+ 3	PNP test
+ 2-0	reserved
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module status register:
+Bit(s)	Description	(Table P0957)
+ 7	playback DMA pending
+ 6	capture DMA pending
+ 5	MPU interrupt pending
+ 4	reserved
+ 3	capture interrupt pending
+ 2	playback interrupt pending
+ 1	playback FIFO empty
+ 0	capture FIFO empty
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module test register:
+Bit(s)	Description	(Table P0958)
+ 7-5	reserved
+ 4	digital test output high/low byte (write-only)
+ 3-0	digital test output select (write-only)
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module PNP status register:
+Bit(s)	Description	(Table P0959)
+ 7	CSN not 0, active high
+	1 = CSN assigned by PNP configuration manager
+ 6-5	reserved
+ 4	audio module logical device enable
+ 3	1 = audio module PNP logic in CONFIG mode
+ 2	1 = audio module PNP logic in ISOLATE mode
+ 1	1 = audio module PNP logic in SLEEP mode
+ 0	1 = audio module PNP logic in WAIT4KEY mode
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module volume control register:
+Bit(s)	Description	(Table P0960)
+ 7-4	reserved
+ 3	master volume mute
+ 2-0	reserved
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module CONFIG status register:
+Bit(s)	Description	(Table P0961)
+ 7	reserved
+ 6	ASIO enable
+ 5-4	reserved
+ 3-0	chip revision ID (read-only)
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module FM control register:
+Bit(s)	Description	(Table P0962)
+ 7-3	reserved
+ 2	mega bass enable
+ 1	enhanced FM feature OPTi mode enable
+ 0	external FM enable
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module serial audio control register 0:
+Bit(s)	Description	(Table P0963)
+ 7-6	FDAC clock controller
+	00 = reserved
+	01 = internal FM
+	10 = reserved
+	11 = external serial audio
+ 5-2	reserved
+ 1	FDAC data
+	0 = internal FM
+	1 = external serial audio
+ 0	reserved
+SeeAlso: #P0949
+
+Bitfields for OPTi "Vendetta" Audio Module serial audio control register 1:
+Bit(s)	Description	(Table P0964)
+ 7	ASIO reset
+ 6	ASIO test
+ 5-4	reserved
+ 3	SCLK polarity
+	0 = reverse
+	1 = no change
+ 2	FSYNC polarity
+	0 = reverse
+	1 = no change
+ 1-0	reserved
+SeeAlso: #P0949
+

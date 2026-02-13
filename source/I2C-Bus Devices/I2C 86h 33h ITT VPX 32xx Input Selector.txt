@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8633
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/33h - ITT VPX 32xx - Input Selector
+SeeAlso: I2C 8Ah/33h
+
+Bitfields for VDP 3108/VPX 32xx input selector:
+Bit(s)	Description	(Table I0032)
+ 1-0	luma ADC select
+	00 VIN3
+	01 VIN2
+	10 VIN1
+	reserved
+ 2	chroma ADC select
+	0 VIN1
+	1 CIN  (dedicated S-VHS chroma input)
+ 3	clamping for chroma A/D converter
+ 4	(VDP3108 only) internal/external luma ADC clamp enable
+ 5	reserved
+ 6	(VPX32xx only) stand-by luma ADC
+ 7	(VPX32xx only) stand-by chroma ADC
+

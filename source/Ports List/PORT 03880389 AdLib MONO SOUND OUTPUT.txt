@@ -1,0 +1,101 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03880389
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0388-0389 - AdLib - MONO SOUND OUTPUT
+Note:	also supported by SoundBlaster and compatibles
+SeeAlso: PORT 0220h-0223h,PORT 0388h-038Fh"soundmachine"
+
+0388  R-  both speakers -- Status
+	    bit7  : interrupt request (IRQ)
+	    bit6  : timer 1 overflow
+	    bit5  : timer 2 overflow
+	    bit4-0: reserved
+0388  -W  both speakers -- Address port (see #P0645)
+	index in OPL2 (YMF3812), OPL3 (YMF262), OPL4 (YF278-F)
+0389  -W  data port
+Note:	the AdLib requires a delay of 3.3 microseconds between writing to
+	  PORT 0388h and writing to PORT 0389h, and a delay of 23 microseconds
+	  after a write to PORT 0389h before any other operation is allowed
+
+(Table P0645)
+Values for AdLib address port index:
+ 01h	Enable waveform control
+	bit 7-6: (OPL4, OPL3 in OPL2 mode only) lsi test
+	bit 5: (OPL2 only) wave select enable (WS)
+	       (OPL4, OPL3) lsi test
+	bit 4-0: lsi test
+ 02h	Timer #1 data (OPL2 and OPL3 in OPL2 mode only)
+ 03h	Timer #2 data (OPL2 and OPL3 in OPL2 mode only)
+ 04h	Timer control flags (OPL2 and OPL3 in OPL2 mode only)
+	bit 7  : reset interrupt (RST)
+	bit 6  : timer 1 mask (MASK1)
+	bit 5  : timer 2 mask (MASK2)
+	bit 4-2: reserved
+	bit 1  : start timer 2 (ST2)
+	bit 0  : start timer 1 (ST1)
+ 04h	(OPL3 in OPL3 mode only) connection select
+	bit 7-6: reserved
+	bit 5-0: connection selection
+ 05h	(OPL3) compatibility register
+	bit 7-1: reserved
+	bit 0: enable OPL3 mode (NEW), default disabled
+ 08h	Speech synthesis mode
+	bit 7: (OPL2 only) speech synthesis or FM music mode (CSM)
+	bit 6: select keyboard split point (SEL/NTS)
+	bit 5-0: reserved
+ 20h-35h Amplitude Modulation / Vibrato
+	bit 7: AM modulation (AM)
+	bit 6: vibrato (VIB)
+	bit 5: sustain (EG)
+	bit 4: keyboard scaling rate (KSR)
+	bit 3-0: multi (MF)
+ 40h-55h Level key scaling / Total level
+	bit 7-6: key scale level (KSL)
+	bit 5-0: total level (TL)
+ 60h-75h Attack / Decay rate
+	bit 7-4: attack rate
+	bit 3-0: decay rate
+ 80h-95h Sustain / Release rate
+	bit 7-4: sustain level
+	bit 3-0: release rate
+ A0h-A8h Octave / Frequency (LSB)
+ A9h-AFh ???
+ B0h-B8h Octave / Frequency Number
+	bit 7-6: reserved
+	bit 5  : key on, mute
+	bit 4-2: block, octave
+	bit 1-0: f-number (MSB)
+ BDh	percussion, vibrato, AM	(OPL2, OPL3 in OPL2 mode only)
+	bit 7: amplitude modulation (AM)
+	bit 6: vibrato (VIB)
+	bit 5: ryhthm, percussion on/off (R)
+	bit 4: bass drum on/off (BD)
+	bit 3: snare drum on/off (SD)
+	bit 2: tom-tom on/off (TOM)
+	bit 1: top cymbal on/off (TC)
+	bit 0: hi hat on/off (HH)
+ C0h-C8h Feedback / Algorithm
+	bit 7-4: OPL3: channel D-A
+	bit 3-1: feedback
+	bit 0: connection
+ E0h-F5h Waveform Selection
+	bit 7-3: reserved
+	bit 2  : (OPL3) waveform bit2
+	bit 1-0: waveform
+SeeAlso: #P0646
+
+(Table P0646)
+Values for Sound Blaster registers inside groups:
+Offset
+ +00..+02: operators 1-3    modulator channel 1-3
+ +03..+05: operators 4-6    carrier channel 1-3
+ +08..+0A: operators 7-9    modulator channel 4-6
+ +0B..+0D: operators 10-12  carrier channel 4-6
+ +10..+12: operators 13-15  modulator channel 7-9
+ +13..+15: operators 16-18  carrier channel 7-9
+ +06, +07, +0E, +0F: reserved
+SeeAlso: #P0645
+

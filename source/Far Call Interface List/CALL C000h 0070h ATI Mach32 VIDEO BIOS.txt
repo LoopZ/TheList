@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: @C0000070
+  Category: V 	video
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+CALL C000h:0070h U - ATI Mach32 VIDEO BIOS - ???
+InstallCheck: ATI Mach32 video board must be installed
+SeeAlso: @C000h:0064h,@C000h:0068h,@C000h:006Ch
+
+(Table F0020)
+Call ATI Mach32 entry point with:
+	AH = function
+	    00h ???
+	    01h ???
+	    02h ???
+		AL = subfunction
+		    00h ???
+		    01h ???
+	    03h ???
+		AL = ??? (00h/nonzero)
+Return: CF clear if successful
+	CF set on error
+

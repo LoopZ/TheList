@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: P02100217
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0210-0217 - Expansion unit (XT)
+
+0210  -W  latch expansion bus data
+0210  R-  verify expansion bus data
+0211  -W  clear wait, test latch
+0211  R-  High byte data address
+0212  R-  Low byte data address
+0213  -W  0=enable,  1=disable expansion unit
+0214  -W  latch data  (receiver card port)
+0214  R-  read data   (receiver card port)
+0215  R-  High byte of address, then Low byte	(receiver card port)
+

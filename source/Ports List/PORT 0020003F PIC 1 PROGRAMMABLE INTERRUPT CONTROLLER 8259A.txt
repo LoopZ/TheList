@@ -1,0 +1,111 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0020003F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0020-003F - PIC 1 - PROGRAMMABLE INTERRUPT CONTROLLER (8259A)
+SeeAlso: PORT 00A0h-00AFh"PIC 2",INT 08"IRQ0",INT 0F"IRQ7"
+
+0020  -W  PIC initialization command word ICW1 (see #P0010)
+0020  -W  PIC output control word OCW2 (see #P0015)
+0020  -W  PIC output control word OCW3 (see #P0016)
+0020  R-  PIC  interrupt request/in-service registers after OCW3
+		request register:
+		 bit 7-0 = 0  no active request for the corresponding int. line
+			 = 1  active request for corresponding interrupt line
+		in-service register:
+		 bit 7-0 = 0  corresponding line not currently being serviced
+			 = 1  corresponding int. line currently being serviced
+
+0021  -W  PIC ICW2,ICW3,ICW4 immed after ICW1 to 0020 (see #P0011,#P0012,#P0013)
+0021  RW  PIC master interrupt mask register OCW1 (see #P0014)
+
+Bitfields for PIC initialization command word ICW1:
+Bit(s)	Description	(Table P0010)
+ 7-5	0 (only used in 8080/8085 mode)
+ 4	ICW1 is being issued
+ 3	(LTIM)
+	=0  edge triggered mode
+	=1  level triggered mode
+ 2	interrupt vector size
+	=0 successive interrupt vectors use 8 bytes (8080/8085)
+	=1 successive interrupt vectors use 4 bytes (80x86)
+ 1	(SNGL)
+	=0  cascade mode
+	=1  single mode, no ICW3 needed
+ 0	ICW4 needed
+SeeAlso: #P0011,#P0012,#P0013
+
+Bitfields for PIC initialization command word ICW2:
+Bit(s)	Description	(Table P0011)
+ 7-3	address lines A0-A3 of base vector address for PIC
+ 2-0	reserved
+SeeAlso: #P0010,#P0012,#P0013
+
+Bitfields for PIC initialization command word ICW3:
+Bit(s)	Description	(Table P0012)
+ 7-0	=0 slave controller not attached to corresponding interrupt pin
+	=1 slave controller attached to corresponding interrupt pin
+SeeAlso: #P0010,#P0011,#P0013
+
+Bitfields for PIC initialization command word ICW4:
+Bit(s)	Description	(Table P0013)
+ 7-5	reserved (0)
+ 4	running in special fully-nested mode
+ 3-2	mode
+	0x nonbuffered mode
+	10 buffered mode/slave
+	11 buffered mode/master
+ 1	Auto EOI
+ 0	=0  8085 mode
+	=1  8086/8088 mode
+SeeAlso: #P0010,#P0011,#P0012
+
+Bitfields for PIC output control word OCW1:
+Bit(s)	Description	(Table P0014)
+ 7	disable IRQ7 (parallel printer interrupt)
+ 6	disable IRQ6 (diskette interrupt)
+ 5	disable IRQ5 (fixed disk interrupt)
+ 4	disable IRQ4 (serial port 1 interrupt)
+ 3	disable IRQ3 (serial port 2 interrupt)
+ 2	disable IRQ2 (video interrupt)
+ 1	disable IRQ1 (keyboard, mouse, RTC interrupt)
+ 0	disable IRQ0 (timer interrupt)
+SeeAlso: #P0015,#P0016,#P0418
+
+Bitfields for PIC output control word OCW2:
+Bit(s)	Description	(Table P0015)
+ 7-5	operation
+	000 rotate in auto EOI mode (clear)
+	001 (WORD_A) nonspecific EOI
+	010 (WORD_H) no operation
+	011 (WORD_B) specific EOI
+	100 (WORD_F) rotate in auto EOI mode (set)
+	101 (WORD_C) rotate on nonspecific EOI command
+	110 (WORD_E) set priority command
+	111 (WORD_D) rotate on specific EOI command
+ 4-3	reserved (00 - signals OCW2)
+ 2-0	interrupt request to which the command applies
+	(only used by WORD_B, WORD_D, and WORD_E)
+SeeAlso: #P0014,#P0016
+
+Bitfields for PIC output control word OCW3:
+Bit(s)	Description	(Table P0016)
+ 7	reserved (0)
+ 6-5	special mask
+	0x  no operation
+	10  reset special mask
+	11  set special mask mode
+ 4-3	reserved (01 - signals OCW3)
+ 2	poll command
+ 1-0	function
+	0x  no operation
+	10  read interrupt request register on next read from PORT 0020h
+	11  read interrupt in-service register on next read from PORT 0020h
+Note:	the special mask mode permits all other interrupts (even those with
+	  lower priority) to be processed while an interrupt is already in
+	  service, but will not re-issue an interrupt for a particular IRQ
+	  while it remains in service
+SeeAlso: #P0014,#P0015
+

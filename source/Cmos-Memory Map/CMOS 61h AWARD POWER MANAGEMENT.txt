@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: R61
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 61h - AWARD - POWER MANAGEMENT
+
+Bitfields for AWARD power management:
+Bit(s)	Description	(Table C0088)
+ 7	PM Event on HDD Ports Activity (1=enable)
+ 6	PM Event on LPT Port Activity (1=enable)
+ 5	PM Event on COM Port Activity (1=enable)
+ 4	HDD Power Down on Suspend
+ 0-3	HDD Power Down Time
+	0	Disabled
+	1-15	Time in Minutes
+

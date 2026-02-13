@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: I1802
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 18h/02h - Raytheon TMC2361 - RESET CONTROL REGISTER
+Access:	Read/Write
+Range:	I2C addresses 18h, 1Ah, 1Ch, or 1Eh may be selected by external pins
+SeeAlso: I2C 18h/00h,I2C 18h/01h,I2C 18h/05h,I2C 18h/06h
+
+Bitfields for Raytheon TMC2361 Reset Control Register:
+Bit(s)	Description	(Table I0003)
+ 7-4	reserved (0)
+ 3	clock out select
+	=0 use PXCK
+	=1 use ADCK
+ 2-0	reserved (0)
+SeeAlso: #I0062
+

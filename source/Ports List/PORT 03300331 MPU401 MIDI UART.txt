@@ -1,0 +1,93 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03300331
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0330-0331 - MPU-401 MIDI UART
+Range:	alternate address at PORT 0300h, occasionally at PORT 0310h or
+	  PORT 0320h
+
+0330  RW  data register
+0331  R-  status register (see #P0575)
+0331  -W  command register (see #P0576)
+Note:	MPU-401 genarates an interrupt when MIDI code is ready; by reading
+	  MIDI code from the data register this interrupt is cleared
+
+Bitfields for MPU-401 status register:
+Bit(s)	Description	(Table P0575)
+ 7	input ready
+	=1 no data is available for reading
+	=0 data is available for reading
+ 6	output ready
+	=1 not ready to receive command/data byte
+	=0 ready to receive command/data byte
+ 5-0	reserved
+Note:	pending input seems to block the output
+SeeAlso: #P0576
+
+(Table P0576)
+Values for MPU-401 commands (data go to/from PORT 0330h):
+Command	Description		 Results  Parameter
+ 01h	send MIDI stop		   ACK	      -
+ 02h	send MIDI start		   ACK	      -
+ 03h	send MIDI continue	   ACK	      -
+ 15h	stop all (recording,	   ACK	      -
+	  playback and MIDI)
+ 34h	return timing bytes	   ACK	      -
+	  in stop mode
+ 35h	enable mode messages	   ACK	      -
+	  to PC
+ 38h	enable system common	   ACK	      -
+	  messages to PC
+ 39h	enable real time	   ACK	      -
+	  messages to PC
+ 3Ch	use CLS sync		   ACK	      -
+ 3Dh	use SMPTE sync		   ACK	      -
+ 3Fh	enter UART mode		   ACK	      -
+ 80h	use MIDI sync		   ACK	      -
+ 81h	use FSK sync		   ACK	      -
+ 82h	use MIDI sync		   ACK	      -
+ 83h	enable metronome	   ACK	      -
+ 84h	disable metronome	   ACK	      -
+ 87h	enable pitch and	   ACK	      -
+	  controller
+ 8Ah	disable data in stopped	   ACK	      -
+	  mode
+ 8Bh	enable data in stop mode   ACK	      -
+ 8Ch	disable measure end	   ACK	      -
+	  messages to host
+ 91h	enable ext MIDI control	   ACK	      -
+ 94h	disable clock to host	   ACK	      -
+ 95h	enable clock to host	   ACK	      -
+ 97h	enable system exclusive	   ACK	      -
+	  messages to PC
+ ACh	get MIDI version	 ACK,VER      -
+ ADh	get revision		 ACK,REV      -
+ Cxh	set timebase to x*24	   ACK	      -
+	  ppqn (x>1)
+ D0h	???			   ACK	      -
+ DFh	???			   ACK	      -
+ E0h	set tempo		   ACK	     BPS
+ E4h	set clocks per click	   ACK	     CPC
+ E6h	set beats per measure	   ACK	     BPM
+ E7h	send all clocks to host	   ACK	    1 byte
+					  (04h is sent)
+ FFh	reset			   ACK	      -
+Notes:	after receiving a command byte MPU-401 must reply with command
+	  acknowledge byte FEh in data register
+	command parameters are sent, and response bytes are received through
+	  the data register
+	no commands (except reset) can be issued in UART mode, and MPU-401
+	  must be reset to leave UART mode
+	Key:
+		ACK	command acknowledge byte (FEh)
+		VER	MIDI version number
+			bits 7-4: major version
+			bits 0-3: minor version
+		REV	revision number
+		BPS	beats per second (8..250)
+		CPC	clocks per click
+		BPM	beats per measure
+SeeAlso: #P0576
+

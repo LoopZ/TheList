@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00F000FF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 00F0-00FF - MATH COPROCESSOR (8087..80387)
+
+00F0  -W  math coprocessor clear busy latch (write 00h)
+00F1  -W  math coprocessor reset (write 00h)
+00F8  RW  opcode transfer (CPU-coprocessor communication)
+00FA  RW  opcode transfer
+00FC  RW  opcode transfer
+

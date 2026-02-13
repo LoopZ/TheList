@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0C800C83
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0C80-0C83 - EISA system board ID registers
+
+0C80  R-  bit 7: unused (0)
+	  bits 6-2: manufacturer ID, first compressed ASCII char
+	  bits 1-0: manufacturer ID, second compressed ASCII char (high)
+0C81  R-  bits 7-5: manufacturer ID, second compressed ASCII char (low)
+	  bits 4-0: manufacturer ID, third compressed ASCII char
+0C82  R-  reserved for manufacturer's use
+0C83  R-  bits 7-3: reserved for manufacturer's use
+	  bits 2-0: EISA bus version
+

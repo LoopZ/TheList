@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A13
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/13h - Philips TDA8366 - AGC TAKE-OVER
+Desc:	the TDA8366 is an I2C-bus controlled PAL/NTSC TV Processor
+Access:	Write-Only
+SeeAlso: I2C 8Ah/00h"TDA8366",I2C 8Ah/10h"TDA8366",I2C 8Ah/FEh"TDA8366"
+
+Bitfields for TDA8366 AGC Take-Over Control:
+Bit(s)	Description	(Table I0063)
+ 7	"MOD" modulation standard
+	=0 negative (i.e. SECAM)
+	=1 positive
+ 6	"VSW" switch off IF-video signal
+ 5-0	AGC take-over value
+SeeAlso: #I-83
+

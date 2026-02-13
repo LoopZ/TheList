@@ -1,0 +1,203 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0140014F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0140-014F - Future Domain TMC-16x0 SCSI adapter
+Range:	alternate address at 0150, 0160, 0170
+Notes:	TMC-1650/1670 have a 25-pin external connector, whereas the 1660 and
+	  1680 have a SCSI-2 50-pin high-density external connector
+	TMC-1670/1680 have floppy disk controller built in
+	BIOS versions prior to 3.2 assigned SCSI ID 6 to SCSI adapter,
+	  versions 3.2 and greater use SCSI ID 7
+	the drive ordering implemented in BIOS versions 3.4 and 3.5 is the
+	  opposite of the order (currently) used by the rest of the SCSI
+	  industry--for example, under DOS SCSI ID 0 will be D: and SCSI ID 1
+	  will be C:
+	Future Domain TMC-16x0 SCSI adapter series are based upon Future Domain
+	  TMC-1800/18C50/18C30 SCSI controllers
+	TMC-1800/18C50/18C30 are ISA SCSI controllers, TMC-36C70 is a PCI
+	  version of TMC-18C30
+	TMC-1800/18C50 have 8K FIFO, TMC-18C30/36C70 have 2K FIFO
+	Future Domain TMC-1650/1660/1670/1680/1610M/1610MER/1610MEX SCSI
+	  adapters are based on TMC-1800/18C50/18C30
+	Quantum ISA-200S/250MG SCSI adapters are based on TMC-18C50 (?)
+	Future Domain TMC-3260 and Adaptec AHA-2920 PCI SCSI adapters are
+	  based on TMC-36C70
+
+0140  R-  read SCSI data register
+0140  -W  write SCSI data register
+0141  R-  SCSI status register (see #P0501)
+0141  -W  SCSI control register (see #P0502)
+0142  R-  TMC status register (see #P0503)
+0142  -W  interrupt control register (see #P0504)
+0143  R-  FIFO status register, TMC-18C50/18C30/36C70 chips only
+0143  -W  SCSI mode control register (see #P0505)
+0144  R-  interrupt condition register, TMC-18C50/18C30/36C70 only (see #P0506)
+0144  -W  TMC control register (see #P0507)
+0145  R-  ID code LSB register
+	  27h for TMC-1800 chip
+	  E9h for TMC-18C50/18C30/36C70 chips
+0145  -W  memory control register, TMC-18C50/18C30/36C70 only
+0146  R-  ID code MSB register
+	  60h for TMC-18C50/18C30 chips
+	  61h for TMC-1800 chip
+0147  R-  read loopback register
+0147  -W  write loopback register
+0148  RW  SCSI data no ACK register
+0149  R-  interrupt status register (see #P0508)
+014A  R-  configuration register 1 (see #P0509)
+014B  R-  configuration register 2, TMC-18C50/18C30/36C70 only (see #P0510)
+014B  -W  I/O control register, TMC-18C30/36C70 only (see #P0511)
+014Cw R-  read FIFO data register
+014Cw -W  write FIFO data register
+014Ew R-  FIFO data count register
+Notes:	any value written into the write loopback register can be read back
+	  from the read loopback register unchanged (this is used by the BIOS
+	  to test the controller)
+	reading from read SCSI data register and writing to write SCSI data
+	  register causes REQ/ACK handshake to occur automatically, reading
+	  and writing the SCSI data no ACK register doesn't
+	SCSI FIFO may be used only for DATA IN / DATA OUT phase transfers on
+	  TMC-1800; on TMC-18C50/18C30 it may also be used for COMMAND phase
+	  transfers
+
+Bitfields for SCSI status register:
+Bit(s)	Description	(Table P0501)
+ 7	not BSY
+ 6	not MSG
+ 5	not I/O
+ 4	not C/D
+ 3	not REQ
+ 2	not SEL
+ 1	parity error???
+ 0	not ATN
+SeeAlso: #P0502,#P0511
+
+Bitfields for SCSI control register:
+Bit(s)	Description	(Table P0502)
+ 7	RST
+ 6	SEL
+ 5	BSY
+ 4	ATN
+ 3	I/O
+ 2	C/D
+ 1	MSG
+ 0	bus enable
+SeeAlso: #P0501,#P0503,#P0504
+
+Bitfields for TMC status register:
+Bit(s)	Description	(Table P0503)
+ 7	bus enabled
+ 6	parity enabled
+ 5	FIFO enabled
+ 4	=1 data are expected to flow out from FIFO to SCSI bus
+	=0 data are expected to flow from SCSI bus into FIFO
+ 3	SCSI reset
+ 2	???
+ 1	arbitration complete
+ 0	interrupt request
+SeeAlso: #P0502
+
+Bitfields for interrupt control register:
+Bit(s)	Description	(Table P0504)
+ 7	enable interrupt on REQ
+ 6	enable interrupt on SEL
+ 5	enable arbitration interrupt
+ 4	enable interrupt on ???
+ 0-3	FIFO threshold (how many 512 byte blocks in FIFO should be
+	  full/empty for interrupt to be generated)
+SeeAlso: #P0502
+
+Bitfields for SCSI mode control register:
+Bit(s)	Description	(Table P0505)
+ 7	synchronous mode
+ 6	fast SCSI
+ 5-4	reserved?
+ 3-0	synchronous transfer period in 25 ns units
+SeeAlso: #P0502
+
+Bitfields for interrupt condition register:
+Bit(s)	Description	(Table P0506)
+ 7	FIFO error interrupt
+ 6	forced interrupt???
+ 5	interrupt on RST
+ 4	arbitration interrupt
+ 3	interrupt on SEL
+ 2	interrupt on REQ
+ 1	interrupt on ???
+ 0	???
+SeeAlso: #P0502
+
+Bitfields for TMC control register:
+Bit(s)	Description	(Table P0507)
+ 7	enable FIFO
+ 6	=1 data are expected to flow out from FIFO to SCSI bus
+	=0 data are expected to flow from SCSI bus into FIFO
+ 5	clear forced interrupt, TMC-18C50/18C30/36C70 only
+ 4	enable interrupt
+ 3	enable parity
+ 2	arbitrate
+ 1	force interrupt???
+ 0	clear SCSI reset flag???
+SeeAlso: #P0502
+Note:	on the TMC-1800 the FIFO must be enabled and bit 6 must be set
+	  according to the expected data direction before a data phase will
+	  occur (the TMC-1800 probably doesn't generate interrupts on REQ in
+	  DATA IN / DATA OUT phases); on the TMC-18C50/18C30 it may be done
+	  when the interrupt on REQ occurs and the SCSI phase is
+	  DATA IN, DATA OUT or COMMAND
+
+Bitfields for interrupt status register:
+Bit(s)	Description	(Table P0508)
+ 7	interrupt on REQ enabled
+ 6	interrupt on SEL enabled
+ 5	arbitration interrupt enabled
+ 4	interrupt on ??? enabled
+ 3	interrupt enabled
+ 2	???
+ 1	always set???
+ 0	???
+SeeAlso: #P0502
+
+Bitfields for configuration register 1:
+Bit(s)	Description	(Table P0509)
+ 7-6	BIOS address range
+	00 C8000h-C9FFFh
+	01 CA000h-CBFFFh
+	10 CE000h-CFFFFh
+	11 DE000h-DFFFFh
+ 5-4	I/O address range
+	00 140h-14Fh
+	01 150h-15Fh
+	10 160h-16Fh
+	11 170h-17Fh
+ 3-1	interrupt select
+	000 IRQ3
+	001 IRQ5
+	010 IRQ10
+	011 IRQ11
+	100 IRQ12
+	101 IRQ14
+	110 IRQ15
+	111 no IRQ
+ 0	reserved???
+Note:	the seven on-board configuration jumpers are read through this register
+SeeAlso: #P0502,#P0510
+
+Bitfields for configuration register 2:
+Bit(s)	Description	(Table P0510)
+ 7	32-bit mode enabled (TMC-18C30/36C70 only???)
+ 6-2	???
+ 1	RAM disabled (TMC-18C30/36C70 only???)
+ 0	???
+Note:	256 byte on-chip RAM is mapped at offset 1F00h within the BIOS segment
+SeeAlso: #P0502,#P0509
+
+Bitfields for TMC control register:
+Bit(s)	Description	(Table P0511)
+ 7	enable 32-bit mode
+ 6-0	???
+SeeAlso: #P0502
+

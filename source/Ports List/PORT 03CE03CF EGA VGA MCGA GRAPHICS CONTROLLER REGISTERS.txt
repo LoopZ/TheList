@@ -1,0 +1,114 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03CE03CF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03CE-03CF - EGA/VGA/MCGA - GRAPHICS CONTROLLER REGISTERS
+Range:	PORT 03CEh or PORT 02CEh (alternate EGA)
+SeeAlso: PORT 03C0h,PORT 03C2h,PORT 03C4h,PORT 03C6h,PORT 03D0h
+SeeAlso: PORT 03CEh"Chips&Technologies"
+
+03CE  -W  EGA	GDC index register
+03CE  RW  VGA	graphics address register / GDC index
+		      bit7-4: reserved
+		      bit3-0: index
+03CF  -W  EGA	GDC data register (see #P0700)
+03CF  RW  VGA	other graphics register (see #P0700)
+
+(Table P0700)
+Values for EGA/VGA indexed registers in GDC:
+ 00h	set/reset register (default 00h)
+	functionality depending on write mode (register 05h) (see #P0704)
+	bit7-4: reserved
+	bit3  : 0=write 00h, 1=write FFh in plane 3
+	bit2  : 0=write 00h, 1=write FFh in plane 2
+	bit1  : 0=write 00h, 1=write FFh in plane 1
+	bit0  : 0=write 00h, 1=write FFh in plane 0
+ 01h	enable set/reset register (default 00h) (see #P0701)
+ 02h	color compare register (default 00h) (see #P0702)
+ 03h	data rotate register (default 00h) (see #P0703)
+ 04h	read map select register (default 00h)
+	bit7-3: reserved
+	bit2  : EGA?? & Genoa SuperEGA: map select bit2
+	bit1-0: map select (0..3)
+ 05h	mode register (see #P0704)
+ 06h	miscellaneous register (see #P0705)
+ 07h	color don't care register
+	bit7-4: reserved
+	bit3=1: color plane 3 don't care (ignore bit3)
+	bit2=1: color plane 2 don't care (ignore bit2)
+	bit1=1: color plane 1 don't care (ignore bit1)
+	bit0=1: color plane 0 don't care (ignore bit0)
+ 08h	bit mask register (default FFh)
+	bit7-0: bitmask for latch/databyte
+	      (bit set=change allowed)
+---Paradise SuperVGA---
+ 0Fh	lock register
+	The ability to write and reread 00h..07h to this register
+	is often used as detection of Paradise chips.
+	bit7-0 = 01h lock/hide Paradise specific registers
+	       = 05h unlock Paradise specific registers
+	bit7-3: reserved
+	bit2-0: flipflops, reserved
+SeeAlso: #P0706
+
+Bitfields for EGA/VGA GDC enable set/reset register:
+Bit(s)	Description	(Table P0701)
+ 7-4	reserved (used on Genoa SuperEGA???)
+ 3	enable set/reset plane 3
+ 2	enable set/reset plane 2
+ 1	enable set/reset plane 1
+ 0	enable set/reset plane 0
+ 3-0	0=CPU access, 1=set/reset access to plane
+SeeAlso: #P0700
+
+Bitfields for EGA/VGA GDC color compare register:
+Bit(s)	Description	(Table P0702)
+ 7-4	reserved
+ 3	color compare 3
+ 2	color compare 2
+ 1	color compare 1
+ 0	color compare 0
+ 3-0	(color number)
+SeeAlso: #P0700
+
+Bitfields for EGA/VGA data rotate register (GR3):
+Bit(s)	Description	(Table P0703)
+ 7-5	reserved
+ 4-3	logical function select
+	00 CPU-data overwrites
+	01 CPU-data AND with latch-register
+	10 CPU-data OR with latch-register
+	11 CPU-data XOR with latch-register
+ 2-0	rotate count
+SeeAlso: #P0700
+
+Bitfields for EGA/VGA GDC mode register:
+Bit(s)	Description	(Table P0704)
+ 7	reserved
+ 6	(VGA) 0=standard, 1=enable 256 colors
+ 5	shift register mode, 0=standard, 1=CGA-graphics
+	  (not used on Genoa SuperEGA???)
+ 4=1	enable odd/even address mode
+ 3	read mode, 0=mode0, 1=mode1
+ 2	(EGA) test condition, 0=standard, 1=output tristate
+ 1-0	write mode
+	00 mode0, plane source is CPU or set/reset
+	01 mode1, plane source is latch-register
+	10 mode2, plane source is CPU as set/reset
+	11 (VGA) mode3, CPU as set/reset AND bitmask
+SeeAlso: #P0700
+
+Bitfields for EGA/VGA GDC miscellaneous register:
+Bit(s)	Description	(Table P0705)
+ 7-4	reserved (=0)
+ 3-2	memory map
+	00b = A0000..BFFFF (128KB)
+	01b = A0000..AFFFF (64KB)
+	10b = B0000..B7FFF (32KB)
+	11b = B8000..BFFFF (32KB)
+ 1	chain odd maps to even, 1=subst addess bit0
+ 0	0=textmode, 1=graphics mode
+SeeAlso: #P0700
+

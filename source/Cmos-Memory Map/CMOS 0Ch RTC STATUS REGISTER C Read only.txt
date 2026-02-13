@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: R0C
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 0Ch - RTC - STATUS REGISTER C (Read only)
+
+Bitfields for Real-Time Clock status register C:
+Bit(s)	Description	(Table C0003)
+ 7	Interrupt request flag
+	=1 when any or all of bits 6-4 are 1 and appropriate enables
+	  (Register B) are set to 1. Generates IRQ 8 when triggered.
+ 6	Periodic Interrupt flag
+ 5	Alarm Interrupt flag 
+ 4	Update-Ended Interrupt Flag
+ 3-0	unused
+SeeAlso: #C0001,#C0002,#C0004
+

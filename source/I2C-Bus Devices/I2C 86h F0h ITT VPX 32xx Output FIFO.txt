@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: I86F0
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/F0h - ITT VPX 32xx - Output FIFO
+SeeAlso: I2C 86h/F1h,I2C 86h/F2h
+
+Bitfields for VPX 32xx Output FIFO control:
+Bit(s)	Description	(Table I0040)
+---asynchronous mode---
+ 4-0	FIFO Half-Full flag level (number of pixels in 32-pixel buffer before
+	  Half-Full is signalled
+---synchronous mode---
+ 3-0	[3214C only] additional length of NewVACT inactive period (+8 clocks)
+ 4	[3214C only] reserved (0)
+------
+ 7-5	bus shuffler
+	000  Out[23:0] = In[23:0]
+	001  Out[23:0] = In[7:0,23:8]
+	010  Out[23:0] = In[7:0,23:8]
+	011  Out[23:0] = In[15:0,23:16]
+	100  Out[23:0] = In[15:8,23:16,7:0]
+	101  Out[23:0] = In[7:0,15:8,23:16]
+	110  Out[23:0] = In[7:0,15:8,23:16]
+	111  Out[23:0] = In[23:16,7:0,15:8]
+

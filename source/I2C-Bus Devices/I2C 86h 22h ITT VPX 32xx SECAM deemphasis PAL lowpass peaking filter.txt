@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8622
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/22h - ITT VPX 32xx - SECAM deemphasis / PAL lowpass peaking filter
+Note:	this register is also present on the ITT VDP 3108
+
+Bitfields for VPX 32xx SECAM deemphasis / PAL lowpass peaking filter:
+Bit(s)	Description	(Table I0013)
+ 4-0	SECAM deemphasis/PAL filter (1Fh = maximum)
+ 5	reserved
+ 7-6	chroma bandwidth select
+	00 narrow
+	01 normal
+	10 broad
+	11 reserved
+

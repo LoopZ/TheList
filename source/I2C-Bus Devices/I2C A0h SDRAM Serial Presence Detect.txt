@@ -1,0 +1,222 @@
+--------------------------------------------------------------------------------
+ Unique ID: IA0
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C A0h - SDRAM - Serial Presence Detect
+Access:	Read/Write
+Size:	256 BYTEs
+Range:	I2C addresses A0h,A2h,A4h,...,AEh, depending on the DIMM slot.
+Notes:	the I2C specification defines bus addresses Axh for use by memory
+	  devices (EEPROMs, etc.)
+	the clues I have been able to gather so far are that at least the Intel
+	  430TX and 440LX chipsets use the SMBus software interface to I2C to
+	  access the SPD (can anyone verify this?)
+SeeAlso: INT 15/AX=53B0h/BH=01h
+
+Format of SDRAM Serial Presence Detect Data:
+Offset	Size	Description	(Table I0104)
+ 00h	BYTE	number of bytes used by module manufacturer (00h = undefined)
+ 01h	BYTE	total size of serial EEPROM
+		00h = "RFU", 01h-0Dh = 2**N bytes (2 - 8192)
+ 02h	BYTE	memory type (general)
+		02h EDO
+		04h SDRAM
+ 03h	BYTE	number of row address bits (see #I0048)
+ 04h	BYTE	number of column address bits, excluding bank select and
+		  AutoPrecharge bits (see #I0048)
+ 05h	BYTE	number of rows of SDRAM components (00h = undefined)
+ 06h	WORD	module data width in bits (0000h = undefined)
+ 08h	BYTE	SDRAM module signal voltage interface (see #I0050)
+ 09h	BYTE	SDRAM minimum cycle time at highest CAS latency
+		time = bits 7-4 in nanoseconds + bits 3-0 in 1/10 nanoseconds
+		Note:	high nybble values of 1-3 mean 16-18 for Rev1 (ofs 3Eh)
+ 0Ah	BYTE	SDRAM access time from clock at highest CAS latency
+		time = bits 7-4 in nanoseconds + bits 3-0 in 1/10 nanoseconds
+ 0Bh	BYTE	module configuration type (see #I0051)
+ 0Ch	BYTE	refresh rate and type (see #I0052)
+ 0Dh	BYTE	primary SDRAM width in bits (see #I0053)
+ 0Eh	BYTE	error checking SDRAM width in bits (see #I0053)
+ 0Fh	BYTE	SDRAM device attributes: minimum clock delay for back-to-back
+		  random column accesses (00h = undefined)
+ 10h	BYTE	SDRAM device attributes: supported burst lengths (see #I0054)
+ 11h	BYTE	SDRAM device attributes: number of banks on device
+		(00h = reserved)
+ 12h	BYTE	SDRAM device atttributes: CAS latency (see #I0055)
+ 13h	BYTE	SDRAM device atttributes: CS latency (see #I0056)
+ 14h	BYTE	SDRAM device atttributes: WE latency (see #I0056)
+ 15h	BYTE	SDRAM module attributes (see #I0057)
+ 16h	BYTE	SDRAM device attributes: general (see #I0058)
+ 17h	BYTE	SDRAM minimum cycle time at second highest CAS latency
+		time = bits 7-4 in nanoseconds + bits 3-0 in 1/10 nanoseconds
+		Note:	high nybble values of 1-3 mean 16-18 for Rev1 (ofs 3Eh)
+ 18h	BYTE	SDRAM access time from clock at second highest CAS latency
+		time = bits 7-4 in nanoseconds + bits 3-0 in 1/10 nanoseconds
+ 19h	BYTE	SDRAM minimum cycle time at third highest CAS latency
+		time = bits 7-2 in nanoseconds + bits 1-0 in 1/4 nanoseconds
+ 1Ah	BYTE	SDRAM access time from clock at third highest CAS latency
+		time = bits 7-2 in nanoseconds + bits 1-0 in 1/4 nanoseconds
+ 1Bh	BYTE	minimum row precharge time in ns (00h = undefined)
+ 1Ch	BYTE	minimum row-activate to row-activate delay in ns (00h = undef)
+ 1Dh	BYTE	minimum RAS to CAS delay in ns (00h = undefined)
+ 1Eh	BYTE	minimum RAS pulse width in ns (00h = undefined)
+ 1Fh	BYTE	density of each row on module (see #I0059)
+ 20h	BYTE	!!!see spdsd_12.pdf on Intel's web site
+ 21h	BYTE
+ 22h	BYTE
+ 23h	BYTE
+ 24h 26 BYTEs	future expansion
+ 3Eh	BYTE	SPD Data revision code (12h = revision 1.2)
+		(BCD; high nybble is major, low nybble is minor)
+ 3Fh	BYTE	checksum for bytes 00h-3Eh (low byte of sum of bytes 00h-3Eh)
+ 40h  8 BYTEs	manufacturer's JEDEC ID code
+ 48h	BYTE	manufacturing location
+ 49h 18 BYTEs	manufacturer's part number
+ 5Bh  2 BYTEs	revision code
+ 5Dh  2 BYTEs	manufacturing date (structure to be determined)
+ 5Fh  4 BYTEs	assembly serial number
+ 63h 27 BYTEs	manufacturer-specific data
+ 7Eh	BYTE	Intel specification for clock frequency
+		66h = 66 MHz (for backward compatibility
+		64h (100dec) = 100 MHz
+ 7Fh	BYTE	Intel specification details for 100 MHz support
+
+Bitfields for SDRAM SPD row/column address bits:
+Bit(s)	Description	(Table I0105)
+ 3-0	number of row or column address bits for bank 1 (and bank 2 if present
+	  and same size as bank 1) (see #I0049)
+ 7-4	number of row or column address bits for bank 2 if present and
+	  different from bank 1
+SeeAlso: #I0047
+
+(Table I0106)
+Values for SDRAM SPD row/column address bits:
+ 00h	undefined
+ 01h	1 or 16
+ 02h	2 or 17
+ 03h	3
+ ...
+ 0Ah	10
+ ...
+ 0Fh	15
+SeeAlso: #I0048
+
+(Table I0107)
+Values for SDRAM module signal voltage interface:
+ 00h	TTL / 5.0 Volts
+ 01h	LVTTL
+ 02h	HSTL 1.5
+ 03h	SSTL 3.3
+ 04h	SSTL 2.5
+ 05h-FEh to be determined
+ FFh	new table
+SeeAlso: #I0047	
+
+(Table I0108)
+Values for DIMM module ECC configuration type:
+ 00h	none
+ 01h	parity
+ 02h	ECC
+ 03h-FFh to be determined
+SeeAlso: #I0047
+
+Bitfields for DIMM module refresh rate and type:
+Bit(s)	Description	(Table I0109)
+ 7	self-refreshing
+ 6-0	rate
+	00h normal (15.625 us)
+	01h reduced 0.25x (3.9 us)
+	02h reduced 0.5x (7.8 us)
+	03h extended 2x (31.25 us)
+	04h extended 4x (62.5 us)
+	05h extended 8x (125 us)
+	06h-7Fh to be determined
+SeeAlso: #I0047
+
+Bitfields for primary/error-checking SDRAM data width:
+Bit(s)	Description	(Table I0110)
+ 7	second bank has double width
+	(=0 if only one bank, or second bank is same size)
+ 6-0	data width in bits (00h = undefined)
+SeeAlso: #I0047
+
+Bitfields for SDRAM supported burst lengths:
+Bit(s)	Description	(Table I0111)
+ 0	burst length of 1 is supported
+ 1	burst length 2
+ 2	burst length 4
+ 3	burst length 8
+ 6-4	to be determined
+ 7	entire page can be read in a burst
+SeeAlso: #I0047
+
+Bitfields for SDRAM supported CAS latencies:
+Bit(s)	Description	(Table I0112)
+ 0	CAS latency of 1 is supported
+ 1	latency 2 supported
+...
+ 6	latency 7 supported
+ 7	to be determined
+SeeAlso: #I0047,#I0056
+
+Bitfields for SDRAM supported CS / WE latencies:
+Bit(s)	Description	(Table I0113)
+ 0	CS / WE latency of 1 is supported
+ 1	latency 2 supported
+...
+ 6	latency 7 supported
+ 7	to be determined
+SeeAlso: #I0047,#I0055
+
+Bitfields for SDRAM module attributes:
+Bit(s)	Description	(Table I0114)
+ 0	buffered addres/control inputs (Ax, RAS, CAS, WE, CKE, S)
+ 1	registered address/control inputs (Ax, RAS, CAS, WE, CKE, S)
+ 2	on-card PLL for clock
+ 3	buffered DQMB inputs
+ 4	registered DQMB inputs
+ 5	differential clock input
+ 6	redundant row address
+ 7	to be determined
+SeeAlso: #I0047
+
+Bitfields for general SDRAM device attributes:
+Bit(s)	Description	(Table I0115)
+ 0	supports early RAS# precharge
+ 1	supports AutoPrecharge
+ 2	supports Precharge All
+ 3	supports Write1/ReadBurst
+ 4	lower Vcc tolerance: 0 = 10%, 1 = 5%
+ 5	upper Vcc tolerance: 0 = 10%, 1 = 5%
+ 7-6	to be determined
+SeeAlso: #I0047
+
+Bitfields for DIMM row density:
+Bit(s)	Description	(Table I0116)
+ 0	4 MByte
+ 1	8 MB
+ 2	16 MB
+ 3	32 MB
+ 4	64 MB
+ 5	128 MB
+ 6	256 MB
+ 7	512 MB
+Note:	if the module contains multiple rows of varying sizes, multiple bits
+	  will be set
+SeeAlso: #I0047
+
+Bitfields for Intel specification details for 100 MHz DIMM support:
+Bit(s)	Description	(Table I0117)
+ 0	supports Intel-defined "Concurrent AutoPrecharge"
+ 1	supports CAS latency = 2 
+ 2	supports CAS latency = 3
+ 3	maximum junction temperature (0 = 90 degrees C, 1 = 100 degrees C)
+ 4	CLK3 is connected on the DIMM
+ 5	CLK2 is connected
+ 6	CLK1 is connected
+ 7	CLK0 is connected
+Note:	bits 2-1 are for backwards compatibility with existing BIOSes; for
+	  full CL=2 support at 100 MHz, check bytes 12h, 17h, and 18h
+SeeAlso: #I0047
+

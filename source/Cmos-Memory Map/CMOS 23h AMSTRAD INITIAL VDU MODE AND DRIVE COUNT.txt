@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: R23
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 23h - AMSTRAD - INITIAL VDU MODE AND DRIVE COUNT
+Note:	default: 20h
+
+Bitfields for Amstrad initial VDU mode/drive count:
+Bit(s)	Description	(Table C0027)
+ 7	enables extended serial flow control (NB this is buggy)
+ 6	set if two floppy drives installed
+ 5-4	(from Amstrad 1640 tech ref)
+	00    Internal video adapter
+	01    CGA card added; 40 x 25 mode
+	10    CGA card added; 80 x 25 mode
+	11    mono card added; 80 x 25 mode
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: IA0
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C A0h - VESA DDC monitor's EDID EEPROM
+Note:	access to the DDC clock/data lines is chipset-specific.	 On S3's
+	  Trio64V+, the DDC lines share a port with the LPB's I2C bus: when the
+	  feature connector is disabled, they are connected to the monitor
+	  as well to the Local Peripheral Bus' serial port lines
+SeeAlso: INT 10/AX=4F15h/BL=01h
+

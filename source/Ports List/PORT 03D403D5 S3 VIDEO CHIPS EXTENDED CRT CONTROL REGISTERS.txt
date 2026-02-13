@@ -1,0 +1,587 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03D403D5
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03D4-03D5 - S3 VIDEO CHIPS - EXTENDED CRT CONTROL REGISTERS
+SeeAlso: PORT 03D4h"COLOR VIDEO",PORT 03D4h"Tseng"
+
+03D4  RW  CRT control register index (see #P0717)
+03D5  RW  CRT control register value
+
+(Table P0717)
+Values for S3, Inc. CRT Controller register index:
+ 00h-18h same as EGA/VGA (see #P0708)
+ 22h	same as VGA (see #P0708)
+ 24h	"CR24" attribute controller index/data status
+ 26h R- "CR24" (duplicate of 24h)
+ 2Dh R- "CR2D" new Chip ID (high) (same as high byte of PCI device ID)
+ 2Eh R- "CR2E" new chip ID (low) (same as low byte of PCI device ID)
+		10h Trio32
+		11h Trio64
+ 2Fh R- "CR2F" S3 7xx/866/x68: chipset revision
+		chip ID 8811h is Trio64/64V+; revision 4xh or 5xh is Trio64V+
+ 30h RW	"CR30" chip ID/revision (see #P0719)
+ 31h RW	"CR31" memory configuration (see #P0720)
+ 32h RW "CR32" backward compatibility 1 (see #P0721)
+ 33h RW "CR33" backward compatibility 2 (see #P0722)
+ 34h RW "CR34" backward compatibility 3 (see #P0723)
+ 35h RW "CR35" CRT register lock (see #P0724)
+ 36h R	"CR36" Reset State read 1 (see #P0725)
+ 37h R	"CR37" Reset State read 2 (see #P0726)
+ 38h RW	"CR38" S3 Register lock 1
+	set reg 38h to 48h and reg 39h to A5h to unlock other S3 registers
+ 39h RW	"CR39" S3 Register lock 2
+ 3Ah RW "CR3A" S3 Miscellaneous 1 (see #P0727)
+	bit 4: ???
+ 3Bh RW "CR3B" Data Transfer Execute position (see #P0728)
+ 3Ch RW "CR3C" Interlace Retrace start position (see also #P0730)
+ 40h RW "CR40" System Configuration (see #P0729)
+ 41h	"CR41" BIOS Flag register (used by S3 BIOS)
+ 42h RW "CR42" mode control (see #P0730)
+ 43h RW "CR43" extended mode (see #P0731)
+ 45h RW "CR45" hardware graphics cursor mode (see #P0732)
+ 46h RW "CR46" hardware cursor origin X (hi), bits 2-0 only
+ 47h RW "CR47" hardware cursor origin X (lo)
+	testing that register 47h can be read and written once the S3 registers
+	  are unlocked is used as an S3 installation check
+ 48h RW	"CR48" hardware cursor origin Y (hi), bits 2-0 only
+	the cursor X/Y position is latched on writing the high byte of Y
+ 49h RW "CR49" hardware cursor origin Y (lo)
+ 4Ah RW "CR4A" hardware graphics cursor foreground stack
+	read register 45h, then write 2 or 3 color bytes (16/24-bit color)
+	  to specify foreground color of hardware cursor
+ 4Bh RW "CR4B" hardware graphics cursor background stack
+	read register 45h, then write 2 or 3 color bytes (16/24-bit color)
+	  to specify background color of hardware cursor
+ 4Ch RW "CR4C" hardware graphics cursor map start address (hi), bits 3-0 only
+ 4Dh RW "CR4D" hardware graphics cursor map start address (lo)
+ 4Eh RW "CR4E" hardware cursor pattern start X (bits 5-0 only)
+ 4Fh RW "CR4F" hardware cursor pattern start Y (bits 5-0 only)
+ 50h RW "CR50" S3 801+: Extended System Control 1 (see #P0733)
+ 51h RW "CR51" S3 801+: Extended System Control 2 (see #P0734)
+ 52h RW "CR52" S3 801+: Extended BIOS Flag 1
+		bits 7-6 are sync polarities (see #P0669) for Diamond cards
+ 53h RW "CR53" S3 801+: Extended Memory Control 1 (see #P0735)
+ 54h RW "CR54" S3 801+: Extended Memory Control 2 (see #P0736,#P0737)
+ 55h RW "CR55" S3 801+: Extended Video DAC Control (see #P0738)
+ 56h RW "CR56" S3 801+: External Sync Control 1 (see #P0739)
+ 57h RW "CR57" S3 801+: External Sync Control 2 (see #P0740)
+ 58h RW "CR58" S3 801+: Linear Address Window Control (see #P0741)
+ 59h RW "CR59" S3 801+: Linear Address Window Position (bits 31-24)
+ 5Ah RW "CR5A" S3 801+: Linear Address Window Position (bits 23-16)
+	Notes:	the address is forced to be a multiple of the memory window
+		  size (see #P0741) by ignoring the lowest bits
+		for Trio64 new memory-mapped I/O, the LAW must be on a 64M
+		  boundary
+ 5Bh RW "CR5B" S3 801+: Extended BIOS Flag 2
+ 5Ch RW "CR5C" S3 801+: General Output Port (see #P0742)
+ 5Dh RW "CR5D" S3 801+: Extended Horizontal Overflow (see #P0743)
+ 5Eh RW "CR5E" S3 801+: Extended Vertical Overflow (see #P0744)
+ 5Fh RW "CR5F" S3 928/964: Bus Grant Termination Position
+ 60h RW "CR60" S3 864/964: extended memory control 3 (see #P0745)
+ 61h RW "CR61" S3 864/964/Trio: extended memory control 4 (see #P0746)
+ 62h RW "CR62" S3 864/964: extended memory control 5
+ 63h RW "CR63" S3 864/964: external sync delay adjustment (high) (see #P0747)
+ 64h RW "CR64" S3 864/964: genlocking adjustment
+ 65h RW "CR65" S3 864/964: extended miscellaneous control (see #P0748)
+ 66h RW "CR66" S3 864/964: extended miscellaneous control 1 (see #P0749)
+ 67h RW "CR67" S3 864/964: extended miscellaneous control 2 (see #P0750)
+ 67h RW "CR67" S3 Trio32/64: extended miscellaneous control 2 (see #P0751)
+ 68h RW "CR68" S3 864/964: configuration 3 (see #P0752)
+ 69h RW "CR69" S3 864/964: extended system control 3 (see #P0753)
+ 6Ah RW "CR6A" S3 864/964: extended system control 4
+		(bits 5-0 = offset of 64K bank)
+ 6Bh RW "CR6B" S3 864/964: extended BIOS flag 3
+ 6Ch RW "CR6C" S3 864/964: extended BIOS flag 4
+ 6Dh RW "CR6D" S3 864/964: extended miscellaneous control
+ 6Dh RW "CR6D" S3 Trio64V+: extended BIOS flag 5 (reserved for BIOS)
+ 6Eh RW "CR6E" S3 Trio64V+: extended BIOS flag 6 (reserved for BIOS)
+ 6Fh RW "CR6F" S3 Trio64V+: configuration 4 (see #P0755)
+SeeAlso: #P0654,#P0710,#P0756,#P0716,#P0715
+
+Bitfields for S3 "CR24" Attribute Index register:
+Bit(s)	Description	(Table P0718)
+ 7	inverse of current state of internal address flip-flop
+ 6	reserved (0)
+ 5	video display is enabled (mirror of PORT 03C0h bit 5)
+ 4-0	current attribute contorller index (from PORT 03C0h)
+SeeAlso: #P0708,#P0709,PORT 03C0h
+
+(Table P0719)
+Values for S3 chip ID/Revision register "CR30":
+ 81h	86c911
+ 82h	86c911A/924
+ 90h	86c928 (original)
+ ...
+ A0h	86c801/805 A-step or B-step
+ ...
+ B0h	86c928 PCI
+ C0h	Vision864
+ C1h	Vision864P
+ D0h	Vision964
+ D1h	Vision964P
+ Exh	Trio32/64, 86c866, 86c868, 86c968; actual ID and revision stored in
+	  PORT 03B5h registers 2Dh, 2Eh, and 2Fh
+SeeAlso: #P0720
+
+Bitfields for S3 "CR31" memory configuration register:
+Bit(s)	Description	(Table P0720)
+ 7	(except 864/964) enable BIOS ROM address space C6800h-C7FFFh
+	(Trio64V+) reserved
+ 6	enable page-mode memory access for text-mode font access
+ 5-4	display start address, bits 17&16.  See also registers 51h and 69h
+ 3	video memory above 256K accessible
+ 2	VGA 16-bit memory bus (clear for 8-bit memory bus)
+ 1	two-page screen image (enables 2048-pixel wide screen)
+ 0	enable base-address offset (turn on bank-switched operation)
+SeeAlso: #P0708,#P0719,#P0721
+
+Bitfields for S3 "CR32" Backwards Compatibility 1 register:
+Bit(s)	Description	(Table P0721)
+ 7	(928,964) tri-state serial output pins SC, SOE0, and SXNR
+ 6	fix VGA screen page using display start address bits 16&17 (see #P0720)
+	(Trio64V+) force wrap on 256K boundary even when display start address
+	  changed
+ 5	???
+ 4	enable hardware interrupts
+ 3	backward-compatible modes (set for MDA/CGA/EGA/HGC)
+ 2	force full character clock for horizontal timing (CGA/HGC emulation),
+	  rather than 1/2 dot clock rate
+ 1-0	character clock period
+	00 IBM-compatible, 8 or 9 dots
+	01 7 dots
+	10 9 dits
+Note:	on the Trio64V+, bits 7, 5, and 3-0 are reserved
+SeeAlso: #P0720,#P0722,#M0076
+
+Bitfields for S3 "CR33" Backwards Compatibility 2 register:
+Bit(s)	Description	(Table P0722)
+ 7	override CGA "enable video" at PORT 03D8h bit 3
+ 6	lock palette/overscan registers
+ 5	blank signal does not include border area, is same as display enable
+ 4	disable writes to RamDAC
+ 3	VCLK is internal DCLK rather than inverted DCLK/2 or external VCLK
+ 2	reserved (Trio32/64)
+ 1	disable VDE protection (PORT 03D4h register 11h bit 7 will not act
+	  on PORT 03D4h register 7h bits 1 and 6)
+ 0	reserved (Trio32/64)
+Note:	on the Trio64V+, bits 7, 2, and 0 are reserved
+SeeAlso: #P0708,#P0721,#P0723
+
+Bitfields for S3 "CR34" Backwards Compatibility 3 register:
+Bit(s)	Description	(Table P0723)
+ 7-5	(Trio32/64/64V+) reserved
+ 7	lock PORT 03C2h bits 2,3
+ 5	lock SR1 bit 5
+ 4	enable Start Display FIFO Fetch register (CR3B) (see #398)
+ 3	(Trio32/64/64V+) reserved
+ 2	PCI retries not handled during DAC cycles (requires bit 0 clear)
+ 1	do not handle PCI master aborts during DAC cycles (requires bit 0 clear)
+ 0	disable PCI master aborts/retries during DAC cycles
+SeeAlso: #P0722,#P0724
+
+Bitfields for S3 "CR35" Register Lock register:
+Bit(s)	Description	(Table P0724)
+ 7-6	(Trio32/Trio64) reserved
+ 5	lock horizontal timing registers
+ 4	lock vertical timing registers
+ 3-0	CPU base address (in 64K units), bits 17-14
+SeeAlso: #P0708,#P0723,#P0725
+
+Bitfields for S3 "CR36" Configuration 1 register:
+Bit(s)	Description	(Table P0725)
+ 7-5	video memory size
+	111 less than 1M
+	110 one meg
+	100 two megs
+	010 three megs
+	000 four megs
+	101 six megs
+	011 eight megs
+ 4	(Trio32/64, VL-Bus only) enable video BIOS accesses
+ 3-2	(Trio32/64) memory type
+	00 reserved
+	01 reserved
+	10 EDO
+	11 fast page mode
+ 1-0	(Trio32/64) system bus type
+	00 reserved
+	01 VESA local bus
+	10 PCI
+	11 reserved
+Note:	the default value of this register is latched from external pins at
+	  power-up; bits 1-0 are read-only
+SeeAlso: #P0708,#P0724,#P0726
+
+Bitfields for S3 "CR37" Configuration 2 register:
+Bit(s)	Description	(Table P0726)
+ 7-5	monitor type
+ 7-5	(Trio64V+) reserved
+ 4	(VL-Bus) enable RAMDAC write snooping
+ 3	use internal DCLK/MCLK (clear this bit for testing only)
+ 2	(VL-Bus) video BIOS ROM size (=0 64K, =1 32K)
+ 1	test mode select (=0 tri-state all outputs, =1 normal operation)
+ 1	(Trio64V+) reserved
+ 0	(VL-Bus) enable Trio chip (if 0, disabled except for video BIOS access)
+Notes:	the default value of this register is latched from external pins at
+	  power-up
+	the description of this register is based on the Trio32/Trio64/Trio64V+
+	  documentation and may vary somewhat for other S3 chips
+SeeAlso: #P0708,#P0725
+
+Bitfields for S3 "CR3A" Miscellaneous 1 register:
+Bit(s)	Description	(Table P0727)
+ 7	disable PCI burst read cycles
+	(must set CR66 bit 7 before setting this bit)
+ 6	reserved
+ 5	enable high-speed text font writes (only required for DCLK > 40MHz)
+ 4	enable >= 8 bpp color enhanced modes
+ 3	enable top-of-memory access (simultaneous VGA text and enhanced mode)
+ 2	enable alternate refresh count control (bits 1-0)
+	when enabled, bits 1-0 override CR11 bit 6
+ 1-0	alternate refresh count: number of refresh cycles per scan line
+Note:	the description of this register is based on the Trio32/Trio64/Trio64V+
+	  documentation and may vary somewhat for other S3 chips
+SeeAlso: #P0708
+
+Bitfields for S3 "CR3B" Start Display FIFO Register:
+Bit(s)	Description	(Table P0728)
+ 7-0	bits 7-0 of time in characters clocks from start of active display
+	  until FIFO data fetching restarts after start of horizontal blanking
+	  (bit 8 is in CR5D bit 6)
+Note:	the value for this register is typically CR0 less 5, and helps ensure
+	  adequate time for RAM refresh, etc. taht require control of display
+	  memory
+SeeAlso: #P0708
+
+Bitfields for S3 "CR40" System Configuration register:
+Bit(s)	Description	(Table P0729)
+ 7-6	reserved (0)
+ 5	reserved ("WDL_DELAY") (1)
+ 4	(VL-Bus) Ready Control
+	=0 zero wait-states from -SADS to -SRDY
+	=1 minimum one wait state (controlled by CR58 bit 3)
+ 3-1	reserved (0)
+ 0	enable enhanced (8514/A superset) register access at PORT x2E8h
+SeeAlso: #P0708
+
+Bitfields for S3 "CR42" Mode Control register:
+Bit(s)	Description	(Table P0730)
+ 7-6	reserved (0)
+ 5	interlaced video
+ 4-0	reserved
+Note:	bit 5 also enables CR3C
+SeeAlso: #P0708,#P0731
+
+Bitfields for S3 "CR43" Extended Mode register:
+Bit(s)	Description	(Table P0731)
+ 7	double horizontal CRT parameters (CRTC registers 00h, etc.)
+ 6-3	reserved (0)
+ 3	(Trio64V+) ??? used by BIOS, officially reserved
+ 2	logical screen width (CR13), bit 8
+ 1-0	reserved (0)
+Note:	bit 2 is disabled unless CR51 bits 5-4=00
+SeeAlso: #P0708,#P0730
+
+Bitfields for S3 "CR45" Hardware Graphics Cursor Mode register:
+Bit(s)	Description	(Table P0732)
+ 7-5	reserved (0)
+ 4	enable Hardware Cursor Right Storage (last 256 bytes of 1K line, or
+	  last 512 bytes of 2K line)
+ 3-1	reserved (0)
+ 0	enable hardware graphics cursor in Enhanced (8514/A) mode
+SeeAlso: #P0708
+
+Bitfields for S3 "CR50" Extended System Control 1 register:
+Bit(s)	Description	(Table P0733)
+ 7-6	Graphics Engine screen width
+	(note: bit 0 below is MSB for the following)
+	000 = 1024 (2048 if CR31 bit 1 set)
+	001 = 640
+	010 = 800 (1600x1200x4 if PORT 4AE8h bit 2 set)
+	011 = 1280
+	100 = 1152
+	101 reserved
+	110 = 1600
+	111 reserved
+ 5-4	pixel length for command execution through Graphics Engine (8514/A)
+	00 one byte (4 or 8 bits/pixel)
+	01 two bytes (16 bpp)
+	10 reserved
+	11 four bytes (32 bpp)
+ 3	reserved (0)
+ 2	enable -BREQ/-BGNT functions (reserved on Trio64V+)
+ 1	reserved (0)
+ 0	bit 2 of Graphics Engine screen width (refer to bits 7-6 above)
+SeeAlso: #P0708,#P0735,#P0734
+
+Bitfields for S3 "CR51" Extended System Control 2 register:
+Bit(s)	Description	(Table P0734)
+ 7-6	reserved (0)
+ 5-4	logical screen width, bits 9-8
+ 3-2	CPU base address, bits 19-18
+ 1-0	display start address, bits 19-18
+Notes:	if the upper four bits of the display start address have been set via
+	  CR69 bits 3-0, then bits 1-0 and CR31 bits 5-4 are ignored
+	if the upper 6 base address bits have been set via CR6A bits 5-0, then
+	  bits 3-2 and CR35 bits 3-0 are ignored
+SeeAlso: #P0708,#P0733
+
+Bitfields for S3 "CR53" Extended Memory Control 1 register:
+Bit(s)	Description	(Table P0735)
+ 7	reserved
+ 6	(Trio32/64/64V+) swap nybbles in each byte of video memory read or
+	  written
+ 5	(801/805) memory interleaving
+	(928) pixel multiplexing
+	(Trio64V+) enable memory-mapped I/O at B8000h-BFFFFh instead of
+	  A0000h-AFFFFh (only takes effect if bits 4-3=10)
+ 4	enable memory-mapped I/O (Trio32, Trio64 and Trio64V+)
+ 3	enable new memory-mapped I/O (Trio64V+)
+ 2-1	(Trio64V+) byte swapping for linear addressing
+	00 none (default)
+	01 swap bytes of word
+	10 swap all bytes of doublewords
+	11 reserved
+	(used for big-endian addressing)
+ 0	(Trio32/64) enable write per bit
+	(Trio64V+) reserved
+SeeAlso: #P0708,#P0736
+
+Bitfields for S3 Trio32/64 "CR54" Extended Memory Control 2 register:
+Bit(s)	Description	(Table P0736)
+ 7-3	"M" number of 8-byte memory cycles not dedicated to filling display
+	  FIFO (less one)
+ 2-0	reserved (0)
+SeeAlso: #P0737,#P0708,#P0735
+
+Bitfields for S3 Trio64V+ "CR54" Extended Memory Control 2 register:
+Bit(s)	Description	(Table P0737)
+ 2,7-3	"M" maximum number of 8-byte memory cycles before LPB/CPU/Graphics
+	  Engine must yield the memory bus
+ 1-0	big-endian byte-swapping (except for linear addressing/image writes)
+	00 none (default)
+	01 swap bytes within a word
+	10 swap all bytes within a doubleword
+	11 swap according to bus' byte-enable lines
+		BE#[3:0]=0000 swap all bytes
+		BE#[3:0]=0011 or 1100 swap bytes within selected word
+		else no swapping
+SeeAlso: #P0708,#P0736 
+
+Bitfields for S3 "CR55" Extended RAMDAC Control register:
+Bit(s)	Description	(Table P0738)
+ 7	tri-state VCLK output
+ 6-5	reserved (0)
+ 4	hardware cursor mode
+	=0 MS-Windows
+	=1 X11
+ 3	reserved (0)
+ 2	enable General Input Port read (at PORT 03C8h)
+ 1-0	reserved (0)
+SeeAlso: #P0708
+
+Bitfields for S3 "CR56" External Sync Control 1 register:
+Bit(s)	Description	(Table P0739)
+ 7-5	reserved (0)
+ 4	preset frame select
+	=0 start with odd frame after V-counter reset
+	=1 start with even frame
+ 3	reset only vertical counter on falling edge of VSYNC input when
+	  genlocking
+ 2	tri-state VSYNC output
+ 1	tri-state HSYNC output
+ 0	enable VSYNC input for genlocking
+Note:	bits 4-3 are reserved on the Trio64V+
+SeeAlso: #P0708,#P0740
+
+Bitfields for S3 "CR57" External Sync Control 2 register:
+Bit(s)	Description	(Table P0740)
+ 7-0	delay in scan lines from falling edge of VSYNC to reset of V-counter
+Note:	this register must NOT be 00h when genlocking is enabled (CR56 bit 0)
+SeeAlso: #P0708,#P0739
+
+Bitfields for S3 "CR58" Linear Addressing Control register:
+Bit(s)	Description	(Table P0741)
+ 7	RAS Pre-Charge time adjust
+	=0 CR68 bit 3 defines pre-charge time
+	=1 decrease pre-charge time by 0.5 MCLKs, increase RAS time by 0.5 MCLKs
+ 6-5	reserved
+ 4	enable linear addressing (see also #P1022)
+ 3	(VL-Bus) addresses latched in T1 cycle, instead of delaying one clock
+	  until T2 cycle; only in effect when CR40 bit 4 is set
+ 2	reserved
+ 1-0	linear address window size
+	00 = 64K (not available when new MMIO enabled)
+	01 = 1M
+	10 = 2M
+	11 = 4M (Trio64/64V+, not Trio32)
+Note:	this description is based on the Trio32/Trio64 documenation; the
+	  bits may vary slightly for other S3 chips
+SeeAlso: #P0723
+
+Bitfields for S3 "CR5C" General Output Port:
+Bit(s)	Description	(Table P0742)
+ 7-0	system-specific
+---Diamond---
+ 0	???
+ 1	???
+---STB Pegasus---
+ 7	map video memory with bits 31-26 = 011111
+SeeAlso: #P0708
+
+Bitfields for S3 "CR5D" Extended Horizontal Overflow register:
+Bit(s)	Description	(Table P0743)
+ 7	bit 8 of Bus-Grant Terminate Position (CR5F)
+	(Trio64V+) reserved
+ 6	bit 8 of Start FIFO Fetch (CR3B)
+ 5	extend horizontal sync pulse by 32 DCLKs
+ 4	bit 8 of Start Horizontal Sync Position (CR4)
+ 3	extend horizontal blank pulse by 64 DCLKs
+ 2	bit 8 of Start Horizontal Blank (CR2)
+ 1	bit 8 of Horizontal Display End (CR1)
+ 0	bit 8 of Horizontal Total (CR0)
+SeeAlso: #P0708,#P0744
+
+Bitfields for S3 "CR5E" Extended Vertical Overflow register:
+Bit(s)	Description	(Table P0744)
+ 7	reserved (0)
+ 6	line compare position (CR18), bit 10
+ 5	reserved (0)
+ 4	vertical retrace start (CR10), bit 10
+ 3	reserved (0)
+ 2	start of vertical blank (CR15), bit 10
+ 1	vertical display end (CR12), bit 10
+ 0	vertical total (CR6), bit 10
+SeeAlso: #P0708,#P0743
+
+Bitfields for S3 Trio32/64 "CR60" Extended Memory Control 3 register:
+Bit(s)	Description	(Table P0745)
+ 7-0	"N" maximum number of 4-byte (1M video memory) or 8-byte (2M/4M) units
+	  written to display FIFO in an uninterruptible burst
+SeeAlso: #P0708,#P0746
+
+Bitfields for S3 Trio64V+ "CR61" Extended Memory Control 4 register:
+Bit(s)	Description	(Table P0746)
+ 7	reserved
+ 6-5	byte-swapping for image writes
+	00 none (default)
+	01 swap bytes within each word
+	10 swap all bytes within a doubleword
+	11 reserved
+ 4-0	reserved
+SeeAlso: #P0708,#P0745
+
+Bitfields for S3 Trio32/64 "CR63" External Sync Control 3 register:
+Bit(s)	Description	(Table P0747)
+ 7-4	character clock reset delay
+ 3-0	HSYNC reset adjustment, in character clocks
+Notes:	these two values are used to align the external and internally-generated
+	  video during genlocking
+	this register is not documented for the Trio64V+, and may not exist
+SeeAlso: #P0708
+
+Bitfields for S3 Trio32/64/64V+ "CR65" Extended Miscellaneous Control register:
+Bit(s)	Description	(Table P0748)
+ 7-5	reserved (0)
+ 4-3	(Trio32/64V+) delay -BLANK by N DCLKs
+	a two-DCLK delay is required for color mode 12
+ 2	video subsystem setup address
+	(Trio64V+) reserved
+	=0 PORT 46E8h
+	=1 PORT 03C3h
+ 1-0	reserved (0)
+SeeAlso: #P0708,#P0749
+
+Bitfields for S3 Trio32/64/64V+ "CR66" Extended Miscellaneous Control 1 reg:
+Bit(s)	Description	(Table P0749)
+ 7	enable PCI bus disconnect on misaligned burst memory accesses
+ 6	tri-state pixel address bus
+---Trio32/64---
+ 5-0	reserved (0)
+---Trio64V+ ---
+ 5	??? (officially reservd, but set by BIOS)
+ 4	reserved
+ 3	generate PCI bus disconnect when trying to write to a full FIFO or read
+	  from an empty FIFO
+	(bit 7 must also be set to enable this feature)
+ 2	reserved
+ 1	software reset graphics engine
+ 0	enable enhanced functions (this is a mirror of
+	  PORT 4AE8h bit 0)
+SeeAlso: #P0708,#P0748,PORT 4AE8h
+
+Bitfields for S3 864/964 "CR67" Extended Miscellaneous Control 2 register:
+Bit(s)	Description	(Table P0750)
+ 7-4	color mode???
+	(values of 0000/0010/0101/0111 indicate a 16-bit pixel port)
+ 3-2	???
+SeeAlso: #P0708,#P0723,#P0751
+
+Bitfields for S3 Trio32/64/64V+ "CR67" Extended Miscellaneous Control 2 reg:
+Bit(s)	Description	(Table P0751)
+ 7-4	color mode (see #P0688)
+ 3-2	(Trio32/Trio64) reserved (0)
+ 3-2	(Trio64V+) streams mode
+	00 disable Streams Processor
+	01 overlay secondary stream on VGA-mode background
+	10 reserved
+	11 full Streams Processor operation
+ 1	reserved (0)
+ 0	VCLK phase (=0 VCLK is inverted DCLK; =1 VCLK in phase with DCLK)
+Note:	the streams mode should only be changed during vertical sync
+	  (PORT 03DAh bit 3)
+SeeAlso: #P0708,#P0750,#P0687
+
+Bitfields for S3 Trio32/64/64V+ "CR68" Configuration 3 register:
+Bit(s)	Description	(Table P0752)
+ 7	(Trio32/64 VL-Bus) Upper Address Decode
+	=0 decode all 32 bits of system address bus
+	=1 SAUP input used to decode upper address lines
+ 7	(Trio64V+) memory data bus size
+	=0 32 bits
+	=1 64 bits (if >= 2M of memory)
+ 6-4	monitor information (used by S3 bios)
+ 3	RAS precharge timing (0 = 3.5 MCLKs, 1 = 2.5 MCLKs)
+ 2	RAS low timing (0 = 4.5 MCLKs, 1 = 3.5 MCLKs)
+ 1-0	-CAS and -OE stretch, -WE delay
+	00 = 6.5ns stretch, 2 units delay
+	01 = 5ns stretch, 1 unit delay
+	10 = 3.5ns stretch, no delay
+	11 = no stretch, no delay
+Note:	the default value of this register is latched from external pins at
+	  power-up
+SeeAlso: #P0708
+
+Bitfields for S3 Trio32/Trio64 "CR69" Extended System Control 3 register:
+Bit(s)	Description	(Table P0753)
+ 7-4	reserved (0)
+ 3-0	display start address, bits 19-16
+SeeAlso: #P0708,#P0754
+
+Bitfields for S3 Trio32/Trio64 "CR6A" Extended System Control 4 register:
+Bit(s)	Description	(Table P0754)
+ 7-6	reserved
+ 5-0	bits 19-14 of CPU base address
+Note:	CR31 bit 0 must be set to enable this register
+SeeAlso: #P0708,#P0753
+
+Bitfields for S3 Trio64V+ "CR6F" Configuration 4 register:
+Bit(s)	Description	(Table P0755)
+ 7-5	reserved
+ 4-3	WE# delay (on both rising and falling edges)
+	00 three units
+	01 two units
+	10 one unit
+	11 no delay
+ 2	disable I/O PORT mirror of serial port (MMIO FF20h)
+	=0 allow access via either MMIO FF20h or port selected by bit 1
+ 1	serial port address select (only has effect if bit 2 clear)
+	=0 mirror MMIO FF20h at PORT 00E8h
+	=1 mirror MMIO FF20h at PORT 00E2h
+ 0	configure for Trio64-compatible mode instead of LPB mode
+ !!! p.19-16
+SeeAlso: #P0708,MEM A000h:FF00h"S3"
+

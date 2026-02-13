@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: R5F
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 5Fh - AMI (PicoPower) - POWER MANAGEMENT TIMEOUTS
+
+Bitfields for AMI (PicoPower) power management timeouts:
+Bit(s)	Description	(Table C0085)
+ 7	enable battery-low beeps
+ 5-3	SUSPEND timeout
+	000  disabled
+	001  5 minutes
+	010  10 minutes
+	011  15 minutes
+	100  20 minutes
+	101  30 minutes
+	110  40 minutes
+	111  60 minutes
+ 2-0	DOZE timeout
+	000  disabled
+	100  1 second
+	101  4 seconds
+	110  8 seconds
+	111  16 seconds
+SeeAlso: #C0087
+

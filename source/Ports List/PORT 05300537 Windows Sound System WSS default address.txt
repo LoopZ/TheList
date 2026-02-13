@@ -1,0 +1,83 @@
+--------------------------------------------------------------------------------
+ Unique ID: P05300537
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0530-0537 - Windows Sound System ("WSS") (default address)
+Range:	dipswitch selectable among PORT 0530h-0537h,PORT 0604h-060Bh,
+	  PORT 0E80h-0E87h, and PORT 0F40h-0F47h
+Notes:	the Sound Galaxy NX16 sound cards contains a Crystal CS4231, and thus
+	  support the CODEC portion of the WSS on ports 0534h-0537h
+	  (or 0608h-060Bh, etc.)
+	the AMD InterWave chip supports a superset of the WSS CS4231 Codec,
+	  though by default it is not placed at any of the addresses used by
+	  the WSS
+SeeAlso: PORT 032Ch"InterWave",PORT 0340h"Gravis",PORT 0530h"Vendetta"
+
+0534  ?W  register select (index) (see #P0895)
+0535  RW  data register (selected by PORT 0534h)
+0536  R?  (CS4231A) status register
+0537  RW  (CS4231A) PIO data register
+
+(Table P0895)
+Values for Windows Sound System CS4231 Codec register number:
+ 00h	Mixer: ADC volume (left)
+ 01h	Mixer: ADC volume (right)
+ 02h	Mixer: Line In volume (right) (see #P0896)
+ 03h	Mixer: Line In volume (left) (see #P0896)
+ 04h	Mixer: FM volume (right) (see #P0896)
+ 05h	Mixer: FM volume (left) (see #P0896)
+ 06h	Mixer: playback DAC volume (left)
+ 07h	Mixer: playback DAC volume (right)
+ 08h	playback data format
+ 09h	configuration register 1
+ 0Ah	external control
+ 0Bh	Codec status register 2
+ 0Ch	mode select
+	bit 6: ???
+ 0Dh	loopback control
+	(Sound Galaxy) microphone input enabled by bit 0 ???
+ 0Eh	playback count (high)
+ 0Fh	playback count (low)
+ 10h	configuration register 2
+ 11h	configuration register 3
+ 12h	Mixer: CD volume (right) (see #P0896)
+ 13h	Mixer: CD volume (left) (see #P0896)
+ 14h	timer (low)
+ 15h	timer (high)
+ 16h	Mixer: microphone input control (left)
+ 17h	Mixer: microphone input control (right)
+ 18h	Codec status register 3
+ 19h	Mixer: output attenuation (left)
+ 1Ah	mono input/output control
+	(Sound Galaxy) SB volume (see #P0897)
+ 1Bh	Mixer: output attenuation (right)
+ 1Ch	record data format
+ 1Dh	playback variable frequency
+ 1Eh	record count (high)
+ 1Fh	record count (low)
+ 48h	(Sound Galaxy) ???
+Notes:	to enable the microphone input on the Sound Galaxy, ALL of the
+	  following registers must be set: 00h set to 80h, 01h set to 80h,
+	  07h to 00h, 0Dh to 01h, and 48h to 4Bh
+	on the Sound Galaxy NX16, only bits 0-4 of the register number are
+	  fully decoded, so most registers above 1Fh are aliases of the
+	  first 32 registers
+
+Bitfields for WSS mixer volume:
+Bit(s)	Description	(Table P0896)
+ 7	disable input source
+ 6-5	reserved???
+ 4-0	volume (00h = highest, 1Fh = lowest)
+SeeAlso: #P0895,#P0897
+Note:	the GW2000 GWBVOL.EXE only permits the setting of volume levels
+	  08h (reported as 16) to 18h (reported as 0, and sets bit 7 as well)
+
+Bitfields for WSS mixer volume (SoundBlaster):
+Bit(s)	Description	(Table P0897)
+ 7	disable input source
+ 6-4	reserved???
+ 3-0	volume (00h = highest, 0Fh = lowest)
+SeeAlso: #P0895,#P0896
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: MC0007FFC
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM C000h:7FFCh - Matrox MGA Video Adapters - OFFSET OF PINS DATA STRUCTURE
+Size:	WORD
+SeeAlso: INT 10/AX=4F14h"Matrox",#00126,MEM C000h:7FF8h
+-------b-MF0000000--------------------------
+MEM F000h:0000h - WANG PC MEMORY MAPPED SCREEN BUFFER
+Size:	???
+Note:	This is used by Peter Reilley's portable binary editor and viewer BEAV
+	  to directly write into the Wang PC's video screen buffer (instead
+	  of using INT 10/AH=02h,09h) after it has been mapped in by writing
+	  BYTE 01h to the screen port (PORT 1010h for the 1st screen, 1020h
+	  for the 2nd, 1030h for the 3rd, 1040h for the 4th).  It will be
+	  unmapped afterwards by writing BYTE 00h to the screen port.
+	  Note, that this is only necessary when the INT 21/AX=4402h detection
+	  method resulted in non-IBM PC characteristic (return values other
+	  than 11h).
+SeeAlso: MEM FC00h:3FC2h, INT 88h/AL=01h, INT 21h/4402h
+

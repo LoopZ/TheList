@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A0C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/0Ch - Philips TDA8366 - WHITE POINT (RED)
+Desc:	the TDA8366 is an I2C-bus controlled PAL/NTSC TV Processor
+Access:	Write-Only
+SeeAlso: I2C 8Ah/00h"TDA8366",I2C 8Ah/02h"TDA8366",I2C 8Ah/0Dh"TDA8366"
+
+Bitfields for TDA8366 White Point (Red):
+Bit(s)	Description	(Table I0056)
+ 7-6	vertical deflection mode
+	00 normal
+	01 compress
+	10 expand
+	11 expand and lift
+ 5-0	white point (red) value
+SeeAlso: #I0111,#I0113
+

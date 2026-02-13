@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220025
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0025 - INTEL 82360SL CHIPSET (FOR 386SL)
+
+0022  -W  CPU write mode register
+0023  R-  configuration status register
+		bit 7: 82360 configuration is open
+0024  -W  82360 configuration index
+0025  RW  82360 configuration data
+
+Bitfields for Intel 82360SL CPU write mode register:
+Bit(s)	Description	(Table P0271)
+ 0	unlock configuration space
+ 1	enable selected unit
+ 3-2	unit
+	00 memory configuration
+	01 cache
+	10 internal bus
+	11 external bus
+

@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: P9AEA9AEB
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 9AEA-9AEB - S3 Trio64 - DRAWING COMMAND 2
+Desc:	specify the drawing direction for the second edge of a Bresenham
+	  trapezoid
+SeeAlso: PORT 9AE8h
+
+9AEAw -W  drawing command 2 (see #P1038)
+
+Bitfields for S3 Trio64 Drawing Command 2 register:
+Bit(s)	Description	(Table P1038)
+ 15-8	reserved
+ 7-5	drawing direction
+	 7	0=draw vector above, 1=draw vector below (INC_Y)
+	 6	0=x is maj. axis, 1=y is maj. axis (YMAJAXIS)
+	 5	0=draw vector left, 1=draw vector right (INC_X)
+ 4-0	reserved
+SeeAlso: #P1036
+

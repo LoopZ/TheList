@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040007B
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:007Bh - INT 4Bh FLAGS (PS2 and newer)
+Size:	BYTE
+SeeAlso: INT 4B/AX=8102h
+
+Bitfields for INT 4Bh flags:
+Bit(s)	Description	(Table M0023)
+ 7-6	reserved
+ 5	set if Virtual DMA Spec supported [PS] (see INT 4B)
+ 4	reserved
+ 3	set if INT 4Bh intercepted and must be chained
+ 2	reserved
+ 1	set if Generic SCSI CBIOS services available on INT 4Bh
+ 0	reserved
+

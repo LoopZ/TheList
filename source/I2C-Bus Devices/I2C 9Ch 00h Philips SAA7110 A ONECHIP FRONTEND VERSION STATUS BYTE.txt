@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/00h - Philips SAA7110(A) ONE-CHIP FRONT-END - VERSION STATUS BYTE
+Access:	Read-Only
+Notes:	Transmitted if STATUS BYTE SELECT = 0 (refer to I2C 9Ch/0Dh)
+	  or after RESET which sets status byte select to 0
+	Bits 7-0 are used to indicate the IC version
+Range:	I2C addresses 9Ch or 9Eh, determined by external pin
+SeeAlso: I2C 9Ch/01h"STATUS",I2C 9Ch/0Dh
+

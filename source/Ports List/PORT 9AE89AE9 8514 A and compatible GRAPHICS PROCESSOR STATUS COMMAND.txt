@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+ Unique ID: P9AE89AE9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 9AE8-9AE9 - 8514/A and compatible - GRAPHICS PROCESSOR STATUS / COMMAND
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+SeeAlso: PORT 9AEAh
+
+9AE8w R-  drawing control: graphic processor status (see #P1035)
+9AE8w -W  drawing control: command register (see #P1036)
+
+Bitfields for 8514/A graphic processor status:
+Bit(s)	Description	(Table P1035)
+ 15-10	(8514/A) reserved
+ 15	(S3 Trio64 only) queue status flags 9
+ 14-11	(S3 Trio64 only) queue status flags 10-13
+ 10	(S3 Trio64 only) all FIFO slots are empty
+ 9	hardware busy
+ 8	(8514/A) data ready
+	(S3 Trio64) reserved
+ 7	queue status flag 1
+ 6-0	queue status flags 2-8 (0=empty, 1=filled)
+	(each bit represents a position in queue)
+Note:	queue status flag N is cleared whenever at least N slots are available
+	  in the FIFO; at any given time, the CPU may write only as many values
+	  to the FIFO as there are slots available
+SeeAlso: #P1036
+
+Bitfields for 8514/A command register :
+Bit(s)	Description	(Table P1036)
+ 15-13	command (see #P1037)
+ 12	byte sequence (0=high byte first, 1=low byte first)
+ 11-10	(8514/A) reserved
+ 11	(S3 Trio) high bit of command (see #P1037)
+ 10	(S3 Trio) enable 32-bit write access
+ 9	enable 16-bit write access (16BIT)
+ 8	0=use 8514/A data, 1=pixel data trans reg (PCDATA) (see PORT E2E8h)
+ 7	0=draw vector above, 1=draw vector below (INC_Y)
+ 6	0=x is maj. axis, 1=y is maj. axis (YMAJAXIS)
+ 5	0=draw vector left, 1=draw vector right (INC_X)
+	(bits 7-5 are the drawing direction in 45-degree increments
+	  counterclockwise from the X axis when bit 3 is set)
+ 4	0=move only, 1=draw and move (DRAW)
+ 3	0=Bresenham line, 1=direct vector (LINETYPE)
+ 2	0=draw last pixel, 1=don't draw last pixel (LASTPIX)
+ 1	0=single pixel, 1=4pixel (PLANAR)
+ 0	0=read data, 1=write data (RD/WR) (must be 1 on S3 Trio)
+SeeAlso: #P1035,#P1038
+
+(Table P1037)
+Values for 8514/A command:
+ 000	no operation (used to force synchronization with graphics processor,
+	  or to set up short stroke vector drawing without writing any pixels)
+ 001	draw vector
+ 010	fast rectangle fill
+ 011	(8514/A) rectangle fill vertical #1
+	(S3 Trio64) polygon fill solid
+ 100	(8514/A) rectangle fill vertical #2 (4 pixels)
+	(S3 Trio64) 4-point trapezoid fill solid
+ 101	(8514/A) draw vector, 1 pixel/scanline
+	(S3 Trio64) Bresenham trapezoid fill solid
+ 110	copy rectangle
+ 111	(8514/A) reserved
+	(S3 Trio64) patterned BLT
+---S3 Trio64---
+ 1001	polyline / 2-point line
+ 1011	polygon fill pattern
+ 1100	4-point trapezoid fill pattern
+ 1101	Bresenham trapezoid fill pattern
+SeeAlso: #P1036
+

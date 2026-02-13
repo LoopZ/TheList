@@ -38,11 +38,11 @@ const
     'INTERRUP.1ST',
     'INTERRUP.A',   // TODO
     'PORTS.A',      // TODO
-    'CMOS.LST',     // TODO
-    'FARCALL.LST',  // TODO
-    'I2C.LST',      // TODO
-    'MEMORY.LST',   // TODO
-    'MSR.LST',      // TODO
+    'CMOS.LST',
+    'FARCALL.LST',
+    'I2C.LST',
+    'MEMORY.LST',
+    'MSR.LST',
     'BIBLIO.LST',
     'TABLES.LST',
     // these need handled a little differently
@@ -78,7 +78,8 @@ const
   INT_TITLES : TArrayOfRawByteString = ();
 
 type
-  TSectionStyle = (ssNormal, ssGlossary, ssInterrupts, ssTables, ssSMM, ssMSR);
+  TSectionStyle = (ssNormal, ssGlossary, ssInterrupts, ssTables, ssSMM, ssMSR,
+  ssI2C, ssMemory, ssCMOS, ssFarCall, ssPorts);
 
   TParseStyle = (psIgnore, psHeader, psComment, psPlain, psCategories, psFlags,
     psCategoryKeys, psAbbreviations, psGlossary, psTitles,
@@ -202,10 +203,12 @@ var
   T : String;
 begin
   Result:=S;
-  T:=Trim(PopDelim(S, '-'));
+  S:=StringReplace(S, TAB, SPACE8, [rfReplaceAll]);
+  SectionFlags:='';
+  T:=Trim(PopDelim(S, ' - '));
   SectionFlags:=CutDelim(T, SPACE, 3,3);
   if SectionFlags <> '' then
-    Result:=CutDelim(T, SPACE, 1,2) + ' -' + S;
+    Result:=CutDelim(T, SPACE, 1,2) + ' - ' + S;
 end;
 
 function GetCategoryInfo : String;
@@ -226,7 +229,7 @@ begin
         Break;
       end;
   if S = '' then S:='Unknown Category';
-  Result:=Leftpad('Category: ',HeadPadding) + SectionCategory + SPACE2 + S + LF;
+  Result:=Leftpad('Category: ',HeadPadding) + SectionCategory + SPACE+TAB + S + LF;
 end;
 
 function GetFlagInfo : String;
@@ -248,7 +251,7 @@ begin
         Break;
       end;
     if S = '' then S:='Unknown Flag';
-    Result:=LeftPad('Flag: ', HeadPadding) + SectionFlags[P] + SPACE2 + S + LF;
+    Result:=LeftPad('Flag: ', HeadPadding) + SectionFlags[P] + SPACE+TAB + S + LF;
   end;
 end;
 
@@ -481,15 +484,24 @@ begin
         Inc(Index);
       end;
     end;
-    ssMSR : begin
+    ssMSR, ssI2C, ssMemory, ssCMOS, ssFarCall, ssPorts : begin
       ParseStyle:=psPlain;
-      if (Index < InStrs.Count) then begin
+      if (Index < InStrs.Count - 1) then begin
         // Separate out Flags from Title
         S:=FilterFlags(InStrs[Index+1]);
         SectionTitle:=Trim(CombineSpaces(AlphaNumOnly(StringReplace(
            StringReplace(S, '-', '', [rfReplaceAll]), '_',
            SPACE, [rfReplaceAll]), ' ', True)));
+        if SectionTitle = '' then begin
+          SectionTitle:='Note';
+          OutFile:='_' + SectionTitle + TextExt;
+          ParseStyle:=psComment;
+          OutStr:='';
+          Inc(Index);
+          Exit;
+        end;
         OutFile:=SectionTitle + TextExt;
+
         OutStr:=MakeHeader(Index);
         Inc(Index);
       end;
@@ -594,6 +606,11 @@ begin
     'TABLES'   : SectionStyle:=ssTables;
     'SMM'      : SectionStyle:=ssSMM;
     'MSR'      : SectionStyle:=ssMSR;
+    'I2C'      : SectionStyle:=ssI2C;
+    'MEMORY'   : SectionStyle:=ssMemory;
+    'CMOS'     : SectionStyle:=ssCMOS;
+    'FARCALL'  : SectionStyle:=ssFarCall;
+    'PORTS'    : SectionStyle:=ssPorts;
   else
     SectionStyle:=ssNormal;
   end;

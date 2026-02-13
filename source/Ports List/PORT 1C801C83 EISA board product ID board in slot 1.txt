@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: P1C801C83
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 1C80-1C83 - EISA board product ID (board in slot 1)
+
+1C80  R?  bit 7: unused (0)
+	  bits 6-2: manufacturer ID, first compressed ASCII char
+	  bits 1-0: manufacturer ID, second compressed ASCII char (high)
+1C81  R?  bits 7-5: manufacturer ID, second compressed ASCII char (low)
+	  bits 4-0: manufacturer ID, third compressed ASCII char
+1C82  R?  bits 7-4: first hex digit of product type
+	  bits 3-0: second hex digit of product type
+1C83  R?  bits 7-4: third hex digit of product type
+	  bits 3-0: product revision number (hex digit)
+

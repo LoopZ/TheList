@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: R63
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 63h - AWARD - POWER MANAGEMENT
+
+Bitfields for AWARD power management:
+Bit(s)	Description	(Table C0092)
+ 7	Disable PM Event on IRQ3 Activity (COM2) (1=disable)
+ 6	PM Event on VGA Activity (1=enable)
+ 5	??? (Defaults to 1)
+ 4	PM Event on PCI/ISA Master Activity (1=enable)
+ 0-3	Suspend Mode Setting (for User Defined)
+	(See Standby Mode above)
+

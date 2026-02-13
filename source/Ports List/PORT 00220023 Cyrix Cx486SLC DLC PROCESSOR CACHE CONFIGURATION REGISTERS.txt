@@ -1,0 +1,70 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Cyrix Cx486SLC/DLC PROCESSOR - CACHE CONFIGURATION REGISTERS
+SeeAlso: PORT 0022h"5x86",PORT 0022h"6x86"
+
+0022  -W  index for accesses to next port (see #P0017)
+0023  RW  cache configuration register array (indexed by PORT 0022h)
+	Note:	the index must be written to PORT 0022h before every access
+		  to PORT 0023h; out-of-sequence accesses or index values
+		  not supported by the processor generate external I/O cycles
+
+(Table P0017)
+Values for Cyrix Cx486SLC/DLC Cache Configuration register number:
+ C0h	CR0 (see #P0019)
+ C1h	CR1 (see #P0020)
+ C4h	non-cacheable region 1, start address bits 31-24
+ C5h	non-cacheable region 1, start address bits 23-16
+ C6h	non-cacheable region 1, start addr 15-12, size (low nibble) (see #P0018)
+ C7h	non-cacheable region 2, start address bits 31-24
+ C8h	non-cacheable region 2, start address bits 23-16
+ C9h	non-cacheable region 2, start addr 15-12, size (low nibble) (see #P0018)
+ CAh	non-cacheable region 3, start address bits 31-24
+ CBh	non-cacheable region 3, start address bits 23-16
+ CCh	non-cacheable region 3, start addr 15-12, size (low nibble) (see #P0018)
+ CDh	non-cacheable region 4, start address bits 31-24
+ CEh	non-cacheable region 4, start address bits 23-16
+ CFh	non-cacheable region 4, start addr 15-12, size (low nibble) (see #P0018)
+SeeAlso: #P0023,#P0021
+
+(Table P0018)
+Values for Cyrix Cx486SLC/DLC non-cacheable region sizes:
+ 00h	disabled
+ 01h	4K
+ 02h	8K
+ 03h	16K
+ 04h	32K
+ 05h	64K
+ 06h	128K
+ 07h	256K
+ 08h	512K
+ 09h	1M
+ 0Ah	2M
+ 0Bh	4M
+ 0Ch	8M
+ 0Dh	16M
+ 0Eh	32M
+ 0Fh	4G
+SeeAlso: #P0017
+
+Bitfields for Cyrix Cx486SLC/DLC Configuration Register 0:
+Bit(s)	Description	(Table P0019)
+ 0	"NC0" first 64K of each 1M noncacheable in real/V86
+ 1	"NC1" 640K-1M noncacheable
+ 2	"A20M" enables A20M# input pin
+ 3	"KEN"  enables KEN# input pin
+ 4	"FLUSH" enables FLUSH input pin
+ 5	"BARB" enables internal cache flushing on bus holds
+ 6	"C0" cache direct-mapped instead of 2-way associative
+ 7	"SUSPEND" enables SUSP# input and SUSPA# output pins
+SeeAlso: #P0017,#P0020,#P0032
+
+Bitfields for Cyrix Cx486SLC/DLC Configuration Register 1:
+Bit(s)	Description	(Table P0020)
+ 0	"RPL" enables output pins RPLSET and RPLVAL#
+SeeAlso: #P0017,#P0019,#P0024
+

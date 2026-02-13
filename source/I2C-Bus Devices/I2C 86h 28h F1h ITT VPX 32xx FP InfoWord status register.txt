@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SFF1
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/F1h - ITT VPX 32xx - FP - "InfoWord" status register
+SeeAlso: I2C 86h/28h,I2C 86h/29h
+
+Bitfields for VPX 32xx InfoWord status register:
+Bit(s)	Description	(Table I0025)
+ 2-0	reserved
+ 5-3	currently-active TV standard (see #I0039)
+ 6	currently-active line standard
+	0 525 lines / 60 fps
+	1 625 lines / 50 fps
+ 11-7	???
+Note:	image freezes if bit 1 set on VPX 3220A
+SeeAlso: #I0037,#I0036
+
+(Table I0026)
+Values for ITT VPX television standard:
+ 0	PAL B,G,H,I	625/50	4.433618 MHz
+ 1	NTSC M		525/60	3.579545 MHz
+ 2	SECAM		625/50	4.286	MHz
+ 3	NTSC 44		525/60	4.433618 MHz
+ 4	PAL M		525/60	3.575611 MHz
+ 5	PAL N		625/50	3.582056 MHz
+ 6	PAL 60		525/60	4.433618 MHz
+ 7	NTSC Comb	525/60	3.579545 MHz
+

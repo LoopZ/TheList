@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: I1801
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 18h/01h - Raytheon TMC2361 - ENCODER CONTROL REGISTER
+Access:	Read/Write
+Range:	I2C addresses 18h, 1Ah, 1Ch, or 1Eh may be selected by external pins
+SeeAlso: I2C 18h/00h,I2C 18h/02h,I2C 18h/05h,I2C 18h/06h
+
+Bitfields for Raytheon TMC2361 Encoder Control Register:
+Bit(s)	Description	(Table I0002)
+ 7	"HQSZ"
+ 6	reserved (0)
+ 5-4	television standard
+	00 PAL M (60 Hz)
+	01 PAL
+	10 NTSC-EIA
+	11 NTSC
+ 3	powerdown mode
+ 2	DPMS mode
+	=0 output blue video if either hsync or vsync missing
+	=1 suspend chip if either hsync/vsync missing; sleep if both missing
+ 1	disable S-Video output
+ 0	disable composite video output
+SeeAlso: #I0063,#I0061
+

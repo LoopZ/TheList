@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00B2
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 00B2 - Intel chipsets - Advanced Power Management Control
+Notes:	used to pass data between the operating system and the System
+	  Management Interrupt (SMI) handler
+	writes to this port can cause an SMI; reads can cause STPCLK# to be
+	  asserted (putting the CPU in sleep mode)
+	supported by 82420EX, 82371, and other Intel chipsets
+SeeAlso: PORT 00B3h,#01079
+
+00B2  RW  control
+

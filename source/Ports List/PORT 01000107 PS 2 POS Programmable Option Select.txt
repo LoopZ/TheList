@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------
+ Unique ID: P01000107
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0100-0107 - PS/2 POS (Programmable Option Select)
+Note:	the default value for PORT 0102h is stored in CMOS 31h
+
+0100  R	  POS register 0	Low adapter ID byte
+0101  R	  POS register 1	High adapter ID byte
+0102  RW  POS register 2	option select data byte 1 (see #P0492)
+0103  RW  POS register 3	option select data byte 2 (see #P0493)
+0104  RW  POS register 4	option select data byte 3
+0105  RW  POS register 5	option select data byte 4
+		 bit 7	channel active (-CHCK)
+		 bit 6	channel status
+0106  RW  POS register 6	Low subaddress extension
+0107  RW  POS register 7	High subaddress extension
+
+Bitfields for PS/2 POS register 2, option select data byte 1:
+Bit(s)	Description	(Table P0492)
+ 7	  0  = unidirectional LPT port
+	  1  = bidirectional LPT port
+ 6-5	PS/2 Model 50 and higher
+	 00b = default LPT port at 3BCh
+	 01b = ""		   378h
+	 10b = ""		   278h
+	 11b = reserved
+ 4	enable parallel port
+ 3	serial port address
+	=0 COM2 (02F8h, IRQ3)
+	=1 COM1 (03F8h, IRQ4)
+ 2	enable serial port
+ 1	enable diskette controller
+ 0	(MCA) =0 override bits 1,2,4 and disable devices
+ 0	card enable (CDEN)
+ 0	=1 VGA sleep bit, disconnects output drivers from VGA (usage for VGA
+	  without monitor)
+---ET4000---
+ 7-4	reserved???
+ 3	video RAM wait enable
+ 2	ET4000: ROM BIOS wait enable
+ 1	ET4000: I/O wait enable
+Note:	access to this port is only possible when PORT 0094h bit 7 is low.
+SeeAlso: #P0493
+
+Bitfields for Chips&Technologies 64200 "Wingine" setup register:
+Bit(s)	Description	(Table P0493)
+ 7	enable access to extended registers (see #P0762)
+Note:	on some C&T graphics chips, this register can be made read-only
+	  via XR70 (see #P0762)
+SeeAlso: #P0492
+

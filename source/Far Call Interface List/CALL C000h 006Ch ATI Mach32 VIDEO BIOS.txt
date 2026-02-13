@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------
+ Unique ID: @C000006C
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL C000h:006Ch - ATI Mach32 VIDEO BIOS - 
+InstallCheck: ATI Mach32 video board must be installed
+SeeAlso: @C000h:0064h,@C000h:0068h,@C000h:0070h
+
+(Table F0017)
+Call ATI Mach32 entry point with:
+	AL = function
+	    00h get ???
+		Return: AX = ??? (019Eh)
+	    01h get ??? information
+		ES:BX -> buffer for ??? information (see #F0018)
+		Return: buffer filled
+	    02h get ???
+		Return: AX = ??? (0250h)
+			BX = ??? (0A00h)
+			CX = ??? (0200h)
+			DX = ??? (0003h)
+Return: CF clear if successful
+	CF set if invalid function
+	all other registers preserved
+Note:	officially (Programmer's Reference Guide), interrupts should be
+	  disabled (CLI) during a function 01h call
+
+Format of ATI Mach32 ??? information:
+Offset	Size	Description	(Table F0018)
+ 00h	WORD	number of bytes of data returned (0116h for tested BIOS)
+ 02h  2 BYTEs	??? (00h 00h and 00h 05h seen)
+ 04h	WORD	offset of video mode records??? (0028h)
+ 06h	BYTE	length of one video mode record??? (22h)
+ 07h	BYTE	???
+ 08h	BYTE	??? (00h/01h, reflects bit 1 of port 36EEh)
+ 09h	BYTE	??? (01h)
+ 0Ah	BYTE	???
+ 0Bh	BYTE	memory size
+		00h = 256K, 01h = 512K, 02h = 1024K, 03h = 2M, 04h = 4M
+ 0Ch	BYTE	???
+ 0Dh	BYTE	???
+ 0Eh	BYTE	???
+ 0Fh	BYTE	??? (bits 6-4 of port 42E8h)
+ 10h	BYTE	???
+ 11h	BYTE	???
+ 12h	BYTE	???
+ 13h	BYTE	???
+ 14h	WORD	???
+ 16h	BYTE	???
+ 17h	BYTE	???
+ 18h	BYTE	???
+ 19h 14 BYTEs	unused
+ 27h	BYTE	scratch byte used by ROM code
+ 28h 34N BYTEs	??? video mode records (see #F0019)
+SeeAlso: #F0017
+
+Format of ATI Mach32 ??? video mode record:
+Offset	Size	Description	(Table F0019)
+ 00h	WORD	horizontal resolution in pixels
+ 02h	WORD	vertical resolution in pixels
+ 04h 30 BYTEs	???
+SeeAlso: #F0018
+

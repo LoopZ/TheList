@@ -1,0 +1,99 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03D403D5
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03D4-03D5 - Tseng Labs VIDEO CHIPS - EXTENDED CRT CONTROL REGISTERS
+SeeAlso: PORT 03D4h"COLOR VIDEO",PORT 03D4h"S3",PORT 03D4h"Cirrus"
+
+03D4  RW  CRT control register index (see #P0756)
+03D5  RW  CRT control register value
+
+(Table P0756)
+Values for Tseng Labs ET3000/ET4000 CRT Controller register index:
+ 00h-18h same as EGA/VGA (see #P0708)
+---ET3000 only---
+ 1Bh	x-zoom start register
+	The existence of this register is often used to decide between ET3000
+	  and ET4000, as the ET4000 does not offer hardware-zoom features.
+ 1Ch	x-zoom end register
+ 1Dh	y-zoom start register low
+ 1Eh	y-zoom end register low
+ 1Fh	y-zoom start & end high register
+ 20h	zoom start address register low
+ 21h	zoom start address register medium
+ 23h	extended start address (see register 33h)
+ 24h	compatibility register (see register 34h)
+ 25h	overflow high register (see registers 35h, 07h)
+---ET4000---
+ 32h	RAS/CAS configuration ('key' protected) (see #P0757)
+ 33h	extended start address
+	      This register is often used to decide between ET4000
+	      and ET3000, when bit3-0 can be reread after write.
+	       bit7-4 : reserved
+	       bit3-2 : cursor address bit 17-16
+	       bit1-0 : linear start address bits 17-16
+ 34h	6845 compatibility control register ('key' protected)
+	  (see #P0758)
+ 35h	overflow high register (protected by 11h, bit7) (see #P0759)
+ 36h	video system configuration 1 ('key' protected) (see #P0760)
+ 37h	video system configuration 2 ('key' protected) (see #P0761)
+SeeAlso: #P0654,#P0716,#P0717
+
+Bitfields for ET4000 RAS/CAS configuration register:
+Bit(s)	Description	(Table P0757)
+ 7	static column memory
+	ET4000/W32i: interleave mode
+ 6	RAL RAS&CAS column setup time
+ 5	RCD RAS & CAS time
+ 4-3	RSP, RAS pre-charge time
+ 2	CPS, CAS pre-charge time
+ 1-0	CSW, CAS low pulse width
+SeeAlso: #P0708,#P0758
+
+Bitfields for ET4000 compatibility control register:
+Bit(s)	Description	(Table P0758)
+ 7	6845 compatibility enabled
+ 6	ENBA enable double scan/underline in AT&T mode
+ 5	ENXL enable translation ROM on writing
+ 4	ENXR enable translation ROM on reading
+ 3	ENVS VSE register port address
+ 2	TRIS tristate ET4000 output pins
+ 1	CS2 MCLCK clock select 2
+ 0	EMCK enable translation of CS0 bit
+SeeAlso: #P0708,#P0757,#P0759
+
+Bitfields for ET4000 overflow high register:
+Bit(s)	Description	(Table P0759)
+ 7	vertical interlace mode
+ 6	alternate RMW control
+ 5	external sync reset (gen-lock) the line/chr counter
+ 4	line compare bit10
+ 3	vertical sync start bit10
+ 2	vertical display end bit10
+ 1	vertical total bit10
+ 0	vertical blank start bit10
+SeeAlso: #P0708,#P0758,#P0760
+
+Bitfields for ET4000 video system configuration 1 register:
+Bit(s)	Description	(Table P0760)
+ 7	enable 16bit I/O read/write
+ 6	enable 16bit display memory read/write
+ 5	addressing mode (0=IBM, 1=TLI)
+ 4	0=segment / 1=linear system configuration
+ 3	font width control (1=up to 16bit, 0=8bit)
+ 2-0	refresh count per line-1
+SeeAlso: #P0708,#P0759,#P0761
+
+Bitfields for ET4000 video system configuration 2 register:
+Bit(s)	Description	(Table P0761)
+ 7	DRAM display memory type (1=VRAM, 0=DRAM)
+ 6	test (1=TLI interal test mode)
+ 5	priority threshold control (0=more mem BW)
+ 4	disable block read-ahead
+ 3	display memory data depth
+ 2	bus read data latch control
+ 1-0	display memory data bus width
+SeeAlso: #P0708,#P0760
+

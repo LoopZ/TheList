@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0028002A
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0028-002A - 80486 "Deep Green" motherboard - ???
+
+0028  ?W  index for data port
+002A  RW  ??? data port
+
+Note:	in order to access to the registers available through PORT 002A,
+	  an unlocking sequence must be written via PORT 0028:	write
+	  A0h, 05h, index to PORT 0028, then read/write PORT 002A, then
+	  write A5h to PORT 0028
+

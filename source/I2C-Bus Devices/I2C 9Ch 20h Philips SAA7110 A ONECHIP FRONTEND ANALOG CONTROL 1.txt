@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C20
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/20h - Philips SAA7110(A) ONE-CHIP FRONT-END - ANALOG CONTROL #1
+Access:	Write-Only
+SeeAlso: I2C 9Eh
+
+Bitfields for Analog Control #1:
+Bit(s)	Description	 (Table I0082)	(Table I0083)
+ 7	disable analog input 4
+ 6	disable analog input 3
+ 5	disable analog input 2
+ 4-3	Analog function
+	00  bypass amplifier and anti-alias filter
+	01    "	       "      "	     "	      "
+	10  select amplifier
+	11  select amplifier and anti-alias filter
+ 2	select analog input 4
+ 1	select analog input 3
+ 0	select analog input 2
+SeeAlso: #I0084
+

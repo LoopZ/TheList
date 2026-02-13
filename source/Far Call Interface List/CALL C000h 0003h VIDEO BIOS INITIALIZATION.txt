@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------
+ Unique ID: @C0000003
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL C000h:0003h - VIDEO BIOS INITIALIZATION
+InstallCheck:	C000h:0000h must contain the word AA55h and the 
+		  512*BYTE[C000h:0002h] bytes must sum to 00h (mod 256)
+Note:	is normally called only by the System ROM BIOS initialization code
+

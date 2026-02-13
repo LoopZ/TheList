@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: P002E002F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 002E-002F - NS PC87306 SuperI/O - CONFIGURATION REGISTERS
+InstallCheck: after a hardware reset, the first read of the index port returns
+	  88h, and a second consecutive read always returns 00h (while
+	  read-after-write always returns the written value)
+Range:	PORT 002Eh, PORT 015Ch, PORT 026Eh, or PORT 0398h, depending on
+	  external strapping
+Note:	to set a register, the data port must be written twice in a row; the
+	  value is latched on the second write
+
+002E  RW  configuration register index
+002F  RW  configuration register data
+

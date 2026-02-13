@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: P023C023F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 023C-023F - Bus Mouse Port (primary address)
+InstallCheck: read the ID Port twice; if installed, the first byte
+	  returned will be DEh, and the second will vary by card
+	  (revision number???)
+Note:	primary address for bus mice from MS and Logitech, the ATI video
+	  adapter mouse, and the Commodore PC30III bus mouse
+SeeAlso: PORT 0238h"Mouse"
+
+023C  ?W  Command port
+023D  ?W  Data port
+023E  R?  ID Port 
+

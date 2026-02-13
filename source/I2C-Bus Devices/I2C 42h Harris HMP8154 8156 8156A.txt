@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: I42
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 42h - Harris HMP8154/8156/8156A
+Desc:	the HMP8154 and HMP8156(A) are NTSC/PAL video encoders
+Range:	I2C addresses 40h or 42h, depending on the state of an external pin
+Note:	on the Harris parts, register 00h is the product ID register; it
+	  contains 54h to identify the device as an 8154 or 8156A, 56h to
+	  identify the devices as an 8156
+

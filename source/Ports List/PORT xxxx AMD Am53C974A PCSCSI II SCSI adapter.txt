@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+ Unique ID: Pxxxx
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT xxxx - AMD Am53C974A PC-SCSI II SCSI adapter
+Range:	anywhere, on a 128-port boundary
+SeeAlso: #00925
+
++000  R-  current transfer count register (low)
++000  -W  start transfer count register (low)
++004  R-  current transfer count register (middle)
++004  -W  start transfer count register (middle)
++008  RW  SCSI FIFO register
++00C  RW  SCSI command register
++010  R-  SCSI status register
++010  -W  destination ID
++014  R-  interrupt status
++014  -W  SCSI timeout
++018  R-  internal state
++018  -W  synchronous transfer period
++01C  R-  current FIFO/internal state
++01C  -W  synchronous offset
++020  RW  control register 1
++024  -W  clock factor
++028  -W  reserved
++02C  RW  control register 2
++030  RW  control register 3
++034  RW  control register 4
++038  R-  current transfer count register (high) / ID code
++038  -W  start current transfer count (high)
++03C	  reserved
++040  RW  DMA command
++044d RW  DMA starting transfer count (bits 23-0)
++048d RW  DMA starting physical address
++04C  R	  DMA working byte counter
++050d R	  DMA working address counter
++054  R	  DMA status register
++058d RW  DMA starting memory descriptor list address
++05Cd R	  DMA working memory descriptor list counter
++070d Rw  SCSI bus and control (bits 25-24 and 21-0)
+Notes:	the SCSI registers are mapped on DWORD boundaries, even though for most
+	  only the least-significant byte is used
+	see "Am53C974A PCscsi(tm) II Technical Manual, Revision 1.0"
+	  (file 19113A.PDF) for further details, as well as (file 19084A.PDF)
+

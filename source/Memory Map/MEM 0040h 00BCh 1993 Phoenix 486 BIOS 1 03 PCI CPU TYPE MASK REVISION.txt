@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: M004000BC
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:00BCh - 1993 Phoenix 486 BIOS 1.03 PCI - CPU TYPE/MASK REVISION
+Size:	WORD
+Desc:	the high byte contains the CPU type, the low byte the mask revision
+	  (stepping level), as reported to the BIOS in DX by the CPU at startup
+SeeAlso: INT 15/AH=C9h
+

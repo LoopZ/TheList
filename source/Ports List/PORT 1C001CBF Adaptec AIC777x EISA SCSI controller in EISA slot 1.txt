@@ -1,0 +1,775 @@
+--------------------------------------------------------------------------------
+ Unique ID: P1C001CBF
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 1C00-1CBF -  Adaptec AIC-777x EISA SCSI controller in EISA slot 1
+Notes:	Adaptec AIC-777x SCSI controllers have on-board PhaseEngine SCSI
+	  sequence processor which executes its instructions from the 2-Kbyte
+	  sequencer RAM; it treats all of the CPU-addressable registers as its
+	  data memory
+	AIC-777x SCSI controllers have special on-board RAM and queue registers
+	  for queueing the requests sent from the drivers and BIOS to the
+	  PhaseEngine processor
+	Adaptec AHA-284x is a VLB SCSI controller based on AIC-7770; it has
+	  a serial EEPROM (93C46) for storing various configuration settings
+SeeAlso: PORT 0340h-035Fh"Adaptec AHA-152x",PORT xxxxh"Adaptec AIC-78xx"
+
++000  RW  SCSI sequence control register (SCSISEQ) (see #P0600)
++001  RW  SCSI transfer control register 0 (SXFRCTL0) (see #P0979)
++002  RW  SCSI transfer control register 1 (SXFRCTL1) (see #P0980)
++003  R-  SCSI control signal read  register (SCSISIGI) (see #P0603)
++003  -W  SCSI control signal write register (SCSISIGO) (see #P0604)
++004  RW  SCSI rate control register (SCSIRATE) (see #P0981)
++005  RW  SCSI ID register (SCSIID) (see #P0982)
++006  RW  SCSI latched data low register (SCSIDATL)
+	  read/write causes -ACK to pulse
++007  RW  (Wide SCSI) SCSI latched data high register (SCSIDATH)
+	  read/write causes -ACK to pulse
++008  RW  SCSI transfer count register (STCNT) (3 bytes long)
++00B  R-  SCSI status register 0 (SSTAT0) (see #P0607)
++00B  -W  clear SCSI interrupt register 0 (CLRSINT0) (see #P0983)
++00C  R-  SCSI status register 1 (SSTAT1) (see #P0609)
++00C  -W  clear SCSI interrupt register 1 (CLRSINT1) (see #P0610)
++00D  R-  SCSI status register 2 (SSTAT2) (see #P0984)
++00E  R-  SCSI status register 3 (SSTAT3) (see #P0612)
++00F  RW  SCSI test control register (SCSITEST) (see #P0985)
++010  RW  SCSI interrupt mode register 0 (SIMODE0) (see #P0616)
++011  RW  SCSI interrupt mode register 1 (SIMODE1) (see #P0617)
++012  RW  SCSI data bus low register (SCSIBUSL)
++013  RW  (Wide SCSI) SCSI data bus high register (SCSIBUSH)
++014d R-  SCSI/host address register (SHADDR)
++018  RW  selection timeout timer  register (SELTIMER) (see #P0986)
++019  RW  selection/reselection ID register (SELID) (see #P0987)
++01F  RW  SCSI block control register (SBLKCTL) (see #P0988)
++020  RW  scratch RAM (64 bytes) (see #P1002)
++060  RW  sequencer control  register (SEQCTL)	(see #P0989)
++061  RW  sequencer RAM data register (SEQRAM)
++062w RW  sequencer address  register (SEQADDR) (see #P0990)
++064  RW  accumulator  register (ACCUM)
++065  RW  source index register (SINDEX)
++066  RW  destination index register (DINDEX)
++069  R-  all ones register (ALLONES)
+	  always reads as FFh
++06A  R-  all zeros register (ALLZEROS)
+	  always reads as 00h
++06B  R-  flags register (FLAGS) (see #P0991)
+	  PhaseEngine processor's flags
++06C  R-  source indirect register (SINDIR)
++06D  -W  destination indirect register (DINDIR)
++06E  RW  function 1 register (FUNCTION1)
++06F  R-  "STACK"
++084  RW  board control register (BCTL) (see #P0992)
++085  RW  bus on/off time register (BUSTIME) (see #P0993)
++086  RW  bus speed register (BUSSPD) (see #P0994)
++087  RW  host control register (HCNTRL) (see #P0995)
++088d RW  host address register (HADDR)
++08C  RW  host counter register (HCNT) (3 bytes long)
++090  RW  sequence control block (SCB) pointer register (SCBPTR)
++091  RW  interrupt status register (INTSTAT) (see #P0996)
++092  R-  hard error register (ERROR) (see #P0997)
++092  -W  clear interrupt status register (CLRINT) (see #P0998)
++093  RW  DMA FIFO control register (DFCNTRL)  (see #P0999)
++094  R-  DMA FIFO status  register (DFSTATUS) (see #P1000)
++099  RW  DMA FIFO data register (DFDAT)
++09A  RW  SCB auto-increment register (SCBCNT) (see #P1001)
++09B  RW  queue in FIFO register (QINFIFO)
+	  write places the value into the FIFO, read removes
++09C  R-  queue in count register (QINCNT)
+	  number of the SCBs in the queue in
++09D  R-  queue out FIFO register (QOUTFIFO)
+	  read removes the value from the FIFO
++09E  R-  queue out count register (QOUTCNT)
+	  number of the SCBs in the queue out
++0A0  RW  SCB array (32 bytes) (see #P1003)
++0C0  RW  (AHA-284x) serial EEPROM control register (SEECTL) (see #P1005)
++0C1  RW  (AHA-284x) "STATUS" (see #P1006)
+Notes:	the SCSI latched data registers are used to transfer data on the SCSI
+	  bus during automatic or manual PIO mode
+	in a twin channel configuration the separate register set with the
+	  addresses 00h-1Eh exists for each channel
+	the SCSI/host address register (SHADDR) holds the host address for the
+	  byte about to be transfered on the SCSI bus; it is counted up in the
+	  same manner as SCSI transfer count register (STCNT) is counted down
+	  and should always be used to determine the address of the last byte
+	  transfered since the host address register (HADDR) can be skewed by
+	  read ahead
+	the source/destination index registers (SINDEX/DINDEX) are used by the
+	  PhaseEngine processor to indirectly address the data memory (i.e. the
+	  CPU-addressable registers); the data byte addressed can be accessed
+	  through the source/destination indirect registers (SINDIR/DINDIR)
+	  respectively; the source index register (SINDEX) is auto-incremented
+	  on each read from the source indirect register (SINDIR), while the
+	  destination index register (DINDEX) is auto-incremented on each write
+	  to the destination indirect register (DINDIR)
+	the function 1 register (FUNCTION1) is used to convert the SCSI target
+	  number to the corresponding bit mask; first, bits 6-4 are written
+	  with a number N (other bits seems to be "don't care"), then the
+	  register is read back, giving the bit mask having bit N set and all
+	  other bits cleared
+	the host address register (HADDR) and the host counter register (HCNT)
+	  are used for the DMA transfers from/to the host memory
+	the SCB pointer register (SCBPTR) selects the 32-byte area of the SCB
+	  RAM to be mapped at addresses A0h-BFh
+	the queue in/out FIFO registers (QINFIO/QOUTFIFO) hold the queue of
+	  the SCB pointer register's (SCBPTR) values for addressing the SCBs
+	  sent by CPU to the PhaseEngine processor and returned to CPU (when
+	  the associated SCSI command completes) respectively; CPU selects
+	  the SCB RAM area via the SCB pointer register (SCBPTR), downloads
+	  prepared SCB to addresses A0h-BFh (this requeires the PhaseEngine
+	  processor to be paused), then places the SCB pointer value to the
+	  queue in FIFO by writing it to the respective register, from which
+	  the SCB pointers can be read (and removed) in the FIFO order; the
+	  PhaseEngine processor places the SCB pointer of the completed CCB
+	  to the queue out FIFO by writing the respective register, and CPU
+	  can remove it from the FIFO by reading the register
+
+Bitfields for SCSI transfer control register 0 (SXFRCTL0):
+Bit(s)	Description	(Table P0979)
+ 7	DMA FIFO on? (DFON)
+ 6	"DFPEXP"
+ 5	(Ultra SCSI) Ultra SCSI enable (ULTRAEN)
+ 4	clear SCSI transfer counter (CLRSTCNT)
+ 3	SCSI PIO enable (SPIOEN)
+ 2	SCAM enable (SCAMEN)
+ 1	clear channel (CLRCHN)
+ 0	reserved
+SeeAlso: #P0607,#P0618,#P0620,#P0980,#P0984
+
+Bitfields for SCSI transfer control register 1 (SXFRCTL1):
+Bit(s)	Description	(Table P0980)
+ 7	bit bucket (BITBUCKET)
+ 6	SCSI counter wrap enable (SWRAPEN)
+ 5	enable SCSI parity check (ENSPCHK)
+ 4-3	selection time-out select (STIMESEL)
+	00 256 ms
+	01 128 ms
+	10 64  ms
+	11 32  ms
+ 2	enable selection timer (ENSTIMER)
+ 1	active negation enable (ACTNEGEN)
+ 0	SCSI terminator power enable? (STPWEN)
+SeeAlso: #P0600,#P0979,#P0986
+
+Bitfields for SCSI rate control register (SCSIRATE):
+Bit(s)	Description	(Table P0981)
+ 7	(Wide SCSI) wide transfer control (WIDEXFER)
+ 6-4	synchronous transfer rate (SXFR)
+ 3-0	synchronous offset (SOFS)
+SeeAlso: #P0605,#P0984
+
+Bitfields for SCSI ID register (SCSIID):
+Bit(s)	Description	(Table P0982)
+ 7-4	target ID (TID)
+ 3-0	our ID (OID)
+SeeAlso: #P0606,#P0987,#P1012
+
+Bitfields for clear SCSI interrupt register 0 (CLRSINT0):
+Bit(s)	Description	(Table P0983)
+ 7	reserved?
+ 6	clear selection out done (CLRSELDO)
+ 5	clear selection in  done (CLRSELDI)
+ 4	clear selection in progress (CLRSELINGO)
+ 3	clear SCSI counter wrap (CLRSWRAP)
+ 2	reserved
+ 1	clear SCSI PIO ready (CLRSPIORDY)
+ 0	reserved
+SeeAlso: #P0600,#P0601,#P0607,#P0608,#P0616
+
+Bitfields for SCSI status register 2 (SSTAT2):
+Bit(s)	Description	(Table P0984)
+ 7	"OVERRUN"
+ 6-5	reserved
+ 4-0	SCSI FIFO count? (SFCNT)
+SeeAlso: #P0979,#P0981
+
+Bitfields for SCSI test control register (SCSITEST):
+Bit(s)	Description	(Table P0985)
+ 7-3	reserved
+ 2	"RQAKCNT"
+ 1	"CNTRTEST"
+ 0	"CMODE"
+SeeAlso: #P0988
+
+Bitfields for selection timeout timer register (SELTIMER):
+Bit(s)	Description	(Table P0986)
+ 7-6	reserved
+ 5	"STAGE6"
+ 4	"STAGE5"
+ 3	"STAGE4"
+ 2	"STAGE3"
+ 1	"STAGE2"
+ 0	"STAGE1"
+SeeAlso: #P0980
+
+Bitfields for selection/reselection ID register (SELID):
+Bit(s)	Description	(Table P0987)
+ 7-4	selecting device ID (SELID)
+ 3	one bit (ONEBIT)
+ 2-0	reserved
+Note:	bit 3 is set when the selecting/reselecting device did not set its own
+	  ID on the SCSI bus
+SeeAlso: #P0600,#P0607,#P0982
+
+
+Bitfields for SCSI block control register (SBLKCTL):
+Bit(s)	Description	(Table P0988)
+ 7-6	reserved
+ 5	auto-flush disable (AUTOFLUSHDIS)
+ 4	reserved
+ 3	select bus (SELBUS)
+	=0 select bus A
+	=1 select bus B (SELBUSB)
+ 2	reserved
+ 1	"SELWIDE"
+ 0	reserved
+Notes:	bit 1 allows for the coexistence of 8-bit and 16-bit devices on a Wide
+	  SCSI bus
+	in a twin channel configuration addresses 00h-1Eh are gated to the
+	  appropriate channel based on the value of bit 3
+	bit 5 is read only on the AIC-7770 revisions prior to E
+
+Bitfields for sequencer control register (SEQCTL):
+Bit(s)	Description	(Table P0989)
+ 7	parity error disable (PERRORDIS)
+ 6	pause disable (PAUSEDIS)
+ 5	"FAILDIS"
+ 4	fast mode (FASTMODE)
+ 3	break address interrupt enable (BRKADRINTEN)
+ 2	"STEP"
+ 1	sequencer reset (SEQRESET)
+ 0	load sequencer RAM (LOADRAM)
+Notes:	setting bit 1 causes the sequencer to be paused; the sequencer address
+	  register is reset to 0
+	bit 7 should be reset while loading the sequencer RAM; after loading
+	  is complete, bit 0 should be cleared before changing the sequencer
+	  address register (SEQADDR) to avoid sequencer RAM parity errors
+SeeAlso: #P0990,#P0996,#P0997,#P0998,#P1014
+
+Bitfields for sequencer address register (SEQADDR):
+Bit(s)	Description	(Table P0990)
+ 15-9	reserved
+ 8-0	sequencer RAM address
+Notes:	bits 8-0 contain the address of a DWORD in the sequencer RAM; it points
+	  to the next instruction to be execute or load into RAM
+	setting bit 1 in the sequencer control register (SEQCTL) resets this
+	  address to 0
+	when the PhaseEngine processor is paused, the sequencer address can be
+	  altered and a sequencer program can be loaded by writing it, byte by
+	  byte, to the sequencer RAM data register (SEQRAM); the address is
+	  auto-incremented after the high BYTE of each DWORD is loaded
+SeeAlso: #P0989,#P1014
+
+Bitfields for flags register (FLAGS):
+Bit(s)	Description	(Table P0991)
+ 7-2	reserved
+ 1	zero  flag (ZERO)
+ 0	carry flag (CARRY)
+SeeAlso: #P1014
+
+Bitfields for board control register (BCTL):
+Bit(s)	Description	(Table P0992)
+ 7-4	reserved
+ 3	"ACE"
+ 2-1	reserved
+ 0	enable board (ENABLE)
+Note:	bit 3 is somehow related to the support for the external processors
+
+Bitfields for bus on/off time register (BUSTIME):
+Bit(s)	Description	(Table P0993)
+ 7-4	bus off time (BOFF)
+	in 4 BCLK cycle units?
+ 3-0	bus on	time (BON)
+SeeAlso: #P0994,#P1002
+
+Bitfields for bus speed register (BUSSPD):
+Bit(s)	Description	(Table P0994)
+ 7-6	DMA FIFO threshold (DFTHRSH)
+	11 100?
+ 5-3	"STBOFF"
+ 2-0	"STBON"
+SeeAlso: #P0993,#P0999,#P1000,#P1002
+
+Bitfields for host control register (HCNTRL):
+Bit(s)	Description	(Table P0995)
+ 7	reserved
+ 6	power down (POWRDN)
+ 5	reserved
+ 4	software interrupt (SWINT)
+ 3	IRQ mode select (IRQMS)
+	=0 level-sensitive
+	=1 edge-triggered
+ 2	pause sequencer (PAUSE)
+ 1	interrupt enable (INTEN)
+ 0	chip reset (CHIPRST)
+Notes:	bit 0 is self-clearing (though on some AIC-7771 based boards it stucks
+	  set, and must be manually cleared)
+	set bit 2 to pause the sequencer, then poll the register until this bit
+	  reads as 1 indicating that the sequencer has actually stopped; the
+	  sequencer can disable pausing for critical sections through bit 6 of
+	  the sequencer control register (SEQCTL)
+SeeAlso: #P0989,#P1014
+
+Bitfields for interrupt status register (INTSTAT):
+Bit(s)	Description	(Table P0996)
+ 7-4	sequencer status
+	0000 unknown SCSI bus phase (BAD_PHASE)
+	0001 sending MESSAGE REJECT (SEND_REJECT)
+	0010 no IDENTIFY after reconnect (NO_IDENT)
+	0011 no command match for reconnect (NO_MATCH)
+	0100 SYNCRONOUS DATA TRANSFER REQUEST (SDTR) message received (SDTR_MSG)
+	0101 WIDE DATA TRANSFER REQUEST (WDTR) message received (WDTR_MSG)
+	0110 MESSAGE REJECT received (REJECT_MSG)
+	0111 bad status from target (BAD_STATUS)
+	1000 residual byte count non-zero (RESIDUAL)
+	1001 sent ABORT TAG message (ABORT_TAG)
+	1010 awaiting message
+	1011 immediate command completed (IMMEDDONE)
+	1100 message buffer busy (MSG_BUFFER_BUSY)
+	1101 MESSAGE IN phase mismatch (MSGIN_PHASEMIS)
+	1110 data overrun (DATA_OVERRUN)
+ 3	break address interrupt (BRKADRINT)
+ 2	SCSI interrupt (SCSIINT)
+ 1	command complete interrupt (CMDCMPLT)
+ 0	sequencer interrupt (SEQINT)
+Notes:	the PhaseEngine processor can set bit 0 to interrupt the CPU requesting
+	  some service from it; an interrupt reason is passed in bits 7-4
+	the PhaseEngine processor sets bit 1 after placing a completed SCB into
+	  the queue out FIFO
+	setting bit 0 pauses the PhaseEngine processor; it needs unpausing via
+	  resetting bit 2 of the host control register (HCNTRL)
+SeeAlso: #P0986,#P0993,#P0995,#P1014
+
+Bitfields for hard error register (ERROR):
+Bit(s)	Description	(Table P0997)
+ 7-4	reserved
+ 3	sequencer RAM parity error (PARERR)
+ 2	illegal opcode in sequencer program (ILLOPCODE)
+ 1	illegal sequencer address referenced (ILLSADDR)
+ 0	illegal host access (ILLHADDR)
+Note:	usually a full board reset is required after detecting a hard error
+SeeAlso: #P1014
+
+Bitfields for clear interrupt status register (CLRINT):
+Bit(s)	Description	(Table P0998)
+ 7-4	reserved
+ 3	clear break address interrupt (CLRBRKADRINT)
+ 2	clear SCSI interrupt (CLRSCSIINT)
+ 1	clear command complete interrupt (CLRCMDINT)
+ 0	clear sequencer interrupt (CLRSEQINT)
+SeeAlso: #P0986,#P0991,#P1014
+
+Bitfields for DMA FIFO control register (DFCNTRL):
+Bit(s)	Description	(Table P0999)
+ 7	reserved
+ 6	"WIDEODD"
+ 5	SCSI enable (SCSIEN)
+ 4	SCSI DMA enable? (SDMAEN)
+ 3	host DMA enable? (HDMAEN)
+ 2	"DIRECTION"
+	=0 SCSI to host
+	=1 host to SCSI
+ 1	FIFO flush (FIFOFLUSH)
+ 0	FIFO reset (FIFORESET)
+Notes:	this register allows the PhaseEngine processor to control DMA transfers
+	  from/to host memory
+	bits 3 and 4 clear automatically when host and SCSI DMA is complete
+	  respectively
+SeeAlso: #P0994,#P1000
+
+Bitfields for DMA FIFO status register (DFSTATUS):
+Bit(s)	Description	(Table P1000)
+ 7-6	reserved
+ 5	"DWORDEMP"
+ 4	"MREQPEND"
+ 3	host DMA done (HDONE)
+ 2	DMA FIFO threshold? (DFTHRESH)
+ 1	FIFO full  (FIFOFULL)
+ 0	FIFO empty (FIFOEMP)
+SeeAlso: #P0994,#P0999
+
+Bitfields for SCB auto-increment register (SCBCNT):
+Bit(s)	Description	(Table P1001)
+ 7	SCB auto-increment (SCBAUTO)
+ 6-5	reserved
+ 4-0	SCB counter (SCBCNT)
+Note:	this register allows CPU to quickly upload/download the SCBs to/from
+	  the SCB RAM; if bit 7 is set any reference to addresses A0h-BFh post-
+	  increments bits 4-0 of this register containing the offset into the
+	  SCB array which is to be accessed next; on the AHA-284x only 8-bit
+	  transfers can be used
+SeeAlso: #P1003
+
+Format of the scratch RAM:
+Offset	Size	Description	(Table P1002)
+ 00h 16 BYTEs	target scratch (TARG_SCRATCH) (see #9025)
+ 10h	WORD	channel A Ultra SCSI enable (ULTRA_ENB_A)
+		bit N if set means Ultra SCSI transfers are enabled for the
+		  target ID N
+ 10h	BYTE	rejected byte (REJBYTE)
+ 11h	BYTE	channel B Ultra SCSI enable (ULTRA_ENB_B)
+		bit N if set means Ultra SCSI transfers are enabled for the
+		  target ID N
+ 11h	BYTE	rejected byte extended (REJBYTE_EXT)
+ 11h	BYTE	rejected byte (REJBYTE)
+ 12h	BYTE	channel A disable disconnect (DISC_DSB_A)
+ 13h	BYTE	channel B disable disconnect (DISC_DSB_B)
+ 14h	BYTE	length of pending message (MSG_LEN)
+ 15h  8 BYTEs	outgoing message (MSG0-MSG7)
+ 15h	BYTE	pending	 message flag (MSG_FLAGS)
+ 16h	BYTE	length of pending message (MSG_LEN)
+ 17h  ? BYTEs	outgoing message body (MSG_START)
+ 1Dh	BYTE	parameters for DMA logic (DMAPARAMS) (see #P0999)
+ 1Dh	BYTE	last phase (LASTPHASE)
+ 1Eh	BYTE	"SEQ_FLAGS"
+		bit 7: "RESELECTED"
+		bit 6: "IDENTIFY_SEEN"
+		bit 5: "TAGGED_SCB"
+		bit 4: data phase seen (DPHASE)
+		bit 3: reserved
+		bit 2: page SCBs (PAGESCBS)
+		bit 1: "WIDE_BUS"
+		bit 0: "TWIN_BUS"
+ 1Eh	BYTE	"ARG_1"
+		bit 0: "MAXOFFSET"
+ 1Fh	BYTE	saved target/channel/LUN (SAVED_TCL)
+		bits 7-4: target ID
+		bit 3: channel (0=A, 1=B)
+		bits 2-0: LUN
+ 1Fh	BYTE	"RETURN_1"
+		00h do nothing
+		10h SCB paged in (SCB_PAGEDIN)
+		20h send MESSAGE REJECT message (SEND_REJ)
+		40h send REQUEST SENSE	command (SEND_SENSE)
+		60h send SYNCHRONOUS DATA TRANSFER REQUEST message (SEND_SDTR)
+		80h send WIDE DATA TRANSFER REQUEST message (SEND_WDTR)
+ 20h	BYTE	scatter/gather count (SG_COUNT)
+ 20h	BYTE	"SIGSTATE"
+ 21h	DWORD	scatter/gather next segment pointer (SG_NEXT)
+ 21h	BYTE	parameters for DMA logic (DMAPARAMS) (see #P0999)
+ 22h	BYTE	scatter/gather count (SG_COUNT)
+ 23h	DWORD	scatter/gather next segment pointer (SG_NEXT)
+ 25h	BYTE	waiting SCB list head (WAITING_SCBH)
+ 26h	BYTE	saved link pointer (SAVED_LINKPTR)
+ 27h	BYTE	saved SCB pointer (SAVED_SCBPTR)
+ 27h	BYTE	SCB count (SCBCOUNT)
+		number of SCBs supported in hardware
+ 28h	BYTE	last phase (LASTPHASE) (see #9003)
+		bit 7: -C/D input (CDI)
+		bit 6: -I/O input (IOI)
+		bit 5: -MSG input (MSGI)
+		bits 4-0: reserved
+ 28h	BYTE	negative SCB count (COMP_SCBCOUNT)
+ 29h	BYTE	extended message length (MSGIN_EXT_LEN)
+ 29h	BYTE	queue count mask (QCNTMASK)
+		works around a bug in AIC-7850
+ 2Ah	BYTE	extended message opcode (MSGIN_EXT_OPCODE)
+ 2Ah	BYTE	"FLAGS"
+		bit 7: "RESELECTED"
+		bit 6: IDENTIFY message seen (IDENTIFY_SEEN)
+		bit 5: "SELECTED"
+		bit 4: data phase seen (DPHASE)
+		bit 3: reserved
+		bit 2: page SCBs (PAGESCBS)
+		bit 1: wide bus	 (WIDE_BUS)
+		bit 0: twin bus	 (TWIN_BUS)
+ 2Bh  3	BYTEs	extended message tail bytes (MSGIN_EXT_BYTES)
+ 2Bh	BYTE	saved target/channel/LUN (SAVED_TCL)
+		bits 7-4: target ID
+		bit 3: channel (0=A, 1=B)
+		bits 2-0: LUN
+ 2Ch	WORD	channel A active targets (ACTIVE_A)
+		bit N is set if there's untagged SCSI command currently active
+		  on the target ID N
+ 2Ch	BYTE	"ARG_1" or "RETURN_1"
+ 2Dh	BYTE	channel B active targets (ACTIVE_B)
+		bit N is set if there's untagged SCSI command currently active
+		  on the target ID N
+ 2Dh	BYTE	"ARG_2"
+ 2Eh	BYTE	disconnected SCB list head (DISCONNECTED_SCBH)
+ 2Eh	BYTE	waiting SCB list head (WAITING_SCBH)
+ 2Eh	BYTE	signal state (SIGSTATE)
+ 2Fh	BYTE	free SCB list head (FREE_SCBH)
+		disconnected SCB list head (DISCONNECTED_SCBH)
+ 2Fh	BYTE	"NEEDSDTR"
+		bit N if set means that the synchronous data transfer needs to
+		  be negotiated with the target ID N
+ 30h	DWORD	"HSCB_ADDR"
+ 30h	BYTE	saved link pointer (SAVED_LINKPTR)
+ 31h	BYTE	saved SCB  pointer (SAVED_SCBPTR)
+ 32h	WORD	channel A Ultra enable (ULTRA_ENB)
+		bit N if set means Ultra SCSI transfers are enabled for the
+		  target ID N
+ 33h	BYTE	channel B Ultra enable (ULTRA_ENB_B)
+		bit N if set means Ultra SCSI transfers are enabled for the
+		  target ID N
+ 34h	BYTE	"CUR_SCBID"
+ 35h	BYTE	"CMDOUTCNT"
+		count of commands placed in the out FIFO
+ 36h	BYTE	SCB count (SCBCOUNT)
+		number of SCBs supported in hardware
+ 36h	BYTE	"ARG_1" or "RETURN_1"
+		bit 7: "SEND_MSG"
+		bit 6: "SEND_SENSE"
+		bit 5: "SEND_REJ"
+		bits 4-0: reserved
+ 37h	WORD	channel A active targets (ACTIVE_A)
+		bit N is set if there's untagged SCSI command currently active
+		  on the target ID N
+ 39h	BYTE	reserved
+ 3Ah	WORD	SCSI configuration (SCSICONF)
+		bits 15-12: reserved?
+		bits 11-8: (Wide SCSI) our ID (see #P0982)
+		bit 7: (AIC-777x) enable SCSI low byte termination (see #P1011)
+		bit 6: enable SCSI bus reset at power up (RESET_SCSI)
+			 (see #P1011)
+		bit 5: enable SCSI parity check (ENSPCHK) (see #P0980)
+		bits 4-3: selection time-out select (STIMESEL) (see #P0980)
+		bits 2-0: our ID (see #P0982)
+ 3Bh	BYTE	channel B SCSI configuration
+		see bits 7-0 above
+ 3Ch	BYTE	"INTDEF"
+		bits 7-4: reserved?
+		bits 3-0: IRQ number (IRQ9..IRQ12, IRQ14, and IRQ15 are valid)
+ 3Dh	BYTE	host configuration (HOSTCONF)
+		bits 7-6: DMA FIFO threshold (DFTHRSH) (see #9038)
+		bits 5-2: bus off time (BOFF) (see #9037)
+		bits 1-0: reserved?
+ 3Eh	BYTE	reserved
+ 3Fh	BYTE	(AIC-7771) BIOS control (BIOSCTRL)
+		bits 5-4: BIOS mode (BIOSMODE)
+			  11 BIOS disabled (BIOSDISABLED)
+		bit 3: channel B is primary (CHANNEL_B_PRIMARY)
+Notes:	the scratch RAM is used for passing information between the driver and
+	  BIOS and the code running on the PhaseEngine processor; it serves as
+	  a working memory for the PhaseEngine processor as well
+	location definitions overlap due to various sources giving different
+	  scratch RAM layouts
+	the PhaseEngine processor uses "ARG_1" and "ARG_2" to pass parameters
+	  to the drivers and BIOS during sequencer interrupts; "RETURN_1" is used
+	  to return results from the drivers and BIOS to the PhaseEngine code
+	the PhaseEngine processor uses SCB pointer register's (SCBPTR) values
+	  to link SCB in the lists, with value FFh indicating the end of list
+SeeAlso: #9047,#9048
+
+Format of the SCB array:
+Offset	Size	Description	(Table P1003)
+ 00h	BYTE	"SCB_CONTROL"
+		bit 7: need WDTR message (NEEDWDTR) or
+		       "MK_MESSAGE"
+		bit 6: disconnect enable (DISCENB)
+		bit 5: tagging enable (TAG_ENB)
+		bit 4: need SDTR message (NEEDSDTR) or
+		       "MUST_DMAUP_SCB"
+		bit 3: "ABORT_SCB"
+		bit 2: "DISCONNECTED"
+		bits 1-0: command tag type (SCB_TAG_TYPE)
+ 01h	BYTE	target/channel/LUN (SCB_TCL)
+		bits 7-4: target ID
+		bit 3: channel (0=A, 1=B)
+		bits 2-0: LUN
+ 02h	BYTE	target status (SCB_TARGET_STATUS)
+		SCSI status byte
+ 03h	BYTE	scatter/gather count (SCB_SGCOUNT)
+ 04h	DWORD	scatter/gather pointer (SCB_SGPTR)
+ 08h	BYTE	residual scatter/gather count (SCB_RESID_SGCNT)
+ 09h  3 BYTEs	residual data count (SCB_RESID_DCNT)
+ 0Ch	DWORD	data pointer (SCB_DATAPTR)
+ 10h  3 BYTEs	data count (SCB_DATACNT)
+ 13h	BYTE	next linked SCB index (SCB_LINKED_NEXT)
+ 14h	DWORD	command pointer (SCB_CMDPTR)
+ 18h	BYTE	command length (SCB_CMDLEN)
+ 19h	BYTE	command tag (SCB_TAG)
+ 1Ah	BYTE	next SCB index (SCB_NEXT)
+ 1Bh	BYTE	previous SCB index (SCB_PREV)
+ 1Ch  2	WORDs	busy targets (SCB_BUSYTARGETS)
+		bit N is set if there's untagged SCSI command currently active
+		  on the target ID N
+SeeAlso: #P1004,#P1014
+
+Format of the scatter/gather segment:
+Offset	Size	Description	(Table P1004)
+ 00h	DWORD	physical address
+ 04h	DWORD	length
+SeeAlso: #P1003,#P1014
+
+Bitfields for AHA-284x serial EEPROM control register (SEECTL):
+Bit(s)	Description	(Table P1005)
+ 7-3	reserved
+ 2	chip select (CS)
+ 1	clock (CK)
+ 0	data out (DO)
+Notes:	93C46 serial EEPROM chips have 1024 bits organized into 64 16-bit
+	  words and use 6 bits to address each word
+	only the first 32 words of serial EEPROM are used by the Adaptec BIOS
+	bits 2-0 are connected to the chip select, clock, and data out pins of
+	  the serial EEPROM respectively
+	bit 1 must be pulled high and then low for a minimum of 750 and 250 ns
+	  to provide clocking for the EEPROM chip
+	bit 1 going from low to high causes the EEPROM chip to sample the data
+	  out pin and initiates the next bit to be sent through the data in pin
+	bit 2 must be set for a minimum of 1 mcs with the bit 1 goig high and
+	  then low for the EEPROM chip to be selected; then the instruction can
+	  be sent to the EEPROM chip
+	instruction can be terminated by taking the EEPROM chip select pin low,
+	  with the bit 1 going high and low
+SeeAlso: #P1006,#P1007,#P1008
+
+Bitfields for AHA-284x "STATUS" register:
+Bit(s)	Description	(Table P1006)
+ 7	EEPROM timer fired? (EEPROM_TF)
+ 6-5	"BIOS_SEL"
+ 4-1	"ADSEL"
+ 0	data in (DI)
+Notes:	bit 0 is connected to the data in pin of the serial EEPROM; it can be
+	  read after the clock pin goes from high to low
+	bit 7 is cleared after a read from the serial EEPROM control register
+	  (SEECTL) and goes high 800 ns later
+SeeAlso: #P1005,#P1007,#P1008
+
+(Table P1007)
+Values for the 93C46 serial EEPROM instructions:
+Opcode	   Function  Parameter	Description
+0000xxxxb  EWDS	     -		disable all programming instructions
+0001xxxxb  WRAL	     D15..D0	write to all registers
+0010xxxxb  ERAL	     -		erase all registers
+0011xxxxb  EWEN	     -		write enable
+				must precede all programming modes
+01AAAAAAb  WRITE     D15..D0	write register with address A5..A0
+10AAAAAAb  READ	     -		read registers starting with address A5..A0
+11AAAAAAb  ERASE     -		erase register with address A5..A0
+Notes:	while the chip select pin remains high an instuction and the optional
+	  parameter word can be clocked in MSB first, beginning with the start
+	  bit of 1
+	16-bit parameter and data words are transferred MSB first, beginning
+	  with the start bit of 0
+SeeAlso: #P1005,#P1006
+
+Format of the AHA-284x serial EEPROM:
+Address	Size	Description	(Table P1008)
+ 00h  16 WORDs	SCSI ID configuration (see #P1009)
+ 10h	WORD	BIOS control (see #P1011)
+ 11h	WORD	host adapter control (see #P1012)
+ 12h	WORD	bus release time / host adapter ID (see #P1013)
+ 13h	WORD	maximum targets (see #P1014)
+ 14h  11 WORDs	reserved
+ 1Fh	WORD	checksum
+SeeAlso: #P1005,#P1006
+
+Bitfields for the serial EEPROM SCSI ID configuration word:
+Bit(s)	Description	(Table P1009)
+ 15-11	reserved
+ 10	report even if not found (CFRNFOUND)
+ 9	include in BIOS scan (CFINCBIOS)
+ 8	send START UNIT SCSI command (CFSTART)
+ 7-6	reserved
+ 5	(Wide SCSI) wide bus device (CFWIDEB)
+ 4	enable disconnection (CFDISC)
+ 3	enable synchronous transfer (CFSYNCH)
+ 2-0	synchronous transfer rate (CFXFER)
+SeeAlso: #P0605,#P1008
+
+Bitfields for the serial EEPROM BIOS control word:
+Bit(s)	Description	(Table P1011)
+ 15-6	reserved
+ 5	extended translation (CFEXTEND)
+ 4	support more than 2 drives (CFSM2DRV)
+ 3	reserved
+ 2	BIOS enabled (CFBIOSEN)
+ 1	support removable drives for boot only (CFSUPREMB)
+ 0	support all removable drives (CFSUPREM)
+SeeAlso: #P1008
+
+Bitfields for the serial EEPROM host adapter control word:
+Bit(s)	Description	(Table P1011)
+ 15-7	reserved
+ 6	reset SCSI bus at IC initialization (CFRESETB)
+ 5	SCSI low byte termination (CFSTERM)
+	=0 disable
+	=1 enable
+ 4	SCSI parity (CFSPARITY)
+	=0 disable
+	=1 enable
+ 3-2	FIFO threshold (CFFIFO)
+ 1-0	selection timeout (CFSELTO)
+SeeAlso: #P0600,#P0980,#P0994,#P1008
+
+Bitfields for the serial EEPROM bus release time / host adapter ID word:
+Bit(s)	Description	(Table P1012)
+ 15-8	bus release time (CFBRTIME)
+ 7-4	reserved
+ 3-0	host adapter SCSI ID (CFSCSIID)
+SeeAlso: #P0982,#P0989,#P1007
+
+Bitfields for the serial EEPROM maximum targets word:
+Bit(s)	Description	(Table P1013)
+ 15-8	reserved
+ 7-0	maximum targets (CFMAXTARG)
+SeeAlso: #P1007
+
+Bitfields for the PhaseEngine SCSI sequence processor instruction:
+Bit(s)	Description	(Table P1014)
+ 31-29	reserved (0)
+ 28-25	opcode
+	0000 OR	 dest,imm[,src] [RET]
+	     MVI dest,imm [RET]
+	0001 AND dest,imm[,src] [RET]
+	     MOV dest,src [RET]
+	     CLR dest [RET]
+	     NOP [RET]
+	     RET
+	0010 XOR dest,imm[,src] [RET]
+	     NOT dest [RET]
+	0011 ADD dest,imm[,src] [RET]
+	     INC dest[,src] [RET]
+	     DEC dest[,src] [RET]
+	     CLC [dest[,imm]] [RET]
+	     STC dest [RET]
+	0100 ADC dest,imm[,src] [RET]
+	0101 SHL/SHR/ROL/ROR dest,[src,]imm [RET]
+	1000 OR	 src,imm JMP addr
+	     MOV src JMP addr
+	     MVI imm JMP addr
+	     JMP addr
+	1001 OR	 src,imm JC addr
+	     MOV src JC addr
+	     MVI imm JC addr
+	     JC addr
+	1010 OR	 src,imm JNC addr
+	     MOV src JNC addr
+	     MVI imm JNC addr
+	     JNC addr
+	1011 OR	 src,imm CALL addr
+	     MOV src CALL addr
+	     MVI imm CALL addr
+	     CALL addr
+	1100 CMP  src,imm JNE addr
+	1101 TEST src,imm JNZ addr
+	1110 CMP  src,imm JE  addr
+	1111 TEST src,imm JZ  addr
+	others reserved
+ 24-16	(jump instructions) instruction address
+ 24	(non-jump instructions) return flag
+ 23-16	(non-jump instructions) destination register address
+ 15-8	source register address
+ 7-0	(shift instructions) shift control (see #P1015)
+	(other instructions) immediate data
+	if 0 accumulator register (ACCUM) is used instead
+Notes:	the jump instructions with the OR/MOV/MVI prefixes implicitly use the
+	  source index register (SINDEX) as destination
+SeeAlso: #P0989,#P0990,#P0991,#P0995,#P0996,#P0997,#9042
+
+Bitfields for the PhaseEngine shift control:
+Bit(s)	Description	(Table P1015)
+ 7	clear all bits?
+ 6-4	number of bits to shift the AND mask (FFh)
+ 3	=0 shift the AND mask left
+	=1 shift the AND mask right
+ 2-0	number of bits to rotate the source left
+Notes:	the 8-bit source seems to be rotated left and then AND'ed with the mask
+	  (FFh) which is shifted left or right prior to AND'ing in order to
+	  perform all kinds of the shift/rotate instructions
+	bit 7 is set (and bits 6-4 equal 7) if the shift count is greater than
+	  7 specified for the SHL/SHR instructions
+

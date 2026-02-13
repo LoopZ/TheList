@@ -1,0 +1,337 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Intel 82374EB/SB EISA CHIPSET
+Index: Intel 82374EB;Intel 82374SB
+
+0022  -W  index for accesses to data port (see #P0039)
+0023  RW  chip set data
+
+!!!29047604.pdf pg. 36
+(Table P0039)
+Values for Intel 82374 register index:
+ 02h	ESC identification register
+	(82374 will only respond to ports 0022h and 0023h after an 0Fh
+	 is written to this register)
+ 08h	revision ID register
+ 40h	mode select (see #P0040)
+ 42h	BIOS Chip Select A (see #P0041)
+ 43h	BIOS Chip Select B (see #P0042)
+ 4Dh	EISA clock divisor (see #P0043)
+ 4Eh	peripheral Chip Select A (see #P0044)
+ 4Fh	peripheral Chip Select B (see #P0045)
+ 50h-53h EISA ID registers
+ 57h	scatter/gather relocate base address (see also #01075)
+	(specifies bits 15-0 if S/G port addresses [low byte always 10h-3Fh])
+ 59h	APIC base address relocation
+ 60h-63h PCI IRQn# route control (see also #01076)
+ 64h	general-purpose chip select low address 0
+ 65h	general-purpose chip select high address 0
+ 66h	general-purpose chip select mask register 0
+ 68h	general-purpose chip select low address 1
+ 69h	general-purpose chip select high address 1
+ 6Ah	general-purpose chip select mask register 1
+ 6Ch	general-purpose chip select low address 2
+ 6Dh	general-purpose chip select high address 2
+ 6Eh	general-purpose chip select mask register 2
+ 6Fh	general-purpose peripheral X-Bus control
+---SB only---
+ 70h	PCI/APIC control (see #P0046)
+ 88h	test control
+ A0h	SMI control (see #P0047)
+ A2h-A3h  SMI enable (see #P0048)
+ A4h-A7h  System Event Enable (see #P0049)
+ A8h	Fast-Off timer
+ AAh-ABh SMI Request (see #P0050)
+ ACh	Clock Scale STPCLK# low timer
+ AEh	Clock Scale STPCLK# high timer
+
+Bitfields for 82374EB mode select (register 40h):
+Bit(s)	Description	(Table P0040)
+  7	reserved
+  6	enable the selected (MREQ[7:4]#/PIRQ[3:0]# functionality
+  5	enable/disable configuration RAM Page Address (CPG[4:0]) generation
+	=1 accesses to the configuration RAM space will generate the RAM page
+	  address on the LA[31:27]# pins (default)
+	=0 the CPG[4:0] signals will not be activated
+  4	General Purpose Chip Selects: select GPCS[2:0]#/ECS[2:0] pins' function
+	=0 GPCS[2:0]# functionality is selected
+	=1 ESC[2:0] functionality is selected
+  3	System Error: enable generation of NMI based on SERR# signal pulsing
+	=0 NMI is negated and SERR# is disabled from generating an NMI
+	=1 NMI signal is asserted when NMIs are enabled via the NMIERTC
+	  Register and SERR# is asserted
+	Note: other NMI sources are enabled/disabled via the NMISC register
+  2-0	PIRQx Mux/Mapping Control: select muxing/mapping of PIRQ[3:0]# with
+	  MREQ[7:4] and group of X-Bus signals (DLIGHT#, RTCWR#, RTCRD#).
+	Different bit combinations select the number of EISA slots or group of
+	  X-Bus signals which can be supported with the certain number of
+	  PIRQx# signals by determining the functionality of pins
+	  AEN[4:1]/EAEN[4:1], MACK[3:0]#/EMACK[3:0]#, MREQ[7:4]/PIRQ[3:0]#,
+	  DLIGHT#/PIRQ0#, FDCCS#/PIRQ1#, RTCWR#/PIRQ2#, and RTCRD#/PIRQ3#.
+SeeAlso: #P0039
+
+Bitfields for 82374EB BIOS Chip Select A "BIOSCSA" (register 42h):
+Bit(s)	Description	(Table P0041)
+  7-6	reserved
+  5	Enlarged BIOS: assert LBIOSCS# for memory read cycles to locations
+	  FFF80000h-FFFDFFFFh
+  4	High BIOS: assert LBIOSCS# for memory read cycles to locations
+	  0F0000h-0FFFFFh, FF0000h-FFFFFFh, and FFFF0000h-FFFFFFFFh
+  3	Low BIOS 4: assert LBIOSCS# for memory read cycles to locations
+	  0EC000h-0EFFFFh, FFEEC000h-FFEEFFFFh, and FFFEC000h-FFFEFFFFh
+  2	Low BIOS 3: assert LBIOSCS# for memory read cycles to locations
+	  0E8000h-0EBFFFh, FFEE8000h-FFEEBFFFh, and FFFE8000h-FFFEBFFFh
+  1	Low BIOS 2: assert LBIOSCS# for memory read cycles to locations
+	  0E4000h-0E7FFFh, FFEE4000h-FFEE7FFFh, and FFFE4000h-FFFE7FFFh
+  0	Low BIOS 1: assert LBIOSCS# for memory read cycles to locations
+	  0E0000h-0E3FFFh, FFEE0000h-FFEE3FFFh, and FFFE0000h-FFFE3FFFh
+Note:	if bit 3 of register 43h (BIOSCSB) is set, then LBIOSCS# will be
+	  asserted for write cycles as well as read cycles on any enabled range
+SeeAlso: #P0039,#P0042
+
+Bitfields for 82374EB BIOS Chip Select B (register 43h):
+Bit(s)	Description	(Table P0042)
+  7-4	Reserved
+  3	BIOS Write Enable: assert LBIOSCS# for both memory read AND write
+	  cycles for addresses in the decoded and enabled BIOS range
+	  (see #P0041)
+  2	16 Meg BIOS: assert LBIOSCS# for memory read cycles to locations
+	  FF0000h-FFFFFFh
+  1	High VGA BIOS: assert LBIOSCS# for memory read cycles to locations
+	  0C4000h-0C7FFFh
+  0	Low VGA BIOS: assert LBIOSCS# for memory read cycles to locations
+	  0C0000h-0C3FFFh
+Note:	if bit 3 of register 43h (BIOSCSB) is set, then LBIOSCS# will be
+	  asserted for write cycles as well as read cycles on any enabled range
+	  above
+SeeAlso: #P0039,#P0041
+
+Bitfields for 82374EB EISA clock divisor (register 4Dh):
+Bit(s)	Description	(Table P0043)
+  7-6	Reserved
+  5	Co-processor Error: specify if the FERR# signal is connected to the
+	  ESC internal IRQ13 interrupt signal.
+	=0 FERR# signal is ignored by the ESC (i.e. this signal is not
+	  connected to any logic in the ESC).
+	=1 assert IRQ13 to the interrupt controller if FERR# signal is asserted
+  4	82374EB: Reserved
+	82374SB: ABFULL (with IRQ12):
+	=0 internal IRQ12 is directed to the interrupt controller and 
+	  transitions on ABFULL have no effect on this interrupt signal
+	=1 the assertion of ABFULL is latched and directed to the internal
+	  IRQ12 signal in the following manner:
+	    If the interrupt controller is programmed for edge detect mode on
+	      IRQ12, a low-to-high transition is generated on the internal
+	      IRQ12 signal. Transitions on the IRQ12 input pin are not
+	      reflected on the internal IRQ12 signal.
+	    If the interrupt controller is programmed for level-sensitive mode,
+	      a high-to-low transition is generated on the internal IRQ12
+	      signal.  Transitions on the IRQ12 input pin are also reflected
+	      on the internal IRQ12 signal.
+	The latching of the ABFULL signal is cleared by an I/O read of
+	  address 60h (no aliasing) or by a hard reset.
+  3	82374EB: Reserved
+	82374SB: Keyboard Full (KBFULL): select edge-detect KBFULL function on
+	  the IRQ1 input signal
+	=0 IRQ1 is directed to the interrupt controller
+	=1 (default) IRQ1 is latched and directed to the interrupt controller.
+	  The latched IRQ1 is cleared by an I/O read of address 60h (no
+	  aliasing) or by a hard reset.
+  2-0	Clock Divisor: select the integer used to divide the PCICLK down to
+	  generate the BCLK.
+	000 4 (33.33 MHz) 8.33 MHz (default after reset)
+	001 3 (25 MHz) 8.33 MHz
+	01x reserved
+	1xx reserved
+SeeAlso: #P0039
+
+Bitfields for 82374EB peripheral Chip Select A (register 4Eh):
+Bit(s)	Description	(Table P0044)
+  7	Reserved
+  6	Keyboard Controller Mapping
+	=0 the keyboard controller encoded chip select signal and the X-Bus
+	  transceiver enable (XBUSOE#) are generated for accesses to address
+	  locations 60h (82374EB/SB), 62h (82374EB only), 64h (82374EB/SB) and
+	  66h (82374EB only).
+	=1 the keyboard controller chip select signals are generated for
+	  accesses to the above address locations. However XBUSOE# is disabled.
+	Note:	bit 1 must be 1 for either value of this configuration bit to
+		  decode an access to locations 60h, 62h, 64h, or 66h.
+  5	Floppy Disk/IDE Controller Address range
+	=0 primary (1Fxh and 3Fxh)
+	=1 secondary (17xh and 37xh)
+  4	IDE DECODE: enable or disable IDE locations 1F0h-1F7h (primary) or
+	  170h-177h (secondary) and 3F6h,3F7h (primary) or 376h,377h (sec).
+	82374EB: When this bit is set to 0, the IDE encoded chip select signals
+	  and the X-Bus transceiver signal (XBUSOE#) are not generated for
+	  these addresses.
+	82374SB: When this bit is set to 0, the IDE encoded chip select signals
+	  and the X-Bus transceiver signal (XBUSOE#) are not generated for
+	  addresses 1F0h-1F7h (primary) or 170h-177h (secondary) and 3F6h or
+	  376h.	 Read/write accesses to addresses 377h and 3F7h are not
+	  disabled and still generate XBUSOE#.
+  3-2	Floppy Disk and IDE/Floppy Disk Decodes: Bits 2 and 3 are used to
+	  enable or disable the floppy locations as indicated. Bit 2 defaults
+	  to enabled (1) and bit 3 defaults to disabled (0) when a reset occurs
+  1	Keyboard Controller Decode: enable the keyboard controller address
+	  locations 60h (82374EB/SB), 62h (82374EB only), 64h (82374EB/SB), and
+	  66h (82374EB only).
+	=0 the keyboard controller encoded chip select signals and the X-Bus
+	  transceiver signal (XBUSOE#) are not generated for these locations
+	Note:	the value of this bit affects control function (keyboard
+		  controlling mapping) provided by bit 6 of this register.
+  0	Real Time Clock Decode: enable the RTC address locations 70h-77h.
+	=0 the RTC encoded chip	select signals RTCALE, RTCRD, RTCWR#, and
+	  XBUSOE# signals are not generated for these addresses.
+SeeAlso: #P0039,#P0045
+
+Bitfields for 82374EB peripheral Chip Select B (register 4Fh):
+Bit(s)	Description	(Table P0045)
+  7	CRAM Decode: enable I/O write accesses to location 0C00h and I/O
+	  read/write accesses to locations 0800h-08FFh. The configuration RAM
+	  read and write (CRAMRD#, CRAMWR#) strobes are valid for accesses to
+	  0800h-08FFh.
+  6	Port 92 Decode: enable access to Port 92 (default at PCIRST is enabled)
+  5-4	select which Parallel Port address range (LPT1, 2, or 3) is decoded.
+	00 LPT1 (3BCh-3BFh)
+	01 LPT2 (378h-37Fh)
+	10 LPT3 (278h-27Fh)
+	11 disabled
+  3-2	Serial Port B Address Decode: If either COM1 or COM2 address ranges
+	  are selected, these bits default to disabled upon PCIRST.
+	00 3F8h-3FFh (COM1)
+	01 2F8h-2FFh (COM2)
+	10 Reserved
+	11 Port B disabled
+  1-0	Serial Port A Address Decode: If either COM1 or COM2 address ranges are
+	  selected, these bits default to disabled upon PCIRST.
+	00 3F8h-3FFh (COM1)
+	01 2F8h-2FFh (COM2)
+	10 Reserved
+	11 Port A disabled
+SeeAlso: #P0039,#P0044
+
+Bitfields for 82374SB PCI/APIC control (register 70h):
+Bit(s)	Description	(Table P0046)
+  7-2	Reserved
+  1	SMI Routing Control (SMIRC)
+	=1 SMI is routed via the APIC
+	=0 SMI is routed via the SMI# signal
+	Note:	when SMRCe1, INTR can not be routed through the APIC, since it
+		  is sharing the APIC interrupt input with SMI#.
+  0	INTR Routing Control (INTRC): When APIC is enabled (in mixed or pure
+	  APIC mode), this bit allows the ESC's external INTR signal to be
+	  masked (forces INTR to the inactive state but does not tri-states
+	  the signal). Thus, the CPU's INTR pin can be used (by providing a
+	  simple -gate) for the APIC Local Interrupt (LINTRx). However, INTR
+	  must not be masked via this bit when APIC is disabled and INTR is
+	  the only mechanism to signal the 8259 recognized interrupts to the
+	  CPU.
+	=1 INTR is disabled (APIC must be enabled)
+	=0 INTR is enabled
+SeeAlso: #P0039
+
+Bitfields for 82374SB SMI control (register A0h):
+Bit(s)	Description	(Table P0047)
+  7	reserved (0)
+  6-4	reserved
+  3	Fast Off Timer Freeze (CTMRFRZ): disable the Fast Off Timer
+	Disabling the timer prevents time-outs from occurring while executing
+	  SMM code.
+  2	STPCLK# Scaling Enable (CSTPCLKSC)
+	=0 (default) scaling control of the STPCLK# signal is disabled.
+	=1, the STPCLK# signal scaling control is enabled. When enabled (and
+	  bit 1=1, enabling the STPCLK# signal), the high and low times for the
+	  STPCLK# signal are controlled by the Clock Scaling STPCLK# High Timer
+	  and Clock Scaling STPCLK# Low Timer Registers, respectively.
+  1	STPCLK# Signal Enable (CSTPCLKE): permits software to place the CPU
+	  into a low power state.
+	=0 (default) STPCLK# signal is disabled and is negated (high)
+	=1 the STPCLK# signal is enabled and a read from the APMC Register
+	  causes STPCLK# to be asserted
+	Software can set this bit to 0 by writing a 0 to it or by any write to
+	  the APMC Register.
+  0	SMI# Gate (CSMIGATE)
+	=0 (default) the SMI# signal is masked and negated
+	=1 SMI# signal is enabled and a system management interrupt condition
+	  causes the SMI# signal to be asserted
+Note:	bit 0 only affects the SMI# signal and does not affect the
+	  detection/recording of SMI events (i.e., it does not affect the SMI
+	  status bits in the SMIREQ Register). Thus, SMI conditions can be
+	  pending when bit 0 is set to 1; if an SMI is already pending, the
+	  SMI# signal is asserted.
+SeeAlso: #P0039
+
+Bitfields for 82374SB SMI enable (register A2h-A3h):
+Bit(s)	Description	(Table P0048)
+  15-8	Reserved
+  7	APMC Write SMI Enable
+	=0 writes to the APMC Register do not generate an SMI
+	=1 writes to the APMC Register generate an SMI
+  6	EXTSMI# SMI Enable
+	=1 asserting the EXTSMI# input signal generates an SMI
+  5	Fast Off Timer SMI Enable
+	=1 Fast-Off timer generates an SMI when it decrements to zero
+  4	IRQ12 SMI Enable (PS/2 Mouse Interrupt)
+	=1 asserting the IRQ12 input signal generates an SMI
+  3	IRQ8 SMI Enable (RTC Alarm Interrupt)
+	=1 asserting the IRQ8 input signal generates an SMI
+  2	IRQ4 SMI Enable (COM2/COM4 Interrupt or Mouse)
+	=1 asserting the IRQ3 input signal generates an SMI
+  1	IRQ3 SMI Enable (COM1/COM3 Interrupt or Mouse)
+	=1 asserting the IRQ3 input signal generates an SMI
+  0	IRQ1 SMI Enable (Keyboard Interrupt)
+	=1 asserting the IRQ1 input signal generates an SMI
+SeeAlso: #P0039
+
+Bitfields for 82374SB System Event Enable (register A4h-A7h):
+Bit(s)	Description	(Table P0049)
+  31	Fast Off SMI Enable (FSMIEN)
+	=1 an SMI causes a system event that re-loads the Fast Off Timer and a
+	  break event that negates the STPCLK# signal
+	=0 an SMI does not re-load the Fast Off Timer or negate the STPCLK#
+	  signal
+  30	reserved
+  29	Fast Off NMI Enable (FNMIEN)
+	=1 an NMI (e.g., parity error) causes a system event that re-loads the
+	  Fast Off Timer and a break event that negates the STPCLK# signal
+	=0 an SMI does not re-load the Fast Off Timer or negate	the STPCLK#
+	  signal.
+  28-16 reserved
+  15-3	These bits are used to prevent the system from entering Fast Off and
+	  break any current powerdown state when the selected hardware
+	  interrupt (IRQ15-IRQ3) occurs
+	=1 the corresponding interrupt causes a	system event that re-loads the
+	  Fast Off Timer and a break event that	negates the STPCLK# signal
+	=0 the corresponding interrupt does not re-load the Fast Off Timer or
+	  negate the STPCLK# signal
+  2	reserved
+  1-0	These bits are used to prevent the system from entering Fast Off and
+	  break any current powerdown state when the selected hardware
+	  interrupt (IRQ1-IRQ0) occurs
+	=1 the corresponding interrupt causes a	system event that re-loads the
+	  Fast Off Timer and a break event that	negates the STPCLK# signal
+	=0 the corresponding interrupt does not re-load the Fast Off Timer or
+	  negate the STPCLK# signal
+SeeAlso: #P0039
+
+Bitfields for 82374SB SMI Request (register AAh-ABh):
+Bit(s)	Description	(Table P0050)
+  15-8	Reserved
+  7	APM SMI Status (RAPMC): set to 1 to indicate that a write to the APM
+	  Control Register caused an SMI
+  6	EXTSMI# SMI Status (REXT): set to 1 when EXTSMI# caused an SMI
+  5	Fast Off Timer Expired Status (RFOT): set to 1 to indicate that the
+	  Fast Off Timer expired and caused an SMI.  The Fast Off  timer
+	  re-starts counting on the next clock after it expires.
+  4	SMI caused by IRQ12
+  3	SMI caused by IRQ8
+  2	SMI caused by IRQ4
+  1	SMI caused by IRQ3
+  0	SMI caused by IRQ1
+SeeAlso: #P0039
+

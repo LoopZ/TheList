@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: R3C
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 3Ch - AWARD - Boot Configuration Bits
+
+Bitfields for AWARD boot configuration bits:
+Bit(s)	Description	(Table C0047)
+ 7	disable virus warning on boot
+ 6,5	???
+ 4	Quick POST Enabled
+ 3,2	translation used for second disk
+	00 normal, 01 LBA, 10 Large, 11 Auto
+ 1	Enable Turbo Switch Input
+ 0	0 = Boot from A, then C
+	1 = Boot from C, then A
+

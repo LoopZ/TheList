@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: h 	vendor-specific hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Chips&Technologies 82C811/82C812 - CONFIGURATION REGISTERS
+Note:	each access to PORT 0023h must immediately follow a write to
+	  PORT 0022h (this is to avoid accidental accesses)
+SeeAlso: PORT 0022h"82C311",PORT 0022h"82C315"
+
+0022  -W  configuration register index (see #P0072)
+0023  RW  configuration register data
+
+(Table P0072)
+Values for Chips&Technologies 82C811/812 configuration register index:
+ 60h	(82C811) processor clock select (see #P0073)
+ 61h	(82C811) command delay (see #P0074)
+ 62h	(82C811) wait states (see #P0075)
+---82C812---
+ 64h	version (see #P0076)
+ 65h	ROM configuration
+ 66h	memory enable 1
+ 67h	memory enable 2
+ 68h	memory enable 3
+ 69h	memory enable 4
+ 6Ah	bank 0/1 enable
+ 6Bh	memory configuration
+ 6Ch	bank 2/3 enable
+ 6Dh	EMS base address
+ 6Eh	EMS address extension
+ 6Fh	miscellaneous
+!!!chips\cs8281.pdf p.48
+
+Bitfields for C&T 82C811 processor clock select:
+Bit(s)	Description	(Table P0073)
+ 7-6	82C811 release number (00 = initial release)
+ 5	fast CPU reset initiated by changing this bit from 0 to 1
+ 4	processor clock
+	0 CLK2IN (default)
+	1 BCLK
+ 3	reserved
+ 2	enable NMI generate on timeout of local-bus READY# signal
+ 1	reserved
+ 0	local-bus READY# signal timed out (128 clock cycles0
+SeeAlso: #P0072,#P0074,#P0075
+
+Bitfields for C&T 82C811 command delay register:
+Bit(s)	Description	(Table P0074)
+ 7	enable additional address bus hold time
+ 6	reserved (1)
+ 5-4	AT-bus 16-bit memory access delay, in BCLK cycles (default = 0)
+ 3-2	AT-bus 8-bit memory access delay, in BCLK cycles (default = 1)
+ 1-0	I/O command delay, in BCLK cycles (default = 1)
+SeeAlso: #P0072,#P0073,#P0075
+
+Bitfields for C&T 82C811 wait states register:
+Bit(s)	Description	(Table P0075)
+ 7	80387sx is present
+ 6	coprocessor is ready
+ 5-4	AT-bus 16-bit cycle wait states (default = 3)
+ 3-2	AT-bus 8-bit cycle wait states (00=two ... 11=five [default])
+ 1-0	bus clock (BCLK)
+	00 CLK2IN/2 (default)
+	01 CLK2IN/3
+	10 ATCLK
+	11 reserved
+SeeAlso: #P0072,#P0073,#P0074
+
+Bitfields for C&T 82C812 version register:
+Bit(s)	Description	(Table P0076)
+ 7	NEATsx memory controller (0 = 82C812)
+ 6-5	82C812 revision (00 = initial release)
+ 4-0	reserved
+SeeAlso: #P0072
+

@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:00E5h - Gigabyte AWARD v4.51PG - ASSOC DRIVE NUMS TO PHYS INTERFACES
+Size:	BYTE
+SeeAlso: MEM 0040h:00E5h"AWARD"
+
+Bitfields for drive number/interface mapping:
+Bit(s)	Description	(Table M0129)
+ 7-6	interface for drive 83h (F:)
+	00 primary master
+	01 primary slave
+	10 secondary master
+	11 secondary slave
+ 5-4	interface for drive 82h (as for bits 7-6)
+ 3-2	interface for drive 81h (as for bits 7-6)
+ 1-0	interface for drive 80h (C:) (as for bits 7-6)
+SeeAlso: #M0128
+

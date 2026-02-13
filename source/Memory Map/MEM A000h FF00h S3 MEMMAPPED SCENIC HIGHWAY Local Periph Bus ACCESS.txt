@@ -1,0 +1,212 @@
+--------------------------------------------------------------------------------
+ Unique ID: MA000FF00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM A000h:FF00h - S3 - MEM-MAPPED "SCENIC HIGHWAY" (Local Periph. Bus) ACCESS
+Size:	64 DWORDs
+Note:	the S3 graphics processor registers can be mapped at either
+	  linear 000A0000h or at offset 16M from the start of the linear
+	  frame buffer
+SeeAlso: MEM A000h:8180h
+
+Format of S3 Local Peripheral Bus memory-mapped registers:
+Offset	Size	Description	(Table M0073)
+FF00h	DWORD	LPB mode (see #M0074)
+FF04h	DWORD	LPB FIFO status (see #M0075)
+FF08h	DWORD	interrupt status (see #M0076)
+FF0Ch	DWORD	frame buffer address 0 (bits 21-0, multiple of 8)
+		offset within frame buffer at which to store incoming data from
+		  LPB when Streams Processor double-buffer control (see #M0065)
+		  bit 4 clear
+FF10h	DWORD	frame buffer address 1 (bits 21-0, multiple of 8)
+		offset within frame buffer at which to store incoming data from
+		  LPB when Streams Processor double-buffer control (see #M0065)
+		  bit 4 is set
+FF14h	DWORD	"direct address" = index for FF18h (see #M0077)
+FF18h	DWORD	"direct data" (see #M0077)
+		Note: the direct address/direct data registers presumably rely
+		  on the attached device inserting data into the digital video
+		  stream, as on a Diamond Stealth64 Video, the "direct data"
+		  appears to reflect the video stream data (i.e. it varies, but
+		  with a pattern that depends on the video image, and stops
+		  varying when video is frozen)
+FF1Ch	DWORD	general purpose I/O (see #M0078)
+FF20h	DWORD	LPB serial port -- I2C/DDC access (see #M0079)
+FF24h	DWORD	input window size (high word = rows, low word = columns)
+FF28h	DWORD	data offsets
+		(video alignment; high word = rows ; low word = columns)
+FF2Ch	DWORD	horizontal decimation
+		bits 0-31 set indicate that bytes 0-31 (mod 32)
+		  of each line should be dropped (in Video16 mode, each bit
+		  controls a WORD); decimation is aligned with the start of
+		  line as specified by the data offsets at FF28h
+FF30h	DWORD	vertical decimation
+		bits 0-31 set indicate that lines 0-31 (mod 32) should be
+		  dropped, i.e. setting this DWORD to 55555555h will drop
+		  every other line; decimation starts with VSYNC regardless
+		  of the data offsets specified at FF28h
+FF34h	DWORD	line stride (number of bytes between starts of successive lines
+		  of video data)
+		must be multiple of 4 -- lowest two bits forced to 0
+FF38h	3 DWORDs unused??? (seem to echo FF34h)
+FF40h 8 DWORDs	LPB output FIFO - data transfer
+		writing to ANY of these DWORDs transfers a value to the FIFO;
+		  this organization allows use of a REP MOVSD instruction to
+		  fill the FIFO
+		on ISA bus, there must be a delay between successive writes
+SeeAlso: #M0058
+
+Bitfields for S3 Local Peripheral Bus LPB Mode register:
+Bit(s)	Description	(Table M0074)
+ 0	enable LPB
+ 3-1	LPB operational mode
+	000 Scenic/MX2
+	001 Video 16 (PCI only)
+	010 Video 8 In
+		used by Philips SAA7110/SAA7111 and Diamond's DTV1100
+	011 Video 8 In/Out
+		used by CL-480
+	100 Pass-Through
+		send FIFO data written by CPU through the decimation logic
+	else reserved (Trio64V+)
+ 4	LBP Reset
+	pulse this bit before changing operational mode
+ 5	skip every other frame
+	=0 write all received frames to memory
+ 6	disable byte-swapping
+	=0 incoming 8-bit video is in order U, Y0, V, Y1 (CL-480)
+	=1 incoming 8-bit video is in order Y0, U, Y1, V (SAA711x)
+	(refer to bit 26 below)
+ 8-7	officially reserved
+ 7	??? messes up video image when set
+ 9	LPB vertical sync input polarity
+	=0 active low
+	=1 active high
+ 10	LPB horizontal sync input polarity
+	=0 active low
+	=1 active high
+ 11	(write-only) CPU VSYNC
+	writing a 1 makes Trio act as if LPB VSYNC had been received
+ 12	(write-only) CPU HSYNC
+	writing a 1 makes Trio act as if LPB HSYNC had been received
+ 13	(write-only) load base address
+	writing a 1 causes an immediate load of the currently active base
+	  address
+ 15-14	reserved
+ 17-16	maximum compressed data burst, LPB to Scenic/MX2
+	00 one DWORD
+	01 two DWORDs
+	10 three DWORDs
+	11 burst until empty (must ensure that MX2's 8-entry FIFO is not
+	  overrun)
+ 20-18	reserved
+ 22-21	video FIFO threshold
+	number of filled slots at which to request that Trio's memory manager
+	  begin to empty the FIFO (00 = one slot, 01 = two slots, 10 = four
+	  slots, 11 = six slots)
+ 23	reserved (read-only)
+ 24	LPB clock source
+	=0 driven by SCLK (Pin194) (for Trio64-compatibility mode)
+	=1 driven by LCLK (Pin148) (default)
+ 25	don't add line stride after first HSYNC within VSYNC
+	must be set if first HSYNC occurs before VSYNC goes active
+ 26	invert LCLK (only has effect if bit 24 set)
+ 27	reserved
+ 28	(not yet on Trio64V+) current odd/even video field status
+ 29	(not yet on Trio64V+) field inversion - when set, the LPB's FIELD pin
+	  state is inverted before being reported in bit 28
+ 30	reserved
+ 31	(read-only) current state of CFLEVEL input (Pin182) in Video In/Out
+	  mode (refer to bits 3-1)
+SeeAlso: #M0073
+
+Bitfields for S3 Local Peripheral Bus LPB FIFO status:
+Bit(s)	Description	(Table M0075)
+ 31	video FIFO 1 is almost empty (has exactly one full slot)
+ 30	video FIFO 1 is empty
+ 29	video FIFO 1 is full
+ 28-23	reserved
+ 22	video FIFO 0 is almost empty (has exactly one full slot)
+ 21	video FIFO 0 is empty
+ 20	video FIFO 0 is full
+ 19-14	reserved
+ 13	output FIFO is almost empty (has exactly one full slot)
+ 12	output FIFO is empty
+ 11	output FIFO is full
+ 10-4	reserved
+ 3-0	number of free four-byte slots in FIFO (there are 8 slots)
+SeeAlso: #M0073,#M0076
+
+Bitfields for S3 Local Peripheral Bus interrupt status:
+Bit(s)	Description	(Table M0076)
+ 31-25	reserved
+ 24	drive serial port clock line low on receipt of start condition
+	(causes I2C wait states until interrupt handler responds to start cond)
+ 23-20	reserved
+ 19	enable interrupt on I2C start condition detection
+ 18	enable interrupt on end of frame (VSYNC received)
+ 17	enable interrupt on end of line (HSYNC received)
+ 16	enable interrupt on LPB output FIFO empty
+ 15-4	reserved
+ 3	serial port detected I2C start condition
+ 2	VSYNC received (end of frame)
+ 1	HSYNC received (end of line)
+ 0	LPB output FIFO emptied
+Note:	bits 3-0 are write-clear: writing a 1 to a bit resets it
+SeeAlso: #M0073,#P0721
+
+(Table M0077)
+Values for S3 Local Peripheral Bus "direct address" index:
+ 0000h CP3 installation (FF18h reads 00C3h if installed)
+ 0001h ?
+ 0002h ?
+ 0003h ?
+	bit 7: ???
+	bits 6-0: ???
+ 0004h ?
+ 0005h ?
+	bits 7-0: ???
+ 0020h ? (set to 107D4h, 1xxD4h by CP3.DLL))
+ 0028h ?
+ 0034h ? (set to 10000h by CP3.DLL)
+ 0414h ? (set by CP3.DLL)
+ 0500h ?
+ 0504h ?
+ 0508h ?
+ 050Ch ?
+ 0510h ?
+SeeAlso: #M0073
+
+Bitfields for S3 Local Peripheral Bus General-Purpose I/O:
+Bit(s)	Description	(Table M0078)
+ 3-0	values to drive onto LPB GP output lines whenever CR5C is written
+ 7-4	values of GP input lines (read-only), latched whenever CR5C is read
+ 31-8	unused (read-only 0)
+SeeAlso: #M0073
+
+Bitfields for S3 Local Peripheral Bus serial-port register:
+Bit(s)	Description	(Table M0079)
+ 0	I2C clock line [SCL] (write)
+	=1 tri-state SCL, allowing other devices to pull it low
+ 1	I2C data line [SDA] (write)
+	=1 tri-state SDA, allowing other devices to pull it low
+ 2	I2C clock line (read)
+	this bit reflect the actual state of the SCL line
+ 3	I2C data line (read)
+	this bit reflect the actual state of the SDA line
+ 4	enable I2C interface
+	=0 disable bits 0/1, forcing both SCL and SDA to be tri-stated
+ 15-5	reserved (unused)
+ 20-16	mirrors of bits 4-0
+	(these bits are on the data bus' byte lane 2 to make them accessible
+	  via I/O port 00E2h)
+Notes:	see file I2C.LST for details of the I2C device registers accessible
+	  through this interface (VPX3220A for Stealth64 Video 2001TV)
+	when the feature connector is disabled on the Stealth64 Video, these
+	  bits are connected to the monitor's DDC data and clock lines
+	the official documentation erroneously lists the mirrors in bits 12-8
+	  instead of 20-16
+SeeAlso: #M0073,PORT 00E2h,#P0677
+

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0378037A
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0378-037A - PARALLEL PRINTER PORT (usually LPT2, sometimes LPT3)
+Range:	usually PORT 03BCh, PORT 0278h, or PORT 0378h
+SeeAlso: MEM 0040h:000Ah,INT 17/AH=00h
+
+0378  -W  data port
+0379  R-  status port (see #P0658 at PORT 03BCh)
+037A  RW  control port (see #P0659 at PORT 03BCh)
+
+037B  ??  bit 7: shadow RAM on/off (UniRAM adapter,according to c't 7/90)
+

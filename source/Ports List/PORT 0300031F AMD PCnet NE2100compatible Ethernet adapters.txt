@@ -1,0 +1,429 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0300031F
+  Category: N 	network
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0300-031F - AMD PCnet - NE2100-compatible Ethernet adapters
+Range:	may be placed at 0300h, 0320h, 0340h, or 0360h, with the card's ROM
+	  appearing at segment C800h, CC00h, D000h, or D400h, respectively
+Note:	for the PCnet-FAST chip, the I/O address may be read from the PCI
+	  configuration space at offset 10h (see #00878 at INT 1A/AX=B10Ah)
+SeeAlso: PORT 0300h"NE2000",#00878
+
+0300-030F  R-  address PROM (used to store Ethernet address, etc.)
+0310w RW  Register Data Port (RDP) (see #P0552,#P0553)
+0312w ?W  Register Access Port (RAP) (selects register index for RDP and IDP)
+	  (see #P0570)
+0314w ?W  Reset
+0316w RW  ISA Bus Data Port (IDP)
+0318w	  reserved for vendor-specific use
+031A-031F      reserved
+
+(Table P0552)
+Values for AMD PCnet-ISA Register Data Port index:
+ 00h	"CSR0" status and control flags (see #P0554)
+ 01h	"CSR1" low half of IADR (appears at PORT 0316h)
+ 02h	"CSR2" high half of IADR (appears at PORT 0317h)
+ 03h	"CSR3" interrupt masks (see #P0555)
+ 04h	"CSR4" interrupt masks and status bits (see #P0556)
+ 08h-0Bh logical address filter
+ 0Ch-0Eh physical address register
+ 0Fh	"CSR15" mode (see #P0560)
+ 4Ch	"CSR76" receive descriptor ring length
+ 4Eh	"CSR78" transmit descriptor ring length
+ 50h	"CSR80" FIFO threshold / DMA burst control (see #P0564)
+ 52h	"CSR82" DMA bus timer
+ 58h	"CSR88" chip ID
+ 70h	"CSR112" number of missed packets
+ 72h	"CSR114" number of receive collisions
+ 7Ch	"CSR124" BMU test register
+		bit 4: accept runt packets
+SeeAlso: #P0570,#P0553
+
+(Table P0553)
+Values for AMD PCnet-SCSI/PCnet-FAST Register Data Port index:
+ 00h	"CSR0" status and control flags (see #P0554)
+ 01h	"CSR1" low half of IADR (appears at PORT 0316h)
+ 02h	"CSR2" high half of IADR (appears at PORT 0317h)
+ 03h	"CSR3" interrupt masks (see #P0555)
+ 04h	"CSR4" interrupt masks and status bits (see #P0556)
+ 05h	"CSR5" (PCnet-FAST) extended control and interrupt 1 (see #P0557)
+ 06h	"CSR6" receive/transmit descriptor table lengths (see #P0558)
+ 07h	"CSR7" (PCnet-FAST) extended control and interrupt 2 (see #P0559)
+ 08h-0Bh logical address filter
+ 0Ch-0Eh physical address register
+ 0Fh	"CSR15" mode (see #P0560)
+ 10h	"CSR16"	alias of CSR1
+ 11h	"CSR17"	alias of CSR2
+ 12h	"CSR18" low half of current receive buffer address
+ 13h	"CSR19" high half of current receive buffer address
+ 14h	"CSR20" low half of current transmit buffer address
+ 15h	"CSR21" high half of current transmit buffer address
+ 16h	"CSR22" low half of next receive buffer address
+ 17h	"CSR23" high half of next receive buffer address
+ 18h	"CSR24" low half of receive-ring base address
+ 19h	"CSR25" high half of receive-ring base address
+ 1Ah	"CSR26" low half of next receive descriptor address
+ 1Bh	"CSR27" high half of next receive descriptor address
+ 1Ch	"CSR28" low half of current receive descriptor address
+ 1Dh	"CSR29" high half of current receive descriptor address
+ 1Eh	"CSR30" low half of transmit ring base address
+ 1Fh	"CSR31" high half of transmit ring base address
+ 20h	"CSR32" low half of next transmit descriptor address
+ 21h	"CSR33" high half of next transmit descriptor address
+ 22h	"CSR34" low half of current transmit descriptor address
+ 23h	"CSR35" high half of current transmit descriptor address
+ 24h	"CSR36" low half of next next receive descriptor address
+ 25h	"CSR37" high half of next next receive descriptor address
+ 26h	"CSR38" low half of next next transmit descriptor address
+ 27h	"CSR39" high half of next next transmit descriptor address
+ 28h	"CSR40" current receive byte count (see #P0561)
+ 29h	"CSR41" current receive status
+ 2Ah	"CSR42" current transmit byte count (see #P0562)
+ 2Bh	"CSR43" current transmit status
+ 2Ch	"CSR44" next receive byte count (bits 11-0; bits 15-12=0)
+ 2Dh	"CSR45" next receive status
+ 2Eh	"CSR46" transmit poll time counter
+ 2Fh	"CSR47" transmit polling interval
+ 30h	"CSR48" receive poll time counter
+ 31h	"CSR49" receive polling interval
+ 32h-39h reserved
+ 3Ah	"CSR58" software style (see #P0563)
+ 3Bh	reserved
+ 3Ch	"CSR60" previous transmit descriptor address (low)
+ 3Dh	"CSR61" previous transmit descriptor address (high)
+ 3Eh	"CSR62" previous transmit byte count (bits 11-0; bits 15-12=0)
+ 3Fh	"CSR63" previous transmit status
+ 40h	"CSR64" next transmit buffer address (low)
+ 41h	"CSR65" next transmit buffer address (high)
+ 42h	"CSR66" next transmit byte count (bits 11-0; bits 15-12=0)
+ 43h	"CSR67" next transmit status
+ 44h-47h reserved
+ 48h	"CSR72" receive ring counter
+ 49h	reserved
+ 4Ah	"CSR74" transmit ring counter
+ 4Bh	reserved
+ 4Ch	"CSR76" receive descriptor ring length
+ 4Dh	reserved
+ 4Eh	"CSR78" transmit descriptor ring length
+ 4Fh	reserved
+ 50h	"CSR80" FIFO threshold / DMA burst control (see #P0564)
+ 51h	reserved
+ 52h	"CSR82" (PCnet-SCSI) DMA bus timer
+		(PCnet-FAST) transmit descriptor address (low)
+ 53h	reserved
+ 54h	"CSR84" DMA address register (low)
+ 55h	"CSR85" DMA address register (high)
+ 56h	"CSR86" buffer byte counter (bits 11-0; bits 15-12=0)
+ 57h	reserved
+ 58h	"CSR88" chip ID (low 16 bits) (see #P0565)
+ 59h	"CSR89" chip ID (high 16 bits) (see #P0565)
+ 5Ah	"CSR90" (PCnet-SCSI)
+ 5Bh	reserved
+ 5Ch	"CSR92" ring length conversion
+ 5Dh	reserved
+ 5Eh	"CSR94" (PCnet-SCSI)
+ 5Fh-63h reserved
+ 64h	"CSR100" bus timeout
+ 65h-6Fh reserved
+ 70h	"CSR112" number of missed packets
+ 71h	reserved
+ 72h	"CSR114" number of receive collisions
+ 73h-79h reserved
+ 7Ah	"CSR122" advanced feature control (see #P0566)
+ 7Bh	reserved
+ 7Ch	"CSR124" BMU test register (see #P0567)
+ 7Dh	"CSR125" (PCnet-FAST) MAC Enhanced Configuration Control (see #P0568)
+ 7Eh-7Fh reserved
+SeeAlso: #P0552,#P0594
+
+Bitfields for AMD PCnet CSR0 status and control flags:
+Bit(s)	Description	(Table P0554)
+ 15	"ERR"	error; set if BABL, CERR, MISS, or MESS set
+ 14	"BABL"	network babbling control
+ 13	"CERR"	collision error
+ 12	"MISS"	missed frame
+ 11	"MERR"	memory error
+ 10	"RINT"	receive interrupt
+ 9	"TINT"	transmit interrupt
+ 8	"IDON"	initialization done
+ 7	"INTR"	interrupt flag
+ 6	"IENA"	interrupt enable
+ 5	"RXON"	recieve ON
+ 4	"TXON"	transmit ON
+ 3	"TDMD"	transmit demand
+ 2	"STOP"	stop -- disable all external activity
+ 1	"STRT"	start -- enable extrnal activity
+ 0	"INIT"	begin initialization procedure
+SeeAlso: #P0552,#P0555
+
+Bitfields for AMD PCnet CSR3 interrupt masks:
+Bit(s)	Description	(Table P0555)
+ 15	reserved
+ 14	"BABLM"	disable babble interrupt
+ 13	reserved
+ 12	"MISSM" disable missed-frame interrupt
+ 11	"MERM"	disable memory-error interrupt
+ 10	"RINTM"	disable receive interrupt
+ 9	"TINTM" disable transmit interrupt
+ 8	"IDONM" disable initialization-done interrupt
+ 7-5	reserved
+ 4	"DXMT2PD" disable Transmit Two Part Deferral
+ 3	"EMBA"	enable modified back-off algorithm
+ 2-0	reserved
+Note:	other bits are reserved
+SeeAlso: #P0552,#P0554,#P0556
+
+Bitfields for AMD PCnet CSR4 interrupt masks and status bits:
+Bit(s)	Description	(Table P0556)
+ 15	"ENTST"	   enable Test Mode / CSR124 access
+ 14	"DMAPLUS"  disable CSR80 burst transaction counter
+ 13	"TIMER"	   enable Bus Timer register
+ 12	"DPOLL"	   disable transmit polling
+ 11	"APADXMT"  Auto-Pad Transmit
+ 10	"ASTRPRCV" enable automatic pad stripping
+ 9	"MFCO"	   missed frame counter has overflowed
+ 8	"MFCOM"	   disable interrupt on MFCO
+ 7	"UINTCMD"  (PCnet-FAST) user interrupt command
+ 6	"UINT"	   (PCnet-FAST) user interrupt pending
+			write 1 to clear
+ 5	"RCVCCO"   receive collision counter has overflowed
+ 4	"RCVCCOM"  disable interrupt on RCVCCO
+ 3	"TXSTRT"   Transmit Start
+ 2	"TXSTRTM"  disable interrupt on TXSTRT
+ 1	"JAB"	   Jabber error
+ 0	"JABM"	   disable interrupt on JAB
+SeeAlso: #P0552,#P0555,#P0553
+
+Bitfields for AMD PCnet-FAST CSR5 extended control and interrupt 1:
+Bit(s)	Description	(Table P0557)
+ 31-16	reserved
+ 15	"TOKINTD"  disable Transmit OK interrupt
+ 14	"LTINTEN"  enable Last Transmit interrupt
+ 13-12	reserved
+ 11	"SINT"	   System Interrupt (write 1 to clear)
+ 10	"SINTE"	   enable System Interrupt
+ 9	"SLPINT"   Sleep Interrupt (write 1 to clear)
+ 8	"SLPINTE"  enable Sleep Interrupt
+ 7	"EXDINT"   Excessive Deferral Interrupt (write 1 to clear)
+ 6	"EXDINTE"  enable Excessive Deferral Interrupt
+ 5	"MPPLBA"   Magic Packet Physical Logical Broadcast Accept
+ 4	"MPINT"	   Magic Packet Interrupt (write 1 to clear)
+ 3	"MPINTE"   enable Magic Packet Interrupt
+ 2	"MPEN"	   enable Magic Packet mode
+ 1	"MPMODE"   Magic Packet mode active
+ 0	"SPND"	   Suspend
+SeeAlso: #P0553,#P0556,#P0559
+
+Bitfields for AMD PCnet CSR6 Descriptor Table Length register:
+Bit(s)	Description	(Table P0558)
+ 15-12	transmit encoded ring length
+ 11-8	receive encoded ring length
+ 7-0	reserved
+SeeAlso: #P0553,#P0557
+
+Bitfields for AMD PCnet CSR7 Extended Control and Interrupt 2:
+Bit(s)	Description	(Table P0559)
+ 15	"FASTSPNDE"  enable Fast Suspend
+ 14	"RXFRTG"     Receive Frame Tag
+ 13	"RDMD"	     Receive Demand
+ 12	"RXDPOL"     disable receive polling
+ 11	"STINT"	     Software Timer Interrupt (write 1 to clear)
+ 10	"STINTE"     enable Software Timer Interrupt
+ 9	"MREINT"     MII Management Read Error Interrupt (write 1 to clear)
+ 8	"MREINTE"    enable MII Management Read Error Interrupt
+ 7	"MAPINT"     MII Management Auto-Poll Interrupt (write 1 to clear)
+ 6	"MAPINTE"    enable MII Management Auto-Poll Interrupt
+ 5	"MCCINT"     MII Management Command Complete Interrupt (write 1 to clr)
+ 4	"MCCINTE"    enable MII Management Command Complete Interrupt
+ 3	"MCCIINT"    MII Management Command Complete Internal Interrupt
+			(write 1 to clear)
+ 2	"MCCIINTE"   enable MII Manamagement Command Complete Internal Int.
+ 1	"MIIPDTINT"  MII PHY Detect Transition Interrupt (write 1 to clear)
+ 0	"MIIPDTINTE" enable MII PHY Detect Transition Interrupt
+SeeAlso: #P0553,#P0557
+
+Bitfields for AMD PCnet CSR15 mode flags:
+Bit(s)	Description	(Table P0560)
+ 15	"PROM"	   promiscuous mode
+ 14	"DRCVBC"   disable Receive Broadcast
+ 13	"DRCVPA"   disable Receive Physical Address
+ 12	"DLNKTST"  disable Link Status
+ 11	"DAPC"	   disable Automatic Polarity Correction
+ 10	"MENDECL"  MENDEC loopback mode
+ 9	"LRT/TSEL" Low Receive Threshold
+ 8-7	"PORTSEL"  Port Select
+		00  AUI
+		01  10Base-T
+		10  GPSI
+		11  reserved
+ 6	"INTL"	   internal loopback
+ 5	"DRTY"	   disable retry
+ 4	"FCOLL"	   force collision
+ 3	"DXMTFCS"  disable Transmit CRC
+ 2	"LOOP"	   enable Loopback
+ 1	"DTX"	   disable transmitter
+ 0	"DRX"	   disable receiver
+SeeAlso: #P0552,#P0556,#P0564
+
+Bitfields for AMD PCnet CSR40 Current Receive Byte Count register:
+Bit(s)	Description	(Table P0561)
+ 15-12	reserved (0)
+ 11-0	current receive byte count (copy of BCNT field of current receive
+	  descriptor's RMD1)
+SeeAlso: #P0553,#P0562
+
+Bitfields for AMD PCnet CSR42 Current Transmit Byte Count register:
+Bit(s)	Description	(Table P0562)
+ 15-12	reserved (0)
+ 11-0	current transmit byte count (copy of BCNT field of current receive
+	  descriptor's TMD1)
+SeeAlso: #P0553,#P0561
+
+Bitfields for AMD PCnet CSR58 Software Style register:
+Bit(s)	Description	(Table P0563)
+ 15-11	reserved (undefined)
+ 10	"APERREN"	enabled advanced parity error handling
+ 9	"CSRPCNET"	PCnet-ISA compatibility (read-only)
+ 8	"SSIZE32"	32-bit software structures for data blocks
+ 7-0	"SWSTYLE"	software style
+		00h LANCE/PCnet-ISA (16-bit software structures)
+		01h reserved
+		02h PCnet-PCI (32-bit software)
+		03h PCnet-PCI (32-bit software)
+SeeAlso: #P0553
+
+Bitfields for AMD PCnet CSR80 FIFO threshold and DMA burst control:
+Bit(s)	Description	(Table P0564)
+ 15-14	reserved
+ 13-12	receive FIFO high-water mark; request DMA when N byte available
+	00 = 16 bytes
+	01 = 32 bytes
+	10 = 64 bytes
+ 11-10	transmit starting point; start transmission after N bytes written
+	00 = 4 bytes
+	01 = 16 bytes
+	10 = 64 bytes
+	11 = 112 bytes
+ 9-8	transmit FIFO low-water mark; start DMA when room for N bytes
+	00 = 8 bytes
+	01 = 16 bytes
+	10 = 32 bytes
+ 7-0	DMA burst register
+SeeAlso: #P0552,#P0560
+
+Bitfields for AMD PCnet Chip ID register (read-only):
+Bit(s)	Description	(Table P0565)
+ 31-28	hardware version
+ 27-12	part number
+	2623h = Am79C971
+ 11-1	manufacturer ID (0001h = AMD)
+ 0	reserved (1)
+SeeAlso: #P0553
+
+Bitfields for AMD PCnet CSR122 Advanced Feature Control register:
+Bit(s)	Description	(Table P0566)
+ 15-1	reserved
+ 0	"RCVALGN"	DWORD-align received packets
+SeeAlso: #P0553,#P0567
+
+Bitfields for AMD PCnet CSR124 Test Register 1:
+Bit(s)	Description	(Table P0567)
+ 15-5	reserved
+ 4	(PCnet-SCSI) accept runt packets
+ 3	(PCnet-FAST) accept runt packets
+ 2-0	reserved
+SeeAlso: #P0553,#P0566
+
+Bitfields for AMD PCnet-FAST CSR125 MAC Enhanced Configuration Control reg:
+Bit(s)	Description	(Table P0568)
+ 15-8	inter-packet gap (reducing from default 96 can disrupt network)
+ 7-0	inter-frame spacing, part 1
+SeeAlso: #P0553
+
+(Table P0569)
+Values for AMD PCnet-ISA ISA Bus Configuration Register index:
+ 00h	"MSRDA" width of DMA read signal
+ 01h	"MSWRA" width of DMA write signal
+ 02h	"MC"	ISA bus configuration (see #P0572)
+ 05h	"LED1"	LED1 signal control (see #P0573)
+ 06h	"LED2"	LED2 signal control (see #P0573)
+ 07h	"LED3"	LED3 signal control (see #P0573)
+SeeAlso: #P0552,#P0594,#P0570
+
+(Table P0570)
+Values for AMD PCnet-SCSI Bus Configuration Register index:
+ 00h	"MSRDA" width of DMA read signal (reserved)
+ 01h	"MSWRA" width of DMA write signal (reserved)
+ 02h	"MC"	miscellaneous configuration (see #P0572)
+ 03h	reserved
+ 04h	"LINKST" link status
+ 05h	"LED1"	LED1 signal control (see #P0573) -- receive status
+ 06h	"LED2"	LED2 signal control (see #P0573)
+ 07h	"LED3"	LED3 signal control (see #P0573) -- transmit status
+ 08h-0Fh reserved
+ 10h	"IOBASEL"
+ 11h	"IOBASEU"
+ 12h	"BSBC"	burst size and bus control
+ 13h	"EECAS" EEPROM Control and Status
+ 14h	"SWS"	software style
+ 15h	"INTCON" reserved
+SeeAlso: #P0553,#P0569,#P0571
+
+(Table P0571)
+Values for AMD PCnet-FAST Bus Configuration Register index:
+ 00h	"MSRDA"		width of DMA read signal (reserved)
+ 01h	"MSWRA"		width of DMA write signal (reserved)
+ 02h	"MC"		miscellaneous configuration (see #P0572)
+ 03h	reserved	!!!p.154
+ 04h	"LED0"	LED0 status
+ 05h	"LED1"	LED1 signal control (see #P0573) -- receive status
+ 06h	"LED2"	LED2 signal control (see #P0573)
+ 07h	"LED3"	LED3 signal control (see #P0573) -- transmit status
+ 08h	reserved
+ 09h	"FDC"		full-duplex control
+ 0Ah-0Fh reserved
+ 10h	"IOBASEL"	I/O base select (lo) -- reserved
+ 11h	"IOBASEU"	I/O base select (hi) -- reserved
+ 12h	"BSBC"		burst size and bus control
+ 13h	"EECAS"		EEPROM Control and Status
+ 14h	"SWS"		software style
+ 15h	"INTCON"	reserved
+ 16h	"PCILAT"	PCI-bus latency
+ 17h	"PCISID"	PCI subsystem ID
+ 18h	"PCISVID"	PCI subsystem vendor ID
+ 19h	"SRAMSIZ"	SRAM size
+ 1Ah	"SRAMB"		SRAM boundary
+ 1Bh	"SRAMIC"	SRAM interface control
+ 1Ch	"EBADDRL"	expansion bus address (low)
+ 1Dh	"EBADDRU"	expansion bus address (high)
+ 1Eh	"EBD"		expansion bus data port
+ 1Fh	"STVAL"		software timer value
+ 20h	"MIICAS"	MII control and status
+ 21h	"MIIADDR"	MII address
+ 22h	"MIIMDR"	MII management data
+ 23h	"PCIVID"	PCI vendor ID
+SeeAlso: #P0553,#P0569,#P0570
+
+Bitfields for AMD PCnet ISA bus configuration:
+Bit(s)	Description	(Table P0572)
+ 3	EADISEL
+ 2	AWAKE
+ 1	ASEL
+ 0	XMAUSEL
+SeeAlso: #P0570,#P0573
+
+Bitfields for AMD PCnet LEDn signal control:
+Bit(s)	Description	(Table P0573)
+ 15	LEDOUT
+ 14-8	reserved
+ 7	PSE
+ 6-5	reserved
+ 4	XMTE
+ 3	RVPE
+ 2	RCVE
+ 1	JABE
+ 0	COLE
+SeeAlso: #P0570
+

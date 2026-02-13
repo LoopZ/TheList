@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SF26
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/26h - ITT VPX 32xx - FP - Crystal Oscillator Line-Locked Mode
+SeeAlso: I2C 86h/28h,I2C 86h/29h
+
+(Table I0017)
+Values for Crystal Oscillator Line-Locked Mode:
+---write---
+ 000h	disable lock
+ 064h	enable lock
+---read---
+ 000h	oscillator currently unlocked
+ FFFh	currently locked
+

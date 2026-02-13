@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400087
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0087h - VIDEO (EGA/VGA) CONTROL: [MCGA: =00h]
+Size:	BYTE
+SeeAlso: MEM 0040h:0084h,MEM 0040h:0085h,MEM 0040h:0088h
+
+Bitfields for EGA/VGA Video control flags:
+Bit(s)	Description	(Table M0024)
+ 7	do not to clear RAM on mode set (see INT 10h, AH=00h)
+ 6-5	RAM on adapter = (this field + 1) * 64K
+ 4	reserved
+ 3	EGA/VGA video system INactive
+ 2	wait for display enable
+ 1	mono monitor
+ 0	alphanumeric cursor emulation DISabled
+	When enabled, text mode cursor size (INT 10,AH=01h) settings looking
+	 like CGA ones are translated to equivalent EGA/VGA ones.
+

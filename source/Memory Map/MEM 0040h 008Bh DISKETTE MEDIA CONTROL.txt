@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040008B
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:008Bh - DISKETTE MEDIA CONTROL
+Size:	BYTE
+
+Bitfields for diskette media control:
+Bit(s)	Description	(Table M0028)
+ 7-6	last data rate set by controller
+	00=500kbps, 01=300kbps, 10=250kbps, 11=1Mbps
+ 5-4	last diskette drive step rate selected
+	00=0Ch, 01=0Dh, 10=0Eh, 11=0Ah
+ 3-2	{data rate at start of operation}
+ 1-0	reserved
+Note:	EHD BIOS sets this byte to 01h and never reads it back
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400042
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0042h - DISK CONTROLLER STATUS REGISTER 0
+Size:	BYTE
+SeeAlso: MEM 0040h:0043h
+
+Bitfields for diskette controller status register 0:
+Bit(s)	Description	(Table M0015)
+ 7-6	interrupt code
+	00 normal completion
+	01 abnormal termination during execution
+	10 invalid command
+	11 abnormal termination: ready line on/diskette change
+ 5	requested seek complete
+ 4	drive fault
+ 3	drive not ready
+ 2	head state at time of interrupt
+ 1-0	selected drive (drives 2&3 on PC,XT only)
+SeeAlso: #M0016
+

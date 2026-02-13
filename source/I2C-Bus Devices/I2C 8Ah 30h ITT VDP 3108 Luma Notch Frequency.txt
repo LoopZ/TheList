@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A30
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/30h - ITT VDP 3108 - Luma Notch Frequency
+SeeAlso: I2C 86h/30h
+
+Bitfields for VDP 3108 luma notch frequency:
+Bit(s)	Description	(Table I0067)
+ 5-0	frequency  (PAL/SECAM = 25, NTSC = 57)
+ 6	disable adaptive notch filter (SECAM)
+	must be 0 for PAL/NTSC
+ 7	reserved
+SeeAlso: #I0013
+

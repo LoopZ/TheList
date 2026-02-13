@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: R33
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 33h - AMI WinBIOS - INFORMATION FLAGS
+
+Bitfields for AMI WinBIOS information flags:
+Bit(s)	Description	(Table C0035)
+ 7	IBM-defined top 128K present
+ 6-4	CPU internal clock frequency
+	000-011 = 25, 33, 40, 50 MHz
+	100 = 60/66 MHz
+	101 = 75 MHz
+	110 = 80 MHz
+	111 = 90/100 MHz
+ 2-1	CPU internal clock multiplier
+	00-11 = 1,2,3,4
+ 0	FlashROM programming enabled (Ctrl-Home pressed at power on)
+	Note: this location is not included in any CMOS checksum fields
+

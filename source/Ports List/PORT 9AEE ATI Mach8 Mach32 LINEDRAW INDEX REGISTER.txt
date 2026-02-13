@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: P9AEE
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 9AEE - ATI Mach8/Mach32 - LINEDRAW INDEX REGISTER
+SeeAlso: PORT FEEEh
+
+9AEE  -W  linedraw index register (specifies interpretation of PORT FEEEh)
+	  (see #P1039)
+
+(Table P1039)
+Values for ATI Mach8/Mach32 Linedraw Index Register:
+ 00h	set current X
+ 01h	set current Y
+ 02h	set Line End X
+ 03h	set Line End Y, draw line, and reset register to 02h
+ 04h	set current X (perform moves instead of draws)
+ 05h	set current Y and reset register to 04h
+

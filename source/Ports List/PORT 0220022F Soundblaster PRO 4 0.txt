@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0220022F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0220-022F - Soundblaster PRO 4.0
+Note:	the FM music is accessible on 0388/0389 for compatibility.
+
+0220  R-  left FM status port
+0220  -W  left FM music register address port (index)
+0221  RW  left FM music data port
+0222  R-  right FM status port
+0222  -W  right FM music register address port (index)
+0223  RW  right FM music data port
+0224  -W  mixer register address port (index) (see #P0543)
+0225  RW  mixer data port
+0226  -W  DSP reset
+0228  R-  FM music status port
+0228  -W  FM music register address port (index)
+0229  -W  FM music data port
+022A  R-  DSP read data (voice I/O and Midi)
+022C  -W  DSP write data / write command
+022C  R-  DSP write buffer status (bit 7)
+022E  R-  DSP data available status (bit 7)
+
+(Table P0543)
+Values for SB Mixer register index:
+ Index	Description		PORT 0225h data
+ 00h	reset			00h = zero all mixer controls
+ 04h	voice select		high nybble = left, low nybble = right
+ 0Ah	microphone gain		bits 2-0 = gain
+ 22h	master gain		high nybble = left, low nybble = right
+ 26h	MIDI gain		high nybble = left, low nybble = right
+ 28h	CD gain			high nybble = left, low nybble = right
+ 2Eh	Line In			high nybble = left, low nybble = right
+ 30h	Master Left		bits 7-3 = volume
+ 31h	Master Right		bits 7-3 = volume
+ 32h	Voice Left		bits 7-3 = volume
+ 33h	Voice Right		bits 7-3 = volume
+ 34h	MIDI Left		bits 7-3 = volume
+ 35h	MIDI Right		bits 7-3 = volume
+ 36h	CD Left			bits 7-3 = volume
+ 37h	CD Right		bits 7-3 = volume
+ 38h	LineIn Left		bits 7-3 = volume
+ 39h	LineIn Right		bits 7-3 = volume
+ 3Ah	Microphone		bits 7-3 = gain
+ 3Bh	PC speaker		bits 7-3 = volume
+ 3Ch	Sound Output		highest set bit is enabled source (see #P0544)
+ 3Dh	Sound Source (left)	highest set bit is enabled source (see #P0544)
+ 3Eh	Sound Source (right)	highest set bit is enabled source (see #P0544)
+ 40h	In gain			bits 7-6 = gain
+				   (00 = x1, 01 = x2, 10 = x4, 11 = x8)
+ 41h	Out gain (left)		bits 7-6 = gain (as for In)
+ 42h	Out gain (right)	bits 7-6 = gain (as for In)
+ 43h	Automatic Gain Control	bit 0 = enable
+ 44h	Treble (left)		bits 7-3 = volume
+ 45h	Treble (right)		bits 7-3 = volume
+ 46h	Bass (left)		bits 7-3 = volume
+ 47h	Bass (right)		bits 7-3 = volume
+
+Bitfields for SB Mixer sound source:
+Bit(s)	Description	(Table P0544)
+ 7	PC speaker???
+ 6	MIDI left
+ 5	MIDI right
+ 4	LineIn left
+ 3	LineIn right
+ 2	CD left
+ 1	CD right
+ 0	microphone		
+Note:	bits 7-5 are ignored for Sound Output register
+SeeAlso: #P0543
+

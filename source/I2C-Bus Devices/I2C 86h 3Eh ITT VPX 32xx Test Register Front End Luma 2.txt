@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: I863E
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+I2C 86h/3Eh U - ITT VPX 32xx - ??? (Test Register - Front End, Luma 2?)
+Note:	this register appears to correspond to the VDP 3108 register
+SeeAlso: I2C 8Ah/3Eh,I2C 86h/3Fh
+
+Bitfields for Test Register, Luma 2:
+Bit(s)	Description	(Table I0034)
+ 0	freezes image when set
+ 3-2	if either/both bits set, video appears as an image and ghost;
+	  green and cyan appear to be horizontally separated
+ 7-4	affect color, sometimes freeze image
+SeeAlso: #I0046
+

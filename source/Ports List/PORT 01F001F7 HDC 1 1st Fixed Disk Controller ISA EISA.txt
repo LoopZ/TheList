@@ -1,0 +1,578 @@
+--------------------------------------------------------------------------------
+ Unique ID: P01F001F7
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 01F0-01F7 - HDC 1	(1st Fixed Disk Controller) (ISA, EISA)
+Range:	01F0-01F7 for primary controller, 0170-0177 for secondary controller
+SeeAlso: PORT 0170h-0177h,PORT 3510h-3513h
+
+01F0  RW  data register
+01F1  R-  error register (see #P0512)
+01F1  -W  WPC/4	 (Write Precompensation Cylinder divided by 4)
+01F2  RW  sector count
+01F3  RW  sector number (CHS mode)
+	  logical block address, bits 0-7 (LBA mode)
+01F4  RW  cylinder low (CHS mode)
+	  logical block address, bits 15-8 (LBA mode)
+01F5  RW  cylinder high (CHS mode)
+	  logical block address, bits 23-16 (LBA mode)
+01F6  RW  drive/head (see #P0513)
+01F7  R-  status register (see #P0514)
+01F7  -W  command register (see #P0515)
+
+Bitfields for Hard Disk Controller error register:
+Bit(s)	Description	(Table P0512)
+---diagnostic mode errors---
+ 7	which drive failed (0 = master, 1 = slave)
+ 6-3	reserved
+ 2-0	error code
+	001	no error detected
+	010	formatter device error
+	011	sector buffer error
+	100	ECC circuitry error
+	101	controlling microprocessor error
+---operation mode---
+ 7	bad block detected
+ 6	uncorrectable ECC error
+ 5	reserved
+ 4	ID found
+ 3	reserved
+ 2	command aborted prematurely
+ 1	track 000 not found
+ 0	DAM not found (always 0 for CP-3022)
+SeeAlso: #P0513,#P0514
+
+Bitfields for hard disk controller drive/head specifier:
+Bit(s)	Description	(Table P0513)
+ 7	=1
+ 6	LBA mode enabled, rather than default CHS mode
+ 5	=1
+ 4	drive select (0 = drive 0, 1 = drive 1)
+ 3-0	head select bits (CHS mode)
+	logical block address, bits 27-24 (LBA mode)
+SeeAlso: #P0512,#P0514
+
+Bitfields for hard disk controller status register:
+Bit(s)	Description	(Table P0514)
+ 7	controller is executing a command
+ 6	drive is ready
+ 5	write fault
+ 4	seek complete
+ 3	sector buffer requires servicing
+ 2	disk data read successfully corrected
+ 1	index - set to 1 each disk revolution
+ 0	previous command ended in an error
+SeeAlso: #P0512,#P0515
+
+(Table P0515)
+Values for hard disk controller command codes:
+Command	 Spec	Type	Proto	Description			class:
+ 00h		opt	nondata	NOP
+ 08h				device reset
+ 1xh		opt	nondata	recalibrate			  1
+ 20h		req	PIOin	read sectors with retry		  1
+ 21h		req	PIOin	read sectors without retry	  1
+ 22h		req	PIOin	read long with retry		  1
+ 23h		req	PIOin	read long without retry		  1
+ 30h		req	PIOout	write sectors with retry	  2
+ 31h		req	PIOout	write sectors without retry	  2
+ 32h		req	PIOout	write long with retry		  2
+ 33h		req	PIOout	write long without retry	  2
+ 3Ch	 IDE	opt	PIOout	write verify			  3
+ 40h		req	nondata	read verify sectors with retry	  1
+ 41h		req	nondata	read verify sectors without retry 1
+ 50h		req	vend	format track			  2
+ 7xh		req	nondata	seek				  1
+ 8xh	 IDE	vendor	vend	vendor unique 3
+ 90h		req	nondata	execute drive diagnostics	  1
+ 91h		req	nondata	initialize drive parameters	  1
+ 92h		opt	PIOout	download microcode
+ 94h E0h IDE	opt	nondata	standby immediate		  1
+ 95h E1h IDE	opt	nondata	idle immediate			  1
+ 96h E2h IDE	opt	nondata	standby				  1
+ 97h E3h IDE	opt	nondata	idle				  1
+ 98h E5h IDE	opt	nondata	check power mode		  1
+ 99h E6h IDE	opt	nondata	set sleep mode			  1
+ 9Ah	 IDE	vendor	vend	vendor unique 1
+ A0h	 ATAPI			packet command
+ A1h	 ATAPI	opt	PIOin	ATAPI Identify			(see #P0524)
+ B0h	 SMART	opt		Self Mon., Analysis, Rept. Tech. (see #P0527)
+ C0h-C3h IDE	vendor	vend	vendor unique 2
+ C4h	 IDE	opt	PIOin	read multiple			  1
+ C5h	 IDE	opt	PIOout	write multiple			  3
+ C6h	 IDE	opt	nondata	set multiple mode		  1
+ C7h	 ATA-4			Read DMA O/Q
+ C8h	 IDE	opt	DMA	read DMA with retry		  1
+ C9h	 IDE	opt	DMA	read DMA without retry		  1
+ CAh	 IDE	opt	DMA	write DMA with retry		  3
+ CBh	 IDE	opt	DMA	write DMA w/out retry		  3
+ CCh	 ATA-4			Write DMA O/Q
+ DAh				get media status
+ DBh	 ATA-2	opt	vend	acknowledge media chng		[Removable]
+ DCh	 ATA-2	opt	vend	Boot / Post-Boot		[Removable]
+ DDh	 ATA-2	opt	vend	Boot / Pre-Boot	(ATA-2)		[Removable]
+ DEh	 ATA-2	opt	vend	door lock			[Removable]
+ DFh	 ATA-2	opt	vend	door unlock			[Removable]
+ E0h-E3h			(second half of commands 94h-96h)
+ E4h	 IDE	opt	PIOin	read buffer			  1
+ E5h-E6h			(second half of commands 98h-99h)
+ E8h	 IDE	opt	PIOout	write buffer			  2
+ E9h	 IDE	opt	PIOout	write same			  3
+ EAh	 ATA-3	opt		Secure Disable			[Security Mode]
+ EAh	 ATA-3	opt		Secure Lock			[Security Mode]
+ EAh	 ATA-3	opt		Secure State			[Security Mode]
+ EAh	 ATA-3	opt		Secure Enable WriteProt		[Security Mode]
+ EBh	 ATA-3	opt		Secure Enable			[Security Mode]
+ EBh	 ATA-3	opt		Secure Unlock			[Security Mode]
+ ECh	 IDE	req	PIOin	identify drive			  1 (see #P0516)
+ EDh	 ATA-2	opt	nondata	media eject			[Removable]
+ EEh	 ATA-3	opt		identify device DMA		    (see #P0516)
+ EFh	 IDE	opt	nondata	set features			  1 (see #P0535)
+ F0h-F4h IDE		vend	EATA standard
+ F1h				Security Set Password
+ F2h				Security Unlock
+ F3h				Security Erase Prepare
+ F4h				Security Erase Unit
+ F5h-FFh IDE	vendor	vend	vendor unique 4
+ F5h				Security Freeze Lock
+ F6h				Security Disable Password
+SeeAlso: #P0512,#P0514
+
+Format of IDE/ATA Identify Drive information:
+Offset	Size	Description	(Table P0516)
+ 00h	WORD	general configuration (see #P0517)
+ 02h	WORD	number of logical cylinders
+ 04h	WORD	reserved
+ 06h	WORD	number of logical heads
+ 08h	WORD	vendor-specific (obsolete: unformatted bytes per track)
+ 0Ah	WORD	vendor-specific (obsolete: unformatted bytes per sector)
+ 0Ch	WORD	number of logical sectors
+ 0Eh	WORD	vendor-specific
+ 10h	WORD	vendor-specific
+ 12h	WORD	vendor-specific
+ 14h 10 WORDs	serial number
+		no serial number if first word is 0000h
+		else blank-padded ASCII serial number
+ 28h	WORD	vendor-specific
+		[buffer type: 01h single-sector, 02h multisector,
+		  03h multisector with read cache]
+ 2Ah	WORD	controller buffer size in 512-byte sectors
+		0000h = unspecified
+ 2Ch	WORD	number of vendor-specific (usually ECC) bytes on
+		  Read/Write Long; 0000h = unspecified
+ 2Eh  4	WORDs	firmware revision
+		no revision number if first word is 0000h
+		else blank-padded ASCII revision number
+ 36h 20	WORDs	model number
+		no model number if first word is 0000h
+		else blank-padded ASCII model string
+ 5Eh	WORD	read/write multiple support
+		bits 7-0: maximum number of sectors per block supported
+			00h if read/write multiple not supported
+		bits 15-8: vendor-specified
+ 60h	WORD	able to do doubleword transfers if nonzero
+ 62h	WORD	capabilities (see #P0518)
+ 64h	WORD	security mode
+		bit 15: security-mode feature set supported
+		bits 14-8: maximum number of passwords supported
+ 66h	WORD	PIO data transfer cycle timing
+ 68h	WORD	single-word DMA data transfer cycle timing
+ 6Ah	WORD	field validity
+		bit 0: offsets 6Ch-75h valid
+		bit 1: offsets 80h-8Dh valid
+ 6Ch	WORD	logical cylinders in current translation mode
+ 6Eh	WORD	logical heads in current translation mode
+ 70h	WORD	logical sectors per track in current translation mode
+ 72h	DWORD	current capacity in sectors (excluding device-specific uses)
+ 76h	WORD	multiple-sector support
+		bits 7-0: count for read/write multiple command
+		bit 8:	multiple-sector setting is valid
+ 78h	DWORD	total number of user-addressable sectors (LBA mode)
+		00000000h if LBA mode not supported
+ 7Ch	WORD	single-word DMA transfer modes
+		low byte is bitmap of supported modes (bit 0 = mode 0, etc.)
+		high bytes is bitmap of active mode (bit 8 = mode 0, etc.)
+ 7Eh	WORD	multiword DMA transfer
+		low byte is bitmap of supported modes (bit 0 = mode 0, etc.)
+		high byte is bitmap of active mode (bit 8 = mode 0, etc.)
+ 80h	WORD	supported flow control PIO transfer modes
+ 82h	WORD	minimum multiword DMA transfer cycle time in ns
+ 84h	WORD	recommended multiword DMA cycle time in ns
+ 86h	WORD	minimum non-flow-control PIO transfer cycle time in ns
+ 88h	WORD	minimum PIO transfer cycle time with IORDY in ns
+ 8Ah  2 WORDs	reserved for future PIO modes (0)
+ 8Eh  2 WORDs	reserved (0)
+ 92h	WORD	command queueing/overlapped operation (see #P0523)
+ 94h  6 WORDs	reserved (0)
+ A0h	WORD	major revision number of specification to which device conforms
+		01h = ATA-1, 02h = ATA-2, etc.	0000h/FFFFh = not reported
+ A2h	WORD	minor revision number of specification to which device conforms
+		0000h/FFFFh = not reported
+ A4h	WORD	feature set support 1 (see #P0519)
+		(only valid if revision reported in A0h/A2h)
+ A6h	WORD	feature set support 2 (see #P0520)
+		(only valid if revision reported in A0h/A2h)
+ A8h	WORD	(ATA/ATAPI-4) feature set support extension (see #P0521)
+ AAh	WORD	feature set enabled 1 (see #P0522)
+		(only valid if revision reported in A0h/A2h)
+ ACh	WORD	feature set enabled 2 (see #P0520)
+		(only valid if revision reported in A0h/A2h)
+ AEh	WORD	(ATA/ATAPI-4) feature set enabled extension (see #P0521)
+ B0h 42 WORDs	reserved (0)
+100h 32 WORDs	vendor-specific
+100h	WORD	security status
+140h 96 WORDs	reserved (0)
+SeeAlso: #P0524,#00267
+
+Bitfields for IDE general configuration:
+Bit(s)	Description	(Table P0517)
+ 15	device class
+	=0 ATA device
+	=1 ATAPI device
+ 14	requires format speed tolerance gap
+ 13	supports track offset option
+ 12	supports data strobe offset
+ 11	disk rotational sped tolerance > 0.5%
+ 10-8	disk transfer rate
+	001 <= 5Mbit/sec
+	010 5-10 Mbit/sec
+	100 > 10Mbit/sec
+ 7-6	drive type
+	01 fixed media
+	10 removable media
+ 5	synchronized drive motor option enabled
+ 4	head-switching time > 15 microseconds
+ 3	encoding
+	=0 MFM
+ 2-1	sector type
+	01 hard-sectored
+	10 soft-sectored
+ 0	unused (0)
+SeeAlso: #P0516
+
+Bitfields for IDE capabilities:
+Bit(s)	Description	(Table P0518)
+ 13	Standby Timer values used according to ATA standard
+ 11	IORDY supported
+ 10	device can disable use of IORDY
+ 9	LBA mode supported
+ 8	DMA supported
+SeeAlso: #P0516
+
+Bitfields for ATA feature set support 1:
+Bit(s)	Description	(Table P0519)
+ 15	Identify Device DMA command is supported
+ 14	NOP (00h) command is supported
+ 13	Read Buffer command is supported
+ 12	Write Buffer command is supported
+ 11	Write Verify command is supported
+ 10	host protected area feature set is supported
+ 9	Device Reset (08h) command is supported
+ 8	Service interrupt is supported
+ 7	release interrupt is supported
+ 6	device supports look-ahead
+ 5	device supports write cache
+ 4	PACKET command feature set is supported
+ 3	power management is supported
+ 2	removable-media feature set is supported
+ 1	security feature set is supported
+ 0	SMART feature set is supported
+Note:	values of 0000h and FFFFh indicate that this field is not supported
+SeeAlso: #P0516,#P0520,#P0521
+
+Bitfields for ATA feature set support/enabled 2:
+Bit(s)	Description	(Table P0520)
+ 15	must be 0 if this field is supported
+ 14	must be 1 if this field is supported
+ 13-2	reserved
+ 1	Read DMA O/Q (C7h) and Write DMA O/Q (CCh) commands supported/enabled
+ 0	Download Microcode (92h) command is supported/enabled
+SeeAlso: #P0516,#P0522,#P0519,#P0521
+
+Bitfields for ATA feature set support extension:
+Bit(s)	Description	(Table P0521)
+ 15	must be 0 if this field is supported
+ 14	must be 1 if this field is supported
+ 13-0	reserved
+SeeAlso: #P0516,#P0519,#P0520
+
+Bitfields for ATA feature set enabled 1:
+Bit(s)	Description	(Table P0522)
+ 15	Identify Device DMA command is supported
+ 14	NOP (00h) command is supported
+ 13	Read Buffer command is supported
+ 12	Write Buffer command is supported
+ 11	Write Verify command is supported
+ 10	host protected area feature set is supported
+ 9	Device Reset (08h) command is supported
+ 8	Service interrupt is enabled
+ 7	release interrupt is enabled
+ 6	look-ahead is enabled
+ 5	write cache is enabled
+ 4	PACKET command feature set is enabled
+ 3	power management is enabled
+ 2	removable-media feature set is enabled
+ 1	security feature set is enabled
+ 0	SMART feature set is enabled
+SeeAlso: #P0516,#P0520
+
+Bitfields for ATA/ATAPI-4 command queueing/overlapped operation support:
+Bit(s)	Description	(Table P0523)
+ 15	reserved
+ 14	device supports command queueing
+ 13	device supports overlapped operation
+ 12-5	reserved
+ 4-0	maximum depth of queued commands supported (0 if bit 14 clear)
+SeeAlso: #P0516
+
+Format of ATAPI Identify Information:
+Offset	Size	Description	(Table P0524)
+ 00h	WORD	general configuration (see #P0525)
+ 02h  9 WORDs	???
+ 14h 10 WORDs	serial number
+		no serial number if first word is 0000h
+		else blank-padded ASCII serial number
+ 28h  3 WORDs	vendor-specific
+ 2Eh  4	WORDs	firmware revision
+		no revision number if first word is 0000h
+		else blank-padded ASCII revision number
+ 36h 20	WORDs	model number
+		no model number if first word is 0000h
+		else blank-padded ASCII model string
+ 5Eh	WORD	vendor-specific
+ 60h	WORD	reserved (0)
+ 62h	WORD	capabilities (see #P0518)
+ 64h	WORD	security mode???
+ 66h	WORD	PIO data transfer cycle timing
+ 68h	WORD	single-word DMA data transfer cycle timing
+ 6Ah	WORD	field validity
+		bit 0: offsets 6Ch-73h valid
+		bit 1: offsets 80h-8Dh valid
+ 6Ch	WORD	??? logical cylinders in current translation mode
+ 6Eh	WORD	??? logical heads in current translation mode
+ 70h	WORD	??? logical sectors per track in current translation mode
+ 72h  2	WORDs	??? current capacity in sectors
+ 76h	WORD	??? multiple-sector count for read/write multiple command
+ 78h  2	WORDs	??? total number of user-addressable sectors (LBA mode)
+ 7Ch	WORD	single-word DMA transfer modes
+		low byte is bitmap of supported modes (bit 0 = mode 0, etc.)
+		high bytes is bitmap of active mode (bit 8 = mode 0, etc.)
+ 7Eh	WORD	multiword DMA transfer
+		low byte is bitmap of supported modes (bit 0 = mode 0, etc.)
+		high bytes is bitmap of active mode (bit 8 = mode 0, etc.)
+ 80h	WORD	supported flow control PIO transfer modes
+ 82h	WORD	minimum multiword DMA transfer cycle time
+ 84h	WORD	recommended multiword DMA cycle time
+ 86h	WORD	minimum non-flow-control PIO transfer cycle time
+ 88h	WORD	minimum PIO transfer cycle time with IORDY
+ 8Ah  2 WORDs	reserved for future PIO modes (0)
+ 8Eh	WORD	typical time for release when processing overlapped CMD in
+		  microseconds
+ 90h	WORD	???
+ 92h	WORD	major ATAPI version number
+ 94h	WORD	minor ATAPI version number
+ 96h 54 WORDs	reserved (0)
+100h 32 WORDs	vendor-specific
+140h 96 WORDs	reserved (0)
+SeeAlso: #P0516
+
+Bitfields for ATAPI General Configuration:
+Bit(s)	Description	(Table P0525)
+ 15-14	device type
+	0x not ATAPI
+	10 ATAPI
+	11 reserved
+ 13	reserved
+ 12	device present (non-ATAPI)
+ 12-8	ATAPI device type (see #P0526)
+ 7	device is removable
+ 6-5	CMD DMA Request type
+	00 microprocessor DRQ
+	01 interrupt DRQ
+	10 accelerated DRQ
+	11 reserved
+ 4-2	reserved
+ 1-0	CMD packet size (00 = 12 bytes, 01 = 16 bytes)
+SeeAlso: #P0524
+
+(Table P0526)
+Values for ATAPI device type:
+ 00h	direct-access device (i.e. disk drive)
+ 01h	sequential-access device (i.e. tape drive)
+ 02h	printer
+ 03h	processor
+ 04h	write-once device
+ 05h	CD-ROM
+ 06h	scanner
+ 07h	optical memory
+ 08h	medium changer
+ 09h	communications device
+ 0Ah	reserved for ACS IT8
+ 0Bh	reserved for ACS IT8
+ 0Ch	array controller device (i.e. RAID)
+ 0Dh-1Eh reserved
+ 1Fh	unknown type or no device
+SeeAlso: #P0525
+
+(Table P0527)
+Values for Self-Monitoring, Analysis, Reporting Technology (SMART) subcommand:
+ D0h	Read Attribute Values (optional) (see #P0529)
+	results returned in 512-byte sector read from controller
+ D1h	Read Attribute Thresholds (optional) (see #P0528)
+	results returned in 512-byte sector read from controller
+ D2h	Disable Attribute Autosave (optional)
+	sector-count register set to 0000h
+ D2h	Enable Attribute Autosave
+	sector-count register set to 00F1h
+ D3h	Save Attribute Values (optional)
+ D4h	execute off-line tests immediately (optional)
+ D5h-D6h reserved
+ D7h	vendor-specific
+ D8h	Enable SMART Operations
+ D9h	Disable SMART Operations
+ DAh	Return SMART Status
+	if any threshold(s) exceeded, CylinderLow set to F4h and CylinderHigh
+	  set to 2Ch
+ DBh	Enable/Disable Automatic Off-Line Data Collection
+	sector-count register set to 0000h to disable, 00F8h to enable
+ DCh-DFh reserved
+ E0h-EFh vendor-specific
+Note:	to access SMART commands, the Cylinder Low register must be set to
+	  004Fh and the Cylinder High register must be set to 00C2h before
+	  invoking the SMART command with the SMART command number in the
+	  Features register
+SeeAlso: #P0515
+
+Format of S.M.A.R.T. attribute thresholds sector:
+Offset	Size	Description	(Table P0528)
+ 00h	WORD	data structure revision number (0005h for SMART Revision 2.0)
+ 02h 12 BYTEs	attribute threshold data 1 (see #P0531)
+ ...
+14Eh 12 BYTEs	attribute threshold data 30 (see #P0531)
+16Ah 18 BYTEs	reserved (0)
+17Ch 131 BYTEs	vendor-specific
+1FFh	BYTE	checksum (two's complement of eight-bit sum of first 511 bytes)
+Note:	if the drive provides fewer than 30 attributes, all remaining attribute
+	  records are filled with NUL (00h) bytes
+SeeAlso: #P0527,#P0529
+
+Format of S.M.A.R.T. attribute values sector:
+Offset	Size	Description	(Table P0529)
+ 00h	WORD
+ 02h 12 BYTEs	attribute value data 1 (see #P0532)
+ ...
+14Eh 12 BYTEs	attribute value data 30 (see #P0532)
+16Ah	BYTE	off-line data collection status (see #P0533)
+16Bh	BYTE	vendor-specific
+16Ch	WORD	time to complete off-line data collection, in seconds
+		0001h-FFFFh
+16Eh	BYTE	vendor-sepcific
+16Fh	BYTE	off-line data collection capability (see #P0534)
+170h	WORD	S.M.A.R.T. capabilities (see #P0530)
+172h 16 BYTEs	reserved (0)
+182h 125 BYTEs	vendor-specific
+1FFh	BYTE	checksum (two's complement of eight-bit sum of first 511 bytes)
+Note:	if the drive provides fewer than 30 attributes, all remaining attribute
+	  records are filled with NUL (00h) bytes
+SeeAlso: #P0527,#P0528
+
+Bitfields for S.M.A.R.T capabilities:
+Bit(s)	Description	(Table P0530)
+ 0	attributes saved on going into power-saving mode
+ 1	Enable/Disable Attribute Autosave subcommands are supported
+ 2-15	reserved
+SeeAlso: #P0529
+
+Format of S.M.A.R.T. attribute threshold:
+Offset	Size	Description	(Table P0531)
+ 00h	BYTE	attribute ID (01h-FFh)
+ 01h	BYTE	attribute threshold
+		00h always passing
+		01h minimum threshold value
+		FDh maximum threshold value
+		FEh invalid (do not use)
+		FFh always failing (for testing)
+ 02h 10 BYTEs	reserved (0)
+Note:	the attribute ID and actual threshold values are vendor-specific
+SeeAlso: #P0528,#P0532
+
+Format of S.M.A.R.T attribute value:
+Offset	Size	Description	(Table P0532)
+ 00h	BYTE	attribute ID (01h-FFh)
+ 01h	WORD	status flags
+		bit 0: pre-failure/advisory
+			=0 value < threshold indicates usage/age exceeding
+				  design life
+			=1 value < threshold indicates pre-failure condition
+		bit 1: on-line data collection
+		bits 2-5 vendor-specific
+		bits 6-15 reserved
+ 03h	BYTE	attribute value (01h-FDh)
+		initial value prior to data collection is 64h
+ 04h  8 BYTEs	vendor-specific
+SeeAlso: #P0529,#P0531
+
+(Table P0533)
+Values for S.M.A.R.T. off-line data collection status:
+ 00h	off-line collection never started
+ 01h	reserved
+ 02h	off-line data collection completed successfully
+ 03h	reserved
+ 04h	off-line data collection suspended by command from host
+ 05h	off-line data collection aborted by command from host
+ 06h	off-line data collection aborted due to fatal error
+ 07h-3Fh reserved
+ 40h-7Fh vendor-specific
+ 80h	off-line collection never started (auto-offline feature enabled)
+ 81h	reserved
+ 82h	off-line data collection completed successfully (auto-offline feature
+	  enabled)
+ 83h	reserved
+ 84h	off-line data collection suspended by command from host (auto-offline
+	  feature enabled)
+ 85h	off-line data collection aborted by command from host (auto-offline
+	  feature enabled)
+ 86h	off-line data collection aborted due to fatal error (auto-offline
+	  feature enabled)
+ 87h-BFh reserved
+ C0h-FFh vendor-specific
+SeeAlso: #P0529,#P0534
+
+Bitfields for S.M.A.R.T. off-line data collection capabilities:
+Bit(s)	Description	(Table P0534)
+ 0	Execute Off-Line Immediate (D4h) subcommand is implemented
+ 1	Enable/Disable Automatic Off-Line subcommand is implemented
+ 2	abort/resume on interrupting command
+	=0 off-line resumes automatically after an interrupting command
+	=1 off-line collection is aborted by an interrupting command
+ 3-7	reserved
+SeeAlso: #P0527
+
+(Table P0535)
+Values for Feature Code:
+ 01h	[opt] 8-bit instead of 16-bit data transfers
+ 02h	[opt] enable write cache
+ 03h	      set transfer mode as specified by Sector Count register
+ 04h	[opt] enable all automatic defect reassignment
+ 22h	[opt] Write Same, user-specified area
+ 33h	[opt] disable retries
+ 44h	      specify length of ECC bytes used by Read Long and Write Long
+ 54h	[opt] set cache segments (value in Sector Count register)
+ 55h	      disable look-ahead
+ 66h	      disable reverting to power-on defaults
+ 77h	[opt] disable ECC
+ 81h	[opt] 16-bit instead of 8-bit data transfers
+ 82h	[opt] disable write cache
+ 84h	[opt] disable all automatic defect reassignment
+ 88h	[opt] enable ECC
+ 99h	[opt] enable retries
+ 9Ah	[opt] set device maximum average current
+ AAh	      enable look-ahead
+ ABh	[opt] set maximum prefecth (value in Sector Count register)
+ BBh	      use four bytes of ECC on Read Long and Write Long (for compat.)
+ CCh	      enable reverting to power-on defaults
+ DDh	[opt] Write Same, entire disk
+SeeAlso: #00266
+

@@ -1,0 +1,176 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Intel 82091AA Advanced Integrated Peripheral
+Range:	PORT 0022h (X-Bus), PORT 0024h (X-Bus), PORT 026Eh (ISA), or
+	  PORT 0398h (ISA)
+SeeAlso: PORT 0024h"82091AA",PORT 026Eh"82091AA",PORT 0398h"82091AA"
+
+0022  ?W  configuration register index (see #P0088)
+0023  RW  configuration register data
+
+(Table P0088)
+Values for Intel 82091AA configuration register index:
+ 00h	product ID (read-only)
+	A0h Intel 82091AA
+ 01h	product revision (read-only) (see #P0089)
+ 02h	configuration 1 (see #P0090)
+ 03h	configuration 2 (see #P0091)
+ 04h-0Fh reserved
+ 10h	floppy-disk controller configuration (see #P0092)
+ 11h	floppy-disk controller power management/status (see #P0093)
+ 12h-1Fh reserved
+ 20h	parallel port configuration (see #P0094)
+ 21h	parallel port power management/status (see #P0095)
+ 22h-2Fh reserved
+ 30h	serial port A configuration (see #P0096)
+ 31h	serial port A power management/status (see #P0097)
+ 32h-3Fh reserved
+ 40h	serial port B configuration (see #P0096)
+ 41h	serial port B power management/status (see #P0097)
+ 42h-4Fh reserved
+ 50h	IDE configuration (see #P0098)
+ 51h-FFh reserved
+
+Bitfields for Intel 82091AA product revision register:
+Bit(s)	Description	(Table P0089)
+ 7-4	stepping number 
+ 3-0	"dash"-number
+SeeAlso: #P0088
+
+Bitfields for Intel 82091AA configuration register 1:
+Bit(s)	Description	(Table P0090)
+ 7	unused (0)
+ 6	supply voltage (read-only) (1 = 3.3V, 0 = 5.0V)
+ 5-4	configuration mode
+	00 software motherboard
+	01 software add-in
+	10 extended hardware
+	11 basic hardware
+ 3	configuration address (read-only)
+	0 primary address (PORT 0022h for X-Bus, PORT 026Eh for ISA)
+	1 secondary address (PORT 0024h for X-Bus, PORT 0398h for ISA)
+ 2-1	reserved
+ 0	power-down AIP's main clock circuitry
+SeeAlso: #P0088,#P0091
+
+Bitfields for Intel 82091AA configuration register 2:
+Bit(s)	Description	(Table P0091)
+ 7-3	IRQ7-IRQ3 mode select
+	0 = active high (ISA-compatible tri-state drive)
+	1 = active low (EISA-compatible open-collector drive)
+ 2-0	reserved
+SeeAlso: #P0088,#P0090
+
+Bitfields for Intel 82091AA floppy-disk controller configuration register:
+Bit(s)	Description	(Table P0092)
+ 7	four floppy drive support enabled (with external decoder)
+ 6-2	reserved
+ 1	FDC address
+	0 = primary (03F0h)
+	1 = secondary (0370h)
+ 0	enable FDC
+SeeAlso: #P0088,#P0093
+
+Bitfields for Intel 82091AA floppy-disk controller power management register:
+Bit(s)	Description	(Table P0093)
+ 7-4	reserved
+ 3	enable FDC auto-powerdown on idle
+ 2	reset FDC
+	(this bit must be pulsed, remaining high for at least 1.2 us)
+ 1	(read-only) FDC is idle
+ 0	power-down FDC
+Note:	to restore FDC from explicit powerdown via bit 0, clear bit 0, then
+	  reset the FDC using bit 2 (hardware reset) or using a software reset
+	  (FDC's DOR bit 2 or DSR bit 7)
+SeeAlso: #P0088,#P0092
+
+Bitfields for Intel 82091AA parallel port configuration:
+Bit(s)	Description	(Table P0094)
+ 7	FIFO threshold
+	0 = 8 slots in each direction
+	1 = one slot forward, 15 reverse
+ 6-5	parallel-port hardware mode
+	00 ISA-compatible
+	01 PS/2-compatible
+	10 EPP
+	11 ECP (read only -- ECP mode must be set via ECP Extended Control Reg)
+ 4	reserved
+ 3	IRQ select
+	0 = IRQ5
+	1 = IRQ7
+ 2-1	address select
+	00 PORT 0378h-037Bh
+	01 PORT 0278h-027Bh
+	10 PORT 03BCh-03BEh (not for EPP mode)
+	11 reserved
+ 0	enable parallel port
+SeeAlso: #P0088,#P0095,#P0920,PORT 0678h"ECP"
+
+Bitfields for Intel 82091AA parallel port power managment register:
+Bit(s)	Description	(Table P0095)
+ 7-6	reserved
+ 5	FIFO overrun or underrun has occurred
+	this bit is cleared by resetting the port via bit 2
+ 4	reserved
+ 3	enable auto-powerdown
+ 2	reset parallel port (pulse this bit; must remain high for 1.13 us)
+ 1	(read-only) parallel port is idle
+ 0	power-down parallel port
+Note:	an explicit power-down may be canceled by either clearing bit 0 or
+	  pulsing bit 2 to reset the port
+SeeAlso: #P0088,#P0094
+
+Bitfields for Intel 82091AA serial port configuration:
+Bit(s)	Description	(Table P0096)
+ 7	enable 2MHz MIDI clock for MIDI baud rate
+ 6-5	reserved
+ 4	IRQ select
+	0 = IRQ3
+	1 = IRQ4
+ 3-1	address select
+	000 PORT 03F8h-03FFh
+	001 PORT 02F8h-02FFh
+	010 PORT 0220h-0227h
+	011 PORT 0228h-022Fh
+	100 PORT 0238h-023Fh
+	101 PORT 02E8h-02EFh
+	110 PORT 0338h-033Fh
+	111 PORT 03E8h-03EFh
+ 0	enable serial port
+Note:	although it is possible to configure both serial ports at the same
+	  address, this is not recommended because the 82091AA disables serial
+	  port B without placing it into powerdown mode
+SeeAlso: #P0088,#P0097
+
+Bitfields for Intel 82091AA serial port power management register:
+Bit(s)	Description	(Table P0097)
+ 7-5	reserved
+ 4	enable test mode
+	when enabled, and DLAB bit in LCR is set, the baud rate clock is output
+	  on the SOUTA pin
+ 3	enable auto-powerdown on idle
+ 2	reset serial port (should be pulsed, high for at least 1.13 us)
+ 1	(read-only) serial port is idle
+ 0	power-down serial port
+Notes:	setting powerdown mode via bit 0 resets both receiver and transmitter,
+	  including the FIFOs, so software should check that port is idle
+	  before powering it down
+	the serial port may be brought out of an explicit powerdown by either
+	  clearing bit 0 or pulsing bit 2
+SeeAlso: #P0088,#P0096
+
+Bitfields for Intel 82091AA IDE configuration:
+Bit(s)	Description	(Table P0098)
+ 7-3	reserved
+ 2	enable both primary and secondary addresses
+ 1	address select (when bit 2 is clear)
+	0 PORT 01F0h-01F7h and 03F6h (primary)
+	1 PORT 0170h-0177h and 0376h (secondary)
+ 0	enable IDE interface
+ !!!intel\29048603.pdf p.45
+SeeAlso: #P0088,#P0092
+

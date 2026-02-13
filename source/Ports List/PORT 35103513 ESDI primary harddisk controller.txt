@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: P35103513
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 3510-3513 - ESDI primary harddisk controller
+Range:	PORT 3510h-3513h (primary) or PORT 3518h-351Bh (secondary)
+SeeAlso: PORT 3518h,PORT 01F0h-01F7h
+
+3510w R-  status word
+3510w -W  command word
+3512  R-  basic status
+3512  -W  basic control
+3513  R-  interrupt status
+3513  -W  attention
+

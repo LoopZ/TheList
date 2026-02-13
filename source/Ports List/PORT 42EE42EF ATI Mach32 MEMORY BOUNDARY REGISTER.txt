@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: P42EE42EF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 42EE-42EF - ATI Mach32 - MEMORY BOUNDARY REGISTER
+SeeAlso: PORT 5EEEh"Mach32"
+
+42EEw RW  memory boundary
+	bits 3-0: VGA/8514 boundary in 256K units (VGA only below, 8514 above)
+	bit 4: partition enable: VGA and 8514 drawing engines may only write
+	      within their respective partitions
+	bits 15-5: reserved
+

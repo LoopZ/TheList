@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: IF8
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C F8h - 10-bit addressing - Device addresses 0xxh
+Desc:	in the new I2C standard, devices may have 10-bit addresses instead of
+	  7-bit addresses.  Use of 10-bit addressing is indicated by generating
+	  a bus address with the five high bits set; bits 2 and 1 then contain
+	  the high two bits of the actual address and bit 0 is the read/write
+	  bit as before.  The low 8 bits of the device address are then sent
+	  in a second byte.
+SeeAlso: I2C FAh,I2C FCh,I2C FEh
+

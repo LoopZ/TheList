@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: R0F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 0Fh - IBM - RESET CODE (IBM PS/2 "Shutdown Status Byte")
+
+(Table C0006)
+Values for Reset Code / Shutdown Status Byte:
+ 00h-03h perform power-on reset
+   00h	software reset or unexpected reset
+   01h	reset after memory size check in real/virtual mode
+	(or: chip set initialization for real mode reentry)
+   02h	reset after successful memory test in real/virtual mode
+   03h	reset after failed memory test in real/virtual mode
+ 04h	INT 19h reboot
+ 05h	flush keyboard (issue EOI) and jump via 40h:0067h
+ 06h	reset (after successful test in virtual mode)
+	(or: jump via 40h:0067h without EOI)
+ 07h	reset (after failed test in virtual mode)
+ 08h	used by POST during protected-mode RAM test (return to POST)
+ 09h	used for INT 15/87h (block move) support
+ 0Ah	resume execution by jump via 40h:0067h
+ 0Bh	resume execution via IRET via 40h:0067h
+ 0Ch	resume execution via RETF via 40h:0067h
+ 0Dh-FFh perform power-on reset
+

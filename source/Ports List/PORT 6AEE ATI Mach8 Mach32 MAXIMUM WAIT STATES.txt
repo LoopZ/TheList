@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: P6AEE
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 6AEE - ATI Mach8/Mach32 - MAXIMUM WAIT STATES
+SeeAlso: PORT 36EEh,PORT 6EEEh,PORT 76EEh,PORT 7AEEh,PORT 8EEEh
+
+6AEE  RW  maximum wait states (see #P1024)
+
+Bitfields for ATI Mach8/Mach32 wait state configuration:
+Bit(s)	Description	(Table P1024)
+ 10	leave alone ("PASSTHROUGH_OVERRIDE")
+ 9	enable for 16-bit I/O
+ 8	0=horizontal degree-mode line draws
+

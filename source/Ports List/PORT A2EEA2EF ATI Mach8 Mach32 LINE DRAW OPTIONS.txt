@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: PA2EEA2EF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT A2EE-A2EF - ATI Mach8/Mach32 - LINE DRAW OPTIONS
+SeeAlso: PORT 8EEEh,PORT CEEEh
+
+A2EEw RW  line drawing options (see #P1041)
+
+Bitfields for ATI Mach8/Mach32 line drawing options:
+Bit(s)	Description	(Table P1041)
+ 10-9	clipping mode
+	00 disable clip exception
+	01 stroked plain lines
+	10 polygon boundary lines
+	11 patterned lines
+ 8	reset all Bounds Accumulator registers
+ 7-5	OCTANT: direction for BitBlts or lines
+ 3	direction specification
+	0 = Bresenham/Octant
+		bit 7: increment Y
+		bit 6: Y is major axis instead of X
+		bit 5: increment X
+	1 = line-length and degrees
+		OCTANT field species N*45 degrees
+ 2	do NOT draw last pixel of a line
+ 1	polyline draw
+

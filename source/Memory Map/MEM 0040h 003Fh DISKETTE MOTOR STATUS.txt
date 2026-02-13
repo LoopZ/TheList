@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040003F
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:003Fh - DISKETTE - MOTOR STATUS
+Size:	BYTE
+SeeAlso: MEM 0040h:003Eh,MEM 0040h:0040h
+
+Bitfields for diskette motor status:
+Bit(s)	Description	(Table M0013)
+ 7	current operation is write or format, rather than read or verify
+ 6	reserved (DMA enabled on 82077)
+ 5-4	diskette drive number selected (0-3)
+ 3	diskette 3 motor on (PC,XT only)
+ 2	diskette 2 motor on (PC,XT only)
+ 1	diskette 1 motor on
+ 0	diskette 0 motor on
+

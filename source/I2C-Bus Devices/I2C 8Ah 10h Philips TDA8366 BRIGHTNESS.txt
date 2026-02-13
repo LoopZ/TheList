@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A10
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/10h - Philips TDA8366 - BRIGHTNESS
+Access:	Write-Only
+SeeAlso: I2C 8Ah/00h"TDA8366",I2C 8Ah/11h"TDA8366",I2C 8Ah/12h"TDA8366"
+
+Bitfields for TDA8366 Brightness Control:
+Bit(s)	Description	(Table I0060)
+ 7	"RBL" RGB blanking is active
+ 6	"COR" enable noise coring (peaking)
+ 5-0	brightness value
+SeeAlso: #I0115,#I0117,#I0118
+

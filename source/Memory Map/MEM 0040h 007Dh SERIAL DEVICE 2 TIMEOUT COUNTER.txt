@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040007D
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:007Dh - SERIAL DEVICE 2 TIMEOUT COUNTER
+Size:	BYTE
+Note:	Under DR-OpenDOS 7.02+ this setting can be changed with the
+	  undocumented CONFIG.SYS COM2=[port_address|logical_no][,[timeout]]
+	  directive, whereby port_address = 200h..3F8h, logical_no = 0 or 1..4,
+	  timeout=0..255 (default 1).
+SeeAlso: MEM 0040h:0002h,MEM 0040h:007Ch,MEM 0040h:007Eh,MEM 0040h:007Fh
+SeeAlso: INT 14/AH=01h
+

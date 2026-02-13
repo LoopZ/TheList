@@ -1,0 +1,44 @@
+--------------------------------------------------------------------------------
+ Unique ID: P04D404D6
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 04D4-04D6 - EISA DMA control
+Note:	PORT 04D6h is also supported by the Intel 82378ZB System I/O controller
+SeeAlso: PORT 0401h-040Bh"EISA",PORT 04D0h-04D1h"EISA"
+
+04D4  R-  DMA chaining status
+04D4  -W  extended DMA chaining mode register, channels 4-7 (see #P0893)
+04D6  -W  DMA extended mode register for channels 4-7 (see #P0894)
+	bit settings same as PORT 040Bh
+
+Bitfields for EISA extended DMA chaining mode register (channels 4-7):
+Bit(s)	Description	(Table P0893)
+ 7-5	reserved (0)
+ 4	=0  generate IRQ 13
+	=1  generate terminal count
+ 3	=0  do not start chaining
+	=1  programming complete
+ 2	=0  disable buffer chaining mode (default)
+	=1  enable buffer chaining mode
+ 1-0	DMA channel select
+SeeAlso: #P0884,#P0894
+
+Bitfields for EISA DMA extended mode register (channels 4-7):
+Bit(s)	Description	(Table P0894)
+ 7	=0  enable stop register
+ 6	=0  terminal count is an output for this channel (default)
+ 5-4	DMA cycle timing
+	00 ISA-compatible (default)
+	01 type A timing mode
+	10 type B timing mode
+	11 burst DMA mode
+ 3-2	Address mode
+	00 8-bit I/O, count by bytes (default)
+	01 16-bit I/O, count by words, address shifted
+	10 32-bit I/O, count by bytes
+	11 16-bit I/O, count by bytes
+ 1-0	DMA channel select
+SeeAlso: #P0886,#P0893
+

@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: @xxxxxxxx
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL xxxxh:xxxxh - Microsoft Mouse Driver - Alternate Entry Point
+InstallCheck:	INT 33 must be non-NULL, and must not point at an IRET
+	  instruction; the alternate entry point is located two bytes past
+	  the INT 33 handler
+Note:	this alternate entry point accepts the same arguments as the
+	  INT 33 interface, but is invoked with a FAR CALL instead of INT 33.
+SeeAlso: INT 33/AX=0000h
+

@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: M004000B5
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:00B5h	- Dell 4xxDE
+Size:	BYTE
+
+Bitfields for Dell 4xxDE flags:
+Bit(s)	Description	(Table M0050)
+ 2	??? (related to disk drives)
+ 5	page tables set to allow Weitek addressing in real mode
+ 6	Weitek math coprocessor present
+

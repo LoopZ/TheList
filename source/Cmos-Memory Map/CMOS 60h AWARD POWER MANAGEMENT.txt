@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: R60
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 60h - AWARD - POWER MANAGEMENT
+
+Bitfields for AWARD power management:
+Bit(s)	Description	(Table C0086)
+ 7	???
+ 6	Video Off Method
+	1  = V/H SYNC + Blank (default)
+	0  = Blank Screen
+ 4,5	Video Off Option
+	00 = Always On (default)
+	01 = Suspend -> Off
+	10 = Suspend, Standby -> Off
+	11 = All Modes -> Off
+ 3	PM Control by APM (1=Yes)
+ 2	???
+ 1,0	Power Management Setup
+	00  User Defined
+	01  Disabled (default)
+	10  Minimum Power Savings (40 Minutes for all events)
+	11  Maximum Power Savings (20 Seconds for all events)
+

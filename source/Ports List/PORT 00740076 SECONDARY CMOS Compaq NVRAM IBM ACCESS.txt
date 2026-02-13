@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00740076
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0074-0076 - SECONDARY CMOS (Compaq), NVRAM (IBM) ACCESS
+Note:	NVRAM may be 2K, 8K, or 16K
+SeeAlso: PORT 0070h-007Fh,CMOS.LST
+
+0074  -W  secondary CMOS RAM (IBM NVRAM) index, low byte
+0075  -W  secondary CMOS RAM (IBM NVRAM) index, high (in bits 2-0)
+0076  RW  secondary CMOS RAM (IBM NVRAM) data byte
+

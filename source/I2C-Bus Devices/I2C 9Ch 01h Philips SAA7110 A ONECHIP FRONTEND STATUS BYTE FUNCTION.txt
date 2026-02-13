@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C01
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/01h - Philips SAA7110(A) ONE-CHIP FRONT-END - STATUS BYTE FUNCTION
+Access:	Read-Only
+Note:	transmitted if STATUS BYTE SELECT = 1 (refer to I2C 9Ch/0Dh)
+Range:	I2C addresses 9Ch or 9Eh, determined by external pin
+SeeAlso: I2C 9Ch/00h"VERSION",I2C 9Ch/0Dh
+
+Bitfields for Status Byte Function:
+Bit(s)	Description	 (Table I0069)	(Table I0070)
+ 7	horizontal time constant status (=0 TV, =1 VCR)
+ 6	locked horizontal frequency status (=0 locked, =1 unlocked)
+ 5	detected field frequency ID bit (=0 50 Hz, =1 60 Hz)
+ 4	active luminance gain value is limited (maximum or minimum)
+ 3	reserved (must be set to LOW)
+ 2	white peak loop status (=0 inactive, =1 active)
+ 1	line alternating colour burst detected (PAL or SECAM)
+ 0	any colour signal detected
+

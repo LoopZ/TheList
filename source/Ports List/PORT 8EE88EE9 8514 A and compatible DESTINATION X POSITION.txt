@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: P8EE88EE9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 8EE8-8EE9 - 8514/A and compatible - DESTINATION X POSITION
+Desc:	define the left column of the destination for a BLT, the diagonal step
+	  constant for a line, or the ending column of a line segment in a
+	  polyline; (Trio64) define the ending column of the first edge drawn
+	  for a polygon or trapezoid
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+SeeAlso: PORT DAEEh"Mach32",PORT 8EEAh
+
+8EE8w -W  drawing control: destination X position / axial step constant
+	  (see #P1034)
+

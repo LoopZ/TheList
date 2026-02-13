@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: R0E
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 0Eh  - IBM PS/2 - DIAGNOSTIC STATUS BYTE 
+
+Bitfields for IBM PS/2 diagnostic status byte:
+Bit(s)	Description	(Table C0005)
+ 7	indicates clock has lost power
+ 6	incorrect checksum
+ 5	equipment configuration is incorrect
+	  (power-on check requires that at least one floppy be installed)
+ 4	error in memory size
+ 3	controller or disk drive failed initialization
+ 2	time is invalid
+ 1	installed adaptors do not match configuration
+ 0	time-out while reading adaptor ID
+Note:	Compaq machines with dual hard disk controllers support at least bits
+	  7 and 6
+

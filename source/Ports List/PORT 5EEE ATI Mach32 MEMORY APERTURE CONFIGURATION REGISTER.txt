@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: P5EEE
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 5EEE - ATI Mach32 - MEMORY APERTURE CONFIGURATION REGISTER
+SeeAlso: PORT 42EEh"Mach32"
+
+5EEEw RW  Memory Aperture Configuration (see #P1023)
+
+Bitfields for ATI Mach32 Memory Aperture Configuration Register:
+Bit(s)	Description	(Table P1023)
+ 1-0	direct memory interface mapping
+	00 disabled
+	01 1M aperture (not on PCI)
+	10 4M aperture
+	11 reserved
+ 3-2	1M page select (not on PCI)
+	00 page 0
+	01 page 1
+	10 page 2
+	11 page 3
+ 11-8	(ISA) memory aperture location, 0-15 MB
+ 13-8	(EISA) memory aperture location, 0-63 MB
+ 14-8	(VLB) memory aperture location, 0-127 MB [*]
+ 15-4	(PCI) memory aperture location, 0-4095 MB
+ 13-8	(MCA 16-bit) memory aperture location, 0-63 MB
+ 14-8	(MCA 32-bit) memory aperture location, 0-127 MB
+Note:	[*] if PORT 16EEh bit 3 is set and PORT FAEEh is non-zero, bits 15-4
+	  are used to specify an address from 0-4095 MB
+

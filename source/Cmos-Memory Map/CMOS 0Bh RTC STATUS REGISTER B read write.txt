@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+ Unique ID: R0B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 0Bh - RTC - STATUS REGISTER B (read/write) 
+
+Bitfields for Real-Time Clock status register B:
+Bit(s)	Description	(Table C0002)
+ 7	enable clock setting by freezing updates
+ 6	enable periodic interrupt
+ 5	enable alarm interrupt
+ 4	enable update-ended interrupt
+ 3	enable square wave output
+ 2	Data Mode - 0: BCD, 1: Binary
+ 1	24/12 hour selection - 1 enables 24 hour mode
+ 0	Daylight Savings Enable
+	=1 enables automatic switching to/from DST in April and October
+Notes:	some operating systems seem to change the CMOS clock rate to slower
+	  values for unknown purposes. Since on older ATs the clock rate does
+	  not get restored after a cold boot, this may slow down disk
+	  operations for example under PC DOS which depends on the clock rate.
+	If IBMBIO.COM finds a model byte FCh (sub-models 00h, 01h, 02h, 03h,
+	  or 06h) during init, it resets the clock rate to the default value
+	  (00100110b).
+SeeAlso: #C0001,#C0003,#C0004
+

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: P1010
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 1010 - Wang PC - SCREEN 1 CONFIGURATION PORT
+SeeAlso: PORT 1020h,PORT 1030h,PORT 1040h,MEM F000h:0000h"Wang"
+
+1010  ?W  write 01h to map screen buffer 1 into memory at F000h:0000h
+	  write 00h to unmap the screen buffer
+

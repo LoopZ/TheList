@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: R19
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 19h - IBM - FIRST EXTENDED HARD DISK DRIVE TYPE
+Note:	not in original AT specification but now nearly universally used
+	  except for PS/2.
+
+(Table C0020)
+Values for extended hard disk drive type:
+  00-0Fh unused (would not require extension. Note: this has the effect of
+	  making type 0Fh (15d) unavailable.
+  10h-FFh First Extended Hard Drive Type 16d-255d
+Note: For most manufacturers the last drive type (typically either 47d or 49d)
+	is "user defined" and parameters are stored elsewhere in the CMOS.
+

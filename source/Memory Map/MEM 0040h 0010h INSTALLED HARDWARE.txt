@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400010
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0010h - INSTALLED HARDWARE
+Size:	WORD
+SeeAlso: INT 11
+
+Bitfields for BIOS-detected installed hardware:
+Bit(s)	Description	(Table M0006)
+ 15-14	number of parallel devices
+	00 or 11 sometimes used to indicate four LPT ports
+ 13	(Convertible, PS/2-55LS) internal modem
+ 12	game port installed
+ 11-9	number of serial devices
+	000 or 111 sometimes used to indicate eight COM ports
+ 8	reserved
+ 7-6	number of floppy disk drives (minus 1)
+ 5-4	initial video mode
+	00 EGA,VGA,PGA, or other with on-board video BIOS
+	01 40x25 CGA color
+	10 80x25 CGA color
+	11 80x25 mono text
+ 3-2	(PC only) RAM on motherboard
+	00 = 16K, 01 = 32K, 10 = 48K, 11 = 64K
+	(some XTs) RAM on motherboard
+	00 = 64K, 01 = 128K, 10 = 192K, 11 = 256K
+ 2	(pre-PS/2 except PC) reserved
+	(PS/2, some XT clones, newer BIOSes) pointing device installed
+ 1	math coprocessor installed
+ 0	floppy disk drives are installed
+	booted from floppy
+

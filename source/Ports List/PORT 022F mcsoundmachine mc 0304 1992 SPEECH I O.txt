@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: P022F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 022F - mc-soundmachine, mc 03-04/1992 - SPEECH I/O
+Note:	An Adlib-compatible Covox 'voice master' & 'speech thing' compatible
+	  soundcard
+SeeAlso: PORT 0378h"Covox",PORT 0388h-038Fh"soundmachine"
+
+022F  RW  Covox compatible speech I/O  (via internal A/D converter,
+		each read access starts a new conversion cycle)
+		register enabled if bit7=1 in PORT 038Fh
+

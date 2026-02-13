@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: MC8001C00
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM C800h:1C00h - IBM XGA, XGA/A - MEMORY-MAPPED REGISTERS
+Range:	any 8K boundary within segments C000h to DFFFh
+Notes:	The XGA memory mapped registers can be assigned to the last 1K block in
+	  in each 8K block in the range of C0000h-DFFFFh; the base offset of
+	  the 128 memory mapped lcoation for a particular XGA instance is
+	  Segment:(1C00h+instance*80h) for each XGA installed in a system
+	  (default instance is 6).  The instance number may be read from the
+	  XGA's Programmable Option Select registers
+	The XGA/A (PS/2 adapter) uses the 7KB area below the memory-mapped
+	  register area for ROM data; the XGA (PS/2 onboard) has included
+	  this area in it's video BIOS ROM.
+	Most of the memory mapped registers are from the graphics coprocessor,
+	  while the I/O-registers are for the display controller.
+

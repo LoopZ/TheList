@@ -1,0 +1,116 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03C003C1
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03C0-03C1 - EGA/VGA - ATTRIBUTE CONTROLLER
+Range:	PORT 03C0h or PORT 02C0h (alternate EGA)
+SeeAlso: PORT 03C2h,PORT 03D0h,#P0718
+
+03C0  rW  ATC index/data register
+		Every write access to this register will toggle an internal
+		  index/data selection flipflop, so that consecutive writes to
+		  index & data is possible through this port. To get a defined
+		  start condition, each read access to the input status register
+		  #1 (3BAh in mono / 3DAh in color) resets the flipflop to load
+		  index. If values are changed during the vertical retrace
+		  period only no flicker will occur.
+
+		index register (flipflop reset to 'index'): (default 20h)
+		  bit7-6: reserved
+		  bit5	: 0=CPU access (screen dark),
+			  1=video access to registers
+		  bit4-0: index in ATC (0..31)
+
+		indexed registers in ATC (flipflop set to 'data'): (see #P0662)
+03C1  R-  (VGA)	ATC index/data read register
+
+(Table P0662)
+Values for EGA/VGA indexed registers in ATC:
+ 00h-0Fh 16 palette registers (see #P0663)
+ 10h	mode control register (see #P0664)
+ 11h	(EGA) overscan color register (see #P0665) (default: 00h)
+ 11h	(VGA) overscan color register (see #P0666) (default: 00h)
+ 12h	color enable register (see #P0667)
+ 13h	horizontal pixel panning register
+	bit7-4: reserved
+	bit3-0: horizontal pixel panning
+ 14h	(VGA) color select register (default: 00h)
+	bit7-4: reserved
+	bit3  : s-color 7
+	bit2  : s-color 6
+	bit1  : s-color 5 (only with 16 pages   16 regs)
+	bit0  : s-color 4 (only with 16 pages   16 regs)
+ 16h	ET3000, ET4000 only: ATC miscellanenous
+	(at least on ET4000 'key' protected)
+	This register is also supported by ET3000, but the
+	  description is proved for ET4000 only.
+	bit7  : bypass the internal palette
+		(e.g. for HiColor modes with Sierra RAMDACs)
+	bit6  : reserved
+	bit5-4: select high resolution / color mode
+	bit3-0: reserved
+SeeAlso: #P0670,#P0700
+
+Bitfields for EGA/VGA indexed ATC palette register:
+Bit(s)	Description	(Table P0663)
+ 7-6	reserved
+ 5	secondary red video
+ 4	secondary green/intensity video
+ 3	secondary blue/mono video
+ 2	primary red video
+ 1	primary green video
+ 0	primary blue video
+SeeAlso: #P0662
+
+Bitfields for EGA/VGA ATC mode control register:
+Bit(s)	Description	(Table P0664)
+ 7	(VGA) SB/SG select (0=4 pages of 64 regs, 1=16 pages of 16 regs)
+ 6	(VGA) PELCLK/2 (0=4bit color, 1=8bit color)
+ 5	(VGA) enable pixel panning (0=all, 1=up to line compare register value)
+ 4	reserved
+ 3	background intensity (0=16 colors, 1=blink)
+ 2	line graphics enable (0=background, 1=line 8=9)
+ 1	1=mono, 0=color select
+ 0	1=graphics, 0=text select
+SeeAlso: #P0662
+
+Bitfields for EGA overscan color register:
+Bit(s)	Description	(Table P0665)
+ 7-6	reserved
+ 5	secondary red (SR)
+ 4	secondary green (SR) / intensity
+ 3	secondary blue (SB)
+ 2	primary red (PR)
+ 1	primary green (PG)
+ 0	primary blue (PB)
+SeeAlso: #P0662,#P0666
+
+Bitfields for VGA overscan color register:
+Bit(s)	Description	(Table P0666)
+ 7	secondary intensity border color (SI)
+ 6	secondary red (SR)
+ 5	secondary green (SG)
+ 4	secondary blue (SB)
+ 3	intensity border color (PI)
+ 2	primary red (PR)
+ 1	primary green (PG)
+ 0	primary blue (PB)
+SeeAlso: #P0662,#P0665
+
+Bitfields for EGA/VGA color enable register:
+Bit(s)	Description	(Table P0667)
+ 7-6	reserved
+ 5-4	diagnose / video status select
+	EGA:		VGA, ET4000:
+	00b = PR/PB	   PR/PB
+	01b = SB/PG	   SG/SB
+	10b = SR/SG	   PI/PG
+	11b = reserved	   SI/SR
+ 3	enable plane 3
+ 2	enable plane 2
+ 1	enable plane 1
+ 0	enable plane 0
+SeeAlso: #P0662
+

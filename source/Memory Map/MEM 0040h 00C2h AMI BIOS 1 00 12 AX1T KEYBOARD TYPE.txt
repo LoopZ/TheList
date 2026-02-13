@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: M004000C2
+  Category: K 	keyboard enhancers
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:00C2h - AMI BIOS 1.00.12.AX1T - KEYBOARD TYPE
+Size:	WORD
+Desc:	this word contains an indication of the type of keyboard
+	  (controller???) attached to the system
+Note:	AMI's APM code checks for 4147h vs. other value (5047h seen on Intel
+	  "Plato" motherboard)
+SeeAlso: #00586,INT 16/AH=F2h
+

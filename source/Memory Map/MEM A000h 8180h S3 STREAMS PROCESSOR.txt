@@ -1,0 +1,234 @@
+--------------------------------------------------------------------------------
+ Unique ID: MA0008180
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM A000h:8180h - S3 - STREAMS PROCESSOR
+Size:	128 BYTEs
+Note:	the S3 graphics processor registers can be mapped at either
+	  linear 000A0000h or at offset 16M from the start of the linear
+	  frame buffer
+SeeAlso: MEM A000h:8100h,MEM A000h:FF00h
+
+Format of S3 Streams Processor memory-mapped registers:
+Offset	Size	Description	(Table M0058)
+8180h	DWORD	primary stream control (see #M0059)
+8184h	DWORD	chroma key control (see #M0063)
+8188h	DWORD	unused??? (high word seems to echo 8184h, low word 8180h)
+818Ch	DWORD	unused??? (high word seems to echo 8184h, low word 8180h)
+8190h	DWORD	secondary stream control (see #M0061)
+8194h	DWORD	chroma key upper bound (bits 23-0) (see also #M0063)
+8198h	DWORD	secondary stream stretch (see #M0062)
+819Ch	DWORD	??? (set by S3_32.DLL)
+		bits 30-16: ???
+		bits 14-0: ???
+81A0h	DWORD	blend control (see #M0064)
+81A4h 3 DWORDs	unused??? (reads as FFFFFFFFh)
+81B0h 4 DWORDs	??? (appear to be read-only)
+81C0h	DWORD	primary frame buffer address 0 (bits 21-0, multiple of 8)
+81C4h	DWORD	primary frame buffer address 1 (bits 21-0, multiple of 8)
+81C8h	DWORD	primary stream stride (bits 11-0 only)
+81CCh	DWORD	double buffer/LPB control (see #M0065)
+81D0h	DWORD	secondary frame buffer address 0 (bits 21-0, multiple of 8)
+81D4h	DWORD	secondary frame buffer address 1 (bits 21-0, multiple of 8)
+81D8h	DWORD	secondary stream stride (bits 11-0 only)
+81DCh	DWORD	opaque overlay control (see #M0066)
+81E0h	DWORD	K1 -- vertical stretch (lines in) (bits 10-0 only)
+		set to one less than # lines in
+81E4h	DWORD	K2 -- vertical stretch (stretch factor) (bits 10-0 only)
+		set to -(#lines_in - #lines_out)
+81E8h	DWORD	DDA vertical accumulator (bits 11-0 only) (lines out)
+		set to (#lines_out) - 1
+81ECh	DWORD	streams FIFO and RAS control (see #M0067)
+81F0h	DWORD	primary start coordinate (see #M0068)
+81F4h	DWORD	primary window size (see #M0069)
+81F8h	DWORD	secondary start coordinate (see #M0068)
+81FCh	DWORD	secondary window size (see #M0069)
+Note:	changes to registers 81E0h-81E8h do not take effect until the next
+	  VSYNC
+SeeAlso: #M0073,#M0057,#M0070
+
+Bitfields for S3 Streams Processor primary stream control:
+Bit(s)	Description	(Table M0059)
+ 31	reserved
+ 30-28	filter characteristics
+	000 unchanged primary stream
+	001 2X stretch by replicating pixels
+	010 2X stretch by interpolating horizontally (replicating vertically)
+	else reserved
+ 27	reserved
+ 26-24	color mode (see #M0060)
+ 23-0	officially reserved, but writing nonzero values can hang display
+Notes:	the primary stream is the output from the display RAM
+	bits 26-24 correspond to CR67 color mode field (see #P0688)
+SeeAlso: #M0058,#M0061
+
+(Table M0060)
+Values for S3 Streams Processor color mode:
+ 000b	eight bits per pixel
+ 001b	YCrCb 4:2:2 unsigned, range 10h-F0h (secondary stream only)
+ 010b	YUV 4:2:2, range 00h-FFh  (secondary stream only)
+ 011b	keyed high-color (1-5-5-5)
+ 100b	YUV 2:1:1 two's complement (secondary stream only)
+ 101b	high-color (5-6-5)
+ 110b	reserved
+ 111b	true-color (32bpp, high byte ignored)
+SeeAlso: #M0059,#M0061
+
+Bitfields for S3 Streams Processor secondary stream control:
+Bit(s)	Description	(Table M0061)
+ 31	reserved
+ 30-28	filter characteristics
+	000 unchanged secondary stream
+	001 linear 0-2-4-2-0 for 1x-2x stretch
+	010 bi-linear for 2x-4x stretch
+	011 linear 1-2-2-2-1 for 4x+ stretch
+	else reserved
+ 28	enable smoothing between horizontally adjacent bits (trial-and-error)
+ 27	reserved
+ 26-24	color mode (see #M0060,#M0074)
+ 23-12	reserved
+ 11-0	initial value of DDA horizontal accumulator
+	set to 2*(inwidth-1)-(outwidth-1)
+Notes:	the secondary stream is typically live video, but can be pointed at
+	  any part of video memory
+	changes to this register do not take effect until the next VSYNC
+SeeAlso: #M0058,#M0059,#M0062
+
+Bitfields for S3 Streams Processor stretch/filter constants:
+Bit(s)	Description	(Table M0062)
+ 31-27	reserved
+ 26-16	K2 horizontal scaling factor (input width - output width)
+ 15-11	reserved
+ 10-0	K1 horizontal scaling factor (input width - 1)
+Note:	changes to this register do not take effect until the next VSYNC
+SeeAlso: #M0061
+
+Bitfields for S3 Streams Processor chroma-key control:
+Bit(s)	Description	(Table M0063)
+ 31-29	reserved
+ 28	key control
+	=1 normal color-key or chroma-key
+	=0 (keyed RGB 1-5-5-5 mode only) extract key from high bit of input
+	  stream; if key bit is clear, show pixel from other stream
+ 27	reserved
+ 26-24	color comparison precision
+	000 compare bit 7 of R,G, and B values only
+	001 compare bits 7-6
+	...
+	111 compare bits 7-0
+ 23-0	chroma-key color value
+	23-16 = red or Y
+	15-8 = green or U/Cb
+	7-0 = blue or V/Cr
+Note:	if the keyed stream is YUV or YCrCb, then this register contains the
+	  lower bound and 8194h contains the upper bound of the chromakey
+	  value
+SeeAlso: #M0058
+
+Bitfields for S3 Streams Processor blend control:
+Bit(s)	Description	(Table M0064)
+ 31-27	reserved (unused)
+ 26-24	blend type
+	000 show secondary stream (video) overlaying primary stream
+	001 show primary stream overlaying secondary stream
+	010 blend pri/sec. streams (dissolve, secondary intensity = full-prim.)
+	011 blend pri/sec. streams
+	100 reserved (blank display)
+	101 show secondary stream only where chroma-key color present
+	110 show secondary stream (video) unconditionally
+	111 reserved (blank display)
+ 23-14	reserved
+ 13	??? (officially reserved, but set by S3_32.DLL)
+ 12-8	primary stream intensity (00h-1Ch, must be multiple of 4)
+ 4-0	secondary stream intensity (00h-1Ch, must be multiple of 4)
+	(ignored for blend type 010)
+Notes:	for blend type 011, the primary and secondary stream intensities should
+	  not total more than 20h to avoid wraparounds which appear as
+	  incorrect colors; for blend type 010, the secondary stream intensity
+	  is automatically computed as 20h - bits12-8
+	changes to this register do not take effect until the next VSYNC
+SeeAlso: #M0058
+
+Bitfields for S3 Streams Processor double-buffer/LPB control:
+Bit(s)	Description	(Table M0065)
+ 31-7	reserved (unused; all but bit 7 appear to be read-only, as well)
+ 6	LPB frame buffer auto-toggle
+	if set, End-of-Frame toggles bit 4
+ 5	delay loading LPB input buffer select until next End-of-Frame
+ 4	LPB input buffer select (see #M0073)
+	0 use LPB frame buffer address 0 (FF0Ch) for incoming video data
+	1 use LPB frame buffer address 1 (FF10h)
+ 3	reserved
+ 2-1	secondary stream buffer select
+	00 use frame buffer address 0 (81D0h)
+	01 use frame buffer address 1 (81D4h)
+	1x use frame buffer 0/1 (81D0h/81D4h) selected by bit 4 for secondary
+	   stream and selected LPB frame buffer for LPB input
+ 0	primary stream buffer select
+	=0 use frame buffer address 0 (81C0h)
+	=1 use frame buffer address 1 (81C4h)
+SeeAlso: #M0058,#M0073
+
+Bitfields for S3 Streams Processor opaque overlay control:
+Bit(s)	Description	(Table M0066)
+ 31	enable opaque overlay control
+ 30	select top stream (0 = secondary on top, 1 = primary)
+ 29	reserved
+ 28-19	pixel resume fetch
+	number of quadwords from background's left edge to position at which
+	  to start fetching pixels again
+ 18-13	reserved
+ 12-3	pixel stop fetch
+	number of quadwords from background's left edge to position at which
+	  to stop fetching pixels
+ 2-0	reserved
+SeeAlso: #M0058
+
+Bitfields for S3 Streams Processor streams FIFO and RAS control register:
+Bit(s)	Description	(Table M0067)
+ 31-22	reserved (0)
+ 21	skip 0.5 MCLK delay of PD[63:0] output (default = 0)
+ 20	skip memory arbitration for ROM cycles (default = 0)
+ 19	do not tristate PD[63:16] during ROM cycles (default = 0)
+	(set by Win95 driver when using ISA bus)
+ 18	EDO wait state control (LPB memory cycles only)
+	=0 two-cycle accesses
+	=1 one-cycle EDO accesses
+ 17	reserved
+ 16	RAS# pre-charge control
+	=0 use CR68(bit3) setting (2.5/3.5 MCLKs)
+	=1 1.5 MCLKs
+ 15	RAS# low control
+	=0 use CR68(bit2) setting (3.5/4.5 MCLKs)
+	=1 2.5 MCLKs
+ 14-10	primary stream FIFO threshold
+	number of filled quadword slots at which to request refilling
+ 9-5	secondary stream FIFO threshold
+	number of filled quadword slots at which to request refilling
+ 4-0	FIFO allocation, in quadword slots
+	00000 primary stream = 24, secondary = 0
+	01000 primary stream = 16, secondary = 8
+	01100 primary stream = 12, secondary = 12
+	10000 primary stream = 8, secondary = 16
+	11000 primary stream = 0, secondary = 24
+	else reserved
+SeeAlso: #M0058
+
+Bitfields for S3 Streams Processor start coordinate:
+Bit(s)	Description	(Table M0068)
+ 31-27	reserved (read-only)
+ 26-16	X coordinate (column) of upper left corner, plus 1
+ 15-11	reserved (read-only)
+ 10-0	Y coordinate (row) of upper left corner, plus 1
+SeeAlso: #M0058,#M0069
+
+Bitfields for S3 Streams Processor window size:
+Bit(s)	Description	(Table M0069)
+ 31-27	reserved (read-only)
+ 26-16	width in pixels - 1
+ 15-11	reserved (read-only)
+ 10-0	height in scan lines
+SeeAlso: #M0058,#M0068
+

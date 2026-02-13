@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: I2880
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 28h/80h - Philips SAA5252 - STATUS
+Access:	Read-Only
+Desc:	the SAA5252 is a closed-captioning text decoder
+Note:	on reads, the register index autoincrements until it reaches 82h,
+	  allowing all read registers to be retrieved with a single I2C
+	  telegram
+SeeAlso: I2C 28h/81h,I2C 28h/00h,I2C 28h/04h
+
+Bitfields for SAA5252 status flags:
+Bit(s)	Description	(Table I0006)
+ 7	power-on reset has occurred (all write registers cleared to 00h)
+ 6-4	reserved (0)
+ 3	data bytes are from Field 2
+ 2	following data bytes are extended data service bytes
+ 1	5252 shutdown due to parity error
+ 0	data ready (see I2C 28h/81h)
+SeeAlso: #I0011,#I0068
+

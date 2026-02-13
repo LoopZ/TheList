@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03D403D5
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03D4-03D5 - Cirrus Logic VIDEO CHIPS - EXTENDED CRT CONTROL REGISTERS
+SeeAlso: PORT 03D4h"COLOR VIDEO",PORT 03D4h"Tseng"
+
+03D4  RW  CRT control register index (see #P0716)
+03D5  RW  CRT control register value
+
+(Table P0716)
+Values for Cirrus Logic CRT Controller register index:
+ 00h-18h same as EGA/VGA (see #P0708)
+---Cirrus CL-GD7556---
+ 19h	"CR19" Interlace End
+ 1Ah	"CR1A" miscellaneous control
+ 1Bh	"CR1B" extended display control
+ 1Ch	"CR1C" horizontal total and sync
+ 1Dh	"CR1D" color key compare type
+ 22h	same as VGA (see #P0708)
+ 24h	same as VGA (see #P0708)
+ 25h	"CR25" revision
+ 26h	"CR26" attribute controller index readback
+ 27h	"CR27" device identification
+ 30h	"CR30" TV-OUT control
+ 31h	"CR31" Video Window horizontal upscaling coefficient
+ 32h	"CR32" Video Window vertical upscaling coefficient
+ 33h	"CR33" Video Window horizontal start (high)
+ 34h	"CR34" Video Window horizontal start (low)
+ 35h	"CR35" Video Window brightness
+ 36h	"CR36" Video Window vertical position extension
+ 37h	"CR37" Video Window vertical start
+ 38h	"CR38" Video Window vertical height
+ ...
+ 42h	"CR42" Video Window FIFO threshold / chroma-key mode
+ 50h	"CR50" V-Port hardware configuration
+ ...
+ 5Fh	"CR5F" V-Port capture window start address (low)
+ 80h	"CR80" power management control
+ ...
+ 91h	"CR91" shading map offset
+ A0h	"CRA0" CRT horizontal 8-dot character clock
+ ...
+ BFh	"CRBF" CRT vertical back porch
+!!! details to be added
+SeeAlso: #P0654,#P0756,#P0717
+

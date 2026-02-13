@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400088
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0088h - VIDEO (EGA/VGA) SWITCHES: [MCGA: reserved]
+Size:	BYTE
+SeeAlso: MEM 0040h:0087h,MEM 0040h:0089h
+
+Bitfields for EGA/VGA Video switches:
+Bit(s)	Description	(Table M0025)
+ 7-4	power-on state of feature connector bits 3-0
+ 3-0	configuration switches 4-1 (=0 on, =1 off) (see #M0026)
+Note:	when bit 4 of 0040h:0089h is 0, VGA emulates 350-line EGA if this
+	  byte is x3h or x9h, otherwise emulates 200-line CGA in 400-line
+	  double scan. VGA resets this byte to x9h after the mode set.
+	See also note for 0040h:0089h.
+
+(Table M0026)
+Values for EGA/VGA configuration switches:
+ 00h Pri MDA,				Sec EGA+old color display 40 x 25
+ 01h Pri MDA,				Sec EGA+old color display 80 x 25
+ 02h Pri MDA,				Sec EGA+ECD normal mode (CGA emul)
+ 03h Pri MDA,				Sec EGA+ECD enhanced mode
+ 04h Pri CGA 40 x 25,			Sec EGA mono display
+ 05h Pri CGA 80 x 25,			Sec EGA mono display
+ 06h Pri EGA+old color display 40 x 25, Sec MDA
+ 07h Pri EGA+old color display 80 x 25, Sec MDA
+ 08h Pri EGA+ECD normal mode (CGA emul), Sec MDA
+ 09h Pri EGA+ECD enhanced mode,		Sec MDA
+ 0Ah Pri EGA mono display,		Sec CGA 40 x 25
+ 0Bh Pri EGA mono display,		Sec CGA 80 x 25
+SeeAlso: #M0025
+

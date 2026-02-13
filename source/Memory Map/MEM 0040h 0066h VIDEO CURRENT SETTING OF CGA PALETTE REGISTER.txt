@@ -1,0 +1,21 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400066
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0066h - VIDEO - CURRENT SETTING OF CGA PALETTE REGISTER
+Size:	BYTE
+Desc:	contains the last value written to I/O port 03D9h
+SeeAlso: MEM 0040h:0063h,MEM 0040h:0065h,INT 10h/AH=0Bh/BH=01h
+
+Bitfields for CGA palette register:
+Bit(s)	Description	(Table M0019)
+ 7-6	unused
+ 5	palette (0/1)
+ 4	intense background colors in text mode
+ 3	intense border color (40x25) / background color (mode 5)
+ 2	red
+ 1	green
+ 0	blue
+

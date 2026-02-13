@@ -1,0 +1,89 @@
+--------------------------------------------------------------------------------
+ Unique ID: R11
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 11h - AWARD - CONFIGURATION BITS
+SeeAlso: CMOS 5Eh"AWARD"
+
+Bitfields for AWARD configuration bits:
+Bit(s)	Description	(Table C0012)
+ 7	NumLock ON at reboot
+ 6	IDE Block Mode enabled
+ 5	???
+ 4	Shadow ROM BIOS at CC00-CFFF
+ 3	Shadow ROM BIOS at C800-CBFF
+ 2	???
+ 1	BIOS Password Enabled (supervisor)
+ 0	0 = Password controls BIOS Setup Only
+	1 = Password required to enter System
+SeeAlso: #C0083
+
+Code snippet by Jens Rehsack:
+   FUNCTION CalcPossiblePassword( PasswordValue: WORD ): STRING[8];
+   VAR
+	    I			   :  BYTE;
+	    C			   :  CHAR;
+	    S			   :  STRING[8];
+
+   BEGIN
+     I := 0;
+     WHILE PasswordValue <> 0 DO
+     BEGIN
+       Inc( I );
+       IF $263 > PasswordValue THEN
+       BEGIN
+	 IF $80 > PasswordValue THEN
+	   S[I] := CHAR( PasswordValue )
+	 ELSE IF $B0 > PasswordValue THEN
+	   S[I] := CHAR( PasswordValue AND $77 )
+	 ELSE IF $11D > PasswordValue THEN
+	   S[I] := CHAR( $30 OR ( PasswordValue AND $0F ) )
+	 ELSE IF $114 > PasswordValue THEN
+	 BEGIN
+	   S[I] := CHAR( $64 OR ( PasswordValue AND $0F ) );
+	   IF '0' > S[I] THEN
+	     S[I] := CHAR( BYTE( S[I] ) + 8 );
+	 END ELSE IF $1C2 > PasswordValue THEN
+	   S[I] := CHAR( $70 OR ( PasswordValue AND $03 ) )
+	 ELSE IF $1E4 > PasswordValue THEN
+	   S[I] := CHAR( $30 OR ( PasswordValue AND $03 ) )
+	 ELSE
+	 BEGIN
+	   S[I] := CHAR( $70 OR ( PasswordValue AND $0F ) );
+	   IF 'z' < S[I] THEN
+	     S[I] := CHAR( BYTE( S[I] )	 - 8 );
+	 END;
+       END ELSE
+	 S[I] := CHAR( $30 OR ( PasswordValue AND $3 ) );
+       PasswordValue := ( PasswordValue - BYTE( S[I] ) ) SHR 2;
+     END;
+
+     S[0] := CHAR( I );
+     PasswordValue := I SHR 1;
+     WHILE PasswordValue < I DO
+     BEGIN {this is to do because award starts calculating with the last letter}
+
+       C := S[BYTE( S[0] ) - I + 1];
+       S[BYTE( S[0] ) - I + 1] := S[I];
+       S[I] := C;
+       Dec( I );
+     END;
+
+     CalcPossiblePassword := S;
+   END;
+
+"Okay, the algorithms based on the knowlege, that the award-bios' 4.50 and 4.51
+ but not (seems to) with earlier versions stores only the last 2 bit of every
+ character typed in..."
+
+   int CalcPasswordCRC( char pw[8] ): word
+   {
+     register int i = 8;
+     register unsigned w = 0;
+     while( i-- )
+       w |= ( unsigned( pw[i] ) & 0x3 ) << ( i * 2 );
+     return w;
+   }
+

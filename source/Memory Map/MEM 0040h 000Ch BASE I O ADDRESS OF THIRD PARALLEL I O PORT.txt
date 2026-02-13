@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040000C
+  Category: P 	printer enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:000Ch - BASE I/O ADDRESS OF THIRD PARALLEL I/O PORT
+Size:	WORD
+Notes:	zero if fewer than three parallel ports installed
+	Under DR-OpenDOS 7.02+ this setting can be changed with the
+	  undocumented CONFIG.SYS LPT3=[port_address|logical_no][,[timeout]]
+	  directive, whereby port_address = 200h..3FCh, logical_no = 0 or 1..3,
+	  timeout=0..255 (default 20).
+SeeAlso: MEM 0040h:0004h,MEM 0040h:0008h,MEM 0040h:000Ah,MEM 0040h:000Eh
+SeeAlso: PORT 0378h"PRINTER",INT 17/AH=00h
+

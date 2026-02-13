@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00220023
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-0023 - Chips&Technologies 82C235 "SCAT" - CONFIGURATION REGISTERS
+Note:	each access to PORT 0023h must immediately follow a write to
+	  PORT 0022h (this is to avoid accidental accesses)
+
+0022  -W  configuration register index (see #P0067)
+0023  RW  configuration register data
+
+(Table P0067)
+Values for Chips&Technologies 82C235 configuration register index:
+ 01h	DMA wait-state control
+ 40h	version (read-only)
+ 41h	clock control
+ 42h-43h reserved (but listed as read-write in docs)
+ 44h	peripheral control
+ 45h	miscellaneous status
+ 46h	power management
+ 47h	reserved
+ 48h	ROM enable
+ 49h	RAM write-protect control
+ 4Ah	shadow RAM enable 1
+ 4Bh	shadow RAM enable 2
+ 4Ch	shadow RAM enable 3
+ 4Dh	DRAM configuration
+ 4Eh	extended boundary
+ 4Fh	EMS control
+ !!!chips\82c235.pdf p.87, p.140
+

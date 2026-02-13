@@ -1,0 +1,136 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03A003AF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03A0-03AF - 1st BSC (Binary Synchronous Communication) adapter
+Notes:	Initialization of the BSC adapter is performed in a typical
+	  sequence like this: Setup 8255 port A-C configuration by writing
+	  98h to 383h, followed by initializing 8255 port C by writing 0Dh
+	  to 382h. Reset 8251A internal registers by pulsing 8255 port B4.
+	  After this the 8253 has to be programmed to the desired values
+	  (counter 0 not used, counters 1 and 2 to mode 0). Now, the 8251A
+	  is ready to be loaded with a set of control words that define the
+	  communication environment.
+	8251A: The control words are split into two formats, mode
+	  instruction and command instruction. The mode instruction must
+	  be inserted immediately after a reset operation (via 8255 port B4
+	  or setting command instruction bit6 to 'internal reset').
+	  The required synchronization characters are next loaded into the
+	  8251A (usually 32h for BSC). All control words written to the
+	  8251A after this will load the command instruction.
+	     reset -> mode instruction
+		      SYNC character 1
+		      SYNC character 2
+		      command instruction
+		      data ...
+		      command instruction
+		      data ...
+		      command instruction
+		      ...
+SeeAlso: PORT 0380h"BSC"
+
+03A0  R-   on adapter 8255(A5) port A: internal/external sensing (see #P0648)
+03A1  -W   on adapter 8255(A5) port B: external modem interface (see #P0649)
+03A2  RW   on adapter 8255(A5) port C: internal control (see #P0650)
+03A3  ?W   on adapter 8255(A5) mode initialization
+03A4  RW   on adapter 8253 (programmable counter) counter 0:
+		LSB / MSB square wave generator (unused in sync mode)
+03A5  RW   on adapter 8253 counter 1: LSB / MSB inactivity time-outs
+		(connected to 8255 bitA7, IRQ4 level)
+03A6  RW   on adapter 8253 counter 2: LSB / MSB inactivity time-outs
+		(connected to 8255 bitA6, IRQ4 level)
+03A7  ?W   on adapter 8253 mode register (see #P0651)
+03A8  RW   on adapter 8251: data (see #P0652)
+03A9  R-   on adapter 8251: command/mode/USART status register (see #P0653)
+
+Bitfields for BSC 8255 port A:
+Bit(s)	Description	(Table P0648)
+ 7	=1 timer 1 output active
+ 6	=1 timer 2 output active
+ 5	=1 TxRDY active
+ 4	receive clock active (if pulsing)
+ 3	=0 clear to send is on from interface
+ 2	transmit clock active (if pulsing)
+ 1	=0 data carrier detect is on from interface
+ 0	=0 ring indicator is on from interface
+SeeAlso: #P0649
+
+Bitfields for BSC 8255 port B:
+Bit(s)	Description	(Table P0649)
+ 7	=1 enable IRQ 4 level interrupt (timer 1 and 2)
+ 6	=1 gate timer 1
+ 5	=1 gate timer 2
+ 4	=1 reset 8251A
+ 3	=1 not used
+ 2	=0 turn on test
+ 1	=0 turn on select standby
+ 0	=0 turn on data signal rate select
+SeeAlso: #P0648,#P0650
+
+Bitfields for BSC 8255 port C:
+Bit(s)	Description	(Table P0650)
+ 7 R-	=0 BSC adapter (=1 may be used to detect SDLC??)
+ 6 R-	=0 test indicate active
+ 5 R-	timer 0 output (if pulsing)
+ 4 R-	receive data (if pulsing)
+ 3 -W	=0 enable timer 1 and 2 IRQ4 and receive IRQ 4
+ 2 -W	=1 electronic wrap
+ 1 -W	=1 gate external clock
+ 0 -W	=1 gate internal clock
+SeeAlso: #P0648,#P0649
+
+Bitfields for BSC 8253 mode register:
+Bit(s)	Description	(Table P0651)
+ 7-6	SC1-SC0	 00, 01, 10= select counter 0,1,2; 11=illegal
+ 5-4	RL1-RL0	 00= couner latching operation
+		 01= read/load most significant byte (MSB)
+		 10= read/load least significant byte (LSB)
+		 11= read/load LSB first, then MSB
+ 3-1	M2-M0	 000= mode 0 (for counter 1 and 2)
+		 001= mode 1 (not used for BSC)
+		 x10= mode 2 (not used for BSC)
+		 x11= mode 3 (not used for BSC)
+		 100= mode 4 (not used for BSC)
+		 101= mode 5 (not used for BSC)
+ 0	BCD	   0= binary counter 16bits
+		   1= BCD counter 4 decades
+
+Bitfields for BSC 8251 data:
+Bit(s)	Description	(Table P0652)
+---mode instruction (W)---
+ 7	=0 Double SYNC Character
+ 6	=1 SYNDET is an Input
+ 5	=1 Even Parity
+ 4	=1 Parity Enable
+ 3-2	Character Length 00=5bits, 01=6bits, 10=7bits, 11=8bits
+ 1-0	not used (always 0)
+---SYNC character 1/2 (W)---
+ string of two characters to be sync'ed at (in hunt mode).
+---command instruction (W)---
+ 7	Enter Hunt Mode
+ 6	Internal Reset
+ 5	Request to Send
+ 4	Error Reset
+ 3	Send Break Character
+ 2	Receive Enable
+ 1	Data Terminal Ready
+ 0	Transmit Enable
+---data (RW)---
+	any data
+SeeAlso: #P0651,#P0653
+
+Bitfields for BSC 8251 command/mode/USART status:
+Bit(s)	Description	(Table P0653)
+ 7	Data Set Ready (indicated that DSR is at 0 level)
+ 6	SYNDET
+ 5	Framing Error (not used for synchronous communications)
+ 4	Overrun Error (OE flag on when Overrun Error occurs)
+ 3	Parity Error (PE flag on when a parity error occurs)
+ 2	TxEmpty
+ 1	RxRDY (causing IRQ 3 level)
+ 0	TxRDY (has not the same meaning as 8251A TxRDY output pin).
+	  THIS one is NOT conditioned by CTS and TxEnable (causing IRQ 4 level)
+SeeAlso: #P0652
+

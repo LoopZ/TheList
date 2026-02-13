@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: IC0
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C C0h - Philips TSA5523M Frequency Synthesizer - STATUS
+Range:	I2C addresses C0h, C2h, C4h, or C6h, selectable by external pin
+
+Bitfields for TSA5523M status:
+Bit(s)	Description	(Table I0119)
+ 7	Power-On Reset flag (cleared after first read)
+ 6	PLL is phase-locked
+ 5	digital level of P2 (requires that open-collector control bit 2 = 0)
+ 4	digital level of P1 (requires that open-collector control bit 1 = 0)
+ 3	digital level of P0 (requires that open-collector control bit 0 = 0)
+ 2-0	voltage applied to P6 (+- 0.03V)
+	000 = 0.00-0.15V
+	001 = 0.15-0.30V
+	010 = 0.30-0.45V
+	011 = 0.45-0.60V
+	100 = 0.60V - Vcc
+SeeAlso: #I0009
+

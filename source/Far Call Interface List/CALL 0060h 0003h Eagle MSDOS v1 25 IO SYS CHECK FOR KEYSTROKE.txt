@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: @00600003
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:0003h - Eagle MS-DOS v1.25 IO.SYS - CHECK FOR KEYSTROKE
+InstallCheck:	MS-DOS v1.25 must be installed
+Note:	does not return extended keystrokes
+SeeAlso: @0060h:0000h,@0060h:0006h,@0060h:0027h
+
+(Table F0001)
+Call Eagle MS-DOS entry point 0003h with:
+	nothing
+Return: ZF set if no key
+	ZF clear if keystroke available
+	    AL = keystroke
+

@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400004
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0004h - BASE I/O ADDRESS OF THIRD SERIAL I/O PORT
+Size:	WORD
+Notes:	the BIOS sets this word to zero if is unable to find more than two
+	  serial ports at the addresses it is programmed to check at boot
+	Under DR-OpenDOS 7.02+ this setting can be changed with the
+	  undocumented CONFIG.SYS COM3=[port_address|logical_no][,[timeout]]
+	  directive, whereby port_address = 200h..3F8h, logical_no = 0 or 1..4,
+	  timeout=0..255 (default 1).
+SeeAlso: MEM 0040h:0000h,MEM 0040h:0002h,MEM 0040h:0006h,MEM 0040h:000Ch
+SeeAlso: MEM 0040h:007Eh,PORT 03E8h"SERIAL"
+

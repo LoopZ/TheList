@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03CA03CD
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03CA-03CD - EGA/VGA/MCGA - GRAPHICS POSITION
+Range:	PORT 03C0h or PORT 02C0h (alternate)
+SeeAlso: PORT 03C0h,PORT 03C2h,PORT 03C4h,PORT 03C6h,PORT 03CEh"EGA",PORT 03D0h
+
+03CA  -W  EGA	graphics 2 position register
+03CA  R-  VGA	feature control register (see PORT 03BAh,PORT 03DAh-W)
+03CB  RW  (ET4000/W32) GDC segment select register 2 ('key' protected?)
+		The existence of this r/w register 0..255 is often
+		 used to decide between ET4000 and ET4000/W32.
+		 bit7-6: reserved, but existent
+		 bit5-4: bits 5-4 of read segment pointer
+		 bit3-2: reserved, but existent
+		 bit1-0: bits 5-4 of write segment pointer
+03CC  -W  EGA	graphics 1 position register
+03CC  R-  VGA	miscellaneous output register (see PORT 03C2h-W,#P0669,#P0820)
+03CD  RW  (ET3000, ET4000, ET4000/W32) GDC segment select ('key' protected)
+		The existence of this r/w register is often used as
+		detection of ET3000, ET4000 and ET4000/W32 chips.
+		 bit7-4: read segment pointer for mapping to A0000h
+		 bit3-0: write segment pointer for mapping to A0000h
+

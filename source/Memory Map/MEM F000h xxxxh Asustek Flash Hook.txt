@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: MF000xxxx
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM F000h:xxxxh - Asustek Flash Hook
+
+Format of Asustek Flash interface:
+Offset	Size	Description	(Table M0093)
+ 00h 10 BYTEs	signature "ASUS_FLASH"
+ 0Ah  6 BYTEs	blanks (padding)
+ 10h	WORD	interface version??? (current PFLASH.EXE requires 0101h)
+ 12h	DWORD	-> position-independent code to enable shadowing
+ 16h	WORD	size of code pointed at by previous field (<= 0400h)
+ 18h	DWORD	-> position-independent code to disable shadowing
+ 1Ch	WORD	size of code pointed at by previous field (<= 0400h)
+

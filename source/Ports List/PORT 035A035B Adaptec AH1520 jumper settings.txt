@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: P035A035B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 035A-035B - Adaptec AH1520 jumper settings
+
+035A  R	  I/O channel setup (see #P0625)
+035B  R	  transfer mode setup (see #P0626)
+
+Bitfields for Adaptec AH1520 channel setup jumper settings:
+Bit(s)	Description	(Table P0625)
+ 7	SCSI parity disabled
+ 6-5	DMA channel (00 = channel 0, 01 = 5, 10 = 6, 11 = 7)
+ 4-3	IRQ number (00 = IRQ9, 01 = IRQ10, 10 = IRQ11, 11 = IRQ12)
+ 2-0	SCSI ID
+SeeAlso: #P0626
+
+Bitfields for Adaptec AH1520 transfer mode setup jumper settings:
+Bit(s)	Description	(Table P0626)
+ 7	DMA transfer mode (clear for PIO)
+ 6	boot enabled
+ 5-4	boot type
+	00 ???
+	01 boot from floppy
+	10 print configured options
+	11 boot from hard disk
+ 3	enable sync negotiation
+ 2	enable target disconnection
+ 1-0	unused???
+SeeAlso: #P0625
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: P52EE52EF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 52EE-52EF - ATI Mach32 - SCRATCH REGISTER 0 (USED FOR ROM LOCATION)
+Note:	ATI video BIOS sets this port according to the segment address of the
+	  BIOS if >= C000h, as ((seg-C000h) shr 7)
+SeeAlso: PORT 56EEh"Mach32"
+
+52EEw RW  scratch register 0: Video ROM address
+

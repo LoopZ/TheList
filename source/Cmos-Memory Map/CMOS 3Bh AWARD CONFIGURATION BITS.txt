@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: R3B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 3Bh - AWARD - CONFIGURATION BITS
+
+Bitfields for AWARD configuration bits:
+Bit(s)	Description	(Table C0045)
+ 4-7	Screen Colors Used in Setup (see #C0046)
+ 3-2	translation used for first disk
+	00 normal, 01 LBA, 10 Large, 11 Auto
+ 1	??? Default = 1
+ 0	Enable External Cache
+
+(Table C0046)
+Values for AWARD setup colors:
+ 0000  Yellow/White on Blue (Default)
+ 0001  Magenta/White on Blue
+ 0010  Yellow/Black on Green
+ 0011  Yellow/Green on Cyan
+ 0100  Black/Yellow on Cyan
+ 0101  Brown/White on Cyan
+ 0110  White/Green on Red
+ 0111  White/White on Red
+ 1000  Green/White on Magenta
+ 1001  Yellow/Red on Magenta
+ 1010  Red/White on Grey
+ 1011  Yellow/White on Grey
+ 1100  Cyan/White on Grey
+ 1101  Cyan/Yellow on Black
+ 1110  White on Black (Monochrome)
+ 1111  Green/Red on Black
+SeeAlso: #C0045
+

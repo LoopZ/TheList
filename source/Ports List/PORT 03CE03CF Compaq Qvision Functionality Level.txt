@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03CE03CF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03CE-03CF - Compaq Qvision - Functionality Level
+
+03CE  -W  graphics address register (index for next port) (see #P0707)
+03CF  RW  other graphics register
+
+(Table P0707)
+Values for Compaq QVision graphics register index:
+ 0Ch  RO    controller version
+		2Fh Advanced VGA
+		37h early QVision 1024
+		71h QVision 1280 or later QVision 1024
+ 0Dh	    extended controller version
+ 0Eh	    extended controller capabilities
+ 0Fh	    environment info
+ 54h	    available memory
+ 55h	    phase-locked-loop clock
+ 56h-57h    controller capabilities
+

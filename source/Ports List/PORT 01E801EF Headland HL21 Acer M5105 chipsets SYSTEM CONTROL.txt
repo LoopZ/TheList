@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: P01E801EF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 01E8-01EF - Headland HL21 & Acer M5105 chipsets - SYSTEM CONTROL
+
+01ED  RW  select internal register. Data to/from 01EF
+01EE  R-  ???
+01EF  RW  register value
+	05h  = 1000xxxx for low CPU clock speed (4MHz on Morse/Mitac)
+	     = 0xxxxxxx for high CPU clock speed (16MHz on Morse/Mitac)
+	10h memory size
+	   bits 2-0 = size
+		   (undefined,512K,640K,1024K,2560K,2048K,4096K,undef.)
+	14h ???
+	   bit 2: 384K RAM of first 1024K relocated to top of memory
+

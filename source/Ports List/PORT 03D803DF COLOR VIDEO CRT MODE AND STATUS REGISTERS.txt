@@ -1,0 +1,135 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03D803DF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03D8-03DF - COLOR VIDEO - CRT MODE AND STATUS REGISTERS
+
+03D8  RW  CGA mode control register  (except PCjr) (see #P0817)
+	cannot be found on native color EGA, color VGA, but on most clones
+03D9  RW  CGA palette register (see #P0819)
+	(MCGA) CGA border control register
+	Cannot be found on native EGA, VGA (without translation ROM) but
+	  only most clones. Read access on Genoa SuperEGA is 'reset'???
+03DA  R-  CGA status register (see #P0818)
+	color EGA/VGA: input status 1 register
+03DA  -W  color EGA/color VGA feature control register (see #P0820)
+	(at PORT 03BAh w in mono mode, VGA: 3CAh r)
+03DA  -W  HZ309 (MDA/HGC/CGA clone) card from in Heath/Zenith HZ150 PC
+	bit7-1=0: unknown, zero is default and known to function
+		   properly at least in CGA modes.
+	bit 0 = 1 override 3x8h bit3 control register that switches
+		   CRT beam off if bit3 is cleared. So screens always
+		   stays on.
+	bit 0 = 0 3x8h bit3 indicates if CRT beam is on or off.
+		   No more info available. Might conflict with EGA/VGA.
+03DB  rW  clear light pen latch	(not MCGA)
+		  (R/W only with Genoa SuperEGA)
+03DC  RW  (not MCGA) preset light pen latch
+03DC  -W  (CGA) set light pen latch
+03DD  -W  (MCGA)  Extended mode control register
+	  (Plantronics & Genoa SuperEGA: Plantronics ColorPlus control,
+		      compatible with MCGA???)
+	(default is 00h, in mode 13h: 04h)
+	bit7 =1: DAC active, cannot be read
+	     =0: DAC not active, read allowed
+	bit6-5 : reserved
+	bit4   : AST_PLANTRONICS
+	bit3   : reserved
+	bit2 =1: videomode 13h with 256 colors active
+	bit1	: reserved
+	bit0 =0: reserved
+     	Note:	Apparently on the AST "ColorGraphPlus", its Enhanced mode can
+		  be activated with 90h and reset with 00h; on this card the
+		  Plantronics mode can be enabled with 10h.
+03DE  --  (MCGA) reserved
+03DE  -W  (AT&T & color ET4000 in AT&T compatibility mode & C&T 82C426)
+	  AT&T mode control register (see #P0821)
+	(register enabled in ET4000, if bit7=1 in CRTC 3D4h/34h.)
+03DF  --  (MCGA) reserved
+03DF  ?W  CRT/CPU page register	 (PCjr only)
+
+Bitfields for CGA/Hercules mode control register:
+Bit(s)	Description	(Table P0817)
+ 7-0	=A0h color ET4000: second part of 'key', see Hercules compatibility
+	  register (see PORT 03BFh) for details. For resetting the key, e.g.
+	  write 01h to PORT 03BFh and 29h to PORT 03D8h.
+ 7	(Hercules) page select
+	=0 B0000h
+	=1 B8000h
+ 6	color ET4000 only, read-only: report status of bit 1 (enable 2nd page)
+	  of hercules compatibility register (see PORT 03BFh)
+ 5	=1  blink enabled instead of foreground high-int.
+ 4	=1  640*200 graphics mode (CGA)
+ 3	=1  video enabled (HZ309, see PORT 03DAh bit 0)
+ 2	=1  monochrome signal
+		(MCGA) in mode 6 and 11h color comes from palette
+		  regs 00 (black) and 07 (white), and can be changed there.
+ 1	=0  text mode
+	=1  320*200 graphics mode
+ 0	text columns (0 = 40*25 text mode, 1 = 80*25 text mode)
+SeeAlso: #P0818
+
+Bitfields for CGA status register:
+Bit(s)	Description	(Table P0818)
+ 7-6	not used
+ 7	(C&T Wingine) vertical sync in progress (if enabled by XR14)
+ 5-4	color EGA, color ET4000, C&T: diagnose video display feedback, select
+	  from color plane enable
+ 3	in vertical retrace
+	(C&T Wingine) video active (retrace/video selected by XR14)
+ 2	(CGA,color EGA) light pen switch is off
+	(MCGA,color ET4000) reserved (0)
+	(VGA) reserved (1)
+ 1	(CGA,color EGA) positive edge from light pen has set trigger
+	(VGA,MCGA,color ET4000) reserved (0)
+ 0	horizontal retrace in progress
+	=0  do not use memory
+	=1  memory access without interfering with display
+	    (VGA,Genoa SuperEGA) horizontal or vertical retrace
+	(C&T Wingine) display enabled (retrace/DE selected by XR14)
+SeeAlso: #P0817,#P0819,#P0762
+
+Bitfields for CGA palette register:
+Bit(s)	Description	(Table P0819)
+ 7-6	not used
+ 5	=0 active 320x200x4 color set: red, green brown
+	=1 active 320x200x4 color set: cyan, magenta, white
+ 4	intense colors in graphics, background colors text
+ 3	intense border in 40*25, intense background in 320*200, intense
+	  foreground in 640*200
+ 2	red border in 40*25, red background in 320*200,	red foreground in
+	  640*200
+ 1	green border in 40*25, green background in 320*200, green foreground
+	  in 640*200
+ 0	blue border in 40*25, blue background in 320*200, blue foreground in
+	   640*200
+SeeAlso: #P0817,#P0818
+
+Bitfields for color EGA/VGA feature control register:
+Bit(s)	Description	(Table P0820)
+ 7	ET4000 only: enable NMI generation ('key' protected)
+ 6-4	not used
+ 3	(VGA) 0 = normal vsync, 1 = vsync OR display enable
+ 2	reserved (0)
+	(C&T Wingine) disable 16-bit operations
+ 1	(EGA,ET4000,Wingine) FEAT1 control bit1 (pin17 feature connector)
+	(VGA) reserved (0)
+ 0	(EGA,ET4000,Wingine) FEAT0 control bit0 (pin19 feature connector)
+	(VGA) reserved (0)
+SeeAlso: #P0818
+
+Bitfields for AT&T mode control register:
+Bit(s)	Description	(Table P0821)
+ 7	reserved
+ 6	underline color attribute enable
+	ET4000: enabled, if bit6=1 in CRTC 3D4h/34h.
+ 5	reserved
+ 4	reserved
+ 3	alternate page select (=1: 2nd 16KB page, with bit0=0)
+ 2	alternate font select (0=default font block)
+ 1	reserved
+ 0	double scan line mode (0=IBM 200, 1=AT&T 400 line graphics)
+	(ET4000) enabled, if bit7-6=11b in CRTC 3D4h/34h.
+

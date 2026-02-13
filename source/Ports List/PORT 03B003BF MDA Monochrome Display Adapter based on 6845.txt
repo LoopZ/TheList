@@ -1,0 +1,233 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03B003BF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03B0-03BF - MDA  (Monochrome Display Adapter based on 6845)
+
+03B0  -W  same as 03B4
+03B1  RW  same as 03B5
+03B2  -W  same as 03B4
+03B3  RW  same as 03B5
+03B4  -W  MDA CRT index register	 (MDA/mono EGA/mono VGA)
+		selects which register (0-11h) is to be accessed through 03B5h
+		Note: this port is read/write on some VGAs
+		bit7-6: (VGA) reserved (0)
+		bit5  : (VGA) reserved for testing (0)
+		bit4-0: selects which register is to be accessed through 03B5h
+03B5  RW  MDA CRT data register	 (MDA/mono EGA/mono VGA) (see #P0654,#P0708)
+		selected by PORT 03B4h. registers 0C-0F may be read
+		Color adapters are at 3D4/3D5, but are mentioned here for
+		  better overview.
+		There are differences in names and some bits functionality
+		  on EGA, VGA in their native modes, but clones in their
+		  emulation modes emulate the original 6845 at bit level. The
+		  default values are for MDA, HGC, CGA only, if not otherwise
+		  mentioned.
+03B6  -W  same as 03B4h
+03B7  RW  same as 03B5h
+03B8  rW  MDA mode control register (see #P0655)
+03B9  ?W  reserved for color select register on color adapter
+03B9  -W  MDA/HGC: set lightpen flipflop (value written is ignored)
+		cannot be found on native mono EGA, mono VGA (without
+		  translation ROM)
+03BA  R-  CRT status register (see #P0656)
+	    (EGA/VGA) input status 1 register
+03BA  -W  (mono EGA/mono VGA) feature control register
+	    (see PORT 03DAh-W for details; VGA, see PORT 03CAh-R)
+03BB  -W  light pen strobe reset (on any value)
+
+(Table P0654)
+Values for mono video adapter CRT data register index:
+				  defaults:    MDA/HGC	HGC   CGA   CGA	  CGA
+						 text  graph text1 text2 graph
+						   7  720x348  1     3	  5,6
+ 00h	horizontal total			  61h	35h   38h   71h	  38h
+	      ET4000: in VGA mode scanlines-5
+		      in EGA mode scanlines-2
+ 01h	horizontal displayed			  50h	2Dh   28h   50h	  28h
+	      horizontal display end-1 (EGA,VGA)
+ 02h	horizontal sync position		  52h	2Eh   2Dh 5Ah/5Ch 2Dh
+ 03h	sync pulse width			  0Fh 07h/0Fh 0Ah   0Ah	  0Ah
+	       bit7-4 vsync, bit3-0 hsync
+	      end horizontal blanking (EGA,VGA)
+	       VGA    : bit7=1	  : enable read access to regs
+				    10h, 11h (otherwise VGA clones
+				    may show lightpen values)
+	       EGA,VGA: bit6-5=0-3: display enable skew control
+			bit4-0	  : end blanking
+ 04h	vertical total (vcycle-1)		  19h	5Bh   1Fh   1Fh	  7Fh
+	       bit7 only used on MCGA
+	      start horizontal retrace (EGA, VGA)
+	      Genoa SuperEGA only???:
+	       bit7  : start at odd memory address
+	       bit6-5: horizontal sync skew
+	       bit4-0: start retrace+ retrace width
+ 05h	vertical total adjust			  06h	02h   06h   06h	  06h
+	       bit7-5 only used on MCGA
+	      end horizontal retrace (EGA, VGA)
+	       bit7  : (EGA) start at odd memory address
+		       (VGA) bit5 of end horizontal retrace
+	       bit6-5: horizontal sync skew
+	       bit4-0: end horizontal retrace
+ 06h	vertical displayed			  19h	57h   19h   19h	  64h
+	       bit7 only used on MCGA
+	      (EGA) vertical total-1
+	      (VGA) vertical total-2
+ 07h	vertical sync pulse width-1		  19h	57h   1Ch   1Ch 70h/66h
+	       bit7  only used on MCGA
+	      controller overflow (EGA,VGA)
+	       bit7: (VGA) bit9 of start vertical retrace (10h)
+	       bit6: (VGA) bit9 of vertical display end (12h)
+	       bit5: (VGA) bit9 of vertical total (06h)
+		     (EGA) bit5 of cursor-position (0Ah)
+	       bit4: bit8 of line compare (18h)
+	       bit3: bit8 of start vertical blanking (15h)
+	       bit2: bit8 of vertical retrace start (10h)
+	       bit1: bit8 of vertical display end (12h)
+	       bit0: bit8 of vertical total (06h)
+ 08h	interlace mode (not MCGA)		  02h	02h   02h   02h	  02h
+	       bit7-2: reserved
+	       bit1  : delay
+	       bit0=1: interlace on
+	      preset row scan (EGA, VGA)
+	       bit7  : reserved
+	       bit6-5: (VGA) byte panning (low-order bits of display start addr
+		  in odd/even and quad modes
+	       bit4-0: start row scan after retrace
+ 09h	maximum scan lines			  0Dh	03h   07h   07h	  01h
+	       bit7  : (VGA) double scan active
+	       bit6  : (VGA) bit9 of line compare (18h)
+	       bit5  : (VGA) bit9 of start vertical blanking (15h)
+	       bit4-0: maximum scan line 00..31 (height-1)
+ 0Ah	cursor start				  0Bh	00h   06h   06h 06h/00h
+	       bit7  : reserved
+	       bit6-5: original 6845: cursor on/off, blink interval
+		       (not on all adapters, as original MDA, CGA have
+		       extra circuitrity to avoid this!!)
+	       bit6-5: native EGA: not used
+	       bit6  : (VGA) not used
+	       bit5=0: (VGA) cursor on
+	       bit4-0: first cursor scanline
+ 0Bh	cursor end				  0Ch	00h   07h   07h 07h/00h
+	       bit7  : reserved
+	       bit6-5: EGA, VGA: cursor skew control
+	       bit4-0: end cursor row
+ 0Ch RW	start address high			  00h	00h   00h   00h	  00h
+	       bit7-6 not used by original 6845 (MDA,HGC,CGA)
+ 0Dh RW	start address low			  00h	00h   00h   00h	  00h
+ 0Eh RW	cursor location high			  00h	00h   00h   00h	  00h
+	       bit7-4 not used by original 6845 (MDA,HGC,CGA)
+	       bit5-4 reserved on MCGA
+ 0Fh RW cursor location low			  00h	00h   00h   00h	  00h
+ 10h R-	light pen high (MDA/CGA/EGA only, some HGC, few VGA
+	       clones in emulation, not with ET4000)
+ 10h R- MCGA at 3D5h only: mode control status register (see #P0711)
+ 11h R- light pen low (MDA/CGA/EGA only, some HGC, few VGA
+	       clones in emulation, not with ET4000)
+ 14h -W HGC+,InColor: xMode register
+ 15h -W HGC+,InColor: underscore register
+ 16h -W HGC+,InColor: overstrike register
+ 17h -W	InColor: exception register
+ 18h -W	InColor: plane mask register
+ 19h -W	InColor: read/write control register
+ 1Ah -W	InColor: read/write color register
+ 1Bh -W	InColor: Latch Protect register
+ 1Ch RW	InColor: palette register
+Notes:	registers 10h and 11h have varying uses on VGA (see #P0708) and
+	  MCGA (see #P0710)
+	MDA, HGC, CGA: 6845 registers 00h-0Dh are write only, 0Eh, 0Fh
+	       are r/w, and 10h-11h are read only.
+	       The alternative initial defaults may be used
+	       sometimes on modern adapters.
+	HGC+(RamFont): as with HGC, but 3 additional registers for font control
+	emulations   : more registers may be r/w, but most often it's the
+	       same as with native 6845.
+	MCGA (CGA+)  : Though this is a mixture of CGA and VGA, most
+	       registers are same as with CGA, but with some
+	       enhancements and incompatibilities to EGA, VGA.
+	native EGA   : registers 00h-0Bh are write only, 0Ch-0Fh are
+	       r/w, 10h-11h are read/write, 12h-18h are write
+	       only. More regs may be r/w on enhanced clones.
+	GenoaSuperEGA: adapter with chips SEQCRT GN006001 and GRAT
+	       GN006002, e.g. c't Super-EGA adapter. Is EGA
+	       clone with up to 800x600 and full 6845 emulation.
+	native VGA   : all registers 00-18h are r/w, but 00h-07h are
+	       write-locked if bit7 in 11h is set.
+	ET4000	     : same as VGA, but with additional r/w registers
+	       32h-37h, protected by 'key' except 33h, 35h
+	       (see 3BFh for details). 35h is protected by
+	       bit7 in 11h. The 'key' must be issued at least
+	       after each power on or synchronous reset.
+SeeAlso: #P0708,#P0710,#P0655,#P0656,#P0710
+
+Bitfields for mono video adapter mode control register:
+Bit(s)	Description	(Table P0655)
+ 7 not used by MDA, page number on HGC
+ 6	not used
+ 6  R-O	(mono ET4000 only) report status of bit 1 (enable 2nd page) of
+	  Hercules compatibility register (PORT 03BFh)
+ 5	enable blink (0 = intense background, 1 = blink)
+ 4	not used
+ 3	video enable
+ 2	not used
+ 1	(MDA) not used
+	(HGC) graphics enable
+	the 6845 has to be reprogrammed completely, if this bit is
+	  changed, otherwise the TTL-monitor may be damaged by wrong
+	  sync impulses!
+ 0	high resolution mode (always set on MDA)
+---mono ET4000 only, W-O ---
+ 7-0	=A0h: second part of 'key', see Hercules compatibility register
+	  (PORT 03BFh) for details
+Note:	this port might be completely or partially readable on very few MDA,
+	  HGC clones or emulations (e.g. Genoa SuperEGA), but not with the
+	  majority of original and clone chips.	 It cannot be found on
+	  native mono EGA, mono VGA, but on most clones, where it is usually
+	  R/W.
+SeeAlso: #P0654,#P0656
+
+Bitfields for mono video adapter CRT status register:
+Bit(s)	Description	(Table P0656)
+ 7	HGC: vertical sync pulse in progress
+ 6-4	adapter identification
+	(MSD says) if bit 7 changes within 8000h reads then
+	    =000 adapter is Hercules or compatible
+	    =001 adapter is Hercules+
+	    =101 adapter is Hercules InColor
+	    else: adapter is unknown
+ 6-4	=111 on MDA and some HGC clones
+ 5-4	(mono EGA, mono ET4000) diagnose video display feedback
+	select from color plane enable
+ 3	(MDA,HGC) pixel stream (0=currently black, 1=currently white)
+	(mono EGA, mono VGA) vertical retrace in progress
+ 2-1	(MDA) reserved
+ 2	(HGC, mono EGA) lightpen flipflop set
+	(mono ET4000) reserved (0)
+ 1	(HGC) lightpen input stream (if set, current value to get from
+	  PORT 03B5h registers 10h-11h)
+	(mono ET4000) reserved (0)
+ 0	horizontal drive enabled
+SeeAlso: #P0654,#P0655
+
+Bitfields for EGA,VGA mode control register:
+Bit(s)	Description	(Table P0657)
+ 7	0=CRTC reset and stop, 1=resume reset
+ 6	0=word-mode, 1=byte-mode (VGA: see 14h, bit6)
+ 5	0=14bit, 1=16bit address wrap
+ 4	(native VGA only) reserved (0)
+ 4	(EGA and most VGA clones) output control
+	0: video driver active
+	1: video driver not active
+ 3	linear address counter clock (0 = standard, 1 = clock/2)
+	(VGA: see register 14h, bit 5)
+ 2	horizontal retrace clock (0 = standard, 1 = clock/2)
+ 1	row scan counter
+	0: address bit 14 = scan bit 1
+	1: address bit 14 not altered
+ 0	6845 compatibility mode
+	0: address bit 13 = scan bit 0 (as with 6845)
+	1: address bit 13 not altered
+SeeAlso: #P0654
+

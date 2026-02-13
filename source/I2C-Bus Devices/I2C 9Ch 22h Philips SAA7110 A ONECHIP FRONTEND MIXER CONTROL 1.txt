@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C22
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/22h - Philips SAA7110(A) ONE-CHIP FRONT-END - MIXER CONTROL #1
+Access:	Write-Only
+SeeAlso: I2C 9Eh
+
+Bitfields for Mixer Control #1:
+Bit(s)	Description	 (Table I0088)	(Table I0087)
+ 7-6	automatic gain control
+	00 OFF
+	01 channel 2
+	10 channel 3
+	11 channel 4
+ 5	Chrominance select
+	0 ADC 3 to CHR
+	1 ADC 2 to CHR
+ 4	Luminance select
+	0 ADC 2 to CVBS
+	1 ADC 3 to CVBS
+ 3	fast digital multiplexing channel 2/3 active
+	0 normal CHR channel setting
+	1 used only for testing - do not use
+ 2	clamping function test
+	0 normal clamping mode
+	1 used only for testing - do not use
+ 1-0	analog MUX3 control
+	00  adder mode
+	01  Ch 3 ON,  Ch 4 OFF
+	10  Ch 3 OFF, Ch 4 ON
+	11  both channels OFF
+

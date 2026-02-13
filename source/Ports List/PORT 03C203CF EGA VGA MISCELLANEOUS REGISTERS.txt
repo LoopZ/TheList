@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03C203CF
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 03C2-03CF - EGA/VGA - MISCELLANEOUS REGISTERS
+Range:	PORT 03C2h or PORT 02C2h (alternate EGA)
+SeeAlso: PORT 03C0h,PORT 03C4h,PORT 03C6h,PORT 03D0h
+
+03C2  R-  input status 0 register (see #P0668)
+03C2  -W  miscellaneous output register (see #P0669)
+03C3  RW  (VGA)	video subsystem enable (see also PORT 46E8h)
+		for IBM, motherboard VGA only
+			 bit7-4=0: reserved
+			 bit3	 : select video subsystem (address 46E8h)
+			 bit2-1	 : reserved
+			 bit0	 : select video subsystem (address 03C3h)
+
+Bitfields for EGA/VGA input status 0 register:
+Bit(s)	Description	(Table P0668)
+ 7	(VGA) vertical retrace interrupt is pending
+	(EGA) =0 vertical retrace in progress
+ 6-5	(VGA) reserved (0)
+ 6	(EGA and ET4000) feature control 1 (pin17)
+ 5	(EGA and ET4000) feature control 0 (pin19)
+ 4	(VGA) monitor sense signal is asserted
+ 4	(EGA, Genoa SuperEGA) DIP switch sense
+	0=closed, 1=open/switches readable
+ 3-0	reserved (0)
+
+Bitfields for EGA/VGA miscellaneous output register:
+Bit(s)	Description	(Table P0669)
+---Genoa SuperEGA in all emulation modes---
+ 7-6: vertical resolution
+	00 (EGA) 200 lines
+	01 (VGA) 400 lines
+	10 (EGA/VGA) 350 lines
+	11 (VGA) 480 lines
+------
+ 7	vertical sync polarity (0=positive, 1=negative)
+ 6	horizontal sync polarity (0=positive, 1=negative)
+ 5	odd/even pagebit (=1 select second 64K memory page)
+ 4	EGA: 0=video driver on,
+	     1=video driver off (feature connector used)
+ 3-2	pixelclock
+	00 14/25.175 MHz (EGA/VGA)
+	01 16/28.322 Mhz (EGA/VGA)
+	10 (EGA/VGA) external clock (EGA)
+	10 (Genoa SuperEGA) 39Mhz
+	11 (EGA/VGA) reserved
+	11 (Genoa SuperEGA) 26.824Mhz
+	11 (S3 Trio32/Trio64) enable clock programming via sequencer registers
+		  12h and 13h
+ 1	enable CPU RAM access
+ 0	CRTC port address
+	0=3B4h mono
+	1=3D4h color
+	   (color EGA: enable feature control at 3DAh,status reg 1 at 3D2h)
+

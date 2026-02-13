@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400070
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0070h - TIMER OVERFLOW
+Size:	BYTE
+Desc:	non-zero if timer has counted past midnight since last call to
+	  INT 1A/AH=00h
+Note:	the original IBM BIOS, and thus most other BIOSes, sets this byte to
+	  01h at midnight; a few (such as the Eagle PC-2) increment it each
+	  time midnight is passed.  The former behavior results in lost days
+	  if multiple midnights pass between "get-time" calls while the machine
+	  is powered up.
+SeeAlso: MEM 0040h:006Ch,INT 1A/AH=00h
+

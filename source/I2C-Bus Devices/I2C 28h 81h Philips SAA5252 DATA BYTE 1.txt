@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: I2881
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 28h/81h - Philips SAA5252 - DATA BYTE 1
+Access:	Read-Only
+Desc:	get the first data byte from the most recently received line of closed-
+	  captioning data
+SeeAlso: I2C 28h/00h,I2C 28h/80h,I2C 28h/82h
+
+Bitfields for SAA5252 data byte:
+Bit(s)	Description	(Table I0007)
+ 6-0	decoded closed-captioning character
+ 7	parity error
+SeeAlso: #I0067
+

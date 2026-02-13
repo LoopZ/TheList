@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: P46E8
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 46E8 - 8514/A and compatible (e.g. ATI Graphics Ultra) - ROM PAGE SELECT
+Note:	this register is readable on the C&T 82c480 chipset
+SeeAlso: PORT 46E8h"VGA"
+
+46E8w -W  ROM page select (see #P1021)
+
+Bitfields for 8514/A ROM page select register:
+Bit(s)	Description	(Table P1021)
+ 2-0	select which 4K page of 32K ROM to map at segment C700h
+ 3	enable VGA
+ 4	select VGA setup mode
+ 15-5	reserved (0)
+

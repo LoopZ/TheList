@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8628--SF73
+  Category: - 	reserved (and not otherwise classified)
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+I2C 86h/28h/73h U - ITT VPX 32xx - FP - Window#1 Read Table: Horizontal Begin
+Desc:	horizontal start of window after scaling
+Notes:	this register is updated whenever the Window#1 Load Table is latched
+	  via the CommandWord, by copying FPRAM 8Bh
+	start must be an even value; values > 0 crop the left side of image
+SeeAlso: I2C 86h/28h/8Bh,I2C 86h/28h/F0h,I2C 86h/28h,I2C 86h/29h
+

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: MA0008580
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM A000h:8580h - S3 - MEMORY-MAPPED DMA REGISTERS
+Size:	32 BYTEs
+Note:	the S3 graphics processor registers can be mapped at either
+	  linear 000A0000h or at offset 16M from the start of the linear
+	  frame buffer
+
+Format of S3 memory-mapped DMA registers:
+Offset	Size	Description	(Table M0072)
+8580h	DWORD	start address in system memory
+8584h	DWORD	transfer length
+8588h	DWORD	transfer enable
+858Ch	DWORD	???
+8590h	DWORD	DMA base address
+8594h	DWORD	DMA write pointer
+8598h	DWORD	DMA read pointer
+859Ch	DWORD	DMA enable
+SeeAlso: #M0057,#M0073
+

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+ Unique ID: IA0
+  Category: m 	memory management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C A0h - EEPROM (Xicor X24C01A, etc.)
+Access:	Read/Write
+Range:	I2C addresses A0h,A2h,A4h,...,AEh, depending on external pin inputs
+Notes:	the I2C specification defines bus addresses Axh for use by memory
+	  devices (EEPROMs, etc.)
+	in general, any byte of an EEPROM may be written by sending a three-
+	  byte I2C telegram consisting of the bus address, the byte address
+	  within the device, and the new value for that memory location
+	for the X24C01A and other devices, an entire page may be written with
+	  a single telegram by writing the bus address, start address of the
+	  page, and one page's worth of data bytes
+	in general, EEPROMs maintain a current-location pointer, so that
+	  any reads start at that location within the device and increment
+	  the pointer for each byte read; random reads are possible by writing
+	  the desired new address to the EEPROM (i.e. perform a write as though
+	  setting a memory location, but either terminate the telegram or send
+	  a repeated start condition after the address byte)
+	after a write, the X24C01A and most other EEPROMs will no longer ACK
+	  telegrams directed at the device until the internal write cycle is
+	  completed, which may take several milliseconds
+

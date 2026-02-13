@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: I9C03
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 9Ch/03h - Philips SAA7110(A) ONE-CHIP FRONT-END - HLC BEGIN 50 Hz
+Access:	Write-Only
+Desc:	allows programming of the horizontal clamping signal at the beginning
+	  of its high period in 50 Hz mode.
+Notes:	valid decimal multiplier range +127 to -128
+	step size = 2/LLC
+Example: bit value  multiplier	delay
+	 7Fh	    +127	-254
+	 80h	    -128	+256
+SeeAlso: I2C 9Ch/04h,I2C 9Ch/01h,I2C 9Eh
+

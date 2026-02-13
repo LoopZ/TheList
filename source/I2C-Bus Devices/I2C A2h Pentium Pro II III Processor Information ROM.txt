@@ -1,0 +1,67 @@
+--------------------------------------------------------------------------------
+ Unique ID: IA2
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C A2h - Pentium Pro/II/III - Processor Information ROM
+Range:	Addresses A2h, A6h, AAh, or AEh, depending on processor ID
+
+Format of Pentium II Processor Information ROM (PIROM):
+Offset	Size	Description	(Table I0105)
+ 00h	BYTE	data format revision (high/low nybble)
+ 01h	WORD	size of EEPROM in bytes (big-endian)
+ 03h	BYTE	offset of processor data, or 00h (0Eh for P-II Xeon)
+ 04h	BYTE	offset of processor core data, or 00h
+ 05h	BYTE	offset of L2 cache data, or 00h
+ 06h	BYTE	offset of SEC cartridge data, or 00h
+ 07h	BYTE	offset of part number data, or 00h
+ 08h	BYTE	offset of thermal reference data, or 00h
+ 09h	BYTE	offset of feature data, or 00h
+ 0Ah	BYTE	offset of other data, or 00h
+ 0Bh	WORD	reserved for future use
+ 0Dh	BYTE	8-bit checksum of bytes 00h-0Ch
+---Pentium II Xeon---
+ 0Eh  6 BYTEs	ASCII S-spec/QDF number
+ 14h	BYTE
+ 15h	BYTE	8-bit checksum of bytes 0Eh-14h (processor data)
+ 16h	!!!intel\24377002.pdf
+ 23h	BYTE	reserved for future use
+ 24h	BYTE	8-bit checksum of bytes 16h-23h (processor core data)
+ 25h	DWORD	reserved for future use
+ 29h	WORD	cache size in KB
+ 2Bh	BYTE
+ 2Ch	WORD	L2 cache voltage in mV
+ 2Eh	BYTE	high byte of L2 cache voltage tolerance in mV
+ 2Fh	BYTE	low byte of L2 cache voltage tolerance in mV
+ 30h	BYTE
+ 31h	BYTE	8-bit checksum of bytes 25h-30h (L2 data)
+ 32h  4 BYTEs	ASCII cartridge revision
+ 36h	BYTE
+ 37h	BYTE	8-bit checksum of bytes 32h-36h (cartridge data)
+ 38h  7 BYTEs	ASCII processor part number
+ 3Fh 14 BYTEs	ASCII processor BOM ID
+ 4Dh	QWORD	processor serial number
+ 55h 26 BYTEs	reserved
+ 6Fh	BYTE	8-bit checksum of bytes 38h-6Eh (part number data)
+ 70h	BYTE	thermal reference
+ 71h  2 BYTEs	reserved for future use
+ 73h	BYTE	8-bit checksum of bytes 70h-72h (thermal reference data)
+ 74h	DWORD	processor core feature flags (see OPCODE "CPUID")
+ 78h	DWORD	cartridge feature flags (see #I0106)
+ 7Ch	BYTE	bits 3-0: number of devices in TAP chain
+		bits 7-4: reserved
+ 7Dh	BYTE	8-bit checksum of bytes 74h-7Ch (feature data)
+ 7Eh  2 BYTEs	reserved for future use
+
+Bitfields for Pentium II Xeon cartridge feature flags:
+Bit(s)	Description	(Table I0106)
+ 6	serial signature
+ 5	electronic signature (processor serial number) is present
+ 4	thermal sensing device is present
+ 3	thermal reference byte is present
+ 2	OEM EEPROM is present
+ 1	core VID is present
+ 0	L2 cache VID is present
+SeeAlso: #I0105
+

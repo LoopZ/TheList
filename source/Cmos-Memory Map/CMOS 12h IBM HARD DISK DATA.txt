@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: R12
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 12h - IBM - HARD DISK DATA
+Notes:	A PC with a single type 2 (20 Mb ST-225) hard disk will have 20h in
+	  byte 12h
+	some PCs utilizing external disk controller ROMs will use type 0 to
+	  disable ROM BIOS (e.g. Zenith 248 with Plus HardCard).
+
+Bitfields for IBM hard disk data:
+Bit(s)	Description	(Table C0014)
+ 7-4	First Hard Disk Drive
+	00	No drive
+	01-0Eh	Hard drive Type 1-14
+	0Fh	Hard Disk Type 16-255
+		(actual Hard Drive Type is in CMOS RAM 19h)
+ 3-0	Second Hard Disk Drive Type
+	(same as first except extrnded type will be found in 1Ah).
+

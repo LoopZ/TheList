@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8A28
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 8Ah/28h - ITT VDP 3108 - FPRAM data transfer
+Size:	16 bits, big-endian
+SeeAlso: I2C 8Ah/26h"VDP 3108",I2C 8Ah/27h"VDP 3108",I2C 8Ah/29h"VDP 3108"
+
+(Table I0066)
+Values for ITT VDP 3108 FPRAM index:
+ 1Bh	standard select (see I2C 86h/28h/1Bh)
+ 1Ch	NTSC tilt angle (see I2C 86h/28h/1Ch)
+ 20h	current AGC gain value (see I2C 86h/28h/20h)
+ 26h	line-lock command/status (see I2C 86h/28h/26h)
+ 41h	measured sync amplitude value
+ 50h	software version number (2105dec)
+ 53h	automatic standard recognition status (see I2C 86h/28h/53h)
+ 58h	crystal oscillator center frequency adjust (see I2C 86h/28h/58h)
+ 59h	crystal oscillator center frequency adjust for line-lock mode
+	  (see I2C 86h/28h/59h)
+ 5Fh	software release (1001dec)
+ 72h	discharge sample count for deflection retrace
+ 73h	interlace offset
+ 75h	test register for BCL/EHT
+ 7Ah	Electronic High Tension time constant
+ 7Bh	Electronic High Tension compensation coefficient
+ 80h	DC offset of SAWTOOTH output
+ 8Bh	sawtooth accu0 initialization value
+ 8Ch	sawtooth accu1 initialization value
+ 8Dh	sawtooth accu2 initialization value
+ 8Eh	sawtooth accu3 initialization value
+ 8Fh	vertical discharge value
+ 9Bh	east-west accu0 initialization value
+ 9Ch	east-west accu1 initialization value
+ 9Dh	east-west accu2 initialization value
+ 9Eh	east-west accu3 initialization value
+ 9Fh	east-west accu4 initialization value
+ A0h	ACC reference level (see I2C 86h/28h/A0h)
+ A3h	ACC multiplier value for SECAM Dr to adjust Cr level
+	  (see I2C 86h/28h/A3h)
+ A4h	ACC multiplier value for SECAM Db to adjust Cb level
+	  (see I2C 86h/28h/A4h)
+ A5h	measured burst amplitude (see I2C 86h/28h/A5h)
+ A8h	amplitude color killer threshold (00h = disabled) (see I2C 86h/28h/A8h)
+ A9h	amplitude color killer hysteresis  (see I2C 86h/28h/A9h)
+ B2h	sync amplitude reference (000h = AGC disabled) (see I2C 86h/28h/B2h)
+ B5h	??? (write 000h after setting B2h to 000h to disable AGC)
+ BEh	start value for AGC gain while vertical lock/AGC inactive
+	  (see I2C 86h/28h/BEh)
+ D2h	BCL time constant
+ D3h	BCL loop gain
+ D4h	BCL threshold current
+ D5h	BCL minimum contrast
+ E7h	vertical standard select (see I2C 86h/28h/E7h)
+ EBh	detected number of lines per field (see I2C 86h/28h/EBh)
+ F0h	white drive (red)
+ F1h	white drive (green)
+ F2h	white drive (blue)
+ F9h	internal brightness (picture)
+ FAh	analog brightness for external RGB
+ FBh	analog contrast for external RGB
+ FCh	internal brightness (measurement)
+

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400000
+  Category: S 	serial I/O
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0000h - BASE I/O ADDRESS OF FIRST SERIAL I/O PORT
+Size:	WORD
+Notes:	the BIOS sets this word to zero if is unable to find any serial ports
+	  at the addresses it is programmed to check at boot
+	DOS and BIOS serial device numbers may be redefined by re-assigning
+	  these values of the base I/O addresses stored here
+	Under DR-OpenDOS 7.02+ this setting can be changed with the
+	  undocumented CONFIG.SYS COM1=[port_address|logical_no][,[timeout]]
+	  directive, whereby port_address = 200h..3F8h, logical_no = 0 or 1..4,
+	  timeout=0..255 (default 1).
+SeeAlso: MEM 0040h:0002h,MEM 0040h:0004h,MEM 0040h:0006h,MEM 0040h:0008h
+SeeAlso: MEM 0040h:007Ch,INT 14/AH=00h,PORT 03F8h"SERIAL"
+

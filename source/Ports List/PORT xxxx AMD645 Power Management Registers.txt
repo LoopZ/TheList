@@ -1,0 +1,274 @@
+--------------------------------------------------------------------------------
+ Unique ID: Pxxxx
+  Category: p 	power management
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT xxxx - AMD-645 - Power Management Registers
+Range:	on any 256-byte boundary
+SeeAlso: #01049
+
++000w RC  power management status (see #P1059)
++002w RW  power management enable (see #P1060)
++004w RW  power management control (see #P1061)
++006	  unused???
++008d RW  power management timer (24 or 32 bits)
++00C	  unused???
++010d RW  processor power management control (see #P1062)
++014  R-  "P_LVL2" processor level 2 -- reading switches to C2 power state
++015  R-  "P_LVL3" processor level 3 -- reading switches to C3 power state
++016	  unused???
++020w RC  general purpose status (see #P1063)
++022w RW  general purpose SCI enable (see #P1064)
++024w RW  general purpose SMI enable (see #P1065)
++026w RW  power supply control (see #P1066)
++028w RC  global power management status (see #P1067)
++02Aw RW  global power management enable (see #P1068)
++02Cw RW  global power management control (see #P1069)
++02E	  unused???
++02F  RW  SMI command
+	writing this port sets the SW_SMI_STS bit (see #P1067,#P1068)
++030d RC  primary activity detection status (see #P1070)
++034d RW  primary activity detection enable (see #P1071)
++038d RW  general purpose timer reload enable (see #P1072)
++03C	  unused???
++040  RW  control of general-purpose I/O direction (see #P1073)
++041	  ???
++042  RW  output value for GPIO port (see #P1074)
++043  RW  ???
++044  RW  input value for GPIO port (see #P1075)
++045  RW  ???
++046w RW  output value for general-purpose output port
++048w RW  input value for general-purpose input port
+
+Bitfields for AMD-645 Power Management Control Status:
+Bit(s)	Description	(Table P1059)
+ 15	wakeup request -- system will transition from suspend to normal working
+ 14-12	reserved (0)
+ 11	power button override (set when PWRBTN# asserted for more than 4 sec)
+	system will transition into "soft off" power state
+ 10	RTC alarm occurred
+ 9	reserved (0)
+ 8	"PB_STS" power button -- PWRBTN# asserted (but for less than 4 sec)
+ 7-6	reserved (0)
+ 5	"GBL_STS" Global Status
+	set by hardware when "BIOS_RLS" set; "BIOS_RLS" cleared by hardware
+	  when this bit cleared
+ 4	system bus requested by any bus master
+ 3-1	reserved (0)
+ 0	ACPI timer carried into highest bit
+Note:	all bits are write-clear: write a 1 bit to acknowledge the
+	  status and clear that bit
+SeeAlso: #P1060,MEM xxxxh:xxx0h"ACPI"
+
+Bitfields for AMD-645 Power Management Enable register:
+Bit(s)	Description	(Table P1060)
+ 15-11	reserved (0)
+ 10	enable SCI/SMI on RTC alarm
+ 9	reserved (0)
+ 8	enable SCI/SMI when PB_STS set (see #P1059 bit 8)
+ 7-6	reserved
+ 5	enable SCI/SMI when GBL_STS set (see #P1059 bit 5)
+ 4-1	reserved
+ 0	enable SCI/SMI when ACPI timer carries
+SeeAlso: #P1059,#P1061,MEM xxxxh:xxx0h"ACPI"
+
+Bitfields for AMD-645 Power Management Control register:
+Bit(s)	Description	(Table P1061)
+ 15-14	reserved (0)
+ 13	(write) force transition into sleep state (bits 12-10) when set
+	(read) always 0
+ 12-10	sleep type
+	000 "soft off" (suspend-to-disk)
+	010 power-on suspend
+	0x1 reserved
+	1xx reserved
+ 9-3	reserved
+ 2	"GLB_RLS" release SCI/SMI lock
+	when set, BIOS_STS bit set by hardware; when BIOS_STS cleared,
+	  hardware clears this bit
+ 1	enable transition from suspend to normal working state on bus master
+	  request
+ 0	power management event interrupt type
+	0 generate SMI
+	1 generate SCI
+SeeAlso: #P1059,#P1060
+
+Bitfields for AMD-645 Processor Power Management Control register:
+Bit(s)	Description	(Table P1062)
+ 31-5	reserved (0)
+ 4	enable clock throttling
+	0 = suspend processor on reading P_LVL2 port at offset 14h
+	1 = throttle clock by modulating STPCLK# on reading P_LVL2
+ 3-1	throttling duty cycle (proportion of time STPCLK# is asserted)
+	000 reserved
+	001 0 - 1/8
+	010 1/8 - 2/8
+	...
+	111 6/8 - 7/8
+ 0	reserved (0)
+SeeAlso: #P1061,#P1062
+
+Bitfields for AMD-645 General Purpose Status register:
+Bit(s)	Description	(Table P1063)
+ 15-10	reserved (0)
+ 9	"USB_STS"	USB peripheral generated resume event
+ 8	"RI_STS"	ring detected (RI# asserted)
+ 7	"EXT7_STS"	EXTSMI7# pin toggled
+ 6-0	"EXT?_STS"	EXTSMI6# - EXTSMI0# pins toggled
+SeeAlso: #P1061,#P1064
+
+Bitfields for AMD-645 General Purpose SCI Enable register:
+Bit(s)	Description	(Table P1064)
+ 15-10	reserved (0)
+ 9	enable SCI when USB_STS bit becomes set
+ 8	enable SCI when RI_STS bit becomes set
+ 7-0	enable SCI when EXT?_STS bit becomes set
+SeeAlso: #P1063,#P1065
+
+Bitfields for AMD-645 General Purpose SMI Enable register:
+Bit(s)	Description	(Table P1065)
+ 15-10	reserved (0)
+ 9	enable SMI when USB_STS bit becomes set
+ 8	enable SMI when RI_STS bit becomes set
+ 7-0	enable SMI when EXT?_STS bit becomes set
+SeeAlso: #P1063,#P1064,#P1066
+
+Bitfields for AMD-645 Power Supply Control register:
+Bit(s)	Description	(Table P1066)
+ 15-11	reserved (0)
+ 10	enable setting of RI_STS bit to turn on power
+ 9	set PB_STS bit to resume from suspend
+ 8	set RTC_STS bit to resume from suspend on RTC alarm
+ 7-1	reserved (0)
+ 0	enable setting of EXT0_STS bit to resume from suspend
+SeeAlso: #P1063,#P1067,#P1068
+
+Bitfields for AMD-645 PM Global Status register:
+Bit(s)	Description	(Table P1067)
+ 15-7	reserved (0)
+ 6	"SW_SMI_STS" SMI_CMD port has been written
+ 5	"BIOS_STS" set whenever GLB_RLS bit is set; GLB_RLS is cleared when
+	  this bit is cleared
+ 4	legacy USB event occurred
+ 3	GP1 timer timed out
+ 2	GP0 timer timed out
+ 1	secondary event timer timed out
+ 0	"PACT_STS" an enabled primary system activity has occurred (see #P1071)
+Note:	this register is write-clear: writing a 1 to a bit clears that bit
+SeeAlso: #P1066
+
+Bitfields for AMD-645 PM Global Enable register:
+Bit(s)	Description	(Table P1068)
+ 15-7	reserved (0)
+ 6	enable SMI when SMI_CMD port is written
+ 5	enable SMI when BIOS_STS bit set (see #P1067)
+ 4	enable SMI on legacy USB events
+ 3	enable SMI when GP1 timer times out
+ 2	enable SMI when GP0 timer times out
+ 1	enable SMI when secondary event timer times out
+ 0	enable SMI on occurrence of any primary activity
+SeeAlso: #P1066,#P1067,#P1069
+
+Bitfields for AMD-645 PM Global Control ("GLB_CTL") register:
+Bit(s)	Description	(Table P1069)
+ 15-9	reserved
+ 8	SMI is active
+ 7-5	reserved
+ 4	SMI lock enabled (write-clear)
+	(must be cleared before bit 8 can be cleared and the next SMI allowed)
+ 3	reserved
+ 2	type of power button triggering
+	0 generate SCI/SMI on PWRBTN# asserted
+	1 generate SCI/SMI when PWRBTN# becomes deasserted
+	(must be clear to comply with ACPI v0.9, but setting it avoids the
+	  situation where holding the power button for four seconds first wakes
+	  the system and then puts it into the soft-off state)
+ 1	"BIOS_RLS" used by legacy software to release the SCI/SMI lock; when
+	  set, the GBL_STS bit is set by hardware; when GBL_STS is cleared,
+	  this bit is cleared by hardware
+ 0	enable SMI generation
+SeeAlso: #P1066,#P1067,#P1068,MEM xxxxh:xxx0h"ACPI"
+
+Bitfields for AMD-645 PM Primary Activity Detect Status register:
+Bit(s)	Description	(Table P1070)
+ 31-8	reserved (0)
+ 7	keyboard controller accessed via PORT 0060h
+ 6	serial port accessed (via PORT 03F8h-03FFh, 02F8h-02FFh, 03E8h-03EFh,
+	  or PORT 02E8h-02EFh)
+ 5	parallel port accessed (via PORT 0278h-027Fh or PORT 0378h-037Fh)
+ 4	video controller accessed
+ 3	IDE or Floppy controller accessed
+ 2	reserved (0)
+ 1	a primary interrupt occurred (see #01049 [offset 44h])
+ 0	ISA busmaster or DMA activity occurred
+Note:	this register is write-clear: write a 1 to a bit to clear it
+SeeAlso: #P1071,#P1069
+
+Bitfields for AMD-645 PM Primary Activity Detect Enable register:
+Bit(s)	Description	(Table P1071)
+ 31-8	reserved (0)
+---set PACT_STS (see #P1067) whenever:
+ 7	keyboard controller is accessed via PORT 0060h
+ 6	serial port is accessed (via PORT 03F8h-03FFh, 02F8h-02FFh,
+	  PORT 03E8h-03EFh, or PORT 02E8h-02EFh)
+ 5	parallel port is accessed (via PORT 0278h-027Fh or PORT 0378h-037Fh)
+ 4	video controller is accessed
+ 3	IDE or Floppy controller is accessed
+ 2	reserved (0)
+ 1	a primary interrupt occurrs (see #01049 [offset 44h])
+ 0	ISA busmaster or DMA activity occurrs
+SeeAlso: #P1070,#P1069
+
+Bitfields for AMD-645 GP Timer Reload Enable register:
+Bit(s)	Description	(Table P1072)
+ 31-8	reserved (0)
+ 7	reload GP1 whenever keyboard controller is accessed
+ 6	reload GP1 whenever a serial port is accessed
+ 5	reserved (0)
+ 4	reload GP1 whenever video controller is accessed
+ 3	reload GP1 whenever IDE or floppy controller is accessed
+ 2-1	reserved (0)
+ 0	reload GP0 whenever a primary activity is detected
+SeeAlso: #P1071,#P1070
+
+Bitfields for AMD-645 GPIO Direction Control register:
+Bit(s)	Description	(Table P1073)
+ 7-5	reserved (0)
+ 4	direction of GPIO4 (0 = input, 1 = output)
+	this bit sets Pin136, which is always output if configured as GPO_WE#
+ 3	direction of GPIO3 (0 = input, 1 = output)
+	this bit sets Pin92, which is always an output if configured as GPI_RE#
+ 2	direction of GPIO2/I2CD1 (0 = input, 1 = output)
+ 1	direction of GPIO1/I2CD2 (0 = input, 1 = output)
+ 0	direction of GPIO0 (0 = input, 1 = output)
+SeeAlso: #P1071,#P1074
+
+Bitfields for AMD-645 GPIO Port Output Value register:
+Bit(s)	Description	(Table P1074)
+ 7-5	reserved
+ 4	value for GPIO4 pin (ignored if pin configured as GPO_WE#)
+ 3	value for GPIO3 pin (ignored if pin configured as GPI_RE#)
+ 2	value for GPIO2/I2CD1 pin
+ 1	value for GPIO1/I2CD2 pin
+ 0	value for GPIO0 pin
+Note:	while these bits can be read back, they only indicate the values which
+	  are driven onto the pins if configured for output; to read the actual
+	  input values, use the "input value" register at offset 44h
+	  (see #P1075)
+SeeAlso: #P1075
+
+Bitfields for GPIO Port Input Value (EXTSMI_VAL) register:
+Bit(s)	Description	(Table P1075)
+ 7	(if GPIO3 set to input) current EXTSMI7# on XD7 (Pin122)
+ 6	(if GPIO3 set to input) current EXTSMI6# on XD6 (Pin121)
+ 5	(if GPIO3 set to input) current EXTSMI5# on XD5 (Pin119)
+ 4	(if GPIO4 set to input) current EXTSMI4# on XD4 (Pin118)
+	(if GPIO4 set to output) current EXTSMI4# on GPIO4 (Pin136)
+ 3	(if GPIO3 set to input) current EXTSMI3# on XD3 (Pin117)
+	(if GPIO3 set to output) current EXTSMI3# on GPIO3 (Pin92)
+ 2	GPIO2 input value
+ 1	GPIO1 input value
+ 0	GPIO0 input value
+SeeAlso: #P1074
+

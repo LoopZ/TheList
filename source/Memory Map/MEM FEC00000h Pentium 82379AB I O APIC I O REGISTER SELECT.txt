@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: mFEC00000
+  Category: H 	hardware
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM FEC00000h - Pentium - 82379AB I/O APIC - I/O REGISTER SELECT
+Size:	DWORD
+Desc:	bits 7-0 of the I/O Register Select memory location specify which
+	  of the APIC's registers appears in the I/O Window at FExxx010h
+Range:	the Multiprocessor Specification calls for I/O APICs to be memory-
+	  mapped on 4K boundaries between FEC00000h and FEDFC000h; the Intel
+	  82379AB I/O APIC can be memory-mapped on any 1K boundary within
+	  FEC0000h-FEC0F800h
+Note:	this memory-mapped register is also supported by the Intel 82093AA
+	  I/O APIC
+SeeAlso: MEM FEC00010h,MEM FEE00000h,MEM xxxxh:xxx0h"Multiprocessor"
+

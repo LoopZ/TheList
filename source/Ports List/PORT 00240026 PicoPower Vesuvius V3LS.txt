@@ -1,0 +1,310 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00240026
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0024-0026 - PicoPower Vesuvius - V3-LS
+Note:	software must use 8-bit accesses to these ports; 16-bit accesses will
+	  be directed to the V1-LS chip in the chipset instead of the V3-LS
+SeeAlso: PORT 0024h"V1-LS"
+
+0024b  ?W  V3-LS register index (see #P0275)
+0026b  RW  V3-LS register data
+
+(Table P0275)
+Values for PicoPower Vesuvius V3-LS register index:
+ 00h	revision ID register (see #P0276)
+ 01h	AT control register 1 (see #P0277)
+ 02h	AT control register 2 (see #P0278)
+ 03h	BIOS CS# control register (see #P0279)
+ 05h	port 92h control register (see #P0280)
+ 06h	GPEXT low byte register (write high byte into register 07h before
+	  writing low byte)
+ 07h	GPEXT high byte register (write high byte before writing low byte into
+	  register 06h)
+ 08h	miscellaneous configuration register (see #P0281)
+ 10h	PCI interrupt mapping register 1 (see #P0282)
+ 11h	PCI interrupt mapping register 2 (see #P0283)
+ 12h	PCI INT# configuration register (see #P0284)
+ 13h	serial IRQ control register (see #P0285)
+ 14h	serial IRQ control register 2 (see #P0286)
+ 20h	power management control register (see #P0287)
+ 21h	primary activity IRQ mask register 1 (see #P0288)
+ 22h	primary activity IRQ mask register 2 (see #P0289)
+ 23h	PMI trigger IRQ mask register 1 (see #P0290)
+ 24h	PMI trigger IRQ mask register 2 (see #P0291)
+ 25h	PMI trigger source register 1 (see #P0292)
+ 26h	PMI trigger source register 2 (see #P0293)
+ 30h	8254 counter 0 initial count low byte shadow
+ 31h	8254 counter 0 initial count high byte shadow
+ 32h	8254 counter 1 initial count low byte shadow
+ 33h	8254 counter 1 initial count high byte shadow
+ 34h	8254 counter 2 initial count low byte shadow
+ 35h	8254 counter 2 initial count high byte shadow
+ 36h	8254 counter 0 control word shadow
+ 37h	8254 counter 1 control word shadow
+ 38h	8254 counter 2 control word shadow
+ 39h	8237 DMA controller mode register for channel 0 shadow
+ 3Ah	8237 DMA controller mode register for channel 1 shadow
+ 3Bh	8237 DMA controller mode register for channel 2 shadow
+ 3Ch	8237 DMA controller mode register for channel 3 shadow
+ 3Dh	8237 DMA controller mode register for channel 4 shadow
+ 3Eh	8237 DMA controller mode register for channel 5 shadow
+ 3Fh	8237 DMA controller mode register for channel 6 shadow
+ 40h	8237 DMA controller mode register for channel 7 shadow
+ 41h	8259 PIC 1 ICW 1 shadow
+ 42h	8259 PIC 1 ICW 2 shadow
+ 43h	8259 PIC 1 ICW 3 shadow
+ 44h	8259 PIC 1 ICW 4 shadow
+ 45h	8259 PIC 1 OCW 2 shadow
+ 46h	8259 PIC 1 OCW 3 shadow
+ 47h	8259 PIC 2 ICW 1 shadow
+ 48h	8259 PIC 2 ICW 2 shadow
+ 49h	8259 PIC 2 ICW 3 shadow
+ 4Ah	8259 PIC 2 ICW 4 shadow
+ 4Bh	8259 PIC 2 OCW 2 shadow
+ 4Ch	8259 PIC 2 OCW 3 shadow
+ 4Dh	RTC index register shadow
+ 4Eh	reserved
+ 4Fh	fixed disk register (port 3F6h) shadow
+ 50h	hard disk write precompression register (port 1F1h) shadow
+ 51h	DMA controller 1 status register shadow
+ 52h	DMA controller 2 status register shadow
+ 53h	DMAC mask register shadow
+ 54h	DMA channel 0 base address low byte shadow
+ 55h	DMA channel 0 base address high byte shadow
+ 56h	DMA channel 0 base count low byte shadow
+ 57h	DMA channel 0 base count high byte shadow
+ 58h	DMA channel 1 base address low byte shadow
+ 59h	DMA channel 1 base address high byte shadow
+ 5Ah	DMA channel 1 base count low byte shadow
+ 5Bh	DMA channel 1 base count high byte shadow
+ 5Ch	DMA channel 2 base address low byte shadow
+ 5Dh	DMA channel 2 base address high byte shadow
+ 5Eh	DMA channel 2 base count low byte shadow
+ 5Fh	DMA channel 2 base count high byte shadow
+ 60h	DMA channel 3 base address low byte shadow
+ 61h	DMA channel 3 base address high byte shadow
+ 62h	DMA channel 3 base count low byte shadow
+ 63h	DMA channel 3 base count high byte shadow
+ 64h	DMA channel 5 base address low byte shadow
+ 65h	DMA channel 5 base address high byte shadow
+ 66h	DMA channel 5 base count low byte shadow
+ 67h	DMA channel 5 base count high byte shadow
+ 68h	DMA channel 6 base address low byte shadow
+ 69h	DMA channel 6 base address high byte shadow
+ 6Ah	DMA channel 6 base count low byte shadow
+ 6Bh	DMA channel 6 base count high byte shadow
+ 6Ch	DMA channel 7 base address low byte shadow
+ 6Dh	DMA channel 7 base address high byte shadow
+ 6Eh	DMA channel 7 base count low byte shadow
+ 6Fh	DMA channel 7 base count high byte shadow
+ 70h	DMA controller 1 command register shadow
+ 71h	DMA controller 2 command register shadow
+Note:	shadow registers (30h-71h) are read-only
+SeeAlso: #P0294
+
+Bitfields for PicoPower Vesuvius V3-LS revision ID register:
+Bit(s)	Description	(Table P0276)
+ 7-4	V3-LS revision ID
+	1h = revision A
+	2h = revision B
+	3h = revision C
+ 3-0	V3-LS metal-mask version ID
+	0h = version A
+	1h = version B
+	3h = version C
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS AT control register 1:
+Bit(s)	Description	(Table P0277)
+ 7-6	(revision BB and later) back-to-back delay for 8-bit I/O cycle
+	00 = 0.5 SYSCLKs
+	01 = 2.5 SYSCLKs
+	10 = 4.5 SYSCLKs
+	11 = 6.5 SYSCLKs
+ 5-4	(revision BB and later) back-to-back delay for 16-bit I/O cycle
+	00 = 0.5 SYSCLKs
+	01 = 1.5 SYSCLKs
+	10 = 2.5 SYSCLKs
+	11 = 3.5 SYSCLKs
+ 3	reserved
+ 2-0	SYSCLK divisor select
+	000 = BSERCLK/2
+	001 = BSERCLK/3
+	010 = BSERCLK/4
+	011 = BSERCLK/5
+	100 = BSERCLK/6
+	101-110 = reserved
+	111 = 14MHZCLK/2
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS AT control register 2:
+Bit(s)	Description	(Table P0278)
+ 7	reserved
+ 6	(revision BB and later) external keyboard chip select
+	0 = ROM_KBCS# decodes ports 60h/64h as keyboard ports
+	1 = ROM_KBCS# decodes ports 60h/62h/64h/66h as keyboard ports
+ 5-4	reserved
+ 3	(revision BB and later) EISA type CMOS RAM interface control enable
+ 2	(revision BB and later) V3-LS internal I/O port option
+	0 = normal V3-LS internal I/O port access
+	1 = speed up V3-LS internal I/O port access
+ 1	extended AT address
+ 0	AT bus refresh enable
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS BIOS CS# control register:
+Bit(s)	Description	(Table P0279)
+ 7	reserved
+ 6	flash enable
+ 5	E8000h-EFFFFh ROMCS# enable
+ 4	E0000h-E7FFFh ROMCS# enable
+ 3	D8000h-DFFFFh ROMCS# enable
+ 2	D0000h-D7FFFh ROMCS# enable
+ 1	C8000h-CFFFFh ROMCS# enable
+ 0	C0000h-C7FFFh ROMCS# enable
+Notes:	FE000000h-FFFFFFFFh access always generates ROMCS#
+	F0000h-FFFFFh access generates ROMCS# if not shadowed
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS port 92h control register:
+Bit(s)	Description	(Table P0280)
+ 7-2	reserved
+ 1	security lock 1 (port 92h bit 3) function enable
+ 0	port 92h enable
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS miscellaneous configuration register:
+Bit(s)	Description	(Table P0281)
+ 7	reserved
+ 6	reserved (ISA master I/O command synchronizer disable)
+ 5	reserved (timer synchronous IOW# fix disable)
+ 4	reserved
+ 3	(revision BB and later) DDMA grant
+	0 = V3-LS uses REQ#/GNT# for DDMA retry cycle
+	1 = V3-LS does not use REQ#/GNT# for DDMA retry cycle
+ 2	BSER interrupt enable
+ 1	(revision BB and later) DDMARETRY
+	0 = pin 44 (176-pin) / pin 48 (208-pin) is DDMA_RETRY
+	1 = pin 44 (176-pin) / pin 48 (208-pin) is ISA_WAKE
+ 0	BSER arbitration enable
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS PCI interrupt mapping register 1:
+Bit(s)	Description	(Table P0282)
+ 7-4	map INTB# to IRQ
+	0000 = disabled
+	0001-0010 = reserved
+	0011-0111 = IRQ3-IRQ7
+	1000 = reserved
+	1001-1100 = IRQ9-IRQ12
+	1101 = reserved
+	1110-1111 = IRQ14-IRQ15
+ 3-0	map INTA# to IRQ (same values as bits 7-4)
+SeeAlso: #P0275,#P0283
+
+Bitfields for PicoPower Vesuvius V3-LS PCI interrupt mapping register 2:
+Bit(s)	Description	(Table P0283)
+ 7-4	map INTD# to IRQ
+	0000 = disabled
+	0001-0010 = reserved
+	0011-0111 = IRQ3-IRQ7
+	1000 = reserved
+	1001-1100 = IRQ9-IRQ12
+	1101 = reserved
+	1110-1111 = IRQ14-IRQ15
+ 3-0	map INTC# to IRQ (same values as bits 7-4)
+SeeAlso: #P0275,#P0282,#P0284
+
+Bitfields for PicoPower Vesuvius V3-LS PCI INT# configuration register:
+Bit(s)	Description	(Table P0284)
+ 7-4	reserved
+ 3	interrupt D / mappable IRQ 3 configuration
+	0 = INTD#, go through level-to-edge conversion
+	1 = MIRQ3, bypass level-to-edge conversion
+ 2	interrupt C / mappable IRQ 2 configuration
+	0 = INTC#, go through level-to-edge conversion
+	1 = MIRQ2, bypass level-to-edge conversion
+ 1	interrupt B / mappable IRQ 1 configuration
+	0 = INTB#, go through level-to-edge conversion
+	1 = MIRQ1, bypass level-to-edge conversion
+ 0	interrupt A / mappable IRQ 0 configuration
+	0 = INTA#, go through level-to-edge conversion
+	1 = MIRQ0, bypass level-to-edge conversion
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS serial IRQ control register:
+Bit(s)	Description	(Table P0285)
+ 7	reserved
+ 6	serial IRQ mode
+	0 = host (primary V3-LS)
+	1 = source (secondary V3-LS)
+ 5-4	reserved
+ 3-2	start cycle length = 2N+4 clocks
+ 1	host poll
+ 0	serial IRQ bus enable
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS serial IRQ control register 2:
+Bit(s)	Description	(Table P0286)
+ 7-4	reserved
+ 3-0	(revision BB and later) serial IRQ sampling slot length
+	1111 = 32 slots
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS power management control register:
+Bit(s)	Description	(Table P0287)
+ 7	secondary activity triggered by IRQ1 (write 0 to clear)
+ 6	secondary activity triggered by IRQ0 (write 0 to clear)
+ 5	mask IRQ1 from secondary activity
+ 4	mask IRQ0 from secondary activity
+ 3	(revision BB and later) IMR disable
+ 2	primary activity enables PMI
+ 1	reserved
+ 0	burst serial bus enable
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS primary activity IRQ mask register 1:
+Bit(s)	Description	(Table P0288)
+ 7-3	mask IRQ7 - IRQ3 from primary activity
+ 2	mask NMI from primary activity
+ 1	mask IRQ1 from primary activity
+ 0	reserved
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS primary activity IRQ mask register 2:
+Bit(s)	Description	(Table P0289)
+ 7-1	mask IRQ15 - IRQ9 from primary activity
+ 0	mask IRQ8 from primary activity
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS PMI trigger IRQ mask register 1:
+Bit(s)	Description	(Table P0290)
+ 7-3	mask IRQ7 - IRQ3 from PMI
+ 2	reserved
+ 1	mask IRQ1 from PMI
+ 0	mask DDMA slave lock from PMI
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS PMI trigger IRQ mask register 2:
+Bit(s)	Description	(Table P0291)
+ 7-1	mask IRQ15 - IRQ9 from PMI
+ 0	mask IRQ8 from PMI
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS PMI trigger source register 1:
+Bit(s)	Description	(Table P0292)
+ 7-3	PMI trigger source IRQ7 - IRQ3 active (write 0 to clear)
+ 2	reserved
+ 1	PMI trigger source IRQ1 active (write 0 to clear)
+ 0	PMI trigger source DDMA slave lock active (write 0 to clear)
+SeeAlso: #P0275
+
+Bitfields for PicoPower Vesuvius V3-LS PMI trigger source register 2:
+Bit(s)	Description	(Table P0293)
+ 7-1	PMI trigger source IRQ15 - IRQ9 active (write 0 to clear)
+ 0	PMI trigger source IRQ8 active (write 0 to clear)
+SeeAlso: #P0275
+

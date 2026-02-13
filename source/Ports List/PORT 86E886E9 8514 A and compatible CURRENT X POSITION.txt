@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: P86E886E9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 86E8-86E9 - 8514/A and compatible - CURRENT X POSITION
+Desc:	define the column at which the first pixel of a line, rectangle, etc.
+	  will be drawn; (Trio64) define the column at which the first of two
+	  edges for a polygon or trapezoid will begin
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+SeeAlso: PORT 82E8h,PORT 8AE8h,86EAh
+
+86E8w -W  drawing control: current X position (bits 11-0)
+

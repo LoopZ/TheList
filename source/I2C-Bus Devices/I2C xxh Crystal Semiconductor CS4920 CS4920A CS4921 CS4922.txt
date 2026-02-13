@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: Ixx
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C xxh - Crystal Semiconductor CS4920/CS4920A/CS4921/CS4922
+Desc:	the CS4920A and CS4922 are MPEG audio decoders
+Note:	the address to which the CS4922 responds must be programmed via the
+	  I2C bus; initially, the chip responds to any address
+	after a reset, the 4922's DSP boot ROM expects to have the RAM loaded
+	  with a microprogram by sending data over I2C (see #I0065)
+
+Format of Crystal Semiconductor microprogram data:
+Offset	Size	Description	(Table I0121)
+ 00h	WORD	starting address in RAM
+		high three bits ignored; bit 12 indicates program/data memory
+		the CS4920A contains 4K words of program RAM, 2K words data
+		  RAM (of which the high 32 words are used by the debug prog.)
+		the CS4922 contains 5K words of program RAM, 3K words data RAM
+ 02h	WORD	length of block of data
+ 04h 3N BYTEs	sequence of 24-bit words of code or data
+	...	(above may be repeated arbitrarily often)
+	WORD	FFFFh end marker
+      3 BYTEs	24-bit checksum (sum of all previous bytes)
+

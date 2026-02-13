@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: P03200323
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0320-0323 - XT HDC 1   (Hard Disk Controller)
+SeeAlso: PORT 01F0h-01F7h
+
+0320  RW  data register
+0321  -W  reset controller
+0321  R-  read controller hardware status (see #P0574)
+0322  R-  read DIPswitch setting on XT controller card
+0322  -W  generate controller-select pulse
+0323  -W  write pattern to DMA and INT mask register
+
+Bitfields for XT hard disk controller hardware status:
+Bit(s)	Description	(Table P0574)
+ 7-6	always 0
+ 5	logical unit number
+ 4-2	always 0
+ 1	error occurred
+ 0	always 0
+

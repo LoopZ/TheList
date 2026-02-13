@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0022002B
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0022-002B - INTEL 82355, PART OF CHIPSET FOR 386sx
+Note:	initialisation in POST will disable these addresses, only a hard
+	  reset will enable them again.
+
+0022w RW  82335 MCR memory configuration register (if LOCK=0) (see #P0272)
+0024w RW  82335 RC1 roll compare register (if LOCK=0) (see #P0273)
+0026w RW  82335 RC2 roll compare register (if LOCK=0) (see #P0273)
+0028w RW  82335 CC0 address range compare register (if LOCK=0) (see #P0274)
+002Aw RW  82335 CC1 address range compare register (if LOCK=0) (see #P0274)
+
+Bitfields for 82335 MCR memory configuration register:
+Bit(s)	Description	(Table P0272)
+ 15-12	reserved
+ 11	"VRO"	video read only (0=r/w, 1=r/o)
+ 10	"EN#"
+	0=enable video RAM accesses (A0000h-8FFFFh)
+	1=disable accesses
+ 9	"ENADP#"
+	0=enable adapter ROM accesses (C0000h-8FFFFh)
+	1=disable adapter ROM accesses, shadow enabled
+ 8	"ROMSIZE" 0=256KB ROM, 1=512KB ROM
+ 7-6	"INTERL" memory interleaving
+	00 = 1 memory bank installed (no interleave)
+	01 = 2 memory banks installed
+	10 = 3 memory banks installed
+	11 = 4 memory banks installed
+ 5	reserved
+ 4	"DSIZE"	 0=1MBx1DRAMs, 1=256KBx1 or 256KBx4 DRAMs
+ 3	"S640"	 base memory size is 0=512KB, 1=640KB
+ 2-1	reserved
+ 0	"ROMEN#" ROM enable
+	0 enable BIOS ROM accesses (E0000h-FFFFFh)
+	1 disable BIOS ROM accesses, enable shadow
+Note:	One of the remaining reserved bits is the LOCK bit, which will be set
+	  during power on, disabling access to the 82335s registers.
+
+Bitfields for 82335 roll compare register:
+Bit(s)	Description	(Table P0273)
+ 15-9	selects address range to be remapped (C23-C17)
+ 8	reserved
+ 7-1	selects address bits to be included in re-mapping comparision (M23-M17)
+ 0	"EN" enables roll address mapping
+
+Bitfields for 82335 address range compare register:
+Bit(s)	Description	(Table P0274)
+ 15-11	specifies top of address range (C23-C19)
+ 10-8	reserved
+ 7-3	selects address bits to be included in address range comparision
+	  (M23-M19)
+ 2-1	reserved
+ 0	"EN" enable address range comparision
+

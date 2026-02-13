@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040007B
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:007Bh - PARALLEL DEVICE 4 TIME-OUT COUNTER (pre-PS, PS Models 25,30)
+Size:	BYTE
+Note:	Under DR-OpenDOS 7.02+ this setting can be changed with the
+	  undocumented CONFIG.SYS LPT4=(port_address|logical_no)[,[timeout]]
+	  directive, where port_address = 200h..3FCh, logical_no = 0 or 1..3,
+	  timeout=0..255 (default 20).  To avoid any interference with the PS/2
+	  and later interpretation, this will be rejected if this entry does
+	  not hold 0, which would indicate it is used for different purposes.
+SeeAlso: MEM 0040h:0078h,MEM 0040h:007Ah,MEM 0040h:007Bh"INT 4Bh"
+

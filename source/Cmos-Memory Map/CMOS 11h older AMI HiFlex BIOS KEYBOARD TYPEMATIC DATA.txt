@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: R11
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CMOS 11h - older AMI Hi-Flex BIOS - KEYBOARD TYPEMATIC DATA 
+
+Bitfields for AMI Hi-Flex BIOS keyboard typematic data:
+Bit(s)	Description	(Table C0009)
+ 7	enable Typematic
+ 6-5	Typematic Delay (wait before begin repeating)
+	00b 250 ms
+	01b 500 ms
+	10b 750 ms
+	11b 100 ms
+ 4-0	Typematic Rate (char/sec)
+	00000b - 30.0	 01000b - 15.9	10000b - 7.5  11000b - 3.7
+	00001b - 26.7	 01001b - 13.3	10001b - 6.7  11001b - 3.3
+	00010b - 24.0	 01010b - 12.0	10010b - 6.0  11010b - 3.0
+	00011b - 21.8	 01011b - 10.9	10011b - 5.5  11011b - 2.7
+	00100b - 20.0	 01100b - 10.0	10100b - 5.0  11100b - 2.5
+	00101b - 18.5	 01101b -  9.2	10101b - 4.6  11101b - 2.3
+	00110b - 17.1	 01110b -  8.6	10110b - 4.3  11110b - 2.1
+	00111b - 16.0	 01111b -  8.0	10111b - 4.0  11111b - 2.0
+

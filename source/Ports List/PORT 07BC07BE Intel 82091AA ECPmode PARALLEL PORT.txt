@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: P07BC07BE
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 07BC-07BE - Intel 82091AA - ECP-mode PARALLEL PORT
+SeeAlso: PORT 03BCh,PORT 0678h,PORT 0778h
+
+03BC  RW  (when ECR bits 7-5=011) ECP Address/RLE FIFO (see #P0917)
+	(this is the same address normally used for parallel port data)
+07BC  RW  (when ECR bits 7-5=010) standard parallel port data FIFO (see #P0918)
+07BC  RW  (when ECR bits 7-5=011) ECP data FIFO (see #P0919)
+07BC  RW  (when ECR bits 7-5=110) test FIFO (see #P0920)
+07BC  RW  (when ECR bits 7-5=111) ECP configuration A (see #P0921)
+07BD  RW  (when ECR bits 7-5=111) ECP configuration B (see #P0922)
+07BE  RW  extended control register (ECR) (see #P0923)
+

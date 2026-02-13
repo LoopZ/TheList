@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: Pxxxx
+  Category: d 	disk I/O enhancements
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT xxxx - Intel 82371, OPTi "Vendetta" (82C750) - Bus Master IDE Registers
+
++000  RW  command register, primary channel (see #P1092)
++002  Rw  status register, primary channel (see #P1093)
++004d RW  IDE descriptor table pointer, primary channel (see #P1094)
++008  RW  command register, secondary channel (see #P1092)
++00A  Rw  status register, secondary channel (see #P1093)
++00Cd RW  IDE descriptor table pointer, secondary channel (see #P1094)
+
+Bitfields for Intel 82371 Bus Master IDE command register:
+Bit(s)	Description	(Table P1092)
+ 7-4	reserved
+ 3	bus master read/write control
+	=0 read
+	=1 write
+ 2-1	reserved
+ 0	start/stop bus master
+	=1 start
+	=0 stop
+SeeAlso: #P1093,#P1094
+
+Bitfields for Bus Master IDE status register:
+Bit(s)	Description	(Table P1093)
+ 7	(Intel) reserved (0)
+	(OPTI "Vendetta") both channels operable at same time (read-only)
+ 6	drive 1 is DMA-capable
+ 5	drive 0 is DMA_capable
+ 4-3	reserved
+ 2	IDE interrupt pending
+	write 1 to this bit to clear it
+ 1	IDE DMA error
+	write 1 to this bit to clear it
+ 0	bus master IDE active (read-only)
+SeeAlso: #P1092,#P1094
+
+Bitfields for Bus Master IDE descriptor table pointer register:
+Bit(s)	Description	(Table P1094)
+ 31-2	descriptor table base address bits 31-2
+ 1-0	reserved (0)
+Notes:	(Intel 82371) the descriptor table must not cross a 4K boundary
+	(OPTi "Vendetta") the descriptor table must not cross a 64K boundary
+SeeAlso: #P1092,#P1093
+

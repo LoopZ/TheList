@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0CF9
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0CF9 - Intel chipsets - TURBO/RESET CONTROL REGISTER
+Notes:	this port can only be accessed via 8-bit IN or OUT instructions by
+	  the CPU
+	supported by the Intel "Saturn" and "Neptune" (82434NX) chipsets,
+	  the Intel 82454KX/GX (450GX chipset), Intel 82420EX chipset, etc.
+SeeAlso: PORT C051h,#01055,#01239
+
+0CF9  RW  reboot system, optionally selecting de-turbo mode (see #P0946)
+
+Bitfields for Intel 82420EX turbo/reset control register:
+Bit(s)	Description	(Table P0946)
+ 7-4	reserved (0)
+ 3	(450KX/GX only) enable CPU BIST on reset
+ 2	reset CPU
+ 1	reset mode
+	0 soft reset
+	1 hard reset
+ 0	deturbo mode
+Note:	when resetting the CPU, two writes are required: the first sets the
+	  state of bit 1 while keeping bit 2 cleared, and the second sets
+	  bit 2; the reset occurs on bit 2's transition from 0 to 1.
+SeeAlso: PORT C051h
+

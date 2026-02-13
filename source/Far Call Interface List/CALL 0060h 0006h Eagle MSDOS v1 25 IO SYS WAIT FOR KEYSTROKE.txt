@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: @00600006
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:0006h - Eagle MS-DOS v1.25 IO.SYS - WAIT FOR KEYSTROKE
+InstallCheck:	MS-DOS v1.25 must be installed
+Notes:	if an extended keystroke is available, only the low byte is returned,
+	  and this function must be called again to get the high byte
+	the BIOS keycode 0000h (Ctrl-Break) is returned as 00h+FFh to avoid
+	  the ambiguity that might be caused by returning the 00h high byte
+SeeAlso: @0060h:0000h,@0060h:0003h,@0060h:0027h
+
+(Table F0002)
+Call Eagle MS-DOS entry point 0006h with:
+	nothing
+Return: AL = keystroke
+	flags modified
+

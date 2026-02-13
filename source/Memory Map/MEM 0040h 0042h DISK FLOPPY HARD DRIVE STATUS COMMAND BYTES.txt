@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: M00400042
+  Category: B 	BIOS
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM 0040h:0042h - DISK - FLOPPY/HARD DRIVE STATUS/COMMAND BYTES
+Size:	7 BYTEs
+SeeAlso: MEM 0040h:0041h
+
+    42h BYTE	XT: command byte to hard disk controller
+		AT: write precompensation cylinder number / 4
+    43h	BYTE	XT: bit 5 = drive number, bits 3-0=head number
+		AT: sector count
+    44h BYTE	XT: bits 6,7 = high bits of track, bits 5-0 = start sector-1
+		AT: starting sector
+    45h BYTE	low byte of track number
+    46h BYTE	XT: sector count
+		AT: high bits of track number
+    47h BYTE	XT: controlbyte from HD parameters (step rate,...)
+		AT: 101DHHHH, D=drive number, HHHH=head number
+		    bit 7 = ECC mode (1)
+		    bit 6 = unknown (0)
+		    bit 5 = 512 byte sectors (1)
+		    bit 4 = drive number
+		    bit 3-0 head number
+    48h BYTE	XT: INT 13h subfunction number
+		AT: command byte to hard disk controller
+SeeAlso: CALL F000h:211Eh
+

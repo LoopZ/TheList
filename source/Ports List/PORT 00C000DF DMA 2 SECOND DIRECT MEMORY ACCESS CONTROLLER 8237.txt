@@ -1,0 +1,120 @@
+--------------------------------------------------------------------------------
+ Unique ID: P00C000DF
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 00C0-00DF - DMA 2 - SECOND DIRECT MEMORY ACCESS CONTROLLER (8237)
+
+00C0  RW  DMA channel 4 memory address bytes 1 and 0 (low) (ISA, EISA)
+00C2  RW  DMA channel 4 transfer count bytes 1 and 0 (low) (ISA, EISA)
+00C4  RW  DMA channel 5 memory address bytes 1 and 0 (low) (ISA, EISA)
+00C6  RW  DMA channel 5 transfer count bytes 1 and 0 (low) (ISA, EISA)
+00C8  RW  DMA channel 6 memory address bytes 1 and 0 (low) (ISA, EISA)
+00CA  RW  DMA channel 6 transfer count bytes 1 and 0 (low) (ISA, EISA)
+00CC  RW  DMA channel 7 memory address byte 0 (low), then 1 (ISA, EISA)
+00CE  RW  DMA channel 7 transfer count byte 0 (low), then 1 (ISA, EISA)
+
+00D0  R-  DMA channel 4-7 status register (ISA, EISA) (see #P0481)
+00D0  -W  DMA channel 4-7 command register (ISA, EISA) (see #P0482)
+00D2  -W  DMA channel 4-7 write request register (ISA, EISA)
+00D4  -W  DMA channel 4-7 write single mask register (ISA, EISA) (see #P0484)
+00D6  -W  DMA channel 4-7 mode register (ISA, EISA) (see #P0485)
+00D8  -W  DMA channel 4-7 clear byte pointer flip-flop (ISA, EISA)
+
+00DA  R-  DMA channel 4-7 read temporary register (ISA, EISA)
+00DA  -W  DMA channel 4-7 master clear (ISA, EISA)
+00DC  -W  DMA channel 4-7 clear mask register (ISA, EISA)
+00DE  -W  DMA channel 4-7 write mask register (ISA, EISA) (see #P0486)
+Notes:	the temporary register is used as holding register in memory-to-memory
+	  DMA transfers; it holds the last transferred byte
+	channel 4 is used for cascading the first (8-bit) DMA controller
+	base/current address registers can only address the memory in 16-bit
+	  words (i.e. they contain lines A1-A16 of the address bus with line
+	  A0 always equal to 0); base/current word count registers contain the
+	  number of 16-bit words
+	command and request registers do not exist on PS/2 DMA controller
+
+Bitfields for DMA channel 4-7 status register:
+Bit(s)	Description	(Table P0481)
+ 7 = 1	channel 7 request
+ 6 = 1	channel 6 request
+ 5 = 1	channel 5 request
+ 4 = 1	channel 4 request
+ 3 = 1	terminal count on channel 7
+ 2 = 1	terminal count on channel 6
+ 1 = 1	terminal count on channel 5
+ 0 = 1	terminal count on channel 4
+SeeAlso: #P0001,#P0482
+
+Bitfields for DMA channel 4-7 command register:
+Bit(s)	Description	(Table P0482)
+ 7	DACK sense active high
+ 6	DREQ sense active high
+ 5	=1  extended write selection
+	=0  late write selection
+ 4	rotating priority instead of fixed priority
+ 3	compressed timing
+ 2	=1  enable controller
+	=0  enable memory-to-memory transfer
+ 1-0	channel number (00 = 4 to 11 = 7)
+SeeAlso: #P0002,#P0481,#P0484
+
+Bitfields for DMA channel 4-7 request register:
+Bit(s)	Description	(Table P0483)
+ 7-3	reserved (0)
+ 2	=0 clear request bit
+	=1 set request bit
+ 1-0	channel number
+	00 channel 4 select
+	01 channel 5 select
+	10 channel 6 select
+	11 channel 7 select
+SeeAlso: #P0003,#P0484
+
+Bitfields for DMA channel 4-7 write single mask register:
+Bit(s)	Description	(Table P0484)
+ 7-3	reserved
+ 2	=0  clear mask bit
+	=1  set mask bit
+ 1-0	channel select
+	00 channel 4 select
+	01 channel 5 select
+	10 channel 6 select
+	11 channel 7 select
+SeeAlso: #P0004,#P0482
+
+Bitfields for DMA channel 4-7 mode register:
+Bit(s)	Description	(Table P0485)
+ 7-6	transfer mode
+	00  demand mode
+	01  single mode
+	10  block mode
+	11  cascade mode
+ 5	direction
+	0  address increment select
+	1  address decrement select
+ 4	autoinitialisation enabled
+ 3-2	operation
+	00  verify operation
+	01  write to memory
+	10  read from memory
+	11  reserved
+ 1-0	channel number
+	00  channel 4 select
+	01  channel 5 select
+	10  channel 6 select
+	11  channel 7 select
+SeeAlso: #P0005,#P0484
+
+Bitfields for DMA channel 4-7 write mask register:
+Bit(s)	Description	(Table P0486)
+ 7-4	reserved
+ 3	channel 7 mask bit
+ 2	channel 6 mask bit
+ 1	channel 5 mask bit
+ 0	channel 4 mask bit
+Note:	each mask bit is automatically set when the corresponding channel
+	  reaches terminal count or an extenal EOP sigmal is received
+SeeAlso: #P0484,#P0006
+

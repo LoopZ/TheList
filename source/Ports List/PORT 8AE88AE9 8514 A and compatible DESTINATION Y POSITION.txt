@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+ Unique ID: P8AE88AE9
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 8AE8-8AE9 - 8514/A and compatible - DESTINATION Y POSITION
+Desc:	define the top row of the destination for a BLT, the axial step
+	  constant for a line, or the ending row of a line segment in a
+	  polyline; (Trio64) define the ending row of the first edge drawn
+	  for a polygon or trapezoid
+Notes:	supported by ATI Mach8 and Mach32 chipsets
+	supported by S3 chipsets when PORT 03D4h register 40h bit 0 is set
+SeeAlso: PORT 82E8h,PORT 86E8h
+
+8AE8w -W  drawing control: destination Y position / axial step constant
+	  (see #P1034)
+Note:	this port may be read on S3 chipsets
+
+Bitfields for 8514/A destination Y position / axial step constant register:
+Bit(s)	Description	(Table P1034)
+ 11-0	destination Y position
+ 13-0	axial step constant for line drawing
+ 15-14	reserved
+

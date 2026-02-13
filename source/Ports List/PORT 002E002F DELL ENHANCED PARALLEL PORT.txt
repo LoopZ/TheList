@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: P002E002F
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 002E-002F - DELL ENHANCED PARALLEL PORT
+SeeAlso: PORT 015Ch,PORT 026Eh,PORT 0398h
+
+002E  -W  index for data port (see #P0378)
+002F  RW  EPP command data
+
+(Table P0378)
+Values for Dell Enhanced Parallel Port register index:
+ 00h	bit 0: ???
+ 02h	bit 7: port in bidirectional mode
+ 04h	bits 0 and 2: ECP/EPP mode control
+

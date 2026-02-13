@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: Pxxxx
+  Category: X 	expansion bus BIOSes
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT xxxx - AMD-645 - USB
+SeeAlso: #01046 at INT 1A/AX=B10Ah/SF=1106h
+Note:	further details are supposedly in the UHCI v1.1 standard
+
++000w ?W  USB command
++002w R?  USB status
++004w ?W  USB interrupt enable
++006w ??  frame number
++008d ??  frame list base address
++00C  ??  Start of Frame Modify
++00D	unused???
++010w RW  Port 1 Status/Control
++012w RW  Port 2 Status/Control
+

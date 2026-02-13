@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: @0060001B
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+CALL 0060h:001Bh - Eagle MS-DOS v1.25 IO.SYS - DETERMINE DISK FORMAT
+InstallCheck:	MS-DOS v1.25 must be installed
+SeeAlso: @0060h:0000h,@0060h:0015h,@0060h:002Ah
+
+(Table F0009)
+Call Eagle MS-DOS entry point 001Bh with:
+	AL = DOS drive number
+Return: CF clear if successful
+	    AL = drive table number
+	    AH = ??? flag
+		00h ???
+		FFh ???
+	CF set on error
+	    AL = error code
+		02h ???
+		0Ch unrecognized format
+

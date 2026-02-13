@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0746
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0746 - Gravis Ultra Sound by Advanced Gravis - BOARD VERSION / MIXER
+SeeAlso: PORT 0240h-024Fh,PORT 0340h-034Fh
+
+0746  R-  board version (rev 3.7+)
+		FFh	  Pre 3.6 boards, ICS mixer NOT present
+		05h	  Rev 3.7 with ICS Mixer. Some R/L: flip problems.
+		06h-09h	  Revision 3.7 and above. ICS Mixer present
+		0Ah-	  UltraMax. CS4231 present, no ICS mixer
+0746  -W  Mixer Control Port
+

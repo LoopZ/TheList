@@ -1,0 +1,91 @@
+--------------------------------------------------------------------------------
+ Unique ID: P01F001F6
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 01F0-01F6 - OPTi "Vendetta" (82C750) CHIPSET - PRIMARY IDE CONTROLLER
+Note:	to unlock access to these ports, you must perform two immediately
+	  successive 16-bit INs from PORT 01F1h, followed by 8-bit OUT of 03h
+	  to PORT 1F2h
+SeeAlso: PORT 0170h"Vendetta",PORT 01F0h"HDC 1"
+
+01F0  RW  read cycle timing register (see #P0536)
+01F1  RW  write cycle timing register (see #P0537)
+01F2  RW  internal ID register (see #P0538)
+01F3  RW  control register (see #P0539)
+01F5  RW  strap register (see #P0540)
+01F6  RW  miscellaneous register (see #P0541)
+
+Bitfields for OPTi "Vendetta" IDE controller read cycle timing register:
+Bit(s)	Description	(Table P0536)
+ 7-4	DRD# pulse width - 1 LCLKs on 16-bit IDE data register read
+ 3-0	recovery time between DRD# and DA2-0/DCSx# - 2 LCLKs after 16-bit IDE
+	  data register read
+Notes:	if register 1F6h/176h bit 0 = 0, controls drive selected by
+	  register 1F3h/173h bits 3-2
+	if register 1F6h/176h bit 0 = 1, controls drive not selected by
+	  register 1F3h/173h bits 3-2, if register 1F3h/173h bit 7 = 1
+SeeAlso: #P0537,#P0538,#P0539
+
+Bitfields for OPTi "Vendetta" IDE controller write cycle timing register:
+Bit(s)	Description	(Table P0537)
+ 7-4	DWR# pulse width - 1 LCLKs on 16-bit IDE data register write
+ 3-0	recovery time between DWR# and DA2-0/DCSx# - 2 LCLKs after 16-bit IDE
+	  data register write
+Notes:	if register 1F6h/176h bit 0 = 0, controls drive selected by
+	  register 1F3h/173h bits 3-2
+	if register 1F6h/176h bit 0 = 1, controls drive not selected by
+	  register 1F3h/173h bits 3-2, if register 1F3h/173h bit 7 = 1
+SeeAlso: #P0536,#P0539
+
+Bitfields for OPTi "Vendetta" IDE controller internal ID register:
+Bit(s)	Description	(Table P0538)
+ 7	controller register access disable (write-only)
+ 6	controller register access disable until power-down or reset
+	  (write-only)
+ 5-2	reserved (read-only)
+ 1-0	reserved (11, otherwise all controller register writes blocked)
+SeeAlso: #P0540
+
+Bitfields for OPTi "Vendetta" IDE controller control register:
+Bit(s)	Description	(Table P0539)
+ 7	enable 1F0h-1F1h/170h-171h and 1F6h/176h bits 5-1 cycle timing
+	  set for drive not selected by 1F3h/173h bits 3-2
+ 6-5	reserved (read-only)
+ 4	(primary IDE controller) minimum read wait states
+	0 = 2 wait states
+	1 = 1 wait states
+	(secondary IDE controller) reserved
+ 3	enable 1F0h-1F1h/170h-171h cycle timing set for drive 1
+ 2	enable 1F0h-1F1h/170h-171h cycle timing set for drive 0
+ 1	reserved
+ 0	reserved (1) (read-only)
+SeeAlso: #P0540,#P0541
+
+Bitfields for OPTi "Vendetta" IDE controller strap register:
+Bit(s)	Description	(Table P0540)
+ 7	reserved (1) (read-only)
+ 6-5	revision number (read-only)
+	11 = chip revision in PCI configuration register 08h (see #00878)
+	  (see #00931)
+ 4	(primary IDE controller) DINTR state (read-only)
+	(secondary IDE controller) SDINTR state (read-only)
+ 3-2	(primary IDE controller only) IDE device cycle time (read-only)
+	value determined by PCI config register 40h bits 1-0 (see #00931)
+ 1	reserved (1) (read-only)
+ 0	(primary IDE controller only) PCI CLK
+	0 = 33 MHz
+	1 = 25 MHz
+SeeAlso: #P0539,#P0541,#P0538
+
+Bitfields for OPTi "Vendetta" IDE controller miscellaneous register:
+Bit(s)	Description	(Table P0541)
+ 7	reserved
+ 6	read prefetch enable
+ 5-4	address setup time between DRD#/DWR# active and
+	  DA2-0/DCS3#/DCS1# - 1 LCLKs
+ 3-1	minimum number of LCLKs between DRDY# high and DRD#/DRW# inactive - 2
+ 0	cycle timing register switch (1F0h/170h and 1F1h/171h)
+SeeAlso: #P0539,#P0540
+

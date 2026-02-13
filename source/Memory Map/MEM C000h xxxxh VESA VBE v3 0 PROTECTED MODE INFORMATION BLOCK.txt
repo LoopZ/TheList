@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: MC000xxxx
+  Category: V 	video
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+MEM C000h:xxxxh - VESA VBE v3.0 PROTECTED MODE INFORMATION BLOCK
+Size:	20 BYTEs
+Range:	starting at any byte within the first 32K of segment C000h
+
+Format of VESA VBE 3.0 Protected Mode Information Block:
+Offset	Size	Description	(Table M0127)
+ 00h  4 BYTEs	signature "PMID"
+ 04h	WORD	offset of protected-mode entry point within BIOS
+ 06h	WORD	offset of protected-mode initialization entry point
+ 08h	WORD	selector for BIOS data area emulation block
+		(default 0000h, must be set by protected-mode OS to 16-bit
+		  read/write data selector with limit of at least 0600h)
+ 0Ah	WORD	selector to access physical memory at A0000h
+		(default A000h, must be set by protected-mode OS to 16-bit
+		  read/write data selector with 64K limit)
+ 0Ch	WORD	selector to access physical memory at B0000h
+		(default B000h, must be set by protected-mode OS to 16-bit
+		  read/write data selector with 64K limit)
+ 0Eh	WORD	selector to access physical memory at B8000h
+		(default B800h, must be set by protected-mode OS to 16-bit
+		  read/write data selector with 32K limit)
+ 10h	BYTE	protected-mode execution (default 00h; set to 01h by OS when
+		  BIOS image is running in protected mode)
+ 11h	BYTE	checksum byte for entire structure (this byte forces 8-bit
+		  sum of all bytes to 00h)
+

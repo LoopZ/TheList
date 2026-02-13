@@ -1,0 +1,159 @@
+--------------------------------------------------------------------------------
+ Unique ID: I8600
+  Category: - 	reserved (and not otherwise classified)
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+I2C 86h/00h - ITT VPX 32xx/322xD - JEDEC MANUFACTURER ID
+Access:	Read-Only
+Range:	the VPX 32xx may be configured in hardware to reside at either 86h or
+	  8Eh
+Notes:	except as noted, the designation "VPX 32xx" refers to any of the
+	  following in the ITT Intermetall VPX video-pixel decoder series:
+	  VPX 3214C, VPX 3216B, VPX 3220, or VPX 3220A
+	except as noted, the designation "VPX 322xD" refers to either the
+	  VPX 3224D or VPX 3225D
+	the ITT VDP 3108 contains many of the same I2C registers as the
+	  VPX 32xx, although at a different bus address
+SeeAlso: I2C 86h/01h,I2C 86h/02h,I2C 86h/03h,I2C 8Ah/26h
+
+(Table I0009)
+Values for JEDEC Manufacturer ID:
+ 01h	AMD
+ 02h	AMI
+ 04h	Fujitsu
+ 07h	Hitachi
+ 08h	Inmos
+ 0Bh	Intersil
+ 0Dh	Mostek
+ 0Eh	Motorola
+ 10h	NEC
+ 13h	Rockwell
+ 15h	Philips Semiconductor (Signetics)
+ 16h	Synertek
+ 19h	Xicor
+ 1Ah	Zilog
+ 1Ch	Mitsubishi
+ 1Fh	Atmel
+ 20h	SGS/Thompson
+ 23h	Wafer Scale Integration
+ 25h	Tristar
+ 26h	Visic
+ 29h	Microchip Technology
+ 2Ah	Ricoh Ltd.
+ 2Ch	Micron Technology
+ 2Fh	ACTEL
+ 31h	Catalyst
+ 32h	Panasonic
+ 34h	Cypress
+ 37h	Plessey
+ 38h	VTMC
+ 3Bh	Integrated CMOS (Vertex)
+ 3Dh	Tektronix
+ 3Eh	Sun Microsystems
+ 40h	MOSEL
+ 43h	Xerox
+ 45h	SunDisk
+ 46h	Elan Circuit Technology
+ 4Ah	Compaq
+ 4Ch	SCI
+ 4Fh	I3 Design System
+ 51h	Crosspoint Solutions
+ 52h	Alliance Semiconductor
+ 54h	Hewlett-Packard
+ 57h	New Media
+ 58h	MHS Electronic
+ 5Bh	Kawasaki Steel
+ 5Dh	TECMAR
+ 5Eh	Exar
+ 61h	Northern Telecom
+ 62h	Sanyo
+ 64h	Crystal Semiconductor
+ 67h	Asparix
+ 68h	Convex Computer
+ 6Bh	Transwitch
+ 6Dh	Cannon
+ 6Eh	Altera
+ 70h	Qualcomm
+ 73h	AMS (Austria Micro)
+ 75h	Aster Electronics
+ 76h	Bay Networks (Synoptic)
+ 79h	Thesys
+ 7Ah	Solbourne Computer
+ 7Ch	Dialog
+ 7Fh	continuation code (see #I0029)
+ 83h	Fairchild
+ 85h	GTE
+ 86h	Harris
+ 89h	Intel
+ 8Ah	I.T.T.
+ 8Ch	Monolithic Memories
+ 8Fh	National
+ 91h	RCA
+ 92h	Raytheon
+ 94h	Seeq
+ 97h	Texas Instruments
+ 98h	Toshiba
+ 9Bh	Eurotechnique
+ 9Dh	Lucent (ATT)
+ 9Eh	Exel
+ A1h	Lattice Semiconductor
+ A2h	NCR
+ A4h	IBM
+ A7h	International CMOS Technology
+ A8h	SSSI
+ ABh	VLSI
+ ADh	Hyundai Electronics
+ AEh	OKI Semiconductor
+ B0h	Sharp
+ B3h	IDT
+ B5h	DEC
+ B6h	LSI Logic
+ B9h	Thinking Machine
+ BAh	Thomson CSF
+ BCh	Honeywell
+ BFh	SST
+ C1h	Siemens
+ C2h	Macronix
+ C4h	Plus Logic
+ C7h	European Silicon Str.
+ C8h	Apple Computer
+ C9h	Xilinx
+ CBh	Protocol Engines
+ CDh	Seiko Instruments
+ CEh	Samsung
+ D0h	Klic
+ D3h	Tandem
+ D5h	Integrated Silicon Solutions
+ D6h	Brooktree
+ D9h	Performance Semicond.
+ DAh	Winbond Electronic
+ DCh	Bright Micro
+ DFh	PCMCIA
+ E0h	Goldstar
+ E3h	Array Microsystems
+ E5h	Analog Devices
+ E6h	PMC-Sierra
+ E9h	Quality Semiconductor
+ EAh	Nimbus Technology
+ ECh	ITT Intermetall (see also #I0002)
+ EFh	NEXCOM
+ F1h	Sony
+ F2h	Cray Research
+ F4h	Vitesse
+ F7h	Zentrum Mikroelektronic
+ F8h	TRW
+ FBh	Allied-Signal
+ FDh	Media Vision
+ FEh	Level One Communication
+Note:	bit 7 is a parity bit, set to ensure odd parity
+
+(Table I0009)
+Values for JEDEC Manufacturer ID ("bank two"):
+ 01h	Cirrus Logic
+ !!!
+ 9Eh	DoD
+ !!!
+ 37h	AMIC Technology
+SeeAlso: #I0028
+

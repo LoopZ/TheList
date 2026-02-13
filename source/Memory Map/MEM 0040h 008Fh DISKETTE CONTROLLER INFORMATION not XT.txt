@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: M0040008F
+  Category: B 	BIOS
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+MEM 0040h:008Fh U - DISKETTE CONTROLLER INFORMATION [not XT]
+Size:	BYTE
+SeeAlso: MEM 0040h:008Ch,MEM 0040h:008Dh,MEM 0040h:008Eh
+
+Bitfields for diskette controller information:
+Bit(s)	Description	(Table M0029)
+ 7	reserved
+ 6	=1 drive 1 determined
+ 5	=1 drive 1 is multi-rate, valid if drive determined
+ 4	=1 drive 1 supports 80 tracks, always valid
+ 3	reserved
+ 2	=1 drive 0 determined
+ 1	=1 drive 0 is multi-rate, valid if drive determined
+ 0	=1 drive 0 supports 80 tracks, always valid
+Note:	EHD BIOS sets this byte to 01h and never alters it again
+
