@@ -36,13 +36,13 @@ const
     'GLOSSARY.LST',
     'OVERVIEW.LST',
     'INTERRUP.1ST',
-    'INTERRUP.A',
-    'PORTS.A',
-    'CMOS.LST',
-    'FARCALL.LST',
-    'I2C.LST',
-    'MEMORY.LST',
-    'MSR.LST',
+    'INTERRUP.A',   // TODO
+    'PORTS.A',      // TODO
+    'CMOS.LST',     // TODO
+    'FARCALL.LST',  // TODO
+    'I2C.LST',      // TODO
+    'MEMORY.LST',   // TODO
+    'MSR.LST',      // TODO
     'BIBLIO.LST',
     'TABLES.LST',
     // these need handled a little differently
@@ -78,7 +78,7 @@ const
   INT_TITLES : TArrayOfRawByteString = ();
 
 type
-  TSectionStyle = (ssNormal, ssGlossary, ssInterrupts, ssTables, ssSMM);
+  TSectionStyle = (ssNormal, ssGlossary, ssInterrupts, ssTables, ssSMM, ssMSR);
 
   TParseStyle = (psIgnore, psHeader, psComment, psPlain, psCategories, psFlags,
     psCategoryKeys, psAbbreviations, psGlossary, psTitles,
@@ -456,12 +456,14 @@ begin
   case SectionStyle of
     ssSMM : begin
       if (Index < InStrs.Count) then begin
-        SectionTitle:= ExcludeLeading(StringReplace(
+        SectionTitle:=StringReplace(
            StringReplace(InStrs[Index+1], '-', '', [rfReplaceAll]), '_',
-           SPACE, [rfReplaceAll]), 'smm ', false);
+           SPACE, [rfReplaceAll]);
         OutFile:=SectionTitle + TextExt;
       end;
     end;
+  else
+    SectionHead;
   end;
 end;
 
@@ -490,6 +492,7 @@ begin
     'INTERRUP' : SectionStyle:=ssInterrupts;
     'TABLES'   : SectionStyle:=ssTables;
     'SMM'      : SectionStyle:=ssSMM;
+    'MSR'      : SectionStyle:=ssMSR;
   else
     SectionStyle:=ssNormal;
   end;
