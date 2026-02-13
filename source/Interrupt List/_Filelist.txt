@@ -1,0 +1,156 @@
+Please redistribute the following files unmodified as a group, in a quartet of
+archives named INTER61A through INTER61D (preferably the original authenticated
+PKZIP archives):
+	INTERRUP.1ST	this file
+	INTERRUP.A	INT 00 through INT 10/BE  \
+	INTERRUP.B	INT 10/BF through INT 15/0F\
+	INTERRUP.C	INT 15/10 through INT 15/E7 \
+	INTERRUP.D	INT 15/E8 through INT 1A/B0  \
+	INTERRUP.E	INT 1A/B1 through INT 1F      \	  total 2520 pages at
+	INTERRUP.F	INT 20 through INT 21/43       \  60 lines per page,
+	INTERRUP.G	INT 21/44 through INT 21/5E	\ 2684 with INTPRINT -p
+	INTERRUP.H	INT 21/5F through INT 21/E2	 >(8754 entries)
+	INTERRUP.I	INT 21/E3 through INT 21/F1	/ (4135 tables)
+	INTERRUP.J	INT 21/F2 through INT 25       /
+	INTERRUP.K	INT 26 through INT 2F/15      /
+	INTERRUP.L	INT 2F/16 through INT 2F/79  /
+	INTERRUP.M	INT 2F/7A through INT 2F/D9 /
+	INTERRUP.N	INT 2F/DA through INT 50   /
+	INTERRUP.O	INT 51 through INT 61	  /
+	INTERRUP.P	INT 62 through INT 6A	 /
+	INTERRUP.Q	INT 6B through INT 91   /
+	INTERRUP.R	INT 92 through INT FF  /
+	INTERRUP.PRI	a brief primer on interrupts
+	INTPRINT.COM	a simple formatter that also generates a list summary
+	INTPRINT.DOC	instructions for INTPRINT
+	OVERVIEW.LST	brief listing of major uses of each interrupt
+	86BUGS.LST	a listing of CPU bugs and undocumented features
+	BIBLIO.LST	bibliography of information sources for the list
+	CMOS.LST	a description of the CMOS RAM data bytes
+	FARCALL.LST	APIs available through FAR CALLs
+	GLOSSARY.LST	a glossary of terms, abbreviations, and acronyms
+	MEMORY.LST	format of the BIOS data area and other memory regions
+	MSR.LST		a listing of Model-Specific Registers
+	OPCODES.LST	a listing of recent and undocumented CPU instructions
+	PORTS.A		a listing of I/O ports 0000h-013Fh
+	PORTS.B		a listing of I/O ports 0140h-0AD5h
+	PORTS.C		a listing of I/O ports 0AD6h-FFFFh
+	CATEGORY.KEY	descriptions of divider-line category letters
+	COMBINE.COM	combine the pieces of the list into a single file
+	COMBINE.DOC	documentation for COMBINE
+The following files should be distributed in an archive called INTER61E:
+	86BUGSnn.ZIP	programs to test for CPU bugs
+	COMBINE.ASM	source code for COMBINE.COM
+	INT.*		invoke interrupts from commandline
+	INTHLP??.ZIP	Interrupt Helper viewer for the interrupt list
+	INTLIST.E	Epsilon extension for handling list
+	INTPRINT.C	source code for INTPRINT
+	INTSUM??.ZIP	interrupt list browser (Interrupt Summary)
+	IVIEW.ZIP	another interrupt list browser
+	VIEWINTL.ZIP	list viewer by Sly Golovanov
+Finally, the following should be distributed in an archive called INTER61F:
+	INT2RTF.ZIP	Slava Gostrenko's Windows Help converter
+	INT2WHLP.ZIP	convert list into Windows Help database
+	HINTSRCH.ZIP	WinHelp DLL for full-text searches of interrupt list
+	IL2ME???.ZIP	convert list into Multi-Edit help database
+	INT2GUID.*	convert list into TurboPower GUIDE or POPHELP database
+	INT2HLP.ZIP	convert list into QuickHelp database
+	INT2QH.*	program to convert list into QuickHelp database
+	INT2TPH.ZIP	convert to Turbo/Borland Pascal help file (.TPH)
+	INTHELP.*	convert list into TurboPower GUIDE database
+	RB2NG???.ZIP	convert list into Norton Guides database
+	WH_ED*.ZIP	WinHelp-file editor
+
+Concatenate INTERRUP.A, .B, ...  with COMBINE.COM to create an interrupt
+list file identical to my master copy.
+
+Use INTPRINT to generate a one-line-per-call summary file and/or a file
+containing only data structure formats.	 See INTPRINT.DOC for details.
+
+Note: in addition to the archives mentioned above, you may also find other
+archives named INTERrrx containing additional files generated from the
+original distribution for your convenience.  These other archives are
+maintained by other people, so please do not ask me any questions about them
+(all I'll do is refer you to the creator).  The additional distributions
+I am currently aware of contain a ready-made Quick Help database (compiled
+by Brad Willcott <b-willcott@adfa.oz.au>), a ready-made Norton Guides
+database (compiled by Michael Gallias <gallias@iaccess.za> and distributed
+as RBNGrr.*), and a ready-made WinHelp database (compiled by Ron Loewy
+<76350.333@compuserve.com> and occasionally distributed as INTWIN*.*).
+
+--------------------------------------------------------------------------------
+
+Please redistribute the following files unmodified as a group, in a quartet of
+archives named INTER61A through INTER61D (preferably the original authenticated
+PKZIP archives):
+	INTERRUP.1ST	the read-me file, containing credits, availability info
+	INTERRUP.A	INT 00 through INT 10/BE  \
+	INTERRUP.B	INT 10/BF through INT 15/0F\
+	INTERRUP.C	INT 15/10 through INT 15/E7 \
+	INTERRUP.D	INT 15/E8 through INT 1A/B0  \
+	INTERRUP.E	INT 1A/B1 through INT 1F      \	  total 2520 pages at
+	INTERRUP.F	INT 20 through INT 21/43       \  60 lines per page,
+	INTERRUP.G	INT 21/44 through INT 21/5E	\ 2684 with INTPRINT -p
+	INTERRUP.H	INT 21/5F through INT 21/E2	 >(8754 entries)
+	INTERRUP.I	INT 21/E3 through INT 21/F1	/ (4135 tables)
+	INTERRUP.J	INT 21/F2 through INT 25       /
+	INTERRUP.K	INT 26 through INT 2F/15      /
+	INTERRUP.L	INT 2F/16 through INT 2F/79  /
+	INTERRUP.M	INT 2F/7A through INT 2F/D9 /
+	INTERRUP.N	INT 2F/DA through INT 50   /
+	INTERRUP.O	INT 51 through INT 61	  /
+	INTERRUP.P	INT 62 through INT 6A	 /
+	INTERRUP.Q	INT 6B through INT 91	/
+	INTERRUP.R	INT 92 through INT FF  /
+	INTERRUP.PRI	a brief introduction to interrupts
+	INTPRINT.COM	a simple formatter that also generates a list summary
+	INTPRINT.DOC	instructions for INTPRINT
+	OVERVIEW.LST	brief listing of major uses of each interrupt
+	86BUGS.LST	a listing of CPU bugs and undocumented features
+	BIBLIO.LST	bibliography of information sources for the list
+	CMOS.LST	a description of the CMOS RAM data bytes
+	FARCALL.LST	APIs available through FAR CALLs
+	GLOSSARY.LST	a glossary of terms, abbreviations, and acronyms
+	MEMORY.LST	format of the BIOS data area
+	OPCODES.LST	a listing of recent and undocumented CPU instructions
+	PORTS.A		a listing of I/O ports 0000h-013Fh
+	PORTS.B		a listing of I/O ports 0140h-0AD5h
+	PORTS.C		a listing of I/O ports 0AD6h-FFFFh
+	CATEGORY.KEY	descriptions of divider-line category letters
+	COMBINE.COM	combine the pieces of the list into a single file
+	COMBINE.DOC	documentation for COMBINE
+The following files should be distributed in an archive called INTER61E:
+	86BUGSnn.ZIP	programs to test for CPU bugs
+	COMBINE.ASM	source code for COMBINE.COM
+	INT.*		invoke interrupts from commandline
+	INTHLP??.ZIP	Interrupt Helper viewer for the interrupt list
+	INTLIST.E	Epsilon extension for handling list
+	INTPRINT.C	source code for INTPRINT
+	INTSUM??.ZIP	interrupt list browser (Interrupt Summary)
+	IVIEW*.ZIP	another interrupt list browser
+Finally, the following should be distributed in an archive called INTER61F:
+	INT2RTF.ZIP	Slava Gostrenko's Windows Help converter
+	INT2WHLP.ZIP	convert list into Windows Help database
+	INTERRUP.ICO	icon for interrupt list
+	HINTSRCH.ZIP	WinHelp DLL for full-text searches of interrupt list
+	IL2ME???.ZIP	convert list into Multi-Edit help database
+	INT2GUID.*	convert list into TurboPower GUIDE or POPHELP database
+	INT2HLP.ZIP	convert list into QuickHelp database
+	INT2IPF.ZIP	convert list into OS/2 .IPF database
+	INT2QH.*	program to convert list into QuickHelp database
+	INT2TPH.ZIP	convert to Turbo/Borland Pascal help file (.TPH)
+	INTHELP.*	convert list into TurboPower GUIDE database
+	RB2NG???.ZIP	convert list into Norton Guides database
+	WH_ED*.ZIP	WinHelp-file editor
+
+--------------------------------------------------------------------------------
+
+Please redistribute all of the files comprising the interrupt list (listed at
+the beginning of the list and in INTERRUP.1ST) unmodified as a group, in a
+quartet of archives named INTER61A through INTER61D (preferably the original
+authenticated PKZIP archives), the utility programs in a fifth archive
+called INTER61E.ZIP and the hypertext conversion programs in a sixth archive
+named INTER61F.ZIP.
+
+Copyright (c) 1989-1999,2000 Ralf Brown
+

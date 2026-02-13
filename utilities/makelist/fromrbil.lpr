@@ -33,6 +33,8 @@ const
   // List and order of file (groups) to process
   LST : array of string = (
     'CATEGORY.KEY',
+    'GLOSSARY.LST',
+    'OVERVIEW.LST',
     'INTERRUP.1ST',
     'INTERRUP.A',
     'PORTS.A',
@@ -41,14 +43,12 @@ const
     'I2C.LST',
     'MEMORY.LST',
     'MSR.LST',
-    'OVERVIEW.LST',
     // these need handled a little differently
-    'GLOSSARY.LST'
-    // 'BIBLIO.LST'
-    // 'OPCODES.LST'
-    // 'TABLES.LST'
-    // '86BUGS.LST'
-    // 'SMM.LST'
+    'BIBLIO.LST',
+    // 'OPCODES.LST', // Excluded for possbile copyright issues.
+    'TABLES.LST',
+    // '86BUGS.LST', // Excluded for possbile copyright issues.
+    'SMM.LST'
 
   );
 
@@ -64,6 +64,7 @@ const
     (S:'faq.lst';      D:'FAQ.txt')
   );
 
+  { Section flags }
   FLAGS : array of record
     F, D : String;
   end = ();
@@ -74,10 +75,17 @@ const
     (C:'!'; D:'Notes; Comments; Other information')
   );
 
+  INT_TITLES : array of record
+    I : Integer;
+    T : String
+  end = ();
+
 type
+  TSectionStyle = (ssNormal, ssGlossary, ssInterrupts, ssTables);
 
   TParseStyle = (psIgnore, psHeader, psComment, psPlain, psCategories, psFlags,
-    psCategoryKeys, psAbbreviations, psGlossary);
+    psCategoryKeys, psAbbreviations, psGlossary, psTitles,
+    psInterrupts);
 
 { Appends a String to a text file }
 function AppendToFile(AFileName: String; AValue: String; ARaise: boolean
@@ -182,10 +190,12 @@ var
   OutPath : String;              // Output file path
   OutFile : String;              // Output file name
   OutStr  : String;              // Output file String
+  SectionStyle: TSectionStyle;   // Type of Sections for a file
   ParseStyle : TParseStyle;      // Type of section that is being parsed
   Index : integer;               // Current Line position of InStrs
   SectionBreak : boolean;        // Processing flag for end of a file section
   SectionTitle : String;         // Section Title
+  SectionFlags : String;
 
 procedure SaveSection; forward;
 
@@ -193,27 +203,22 @@ procedure SaveSection; forward;
 function EndOfSection(Line : integer) : boolean;
 begin
   Result:=Line >= InStrs.Count; // Initially set if at end of file
+  if not Result then
+    Result :=Copy(InStrs[Line], 1, Length(ItemBreak)) = ItemBreak;
   if not Result then begin
     case ParseStyle of
       psGlossary : Result:=Trim(InStrs[Line]) = '';
       psHeader : begin
         if FileTitle = 'Glossary' then // FileTitle is in TitleCase
-          Result:=Trim(InStrs[Line]) = ''
-        else
-          Result :=Copy(InStrs[Line], 1, Length(ItemBreak)) = ItemBreak;
+          Result:=Trim(InStrs[Line]) = '';
       end
-    else
-        Result :=Copy(InStrs[Line], 1, Length(ItemBreak)) = ItemBreak;
     end;
   end;
 end;
 
-procedure PostProcessGlossary;
-begin
-  { nothing to do here, move along }
-end;
-
-{ Reformats the category keys }
+{ Reformats the Category Keys and Flag Listings, Break Each item onto it's
+  own line. For the Search Categories from the Categor.lst file, it also
+  breaks down search terms to an indented line unde the first term. }
 procedure PostProcessCategories;
 var
   Pre, S, T : String;
@@ -271,6 +276,8 @@ begin
   end;
 end;
 
+{ Each Abbrevaition gets broken into it's own file. These are also relocated
+  from within the Interrupt List into thier own Abrreviations root directory. }
 procedure PostProcessAbbreviations;
 var
   HoldPath : String;
@@ -291,7 +298,6 @@ begin
     OutFile:=_Header;
     SaveSection;
   end;
-
   C:=0;
   for I := 0 to High(Lines) do begin
     T:=Trim(PopDelim(Lines[I], SPACE));
@@ -315,7 +321,7 @@ begin
     if (OutFile <> '') and (OutStr<>'') then begin
       Inc(SectCount);
       case ParseStyle of
-        psGlossary : PostProcessGlossary;
+        psGlossary : begin end;
         psFlags,
         psCategories, psCategoryKeys : PostProcessCategories;
         psAbbreviations : PostProcessAbbreviations;
@@ -340,70 +346,110 @@ begin
   SectionTitle:='';
 end;
 
-procedure ParseSectionHead;
+{ Process a normal or other Section Header. }
+procedure SectionHead;
 var
-  S: String;
+  S : String;
 begin
-  ParseStyle:=psPlain;
-  S := Copy(InStrs[Index], 9);
-  if Copy(S,1,2) = '!-' then begin
-
-    // A comment, note, etc.
-    SectionTitle:= TitleCase(LowerCase(StringReplace(
-      StringReplace(Copy(S, 2), '-', '', [rfReplaceAll]), '_', SPACE,
-      [rfReplaceAll])));
-
-    case SectionTitle of
-      // Sections that are ignored for various reasons. Mostly, because it is
-      // duplicate information, obsolete or created through other means.
-      'Filelist'     : ParseStyle:=psIgnore;
-      // Gets reformated and used for Category names
-      'Categories'   : ParseStyle:=psCategories;
-      // Gets reformated
-      'Categorykeys' : begin
-        SectionTitle:='Category Keys';
-        ParseStyle:=psCategoryKeys
+  SectionFlags:=Copy(InStrs[Index], 9, 2);
+  // Not a Section Comment, so need to do something else with it.
+  case SectionStyle of
+    ssGlossary, ssTables : begin
+      ParseStyle:=psGlossary;
+      // Skip blank lines;
+      while (Index < InStrs.Count) and (Trim(InStrs[Index]) = '') do Inc(Index);
+      OutStr:=Trim(InStrs[Index]) + LF + LF;
+      S:=Trim(InStrs[Index]);
+      // Remove "See" stuff from ssTables File Names
+      if (SectionStyle=ssTables) and (Pos('(see', S) > 0) then
+        S:=CutDelim(S, '(see', 1, 1);
+      OutFile:=Trim(AlphaNumOnly(S, '', true));
+      // If end of file, we are done
+      if (OutFile = 'end of file') or (OutFile = 'endoffile') then
+        ParseStyle:=psIgnore
+      else begin
+        Cat(OutFile, TextExt);
+        Inc(Index);
       end;
-      // Gets reformated
-      'Flags'   : ParseStyle:=psFlags;
-      // Gets Reformated and busted up.
-      'Abbreviations' : ParseStyle:=psAbbreviations;
     end;
-
-    OutFile:='_' + SectionTitle + TextExt;
-
-    Inc(Index);
-  end else begin
-    // WriteLn(S);
+    ssInterrupts : ParseStyle:=psInterrupts;
   end;
-  if ParseStyle = psIgnore then
-    OutFile:='';
+  // if Copy(SectionFlags,2,1) <> '-' then
+  //  WriteLn(S);
+  // WriteLn(S);
 
 end;
 
-procedure NewSection;
+ { Process a Comment Header Section }
+procedure CommentHead;
 begin
-  if Index < InStrs.Count then begin
-    if FileTitle = 'Glossary' then begin // FileTitle is TitleCase
+  // A comment, note, etc.
+   SectionTitle:= TitleCase(LowerCase(StringReplace(
+     StringReplace(Copy(InStrs[Index], 10), '-', '', [rfReplaceAll]), '_',
+     SPACE, [rfReplaceAll])));
 
-      ParseStyle:=psGlossary;
-      while (Index < InStrs.Count) and (Trim(InStrs[Index]) = '') do Inc(Index);
-      OutFile:=Trim(AlphaNumOnly(Trim(InStrs[Index]), '', true));
-      if (OutFile = 'end of file') or (OutFile = 'endoffile') then
-        OutFile:=''
-      else
-        Cat(OutFile, TextExt);
+   case SectionStyle of
+     ssTables : begin
+       // Tables are wrapped in an unnamed comment. So, we can swtich modes.
+       // And now process them like Glossary Entries.
+       if (SectionTitle='') or (SectionTitle='Tables') then begin
+         ParseStyle:=psGlossary;
+         OutFile:='';
+         // Because the Glossary processor ingnore the first block of text,
+         // exit here so it is not incremented below.
+         Exit;
+       end;
+     end;
+   end;
 
-    end else begin
-      ParseSectionHead;
-    end;
-  end;
+   case SectionTitle of
+     // Sections that are ignored for various reasons. Mostly, because it is
+     // duplicate information, obsolete or created through other means.
+     // 'Filelist'     : ParseStyle:=psIgnore; {it will need pruned a lot}
+     // Gets reformated and used for Category names
+     'Categories'   : ParseStyle:=psCategories;
+     // Gets reformated
+     'Categorykeys' : begin
+       SectionTitle:='Category Keys';
+       ParseStyle:=psCategoryKeys
+     end;
+     // Gets reformated
+     'Flags' : ParseStyle:=psFlags;
+     // Gets Reformated and busted up.
+     'Abbreviations' : ParseStyle:=psAbbreviations;
+     'Titles' : ParseStyle:=psTitles;
+   end;
 
+   OutFile:='_' + SectionTitle + TextExt;
+
+   Inc(Index);
+end;
+
+procedure ParseSectionHead;
+begin
+  ParseStyle:=psPlain;
+  SectionTitle:='';
+  OutFile:='';
+  OutStr:='';
+  if Index >= InStrs.Count then Exit;
+  if Copy(InStrs[Index],9,2) = '!-' then
+    CommentHead
+  else
+    SectionHead;
+  if ParseStyle = psIgnore then
+    OutFile:='';
 end;
 
 { Main process to convert a single file }
 procedure ProcessLST(FileName : String);
 begin
+  case UpperCase(CutDelim(FileName, '.', 1, 1)) of
+    'GLOSSARY' : SectionStyle:=ssGlossary;
+    'INTERRUP' : SectionStyle:=ssInterrupts;
+    'TABLES'   : SectionStyle:=ssTables;
+  else
+    SectionStyle:=ssNormal;
+  end;
   FileStamp:=GetFileStamp(SRC+FileName);
   InStrs := TStringList.Create;
   InStrs.LoadFromFile(SRC+FileName);
@@ -427,7 +473,7 @@ begin
     SectionBreak:=EndOfSection(Index);
     if SectionBreak then begin
       SaveSection;
-      NewSection;
+      ParseSectionHead;
     end;
   end;
   FreeAndNil(InStrs);
