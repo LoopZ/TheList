@@ -43,10 +43,10 @@ const
     'I2C.LST',
     'MEMORY.LST',
     'MSR.LST',
-    // these need handled a little differently
     'BIBLIO.LST',
-    // 'OPCODES.LST', // Excluded for possbile copyright issues.
     'TABLES.LST',
+    // these need handled a little differently
+    // 'OPCODES.LST', // Excluded for possbile copyright issues.
     // '86BUGS.LST', // Excluded for possbile copyright issues.
     'SMM.LST'
 
@@ -75,10 +75,7 @@ const
     (C:'!'; D:'Notes; Comments; Other information')
   );
 
-  INT_TITLES : array of record
-    I : Integer;
-    T : String
-  end = ();
+  INT_TITLES : TArrayOfRawByteString = ();
 
 type
   TSectionStyle = (ssNormal, ssGlossary, ssInterrupts, ssTables);
@@ -312,6 +309,32 @@ begin
   ParseStyle:=psIgnore;
 end;
 
+
+{ Populates the INT_TITLES array }
+procedure PostProcessTitles;
+var
+  I : Integer;
+  T : TArrayOfRawByteString;
+  N : String;
+  V, E : integer;
+begin
+  SetLength(INT_TITLES, 256);
+  for I := 0 to High(INT_TITLES) do
+    INT_TITLES[I]:='';
+  T:=Trim(Explode(OutStr));
+  for I := 0 to High(T) do begin
+    if T[I] = '' then Continue;
+    N:=PopDelim(T[I], '-');
+    PopDelim(N, SPACE);
+    Val('$'+Trim(N), V, E);
+    if (E<>0) or (V>255) or (V<0) then begin
+       WriteLn('ERROR: Invalid Interrupt number ', Trim(N), ' for title');
+       Continue;
+    end;
+    INT_TITLES[V]:=Trim(T[I]);
+  end;
+end;
+
 { Write Section OutData to new file or append to existing file }
 procedure SaveSection;
 var
@@ -325,6 +348,7 @@ begin
         psFlags,
         psCategories, psCategoryKeys : PostProcessCategories;
         psAbbreviations : PostProcessAbbreviations;
+        psTitles : PostProcessTitles;
       end;
       if ParseStyle <> psIgnore then begin
         P:=ExtractFilePath(OutFile);
@@ -338,8 +362,8 @@ begin
       end;
     end;
   end else begin
-    WriteLn('ignored section: ', SectionTitle);
-    // WriteLn(OutStr);
+    if SectionTitle <> '' then
+      WriteLn('ignored section: ', SectionTitle);
   end;
   OutFile:='';
   OutStr:='';
