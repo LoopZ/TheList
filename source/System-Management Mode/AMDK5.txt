@@ -1,0 +1,114 @@
+---------------------------------------------
+SMM AMD-K5
+
+Format of AMD K5 SMM State-Save Area:
+Offset	Size	Description	(Table S0003)
+FE00h		reserved	
+FEF8h	DWORD	SMM base address
+		(may be set to any multiple of 32K; initially 00030000h)
+FEFCh	DWORD	SMM revision identifier (see #S0004)
+FF00h	WORD	I/O trap restart slot (see #S0007)
+FF02h	WORD	HLT restart slot (see #S0005)
+FF04h	DWORD	I/O restart EDI
+FF08h	DWORD	I/O restart ECX
+FF0Ch	DWORD	I/O restart ESI
+FF10h	DWORD	CR4
+FF14h	DWORD	CR2
+FF18h 3 DWORDs	reserved
+FF24h	DWORD	ES limit
+FF28h	DWORD	ES base
+FF2Ch	DWORD	ES attributes
+FF30h	DWORD	CS limit
+FF34h	DWORD	CS base
+FF38h	DWORD	CS attributes
+FF3Ch	DWORD	SS limit
+FF40h	DWORD	SS base
+FF44h	DWORD	SS attributes
+FF48h	DWORD	DS limit
+FF4Ch	DWORD	DS base
+FF50h	DWORD	DS attributes
+FF54h	DWORD	FS limit
+FF58h	DWORD	FS base
+FF5Ch	DWORD	FS attributes
+FF60h	DWORD	GS limit
+FF64h	DWORD	GS base
+FF68h	DWORD	GS attributes
+FF6Ch	DWORD	LDT limit
+FF70h	DWORD	LDT base
+FF74h	DWORD	LDT attributes
+FF78h	DWORD	TSS limit
+FF7Ch	DWORD	TSS base
+FF80h	DWORD	TSS attributes
+FF84h	DWORD	GDT limit
+FF88h	DWORD	GDT base
+FF8Ch	DWORD	IDT limit
+FF90h	DWORD	IDT base
+FF94h 2 DWORDs	reserved
+FF9Ch	DWORD	I/O trap EIP
+FFA0h	DWORD	reserved
+FFA4h	DWORD	I/O trap DWORD (see #S0006)
+FFA8h	WORD	ES
+FFAAh	WORD	unused???
+FFACh	WORD	CS
+FFAEh	WORD	unused???
+FFB0h	WORD	SS
+FFB2h	WORD	unused???
+FFB4h	WORD	DS
+FFB6h	WORD	unused???
+FFB8h	WORD	FS
+FFBAh	WORD	unused???
+FFBCh	WORD	GS
+FFBEh	WORD	unused???
+FFC0h	DWORD	LDTR
+FFC4h	DWORD	TR
+FFC8h	DWORD	DR7
+FFCCh	DWORD	DR6
+FFD0h	DWORD	EAX
+FFD4h	DWORD	ECX
+FFD8h	DWORD	EDX
+FFDCh	DWORD	EBX
+FFE0h	DWORD	ESP
+FFE4h	DWORD	EBP
+FFE8h	DWORD	ESI
+FFECh	DWORD	EDI
+FFF0h	DWORD	EIP
+FFF4h	DWORD	EFLAGS
+FFF8h	DWORD	CR3
+FFFCh	DWORD	CR0
+SeeAlso: #S0001
+
+Bitfields for AMD K5 SMM Revision Identifier:
+Bit(s)	Description	(Table S0004)
+ 31-18	reserved (0)
+ 17	SMM base address relocation available (always 1 [enabled] on K5)
+ 16	I/O trap restart supported (always 1 on K5)
+ 15-0	SMM revision level (currently 0000h)
+SeeAlso: #S0003
+
+Bitfields for AMD K5 Halt Restart Slot:
+Bit(s)	Description	(Table S0005)
+ 15-1	undefined
+ 0	(on SMM entry) entered SMM from Halt state
+	(at RSM) return to Halt state instead of state in SMM state-save area
+SeeAlso: #S0003
+
+Bitfields for AMD K5 I/O Trap DWORD:
+Bit(s)	Description	(Table S0006)
+ 31-16	I/O port address
+ 15	I/O was string operation (INS,OUTS,etc.)
+ 14-2	reserved
+ 1	valid I/O instruction
+ 0	direction (0 = output, 1 = input)
+SeeAlso: #S0003,#S0007
+
+Bitfields for AMD K5 I/O Trap Restart Slot:
+Bit(s)	Description	(Table S0007)
+ 31-16	reserved
+ 15-0	I/O instruction restart on RSM
+	0000h resume at next instruction following trapped I/O instruction
+		(default on SMM entry)
+	00FFh re-execute the trapped I/O instruction
+Note:	before changing the restart value, check that the I/O instruction is
+	  actually valid (see #S0006)
+SeeAlso: #S0003,#S0006
+

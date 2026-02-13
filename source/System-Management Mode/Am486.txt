@@ -1,0 +1,93 @@
+---------------------------------------------
+SMM Am486
+
+Format of Am486 SMM State-Save Map:
+Offset	Size	Description	(Table S0001)
+FE00h		reserved
+FEE4h	DWORD	DR3
+FEE8h	DWORD	DR2
+FEECh	DWORD	DR1
+FEF0h	DWORD	DR0
+FEF4h	DWORD	CR2
+FEF8h	DWORD	SMM state dump base address
+fEFCh	DWORD	SMM revision ID (see #S0004)
+FF00h	WORD	I/O restart
+		(set to 00FFh to re-execute trapped I/O)
+FF02h	WORD	halt auto restart
+		(bit 0 set on entry if SMI during HLT)
+		(set to 00FFh to restart from HLT)
+FF04h	DWORD	I/O trap word (see #S0002)
+FF08h	DWORD	reserved
+FF0Ch	DWORD	reserved
+FF10h	DWORD	previous EIP
+FF14h 5 DWORDs	???
+FF28h	DWORD	reserved
+FF2Ch	DWORD	reserved
+FF30h	DWORD	ES limit
+FF34h	DWORD	ES base
+FF38h	DWORD	ES attributes
+FF3Ch	DWORD	CS limit
+FF40h	DWORD	CS base
+FF44h	DWORD	CS attributes
+FF48h	DWORD	SS limit
+FF4Ch	DWORD	SS base
+FF50h	DWORD	SS attributes
+FF54h	DWORD	DS limit
+FF58h	DWORD	DS base
+FF5Ch	DWORD	DS attributes
+FF60h	DWORD	FS limit
+FF64h	DWORD	FS base
+FF68h	DWORD	FS attributes
+FF6Ch	DWORD	GS limit
+FF70h	DWORD	GS base
+FF74h	DWORD	GS attributes
+FF78h	DWORD	LDT limit
+FF7Ch	DWORD	LDT base
+FF80h	DWORD	LDT attribute
+FF84h	DWORD	GDT limit
+FF88h	DWORD	GDT base
+FF8Ch	DWORD	GDT attribute
+FF90h	DWORD	IDT limit
+FF94h	DWORD	IDT base
+FF98h	DWORD	IDT attribute
+FF9Ch	DWORD	TSS limit
+FFA0h	DWORD	TSS base
+FFA4h	DWORD	TSS attribute
+FFA8h	WORD	ES
+FFAAh	WORD	unused???
+FFACh	WORD	CS
+FFAEh	WORD	unused???
+FFB0h	WORD	SS
+FFB2h	WORD	unused???
+FFB4h	WORD	DS
+FFB6h	WORD	unused???
+FFB8h	WORD	FS
+FFBAh	WORD	unused???
+FFBCh	WORD	GS
+FFBEh	WORD	unused???
+FFC0h	DWORD	LDTR
+FFC4h	DWORD	TR
+FFC8h	DWORD	DR7
+FFCCh	DWORD	DR6
+FFD0h	DWORD	EAX
+FFD4h	DWORD	ECX
+FFD8h	DWORD	EDX
+FFDCh	DWORD	EBX
+FFE0h	DWORD	ESP
+FFE4h	DWORD	EBP
+FFE8h	DWORD	ESI
+FFECh	DWORD	EDI
+FFF0h	DWORD	EIP
+FFF4h	DWORD	EFLAGS
+FFF8h	DWORD	CR3
+FFFCh	DWORD	CR0
+SeeAlso: #S0003
+
+Bitfields for AMD Am486 I/O trap word:
+Bit(s)	Description	(Table S0002)
+ 31-16	I/O address
+ 15-2	reserved
+ 1	valid I/O instruction
+ 0	direction
+SeeAlso: #S0001
+

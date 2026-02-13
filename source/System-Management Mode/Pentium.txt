@@ -1,0 +1,72 @@
+---------------------------------------------
+SMM Pentium
+
+Format of Pentium State Dump record:
+Offset	Size	Description	(Table S0008)
+FE00h 248 BYTEs	officially reserved, actually unused
+FEF8h	DWORD	state dump base address (must be multiple of 32K)
+FEFCh	DWORD	SMM revision identifier
+		bits 15-0: SMM revision level
+		bit 16: I/O trap extension is present (offset FF00h)
+		bit 17: SMM base relocation supported (offset FEF8h)
+		bits 31-18: reserved
+FF00h	WORD	I/O Trap restart
+		(set to 00FFh to re-execute trapped I/O)
+FF02h	WORD	Halt auto-restart
+		(bit 0 set on entry if SMI during HLT; if handler clears it,
+		  the CPU returns to the instruction after the interrupted HLT
+		  rather than to the HLT instruction)
+FF04h	DWORD	(undoc) I/O restart EDI / CR0
+FF08h	DWORD	(undoc) I/O restart ECX
+FF0Ch	DWORD	(undoc) I/O restart ESI
+FF10h	DWORD	(undoc) I/O restart EIP
+FF14h 16 BYTEs	unused
+FF24h	WORD	(undoc) alternate DR6
+FF26h	WORD	(undoc) RSM control
+		if bit 0 set on return, the low word of DR6 is loaded from FF26h
+		  instead of FFCCh
+FF28h	DWORD	(undoc) CR4
+FF2Ch	DWORD	unused
+FF30h 12 BYTEs	(undoc) ES descriptor cache
+		DWORD limit
+		DWORD base address
+		DWORD type
+FF3Ch 12 BYTEs	(undoc) CS descriptor cache
+FF48h 12 BYTEs	(undoc) SS descriptor cache
+FF54h 12 BYTEs	(undoc) DS descriptor cache
+FF60h 12 BYTEs	(undoc) FS descriptor cache
+FF6Ch 12 BYTEs	(undoc) GS descriptor cache
+FF78h 12 BYTEs	(undoc) LDT descriptor cache
+FF84h 12 BYTEs	(undoc) GDT descriptor cache
+FF90h 12 BYTEs	(undoc) IDT descriptor cache
+FF9Ch 12 BYTEs	(undoc) TSS descriptor cache
+FFA8h	WORD	ES
+FFAAh	WORD	reserved
+FFACh	WORD	CS
+FFAEh	WORD	reserved
+FFB0h	WORD	SS
+FFB2h	WORD	reserved
+FFB4h	WORD	DS
+FFB6h	WORD	reserved
+FFB8h	WORD	FS
+FFBAh	WORD	reserved
+FFBCh	WORD	GS
+FFBEh	WORD	reserved
+FFC0h	DWORD	LDTR
+FFC4h	DWORD	TR
+FFC8h	DWORD	DR7
+FFCCh	DWORD	DR6
+FFD0h	DWORD	EAX
+FFD4h	DWORD	ECX
+FFD8h	DWORD	EDX
+FFDCh	DWORD	EBX
+FFE0h	DWORD	ESP
+FFE4h	DWORD	EBP
+FFE8h	DWORD	ESI
+FFECh	DWORD	EDI
+FFF0h	DWORD	EIP
+FFF4h	DWORD	EFLAGS
+FFF8h	DWORD	CR3
+FFFCh	DWORD	CR0
+SeeAlso: #S0003
+

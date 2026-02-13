@@ -78,7 +78,7 @@ const
   INT_TITLES : TArrayOfRawByteString = ();
 
 type
-  TSectionStyle = (ssNormal, ssGlossary, ssInterrupts, ssTables);
+  TSectionStyle = (ssNormal, ssGlossary, ssInterrupts, ssTables, ssSMM);
 
   TParseStyle = (psIgnore, psHeader, psComment, psPlain, psCategories, psFlags,
     psCategoryKeys, psAbbreviations, psGlossary, psTitles,
@@ -449,6 +449,22 @@ begin
    Inc(Index);
 end;
 
+procedure NullHead;
+begin
+  SectionTitle:='';
+  OutStr:='';
+  case SectionStyle of
+    ssSMM : begin
+      if (Index < InStrs.Count) then begin
+        SectionTitle:= ExcludeLeading(StringReplace(
+           StringReplace(InStrs[Index+1], '-', '', [rfReplaceAll]), '_',
+           SPACE, [rfReplaceAll]), 'smm ', false);
+        OutFile:=SectionTitle + TextExt;
+      end;
+    end;
+  end;
+end;
+
 procedure ParseSectionHead;
 begin
   ParseStyle:=psPlain;
@@ -458,6 +474,8 @@ begin
   if Index >= InStrs.Count then Exit;
   if Copy(InStrs[Index],9,2) = '!-' then
     CommentHead
+  else if Copy(InStrs[Index],9,2) = '--' then
+    NullHead
   else
     SectionHead;
   if ParseStyle = psIgnore then
@@ -471,6 +489,7 @@ begin
     'GLOSSARY' : SectionStyle:=ssGlossary;
     'INTERRUP' : SectionStyle:=ssInterrupts;
     'TABLES'   : SectionStyle:=ssTables;
+    'SMM'      : SectionStyle:=ssSMM;
   else
     SectionStyle:=ssNormal;
   end;
