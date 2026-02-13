@@ -36,8 +36,8 @@ const
     'GLOSSARY.LST',
     'OVERVIEW.LST',
     'INTERRUP.1ST',
-    'INTERRUP.A',   // TODO
-    'PORTS.A',      // TODO
+    'INTERRUP.A',
+    'PORTS.A',
     'CMOS.LST',
     'FARCALL.LST',
     'I2C.LST',
@@ -174,6 +174,18 @@ begin
   Result:=DateTimeToFileDate(DT);
 end;
 
+function CombineSpaces(const S : RawByteString) : RawByteString; overload;
+var
+  T : RawByteString;
+begin
+  T:=S;
+  repeat
+    Result:=T;
+    T:=StringReplace(T, SPACE + SPACE, SPACE, [rfReplaceAll]);
+  until Result=T;
+end;
+
+
 { Global variables and constants used during processing a LST file }
 const
   ItemBreak = '--------';        // String that separates parts of the LST file
@@ -197,6 +209,7 @@ var
   SectionTitle : String;         // Section Title
   SectionCategory : String;
   SectionFlags : String;
+  UniqueID: String;
 
 function FilterFlags(S : String) : String;
 var
@@ -255,11 +268,30 @@ begin
   end;
 end;
 
+function GetIntOutFile(S : String) : String;
+var
+  T : String;
+  V, E : Integer;
+begin
+  Result:='';
+  T:=CutDelim(S, SPACE, 2, 2);
+  Val('$' + T, V, E);
+  Result:=CombineSpaces(AlphaNumOnly(CutDelim(S, SPACE, 1, 2), '', True));
+  if (E=0) and (V>=0) and (V<=255) then
+    Cat(Result, SPACE + CombineSpaces(AlphaNumOnly(INT_TITLES[V], '', True)));
+  if Result <> '' then
+    Result:=IncludeTrailingPathDelimiter(Trim(Result));
+  Cat(Result, 'INT ' + Trim(CombineSpaces(AlphaNumOnly(
+    StringReplace(UniqueID, '-', '_', [rfReplaceAll]) +
+    SPACE + CutDelim(S, SPACE, 3), '', True))) + TextExt);
+end;
+
 function MakeHeader(Line : integer) : String;
 begin
   Result:=Copy(InStrs[Line], 10);
   While HasLeading(Result, '-') do Result:=ExcludeLeading(Result, '-');
   While HasTrailing(Result, '-') do Result:=ExcludeTrailing(Result, '-');
+  UniqueID:=Result;
   Result:=StringOf('-', 80) + LF + LeftPad('Unique ID: ', HeadPadding) + Result + LF;
   Cat(Result, GetCategoryInfo);
   Cat(Result, GetFlagInfo);
@@ -430,7 +462,7 @@ begin
         InsureDir(OutPath);
         if P <> '' then InsureDir(OutPath + P);
         if FileExists(OutPath + OutFile) then begin
-          WriteLn('Warning: Appending existing file ' + OutFile);
+          WriteLn('Warning: Appending existing file: ' + OutFile);
           AppendToFile(OutPath + OutFile, StringOf('-', 80) + LineEnding, true);
         end;
         AppendToFile(OutPath + OutFile, NormalizeLineEndings(OutStr, LineEnding), true);
@@ -445,17 +477,6 @@ begin
   OutFile:='';
   OutStr:='';
   SectionTitle:='';
-end;
-
-function CombineSpaces(const S : RawByteString) : RawByteString; overload;
-var
-  T : RawByteString;
-begin
-  T:=S;
-  repeat
-    Result:=T;
-    T:=StringReplace(T, SPACE + SPACE, SPACE, [rfReplaceAll]);
-  until Result=T;
 end;
 
 { Process a normal or other Section Header. }
@@ -484,7 +505,7 @@ begin
         Inc(Index);
       end;
     end;
-    ssMSR, ssI2C, ssMemory, ssCMOS, ssFarCall, ssPorts : begin
+    ssMSR, ssI2C, ssMemory, ssCMOS, ssFarCall, ssPorts, ssInterrupts : begin
       ParseStyle:=psPlain;
       if (Index < InStrs.Count - 1) then begin
         // Separate out Flags from Title
@@ -500,14 +521,19 @@ begin
           Inc(Index);
           Exit;
         end;
-        OutFile:=SectionTitle + TextExt;
 
         OutStr:=MakeHeader(Index);
+
+        OutFile:=SectionTitle + TextExt;
+        if SectionStyle = ssInterrupts then begin
+          ParseStyle:=psInterrupts;
+          OutFile:=GetIntOutFile(S);
+        end;
+
         Inc(Index);
       end;
       // WriteLn(SectionTitle);
     end;
-   ssInterrupts : ParseStyle:=psInterrupts;
   end;
   // if Copy(SectionFlags,2,1) <> '-' then
   //  WriteLn(S);

@@ -1,3 +1,33 @@
 See INTERRUP.1ST for the key to system abbreviations and a list of the
 trademarks mentioned here.
 
+--------------------------------------------------------------------------------
+
+-----------------------
+INT 15h - Arabic/Hebrew MS-DOS 5.0???+ - HGC & HGC/RAMFont support???
+	AX = 67C3h
+	CX = 1Bh
+	CS|DS???:SI -> buffer
+Return: ES:DI -> ???
+	AX = ???
+Program: The SK_HGC.COM TSR is used to support operation of ARABIC.COM/
+	  HEBREW.COM with the Hercules Graphic Card series of video adapters.
+	  It is provided for compatibility with ADOS 3.30/HDOS 3.30 only.
+	  This file must be loaded immediately after ARABIC.COM/HEBREW.COM
+	  to insure correct operation with these devices.
+Notes:	This call is made by the SK_HGC.COM TSR for HGC and HGC/RAMFont
+	  graphics adapters when it has successfully detected an Arabic/Hebrew
+	  issue of MS-DOS via INT15h/6700h/BX=FFFFh to ensure it runs on the
+	  correct version of Arabic or Hebrew MS-DOS.
+	At some unknown offset in the buffer it contains a flag indicating
+	  if a HGC or HGC/RAMFont adapter is present or not.
+	ARABIC/HEBREW does not operate with Monochrome Display Adapters (MDA)
+	  and the Hercules Graphic Card Plus (HGC+). ARABIC/HEBREW does operate
+	  with Hercules Graphic Card (HGC) with a burnt-in ROM/EPROM font (many
+	  HGC cards, even the highly integrated ones, allow for this kind of
+	  user customization), though this is not officially supported.
+	In some pre-1987 IBM XT/AT and compatibles, the Hercules Graphic
+	  Card Plus operates like a MDA card. This hardware limitation
+	  prevents ARABIC/HEBREW from running on this combination of hardware.
+SeeAlso: AX=6700h
+
