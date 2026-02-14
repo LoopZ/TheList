@@ -270,7 +270,6 @@ Notes:	the large-model C declaration is
 (Table F0039)
 Call Plug-and-Play BIOS function 0Bh with:
 	STACK:	WORD	000Bh (function "Get APM ID Table")
-			  Information")
 		DWORD	-> WORD buffer for size of data buffer
 		DWORD	-> buffer for storing APM ID table (see #F0040)
 		WORD	PnP BIOS writable segment/selector
@@ -374,7 +373,7 @@ Call Desktop Management Specification function 51h with:
 		DWORD	-> buffer for DMI structure
 		WORD	DMI read/write data selector
 		WORD	PnP BIOS read/write selector
-Return: AX = status (see #F0081) 
+Return: AX = status (see #F0081)
 Notes:	the large-model c declaration is
 	  short (*entry)(int, unsigned short *,unsigned char *, unsigned short,
 			unsigned short) ;
@@ -871,7 +870,7 @@ Values for SMBIOS processor family:
  80h	Weitek
  90h	Hewlett-Packard PA-RISC family
  A0h	NEC V30 family
- B0h	
+ B0h
 SeeAlso: #F0059,#F0068
 
 Bitfields for SMBIOS processor identification data:
@@ -1001,7 +1000,7 @@ Call BIOS Boot Specification function 66h "Set Boot First" with:
 			  considering the boot priority list
 Return: AX = status (see #F0081)
 Note:	the large-model C declaration is
-	  int (*entry)(int, 
+	  int (*entry)(int, unsigned int *) ;
 SeeAlso: #F0074,#F0075,#F0076,#F0077,#F0079
 
 (Table F0081)
@@ -1254,7 +1253,7 @@ Values for Plug-and-Play generic EISA device ID:
  PNPB011		MIDI Sequencer (MCI)
  PNPB012		Wave Audio (MCI)
  PNPB013		VISCA VCR (MCI)
- PNPB014		Pioneer Laserdisk (MCI)	
+ PNPB014		Pioneer Laserdisk (MCI)
  PNPB015		CD Audio (MCI)
  PNPB020		Yamaha OPL3-compatible FM synthesis
  PNPB02F		joystick/game port
