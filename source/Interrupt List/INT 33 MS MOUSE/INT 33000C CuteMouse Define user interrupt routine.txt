@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 33000C
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - CuteMouse 2.1b4+ - Define User Interrupt Routine
+        AX = 000Ch
+
+Notes:  on entry, bit 7 of CX (call mask) indicates that the user routine
+        will be called on a wheel movement.
+        the user routine will be called with BH holding the 8-bit signed
+        counter of wheel movement since the last call to the routine.
+
+SeeAlso: INT21/AX=000Ch"MS MOUSE"

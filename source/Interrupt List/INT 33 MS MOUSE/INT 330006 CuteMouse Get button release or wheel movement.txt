@@ -1,0 +1,30 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330006
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - CuteMouse 2.1b4+  - Get button release or wheel movement data
+        AX = 0006h
+        BX = button number or -1 for wheel
+
+Return: AL = state of buttons
+        AH = 8-bit signed counter of wheel movement
+
+        ---button info---
+        BX = number of times specified button has been released since last call
+        CX = column where specified button was last released
+        DX = row where specified button was last released
+
+        ---wheel info---
+        BX = 16-bit signed counter of wheel movement since last call
+        CX = column where wheel was last moved
+        DX = row where wheel was last moved
+
+Notes:  returned wheel counters contain all wheel movements accumulated since
+        the last call to INT 33/AX=0003h, INT 33/AX=0005h/BX=-1 or
+        INT 33/AX=0006h/BX=-1
+        positive value of wheel counter means downward wheel movement
+        this call also clears the wheel movement counter for BX=-1
+
+SeeAlso: INT21/AX=0006h"MS MOUSE"

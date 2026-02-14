@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 330014
+  Category: M 	mouse/pointing device
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 33 - CuteMouse 2.1b4+ - Exchange User Interrupt Routines
+        AX = 0014h
+
+Notes:  on entry, bit 7 of CX (call mask) indicates that the user routine
+        will be called on a wheel movement.
+        the user routine will be called with BH holding the 8-bit signed
+        counter of wheel movement since the last call to the routine.
+
+SeeAlso: INT21/AX=0014h"MS MOUSE"
