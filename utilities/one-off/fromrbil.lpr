@@ -26,7 +26,7 @@ uses
 
 const
   SRC='../../rbil61/';  // path to original RBIL files
-  DST='../../source/';  // path to output conversion
+  DST='temp/';  // path to output conversion
 
   SectCount: integer= 0;
 

@@ -32,6 +32,6 @@ function build_app () {
 
 # [[ -d ../binaries ]] && rm -rf ../binaries
 
-build_app makelist
+build_app fromrbil
 
 

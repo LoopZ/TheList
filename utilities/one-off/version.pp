@@ -36,14 +36,14 @@ const
   BUILD_PATCHED: Boolean = False;
   BUILD_PRIVATE: Boolean = False;
   BUILD_SPECIAL: Boolean = False;
-  BUILD_DATE: String = '2026-02-14 06:05:36';
+  BUILD_DATE: String = '2026-02-14 05:57:40';
 
   { General Application Information }
   APP_VERSION: String = '1.0.0';
   APP_BUILD: String = '0';
-  APP_TITLE: String = 'MakeList';
+  APP_TITLE: String = 'fromRBIL';
   APP_LEGALCOPYRIGHT: String = '(c) 2025-2026 Jerome Shidel';
-  APP_PRODUCTNAME: String = 'Source Files to The List Convertor';
+  APP_PRODUCTNAME: String = 'RBIL to Source Files Convertor';
   APP_PRODUCTVERSION: String = '1.0';
   APP_YEAR: String = '2026';
 

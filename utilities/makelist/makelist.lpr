@@ -1,7 +1,7 @@
 // Copyright 2025-2026, Jerome Shidel
 // BSD 3-Clause License
 
-program tolist;
+program makelist;
 
 {$mode objfpc}{$H+}
 
