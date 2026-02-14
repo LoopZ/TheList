@@ -80,6 +80,17 @@ Notes:	DOS 2.x destroys all registers, including SS:SP
 	  subfunction number, so the otherwise invalid subfunction 02h will
 	  only return error code 01h if the given filename actually exists;
 	  otherwise, errors 02h, 03h, or 05h are returned
+
+MORE:   When creating a command tail, it consists of a length byte followed
+	by the string of characters. It should then be followed with a
+	CR (0x0d) and a NULL (0x00). However, neither the CR or NULL
+	are to be included in the length byte. The command tail will be
+	copied to the program PSP when executed. Depending on the DOS
+	manufacturer and version, the PSP command tail is limited to 125
+	or 126 characters plus a Carriage Return. Some DOS versions may
+	set a CMDLINE environment variable that can exceed the limited
+	number of characters supported by the PSP.
+
 BUGS:	DOS 2.00 assumes that DS points at the current program's PSP
 	Load Overlay (subfunction 03h) loads up to 512 bytes too many if the
 	  file contains additional data after the actual overlay
