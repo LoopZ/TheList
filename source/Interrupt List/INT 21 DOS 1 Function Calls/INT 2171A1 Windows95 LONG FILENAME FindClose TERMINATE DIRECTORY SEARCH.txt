@@ -16,5 +16,7 @@ Notes:	this function must be called after starting a search with AX=714Eh,
 	  no longer be used
 	this function is only available when IFSMgr is running, not under bare
 	  MS-DOS 7
+	supported by FAT+ builds of Enhanced DR-DOS on local FAT FS drives;
+	  only SFNs are actually used but the DOS wants to be able to return
+	  64-bit file sizes (as FAT+ allows 38-bit file sizes on disk).
 SeeAlso: AH=4Eh,AX=714Eh,AX=714Fh
-

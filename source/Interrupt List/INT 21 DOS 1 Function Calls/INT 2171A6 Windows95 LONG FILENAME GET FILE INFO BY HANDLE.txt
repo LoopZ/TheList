@@ -15,6 +15,9 @@ Return: CF clear if successful
 	    AX = error code
 		7100h if function not supported
 SeeAlso: AX=71A7h/BL=00h
+Notes:	supported by FAT+ builds of Enhanced DR-DOS on local FAT FS drives;
+	  only SFNs are actually used but the DOS wants to be able to return
+	  64-bit file sizes (as FAT+ allows 38-bit file sizes on disk).
 
 Format of Windows95 file information:
 Offset	Size	Description	(Table 01784)

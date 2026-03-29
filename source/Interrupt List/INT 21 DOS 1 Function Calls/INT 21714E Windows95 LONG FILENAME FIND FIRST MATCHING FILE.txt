@@ -24,6 +24,9 @@ Notes:	this function is only available when IFSMgr is running, not under bare
 	  as it has completed its search
 	for compatibility with DOS versions prior to v7.00, the carry flag
 	  should be set on call to ensure that it is set on exit
+	supported by FAT+ builds of Enhanced DR-DOS on local FAT FS drives;
+	  only SFNs are actually used but the DOS wants to be able to return
+	  64-bit file sizes (as FAT+ allows 38-bit file sizes on disk).
 SeeAlso: AH=4Eh,AX=714Fh,AX=71A1h
 
 (Table 01778)
