@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 217142
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - EDR-DOS 7.01.08+ - "Long LSEEK" - SET CURRENT 64-bit FILE POSITION
+	AX = 7142h
+	CL = origin of move
+	    00h start of file
+	    01h current file position
+	    02h end of file
+	BX = file handle
+	DS:DX = pointer to (signed) 64-bit offset from origin of new position
+Return: CF clear if successful
+	    DS:DX unchanged, new 64-bit position from start of file at -> DS:DX
+	CF set on error
+	    AX = error code (01h,06h) (see #01680 at AH=59h/BX=0000h)
+	CF unchanged or CF set if no function 71h subfunctions supported
+	    AX = error code (7100h)
+SeeAlso: AH=42h
+Notes:	supported by FAT+ builds of Enhanced DR-DOS (including 2023+ lDOS
+	  flavour and if FATPLUS option enabled for 2023+ SvarDOS flavour;
+	  the SvarDOS fork introduced the FATPLUS option to disable it by
+	  default starting on 2025-03-20) for local FAT FS drives.
+	EDR-DOS supports several LFN functions as SFN fallback functions
+	  on local FAT FS drives, such as AX=714Eh, AX=714Fh, AX=71A1h, and
+	  AX=71A6H presumably to allow returning 64-bit sizes.
+	EDR-DOS FAT+ is limited to maximum file sizes of 256 GiB - 1 Byte
+	  (38-bit file size) on disk, however the SFTs of FAT+ builds do
+	  support a full 64-bit seek position in memory.
+	supported by dosemu2 since 2020-12-25 for its redirected MachFS
+	  drives (after two Pull Requests by ecm).
+	should be called with CF set as function 71h subfunctions may
+	  return with DOS v1 style error return (AL = 00h, CF unchanged).
+	  if caller sets CF this results in an AX = 7100h, CF set return.
