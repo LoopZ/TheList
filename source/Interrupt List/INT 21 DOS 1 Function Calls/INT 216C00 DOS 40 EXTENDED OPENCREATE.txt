@@ -29,7 +29,11 @@ Return: CF set on error
 Notes:	the PC LAN Program only supports existence actions (in DL) of 01h,
 	  10h with sharing=compatibility, and 12h
 	DR DOS reportedly does not support this function and does not return
-	  an "invalid function call" error when this function is used.
+	  an "invalid function call" error when this function is used. (see
+	  the note below on DOS v1 style error.) DR-DOS v5 and v6 report DOS
+	  version 3.31 so it follows they do not support this function. the
+	  DR-DOS v7 family (Novell DOS, Caldera DR-DOS, OpenDOS, Enhanced
+	  DR-DOS) do support this function.
 	the documented bits of BX are stored in the SFT when the file is opened
 	  (see #01641,#01642)
 	DOS v1 style error sets AL = 00h (thus AX = 6C00h) but leaves CF
@@ -39,7 +43,8 @@ BUG:	this function has bugs (at least in DOS 5.0 and 6.2) when used with
 	  drives handled via the network redirector (INT 2F/AX=112Eh):
 	    - CX (attribute) is not passed to the redirector if DL=11h,
 	    - CX does not return the status, it is returned unchanged because
-	      DOS does a PUSH CX/POP CX when calling the redirector.
+	      DOS does not pass CX from calling the redirector back to the
+	      user stack frame (fixed in lMS-DOS on 2024-05-01).
 SeeAlso: AH=3Ch,AH=3Dh,AX=6C01h,AX=7160h/CL=00h,INT 2F/AX=112Eh
 
 (Table 01768)
