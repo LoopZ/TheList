@@ -34,6 +34,9 @@ SeeAlso: #02570
 (Table 02570)
 Values for AMIS signatures known to be in use:
  'Byrial J' 'EKLAVO  '	permits keyboard entry of Esperanto accented letters
+ 'cm      ' 'RxANSI  '	RxANSI, ecm's fork of Henrik Haftmann's combined ANSI
+			  and LESS driver. (vendor name predates ecm addition
+			  of the E. initial.)
  'CoveSoft' 'Burnout+'	shareware screen saver Burnout Plus
  'Crynwr  ' 'SPELLER '	TSR spelling-checker
  'CPH1995 ' 'CDTSR   '	resident CD-Audio player
@@ -44,9 +47,30 @@ Values for AMIS signatures known to be in use:
  'DAISYCHA' 'INDRIVER'	Advanced Parallel Port daisy chain driver (vendor name
 			  in product description field, if desired)
 			(see also INT 2D/AL=DCh)
+ 'DOS-C   ' 'SHARE   '	ecm's extended FreeDOS share
  'DTown SD' 'DTU     '	DTown Software Development's DTown Utilities
 			(see also INT 2D/AL=20h)
  'ECLIPSE ' 'PLUMP   '	Eclipse Software's printer and plotter spooler
+ 'ecm     ' 'D2FCBFIX'	ecm's old dosemu2 FCB fix
+ 'ecm     ' 'EIDL    '	ecm's fork of rr's tool to reduce power consumption
+ 'ecm     ' 'FDAPM   '	ecm's fork of FDAPM power savings tool
+ 'ecm     ' 'IDLEDPMS'	ecm's fork of an FDAPM companion idle screen off tool
+ 'ecm     ' 'INTERCEP'	ecm's fork of INTERC3 (interrupt intercepting tool)
+ 'ecm     ' 'KEEPHOOK'	ecm's tool to keep interrupt hooks available
+ 'ecm     ' 'lClock  '	ecm's clock display tool
+ 'ecm     ' 'lDebug  '	ecm's debugger AMIS interface, this is usable in a
+			  boot loaded context too. no uninstall supported.
+			  the AMIS interface must be installed by means of
+			  an INSTALL AMIS command to the debugger, so its
+			  absence does not mean the debugger isn't running.
+ 'ecm     ' 'lDOS    '	ecm's lDOS kernel (lMS-DOS based on MS-DOS v4.01),
+			  no uninstall supported.
+ 'ecm     ' 'Loader  '	ecm's boot loader AMIS interface (based on lDebug),
+			  this is only usable in a boot loaded context
+			  (and like the debugger no uninstall is supported)
+ 'ecm     ' 'SEEKEXT '	ecm's seek service extensions
+ 'ecm     ' 'SRDISK  '	ecm's fork of ReSizeable RAMDisk v2.10+
+ 'ecm     ' 'TSR     '	ecm's TSR example
  'GraySoft' 'GIPC    '	GraySoft's Inter-Process Communications driver
  'heathh  ' 'Monitor '
  'Helge O '		TSRs by Helge Olav Helgesen
