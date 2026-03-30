@@ -27,7 +27,7 @@ Notes:	the Critical Error flag is used in conjunction with the InDOS flag
 	  first 18h bytes is completely different from MS-DOS
 BUG:	calling this function with certain values in DX crashes Novell DOS 7.0
 	  prior to Update 14
-SeeAlso: AX=5D0Bh,INT 2A/AH=80h,INT 2A/AH=81h,INT 2A/AH=82h
+SeeAlso: AH=52h,AX=5D0Bh,INT 2A/AH=80h,INT 2A/AH=81h,INT 2A/AH=82h
 
 Format of DOS 3.10-3.30 Swappable Data Area:
 Offset	Size	Description	(Table 01687)

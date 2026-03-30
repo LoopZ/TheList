@@ -13,5 +13,8 @@ Return: ES:DI -> start of allocated HMA block or FFFFh:FFFFh
 Notes:	this call is not valid unless DOS is loaded in the HMA (DOS=HIGH)
 	called by Windows 3.1 DOSX.EXE
 	supported by Novell DOS 7
+	supported by MS-DOS v7+, owner value is taken from INT 2F caller's
+	  CS unless the CS is 0000h, then owner value is 0001h
+	supported by lDOS similarly to MS-DOS v7
 SeeAlso: AX=4A01h,AX=4A03h
 

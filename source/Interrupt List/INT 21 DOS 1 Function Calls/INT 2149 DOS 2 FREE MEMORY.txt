@@ -14,7 +14,12 @@ Notes:	apparently never returns an error 07h, despite official docs; DOS 2.1+
 	  code contains only an error 09h exit
 	DOS 2.1-6.0 does not coalesce adjacent free blocks when a block is
 	  freed, only when a block is allocated or resized
+	DR-DOS v7 does coalesce subsequent free blocks when a block is freed
 	the code for this function is identical in DOS 2.1-6.0 except for
 	  calls to start/end a critical section in DOS 3.0+
+	because this call need not coalesce free blocks, a very similar
+	  effect can be achieved by addressing the MCB (in the segment
+	  that is one below the memory block segment) and zeroing its owner.
+	  this allows freeing memory if using DOS is not desired.
 SeeAlso: AH=48h,AH=4Ah
 

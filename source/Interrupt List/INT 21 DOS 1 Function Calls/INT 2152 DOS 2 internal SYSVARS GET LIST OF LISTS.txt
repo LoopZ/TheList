@@ -16,7 +16,8 @@ Notes:	partially supported by OS/2 v1.1 compatibility box (however, most
 	Quarterdeck's suggested check for the use of its DOSDATA.SYS or
 	  DOS-UP.SYS is to test whether the list-of-lists segment is greater
 	  than the segment of the first memory block; a better check for
-	  DOS-UP.SYS is INT 21/AX=2B01h/CX=444Dh
+	  DOS-UP.SYS is INT 21/AX=2B01h/CX=444Dh (DR-DOS v7 and lDOS may be
+	  misdetected as Quarterdeck's tools if only the segment is compared)
 	because not all DOS workalikes support all fields in the List of Lists,
 	  applications should ensure that pointers are neither 0000h:0000h
 	  nor FFFFh:FFFFh before using them
@@ -158,6 +159,12 @@ Offset	Size	Description	(Table 01628)
  08h  8 BYTEs	ASCII program name if PSP memory block or DR DOS UMB,
 		  else garbage
 		null-terminated if less than 8 characters
+--- lDOS S MCB ---
+ 08h  2 BYTEs	"S" followed by a NUL byte
+ 0Ah	BYTE	S MCB type (see #26001)
+ 0Bh	BYTE	reserved
+ 0Ch	WORD	"smcbLink", not used yet (planned to be an owner segment)
+ 0Eh	WORD	reserved
 Notes:	the next MCB is at segment (current + size + 1)
 	under DOS 3.1+, the first memory block is the DOS data segment,
 	  containing installable drivers, buffers, etc.	 Under DOS 4.0+ it is
@@ -168,6 +175,8 @@ Notes:	the next MCB is at segment (current + size + 1)
 	  "SD" is system data, device drivers, etc.
 	Some versions of DR DOS use only seven characters of the program name,
 	  placing a NUL in the eighth byte.
+	lDOS S MCBs are heavily used by lDOS (lMS-DOS and lRxDOS), only device
+	  allocations are still placed into SD MCBs with subsegments.
 SeeAlso: #01630,#01632,#01633
 
 (Table 01629)
@@ -175,12 +184,54 @@ Values for special flag PSP segments:
  0000h	free
  0006h	DR DOS XMS UMB
  0007h	DR DOS excluded upper memory ("hole")
- 0008h	belongs to DOS
+ 0008h	belongs to DOS (name in MS-DOS v5+ "SD" or "SC", lDOS also "S")
  FFF7h	386MAX v6.01+ ???
  FFFAh	386MAX UMB control block (see #01477 at AX=4402h"386MAX")
  FFFDh	386MAX locked-out memory
  FFFEh	386MAX UMB (normally immediately follows its control block)
  FFFFh	386MAX v6.01+ device driver
+
+(Table 26001)
+Values for lDOS S MCB type:
+ 00h ?	S_OTHER
+ 01h	S_DOSENTRY (usually at segment 60h, may be hidden)
+ 02h*	S_DOSCODE
+ 03h	S_DOSDATA (may be hidden)
+ 04h	S_IRQSCODE
+ 05h ?	S_IRQSDATA
+ 06h*	S_CDS
+ 07h ?	S_LFNCDS (lRxDOS remainder, not used by lMS-DOS)
+ 08h*	S_DPB
+ 09h*	S_UPB (aka DDT, UDSC, BDS)
+ 0Ah*	S_SFT
+ 0Bh*	S_FCBSFT
+ 0Ch*	S_CCB (buffers, name from lRxDOS "Cache Control Buffers")
+ 0Dh ?	S_IRT
+ 0Eh ?	S_SECTOR
+ 0Fh ?	S_NLS
+ 10h ?	S_EBDA
+ 16h	S_INITFCBSFT
+ 17h	S_INITSTACK
+ 18h	S_INITCDS
+ 19h	S_INITCONFIG
+ 1Ah ?	S_INITFATSEG
+ 1Bh ?	S_INITSECTORSEG
+ 1Ch ?	S_INITSTACKBPB
+ 1Dh	S_INITPSP
+ 1Eh ?	S_ENVIRONMENT
+ 1Fh	S_INITIALISE
+ 20h ?	S_DEVICE	"Device"
+ 21h ?	S_DEVICEMEMORY	"Allocated by device"
+ 30h	S_EXCLDUMA	Excluded UMA
+ 31h ?	S_EXCLDUMASUB	"Excluded UMA with sub-chain of used MCBs"
+ 32h ?	S_EXCLDLH	"Excluded by LH"
+ 33h ?	S_EXCLDDOS
+ 34h	S_EXCLDALTAH	COMPAT=ALTAH allocation for DOSENTRY
+Notes:	'*' indicates that this type of allocation may be allocated
+	  in the HMA if the kernel has claimed it, explaining their
+	  absence in the LMCB and UMCB chains.
+	'?' indicates that these types are not currently used by the
+	  lMS-DOS based lDOS kernel.
 
 Format of MS-DOS 5+ UMB control block:
 Offset	Size	Description	(Table 01630)
@@ -192,16 +243,19 @@ Offset	Size	Description	(Table 01630)
  08h  8 BYTEs	block type name: "UMB" if start block, "SM" if end block in UMB
 SeeAlso: #01628,#01631
 
-Format of MS-DOS 7.0 HMA memory control block:
+Format of MS-DOS v7+ HMA memory control block:
 Offset	Size	Description	(Table 01631)
  00h	WORD	signature "MS" (4Dh 53h)
- 02h	WORD	usage flag???
+ 02h	WORD	owner / usage flag???
 		0000h free
 		else ???
+		lDOS: FFFEh = DOSCODE, 0026h = DOS kernel allocation
  04h	WORD	size of memory block in bytes (not counting MCB)
  06h	WORD	offset of next memory block in HMA or 0000h
  08h  8 BYTEs	unused (0)
-SeeAlso: #01628,#01630,#01632
+--- lDOS ---
+ 08h  8 BYTEs	allocation name, padded with NULs if shorter than 8 BYTEs
+SeeAlso: #01628,#01630,#01632,#02800
 
 Format of STARLITE (General Software's Embedded DOS) memory control block:
 Offset	Size	Description	(Table 01632)
@@ -891,9 +945,16 @@ Offset	Size	Description	(Table 01657)
 		  memory chain in base 640K only (first UMB MCB usually at
 		  9FFFh, locking out video memory with a DOS-owned memory
 		  block)
-		the MCB this word points at contains a valid link into high
-		  memory even if it is marked with a 'Z' indicating the last
-		  memory block
+		the MCB this word points at is the first UMCB. when the UMB
+		  link is disabled, the *prior* LMA MCB (the one pointing to
+		  the first UMCB) is marked with a 'Z' indicating the last
+		  memory block. MCB walkers may choose to continue past the
+		  last LMCB if they can match that there is a first UMCB.
+		the first UMCB can be determined without finding it in the
+		  DOS data segment, by disabling the UMB link, walking until
+		  'Z', enabling the UMB link and verifying that the former
+		  'Z' MCB is now an 'M' MCB. lDOS copied the PTS-DOS function
+		  INT 2F/AX=1261h to directly query the first UMCB.
  21h	WORD	paragraph from which to start scanning during memory allocation
 SeeAlso: #01652,#01653
 

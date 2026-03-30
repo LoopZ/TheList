@@ -10,5 +10,7 @@ Return: BX = number of bytes available in HMA (0000h if DOS not using HMA)
 	ES:DI -> start of available HMA area (FFFFh:FFFFh if not using HMA)
 Notes:	called by Windows 3.1 DOSX.EXE
 	supported by Novell DOS 7
+	in MS-DOS v7+ and lDOS, the returned area is not necessarily at the
+	  HMA's end; the biggest free block may be lower in the HMCB chain.
 SeeAlso: AX=4310h,AX=4A02h
 

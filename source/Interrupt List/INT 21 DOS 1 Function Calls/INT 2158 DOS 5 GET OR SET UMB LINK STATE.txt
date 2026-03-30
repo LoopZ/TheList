@@ -21,8 +21,14 @@ Return: CF clear if successful
 Notes:	a program which changes the UMB link state should restore it before
 	  terminating
 	UMBs will only be available if CONFIG.SYS contains the line DOS=UMB,
-	  the UMBs have been linked into the memory chain with AX=5803h, and
-	  the allocation strategy has been set to include high memory with
-	  AX=5801h
+	  any UMBs were allocated by DOS's init and config processing, and
+	  the UMBs have been linked into the memory chain with AX=5803h
+	users may wish to set the allocation strategy to prefer or enforce
+	  allocating UMBs with AX=5801h as well
+	enabling the UMB link will patch the last Low Memory Area MCB to
+	  hold an 'M' letter to indicate it is not the last MCB, likewise
+	  disabling the UMB link will patch the last LMCB's letter to 'Z'
+	DOS keeps track of the UMB link state in an internal variable too
+	if the extended allocation strategy mask 100h is set (see #01679
+	  at AH=58h), lDOS can use UMBs even with the UMB link disabled.
 SeeAlso: #01687,#02766 at INT 2F/AX=4310h
-
