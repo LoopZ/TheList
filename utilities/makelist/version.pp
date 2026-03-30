@@ -25,25 +25,25 @@ const
   LAZARUS_VERSION = '4.0';
 
   { Source version and most recent project commit }
-  SOURCE_VERSION = '1.0.0';
-  SOURCE_REVISION = '34';
+  SOURCE_VERSION = '0.1.0';
+  SOURCE_REVISION = '36';
   SOURCE_URL = 'http://github.com/LoopZ/TheList';
-  SOURCE_COMMIT = '2bfe61b39c1200fb3f5e9801e8a9f22a1c97d16c';
+  SOURCE_COMMIT = '6cdcc56443e68ea89568085b5946e3080a957903';
 
   { Version Build Atributes } 
   BUILD_DEBUG: Boolean = False;
-  BUILD_PRERELEASE: Boolean = True;
+  BUILD_PRERELEASE: Boolean = False;
   BUILD_PATCHED: Boolean = False;
   BUILD_PRIVATE: Boolean = False;
   BUILD_SPECIAL: Boolean = False;
-  BUILD_DATE: String = '2026-03-30 09:14:59';
+  BUILD_DATE: String = '2026-03-30 11:50:27';
 
   { General Application Information }
-  APP_VERSION: String = '1.0.0';
-  APP_BUILD: String = '0';
+  APP_VERSION: String = '0.1.0';
+  APP_BUILD: String = '1';
   APP_TITLE: String = 'MakeList';
   APP_LEGALCOPYRIGHT: String = '(c) 2025-2026 Jerome Shidel';
-  APP_PRODUCTNAME: String = 'Source Files to The List Convertor';
+  APP_PRODUCTNAME: String = 'The List Release File Assembler';
   APP_PRODUCTVERSION: String = '1.0';
   APP_YEAR: String = '2026';
 

@@ -3,7 +3,9 @@
    The Clear BSD License
    All rights reserved.
 
-   This unit is part of the MPLA frame available at:
+   This modified version of the BinTree unit that is part of the
+   MPLA frame available at:
+
    https://gitlab.com/mpla-oss/mpla/
 
 }
@@ -40,6 +42,7 @@ type
     FLesser: TBinaryTreeNode;
     FOwner: TCustomBinaryTree;
     FParent: TBinaryTreeNode;
+    FText: String;
     FUniqueID: RawByteString;
     FValue: Int64;
     function GetNext: TBinaryTreeNode;
@@ -48,6 +51,7 @@ type
     procedure SetData32(AValue: TArrayOfInt32);
     procedure SetFlags(AValue: dword);
     procedure SetSubTree(AValue: TCustomBinaryTree);
+    procedure SetText(AValue: String);
     procedure SetValue(AValue: Int64);
   protected
     property Parent : TBinaryTreeNode read FParent;
@@ -67,6 +71,7 @@ type
     property Data32 : TArrayOfInt32 read FData32 write SetData32;
     property Flags : dword read FFlags write SetFlags;
     property Value : Int64 read FValue write SetValue;
+    property Text : String read FText write SetText;
   published
   end;
 
@@ -152,6 +157,10 @@ type
     function Add(UniqueID : RawByteString; Value : Int64) : TBinaryTreeNode; overload;
     function Add(UniqueID : UnicodeString; Value : Int64) : TBinaryTreeNode; overload;
     function Add(UniqueID : Int64; Value : Int64) : TBinaryTreeNode; overload;
+
+    function Add(UniqueID : RawByteString; Value : String) : TBinaryTreeNode; overload;
+    function Add(UniqueID : UnicodeString; Value : String) : TBinaryTreeNode; overload;
+    function Add(UniqueID : Int64; Value : String) : TBinaryTreeNode; overload;
   end;
 
 procedure LogMessage(Verbosity : TVerbosity; Message : String; Node : TBinaryTreeNode); overload;
@@ -236,6 +245,12 @@ begin
   if Assigned(FOwner) then FOwner.FModified:=True;
 end;
 
+procedure TBinaryTreeNode.SetText(AValue: String);
+begin
+  if FText=AValue then Exit;
+  FText:=AValue;
+end;
+
 procedure TBinaryTreeNode.SetValue(AValue: Int64);
 begin
   if FValue=AValue then Exit;
@@ -256,6 +271,7 @@ begin
   FData32:=[];
   FFlags:=0;
   FValue:=0;
+  FText:='';
   FColor:=rcRed;
 end;
 
@@ -1187,6 +1203,29 @@ begin
   if not Assigned(Result) then Exit;
   Result.FValue:=Value;
   Attach(Result);
+end;
+
+function TBinaryTree.Add(UniqueID: RawByteString; Value: String
+  ): TBinaryTreeNode;
+begin
+  Result:=Add(UniqueID);
+  if Assigned(Result) then
+    Result.FText:=Value;
+end;
+
+function TBinaryTree.Add(UniqueID: UnicodeString; Value: String
+  ): TBinaryTreeNode;
+begin
+  Result:=Add(UniqueID);
+  if Assigned(Result) then
+    Result.FText:=Value;
+end;
+
+function TBinaryTree.Add(UniqueID: Int64; Value: String): TBinaryTreeNode;
+begin
+  Result:=Add(UniqueID);
+  if Assigned(Result) then
+    Result.FText:=Value;
 end;
 
 
