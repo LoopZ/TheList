@@ -10,6 +10,7 @@ program makelist;
 {$I version.def} // Version information defines
 
 uses
+  {$IFDEF USES_CWString} cwstring, {$ENDIF}
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
@@ -18,23 +19,42 @@ uses
   Version, PasExt, BinTree;
 
 const
+  {$IFDEF Windows}
+  DirSource : String = '..\..\source\';
+  DirOutput : String = '..\..\TheList\';
+  {$ELSE}
   DirSource : String = '../../source/';
   DirOutput : String = '../../TheList/';
+  {$ENDIF}
+  MaxFileSize : integer = 360 * 1024; // Maximum bytes allowed in list file
 
-  DOSNAMES : array of record
+  DOSNAMES : array of record // Conversion of Long File Names to DOS versions
     Name, DOS : String;
   end = (
     // Miscellaneous files
-    (Name:'Advertisement.txt';    DOS:'_ADVERT.TXT'),
-    (Name:'FAQ.txt';              DOS:'faq.lst'),
-    (Name:'Interrupt Primer.txt'; DOS:'INTERRUP.PRI'),
-    (Name:'Need Help.txt';        DOS:'NEEDHELP.TXT'),
-    (Name:'Ralf Brown.txt';       DOS:'RBROWN.TXT'),
-    (Name:'Read Me Now.txt';      DOS:'README.NOW')
+    (Name:'Advertisement.txt';         DOS:'_ADVERT.TXT'),
+    (Name:'FAQ.txt';                   DOS:'faq.lst'),
+    (Name:'Interrupt Primer.txt';      DOS:'INTERRUP.PRI'),
+    (Name:'Need Help.txt';             DOS:'NEEDHELP.TXT'),
+    (Name:'Ralf Brown.txt';            DOS:'RBROWN.TXT'),
+    (Name:'Read Me Now.txt';           DOS:'README.NOW'),
+    // List Files
+    (Name:'Bibliography';              DOS:'BIBLIO.LST'),
+    (Name:'Category';                  DOS:'CATEGORY.KEY'),
+    (Name:'Cmos-Memory Map';           DOS:'CMOS.LST'),
+    (Name:'Far Call Interface';        DOS:'FARCALL.LST'),
+    (Name:'Glossary';                  DOS:'GLOSSARY.LST'),
+    (Name:'I2C-Bus Devices';           DOS:'I2C.LST'),
+    (Name:'Interrupt List';            DOS:'INTERRPU.LST'),
+    (Name:'Links';                     DOS:'LINKS.LST'),
+    (Name:'Memory Map';                DOS:'MEMORY.LST'),
+    (Name:'Model-Specific Registers';  DOS:'MSR.LST'),
+    (Name:'Overview';                  DOS:'OVERVIEW.LST'),
+    (Name:'Ports List';                DOS:'PORTS.LST'),
+    (Name:'Selected Tables';           DOS:'TABLES.LST'),
+    (Name:'System-Management Mode';    DOS:'SMM.LST')
   );
 
-
-{$R *.res}
 { ---------------------------------------------------------------------------- }
 
 function DosFileName(FileName : String) : String; // Returns the DOS file name
@@ -57,6 +77,20 @@ begin
 end;
 
 { ---------------------------------------------------------------------------- }
+procedure CreateListFiles; // Assemble the group data into listing files.
+var
+  I : Integer;
+  L : TArrayOfString;
+  N : String;
+begin
+  L:=DirScan(DirSource + WildCard, [dsDirectories]);
+  for I := 0 to High(L) do begin
+    if UpperCase(L[I]) = 'MISCELLANEOUS' then Continue;
+    N:=DosFileName(L[I]);
+    LogMessage(vbNormal, 'Group: ' + L[I] + SPACE + '(' + N + ')');
+  end;
+end;
+
 procedure CopyMiscellaneousFiles; // Simply copies Un-broken Miscellaneous files
 var
   I, E : Integer;
@@ -96,6 +130,7 @@ begin
     end;
   end;
   CopyMiscellaneousFiles;
+  CreateListFiles;
 end;
 
 { ---------------------------------------------------------------------------- }
@@ -214,9 +249,13 @@ begin
   end;
 end;
 
+{$R *.res}
+
 begin
   Options;
   Banner;
   Build;
+  LogMessage(vbNormal, '');
+  LogMessage(vbNormal, 'Done.');
 end.
 
