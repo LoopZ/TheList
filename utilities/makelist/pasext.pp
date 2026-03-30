@@ -1,3 +1,13 @@
+{
+   Copyright (c) 2025-2026 Jerome Shidel
+   The Clear BSD License
+   All rights reserved.
+
+   This unit is part of the MPLA frame available at:
+   https://gitlab.com/mpla-oss/mpla/
+
+}
+
 (*
 
   PasExt.pp is a unit for very common basic functionality in both console and
@@ -7,19 +17,18 @@
 
 *)
 
-{
-   Copyright (c) 2025-2026 Jerome Shidel
-   The Clear BSD License
-   All rights reserved.
-}
-
 unit PasExt;
 
 {$mode ObjFPC}{$H+}
 
-{$I patches.pp}  // Various compiler directives to "fix" things.
+{$I patches.pp}  // Not required! Various compiler directives to "fix" things.
+{$I version.def} // Not Required! Used to check for Project version DEBUG flag.
 
 interface
+
+{ TODO 3 -cDevel Upgrade ancient String:=String+String; code to either use
+TStringStream or Preset Guestimated Lengths in order to reduce memory alocations
+and increase performce. }
 
 uses
   {$IFDEF USES_CWString} cwstring, {$ENDIF}
@@ -232,12 +241,21 @@ var
 (* Logging Functions *)
 
   procedure LogMessage(Verbosity : TVerbosity; Message : String); overload;
+  procedure LogMessage(Verbosity : TVerbosity; Message : String; I : Int64); overload;
   procedure LogMessage(Verbosity : TVerbosity; Message : String;
     Data : TArrayOfByte; BitWidth : integer = 0); overload;
   procedure LogMessage(Verbosity : TVerbosity; Message : String;
     Data : TArrayOfWord); overload;
   procedure LogMessage(Verbosity : TVerbosity; Message : String;
+    Data : TArrayOfInt32); overload;
+  procedure LogMessage(Verbosity : TVerbosity; Message : String;
     Data : TArrayOfInt64); overload;
+
+  { Enable writing log messages to a File. Messages are still written to the
+  active logging device such as the console or a logging window. Setting the
+  FIleName to '' will disable the file logging again. Clean will reset the
+  log when true. }
+  procedure LogToFile(FileName : String; Clean:Boolean=true);
 
 (* Unicode and UTF-8 related functions *)
 
@@ -261,6 +279,11 @@ var
   { Return S as a RawByteString. If Unicode Characters are present, raise an exception. }
   function asRawByte(const S :UnicodeString) : RawByteString;
 
+  { Converts a Unicode String into an array of its character values. Returns True
+    if there were no encoding errors in the string. If there were encoding
+    errors, it will return False and still try to convert the the String giving
+    those characters a value of -1. }
+  function UTF8ToValues(const U : UnicodeString; out Values : TArrayOfInt32) : boolean; overload;
   { Converts a UTF-8 String into an array of its character values. Returns True
     if there were no encoding errors in the string. If there were encoding
     errors, it will return False and still try to convert the the String giving
@@ -278,6 +301,20 @@ var
     it will return False while assigning such characters teh BadChar value. }
   function ValuesToUTF8(const Values : TArrayOfInt32; out UTF : UTF8String;
     BadChar : Int32 = 0 ) : boolean;
+
+  { Determine if a Unicode Value is that of a Letter Character }
+  function ValueIsLetter(Value : Int32) : boolean;
+  { Determine if a Unicode Value is that of a Seperator Character }
+  function ValueIsSeperator(Value : Int32) : boolean;
+
+  { Attempts to returns only the words contained in a UnicodeString regardless of language. }
+  procedure WordsOfString(const S : RawByteString; var List : TStringList); overload;
+  { Attempts to returns only the words contained in a UnicodeString regardless of language. }
+  procedure WordsOfString(const S : UnicodeString; var List : TStringList); overload;
+  { Attempts to returns only the words contained in a UnicodeString regardless of language. }
+  function WordsOfString(const S : RawByteString) : TStringList; overload;
+  { Attempts to returns only the words contained in a UnicodeString regardless of language. }
+  function WordsOfString(const S : UnicodeString) : TStringList; overload;
 
 (* Some very simple convenience functions and procedures *)
 
@@ -359,6 +396,65 @@ var
     If the TArrayOfAnsiString is empty, -1 will be rewturned. }
   function Longest(const S : TArrayOfAnsiString; ReturnIndex : boolean = false) : integer; overload;
 
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfRawByteString; const A : RawByteString;
+    Start : integer = 0; CaseSpecific : boolean = true) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfUnicodeString; const A : UnicodeString;
+    Start : integer = 0; CaseSpecific : boolean = true) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfAnsiString; const A : AnsiString;
+    Start : integer = 0; CaseSpecific : boolean = true) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfString; const A : String;
+    Start : integer = 0; CaseSpecific : boolean = true) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfChar; const A : Char;
+    Start : integer = 0; CaseSpecific : boolean = true) : integer; overload;
+
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfBoolean; const A : Boolean;
+    Start : integer = 0 ) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfByte; const A : Byte;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfWord; const A : Word;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfInteger; const A : Integer;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfLongInt; const A : LongInt;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfPointers; const A : Pointer;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfInt8; const A : Int8;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfInt16; const A : Int16;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfInt32; const A : Int32;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfInt64; const A : Int64;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfUInt8; const A : UInt8;
+    Start : integer = 0)  : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfUInt16; const A : UInt16;
+    Start : integer = 0) : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfUInt32; const A : UInt32;
+    Start : integer = 0)  : integer; overload;
+  { Searches an array. Returns Index when found, or -1 if not found. }
+  function InArray(const V : TArrayOfUInt64; const A : UInt64;
+    Start : integer = 0)  : integer; overload;
+
   { Trims each line in an array of strings. }
   function Trim(const Lines : TArrayOfRawByteString) : TArrayOfRawByteString; overload;
   { Trims each line in an array of strings. }
@@ -389,7 +485,18 @@ var
   { When TF is TRUE, return T. Otherwise, return F as result. }
   function WhenTrue(TF : Boolean; T : Integer; F : Integer = 0) : integer; overload;
 
+  { returns T String when TF is True. Returns F String when TF is False }
   function BoolStr(TF : Boolean; T : String = 'True'; F : String = 'False') : String; overload;
+  { Returns True if S is 1, Y, T, True, Yes, On or Enabled.
+    Returns False if S os 0, N, F, False, No, Off or Disabled.
+    Otherwise returns AssumeState.
+    String is trimmed and is not case specific. }
+  function StrToBool(const S : RawByteString; AssumeState : boolean = False) : Boolean; overload;
+  { Returns True if S is 1, Y, T, True, Yes, On or Enabled.
+    Returns False if S os 0, N, F, False, No, Off or Disabled.
+    Otherwise returns AssumeState.
+    String is trimmed and is not case specific. }
+  function StrToBool(const S : UnicodeString; AssumeState : boolean = False) : Boolean; overload;
 
   { When count is 1 return Single string. Otherwise, return Multiple String. }
   function Plural(Value : Int64; Multiple : RawByteString;
@@ -630,9 +737,9 @@ var
   { Returns S adding trailing SubStr when not present. }
   function IncludeTrailing(const S, SubStr : UnicodeString; CaseSpecific : boolean = true) : UnicodeString; overload;
 
-  { Returns S without leading StartStr either trailing EndStr.  }
+  { Returns S without leading StartStr or trailing EndStr.  }
   function ExcludeEnds(const S, StartStr, EndStr : RawByteString; CaseSpecific : boolean = true) : RawByteString; overload;
-  { Returns S without leading StartStr either trailing EndStr.  }
+  { Returns S without leading StartStr or trailing EndStr.  }
   function ExcludeEnds(const S, StartStr, EndStr : UnicodeString; CaseSpecific : boolean = true) : UnicodeString; overload;
 
   { glue the elements of a RawByteString array together using Delim and return
@@ -643,6 +750,8 @@ var
   function Implode(Strs : TArrayOfUnicodeString; Delim : UnicodeString = LF) : UnicodeString; overload;
   { glue the Items of a TStringList together using Delim and return a RawByteString }
   function Implode(Strs : TStringList; Delim : RawByteString = LF) : RawByteString; overload;
+  { glue an array of characters into a single string seperated by a delimiter }
+  function Implode(Chars : TArrayOfChar; Delim : RawByteString = LF) : RawByteString; overload;
 
   { breaks RawByteString into an array of RawByteString at each Delim }
   function Explode(S : RawByteString; Delim : RawByteString = LF):TArrayOfRawByteString; overload;
@@ -671,13 +780,15 @@ var
   { Returns only the letters contained in a string. }
   function AlphaOnly(S : UnicodeString) : UnicodeString; overload;
 
-  { returns a randomly generated string of Count length consisting of CharSet. If CharSet
-  is not provided, then the default set '0123456789abcdefghijkmnpqrstuvwxyz' is used. The
-  default set does not include lowercase L or O. }
+  { returns a randomly generated string of Count length consisting of CharSet.
+  If CharSet is not provided, then the default set '0123456789abcdefghijkmnpqrstuvwxyz'
+  is used. The default set does not include lowercase L or O. This function is
+  not cryptographically secure! }
   function RandomStr(Count : Integer; CharSet : RawByteString = '') : RawByteString; overload;
-  { returns a randomly generated string of Count length consisting of CharSet. If CharSet
-  is not provided, then the default set '0123456789abcdefghijkmnpqrstuvwxyz' is used. The
-  default set does not include lowercase L or O. }
+  { returns a randomly generated string of Count length consisting of CharSet.
+  If CharSet is not provided, then the default set '0123456789abcdefghijkmnpqrstuvwxyz'
+  is used. The default set does not include lowercase L or O. This function is
+  not cryptographically secure! }
   function RandomStr(Count : Integer; CharSet : UnicodeString) : UnicodeString; overload;
 
   { escape text for usage in HTML by converting & < > and " to HTML entities }
@@ -690,14 +801,72 @@ var
   { opposite of EscapeHTML function }
   function UnEscapeHTML(const S : UnicodeString) : UnicodeString; overload;
 
+  { expands TAB characters in a string into spaces. TabWidth is the width of
+   the TabStops. Reset After is an array of characters that will reset the
+   current tab position to 1. For example using ResetAfter = [CR,LF] will
+   adjust the TabStop position for strings with CR or LF characters. At
+   present, this function does not suport other control chacaters such as
+   Backspace, FormFeed, etc. }
+  function DeTab(const S : RawByteString; TabWidth : integer; ResetAfter
+  : TArrayOfChar) : RawByteString; overload;
+  { simplified call to DeTab function which will adjust tab positions for
+  embeded line ending characters. }
+  function DeTab(const S : RawByteString; TabWidth : integer = 8) : RawByteString; overload;
+  { expands TAB characters in a string into spaces. TabWidth is the width of
+   the TabStops. Reset After is an array of characters that will reset the
+   current tab position to 1. For example using ResetAfter = [CR,LF] will
+   adjust the TabStop position for strings with CR or LF characters. At
+   present, this function does not suport other control chacaters such as
+   Backspace, FormFeed, etc. }
+  function DeTab(const S : UnicodeString; TabWidth : integer; ResetAfter
+  : TArrayOfChar) : UnicodeString; overload;
+  { simplified call to DeTab function which will adjust tab positions for
+  embeded line ending characters. }
+  function DeTab(const S : UnicodeString; TabWidth : integer = 8) : UnicodeString; overload;
+  { expands TAB characters in an array into spaces. TabWidth is the width of
+    the TabStops. Reset After is an array of characters that will reset the
+    current tab position to 1. For example using ResetAfter = [CR,LF] will
+    adjust the TabStop position for strings with CR or LF characters. At
+    present, this function does not suport other control chacaters such as
+    Backspace, FormFeed, etc. }
+  function DeTab(const Values : TArrayOfInt32; TabWidth : integer; ResetAfter
+  : TArrayOfChar) : TArrayOfInt32; overload;
+  { simplified call to DeTab function which will adjust tab positions for
+  embeded line ending characters. }
+  function DeTab(const Values : TArrayOfInt32; TabWidth : integer = 8) : TArrayOfInt32; overload;
+
+type
+
+  { text file line ending types }
+  TLineEndings = (leLF, leCRLF, leCR);
+
   { convert line endings to an expected standard like CRLF, CR or LF }
   function NormalizeLineEndings(const S : RawByteString; Ending :
     RawByteString = LF) : RawByteString; overload;
   { convert line endings to an expected standard like CRLF, CR or LF }
   function NormalizeLineEndings(const S : UnicodeString; Ending :
     UnicodeString = LF) : UnicodeString; overload;
+  { convert line endings to an expected standard like CRLF, CR or LF }
+  function NormalizeLineEndings(const S : RawByteString; Ending :
+    TLineEndings) : RawByteString; overload;
+  { convert line endings to an expected standard like CRLF, CR or LF }
+  function NormalizeLineEndings(const S : UnicodeString; Ending :
+    TLineEndings) : UnicodeString; overload;
 
-    { return true if Wild matches string }
+  { This will look at a string and attempt to determine the intended type
+  of line endings. The most prominent type will be returned. If the file
+  does not contain any line endings, it will return the value provided with
+  AssumeEnding. }
+  function DetectLineEndings(const S : RawByteString; AssumeEnding :
+    TLineEndings = leLF) : TLineEndings; overload;
+  { This will look at a string and attempt to determine the intended type
+  of line endings. The most prominent type will be returned. If the file
+  does not contain any line endings, it will return the value provided with
+  AssumeEnding. }
+  function DetectLineEndings(const S : UnicodeString; AssumeEnding :
+    TLineEndings = leLF) : TLineEndings; overload;
+
+  { return true if Wild matches string }
   function WildMatch(Wild, S : RawByteString) : boolean; overload;
   { return true if Wild matches string, provides the Match portion of the string }
   function WildMatch(Wild, S : RawByteString; out Match : RawByteString) : boolean; overload;
@@ -744,6 +913,21 @@ var
   { Return the FileName without the Path or Extension }
   function ExtractFileBase(const FileName : UnicodeString) : UnicodeString; overload;
 
+  { A more user frendly display of Relative and Absolute File/Directory Paths.
+    Generally, it will return a relative path unless it such a path needs to
+    traverse to more than "UpLimit" directories. It will also attempt to
+    shorten extremely long paths by replacing parts with the "Omitted" string. }
+  function FriendlyPath(const BasePath, FileName : RawByteString;
+    UpLimit : integer = 1; LenLimit : integer = 64; Omitted : RawByteString = '...'
+    ) : RawByteString; overload;
+  { A more user frendly display of Relative and Absolute File/Directory Paths.
+    Generally, it will return a relative path unless it such a path needs to
+    traverse to more than "UpLimit" directories. It will also attempt to
+    shorten extremely long paths by replacing parts with the "Omitted" string. }
+  function FriendlyPath(const BasePath, FileName : UnicodeString;
+    UpLimit : integer = 1; LenLimit : integer = 64; Omitted : UnicodeString = '...'
+    ) : UnicodeString; overload;
+
   { return the size of a file. }
   function FileGetSize(FileName:RawByteString; out Size : Int64; FollowLinks : boolean=true) : boolean; overload;
   { return the size of a file. }
@@ -753,11 +937,19 @@ var
   function FileLoad(const FileName : RawByteString; out Data : TArrayOfByte) : integer; overload;
   { load file from disk into array, returns 0 or error code  }
   function FileLoad(const FileName : UnicodeString; out Data : TArrayOfByte) : integer; overload;
+  { load file from disk into a string, returns 0 or error code }
+  function FileLoad(const FileName : RawByteString; out S : RawByteString) : integer; overload;
+  { load file from disk into a string, returns 0 or error code  }
+  function FileLoad(const FileName : UnicodeString; out S : UnicodeString) : integer; overload;
 
   { save a file to disk from an array, returns 0 or error code  }
   function FileSave(const FileName : RawByteString; const Data : TArrayOfByte) : integer; overload;
   { save a file to disk from an array, returns 0 or error code  }
   function FileSave(const FileName : UnicodeString; const Data : TArrayOfByte) : integer; overload;
+  { save a file to disk from a string, returns 0 or error code  }
+  function FileSave(const FileName, S : RawByteString) : integer; overload;
+  { save a file to disk from a string, returns 0 or error code  }
+  function FileSave(const FileName, S : UnicodeString) : integer; overload;
 
   { copy a disk file from Src to Dst. Will fail if Dst file already exists and
   Overwrite is False. Returns 0 if file was copied. This function does not
@@ -893,6 +1085,33 @@ var
   { create a new file system link }
   function CreateLink(Target, Link : RawByteString) : boolean; overload;
 
+{ Some number stuff }
+
+  { returns which ever integer is greater }
+  function Max(A, B : Int64) : Int64; overload;
+  { returns which ever integer is greatest value in the array. A null array will
+  generate an exception. }
+  function Max(const A : array of Int64) : Int64; overload;
+   { returns which ever integer is lesser }
+  function Min(A, B : Int64) : Int64; overload;
+  { returns which ever integer is lowest value in the array. A null array will
+  generate an exception. }
+  function Min(const A : array of Int64) : Int64; overload;
+
+  { returns which ever integer is greatest value in the array. A null array will
+    generate an exception. Unless, ReturnPosition is true. Then the index is
+    returned and -1 will be returned for a null array. }
+  function Maximum(const A : TArrayOfInt16; ReturnPosition : boolean = false) : Int32; overload;
+  { returns which ever integer is greatest value in the array. A null array will
+    generate an exception. Unless, ReturnPosition is true. Then the index is
+    returned and -1 will be returned for a null array. }
+  function Maximum(const A : TArrayOfInt32; ReturnPosition : boolean = false) : Int32; overload;
+  { returns which ever integer is greatest value in the array. A null array will
+    generate an exception. Unless, ReturnPosition is true. Then the index is
+    returned and -1 will be returned for a null array. }
+  function Maximum(const A : TArrayOfInt64; ReturnPosition : boolean = false) : Int64; overload;
+
+
 { Nibbling on Bits }
 
   { Return the number of bytes required for a given number of bits. }
@@ -912,11 +1131,14 @@ var
   function BitPack(Data : TArrayOfByte; BitWidth : integer) : TArrayOfByte; overload;
 
   { Return an unpacked array of bytes that was packed by the BitPack function.
-    Since an array that has been packed can have upto 7 unused bits at the end,
+    Since an array that has been packed can have up to 7 unused bits at the end,
     you will likely need to use MaxBytes to fix the size of the array,
     especially when BitWidth is less than 8 bits. }
   function BitUnPack(Data : TArrayOfByte; BitWidth : integer;
     MaxBytes : integer = -1) : TArrayOfByte; overload;
+
+  { Running External Programs }
+  procedure RunAsync(const Executable : String; const Params : Array of string); overload;
 
 { A simply procedure to suppress compiler warning messages about unused parameters.
   This is generally not needed. But, sometimes Event Handler Methods do not need
@@ -934,7 +1156,7 @@ implementation
 (* Platform Specific Functiomns ------------------------------------------- *)
 
 {$IFDEF WINDOWS}
-uses CRC, MD5, SHA1, GetText, Windows;
+uses CRC, MD5, SHA1, GetText, Windows, Process;
 
 { TODO 5 -cDevel Implement IsLink function for Windows }
 function IsLink(FileName : RawByteString) : boolean;
@@ -1052,9 +1274,27 @@ end;
 
 {$ENDIF}
 
+procedure RunAsync(const Executable: String; const Params: array of string);
+var
+  P: TProcess;
+  I: Integer;
+begin
+  P := TProcess.Create(nil);
+  try
+    P.Executable := Executable;
+    for I := Low(Params) to High(Params) do
+      P.Parameters.Add(Params[I]);
+    P.Options := [poNoConsole];
+    P.Execute;
+  finally
+    P.Free;
+  end;
+end;
+
 {$PUSH}
 { could be '$WARN 5024 off', but might change in later versions of FPC  }
 {$HINTS OFF}
+
 procedure IgnoreParameter(const Parameters);
 begin
   { This procedure does nothing at all. }
@@ -1074,6 +1314,7 @@ const
 
 var
    TempItems : TStringList;
+   LogFileName : String;
 
 procedure DoneUnit(Aborted:boolean);
 var
@@ -1081,6 +1322,9 @@ var
 begin
   // Maybe, update to only show message when Clean-Up is required.
   if Aborted then begin
+    {$IFDEF BUILD_DEBUG}
+    LogMessage(vbVerbose, 'Emergency shutdown clean-up.');
+    {$ENDIF}
     WriteLn('Emergency shutdown clean-up.');
     if ExitCode=0 then ExitCode:=1;
   end;
@@ -1102,6 +1346,9 @@ end;
 procedure Finalize;
 begin
   DoneUnit(False);
+  {$IFDEF BUILD_DEBUG}
+  LogMessage(vbVerbose, 'Terminate');
+  {$ENDIF}
 end;
 
 procedure Initialize;
@@ -1172,8 +1419,21 @@ begin
 end;
 
 procedure LogMessage(Verbosity: TVerbosity; Message: String);
+var
+  F : TextFile;
 begin
-  if Verbosity <= VerboseLevel then LogWriter(Message);
+  if Verbosity <= VerboseLevel then begin
+    if LogFileName <> '' then begin
+      try
+        AssignFile(F, LogFileName);
+        Append(F);
+        WriteLn(F, StringReplace(Message, CR, LF, [rfReplaceAll]));
+      finally
+        CloseFile(F);
+      end;
+    end;
+    LogWriter(Message);
+  end;
 end;
 
 procedure LogBits(Verbosity: TVerbosity; Message: String; Data: TArrayOfByte;
@@ -1233,6 +1493,11 @@ begin
   LogMessage(Verbosity, S);
 end;
 
+procedure LogMessage(Verbosity: TVerbosity; Message: String; I: Int64);
+begin
+  LogMessage(Verbosity, Message + ' ' + IntToStr(I));
+end;
+
 procedure LogMessage(Verbosity: TVerbosity; Message: String; Data: TArrayOfByte;
   BitWidth : integer );
 begin
@@ -1243,6 +1508,21 @@ begin
 end;
 
 procedure LogMessage(Verbosity: TVerbosity; Message: String; Data: TArrayOfWord
+  );
+var
+  I : Integer;
+  S : String;
+begin
+  S:='';
+  for I := 0 to Length(Data) - 1 do begin
+    if S <> '' then S := S + ', ';
+    S:=S + HexStr(Data[I], SizeOf(Data[I]) * 2);
+  end;
+  S:=Message + ' [' + S + ']:' + IntToStr(Length(Data));
+  LogMessage(Verbosity, S);
+end;
+
+procedure LogMessage(Verbosity: TVerbosity; Message: String; Data: TArrayOfInt32
   );
 var
   I : Integer;
@@ -1270,6 +1550,42 @@ begin
   end;
   S:=Message + ' [' + S + ']:' + IntToStr(Length(Data));
   LogMessage(Verbosity, S);
+end;
+
+procedure LogToFile(FileName: String; Clean:boolean);
+var
+  F : TextFile;
+begin
+  LogFileName:=FileName;
+  if LogFileName = '' then Exit;
+  if Clean or (not FileExists(LogFileName)) then begin
+    try
+      AssignFile(F, LogFileName);
+      Rewrite(F);
+    finally
+      CloseFile(F);
+    end;
+  end;
+end;
+
+// Internal, at start LogWriter is set to this procedure.
+procedure LogToConsole(Message: String);
+begin
+  {$IFDEF WINDOWS}
+    try
+      Message:=NormalizeLineEndings(Message, CRLF);
+      WriteLn(Message);
+    except
+      { will fail for a GUI application!!!! }
+    end;
+  {$ELSE}
+    WriteLn(Message);
+  {$ENDIF}
+end;
+
+procedure LogToNull(Message : String);
+begin
+  IgnoreParameter(Message);
 end;
 
 function isUnicode(const S: RawByteString): boolean;
@@ -1389,8 +1705,9 @@ begin
     CV:=0;
     CP:=0;
     CM:=CodePointMasks[CL].A;
-    if CL + IU > L then begin
+    if CL + IU - 1 > L then begin
       // String is not long enough.
+      // LogMessage(vbMinimal,'Insufficient string length.');
       CL:=1;
       CV:=-1;
       Result:=False;
@@ -1403,6 +1720,7 @@ begin
           CV:=-1;
           CL:=1;
           Result:=False;
+          // LogMessage(vbMinimal,'UTF-8 decoding error.');
           Break;
         end;
         CV:=(CV shl 6) + (CT and CM);
@@ -1414,6 +1732,12 @@ begin
     Inc(IU, CL);
   end;
   SetLength(Values, IV);
+end;
+
+function UTF8ToValues(const U: UnicodeString; out Values: TArrayOfInt32
+  ): boolean;
+begin
+  Result:=UTF8ToValues(RawByteString(U), Values);
 end;
 
 function UTF8ToValues(const UTF: UTF8String; out Values: TArrayOfInt32
@@ -1436,7 +1760,6 @@ function ValuesToUTF8(const Values: TArrayOfInt32; out UTF: UTF8String;
 var
   IU, IV, CP, CL : integer;
   CV : Int32;
-  A, O : Byte;
   S : RawByteString;
 begin
   if (BadChar < 0) or (BadChar > $10ffff) then
@@ -1452,43 +1775,168 @@ begin
       Result:=False;
       CV:=BadChar;
     end;
-    if CV > $ffff then
-      CL := 4
-    else
-    if CV > $07ff then
-      CL := 3
-    else
-    if CV > $007f then
-      CL := 2
-    else begin
-      S[IU+1]:=Char(CV);
+
+    if CV <= $7f then begin
+      S[IU + 1] := Char(CV);
       Inc(IU);
-      Continue;
-    end;
-    CP := CL;
-    A := $3f;
-    O := $80;
-    while CP > 0 do begin
-      if CP = 1 then begin
-        A := CodePointMasks[CL].A;
-        O := CodePointMasks[CL].O;
+    end else begin
+      if CV <= $7ff then
+        CL := 2
+      else if CV <= $ffff then
+        CL := 3
+      else
+        CL := 4;
+
+      for CP := CL downto 2 do begin
+        S[IU + CP] := Char((CV and $3F) or $80);
+        CV := CV shr 6;
       end;
-      S[IU+CP] := Char((CV and A) or O);
-      CV := CV shr 6;
-      Dec(CP);
+
+      case CL of
+        2: S[IU + 1] := Char(CV or $C0);
+        3: S[IU + 1] := Char(CV or $E0);
+        4: S[IU + 1] := Char(CV or $F0);
+      end;
+      Inc(IU, CL);
     end;
-    Inc(IU, CL);
+
   end;
   SetLength(S, IU);
   UTF:=UTF8String(S);
 end;
 
-procedure LogToConsole(Message: String);
+function ValueIsLetter(Value: Int32): boolean;
+{ TODO 3 -cDevel Initial Unicode Character Mapping Sets, will need fine tuning. }
 begin
-  {$IFDEF WINDOWS}
-  Message:=NormalizeLineEndings(Message, CRLF);
-  {$ENDIF}
-  WriteLn(Message);
+  case Value of
+    $0041..$005a, $0061..$007a, $00c0..$00d6, $00d8..$00f6, // Latin
+    { $00f8..$024f, // Latin
+      $0250..$02af, // IPA
+      $02b0..$02ff, // Spacing Modifiers
+    } $00f8..$02ff, // Combined Blocks
+    { $0370..$03ff, // Greek & Coptic
+      $0400..$04ff, // Cyrillic
+      $0500..$0527, // Cyrillic Supplement
+      $0531..$058a, // Armenian
+    } $0370..$0481, $048a..$0556, $0561..$0587,
+    { $0591..$05f4, // Hebrew
+    } $05d0..$05ea,
+    { $0600..$06ff, // Arabic
+      $0700..$074f, // Syriac
+      $0750..$077f, / /Arabic Supl
+    } $0600..$06ff, $0750..$077f,
+    { $0780..$07b1, // Thaana
+      $07c0..$07fa, // NKo
+      $0800..$083e, // Samaritan
+      $0840..$085e, // Mandiac
+      $0900..$097f, // Devanagari
+      $0981..$09fb, // Bengali
+      $0a01..$0a75, // Gurmukhi
+      $0a81..$0af1, // Gujarati
+      $0b01..$0b77, // Oriya
+      $0b82..$0bfa, // Tamil
+      $0c01..$0c7f, // Telugu
+      $0c82..$0cf2, // Kannada
+      $0d02..$0d7f, // Malayalam
+      $0d82..$0df4, // Sinhala }
+    $0e01..$0e5b, // Thia
+    $13a0..$13f4, // Cherokee
+    { $1e00..$1eff, // Latin Extended
+      $1f00..$1ffe, // Greek Extended
+    } $1e00..$1fbc, $1fd0..$1fdc, $1fe0..$1fec, $1ff0..$1ffc,
+    $2800..$28ff,  // Braille
+    { $2c60..$2c7f, // Laten Extended
+      $2c80..$2cff, // Coptic
+    } $2c60..$2cff,
+    $2de0..$2dff, // Cyrillic Extended
+    $31c0..$31e3, // CJK Strokes
+    $3200..$32fe, // CJK Letters and Months
+    $3300..$33ff, // CJK Compatibility
+    $3400..$4d5b, // CJK Ideographs
+    $4e00..$9fcb, // CJK Ideographs
+    $a640..$a697, // Cyrillic Extended
+    $a720..$a7ff, // Latin Extended
+    $ac00..$d7a3, // Hangul (Korean)
+    $d7b0..$d7fb, // Hangul Jamo Extended
+    { $f900..$fad9, // CJK Compatibility
+      $fe30..$fe4f, // CJK Compatibility
+      $20000..$2a6d6, // CJK Ideographs
+      $2a700..$2b734, // CJK Ideographs
+      $2b740..$2b81d, // CJK Ideographs
+      $2f800..$2fa1d, // CJK Ideographs }
+
+    { $0e00..$f8ff, // Private Use Area
+    } $f000..$f7ff:  // Custom mapped Chars
+    Result := True;
+  else
+    Result:=False;
+  end;
+end;
+
+function ValueIsSeperator(Value: Int32): boolean;
+{ TODO 3 -cDevel Initial Unicode Character Mapping Sets, will need fine tuning. }
+begin
+  case Value of
+    $00..$2f,
+    $3a..$40,
+    $5b..$60,
+    $7b..$89, $8b,
+    $90..$bf,
+    $d7, $f7,
+    $02b0..$036f,
+    $2010, $204f,
+    $2190..$27ff,
+    $2900..$2b9f :
+    Result := True;
+  else
+    Result:=False;
+  end;
+end;
+
+procedure WordsOfString(const S : RawByteString; var List : TStringList); overload;
+var
+  Values, Buffer : TArrayOfInt32;
+  I, F, J : Integer;
+  T : UTF8String;
+  X : boolean;
+begin
+  Buffer:=[];
+  UTF8toValues(S, Values);
+  I:=0;
+  while I < Length(Values) do begin
+    while (I < Length(Values)) and
+      ((not ValueIsLetter(Values[I])) or (ValueIsSeperator(Values[I]))) do Inc(I);
+    F:=I;
+    X:=False;
+    while (I < Length(Values)) and (not ValueIsSeperator(Values[I])) do begin
+      if not ValueIsLetter(Values[I]) then X:=True;
+      Inc(I);
+    end;
+    if (I > F) and (Not X) then begin
+      SetLength(Buffer, I - F);
+      for J := 0 to I - F - 1 do
+        Buffer[J] := Values[F+J];
+      if ValuesToUTF8(Buffer, T, 32) then
+        List.Add(RawByteString(T));
+    end;
+  end;
+end;
+
+procedure WordsOfString(const S : UnicodeString; var List : TStringList); overload;
+begin
+  WordsOfString(RawByteString(S), List);
+end;
+
+function WordsOfString(const S : RawByteString) : TStringList; overload;
+begin
+  Result:=TStringList.Create;
+  WordsOfString(S, Result);
+end;
+
+function WordsOfString(const S : UnicodeString) : TStringList; overload;
+begin
+  Result:=TStringList.Create;
+  WordsOfString(S, Result);
 end;
 
 function ToString(const V: TArrayOfByte): RawByteString;
@@ -1761,6 +2209,228 @@ begin
     Result:=R;
 end;
 
+function InArray(const V: TArrayOfRawByteString; const A: RawByteString;
+  Start : integer; CaseSpecific: boolean): integer;
+var
+  I : Integer;
+  S : String;
+begin
+  if CaseSpecific then begin
+    for I := Start to High(V) do
+      if V[I]=A then Exit(I);
+  end else begin
+    S:=LowerCase(A);
+    for I := Start to High(V) do
+      if LowerCase(V[I])=S then Exit(I);
+  end;
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfUnicodeString; const A: UnicodeString;
+  Start : integer; CaseSpecific: boolean): integer;
+var
+  I : Integer;
+  S : UnicodeString;
+begin
+  if CaseSpecific then begin
+    for I := Start to High(V) do
+      if V[I]=A then Exit(I);
+  end else begin
+    S:=LowerCase(A);
+    for I := Start to High(V) do
+      if LowerCase(V[I])=S then Exit(I);
+  end;
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfAnsiString; const A: AnsiString; Start : integer;
+  CaseSpecific: boolean): integer;
+var
+  I : Integer;
+  S : String;
+begin
+  if CaseSpecific then begin
+    for I := Start to High(V) do
+      if V[I]=A then Exit(I);
+  end else begin
+    S:=LowerCase(A);
+    for I := Start to High(V) do
+      if LowerCase(V[I])=S then Exit(I);
+  end;
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfString; const A: String; Start : integer; CaseSpecific: boolean
+  ): integer;
+var
+  I : Integer;
+  S : String;
+begin
+  if CaseSpecific then begin
+    for I := Start to High(V) do
+      if V[I]=A then Exit(I);
+  end else begin
+    S:=LowerCase(A);
+    for I := Start to High(V) do
+      if LowerCase(V[I])=S then Exit(I);
+  end;
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfChar; const A: Char; Start: integer;
+  CaseSpecific: boolean): integer;
+var
+  I : Integer;
+  S : Char;
+begin
+  if CaseSpecific then begin
+    for I := Start to High(V) do
+      if V[I]=A then Exit(I);
+  end else begin
+    S:=LowerCase(A);
+    for I := Start to High(V) do
+      if LowerCase(V[I])=S then Exit(I);
+  end;
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfBoolean; const A: Boolean; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfByte; const A: Byte; Start: integer): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfWord; const A: Word; Start: integer): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfInteger; const A: Integer; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfLongInt; const A: LongInt; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfPointers; const A: Pointer; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfInt8; const A: Int8; Start: integer): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfInt16; const A: Int16; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfInt32; const A: Int32; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfInt64; const A: Int64; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfUInt8; const A: UInt8; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfUInt16; const A: UInt16; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfUInt32; const A: UInt32; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
+function InArray(const V: TArrayOfUInt64; const A: UInt64; Start: integer
+  ): integer;
+var
+  I : Integer;
+begin
+  for I := Start to High(V) do
+    if V[I]=A then Exit(I);
+  Result:=-1;
+end;
+
 function Trim(const Lines: TArrayOfRawByteString): TArrayOfRawByteString;
 var
   I : Integer;
@@ -1883,6 +2553,21 @@ begin
     Result:=T
   else
     Result:=F;
+end;
+
+function StrToBool(const S: RawByteString; AssumeState: boolean): Boolean;
+begin
+  case Trim(Lowercase(S)) of
+    '0', 'f', 'n', 'no', 'off', 'false', 'disabled' : Result:=False;
+    '1', 't', 'y', 'yes', 'on', 'true', 'enabled' : Result:=True;
+  else
+    Result:=AssumeState;
+  end;
+end;
+
+function StrToBool(const S: UnicodeString; AssumeState: boolean): Boolean;
+begin
+  Result:=StrToBool(RawByteString(S), AssumeState);
 end;
 
 function Plural(Value: Int64; Multiple: RawByteString; Single: RawByteString): RawByteString;
@@ -2718,6 +3403,23 @@ begin
   end;
 end;
 
+function Implode(Chars : TArrayOfChar; Delim : RawByteString = LF) : RawByteString; overload;
+var
+  I : Integer;
+begin
+  Result:='';
+  if Delim = '' then begin
+    SetLength(Result, Length(Chars));
+    for I := 0 to High(CHars) do
+      Result[I+1]:=Chars[I];
+  end else begin
+    for I := 0 to High(Chars) - 1 do
+      Result:=Result + Chars[I] + Delim;
+    if High(Chars) > 0 then
+      Result:=Result + Chars[I];
+  end;
+end;
+
 function Explode(S: RawByteString; Delim: RawByteString): TArrayOfRawByteString;
 var
   I : Integer;
@@ -2865,6 +3567,116 @@ begin
   Result:=UnicodeString(UnescapeHTML(RawByteString(S)));
 end;
 
+{ TODO 2 -cDevel Include support for additional control character in Tab Expansion.
+such as Delete, Backspace, Formfeed and LineFeed (when not set as a line ending) }
+function DeTab(const S: RawByteString; TabWidth: integer;
+  ResetAfter: TArrayOfChar): RawByteString;
+var
+  P, I, V : integer;
+  X : RawByteString;
+  SS : TStringStream;
+begin
+  Result:='';
+  if TabWidth < 0 then Exit(S);
+  SS:=TStringStream.Create('');
+  try
+    // Allocate some extra space.
+    SS.Size := Length(S) + (Length(S) div (TabWidth + 1)) + 32;
+    SS.Position := 0;
+    X:=Implode(ResetAfter, '');
+    P:=1;
+    for I := 1 to Length(S) do begin
+      if S[I] = TAB then begin
+        if TabWidth=0 then Continue;
+        V:= (TabWidth - ((P -1) mod TabWidth));
+        SS.WriteString(StringOf(' ', V));
+        P:=P+V;
+        Continue;
+      end else begin
+        SS.Write(S[I], 1);
+        if Pos(S[I], X) > 0 then
+          P:=1
+        else
+         Inc(P);
+      end;
+    end;
+    SS.Size := SS.Position;
+    Result:=SS.DataString;
+  finally
+    SS.Free;
+  end;
+end;
+
+function DeTab(const S: UnicodeString; TabWidth: integer;
+  ResetAfter: TArrayOfChar): UnicodeString;
+var
+  Data : TArrayOfInt32;
+  U: UTF8String;
+begin
+  UTF8toValues(S, Data);
+  Data:=DeTab(Data, TabWidth, ResetAfter);
+  ValuesToUTF8(Data, U, $bf);  // Upside-down Question Mark
+  Result:=UnicodeString(U);
+end;
+
+
+function DeTab(const Values: TArrayOfInt32; TabWidth: integer;
+  ResetAfter: TArrayOfChar): TArrayOfInt32;
+var
+  I, J, P, S, C: integer;
+begin
+  if TabWidth < 0 then Exit(Values);
+  Result:=[];
+  try
+    SetLength(Result, Length(Values) + (Length(Values) div (TabWidth + 1)) + 32);
+    P:=1;
+    C:=0;
+    for I := 0 to High(Values) do begin
+      if Values[I] = Byte(TAB) then begin
+        if TabWidth = 0 then Continue;
+        S:=(TabWidth - ((P-1) mod TabWidth));
+        if S + C > High(Result) then
+          SetLength(Result, Length(Result) + S + 32);
+        for J := 1 to S do begin
+          Result[C]:=Byte(SPACE);
+          Inc(C);
+        end;
+        Inc(P,S);
+      end else begin
+        if C > High(Result) then
+          SetLength(Result, Length(Result) + 32);
+        Result[C]:=Values[I];
+        Inc(C);
+        Inc(P);
+        for J := 0 to High(ResetAfter) do
+        if Values[I] = Byte(ResetAfter[J]) then begin
+          P:=1;
+          Break;
+        end
+      end;
+    end;
+    SetLength(Result, C);
+  except
+    LogMessage(vbCritical, 'exception during tab expansion');
+    Result:=[];
+  end;
+end;
+
+function DeTab(const S: RawByteString; TabWidth: integer): RawByteString;
+begin
+  Result:=DeTab(S, TabWidth, [CR, LF]);
+end;
+
+function DeTab(const S: UnicodeString; TabWidth: integer): UnicodeString;
+begin
+  Result:=DeTab(S, TabWidth, [CR, LF]);
+end;
+
+function DeTab(const Values: TArrayOfInt32; TabWidth: integer): TArrayOfInt32;
+begin
+  DeTab:=DeTab(Values, TabWidth, [CR, LF]);
+end;
+
 function NormalizeLineEndings(const S: RawByteString; Ending: RawByteString
   ): RawByteString;
 begin
@@ -2893,6 +3705,65 @@ function NormalizeLineEndings(const S: UnicodeString; Ending: UnicodeString
   ): UnicodeString;
 begin
   Result:=UnicodeString(NormalizeLineEndings(UnicodeString(S), UnicodeString(Ending)));
+end;
+
+function NormalizeLineEndings(const S: RawByteString; Ending: TLineEndings
+  ): RawByteString;
+begin
+  case Ending of
+    leCRLF : Result:=NormalizeLineEndings(S, CRLF);
+    leLF   : Result:=NormalizeLineEndings(S, LF);
+    leCR   : Result:=NormalizeLineEndings(S, CR);
+  else
+    raise Exception.Create ('unrecognized line ending type.');
+  end;
+end;
+
+function NormalizeLineEndings(const S: UnicodeString; Ending: TLineEndings
+  ): UnicodeString;
+begin
+  case Ending of
+    leCRLF : Result:=NormalizeLineEndings(S, UnicodeString(CRLF));
+    leLF   : Result:=NormalizeLineEndings(S, UnicodeString(LF));
+    leCR   : Result:=NormalizeLineEndings(S, UnicodeString(CR));
+  else
+    raise Exception.Create ('unrecognized line ending type.');
+  end;
+end;
+
+function DetectLineEndings(const S: RawByteString; AssumeEnding: TLineEndings
+  ): TLineEndings;
+var
+  C, L, X : Integer;
+  T : RawByteString;
+begin
+  Result:=AssumeEnding;
+  X:=0;
+  L:=Length(S);
+  T:=StringReplace(S, CRLF, '', [rfReplaceAll]);
+  C:=L - Length(T);
+  if C > X then begin
+    Result:=leCRLF;
+    X:=C;
+  end;
+  L:=Length(T);
+  T:=StringReplace(T, LF, '', [rfReplaceAll]);
+  C:=L - Length(T);
+  if C > X then begin
+     Result:=leLF;
+     X:=C;
+  end;
+  L:=Length(T);
+  T:=StringReplace(T, CR, '', [rfReplaceAll]);
+  C:=L - Length(T);
+  if C > X then
+    Result:=leCR;
+end;
+
+function DetectLineEndings(const S: UnicodeString; AssumeEnding: TLineEndings
+  ): TLineEndings;
+begin
+  Result:=DetectLineEndings(RawByteString(S), AssumeEnding);
 end;
 
 function WildMatch(Wild, S: RawByteString): boolean;
@@ -3128,6 +3999,61 @@ begin
 end;
 
 {$PUSH}{$I-}
+
+function FriendlyPath(const BasePath, FileName: RawByteString;
+  UpLimit: integer; LenLimit: integer; Omitted: RawByteString): RawByteString;
+var
+  T: TArrayOfString;
+  I, J, LenOmit : Integer;
+  S1, S2 : RawByteString;
+begin
+  Result:=ExtractRelativePath(BasePath,FileName);
+  if Length(Result) > Length(FileName) then
+    Result:=FileName
+  else begin
+    T:=Explode(Result, PathDelimiter);
+    for I := 0 to High(T) do begin
+      if T[I] <> '..' then
+        Break
+      else if I > UpLimit then begin
+        Result:=FileName;
+        Break;
+      end;
+    end;
+  end;
+  if Length(Result) <= LenLimit then Exit;
+  T:=Explode(Result, PathDelimiter);
+  if Length(T) < 3 then Exit;
+  LenOmit:=Length(Omitted) + 1;
+  I:=1;
+  J:=High(T);
+  S1:=T[0] + PathDelimiter;
+  S2:=PathDelimiter + T[J];
+  Dec(J);
+  While I < J do begin
+    if Length(S2) + Length(T[J]) + LenOmit + Length(S1) <= LenLimit then begin
+      S2:=PathDelimiter + T[J] + S2;
+      Dec(J);
+    end else
+      Break;
+    if I >= J then
+      Break;
+    if Length(S1) + Length(T[I]) + LenOmit + Length(S2) <= LenLimit then begin
+      S1:=S1+ T[I] + PathDelimiter;
+      Inc(I);
+    end else
+      Break;
+  end;
+  Result:=S1 + Omitted + S2;
+end;
+
+function FriendlyPath(const BasePath, FileName: UnicodeString;
+  UpLimit: integer; LenLimit: integer; Omitted: UnicodeString): UnicodeString;
+begin
+  Result:=UnicodeString(FriendlyPath(RawByteString(BasePath), RawByteString(FileName),
+    UpLimit, LenLimit, RawByteString(Omitted)));
+end;
+
 function FileGetSize(FileName: RawByteString; out Size : Int64; FollowLinks
   : boolean=true) : boolean;
 var
@@ -3154,14 +4080,19 @@ begin
   Result:=FileGetSize(RawByteString(FileName), Size, FollowLinks);
 end;
 
+{ Old version... Not Thread Safe because of FileMode }
+(*
 function FileLoad(const FileName: RawByteString; out Data: TArrayOfByte
   ): integer;
 var
    F : File;
    R, E : integer;
+   M : Integer;
 begin
+  M:=System.FileMode;
   Data:=[];
   System.Assign(F, FileName);
+  System.FileMode:=0;
   Reset(F, 1);
   R := IOResult;
   if R = 0 then begin
@@ -3178,12 +4109,64 @@ begin
   Result := R;
   if R <> 0 then
     SetLength(Data, 0);
+  System.FileMode:=M;
 end;
+*)
+function FileLoad(const FileName: RawByteString; out Data: TArrayOfByte
+  ): integer;
+var
+   h : THandle;
+   Size, Count : Int64;
+begin
+  Data:=[];
+  h:=FileOpen(FileName, fmOpenRead or fmShareDenyNone);
+  if h = feInvalidHandle then
+    Result:=GetLastOSError
+  else begin
+    Result:=0;
+    try
+      Size:=FileSeek(h, 0, fsFromEnd);
+      if Size >= MaxInteger then
+        Result := 8
+      else begin
+        FileSeek(h, 0, fsFromBeginning);
+        SetLength(Data, Size);
+        Count:=FileRead(h, Data[0], Size);
+        if Count <> Size then
+          Result:=GetLastOSError;
+      end;
+    finally
+      FileClose(h);
+    end;
+  end;
+  if Result <> 0 then
+    SetLength(Data, 0);
+end;
+
 
 function FileLoad(const FileName: UnicodeString; out Data: TArrayOfByte
   ): integer;
 begin
   Result:=FileLoad(RawByteString(FileName),Data);
+end;
+
+function FileLoad(const FileName: RawByteString; out S: RawByteString): integer;
+var
+  D : TArrayOfByte;
+begin
+  Result:=FileLoad(FileName, D);
+  if Result = 0 then
+    S:=ToString(D)
+  else
+    S:='';
+end;
+
+function FileLoad(const FileName: UnicodeString; out S: UnicodeString): integer;
+var
+  U : RawByteString;
+begin
+  Result:=FileLoad(RawByteString(FileName), U);
+  S:=UnicodeString(U);
 end;
 
 function FileSave(const FileName: RawByteString; const Data: TArrayOfByte
@@ -3209,6 +4192,16 @@ function FileSave(const FileName: UnicodeString; const Data: TArrayOfByte
   ): integer;
 begin
   Result:=FileSave(RawByteString(FileName),Data);
+end;
+
+function FileSave(const FileName, S: RawByteString): integer;
+begin
+  Result:=FileSave(FileName, ToBytes(S));
+end;
+
+function FileSave(const FileName, S: UnicodeString): integer;
+begin
+  Result:=FileSave(RawByteString(Filename), RawByteString(S));
 end;
 
 function FileCopy(Src, Dst: RawByteString; Overwrite: boolean): integer;
@@ -3478,6 +4471,7 @@ begin
 end;
 
 function SystemPath(PathType: TSystemPaths): RawByteString;
+{ TODO 5 -cDevel Actual figure out system paths here and not in the Unit Initialize procedure. }
 begin
   case PathType of
     spExecutable   : Result:=AppExecPath;
@@ -3764,6 +4758,106 @@ end;
 
 {$POP}
 
+function Max(A, B : Int64) : Int64; overload;
+begin
+  if A > B then
+    Result:=A
+  else
+    Result:=B;
+end;
+
+function Max(const A : array of Int64) : Int64; overload;
+var
+  I : integer;
+begin
+  Result:=0;
+  if Length(A) = 0 then
+    raise Exception.Create ('no maximum value in empty array');
+  Result:=A[Low(A)];
+  for I := Low(A)+1 to High(A) do
+    if A[I] > Result then Result:=A[I];
+end;
+
+function Min(A, B : Int64) : Int64; overload;
+begin
+  if A < B then
+    Result:=A
+  else
+    Result:=B;
+end;
+
+function Min(const A : array of Int64) : Int64; overload;
+var
+  I : integer;
+begin
+  Result:=0;
+  if Length(A) = 0 then
+    raise Exception.Create ('no minimum value in empty array');
+  Result:=A[Low(A)];
+  for I := Low(A)+1 to High(A) do
+    if A[I] < Result then Result:=A[I];
+end;
+
+function Maximum(const A: TArrayOfInt16; ReturnPosition: boolean): Int32;
+var
+  I : Integer;
+begin
+  if ReturnPosition then begin
+    if Length(A) = 0 then Exit(-1);
+    Result:=Low(A);
+    for I := Low(A)+1 to High(A) do
+      if (A[I] > A[Result]) then
+        Result:=I;
+  end else begin
+    if Length(A) = 0 then
+      raise Exception.Create ('no maximum value in empty array');
+    Result:=A[Low(A)];
+    for I := Low(A)+1 to High(A) do
+      if (A[I] > Result) then
+        Result:=A[I];
+  end;
+end;
+
+function Maximum(const A: TArrayOfInt32; ReturnPosition: boolean): Int32;
+var
+  I : Integer;
+begin
+  if ReturnPosition then begin
+    if Length(A) = 0 then Exit(-1);
+    Result:=Low(A);
+    for I := Low(A)+1 to High(A) do
+      if (A[I] > A[Result]) then
+        Result:=I;
+  end else begin
+    if Length(A) = 0 then
+      raise Exception.Create ('no maximum value in empty array');
+    Result:=A[Low(A)];
+    for I := Low(A)+1 to High(A) do
+      if (A[I] > Result) then
+        Result:=A[I];
+  end;
+end;
+
+function Maximum(const A: TArrayOfInt64; ReturnPosition: boolean): Int64;
+var
+  I : Integer;
+begin
+  if ReturnPosition then begin
+    if Length(A) = 0 then Exit(-1);
+    Result:=Low(A);
+    for I := Low(A)+1 to High(A) do
+      if (A[I] > A[Result]) then
+        Result:=I;
+  end else begin
+    if Length(A) = 0 then
+      raise Exception.Create ('no maximum value in empty array');
+    Result:=A[Low(A)];
+    for I := Low(A)+1 to High(A) do
+      if (A[I] > Result) then
+        Result:=A[I];
+  end;
+end;
+
 function BitSize(Bits : word) : word;
 begin
   Result:=Bits shr 3;
@@ -3917,7 +5011,18 @@ end;
 
 initialization
 
+  LogFileName:='';
+  {$IFDEF WINDOWS}
+  LogWriter:=@LogToNull;
+  {$ELSE}
   LogWriter := @LogToConsole;
+  {$ENDIF}
+
+  {$IFDEF BUILD_DEBUG}
+  VerboseLevel:=vbExcessive;
+  LogToFile(ChangeFileExt(ParamStr(0), '.log'), True);
+  {$ENDIF}
+
   Initialize;
 
 finalization
