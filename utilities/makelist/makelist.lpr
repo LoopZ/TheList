@@ -24,6 +24,8 @@ const
   SectionLead = '--------';         // Leading characters for all section breaks
   SectionWidth = 45;                // Number of charcters in a section break
   IntListDir = 'Interrupt List';    // Main Interrupt List source directory subpath
+  IntFirstDir = 'Interrupt First';  // The Interrup.1st source directory subpath
+  MiscFileDir = 'Miscellaneous';    // Dir with Miscellaneous files that are just copied
 
   {$IFDEF Windows}
   DirSource : String = '..\..\source\';
@@ -54,6 +56,7 @@ const
     (Name:'Glossary';                  DOS:'GLOSSARY.LST'),
     (Name:'I2C-Bus Devices';           DOS:'I2C.LST'),
     (Name:IntListDir;                  DOS:'INTERRUP.LST'),
+    (Name:IntFirstDir;                 DOS:'INTERRUP.1ST'),
     (Name:'Links';                     DOS:'LINKS.LST'),
     (Name:'Memory Map';                DOS:'MEMORY.LST'),
     (Name:'Model-Specific Registers';  DOS:'MSR.LST'),
@@ -180,7 +183,7 @@ var
 begin
   SetHeader(IntListDir);
   S:=Header;
-  BaseDir:=DirSource + IntListDir + PathDelimiter;
+  BaseDir:=DirSource + IntFirstDir + PathDelimiter;
   for I := 0 to High(INTERRUPT_1ST) do begin
     Section:=UpperCase(INTERRUPT_1ST[I]);
     Cat(S, SectionComment(Section));
@@ -192,7 +195,7 @@ begin
       Cat(S, CreateFileList);
     // S:=IncludeTrailing(S, CRLF);
   end;
-  WriteFile('INTERRUP.1ST', S);
+  WriteFile(DosFileName(IntFirstDir), S);
 end;
 
 // Assemble the group data into listing files.
@@ -203,7 +206,8 @@ var
 begin
   L:=DirScan(DirSource + WildCard, [dsDirectories]);
   for I := 0 to High(L) do begin
-    if UpperCase(L[I]) = 'MISCELLANEOUS' then Continue;
+    if UpperCase(L[I]) = UpperCase(MiscFileDir) then Continue;
+    if UpperCase(L[I]) = UpperCase(IntFirstDir) then Continue;
     OutName:=DosFileName(L[I]);
     LogMessage(vbNormal, 'Group: ' + L[I] + SPACE + '(' + OutName + ')');
     BaseDir:=DirSource + L[I] + PathDelimiter;

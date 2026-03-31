@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2FC000
+  Category: c 	caches/spoolers
+      Flag: U 	undocumented function
+--------------------------------------------------------------------------------
+
+INT 2F U - PrintCache v3.1 PCACHE.EXE - INSTALLATION CHECK
+	AX = C000h
+Return: AL = FFh if installed
+	    SI = signature value 20D6h
+	    DI = signature value 8761h
+	    ES:BX -> configuration table (see #03029)
+	    CX = ??? (0300h)
+	    DX = ??? (0020h)
+Program: PCACHE is the resident print spooler portion of PrintCache by
+	  LaserTools; it may use either memory or disk space to spool output
+Range:	AH=C0h to AH=FFh, selected by commandline switch
+SeeAlso: AX=0100h/SI=20D6h,AX=C001h"PCACHE"
+
+Format of PrintCache configuration table:
+Offset	Size	Description	(Table 03029)
+ 00h 26 BYTEs	ASCIZ signature string "TORQ Configuration Table: "
+ 1Ah  2 BYTEs	???
+ 1Ch	DWORD	-> data table (see #03030)
+ 20h  4 BYTEs	ASCIZ version string ("3.1" for v3.1)
+ 24h  5 BYTEs	???
+ 29h 12 BYTEs	ASCIZ version date string ("Aug 31 1993" for v3.1)
+ 35h	WORD	buffered port type (01h = LPT, 02h = COM)
+ 37h	WORD	buffered port BIOS port number
+ 39h  5 BYTEs	ASCIZ buffered port name ("LPTn" or "COMn")
+ 3Eh	WORD	physical port type (01h = LPT, 02h = COM)
+ 40h	WORD	physical port BIOS port number
+ 42h  5 BYTEs	ASCIZ physical port name ("LPTn" or "COMn")
+ 47h	BYTE	port driver IRQ
+ 48h 21 BYTEs	???
+ 5Dh	WORD	buffer size in K
+ 5Fh 27 BYTEs	???
+ 7Ah	BYTE	popup hotkey shift states (see #00582 at INT 16/AH=02h)
+ 7Bh	BYTE	popup hotkey scan code (see #00006 at INT 09"IRQ1")
+ 7Ch  4 BYTEs	???
+ 80h 20 BYTEs	ASCIZ printer type name
+	???
+
+Format of PrintCache data table:
+Offset	Size	Description	(Table 03030)
+ 00h  2 BYTEs	???
+ 02h	DWORD	-> ??? entry point
+	???
+
