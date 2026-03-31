@@ -7,4 +7,5 @@
 INT 2F U - DOS 3.0+ internal - INSTALLATION CHECK
 	AX = 1200h
 Return: AL = FFh (for compatibility with other INT 2F functions)
-
+Notes:	the INT 2F/AH=12h functions are referred to as MultDOS
+	 in the MS-DOS v4 sources released in 2024 April
