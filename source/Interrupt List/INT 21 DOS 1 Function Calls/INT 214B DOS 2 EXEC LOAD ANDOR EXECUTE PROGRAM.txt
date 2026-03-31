@@ -59,6 +59,20 @@ Notes:	DOS 2.x destroys all registers, including SS:SP
 	  the file is shorter than 1Ah bytes), the DOS loader assumes that
 	  the file is a flat-format .COM style program, even if the first
 	  two bytes spell "MZ" or "ZM".
+	flat-format .COM executables start running with all four 8086 segregs
+	  => the PSP; this can be emulated by MZ .EXE executables by setting
+	  the initial CS and initial SS both to FFF0h. MZ executables can use
+	  a relocation table, making it easier to use multiple segments.
+	  however, a flat-format executable can use multiple segments, it just
+	  has to apply relocations by itself if needed.
+	flat-format executables may be limited to about FF00h bytes. MS-DOS
+	  refuses to load files >= 64 KiB if they do not have an MZ header.
+	the lDebug/lDOS build process generates .big files, which hold an
+	  executable image without headers that is to be loaded and entered
+	  at CS:IP = PSP:100h (similar to .COM files) but can be larger than
+	  64 KiB and should be run with the stack in another segment than the
+	  PSP. the debugger allows to load .big files directly by specifying
+	  switches on the command line before the file, either /F or /F+ /E+
 	DOS initialises INT 22 to point at the INT 21 return address, and
 	  then copies INT 22, INT 23, and INT 24 into the created child
 	  PSP. (INT 22 fills the PSP's Parent Return Address.)
