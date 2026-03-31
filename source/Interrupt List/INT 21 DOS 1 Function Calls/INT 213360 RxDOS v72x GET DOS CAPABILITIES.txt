@@ -1,0 +1,32 @@
+--------------------------------------------------------------------------------
+ Unique ID: 213360
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - RxDOS v7.2x - GET DOS CAPABILITIES
+	AX = 3360h
+Return:	AX = capabilities flags
+		bit 0: LBA28
+		bit 1: LBA32
+		bit 2: LBA48
+		bit 3: provides Interrupt Restoration Table at 70h:100h
+		bit 4: supports changing logical device for A: on
+			single-diskette systems, uses byte [0:504h]
+		bit 5: reentrant DOS stack allocation
+		bit 8: provides 64-bit seek (see AX=7142h)
+		bit 9: LFN-aware, filters LFN out of SFN searches
+		bit 10: LFN support
+		bit 11: 64 KiB cluster size
+		bit 12: 128 KiB cluster size
+		bit 13: FAT32 support
+		bit 14: utilises separate FCB SFT, not sharing the main
+			SFT for use with FCBs
+		(RxDOS v7.24 had only bit 5 and bit 13 set, though it
+		  perhaps should have set bits 3 or 9 or 10 too)
+	CX = reserved, 0
+	DL = reserved, 0
+	DH = DPB size
+	BL = CDS entry size
+	BH = SFT entry size
+SeeAlso: AH=30h,AX=3306h"DOS",AX=335Eh

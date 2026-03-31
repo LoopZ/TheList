@@ -56,12 +56,12 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	  a specific version number in SETVER to major version x and minor
 	  version y.
 	Enhanced DR-DOS as of v7.01.07 returns DR-DOS (OEM EEh) v6.00 here,
-	  but v7.01 on the MS-DOS v5+ function INT 21/AX=3306h.
-	RxDOS v7.24 returns v7.24 on INT 21/AX=3306h and either v7.10 (if FAT32
-	  supported), v7.00 (if FAT32 not supported but LFN supported), or
-	  v6.22 (if both FAT32 and LFN not supported).
+	  but v7.01 on the MS-DOS v5+ function INT 21/AX=3306h"DOS".
+	RxDOS v7.24 returns v7.24 on INT 21/AX=3306h"DOS" and either v7.10 (if
+	  FAT32 supported), v7.00 (if FAT32 not supported but LFN supported),
+	  or v6.22 (if both FAT32 and LFN not supported) on AH=30h.
 	recent FreeDOS kernel returns v7.10 if built with FAT32 support and
-	  v6.22 otherwise, on both this call and AX=3306h
+	  v6.22 otherwise, on both this call and AX=3306h"DOS"
 	Heiko Goeman's Advanced WinDOS 2.10/2.11/2.21 returns "IBM" DOS 5.00
 	  (subject to SETVER) and serial number 0.
 	All versions of CCI Multiuser DOS up to "CCI Multiuser DOS 7.22 Gold"
@@ -110,15 +110,17 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	  as PC-DOS by returning OEM number 00h
 	the version returned under DOS 4.0x may be modified by entries in
 	  the special program list (see #01662 at AH=52h); the version returned
-	  under DOS 5+ may be modified by SETVER--use AX=3306h to get the true
-	  version number
+	  under DOS 5+ may be modified by SETVER--use AX=3306h"DOS" to get the
+	  true version number
 	Recent lDOS builds as of 2026 return version 5.26 or 5.38 (due to the
 	  MS-DOS v4.01 command.com oddity, the bundled shell may display these
 	  as v5.27 or v5.39 instead). The lDOS kernel recreates most MS-DOS v5
 	  features and some MS-DOS v7.00 ones.
-SeeAlso: AX=3000h/BX=3000h,AX=3306h,AX=4452h,AH=87h,INT 15/AX=4900h
+BUGS:	FreeDOS sources note that "32RTM won't like non-zero values" in CX
+SeeAlso: AX=3000h/BX=3000h,AX=3306h"DOS",AX=4452h,AH=87h,INT 15/AX=4900h
 SeeAlso: AH=20h"S/DOS",INT 2F/AX=122Fh,INT 2F/AX=4010h,INT 2F/AX=4A33h
 SeeAlso: INT 2F/AX=E002h
+SeeAlso: AX=33FCh
 
 (Table 01394)
 Values for DOS OEM number:

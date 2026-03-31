@@ -36,7 +36,7 @@ Notes:	the DR DOS version is stored in the environment variable VER
 	  hence the AH and AL must be checked seperately.
 	In DR DOS 3.31-6.0, and DR PalmDOS, DX=AX on return.
 	For Novell DOS 7 - DR DOS 7.03 the DX value returned by this function
-	  is the same as the DX value returned by INT 21/AX=3306h, and
+	  is the same as the DX value returned by INT 21/AX=3306h"DOS", and
 	  represents the DOS revision (bits 7-0, currently always DL=00h) and
 	  the version flags (bits 15-8, with bit 12 = DOS in HMA, bit 11 = DOS
 	  in ROM) of the "patch_version" field in the PCM_HEADER structure in
