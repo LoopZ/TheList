@@ -80,6 +80,26 @@ const
     'Contact Info'
   );
 
+  SECTION_ORDER : TArrayOfString = (
+    'Introduction',
+    'Disclaimer',
+    'Note',
+    'Flags',
+    'Categories',
+    'Category Keys',
+    'Titles',
+    '*',
+    'Bibliography',
+    'Undone',
+    'History',
+    'Contributors',
+    'Credits',
+    'Contact Info',
+    'Admin'
+  );
+
+
+
 { ---------------------------------------------------------------------------- }
 // Global processing variables
 var
@@ -91,6 +111,7 @@ var
   BuildTime  : TDateTime;        // Release Build Date/Time
   LastChange : String;           // LST file release time stamp
 
+  WorkingData  : RawByteString;    // Working output data for LST file
   CommentFiles : TStringList; // For verification all section comment files were used.
 
 { ---------------------------------------------------------------------------- }
@@ -200,6 +221,7 @@ begin
   Result:=RightPad(SectionLead + '!---' + Section, SectionWidth, '-') + CRLF;
 end;
 
+
 { ---------------------------------------------------------------------------- }
 // Create the list of Files for the release
 function CreateFileList : String;
@@ -207,34 +229,43 @@ begin
   Result:='(pending)'+CRLF;
 end;
 
-// Create the INTERRUP.1ST file
-procedure CreateInterruptFirst;
+procedure CreateList(PathName: String; const Sections : TArrayOfString);
 var
   I : Integer;
-  S, Section : String;
+  Section : String;
   Data : RawByteString;
 begin
-  BaseDir:=DirSource + IntFirstDir + PathDelimiter;
+  OutName:=DosFileName(PathName);
+  LogMessage(vbNormal, 'Group: ' + PathName + SPACE + '(' + OutName + ')');
+  BaseDir:=DirSource + PathName + PathDelimiter;
   CreateCommentFilesList(BaseDir);
   ReadFile(BaseDir + HeaderFile, HeaderData);
-  SetHeader(IntFirstDir);
-  S:=Header;
+  SetHeader(PathName);
   PopCommentFile(HeaderFile);
-  for I := 0 to High(INTERRUPT_1ST) do begin
-    Section:=UpperCase(INTERRUPT_1ST[I]);
+  WorkingData:='';
+  for I := 0 to High(Sections) do begin
+    Section:=UpperCase(Sections[I]);
     PopCommentFile(Section);
-    Cat(S, SectionComment(Section));
     if Section <> 'FILELIST' then begin
-      if not ReadFile(BaseDir + UNDERSCORE + INTERRUPT_1ST[I] + SrcExt, Data) then
+      if not ReadFile(BaseDir + UNDERSCORE + Sections[I] + SrcExt, Data) then
         Continue;
-      Cat(S, NormalizeLineEndings(Data, leCRLF));
-    end else
-      Cat(S, CreateFileList);
-    // S:=IncludeTrailing(S, CRLF);
+      Data:=NormalizeLineEndings(Data, leCRLF);
+    end else begin
+      Data:=CreateFileList;
+    end;
+    if Data = '' then Continue;
+    Cat(WorkingData, SectionComment(Section));
+    Cat(WorkingData, Data);
   end;
-  OutName:=DosFileName(IntFirstDir);
-  WriteFile(OutName, S);
+  if WorkingData <> '' then
+  WriteFile(OutName, Header + WorkingData);
   CommentOrphans;
+end;
+
+// Create the INTERRUP.1ST file
+procedure CreateInterruptFirst;
+begin
+  CreateList(IntFirstDir, INTERRUPT_1ST);
 end;
 
 // Assemble the group data into listing files.
@@ -245,15 +276,11 @@ var
 begin
   L:=DirScan(DirSource + WildCard, [dsDirectories]);
   for I := 0 to High(L) do begin
-    if UpperCase(L[I]) = UpperCase(MiscFileDir) then Continue;
-    if UpperCase(L[I]) = UpperCase(IntFirstDir) then Continue;
-    OutName:=DosFileName(L[I]);
-    LogMessage(vbNormal, 'Group: ' + L[I] + SPACE + '(' + OutName + ')');
-    BaseDir:=DirSource + L[I] + PathDelimiter;
-    ReadFile(BaseDir + HeaderFile, HeaderData);
-    CreateCommentFilesList(BaseDir);
-    CommentOrphans;
+    if UpperCase(L[I]) = UpperCase(MiscFileDir) then Continue; // Handled elsewhere
+    if UpperCase(L[I]) = UpperCase(IntFirstDir) then Continue; // Handled last
+    CreateList(L[I], SECTION_ORDER);
  end;
+  CreateInterruptFirst;
 end;
 
 // Simply copies Miscellaneous files that are not broken down for editing
@@ -308,7 +335,6 @@ begin
   Inc(TitleWidth);
   CopyMiscellaneousFiles;
   CreateListFiles;
-  CreateInterruptFirst;
   CommentFiles.Free;
 end;
 
