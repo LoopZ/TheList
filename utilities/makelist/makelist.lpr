@@ -19,6 +19,12 @@ uses
   Version, PasExt, BinTree;
 
 const
+  SrcExt = '.txt';                  // File extension for all source files
+  HeaderFile = '_Header' + SrcExt;  // LST Header Data file
+  SectionLead = '--------';         // Leading characters for all section breaks
+  SectionWidth = 45;                // Number of charcters in a section break
+  IntListDir = 'Interrupt List';    // Main Interrupt List source directory subpath
+
   {$IFDEF Windows}
   DirSource : String = '..\..\source\';
   DirOutput : String = '..\..\TheList\';
@@ -26,18 +32,20 @@ const
   DirSource : String = '../../source/';
   DirOutput : String = '../../TheList/';
   {$ENDIF}
-  MaxFileSize : integer = 360 * 1024; // Maximum bytes allowed in list file
+
+  MaxFileSize : integer = 360 * 1024; // Maximum bytes allowed in LST file
+  ReleaseNumber : integer = 62;       // For LST file headers, probably not used
 
   DOSNAMES : array of record // Conversion of Long File Names to DOS versions
     Name, DOS : String;
   end = (
     // Miscellaneous files
-    (Name:'Advertisement.txt';         DOS:'_ADVERT.TXT'),
-    (Name:'FAQ.txt';                   DOS:'faq.lst'),
-    (Name:'Interrupt Primer.txt';      DOS:'INTERRUP.PRI'),
-    (Name:'Need Help.txt';             DOS:'NEEDHELP.TXT'),
-    (Name:'Ralf Brown.txt';            DOS:'RBROWN.TXT'),
-    (Name:'Read Me Now.txt';           DOS:'README.NOW'),
+    (Name:'Advertisement'+SrcExt;      DOS:'_ADVERT.TXT'),
+    (Name:'FAQ'+SrcExt;                DOS:'faq.lst'),
+    (Name:'Interrupt Primer'+SrcExt;   DOS:'INTERRUP.PRI'),
+    (Name:'Need Help'+SrcExt;          DOS:'NEEDHELP.TXT'),
+    (Name:'Ralf Brown'+SrcExt;         DOS:'RBROWN.TXT'),
+    (Name:'Read Me Now'+SrcExt;        DOS:'README.NOW'),
     // List Files
     (Name:'Bibliography';              DOS:'BIBLIO.LST'),
     (Name:'Category';                  DOS:'CATEGORY.KEY'),
@@ -45,7 +53,7 @@ const
     (Name:'Far Call Interface';        DOS:'FARCALL.LST'),
     (Name:'Glossary';                  DOS:'GLOSSARY.LST'),
     (Name:'I2C-Bus Devices';           DOS:'I2C.LST'),
-    (Name:'Interrupt List';            DOS:'INTERRPU.LST'),
+    (Name:IntListDir;                  DOS:'INTERRUP.LST'),
     (Name:'Links';                     DOS:'LINKS.LST'),
     (Name:'Memory Map';                DOS:'MEMORY.LST'),
     (Name:'Model-Specific Registers';  DOS:'MSR.LST'),
@@ -55,9 +63,35 @@ const
     (Name:'System-Management Mode';    DOS:'SMM.LST')
   );
 
+  // Sections to include in the INTERRUP.1ST file
+  INTERRUPT_1ST : TArrayOfString = (
+    'Filelist',
+    'Copyright',
+    'Disclaimer',
+    'Availability',
+    'Abbreviations',
+    'Credits',
+    'Addresses',
+    'Trademarks',
+    'Quotes',
+    'Contact Info'
+  );
+
+{ ---------------------------------------------------------------------------- }
+// Global processing variables
+var
+  BaseDir    : String;           // LST file source base directory
+  OutName    : String;           // LST Output FileName
+  TitleWidth : integer;          // Maximum LST file title width (+1)
+  Header     : String;           // Header for LST file
+  HeaderData : RawByteString;    // Text from _Header file when present
+  BuildTime  : TDateTime;        // Release Build Date/Time
+  LastChange : String;           // LST file release time stamp
+
 { ---------------------------------------------------------------------------- }
 
-function DosFileName(FileName : String) : String; // Returns the DOS file name
+// Returns the DOS file name from the Long file name or Group Title
+function DosFileName(FileName : String) : String;
 var
   I : Integer;
   B, E : String;
@@ -76,22 +110,110 @@ begin
   Result:=B+E;
 end;
 
+// Reads a file if it exists, normalizes line endings and truncates trailing blank lines.
+function ReadFile(FileName : String; out Data : RawByteString) : boolean;
+var
+  E : Integer;
+begin
+  if not FileExists(FileName) then begin
+    Data:='';
+    Exit(False);
+  end;
+  E:=PasExt.FileLoad(FileName, Data);
+  if E <> 0 then begin
+    LogMessage(vbCritical, 'File Read Error #' + IntToStr(E) + ': ' + FileName);
+    Halt(E);
+  end;
+  Data:=NormalizeLineEndings(Data, leCRLF);
+  while Copy(Data, Length(Data) - 3) = CRLF+CRLF do
+    SetLength(Data, Length(Data) - 2);
+  Result:=True;
+end;
+
+// Saves a LST file to the output directory
+procedure WriteFile(FileName : String; const Data : RawByteString);
+var
+  E : Integer;
+begin
+ FileName:=DirOutput + FileName;
+  E:=PasExt.FileSave(FileName, Data);
+   if E <> 0 then begin
+     LogMessage(vbCritical, 'File Write Error #' + IntToStr(E) + ': ' + FileName);
+     Halt(E);
+   end;
+end;
+
+// Generate LST file header
+procedure SetHeader(Title : String; Part : integer = 0; Total : integer = 0);
+begin
+   if Part + Total = 0 then
+     Header:=RightPad(Title, TitleWidth) + TAB +
+       RightPad('Release ' + IntToStr(ReleaseNumber), 12) + TAB +
+       'Last Change ' + LastChange
+   else
+     Header:=Title + COMMA + SPACE + 'part ' + IntToStr(Part) + ' of ' +
+       IntToStr(Total);
+   if HeaderData <> '' then
+     Cat(Header, CRLF + HeaderData);
+   Header:=IncludeTrailing(Header, CRLF);
+end;
+
+function SectionComment(Section : String) : String;
+begin
+  Section:=StringReplace(Section, SPACE, UNDERSCORE, [rfReplaceAll]);
+  Result:=RightPad(SectionLead + '!---' + Section, SectionWidth, '-') + CRLF;
+end;
+
 { ---------------------------------------------------------------------------- }
-procedure CreateListFiles; // Assemble the group data into listing files.
+// Create the list of Files for the release
+function CreateFileList : String;
+begin
+  Result:='(pending)'+CRLF;
+end;
+
+// Create the INTERRUP.1ST file
+procedure CreateInterruptFirst;
+var
+  I : Integer;
+  S, Section : String;
+  Data : RawByteString;
+begin
+  SetHeader(IntListDir);
+  S:=Header;
+  BaseDir:=DirSource + IntListDir + PathDelimiter;
+  for I := 0 to High(INTERRUPT_1ST) do begin
+    Section:=UpperCase(INTERRUPT_1ST[I]);
+    Cat(S, SectionComment(Section));
+    if Section <> 'FILELIST' then begin
+      if not ReadFile(BaseDir + UNDERSCORE + INTERRUPT_1ST[I] + SrcExt, Data) then
+        Continue;
+      Cat(S, NormalizeLineEndings(Data, leCRLF));
+    end else
+      Cat(S, CreateFileList);
+    // S:=IncludeTrailing(S, CRLF);
+  end;
+  WriteFile('INTERRUP.1ST', S);
+end;
+
+// Assemble the group data into listing files.
+procedure CreateListFiles;
 var
   I : Integer;
   L : TArrayOfString;
-  N : String;
 begin
   L:=DirScan(DirSource + WildCard, [dsDirectories]);
   for I := 0 to High(L) do begin
     if UpperCase(L[I]) = 'MISCELLANEOUS' then Continue;
-    N:=DosFileName(L[I]);
-    LogMessage(vbNormal, 'Group: ' + L[I] + SPACE + '(' + N + ')');
+    OutName:=DosFileName(L[I]);
+    LogMessage(vbNormal, 'Group: ' + L[I] + SPACE + '(' + OutName + ')');
+    BaseDir:=DirSource + L[I] + PathDelimiter;
+    ReadFile(BaseDir + HeaderFile, HeaderData);
+    // DirScan(BaseDir + UNDERSCORE + WildCard + SrcExt, SECTIONS, [dsFiles]);
   end;
 end;
 
-procedure CopyMiscellaneousFiles; // Simply copies Un-broken Miscellaneous files
+// Simply copies Miscellaneous files that are not broken down for editing
+procedure CopyMiscellaneousFiles;
 var
   I, E : Integer;
   L : TArrayOfString;
@@ -112,7 +234,10 @@ begin
   end;
 end;
 
-procedure Build; // Assemble the List Files;
+// Assemble the List Files
+procedure Build;
+var
+  I : Integer;
 begin
   // Verify paths
   if not DirectoryExists(DirSource) then begin
@@ -129,22 +254,31 @@ begin
       Halt(1);
     end;
   end;
+  BuildTime:=Now;
+  LastChange:=Lowercase(FormatDateTime('ddmmmYY hh:nn', BuildTime));
+  TitleWidth:=0;
+  for I := 0 to High(DOSNAMES) do
+     if Length(DOSNAMES[I].Name) > TitleWidth then
+       TitleWidth:=Length(DOSNAMES[I].Name);
+  Inc(TitleWidth);
   CopyMiscellaneousFiles;
   CreateListFiles;
+  CreateInterruptFirst;
 end;
 
 { ---------------------------------------------------------------------------- }
 
-procedure Banner;  // Display Program Banner and Version
+// Display Program Banner and Version
+procedure Banner;
 begin
-  { Program Information Banner }
   LogMessage(vbNormal,APP_PRODUCTNAME + ' v' + APP_VERSION + ' (build ' + APP_BUILD+ ')');
   LogMessage(vbNormal,'Copyright ' + APP_LEGALCOPYRIGHT);
-  LogMessage(vbNormal,'BSD 3-Clause License');
+  LogMessage(vbNormal,'The Clear BSD License ');
   LogMessage(vbNormal, '');
 end;
 
-procedure Help; // Show Command-Line help
+// Show Command-Line help
+procedure Help;
 
 const
   Switches : array of record
@@ -190,6 +324,7 @@ begin
   WriteLn;
 end;
 
+// Print the SeeHelp error message and exit
 procedure SeeHelp(Message : String);
 begin
   LogMessage(vbCritical, Message);
@@ -197,7 +332,8 @@ begin
   Halt(1);
 end;
 
-procedure Options; // Parse Program Command-Line Options
+// Parse Program Command-Line Options
+procedure Options;
 var
   I : Integer;
   Opt : String;
