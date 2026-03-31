@@ -16,7 +16,7 @@ uses
   {$ENDIF}
   Classes, SysUtils
   { you can add units after this },
-  Version, PasExt, BinTree;
+  Version, PasExt;
 
 const
   SrcExt = '.txt';                  // File extension for all source files
@@ -91,6 +91,8 @@ var
   BuildTime  : TDateTime;        // Release Build Date/Time
   LastChange : String;           // LST file release time stamp
 
+  CommentFiles : TStringList; // For verification all section comment files were used.
+
 { ---------------------------------------------------------------------------- }
 
 // Returns the DOS file name from the Long file name or Group Title
@@ -111,6 +113,37 @@ begin
   B:=Copy(B, 1, 8);
   E:=Copy(E, 1, 4);
   Result:=B+E;
+end;
+
+// Creates a File List of all the _*.txt files in a group. Used to insure all
+// were written to the LST file.
+procedure CreateCommentFilesList(PathName : String);
+begin
+  CommentFiles.Clear;
+  CommentFiles.Sorted:=True;
+  DirScan(PathName + UNDERSCORE + WildCard + SrcExt, CommentFiles, [dsFiles]);
+  UpperCase(CommentFiles);
+end;
+
+// Removes a file from the CommentFiles List
+procedure PopCommentFile(FileName : String);
+var
+  I : Integer;
+begin
+  FileName:=IncludeLeading(UpperCase(IncludeTrailing(FileName,SrcExt, false)), UNDERSCORE);
+  if not CommentFiles.Find(FileName, I) then Exit;
+  CommentFiles.Delete(I);
+end;
+
+// Show Comment Files not included in LST file
+procedure CommentOrphans;
+var
+  I : Integer;
+begin
+  if CommentFiles.Count = 0 then Exit;
+  LogMessage(vbMinimal, 'Group Comment files for ' + OutName + ' were excluded:');
+  for I := 0 to CommentFiles.Count - 1 do
+    LogMessage(vbMinimal, TAB + CommentFiles[I]);
 end;
 
 // Reads a file if it exists, normalizes line endings and truncates trailing blank lines.
@@ -181,11 +214,15 @@ var
   S, Section : String;
   Data : RawByteString;
 begin
-  SetHeader(IntListDir);
-  S:=Header;
   BaseDir:=DirSource + IntFirstDir + PathDelimiter;
+  CreateCommentFilesList(BaseDir);
+  ReadFile(BaseDir + HeaderFile, HeaderData);
+  SetHeader(IntFirstDir);
+  S:=Header;
+  PopCommentFile(HeaderFile);
   for I := 0 to High(INTERRUPT_1ST) do begin
     Section:=UpperCase(INTERRUPT_1ST[I]);
+    PopCommentFile(Section);
     Cat(S, SectionComment(Section));
     if Section <> 'FILELIST' then begin
       if not ReadFile(BaseDir + UNDERSCORE + INTERRUPT_1ST[I] + SrcExt, Data) then
@@ -195,7 +232,9 @@ begin
       Cat(S, CreateFileList);
     // S:=IncludeTrailing(S, CRLF);
   end;
-  WriteFile(DosFileName(IntFirstDir), S);
+  OutName:=DosFileName(IntFirstDir);
+  WriteFile(OutName, S);
+  CommentOrphans;
 end;
 
 // Assemble the group data into listing files.
@@ -212,8 +251,9 @@ begin
     LogMessage(vbNormal, 'Group: ' + L[I] + SPACE + '(' + OutName + ')');
     BaseDir:=DirSource + L[I] + PathDelimiter;
     ReadFile(BaseDir + HeaderFile, HeaderData);
-    // DirScan(BaseDir + UNDERSCORE + WildCard + SrcExt, SECTIONS, [dsFiles]);
-  end;
+    CreateCommentFilesList(BaseDir);
+    CommentOrphans;
+ end;
 end;
 
 // Simply copies Miscellaneous files that are not broken down for editing
@@ -243,6 +283,7 @@ procedure Build;
 var
   I : Integer;
 begin
+  CommentFiles:=TStringList.Create;
   // Verify paths
   if not DirectoryExists(DirSource) then begin
     LogMessage(vbCritical, 'Source path not found: ' + DirSource);
@@ -268,6 +309,7 @@ begin
   CopyMiscellaneousFiles;
   CreateListFiles;
   CreateInterruptFirst;
+  CommentFiles.Free;
 end;
 
 { ---------------------------------------------------------------------------- }

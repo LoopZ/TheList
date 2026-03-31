@@ -767,6 +767,11 @@ var
 
 (* Miscellaneous string functions *)
 
+  { Converts all strings in a TStringList to UpperCase }
+  procedure UpperCase(var List : TStringList); overload;
+  { Converts all strings in a TStringList to LowerCase }
+  procedure LowerCase(var List : TStringList); overload;
+
   { Converts the first letter of each word to Upper Case. It does not convert
     other characters to Lower Case. A word is any Group of Letters separated
     by a non-letter. }
@@ -3461,6 +3466,36 @@ procedure Explode(S: RawByteString; var Strs: TStringList; Delim: RawByteString
 begin
   While Length(S) > 0 do
     Strs.Add(PopDelim(S, Delim));
+end;
+
+procedure UpperCase(var List: TStringList);
+var
+  I : Integer;
+  S : Boolean;
+begin
+  S:=List.Sorted;
+  List.Sorted:=False;
+  for I := 0 to List.Count - 1 do
+    List[I]:=UpperCase(List[I]);
+  if S then begin
+    List.Sort;
+    List.Sorted:=True;
+  end;
+end;
+
+procedure LowerCase(var List: TStringList);
+var
+  I : Integer;
+  S : Boolean;
+begin
+  S:=List.Sorted;
+  List.Sorted:=False;
+  for I := 0 to List.Count - 1 do
+    List[I]:=LowerCase(List[I]);
+  if S then begin
+    List.Sort;
+    List.Sorted:=True;
+  end;
 end;
 
 function TitleCase(S: RawByteString): RawByteString;

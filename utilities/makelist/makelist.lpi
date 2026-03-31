@@ -45,6 +45,11 @@
       <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Linking>
+      <Debugging>
+        <RunWithoutDebug Value="True"/>
+      </Debugging>
+    </Linking>
     <Other>
       <ExecuteBefore>
         <Command Value="./version.sh makelist.lpi"/>

@@ -26,9 +26,9 @@ const
 
   { Source version and most recent project commit }
   SOURCE_VERSION = '0.1.0';
-  SOURCE_REVISION = '42';
+  SOURCE_REVISION = '43';
   SOURCE_URL = 'http://github.com/LoopZ/TheList';
-  SOURCE_COMMIT = 'ef951e983ec1a6c0c671eb17948e3cbc14bf9090';
+  SOURCE_COMMIT = '216ee3389ac455b951db9ca8b0d548b94d4d467a';
 
   { Version Build Atributes } 
   BUILD_DEBUG: Boolean = False;
@@ -36,7 +36,7 @@ const
   BUILD_PATCHED: Boolean = False;
   BUILD_PRIVATE: Boolean = False;
   BUILD_SPECIAL: Boolean = False;
-  BUILD_DATE: String = '2026-03-31 11:03:10';
+  BUILD_DATE: String = '2026-03-31 12:01:13';
 
   { General Application Information }
   APP_VERSION: String = '0.1.0';
