@@ -8,5 +8,35 @@ INT 2F U - DOS 3.0+ internal - GET DOS DATA SEGMENT
 	AX = 1203h
 Return: DS = data segment of IBMDOS.COM/MSDOS.SYS
 Note:	for DOS prior to version 5.0, the data segment is the same as the code
-	  segment
-
+	  segment (and both are placed at a fixed place before the first MCB)
+	the List of Lists (INT 21/AH=52h) and the Swappable Data Area(s)
+	  (INT 21/AX=5D06h, INT 21/AX=5D0Bh) are usually in the DOS DS.
+	DR-DOS v7 and lDOS can relocate the DOSDATA segment. it is set up
+	  in a temporary location initially, and relocated to the Upper
+	  Memory Area or Low Memory Area later. (it appears there are
+	  special drivers that can relocate the DOSDATA segment in MS-DOS.)
+	  note that as the first 3 to 5 SFT entries are usually found in
+	  the DOSDATA segment at offset 00CCh, relocating DOSDATA requires
+	  the relocation of SFT entries that may currently be open.
+	in DR-DOS the data segment seems to be relocated after the last
+	  INSTALL= directive in dconfig.sys is processed and before the
+	  first INSTALLLAST= directive is processed.
+	in lDOS, DOSDATA is relocated at the latest after the INSTALLMID=
+	  pass and before INSTALLLAST=; there are some COMPAT= directives
+	  for ldos.ini to alter the behaviour of the DOSDATA relocation.
+	in lDOS, the DOSDATA segment is always stored in an S MCB of type
+	  S_DOSDATA (see #26001 at INT 21/AH=52h). depending on ldos.ini
+	  COMPAT= directives this MCB may be hidden and unreachable from
+	  the MCB chain (with COMPAT=DOSDATAFIRST,HIDEDOSDATAFIRST).
+	in FreeDOS the data segment appears to be no larger than 7.6 KiB,
+	  in lDOS it uses 5.5 KiB, and in MS-DOS v5 no more than 4.9 KiB
+	DR-DOS v7 and lDOS also keep a reference to the DOSDATA segment in
+	  the INT 31 vector's segment, see notes in table #01378 in the
+	  entry for INT 21/AH=26h. for DR-DOS it seems this reference can
+	  actually be used by the DOS if the drdos code segment is in ROM,
+	  while lDOS always uses it as the only reference to DOSDATA.
+	in MS-DOS (v5) and FreeDOS, the DOSDATA segment is (usually) fixed
+	  at a segment below the first MCB (see #01627 and #01628 in the
+	  entry for INT 21/AH=52h), and is also used as the entrypoint
+	  segment (for the INT 21 handler entrypoint for instance). these
+	  entries will enable A20 if the DOS code segment is in the HMA.

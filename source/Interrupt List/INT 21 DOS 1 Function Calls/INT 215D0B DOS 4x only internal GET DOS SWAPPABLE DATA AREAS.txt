@@ -13,6 +13,7 @@ Return: CF set on error
 Notes:	copying and restoring the swappable data areas allows DOS to be
 	  reentered unless it is in a critical section delimited by calls to
 	  INT 2A/AH=80h and INT 2A/AH=81h,82h
+	the SDA is generally in the DOS data segment (see also INT 2F/AX=1203h)
 	SHARE and other DOS utilities consult the byte at offset 04h in the
 	  DOS data segment (see INT 2F/AX=1203h) to determine the SDA format
 	  in use: 00h = DOS 3.x, 01h = DOS 4.0-6.0, other = error.
