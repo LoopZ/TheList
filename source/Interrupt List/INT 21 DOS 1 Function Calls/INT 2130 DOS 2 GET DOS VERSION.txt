@@ -60,6 +60,8 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	RxDOS v7.24 returns v7.24 on INT 21/AX=3306h and either v7.10 (if FAT32
 	  supported), v7.00 (if FAT32 not supported but LFN supported), or
 	  v6.22 (if both FAT32 and LFN not supported).
+	recent FreeDOS kernel returns v7.10 if built with FAT32 support and
+	  v6.22 otherwise, on both this call and AX=3306h
 	Heiko Goeman's Advanced WinDOS 2.10/2.11/2.21 returns "IBM" DOS 5.00
 	  (subject to SETVER) and serial number 0.
 	All versions of CCI Multiuser DOS up to "CCI Multiuser DOS 7.22 Gold"
