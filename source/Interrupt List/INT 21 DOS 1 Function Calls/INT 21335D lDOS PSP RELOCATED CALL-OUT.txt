@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21335D
+  Category: O 	other operating systems
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 21 - lDOS - PSP RELOCATED CALL-OUT
+	AX = 335Dh
+	BX => new PSP location
+	DX => old PSP location
+Notes:	called by lDOS TSRs, lDebug, lDOS kernel, or lDOS MCP clu.exe
+	  and comloader when relocating a PSP
+	called before terminating to the new PSP with AH=4Ch or
+	  immediately after activating the new PSP using AH=50h. (see
+	  notes in AH=4Ch about using it to relocate to a new PSP.)
+	new PSP may be created using AX=4B01h, by copying an existing
+	  PSP and patching its pointers, or by using AH=26h or AH=55h
+SeeAlso: AH=26h,AH=4Ch,AH=50h,AH=55h

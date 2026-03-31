@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21335E
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - RxDOS v7.2x - GET EXTENDED DOS VERSION
+	AX = 335Eh
+Return:	AX = 7852h "Rx"
+	CX = build year in binary (eg 2018)
+	DH = build month (eg 10)
+	DL = build day (eg 08)
+	BX = RxDOS version, binary major in BH, minor in BL
+	DI = RxBIO version, major in DIH, minor in DIL
+		(the RxBIO version at some point could differ from the
+		  RxDOS version but this was obsolete as of v7.24)
+Notes:	RxDOS v7.2x / lRxDOS was an early lDOS development by ecm based
+	  on the copylefted (GNU GPL any version) RxDOS v7.1.5 released
+	  on 1999-08-07. it was in development from 2008 to 2018, and
+	  was checked in as v7.20N on 2015-12-27, a NASM port largely
+	  identicalised to v7.1.5 (this long predates the fixmem.pl
+	  conversion script and ident86 tool to aid in this)
+SeeAlso: AH=30h,AX=3306h"DOS",AX=3360h

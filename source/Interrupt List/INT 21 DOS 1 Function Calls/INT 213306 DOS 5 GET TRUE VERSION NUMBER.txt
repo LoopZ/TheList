@@ -76,6 +76,8 @@ Notes:	this function always returns the true version number, unlike AH=30h,
 	  revision still defaults to 0 (see also INT 21/AH=20h"S/DOS").
 	RxDOS v7.24 returns v7.24
 	Enhanced DR-DOS as of v7.01.07 returns v7.01
+	recent FreeDOS kernel returns v7.10 if built with FAT32 support and
+	  v6.22 otherwise, on both this call and AH=30h
 BUG:	DR DOS 5.0 and 6.0 return CF set/AX=0001h for INT 21/AH=33h
 	  subfunctions other than 00h-02h and 05h, while MS-DOS returns AL=FFh
 	  for invalid subfunctions

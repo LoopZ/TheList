@@ -196,7 +196,7 @@ Values for lDOS S MCB type:
  00h ?	S_OTHER
  01h	S_DOSENTRY (usually at segment 60h, may be hidden)
  02h*	S_DOSCODE
- 03h	S_DOSDATA (may be hidden)
+ 03h	S_DOSDATA (may be hidden, refer to INT 2F/AX=1203h)
  04h	S_IRQSCODE
  05h ?	S_IRQSDATA
  06h*	S_CDS

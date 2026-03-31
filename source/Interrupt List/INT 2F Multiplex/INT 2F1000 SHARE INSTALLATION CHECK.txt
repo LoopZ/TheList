@@ -23,10 +23,18 @@ Notes:	supported by OS/2 v1.3+ compatibility box, which always returns AL=FFh
 	DOS 5+ chains to the previous handler if AL <> 00h on entry
 	Windows Enhanced mode hooks this call and reports that SHARE is
 	  installed even when it is not
+	the INT 2F/AH=10h functions are referred to as MultSHARE
+	 in the MS-DOS v4 sources released in 2024 April
 BUGS:	values of AL other than 00h put DOS 3.x SHARE into an infinite loop
 	  (08E9: OR  AL,AL
 	   08EB: JNZ 08EB) <- the buggy instruction (DOS 3.3)
 	values of AL other than described here put PC-DOS 4.00 into the same
 	  loop (the buggy instructions are the same)
+	in the 2024 April release of the MS-DOS v4.00 sources it is
+	  apparent that the infinite loop is intended. it is found in
+	  the file v4.0/src/CMD/SHARE/GSHARE2.ASM with the label "Freeze",
+	  and comments stating "loop it any other value caus' no one should
+	  EVER issue this". (in this revision AL values below 80h and not
+	  equal to 00h nor 40h enter into the infinite loop.)
 SeeAlso: AX=1080h,INT 21/AH=52h,INT 21/AX=4457h/DX=FFFFh
 

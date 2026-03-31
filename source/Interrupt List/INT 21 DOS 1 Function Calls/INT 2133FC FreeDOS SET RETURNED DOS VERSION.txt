@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2133FC
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - FreeDOS - SET RETURNED DOS VERSION
+	AX = 33FCh
+	BX = DOS version (AX value for INT 21/AH=30h)
+Return:	AL != FFh and AL != 00h expected by ecm fork of Eric Auer's
+	  callver ("simple DOS version override helper")
+	RxDOS, SvarEDR-DOS, and FreeDOS do not modify any registers
+Notes:	supported by RxDOS v7.24, apparently setting the default
+	  version number stored in the PSP offset 40h (see #01378
+	  in AH=26h) upon PSP creation if no SETVER match found.
+	supported by SvarDOS flavour Enhanced DR-DOS (2025-08-25)
+	supported by FreeDOS, setting internal variables named as
+	  os_setver_minor and os_setver_major which are used to
+	  set up the default PSP version field.
+SeeAlso: AH=30h,AX=3306h"DOS",INT 2F/122Fh

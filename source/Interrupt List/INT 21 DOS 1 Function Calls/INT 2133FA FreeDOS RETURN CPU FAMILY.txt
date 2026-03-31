@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2133FA
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - FreeDOS - RETURN CPU FAMILY
+	AX = 33FAh
+Return:	AL = value of CPULevel variable
+Notes:	supported by FreeDOS, which stores its CPULevel variable in
+	  the byte at offset 44h from the List of Lists (AH=52h).
+	  this is documented as containing 00h or 01h for MS-DOS
+	  (to indicate no 386 or 386+), but 0, 1, 2, or 3 for an
+	  8086, 186/NEC V30, 286, or 386 for FreeDOS. extensions to
+	  higher values are suggested in the source text.

@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+ Unique ID: 21335F
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - RxDOS v7.2x - GET BOOT DRIVE AND FILENAME
+	AX = 335Fh
+Return:	DX:AX -> 16-byte filename buffer in DOSDATA segment
+Notes:	the buffer is filled with an ASCIZ pathname of the form
+	  X:\FILENAME.EXT (maximum 16 bytes including NUL).
+	the drive letter is the same as the drive returned by AX=3305h
+	  (and the initial default drive), while the filename is as
+	  detected by lRxDOS init from the boot sector passed by the
+	  prior loader, or the default (RXDOS.COM) if none detected.
+SeeAlso: AX=3305h,AX=335Eh

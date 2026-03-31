@@ -116,7 +116,8 @@ Notes:	in DOS v3+, the limit on simultaneously open files may be increased by
 	  and lDOS store the DOSDATA segment in the segment of the INT 31
 	  vector, which may be relocated during processing of dconfig.sys
 	  or ldos.ini. FreeDOS happens to put the DOSDATA segment in this
-	  spot as well, but does not support relocating DOSDATA.
+	  spot as well, but does not support relocating DOSDATA. (see also
+	  INT 2F/AX=1203h on DOSDATA segment details.)
 BUG:	When shelling out from the Borland Pascal 7.00 IDE, overly-long
 	  command lines will not be delimited by a 0Dh character, and the
 	  length byte is set to 80h!  A workaround is to always patch in a

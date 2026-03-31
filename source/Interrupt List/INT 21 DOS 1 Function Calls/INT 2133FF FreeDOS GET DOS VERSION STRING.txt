@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2133FF
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - FreeDOS - GET DOS VERSION STRING
+	AX = 33FFh
+	DX = 0000h to detect support
+Return:	DX:AX -> an ASCIZ version string
+	DX != 0000h usable to detect function supported
+Notes:	supported by FreeDOS, string in DOSDATA
+	supported by RxDOS v7.24, string in DOSCODE (HMA)
+	supported by SvarDOS and lDOS flavour Enhanced DR-DOS, string
+	  in DOSCODE (HMA)
+	supported by lMS-DOS based lDOS, string in DOSCODE (HMA)
+	string may contain trailing blanks or linebreaks
+	usually the string consists of only a single line
+SeeAlso: AH=30h,AX=3306h"DOS",AX=335Eh
