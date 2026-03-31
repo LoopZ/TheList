@@ -14,10 +14,17 @@ Offset	Size	Description	(Table 02800)
  00h  2 BYTEs	signature "MS" (4Dh 53h)
  02h	WORD	segment of owner (or segment at which to address block???)
 		0000h = free
-		0001h = DOS???
+		0001h = DOS??? (set if called with CX=0 or from CS=0)
 		FF33h = IO.SYS
+		FF39h seen
 		FFFFh = MSDOS.SYS
+		lDOS: FFFEh = DOSCODE, 0026h = DOS kernel allocation
+		else: CX passed to AX=4A03h, or CS of AX=4A02h caller
  04h	WORD	size of memory block (not including this header)
  06h	WORD	offset of next memory block in segment FFFFh, or 0000h if last
  08h  8 BYTEs	unused (explicitly set to 0 for MS-DOS 7.10)
-
+--- lDOS ---
+ 08h  8 BYTEs	allocation name, padded with NULs if shorter than 8 BYTEs
+Notes:	lDOS DOSCODE and MS-DOS v7 DOSBIOS and DOS appear to be
+	  addressed with the segment equal to their owner value.
+	  (lDOS has a single DOSCODE combining DOSBIOS and DOS.)

@@ -13,11 +13,18 @@ Return: CF clear if successful
 	    AX = error code (07h,08h) (see #01680 at AH=59h/BX=0000h)
 	    BX = size of largest available block
 Notes:	DOS 2.1-6.0 coalesces free blocks while scanning for a block to
-	  allocate
+	  allocate (in MS-DOS the entirety of the selected area is
+	  scanned, even if a first fit strategy is in use)
 	.COM programs are initially allocated the largest available memory
-	  block, and should free some memory with AH=49h before attempting any
-	  allocations
+	  block, and should free some memory with AH=4Ah or AH=49h before
+	  attempting any allocations. the same is true of MZ .EXE programs
+	  if their maximum allocation field contains a large value.
 	under the FlashTek X-32 DOS extender, EBX contains a protected-mode
 	  near pointer to the allocated block on a successful return
+	memory allocation strategy and UMB link state (see AH=58h) affect
+	  what memory can and will be allocated. if an error 08h is
+	  returned, and a dual area strategy is in effect, the size in BX
+	  is the very largest size out of both areas
+	an empty memory block (BX = 0) can be allocated, if a free MCB
+	  (of any size) is found in the scan.
 SeeAlso: AH=49h,AH=4Ah,AH=58h,AH=83h
-

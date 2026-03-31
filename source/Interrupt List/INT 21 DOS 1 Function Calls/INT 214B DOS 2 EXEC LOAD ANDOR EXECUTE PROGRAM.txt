@@ -19,8 +19,13 @@ INT 21 - DOS 2+ - "EXEC" - LOAD AND/OR EXECUTE PROGRAM
 		0001h child's return code discarded on termination
 Return: CF clear if successful
 	    BX,DX destroyed
-	    if subfunction 01h, process ID set to new program's PSP; get with
-		INT 21/AH=62h
+	    if subfunction 01h:
+		process ID set to new program's PSP; get with INT 21/AH=62h.
+		the default Parent Return Address (INT 22) in the child
+		  process points to the same return address as this INT 21
+		  call, so absent modification this address will be executed
+		  twice - once returning from the AX=4B01h call and again
+		  if and when the child process terminates.
 	CF set on error
 	    AX = error code (01h,02h,05h,08h,0Ah,0Bh) (see #01680 at AH=59h)
 Notes:	DOS 2.x destroys all registers, including SS:SP
@@ -29,11 +34,14 @@ Notes:	DOS 2.x destroys all registers, including SS:SP
 	  ROM module headers (see #01595) before searching on disk
 	for functions 00h and 01h, the calling process must ensure that there
 	  is enough unallocated memory available; if necessary, by releasing
-	  memory with AH=49h or AH=4Ah
+	  memory with AH=49h or AH=4Ah (DOS will detect a lack of memory and
+	  return error 08h if the minimum allocation cannot be fulfilled)
 	for function 01h, the AX value to be passed to the child program is put
 	  on top of the child's stack
 	for function 03h, DOS assumes that the overlay is being loaded into
-	  memory allocated by the caller
+	  memory allocated by the caller. (this implies that the caller should
+	  know how large the executable image is, usually requiring it to read
+	  the file and parse an MZ executable header if any.)
 	function 01h was undocumented prior to the release of DOS 5.0
 	some versions (such as DR DOS 6.0) check the parameters and parameter
 	  block and return an error if an invalid value (such as an offset of
@@ -45,19 +53,47 @@ Notes:	DOS 2.x destroys all registers, including SS:SP
 	  .EXE header (see #01594); if not, the file is assumed to be in .COM
 	  format.  If present, the file may be in any of several formats which
 	  are extensions of the original .EXE format (see #01593)
+	MS-DOS returns error 0Bh for empty files (zero length)
+	MS-DOS reads 1Ah bytes from the file to determine whether there is an
+	  MZ executable header. if the read returns as a short read (that is,
+	  the file is shorter than 1Ah bytes), the DOS loader assumes that
+	  the file is a flat-format .COM style program, even if the first
+	  two bytes spell "MZ" or "ZM".
+	DOS initialises INT 22 to point at the INT 21 return address, and
+	  then copies INT 22, INT 23, and INT 24 into the created child
+	  PSP. (INT 22 fills the PSP's Parent Return Address.)
 	.COM-format executables begin running with the following register
 	  values:
 		AL = 00h if first FCB has valid drive letter, FFh if not
 		AH = 00h if second FCB has valid drive letter, FFh if not
+		(no drive letter specified, including a completely empty
+		  filename, is considered as the default drive which is
+		  usually a valid drive letter. the default FCBs must be
+		  provided by the AH=4Bh caller however; not all callers
+		  set them up the same way as MS-DOS command.com does.)
 		CS,DS,ES,SS = PSP segment
 		SP = offset of last word available in first 64K segment
+		SP is usually FFFEh, if the allocated memory block's size
+		  is at least 64 KiB. particularly if loading into a UMB,
+		  the memory block may be smaller. flat-format programs
+		  are well-advised to check that the initial SP suffices.
+		  (the lDOS fork of LZEXE detects such a check in its
+		  COMTOEXE program if the format /2 switch is given.)
+		SS:SP -> a word that is all-zeroes; this allows to exit
+		  the program by running a RETN instruction. this will
+		  branch to CS:0000h which is the beginning of the PSP,
+		  where an INT 20 instruction is specifically placed.
+		  (the RETN will wrap around SP to 0000h, but this does
+		  not cause any problems in Real or Virtual 86 Mode.)
 		(note: AX is always 0000h under DESQview)
 	old-format executables begin running with the following register
 	  values:
 		AL = 00h if first FCB has valid drive letter, FFh if not
 		AH = 00h if second FCB has valid drive letter, FFh if not
 		DS,ES = PSP segment
-		SS:SP as defined in .EXE header
+		(AX, DS, ES same as for flat-format .COM executables)
+		SS:SP as defined in MZ .EXE header
+		CS:IP as defined in MZ .EXE header
 		(note: AX is always 0000h under DESQview)
 	new executables begin running with the following register values
 		AX = environment segment
@@ -93,7 +129,8 @@ MORE:   When creating a command tail, it consists of a length byte followed
 
 BUGS:	DOS 2.00 assumes that DS points at the current program's PSP
 	Load Overlay (subfunction 03h) loads up to 512 bytes too many if the
-	  file contains additional data after the actual overlay
+	  file contains additional data after the actual overlay (see #01594
+	  notes on how MS-DOS does not use the extra bytes field)
 	Load but Do Not Execute (subfunction 01h) is reported to corrupt the
 	  top word of the caller's stack if the loaded module terminates with
 	  INT 21/AH=4Ch in some versions of MS-DOS, including v5.00.
@@ -109,6 +146,11 @@ Offset	Size	Description	(Table 01590)
  0Eh	DWORD	(AL=01h) will hold subprogram's initial SS:SP on return
  12h	DWORD	(AL=01h) will hold entry point (CS:IP) on return
 SeeAlso: #01591,#01592
+Notes:	MS-DOS copies 128 bytes from the command line tail pointer into
+	  the created child PSP (to PSP:0080h), and 12 bytes from each
+	  default FCB pointer (to PSP:005Ch and PSP:006Ch). each of the
+	  default FCBs is also initialised with 4 bytes of all-zeroes
+	  after the 12 copied bytes.
 
 Format of EXEC parameter block for AL=03h:
 Offset	Size	Description	(Table 01591)
@@ -137,6 +179,7 @@ Values for the executable types understood by various environments:
  MP	old PharLap .EXP (see #01619)
  P2	PharLap 286 .EXP (see #01620)
  P3	PharLap 386 .EXP (see #01620)
+ ELD1	Extension for lDebug format as of 2026-March
 
 Format of .EXE file header:
 Offset	Size	Description	(Table 01594)
@@ -148,12 +191,15 @@ Offset	Size	Description	(Table 01594)
  06h	WORD	number of relocation entries
  08h	WORD	header size in paragraphs
  0Ah	WORD	minimum paragraphs of memory required to allocate in addition
-		  to executable's size
- 0Ch	WORD	maximum paragraphs to allocate in addition to executable's size
- 0Eh	WORD	initial SS relative to start of executable
+		  to executable image's size
+ 0Ch	WORD	maximum paragraphs to allocate in addition to executable
+		  image's size (may carry above FFFFh paragraphs, which is
+		  treated like a .COM file to allocate the biggest block)
+ 0Eh	WORD	initial SS relative to start of executable (added to PSP+10h)
  10h	WORD	initial SP
  12h	WORD	checksum (one's complement of sum of all words in executable)
- 14h	DWORD	initial CS:IP relative to start of executable
+ 14h	DWORD	initial CS:IP relative to start of executable (the CS value is
+		  added to PSP+10h)
  18h	WORD	offset within header of relocation table
 		40h or greater for new-format (NE,LE,LX,W3,PE,etc.) executable
  1Ah	WORD	overlay number (normally 0000h = main program)
@@ -212,8 +258,29 @@ Offset	Size	Description	(Table 01594)
   N   N DWORDs	relocation items
 		each is the segment:offset from start of load image at which
 		  to add the actual load segment to the indicated WORD
+		like the CS and SS fields in the MZ header, the segment part
+		  of each relocation entry is itself relocated by adding
+		  PSP+10h (thus => the beginning of the load image)
+		an offset equal to FFFFh may cause faults, or access a
+		  contiguous word in memory, or two bytes one at the end
+		  and the other at the beginning of the segment. this
+		  should not occur in a well-formed file.
 Notes:	if the word at offset 02h is 4, it should be treated as 00h, since
 	  pre-1.10 versions of the MS linker set it that way
+	the word at offset 02h (extra bytes in last page) is never actually
+	  used by the exe loader of MS-DOS, the loader just allows a short
+	  read that's up to 511 bytes shorter than the size as calculated
+	  from the words at offset 04h (number of 512-byte pages) and 08h
+	  (header size in paragraphs). the allocation size is likewise
+	  calculated assuming a full last page.
+	an lDOS iniload kernel file (used for lDOS kernel, lDOS flavour RxDOS
+	  or Enhanced DR-DOS kernel, or lDebug debugger) has 16EBh in the
+	  word at offset 02h; this forms part of the instructions that run
+	  in the entrypoint for MS-DOS v6 / IBM-DOS / FreeDOS / EDR-DOS load
+	  protocols. the instructions formed by the "MZ" signature and the
+	  bogus extra bytes are DEC BP, POP DX, JMP SHORT 1Ah. (in iniload
+	  files that have an MZ executable image, the image ends in at least
+	  512 bytes of unused padding to harden for the bogus extra bytes.)
 	if both minimum and maximum allocation (offset 0Ah/0Ch) are zero, the
 	  program is loaded as high in memory as possible (DOS only checks
 	  the maximum allocation, however)
@@ -222,6 +289,9 @@ Notes:	if the word at offset 02h is 4, it should be treated as 00h, since
 	  load image described by the .EXE header; this data may be overlays,
 	  the actual executable for newer-format executables, or debugging
 	  information (see #01600,#01624)
+	the amount of pages (at offset 04h) may be shifted left by 5 bits to
+	  convert it to an amount of paragraphs, with the shifted out bits
+	  ignored (equivalent to calculating modulo 1 MiB at a certain point)
 	relocations entries need not be in any particular order, although they
 	  are typically stored in order from beginning to end of the load
 	  image

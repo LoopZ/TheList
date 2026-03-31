@@ -6,21 +6,37 @@
 
 INT 2F U - Windows95 - DOS KERNEL - (DE)ALLOCATE HMA MEMORY BLOCK
 	AX = 4A03h
-	CX = segment of block's owner???
+	CX = segment of block's owner to allocate, if 0 then 1 is used
+	    (MS-DOS v5 AX=4A02h passes INT 2F caller's CS as the owner)
 	DL = subfunction
-	    00h allocate block
+	    00h allocate block from bottom of largest free block
 		BX = number of bytes
 		Return: DI=FFFFh if unable to allocate
-			ES:DI -> allocated block
-	    01h resize block
-		ES:DI -> previously-allocated block
-		BX = new size in bytes (must be less than original size???)
+			ES:DI -> allocated block if able to allocate,
+			  BX = allocated size (rounded up to paragraph)
+	    01h allocate block from top of largest free block
+		BX = number of bytes
 		Return: DI=FFFFh if unable to allocate
-			ES:DI -> reallocated block
-		Note:	the contents of the original block are NOT copied
-	    02h free block???
+			ES:DI -> allocated block if able to allocate,
+			  BX = allocated size (rounded up to paragraph)
+	    02h free block (coalesces prior and subsequent free blocks)
 		ES:DI -> block to be freed
-Note:	in MS-DOS 7.x, function 4A02h is implemented by calling this function
-	  with DL=00h
+	    on >= 03h lDOS returns ES:DI=FFFFh:FFFFh
+		(possibly MS-DOS v7 as well)
+Note:	in MS-DOS v7+ and lDOS, function AX=4A02h is implemented by
+	  calling this function with DL=00h and CX=CS
+	MS-DOS v7 never allocates all memory, always splitting the
+	  free HMCB to create a new free HMCB and an allocated HMCB.
+	  the maximum size indicated by AX=4A01h accounts for this.
+	  lDOS instead added a way to allocate the entire free HMCB.
+	the allocation always finds the largest free block. if there
+	  are multiple free blocks of the same largest size, then the
+	  first one is selected for the allocation.
+	the allocation subfunctions do not coalesce free blocks, it is
+	  the responsibility of the free subfunction to do so.
+	in lDOS the higher half of the HMCB is used to hold a name
+	  indicating the type of allocation. the caller has to write
+	  to this name directly, after allocating a block. like MS-DOS
+	  the kernel clears the name field when allocating an HMCB.
 SeeAlso: AX=4A02h
 

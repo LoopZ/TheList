@@ -12,9 +12,17 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code (07h,08h,09h) (see #01680 at AH=59h/BX=0000h)
 	    BX = maximum paragraphs available for specified memory block
-Notes:	under DOS 2.1-6.0, if there is insufficient memory to expand the block
-	  as much as requested, the block will be made as large as possible
-	DOS 2.1-6.0 coalesces any free blocks immediately following the block
-	  to be resized
+Notes:	if the request can be fully satisfied (due to shrinking the block,
+	  or keeping its size, or successfully growing the block) then the
+	  MCB owner is set to the current PSP. this appears to be because
+	  in MS-DOS it shares code with the memory allocation (see AH=48h).
+	if there is insufficient memory to expand the block as much as
+	  requested, the block will be made as large as possible. in this
+	  case the MCB owner is not reset.
+	MS-DOS coalesces any free blocks immediately following the block
+	  to be resized, even if the requested size can be satisfied with
+	  less or no coalescing (indeed even if shrinking the block).
+	a memory block may be shrunk to become empty (BX = 0), which is
+	  not the same as freeing the memory block.
 SeeAlso: AH=48h,AH=49h,AH=83h
 

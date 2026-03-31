@@ -10,10 +10,11 @@ INT 21 - DOS 2+ - GET DOS VERSION
 	AL = what to return in BH
 	    00h OEM number (see #01394)
 	    01h version flag
-Return: AL = major version number (00h if DOS 1.x)
-	AH = minor version number
+	    else: also OEM number returned
+Return: AL = major version number (00h if DOS 1.x, other registers preserved)
+	AH = minor version number (often rendered with a leading zero if <10)
 	BL:CX = 24-bit user serial number (most versions do not use this)
----if DOS <5 or AL=00h---
+---if DOS <5 or AL!=01h---
 	BH = MS-DOS OEM number (see #01394)
 ---if DOS 5+ and AL=01h---
 	BH = version flag
@@ -23,20 +24,30 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	the OS/2 v2.x Compatibility Box returns major version 14h (20)
 	OS/2 Warp 3.0 Virtual DOS Machines report v20.30; Warp 4 VDMs report
 	  v20.40.
-	the Windows NT DOS box returns version 5.00, subject to SETVER
+	the Windows NT NTVDM DOS returns version 5.00, subject to SETVER
 	DOS 4.01 and 4.02 identify themselves as version 4.00; use
 	  INT 21/AH=87h to distinguish between the original European MS-DOS 4.0
 	  and the later PC-DOS 4.0x and MS-DOS 4.0x
+	The MS-DOS v4.01 command.com displays the version as v4.01 by adding
+	  one to the minor version as returned from this function.
+	MS-DOS v4.00 was originally developed as v3.40, some references to
+	  this version number remained. The default contents of the special
+	  program list of MS-DOS v4.00 all are set up as returning v3.40
 	IBM DOS 6.1 reports its version as 6.00; use the OEM number to
 	  distinguish between MS-DOS 6.00 and IBM DOS 6.1 (there was never an
 	  IBM DOS 6.0)
 	IBM's PC DOS 7 and Y2K updates report themselves as IBM 7.0 to be
 	  distinguished from the MS-DOS 7.0 portion of Windows 95.
+	There is an IBM PC-DOS v7.10 which supports FAT32 the same as the
+	  MS-DOS v7.10 part of later MSW 95 and 98, though it appears that
+	  this may be a re-implementation rather than a direct port.
 	MS-DOS 6.21 reports its version as 6.20; version 6.22 returns the
 	  correct value
 	Windows95 returns version 7.00 (the underlying MS-DOS), as did the
 	  "Chicago" beta (reported in _Microsoft_Systems_Journal_,August 1994);
-	  Windows95 OSR2 and OSR2.5 (OPK3) return MS version 7.10
+	  Windows95 OSR2 and OSR2.5 (OPK3) return MS version 7.10, as do all
+	  versions of MSW 98. MSW Me and the MS-DOS EBD in MSW XP return the
+	  version as 8.00 instead.
 	DR DOS 5.0 and 6.0 report version 3.31; Novell DOS 7 reports IBM v6.00,
 	  which some software displays as IBM DOS v6.10 (because of the version
 	  mismatch in true IBM DOS, as mentioned above).  The Novell DOS 7
@@ -44,6 +55,11 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	  DOS version returned by this function for all executables not given
 	  a specific version number in SETVER to major version x and minor
 	  version y.
+	Enhanced DR-DOS as of v7.01.07 returns DR-DOS (OEM EEh) v6.00 here,
+	  but v7.01 on the MS-DOS v5+ function INT 21/AX=3306h.
+	RxDOS v7.24 returns v7.24 on INT 21/AX=3306h and either v7.10 (if FAT32
+	  supported), v7.00 (if FAT32 not supported but LFN supported), or
+	  v6.22 (if both FAT32 and LFN not supported).
 	Heiko Goeman's Advanced WinDOS 2.10/2.11/2.21 returns "IBM" DOS 5.00
 	  (subject to SETVER) and serial number 0.
 	All versions of CCI Multiuser DOS up to "CCI Multiuser DOS 7.22 Gold"
@@ -94,6 +110,10 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	  the special program list (see #01662 at AH=52h); the version returned
 	  under DOS 5+ may be modified by SETVER--use AX=3306h to get the true
 	  version number
+	Recent lDOS builds as of 2026 return version 5.26 or 5.38 (due to the
+	  MS-DOS v4.01 command.com oddity, the bundled shell may display these
+	  as v5.27 or v5.39 instead). The lDOS kernel recreates most MS-DOS v5
+	  features and some MS-DOS v7.00 ones.
 SeeAlso: AX=3000h/BX=3000h,AX=3306h,AX=4452h,AH=87h,INT 15/AX=4900h
 SeeAlso: AH=20h"S/DOS",INT 2F/AX=122Fh,INT 2F/AX=4010h,INT 2F/AX=4A33h
 SeeAlso: INT 2F/AX=E002h
@@ -123,6 +143,8 @@ Values for DOS OEM number:
  16h *	DEC
  17h *	Olivetti DOS
  23h *	Olivetti (may have been a typo, since 23 = 17h)
+ 26h	lDOS (only used for lMS-DOS since 2025-02-14, not for lDOS flavours
+	  of RxDOS or Enhanced DR-DOS)
  28h *	Texas Instruments
  29h *	Toshiba
  33h -	Novell (Windows/386 device IDs only)
@@ -135,8 +157,10 @@ Values for DOS OEM number:
  99h -	General Software's Embedded DOS
  CDh -	Paragon Technology Systems Corporation ("Source DOS" S/DOS 1.0+)
 	(see also INT 21/AH=20h"S/DOS")
+ DCh -	Apparently used for DOS-C kernel (historically the base of the
+	 FreeDOS kernel) for some alternative builds.
  EDh -	reserved for future OpenDOS/DR-DOS based projects  http://www.drdos.org
- EEh	DR DOS
+ EEh	DR DOS (used for Enhanced DR-DOS since v7.01.07)
  EFh	Novell DOS
 	Note:	released versions of Novell DOS 7 use OEM ID 00h instead
  FDh	FreeDOS	 http://www.freedos.org/

@@ -11,7 +11,30 @@ Return: never returns
 Notes:	unless the process is its own parent
 	  (see #01378 [offset 16h] at AH=26h), all open files are closed and
 	  all memory belonging to the process is freed
+	the parent process is made the current process. this INT 21 call
+	  reads the SS:SP stack of the parent from the parent's PSP (see
+	  #01378 [offset 2Eh] at AH=26h) and returns on that user stack,
+	  patching the CS:IP from the Parent Return Address (INT 22) of the
+	  PSP that is terminating, and patching the flags to indicate IF=1,
+	  TF=0, DF=0, CF=0. (CF clear indicates to a normal AH=4Bh call that
+	  the EXEC call succeeded and the child process was executed.)
 	all network file locks should be removed before calling this function
+	other resources like files, XMS or EMS memory are not affected
+	MS-DOS v4 (upon any process termination) will force closed any SFT
+	  entries with nonzero reference count and a matching process ID and
+	  machine ID; MS-DOS v5 only does this for SFT entries with the
+	  reference count equal to FFFFh, indicating a "busy" entry (entry
+	  is being opened right now).
+	many lDOS programs manipulate the parent process and Parent Return
+	  Address in their PSPs to relocate to another process by way of
+	  termination, including TSRs if no /JP switch given (to avoid
+	  fragmentation), lDebug in its init if /T switch given (to install
+	  the debugger elsewhere), the lDOS MCP clu.exe and its comloader,
+	  and the lDOS kernel's init (to relocate the init PSP).
+	lDOS TSRs install resident instances by allocating new memory
+	  blocks, changing their MCB owners, and terminating using this
+	  function. because of the MCB owner modification the resident
+	  blocks are not freed by the process termination.
 SeeAlso: AH=00h,AH=26h,AH=4Bh,AH=4Dh,INT 15/AH=12h/BH=02h,INT 20,INT 22
 SeeAlso: INT 60/DI=0601h
 

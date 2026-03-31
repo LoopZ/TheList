@@ -19,7 +19,7 @@ Notes:	copying and restoring the swappable data areas allows DOS to be
 	DOS 5+ use the SDA format listed below, but revert back to the DOS 3.x
 	  call for finding the SDA (see #01687); Novell DOS 7 does not support
 	  this function, either.
-SeeAlso: AX=5D06h,INT 2A/AH=80h,INT 2A/AH=81h,INT 2A/AH=82h,INT 2F/AX=1203h
+SeeAlso: AH=52h,AX=5D06h,INT 2A/AH=80h,INT 2A/AH=81h,INT 2A/AH=82h,INT 2F/AX=1203h
 
 Format of DOS 4.x swappable data area list:
 Offset	Size	Description	(Table 01689)

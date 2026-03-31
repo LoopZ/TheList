@@ -11,17 +11,18 @@ Return: AL destroyed
 Notes:	new PSP is updated with memory size information; INTs 22h, 23h, 24h
 	  taken from interrupt vector table; the parent PSP field is set to 0
 	(DOS 2+) DOS assumes that the caller's CS is the segment of the PSP to
-	  copy
+	  copy. (DOS 1 likely had no concept of a "current PSP", opting to use
+	  the caller's CS for INT 20, INT 21/AH=00h and this function instead)
 BUG:	DR DOS 6.0 original releases 05/1991 & 08/1991 had a problem where the
 	  segment from which the PSP was copied was incorrect so that the PSP
 	  was not filled correctly and did not contain the command tail.  The
 	  DR DOS 6.0 BDOS patch "PAT312" English (1992/01/07, XDIR /C: A0C6h)
 	  and later "full" rebuilds fix this problem (see INT 21/AX=4452h).
-SeeAlso: AH=4Bh,AH=50h,AH=51h,AH=55h,AH=62h,AH=67h
+SeeAlso: AH=4Bh,AH=4Ch,AH=50h,AH=51h,AH=55h,AH=62h,AH=67h
 
 Format of Program Segment Prefix (PSP):
 Offset	Size	Description	(Table 01378)
- 00h  2 BYTEs	INT 20 instruction for CP/M CALL 0 program termination
+ 00h  2 BYTEs	INT 20 instruction for RETN or CP/M CALL 0 program termination
 		the CDh 20h here is often used as a signature for a valid PSP
  02h	WORD	segment of first byte beyond memory allocated to program
  04h	BYTE	(DOS) unused filler
@@ -30,17 +31,17 @@ Offset	Size	Description	(Table 01378)
 		BUG: (DOS 2+ DEBUG) PSPs created by DEBUG point at 000BEh
  06h	WORD	CP/M compatibility--size of first segment for .COM files
  08h  2 BYTEs	remainder of FAR JMP at 05h
- 0Ah	DWORD	stored INT 22 termination address
+ 0Ah	DWORD	stored INT 22 termination address (Parent Return Address)
  0Eh	DWORD	stored INT 23 control-Break handler address
  12h	DWORD	DOS 1.1+ stored INT 24 critical error handler address
- 16h	WORD	segment of parent PSP
+ 16h	WORD	segment of parent PSP (can be this PSP itself)
  18h 20 BYTEs	DOS 2+ Job File Table, one byte per file handle, FFh = closed
  2Ch	WORD	DOS 2+ segment of environment for process (see #01379)
  2Eh	DWORD	DOS 2+ process's SS:SP on entry to last INT 21 call
  32h	WORD	DOS 3+ number of entries in JFT (default 20)
  34h	DWORD	DOS 3+ pointer to JFT (default PSP:0018h)
  38h	DWORD	DOS 3+ pointer to previous PSP (default FFFFFFFFh in 3.x)
-		used by SHARE in DOS 3.3
+		used by SHARE in DOS 3.3+
  3Ch	BYTE	DOS 4+ (DBCS) interim console flag (see AX=6301h)
 		Novell DOS 7 DBCS interim flag as set with AX=6301h
 		(possibly also used by Far East MS-DOS 3.2-3.3)
@@ -101,6 +102,21 @@ Notes:	in DOS v3+, the limit on simultaneously open files may be increased by
 	  in the environment variable CMDLINE; under at least some versions
 	  of 4DOS, the byte at offset FFh is *not* set to 0Dh, so there is no
 	  terminating carriage return in the PSP's command tail.
+	the CALL 5 entrypoint wants to set the word at offset 06h to a high
+	  word value, so it encodes a far immediate call that will transfer
+	  either to linear 0_00C0h (if A20 disabled) or to linear 10_00C0h
+	  (if A20 enabled). if DOS is installed into the HMA, it should put a
+	  trampoline near the beginning of the HMA (at the spot that could
+	  be addressed as FFFFh:00D0h) to transfer control to 0000h:00C0h or
+	  to the same CALL 5 handler as that address does.
+	the CALL 5 entry at 0000h:00C0h may encode a far immediate jump to
+	  the actual CALL 5 handler (which needs to re-arrange the incoming
+	  stack frame). this means the vector for INT 30 and the first byte
+	  of the vector for INT 31 are set up to support this use. DR-DOS v7
+	  and lDOS store the DOSDATA segment in the segment of the INT 31
+	  vector, which may be relocated during processing of dconfig.sys
+	  or ldos.ini. FreeDOS happens to put the DOSDATA segment in this
+	  spot as well, but does not support relocating DOSDATA.
 BUG:	When shelling out from the Borland Pascal 7.00 IDE, overly-long
 	  command lines will not be delimited by a 0Dh character, and the
 	  length byte is set to 80h!  A workaround is to always patch in a
