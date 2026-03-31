@@ -21,6 +21,7 @@ uses
 const
   SrcExt = '.txt';                  // File extension for all source files
   HeaderFile = '_Header' + SrcExt;  // LST Header Data file
+  ReleaseFile = '_Release' + SrcExt; // TheList Release version, fairly static.
   SectionLead = '--------';         // Leading characters for all section breaks
   SectionWidth = 45;                // Number of charcters in a section break
   IntListDir = 'Interrupt List';    // Main Interrupt List source directory subpath
@@ -36,7 +37,6 @@ const
   {$ENDIF}
 
   MaxFileSize : integer = 360 * 1024; // Maximum bytes allowed in LST file
-  ReleaseNumber : integer = 62;       // For LST file headers, probably not used
 
   DOSNAMES : array of record // Conversion of Long File Names to DOS versions
     Name, DOS : String;
@@ -98,8 +98,6 @@ const
     'Admin'
   );
 
-
-
 { ---------------------------------------------------------------------------- }
 // Global processing variables
 var
@@ -111,8 +109,9 @@ var
   BuildTime  : TDateTime;        // Release Build Date/Time
   LastChange : String;           // LST file release time stamp
 
-  WorkingData  : RawByteString;    // Working output data for LST file
-  CommentFiles : TStringList; // For verification all section comment files were used.
+  ReleaseVersion : RawByteString;// For LST file headers, probably not used
+  WorkingData  : RawByteString;  // Working output data for LST file
+  CommentFiles : TStringList;    // For verification all section comment files were used.
 
 { ---------------------------------------------------------------------------- }
 
@@ -161,7 +160,10 @@ procedure CommentOrphans;
 var
   I : Integer;
 begin
-  if CommentFiles.Count = 0 then Exit;
+  if CommentFiles.Count = 0 then begin
+    LogMessage(vbExcessive, TAB+'No orphan comment sections for: ' + OutName);
+    Exit;
+  end;
   LogMessage(vbMinimal, 'Group Comment files for ' + OutName + ' were excluded:');
   for I := 0 to CommentFiles.Count - 1 do
     LogMessage(vbMinimal, TAB + CommentFiles[I]);
@@ -205,7 +207,7 @@ procedure SetHeader(Title : String; Part : integer = 0; Total : integer = 0);
 begin
    if Part + Total = 0 then
      Header:=RightPad(Title, TitleWidth) + TAB +
-       RightPad('Release ' + IntToStr(ReleaseNumber), 12) + TAB +
+       RightPad(ReleaseVersion, 14) + TAB +
        'Last Change ' + LastChange
    else
      Header:=Title + COMMA + SPACE + 'part ' + IntToStr(Part) + ' of ' +
@@ -254,6 +256,7 @@ begin
       Data:=CreateFileList;
     end;
     if Data = '' then Continue;
+    LogMessage(vbVerbose, TAB+'Added comment section: ' + Section);
     Cat(WorkingData, SectionComment(Section));
     Cat(WorkingData, Data);
   end;
@@ -310,7 +313,6 @@ procedure Build;
 var
   I : Integer;
 begin
-  CommentFiles:=TStringList.Create;
   // Verify paths
   if not DirectoryExists(DirSource) then begin
     LogMessage(vbCritical, 'Source path not found: ' + DirSource);
@@ -326,6 +328,12 @@ begin
       Halt(1);
     end;
   end;
+  if FileLoad(DirSource + ReleaseFile, ReleaseVersion) <> 0 then
+    ReleaseVersion:='Release ?';
+  ReleaseVersion:=StringReplace(ReleaseVersion, CR, SPACE, [rfReplaceAll]);
+  ReleaseVersion:=StringReplace(ReleaseVersion, LF, SPACE, [rfReplaceAll]);
+  ReleaseVersion:=Trim(StringReplace(ReleaseVersion, TAB, SPACE, [rfReplaceAll]));
+  CommentFiles:=TStringList.Create;
   BuildTime:=Now;
   LastChange:=Lowercase(FormatDateTime('ddmmmYY hh:nn', BuildTime));
   TitleWidth:=0;
