@@ -1,0 +1,20 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214B7F
+  Category: O 	other operating systems
+      Flag: C 	callout or callback (usually hooked rather than called)
+--------------------------------------------------------------------------------
+
+INT 21 - lDOS -INVALID EXEC SUBFUNCTION
+	AX = 4B7Fh
+	DS:DX -> empty ASCIZ string
+Notes:	called by lDOS TSRs, lDebug, lDOS kernel, or lDOS MCP clu.exe
+	  and comloader before running AH=4Ch to relocate a PSP
+	FreeDOS and lDOS may clear mask 0080h of the AH=4Bh subfunction
+	the intention is to set the last stack in the target PSP (at
+	  offset 2Eh, see #01378 in AH=26h) so it matches the stack of
+	  the subsequent AH=4Ch call
+	INT 20, INT 27, AH=00h, AH=26h, AH=31h, AH=4Bh, and AH=4Ch are
+	  expected to be special cased by interrupt hooks (eg dosemu2)
+	  so that they receive exactly the same user stack as was set
+	  up by the interrupt caller.
+SeeAlso: AH=4Bh,AH=4Ch,AX=4B80h"FreeDOS"

@@ -12,5 +12,14 @@ Notes:	interrupts are prioritized such that external interrupts are invoked
 	  first instruction of the handler executes
 	used by debuggers for single-instruction execution tracing, such as
 	  MS-DOS DEBUG's T command
+	usually initialised to point at an IRET by DOS
+	MS-DOS v7 checks for the signature text "JP" directly before the
+	  INT 01 handler during its init, and if found preserves the INT 01
+	  and INT 03 vectors rather than initialising them to -> IRET
+	see notes on INT 03"CPU" for the lDOS debugger detection, which also
+	  affects the INT 01 vector
+BUGS:	MS-DOS Debug from the 2018 release of MS-DOS v2 fails to restore the
+	  prior handler after setting it, even upon running the Q command.
+	  at least as of MS-DOS v4.00 this was fixed.
 SeeAlso: INT 03"CPU"
 

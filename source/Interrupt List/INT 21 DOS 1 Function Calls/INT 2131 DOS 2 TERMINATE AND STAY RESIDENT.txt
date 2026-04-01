@@ -27,5 +27,9 @@ Notes:	the value in DX only affects the memory block containing the PSP;
 	  output redirection will leak an SFT entry.)
 	the freeing of DOS memory and file handles is done only on non-TSR
 	  termination *and* if the process is not its own parent.
+	INT 20, INT 27, AH=00h, AH=26h, AH=31h, AH=4Bh, and AH=4Ch are
+	  expected to be special cased by interrupt hooks (eg dosemu2)
+	  so that they receive exactly the same user stack as was set
+	  up by the interrupt caller.
 SeeAlso: AH=00h,AH=4Ch,AH=4Dh,INT 20,INT 22,INT 27
 

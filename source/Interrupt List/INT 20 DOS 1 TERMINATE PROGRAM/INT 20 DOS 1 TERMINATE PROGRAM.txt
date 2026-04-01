@@ -9,5 +9,9 @@ INT 20 - DOS 1+ - TERMINATE PROGRAM
 Return: never
 Notes:	(see INT 21/AH=00h)
 	this function sets the program's return code (ERRORLEVEL) to 00h
+	INT 20, INT 27, AH=00h, AH=26h, AH=31h, AH=4Bh, and AH=4Ch are
+	  expected to be special cased by interrupt hooks (eg dosemu2)
+	  so that they receive exactly the same user stack as was set
+	  up by the interrupt caller.
 SeeAlso: INT 21/AH=00h,INT 21/AH=4Ch
 

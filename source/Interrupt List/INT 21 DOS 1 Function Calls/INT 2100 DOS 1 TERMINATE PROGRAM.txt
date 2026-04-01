@@ -17,5 +17,9 @@ Notes:	Microsoft recommends using INT 21/AH=4Ch for DOS 2+
 	  INT 22 additionally points into the terminating program, the
 	  process is effectively NOT terminated
 	not supported by MS Windows 3.0 DOSX.EXE DOS extender
+	INT 20, INT 27, AH=00h, AH=26h, AH=31h, AH=4Bh, and AH=4Ch are
+	  expected to be special cased by interrupt hooks (eg dosemu2)
+	  so that they receive exactly the same user stack as was set
+	  up by the interrupt caller.
 SeeAlso: AH=26h,AH=31h,AH=4Ch,INT 20,INT 22
 

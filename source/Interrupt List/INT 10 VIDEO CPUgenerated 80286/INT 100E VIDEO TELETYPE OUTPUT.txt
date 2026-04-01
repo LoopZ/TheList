@@ -18,5 +18,11 @@ Notes:	characters 07h (BEL), 08h (BS), 0Ah (LF), and 0Dh (CR) are interpreted
 	  as the current active page
 BUG:	if the write causes the screen to scroll, BP is destroyed by BIOSes
 	  for which AH=06h destroys BP
+	a 2020-09-18 commit to the FreeDOS kernel was created in response to
+	  reports that the SBC188 returns AL as 0Ah if the call caused the
+	  screen to scroll, rather than leaving it as the input (eg 2Eh)
+	in 2025 October, an issue on the SvarDOS bug tracker revealed that
+	  "on the original IBM PC" in 86Box this function corrupts AH on
+	  return rather than leaving it as 0Eh
 SeeAlso: AH=02h,AH=06h,AH=0Ah
 

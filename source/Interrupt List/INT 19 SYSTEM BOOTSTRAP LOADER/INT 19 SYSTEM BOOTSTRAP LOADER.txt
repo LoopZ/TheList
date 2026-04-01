@@ -35,7 +35,7 @@ Notes:	Usually, the BIOS will try to read sector 1, head 0, track 0 from drive
 	  since it will never find the end of the linked list of extended
 	  partitions
 	under Windows Real and Enhanced modes, calling INT 19 will hang the
-	  system in the same was as under bare DOS; under Windows Standard
+	  system in the same way as under bare DOS; under Windows Standard
 	  mode, INT 19 will successfully perform a cold reboot as it appears
 	  to have been redirected to a MOV AL,0FEh/OUT 64h,AL sequence
 BUG:	when loading the remainder of the DOS system files fails, various
@@ -61,6 +61,12 @@ Offset	Size	Description	(Table 00650)
 1DEh 16 BYTEs	partition record for partition 3
 1EEh 16 BYTEs	partition record for partition 4
 1FEh	WORD	signature, AA55h indicates valid boot block
+Notes:	extended partitions contain an Extended Partition Boot
+	  Record (EPBR) in their first sector, containing
+	  logical or nested extended partitions in the partition
+	  table. the boot code is often all-zeroes in an EPBR so
+	  boot loaders can be hardened by checking whether the
+	  first WORD is 0000h (ADD [BX+SI],AL) to avoid crashing.
 
 Format of partition record:
 Offset	Size	Description	(Table 00651)
@@ -74,6 +80,20 @@ Offset	Size	Description	(Table 00651)
  07h	BYTE	partition end track (bits 8,9 in bits 6,7 of sector)
  08h	DWORD	sectors preceding partition
  0Ch	DWORD	length of partition in sectors
+Notes:	MS-DOS may use the (start) CHS coordinates (3 BYTEs at offset
+	  01h) to address partitions. it is better to calculate
+	  everything from the start LBA (DWORD at offset 08h) though.
+	  this hardens against possible CHS geometry mismatches
+	  between the system that wrote the partition table and the
+	  system on which the hard disk is accessed.
+	the first 4 BYTEs appear to map to an encoded CHS coordinates
+	  tuple plus unit, if read as a DWORD into CX:DX
+	there is a proposed MBR extension called 33-bit LBA in which
+	  both the start LBA (offset 08h) and partition length
+	  (offset 0Ch) may have any value in the full 32-bit range,
+	  and the reader is expected to access sectors up to the
+	  LBA 1_FFFF_FFFDh using the IBM/MS int 13h extensions that
+	  allow to specify 64-bit LBA sector numbers to access.
 SeeAlso: #00650
 
 (Table 00652)
@@ -173,7 +193,7 @@ Values for operating system indicator:
  82h	Solaris (Unix)
  83h	Linux native file system (ext2fs/xiafs)
  84h	OS/2-renumbered type 04h partition (related to hiding DOS C: drive)
- 85h	Linux EXT
+ 85h	Linux extended partition (like DOS 05h or 0Fh)
  86h	FAT16 volume/stripe set (Windows NT)
  87h	HPFS Fault-Tolerant mirrored partition
  87h	NTFS volume/stripe set
@@ -249,4 +269,3 @@ Values Bootstrap loader is called with (IBM BIOS):
 	DL = boot drive
 	    00h first floppy
 	    80h first hard disk
-
