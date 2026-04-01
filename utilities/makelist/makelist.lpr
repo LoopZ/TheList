@@ -47,7 +47,11 @@ const
   DirOutput : String = '../../TheList/';
   {$ENDIF}
 
+  LegacyMode : boolean = False; // When enabled, program will use older methods
+                                // for a couple LST files for better compatibility
+                                // with older parsers.
   MaxFileSize : integer = 360 * 1024; // Maximum bytes allowed in LST file
+  MaxLinkID : integer = 19; // Maximum Length of Link Section ID in the LINKS.LST
 
   DOSNAMES : array of record // Conversion of Long File Names to DOS versions
     Name, DOS : String;
@@ -199,7 +203,8 @@ begin
     LogMessage(vbMinimal, TAB + CommentFiles[I]);
 end;
 
-// Reads a file if it exists, normalizes line endings and truncates trailing blank lines.
+// Reads a file if it exists, normalizes line endings and truncates trailing
+// and leading blank lines.
 function ReadFile(FileName : String; out Data : RawByteString) : boolean;
 var
   E : Integer;
@@ -218,7 +223,7 @@ begin
   A:=Explode(NormalizeLineEndings(Data, leLF));
   for I := 0 to High(A) do
     A[I]:=TrimRight(A[I]);
-  Data:=Implode(A, CRLF);
+  Data:=Implode(A, CRLF) + CRLF;
   while Copy(Data, Length(Data) - 3) = CRLF+CRLF do
     SetLength(Data, Length(Data) - 2);
   while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
@@ -272,18 +277,51 @@ var
   ID : RawByteString;
 begin
   ID:=Trim(PopDelim(Data, CRLF));
-   if ID='' then begin
-     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
-     Exit;
-   end;
-   while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
-   if Length(Data) = 0 then begin
-     LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
-     Exit;
-   end;
-   N := SectionTree.Add(ID, ID + CRLF + Data);
-   if not Assigned(N) then
-     LogMessage(vbMinimal, TAB + 'Duplicate Term for file: ' + Name);
+  if ID='' then begin
+    LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
+    Exit;
+  end;
+  while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
+  if Length(Data) = 0 then begin
+    LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
+    Exit;
+  end;
+  N := SectionTree.Add(ID, ID + CRLF + Data);
+  if not Assigned(N) then
+    LogMessage(vbMinimal, TAB + 'Duplicate Term for file: ' + Name);
+end;
+
+procedure AddTable(const Name : String; var Data : RawByteString);
+begin
+  AddGlossary(Name, Data);
+end;
+
+procedure AddLink(const Name : String; var Data : RawByteString);
+var
+  N : TBinaryTreeNode;
+  ID, Title : RawByteString;
+begin
+  if LegacyMode then begin
+    AddGlossary(Name, Data);
+    Exit;
+  end;
+  begin
+    Title:=Trim(PopDelim(Data, CRLF));
+    ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
+    if ID='' then begin
+      LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
+      Exit;
+    end;
+    while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
+    if Length(Data) = 0 then begin
+      LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
+      Exit;
+    end;
+    N := SectionTree.Add(ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
+    if not Assigned(N) then
+      LogMessage(vbMinimal, TAB + 'Duplicate Term for file: ' + Name);
+  end;
+
 end;
 
 procedure AddDataFiles;
@@ -312,12 +350,10 @@ begin
       skI2C, skMemory,skMSR, skPort : begin
       end;
       skGlossary : AddGlossary(L[I], Data);
-      skTable : begin // Just glued together in an empty comment section
-      end;
+      skTable : AddTable(L[I], Data);
       skSMM : begin // Just glued together in separate "other" sections
       end;
-      skLink: begin // Just glued together in a Links comment section
-      end;
+      skLink: AddLink(L[I], Data);
     end;
   end;
   L.Free;
@@ -326,9 +362,23 @@ begin
     Exit;
   end;
   case SectionKind of
-    skGlossary : Cat(WorkingData, SectionMarker('GLOSSARY'));
-    skTable    : Cat(WorkingData, SectionMarker('TABLES'));
-    skLink     : Cat(WorkingData, SectionMarker('LINKS'));
+    skGlossary : begin
+      if LegacyMode then
+        Cat(WorkingData, CRLF)
+      else
+        Cat(WorkingData, SectionMarker('GLOSSARY'));
+    end;
+    skTable : begin
+      if LegacyMode then
+        Cat(WorkingData, SectionMarker('') + CRLF)
+      else
+        Cat(WorkingData, SectionMarker('TABLES'));
+    end;
+    skLink : begin
+      // Not in original RBIL, but will treat it like TABLES.LST in LegacyMode
+       if LegacyMode then
+         Cat(WorkingData, SectionMarker('') + CRLF)
+     end;
   end;
   N := SectionTree.First;
   While Assigned(N) do begin
@@ -449,7 +499,10 @@ begin
   SectionTree := TBinaryTree.Create;
   CommentFiles:=TStringList.Create;
   BuildTime:=Now;
-  LastChange:=Lowercase(FormatDateTime('ddmmmYY hh:nn', BuildTime));
+  if LegacyMode then
+    LastChange:=Lowercase(FormatDateTime('ddmmmYY', BuildTime))
+  else
+    LastChange:=Lowercase(FormatDateTime('ddmmmYY hh:nn', BuildTime));
   TitleWidth:=0;
   for I := 0 to High(DOSNAMES) do
      if Length(DOSNAMES[I].Name) > TitleWidth then
@@ -483,8 +536,12 @@ const
     (S:'-h'; L:'--help'; V:''; M:'Display command-line help and exit.'),
     (S:''; L:''; V:''; M:''),
     (S:'-v'; L:'--verbose'; V:'(level)'; M:'Specify a verbosity level (0-4).'),
+    (S:''; L:''; V:''; M:''),
     (S:'-s'; L:'--source'; V:'(path)'; M:'Specify a path that contains the source files.'),
-    (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the output files.')
+    (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the output files.'),
+    (S:''; L:''; V:''; M:''),
+    (S:''; L:'--modern'; V:''; M:'Disable legacy mode for support in modern parsers.'),
+    (S:''; L:'--legacy'; V:''; M:'Enable legacy mode for better compatibility with parsers.')
   );
 
 var
@@ -572,6 +629,8 @@ begin
           SeeHelp('Invalid verbosity level: ' + IntToStr(V));
         end;
       end;
+      '--modern' : LegacyMode:=False;
+      '--legacy' : LegacyMode:=True;
       '-s', '--source' : DirSource:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : DirOutput:=IncludeTrailingPathDelimiter(Trim(NextOpt));
     else
