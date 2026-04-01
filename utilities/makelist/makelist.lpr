@@ -16,7 +16,18 @@ uses
   {$ENDIF}
   Classes, SysUtils
   { you can add units after this },
-  Version, PasExt;
+  Version, PasExt, BinTree;
+
+type
+  TSectionKind = (
+    skNone, // Simply copied files or is not broken into multiple files
+    skInterrupt, skCMOS, skFarCall, skI2C, skMemory, skMSR, skPort,
+    skStandard, // All the same
+    skGlossary, // Just glued together
+    skTable, // Just glued together in an empty comment section
+    skSMM, // Just glued together in separate "other" sections
+    skLink // Just glued together in a Links comment section
+  );
 
 const
   SrcExt = '.txt';                  // File extension for all source files
@@ -40,30 +51,31 @@ const
 
   DOSNAMES : array of record // Conversion of Long File Names to DOS versions
     Name, DOS : String;
+    Kind : TSectionKind;
   end = (
     // Miscellaneous files
-    (Name:'Advertisement'+SrcExt;      DOS:'_ADVERT.TXT'),
-    (Name:'FAQ'+SrcExt;                DOS:'faq.lst'),
-    (Name:'Interrupt Primer'+SrcExt;   DOS:'INTERRUP.PRI'),
-    (Name:'Need Help'+SrcExt;          DOS:'NEEDHELP.TXT'),
-    (Name:'Ralf Brown'+SrcExt;         DOS:'RBROWN.TXT'),
-    (Name:'Read Me Now'+SrcExt;        DOS:'README.NOW'),
+    (Name:'Advertisement'+SrcExt;      DOS:'_ADVERT.TXT';  Kind:skNone),
+    (Name:'FAQ'+SrcExt;                DOS:'faq.lst';      Kind:skNone),
+    (Name:'Interrupt Primer'+SrcExt;   DOS:'INTERRUP.PRI'; Kind:skNone),
+    (Name:'Need Help'+SrcExt;          DOS:'NEEDHELP.TXT'; Kind:skNone),
+    (Name:'Ralf Brown'+SrcExt;         DOS:'RBROWN.TXT';   Kind:skNone),
+    (Name:'Read Me Now'+SrcExt;        DOS:'README.NOW';   Kind:skNone),
     // List Files
-    (Name:'Bibliography';              DOS:'BIBLIO.LST'),
-    (Name:'Category';                  DOS:'CATEGORY.KEY'),
-    (Name:'Cmos-Memory Map';           DOS:'CMOS.LST'),
-    (Name:'Far Call Interface';        DOS:'FARCALL.LST'),
-    (Name:'Glossary';                  DOS:'GLOSSARY.LST'),
-    (Name:'I2C-Bus Devices';           DOS:'I2C.LST'),
-    (Name:IntListDir;                  DOS:'INTERRUP.LST'),
-    (Name:IntFirstDir;                 DOS:'INTERRUP.1ST'),
-    (Name:'Links';                     DOS:'LINKS.LST'),
-    (Name:'Memory Map';                DOS:'MEMORY.LST'),
-    (Name:'Model-Specific Registers';  DOS:'MSR.LST'),
-    (Name:'Overview';                  DOS:'OVERVIEW.LST'),
-    (Name:'Ports List';                DOS:'PORTS.LST'),
-    (Name:'Selected Tables';           DOS:'TABLES.LST'),
-    (Name:'System-Management Mode';    DOS:'SMM.LST')
+    (Name:'Bibliography';              DOS:'BIBLIO.LST';   Kind:skNone),
+    (Name:'Category';                  DOS:'CATEGORY.KEY'; Kind:skNone),
+    (Name:'Cmos-Memory Map';           DOS:'CMOS.LST';     Kind:skCMOS),
+    (Name:'Far Call Interface';        DOS:'FARCALL.LST';  Kind:skFarCall),
+    (Name:'Glossary';                  DOS:'GLOSSARY.LST'; Kind:skGlossary),
+    (Name:'I2C-Bus Devices';           DOS:'I2C.LST';      Kind:skI2C),
+    (Name:IntFirstDir;                 DOS:'INTERRUP.1ST'; Kind:skNone),
+    (Name:IntListDir;                  DOS:'INTERRUP.LST'; Kind:skInterrupt),
+    (Name:'Links';                     DOS:'LINKS.LST';    Kind:skLink),
+    (Name:'Memory Map';                DOS:'MEMORY.LST';   Kind:skMemory),
+    (Name:'Model-Specific Registers';  DOS:'MSR.LST';      Kind:skMSR),
+    (Name:'Overview';                  DOS:'OVERVIEW.LST'; Kind:skNone),
+    (Name:'Ports List';                DOS:'PORTS.LST';    Kind:skPort),
+    (Name:'Selected Tables';           DOS:'TABLES.LST';   Kind:skTable),
+    (Name:'System-Management Mode';    DOS:'SMM.LST';      Kind:skSMM)
   );
 
   // Sections to include in the INTERRUP.1ST file
@@ -108,10 +120,12 @@ var
   HeaderData : RawByteString;    // Text from _Header file when present
   BuildTime  : TDateTime;        // Release Build Date/Time
   LastChange : String;           // LST file release time stamp
+  SectionKind : TSectionKind;    // Current List Type
 
   ReleaseVersion : RawByteString;// For LST file headers, probably not used
   WorkingData  : RawByteString;  // Working output data for LST file
   CommentFiles : TStringList;    // For verification all section comment files were used.
+  SectionTree : TBinaryTree;     // For assembling the section file data
 
 { ---------------------------------------------------------------------------- }
 
@@ -133,6 +147,22 @@ begin
   B:=Copy(B, 1, 8);
   E:=Copy(E, 1, 4);
   Result:=B+E;
+end;
+
+// Returns the Section Kind for Processing Data files
+function FindSectionKind(FileName : String) : TSectionKind;
+var
+  I : Integer;
+begin
+  FileName:=UpperCase(FileName);
+  for I := 0 to High(DOSNAMES) do
+    if (FileName=UpperCase(DOSNAMES[I].Name)) or
+    (FileName=UpperCase(DOSNAMES[I].DOS)) then begin
+      Result:=DOSNAMES[I].Kind;
+      Exit;
+    end;
+  LogMessage(vbMinimal, 'Unknown section kind for: ' + FileName);
+  Result:=skNone;
 end;
 
 // Creates a File List of all the _*.txt files in a group. Used to insure all
@@ -173,6 +203,8 @@ end;
 function ReadFile(FileName : String; out Data : RawByteString) : boolean;
 var
   E : Integer;
+  A : TArrayOfString;
+  I : Integer;
 begin
   if not FileExists(FileName) then begin
     Data:='';
@@ -183,9 +215,13 @@ begin
     LogMessage(vbCritical, 'File Read Error #' + IntToStr(E) + ': ' + FileName);
     Halt(E);
   end;
-  Data:=NormalizeLineEndings(Data, leCRLF);
+  A:=Explode(NormalizeLineEndings(Data, leLF));
+  for I := 0 to High(A) do
+    A[I]:=TrimRight(A[I]);
+  Data:=Implode(A, CRLF);
   while Copy(Data, Length(Data) - 3) = CRLF+CRLF do
     SetLength(Data, Length(Data) - 2);
+  while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
   Result:=True;
 end;
 
@@ -217,18 +253,90 @@ begin
    Header:=IncludeTrailing(Header, CRLF);
 end;
 
-function SectionComment(Section : String) : String;
+function SectionMarker(Section : String; Kind : Char = '!') : String;
 begin
   Section:=StringReplace(Section, SPACE, UNDERSCORE, [rfReplaceAll]);
-  Result:=RightPad(SectionLead + '!---' + Section, SectionWidth, '-') + CRLF;
+  Result:=RightPad(SectionLead + Kind + '---' + Section, SectionWidth, '-') + CRLF;
 end;
-
 
 { ---------------------------------------------------------------------------- }
 // Create the list of Files for the release
 function CreateFileList : String;
 begin
   Result:='(pending)'+CRLF;
+end;
+
+procedure AddGlossary(const Name : String; var Data : RawByteString);
+var
+  N : TBinaryTreeNode;
+  ID : RawByteString;
+begin
+  ID:=Trim(PopDelim(Data, CRLF));
+   if ID='' then begin
+     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
+     Exit;
+   end;
+   while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
+   if Length(Data) = 0 then begin
+     LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
+     Exit;
+   end;
+   N := SectionTree.Add(ID, ID + CRLF + Data);
+   if not Assigned(N) then
+     LogMessage(vbMinimal, TAB + 'Duplicate Term for file: ' + Name);
+end;
+
+procedure AddDataFiles;
+var
+  I : Integer;
+  L : TStringList;
+  S, Data : RawByteString;
+  N : TBinaryTreeNode;
+begin
+  SectionTree.Clear;
+  L := TStringList.Create;
+  DirScan(BaseDir + Wildcard, L, [dsFiles, dsRecursive]);
+  for I := 0 to L.Count - 1 do begin
+    S:=ExtractFileName(L[I]);
+    if HasLeading(S, UNDERSCORE) then Continue;
+    if not ReadFile(BaseDir + L[I], Data) then begin
+      LogMessage(vbMinimal, 'File went missing: ' + BaseDir + L[I]);
+      Continue;
+    end;
+    Data:=NormalizeLineEndings(Data, leCRLF);
+    case SectionKind of
+      skNone : begin
+        LogMessage(vbMinimal, TAB + 'ignored file: ' + L[I]);
+      end;
+      skStandard, skInterrupt, skCMOS, skFarCall,
+      skI2C, skMemory,skMSR, skPort : begin
+      end;
+      skGlossary : AddGlossary(L[I], Data);
+      skTable : begin // Just glued together in an empty comment section
+      end;
+      skSMM : begin // Just glued together in separate "other" sections
+      end;
+      skLink: begin // Just glued together in a Links comment section
+      end;
+    end;
+  end;
+  L.Free;
+  if SectionTree.Count = 0 then begin
+    LogMessage(vbNormal, TAB + 'no entries');
+    Exit;
+  end;
+  case SectionKind of
+    skGlossary : Cat(WorkingData, SectionMarker('GLOSSARY'));
+    skTable    : Cat(WorkingData, SectionMarker('TABLES'));
+    skLink     : Cat(WorkingData, SectionMarker('LINKS'));
+  end;
+  N := SectionTree.First;
+  While Assigned(N) do begin
+    Cat(WorkingData, N.Text);
+    N:=N.Next;
+    if Assigned(N) then
+      Cat(WorkingData, CRLF);
+  end;
 end;
 
 procedure CreateList(PathName: String; const Sections : TArrayOfString);
@@ -239,6 +347,7 @@ var
 begin
   OutName:=DosFileName(PathName);
   LogMessage(vbNormal, 'Group: ' + PathName + SPACE + '(' + OutName + ')');
+  SectionKind:=FindSectionKind(PathName);
   BaseDir:=DirSource + PathName + PathDelimiter;
   CreateCommentFilesList(BaseDir);
   ReadFile(BaseDir + HeaderFile, HeaderData);
@@ -248,6 +357,10 @@ begin
   for I := 0 to High(Sections) do begin
     Section:=UpperCase(Sections[I]);
     PopCommentFile(Section);
+    if Section = '*' then begin
+      AddDataFiles;
+      Continue;
+    end;
     if Section <> 'FILELIST' then begin
       if not ReadFile(BaseDir + UNDERSCORE + Sections[I] + SrcExt, Data) then
         Continue;
@@ -257,7 +370,7 @@ begin
     end;
     if Data = '' then Continue;
     LogMessage(vbVerbose, TAB+'Added comment section: ' + Section);
-    Cat(WorkingData, SectionComment(Section));
+    Cat(WorkingData, SectionMarker(Section));
     Cat(WorkingData, Data);
   end;
   if WorkingData <> '' then
@@ -333,6 +446,7 @@ begin
   ReleaseVersion:=StringReplace(ReleaseVersion, CR, SPACE, [rfReplaceAll]);
   ReleaseVersion:=StringReplace(ReleaseVersion, LF, SPACE, [rfReplaceAll]);
   ReleaseVersion:=Trim(StringReplace(ReleaseVersion, TAB, SPACE, [rfReplaceAll]));
+  SectionTree := TBinaryTree.Create;
   CommentFiles:=TStringList.Create;
   BuildTime:=Now;
   LastChange:=Lowercase(FormatDateTime('ddmmmYY hh:nn', BuildTime));
@@ -344,6 +458,7 @@ begin
   CopyMiscellaneousFiles;
   CreateListFiles;
   CommentFiles.Free;
+  SectionTree.Free;
 end;
 
 { ---------------------------------------------------------------------------- }
