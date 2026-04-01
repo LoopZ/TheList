@@ -177,6 +177,16 @@ Notes:	the next MCB is at segment (current + size + 1)
 	  placing a NUL in the eighth byte.
 	lDOS S MCBs are heavily used by lDOS (lMS-DOS and lRxDOS), only device
 	  allocations are still placed into SD MCBs with subsegments.
+	MS-DOS and FreeDOS set up a fully functional MCB chain later during
+	  processing of config.sys or fdconfig,sys, particularly it is not
+	  yet set up properly during DEVICE= execution
+	lDOS sets up the MCB chain much earlier	(in the function NEARDOSINIT),
+	  before ldos.ini is even opened and read. allocations like the init
+	  PSP, init CDS, init program, early DOSDATA and DOSCODE, device
+	  drivers, and UPBs and DPBs all use valid MCBs.
+	it is reported that some versions of command.com free memory blocks
+	  used transiently from code running in those very blocks, thus
+	  running in free memory for a bit after this point.
 SeeAlso: #01630,#01632,#01633
 
 (Table 01629)
