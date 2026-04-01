@@ -8,6 +8,7 @@ INT 13 - IBM/MS INT 13 Extensions - INSTALLATION CHECK
 	AH = 41h
 	BX = 55AAh
 	DL = drive (80h-FFh)
+	CF should be set on entry for better compatibility
 Return: CF set on error (extensions not supported)
 	    AH = 01h (invalid function)
 	CF clear if successful
@@ -22,6 +23,24 @@ Return: CF set on error (extensions not supported)
 	    DH = extension version (v2.0+ ??? -- not present in 1.x)
 Note:	the Phoenix Enhanced Disk Drive Specification v1.0 uses version 2.0 of
 	  the INT 13 Extensions API
+BUGS:	Xi8088 BIOS version 0.9.4 fails to set DS (to 0040h) when it
+	  encounters any unsupported function, writing to BYTE [DS:0041h]
+	  "fdc_last_error". if DS=0000h this corrupts the INT 10 vector.
+	  as a workaround, calls to detect LBA support can temporarily
+	  set DS=0040h for this function so that the BIOS writes to the
+	  correct location. if all other LBA functions are gated by this
+	  check then they won't be called on the BIOS with this bug.
+	FreeDOS boot sector loaders by default refuse to use LBA access
+	  on diskette drives (unit numbers below 80h), even if this
+	  function would indicate that they are supported. there is a
+	  comment in the source text reading: "don't use LBA addressing
+	  on A: [...] might be a (buggy) CDROM-BOOT floppy emulation"
+	the lDOS instsect application can patch some lDOS and FreeDOS boot
+	  sector loaders to disable LBA access, using its /L options. to
+	  disable LBA access, /L NONE is used, while /L AUTO reverts to the
+	  code to detect LBA support at run time. /L AUTOHDD writes the
+	  FreeDOS code that detects LBA support only on hard disk drives
+	  (units above 7Fh), which is not supported by lDOS loaders.
 SeeAlso: AH=42h"INT 13 Ext",AH=48h"INT 13 Ext"
 
 Bitfields for IBM/MS INT 13 Extensions API support bitmap:
@@ -32,4 +51,3 @@ Bit(s)	Description	(Table 00271)
  2	enhanced disk drive (EDD) functions (AH=48h,AH=4Eh) supported
 	extended drive parameter table is valid (see #00273,#00278)
  3-15	reserved (0)
-

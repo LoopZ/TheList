@@ -8,8 +8,9 @@ INT 13 - DISK - GET DRIVE PARAMETERS (PC,XT286,CONV,PS,ESDI,SCSI)
 	AH = 08h
 	DL = drive (bit 7 set for hard disk)
 	ES:DI = 0000h:0000h to guard against BIOS bugs
+	CF should be set on entry for better compatibility
 Return: CF set on error
-	    AH = status (07h) (see #00234)
+	    AH = status (01h,07h) (see #00234)
 	CF clear if successful
 	    AH = 00h
 	    AL = 00h on at least some BIOSes
@@ -26,6 +27,17 @@ Notes:	may return successful even though specified drive is greater than the
 	for systems predating the IBM AT, this call is only valid for hard
 	  disks, as it is implemented by the hard disk BIOS rather than the
 	  ROM BIOS
+	lDOS boot loaders contain a comment noting "[that] while the
+	  original PC BIOS doesn't support this function (for its diskettes),
+	  it does properly return the error code 01h"
+	lDOS code sets CF and initialises CL to 00h before the call and
+	  only trusts the returned CHS geometry if CF is clear and the
+	  returned CL AND-masked with 3Fh is nonzero.
+	lDOS boot sector loaders contain a source text option named
+	  _QUERY_GEOMETRY_DISABLED to patch out the INT 13 call, replacing
+	  it by two NOPs. this patch can be applied or reverted by the
+	  lDOS instsect application using its /Q options, with /Q NONE to
+	  patch in the NOPs and /Q AUTO to restore the INT 13 instruction.
 	the IBM ROM-BIOS returns the total number of hard disks attached
 	  to the system regardless of whether DL >= 80h on entry.
 	Toshiba laptops with HardRAM return DL=02h when called with DL=80h,
