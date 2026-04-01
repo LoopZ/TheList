@@ -19,4 +19,8 @@ Notes:	supported by FreeDOS and lDOS
 	  during allocation of the environment and process memory.
 	  in lDOS a modified extended strategy is passed internally,
 	  FreeDOS temporarily modifies the global state instead.
+	INT 20, INT 27, AH=00h, AH=26h, AH=31h, AH=4Bh, and AH=4Ch are
+	  expected to be special cased by interrupt hooks (eg dosemu2)
+	  so that they receive exactly the same user stack as was set
+	  up by the interrupt caller.
 SeeAlso: AH=4Bh,AH=4Ch

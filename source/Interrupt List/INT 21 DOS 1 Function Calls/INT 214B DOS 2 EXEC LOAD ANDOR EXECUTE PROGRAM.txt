@@ -130,6 +130,10 @@ Notes:	DOS 2.x destroys all registers, including SS:SP
 	  subfunction number, so the otherwise invalid subfunction 02h will
 	  only return error code 01h if the given filename actually exists;
 	  otherwise, errors 02h, 03h, or 05h are returned
+	INT 20, INT 27, AH=00h, AH=26h, AH=31h, AH=4Bh, and AH=4Ch are
+	  expected to be special cased by interrupt hooks (eg dosemu2)
+	  so that they receive exactly the same user stack as was set
+	  up by the interrupt caller.
 
 MORE:   When creating a command tail, it consists of a length byte followed
 	by the string of characters. It should then be followed with a

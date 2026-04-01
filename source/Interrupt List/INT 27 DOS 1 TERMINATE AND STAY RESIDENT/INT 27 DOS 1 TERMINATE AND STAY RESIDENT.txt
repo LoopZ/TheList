@@ -14,5 +14,9 @@ Notes:	this is an obsolete call
 	the minimum number of bytes which will remain resident is 110h for
 	  DOS 2.x and 60h for DOS 3.0+; there is no minimum for DOS 1.x, which
 	  implements this service in COMMAND.COM rather than the DOS kernel
+	INT 20, INT 27, AH=00h, AH=26h, AH=31h, AH=4Bh, and AH=4Ch are
+	  expected to be special cased by interrupt hooks (eg dosemu2)
+	  so that they receive exactly the same user stack as was set
+	  up by the interrupt caller.
 SeeAlso: INT 21/AH=31h
 

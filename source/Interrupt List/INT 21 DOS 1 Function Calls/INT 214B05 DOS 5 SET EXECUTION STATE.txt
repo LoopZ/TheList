@@ -16,6 +16,10 @@ Note:	used by programs which intercept AX=4B00h to prepare new programs for
 	  or other software interrupt may be called after return from this call
 	  before commencement of the child process.  If DOS is running in the
 	  HMA, A20 is turned off on return from this call.
+	INT 20, INT 27, AH=00h, AH=26h, AH=31h, AH=4Bh, and AH=4Ch are
+	  expected to be special cased by interrupt hooks (eg dosemu2)
+	  so that they receive exactly the same user stack as was set
+	  up by the interrupt caller.
 SeeAlso: AH=4Bh
 
 Format of execution state structure:
