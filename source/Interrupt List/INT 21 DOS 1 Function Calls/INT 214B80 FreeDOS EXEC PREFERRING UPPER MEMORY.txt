@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 214B80
+  Category: O 	other operating systems
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 21 - FreeDOS - EXEC, preferring upper memory
+	AH = 4Bh
+	AL = type of load
+	    80h load and execute
+	    81h load but do not execute
+	DS:DX -> ASCIZ program name (must include extension)
+	ES:BX -> parameter block (see #01590,#01591,#01592)
+Return:	as for AH=4Bh subfunctions
+Notes:	supported by FreeDOS and lDOS
+	used to implement SHELLHIGH= and INSTALLHIGH= directives from
+	  fdconfig.sys and ldos.ini
+	internally uses UMBs and a strategy with mask 80h (see AH=58h)
+	  during allocation of the environment and process memory.
+	  in lDOS a modified extended strategy is passed internally,
+	  FreeDOS temporarily modifies the global state instead.
+SeeAlso: AH=4Bh,AH=4Ch
