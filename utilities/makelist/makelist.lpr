@@ -153,6 +153,16 @@ begin
   Result:=B+E;
 end;
 
+// Remove extra CRLF from head and tail of text
+function TrimCRLF(const Text : String) : String;
+begin
+ Result:=Text;
+ while Copy(Result, Length(Result) - 3) = CRLF+CRLF do
+   SetLength(Result, Length(Result) - 2);
+ while Copy(Result, 1, 2) = CRLF do
+   System.Delete(Result, 1, 2);
+end;
+
 // Returns the Section Kind for Processing Data files
 function FindSectionKind(FileName : String) : TSectionKind;
 var
@@ -223,10 +233,7 @@ begin
   A:=Explode(NormalizeLineEndings(Data, leLF));
   for I := 0 to High(A) do
     A[I]:=TrimRight(A[I]);
-  Data:=Implode(A, CRLF) + CRLF;
-  while Copy(Data, Length(Data) - 3) = CRLF+CRLF do
-    SetLength(Data, Length(Data) - 2);
-  while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
+  Data:=TrimCRLF(Implode(A, CRLF) + CRLF);
   Result:=True;
 end;
 
@@ -281,7 +288,7 @@ begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
     Exit;
   end;
-  while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
+  Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
     Exit;
@@ -312,7 +319,7 @@ begin
       LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
       Exit;
     end;
-    while Copy(Data, 1, 2) = CRLF do System.Delete(Data, 1, 2);
+    Data:=TrimCRLF(Data);
     if Length(Data) = 0 then begin
       LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
       Exit;
@@ -384,8 +391,12 @@ begin
   While Assigned(N) do begin
     Cat(WorkingData, N.Text);
     N:=N.Next;
-    if Assigned(N) then
-      Cat(WorkingData, CRLF);
+     if Assigned(N) then begin
+       if (SectionKind = skGlossary) or (SectionKind = skTable) then
+         Cat(WorkingData, CRLF)
+       else if LegacyMode and (SectionKind = skLink) then
+         Cat(WorkingData, CRLF);
+     end;
   end;
 end;
 
@@ -394,6 +405,7 @@ var
   I : Integer;
   Section : String;
   Data : RawByteString;
+  Y : String;
 begin
   OutName:=DosFileName(PathName);
   LogMessage(vbNormal, 'Group: ' + PathName + SPACE + '(' + OutName + ')');
@@ -401,6 +413,13 @@ begin
   BaseDir:=DirSource + PathName + PathDelimiter;
   CreateCommentFilesList(BaseDir);
   ReadFile(BaseDir + HeaderFile, HeaderData);
+  // Patch Header Year if needed
+  Y:=FormatDateTime('YYYY', BuildTime);
+  if (Pos('The List Project', HeaderData) > 0) and (Pos(Y + SPACE + 'The List Project', HeaderData) = 0) then begin
+    LogMessage(vbNormal, TAB + 'Automatic patch of The List Project copyright dates.');
+    HeaderData:=StringReplace(HeaderData, SPACE + 'The List Project',
+     '-' + Y + SPACE + 'The List Project', []);
+  end;
   SetHeader(PathName);
   PopCommentFile(HeaderFile);
   WorkingData:='';
