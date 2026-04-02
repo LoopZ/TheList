@@ -26,6 +26,20 @@ Notes:	programs should not use fixed multiplex numbers; rather, a program
 	  the first 16 bytes of the signature string to determine whether it
 	  is already installed on that multiplex number.  If not previously
 	  installed, it should use the first free multiplex number.
+	lDOS TSRs (switch /X=), SRDISK (switch /X=), and lDebug (variable
+	  TRYAMISNUM) provide ways to try allocating a particular multiplex
+	  number first, then if it is already used will scan from 00h to FFh
+	  to find a free number. however, to detect an already installed
+	  instance they try the particular number first (also /X= or for the
+	  debugger TRYDEBUGNUM) and then scan from FFh down to 00h. the idea
+	  is to operate on the resident instance that was installed most
+	  recently, though this scheme is imperfect.
+	lDOS RENUMBER can re-assign a resident multiplexer's multiplex number
+	  to another number. to do this it checks that the program's INT 2D
+	  entrypoint (obtained from INT 2D/AL=04h) starts with an IISP header
+	  followed by CMP AH,imm8 and JE rel8. if found, it checks that the
+	  CMP instruction was patched to match the allocated multiplex number
+	  and then assumes that this is the only reference to the number.
 	functions other than 00h are not valid unless a program is installed
 	  on the selected multiplex number
 	to be considered fully compliant with version 3.6 of the specification,
@@ -37,6 +51,12 @@ Notes:	programs should not use fixed multiplex numbers; rather, a program
 	  implementation has an overhead of 64 bytes (80 bytes with function
 	  05h) plus 22 bytes per hooked interrupt (for the interrupt sharing
 	  protocol header and hook list entry).
+	lDOS kernel, Loader, lDebug, SRDISK, and INTERC3 are not fully
+	  compliant because they don't provide function 02h. lDDebug and
+	  lCDebug may list interrupt handlers in their function 04h list
+	  that are not currently installed. lDebug doesn't support function
+	  05h even if it installs hotkey-like features. lDOS kernel only
+	  lists its int 2Dh handler for function 04h.
 	the signature string and description may be used by memory mappers
 	  to display the installed programs
 	to be considered fully compliant, users of this specification must
@@ -56,12 +76,12 @@ Notes:	programs should not use fixed multiplex numbers; rather, a program
 SeeAlso: INT 2D/AL=00h,INT 2D/AL=01h,INT 2D/AL=02h,INT 2D/AL=03h,INT 2D/AL=04h
 SeeAlso: INT 2D/AL=05h,INT 2D/AL=06h,INT 2F"NOTES"
 
-Format of interrupt sharing protocol interrupt handler entry point:
+Format of IBM Interrupt Sharing Protocol (IISP) interrupt handler entry point:
 Offset	Size	Description	(Table 02568)
  00h  2 BYTEs	short jump to actual start of interrupt handler, immediately
 		  following this data block (EBh 10h)
- 02h	DWORD	address of next handler in chain
- 06h	WORD	signature 424Bh
+ 02h	DWORD	address of next handler in chain, aka downlink
+ 06h	WORD	signature 424Bh "KB"
  08h	BYTE	EOI flag
 		00h software interrupt or secondary hardware interrupt handler
 		80h primary hardware interrupt handler (will issue EOI to
@@ -74,5 +94,26 @@ Note:	when chaining to the prior handler, the interrupt handler must perform
 	  ISP header.  This permits another AMIS TSR to hook itself into
 	  the chain at a position other than as the first handler to receive
 	  an interrupt.
+	the header's downlink must also be used to uninstall a given handler.
+	  it must be expected that other software may modify one's downlinks
+	  and one mustn't use stale other copies of the downlink vector later.
+	uninstalled iHPFS headers start with 90h EAh (NOP, and a far immediate
+	  JMP). they always chain to the next handler.
+	some nonstandard headers don't start with the expected short jump, and
+	  the hardware reset entry may be just a RETF or IRET rather than JMP.
+	lDOS TSRs use the advanced deinstallation method, explained in the
+	  KEEPHOOK manual. it searches not only through the topmost reachable
+	  chain of IISP headers; if the vector pointing at the handler that's
+	  to be uninstalled isn't found starting from the Interrupt Vector
+	  Table the uninstaller will query all resident multiplexers for their
+	  hooks of the same INT using AL=04h then search the (possibly hidden)
+	  chains reachable from these hooks.
+	lDOS RENUMBER expects the entry for INT 2D handlers to consist of a
+	  short jump at offset 00h, pointing to a CMP AH,imm8 instruction
+	  followed by JE rel8. if the imm8 matches the multiplex number that
+	  corresponds to this handler it is assumed that the CMP immediate is
+	  the single source of truth of this multiplexer's multiplex number.
+	some lDOS programs store 80h in the BYTE at offset 08h to indicate
+	  a software interrupt that never chains to the stored next handler.
 SeeAlso: INT F1/AH=01h"Common ISDN API",INT F1/AH=06h"CAPI",#04068
 
