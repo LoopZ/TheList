@@ -130,6 +130,7 @@ var
   WorkingData  : RawByteString;  // Working output data for LST file
   CommentFiles : TStringList;    // For verification all section comment files were used.
   SectionTree : TBinaryTree;     // For assembling the section file data
+  HeaderBar : String;           // 80-chars, but well will just test it is at least 70
 
 { ---------------------------------------------------------------------------- }
 
@@ -242,7 +243,8 @@ procedure WriteFile(FileName : String; const Data : RawByteString);
 var
   E : Integer;
 begin
- FileName:=DirOutput + FileName;
+  { TODO 5 -cDevel Automatically split LST files over MaxFileSize bytes }
+  FileName:=DirOutput + FileName;
   E:=PasExt.FileSave(FileName, Data);
    if E <> 0 then begin
      LogMessage(vbCritical, 'File Write Error #' + IntToStr(E) + ': ' + FileName);
@@ -272,16 +274,40 @@ begin
   Result:=RightPad(SectionLead + Kind + '---' + Section, SectionWidth, '-') + CRLF;
 end;
 
+function SectionEntry(Section : String; Category : String = '-') : String;
+begin
+  Section:=StringReplace(Section, SPACE, UNDERSCORE, [rfReplaceAll]);
+  Cat(Category, '--');
+  Category:=Copy(Category, 1, 2);
+  Result:=RightPad(SectionLead + Category + Section, SectionWidth, '-') + CRLF;
+end;
+
 { ---------------------------------------------------------------------------- }
 // Create the list of Files for the release
 function CreateFileList : String;
 begin
+  { TODO add File List Information based on files present }
   Result:='(pending)'+CRLF;
+end;
+
+procedure AddToTree(const Name, ID : String; const Data : RawByteString);
+var
+  N : TBinaryTreeNode;
+  XX : Integer;
+begin
+  N:= SectionTree.Add(ID, Data);
+  if not Assigned(N) then begin
+    LogMessage(vbVerbose, TAB + 'Duplicate ID for file: ' + Name);
+    XX:=0;
+    repeat
+      N := SectionTree.Add(ID + SPACE + ZeroPad(XX, 6), Data);
+      Inc(XX);
+    until Assigned(N);
+  end;
 end;
 
 procedure AddGlossary(const Name : String; var Data : RawByteString);
 var
-  N : TBinaryTreeNode;
   ID : RawByteString;
 begin
   ID:=Trim(PopDelim(Data, CRLF));
@@ -294,9 +320,7 @@ begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
     Exit;
   end;
-  N := SectionTree.Add(ID, ID + CRLF + Data);
-  if not Assigned(N) then
-    LogMessage(vbMinimal, TAB + 'Duplicate Term for file: ' + Name);
+  AddToTree(Name, ID, ID + CRLF + Data);
 end;
 
 procedure AddTable(const Name : String; var Data : RawByteString);
@@ -306,7 +330,6 @@ end;
 
 procedure AddLink(const Name : String; var Data : RawByteString);
 var
-  N : TBinaryTreeNode;
   ID, Title : RawByteString;
 begin
   if LegacyMode then begin
@@ -324,15 +347,11 @@ begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
     Exit;
   end;
-  N := SectionTree.Add(ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
-  if not Assigned(N) then
-    LogMessage(vbMinimal, TAB + 'Duplicate Term for file: ' + Name);
-
+  AddToTree(Name, ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
 end;
 
 procedure AddSMM(const Name : String; var Data : RawByteString);
 var
-  N : TBinaryTreeNode;
   ID, Title : RawByteString;
 begin
   Title:=Trim(PopDelim(Data, CRLF));
@@ -348,42 +367,82 @@ begin
     Exit;
   end;
   if LegacyMode then
-    N := SectionTree.Add(ID, SectionMarker('', '-') + Title + CRLF + Data)
+    AddToTree(Name, ID, SectionMarker('', '-') + Title + CRLF + Data)
   else
-    N := SectionTree.Add(ID, SectionMarker('SMM:' + ID) + Title + CRLF + Data);
-  if not Assigned(N) then
-    LogMessage(vbMinimal, TAB + 'Duplicate ID for file: ' + Name);
+    AddToTree(Name, ID, SectionMarker('SMM:' + ID) + Title + CRLF + Data);
+end;
+
+procedure FileToSection(const Name : String; var Data : RawByteString;
+  out ID, Category, Flags : String);
+var
+  I : Integer;
+  H : TArrayOfString;
+  K, V : String;
+begin
+  ID:='';
+  Category:='';
+  Flags:='';
+  // Remove Header Stub from Data
+  PopDelim(Data, HeaderBar + CRLF);
+  H:=Explode(PopDelim(Data, CRLF + HeaderBar));
+  PopDelim(Data, CRLF);
+  Data:=TrimCRLF(Data);
+  // Parse Header Stub
+  for I := 0 to High(H) do begin
+    H[I]:=StringReplace(H[I], TAB, SPACE, [rfReplaceAll]);
+    K:=Trim(PopDelim(H[I], COLON));
+    H[I]:=Trim(H[I]);
+    V:=PopDelim(H[I], SPACE);
+    H[I]:=Trim(H[I]);
+    case UpperCase(K) of
+      'UNIQUE ID' : begin
+        ID:=V;
+        if H[I] <> '' then
+          LogMessage(vbMinimal, 'Extraneous Data in Unique ID for file: '+ Name);
+      end;
+      'CATEGORY' : begin
+        if UpperCase(V) = 'N/A' then
+          V := '-';
+        If Length(V) > 1 then
+          LogMessage(vbMinimal, 'Extraneous Data in Category for file: '+ Name);
+        Category:=Copy(V, 1,1);
+      end;
+      'FLAGS' : begin
+        if UpperCase(V) = 'N/A' then
+          V := '-';
+        If Length(V) > 1 then
+          LogMessage(vbMinimal, 'Extraneous Data in Flags for file: '+ Name);
+        FLAGS:=Copy(V, 1,1);
+      end;
+    else
+      LogMessage(vbVerbose, 'Extraneous header field "' +  K + '" in file: '+ Name);
+    end;
+  end;
+
 end;
 
 procedure AddStandard(const Name : String; var Data : RawByteString);
-Const
-  X : Integer = 0;
 var
-  N : TBinaryTreeNode;
-  ID, Title : RawByteString;
+  ID, Category, Flags : String;
 begin
-  Title:=Trim(PopDelim(Data, CRLF));
-  ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
-  ID:='XXX-'+IntToStr(X);
-  Inc(X);
+  FileToSection(Name, Data, ID, Category, Flags);
   if ID='' then begin
-    LogMessage(vbMinimal, TAB + 'No ID specified for file: ' + Name);
+    LogMessage(vbMinimal, TAB + 'No ID found for file: ' + Name);
     Exit;
   end;
-  Data:=TrimCRLF(Data);
+  if Pos(HeaderBar, Data) > 0 then begin
+    LogMessage(vbNormal, TAB+ 'Probably joined entry data in file: ' + Name);
+  end;
+  { TODO 5 -cDevel Add UID validation }
+  { TODO 5 -cDevel Add Category validation }
+  { TODO 5 -cDevel Add Flags validation }
+  { TODO 5 -cDevel Track Highest Table Number }
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
     Exit;
   end;
-  if LegacyMode then
-    N := SectionTree.Add(ID, SectionMarker('', '-') + Title + CRLF + Data)
-  else
-    N := SectionTree.Add(ID, SectionMarker('INT:' + ID) + Title + CRLF + Data);
-  if not Assigned(N) then
-    LogMessage(vbMinimal, TAB + 'Duplicate ID for file: ' + Name);
+  AddToTree(Name, ID + SPACE + CATEGORY, SectionEntry(ID, Category) + Data);
 end;
-
-
 
 procedure AddDataFiles;
 var
@@ -487,6 +546,7 @@ begin
       AddDataFiles;
       Continue;
     end;
+    { TODO 5 -cDevel Replace ADMIN with Calculated Data like Highest Table Number }
     if Section <> 'FILELIST' then begin
       if not ReadFile(BaseDir + UNDERSCORE + Sections[I] + SrcExt, Data) then
         Continue;
@@ -718,6 +778,7 @@ end;
 {$R *.res}
 
 begin
+  HeaderBar:=StringOf('-', 70);
   Options;
   Banner;
   Build;
