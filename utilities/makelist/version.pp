@@ -18,17 +18,17 @@ interface
 const
   { The default Free Pascal Compiler }
   FPC_VERSION = '3.2.2';
-  FPC_PLATFORM = 'darwin';
+  FPC_PLATFORM = 'linux';
   FPC_TARGET = 'x86_64';
 
   { The Lazarus I.D.E }
-  LAZARUS_VERSION = '4.0';
+  LAZARUS_VERSION = '4.4';
 
   { Source version and most recent project commit }
   SOURCE_VERSION = '1.0.0';
-  SOURCE_REVISION = '65';
+  SOURCE_REVISION = '0';
   SOURCE_URL = 'http://github.com/LoopZ/TheList';
-  SOURCE_COMMIT = 'afb7306d1cc1280bd63e6ff680c334d6835834ed';
+  SOURCE_COMMIT = '0872f9d3901a20fcd631ed9d2583bfe5a1639487';
 
   { Version Build Atributes } 
   BUILD_DEBUG: Boolean = False;
@@ -36,7 +36,7 @@ const
   BUILD_PATCHED: Boolean = False;
   BUILD_PRIVATE: Boolean = False;
   BUILD_SPECIAL: Boolean = False;
-  BUILD_DATE: String = '2026-04-02 15:33:46';
+  BUILD_DATE: String = '2026-04-02 17:12:33';
 
   { General Application Information }
   APP_VERSION: String = '1.0.0';
