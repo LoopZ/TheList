@@ -973,6 +973,7 @@ const
     (S:''; L:''; V:''; M:''),
     (S:'-s'; L:'--source'; V:'(path)'; M:'Specify a path that contains the source files.'),
     (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the output files.'),
+    (S:'-m'; L:'--maximum'; V:'(size)'; M:'Split List files at a specific Kb size. (default 360)'),
     (S:''; L:''; V:''; M:''),
     (S:''; L:'--modern'; V:''; M:'Disable legacy mode for modern parsers (default).'),
     (S:''; L:'--legacy'; V:''; M:'Enable compatibility mode for legacy parsers.')
@@ -1035,7 +1036,8 @@ var
   end;
 
 var
-  V, E : Integer;
+  V, E, U, M : Integer;
+  S : String;
 
 begin
   I:=1;
@@ -1067,7 +1069,25 @@ begin
       '--legacy' : LegacyMode:=True;
       '-s', '--source' : DirSource:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : DirOutput:=IncludeTrailingPathDelimiter(Trim(NextOpt));
-      { TODO 5 -cDevel Add Option to adjust MaxFileSize }
+      '-m', '--maximum' : begin
+        S:=UpperCase(NextOpt);
+        U:=1024;
+        if HasTrailing(S, 'K') then
+          S:=ExcludeTrailing(S, 'K')
+        else if HasTrailing(S, 'KB') then
+          S:=ExcludeTrailing(S, 'KB')
+        else if HasTrailing(S, 'M') then begin
+          S:=ExcludeTrailing(S, 'M');
+          U:=1024*1024;
+        end else if HasTrailing(S, 'MB') then begin
+          S:=ExcludeTrailing(S, 'MB');
+          U:=1024*1024;
+        end;
+        Val(S, M, E);
+        MaxFileSize:=U * M;
+        if (E <> 0) or (M < 1) or (MaxFileSize < 120 * 1024) then
+           SeeHelp('Invalid parameter for command-line option: ' + Opt);
+      end
       { TODO 1 -cDevel Add Option to create ZIP Archive version of release }
     else
       SeeHelp('Invalid command-line option: ' + Opt);
