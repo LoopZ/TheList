@@ -741,7 +741,7 @@ end;
 // Display Program Banner and Version
 procedure Banner;
 begin
-  LogMessage(vbNormal,APP_PRODUCTNAME + ' v' + APP_VERSION + ' (build ' + APP_BUILD+ ')');
+  LogMessage(vbNormal,APP_PRODUCTNAME + ' v' + APP_VERSION);
   LogMessage(vbNormal,'Copyright ' + APP_LEGALCOPYRIGHT);
   LogMessage(vbNormal,'The Clear BSD License ');
   LogMessage(vbNormal, '');
@@ -762,8 +762,8 @@ const
     (S:'-s'; L:'--source'; V:'(path)'; M:'Specify a path that contains the source files.'),
     (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the output files.'),
     (S:''; L:''; V:''; M:''),
-    (S:''; L:'--modern'; V:''; M:'Disable legacy mode for support in modern parsers.'),
-    (S:''; L:'--legacy'; V:''; M:'Enable legacy mode for better compatibility with parsers.')
+    (S:''; L:'--modern'; V:''; M:'Disable legacy mode for modern parsers (default).'),
+    (S:''; L:'--legacy'; V:''; M:'Enable compatibility mode for legacy parsers.')
   );
 
 var
