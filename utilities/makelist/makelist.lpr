@@ -186,7 +186,7 @@ const
   (Name:'TABLES.LST';   Text:'a list of selected tables'),
   (Name:'LINKS.LST';    Text:'a list of links to reference and sites in the docs'),
   (Name:'FAQ.LST';      Text:'a list of frequently asked questions'),
-  (Name:'README.NOW';   Text:'a read me document'),
+  (Name:'README.NOW';   Text:'a read me document')
   );
 
   function GetText(Name : String) : String;
@@ -499,6 +499,9 @@ begin
       Cat(Result, '(Unspecified)');
     Cat(Result, CRLF);
   end;
+  Cat(Result, CRLF +
+    'Number of Entries = ' + IntToStr(TotalEntries) + CRLF +
+    'Number of Tables = ' + IntToStr(TotalTables) + CRLF);
   List.Free;
 end;
 
@@ -838,7 +841,11 @@ begin
         Continue;
       Data:=NormalizeLineEndings(Data, leCRLF);
     end else begin
-      Data:=CreateFileList;
+      if ReadFile(BaseDir + UNDERSCORE + Sections[I] + SrcExt, Data) then
+        Data:=NormalizeLineEndings(Data, leCRLF) + CRLF
+      else
+        Data:='';
+      Cat(Data, CreateFileList);
     end;
     if Data = '' then Continue;
     LogMessage(vbExcessive, TAB+'Added comment section: ' + Section);
