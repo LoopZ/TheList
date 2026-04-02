@@ -141,6 +141,8 @@ var
   TotalErrors  : integer;        // total number of actual errors
   TotalProblems : integer;       // Number of non-errors that will be problems for parsers
   TotalWarnings : integer;       // Less Severe problems that should be fixed at some point
+  FileInfo : TBinaryTree;        // File Info for the FILELIST Section
+
 
 { ---------------------------------------------------------------------------- }
 
@@ -162,6 +164,59 @@ begin
   B:=Copy(B, 1, 8);
   E:=Copy(E, 1, 4);
   Result:=B+E;
+end;
+
+procedure AddFileInfo(Filename, Title : String; Data : String = '');
+const
+  DosText : array of record
+    Name, Text : String;
+  end = (
+  (Name:'INTERRUP.1ST'; Text:'this file'),
+  (Name:'INTERRUP.LST'; Text:'Interrupts'),
+  (Name:'PORTS.LST';    Text:'listing of I/O Ports'),
+  (Name:'INTERRUP.PRI'; Text:'a brief primer on interrupts'),
+  (Name:'OVERVIEW.LST'; Text:'brief listing of major uses of each interrupt'),
+  (Name:'BIBLIO.LST';	Text:'bibliography of information sources for the list'),
+  (Name:'CMOS.LST';     Text:'a description of the CMOS RAM data bytes'),
+  (Name:'FARCALL.LST';  Text:'APIs available through FAR CALLs'),
+  (Name:'GLOSSARY.LST'; Text:'a glossary of terms, abbreviations, and acronyms'),
+  (Name:'MEMORY.LST';   Text:'format of the BIOS data area and other memory regions'),
+  (Name:'MSR.LST';      Text:'a listing of Model-Specific Registers'),
+  (Name:'CATEGORY.KEY'; Text:'descriptions of divider-line category letters'),
+  (Name:'TABLES.LST';   Text:'a list of selected tables'),
+  (Name:'LINKS.LST';    Text:'a list of links to reference and sites in the docs'),
+  (Name:'FAQ.LST';      Text:'a list of frequently asked questions'),
+  (Name:'README.NOW';   Text:'a read me document'),
+  );
+
+  function GetText(Name : String) : String;
+  var
+    I : Integer;
+  begin
+     Result:='';
+     for I := 0 to High(DosText) do
+       if UpperCase(Name) = DosText[I].Name then begin
+         Result :=DosText[I].Text;
+         Exit;
+       end;
+  end;
+
+var
+  S: String;
+
+begin
+  FileName:=DosFileName(FileName);
+  if Uppercase(FileName) = 'INTERRUP.1ST' then exit;
+  if FileInfo.Count = 0 then
+    FileInfo.Add('INTERRUP.1ST', GetText('INTERRUP.1ST'));
+  S:=GetText(FileName);
+  if S='' then
+    S:=GetText(ChangeFileExt(FileName, '.LST'));
+  if S='' then
+    S:=Title;
+  if Data <> '' then
+    Cat(S, COMMA + SPACE);
+  FileInfo.Add(FileName, Trim(S + Data));
 end;
 
 // Remove extra CRLF from head and tail of text
@@ -254,6 +309,76 @@ begin
   Result:=RightPad(SectionLead + Category + Section, SectionWidth, '-') + CRLF;
 end;
 
+function GetFromTo(Const Data : RawByteString) : String;
+  function IntID(ID : String) : String;
+  begin
+    Result:=Copy(ID, 1, 6);
+    While HasTrailing(Result, '-') do SetLength(Result, Length(Result) - 1);
+    case Length(Result) of
+      2 : Result:=Result + 'h';
+      4 : Result:=Copy(Result, 1,2) + 'h/AH=' + Copy(Result, 3,2);
+      6 : Result:=Copy(Result, 1,2) + 'h/AX=' + Copy(Result, 3,4);
+    end;
+    Result:='INT ' + Result;
+  end;
+
+var
+  P, E, I : integer;
+  F, L : String;
+begin
+  Result:='';
+  F:='';
+  L:='';
+  P:=0;
+  // Find first entry section header
+  repeat
+    Inc(P);
+    P:=Pos(CRLF + SectionLead, Data, P);
+    if P < 1 then Exit;
+    Inc(P, 12);
+    if Copy(Data, P, 2) <> '--' then begin
+      E:=Pos(CRLF, Data, P);
+      if E < P then Exit;
+      F :=Copy(Data, P, E-P);
+      While HasTrailing(F, '-') do
+        SetLength(F, Length(F) - 1);
+      Break;
+    end;
+    P:=Pos(CRLF, Data, P+1);
+  until P < 1;
+  if F = '' then Exit;
+  // Find last entry section header
+  P:=Length(Data);
+  repeat
+    Dec(P);
+    P:=RPosEx(CRLF + SectionLead, Data, P);
+    if P < 1 then Exit;
+    I:=P+12;
+    if Copy(Data, I, 2) <> '--' then begin
+      E:=Pos(CRLF, Data, I);
+      if E < I then Exit;
+      L :=Copy(Data, I, E-I);
+      While HasTrailing(L, '-') do
+        SetLength(L, Length(L) - 1);
+      Break;
+    end;
+  until P < 1;
+  if L = '' then Exit;
+  case SectionKind of
+    skPort : begin
+      F:=ExcludeLeading(F, 'P');
+      L:=ExcludeLeading(L, 'P');
+      F:=Copy(F, 1, 4);
+      L:=Copy(L, Length(L) - 3);
+    end;
+    skInterrupt: begin
+      F:=RightPad(IntID(F), 16);
+      L:=IntID(L);
+    end;
+  end;
+  Result:='from ' + F + ' to ' + L;
+end;
+
 // Reads a file if it exists, normalizes line endings and truncates trailing
 // and leading blank lines.
 function ReadFile(FileName : String; out Data : RawByteString) : boolean;
@@ -326,7 +451,8 @@ begin
       else
         LogMessage(vbNormal, TAB + 'Divided into ' + IntToStr(Length(Parts)) +
           ' parts (A thru ' + ExcludeLeading(ExtractFileExt(FileName), '.') + ')');
-      E:=PasExt.FileSave(FileName, Data);
+     AddFileInfo(ExtractFileName(FileName), Title, GetFromTo(Data));
+     E:=PasExt.FileSave(FileName, Data);
       if E <> 0 then begin
         LogMessage(vbCritical, 'File Write Error #' + IntToStr(E) + ': ' + FileName);
         Halt(E);
@@ -346,6 +472,7 @@ begin
   end;
   FileName:=DirOutput + FileName;
   E:=PasExt.FileSave(FileName, Data);
+  AddFileInfo(ExtractFileName(FileName), Title);
   if E <> 0 then begin
     LogMessage(vbCritical, 'File Write Error #' + IntToStr(E) + ': ' + FileName);
     Halt(E);
@@ -354,9 +481,25 @@ end;
 { ---------------------------------------------------------------------------- }
 // Create the list of Files for the release
 function CreateFileList : String;
+var
+  I : Integer;
+  List : TStringList;
+  N : TBinaryTreeNode;
 begin
-  { TODO add File List Information based on files present }
-  Result:='(pending)'+CRLF;
+  List := TStringList.Create;
+  Result:='';
+  DirScan(DirOutput + WildCard, List, [dsFiles]);
+  List.Sort;
+  for I := 0 to List.Count - 1 do begin
+    Cat(Result, SPACE4 + RightPad(List[I], 16));
+    N:=FileInfo.Find(List[I]);
+    if Assigned(N) then
+      Cat(Result, N.Text)
+    else
+      Cat(Result, '(Unspecified)');
+    Cat(Result, CRLF);
+  end;
+  List.Free;
 end;
 
 procedure AddToTree(const Name, ID : String; const Data : RawByteString);
@@ -740,6 +883,7 @@ begin
       LogMessage(vbVerbose, 'Copy miscellaneous file: "' + L[I] + '" to "' + DosFileName(L[I]) + '"')
     else
       LogMessage(vbVerbose, 'Copy miscellaneous file: ' + L[I]);
+    AddFileInfo(L[I], L[I]);
     E:=FileCopy(DirSource + 'Miscellaneous' + PathDelimiter + L[I], DirOutput + DosFileName(L[I]));
     if E <> 0 then begin
       LogMessage(vbCritical, 'Error #'+ IntToStr(E) + ' while trying to copy "' +
@@ -778,6 +922,7 @@ begin
   SectionTree := TBinaryTree.Create;
   TableTree := TBinaryTree.Create;
   CommentFiles:=TStringList.Create;
+  FileInfo := TBinaryTree.Create;
   BuildTime:=Now;
   if LegacyMode then
     LastChange:=Lowercase(FormatDateTime('ddmmmYY', BuildTime))
@@ -792,6 +937,7 @@ begin
   CreateListFiles;
   CommentFiles.Free;
   TableTree.Free;
+  FileInfo.Free;
   SectionTree.Free;
 end;
 
@@ -914,6 +1060,8 @@ begin
       '--legacy' : LegacyMode:=True;
       '-s', '--source' : DirSource:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : DirOutput:=IncludeTrailingPathDelimiter(Trim(NextOpt));
+      { TODO 5 -cDevel Add Option to adjust MaxFileSize }
+      { TODO 1 -cDevel Add Option to create ZIP Archive version of release }
     else
       SeeHelp('Invalid command-line option: ' + Opt);
     end;
