@@ -130,7 +130,17 @@ var
   WorkingData  : RawByteString;  // Working output data for LST file
   CommentFiles : TStringList;    // For verification all section comment files were used.
   SectionTree : TBinaryTree;     // For assembling the section file data
-  HeaderBar : String;           // 80-chars, but well will just test it is at least 70
+  HeaderBar : String;            // 80-chars, but well will just test it is at least 70
+  TableTree : TBinaryTree;       // For verification, table numbers are unique
+  TableCode : String;            // Table Letter Code
+  TableHigh : integer;           // Highest Table Number
+  TableCount : integer;          // Number of tables in LST
+
+  TotalEntries : integer;        // total of all entries in all sections
+  TotalTables  : integer;        // total of all tables in all sections
+  TotalErrors  : integer;        // total number of actual errors
+  TotalProblems : integer;       // Number of non-errors that will be problems for parsers
+  TotalWarnings : integer;       // Less Severe problems that should be fixed at some point
 
 { ---------------------------------------------------------------------------- }
 
@@ -298,6 +308,7 @@ begin
   N:= SectionTree.Add(ID, Data);
   if not Assigned(N) then begin
     LogMessage(vbVerbose, TAB + 'Duplicate UniqueID (' + ID + ') for file: ' + Name);
+    Inc(TotalWarnings);
     XX:=0;
     repeat
       N := SectionTree.Add(ID + SPACE + ZeroPad(XX, 6), Data);
@@ -313,11 +324,13 @@ begin
   ID:=Trim(PopDelim(Data, CRLF));
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
+    Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
+    Inc(TotalErrors);
     Exit;
   end;
   AddToTree(Name, ID, ID + CRLF + Data);
@@ -340,11 +353,13 @@ begin
   ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
+    Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
+    Inc(TotalErrors);
     Exit;
   end;
   AddToTree(Name, ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
@@ -359,11 +374,13 @@ begin
   ID:=ExcludeLeading(ID, 'SMM-');
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No ID specified for file: ' + Name);
+    Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
+    Inc(TotalErrors);
     Exit;
   end;
   if LegacyMode then
@@ -418,7 +435,60 @@ begin
       LogMessage(vbVerbose, 'Extraneous header field "' +  K + '" in file: '+ Name);
     end;
   end;
+end;
 
+procedure HighestTable(const Name : String; const Data : RawByteString);
+var
+  P, F, E, V : Integer;
+  Srch, S, T : String;
+  N : TBinaryTreeNode;
+begin
+  Srch:=UpperCase(Data);
+  P := 1;
+  while True do begin
+    F:=Pos('(TABLE', Srch, P);
+    if F < P then Exit;
+    E:=Pos(')', Srch, F + 6);
+    if E < F then Break;
+    P:=E+1;
+    S:=Trim(Copy(Data, F+6, E - F - 6));
+    // test for references to full tables and other types of status messages
+    case Uppercase(S) of
+      '',
+      'FULL', 'IS FULL',
+      'EMPTY', 'IS EMPTY' : Continue;
+    end;
+    Inc(TableCount);
+    T := S;
+    // set table prefix
+    if TableHigh = -1 then begin
+      TableCode:=PasExt.AlphaOnly(S);
+      LogMessage(vbExcessive, TAB+'Table prefix code: '+
+        WhenTrue(TableCode = '', '(null)', TableCode));
+    end;
+    if (TableCode <> '') then begin
+      if (not HasLeading(S, TableCode)) then begin
+        LogMessage(vbMinimal, TAB + 'Invalid Table Prefix in file: ' + Name);
+        Inc(TotalErrors);
+        Continue;
+      end;
+      S:=ExcludeLeading(S, TableCode);
+    end;
+    Val(S, V, E);
+    if E <> 0 then begin
+      LogMessage(vbMinimal, TAB + 'Invalid Table Number in file: ' + Name);
+      Inc(TotalErrors);
+      Continue;
+    end;
+    if V > TableHigh then TableHigh:=V;
+    N:=TableTree.Add(T);
+    if not Assigned(N) then begin
+      LogMessage(vbMinimal, TAB + 'Duplicated Table ID (' + T + ') in file: ' + Name);
+      Inc(TotalErrors);
+    end;
+  end;
+  LogMessage(vbMinimal, TAB+ 'Broken Table declaration in file: ' + Name);
+  Inc(TotalErrors);
 end;
 
 procedure AddStandard(const Name : String; var Data : RawByteString);
@@ -428,17 +498,20 @@ begin
   FileToSection(Name, Data, ID, Category, Flags);
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No ID found for file: ' + Name);
+    Inc(TotalErrors);
     Exit;
   end;
   if Pos(HeaderBar, Data) > 0 then begin
     LogMessage(vbNormal, TAB+ 'Probably joined entry data in file: ' + Name);
+    Inc(TotalProblems);
   end;
   { TODO 5 -cDevel Add UID validation }
   { TODO 5 -cDevel Add Category validation }
   { TODO 5 -cDevel Add Flags validation }
-  { TODO 5 -cDevel Track Highest Table Number }
+  HighestTable(Name, Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
+    Inc(TotalErrors);
     Exit;
   end;
   AddToTree(Name, ID + SPACE + CATEGORY, SectionEntry(ID, Category) + Data);
@@ -503,6 +576,10 @@ begin
         Cat(WorkingData, CRLF)
     end;
   end;
+  LogMessage(vbNormal, TAB + 'Number of Entries = ' + IntToStr(SectionTree.Count));
+  LogMessage(vbNormal, TAB + 'Number of Tables = ' + IntToStr(TableCount));
+  Inc(TotalEntries, SectionTree.Count);
+  Inc(TotalTables, TableCount);
   N := SectionTree.First;
   While Assigned(N) do begin
     Cat(WorkingData, N.Text);
@@ -523,6 +600,9 @@ var
   Data : RawByteString;
   Y : String;
 begin
+  TableCode:='';
+  TableHigh:=-1;
+  TableCount:=0;
   OutName:=DosFileName(PathName);
   LogMessage(vbNormal, 'Group: ' + PathName + SPACE + '(' + OutName + ')');
   SectionKind:=FindSectionKind(PathName);
@@ -546,7 +626,11 @@ begin
       AddDataFiles;
       Continue;
     end;
-    { TODO 5 -cDevel Replace ADMIN with Calculated Data like Highest Table Number }
+    if Section = 'ADMIN' then begin
+      if TableHigh = -1 then Continue;
+      Data:='Highest Table Number = ' + TableCode + ZeroPad(TableHigh, 4);
+      LogMessage(vbNormal, TAB + Data);
+    end else
     if Section <> 'FILELIST' then begin
       if not ReadFile(BaseDir + UNDERSCORE + Sections[I] + SrcExt, Data) then
         Continue;
@@ -555,12 +639,12 @@ begin
       Data:=CreateFileList;
     end;
     if Data = '' then Continue;
-    LogMessage(vbVerbose, TAB+'Added comment section: ' + Section);
+    LogMessage(vbExcessive, TAB+'Added comment section: ' + Section);
     Cat(WorkingData, SectionMarker(Section));
     Cat(WorkingData, Data);
   end;
   if WorkingData <> '' then
-  WriteFile(OutName, Header + WorkingData);
+    WriteFile(OutName, Header + WorkingData);
   CommentOrphans;
 end;
 
@@ -633,6 +717,7 @@ begin
   ReleaseVersion:=StringReplace(ReleaseVersion, LF, SPACE, [rfReplaceAll]);
   ReleaseVersion:=Trim(StringReplace(ReleaseVersion, TAB, SPACE, [rfReplaceAll]));
   SectionTree := TBinaryTree.Create;
+  TableTree := TBinaryTree.Create;
   CommentFiles:=TStringList.Create;
   BuildTime:=Now;
   if LegacyMode then
@@ -647,6 +732,7 @@ begin
   CopyMiscellaneousFiles;
   CreateListFiles;
   CommentFiles.Free;
+  TableTree.Free;
   SectionTree.Free;
 end;
 
@@ -778,11 +864,24 @@ end;
 {$R *.res}
 
 begin
+  TotalTables:=0;
+  TotalEntries:=0;
+  TotalErrors:=0;
+  TotalProblems:=0;
+  TotalWarnings:=0;
   HeaderBar:=StringOf('-', 70);
   Options;
   Banner;
   Build;
   LogMessage(vbNormal, '');
+  LogMessage(vbNormal, 'Total Number of Entries = ' + IntToStr(TotalEntries));
+  LogMessage(vbNormal, 'Total Number of Tables = ' + IntToStr(TotalTables));
+  if TotalWarnings > 0 then
+  LogMessage(vbMinimal, 'Total Number of Warnings = ' + IntToStr(TotalWarnings));
+  if TotalProblems > 0 then
+  LogMessage(vbMinimal, 'Total Number of Problems = ' + IntToStr(TotalProblems));
+  if TotalErrors > 0 then
+  LogMessage(vbMinimal, 'Total Number of Errors = ' + IntToStr(TotalErrors));
   LogMessage(vbNormal, 'Done.');
 end.
 
