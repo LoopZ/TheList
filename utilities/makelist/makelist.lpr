@@ -297,7 +297,7 @@ var
 begin
   N:= SectionTree.Add(ID, Data);
   if not Assigned(N) then begin
-    LogMessage(vbVerbose, TAB + 'Duplicate ID for file: ' + Name);
+    LogMessage(vbVerbose, TAB + 'Duplicate UniqueID (' + ID + ') for file: ' + Name);
     XX:=0;
     repeat
       N := SectionTree.Add(ID + SPACE + ZeroPad(XX, 6), Data);
@@ -407,7 +407,7 @@ begin
           LogMessage(vbMinimal, 'Extraneous Data in Category for file: '+ Name);
         Category:=Copy(V, 1,1);
       end;
-      'FLAGS' : begin
+      'FLAG', 'FLAGS' : begin
         if UpperCase(V) = 'N/A' then
           V := '-';
         If Length(V) > 1 then
