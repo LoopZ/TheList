@@ -291,7 +291,7 @@ begin
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
-    LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
+    LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
     Exit;
   end;
   N := SectionTree.Add(ID, ID + CRLF + Data);
@@ -321,7 +321,7 @@ begin
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
-    LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
+    LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
     Exit;
   end;
   N := SectionTree.Add(ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
@@ -344,7 +344,7 @@ begin
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
-    LogMessage(vbMinimal, TAB + 'No data, excluded for file: ' + Name);
+    LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
     Exit;
   end;
   if LegacyMode then
@@ -354,6 +354,36 @@ begin
   if not Assigned(N) then
     LogMessage(vbMinimal, TAB + 'Duplicate ID for file: ' + Name);
 end;
+
+procedure AddStandard(const Name : String; var Data : RawByteString);
+Const
+  X : Integer = 0;
+var
+  N : TBinaryTreeNode;
+  ID, Title : RawByteString;
+begin
+  Title:=Trim(PopDelim(Data, CRLF));
+  ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
+  ID:='XXX-'+IntToStr(X);
+  Inc(X);
+  if ID='' then begin
+    LogMessage(vbMinimal, TAB + 'No ID specified for file: ' + Name);
+    Exit;
+  end;
+  Data:=TrimCRLF(Data);
+  if Length(Data) = 0 then begin
+    LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
+    Exit;
+  end;
+  if LegacyMode then
+    N := SectionTree.Add(ID, SectionMarker('', '-') + Title + CRLF + Data)
+  else
+    N := SectionTree.Add(ID, SectionMarker('INT:' + ID) + Title + CRLF + Data);
+  if not Assigned(N) then
+    LogMessage(vbMinimal, TAB + 'Duplicate ID for file: ' + Name);
+end;
+
+
 
 procedure AddDataFiles;
 var
@@ -375,11 +405,10 @@ begin
     Data:=NormalizeLineEndings(Data, leCRLF);
     case SectionKind of
       skNone : begin
-        LogMessage(vbMinimal, TAB + 'ignored file: ' + L[I]);
+        LogMessage(vbMinimal, TAB + 'ignore file: ' + L[I]);
       end;
       skStandard, skInterrupt, skCMOS, skFarCall,
-      skI2C, skMemory,skMSR, skPort : begin
-      end;
+      skI2C, skMemory,skMSR, skPort : AddStandard(L[I], Data);
       skGlossary : AddGlossary(L[I], Data);
       skTable : AddTable(L[I], Data);
       skSMM : AddSMM(L[I], Data);
@@ -388,7 +417,8 @@ begin
   end;
   L.Free;
   if SectionTree.Count = 0 then begin
-    LogMessage(vbNormal, TAB + 'no entries');
+    if SectionKind <> skNone then
+      LogMessage(vbNormal, TAB + 'no entries');
     Exit;
   end;
   case SectionKind of
