@@ -253,6 +253,7 @@ end;
 // Generate LST file header
 procedure SetHeader(Title : String; Part : integer = 0; Total : integer = 0);
 begin
+   if LegacyMode then Title:=UpperCase(Title);
    if Part + Total = 0 then
      Header:=RightPad(Title, TitleWidth) + TAB +
        RightPad(ReleaseVersion, 14) + TAB +
@@ -312,23 +313,46 @@ begin
     AddGlossary(Name, Data);
     Exit;
   end;
-  begin
-    Title:=Trim(PopDelim(Data, CRLF));
-    ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
-    if ID='' then begin
-      LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
-      Exit;
-    end;
-    Data:=TrimCRLF(Data);
-    if Length(Data) = 0 then begin
-      LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
-      Exit;
-    end;
-    N := SectionTree.Add(ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
-    if not Assigned(N) then
-      LogMessage(vbMinimal, TAB + 'Duplicate Term for file: ' + Name);
+  Title:=Trim(PopDelim(Data, CRLF));
+  ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
+  if ID='' then begin
+    LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
+    Exit;
   end;
+  Data:=TrimCRLF(Data);
+  if Length(Data) = 0 then begin
+    LogMessage(vbMinimal, TAB + 'No definition, excluded for file: ' + Name);
+    Exit;
+  end;
+  N := SectionTree.Add(ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
+  if not Assigned(N) then
+    LogMessage(vbMinimal, TAB + 'Duplicate Term for file: ' + Name);
 
+end;
+
+procedure AddSMM(const Name : String; var Data : RawByteString);
+var
+  N : TBinaryTreeNode;
+  ID, Title : RawByteString;
+begin
+  Title:=Trim(PopDelim(Data, CRLF));
+  ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
+  ID:=ExcludeLeading(ID, 'SMM-');
+  if ID='' then begin
+    LogMessage(vbMinimal, TAB + 'No ID specified for file: ' + Name);
+    Exit;
+  end;
+  Data:=TrimCRLF(Data);
+  if Length(Data) = 0 then begin
+    LogMessage(vbMinimal, TAB + 'No data, excluded for file: ' + Name);
+    Exit;
+  end;
+  if LegacyMode then
+    N := SectionTree.Add(ID, SectionMarker('', '-') + Title + CRLF + Data)
+  else
+    N := SectionTree.Add(ID, SectionMarker('SMM:' + ID) + Title + CRLF + Data);
+  if not Assigned(N) then
+    LogMessage(vbMinimal, TAB + 'Duplicate ID for file: ' + Name);
 end;
 
 procedure AddDataFiles;
@@ -358,8 +382,7 @@ begin
       end;
       skGlossary : AddGlossary(L[I], Data);
       skTable : AddTable(L[I], Data);
-      skSMM : begin // Just glued together in separate "other" sections
-      end;
+      skSMM : AddSMM(L[I], Data);
       skLink: AddLink(L[I], Data);
     end;
   end;
@@ -383,9 +406,13 @@ begin
     end;
     skLink : begin
       // Not in original RBIL, but will treat it like TABLES.LST in LegacyMode
-       if LegacyMode then
-         Cat(WorkingData, SectionMarker('') + CRLF)
-     end;
+      if LegacyMode then
+        Cat(WorkingData, SectionMarker('') + CRLF)
+    end;
+    skSMM : begin
+      if LegacyMode then
+        Cat(WorkingData, CRLF)
+    end;
   end;
   N := SectionTree.First;
   While Assigned(N) do begin
