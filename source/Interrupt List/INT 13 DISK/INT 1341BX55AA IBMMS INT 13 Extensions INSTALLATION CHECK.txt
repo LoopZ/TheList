@@ -23,6 +23,36 @@ Return: CF set on error (extensions not supported)
 	    DH = extension version (v2.0+ ??? -- not present in 1.x)
 Note:	the Phoenix Enhanced Disk Drive Specification v1.0 uses version 2.0 of
 	  the INT 13 Extensions API
+	the lDOS instsect application can patch some lDOS and FreeDOS boot
+	  sector loaders to disable LBA access, using its /L options. to
+	  disable LBA access, /L NONE is used, while /L AUTO reverts to the
+	  code to detect LBA support at run time. /L AUTOHDD writes the
+	  code that detects LBA support only on hard disk drives (units
+	  above 7Fh, see description in BUGS below). this HDD-only check
+	  originated with FreeDOS but as of 2026 April it is also supported
+	  by the lDOS loaders.
+	FreeDOS SYS offers three options to change LBA detection. (it only
+	  supports patching its own built-in loaders, unlike lDOS instsect
+	  which supports patching selected other loaders.) the options are
+	  called /FORCE:CHS, /FORCE:LBA, and /FORCE:AUTO. for the FAT12 and
+	  FAT16 loaders, /FORCE:CHS corresponds to /L NONE, /FORCE:LBA to
+	  /L AUTO (check on any unit), and /FORCE:AUTO to /L AUTOHDD (check
+	  on HDD units only, else use CHS).
+	for the FAT32 loaders this differs: there are two separate loaders,
+	  one of which is installed, each one fitting (entirely) in the
+	  FAT32 boot sector. one of them uses only CHS reads (and can run
+	  on an 8086) while the other one uses only LBA reads (and requires
+	  at least a 386). /FORCE:CHS or /FORCE:LBA directly select one of
+	  the two loaders. /FORCE:AUTO (which is the default) queries LBA
+	  support for drive 80h on the system running SYS (using this
+	  installation check) and selects the loader matching the result.
+	(lDOS uses a two-stage FAT32 loader storing a common second stage
+	  in the FSINFO sector, called FSIBOOT. the first stage uses this
+	  installation check, the code of which can be patched by instsect
+	  as described above. lDOS FAT12 and FAT16 loaders instead use the
+	  "skip check" method in which they attempt to read using function
+	  AH=42h"INT 13 Ext" without using this installation check, as
+	  noted in that entry.)
 BUGS:	Xi8088 BIOS version 0.9.4 fails to set DS (to 0040h) when it
 	  encounters any unsupported function, writing to BYTE [DS:0041h]
 	  "fdc_last_error". if DS=0000h this corrupts the INT 10 vector.
@@ -35,12 +65,6 @@ BUGS:	Xi8088 BIOS version 0.9.4 fails to set DS (to 0040h) when it
 	  function would indicate that they are supported. there is a
 	  comment in the source text reading: "don't use LBA addressing
 	  on A: [...] might be a (buggy) CDROM-BOOT floppy emulation"
-	the lDOS instsect application can patch some lDOS and FreeDOS boot
-	  sector loaders to disable LBA access, using its /L options. to
-	  disable LBA access, /L NONE is used, while /L AUTO reverts to the
-	  code to detect LBA support at run time. /L AUTOHDD writes the
-	  FreeDOS code that detects LBA support only on hard disk drives
-	  (units above 7Fh), which is not supported by lDOS loaders.
 SeeAlso: AH=42h"INT 13 Ext",AH=48h"INT 13 Ext"
 
 Bitfields for IBM/MS INT 13 Extensions API support bitmap:

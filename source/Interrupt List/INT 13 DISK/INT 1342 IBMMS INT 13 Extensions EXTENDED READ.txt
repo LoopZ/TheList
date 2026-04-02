@@ -19,7 +19,8 @@ Notes:	lDOS boot sector loaders for FAT12 and FAT16 may attempt to read
 	  with the proper check (AH=41h"INT 13 Ext"), instead passing CF
 	  set and checking for the returned CF set and an error code 01h
 	  in AH. if this condition is met, the loader falls back to try
-	  reading the sector using CHS access AH=02h.
+	  reading the sector using CHS access AH=02h. this is called the
+	  "skip check" method of LBA detection.
 	lDOS instsect /L options can affect the use of this function
 	  without AH=41h"INT 13 Ext" in lDOS boot sector loaders as well,
 	  refer to the notes in that entry for details.
