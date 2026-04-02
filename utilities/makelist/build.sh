@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#   Copyright (c) 2025-2026 Jerome Shidel
+#   The Clear BSD License
+#   All rights reserved.
+
 # I don't want the command line build to increment the build number automatically
 # Backup the LPI file. After the build, restore those files to reset the build number.
 
