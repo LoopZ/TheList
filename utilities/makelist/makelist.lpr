@@ -16,7 +16,7 @@ uses
   {$ENDIF}
   Classes, SysUtils
   { you can add units after this },
-  Version, PasExt, BinTree;
+  Version, PasExt, BinTree, StrUtils;
 
 type
   TSectionKind = (
@@ -224,44 +224,6 @@ begin
     LogMessage(vbMinimal, TAB + CommentFiles[I]);
 end;
 
-// Reads a file if it exists, normalizes line endings and truncates trailing
-// and leading blank lines.
-function ReadFile(FileName : String; out Data : RawByteString) : boolean;
-var
-  E : Integer;
-  A : TArrayOfString;
-  I : Integer;
-begin
-  if not FileExists(FileName) then begin
-    Data:='';
-    Exit(False);
-  end;
-  E:=PasExt.FileLoad(FileName, Data);
-  if E <> 0 then begin
-    LogMessage(vbCritical, 'File Read Error #' + IntToStr(E) + ': ' + FileName);
-    Halt(E);
-  end;
-  A:=Explode(NormalizeLineEndings(Data, leLF));
-  for I := 0 to High(A) do
-    A[I]:=TrimRight(A[I]);
-  Data:=TrimCRLF(Implode(A, CRLF) + CRLF);
-  Result:=True;
-end;
-
-// Saves a LST file to the output directory
-procedure WriteFile(FileName : String; const Data : RawByteString);
-var
-  E : Integer;
-begin
-  { TODO 5 -cDevel Automatically split LST files over MaxFileSize bytes }
-  FileName:=DirOutput + FileName;
-  E:=PasExt.FileSave(FileName, Data);
-   if E <> 0 then begin
-     LogMessage(vbCritical, 'File Write Error #' + IntToStr(E) + ': ' + FileName);
-     Halt(E);
-   end;
-end;
-
 // Generate LST file header
 procedure SetHeader(Title : String; Part : integer = 0; Total : integer = 0);
 begin
@@ -292,6 +254,103 @@ begin
   Result:=RightPad(SectionLead + Category + Section, SectionWidth, '-') + CRLF;
 end;
 
+// Reads a file if it exists, normalizes line endings and truncates trailing
+// and leading blank lines.
+function ReadFile(FileName : String; out Data : RawByteString) : boolean;
+var
+  E : Integer;
+  A : TArrayOfString;
+  I : Integer;
+begin
+  if not FileExists(FileName) then begin
+    Data:='';
+    Exit(False);
+  end;
+  E:=PasExt.FileLoad(FileName, Data);
+  if E <> 0 then begin
+    LogMessage(vbCritical, 'File Read Error #' + IntToStr(E) + ': ' + FileName);
+    Halt(E);
+  end;
+  A:=Explode(NormalizeLineEndings(Data, leLF));
+  for I := 0 to High(A) do
+    A[I]:=TrimRight(A[I]);
+  Data:=TrimCRLF(Implode(A, CRLF) + CRLF);
+  Result:=True;
+end;
+
+// Saves a LST file to the output directory
+procedure WriteFile(Title, FileName : String; Data : RawByteString);
+var
+  I, E, L : Integer;
+  Parts : TArrayOfString;
+  S : String;
+  X, M : Integer;
+begin
+  { TODO 5 -cDevel Automatically split LST files over MaxFileSize bytes }
+  if Length(Data) > MaxFileSize then begin
+    Parts:=[];
+    L:=Length(SectionMarker(''));
+    Header := '';  // First part already has the header in the data.
+    // Split the files into parts of MaxFileSize or less.
+    repeat
+      M:=MaxFileSize - L + 2 - Length(Header);
+      X:=M;
+      repeat
+        X := RPosEx(CRLF + SectionLead, Data, X);
+        S:=Copy(Data, X + 2, L);
+        if (X <1)then begin
+          LogMessage(vbCritical, 'Unable to split large list file: ' + FileName);
+          Halt(1);
+        end;
+      until (Length(S) = L) and HasTrailing(S, '-' + CRLF);
+      SetLength(Parts, Length(Parts)+1);
+      Parts[High(Parts)]:=Copy(Data, 1, X);
+      System.Delete(Data, 1, X);
+      SetHeader(Title, 10, 100);
+      Header:=ExcludeTrailing(Header, CRLF);
+    until Length(Data)<=M;
+    if Length(Data) > 0 then begin
+      SetLength(Parts, Length(Parts)+1);
+      Parts[High(Parts)]:=Data;
+    end;
+    // output the divided files
+    FileName:=ChangeFileExt(DirOutput + FileName, '.A');
+    for I := 0 to High(Parts) do begin
+      Data:=Parts[I];
+      if I > 0 then begin
+        SetHeader(Title, I + 1, Length(Parts));
+        Data:=ExcludeTrailing(Header, CRLF) + Data;
+      end;
+      if I < High(Parts) then
+        Cat(Data, SectionMarker('Section'))
+      else
+        LogMessage(vbNormal, TAB + 'Divided into ' + IntToStr(Length(Parts)) +
+          ' parts (A thru ' + ExcludeLeading(ExtractFileExt(FileName), '.') + ')');
+      E:=PasExt.FileSave(FileName, Data);
+      if E <> 0 then begin
+        LogMessage(vbCritical, 'File Write Error #' + IntToStr(E) + ': ' + FileName);
+        Halt(E);
+      end;
+      S:=Copy(FileName, Length(FileName));
+      // should never be more than 26, but just in case, this give us another
+      // 52 possible extensions that will remain in order for use with tools
+      // like "cat", before no longer being compatible with Standard DOS
+      // 8+3 file names.
+      if S < 'Z' then
+        FileName[Length(FileName)] :=Char(Ord(S[1]) + 1)
+      else
+        Cat(FileName, 'A');
+    end;
+
+    Exit;
+  end;
+  FileName:=DirOutput + FileName;
+  E:=PasExt.FileSave(FileName, Data);
+  if E <> 0 then begin
+    LogMessage(vbCritical, 'File Write Error #' + IntToStr(E) + ': ' + FileName);
+    Halt(E);
+  end;
+end;
 { ---------------------------------------------------------------------------- }
 // Create the list of Files for the release
 function CreateFileList : String;
@@ -644,7 +703,7 @@ begin
     Cat(WorkingData, Data);
   end;
   if WorkingData <> '' then
-    WriteFile(OutName, Header + WorkingData);
+    WriteFile(PathName, OutName, Header + WorkingData);
   CommentOrphans;
 end;
 
@@ -882,6 +941,6 @@ begin
   LogMessage(vbMinimal, 'Total Number of Problems = ' + IntToStr(TotalProblems));
   if TotalErrors > 0 then
   LogMessage(vbMinimal, 'Total Number of Errors = ' + IntToStr(TotalErrors));
-  LogMessage(vbNormal, 'Done.');
+  LogMessage(vbMinimal, 'Done.');
 end.
 
