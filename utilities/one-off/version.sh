@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#   Copyright (c) 2025-2026 Jerome Shidel
+#   The Clear BSD License
+#   All rights reserved.
+
 # this bash script will retrieve the version/revision of FPC, Lazarus and the current
 # programs source tree and store them in the $version_file pascal file.
 

@@ -1,3 +1,9 @@
+{
+   Copyright (c) 2025-2026 Jerome Shidel
+   The Clear BSD License
+   All rights reserved.
+}
+
 (* FIX_UTF8 is required for correct handling of UTF-8 characters.
 
    1) Enables support for UTF-8 characters embedded in the binary.

@@ -1,6 +1,6 @@
 // Copyright 2025-2026, Jerome Shidel
 // BSD 3-Clause License
-
+// All rights reserved.
 
 // Note: This is a One-Off program to break down the Existing RBIL 61 into
 // a file and directory structure more suitable for group editing using
