@@ -31,6 +31,18 @@ Notes:	BL is ignored if the TSR returns AL=04h; in that case, the caller
 	  and the return value is therefore undefined in that case.
 	this function is not valid unless a program is installed on the
 	  specified multiplex number; use INT 2D/AL=00h to check
+	lDebug may change its interrupt hook list dynamically when installing
+	  or uninstalling certain handlers, such as the INT 08 handler, the
+	  INT 2F handler (lDebugX only), serial IRQ handler, and int 0Ch and
+	  int 0Dh fault handlers. the trail of the list is static, but the
+	  start address and the contents of the leading entries may change.
+	lCDebug and lDDebug (debuggable builds of lDebug) may point to
+	  interrupt handlers not currently installed. they usually will
+	  contain FFFFh:FFFFh in their downlinks.
+	lDOS kernel only lists its INT 2D hook, as the other interrupt
+	  handlers aren't hooks in the same way (and do not use IISP headers).
+	  the lDOS kernel's interrupt hook list and its INT 2D handler are
+	  addressed using segment 26h or segment 60h.
 SeeAlso: INT 2D/AL=00h,INT 2D/AL=01h,INT 2D/AL=02h,INT 2D/AL=03h,INT 2D/AL=05h
 SeeAlso: INT 2D/AL=06h
 
@@ -40,5 +52,11 @@ Offset	Size	Description	(Table 02571)
  01h	WORD	offset within hook list's segment of the interrupt handler
 		this will point at the initial short jump of the interrupt
 		  sharing protocol header (see #02568)
+Notes:	the specification doesn't forbid the same interrupt number occur
+	  repeatedly with different handlers, except for the INT 2D entry
+	  as it terminates the list. lDOS KEEPHOOK depends on this.
+	lDOS RENUMBER detects an overflow if about 4096 entries are looped
+	  through without finding the INT 2D entry. a comment on this check
+	  states that at 18 bytes per IISP header, 4096 unique handlers
+	  would already overflow a 64 KiB segment.
 SeeAlso: #02572
-

@@ -37,6 +37,7 @@ Return: CF set on error
 	    FS = GS = 0
 	    high word of ESP = 0 if 32-bit program
 	    program now in protected mode
+BUGS:	MSWindows v4.xx (95 and 98) reportedly crashes here if the current
+	  PSP's environment field (see offset 2Ch in #01378) contains zero
 Note:	this entry point is only called for the initial switch to protected
 	  mode
-

@@ -262,10 +262,38 @@ SeeAlso: #00651
 
 (Table 00653)
 Values Bootstrap loader is called with (IBM BIOS):
-	CS:IP = 0000h:7C00h
+	CS:IP = 0000h:7C00h (07C0h:0000h possible too)
 	DH = access
 	    bits 7-6,4-0: don't care
 	    bit 5: =0 device supported by INT 13
-	DL = boot drive
+	DL = boot drive being loaded from
 	    00h first floppy
 	    80h first hard disk
+	    other units possible but not commonly supported
+upon booting a Partition Boot Record on an MBR HDD, many
+  loaders additionally pass (and lDOS expects):
+	DS:SI -> partition table entry being booted
+Notes:	lDOS boot sector loaders can use either the passed
+	  unit in DL (default, instsect /U AUTO) or use a
+	  fixed unit set up during installation (instsect
+	  /U xx where the xx is hexadecimal digits)
+	FreeDOS SYS allows to use /FORCEDRV or /FORCE:BSDRV
+	  to force use of the unit stored in the boot sector
+	  and /FORCE:BIOSDRV to enable using what is passed
+	  by the prior loader in DL. the /B xx switch sets
+	  the stored unit. if neither /FORCE switch is given
+	  then the BSDRV option is selected for target drives
+	  A: or B: (usually diskette drives).
+	the partition table entry should have mask 80h set in
+	  BYTE 00h (active indicator) and a nonzero BYTE 04h
+	  (partition type). if these two conditions are met
+	  and the drive unit in DL is >= 80h, lDOS boot
+	  loaders will overwrite their hidden sectors field
+	  with the DWORD 08h (partition start) except if this
+	  detection was patched out using instsect /P NONE
+	when booting a logical partition, bootable lDebug and
+	  the lDOS altmbr will set up a fictional partition
+	  table entry marked active and with the partition
+	  start as an absolute LBA sector number. (altmbr's
+	  original syslinux revision would set the LBA but
+	  not the active byte.)

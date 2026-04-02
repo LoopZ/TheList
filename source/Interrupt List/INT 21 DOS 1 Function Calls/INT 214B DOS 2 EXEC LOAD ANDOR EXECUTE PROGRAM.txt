@@ -40,8 +40,9 @@ Notes:	DOS 2.x destroys all registers, including SS:SP
 	  on top of the child's stack
 	for function 03h, DOS assumes that the overlay is being loaded into
 	  memory allocated by the caller. (this implies that the caller should
-	  know how large the executable image is, usually requiring it to read
-	  the file and parse an MZ executable header if any.)
+	  know how large the executable image is, requiring it to check the
+	  file size (less exact) or read the file and parse an MZ executable
+	  header if any (more exact and supports eg DEVICE=ldosmcp.com).)
 	function 01h was undocumented prior to the release of DOS 5.0
 	some versions (such as DR DOS 6.0) check the parameters and parameter
 	  block and return an error if an invalid value (such as an offset of
