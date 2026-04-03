@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #   Copyright (c) 2025-2026 Jerome Shidel
 #   The Clear BSD License
@@ -218,9 +218,13 @@ function cvs_git () {
     REV_HEAD=$(cat .git/HEAD 2>/dev/null | cut -d ' ' -f 2- )
     REVISION_ID=$(cat .git/${REV_HEAD} 2>/dev/null)
     ONLINE_ID=$(cat .git/refs/remotes/origin/${REV_HEAD##*/} 2>/dev/null)
-    URL=$(grep -i "URL=\|URL =" .git/config | cut -d '@' -f 2-)
-    URL="${URL/://}"
-    URL="http://${URL%.*}"
+    if [ "${CI}" != "true" ] ; then
+        URL=$(grep -i "URL=\|URL =" .git/config | cut -d '@' -f 2-)
+        URL="${URL/://}"
+        URL="http://${URL%.*}"
+    else
+        URL="http://github.com/LoopZ/TheList"
+    fi
 }
 
 BUILD_YEAR="${BUILD_DATE%%-*}"
