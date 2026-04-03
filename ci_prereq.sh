@@ -4,4 +4,4 @@ set -e
 
 sudo apt update
 
-sudo apt install lazarus
+sudo apt install fpc
