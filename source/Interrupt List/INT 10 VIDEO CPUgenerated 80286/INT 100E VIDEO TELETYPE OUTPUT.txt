@@ -16,7 +16,7 @@ Notes:	characters 07h (BEL), 08h (BS), 0Ah (LF), and 0Dh (CR) are interpreted
 	  and do the expected things
 	IBM PC ROMs dated 1981/4/24 and 1981/10/19 require that BH be the same
 	  as the current active page
-BUG:	if the write causes the screen to scroll, BP is destroyed by BIOSes
+BUGS:	if the write causes the screen to scroll, BP is destroyed by BIOSes
 	  for which AH=06h destroys BP
 	a 2020-09-18 commit to the FreeDOS kernel was created in response to
 	  reports that the SBC188 returns AL as 0Ah if the call caused the

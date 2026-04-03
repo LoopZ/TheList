@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--43
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDebug - AMIS command ELD - INJECT A DEBUGGER COMMAND
+	AH = AMIS multiplex number for lDebug
+	AL = 43h
+	CX = flags, all reserved for now (must pass as 0)
+	DX:BX -> message in byte-counted string,
+	  1 byte length (<= 254)
+	  N bytes text, length matching the value of length byte
+	  1 byte Carriage Return (= 13)
+Return:	AL = 00h if not supported
+	AL = 01h if supported, but buffer is full
+	AL = 02h if supported, but unknown bit set in CX
+	AL = FFh if successfully stored in buffer
+	current amiscmd.eld does not destroy any other registers
+Notes:	This function is provided by an ELD (Extension for lDebug)
+	  hooking into the debugger's AMIS handler.
+

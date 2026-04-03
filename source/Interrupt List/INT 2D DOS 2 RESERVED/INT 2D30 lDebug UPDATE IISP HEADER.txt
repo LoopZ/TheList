@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--30
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDebug - UPDATE IISP HEADER
+	AH = AMIS multiplex number for lDebug
+	AL = 30h
+	DS:SI -> source IISP header (or pseudo header)
+	ES:DI -> destination IISP header
+Return:	AL = FFh to indicate suppported,
+	  SI and DI both incremented by 6
+	  destination's ieNext field updated from source
+	AL != FFh if not supported,
+	  SI and DI unchanged
+	nothing else destroyed
+Notes:	This function is intended to aid in debugging
+	  handler re-ordering, removal, or insertion.
+	  The 32-bit far pointer needs to be updated
+	  as atomically as possible to avoid using
+	  an incorrect pointer.
+	Test case: Run a program such as our TSRs'
+	  uninstaller or SHUFHOOK and step through it
+	  with "tp fffff" when operating on something
+	  crucial such as interrupt 21h. Without this
+	  function the machine will crash!
+	To enable this function to be called, first run
+	  the command "r dco4 or= 8", or "INSTALL AMIS"
+	  (install our AMIS multiplexer handler).
+	Other workaround: Use SILENT for TP and disable
+	  DCO3 flag 4000_0000 (do not call int 21.0B to
+	  check for Ctrl-C status).
+	Yet another workaround: Set flag DCO 8 (enable
+	  fake InDOS mode, avoid calling int 21h).
+	The source may be a pseudo IISP header. In this
+	  case the ieEntry field should hold 0FEEBh
+	  (jmp short $) and the ieSignature field
+	  should indicate the source, eg "VT" for the IVT
+	  or "NH" for inserting a New Handler.
+SeeAlso: #02568
