@@ -5,4 +5,21 @@
 --------------------------------------------------------------------------------
 
 MEM 0070h:0000h - DOS 2+ IO.SYS LOAD ADDRESS
-
+Notes:	DOS usually addresses the DOSBIOS device headers and entrypoints
+	  using segment 0070h; this is true of lDOS even though its
+	  DOSENTRY section starts at linear 0_0600h. the entries are
+	  normalised by the same far jump that allows to address some
+	  entries using segment 0026h (see MEM 0060h:0000h notes).
+	the lDOS boot documentation manual lists some load protocols.
+	  EDR-DOS (FreeDOS based), IBM-DOS, and MS-DOS v6 load their
+	  full or initial loaders at linear 0_0700h and are entered at
+	  CS:IP = 0070h:0000h. MS-DOS v7 loads its initial loader at
+	  the same address but is entered at CS:IP = 0070h:0200h.
+	  older RxDOS.2 and lDOS would load the initial loader at
+	  linear 0_0700h but enter at 0070h:0400h, but recent RxDOS.3
+	  and lDOS use segment 0200h instead to avoid any possible
+	  64 KiB boundary crossing for sector sizes up to 8 KiB.
+	IBM-DOS and MS-DOS v6/v7 initial loaders (msload, aka the
+	  Non-Contiguous IBMBIO Loader) relocate themselves up to near
+	  the top of the Low Memory Area then load their payload
+	  (ibmbio/msbio) to linear 0_0700h, CS:IP = 0070h:0000h too.
