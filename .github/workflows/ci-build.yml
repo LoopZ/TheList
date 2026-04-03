@@ -41,8 +41,40 @@ jobs:
 
     - name: Upload
       if: github.repository == 'LoopZ/TheList' &&
+        github.ref_type != 'tag' &&
         (github.event_name == 'push' || github.event.pull_request.merged == true)
       uses: actions/upload-artifact@v6
       with:
         name: ${{ steps.snapshotname.outputs.fname }}
         path: TheList
+
+    - name: Create release content
+      id: release
+      if: github.repository == 'LoopZ/TheList' && github.ref_type == 'tag'
+      run: |
+        version="${{ github.ref_type == 'tag' && github.ref_name }}"
+        release="TheList-${version}"
+        #
+        notes="${release}.md"
+        echo "" >> "$notes"
+        #
+        archive="${release}.zip"
+        zip --recurse-paths "${archive}" TheList
+        #
+        echo "version=$version" >>"$GITHUB_OUTPUT"
+        echo "archive=$archive" >>"$GITHUB_OUTPUT"
+        echo "notes=$notes" >>"$GITHUB_OUTPUT"
+
+    - name: Create release
+      if: steps.release.outputs.version
+      run: |
+        gh release create \
+          '${{ steps.release.outputs.version }}' \
+          '${{ steps.release.outputs.archive }}' \
+          --notes-file '${{ steps.release.outputs.notes }}' \
+          --target '${{ github.sha }}' \
+          --verify-tag \
+          --fail-on-no-commits \
+          --draft
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
