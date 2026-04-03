@@ -4,12 +4,12 @@
       Flag: U 	undocumented function
 --------------------------------------------------------------------------------
 
-INT 2F U - Windows95 - DOS KERNEL - GET START OF HMA MEMORY CHAIN
+INT 2F U - MS-DOS 7 kernel - GET START OF HMA MEMORY CHAIN
 	AX = 4A04h
 Return: AX = 0000h if function supported
 	    ES:DI -> first HMA memory control block (see #02800)
 
-Format of Windows95 HMA memory control block:
+Format of MS-DOS 7 kernel HMA memory control block:
 Offset	Size	Description	(Table 02800)
  00h  2 BYTEs	signature "MS" (4Dh 53h)
  02h	WORD	segment of owner (or segment at which to address block???)
