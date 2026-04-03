@@ -1,0 +1,14 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--31
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDebugX - INSTALL DPMI HOOK
+	AH = AMIS multiplex number for lDebug
+	AL = 31h
+Return:	AL = FFh if installed
+	AL = FEh..F0h if not installed but call is supported
+	AL = 00h if not supported
+	nothing else destroyed
+Notes:	state must be not in DOS

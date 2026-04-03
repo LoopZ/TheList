@@ -1,0 +1,41 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--33
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDebugX - INSTALL FAULT AREAS
+	AH = AMIS multiplex number for lDebug
+	AL = 33h
+	DX:BX -> fault area structure of client
+Return:	AL = FFh if installed
+	AL = FEh..01h if not installed but call is supported
+	AL = 00h if not supported
+	may destroy AL, BX, CX, DX, SI, DI, ES, DS
+Notes:	The area structure is defined in the lDebug sources'
+	  debug.mac file. The first 32 bytes of the structure
+	  start with a signature word, which is equal to the
+	  word value CBF9h (encoding the instruction sequence
+	  of STC \ RETF) if the structure is not currently
+	  installed into any debugger. The remainder of the
+	  32 bytes, as well as the details of how the first
+	  two bytes are used otherwise, are private to the
+	  debugger that provides this service (the server).
+	The area structure may be far-called in 86 Mode. The
+	  only currently defined function (in AL) for this call
+	  is function 00h, which attempts to uninstall the area
+	  structure which is being called. It is valid for
+	  either the server or the client to uninstall an
+	  area structure if they so wish.
+	The fields of the structure behind the first 32 bytes
+	  point to a number of sub-structures and area function
+	  lists and area lists. All of these structures are
+	  to be accessed using the same segment as the main
+	  area structure. They contain linear start and linear
+	  end addresses, which the client sets up before it
+	  tries to install the areas. The linear start address
+	  is also assumed to point to the segment base address
+	  which is used as the reference for the area functions
+	  and areas. (They do not have to match the offset part
+	  actually used to run the code, but the lists must be
+	  based on the linear start address.)

@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--40
+  Category: G 	debuggers/debugging tools
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDebug - AMIS message ELD - DISPLAY MESSAGE TO DEBUGGER TERMINAL
+	AH = AMIS multiplex number for lDebug
+	AL = 40h
+	DX:BX -> ASCIZ message, will be truncated if > 384 Bytes
+Return:	AL = 00h if not supported
+	AL = FFh if supported and full message stored
+	  (older revisions unconditionally returned al = FFh)
+	AL = FEh if supported and truncated message stored
+	  (truncation may occur at 383 or 384 Bytes of non-NUL text)
+	current amismsg.eld does not destroy any other registers
+Notes:	This function is provided by an ELD (Extension for lDebug)
+	  hooking into the debugger's AMIS handler.
+	Older versions of the ELD only had a buffer of 128 Bytes.
