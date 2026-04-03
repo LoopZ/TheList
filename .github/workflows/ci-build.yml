@@ -1,0 +1,48 @@
+name: Build
+on:
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
+
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v6
+      with:
+        submodules: recursive
+
+    - name: Package install
+      run: ./ci_prereq.sh
+
+    - name: Build
+      run: ./ci_build.sh
+
+#    - name: Test
+#      run: ./ci_test.sh
+#
+    - name: Make snapshot name
+      id: snapshotname
+      run: |
+        (
+          today=`date -u +%F | tr '\n' '-'`
+          s_sha=`echo -n ${GITHUB_SHA} | cut -c1-8`
+          printf "fname=snapshot-%s%s\n" $today $s_sha >> $GITHUB_OUTPUT
+        )
+
+    - name: Upload
+      if: github.repository == 'LoopZ/TheList' &&
+        (github.event_name == 'push' || github.event.pull_request.merged == true)
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ steps.snapshotname.outputs.fname }}
+        path: TheList
