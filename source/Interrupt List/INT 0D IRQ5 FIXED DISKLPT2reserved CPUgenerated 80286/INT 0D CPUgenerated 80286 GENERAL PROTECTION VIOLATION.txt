@@ -17,6 +17,8 @@ Notes:	called in real mode when
 	    an instruction exceeds the maximum length allowed (10 bytes for
 	      80286, 15 bytes for 80386/80486)
 	    an instruction wraps from offset FFFFh to offset 0000h
+	collides with IRQ #5 default handler. in Real 86 Mode, the two may
+	  be distinguished by checking the In-Service Register of the PIC
 	called in protected mode on protection violations not covered by INT 06
 	  through INT 0C, including
 	    segment limit violations
