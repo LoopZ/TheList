@@ -6,6 +6,9 @@
 
 MEM 0040h:0041h - DISKETTE - LAST OPERATION STATUS
 Size:	BYTE
+BUGS:	Xi8088 BIOS version 0.9.4 fails to set DS (to 0040h) when it
+	  wants to write to this variable, upon encountering any
+	  unsupported INT 13 function, see INT 13/AH=41h"INT 13 Ext"
 SeeAlso: MEM 0040h:003Eh,MEM 0040h:0042h,INT 13/AH=01h
 
 Bitfields for diskette last operation status:
