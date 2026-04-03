@@ -5,8 +5,11 @@
 --------------------------------------------------------------------------------
 
 INT 30 - (NOT A VECTOR!) - DOS 1+ - FAR JMP instruction for CP/M-style calls
-   the CALL 5 entry point does a FAR jump to here
-Note:	under DOS 2+, the instruction at PSP:0005 points two bytes too low in
-	  memory
+   the CALL 5 entry point does a FAR call to here (linear 0_00C0h), or
+     to FFFFh:00D0h (linear 10_00C0h) where DOS has placed an equivalent
+     jump if DOS manages the High Memory Area
+BUGS:	in PSPs created by MS-DOS 2+ Debug, the instruction at PSP:0005h
+	  (see #01378) points two bytes too low in memory. fixed in lDOS
+	  MSDebug (fork based on MS-DOS v2 Debug)
 SeeAlso: INT 21/AH=26h
 

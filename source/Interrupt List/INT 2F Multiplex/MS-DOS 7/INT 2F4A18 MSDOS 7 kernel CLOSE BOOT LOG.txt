@@ -1,15 +1,15 @@
 --------------------------------------------------------------------------------
- Unique ID: 2F4A16
+ Unique ID: 2F4A18
   Category: D 	DOS kernel
       Flag: U 	undocumented function
 --------------------------------------------------------------------------------
 
-INT 2F U - Windows95 - OPEN BOOT LOG
-	AX = 4A16h
+INT 2F U - MS-DOS 7 kernel - CLOSE BOOT LOG
+	AX = 4A18h
 Return: AX = status
 	    0000h successful
-	    FFFFh boot log file already open
-	    else  DOS error code
+	    FFFFh boot log file not open
+	    else  DOS error code from closing file
 	BX destroyed
-SeeAlso: AX=4A17h,AX=4A18h
+SeeAlso: AX=4A16h,AX=4A17h
 

@@ -4,7 +4,7 @@
       Flag: U 	undocumented function
 --------------------------------------------------------------------------------
 
-INT 2F U - Windows95 - DOS KERNEL - (DE)ALLOCATE HMA MEMORY BLOCK
+INT 2F U - MS-DOS 7 kernel - (DE)ALLOCATE HMA MEMORY BLOCK
 	AX = 4A03h
 	CX = segment of block's owner to allocate, if 0 then 1 is used
 	    (MS-DOS v5 AX=4A02h passes INT 2F caller's CS as the owner)

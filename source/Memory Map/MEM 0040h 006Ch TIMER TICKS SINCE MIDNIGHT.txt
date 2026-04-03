@@ -7,5 +7,25 @@
 MEM 0040h:006Ch - TIMER TICKS SINCE MIDNIGHT
 Size:	DWORD
 Desc:	updated approximately every 55 milliseconds by the BIOS INT 08 handler
+	after the INT 08 handler has incremented this DWORD, it checks for
+	  a value of 18_00B0h or 18_00B1h and if equal resets the count to 0.
+	  when resetting the count, it also increments or sets to 1 the flag
+	  at MEM 0040h:0070h to indicate midnight passed.
+Notes:	naive time-out loops will read this DWORD (or only the low WORD), add
+	  a delta, and wait until this DWORD equals or exceeeds the result.
+	  this has problems around the midnight wraparound though.
+	a better method is to read this DWORD or low WORD, then wait until
+	  the count has changed, indicating (at least) one tick has passed.
+	  loop until the desired amount of ticks has elapsed.
+	an even better way determines the delta between the prior WORD and
+	  the newly-observed one, if it is > 0 then consider that many ticks
+	  have elapsed, except if the delta exceeds a limit such as 6, which
+	  may happen due to the midnight rollover (or when debugging).
+	time-out loops should idle the machine. after checking that no
+	  inputs occurred (such as using INT 16/AH=01h), and no timer tick
+	  has passed yet, Real/Virtual 86 Mode STI and HLT may be used, or
+	  INT 2F/AX=1680h to allow multitaskers to register the idling.
+	  this allows reducing the CPU time spent on polling to < 5% as
+	  opposed to using 100% of a CPU core.
 SeeAlso: MEM 0040h:0070h,INT 08"IRQ0",INT 1A/AH=00h
 

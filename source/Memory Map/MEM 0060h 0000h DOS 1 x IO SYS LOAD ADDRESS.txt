@@ -5,4 +5,19 @@
 --------------------------------------------------------------------------------
 
 MEM 0060h:0000h - DOS 1.x IO.SYS LOAD ADDRESS
-
+Notes:	lDOS stores its first true MCB at this point, but also addresses
+	  its DOSENTRY section with segment 0060h (sometimes). the MCB
+	  overlaps the first 16 bytes of DOSENTRY. (some lDOS entries
+	  are actually in DOSENTRY but addressed using segment 0026h.
+	  the relocating entry code normalises itself using a far jump.)
+	the lDOS DOSENTRY MCB may be hidden using the ldos.ini directive
+	  COMPAT=HIDEDOSENTRY, or COMPAT=DOSDATAFIRST,HIDEDOSDATAFIRST.
+	  in these cases the DOSENTRY MCB still exists, but it is not
+	  reachable from the MCB chain as the recorded first MCB is one
+	  or two MCBs behind the DOSENTRY MCB.
+	FreeDOS stores its init PSP at segment 0060h eventually.
+	the lDOS boot documentation manual lists some load protocols.
+	  the original FreeDOS load protocol loads the full kernel at
+	  linear 0_0600h and enters it with CS:IP = 0060h:0000h.
+	lDOS's inicomp (compressed payload stage) depacks to segment
+	  0060h and up when loading in kernel mode.
