@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0338
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0220 - SoundBlaster - Base I/O Port
+
+Port 0220 is the default base port for SoundBlaster audio cards. The audio
+card may be configured to use different settings. Programs should check for
+card configuration settings through the BLASTER Environment variable.
+
+For example:
+
+    SET BLASTER=A220 I5 D1 H5 M220 P330 (see #P2000)
+
+Blaster Environment Variable:
+ Abr.   Description (Table P2000)
+ A      base port
+ I      interrupt request line
+ D      DMA Channel (8-bit)
+ H      DMA Channel (16-bit)
+ M      mixer chip base port
+ P      MPU-401 base port
+
+SeeAlso: Port 0330

@@ -1,0 +1,24 @@
+--------------------------------------------------------------------------------
+ Unique ID: P0338
+  Category: s 	sound/speech
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+PORT 0338 - AdLib sound card - I/O port
+
+    Port 0388 - register port (write) status port (read) (see #P2001)
+    Port 0389 - data port (write only)
+
+    After writing to the register port a short delay of 3.3 microseconds is
+    required before sending data. After writing the data, an additional
+    delay of 23 microseconds is required after sending the data before
+    accessing the sound card again.
+
+Sound Card status bits:
+ bit    description (Table P2001)
+ 7      set if either timer has expired
+ 6      set if timer 1 expired
+ 5      set if timer 2 expired
+
+SeeAlso: Port 0220, Port 0330
+
