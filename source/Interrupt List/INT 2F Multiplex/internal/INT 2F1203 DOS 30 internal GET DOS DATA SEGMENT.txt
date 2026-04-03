@@ -35,6 +35,7 @@ Note:	for DOS prior to version 5.0, the data segment is the same as the code
 	  entry for INT 21/AH=26h. for DR-DOS it seems this reference can
 	  actually be used by the DOS if the drdos code segment is in ROM,
 	  while lDOS always uses it as the only reference to DOSDATA.
+	  FreeDOS happens to set the INT 31 segment to equal DOSDATA too.
 	in MS-DOS (v5) and FreeDOS, the DOSDATA segment is (usually) fixed
 	  at a segment below the first MCB (see #01627 and #01628 in the
 	  entry for INT 21/AH=52h), and is also used as the entrypoint
