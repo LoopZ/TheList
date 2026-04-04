@@ -1,0 +1,8 @@
+Alternate Multiplex Interrupt Specification
+
+	standardised protocol for allocating and enumerating multiplex
+numbers on a new INT 2D interface. up to 256 multiplexers using AMIS
+may be installed at the same time. INT 2D functions (in AL) 00h to 0Fh
+are assigned to or reserved for common AMIS functions, while functions
+10h to FFh are for private AMIS functions to be defined separately for
+each multiplexer. the multiplex number to operate on is passed in AH.

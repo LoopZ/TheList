@@ -6,5 +6,8 @@
 
 MEM 0040h:0013h - BASE MEMORY SIZE IN KBYTES
 Size:	WORD
+Notes:	bootable lDebug will decrease the value in this WORD to reserve
+	  memory at the top of the Low Memory Area to itself. the total
+	  allocation size is 167 KiB for a current ldebug.com
 SeeAlso: INT 12
 
