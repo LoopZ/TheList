@@ -471,7 +471,8 @@ end;
 procedure TCustomBinaryTree.DeleteBalance(Node, Parent: TBinaryTreeNode);
 begin
   { Do nothing }
-  IgnoreParameter([Node, Parent]);
+  IgnoreParameter(Node);
+  IgnoreParameter(Parent);
 end;
 
 function TCustomBinaryTree.StreamID: String;
