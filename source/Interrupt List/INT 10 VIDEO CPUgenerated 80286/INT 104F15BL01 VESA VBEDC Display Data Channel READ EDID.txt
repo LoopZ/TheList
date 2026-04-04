@@ -155,25 +155,25 @@ SeeAlso: #00127,#00135
 
 Bitfields for EDID detailed display type:
 Bit(s)	Description	(Table 00134)
- 7	interlaced
- 6-5	stereo mode
-	00 normal display (no stereo)
-	01 stereo, right stereo sync high
-	10 stereo, left stereo sync high
-	11 undefined
+ 0  not used???
+---other sync types---
+ 1 sync location (0 = on green, 0 = on RGB)
+ 2 serrate
+---digital separate sync type---
+ 1	horizontal sync polarity (0 = negative, 1 = positive)
+ 2	vertical sync polarity (0 = negative, 1 = positive)
+------
  4-3	sync type
 	00 sync analog composite
 	01 sync bipolar analog composite
 	10 sync digital composite
 	11 sync digital separate
----sync digital separate---
- 2	vertical sync polarity (0 = negative, 1 = positive)
- 1	horizontal sync polarity (0 = negative, 1 = positive)
----other sync types---
- 2	serrate
- 1	sync location (0 = on green, 1 = on RGB)
-------
- 0	not used???	
+ 6-5	stereo mode
+	00 normal display (no stereo)
+	01 stereo, right stereo sync high
+	10 stereo, left stereo sync high
+	11 undefined
+ 7	interlaced
 SeeAlso: #00133
 
 Format of EDID Text Identification Strings:
