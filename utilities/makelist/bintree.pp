@@ -3,8 +3,8 @@
    The Clear BSD License
    All rights reserved.
 
-   This modified version of the BinTree unit that is part of the
-   MPLA frame available at:
+   This unit is a fork of BinTree unit that is part of the
+   MPLA application framework available at:
 
    https://gitlab.com/mpla-oss/mpla/
 

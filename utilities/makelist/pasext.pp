@@ -3,7 +3,7 @@
    The Clear BSD License
    All rights reserved.
 
-   This unit is part of the MPLA frame available at:
+   This unit is forked from the MPLA application framework available at:
    https://gitlab.com/mpla-oss/mpla/
 
 }
@@ -1207,7 +1207,8 @@ end;
 { TODO 5 -cDevel Implement CreateLink function for Windows }
 function CreateLink(Target, Link : RawByteString) : boolean;
 begin
-  IgnoreParameter([Target, Link]);
+  IgnoreParameter(Target);
+  IgnoreParameter(Link);
   CreateLink:=False;
   raise Exception.Create('function "CreateLink" not implemented for Windows.');
 end;
