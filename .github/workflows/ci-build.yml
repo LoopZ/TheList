@@ -24,6 +24,9 @@ jobs:
     - name: Package install
       run: ./ci_prereq.sh
 
+    - name: Build Tools
+      run: ./ci_build_tools.sh
+
     - name: Build
       run: ./ci_build.sh
 
@@ -32,6 +35,9 @@ jobs:
 #
     - name: Make snapshot name
       id: snapshotname
+      if: github.repository == 'LoopZ/TheList' &&
+        github.ref_type != 'tag' &&
+        (github.event_name == 'push' || github.event.pull_request.merged == true)
       run: |
         (
           today=`date -u +%F | tr '\n' '-'`
@@ -40,9 +46,7 @@ jobs:
         )
 
     - name: Upload
-      if: github.repository == 'LoopZ/TheList' &&
-        github.ref_type != 'tag' &&
-        (github.event_name == 'push' || github.event.pull_request.merged == true)
+      if: steps.snapshotname.outputs.fname
       uses: actions/upload-artifact@v6
       with:
         name: ${{ steps.snapshotname.outputs.fname }}
