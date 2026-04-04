@@ -3,5 +3,5 @@
 set -e
 
 # Let's build the TheList
-./utilities/bin/makelist -s source -o TheList
+./utilities/bin/makelist --cicd -s source -o TheList
 
