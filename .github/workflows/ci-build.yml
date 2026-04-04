@@ -24,6 +24,9 @@ jobs:
     - name: Package install
       run: ./ci_prereq.sh
 
+    - name: Build Tools
+      run: ./ci_build_tools.sh
+
     - name: Build
       run: ./ci_build.sh
 
