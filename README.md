@@ -10,3 +10,6 @@ the documentation. The original programs and utilities provided in the original 
 of _Ralf Brown's Interrupt List_ are not provided. Those programs and the original list
 can still be obtained through [Ralf's webpage at CMU](http://www.cs.cmu.edu/~ralf/).
 
+A nightly build of _The List_ is available as both a **tar.gz** and **zip**
+archive download at:
+[https://fd.lod.bz/redist/devel/TheList/](https://fd.lod.bz/redist/devel/TheList/)
