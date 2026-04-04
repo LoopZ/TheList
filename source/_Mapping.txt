@@ -1,0 +1,121 @@
+[MISC]
+
+; Directory path for files which are simply copied into a release.
+Directory=Miscellaneous
+
+[1ST]
+; When this section is defined it replaces the internal version
+
+; Sections and order for the INTERRUP.1ST file
+
+Section=Filelist
+Section=Copyright
+Section=Disclaimer
+Section=Availability
+Section=Abbreviations
+Section=Credits
+Section=Addresses
+Section=Trademarks
+Section=Quotes
+Section=Contact Info
+
+[ORDER]
+; When this section is defined it replaces the internal version
+
+; Section order for all LST files.
+; Sections that do not exist are ignored.
+; The * section is for all of the entries in that LST file.
+
+Section=Introduction
+Section=Disclaimer
+Section=Note
+Section=Flags
+Section=Categories
+Section=Category Keys
+Section=Titles
+Section=*
+Section=Bibliography
+Section=Undone
+Section=History
+Section=Contributors
+Section=Credits
+Section=Contact Info
+Section=Admin
+
+[NAMES]
+; Items in this section update or add to the internal file name mapping data
+
+; Group to DOS file/path name mapping.
+
+; Copied Files
+; DOS_FILE=Miscellaneous/ copied file names
+
+_ADVERT.TXT=Advertisement.txt
+faq.lst=FAQ.txt
+INTERRUP.PRI=Interrupt Primer.txt
+NEEDHELP.TXT=Need Help.txt
+RBROWN.TXT=Ralf Brown.txt
+README.NOW=Read Me Now.txt
+
+; List Files
+; DOS_FILE=Group directory name
+; New entries will have the TYPE of None by default
+
+BIBLIO.LST=Bibliography
+CATEGORY.KEY=Category
+CMOS.LST=Cmos-Memory Map
+FARCALL.LST=Far Call Interface
+GLOSSARY.LST=Glossary
+I2C.LST=Bus Devices I2C
+INTERRUP.1ST=1st Interrupt
+INTERRUP.LST=Interrupt List
+LINKS.LST=Links
+MEMORY.LST=Memory Map
+MSR.LST=Model-Specific Registers
+OVERVIEW.LST=Overview
+PORTS.LST=Ports List
+TABLES.LST=Selected Tables
+SMM.LST=System-Management Mode
+
+[TYPE]
+; Items in this section override internal and defaults for the different lists
+
+; Types of Entries used by the LST File. Note that for some entry types their
+; behaviour and LST file can differ a lot depending if legacy-mode is used to
+; build a release.
+; None          Simply copied files or is not broken into multiple files.
+;				Only for Miscellaneous Files or files without any Entries.
+; Standard		The method used by most Entries. At this time, these types
+;				are just aliases for Standard:
+;
+;				Interrupt, CMOS, FarCall, I2C, Memory, MSR and Port
+; Glossary		Glossary type LST file where entries are just glued together
+;			    into a single blob of text.
+; Table			Similar to Glossary. But for lists of tables.
+; SMM    		Similar to Table. But for System Management Mode Entries.
+; Link 			Similar to Glossary. But for External Line Entries
+
+; Copied files
+_ADVERT.TXT=None
+faq.lst=None
+INTERRUP.PRI=None
+NEEDHELP.TXT=None
+RBROWN.TXT=None
+README.NOW=None
+
+; List files
+BIBLIO.LST=None
+CATEGORY.KEY=None
+CMOS.LST=CMOS
+FARCALL.LST=FarCall
+GLOSSARY.LST=Glossary
+I2C.LST=I2C
+INTERRUP.1ST=None
+INTERRUP.LST=Interrupt
+LINKS.LST=Link
+MEMORY.LST=Memory
+MSR.LST=MSR
+OVERVIEW.LST=None
+PORTS.LST=Port
+TABLES.LST=Table
+SMM.LST=SMM

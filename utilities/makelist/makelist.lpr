@@ -14,7 +14,7 @@ uses
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
-  Classes, SysUtils
+  Classes, SysUtils, IniFiles
   { you can add units after this },
   Version, PasExt, BinTree, StrUtils;
 
@@ -31,13 +31,16 @@ type
 
 const
   SrcExt = '.txt';                  // File extension for all source files
+  MapFile = '_Mapping' + SrcExt;    // Directory Mapping file
   HeaderFile = '_Header' + SrcExt;  // LST Header Data file
   ReleaseFile = '_Release' + SrcExt; // TheList Release version, fairly static.
   SectionLead = '--------';         // Leading characters for all section breaks
   SectionWidth = 45;                // Number of charcters in a section break
-  IntListDir = 'Interrupt List';    // Main Interrupt List source directory subpath
-  IntFirstDir = 'Interrupt First';  // The Interrup.1st source directory subpath
-  MiscFileDir = 'Miscellaneous';    // Dir with Miscellaneous files that are just copied
+  IntFirstDir : String = 'Interrupt First';  // The Interrup.1st source directory subpath
+  MiscFileDir : String = 'Miscellaneous'; // Dir with Miscellaneous files that are just copied
+  CICD : boolean = false;  // Enable more strict verification for use with CI/CD
+
+  FILE_1ST = 'INTERRUP.1ST'; // That pesky non-interrupt list interrupt file :-)
 
   {$IFDEF Windows}
   DirSource : String = '..\..\source\';
@@ -71,8 +74,8 @@ const
     (Name:'Far Call Interface';        DOS:'FARCALL.LST';  Kind:skFarCall),
     (Name:'Glossary';                  DOS:'GLOSSARY.LST'; Kind:skGlossary),
     (Name:'I2C-Bus Devices';           DOS:'I2C.LST';      Kind:skI2C),
-    (Name:IntFirstDir;                 DOS:'INTERRUP.1ST'; Kind:skNone),
-    (Name:IntListDir;                  DOS:'INTERRUP.LST'; Kind:skInterrupt),
+    (Name:'Interrupt First';           DOS:FILE_1ST;       Kind:skNone),
+    (Name:'Interrupt List';            DOS:'INTERRUP.LST'; Kind:skInterrupt),
     (Name:'Links';                     DOS:'LINKS.LST';    Kind:skLink),
     (Name:'Memory Map';                DOS:'MEMORY.LST';   Kind:skMemory),
     (Name:'Model-Specific Registers';  DOS:'MSR.LST';      Kind:skMSR),
@@ -171,7 +174,7 @@ const
   DosText : array of record
     Name, Text : String;
   end = (
-  (Name:'INTERRUP.1ST'; Text:'this file'),
+  (Name:FILE_1ST;       Text:'this file'),
   (Name:'INTERRUP.LST'; Text:'Interrupts'),
   (Name:'PORTS.LST';    Text:'listing of I/O Ports'),
   (Name:'INTERRUP.PRI'; Text:'a brief primer on interrupts'),
@@ -206,9 +209,9 @@ var
 
 begin
   FileName:=DosFileName(FileName);
-  if Uppercase(FileName) = 'INTERRUP.1ST' then exit;
+  if Uppercase(FileName) = FILE_1ST then exit;
   if FileInfo.Count = 0 then
-    FileInfo.Add('INTERRUP.1ST', GetText('INTERRUP.1ST'));
+    FileInfo.Add(FILE_1ST, GetText(FILE_1ST));
   S:=GetText(FileName);
   if S='' then
     S:=GetText(ChangeFileExt(FileName, '.LST'));
@@ -490,6 +493,11 @@ begin
   Result:='';
   DirScan(DirOutput + WildCard, List, [dsFiles]);
   List.Sort;
+  List.Sorted:=True;
+  if not List.Find(FILE_1ST, I) then begin
+    List.Add(FILE_1ST);
+    List.Sort;
+  end;
   for I := 0 to List.Count - 1 do begin
     Cat(Result, SPACE4 + RightPad(List[I], 16));
     N:=FileInfo.Find(List[I]);
@@ -976,7 +984,9 @@ const
     (S:'-m'; L:'--maximum'; V:'(size)'; M:'Split List files at a specific Kb size. (default 360)'),
     (S:''; L:''; V:''; M:''),
     (S:''; L:'--modern'; V:''; M:'Disable legacy mode for modern parsers (default).'),
-    (S:''; L:'--legacy'; V:''; M:'Enable compatibility mode for legacy parsers.')
+    (S:''; L:'--legacy'; V:''; M:'Enable compatibility mode for legacy parsers.'),
+    (S:''; L:''; V:''; M:''),
+    (S:''; L:'--cicd'; V:''; M:'More strict verification for usage with CI/CD.')
   );
 
 var
@@ -1065,6 +1075,7 @@ begin
           SeeHelp('Invalid verbosity level: ' + IntToStr(V));
         end;
       end;
+      '--cicd' : CICD:=True;
       '--modern' : LegacyMode:=False;
       '--legacy' : LegacyMode:=True;
       '-s', '--source' : DirSource:=IncludeTrailingPathDelimiter(Trim(NextOpt));
@@ -1095,6 +1106,131 @@ begin
   end;
 end;
 
+function KindFromText(S : String) : TSectionKind;
+begin
+  case LowerCase(Trim(S)) of
+    'none'       : Result:=skNone;
+    'standard'   : Result:=skStandard;
+    'interrupt'  : Result:=skInterrupt;
+    'cmos'       : Result:=skCMOS;
+    'farcall'    : Result:=skFarCall;
+    'i2c'        : Result:=skI2C;
+    'memory'     : Result:=skMemory;
+    'msr'        : Result:=skMSR;
+    'port'       : Result:=skPort;
+    'glossary'   : Result:=skGlossary;
+    'table'      : Result:=skTable;
+    'smm'        : Result:=skSMM;
+    'link'       : Result:=skLink;
+  else
+    Result:=skNone;
+    raise Exception.Create('Section Type "'+Trim(S)+'" was not recognized.');
+  end;
+end;
+
+procedure ReadFileMap;
+var
+  INI : TIniFile;
+  Strs : TStringList;
+  K, S : String;
+  I, J : Integer;
+begin
+  if not FileExists(DirSource + MapFile) then Exit;
+  INI:=nil;
+  Strs:=nil;
+  try
+    Strs:=TStringList.Create;
+    INI := TIniFile.Create(DirSource + MapFile);
+    // Replace Miscellaneous Directory when defined
+    S:= ExcludeTrailing(INI.ReadString('MISC', 'Directory', MiscFileDir), PathDelimiter);
+    if not DirectoryExists(DirSource + S) then begin
+      LogMessage(vbMinimal, 'Invalid directory for miscellaneous files: ' + S);
+      Halt(1);
+    end else
+      MiscFileDir:=S;
+    // Replace INTERRUPT_1ST sections
+    INI.ReadSectionRaw('1ST', Strs);
+    for I := Strs.Count - 1 downto 0 do
+      if Not HasLeading(Strs[I], 'SECTION=', false) then
+         Strs.Delete(I);
+    if Strs.Count > 0 then begin
+      SetLength(INTERRUPT_1ST, Strs.Count);
+      for I := 0 to Strs.Count - 1 do begin
+        S:=Strs[I];
+        PopDelim(S, EQUAL);
+        S:=Trim(S);
+        INTERRUPT_1ST[I]:=Trim(S);
+      end;
+    end;
+    // Replace SECTION_ORDER sections
+    INI.ReadSectionRaw('ORDER', Strs);
+    for I := Strs.Count - 1 downto 0 do
+      if Not HasLeading(Strs[I], 'SECTION=', false) then
+         Strs.Delete(I);
+    if Strs.Count > 0 then begin
+      SetLength(SECTION_ORDER, Strs.Count);
+      for I := 0 to Strs.Count - 1 do begin
+        S:=Strs[I];
+        PopDelim(S, EQUAL);
+        S:=Trim(S);
+        SECTION_ORDER[I]:=Trim(S);
+      end;
+    end;
+    // Update File/Path Name mappings
+    INI.ReadSectionRaw('NAMES', Strs);
+    for I := Strs.Count - 1 downto 0 do
+      if HasLeading(Strs[I], ';', false) then
+         Strs.Delete(I);
+    if Strs.Count > 0 then begin
+      for I := 0 to Strs.Count - 1 do begin
+        S:=Strs[I];
+        K:=Trim(PopDelim(S, EQUAL));
+        S:=Trim(S);
+        if S = '' then Continue;
+        for J := 0 to High(DOSNAMES) do
+          if UpperCase(DOSNAMES[J].DOS) = UpperCase(K) then begin
+            if Uppercase(K) = FILE_1ST then
+               IntFirstDir:=S;
+            DOSNAMES[J].Name:=S;
+            K:='';
+            Break;
+          end;
+        if K = '' then Continue;
+        SetLength(DOSNAMES, Length(DOSNAMES) + 1);
+        DOSNAMES[High(DOSNAMES)].DOS:=K;
+        DOSNAMES[High(DOSNAMES)].Name:=S;
+        DOSNAMES[High(DOSNAMES)].Kind:=skNone;
+      end;
+    end;
+    // Update File/Path Name TYPE
+     INI.ReadSectionRaw('TYPE', Strs);
+     for I := Strs.Count - 1 downto 0 do
+       if HasLeading(Strs[I], ';', false) then
+          Strs.Delete(I);
+     if Strs.Count > 0 then begin
+       for I := 0 to Strs.Count - 1 do begin
+         S:=Strs[I];
+         K:=Trim(PopDelim(S, EQUAL));
+         S:=Trim(S);
+         if S = '' then Continue;
+         for J := 0 to High(DOSNAMES) do
+           if UpperCase(DOSNAMES[J].DOS) = UpperCase(K) then begin
+             DOSNAMES[J].Kind:=KindFromText(S);
+             Break;
+           end;
+       end;
+     end;
+
+  except
+    on E : Exception do begin
+      LogMessage(vbCritical, 'Mapping file exception: ' + E.Message);
+      Halt(1);
+    end;
+  end;
+  if Assigned(INI) then INI.Free;
+  if Assigned(Strs) then Strs.Free;
+end;
+
 {$R *.res}
 
 begin
@@ -1105,17 +1241,25 @@ begin
   TotalWarnings:=0;
   HeaderBar:=StringOf('-', 70);
   Options;
+  ReadFileMap;
   Banner;
   Build;
   LogMessage(vbNormal, '');
-  LogMessage(vbNormal, 'Total Number of Entries = ' + IntToStr(TotalEntries));
-  LogMessage(vbNormal, 'Total Number of Tables = ' + IntToStr(TotalTables));
+  LogMessage(vbNormal, 'Total Number of Entries:  ' + IntToStr(TotalEntries));
+  LogMessage(vbNormal, 'Total Number of Tables:   ' + IntToStr(TotalTables));
   if TotalWarnings > 0 then
-  LogMessage(vbMinimal, 'Total Number of Warnings = ' + IntToStr(TotalWarnings));
+  LogMessage(vbMinimal, 'Total Number of Warnings: ' + IntToStr(TotalWarnings));
   if TotalProblems > 0 then
-  LogMessage(vbMinimal, 'Total Number of Problems = ' + IntToStr(TotalProblems));
+  LogMessage(vbMinimal, 'Total Number of Problems: ' + IntToStr(TotalProblems));
   if TotalErrors > 0 then
-  LogMessage(vbMinimal, 'Total Number of Errors = ' + IntToStr(TotalErrors));
-  LogMessage(vbMinimal, 'Done.');
+  LogMessage(vbMinimal, 'Total Number of Errors:   ' + IntToStr(TotalErrors));
+  if CICD then begin
+    if (TotalProblems > 0) then begin
+      LogMessage(vbCritical, 'Done, CI/CD verification error.');
+      Halt(1);
+    end;
+    LogMessage(vbMinimal, 'Done, verified for CI/CD');
+  end else
+    LogMessage(vbMinimal, 'Done.');
 end.
 
