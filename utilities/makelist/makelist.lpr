@@ -414,8 +414,7 @@ var
   S : String;
   X, M : Integer;
 begin
-  { TODO 5 -cDevel Automatically split LST files over MaxFileSize bytes }
-  if Length(Data) > MaxFileSize then begin
+  if (MaxFileSize <> -1) and (Length(Data) > MaxFileSize) then begin
     Parts:=[];
     L:=Length(SectionMarker(''));
     Header := '';  // First part already has the header in the data.
@@ -981,7 +980,8 @@ const
     (S:''; L:''; V:''; M:''),
     (S:'-s'; L:'--source'; V:'(path)'; M:'Specify a path that contains the source files.'),
     (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the output files.'),
-    (S:'-m'; L:'--maximum'; V:'(size)'; M:'Split List files at a specific Kb size. (default 360)'),
+    (S:'-m'; L:'--maximum'; V:'(size)'; M:'Split List files at a specific Kb size.'),
+    (S:SPACE; L:''; V:''; M:'Default is 360Kb. Use none to turn off file spliting.'),
     (S:''; L:''; V:''; M:''),
     (S:''; L:'--modern'; V:''; M:'Disable legacy mode for modern parsers (default).'),
     (S:''; L:'--legacy'; V:''; M:'Enable compatibility mode for legacy parsers.'),
@@ -1082,6 +1082,10 @@ begin
       '-o', '--output' : DirOutput:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-m', '--maximum' : begin
         S:=UpperCase(NextOpt);
+        if UpperCase(S) = 'NONE' then begin
+          MaxFileSize:=-1;
+          Continue;
+        end;
         U:=1024;
         if HasTrailing(S, 'K') then
           S:=ExcludeTrailing(S, 'K')
