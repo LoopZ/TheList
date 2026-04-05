@@ -1949,7 +1949,7 @@ Bit(s)	Description	(Table 01150)
  13-12	page size for row 6 (front of DIMM4)
  ...
  3-2	page size for row 1 (back of DIMM1)
- 1-0	page size for row 0 (front of DIMM1) 
+ 1-0	page size for row 0 (front of DIMM1)
 SeeAlso: #01142
 
 Bitfields for Intel 82443BX SDRAM Control Register:
@@ -2142,7 +2142,7 @@ SeeAlso: #01142,#01163,#01129
 
 Bitfields for Intel 82443BX/EX/LX Graphics Aperture Trans. Table Base Register:
 Bit(s)	Description	(Table 01163)
- 31-12	bits 31-12 of aperture translation table base address 
+ 31-12	bits 31-12 of aperture translation table base address
  11-0	reserved (0)
 SeeAlso: #01162,#01142,#01129
 
@@ -2356,7 +2356,7 @@ Offset	Size	Description	(Table 01168)
  E7h	BYTE	Burst Clock Event Enable 3 (see #01210)
  E8h	BYTE	Burst Clock Event Enable 4 (see #01211)
  E9h	BYTE	Burst Clock Event Enable 5 (see #01212)
- EAh	BYTE	Burst Clock Event Enable 6 (see #01213)
+ EAh	BYTE	Burst Clock Event Enable 6 (see #04137)
  EBh	BYTE	reserved
  ECH	BYTE	Clock Throttle Break Event Enable 0 (see #01207)
  EDh	BYTE	Clock Throttle Break Event Enable 1 (see #01208)
@@ -2364,7 +2364,7 @@ Offset	Size	Description	(Table 01168)
  EFh	BYTE	Clock Throttle Break Event Enable 3 (see #01210)
  F0h	BYTE	Clock Throttle Break Event Enable 4 (see #01211)
  F1h	BYTE	Clock Throttle Break Event Enable 5 (see #01212)
- F2h	BYTE	Clock Throttle Break Event Enable 6 (see #01213)
+ F2h	BYTE	Clock Throttle Break Event Enable 6 (see #04137)
  F3h 13 BYTES	reserved
 SeeAlso: #00873,#01076
 
@@ -2904,7 +2904,7 @@ Bit(s)	Description	(Table 01212)
 SeeAlso: #01168,PORT xxxxh"Intel 82371"
 
 Bitfields for Intel 82371MX Event Enable 6 register:
-Bit(s)	Description	(Table 01213)
+Bit(s)	Description	(Table 04137)
  7	Enable Audio-E
  6	Enable Audio-D
  5	Enable Audio-C

@@ -521,9 +521,10 @@ Offset	Size	Description	(Table P1002)
  3Ah	WORD	SCSI configuration (SCSICONF)
 		bits 15-12: reserved?
 		bits 11-8: (Wide SCSI) our ID (see #P0982)
-		bit 7: (AIC-777x) enable SCSI low byte termination (see #P1011)
+		bit 7: (AIC-777x) enable SCSI low byte termination
+		     (see #P1011) (see #P1118)
 		bit 6: enable SCSI bus reset at power up (RESET_SCSI)
-			 (see #P1011)
+			 (see #P1011) (see #P1118)
 		bit 5: enable SCSI parity check (ENSPCHK) (see #P0980)
 		bits 4-3: selection time-out select (STIMESEL) (see #P0980)
 		bits 2-0: our ID (see #P0982)
@@ -649,7 +650,7 @@ SeeAlso: #P1005,#P1006
 Format of the AHA-284x serial EEPROM:
 Address	Size	Description	(Table P1008)
  00h  16 WORDs	SCSI ID configuration (see #P1009)
- 10h	WORD	BIOS control (see #P1011)
+ 10h	WORD	BIOS control (see #P1011) (see #P1118)
  11h	WORD	host adapter control (see #P1012)
  12h	WORD	bus release time / host adapter ID (see #P1013)
  13h	WORD	maximum targets (see #P1014)
@@ -682,7 +683,7 @@ Bit(s)	Description	(Table P1011)
 SeeAlso: #P1008
 
 Bitfields for the serial EEPROM host adapter control word:
-Bit(s)	Description	(Table P1011)
+Bit(s)	Description	(Table P1118)
  15-7	reserved
  6	reset SCSI bus at IC initialization (CFRESETB)
  5	SCSI low byte termination (CFSTERM)

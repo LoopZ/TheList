@@ -58,7 +58,7 @@ Offset	Size	Description	(Table 90003)
  09h	BYTE	reserved (0)
  0Ah 16 BYTEs	(ret) ATA manager ID
  1Ah 16 BYTEs	(ret) ATA controller ID
- 2Ah 16 BYTEs	(ret) controller unique parameters (see #90010)
+ 2Ah 16 BYTEs	(ret) controller unique parameters (see #04138)
 ---request 01h---
  08h	BYTE	device ID (00h = master, 01h = slave)
  09h	BYTE	reserved (0)
@@ -190,7 +190,7 @@ Notes:	the post function may issue any ATASPI function except an abort; it
 SeeAlso: #90003
 
 Format of Future Domain controller unique parameters:
-Offset	Size	Description	(Table 90010)
+Offset	Size	Description	(Table 04138)
  00h	WORD	controller features
  02h	WORD	controller main I/O port
  04h	WORD	controller alternate I/O port

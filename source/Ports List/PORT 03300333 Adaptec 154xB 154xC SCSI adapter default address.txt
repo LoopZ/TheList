@@ -527,7 +527,7 @@ Format of AHA-154x command control block (CCB):
 Offset	Size	Description	(Table P0586)
  00h	BYTE	CCB operation code (see #P0587)
 ---operation code 00h---
- 01h	BYTE	address and control (see #P0601)
+ 01h	BYTE	address and control (see #P1119)
  02h	BYTE	SCSI command length
  03h	BYTE	request sense allocation length
 		00h request 14 bytes of sense data
@@ -570,7 +570,7 @@ Offset	Size	Description	(Table P0586)
  12h+N M BYTEs	allocated for sense data
 		(return) sense data (to be sent to the initiator)
 ---operation code 02h---
- 01h	BYTE	address and control (see #P0601)
+ 01h	BYTE	address and control (see #P1119)
  02h	BYTE	SCSI command length
  03h	BYTE	request sense allocation length
  04h  3 BYTEs	data segment list length (in bytes)
@@ -588,7 +588,7 @@ Offset	Size	Description	(Table P0586)
  12h+N M BYTEs	allocated for sense data
 		(return) sense data (if requested)
 ---operation code 03h---
- 01h	BYTE	address and control (see #P0601)
+ 01h	BYTE	address and control (see #P1119)
  02h	BYTE	SCSI command length
  03h	BYTE	request sense allocation length
  04h  3 BYTEs	data length
@@ -605,7 +605,7 @@ Offset	Size	Description	(Table P0586)
  12h+N M BYTEs	allocated for sense data
 		(return) sense data (if requested)
 ---operation code 04h---
- 01h	BYTE	address and control (see #P0601)
+ 01h	BYTE	address and control (see #P1119)
  02h	BYTE	SCSI command length
  03h	BYTE	request sense allocation length
  04h  3 BYTEs	data segment list length (in bytes)
@@ -658,7 +658,7 @@ Note:	residual length is returned in the data length field of CCB
 SeeAlso: #P0577,#P0586
 
 Bitfields for the initiator mode address and control CCB field:
-Bit(s)	Description	(Table P0601)
+Bit(s)	Description	(Table P1119)
  7-5	target ID
  4-3	transfer direction
 	00 determined by the SCSI command
@@ -712,7 +712,7 @@ Notes:	in the initiator mode, if the target attempted to transfer more data
 	if a segment list with a zero length segment or invalid segment list
 	  boundaries was received or a CCB parameter was invalid, the CCB will
 	  be returned with a host status of 1Ah
-SeeAlso: #P0577,#P0586,#P0601
+SeeAlso: #P0577,#P0586,#P1119
 
 Format of AHA-154x scatter/gather segment:
 Offset	Size	Description	(Table P0590)

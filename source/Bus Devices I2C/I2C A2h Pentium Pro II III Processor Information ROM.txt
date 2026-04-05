@@ -8,7 +8,7 @@ I2C A2h - Pentium Pro/II/III - Processor Information ROM
 Range:	Addresses A2h, A6h, AAh, or AEh, depending on processor ID
 
 Format of Pentium II Processor Information ROM (PIROM):
-Offset	Size	Description	(Table I0105)
+Offset	Size	Description	(Table I0125)
  00h	BYTE	data format revision (high/low nybble)
  01h	WORD	size of EEPROM in bytes (big-endian)
  03h	BYTE	offset of processor data, or 00h (0Eh for P-II Xeon)
@@ -48,14 +48,14 @@ Offset	Size	Description	(Table I0105)
  71h  2 BYTEs	reserved for future use
  73h	BYTE	8-bit checksum of bytes 70h-72h (thermal reference data)
  74h	DWORD	processor core feature flags (see OPCODE "CPUID")
- 78h	DWORD	cartridge feature flags (see #I0106)
+ 78h	DWORD	cartridge feature flags (see #I0126)
  7Ch	BYTE	bits 3-0: number of devices in TAP chain
 		bits 7-4: reserved
  7Dh	BYTE	8-bit checksum of bytes 74h-7Ch (feature data)
  7Eh  2 BYTEs	reserved for future use
 
 Bitfields for Pentium II Xeon cartridge feature flags:
-Bit(s)	Description	(Table I0106)
+Bit(s)	Description	(Table I0126)
  6	serial signature
  5	electronic signature (processor serial number) is present
  4	thermal sensing device is present
@@ -63,5 +63,5 @@ Bit(s)	Description	(Table I0106)
  2	OEM EEPROM is present
  1	core VID is present
  0	L2 cache VID is present
-SeeAlso: #I0105
+SeeAlso: #I0125
 
