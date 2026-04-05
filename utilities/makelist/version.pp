@@ -25,10 +25,10 @@ const
   LAZARUS_VERSION = '4.0';
 
   { Source version and most recent project commit }
-  SOURCE_VERSION = '1.1.1';
-  SOURCE_REVISION = '99';
+  SOURCE_VERSION = '1.1.2';
+  SOURCE_REVISION = '4';
   SOURCE_URL = 'http://github.com/LoopZ/TheList';
-  SOURCE_COMMIT = '98cca3c87bb6823fc0dc15866e4ccb2fdc861148';
+  SOURCE_COMMIT = '095f776cbd4f443d02e36cfc8e39ee29de6e2abf';
 
   { Version Build Atributes } 
   BUILD_DEBUG: Boolean = False;
@@ -36,10 +36,10 @@ const
   BUILD_PATCHED: Boolean = False;
   BUILD_PRIVATE: Boolean = False;
   BUILD_SPECIAL: Boolean = False;
-  BUILD_DATE: String = '2026-04-05 07:16:08';
+  BUILD_DATE: String = '2026-04-05 08:51:41';
 
   { General Application Information }
-  APP_VERSION: String = '1.1.1';
+  APP_VERSION: String = '1.1.2';
   APP_BUILD: String = '0';
   APP_TITLE: String = 'MakeList';
   APP_LEGALCOPYRIGHT: String = '(c) 2025-2026 Jerome Shidel';
