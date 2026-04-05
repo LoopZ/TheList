@@ -11,9 +11,15 @@ INT 10 - VESA VBE/DC (Display Data Channel) - INSTALLATION CHECK / CAPABILITIES
     ES:DI = 0:0
 Return: AL = 4Fh if function supported
 	    AH = status
-		00h successful
-		    BX = ???
-		01h failed
-		    ???
+		   00h successful
+		   01h failed
+        BH = Rounded-up approximate time in seconds to transfer one EDID block.
+        BL = DDC Level Supported
+           bit 0: DDC1 supported
+           bit 1: DDC2 supported
+           bit 3: Screen blanked during transfer
+        CX = unchanged
+        ES:DI = unchanged
+           
 SeeAlso: AX=4F15h/BL=01h,AX=4F15h/BL=02h
 
