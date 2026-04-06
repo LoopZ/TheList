@@ -1257,7 +1257,8 @@ begin
   if Assigned(Strs) then Strs.Free;
 end;
 
-{$R *.res}
+// We do not really need to include the Lazarus Resourse in the executable
+{ R *.res}
 
 begin
   TotalTables:=0;
