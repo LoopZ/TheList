@@ -4,7 +4,7 @@
 #   The Clear BSD License
 #   All rights reserved.
 
-#   This unit is part of the MPLA frame available at:
+#   This script is a fork of version.sh from the MPLA framework available at:
 #   https://gitlab.com/mpla-oss/mpla/
 
 BUILD_DATE=$(date "+%Y-%m-%d %H:%M:%S")
