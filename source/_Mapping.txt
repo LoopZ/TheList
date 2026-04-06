@@ -8,6 +8,13 @@ Directory=Miscellaneous
 
 ; Sections and order for the INTERRUP.1ST file
 
+; NOTE: The Filelist section is a combination of the text in a _Filelist.txt
+; file combined with a list of files in the release that is generated at
+; then of the release creation process. The list comprises of the DOS Filename
+; and a description. The descriptions can be defined or overriden in the [INFO]
+; section of this file. If the file has been split into multiple parts, then
+; its description will be appended with ', Part n of N'
+
 Section=Filelist
 Section=Copyright
 Section=Disclaimer
@@ -24,7 +31,10 @@ Section=Contact Info
 
 ; Section order for all LST files.
 ; Sections that do not exist are ignored.
-; The * section is for all of the entries in that LST file.
+
+; NOTE: The * section is for all of the entries in that LST file.
+
+; NOTE: The Admin is section is generated internallty
 
 Section=Introduction
 Section=Disclaimer
@@ -80,16 +90,21 @@ SMM.LST=System-Management Mode
 ; Types of Entries used by the LST File. Note that for some entry types their
 ; behaviour and LST file can differ a lot depending if legacy-mode is used to
 ; build a release.
+
 ; None          Simply copied files or is not broken into multiple files.
 ;				Only for Miscellaneous Files or files without any Entries.
+
 ; Standard		The method used by most Entries. At this time, these types
 ;				are just aliases for Standard:
-;
 ;				Interrupt, CMOS, FarCall, I2C, Memory, MSR and Port
+
 ; Glossary		Glossary type LST file where entries are just glued together
 ;			    into a single blob of text.
+
 ; Table			Similar to Glossary. But for lists of tables.
+
 ; SMM    		Similar to Table. But for System Management Mode Entries.
+
 ; Link 			Similar to Glossary. But for External Line Entries
 
 ; Copied files
