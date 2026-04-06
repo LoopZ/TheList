@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--11
+  Category: D 	DOS kernel
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDOS kernel - CHECK ID
+	AH = AMIS multiplex number for lDOS kernel (usually 00h)
+	AL = 11h
+	DX:SI -> ID structure,
+		WORD 00h: reserved, zero
+		WORD 02h: ID sequential number
+		BYTE 04h: string length
+		N BYTEs 05h: ID string (no terminator)
+Return:	AL = 00h if function not supported
+	AL >= F0h if ID accepted
+	(currently AL = F0h if accepted)
+		BX = CX = DX = reserved, 0 for now
+	otherwise ID rejected
+	(currently AL = E0h if ID string not found)
+	(currently AL = E1h if sequential is below accepted)
+	(currently AL = E2h if sequential is above accepted)
+		BX = CX = DX = reserved, 0 for now
+	destroys AL, BX, CX, DX, SI, DI
+Notes:	the following IDs are recognised in the current kernel tables:
+		sharer, command, format, ansi, append, assign, attrib,
+		backup, chkdsk, command, comp, debug, diskcomp,
+		diskcopy, display, driver.sys, edlin, exe2bin,
+		fastopen, fdisk, filesys, find, graftabl, graphics,
+		ifsfunc, join, keyb, label, mem, mode, more, nlsfunc,
+		print, printer, recover, replace, restore, sort, subst,
+		tree, vdisk, xcopy
+	all of the above IDs currently accept sequentials 0000h to 00FFh
+	the idea is to reject certain sequentials in the future if
+	  incompatible changes are made to the kernel, eg SFT layout.
+	the kernel tables are intentionally not discoverable on the
+	  multiplexer interface, allowing them to be changed freely.
+	the idea of marking certain compatibility levels using
+	  sequential numbers goes back to lRxDOS plans.
+SeeAlso: AL=00h,AL=10h,INT 21/AH=30h,INT 21/AX=3306h"DOS"

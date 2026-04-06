@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--22
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDOS TSRs - GET CTRL2
+	AH = AMIS multiplex number
+	AL = 22h
+Return:	AL = size of returned ctrl2
+	DX:BX -> control data
+Notes:	ctrl2 has different uses among the TSRs.
+	FreeDOS share: ctrl2 is 4 WORDs
+		WORD 00h: file_table_size
+		WORD 02h: file_table_free
+		WORD 04h: lock_table_size
+		WORD 06h: lock_table_free
+	older revisions of FreeDOS share may return AL = FFh,
+		BX = file table size
+		CX = file table free
+		SI = lock table size
+		DX = lock table free
+	TSR example: this call is not supported
+	RxANSI: this call is not supported
+	lClock: this call is not supported
+	SEEKEXT: this call is not supported
+	KEEPH0OK: this call is not supported
+	FDAPM IDLEDPMS: this call is not supported
+	EIDL: this call is not supported
+	INTERCEP/INTERC3: this call is not supported
+	D2FCBFIX: this call is not supported
+	SRDISK: this call is not supported
+	FDAPM: this call is not supported
+	lDebug: this call is not supported
+	Loader: this call is not supported
+	lDOS kernel: this call is not supported

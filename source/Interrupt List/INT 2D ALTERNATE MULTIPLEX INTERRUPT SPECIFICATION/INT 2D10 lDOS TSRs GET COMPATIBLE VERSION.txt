@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--10
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDOS TSRs - GET COMPATIBLE VERSION
+	AH = AMIS multiplex number
+	AL = 10h
+Return:	AL = FFh if supported
+	CX = compatible version number (binary, major in CH minor in CL)
+SeeAlso: AL=00h

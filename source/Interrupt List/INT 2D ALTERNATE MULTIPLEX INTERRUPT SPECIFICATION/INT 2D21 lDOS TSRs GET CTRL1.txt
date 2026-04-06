@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--21
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDOS TSRs - GET CTRL1
+	AH = AMIS multiplex number
+	AL = 21h
+Return:	AL = size of returned ctrl1
+	DX:BX -> control data
+Notes:	ctrl1 has different uses among the TSRs.
+	lClock: ctrl1 is 1 DWORD, 16:16 far pointer -> memory to write
+	FreeDOS share: ctrl1 is 3 bytes
+		WORD 00h: ".offset", in DOSDATA -> share_installed flag
+		BYTE 02h: ".status", = 1 if indeterminate, = 3 if patch
+			    of kernel not needed, 2 = patch needed
+	D2FCBFIX: ctrl1 is 1 DWORD,
+		16:16 far pointer -> where to undo patch (in dosemu2
+		ROM-BIOS segment F000h). installation patches in an
+		immediate far jump at this point.
+	TSR example: this call is not supported
+	RxANSI: this call is not supported
+	SEEKEXT: this call is not supported
+	KEEPH0OK: this call is not supported
+	FDAPM IDLEDPMS: this call is not supported
+	EIDL: this call is not supported
+	INTERCEP/INTERC3: this call is not supported
+	SRDISK: this call is not supported
+	FDAPM: this call is not supported
+	lDebug: this call is not supported
+	Loader: this call is not supported
+	lDOS kernel: this call is not supported
