@@ -116,6 +116,9 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	  MS-DOS v4.01 command.com oddity, the bundled shell may display these
 	  as v5.27 or v5.39 instead). The lDOS kernel recreates most MS-DOS v5
 	  features and some MS-DOS v7.00 ones.
+	it is said that the major version is returned in AL because it was
+	  expected that callers commonly would want to check only the major
+	  version, which is 1 byte shorter with CMP AL,imm than CMP AH,imm
 BUGS:	FreeDOS sources note that "32RTM won't like non-zero values" in CX
 SeeAlso: AX=3000h/BX=3000h,AX=3306h"DOS",AX=4452h,AH=87h,INT 15/AX=4900h
 SeeAlso: AH=20h"S/DOS",INT 2F/AX=122Fh,INT 2F/AX=4010h,INT 2F/AX=4A33h
