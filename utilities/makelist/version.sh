@@ -7,9 +7,6 @@
 #   This unit is part of the MPLA frame available at:
 #   https://gitlab.com/mpla-oss/mpla/
 
-# this bash script will retrieve the version/revision of FPC, Lazarus and the current
-# programs source tree and store them in the $version_file pascal file.
-
 BUILD_DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
 function parse_attr() {
@@ -87,33 +84,6 @@ print_consts() {
 	echo
 
 	echo "const"
-	# Type Declaration
-	echo "  { The default Free Pascal Compiler }"
-	echo "  FPC_VERSION = '$FPC_VERSION';"
-	echo "  FPC_PLATFORM = '$FPC_PLATFORM';"
-	echo "  FPC_TARGET = '$FPC_TARGET';"
-	echo
-	if [[ "${LAZARUS_VERSION}" != "" ]] ; then
-		echo "  { The Lazarus I.D.E }"
-		echo "  LAZARUS_VERSION = '$LAZARUS_VERSION';"
-	fi
-	echo
-	echo "  { Source version and most recent project commit }"
-	echo "  SOURCE_VERSION = '${APP_VERSION}';"
-	echo "  SOURCE_REVISION = '$REVISION';"
-	echo "  SOURCE_URL = '$URL';"
-    echo "  SOURCE_COMMIT = '$REVISION_ID';"
-	echo
-    echo "  { Version Build Atributes } "
-	echo "  BUILD_DEBUG: Boolean = "$(TF $ATTR_PVADEBUG)";"
-	echo "  BUILD_PRERELEASE: Boolean = "$(TF $ATTR_PVAPRERELEASE)";"
-	echo "  BUILD_PATCHED: Boolean = "$(TF $ATTR_PVAPATCHED)";"
-	echo "  BUILD_PRIVATE: Boolean = "$(TF $ATTR_PVAPRIVATEBUILD)";"
-	echo "  BUILD_SPECIAL: Boolean = "$(TF $ATTR_PVASPECIALBUILD)";"
-	[[ "$LANG_VALUE" != "" ]] && echo "  BUILD_LANGUAGE: String = '$LANG_VALUE';"
-	[[ "$CHRS_VALUE" != "" ]] && echo "  BUILD_CHARSET: String = '$CHRS_VALUE';"
-	echo "  BUILD_DATE: String = '$BUILD_DATE';"
-	echo
 	echo "  { General Application Information }"
 	[[ "${APP_IDENTIFIER}" != '' ]] && echo "  APP_IDENTIFIER: String = '${APP_IDENTIFIER}';"
 	echo "  APP_VERSION: String = '${APP_VERSION}';"
@@ -198,59 +168,7 @@ print_defs () {
 
 }
 
-stats() {
-	FPC_REVISION=$(echo $FPC_REVISION | cut -d "'" -f 2 )
-	LAZARUS_VERSION=$(echo $LAZARUS_VERSION | cut -d "'" -f 2)
-	echo "$FPC_TARGET FPC Version $FPC_VERSION"
-	echo "Lazarus Version $LAZARUS_VERSION"
-
-	/bin/echo -n "$APP_TITLE Version $APP_VERSION"
-	[[ $APP_BUILD ]] && /bin/echo -n ", build $APP_BUILD"
-	[[ $REVISION ]] && /bin/echo -n " (r$REVISION)"
-	echo
-	return 0
-}
-
-function cvs_git () {
-    echo "Retrieve project git data for ${PWD}."
-    REVISION=$(wc -l .git/logs/head 2>/dev/null | cut -d '.' -f 1 )
-    [[ $? = 0 ]] && (( REVISION++ )) || REVISION=0
-    REV_HEAD=$(cat .git/HEAD 2>/dev/null | cut -d ' ' -f 2- )
-    REVISION_ID=$(cat .git/${REV_HEAD} 2>/dev/null)
-    ONLINE_ID=$(cat .git/refs/remotes/origin/${REV_HEAD##*/} 2>/dev/null)
-    if [ "${CI}" != "true" ] ; then
-        URL=$(grep -i "URL=\|URL =" .git/config | cut -d '@' -f 2-)
-        URL="${URL/://}"
-        URL="http://${URL%.*}"
-    else
-        URL="http://github.com/LoopZ/TheList"
-    fi
-}
-
-BUILD_YEAR="${BUILD_DATE%%-*}"
-
 cwd="${PWD}"
-
-while [[ "$PWD" != '/' ]] && [[ ! -d '.git' ]] ; do
-    cd ..
-done
-[[ -d '.git' ]] && cvs_git ${vopts}
-cd "$cwd"
-
-if [[ -e /usr/local/bin/fpc ]] ; then
-  FPC_VERSION=$(/usr/local/bin/fpc -iV)
-  FPC_TARGET=$(/usr/local/bin/fpc -iTP)
-  FPC_PLATFORM=$(/usr/local/bin/fpc -iTO)
-else
-  FPC_VERSION=$(fpc -iV)
-  FPC_TARGET=$(fpc -iTP)
-  FPC_PLATFORM=$(fpc -iTO)
-fi
-if [[ -e /usr/local/bin/lazbuild ]] ; then
-  LAZARUS_VERSION=$(/usr/local/bin/lazbuild -v)
-else
-  LAZARUS_VERSION=$(lazbuild -v)
-fi
 
 version_file='version.inc'
 
@@ -289,12 +207,6 @@ APP_VERSION=$(getval MajorVersion)'.'$(getval MinorVersionNr)'.'$(getval Revisio
 APP_BUILD=$(getval BuildNr)
 
 # Always Present Constants
-[[ ! $FPC_VERSION ]] && FPC_REVISION="unknown"
-[[ ! $FPC_PLATFORM ]] && FPC_REVISION="unknown"
-[[ ! $FPC_TARGET ]] && FPC_TARGET="unknown"
-[[ ! $LAZARUS_VERSION ]] && LAZARUS_VERSION="unknown"
-[[ ! $REVISION ]] && REVISION=""
-[[ ! $URL ]] && URL="";
 [[ ! $APP_TITLE ]] && APP_TITLE='Unknown';
 [[ ! $APP_VENDOR ]] && APP_VENDOR='Company';
 if [[ ${APP_INTERNALNAME} ]] ; then
@@ -317,5 +229,8 @@ mv $version_file version.pp
 print_defs >$version_file
 mv $version_file version.def
 
-stats >&2
+echo "${APP_PRODUCTNAME}" >&2
+echo "${APP_TITLE}, version ${APP_VERSION}" >&2
+echo "${APP_LEGALCOPYRIGHT}" >&2
+
 exit 0
