@@ -117,6 +117,27 @@ const
     'Admin'
   );
 
+  DOSINFO : array of record
+    Name, Text : String;
+  end = (
+  (Name:FILE_1ST;       Text:'this file'),
+  (Name:'INTERRUP.LST'; Text:'Interrupts'),
+  (Name:'PORTS.LST';    Text:'listing of I/O Ports'),
+  (Name:'INTERRUP.PRI'; Text:'a brief primer on interrupts'),
+  (Name:'OVERVIEW.LST'; Text:'brief listing of major uses of each interrupt'),
+  (Name:'BIBLIO.LST';	Text:'bibliography of information sources for the list'),
+  (Name:'CMOS.LST';     Text:'a description of the CMOS RAM data bytes'),
+  (Name:'FARCALL.LST';  Text:'APIs available through FAR CALLs'),
+  (Name:'GLOSSARY.LST'; Text:'a glossary of terms, abbreviations, and acronyms'),
+  (Name:'MEMORY.LST';   Text:'format of the BIOS data area and other memory regions'),
+  (Name:'MSR.LST';      Text:'a listing of Model-Specific Registers'),
+  (Name:'CATEGORY.KEY'; Text:'descriptions of divider-line category letters'),
+  (Name:'TABLES.LST';   Text:'a list of selected tables'),
+  (Name:'LINKS.LST';    Text:'a list of links to reference and sites in the docs'),
+  (Name:'FAQ.LST';      Text:'a list of frequently asked questions'),
+  (Name:'README.NOW';   Text:'a read me document')
+  );
+
 { ---------------------------------------------------------------------------- }
 // Global processing variables
 var
@@ -170,36 +191,15 @@ begin
 end;
 
 procedure AddFileInfo(Filename, Title : String; Data : String = '');
-const
-  DosText : array of record
-    Name, Text : String;
-  end = (
-  (Name:FILE_1ST;       Text:'this file'),
-  (Name:'INTERRUP.LST'; Text:'Interrupts'),
-  (Name:'PORTS.LST';    Text:'listing of I/O Ports'),
-  (Name:'INTERRUP.PRI'; Text:'a brief primer on interrupts'),
-  (Name:'OVERVIEW.LST'; Text:'brief listing of major uses of each interrupt'),
-  (Name:'BIBLIO.LST';	Text:'bibliography of information sources for the list'),
-  (Name:'CMOS.LST';     Text:'a description of the CMOS RAM data bytes'),
-  (Name:'FARCALL.LST';  Text:'APIs available through FAR CALLs'),
-  (Name:'GLOSSARY.LST'; Text:'a glossary of terms, abbreviations, and acronyms'),
-  (Name:'MEMORY.LST';   Text:'format of the BIOS data area and other memory regions'),
-  (Name:'MSR.LST';      Text:'a listing of Model-Specific Registers'),
-  (Name:'CATEGORY.KEY'; Text:'descriptions of divider-line category letters'),
-  (Name:'TABLES.LST';   Text:'a list of selected tables'),
-  (Name:'LINKS.LST';    Text:'a list of links to reference and sites in the docs'),
-  (Name:'FAQ.LST';      Text:'a list of frequently asked questions'),
-  (Name:'README.NOW';   Text:'a read me document')
-  );
 
   function GetText(Name : String) : String;
   var
     I : Integer;
   begin
      Result:='';
-     for I := 0 to High(DosText) do
-       if UpperCase(Name) = DosText[I].Name then begin
-         Result :=DosText[I].Text;
+     for I := 0 to High(DOSINFO) do
+       if UpperCase(Name) = DOSINFO[I].Name then begin
+         Result :=DOSINFO[I].Text;
          Exit;
        end;
   end;
@@ -1133,11 +1133,24 @@ begin
 end;
 
 procedure ReadFileMap;
+{ TODO 2 -cDevel Remove a lot of duplicate and similar code }
 var
   INI : TIniFile;
   Strs : TStringList;
   K, S : String;
   I, J : Integer;
+
+  procedure ReadSection(SectName : String);
+  var
+    X : Integer;
+  begin
+    INI.ReadSectionRaw(SectName, Strs);
+    // Blanks are already removed. Remove Comments.
+    for X := Strs.Count - 1 downto 0 do
+       if HasLeading(Strs[X], ';', false) then
+         Strs.Delete(X);
+  end;
+
 begin
   if not FileExists(DirSource + MapFile) then Exit;
   INI:=nil;
@@ -1152,11 +1165,8 @@ begin
       Halt(1);
     end else
       MiscFileDir:=S;
-    // Replace INTERRUPT_1ST sections
-    INI.ReadSectionRaw('1ST', Strs);
-    for I := Strs.Count - 1 downto 0 do
-      if Not HasLeading(Strs[I], 'SECTION=', false) then
-         Strs.Delete(I);
+    // Replace INTERRUPT_1ST sections, replaces internal table
+    ReadSection('1ST');
     if Strs.Count > 0 then begin
       SetLength(INTERRUPT_1ST, Strs.Count);
       for I := 0 to Strs.Count - 1 do begin
@@ -1166,11 +1176,8 @@ begin
         INTERRUPT_1ST[I]:=Trim(S);
       end;
     end;
-    // Replace SECTION_ORDER sections
-    INI.ReadSectionRaw('ORDER', Strs);
-    for I := Strs.Count - 1 downto 0 do
-      if Not HasLeading(Strs[I], 'SECTION=', false) then
-         Strs.Delete(I);
+    // Replace SECTION_ORDER sections, replaces internal table
+    ReadSection('ORDER');
     if Strs.Count > 0 then begin
       SetLength(SECTION_ORDER, Strs.Count);
       for I := 0 to Strs.Count - 1 do begin
@@ -1180,11 +1187,8 @@ begin
         SECTION_ORDER[I]:=Trim(S);
       end;
     end;
-    // Update File/Path Name mappings
-    INI.ReadSectionRaw('NAMES', Strs);
-    for I := Strs.Count - 1 downto 0 do
-      if HasLeading(Strs[I], ';', false) then
-         Strs.Delete(I);
+    // Update File/Path Name mappings, updates and appends internal table
+    ReadSection('NAMES');
     if Strs.Count > 0 then begin
       for I := 0 to Strs.Count - 1 do begin
         S:=Strs[I];
@@ -1206,22 +1210,40 @@ begin
         DOSNAMES[High(DOSNAMES)].Kind:=skNone;
       end;
     end;
-    // Update File/Path Name TYPE
-     INI.ReadSectionRaw('TYPE', Strs);
-     for I := Strs.Count - 1 downto 0 do
-       if HasLeading(Strs[I], ';', false) then
-          Strs.Delete(I);
+    // Update File/Path Name TYPE, updates and appends internal table
+    ReadSection('TYPE');
+    if Strs.Count > 0 then begin
+      for I := 0 to Strs.Count - 1 do begin
+        S:=Strs[I];
+        K:=Trim(PopDelim(S, EQUAL));
+        S:=Trim(S);
+        if S = '' then Continue;
+        for J := 0 to High(DOSNAMES) do
+          if UpperCase(DOSNAMES[J].DOS) = UpperCase(K) then begin
+            DOSNAMES[J].Kind:=KindFromText(S);
+            Break;
+          end;
+      end;
+    end;
+    // Update File Description Information for FILELIST, , updates and appends
+    // internal table
+     ReadSection('INFO');
      if Strs.Count > 0 then begin
        for I := 0 to Strs.Count - 1 do begin
          S:=Strs[I];
          K:=Trim(PopDelim(S, EQUAL));
          S:=Trim(S);
          if S = '' then Continue;
-         for J := 0 to High(DOSNAMES) do
-           if UpperCase(DOSNAMES[J].DOS) = UpperCase(K) then begin
-             DOSNAMES[J].Kind:=KindFromText(S);
+         for J := 0 to High(DOSINFO) do
+           if UpperCase(DOSINFO[J].Name) = UpperCase(K) then begin
+             DOSINFO[J].Text:=S;
+             K:='';
              Break;
            end;
+         if K = '' then Continue;
+         SetLength(DOSINFO, Length(DOSINFO) + 1);
+         DOSINFO[High(DOSINFO)].Name:=K;
+         DOSINFO[High(DOSINFO)].Text:=S;
        end;
      end;
 
