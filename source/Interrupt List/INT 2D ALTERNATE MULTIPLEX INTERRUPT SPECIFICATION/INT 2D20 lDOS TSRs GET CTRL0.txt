@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--20
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDOS TSRs - GET CTRL0
+	AH = AMIS multiplex number
+	AL = 20h
+Return:	AL = size of returned ctrl0
+	DX:BX -> control data
+Notes:	ctrl0 has different uses among the TSRs.
+	TSR example: ctrl0 is 1 byte
+		no-op, bits 6 and 7 can be toggled from command line
+	RxANSI: ctrl0 is 1 byte
+		bit 7: enable processing ANSI sequences
+		bit 6: enable processing LESS sequences, cleared by
+			this call if built without LESS support
+		bit 5: (internal) last character was a digit
+		bit 0 to 4: unused
+	lClock: ctrl0 is 1 byte
+		bit 7: enable writing clock in INT 1C handler
+		bits 0 to 6: unsupported, cleared by this call
+	SEEKEXT: ctrl0 is 1 byte
+		bit 7: state short (handle INT 21/AH=42h)
+		bit 6: state long (handle INT 21/AX=7142h)
+		bit 5: state info (handle INT 21/AX=71A6h)
+		bits 0 to 4: unsupported, cleared by this call
+	KEEPH0OK: ctrl0 is 4 words
+		WORD 00h: AMIS interrupt list offset
+		WORD 02h: AMIS interrupt list length(?)
+		WORD 04h: "heapfree_offset", offset of first
+			    free block? >= FFFCh if none free?
+		WORD 06h: placeholder size??? always 0?
+	FDAPM IDLEDPMS: ctrl0 is 7 bytes
+		BYTE 00h: enable/disable in bit 7, others unsupported
+			    and cleared by this call. if this call is
+			    run with bit 7 clear, it wakes the screen
+		WORD 01h: ".count": count of idle ticks
+		WORD 03h: ".limit": ticks until screen is switched off,
+			    initialised from command line times 1092
+		BYTE 05h: "idle": 1 if screen is already off
+		BYTE 07h: "what": 1 to sleep, 0 to wake up
+	EIDL: ctrl0 is 1 byte
+		bit 7: state
+		bits 0 to 6: unsupported, not cleared
+	INTERCEP/INTERC3: ctrl0 is 1 byte
+		bit 7: state of INTERCEP, enable recording
+		bit 6: record AMIS calls
+		bits 0 to 5: unsupported, cleared by this call
+	D2FCBFIX: this call is not supported
+	SRDISK: ctrl0 is 1 DWORD, 16:16 far pointer -> first driver
+	FDAPM: this call is not supported
+	FreeDOS share: this call is not supported
+	lDebug: this call is not supported
+	Loader: this call is not supported
+	lDOS kernel: this call is not supported

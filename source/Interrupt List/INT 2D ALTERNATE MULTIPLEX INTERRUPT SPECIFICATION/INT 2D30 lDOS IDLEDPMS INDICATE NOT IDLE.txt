@@ -1,0 +1,17 @@
+--------------------------------------------------------------------------------
+ Unique ID: 2D--30
+  Category: U 	resident utilities
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 2D - lDOS IDLEDPMS - INDICATE NOT IDLE
+	AH = AMIS multiplex number for IDLEDPMS
+	AL = 30h
+Return:	AL = FFh to indicate suppported,
+	  screen enabled if it was idle, and idle counter reset
+	AL != FFh if not supported
+Notes:	the lDOS TSR version of IDLEDPMS is part of a fork of the
+	  FreeDOS power savings utility, FDAPM. IDLEDPMS blanks the
+	  screen after a certain timeout without INT 09 or INT 74
+	  being called (IRQs for keyboard input and PS/2 mouse
+	  input respectively).
