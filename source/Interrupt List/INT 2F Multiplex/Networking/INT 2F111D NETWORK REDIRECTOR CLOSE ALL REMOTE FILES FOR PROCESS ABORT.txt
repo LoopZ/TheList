@@ -13,5 +13,9 @@ Notes:	used when a process is aborted; the process being terminated is
 	  indicated by the "sharing PSP" field in the SDA (offset 1Ah/1Ch)
 	this function is called by the DOS 3.1+ kernel
 	closes all FCBs opened by process
+	this is only called if the process being terminated isn't self-
+	  parented and the termination is no TSR.
+	called after all PHT / Job File Table entries have been closed,
+	  and before FCB SFTs and busy SFTs are freed.
 SeeAlso: INT 21/AX=5D04h
 
