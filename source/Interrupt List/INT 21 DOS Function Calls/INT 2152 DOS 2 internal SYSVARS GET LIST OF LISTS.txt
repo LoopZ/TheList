@@ -507,7 +507,7 @@ Offset	Size	Description	(Table 01639)
 	 20h	WORD	absolute cluster number of current cluster
 	 22h	WORD	???
 	 24h	DWORD	current file position???
-SeeAlso: #01640,#01641,#01642
+SeeAlso: #01640,#01641,#01642,#26003,#26004,#26005
 
 Format of DOS 3.0 system file tables and FCB tables:
 Offset	Size	Description	(Table 01640)
@@ -526,7 +526,7 @@ Offset	Size	Description	(Table 01640)
 			  AUX/CON/PRN contain segment of IO.SYS startup code)
 	 34h	WORD	(SHARE.EXE) offset in SHARE code seg of share record
 	 36h	WORD	??? apparently always 0000h
-SeeAlso: #01639,#01641,#01642
+SeeAlso: #01639,#01641,#01642,#26003,#26004,#26005
 
 Format of DOS 3.1-3.3x, DR DOS 5.0-6.0 system file tables and FCB tables:
 Offset	Size	Description	(Table 01641)
@@ -577,9 +577,9 @@ Offset	Size	Description	(Table 01641)
 			  of IO.SYS startup code)
 	 33h	WORD	offset within SHARE.EXE code segment of
 			  sharing record (see #01637) 0000h = none
-SeeAlso: #01639,#01640,#01642
+SeeAlso: #01639,#01640,#01642,#26003,#26004,#26005
 
-Format of DOS 4.0-6.0 system file tables and FCB tables:
+Format of MS-DOS v4.00 to v6.22 system file tables and FCB tables:
 Offset	Size	Description	(Table 01642)
  00h	DWORD	pointer to next file table (offset FFFFh if last)
  04h	WORD	number of files in this table
@@ -602,8 +602,6 @@ Offset	Size	Description	(Table 01642)
 			else pointer to DOS Drive Parameter Block
 			  (see #01395 at AH=32h) or REDIR data
 	 0Bh	WORD	starting cluster of file (local files only)
-			not set for FAT32-capable versions of Windows95
-			  (since they allow 32-bit cluster numbers)
 	 0Dh	WORD	file time in packed format (see #01665)
 	 0Fh	WORD	file date in packed format (see #01666)
 	 11h	DWORD	file size
@@ -630,10 +628,199 @@ Offset	Size	Description	(Table 01642)
 	 35h	WORD	(local) absolute cluster number of last clustr accessed
 			(redirector) ???
 	 37h	DWORD	pointer to IFS driver for file, 0000000h if native DOS
-Note:	the OS/2 2.0 DOS Boot Session does not properly fill in the filename
+Notes:	the OS/2 2.0 DOS Boot Session does not properly fill in the filename
 	  field due to incomplete support for SFTs; the OS/2 2.0 DOS Window
 	  does not appear to support SFTs at all
-SeeAlso: #01639,#01640,#01641
+	the first SFT container at DOSDATA:00CCh contains 5 entries
+SeeAlso: #01639,#01640,#01641,#26003,#26004,#26005
+
+Format of MS-DOS v7.10 and FAT32 FreeDOS system file tables and FCB tables:
+Offset	Size	Description	(Table 26003)
+ 00h	DWORD	pointer to next file table (offset FFFFh if last)
+ 04h	WORD	number of files in this table
+ 06h  3Bh bytes per file
+	Offset	Size	Description
+	 00h	WORD	number of file handles referring to this file
+			FFFFh if in use but not referenced (the FFFFh busy
+			  marker is not used by FreeDOS)
+	 02h	WORD	file open mode (see AX=6C00h,#01402 at AH=3Dh)
+			bit 15 set if this file opened via FCB
+	 04h	BYTE	file attribute (see #01420 at AX=4301h)
+	 05h	WORD	device info word (see also #01423 at AX=4400h)
+			bit 15 set if remote file
+			bit 14 set means do not set file date/time on closing
+			bit 13 set if named pipe
+			bit 12 set if no inherit
+			bit 11 set if network spooler
+			bit 7  set if device, clear if file (only if local)
+			bits 6-0 as for AX=4400h
+	 07h	DWORD	pointer to device driver header if character device
+			else pointer to DOS Drive Parameter Block
+			  (see #01395 at AH=32h) or REDIR data
+	 0Bh	WORD	high part of relative cluster within file
+	 0Dh	WORD	file time in packed format (see #01665)
+	 0Fh	WORD	file date in packed format (see #01666)
+	 11h	DWORD	file size
+	 15h	DWORD	current offset in file (SFT)
+			LRU counters (FCB table, two WORDs)
+	---local file---
+	 19h	WORD	low part of relative cluster within file
+	 1Bh	DWORD	number of sector containing directory entry
+	 1Fh	BYTE	number of dir entry within sector (byte offset/32)
+	---network redirector---
+	 19h	DWORD	pointer to REDIRIFS record
+	 1Dh  3 BYTEs	???
+	------
+	 20h 11 BYTEs	filename in FCB format (no path/period, blank-padded)
+	 2Bh	DWORD	starting cluster of file
+	 2Fh	WORD	(SHARE.EXE) network machine number which opened file
+			(Windows Enhanced mode DOSMGR uses the virtual machine
+			  ID as the machine number; see INT 2F/AX=1683h)
+	 31h	WORD	PSP segment of file's owner (see #01378 at AH=26h)
+			  (first three entries for AUX/CON/PRN contain segment
+			  of IO.SYS startup code)
+	 33h	WORD	offset within SHARE.EXE code segment of
+			sharing record (see #01595)  0000h = none
+	 35h	DWORD	absolute cluster number of last cluster accessed
+	 39h	WORD	padding
+Notes:	start cluster of MS-DOS v6 at offset 0Bh is now high part of the
+	  relative cluster in file
+	sharer pointer to next SFT in MS-DOS v6 is now file start cluster
+	low word of IFS pointer in MS-DOS v6 is now high word of absolute
+	  cluster number in file
+	MS-DOS v7.10 and FreeDOS use directory entry sector, not cluster
+	the first SFT container at DOSDATA:00CCh contains 5 entries
+SeeAlso: #01639,#01640,#01641,#01642,#26005
+
+Format of FAT32 and FAT+ enabled build of Enhanced DR-DOS v7.01.08
+  (including lDOS flavour) system file tables and FCB tables:
+Offset	Size	Description	(Table 26004)
+ 00h	DWORD	pointer to next file table (offset FFFFh if last)
+ 04h	WORD	number of files in this table
+ 06h  4Bh bytes per file
+	Offset	Size	Description
+	 00h	WORD	number of file handles referring to this file
+			FFFFh if in use but not referenced
+	 02h	WORD	file open mode (see AX=6C00h,#01402 at AH=3Dh)
+			bit 15 set if this file opened via FCB
+	 04h	BYTE	file attribute (see #01420 at AX=4301h)
+	 05h	WORD	device info word (see also #01423 at AX=4400h)
+			bit 15 set if remote file
+			bit 14 set means do not set file date/time on closing
+			bit 13 set if named pipe
+			bit 12 set if no inherit
+			bit 11 set if network spooler
+			bit 7  set if device, clear if file (only if local)
+			bits 6-0 as for AX=4400h
+	 07h	DWORD	pointer to device driver header if character device
+			else pointer to DOS Drive Parameter Block
+			  (see #01395 at AH=32h) or REDIR data
+	 0Bh	WORD	low word of starting cluster of file
+	 0Dh	WORD	file time in packed format (see #01665)
+	 0Fh	WORD	file date in packed format (see #01666)
+	 11h	DWORD	low dword of file size
+	 15h	DWORD	low dword of current offset in file (SFT)
+			LRU counters (FCB table, two WORDs)
+	---local file---
+	 19h	WORD	low word of relative cluster within file
+	 1Bh	WORD	low word of cluster number of directory entry
+	 1Dh	BYTE	padding
+	 1Eh	BYTE	high byte of dir entry number within cluster
+	 1Fh	BYTE	low byte of dir entry number within cluster (byte offset/32)
+	---network redirector---
+	 19h	DWORD	pointer to REDIRIFS record
+	 1Dh  3 BYTEs	???
+	------
+	 20h 11 BYTEs	filename in FCB format (no path/period, blank-padded)
+	 2Bh	DWORD	(SHARE.EXE) pointer to previous SFT sharing same file
+	 2Fh	WORD	(SHARE.EXE) network machine number which opened file
+			(Windows Enhanced mode DOSMGR uses the virtual machine
+			  ID as the machine number; see INT 2F/AX=1683h)
+	 31h	WORD	PSP segment of file's owner (see #01378 at AH=26h)
+			  (first three entries for AUX/CON/PRN contain segment
+			  of IO.SYS startup code)
+	 33h	WORD	offset within SHARE.EXE code segment of
+			sharing record (see #01595)  0000h = none
+	 35h	WORD	low word of absolute cluster number of last cluster
+			  accessed
+	 37h	DWORD	pointer to IFS driver for file, 0000000h if native DOS
+	 3Bh	WORD	high word of first cluster in file
+	 3Dh	WORD	high word of relative cluster within file
+	 3Fh	WORD	high word of cluster number of directory entry
+	 41h	WORD	high word of absolute cluster number of last cluster
+			  accessed
+	 43h	DWORD	high dword of file size
+	 47h	DWORD	high dword of current offset in file
+Notes:	EDR-DOS builds with this SFT layout only contain 3 SFT entries
+	  at DOSDATA:00CCh rather than 5 entries.
+SeeAlso: #01639,#01640,#01641,#01642,#26005
+
+Format of SvarDOS flavour Enhanced DR-DOS system file tables and FCB tables:
+Offset	Size	Description	(Table 26005)
+ 00h	DWORD	pointer to next file table (offset FFFFh if last)
+ 04h	WORD	number of files in this table
+ 06h  3Bh bytes per file (no FAT+) or 42h bytes per file (with FAT+)
+	Offset	Size	Description
+	 00h	WORD	number of file handles referring to this file
+			FFFFh if in use but not referenced
+	 02h	WORD	file open mode (see AX=6C00h,#01402 at AH=3Dh)
+			bit 15 set if this file opened via FCB
+	 04h	BYTE	file attribute (see #01420 at AX=4301h)
+	 05h	WORD	device info word (see also #01423 at AX=4400h)
+			bit 15 set if remote file
+			bit 14 set means do not set file date/time on closing
+			bit 13 set if named pipe
+			bit 12 set if no inherit
+			bit 11 set if network spooler
+			bit 7  set if device, clear if file (only if local)
+			bits 6-0 as for AX=4400h
+	 07h	DWORD	pointer to device driver header if character device
+			else pointer to DOS Drive Parameter Block
+			  (see #01395 at AH=32h) or REDIR data
+	 0Bh	WORD	high part of relative cluster within file
+	 0Dh	WORD	file time in packed format (see #01665)
+	 0Fh	WORD	file date in packed format (see #01666)
+	 11h	DWORD	file size
+	 15h	DWORD	current offset in file (SFT)
+			LRU counters (FCB table, two WORDs)
+	---local file---
+	 19h	WORD	low part of relative cluster within file
+	 1Bh	DWORD	cluster containing directory entry
+	 1Fh	BYTE	low byte of number of dir entry within cluster
+	---network redirector---
+	 19h	DWORD	pointer to REDIRIFS record
+	 1Dh  3 BYTEs	???
+	------
+	 20h 11 BYTEs	filename in FCB format (no path/period, blank-padded)
+	 2Bh	DWORD	starting cluster of file
+	 2Fh	WORD	(SHARE.EXE) network machine number which opened file
+			(Windows Enhanced mode DOSMGR uses the virtual machine
+			  ID as the machine number; see INT 2F/AX=1683h)
+	 31h	WORD	PSP segment of file's owner (see #01378 at AH=26h)
+			  (first three entries for AUX/CON/PRN contain segment
+			  of IO.SYS startup code)
+	 33h	WORD	offset within SHARE.EXE code segment of
+			sharing record (see #01595)  0000h = none
+	 35h	DWORD	absolute cluster number of last cluster accessed
+	 39h	BYTE	high byte of number of dir entry within cluster
+	--- no FAT+ ---
+	 3Ah	BYTE	padding
+	--- with FAT+ ---
+	 3Ah	DWORD	high dword of file size
+	 3Eh	DWORD	high dword of current offset in file
+Notes:	start cluster of MS-DOS v6 at offset 0Bh is now high part of the
+	  relative cluster in file
+	sharer pointer to next SFT in MS-DOS v6 is now file start cluster
+	low word of IFS pointer in MS-DOS v6 is now high word of absolute
+	  cluster number in file
+	SvarDOS flavour EDR-DOS uses a directory cluster, and places the
+	  needed high byte of the directory entry in the otherwise unused
+	  padding near the end.
+	SvarDOS flavour builds allow disabling FAT+ support in which case
+	  the high dwords are absent, instead there is 1 byte of padding.
+	EDR-DOS builds with the SvarDOS FAT+ SFT layout only contain 4
+	  SFT entries at DOSDATA:00CCh rather than 5 entries.
+SeeAlso: #01639,#01640,#01641,#01642,#26003,#26004
 
 Format of current directory structure (CDS) (array, LASTDRIVE entries):
 Offset	Size	Description	(Table 01643)

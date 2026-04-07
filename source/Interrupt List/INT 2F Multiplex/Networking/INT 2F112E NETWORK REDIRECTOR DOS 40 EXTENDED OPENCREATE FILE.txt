@@ -23,8 +23,24 @@ Return: CF set on error
 		02h file created
 		03h file replaced (truncated)
 	    SFT initialized (except handle count, which DOS manages itself)
-Note:	this function is called by the DOS 4.0+ kernel
-BUG:	this function is not called correctly under some DOS versions
+Notes:	this function is called by the DOS 4.0+ kernel
+	in MS-DOS, lDOS, and Enhanced DR-DOS the handle count is FFFFh
+	  during this call, marking the SFT as "busy". they all
+	  unconditionally set the count to 0001h after successful open.
+	MS-DOS v5+ and lDOS will free "busy" SFTs belonging to the
+	  active process (matching process ID and machine ID) during
+	  process termination if the process isn't self-parented and the
+	  termination is not TSR.
+	MS-DOS v4 and Enhanced DR-DOS will free any SFTs belonging to
+	  the active process (matching process ID and machine ID) during
+	  process termination if the process isn't self-parented and the
+	  termination is not TSR.
+	FreeDOS seems to pass the SFT with a handle count of 0000h, and
+	  increments it if it is still 0000h after successful open. it
+	  doesn't seem to close SFTs like the MS-DOS v5 "busy" SFTs as
+	  associated with a process (only closing the handles found in
+	  the PHT / Job File Table and SFTs in use for FCBs).
+BUGS:	this function is not called correctly under some DOS versions
 	  (at least 5.0 and 6.2):
 	    the file attribute on the stack is not correct if the action
 	      code is 11h,

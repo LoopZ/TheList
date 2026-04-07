@@ -40,6 +40,7 @@ Offset	Size	Description	(Table 01378)
  12h	DWORD	DOS 1.1+ stored INT 24 critical error handler address
  16h	WORD	segment of parent PSP (can be this PSP itself)
  18h 20 BYTEs	DOS 2+ Job File Table, one byte per file handle, FFh = closed
+		(the JFT is known as Process Handle Table for lDOS)
  2Ch	WORD	DOS 2+ segment of environment for process (see #01379)
  2Eh	DWORD	DOS 2+ process's SS:SP on entry to last INT 21 call
  32h	WORD	DOS 3+ number of entries in JFT (default 20)
