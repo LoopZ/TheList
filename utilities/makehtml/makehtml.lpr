@@ -1,4 +1,4 @@
-// Copyright 2025-2026, Jerome Shidel
+// Copyright 2026, Jerome Shidel
 // The Clear BSD License
 // All rights reserved.
 
