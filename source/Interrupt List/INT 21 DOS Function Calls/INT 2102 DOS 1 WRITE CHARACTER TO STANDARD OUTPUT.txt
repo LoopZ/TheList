@@ -13,7 +13,7 @@ Notes:	^C/^Break are checked, and INT 23 executed if pressed
 	standard output is always the screen under DOS 1.x, but may be
 	  redirected under DOS 2+
 	the last character output will be the character in DL unless DL=09h
-	  on entry, in which case AL=20h as tabs are expanded to blanks
+	  on entry, in which case AL = 20h as tabs are expanded to blanks
 	if standard output is redirected to a file, no error checks (write-
 	  protected, full media, etc.) are performed
 SeeAlso: AH=06h,AH=09h

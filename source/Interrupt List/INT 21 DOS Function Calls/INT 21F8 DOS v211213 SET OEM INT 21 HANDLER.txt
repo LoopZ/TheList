@@ -12,7 +12,7 @@ Notes:	this function is known to be supported by Toshiba T1000 ROM MS-DOS
 	  v2.11, Sanyo MS-DOS v2.11, and TI Professional Computer DOS v2.13
 	at least potentially this is still available with (OEM versions??? of)
 	  MS-DOS 6.0.
-	calls to AH=F9h through AH=FFH will return AL=00h if no handler set
+	calls to AH=F9h through AH=FFH will return AL = 00h if no handler set
 	the user handler is called immediately on entry to the main DOS INT 21h
 	  function dispatcher with interrupts disabled and all registers and
 	  stack exactly as set by caller; it should exit with IRET

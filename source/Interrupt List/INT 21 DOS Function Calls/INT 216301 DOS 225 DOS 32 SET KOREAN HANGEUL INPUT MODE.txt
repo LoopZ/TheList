@@ -14,7 +14,7 @@ Return: AL = status
 	    FFh invalid mode
 Notes:	Novell DOS 7 simply stores DL in the caller's PSP (see #01378 at AH=26h)
 	the US version of MS-DOS 3.30 treats this as an unused function,
-	  setting AL=00h and returning immediately; only the Far East versions
+	  setting AL = 00h and returning immediately; only the Far East versions
 	  of MS-DOS 3.2 and 3.3 supported this call
 SeeAlso: AH=07h,AH=08h,AH=0Bh,AX=6300h,AX=6302h
 

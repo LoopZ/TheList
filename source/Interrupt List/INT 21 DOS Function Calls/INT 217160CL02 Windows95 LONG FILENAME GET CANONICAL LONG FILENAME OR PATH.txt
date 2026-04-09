@@ -23,7 +23,7 @@ Return: CF set on error
 Desc:	determine the canonical name of the specified filename or path,
 	  corresponding to the undocumented TRUENAME command in COMMAND.COM
 BUGS:	even though the maximum length of a complete long pathname is 260
-	  characters, Windows95 returns CF set/AX=0003h even if the file
+	  characters, Windows95 returns CF set/AX = 0003h even if the file
 	  exists whenever the full pathname is more than 255 characters
 	Windows95 incorrectly treats filenames where the first two characters
 	  after the drive letter and colon are both slashes (either forward

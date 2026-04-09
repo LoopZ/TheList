@@ -12,7 +12,7 @@ Return: AL = number of device driver headers supplied by prog.
 	DX:BX -> first device driver header (see #01646)
 Program: AMIS is the Alternate Multiplex Interrupt Specification promulgated
 	  by Ralf Brown
-Notes:	if AL=00h, AH,BX,DX are meaningless and may be destroyed
+Notes:	if AL = 00h, AH,BX,DX are meaningless and may be destroyed
 	this function is not valid unless a program is installed on the
 	  specified multiplex number; use INT 2D/AL=00h to check
 	programs which provide device drivers are required to support this

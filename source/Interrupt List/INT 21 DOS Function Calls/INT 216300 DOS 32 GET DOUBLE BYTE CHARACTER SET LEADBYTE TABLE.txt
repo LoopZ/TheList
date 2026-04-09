@@ -13,7 +13,7 @@ Return: AL = error code
 	    FFh not supported
 Notes:	probably identical to AH=63h/AL=00h for DOS 2.25
 	the US version of MS-DOS 3.30 treats this as an unused function,
-	  setting AL=00h and returning immediately, WITHOUT setting DS:SI;
+	  setting AL = 00h and returning immediately, WITHOUT setting DS:SI;
 	  only the Far East versions of MS-DOS 3.2 and 3.3 supported this call
 	the US version of DOS 4.0+ accepts this function, but returns an empty
 	  list

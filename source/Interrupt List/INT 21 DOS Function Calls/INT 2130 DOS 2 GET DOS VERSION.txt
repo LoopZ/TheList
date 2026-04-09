@@ -14,9 +14,9 @@ INT 21 - DOS 2+ - GET DOS VERSION
 Return: AL = major version number (00h if DOS 1.x, other registers preserved)
 	AH = minor version number (often rendered with a leading zero if <10)
 	BL:CX = 24-bit user serial number (most versions do not use this)
----if DOS <5 or AL!=01h---
+---if DOS <5 or AL != 01h---
 	BH = MS-DOS OEM number (see #01394)
----if DOS 5+ and AL=01h---
+---if DOS 5+ and AL = 01h---
 	BH = version flag
 	    bit 3: DOS is in ROM
 	    other: reserved (0)

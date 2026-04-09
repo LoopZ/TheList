@@ -11,7 +11,7 @@ Return: CF clear
 	AL = 00h
 	ES:BX = 0000h:0000h on error, unchanged if buffer filled
 Note:	for DOS versions which do not support this function, the return value
-	  is AL=00h, CF unchanged, ES:BX unchanged, and the ES:BX buffer
+	  is AL = 00h, CF unchanged, ES:BX unchanged, and the ES:BX buffer
 	  unchanged
 SeeAlso: AX=6F00h,AX=6F03h
 
