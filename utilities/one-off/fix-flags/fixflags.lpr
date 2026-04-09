@@ -148,6 +148,7 @@ begin
     WriteLn(GROUP);
     GROUP:='';
   end;
+
   // Parse the Title Flags
   S:=CompressWhiteSpace(S);
   S:=PopDelim(S, '-');
@@ -181,7 +182,6 @@ begin
       CRLF);
   Cat(Dest, BAR + CRLF + CRLF + Title + CRLF + Work); // Copy body into Dest
 
-
   // If no change, we are done.
   if Dest = Orig then Exit;
   // Test for significant changes
@@ -199,7 +199,7 @@ begin
   WriteLn(TAB + FileName);
   Inc(COUNT);
   // exit;
-  if FileLoad(Filename, Dest) <> 0 then begin
+  if FileSave(Filename, Dest) <> 0 then begin
     WriteLn('Error saving file: ' + FileName);
     Halt(1);
   end;
