@@ -80,7 +80,7 @@ begin
   Title:=CompressWhiteSpace(S);
 
   // No change in Title?
-  if Title=S then Exit;
+  if (Title=S) then Exit;
 
   // File roughly validated as an entry, display Group Once
   if GROUP <> '' then begin
@@ -89,7 +89,7 @@ begin
   end;
 
   // Create entry with updated header
-  Cat(Dest, BAR + CRLF + CRLF + Title + CRLF + Work); // Copy body into Dest
+  Cat(Dest, CRLF + Title + CRLF + Work); // Copy body into Dest
 
   // If no change, we are done.
   if Dest = Orig then Exit;
