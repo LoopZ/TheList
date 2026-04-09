@@ -30,14 +30,13 @@ const
     Flag : String;
     Text : String;
   end = (
-    (Flag:'U'; Text:'undocumented'),
-    (Flag:'u'; Text:'partially documented'),
+    (Flag:'U'; Text:'undocumented function'),
+    (Flag:'u'; Text:'partially documented function'),
     (Flag:'P'; Text:'available only in protected mode'),
     (Flag:'R'; Text:'available only in real or V86 mode '),
     (Flag:'C'; Text:'callout or callback (usually hooked rather than called)'),
     (Flag:'O'; Text:'obsolete (no longer present in current versions)')
   );
-
 
 type
   THeadField = record
