@@ -12,7 +12,7 @@ Return: CF clear if successful
 	    AX = error code (01h) (see #01680 at AH=59h/BX=0000h)
 Notes:	does not preserve any registers other than SS:SP
 	the US version of MS-DOS 3.30 treats this as an unused function,
-	  setting AL=00h and returning immediately
+	  setting AL = 00h and returning immediately
 SeeAlso: AX=6301h,AH=07h,AH=08h,AH=0Bh
 
 Format of double-byte character set lead byte table entry:

@@ -24,7 +24,7 @@ Notes:	for search attributes other than 08h, all files with at MOST the
 	  and the current date and time.  DOS 3.0+ returns attribute 40h and
 	  the current date and time.
 	immediately after an INT 2F/AX=B711h (APPEND return found name), the
-	  name at DS:DX will be overwritten; if AL=00h on entry, the actual
+	  name at DS:DX will be overwritten; if AL = 00h on entry, the actual
 	  found pathname will be stored, otherwise, the actual found path
 	  will be prepended to the original filespec without a path.
 	under LANtastic, this call may be used to obtain a list of a server's

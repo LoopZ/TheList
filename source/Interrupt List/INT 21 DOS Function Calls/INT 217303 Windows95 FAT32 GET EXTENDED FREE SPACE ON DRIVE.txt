@@ -14,11 +14,11 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code
 Notes:	on DOS versions which do not support the FAT32 calls, this function
-	  returns CF clear/AL=00h (which is the DOS v1+ method for reporting
+	  returns CF clear/AL = 00h (which is the DOS v1+ method for reporting
 	  unimplemented functions)
 	under DOS 7.x (i.e. "MSDOS Mode" under Windows95), the ASCIZ string
 	  pointed at by DS:DX *must* include the drive letter, or this function
-	  will return CF set/AX=0015h (invalid drive).	In a DOS box, omitting
+	  will return CF set/AX = 0015h (invalid drive). In a DOS box, omitting
 	  the drive letter (DS:DX -> "\") results in the free space for the
 	  current default drive, as expected
 BUG:	this function returns a maximum of 2GB free space even on an FAT32

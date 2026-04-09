@@ -21,6 +21,6 @@ Return: CF set on error
 	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
 	CF clear if successful
 Notes:	passed through to INT 2F/AX=112Fh with AX on top of stack
-	Novell DOS 7 Update 15 returns CF set/AX=0001h (invalid function)
+	Novell DOS 7 Update 15 returns CF set/AX = 0001h (invalid function)
 SeeAlso: AH=6Bh"DOS 5",INT 2F/AX=112Fh
 

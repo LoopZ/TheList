@@ -27,8 +27,8 @@ Notes:	on local drives, DX bits not listed above are the attribute word from
 	  the FAT and only a single head on non-removable devices is a fairly
 	  good indicator); for Windows95, RAMDRIVE returns DX=4800h
 	for non-existent remote drives, this function sometimes returns
-	  AX=0015h (drive not ready) instead of AX=000Fh (invalid drive) on
-	  the first call; a subsequent call will return the correct error
+	  AX = 0015h (drive not ready) instead of AX = 000Fh (invalid drive)
+	  on the first call; a subsequent call will return the correct error
 	  code
 	this function was not supported by Digital Research's DOS Plus
 SeeAlso: AX=4400h,AX=4408h,AX=440Ah,INT 2F/AX=122Bh
