@@ -3,8 +3,9 @@
   Category: b 	vendor-specific BIOS extensions
       Flag: n/a
 --------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
-INT 16 - AMI BIOS - BIOS-FLASH Interface -  RESTORE CHIPSET STATUS
+INT 16 - AMI BIOS - BIOS-FLASH Interface - RESTORE CHIPSET STATUS
 	AX = E003h
 	ES:DI -> buffer in which chipset status was previously stored
 Return: CF clear if successful
