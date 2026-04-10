@@ -14,13 +14,12 @@ uses
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
-  Classes, SysUtils, IniFiles
-  { you can add units after this },
-  Version, PasExt, BinTree, StrUtils;
-
-{$R *.res}
+  Classes, SysUtils, IniFiles, StrUtils,
+  { you can add units after this }
+  Version, PasExt, BinTree, CfgOpts;
 
 begin
-
+  Options;
+  Banner;
 end.
 

@@ -21,7 +21,7 @@ const
   APP_BUILD: String = '0';
   APP_TITLE: String = 'makehtml';
   APP_LEGALCOPYRIGHT: String = '(c) 2026 Jerome Shidel';
-  APP_PRODUCTNAME: String = 'The List to HTML convertor';
+  APP_PRODUCTNAME: String = 'The List to HTML conversion utility';
   APP_PRODUCTVERSION: String = '1.0';
   APP_YEAR: String = '';
 
