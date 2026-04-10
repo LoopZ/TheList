@@ -166,6 +166,7 @@ var
   TotalErrors  : integer;        // total number of actual errors
   TotalProblems : integer;       // Number of non-errors that will be problems for parsers
   TotalWarnings : integer;       // Less Severe problems that should be fixed at some point
+  TotalDuplicates : integer;     // Number of entries with duplicate IDs
   FileInfo : TBinaryTree;        // File Info for the FILELIST Section
 
 
@@ -539,8 +540,7 @@ begin
   N:= SectionTree.Add(ID, Data);
   if not Assigned(N) then begin
     LogMessage(vbVerbose, TAB + 'Duplicate UniqueID (' + ID + ') for file: ' + Name);
-    WriteIssue;;
-    Inc(TotalWarnings);
+    Inc(TotalDuplicates);
     XX:=0;
     repeat
       N := SectionTree.Add(ID + SPACE + ZeroPad(XX, 6), Data);
@@ -1297,6 +1297,8 @@ end;
 
 { R *.res}
 
+{$R *.res}
+
 begin
   Issues:='';
   TotalTables:=0;
@@ -1304,8 +1306,11 @@ begin
   TotalErrors:=0;
   TotalProblems:=0;
   TotalWarnings:=0;
+  TotalDuplicates:=0;
   HeaderBar:=StringOf('-', 70);
   Options;
+  if (Issues <> '') and (FileExists(Issues)) then
+     DeleteFile(Issues);
   ReadFileMap;
   Banner;
   Build;
@@ -1314,14 +1319,16 @@ begin
     IssueOpen:=False;
   end;
   LogMessage(vbNormal, '');
-  LogMessage(vbNormal, 'Total Number of Entries:  ' + IntToStr(TotalEntries));
-  LogMessage(vbNormal, 'Total Number of Tables:   ' + IntToStr(TotalTables));
+  LogMessage(vbNormal, 'Total Number of Entries:    ' + IntToStr(TotalEntries));
+  LogMessage(vbNormal, 'Total Number of Tables:     ' + IntToStr(TotalTables));
+  if TotalDuplicates > 0 then
+    LogMessage(vbNormal, 'Total Number of Duplicates: ' + IntToStr(TotalDuplicates));
   if TotalWarnings > 0 then
-    LogMessage(vbMinimal, 'Total Number of Warnings: ' + IntToStr(TotalWarnings));
+    LogMessage(vbMinimal, 'Total Number of Warnings:   ' + IntToStr(TotalWarnings));
   if TotalProblems > 0 then
-    LogMessage(vbMinimal, 'Total Number of Problems: ' + IntToStr(TotalProblems));
+    LogMessage(vbMinimal, 'Total Number of Problems:   ' + IntToStr(TotalProblems));
   if TotalErrors > 0 then
-    LogMessage(vbMinimal, 'Total Number of Errors:   ' + IntToStr(TotalErrors));
+    LogMessage(vbMinimal, 'Total Number of Errors:     ' + IntToStr(TotalErrors));
   if CICD then begin
     if (TotalProblems > 0) or (TotalErrors > 0)then begin
       LogMessage(vbCritical, 'Done, CI/CD verification error.');
