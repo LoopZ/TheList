@@ -141,6 +141,7 @@ const
 { ---------------------------------------------------------------------------- }
 // Global processing variables
 var
+  Issues     : String;           // Filename to write file list of problem files.
   BaseDir    : String;           // LST file source base directory
   OutName    : String;           // LST Output FileName
   TitleWidth : integer;          // Maximum LST file title width (+1)
@@ -169,6 +170,22 @@ var
 
 
 { ---------------------------------------------------------------------------- }
+const
+  IssueOpen : boolean = false;
+var
+  LastFileName: String;
+  IssueF : Text;
+
+procedure WriteIssue;
+begin
+  if Issues= '' then Exit;
+  if not IssueOpen then begin
+    System.Assign(IssueF, Issues);
+    System.Rewrite(IssueF);
+    IssueOpen:=True;
+  end;
+  WriteLn(IssueF, LastFileName);
+end;
 
 // Returns the DOS file name from the Long file name or Group Title
 function DosFileName(FileName : String) : String;
@@ -390,6 +407,7 @@ var
   A : TArrayOfString;
   I : Integer;
 begin
+  LastFileName:='';
   if not FileExists(FileName) then begin
     Data:='';
     Exit(False);
@@ -404,6 +422,7 @@ begin
     A[I]:=TrimRight(A[I]);
   Data:=TrimCRLF(Implode(A, CRLF) + CRLF);
   Result:=True;
+  LastFileName:=FileName;
 end;
 
 // Saves a LST file to the output directory
@@ -520,6 +539,7 @@ begin
   N:= SectionTree.Add(ID, Data);
   if not Assigned(N) then begin
     LogMessage(vbVerbose, TAB + 'Duplicate UniqueID (' + ID + ') for file: ' + Name);
+    WriteIssue;;
     Inc(TotalWarnings);
     XX:=0;
     repeat
@@ -536,12 +556,14 @@ begin
   ID:=Trim(PopDelim(Data, CRLF));
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
+    WriteIssue;;
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
+    WriteIssue;;
     Inc(TotalErrors);
     Exit;
   end;
@@ -565,12 +587,14 @@ begin
   ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
+    WriteIssue;;
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
+    WriteIssue;;
     Inc(TotalErrors);
     Exit;
   end;
@@ -586,12 +610,14 @@ begin
   ID:=ExcludeLeading(ID, 'SMM-');
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No ID specified for file: ' + Name);
+    WriteIssue;;
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
+    WriteIssue;;
     Inc(TotalErrors);
     Exit;
   end;
@@ -681,6 +707,7 @@ begin
     if (TableCode <> '') then begin
       if (not HasLeading(S, TableCode)) then begin
         LogMessage(vbMinimal, TAB + 'Invalid Table Prefix in file: ' + Name);
+        WriteIssue;;
         Inc(TotalErrors);
         Continue;
       end;
@@ -689,6 +716,7 @@ begin
     Val(S, V, E);
     if E <> 0 then begin
       LogMessage(vbMinimal, TAB + 'Invalid Table Number in file: ' + Name);
+      WriteIssue;;
       Inc(TotalErrors);
       Continue;
     end;
@@ -696,10 +724,12 @@ begin
     N:=TableTree.Add(T);
     if not Assigned(N) then begin
       LogMessage(vbMinimal, TAB + 'Duplicated Table ID (' + T + ') in file: ' + Name);
+      WriteIssue;;
       Inc(TotalErrors);
     end;
   end;
   LogMessage(vbMinimal, TAB+ 'Broken Table declaration in file: ' + Name);
+  WriteIssue;;
   Inc(TotalErrors);
 end;
 
@@ -710,11 +740,13 @@ begin
   FileToSection(Name, Data, ID, Category, Flags);
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No ID found for file: ' + Name);
+    WriteIssue;;
     Inc(TotalErrors);
     Exit;
   end;
   if Pos(HeaderBar, Data) > 0 then begin
     LogMessage(vbNormal, TAB+ 'Probably joined entry data in file: ' + Name);
+    WriteIssue;;
     Inc(TotalProblems);
   end;
   { TODO 5 -cDevel Add UID validation }
@@ -723,6 +755,7 @@ begin
   HighestTable(Name, Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
+    WriteIssue;;
     Inc(TotalErrors);
     Exit;
   end;
@@ -986,7 +1019,8 @@ const
     (S:''; L:'--modern'; V:''; M:'Disable legacy mode for modern parsers (default).'),
     (S:''; L:'--legacy'; V:''; M:'Enable compatibility mode for legacy parsers.'),
     (S:''; L:''; V:''; M:''),
-    (S:''; L:'--cicd'; V:''; M:'More strict verification for usage with CI/CD.')
+    (S:''; L:'--cicd'; V:''; M:'More strict verification for usage with CI/CD.'),
+    (S:''; L:'--issues'; V:'(file)'; M:'Write a list of the files with issues to a file.')
   );
 
 var
@@ -1078,6 +1112,7 @@ begin
       '--cicd' : CICD:=True;
       '--modern' : LegacyMode:=False;
       '--legacy' : LegacyMode:=True;
+      '--issues' : Issues:=Trim(NextOpt);
       '-s', '--source' : DirSource:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : DirOutput:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-m', '--maximum' : begin
@@ -1260,7 +1295,10 @@ end;
 // We do not really need to include the Lazarus Resourse in the executable
 { R *.res}
 
+{ R *.res}
+
 begin
+  Issues:='';
   TotalTables:=0;
   TotalEntries:=0;
   TotalErrors:=0;
@@ -1271,15 +1309,19 @@ begin
   ReadFileMap;
   Banner;
   Build;
+  if IssueOpen then begin
+    System.Close(IssueF);
+    IssueOpen:=False;
+  end;
   LogMessage(vbNormal, '');
   LogMessage(vbNormal, 'Total Number of Entries:  ' + IntToStr(TotalEntries));
   LogMessage(vbNormal, 'Total Number of Tables:   ' + IntToStr(TotalTables));
   if TotalWarnings > 0 then
-  LogMessage(vbMinimal, 'Total Number of Warnings: ' + IntToStr(TotalWarnings));
+    LogMessage(vbMinimal, 'Total Number of Warnings: ' + IntToStr(TotalWarnings));
   if TotalProblems > 0 then
-  LogMessage(vbMinimal, 'Total Number of Problems: ' + IntToStr(TotalProblems));
+    LogMessage(vbMinimal, 'Total Number of Problems: ' + IntToStr(TotalProblems));
   if TotalErrors > 0 then
-  LogMessage(vbMinimal, 'Total Number of Errors:   ' + IntToStr(TotalErrors));
+    LogMessage(vbMinimal, 'Total Number of Errors:   ' + IntToStr(TotalErrors));
   if CICD then begin
     if (TotalProblems > 0) or (TotalErrors > 0)then begin
       LogMessage(vbCritical, 'Done, CI/CD verification error.');
