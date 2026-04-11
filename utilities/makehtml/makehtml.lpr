@@ -16,59 +16,8 @@ uses
   {$ENDIF}
   Classes, SysUtils, IniFiles, StrUtils,
   { you can add units after this }
-  Version, PasExt, BinTree, CfgOpts;
-
-type
-  TListType = (lfUnknown, lfExclude, lfSubPart);
-
-var
-  ListType : TListType;
-
-procedure ProcessFile(Filename : String);
-var
-  Ext : String;
-begin
-  Ext:=UpperCase(ExtractFileExt(FileName));
-  ListType := lfUnknown;
-  if (Length(Ext) = 2) and ((Ext >= '.B') and (Ext <= '.Z')) then
-    ListType:=lfSubPart
-  else if (Length(Ext) = 3) and ((Ext >= '.ZA') and (Ext <= '.ZZ')) then
-    ListType:=lfSubPart
-  else if (Length(Ext) = 4) and ((Ext >= '.ZZA') and (Ext <= '.ZZZ')) then
-    ListType:=lfSubPart
-  else case UpperCase(ExtractFileBase(FileName)) of
-    'CATEGORY' : if Ext = '.KEY' then ListType:=lfExclude;
-    'LICENSE'  : if Ext = ''     then ListType:=lfExclude;
-    'README'   : if Ext = '.NOW' then ListType:=lfExclude;
-    'BIBLIO',
-    'CMOS',
-    'FAQ',
-    'FARCALL',
-    'GLOSSARY',
-    'I2C',
-    'LINKS',
-    'MEMORY',
-    'MSR',
-    'OVERVIEW',
-    'PORTS',
-    'SMM',
-    'TABLES'   : if (Ext = '.LST') or (Ext = '.A') then ListType:=lfExclude;
-    'INTERRUP' : case Ext of
-      '.PRI' : ListType:=lfExclude;
-      '.1ST' : ListType:=lfExclude;
-      '.LST',
-      '.A'   : ListType:=lfExclude;
-    end;
-  end;
-  if ListType = lfExclude then begin
-    LogMessage(vbExcessive, 'Skip file: ' + Filename);
-    Exit;
-  end;
-  if ListType = lfUnknown then begin
-    LogMessage(vbNormal, 'Unrecognized file: ' + Filename);
-    Exit;
-  end;
-end;
+  Version, PasExt, BinTree,
+  CfgOpts, SrcData;
 
 procedure Conversion;
 var
