@@ -82,8 +82,8 @@ Notes:	all of these entry points are indirected through this jump table
 	  the actual entry addresses in low memory for maximum compatibility
 	some of these entry points (22h,23h,24h,2Eh,2Fh) are replaced as soon
 	  as COMMAND.COM is loaded, and return immediately to the caller, some
-	  returning an error code (the original handler for INT 2F returns
-	  AL=03h [fail]).
+	  returning an error code (the original handler for INT 24 returns
+	  AL = 03h [fail]).
 
 Format of HMA Memory Block (DR DOS 6.0 kernel loaded in HMA):
 Offset	Size	Description	(Table 01588)
