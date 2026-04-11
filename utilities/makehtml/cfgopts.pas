@@ -20,9 +20,14 @@ uses
   { you can add units after this }
   Version, PasExt;
 
-var
-  Source : String;
-  Output : String;
+const
+  {$IFDEF Windows}
+  Source : String = '..\..\TheList\';
+  Output : String = '..\..\html\';
+  {$ELSE}
+  Source : String = '../../TheList/';
+  Output : String = '../../html/';
+  {$ENDIF}
 
 { Display Program Banner and Version }
 procedure Banner;
@@ -60,9 +65,6 @@ const
     (S:''; L:''; V:''; M:''),
     (S:'-s'; L:'--source'; V:'(path)'; M:'Specify a path that contains "The List" files.'),
     (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the HTML files.')
-//    (S:''; L:''; V:''; M:''),
-//    (S:''; L:'--cicd'; V:''; M:'More strict verification for usage with CI/CD.')
-//    (S:''; L:'--issues'; V:'(file)'; M:'Write a list of the files with issues to a file.')
   );
 
 var
@@ -149,8 +151,6 @@ begin
           SeeHelp('Invalid verbosity level: ' + IntToStr(V));
         end;
       end;
-//      '--cicd' : CICD:=True;
- //     '--issues' : Issues:=Trim(NextOpt);
       '-s', '--source' : Source:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : Output:=IncludeTrailingPathDelimiter(Trim(NextOpt));
     else
