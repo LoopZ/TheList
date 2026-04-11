@@ -44,6 +44,7 @@ implementation
 
 const
   SectionDivider = '--------';
+  SectionComment = SectionDivider +'!---';
 
 var
   ListType  : TListType;
@@ -94,9 +95,9 @@ begin
     LogMessage(vbNormal, 'processing file: ' +ExtractFileName(Filename));
     Data:=NormalizeLineEndings(Data);
     Header:=PopSection(Data);
-    WriteLn(Header);
     if First then begin
       ListFiles[High(ListFiles)].Header:=Header;
+      WriteLn(Header);
       First:=False;
     end;
     While Length(Data) <> 0 do begin
