@@ -29,6 +29,8 @@ const
   Output : String = '../../html/';
   {$ENDIF}
 
+  CICD : boolean = false;
+
 { Display Program Banner and Version }
 procedure Banner;
 
@@ -64,7 +66,9 @@ const
     (S:'-v'; L:'--verbose'; V:'(level)'; M:'Specify a verbosity level (0-4).'),
     (S:''; L:''; V:''; M:''),
     (S:'-s'; L:'--source'; V:'(path)'; M:'Specify a path that contains "The List" files.'),
-    (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the HTML files.')
+    (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the HTML files.'),
+    (S:''; L:''; V:''; M:''),
+    (S:'-s'; L:'--cicd'; V:'(path)'; M:'For use with CI/CD pipelines and will fails on errors.')
   );
 
 var
@@ -153,6 +157,7 @@ begin
       end;
       '-s', '--source' : Source:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : Output:=IncludeTrailingPathDelimiter(Trim(NextOpt));
+      '--cicd' : CICD := True;
     else
       SeeHelp('Invalid command-line option: ' + Opt);
     end;

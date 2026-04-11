@@ -34,6 +34,7 @@ type
 
 var
   ListFiles : TListFiles;
+  CriticalErrors : integer;
 
 procedure ProcessList(Filename : String);
 procedure ProcessFile(Filename : String);
@@ -41,17 +42,74 @@ procedure ProcessFiles(Pathname : String);
 
 implementation
 
+const
+  SectionDivider = '--------';
+
 var
   ListType  : TListType;
 
 
+function PopSection(var Data : RawByteString):RawByteString;
+var
+  P : Integer;
+begin
+   Result:='';
+   if HasLeading(Data, SectionDivider) then begin
+     P:=Pos(LF, Data);
+     if P < 1 then P:= 1;
+   end else
+     P:=1;
+   P:=Pos(LF + SectionDivider, Data);
+   if P < 1 then begin
+     Result:=Data;
+     Data:='';
+     Exit;
+   end;
+   Result:=Copy(Data, 1, P - 1);
+   Delete(Data, 1, P);
+end;
+
 procedure ProcessList(Filename : String);
+var
+  E : Integer;
+  Data : RawByteString;
+  First : Boolean;
+  Header, Section : String;
+  L : Char;
 begin
   SetLength(ListFiles, Length(ListFiles) + 1);
   ListFiles[High(ListFiles)].Name:=UpperCase(ExtractFileBase(FileName));
   ListFiles[High(ListFiles)].Header:='';
   ListFiles[High(ListFiles)].Sections:=TBinaryTree.Create;
   ListFiles[High(ListFiles)].Entries:=TBinaryTree.Create;
+  First:=True;
+  repeat
+    E:=FileLoad(Filename, Data);
+    if E <> 0 then begin
+      LogMessage(vbCritical, 'Error #'+ IntToStr(E)+ ', loading file: ' +
+        ExtractFileName(Filename));
+      Inc(CriticalErrors);
+      Exit;
+    end;
+    LogMessage(vbNormal, 'processing file: ' +ExtractFileName(Filename));
+    Data:=NormalizeLineEndings(Data);
+    Header:=PopSection(Data);
+    WriteLn(Header);
+    if First then begin
+      ListFiles[High(ListFiles)].Header:=Header;
+      First:=False;
+    end;
+    While Length(Data) <> 0 do begin
+      Section:=PopSection(Data);
+    end;
+    if HasTrailing(Filename, '.LST', false) then Break;
+    L:=Filename[Length(Filename)];
+    L:=Upcase(L);
+    if L < 'Z' then
+      Filename[Length(Filename)]:=Char(Ord(L)+1)
+    else
+      Cat(Filename, 'A');
+  until (not FileExists(Filename));
 end;
 
 procedure ProcessFile(Filename : String);
@@ -123,13 +181,14 @@ begin
   ProcessClear;
   DirScan(IncludeTrailingPathDelimiter(Pathname) + Wildcard, L, [dsFiles]);
   for I := 0 to High(L) do
-    ProcessFile(L[I]);
+    ProcessFile(IncludeTrailingPathDelimiter(Pathname) + L[I]);
 end;
 
 
 initialization
 
   ListFiles:=[];
+  CriticalErrors:=0;
 
 finalization
 
