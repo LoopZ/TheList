@@ -20,13 +20,14 @@ uses
 
 type
   TSectionKind = (
-    skNone, // Simply copied files or is not broken into multiple files
+    skNone,      // Simply copied files or is not broken into multiple files
     skInterrupt, skCMOS, skFarCall, skI2C, skMemory, skMSR, skPort,
-    skStandard, // All the same
-    skGlossary, // Just glued together
-    skTable, // Just glued together in an empty comment section
-    skSMM, // Just glued together in separate "other" sections
-    skLink // Just glued together in a Links comment section
+    skStandard,  // All the same
+    skGlossary,  // Just glued together
+    skTable,     // Just glued together in an empty comment section
+    skSMM,       // Just glued together in separate "other" sections
+    skLink,      // Just glued together in LINK comment sections
+    skFAQ        // Just glued together in FAQ comment sections
   );
 
 const
@@ -50,12 +51,12 @@ const
   end = (
     // Miscellaneous files
     (Name:'Advertisement'+SrcExt;      DOS:'_ADVERT.TXT';  Kind:skNone),
-    (Name:'FAQ'+SrcExt;                DOS:'faq.lst';      Kind:skNone),
     (Name:'Interrupt Primer'+SrcExt;   DOS:'INTERRUP.PRI'; Kind:skNone),
     (Name:'Need Help'+SrcExt;          DOS:'NEEDHELP.TXT'; Kind:skNone),
     (Name:'Ralf Brown'+SrcExt;         DOS:'RBROWN.TXT';   Kind:skNone),
     (Name:'Read Me Now'+SrcExt;        DOS:'README.NOW';   Kind:skNone),
     // List Files
+    (Name:'Frequently-Asked Questions';DOS:'FAQ.LST';      Kind:skFAQ),
     (Name:'Bibliography';              DOS:'BIBLIO.LST';   Kind:skNone),
     (Name:'Category';                  DOS:'CATEGORY.KEY'; Kind:skNone),
     (Name:'Cmos-Memory Map';           DOS:'CMOS.LST';     Kind:skCMOS),
@@ -155,7 +156,6 @@ var
   TotalWarnings : integer;       // Less Severe problems that should be fixed at some point
   TotalDuplicates : integer;     // Number of entries with duplicate IDs
   FileInfo : TBinaryTree;        // File Info for the FILELIST Section
-
 
 { ---------------------------------------------------------------------------- }
 const
@@ -543,14 +543,14 @@ begin
   ID:=Trim(PopDelim(Data, CRLF));
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalErrors);
     Exit;
   end;
@@ -574,18 +574,35 @@ begin
   ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalErrors);
     Exit;
   end;
   AddToTree(Name, ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
+end;
+
+procedure AddFAQ(const Name : String; var Data : RawByteString);
+var
+  ID : RawByteString;
+begin
+  if Length(Data) = 0 then begin
+    LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
+    WriteIssue;
+    Inc(TotalErrors);
+    Exit;
+  end;
+  ID:=Name;
+  ID:=PopDelim(ID, SPACE);
+  ID:=PopDelim(ID, '-');
+  ID:=PopDelim(ID, PERIOD);
+  AddToTree(Name, ID, SectionMarker('FAQ:' + ID) + Data);
 end;
 
 procedure AddSMM(const Name : String; var Data : RawByteString);
@@ -597,14 +614,14 @@ begin
   ID:=ExcludeLeading(ID, 'SMM-');
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No ID specified for file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalErrors);
     Exit;
   end;
@@ -694,7 +711,7 @@ begin
     if (TableCode <> '') then begin
       if (not HasLeading(S, TableCode)) then begin
         LogMessage(vbMinimal, TAB + 'Invalid Table Prefix in file: ' + Name);
-        WriteIssue;;
+        WriteIssue;
         Inc(TotalErrors);
         Continue;
       end;
@@ -703,7 +720,7 @@ begin
     Val(S, V, E);
     if E <> 0 then begin
       LogMessage(vbMinimal, TAB + 'Invalid Table Number in file: ' + Name);
-      WriteIssue;;
+      WriteIssue;
       Inc(TotalErrors);
       Continue;
     end;
@@ -711,12 +728,12 @@ begin
     N:=TableTree.Add(T);
     if not Assigned(N) then begin
       LogMessage(vbMinimal, TAB + 'Duplicated Table ID (' + T + ') in file: ' + Name);
-      WriteIssue;;
+      WriteIssue;
       Inc(TotalErrors);
     end;
   end;
   LogMessage(vbMinimal, TAB+ 'Broken Table declaration in file: ' + Name);
-  WriteIssue;;
+  WriteIssue;
   Inc(TotalErrors);
 end;
 
@@ -727,22 +744,22 @@ begin
   FileToSection(Name, Data, ID, Category, Flags);
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No ID found for file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalErrors);
     Exit;
   end;
   if Pos(HeaderBar, Data) > 0 then begin
     LogMessage(vbNormal, TAB+ 'Probably joined entry data in file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalProblems);
   end;
-  { TODO 5 -cDevel Add UID validation }
+  { TODO 5 -cDevel Add UID validation, not really possible }
   { TODO 5 -cDevel Add Category validation }
   { TODO 5 -cDevel Add Flags validation }
   HighestTable(Name, Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
-    WriteIssue;;
+    WriteIssue;
     Inc(TotalErrors);
     Exit;
   end;
@@ -777,6 +794,7 @@ begin
       skTable : AddTable(L[I], Data);
       skSMM : AddSMM(L[I], Data);
       skLink: AddLink(L[I], Data);
+      skFAQ: AddFAQ(L[I], Data);
     end;
   end;
   L.Free;
@@ -994,6 +1012,7 @@ begin
     'table'      : Result:=skTable;
     'smm'        : Result:=skSMM;
     'link'       : Result:=skLink;
+    'faq'        : Result:=skFAQ;
   else
     Result:=skNone;
     raise Exception.Create('Section Type "'+Trim(S)+'" was not recognized.');

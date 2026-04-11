@@ -19,11 +19,10 @@ uses
   Version, PasExt, BinTree, CfgOpts;
 
 type
-  TListType = (lfUnknown, lfExclude);
+  TListType = (lfUnknown, lfExclude, lfSubPart);
 
 var
   ListType : TListType;
-
 
 procedure ProcessFile(Filename : String);
 var
@@ -31,10 +30,16 @@ var
 begin
   Ext:=UpperCase(ExtractFileExt(FileName));
   ListType := lfUnknown;
-  case UpperCase(ExtractFileBase(FileName)) of
-    'CATEGORY' : if EXT = '.KEY' then ListType:=lfExclude;
-    'LICENSE'  : if EXT = ''     then ListType:=lfExclude;
-    'README'   : if EXT = '.NOW' then ListType:=lfExclude;
+  if (Length(Ext) = 2) and ((Ext >= '.B') and (Ext <= '.Z')) then
+    ListType:=lfSubPart
+  else if (Length(Ext) = 3) and ((Ext >= '.ZA') and (Ext <= '.ZZ')) then
+    ListType:=lfSubPart
+  else if (Length(Ext) = 4) and ((Ext >= '.ZZA') and (Ext <= '.ZZZ')) then
+    ListType:=lfSubPart
+  else case UpperCase(ExtractFileBase(FileName)) of
+    'CATEGORY' : if Ext = '.KEY' then ListType:=lfExclude;
+    'LICENSE'  : if Ext = ''     then ListType:=lfExclude;
+    'README'   : if Ext = '.NOW' then ListType:=lfExclude;
     'BIBLIO',
     'CMOS',
     'FAQ',
@@ -47,11 +52,12 @@ begin
     'OVERVIEW',
     'PORTS',
     'SMM',
-    'TABLES'   : if EXT = '.LST' then ListType:=lfExclude;
-    'INTERRUP' : case EXT of
+    'TABLES'   : if (Ext = '.LST') or (Ext = '.A') then ListType:=lfExclude;
+    'INTERRUP' : case Ext of
       '.PRI' : ListType:=lfExclude;
       '.1ST' : ListType:=lfExclude;
-      '.LST' : ListType:=lfExclude;
+      '.LST',
+      '.A'   : ListType:=lfExclude;
     end;
   end;
   if ListType = lfExclude then begin
