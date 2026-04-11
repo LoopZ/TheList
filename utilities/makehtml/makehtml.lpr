@@ -20,9 +20,6 @@ uses
   CfgOpts, SrcData;
 
 procedure Conversion;
-var
-  I : Integer;
-  L : TArrayOfRawByteString;
 begin
   if not DirectoryExists(Source) then begin
     LogMessage(vbCritical, 'Unable to locate The List files at: ' + Source);
@@ -37,9 +34,7 @@ begin
     end;
     LogMessage(vbNormal, 'Created HTML output directory: ' + Output)
   end;
-  DirScan(Source + Wildcard, L, [dsFiles]);
-  for I := 0 to High(L) do
-    ProcessFile(L[I]);
+  ProcessFiles(Source);
   LogMessage(vbNormal, 'Conversion finished.');
 end;
 

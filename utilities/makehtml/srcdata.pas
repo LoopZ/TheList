@@ -18,22 +18,40 @@ uses
   {$ENDIF}
   SysUtils,
   { you can add units after this }
-  Version, PasExt;
+  Version, PasExt, BinTree;
 
 type
   TListType = (lfUnknown, lfExclude, lfSubPart, lfList);
 
-var
-  ListType : TListType;
+  TListFile =record
+    Name     : String;
+    Header   : String;
+    Sections : TBinaryTree;
+    Entries  : TBinaryTree;
+  end;
 
-procedure ProcessList(FileName : String);
+  TListFiles = array of TListFile;
+
+var
+  ListFiles : TListFiles;
+
+procedure ProcessList(Filename : String);
 procedure ProcessFile(Filename : String);
+procedure ProcessFiles(Pathname : String);
 
 implementation
 
-procedure ProcessList(FileName : String);
+var
+  ListType  : TListType;
+
+
+procedure ProcessList(Filename : String);
 begin
-  WriteLn(FileName);
+  SetLength(ListFiles, Length(ListFiles) + 1);
+  ListFiles[High(ListFiles)].Name:=UpperCase(ExtractFileBase(FileName));
+  ListFiles[High(ListFiles)].Header:='';
+  ListFiles[High(ListFiles)].Sections:=TBinaryTree.Create;
+  ListFiles[High(ListFiles)].Entries:=TBinaryTree.Create;
 end;
 
 procedure ProcessFile(Filename : String);
@@ -86,8 +104,32 @@ begin
   end;
 end;
 
+procedure ProcessClear;
+var
+  I : Integer;
+begin
+  for I := High(ListFiles) downto 0 do begin
+    FreeAndNil(ListFiles[I].Entries);
+    FreeAndNil(ListFiles[I].Sections);
+  end;
+  SetLength(ListFiles, 0);
+end;
+
+procedure ProcessFiles(Pathname: String);
+var
+  I : Integer;
+  L : TArrayOfRawByteString;
+begin
+  ProcessClear;
+  DirScan(IncludeTrailingPathDelimiter(Pathname) + Wildcard, L, [dsFiles]);
+  for I := 0 to High(L) do
+    ProcessFile(L[I]);
+end;
+
 
 initialization
+
+  ListFiles:=[];
 
 finalization
 
