@@ -7,7 +7,7 @@
 INT 10 - VIDEO - FUNCTIONALITY/STATE INFORMATION (PS,VGA/MCGA)
 	AH = 1Bh
 	BX = implementation type
-	    0000h return funtionality/state information
+	    0000h return functionality/state information
 	ES:DI -> 64-byte buffer for state information (see #00040)
 Return: AL = 1Bh if function supported
 	    ES:DI buffer filled with state information
@@ -18,7 +18,7 @@ SeeAlso: AH=15h,AX=1A00h,AX=1F01h
 
 Format of MCGA+ state information:
 Offset	Size	Description	(Table 00040)
- 00h	DWORD	address of static funtionality table (see #00045)
+ 00h	DWORD	address of static functionality table (see #00045)
  04h	BYTE	video mode in effect
  05h	WORD	number of columns
  07h	WORD	length of regen buffer in bytes

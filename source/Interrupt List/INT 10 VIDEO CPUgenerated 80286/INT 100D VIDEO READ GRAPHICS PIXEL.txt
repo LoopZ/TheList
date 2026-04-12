@@ -10,7 +10,7 @@ INT 10 - VIDEO - READ GRAPHICS PIXEL
 	CX = column
 	DX = row
 Return: AL = pixel color
-Desc:	determine the current color of the specified pixel in grahics modes
+Desc:	determine the current color of the specified pixel in graphics modes
 Notes:	valid only in graphics modes
 	BH is ignored if the current video mode supports only one page
 SeeAlso: AH=0Ch,AH=47h

@@ -8,7 +8,7 @@ INT 2F - MODRES - PLAY SAMPLE
 	AX = 8223h
 	DX:CX -> SAMPARM structure (see #02963)
 Return: AX = status
-	    5722h succesful
+	    5722h successful
 	    2000h parameters out of range
 	    other MODRES not installed
 SeeAlso: AX=8221h,AX=8224h,AX=8225h,AX=8226h
