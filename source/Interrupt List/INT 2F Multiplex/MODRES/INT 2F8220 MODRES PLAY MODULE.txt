@@ -8,7 +8,7 @@ INT 2F - MODRES - PLAY MODULE
 	AX = 8220h
 	DX:CX -> MODPARM structure (see #02960)
 Return: AX = status
-	    5722h succesful
+	    5722h successful
 	    2000h parameters out of range
 	    other MODRES not installed
 SeeAlso: AX=8221h,AX=8223h,AX=8225h,AX=8227h,AX=8200h"RESPLAY"

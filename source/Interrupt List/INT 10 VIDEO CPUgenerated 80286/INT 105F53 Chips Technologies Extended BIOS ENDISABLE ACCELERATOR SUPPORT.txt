@@ -8,7 +8,7 @@ INT 10 - Chips & Technologies Extended BIOS - EN/DISABLE ACCELERATOR SUPPORT
 	AX = 5F53h
 	BL = new support state
 	    00h disable buffer/accelerator
-	    01h enable buffer/acelerator
+	    01h enable buffer/accelerator
 Return: AL = 5Fh if function supported
 	    AH = status
 		00h unsuccessful

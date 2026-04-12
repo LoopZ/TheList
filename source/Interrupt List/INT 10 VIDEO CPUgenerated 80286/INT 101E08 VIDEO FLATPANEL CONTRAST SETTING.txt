@@ -18,7 +18,7 @@ Return: AL = 1Eh if function supported
 		bit 6: standard/custom (copied from input)
 		bits 5-2: reserved (0)
 		bit 1: software contrast control is supported
-		bit 0: set operation was succesful (always clear on get)
+		bit 0: set operation was successful (always clear on get)
 	    BL = contrast (00h = minimum, FFh = maximum)
 Note:	this function operates independently of AX=1E06h
 SeeAlso: AX=1E00h,AX=1E06h,AX=1E07h
