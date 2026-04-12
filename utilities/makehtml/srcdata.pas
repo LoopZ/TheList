@@ -21,9 +21,10 @@ uses
   Version, PasExt, BinTree;
 
 type
-  TListType = (lfUnknown, lfExclude, lfSubPart, lfList);
+  TListType = (lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM);
 
   TListFile =record
+    Kind     : TListType;
     Name     : String;
     Header   : String;
     Sections : TBinaryTree;
@@ -61,6 +62,20 @@ begin
     ID:=Copy(SectionHeader, 13);
   while (Length(ID) > 1) and (ID[Length(ID)] = '-') do
     SetLength(ID, Length(ID) - 1);
+  case ListType of
+    lfLinks : if HasLeading(ID, 'LINK:') then begin
+      ID:=ExcludeLeading(ID, 'LINK:');
+      Result:=True;
+    end;
+    lfFAQ : if HasLeading(ID, 'FAQ:') then begin
+      ID:=ExcludeLeading(ID, 'FAQ:');
+      Result:=True;
+    end;
+    lfSMM : if HasLeading(ID, 'SMM:') then begin
+      ID:=ExcludeLeading(ID, 'SMM:');
+      Result:=True;
+    end;
+  end;
 end;
 
 // Returns the next section from the Data. Removes that section from the Data.
@@ -95,6 +110,7 @@ var
   N : TBinaryTreeNode;
 begin
   SetLength(ListFiles, Length(ListFiles) + 1);
+  ListFiles[High(ListFiles)].Kind:=ListType;
   ListFiles[High(ListFiles)].Name:=UpperCase(ExtractFileBase(FileName));
   ListFiles[High(ListFiles)].Header:='';
   ListFiles[High(ListFiles)].Sections:=TBinaryTree.Create;
@@ -147,6 +163,7 @@ begin
               ID:=T + '+' + ZeroPad(E, ZeroPadding);
             end;
           until Assigned(N);
+          WriteLn(T);
           LogMessage(vbExcessive, TAB + 'Comment: ' + N.UniqueID);
        end;
       end;
@@ -165,6 +182,15 @@ end;
 procedure ProcessFile(Filename : String);
 var
   Ext : String;
+
+  function IsList(T : TListType) : TListType;
+  begin
+    if (Ext = '.LST') or (Ext = '.A') then
+      Result:=T
+    else
+      Result:=lfExclude;
+  end;
+
 begin
   Ext:=UpperCase(ExtractFileExt(FileName));
   ListType := lfUnknown;
@@ -180,22 +206,22 @@ begin
     'README'   : if Ext = '.NOW' then ListType:=lfExclude;
     'BIBLIO',
     'CMOS',
-    'FAQ',
     'FARCALL',
     'GLOSSARY',
     'I2C',
-    'LINKS',
     'MEMORY',
     'MSR',
     'OVERVIEW',
     'PORTS',
-    'SMM',
-    'TABLES'   : if (Ext = '.LST') or (Ext = '.A') then ListType:=lfList;
+    'TABLES'   : ListType:=IsList(lfList);
+    'LINKS'    : ListType:=IsList(lfLinks);
+    'FAQ'      : ListType:=IsList(lfFAQ);
+    'SMM'      : ListType:=IsList(lfSMM);
     'INTERRUP' : case Ext of
       '.PRI' : ListType:=lfExclude;
       '.1ST' : ListType:=lfList;
       '.LST',
-      '.A'   : ListType:=lfList;
+      '.A'   : ListType:=IsList(lfList);
     end;
   end;
   case ListType of
@@ -208,7 +234,7 @@ begin
       Exit;
     end;
     lfSubPart : Exit;
-    lfList : ProcessList(Filename);
+    lfList, lfLinks, lfFAQ, lfSMM : ProcessList(Filename);
   end;
 end;
 
