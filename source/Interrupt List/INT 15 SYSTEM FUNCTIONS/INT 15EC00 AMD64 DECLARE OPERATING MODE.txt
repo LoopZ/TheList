@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+ Unique ID: 15EC00
+  Category: b 	vendor-specific BIOS extensions
+      Flag: n/a
+--------------------------------------------------------------------------------
+
+INT 15 - AMD64 - DECLARE OPERATING MODE
+    AX = EC00h
+    BL = Operating mode
+        01h Legacy (32-bit) mode only
+        02h Long Mode only
+        03h Mixed modes
+        All Other values are reserved.
+Return: CF set on error
+    AH = Status
+        00h if callback implemented
+        86h if callback unsupported
+    CF clear if successful
