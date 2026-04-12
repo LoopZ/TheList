@@ -36,8 +36,6 @@ var
   ListFiles : TListFiles;
   CriticalErrors : integer;
 
-procedure ProcessList(Filename : String);
-procedure ProcessFile(Filename : String);
 procedure ProcessFiles(Pathname : String);
 
 implementation
@@ -49,7 +47,8 @@ const
 var
   ListType  : TListType;
 
-
+// Determines if a section header is an Entry or a Comment.
+// Returns the ID for the Section. Returns True if it is an Entry.
 function IsEntry(const SectionHeader : RawByteString; out ID : String) : boolean;
 begin
   ID:='';
@@ -64,6 +63,7 @@ begin
     SetLength(ID, Length(ID) - 1);
 end;
 
+// Returns the next section from the Data. Removes that section from the Data.
 function PopSection(var Data : RawByteString):RawByteString;
 var
   P : Integer;
@@ -84,6 +84,7 @@ begin
    Delete(Data, 1, P);
 end;
 
+// Loads and processes the sections in a LST file or group of LST files.
 procedure ProcessList(Filename : String);
 var
   E : Integer;
@@ -160,6 +161,7 @@ begin
   until (not FileExists(Filename));
 end;
 
+// Determines and initiates the Process for a file in 'The List' release.
 procedure ProcessFile(Filename : String);
 var
   Ext : String;
@@ -210,6 +212,7 @@ begin
   end;
 end;
 
+// Clears and resets all processed data. Not sure why I added this procedure.
 procedure ProcessClear;
 var
   I : Integer;
@@ -221,6 +224,7 @@ begin
   SetLength(ListFiles, 0);
 end;
 
+// Process 'The List' Release files in a directory
 procedure ProcessFiles(Pathname: String);
 var
   I : Integer;
