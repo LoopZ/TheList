@@ -1094,27 +1094,42 @@ type
 
   { returns which ever integer is greater }
   function Max(A, B : Int64) : Int64; overload;
-  { returns which ever integer is greatest value in the array. A null array will
-  generate an exception. }
-  function Max(const A : array of Int64) : Int64; overload;
    { returns which ever integer is lesser }
   function Min(A, B : Int64) : Int64; overload;
-  { returns which ever integer is lowest value in the array. A null array will
-  generate an exception. }
-  function Min(const A : array of Int64) : Int64; overload;
 
   { returns which ever integer is greatest value in the array. A null array will
     generate an exception. Unless, ReturnPosition is true. Then the index is
-    returned and -1 will be returned for a null array. }
-  function Maximum(const A : TArrayOfInt16; ReturnPosition : boolean = false) : Int32; overload;
+    returned of the first highest value and -1 will be returned for a null array. }
+  function Maximum(const A : TArrayOfInt8; ReturnPosition : boolean = false) : Int8; overload;
   { returns which ever integer is greatest value in the array. A null array will
     generate an exception. Unless, ReturnPosition is true. Then the index is
-    returned and -1 will be returned for a null array. }
+    returned of the first highest value and -1 will be returned for a null array. }
+  function Maximum(const A : TArrayOfInt16; ReturnPosition : boolean = false) : Int16; overload;
+  { returns which ever integer is greatest value in the array. A null array will
+    generate an exception. Unless, ReturnPosition is true. Then the index is
+    returned of the first highest value and -1 will be returned for a null array. }
   function Maximum(const A : TArrayOfInt32; ReturnPosition : boolean = false) : Int32; overload;
   { returns which ever integer is greatest value in the array. A null array will
     generate an exception. Unless, ReturnPosition is true. Then the index is
-    returned and -1 will be returned for a null array. }
+    returned of the first highest value and -1 will be returned for a null array. }
   function Maximum(const A : TArrayOfInt64; ReturnPosition : boolean = false) : Int64; overload;
+
+  { returns which ever integer is greatest value in the array. A null array will
+    generate an exception. Unless, ReturnPosition is true. Then the index is
+    returned of the last lowest value and -1 will be returned for a null array. }
+  function Minimum(const A : TArrayOfInt8; ReturnPosition : boolean = false) : Int8; overload;
+  { returns which ever integer is greatest value in the array. A null array will
+    generate an exception. Unless, ReturnPosition is true. Then the index is
+    returned of the last lowest value and -1 will be returned for a null array. }
+  function Minimum(const A : TArrayOfInt16; ReturnPosition : boolean = false) : Int16; overload;
+  { returns which ever integer is greatest value in the array. A null array will
+    generate an exception. Unless, ReturnPosition is true. Then the index is
+    returned of the last lowest value and -1 will be returned for a null array. }
+  function Minimum(const A : TArrayOfInt32; ReturnPosition : boolean = false) : Int32; overload;
+  { returns which ever integer is greatest value in the array. A null array will
+    generate an exception. Unless, ReturnPosition is true. Then the index is
+    returned of the last lowest value and -1 will be returned for a null array. }
+  function Minimum(const A : TArrayOfInt64; ReturnPosition : boolean = false) : Int64; overload;
 
 
 { Nibbling on Bits }
@@ -4802,18 +4817,6 @@ begin
     Result:=B;
 end;
 
-function Max(const A : array of Int64) : Int64; overload;
-var
-  I : integer;
-begin
-  Result:=0;
-  if Length(A) = 0 then
-    raise Exception.Create ('no maximum value in empty array');
-  Result:=A[Low(A)];
-  for I := Low(A)+1 to High(A) do
-    if A[I] > Result then Result:=A[I];
-end;
-
 function Min(A, B : Int64) : Int64; overload;
 begin
   if A < B then
@@ -4822,19 +4825,27 @@ begin
     Result:=B;
 end;
 
-function Min(const A : array of Int64) : Int64; overload;
+function Maximum(const A: TArrayOfInt8; ReturnPosition: boolean): Int8;
 var
-  I : integer;
+  I : Integer;
 begin
-  Result:=0;
-  if Length(A) = 0 then
-    raise Exception.Create ('no minimum value in empty array');
-  Result:=A[Low(A)];
-  for I := Low(A)+1 to High(A) do
-    if A[I] < Result then Result:=A[I];
+  if ReturnPosition then begin
+    if Length(A) = 0 then Exit(-1);
+    Result:=Low(A);
+    for I := Low(A)+1 to High(A) do
+      if (A[I] > A[Result]) then
+        Result:=I;
+  end else begin
+    if Length(A) = 0 then
+      raise Exception.Create ('no maximum value in empty array');
+    Result:=A[Low(A)];
+    for I := Low(A)+1 to High(A) do
+      if (A[I] > Result) then
+        Result:=A[I];
+  end;
 end;
 
-function Maximum(const A: TArrayOfInt16; ReturnPosition: boolean): Int32;
+function Maximum(const A: TArrayOfInt16; ReturnPosition: boolean): Int16;
 var
   I : Integer;
 begin
@@ -4890,6 +4901,86 @@ begin
     Result:=A[Low(A)];
     for I := Low(A)+1 to High(A) do
       if (A[I] > Result) then
+        Result:=A[I];
+  end;
+end;
+
+function Minimum(const A: TArrayOfInt8; ReturnPosition: boolean): Int8;
+var
+  I : Integer;
+begin
+  if ReturnPosition then begin
+    if Length(A) = 0 then Exit(-1);
+    Result:=Low(A);
+    for I := Low(A)+1 to High(A) do
+      if (A[I] <= A[Result]) then
+        Result:=I;
+  end else begin
+    if Length(A) = 0 then
+      raise Exception.Create ('no minimum value in empty array');
+    Result:=A[Low(A)];
+    for I := Low(A)+1 to High(A) do
+      if (A[I] <= Result) then
+        Result:=A[I];
+  end;
+end;
+
+function Minimum(const A: TArrayOfInt16; ReturnPosition: boolean): Int16;
+var
+  I : Integer;
+begin
+  if ReturnPosition then begin
+    if Length(A) = 0 then Exit(-1);
+    Result:=Low(A);
+    for I := Low(A)+1 to High(A) do
+      if (A[I] <= A[Result]) then
+        Result:=I;
+  end else begin
+    if Length(A) = 0 then
+      raise Exception.Create ('no minimum value in empty array');
+    Result:=A[Low(A)];
+    for I := Low(A)+1 to High(A) do
+      if (A[I] <= Result) then
+        Result:=A[I];
+  end;
+end;
+
+function Minimum(const A: TArrayOfInt32; ReturnPosition: boolean): Int32;
+var
+  I : Integer;
+begin
+  if ReturnPosition then begin
+    if Length(A) = 0 then Exit(-1);
+    Result:=Low(A);
+    for I := Low(A)+1 to High(A) do
+      if (A[I] <= A[Result]) then
+        Result:=I;
+  end else begin
+    if Length(A) = 0 then
+      raise Exception.Create ('no minimum value in empty array');
+    Result:=A[Low(A)];
+    for I := Low(A)+1 to High(A) do
+      if (A[I] <= Result) then
+        Result:=A[I];
+  end;
+end;
+
+function Minimum(const A: TArrayOfInt64; ReturnPosition: boolean): Int64;
+var
+  I : Integer;
+begin
+  if ReturnPosition then begin
+    if Length(A) = 0 then Exit(-1);
+    Result:=Low(A);
+    for I := Low(A)+1 to High(A) do
+      if (A[I] <= A[Result]) then
+        Result:=I;
+  end else begin
+    if Length(A) = 0 then
+      raise Exception.Create ('no minimum value in empty array');
+    Result:=A[Low(A)];
+    for I := Low(A)+1 to High(A) do
+      if (A[I] <= Result) then
         Result:=A[I];
   end;
 end;
