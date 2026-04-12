@@ -124,7 +124,7 @@ type
     function Find(UniqueID : UnicodeString; CaseSensitive : boolean = true) : TBinaryTreeNode; overload;
     function Find(UniqueID : Int64) : TBinaryTreeNode; overload;
     procedure Delete(var Node : TBinaryTreeNode); overload;
-    procedure Foreach(Callback : TBinaryTreeIterator);
+    procedure Foreach(Callback : TBinaryTreeIterator; Recursive : boolean = true);
     property First : TBinaryTreeNode read GetFirst;
     property Last : TBinaryTreeNode read GetLast;
     property Count : Int64 read FCount;
@@ -901,11 +901,24 @@ begin
   FreeAndNil(Node);
 end;
 
-procedure TCustomBinaryTree.Foreach(Callback: TBinaryTreeIterator);
+procedure TCustomBinaryTree.Foreach(Callback: TBinaryTreeIterator; Recursive : boolean = true);
 var
   N, NN: TBinaryTreeNode;
+
+  procedure Quick(Node : TBinaryTreeNode);
+  begin
+    if not Assigned(Node) then Exit;
+    Quick(Node.FLesser);
+    CallBack(Node);
+    Quick(Node.FGreater);
+  end;
+
 begin
   if not Assigned(Callback) then Exit;
+  if Recursive then begin
+    Quick(FRoot);
+    Exit;
+  end;
   N := GetFirst;
   while Assigned(N) do begin
     NN := N.GetNext;

@@ -43,12 +43,26 @@ procedure ProcessFiles(Pathname : String);
 implementation
 
 const
+  ZeroPadding    = 4;
   SectionDivider = '--------';
-  SectionComment = SectionDivider +'!---';
 
 var
   ListType  : TListType;
 
+
+function IsEntry(const SectionHeader : RawByteString; out ID : String) : boolean;
+begin
+  ID:='';
+  Result:=False;
+  if not HasLeading(SectionHeader, SectionDivider) then Exit;
+  Result:=Copy(SectionHeader, 11, 2) <> '--';
+  if Result then
+    ID:=Copy(SectionHeader, 11)
+  else
+    ID:=Copy(SectionHeader, 13);
+  while (Length(ID) > 1) and (ID[Length(ID)] = '-') do
+    SetLength(ID, Length(ID) - 1);
+end;
 
 function PopSection(var Data : RawByteString):RawByteString;
 var
@@ -75,8 +89,9 @@ var
   E : Integer;
   Data : RawByteString;
   First : Boolean;
-  Header, Section : String;
+  Header, Section, ID, T : String;
   L : Char;
+  N : TBinaryTreeNode;
 begin
   SetLength(ListFiles, Length(ListFiles) + 1);
   ListFiles[High(ListFiles)].Name:=UpperCase(ExtractFileBase(FileName));
@@ -94,14 +109,46 @@ begin
     end;
     LogMessage(vbNormal, 'processing file: ' +ExtractFileName(Filename));
     Data:=NormalizeLineEndings(Data);
+    // Get File Header
     Header:=PopSection(Data);
     if First then begin
       ListFiles[High(ListFiles)].Header:=Header;
-      WriteLn(Header);
       First:=False;
     end;
+    N:=nil;
     While Length(Data) <> 0 do begin
       Section:=PopSection(Data);
+      Header:=PopDelim(Section, LF);
+      if Length(Section) > 0 then begin
+        E:=0;
+        if IsEntry(Header, ID) then begin
+          // It is a Section entry
+          T:=ID;
+          repeat
+            N:=ListFiles[High(ListFiles)].Entries.Add(ID, Section);
+            if not Assigned(N) then begin
+              Inc(E);
+              ID:=T + '+' + ZeroPad(E, ZeroPadding);
+            end;
+          until Assigned(N);
+          LogMessage(vbExcessive, TAB + 'Entry: ' + N.UniqueID);
+        end else if (ID = '-') and Assigned(N) then begin
+          // Divider is a continuation of previous section or entry
+          N.Text:=N.Text + Header + LF + Section;
+          LogMessage(vbExcessive, TAB + 'Continue: ' + N.UniqueID);
+        end else if ID <> '' then begin
+          // It is some sort of Comment section
+          T:=ID;
+          repeat
+            N:=ListFiles[High(ListFiles)].Sections.Add(ID, Section);
+            if not Assigned(N) then begin
+              Inc(E);
+              ID:=T + '+' + ZeroPad(E, ZeroPadding);
+            end;
+          until Assigned(N);
+          LogMessage(vbExcessive, TAB + 'Comment: ' + N.UniqueID);
+       end;
+      end;
     end;
     if HasTrailing(Filename, '.LST', false) then Break;
     L:=Filename[Length(Filename)];
@@ -141,10 +188,10 @@ begin
     'OVERVIEW',
     'PORTS',
     'SMM',
-    'TABLES'   : if (Ext = '.LST') or (Ext = '.A') then ListType:=lfExclude;
+    'TABLES'   : if (Ext = '.LST') or (Ext = '.A') then ListType:=lfList;
     'INTERRUP' : case Ext of
       '.PRI' : ListType:=lfExclude;
-      '.1ST' : ListType:=lfExclude;
+      '.1ST' : ListType:=lfList;
       '.LST',
       '.A'   : ListType:=lfList;
     end;
