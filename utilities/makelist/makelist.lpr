@@ -632,13 +632,14 @@ begin
 end;
 
 procedure FileToSection(const Name : String; var Data : RawByteString;
-  out ID, Category, Flags : String);
+  out IDSORT, IDLIST, Category, Flags : String);
 var
-  I : Integer;
+  I, SORTAS : Integer;
   H : TArrayOfString;
   K, V : String;
 begin
-  ID:='';
+  IDSORT:='';
+  IDLIST:='';
   Category:='';
   Flags:='';
   // Remove Header Stub from Data
@@ -655,9 +656,15 @@ begin
     H[I]:=Trim(H[I]);
     case UpperCase(K) of
       'UNIQUE ID' : begin
-        ID:=V;
+        IDSORT:=V;
+        IDLIST:=V;
         if H[I] <> '' then
           LogMessage(vbMinimal, 'Extraneous Data in Unique ID for file: '+ Name);
+        SORTAS := Pos('-sort-as-', IDSORT);
+        if SORTAS > 0 then begin
+          IDSORT := Copy(IDSORT, SORTAS + Length('-sort-as-'));
+          IDLIST := Copy(IDLIST, 1, SORTAS - 1);
+        end;
       end;
       'CATEGORY' : begin
         if UpperCase(V) = 'N/A' then
@@ -739,10 +746,10 @@ end;
 
 procedure AddStandard(const Name : String; var Data : RawByteString);
 var
-  ID, Category, Flags : String;
+  IDSORT, IDLIST, Category, Flags : String;
 begin
-  FileToSection(Name, Data, ID, Category, Flags);
-  if ID='' then begin
+  FileToSection(Name, Data, IDSORT, IDLIST, Category, Flags);
+  if IDLIST='' then begin
     LogMessage(vbMinimal, TAB + 'No ID found for file: ' + Name);
     WriteIssue;
     Inc(TotalErrors);
@@ -763,7 +770,7 @@ begin
     Inc(TotalErrors);
     Exit;
   end;
-  AddToTree(Name, ID + SPACE + CATEGORY, SectionEntry(ID, Category) + Data);
+  AddToTree(Name, IDSORT, SectionEntry(IDLIST, Category) + Data);
 end;
 
 procedure AddDataFiles;
