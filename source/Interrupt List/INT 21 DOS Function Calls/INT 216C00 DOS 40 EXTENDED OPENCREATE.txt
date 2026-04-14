@@ -20,6 +20,7 @@ INT 21 - DOS 4.0+ - EXTENDED OPEN/CREATE
 	DL = action if file exists/does not exist (see #01770)
 	DH = 00h (reserved)
 	DS:SI -> ASCIZ file name
+	CF should be set on entry for better compatibility
 Return: CF set on error
 	   AX = error code (see #01680 at AH=59h/BX=0000h)
 	CF unchanged, AL = 00h as DOS v1 style error (AX = 6C00h)
@@ -39,6 +40,9 @@ Notes:	the PC LAN Program only supports existence actions (in DL) of 01h,
 	DOS v1 style error sets AL = 00h (thus AX = 6C00h) but leaves CF
 	  unchanged so it is good practice to initialise CF set before the
 	  int 21h call
+	MS-DOS v4.01 and lDOS accept bit 0 in DH set, all other bits must be
+	  zero or an error 0001h is generated
+	MS-DOS v4.01 and lDOS accept any value in AL
 BUG:	this function has bugs (at least in DOS 5.0 and 6.2) when used with
 	  drives handled via the network redirector (INT 2F/AX=112Eh):
 	    - CX (attribute) is not passed to the redirector if DL=11h,
@@ -72,4 +76,3 @@ Bit(s)	Description	(Table 01770)
 	0000 fail
 	0001 open
 	0010 replace/open
-
