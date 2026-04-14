@@ -50,7 +50,7 @@ Notes:	if error 7100h is returned, the old-style function should be called
 	  (e.g. LONGNAME.TXT -> LONGNAME.TXT, not LONGNA~1.TXT). BETA 3 has
 	  A7h (BL=0, 1) functions added, and 4Eh/4Fh can return file times
 	  in both DOS and 64 bit formats, BETA 4 has support added for
-	  Caldera's DRFAT32 redirector extension (see INT 2F/AX=15xxh).
+	  Caldera's DRFAT32 redirector extension (see INT 2F/AH=15h).
 	Caldera's DR-OpenDOS 7.02+ COMMAND.COM utilizes the LFN API as soon
 	  as it detects it (mind, that LONGNAME.EXE can be dynamically loaded
 	  and unloaded at runtime). This COMMAND.COM shell also works under
