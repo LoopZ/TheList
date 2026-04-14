@@ -19,7 +19,7 @@ Return: CF clear if successful
 	    AX = error code (03h,05h) (see #01680 at AH=59h/BX=0000h)
 Note:	these functions are equivalent to INT 21/AH=39h and INT 21/AH=56h,
 	  but with a maximum path length of 128 characters instead of 67;
-	  unlike INT 21/AX=71xxh, these functions are available under bare
+	  unlike INT 21/AH=71h, these functions are available under bare
 	  DOS and not just in a Windows DOS box
 SeeAlso: AH=39h,AH=56h,AX=7139h,AX=7156h
 
