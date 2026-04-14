@@ -108,10 +108,11 @@ var
   Header, Section, ID, T : String;
   L : Char;
   N : TBinaryTreeNode;
+  // X : String;
 begin
   SetLength(ListFiles, Length(ListFiles) + 1);
   ListFiles[High(ListFiles)].Kind:=ListType;
-  ListFiles[High(ListFiles)].Name:=UpperCase(ExtractFileBase(FileName));
+  ListFiles[High(ListFiles)].Name:=UpperCase(ExtractFileBase(Filename));
   ListFiles[High(ListFiles)].Header:='';
   ListFiles[High(ListFiles)].Sections:=TBinaryTree.Create;
   ListFiles[High(ListFiles)].Entries:=TBinaryTree.Create;
@@ -149,6 +150,18 @@ begin
             end;
           until Assigned(N);
           LogMessage(vbExcessive, TAB + 'Entry: ' + N.UniqueID);
+
+          (* // List references to "subfn" in entries that use SF in "ID"
+          if (Pos('SF', N.UniqueID) > 1) then begin
+            WriteLn(RightPad(N.UniqueID + SPACE, 80, '='));
+            X := N.Text;
+            while (X <> '') do begin
+              T :=PopDelim(X, LF);
+              if not T.Contains(' subfn ') then continue;
+              WriteLn(T);
+            end;
+          end;
+          *)
         end else if (ID = '-') and Assigned(N) then begin
           // Divider is a continuation of previous section or entry
           N.Text:=N.Text + Header + LF + Section;
@@ -163,7 +176,7 @@ begin
               ID:=T + '+' + ZeroPad(E, ZeroPadding);
             end;
           until Assigned(N);
-          WriteLn(T);
+          // WriteLn(T);
           LogMessage(vbExcessive, TAB + 'Comment: ' + N.UniqueID);
        end;
       end;
