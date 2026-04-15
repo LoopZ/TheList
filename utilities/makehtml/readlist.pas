@@ -2,7 +2,7 @@
 // The Clear BSD License
 // All rights reserved.
 
-unit SrcData;
+unit ReadList;
 
 {$mode objfpc}{$H+}
 
@@ -18,26 +18,11 @@ uses
   {$ENDIF}
   SysUtils,
   { you can add units after this }
-  Version, PasExt, BinTree;
+  Version, PasExt, BinTree, GloData;
 
-type
-  TListType = (lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM);
-
-  TListFile =record
-    Kind     : TListType;
-    Name     : String;
-    Header   : String;
-    Sections : TBinaryTree;
-    Entries  : TBinaryTree;
-  end;
-
-  TListFiles = array of TListFile;
-
-var
-  ListFiles : TListFiles;
-  CriticalErrors : integer;
-
-procedure ProcessFiles(Pathname : String);
+// Loads The List release files from a directory and prepares for the process
+// of converting their data to HTML.
+procedure ReadTheList(Pathname : String);
 
 implementation
 
@@ -46,6 +31,7 @@ const
   SectionDivider = '--------';
 
 var
+  // Type of List file that is being loaded and processed.
   ListType  : TListType;
 
 // Determines if a section header is an Entry or a Comment.
@@ -264,7 +250,7 @@ begin
 end;
 
 // Process 'The List' Release files in a directory
-procedure ProcessFiles(Pathname: String);
+procedure ReadTheList(Pathname: String);
 var
   I : Integer;
   L : TArrayOfRawByteString;
@@ -274,13 +260,5 @@ begin
   for I := 0 to High(L) do
     ProcessFile(IncludeTrailingPathDelimiter(Pathname) + L[I]);
 end;
-
-
-initialization
-
-  ListFiles:=[];
-  CriticalErrors:=0;
-
-finalization
 
 end.
