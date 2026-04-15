@@ -666,6 +666,11 @@ begin
           IDLIST := Copy(IDLIST, 1, SORTAS - 1);
         end;
       end;
+      'SORT AS' : begin
+         IDSORT:=V;
+         if H[I] <> '' then
+           LogMessage(vbMinimal, 'Extraneous Data in Sort As for file: '+ Name);
+      end;
       'CATEGORY' : begin
         if UpperCase(V) = 'N/A' then
           V := '-';
