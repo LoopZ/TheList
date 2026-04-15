@@ -506,16 +506,19 @@ end;
 
 // Parses a standard Entry file's header to return various information.
 // Also, it removes that header from the data for eventual storage in the
-// Section Tree for that specific LST file.
-procedure FileToSection(const Name : String; var Data : RawByteString;
-  out IDSORT, IDLIST, Category, Flags : String);
+// Section Tree for that specific LST file. Returns false on errors.
+function FileToSection(const Name : String; var Data : RawByteString;
+  out IDSORT, IDLIST, Category, Flags : String) : boolean;
 var
   I, SORTAS : Integer;
   H : TArrayOfString;
   K, V : String;
+  FSORTAS : String;
 begin
+  Result:=True;
   IDSORT:='';
   IDLIST:='';
+  FSORTAS:='';
   Category:='';
   Flags:='';
   // Remove Header Stub from Data
@@ -543,7 +546,7 @@ begin
         end;
       end;
       'SORT AS' : begin
-         IDSORT:=V;
+         FSORTAS:=V;
          if H[I] <> '' then
            LogMessage(vbMinimal, 'Extraneous Data in Sort As for file: '+ Name);
       end;
@@ -564,6 +567,12 @@ begin
     else
       LogMessage(vbVerbose, 'Extraneous header field "' +  K + '" in file: '+ Name);
     end;
+  end;
+  if FSORTAS <> '' then begin
+    if IDSORT = IDLIST then
+      IDSORT:=FSORTAS
+    else
+      Result:=False;
   end;
 end;
 
@@ -633,7 +642,12 @@ procedure AddStandard(const Name : String; var Data : RawByteString);
 var
   IDSORT, IDLIST, Category, Flags : String;
 begin
-  FileToSection(Name, Data, IDSORT, IDLIST, Category, Flags);
+  if not FileToSection(Name, Data, IDSORT, IDLIST, Category, Flags) then begin
+    LogMessage(vbMinimal, TAB + 'Invalid entry header for file: ' + Name);
+    WriteIssue;
+    Inc(TotalErrors);
+    Exit;
+  end;
   if IDLIST='' then begin
     LogMessage(vbMinimal, TAB + 'No ID found for file: ' + Name);
     WriteIssue;
