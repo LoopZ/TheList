@@ -45,9 +45,11 @@ const
 
   MaxLinkID : integer = 19; // Maximum Length of Link Section ID in the LINKS.LST
 
-  DOSNAMES : array of record // Conversion of Long File Names to DOS versions
-    Name, DOS : String;
-    Kind : TSectionKind;
+  // Default conversion information of Long File Names to DOS versions
+  DOSNAMES : array of record
+    Name,                  // Long file name of File or Group Path.
+    DOS : String;          // DOS file name for output file.
+    Kind : TSectionKind;   // Type of sections used by that file.
   end = (
     // Miscellaneous files
     (Name:'Advertisement'+SrcExt;      DOS:'_ADVERT.TXT';  Kind:skNone),
@@ -88,6 +90,7 @@ const
     'Contact Info'
   );
 
+  // General order of sections for all LST files (excluding INTERRUP.1ST).
   SECTION_ORDER : TArrayOfString = (
     'Introduction',
     'Disclaimer',
@@ -106,6 +109,7 @@ const
     'Admin'
   );
 
+  // Default file information for INTERRUP.1ST's FILELIST section.
   DOSINFO : array of record
     Name, Text : String;
   end = (
@@ -159,11 +163,14 @@ var
 
 { ---------------------------------------------------------------------------- }
 const
-  IssueOpen : boolean = false;
-var
-  LastFileName: String;
-  IssueF : Text;
+  IssueOpen : boolean = false;   // Tracks if the Issues file has been opened.
 
+var
+  LastFileName: String;          // The current working Entry file name for Issues.
+  IssueF : Text;                 // The Issues text file handle.
+
+// Saves Filename of Entry with a problem, error, etc to a file when the
+// "Issues" file name is set.
 procedure WriteIssue;
 begin
   if Issues= '' then Exit;
@@ -195,6 +202,7 @@ begin
   Result:=B+E;
 end;
 
+// Adds an item to the list of files in the FILELIST section of INTERRUP.1ST
 procedure AddFileInfo(Filename, Title : String; Data : String = '');
 
   function GetText(Name : String) : String;
@@ -288,6 +296,8 @@ begin
 end;
 
 // Generate LST file header
+// With file Title, release version, current date and copyright information.
+// Or, Title with part n of NN for files that are broken into parts 2+ of NN.
 procedure SetHeader(Title : String; Part : integer = 0; Total : integer = 0);
 begin
    if LegacyMode then Title:=UpperCase(Title);
@@ -303,12 +313,14 @@ begin
    Header:=IncludeTrailing(Header, CRLF);
 end;
 
+// Returns a string used for a Comment section divider in LST files.
 function SectionMarker(Section : String; Kind : Char = '!') : String;
 begin
   Section:=StringReplace(Section, SPACE, UNDERSCORE, [rfReplaceAll]);
   Result:=RightPad(SectionLead + Kind + '---' + Section, SectionWidth, '-') + CRLF;
 end;
 
+// Returns a string used for an Entry section divider in LST files.
 function SectionEntry(Section : String; Category : String = '-') : String;
 begin
   Section:=StringReplace(Section, SPACE, UNDERSCORE, [rfReplaceAll]);
@@ -317,6 +329,8 @@ begin
   Result:=RightPad(SectionLead + Category + Section, SectionWidth, '-') + CRLF;
 end;
 
+// Returns a string of FROM to TO of the Entries in a LST file Part.
+// For use in the INTERRUP.1ST FILELIST section.
 function GetFromTo(Const Data : RawByteString) : String;
   function IntID(ID : String) : String;
   begin
@@ -519,6 +533,7 @@ begin
   List.Free;
 end;
 
+// Lowest level to add a Entry section into the Section Tree.
 procedure AddToTree(const Name, ID : String; const Data : RawByteString);
 var
   N : TBinaryTreeNode;
@@ -536,6 +551,7 @@ begin
   end;
 end;
 
+// Adds a Glossary Entry into the Section Tree for the GLOSSARY.LST
 procedure AddGlossary(const Name : String; var Data : RawByteString);
 var
   ID : RawByteString;
@@ -557,11 +573,13 @@ begin
   AddToTree(Name, ID, ID + CRLF + Data);
 end;
 
+// Adds a Table Entry into the Section Tree for TABLES.LST
 procedure AddTable(const Name : String; var Data : RawByteString);
 begin
   AddGlossary(Name, Data);
 end;
 
+// Adds a LINK Entry into the Section Tree for LINKS.LST
 procedure AddLink(const Name : String; var Data : RawByteString);
 var
   ID, Title : RawByteString;
@@ -588,6 +606,7 @@ begin
   AddToTree(Name, ID, SectionMarker('LINK:' + ID) + Title + CRLF + Data);
 end;
 
+// Adds a FAQ Entry into the Section Tree for FAQ.LST
 procedure AddFAQ(const Name : String; var Data : RawByteString);
 var
   ID : RawByteString;
@@ -605,6 +624,7 @@ begin
   AddToTree(Name, ID, SectionMarker('FAQ:' + ID) + Data);
 end;
 
+// Adds a SMM Entry into the Section Tree for SMM.LST
 procedure AddSMM(const Name : String; var Data : RawByteString);
 var
   ID, Title : RawByteString;
@@ -631,6 +651,9 @@ begin
     AddToTree(Name, ID, SectionMarker('SMM:' + ID) + Title + CRLF + Data);
 end;
 
+// Parses a standard Entry file's header to return various information.
+// Also, it removes that header from the data for eventual storage in the
+// Section Tree for that specific LST file.
 procedure FileToSection(const Name : String; var Data : RawByteString;
   out IDSORT, IDLIST, Category, Flags : String);
 var
@@ -691,6 +714,9 @@ begin
   end;
 end;
 
+// Finds tables in a section.
+// Tracks the Highest Table number in that List.
+// Verifies that no table ID is used more than once.
 procedure HighestTable(const Name : String; const Data : RawByteString);
 var
   P, F, E, V : Integer;
@@ -749,6 +775,7 @@ begin
   Inc(TotalErrors);
 end;
 
+// Add a standard Entry (like INT, PORTS, MEMORY, etc) to the Section Tree.
 procedure AddStandard(const Name : String; var Data : RawByteString);
 var
   IDSORT, IDLIST, Category, Flags : String;
@@ -778,6 +805,8 @@ begin
   AddToTree(Name, IDSORT, SectionEntry(IDLIST, Category) + Data);
 end;
 
+// Recursively scan a Group directory, loading each Entry file and add their
+// contents to the Section Tree based on the type of entries in that group.
 procedure AddDataFiles;
 var
   I : Integer;
@@ -855,6 +884,8 @@ begin
   end;
 end;
 
+// Create a LST file with all of its Comment and Entry Sections in a
+// order specified by the "Sections" parameter.
 procedure CreateList(PathName: String; const Sections : TArrayOfString);
 var
   I : Integer;
@@ -958,7 +989,7 @@ begin
   end;
 end;
 
-// Assemble the List Files
+// Build a Release of The List
 procedure Build;
 var
   I : Integer;
@@ -1006,7 +1037,6 @@ begin
 end;
 
 { ---------------------------------------------------------------------------- }
-
 
 function KindFromText(S : String) : TSectionKind;
 begin
@@ -1156,11 +1186,9 @@ begin
   if Assigned(Strs) then Strs.Free;
 end;
 
-// We do not really need to include the Lazarus Resourse in the executable
-{ R *.res}
-
-{ R *.res}
-
+// We do not really need to include the Lazarus Resourse in the executable.
+// But, Lazarus keeps sticking it back in here. So, whatever, its only a couple
+// of bytes.
 {$R *.res}
 
 begin
