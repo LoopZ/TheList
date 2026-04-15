@@ -18,30 +18,7 @@ uses
   {$ENDIF}
   SysUtils,
   { you can add units after this }
-  Version, PasExt;
-
-const
-  {$IFDEF Windows}
-  DirSource : String = '..\..\source\';
-  DirOutput : String = '..\..\TheList\';
-  {$ELSE}
-  DirSource : String = '../../source/';
-  DirOutput : String = '../../TheList/';
-  {$ENDIF}
-
-  // When enabled, program will use older methods for a couple LST files for
-  // better compatibility with older parsers.
-  LegacyMode : boolean = False;
-
-  // Maximum bytes allowed in LST file. use -1 for no restriction.
-  MaxFileSize : integer = 360 * 1024;
-
-  // Enable more strict verification for use with CI/CD
-  CICD : boolean = false;
-
-  // Filename to write file list of problem files.
-  Issues     : String = '';
-
+  Version, PasExt, GloDat;
 
 { Display Program Banner and Version }
 procedure Banner;
@@ -178,7 +155,7 @@ begin
       '--cicd' : CICD:=True;
       '--modern' : LegacyMode:=False;
       '--legacy' : LegacyMode:=True;
-      '--issues' : Issues:=Trim(NextOpt);
+      '--issues' : IssueFileName:=Trim(NextOpt);
       '-s', '--source' : DirSource:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : DirOutput:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-m', '--maximum' : begin
