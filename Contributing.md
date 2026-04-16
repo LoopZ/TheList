@@ -1,13 +1,13 @@
 ## Contributing to _The List_
 
-Interested in helping improve _The List_, then this is the document for you. It will help you understand how the project is structered and maintaned. Along with any rules and guidelines you will need to know.
+Interested in helping improve _The List_, then this is the document for you. It will help you understand how the project is structered and maintaned. Along with any rules or guidelines, you will need to know.
 
 ## Project structure
 
 There are two main directories in the root of the project called [utilities](utilities) and [source](source). 
 
 * [utilities](utilities) - contains the source files for the programs we use to manage _The List_.
-* [source](source) - contains the many bits and pieces of _The List_ broken down for more suitable editing using _GitHub_.
+* [source](source) - contains the many bits and pieces of _The List_ broken down for editing on _GitHub_.
 
 ## The source directory
 
