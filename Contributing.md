@@ -1,6 +1,6 @@
-### Contributing to _The List_
+## Contributing to _The List_
 
-Interested in helping to improve _The List_, then this is the document for you. It will help you understand how the project is structered and maintaned. Along with any rules and guidelines you will need to know.
+Interested in helping improve _The List_, then this is the document for you. It will help you understand how the project is structered and maintaned. Along with any rules and guidelines you will need to know.
 
 ## Project structure
 
