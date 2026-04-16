@@ -150,6 +150,7 @@ The following patterns are turned into references:
   * Interrupts are matched as `INT<BLANK><hex>`
   * Interrupts with registers are matched as `INT<BLANK><hex>/<regvalues>`
   * Register-only references (only valid in INTERRUP.LST) are matched as `<regvalues>` where the first register must be one of AH, AL, or AX
+  * In SeeAlso: lines, register-only references may occur for other first registers too
   * Tables are matched as `#<1 all-caps ALPHANUM><4 DECIMAL DIGITs>`
   * Memory is matched as `MEM<BLANK><hex>:<hex>` or `MEM<BLANK><hex>`
   * Far calls are matched as `@<hex>:<hex>`
