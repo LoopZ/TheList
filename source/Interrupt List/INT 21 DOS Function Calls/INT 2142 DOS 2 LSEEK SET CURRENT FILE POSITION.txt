@@ -26,5 +26,4 @@ Notes:	for origins 01h and 02h, the pointer may be positioned before the
 BUG:	using this method to grow a file from zero bytes to a very large size
 	  can corrupt the FAT in some versions of DOS; the file should first
 	  be grown from zero to one byte and then to the desired large size
-SeeAlso: AH=24h,INT 2F/AX=1228h
-
+SeeAlso: AH=24h,AX=7142h,INT 2F/AX=1228h

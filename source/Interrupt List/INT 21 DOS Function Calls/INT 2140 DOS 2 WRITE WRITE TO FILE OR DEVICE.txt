@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
- Unique ID: 2140
+ Unique ID: 2140-sort-as-2140++
   Category: D 	DOS kernel
       Flag: n/a
 --------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ BUG:	a write of zero bytes will appear to succeed when it actually failed
 	  if the write is extending the file and there is not enough disk
 	  space for the expanded file (DOS 5.0-6.0); one should therefore check
 	  whether the file was in fact extended by seeking to 0 bytes from
-	  the end of the file (INT 21/AX=4202h/CX=0000h/DX=0000h)
+	  the end of the file (INT 21/AX=4202h with CX:Dx=0000h:0000h)
 	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
 SeeAlso: AH=28h,AH=3Fh"DOS",AH=93h,INT 2F/AX=1109h
 
