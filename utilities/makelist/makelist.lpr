@@ -535,6 +535,10 @@ begin
     H[I]:=Trim(H[I]);
     case UpperCase(K) of
       'UNIQUE ID' : begin
+        if IDSORT <> '' then begin
+          LogMessage(vbMinimal, 'Multiple Unique ID fields for file: '+ Name);
+          Result:=False;
+        end;
         IDSORT:=V;
         IDLIST:=V;
         if H[I] <> '' then
@@ -546,11 +550,19 @@ begin
         end;
       end;
       'SORT AS' : begin
-         FSORTAS:=V;
-         if H[I] <> '' then
-           LogMessage(vbMinimal, 'Extraneous Data in Sort As for file: '+ Name);
+        if FSORTAS <> '' then begin
+          LogMessage(vbMinimal, 'Multiple Sort As fields for file: '+ Name);
+          Result:=False;
+        end;
+        FSORTAS:=V;
+        if H[I] <> '' then
+          LogMessage(vbMinimal, 'Extraneous Data in Sort As for file: '+ Name);
       end;
       'CATEGORY' : begin
+        if Category <> '' then begin
+           LogMessage(vbMinimal, 'Multiple Category fields for file: '+ Name);
+           Result:=False;
+         end;
         if UpperCase(V) = 'N/A' then
           V := '-';
         If Length(V) > 1 then
@@ -571,8 +583,10 @@ begin
   if FSORTAS <> '' then begin
     if IDSORT = IDLIST then
       IDSORT:=FSORTAS
-    else
+    else begin
+      LogMessage(vbMinimal, 'Using both "-sort-as-" and "Sort As" is prohibited in file: '+ Name);
       Result:=False;
+    end;
   end;
 end;
 
