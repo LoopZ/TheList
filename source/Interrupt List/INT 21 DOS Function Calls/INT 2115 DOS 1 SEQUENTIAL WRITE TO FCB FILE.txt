@@ -7,7 +7,7 @@
 INT 21 - DOS 1+ - SEQUENTIAL WRITE TO FCB FILE
 	AH = 15h
 	DS:DX -> opened FCB (see #01345)
-	Disk Tranfer Area contains record to be written
+	Disk Transfer Area contains record to be written
 Return: AL = status
 	    00h successful
 	    01h disk full
