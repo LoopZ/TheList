@@ -562,7 +562,7 @@ begin
           V := '-';
         If Length(V) > 1 then
           LogMessage(vbMinimal, 'Extraneous Data in Flags for file: '+ Name);
-        FLAGS:=Copy(V, 1,1);
+        Cat(Flags,Copy(V, 1,1));
       end;
     else
       LogMessage(vbVerbose, 'Extraneous header field "' +  K + '" in file: '+ Name);
