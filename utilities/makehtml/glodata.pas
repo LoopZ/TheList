@@ -22,14 +22,15 @@ uses
 
 type
   // Types of entries in a LIST file
-  TListType = (lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM);
+  TListType = (lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM,
+    lfBiblio, lfGlossary, lfTables, lfOverview);
 
   // Record for information on open LIST file
   TListFile =record
     Kind     : TListType;
     Name     : String;
     Header   : String;
-    Sections : TBinaryTree;
+    Comments : TBinaryTree;
     Entries  : TBinaryTree;
   end;
 
@@ -41,6 +42,17 @@ var
   ListFiles : TListFiles;
   // Total count of Critical Errors encountered while processing The List
   CriticalErrors : integer;
+
+const
+  {$IFDEF Windows}
+  Source : String = '..\..\TheList\';
+  Output : String = '..\..\html\';
+  {$ELSE}
+  Source : String = '../../TheList/';
+  Output : String = '../../html/';
+  {$ENDIF}
+
+  CICD : boolean = false;
 
 implementation
 

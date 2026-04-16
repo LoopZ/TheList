@@ -18,18 +18,7 @@ uses
   {$ENDIF}
   SysUtils,
   { you can add units after this }
-  Version, PasExt;
-
-const
-  {$IFDEF Windows}
-  Source : String = '..\..\TheList\';
-  Output : String = '..\..\html\';
-  {$ELSE}
-  Source : String = '../../TheList/';
-  Output : String = '../../html/';
-  {$ENDIF}
-
-  CICD : boolean = false;
+  Version, PasExt, GloData;
 
 { Display Program Banner and Version }
 procedure Banner;
