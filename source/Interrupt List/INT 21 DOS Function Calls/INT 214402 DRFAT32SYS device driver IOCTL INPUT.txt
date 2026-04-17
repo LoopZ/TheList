@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214402
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DRFAT32.SYS device driver - IOCTL INPUT
 	AX = 4402h
@@ -50,7 +50,7 @@ Offset	Size	Description	(Table 04109)
  00h 8*59 BYTEs	eight DRFAT32 partition data tables (see #04110)
  1D8h	BYTE	DRFAT32 access flags (see #04111)
  1D9h	BYTE	DRFAT32 status flags (see #04112)
-Note:	This is the table layout used by DRFAT32.SYS 1.00 which supports up
+Notes:	This is the table layout used by DRFAT32.SYS 1.00 which supports up
 	  to 8 sub-units. The layout of this table and its records may change,
 	  so the version indicator in the device driver's signature ("FAT320")
 	  and the size of the public data structure should be checked first.

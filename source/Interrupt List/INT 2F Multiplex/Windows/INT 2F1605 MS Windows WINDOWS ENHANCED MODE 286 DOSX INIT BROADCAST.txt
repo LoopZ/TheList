@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1605
   Category: W 	MS Windows
       Flag: C 	callout or callback (usually hooked rather than called)
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F C - MS Windows - WINDOWS ENHANCED MODE & 286 DOSX INIT BROADCAST
 	AX = 1605h
@@ -68,7 +68,7 @@ Offset	Size	Description	(Table 02633)
  08h	DWORD	"DEST_PAGE" address to which pages must be mapped
  0Ch  N DWORDs	"SRC_PAGE" physical addresses of the pages
 		00000000h = end of table
-Note:	EMM386.EXE sets the first pointer to the start of the device driver
+Notes:	EMM386.EXE sets the first pointer to the start of the device driver
 	  chain, the second pointer to a field of 40h bytes followed by a
 	  16-bit offset to the end of the SRC_PAGE table, and DEST_PAGE to
 	  the start segment of the UMB area

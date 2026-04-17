@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P03300331
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0330-0331 - MPU-401 MIDI UART
 Range:	alternate address at PORT 0300h, occasionally at PORT 0310h or
@@ -11,7 +11,7 @@ Range:	alternate address at PORT 0300h, occasionally at PORT 0310h or
 0330  RW  data register
 0331  R-  status register (see #P0575)
 0331  -W  command register (see #P0576)
-Note:	MPU-401 genarates an interrupt when MIDI code is ready; by reading
+Notes:	MPU-401 genarates an interrupt when MIDI code is ready; by reading
 	  MIDI code from the data register this interrupt is cleared
 
 Bitfields for MPU-401 status register:
@@ -23,7 +23,7 @@ Bit(s)	Description	(Table P0575)
 	=1 not ready to receive command/data byte
 	=0 ready to receive command/data byte
  5-0	reserved
-Note:	pending input seems to block the output
+Notes:	pending input seems to block the output
 SeeAlso: #P0576
 
 (Table P0576)

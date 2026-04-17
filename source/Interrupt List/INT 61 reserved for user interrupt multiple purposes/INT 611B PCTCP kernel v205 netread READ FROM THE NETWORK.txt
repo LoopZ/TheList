@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 611B
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 61 - PC/TCP kernel v2.05+ - "net_read" - READ FROM THE NETWORK
 	AH = 1Bh
@@ -25,5 +25,5 @@ Bit(s)	Description	(Table 03465)
  2	do not copy data, just remove it from queue
  5	fail if datagram would be truncated
  6	do not block, return error if no data available
-Note:	special case for UDP: if both 1 and 2 set, return number of datagrams
+Notes:	special case for UDP: if both 1 and 2 set, return number of datagrams
 

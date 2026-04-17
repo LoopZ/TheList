@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E2--SF0C
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - DIRECTORY SERVICES - SCAN DIRECTORY FOR TRUSTEES
 	AH = E2h subfn 0Ch
@@ -10,7 +10,7 @@ INT 21 - Novell NetWare - DIRECTORY SERVICES - SCAN DIRECTORY FOR TRUSTEES
 	ES:DI -> reply buffer (see #01860)
 Return: AL = status (00h,9Ch) (see also #01839)
 	    9Ch no more trustees
-Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
 SeeAlso: AH=E2h/SF=0Dh,AH=E2h/SF=0Eh,AH=E3h/SF=47h,AX=F216h/SF=0Ch
 
 Format of NetWare "Scan Directory For Trustees" request buffer:

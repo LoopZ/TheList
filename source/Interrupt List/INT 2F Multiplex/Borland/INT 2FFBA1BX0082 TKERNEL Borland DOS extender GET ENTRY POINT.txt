@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FFBA1BX0082
   Category: E   DOS extenders
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F U - TKERNEL (Borland DOS extender) - GET ENTRY POINT
 	AX = FBA1h
@@ -243,5 +243,5 @@ Call TKERNEL entry point with:
 			  returns CF set on error, AX=error code)
 		Note: each of these pointers normally points at INT 21/RETF
 	    other Return: AX = 0001h
-Note:	BX may be destroyed by any of the API calls
+Notes:	BX may be destroyed by any of the API calls
 

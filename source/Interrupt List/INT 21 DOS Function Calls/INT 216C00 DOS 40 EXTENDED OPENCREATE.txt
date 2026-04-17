@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 216C00
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 4.0+ - EXTENDED OPEN/CREATE
 	AX = 6C00h
@@ -43,7 +43,7 @@ Notes:	the PC LAN Program only supports existence actions (in DL) of 01h,
 	MS-DOS v4.01 and lDOS accept bit 0 in DH set, all other bits must be
 	  zero or an error 0001h is generated
 	MS-DOS v4.01 and lDOS accept any value in AL
-BUG:	this function has bugs (at least in DOS 5.0 and 6.2) when used with
+BUGS:	this function has bugs (at least in DOS 5.0 and 6.2) when used with
 	  drives handled via the network redirector (INT 2F/AX=112Eh):
 	    - CX (attribute) is not passed to the redirector if DL=11h,
 	    - CX does not return the status, it is returned unchanged because

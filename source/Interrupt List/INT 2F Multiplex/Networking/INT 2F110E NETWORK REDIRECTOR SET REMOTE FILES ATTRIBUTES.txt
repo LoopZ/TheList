@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F110E
   Category: N   network
       Flag: C   callout or callback (usually hooked rather than called)
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F CU - NETWORK REDIRECTOR - SET REMOTE FILE'S ATTRIBUTES
 	AX = 110Eh
@@ -15,6 +15,6 @@ Return: CF set on error
 	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
 	CF clear if successful
 	STACK unchanged
-Note:	this function is called by the DOS 3.1+ kernel
+Notes:	this function is called by the DOS 3.1+ kernel
 SeeAlso: AX=110Dh,AX=110Fh,INT 21/AX=4301h,INT 21/AH=60h
 

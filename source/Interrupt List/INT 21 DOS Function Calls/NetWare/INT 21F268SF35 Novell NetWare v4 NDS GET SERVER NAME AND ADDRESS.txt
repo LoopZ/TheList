@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F268SF35
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare v4+ - NDS GET SERVER NAME AND ADDRESS
 	AX = F268h subfn 35h
@@ -12,7 +12,7 @@ INT 21 - Novell NetWare v4+ - NDS GET SERVER NAME AND ADDRESS
 	ES:DI -> reply buffer (see #02472)
 Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
 	reply buffer filled
-Note:	the length specified in CX must be exactly 13 bytes more than the
+Notes:	the length specified in CX must be exactly 13 bytes more than the
 	  length field at offset 09h in the request buffer for this function
 	  to be successful
 SeeAlso: AX=F268h/SF=16h

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21EB
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - LOG FILE
 	AH = EBh
@@ -16,7 +16,7 @@ INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - LOG FILE
 Return: AL = status (see #02090)
 Desc:	add the location and size of the specified file to the log table and
 	  optionally lock the file
-Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+Notes:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
 	  Alloy NTNX
 SeeAlso: AH=BCh"NetWare",AH=CAh,AH=D0h,AH=ECh"NetWare",AH=EDh"NetWare"
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P0140014F
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0140-014F - Future Domain TMC-16x0 SCSI adapter
 Range:	alternate address at 0150, 0160, 0170
@@ -142,7 +142,7 @@ Bit(s)	Description	(Table P0507)
  1	force interrupt???
  0	clear SCSI reset flag???
 SeeAlso: #P0502
-Note:	on the TMC-1800 the FIFO must be enabled and bit 6 must be set
+Notes:	on the TMC-1800 the FIFO must be enabled and bit 6 must be set
 	  according to the expected data direction before a data phase will
 	  occur (the TMC-1800 probably doesn't generate interrupts on REQ in
 	  DATA IN / DATA OUT phases); on the TMC-18C50/18C30 it may be done
@@ -183,7 +183,7 @@ Bit(s)	Description	(Table P0509)
 	110 IRQ15
 	111 no IRQ
  0	reserved???
-Note:	the seven on-board configuration jumpers are read through this register
+Notes:	the seven on-board configuration jumpers are read through this register
 SeeAlso: #P0502,#P0510
 
 Bitfields for configuration register 2:
@@ -192,7 +192,7 @@ Bit(s)	Description	(Table P0510)
  6-2	???
  1	RAM disabled (TMC-18C30/36C70 only???)
  0	???
-Note:	256 byte on-chip RAM is mapped at offset 1F00h within the BIOS segment
+Notes:	256 byte on-chip RAM is mapped at offset 1F00h within the BIOS segment
 SeeAlso: #P0502,#P0509
 
 Bitfields for TMC control register:

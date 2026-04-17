@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2170
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - MS-DOS 7 (Windows95) - GET/SET INTERNATIONALIZATION INFORMATION
 	AH = 70h
@@ -62,7 +62,7 @@ Offset	Size	Description	(Table 01775)
 		(FAR CALL, AL = character to map to upper case [>= 80h])
  16h  2 BYTEs	ASCIZ data-list separator
  18h 10 BYTEs	reserved
-Note:	this table has the identical format to the extended country information
+Notes:	this table has the identical format to the extended country information
 	  retrieved via AH=65h with info ID = 01h
 SeeAlso: #01399,#01750
 

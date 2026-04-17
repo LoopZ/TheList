@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 10F0
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - EGA Register Interface Library - READ ONE REGISTER
 	AH = F0h
@@ -10,7 +10,7 @@ INT 10 - EGA Register Interface Library - READ ONE REGISTER
 	BH = 00h
 	DX = group index (see #00223)
 Return: BL = data
-Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+Notes:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
 	  compatibility box, and others; it is used for software virtualization
 	  of write-only registers on an EGA video adapter, so that multiple
 	  programs may peacefully coexist without clobbering each other's

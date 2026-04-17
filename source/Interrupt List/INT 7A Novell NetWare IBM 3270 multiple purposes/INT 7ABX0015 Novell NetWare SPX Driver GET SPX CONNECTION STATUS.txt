@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7A----BX0015
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7A - Novell NetWare - SPX Driver - GET SPX CONNECTION STATUS
 	BX = 0015h
@@ -11,7 +11,7 @@ INT 7A - Novell NetWare - SPX Driver - GET SPX CONNECTION STATUS
 Return: AL = return code (00h,EEh) (see also #03825)
 	    00h connection still valid
 		ES:SI -> status buffer filled
-Note:	this function is supported by Advanced NetWare 2.1+
+Notes:	this function is supported by Advanced NetWare 2.1+
 SeeAlso: BX=0010h,BX=0011h
 
 Format of SPX status buffer:

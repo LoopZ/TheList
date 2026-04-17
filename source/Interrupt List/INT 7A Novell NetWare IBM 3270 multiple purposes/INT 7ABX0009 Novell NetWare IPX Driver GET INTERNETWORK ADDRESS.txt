@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7A----BX0009
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7A - Novell NetWare - IPX Driver - GET INTERNETWORK ADDRESS
 	BX = 0009h
 	ES:SI -> buffer for own internetwork address (see #03823)
 Return: ES:SI buffer filled
 	SI destroyed
-Note:	this function is supported by Advanced NetWare 1.02+
+Notes:	this function is supported by Advanced NetWare 1.02+
 SeeAlso: BX=0002h,BX=000Bh
 
 Format of IPX internetwork address:

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1687
   Category: E 	DOS extenders
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - DOS Protected-Mode Interface - INSTALLATION CHECK
 	AX = 1687h
@@ -39,5 +39,5 @@ Return: CF set on error
 	    program now in protected mode
 BUGS:	MSWindows v4.xx (95 and 98) reportedly crashes here if the current
 	  PSP's environment field (see offset 2Ch in #01378) contains zero
-Note:	this entry point is only called for the initial switch to protected
+Notes:	this entry point is only called for the initial switch to protected
 	  mode

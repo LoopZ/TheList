@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FFB42BX0005
   Category: E   DOS extenders
       Flag: P   available only in protected mode
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F PU - Borland C++ DPMILOAD.EXE - GET ADDRESS OF ??? BY NAME
 	AX = FB42h
@@ -71,6 +71,6 @@ Offset	Size	Description	(Table 03133)
  34h	DWORD	pointer to next??? memory control record or 0000h:0000h
  38h	DWORD	pointer to prev??? memory control record or 0000h:0000h
  3Ch  4 BYTEs	???
-Note:	the pointers at offsets 2Ch and 30h form a doubly-linked list, as do
+Notes:	the pointers at offsets 2Ch and 30h form a doubly-linked list, as do
 	  the pointers at offsets 34h and 38h
 

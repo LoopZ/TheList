@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 330018
   Category: M 	mouse/pointing device
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 33 - MS MOUSE v6.0+ - SET ALTERNATE MOUSE USER HANDLER
 	AX = 0018h
@@ -31,7 +31,7 @@ Bit(s)	Description	(Table 03174)
  5	call if shift button pressed during event
  6	call if ctrl key pressed during event
  7	call if alt key pressed during event
-Note:	at least one of 5-7 must be set
+Notes:	at least one of 5-7 must be set
 
 (Table 03175)
 Values user handler is called with:
@@ -42,6 +42,6 @@ Values user handler is called with:
 	SI = horizontal mickey count
 	DI = vertical mickey count
 Return: registers preserved
-Note:	in text modes, the row and column will be reported as a multiple of
+Notes:	in text modes, the row and column will be reported as a multiple of
 	  the cell size, typically 8x8 pixels
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1AB18D
   Category: X 	expansion bus BIOSes
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 1A - PCI BIOS v2.0c+ - WRITE CONFIGURATION DWORD (32-bit)
 	AX = B18Dh
@@ -11,7 +11,7 @@ INT 1A - PCI BIOS v2.0c+ - WRITE CONFIGURATION DWORD (32-bit)
 	DI = register number (multiple of 4 less than 0100h)
 	ECX = dword to write
 Return: as for AX=B10Dh
-Note:	the meanings of BL and BH on return were exchanged between the initial
+Notes:	the meanings of BL and BH on return were exchanged between the initial
 	  drafts of the specification and final implementation
 SeeAlso: AX=B10Dh,AX=B18Bh,AX=B18Ch
 

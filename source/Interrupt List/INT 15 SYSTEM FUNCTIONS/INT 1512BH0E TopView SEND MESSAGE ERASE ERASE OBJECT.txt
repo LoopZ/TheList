@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1512--BH0E
   Category: Q 	DESQview/TopView and Quarterdeck programs
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - TopView - SEND MESSAGE - "ERASE" - ERASE OBJECT
 	AH = 12h
@@ -24,6 +24,6 @@ INT 15 - TopView - SEND MESSAGE - "ERASE" - ERASE OBJECT
 	    0Ch (DV 2.26+) clear window of task owning handle on top of stack
 	    0Dh (DV 2.26+) clear default window of parent of current task
 Return: STACK popped if handle passed on stack
-Note:	when an OBJECTQ is erased, each object in the OBJECTQ is also erased
+Notes:	when an OBJECTQ is erased, each object in the OBJECTQ is also erased
 SeeAlso: AH=12h/BH=02h
 

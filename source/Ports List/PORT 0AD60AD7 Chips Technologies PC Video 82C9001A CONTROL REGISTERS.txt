@@ -1,14 +1,14 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P0AD60AD7
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0AD6-0AD7 - Chips & Technologies PC Video (82C9001A) - CONTROL REGISTERS
 Range:	Address determined by status of CS# input at RESET. If CS# input is
 	  low on falling edge of RESET, then address is fixed at 0AD6-0AD7h;
 	  otherwise, the programmable address is used.
-Note:	register FFh is write-only and all other registers are disabled if
+Notes:	register FFh is write-only and all other registers are disabled if
 	  register FFh bit 0 is cleared.
 SeeAlso: PORT 03D4h
 

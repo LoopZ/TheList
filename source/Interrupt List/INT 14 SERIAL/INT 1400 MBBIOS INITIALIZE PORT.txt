@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1400
   Category: S 	serial I/O
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 14 - MBBIOS - INITIALIZE PORT
 	AH = 00h
@@ -10,7 +10,7 @@ INT 14 - MBBIOS - INITIALIZE PORT
 	DX = port number
 Return: AH = line status (see #00304)
 	AL = modem status (see #00305)
-Note:	MBBIOS was written by H. Roy Engehausen
+Notes:	MBBIOS was written by H. Roy Engehausen
 SeeAlso: AH=04h"MBBIOS",AH=05h"MBBIOS",AH=09h"MBBIOS"
 
 Bitfields for MBBIOS port parameters:

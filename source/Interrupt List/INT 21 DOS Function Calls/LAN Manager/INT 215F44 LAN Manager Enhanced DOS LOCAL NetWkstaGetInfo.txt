@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 215F44
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - LAN Manager Enhanced DOS - LOCAL NetWkstaGetInfo
 	AX = 5F44h
@@ -50,7 +50,7 @@ Offset	Size	Description	(Table 01714)
  48h	DWORD	 -> name of server that validated logon
  4Ch	DWORD	 -> workstation heuristics
  50h	WORD	 number of mailslots allowed
-Note:	pointers to strings are set to 0000h:0000h if there is insufficient
+Notes:	pointers to strings are set to 0000h:0000h if there is insufficient
 	  space in the buffer to hold them
 SeeAlso: #01715,#01716
 
@@ -70,7 +70,7 @@ Offset	Size	Description	(Table 01716)
  0Ch	WORD	 LAN Manager version number (2 bytes, Major, Minor)
  0Eh	DWORD	 -> name of domain which user is loggod on to
  12h	DWORD	 -> all domains in which computer is enlisted
-Note:	pointers to strings are set to 0000h:0000h if there is insufficient
+Notes:	pointers to strings are set to 0000h:0000h if there is insufficient
 	  space in the buffer to hold them
 SeeAlso: #01714,#01715
 

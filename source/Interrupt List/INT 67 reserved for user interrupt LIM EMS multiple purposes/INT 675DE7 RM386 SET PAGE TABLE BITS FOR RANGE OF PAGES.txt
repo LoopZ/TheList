@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 675DE7
   Category: m 	memory management
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 67 - RM386 - SET PAGE TABLE BITS FOR RANGE OF PAGES
 	AX = 5DE7h
@@ -14,7 +14,7 @@ Return: AH = status
 	    8Bh invalid destination page (not in first megabyte)
 	    A5h invalid page bits
 	    A6h invalid page count (overflows first megabyte)
-Note:	RM386 traps this function on the initial transition to protected
+Notes:	RM386 traps this function on the initial transition to protected
 	  mode caused by the INT instruction, which means it can not be
 	  overridden simply by hooking the interrupt
 

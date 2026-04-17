@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F7A22
   Category: N 	network
       Flag: C 	callout or callback (usually hooked rather than called)
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F C - Novell NetWare - DOS Requester - BROADCAST/SFT3 INFORM
 	AX = 7A22h
@@ -17,7 +17,7 @@ INT 2F C - Novell NetWare - DOS Requester - BROADCAST/SFT3 INFORM
 	interrupts disabled
 Return: AX = 0000h if event handled, unchanged if not
 	interrupts disabled
-Note:	this callback is made from within a hardware interrupt handler; a
+Notes:	this callback is made from within a hardware interrupt handler; a
 	  separate call to AX=7A21h is made once the system is in a safe
 	  state for receiving the message
 SeeAlso: AX=7A21h

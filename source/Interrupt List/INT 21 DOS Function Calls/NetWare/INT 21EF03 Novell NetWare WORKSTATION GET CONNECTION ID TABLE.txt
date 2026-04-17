@@ -1,14 +1,14 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21EF03
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - WORKSTATION - GET CONNECTION ID TABLE
 	AX = EF03h
 Return: ES:SI -> network shell's connection ID table (see #02092)
 	AX = 0000h
-Note:	this function is supported by Advanced NetWare 1.0+
+Notes:	this function is supported by Advanced NetWare 1.0+
 SeeAlso: AX=EF00h,AX=EF02h,AX=EF04h,AX=F002h
 
 Format of NetWare connection ID table [one entry of eight-element array]:

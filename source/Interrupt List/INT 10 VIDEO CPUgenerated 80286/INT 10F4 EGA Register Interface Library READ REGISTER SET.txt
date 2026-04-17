@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 10F4
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - EGA Register Interface Library - READ REGISTER SET
 	AH = F4h
 	CX = number of registers to read (>1)
 	ES:BX -> table of register records (see #00224)
 Return: register values in table filled in
-Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+Notes:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
 	  compatibility box, and others
 SeeAlso: AH=F0h"EGA",AH=F2h"EGA",AH=F5h"EGA"
 

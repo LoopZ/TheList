@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21BF
   Category: N 	network
       Flag: O 	obsolete (no longer present in current versions)
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 O - Novell NetWare, Alloy NTNX - LOG/LOCK RECORD (FCB)
 	AH = BFh
@@ -12,7 +12,7 @@ INT 21 O - Novell NetWare, Alloy NTNX - LOG/LOCK RECORD (FCB)
 	BP = lock timeout in timer ticks (1/18 sec) if AL nonzero
 	SI:DI = length
 Return: AL = error code (see #01807)
-Note:	this function was added in NetWare 4.6, but was removed some time prior
+Notes:	this function was added in NetWare 4.6, but was removed some time prior
 	  to Advanced NetWare 2.15, and is no longer listed in current Novell
 	  documentation
 SeeAlso: AH=BCh,AH=C0h"NetWare",AH=C2h"NetWare"

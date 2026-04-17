@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FCD02
   Category: P 	printer enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Intel Image Processing Interface - GET VERSION NUMBER
 	AX = CD02h
@@ -11,6 +11,6 @@ Return: AL = status
 		BH = major version number (BCD)
 		BL = minor version number (BCD)
 	    80h error
-Note:	if return AL = 01h, the IPI supports network redirection
+Notes:	if return AL = 01h, the IPI supports network redirection
 SeeAlso: AX=CD00h"Image"
 

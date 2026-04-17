@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 780001
   Category: E 	DOS extenders
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 78 - HugeRealMode Driver - GET ENTRY POINT
 	AX = 0001h
@@ -28,7 +28,7 @@ Values for HugeRealMode Server error code:
 Call HugeRealMode Server "Enable A20" function with:
 	AL = 00h
 Return: AX = error code (see #03787)
-Note:	The HugeRealMode Server requires an XMS-driver like HIMEM.SYS loaded
+Notes:	The HugeRealMode Server requires an XMS-driver like HIMEM.SYS loaded
 	  before HUGEREAL (for XMS-memory allocation and A20 control). It
 	  utilizes some undocumented 386+ features to enable 4G code and data
 	  segments (flat memory model) in the CPUs real-mode. It is not
@@ -127,7 +127,7 @@ Offset	Size	Description	(Table 03798)
  06h	WORD	count of 32bit addresses to relocate
  08h	WORD	offset to code start (releative to file start) (see #03799)
  0Ah	WORD	relocation table
-Note:	each word contains a 16bit address, where a relocation has to be
+Notes:	each word contains a 16bit address, where a relocation has to be
 	  performed
 SeeAlso: #03797,#03799
 

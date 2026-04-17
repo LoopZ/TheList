@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6B17
   Category: S 	serial I/O
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 6B - NPC NCSI EXTENDED SERIAL I/O - DISCONNECT A VIRTUAL CIRCUIT
 	AH = 17h
@@ -10,7 +10,7 @@ INT 6B - NPC NCSI EXTENDED SERIAL I/O - DISCONNECT A VIRTUAL CIRCUIT
 Return: CF clear if successful
 	CF set on error
 	???
-Note:	this function is also supported by TelAPI, which always returns CF
+Notes:	this function is also supported by TelAPI, which always returns CF
 	  clear and AL=00h
 SeeAlso: AH=11h,AH=16h
 

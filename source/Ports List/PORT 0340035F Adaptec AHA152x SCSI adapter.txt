@@ -1,12 +1,12 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P0340035F
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0340-035F - Adaptec AHA-152x SCSI adapter
 Range:	alternate address at 0140
-Note:	Adaptec AHA-152x SCSI adapter series are based upon Adaptec
+Notes:	Adaptec AHA-152x SCSI adapter series are based upon Adaptec
 	  AIC-6260/6360/6370 SCSI controllers
 SeeAlso: PORT xxxxh"Adaptec AIC-78xx"
 
@@ -60,7 +60,7 @@ Bit(s)	Description	(Table P0600)
  2	"ENAUTOATNI"
  1	enable auto -ATN on parity error (ENAUTOATNP)
  0	SCSI reset out (SCSIRSTO)
-Note:	each bit when set starts a specific SCSI sequence on the bus
+Notes:	each bit when set starts a specific SCSI sequence on the bus
 SeeAlso: #P0602,#P0607,#P0608,#P0616
 
 Bitfields for SCSI transfer control register 0 (SXFRCTL0):
@@ -100,7 +100,7 @@ Bit(s)	Description	(Table P0603)
  2	-BSY input (BSYI)
  1	-REQ input (REQI)
  0	-ACK input (ACKI)
-Note:	this register reflects the actual state of the SCSI bus control lines
+Notes:	this register reflects the actual state of the SCSI bus control lines
 SeeAlso: #P0604
 
 Bitfields for SCSI control signal write register (SCSISIGO):
@@ -126,7 +126,7 @@ Bit(s)	Description	(Table P0605)
  6-4	synchronous transfer rate (SXFR)
 	rate = 100 + SXFR * 25 (ns)
  3-0	synchronous offset (SOFS)
-Note:	contents of this register determine the synchronous SCSI data transfer
+Notes:	contents of this register determine the synchronous SCSI data transfer
 	  rate and the maximum synchronous -REQ/-ACK offset; an offset of 0 in
 	  the bits 3-0 disables synchronous data transfers, any offset value
 	  greater than 0 enables snchronous transfers
@@ -138,7 +138,7 @@ Bit(s)	Description	(Table P0606)
  6-4	our ID (OID)
  3	reserved
  2-0	target ID (TID)
-Note:	this register contains the SCSI ID of the board and the current target
+Notes:	this register contains the SCSI ID of the board and the current target
 	  on the selected channel
 SeeAlso: #P0982
 
@@ -152,7 +152,7 @@ Bit(s)	Description	(Table P0607)
  2	SCSI PIO done  (SDONE)
  1	SCSI PIO ready (SPIORDY)
  0	DMA done (DMADONE)
-Note:	bits 1-0 and 6-4 are self-clearing
+Notes:	bits 1-0 and 6-4 are self-clearing
 	bit 2 is set when the SCSI transfer count register decrements to 0
 SeeAlso: #P0600,#P0601,#P0608,#P0616
 
@@ -166,7 +166,7 @@ Bit(s)	Description	(Table P0608)
  2	clear SCSI PIO done (CLRSDONE)
  1	clear SCSI PIO ready (CLRSPIORDY)
  0	reserved
-Note:	writing 1 to a bit clears the associated SCSI interrupt; writing 1 to
+Notes:	writing 1 to a bit clears the associated SCSI interrupt; writing 1 to
 	  the bits 3-2 also clears the asscoiated bits in SSTAT0
 SeeAlso: #P0600,#P0601,#P0607,#P0616
 
@@ -195,7 +195,7 @@ Bit(s)	Description	(Table P0610)
  2	clear SCSI parity error (CLRSCSIPERR)
  1	clear phase changed (CLRPHASECHG)
  0	clear -REQ asserted (CLRREQINIT)
-Note:	writing 1 to a bit clears the associated SCSI interrupt; writing 1 to
+Notes:	writing 1 to a bit clears the associated SCSI interrupt; writing 1 to
 	  the bits 3-0, 5, and 7 also clears the associated bits in SSTAT1
 SeeAlso: #P0603,#P0604,#P0609,#P0617
 
@@ -206,7 +206,7 @@ Bit(s)	Description	(Table P0611)
  4	SCSI FIFO empty (SEMPTY)
  3	SCSI FIFO full	(SFULL)
  2-0	SCSI FIFO count (SFCNT)
-Note:	the SCSI FIFO is 8 bytes long; bit 3 is set when all the 8 bytes are
+Notes:	the SCSI FIFO is 8 bytes long; bit 3 is set when all the 8 bytes are
 	  full (bits 2-0 are clear)
 SeeAlso: #P0601,#P0605,#P0614,#P0615
 
@@ -251,7 +251,7 @@ Bit(s)	Description	(Table P0616)
  2	enable SCSI PIO done  (ENSDONE)
  1	enable SCSI PIO ready (ENSPIORDY)
  0	enable DMA done (ENDMADONE)
-Note:	setting any bit will enable the corresponding function to interrupt
+Notes:	setting any bit will enable the corresponding function to interrupt
 	  via the IRQ pin
 SeeAlso: #P0607,#P0608,#P0617,#P0618
 
@@ -265,7 +265,7 @@ Bit(s)	Description	(Table P0617)
  2	enable SCSI parity error (ENSCSIPERR)
  1	enable phase changed (ENPHASECHG)
  0	enable -REQ asserted (ENREQINIT)
-Note:	setting a bit enables the corresponding function to interrupt via the
+Notes:	setting a bit enables the corresponding function to interrupt via the
 	  IRQ pin
 SeeAlso: #P0609,#P0610,#P0616
 
@@ -282,7 +282,7 @@ Bit(s)	Description	(Table P0618)
  2	interrupt enable (INTEN)
  1	reset FIFO (RSTFIFO)
  0	software interrupt (SWINT)
-Note:	write to this register takes the controller from the power down mode
+Notes:	write to this register takes the controller from the power down mode
 SeeAlso: #P0601
 
 Bitfields for DMA control register 1 (DMACNTRL1):
@@ -308,7 +308,7 @@ Bitfields for burst control register (BRSTCNTRL):
 Bit(s)	Description	(Table P0621)
  7-4	bus on	time (BON)
  3-0	bus off time (BOFF)
-Note:	the bus on/off times are in microseconds
+Notes:	the bus on/off times are in microseconds
 SeeAlso: #P0624
 
 Bitfields for port A register (PORTA):

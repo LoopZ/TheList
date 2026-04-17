@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21BD
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - RELEASE PHYSICAL RECORD
 	AH = BDh
@@ -14,7 +14,7 @@ Return: AL = status
 	    FFh record not locked
 Desc:	unlock the specified physical record but do not remove it from log
 	  table
-Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+Notes:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
 	  Alloy NTNX
 SeeAlso: AH=BCh,AH=BEh"NetWare",AH=C0h,AH=C3h,AH=D2h
 

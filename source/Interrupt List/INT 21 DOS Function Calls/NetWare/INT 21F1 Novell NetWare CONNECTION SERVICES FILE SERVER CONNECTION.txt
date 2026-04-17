@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F1
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - CONNECTION SERVICES - FILE SERVER CONNECTION
 	AH = F1h
@@ -14,7 +14,7 @@ INT 21 - Novell NetWare - CONNECTION SERVICES - FILE SERVER CONNECTION
 	    02h logout from file server
 		DL = connection ID
 Return: AL = status (see #02094)
-Note:	these functions are supported by Advanced NetWare 1.0+
+Notes:	these functions are supported by Advanced NetWare 1.0+
 SeeAlso: AH=D7h"NetWare",AH=E3h/SF=14h
 
 (Table 02094)

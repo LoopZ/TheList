@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 216500
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Windows95 (OSR2) - SET GENERAL INTERNATIONALIZATION INFO
 	AX = 6500h
@@ -13,7 +13,7 @@ Return: CF clear if successful
 	    CX = number of bytes copied from supplied buffer
 	CF set on error
 	    AX = error code
-Note:	this function will not overwrite the country or code-page numbers,
+Notes:	this function will not overwrite the country or code-page numbers,
 	  but can be used to modify all other data about the country and
 	  code page
 SeeAlso: AH=65h"GET EXTENDED",AH=70h

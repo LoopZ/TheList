@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F160B
   Category: W 	MS Windows
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - MS Windows 3.1 - IDENTIFY TSRs
 	AX = 160Bh
@@ -10,7 +10,7 @@ INT 2F - MS Windows 3.1 - IDENTIFY TSRs
 Return: ES:DI -> TSR information structure (see #02638)
 Desc:	this call allows Windows-aware TSRs to make themselves known to
 	  Windows.
-Note:	the TSR should first chain to the previous INT 2F handler, then
+Notes:	the TSR should first chain to the previous INT 2F handler, then
 	  allocate a communication structure, place the returned ES:DI
 	  pointer in the first field, and return a pointer to the new
 	  structure
@@ -43,7 +43,7 @@ Values for TSR information structure "exec_cmd_show":
  07h	SHOWMINNOACTIVE
  08h	SHOWNA
  09h	RESTORE
-Note:	this value is passed as the second parameter to the WinExec(),
+Notes:	this value is passed as the second parameter to the WinExec(),
 	  LoadLibrary(), or OpenDriver() call used to execute a requested
 	  command line
 SeeAlso: #02638

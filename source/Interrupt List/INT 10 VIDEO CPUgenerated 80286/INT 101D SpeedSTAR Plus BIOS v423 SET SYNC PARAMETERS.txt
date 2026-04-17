@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 101D
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - SpeedSTAR Plus BIOS v4.23+ - SET SYNC PARAMETERS
 	AH = 1Dh
 	AL = video mode
 	ES = caller's segment
 Return: nothing
-Note:	the caller's segment contains at offset 5Ch (FCB field in PSP)
+Notes:	the caller's segment contains at offset 5Ch (FCB field in PSP)
 	  or 100h a table with sync parameters (see #00051) (BIOS looks at both
 	  offsets)
 

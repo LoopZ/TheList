@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 217305CXFFFF
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Windows95 - FAT32 - EXTENDED ABSOLUTE DISK READ/WRITE
 	AX = 7305h
@@ -13,7 +13,7 @@ INT 21 - Windows95 - FAT32 - EXTENDED ABSOLUTE DISK READ/WRITE
 Return: CF clear if successful
 	CF set on error
 	    AX = error code
-Note:	one can not specify the default drive (DL=00h) for this function.
+Notes:	one can not specify the default drive (DL=00h) for this function.
 SeeAlso: AX=7302h,AX=7304h,INT 25,INT 26
 
 Bitfields for Extended Absolute Disk Read/Write mode flags:

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 215FCA
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - LANtastic v4.0+ - STUFF SERVER KEYBOARD BUFFER
 	AX = 5FCAh
@@ -11,7 +11,7 @@ INT 21 - LANtastic v4.0+ - STUFF SERVER KEYBOARD BUFFER
 Return: CF clear if successful
 	CF set on error
 	    AX = error code
-Note:	you must have the "S" privilege to use this call
+Notes:	you must have the "S" privilege to use this call
 	maximum number of characters that can be stuffed is determined by the
 	  server's RUN BUFFER SIZE.
 SeeAlso: INT 16/AH=05h

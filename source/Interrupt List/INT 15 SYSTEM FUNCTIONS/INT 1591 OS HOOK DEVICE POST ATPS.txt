@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1591
   Category: B 	BIOS
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - OS HOOK - DEVICE POST (AT,PS)
 	AH = 91h
@@ -10,7 +10,7 @@ INT 15 - OS HOOK - DEVICE POST (AT,PS)
 	ES:BX -> request block for type codes 80h through BFh
 	CF clear
 Return: AH = 00h
-Note:	this function should be hooked by a multitasker to allow other tasks
+Notes:	this function should be hooked by a multitasker to allow other tasks
 	  to execute while the BIOS is waiting for I/O completion; the default
 	  handler merely returns with AH=00h and CF clear
 SeeAlso: AH=90h

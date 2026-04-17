@@ -1,14 +1,14 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FEE01
   Category: U 	resident utilities
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - XVIEW - POP UP GIVING TOPIC SEARCH KEYWORD
 	AX = EE01h
 	DS:DX -> ASCIZ string containing case-insensitive keyword to look up
 Return: AX = status (see #03111)
-Note:	the specified keyword should be a hyperlink in the _IndexPage of some
+Notes:	the specified keyword should be a hyperlink in the _IndexPage of some
 	  database; the current database is searched first
 SeeAlso: AX=EE00h"XVIEW",AX=EE02h,AX=EE03h,AX=EE04h,AX=EE06h
 

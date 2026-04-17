@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1102
   Category: N   network
       Flag: C   callout or callback (usually hooked rather than called)
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F CU - IFSFUNC.EXE (DOS 4.x only) - REMOVE REMOTE DIRECTORY
 	AX = 1102h
@@ -13,7 +13,7 @@ INT 2F CU - IFSFUNC.EXE (DOS 4.x only) - REMOVE REMOTE DIRECTORY
 Return: CF set on error
 	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
 	CF clear if successful
-Note:	appears to be identical to AX=1101h; MS internal documentation calls
+Notes:	appears to be identical to AX=1101h; MS internal documentation calls
 	  this function "SEQ_RMDIR"
 SeeAlso: AX=1101h
 

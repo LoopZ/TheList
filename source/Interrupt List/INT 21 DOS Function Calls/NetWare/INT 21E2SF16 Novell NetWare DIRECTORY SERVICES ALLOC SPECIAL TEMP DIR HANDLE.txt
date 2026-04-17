@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E2--SF16
   Category: N   network
       Flag: u   partially documented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 u - Novell NetWare - DIRECTORY SERVICES - ALLOC SPECIAL TEMP DIR HANDLE
 	AH = E2h subfn 16h
 	DS:SI -> request buffer (see #01876)
 	ES:DI -> reply buffer (see #01873)
 Return: AL = status
-Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX,
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX,
 	  but is not described in _NetWare_System_Calls--DOS_
 SeeAlso: AH=E2h/SF=13h,AH=E2h/SF=14h,AX=F216h/SF=16h
 

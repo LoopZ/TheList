@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P1C001CBF
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 1C00-1CBF - Adaptec AIC-777x EISA SCSI controller in EISA slot 1
 Notes:	Adaptec AIC-777x SCSI controllers have on-board PhaseEngine SCSI
@@ -208,7 +208,7 @@ Bit(s)	Description	(Table P0987)
  7-4	selecting device ID (SELID)
  3	one bit (ONEBIT)
  2-0	reserved
-Note:	bit 3 is set when the selecting/reselecting device did not set its own
+Notes:	bit 3 is set when the selecting/reselecting device did not set its own
 	  ID on the SCSI bus
 SeeAlso: #P0600,#P0607,#P0982
 
@@ -274,7 +274,7 @@ Bit(s)	Description	(Table P0992)
  3	"ACE"
  2-1	reserved
  0	enable board (ENABLE)
-Note:	bit 3 is somehow related to the support for the external processors
+Notes:	bit 3 is somehow related to the support for the external processors
 
 Bitfields for bus on/off time register (BUSTIME):
 Bit(s)	Description	(Table P0993)
@@ -348,7 +348,7 @@ Bit(s)	Description	(Table P0997)
  2	illegal opcode in sequencer program (ILLOPCODE)
  1	illegal sequencer address referenced (ILLSADDR)
  0	illegal host access (ILLHADDR)
-Note:	usually a full board reset is required after detecting a hard error
+Notes:	usually a full board reset is required after detecting a hard error
 SeeAlso: #P1014
 
 Bitfields for clear interrupt status register (CLRINT):
@@ -394,7 +394,7 @@ Bit(s)	Description	(Table P1001)
  7	SCB auto-increment (SCBAUTO)
  6-5	reserved
  4-0	SCB counter (SCBCNT)
-Note:	this register allows CPU to quickly upload/download the SCBs to/from
+Notes:	this register allows CPU to quickly upload/download the SCBs to/from
 	  the SCB RAM; if bit 7 is set any reference to addresses A0h-BFh post-
 	  increments bits 4-0 of this register containing the offset into the
 	  SCB array which is to be accessed next; on the AHA-284x only 8-bit

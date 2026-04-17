@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 60
   Category: b 	vendor-specific BIOS extensions
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 60 - TI Professional PC - SYSTEM ROM DATA AREA POINTER (NOT A VECTOR!)
 Desc:	the low word of this vector contains the segment of the RAM data area
@@ -83,7 +83,7 @@ Offset	Size	Description	(Table 03263)
 116h 17 WORDs	stack for INT 43
 13Ah  6 BYTEs	system date and time (hundredths, seconds, minutes, hours, and
 		  WORD days since 01jan1980)
-Note:	timing event 1 is the disk I/O timeout, event 2 is the floppy disk
+Notes:	timing event 1 is the disk I/O timeout, event 2 is the floppy disk
 	  motor timeout, event 3 is the floppy disk motor spin-up time, and
 	  event 4 is used to turn off the speaker after a delay
 

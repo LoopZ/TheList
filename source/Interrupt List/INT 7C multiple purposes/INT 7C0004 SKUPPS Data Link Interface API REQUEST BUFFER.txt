@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7C0004
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7C - SK-UPPS Data Link Interface API - REQUEST BUFFER
 	AX = 0004h
@@ -10,7 +10,7 @@ INT 7C - SK-UPPS Data Link Interface API - REQUEST BUFFER
 Return: AX = completion code (see also #03846)
 	    0000h successful
 		ES:BX -> Memory Buffer (Mbuf) (see #03847)
-Note:	if the DLI has no free Mbufs, it will set an internal flag for the
+Notes:	if the DLI has no free Mbufs, it will set an internal flag for the
 	  protocol and later call the protocol's Event Upcall with
 	  EV_BUFFER_AVAILABLE (see #03853,#03854) as soon as an Mbuf becomes
 	  available.  There will only be one "buffer available" Upcall, even

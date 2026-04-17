@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: E0----CL71
   Category: O 	other operating systems
       Flag: R 	available only in real or V86 mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT E0 R - ConcCP/M,DR Multiuser DOS - EXECUTE DOS-COMPATIBLE FUNCTIONS
 	CL = 71h
@@ -179,6 +179,6 @@ Offset	Size	Description	(Table 04039)
  17h	BYTE	00h if disk accessed, FFh if not
  18h  6 BYTEs	reserved
  1Eh	WORD	number of free clusters on drive
-Note:	this structure is a subset of the MS-DOS 3.x Drive Parameter Block
+Notes:	this structure is a subset of the MS-DOS 3.x Drive Parameter Block
 SeeAlso: #04038,#01357 at INT 21/AH=1Fh,#01395 at INT 21/AH=32h
 

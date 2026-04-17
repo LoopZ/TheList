@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1A02
   Category: V   video
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F U - DOS 4.0+ ANSI.SYS internal - MISCELLANEOUS REQUESTS
 	AX = 1A02h
@@ -10,7 +10,7 @@ INT 2F U - DOS 4.0+ ANSI.SYS internal - MISCELLANEOUS REQUESTS
 Return: CF clear if successful
 	CF set on error
 	    AX = error code
-Note:	DOS 5+ chains to previous handler if AL > 02h on call
+Notes:	DOS 5+ chains to previous handler if AL > 02h on call
 SeeAlso: AX=1A01h
 
 Format of ANSI.SYS parameter block:

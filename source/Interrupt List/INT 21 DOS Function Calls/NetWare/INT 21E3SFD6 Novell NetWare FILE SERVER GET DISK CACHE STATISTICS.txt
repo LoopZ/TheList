@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E3--SFD6
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - FILE SERVER - GET DISK CACHE STATISTICS
 	AH = E3h subfn D6h
@@ -48,6 +48,6 @@ Offset	Size	Description	(Table 02032)
  4Ah	WORD	number of times a fragmented write occurred
  4Ch	WORD	number of cache hits on unavailable block
  4Eh	WORD	number of times a cache block was scrapped
-Note:	all fields except the first are big-endian
+Notes:	all fields except the first are big-endian
 SeeAlso: #02031,#02229 at AX=F217h/SF=D6h
 

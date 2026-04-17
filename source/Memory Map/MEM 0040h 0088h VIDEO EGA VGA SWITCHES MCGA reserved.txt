@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: M00400088
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 MEM 0040h:0088h - VIDEO (EGA/VGA) SWITCHES: [MCGA: reserved]
 Size:	BYTE
@@ -12,7 +12,7 @@ Bitfields for EGA/VGA Video switches:
 Bit(s)	Description	(Table M0025)
  7-4	power-on state of feature connector bits 3-0
  3-0	configuration switches 4-1 (=0 on, =1 off) (see #M0026)
-Note:	when bit 4 of 0040h:0089h is 0, VGA emulates 350-line EGA if this
+Notes:	when bit 4 of 0040h:0089h is 0, VGA emulates 350-line EGA if this
 	  byte is x3h or x9h, otherwise emulates 200-line CGA in 400-line
 	  double scan. VGA resets this byte to x9h after the mode set.
 	See also note for 0040h:0089h.

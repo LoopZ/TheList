@@ -1,12 +1,12 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 20----Vx0033
   Category: W 	MS Windows
       Flag: P 	available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 20 P - Microsoft Windows - CONFIGMG - VxD SERVICES
 	VxD = 0033h
-Note:	the desired VxD and service number are identified by the data
+Notes:	the desired VxD and service number are identified by the data
 	  immediately following the INT 20 instruction, as in:
 		INT	20h
 		DW	service number
@@ -106,7 +106,7 @@ Values for CONFIGMG (VxD ID 0033h) service number:
  0058h	"_CONFIGMG_Broadcast_Device_Change_Message"
  0059h	"_CONFIGMG_Call_DevNode_Handler"
  005Ah	"_CONFIGMG_Remove_Reinsert_All"
-Note:	the VxD services appear to be identical to the PM/V86 APIs on
+Notes:	the VxD services appear to be identical to the PM/V86 APIs on
 	  INT 2F/AX=1684h
 SeeAlso: #01296,#01299,INT 2F/AX=1684h/BX=0033h
 

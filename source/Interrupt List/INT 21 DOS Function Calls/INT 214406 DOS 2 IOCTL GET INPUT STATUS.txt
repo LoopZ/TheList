@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214406
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 2+ - IOCTL - GET INPUT STATUS
 	AX = 4406h
@@ -19,7 +19,7 @@ Notes:	files may not register as being at EOF if positioned there by AH=42h
 	  character which will be read or 1Ah if at EOF; under a Windows95
 	  DOS box, AH seems to be either unchanged or 00h
 	this function was not supported by Digital Research's DOS Plus
-BUG:	the CLOCK$ device under DR DOS 3.41 always indicates 'Ready'; this was
+BUGS:	the CLOCK$ device under DR DOS 3.41 always indicates 'Ready'; this was
 	  corrected in v5.0
 SeeAlso: AX=4407h,INT 2F/AX=122Bh
 

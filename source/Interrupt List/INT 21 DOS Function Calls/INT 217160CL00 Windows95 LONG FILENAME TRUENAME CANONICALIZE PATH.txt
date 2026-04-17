@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 217160CL00
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Windows95 - LONG FILENAME - "TRUENAME" - CANONICALIZE PATH
 	AX = 7160h
@@ -29,7 +29,7 @@ Notes:	if a complete path is given, the result will be a short-form complete
 	  long-form names to short-form
 	for compatibility with DOS versions prior to v7.00, the carry flag
 	  should be set on call to ensure that it is set on exit
-BUG:	Windows95 incorrectly treats filenames where the first two characters
+BUGS:	Windows95 incorrectly treats filenames where the first two characters
 	  after the drive letter and colon are both slashes (either forward
 	  or backward) as a UNC (network name) and requires several seconds
 	  to attempt to resolve the name before returning an unchanged

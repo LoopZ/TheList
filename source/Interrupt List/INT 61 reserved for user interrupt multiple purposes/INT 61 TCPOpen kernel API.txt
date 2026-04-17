@@ -1,14 +1,14 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 61
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 61 - TCPOpen kernel - API
 	ES:BX -> request packet (see #03317)
 Program: TCPOpen is a TCP/IP protocol stack by Lanera
 Range:	INT 60 to INT 7F, selected by configuration file
-Note:	there does not appear to be an installation check, though function
+Notes:	there does not appear to be an installation check, though function
 	  FFFFh can be used to verify that the software is indeed functioning
 
 Format of TCPOpen request packet:

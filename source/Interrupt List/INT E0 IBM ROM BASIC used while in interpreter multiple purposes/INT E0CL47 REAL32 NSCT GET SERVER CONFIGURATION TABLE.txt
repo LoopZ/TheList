@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: E0----CL47
   Category: O 	other operating systems
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT E0 - REAL/32 - "N_SCT" - GET SERVER CONFIGURATION TABLE
 	CL = 47h
 	DS:DX -> 112-byte buffer for Server Configuration Table (see #04034)
 Return: AX = status (0000h successful, else error code)
 	may destroy SI,DI,DS???
-Note:	the first byte of the SCT buffer is set to the desired server number
+Notes:	the first byte of the SCT buffer is set to the desired server number
 	  prior to calling this function
 SeeAlso: INT E0/CL=45h
 

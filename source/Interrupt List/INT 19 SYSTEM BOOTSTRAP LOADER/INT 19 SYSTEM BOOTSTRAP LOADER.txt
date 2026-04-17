@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 19
   Category: B 	BIOS
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 19 - SYSTEM - BOOTSTRAP LOADER
 Desc:	This interrupt reboots the system without clearing memory or restoring
@@ -38,7 +38,7 @@ Notes:	Usually, the BIOS will try to read sector 1, head 0, track 0 from drive
 	  system in the same way as under bare DOS; under Windows Standard
 	  mode, INT 19 will successfully perform a cold reboot as it appears
 	  to have been redirected to a MOV AL,0FEh/OUT 64h,AL sequence
-BUG:	when loading the remainder of the DOS system files fails, various
+BUGS:	when loading the remainder of the DOS system files fails, various
 	  versions of IBMBIO.COM/IO.SYS incorrectly restore INT 1E before
 	  calling INT 19, assuming that the boot sector had stored the
 	  contents of INT 1E at DS:SI instead of on the stack as it actually
@@ -256,7 +256,7 @@ Values for operating system indicator:
  FEh	LANstep
  FEh	IBM PS/2 IML (Initial Microcode Load) partition
  FFh	Xenix bad block table
-Note:	for partition type 07h, one should inspect the partition boot record
+Notes:	for partition type 07h, one should inspect the partition boot record
 	  for the actual file system type
 SeeAlso: #00651
 

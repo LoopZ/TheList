@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214402
   Category: y   security
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 U - PC Tools 9 CPRLOW.EXE - GET CODE AND DATA ADDRESSES
 	AX = 4402h
@@ -21,7 +21,7 @@ Offset	Size	Description	(Table 01505)
 		(switches into protected mode)
  04h	WORD	offset in code segment of jump array (see #01506)
  06h	WORD	segment of copy of interrupt vector table at CPRLOW load time
-Note:	neither the entry point nor the jump array is valid until after a
+Notes:	neither the entry point nor the jump array is valid until after a
 	  CPR /LOAD, because CPR.EXE installs the code into CPRLOW at runtime.
 
 Format of CPRLOW jump array:

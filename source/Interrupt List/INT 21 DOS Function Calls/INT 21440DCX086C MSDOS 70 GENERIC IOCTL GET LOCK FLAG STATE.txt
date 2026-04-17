@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21440DCX086C
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - MS-DOS 7.0+ - GENERIC IOCTL - GET LOCK FLAG STATE
 	AX = 440Dh
@@ -21,5 +21,5 @@ Values for drive access flag:
  0000h	no writes/file mappings since last call
  0001h	write operation has occurred since last call
  0002h	file mapping has occurred since last call
-Note:	function 6Ch resets the access flag every time it is called
+Notes:	function 6Ch resets the access flag every time it is called
 

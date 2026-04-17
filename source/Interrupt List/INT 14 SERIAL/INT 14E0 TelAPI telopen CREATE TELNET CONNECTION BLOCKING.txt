@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 14E0
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 14 - TelAPI - "telopen" - CREATE TELNET CONNECTION (BLOCKING)
 	AH = E0h
@@ -14,7 +14,7 @@ INT 14 - TelAPI - "telopen" - CREATE TELNET CONNECTION (BLOCKING)
 Return: AX = status (0000h-0009h,FED3h,FF37h,FFBDh,FFC0h,FFCDh) (see #00397)
 	ES:SI buffer filled with state record
 	ES:SI -> internally-allocated state record in some versions
-Note:	the remote host identifier may be used to refer to this connection
+Notes:	the remote host identifier may be used to refer to this connection
 SeeAlso: AH=E1h,AH=ECh,AX=FF00h
 
 (Table 00397)

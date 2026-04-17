@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21714E
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Windows95 - LONG FILENAME - FIND FIRST MATCHING FILE
 	AX = 714Eh
@@ -49,7 +49,7 @@ Offset	Size	Description	(Table 01779)
  24h  8 BYTEs	reserved (apparently unused)
  2Ch 260 BYTEs	ASCIZ full filename
 130h 14 BYTEs	ASCIZ short filename (for backward compatibility)
-Note:	under Windows95B, the ASCIZ short filename will be the empty string
+Notes:	under Windows95B, the ASCIZ short filename will be the empty string
 	  if the directory does not contain a long filename entry for the
 	  file; in that case, the application should use the full filename
 SeeAlso: #01780

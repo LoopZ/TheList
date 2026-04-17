@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 10F1
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - EGA Register Interface Library - WRITE ONE REGISTER
 	AH = F1h
@@ -13,7 +13,7 @@ INT 10 - EGA Register Interface Library - WRITE ONE REGISTER
 		BL = register number
 		BH = value to write
 Return: BL = data
-Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+Notes:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
 	  compatibility box, and others
 SeeAlso: AX=7F05h,AH=F0h"EGA",AH=F3h"EGA",AH=FAh"EGA"
 

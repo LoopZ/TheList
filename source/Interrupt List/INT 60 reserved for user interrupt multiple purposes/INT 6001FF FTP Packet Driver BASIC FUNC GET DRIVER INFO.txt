@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6001FF
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 60 - FTP Packet Driver - BASIC FUNC - GET DRIVER INFO
 	AX = 01FFh
@@ -21,7 +21,7 @@ Return: CF set on error
 		05h basic and high-performance
 		06h basic, high-performance, and extended
 		FFh not installed
-Note:	the handle in BX is optional for drivers written to v1.07 or later of
+Notes:	the handle in BX is optional for drivers written to v1.07 or later of
 	  the packet driver specification
 
 (Table 03305)

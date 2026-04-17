@@ -1,12 +1,12 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 20----Vx0048
   Category: W 	MS Windows
       Flag: P 	available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 20 P - Microsoft Windows - PERF - VxD SERVICES
 	VxD = 0048h
-Note:	the desired VxD and service number are identified by the data
+Notes:	the desired VxD and service number are identified by the data
 	  immediately following the INT 20 instruction, as in:
 		INT	20h
 		DW	service number

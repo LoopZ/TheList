@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 8304
   Category: s 	sound/speech
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 83 - JM Pro Tracker v5.0 - SET DMA BUFFER???
 	AH = 04h
@@ -13,5 +13,5 @@ Return: CF clear if successful
 	    CX = actual length (multiple of 4)
 	CF set on error
 	    AX = error code (see #03976)
-Note:	the buffer must not cross a 64K DMA page boundary
+Notes:	the buffer must not cross a 64K DMA page boundary
 

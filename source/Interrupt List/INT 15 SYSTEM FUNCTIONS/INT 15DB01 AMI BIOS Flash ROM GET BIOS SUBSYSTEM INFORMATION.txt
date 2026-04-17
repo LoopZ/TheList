@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 15DB01
   Category: b   vendor-specific BIOS extensions
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 U - AMI BIOS - Flash ROM - GET BIOS SUBSYSTEM INFORMATION
 	AX = DB01h
@@ -15,7 +15,7 @@ Return: CF clear if successful
 		01h nonexistent subsystem
 		86h function not supported
 	    AL = 00h
-Note:	used by FMUP.EXE, Intel's Flash Memory Update utility
+Notes:	used by FMUP.EXE, Intel's Flash Memory Update utility
 SeeAlso: AX=DB00h,AX=DB02h
 
 (Table 00545)
@@ -57,7 +57,7 @@ Offset	Size	Description	(Table 00547)
  14h	BYTE	reserved???
  var	var	logo font definition (16 bytes per character)
  var	var	logo data as character/attribute pairs
-Note:	the attribute for the logo characters specifies which font will be used
+Notes:	the attribute for the logo characters specifies which font will be used
 	  for that character.  If bit 3 is cleared, the normal system font is
 	  used; if bit 3 is set, the logo font is used, with screen colors
 	  adjusted to match the corresponding non-bright attribute for the

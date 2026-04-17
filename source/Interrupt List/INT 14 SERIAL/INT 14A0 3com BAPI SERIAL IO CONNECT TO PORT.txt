@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 14A0
   Category: S 	serial I/O
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 14 - 3com BAPI SERIAL I/O - CONNECT TO PORT
 	AH = A0h
@@ -12,7 +12,7 @@ Return: AH = return code (00h,04h-06h,08h,0Ah-0Ch) (see #00394)
 	CL = session ID
 Program: the Bridge Application Program Interface is a set of functions which
 	  makes many of the details of LAN communications transparent
-Note:	Novell TELAPI.EXE returns AH=09h (not supported) and CL=00h
+Notes:	Novell TELAPI.EXE returns AH=09h (not supported) and CL=00h
 SeeAlso: AH=A1h"BAPI",AH=A2h"BAPI",AH=A5h"BAPI",AX=AF00h
 
 (Table 00394)

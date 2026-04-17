@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 131C0E
   Category: d   disk I/O enhancements
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 13 U - ESDI FIXED DISK - TRANSLATE RBA TO ABA
 	AX = 1C0Eh
@@ -14,7 +14,7 @@ INT 13 U - ESDI FIXED DISK - TRANSLATE RBA TO ABA
 Return: CF set on error
 	CF clear if successful
 	AH = status (see #00234 at AH=01h)
-Note:	ABA (absolute block address) format can be found in IBM ESDI Adapter
+Notes:	ABA (absolute block address) format can be found in IBM ESDI Adapter
 	  Technical Reference by using its Device Configuration Status Block
 SeeAlso: AX=1C08h,AX=1C0Fh,PORT 3510h"ESDI"
 

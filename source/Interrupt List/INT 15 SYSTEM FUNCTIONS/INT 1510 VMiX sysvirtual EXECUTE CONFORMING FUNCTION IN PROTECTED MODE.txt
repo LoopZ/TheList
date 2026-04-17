@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1510
   Category: O 	other operating systems
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - VMiX - "sys_virtual" - EXECUTE CONFORMING FUNCTION IN PROTECTED MODE
 	AH = 10h
 	STACK:	DWORD	pointer to function
 	      N WORDs	function args
 Return: AX = function's return value??? (not specified in documentation)
-Note:	while the function is executing, the following global descriptors are
+Notes:	while the function is executing, the following global descriptors are
 	  available:
 		20h stack segment
 		38h code segment of function

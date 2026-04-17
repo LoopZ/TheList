@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E900
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - DIRECTORY SERVICES - GET DIRECTORY HANDLE
 	AX = E900h
@@ -12,7 +12,7 @@ Return: AL = directory handle
 	    bit 0: permanent handle
 	    bit 1: temporary handle
 	    bit 7: mapped to local drive
-Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
 	  Alloy NTNX
 SeeAlso: AH=E2h/SF=00h,AH=E2h/SF=01h,AH=E2h/SF=0Ah
 

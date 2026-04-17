@@ -1,11 +1,11 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P00220024
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0022-0024 - OPTi "Viper" (82C557) CHIPSET - SYSTEM CONTROL REGISTERS
-Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+Notes:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
 	  even if the same register is being accessed a second time
 SeeAlso: PORT 0022h"82C206"
 
@@ -43,7 +43,7 @@ Values for OPTi "Viper" (82C557) system control registers:
  18h	Tristate Control register (see #P0217)
  19h	Memory Decode Control register 3 (see #P0218)
  1Ah-1Fh reserved
-Note:	Byte Merge/Prefetch and Sony Cache Module Control register is accessed
+Notes:	Byte Merge/Prefetch and Sony Cache Module Control register is accessed
 	  through register 00h when bit 7 of register 13h is set, otherwise
 	  Compatible DRAM Configuration register 1 is accessed as register 00h
 	reserved registers 1Ah-1Fh must be written to 0
@@ -106,7 +106,7 @@ Bit(s)	Description	(Table P0191)
 	11000	2M	2M	8M	8M
 	11001	4M	4M	8M	8M
 	11010	8M	8M	8M	8M
-Note:	these settings maintain backward compatibility with the "Python"
+Notes:	these settings maintain backward compatibility with the "Python"
 	  (82C546/82C547) chipset, and they do not allow for much flexibility
 SeeAlso: #P0189
 
@@ -184,7 +184,7 @@ Bit(s)	Description	(Table P0194)
 	01 4-X-X-X
 	10 3-X-X-X
 	11 2-X-X-X
-Note:	SRAM double bank implementation does not support lead-off timing
+Notes:	SRAM double bank implementation does not support lead-off timing
 SeeAlso: #P0189,#P0193,#P0219
 
 Bitfields for OPTi "Viper"/"Vendetta" Shadow RAM Control register 1:
@@ -199,7 +199,7 @@ Bit(s)	Description	(Table P0195)
 	1 are will be treated like the F0000h BIOS area
  1-0	C0000-C7FFF read/write control; determines the R/W control for these
 	  segments of the shadow RAM (see #P0196)
-Note:	bit 3 will act only when register 11h bit 3 and register 03h bits 3-2
+Notes:	bit 3 will act only when register 11h bit 3 and register 03h bits 3-2
 	  are all set
 	when bit 2 is set, register 06h bits 3-0 should be set identically
 SeeAlso: #P0189,#P0197,#P0219
@@ -241,7 +241,7 @@ Bit(s)	Description	(Table P0198)
 	  segments of the shadow RAM (see #P0196)
  1-0	E0000-EFFFF read/write control; determines the R/W control for these
 	  segments of the shadow RAM (see #P0196)
-Note:	L1 cacheability can be disabled thru register 08h bit 0
+Notes:	L1 cacheability can be disabled thru register 08h bit 0
 	If register 04h bit 2 is set, then F0000-FFFFF and E0000-EFFFF R/W
 	control settings should have similar values
 SeeAlso: #P0189,#P0197,#P0219
@@ -326,7 +326,7 @@ Bit(s)	Description	(Table P0204)
 	(Vendetta) reserved
  3-2	DRAM Hole B starting address, bits 28-27 (see also #P0202)
  1-0	DRAM Hole A starting address, bits 28-27 (see also #P0203)
-Note:	bits 26-19 of memory holes A and B are mapped from Indices 0Ah and 0Bh
+Notes:	bits 26-19 of memory holes A and B are mapped from Indices 0Ah and 0Bh
 SeeAlso: #P0189,#P0219
 
 Bitfields for OPTi "Viper" (82C557) Clock Control register:
@@ -459,7 +459,7 @@ Bit(s)	Description	(Table P0208)
 	  LCLK <= 0.5ns after CPUCLK
 	0 LCLK is asynchronous to the CPUCLK
 	1 LCLK is synchronous to the CPUCLK; LCLK = CPUCLK/2
-Note:	bit 1 should always be set to 1
+Notes:	bit 1 should always be set to 1
 SeeAlso: #P0189,#P0219
 
 Bitfields for OPTi "Viper" (82C557) Miscellaneous Control register 2:
@@ -608,7 +608,7 @@ Bit(s)	Description	(Table P0215)
 	    0 HDOE# is negated normally
 	    1 HDOE# is negated one clock before the cycle finishes
 	(Vendetta) reserved
-Note:	(Vendetta) bit 4 should be set same as register 22h bit 0
+Notes:	(Vendetta) bit 4 should be set same as register 22h bit 0
 SeeAlso: #P0189,#P0219
 
 Bitfields for OPTi "Viper"/"Vendetta" PCI Cycle Control register 2:

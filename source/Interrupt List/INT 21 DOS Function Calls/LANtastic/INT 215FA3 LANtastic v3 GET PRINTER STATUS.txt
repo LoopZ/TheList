@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 215FA3
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - LANtastic v3+ - GET PRINTER STATUS
 	AX = 5FA3h
@@ -13,7 +13,7 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code
 	BX = next physical printer number
-Note:	you must be logged in to the specified server
+Notes:	you must be logged in to the specified server
 
 Format of LANtastic printer status:
 Offset	Size	Description	(Table 01736)

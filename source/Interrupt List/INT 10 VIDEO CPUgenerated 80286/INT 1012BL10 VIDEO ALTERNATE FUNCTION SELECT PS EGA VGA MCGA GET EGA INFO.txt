@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1012--BL10
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - VIDEO - ALTERNATE FUNCTION SELECT (PS, EGA, VGA, MCGA) - GET EGA INFO
 	AH = 12h
@@ -14,7 +14,7 @@ Return: BH = video state
 	CH = feature connector bits (see #00022)
 	CL = switch settings (see #00023,#00024)
 	AH destroyed (at least by Tseng ET4000 BIOS v8.00n)
-Note:	one possible check for the presence of an EGA or later display card
+Notes:	one possible check for the presence of an EGA or later display card
 	  is to call this function with BH=FFh; if not present, BH will be
 	  unchanged on return
 	another installation check is used by Athena Digital's HGCIBM, which

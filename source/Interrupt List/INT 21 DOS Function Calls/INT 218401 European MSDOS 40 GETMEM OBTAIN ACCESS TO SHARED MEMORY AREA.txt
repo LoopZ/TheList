@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 218401
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - European MS-DOS 4.0 - "GETMEM" - OBTAIN ACCESS TO SHARED MEMORY AREA
 	AX = 8401h
@@ -16,6 +16,6 @@ Return: CF clear if successful
 	    AX = error code (invalid name)
 Desc:	get address of a previously-created area of memory which may be
 	  accessed by multiple processes
-Note:	this call increments the reference count for the shared memory area
+Notes:	this call increments the reference count for the shared memory area
 SeeAlso: AX=8400h,AX=8402h
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1790
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 17 - Alloy NTNX, MW386 - SPOOL FILE BY NAME
 	AH = 90h
@@ -16,6 +16,6 @@ INT 17 - Alloy NTNX, MW386 - SPOOL FILE BY NAME
 		    04h-07h = COM1-COM4
 	CX:SI -> ASCIZ pathname
 Return: AL = status (see #00642)
-Note:	in mode 00h, the file is always sent to logical LPT1
+Notes:	in mode 00h, the file is always sent to logical LPT1
 SeeAlso: AH=A0h
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FB804
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - NETWORK - SET NETWORK EVENT POST HANDLER
 	AX = B804h
@@ -49,6 +49,6 @@ Format of text header:
 Offset	Size	Description	(Table 02982)
  00h	WORD	length of text (maximum 512 bytes)
  02h  N BYTEs	text of message
-Note:	all CRLF sequences in message text are replaced by 14h; all other
+Notes:	all CRLF sequences in message text are replaced by 14h; all other
 	  values below 20h (space) are reserved
 

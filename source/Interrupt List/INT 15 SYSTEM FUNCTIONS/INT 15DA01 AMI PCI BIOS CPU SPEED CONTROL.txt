@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 15DA01
   Category: b   vendor-specific BIOS extensions
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 U - AMI PCI BIOS - CPU SPEED CONTROL
 	AX = DA01h
@@ -19,6 +19,6 @@ Notes:	in the v1.00.05.AX1 BIOS, subfunctions 00h and 01h are NOPs in both
 	  protected and V86 modes due to a test of MSW bit 0
 	setting the CPU speed also generates the same audible signals generated
 	  when manually switching speeds with Ctrl-Alt-Gray- and Ctrl-Alt-Gray+
-BUG:	the BIOS apparently intends to return CF set if ???, but fails to use
+BUGS:	the BIOS apparently intends to return CF set if ???, but fails to use
 	  a different exit path in that case, resulting in CF clear
 

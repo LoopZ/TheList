@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1A93
   Category: X 	expansion bus BIOSes
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 1A - PCMCIA Socket Services v1.00 - READ MULTIPLE
 	AH = 93h
@@ -16,6 +16,6 @@ Return: CF clear if successful
 	    AH destroyed
 	CF set on error
 	    AH = error code (01h,07h,09h,0Bh,14h) (see #00656)
-Note:	this function is only available on I/O-mapped sockets
+Notes:	this function is only available on I/O-mapped sockets
 SeeAlso: AH=91h,AH=94h,INT 21/AX=440Dh"DOS 3.2+"
 

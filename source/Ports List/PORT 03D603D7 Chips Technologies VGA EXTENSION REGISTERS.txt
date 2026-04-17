@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P03D603D7
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 03D6-03D7 - Chips&Technologies VGA - EXTENSION REGISTERS
 
@@ -112,7 +112,7 @@ Values for Chips&Technologies 64200 extension register index:
  7Eh	"XR7E"	CGA/Hercules color selection (see #P0815)
  7Fh	"XR7F"	diagnostics (see #P0816)
 !!! chips\64200.pdf p.28, p.72
-Note:	not all C&T chips support all of the above registers; see the tables
+Notes:	not all C&T chips support all of the above registers; see the tables
 	  for the individual registers for a list of supporting chipsets
 SeeAlso: #P0763
 
@@ -204,7 +204,7 @@ Bit(s)	Description	(Table P0764)
 	1011 = 64300/301 Wingine DGX (if bit 3 clear)
 	1011 = 64310 Wingine DGX-PCI (if bit 3 set)
  3-0	chip revision (0000 = first silicon)
-Note:	this register is read-only
+Notes:	this register is read-only
 SeeAlso: #P0762,#P0765
 
 Bitfields for Chips&Technologies 64200 "XR01" configuration:
@@ -222,7 +222,7 @@ Bit(s)	Description	(Table P0765)
 	01 Microchannel
 	10 local bus
 	11 ISA
-Note:	this register is read-only
+Notes:	this register is read-only
 SeeAlso: #P0762,#P0764,#P0767,#P0766
 
 Bitfields for Chips&Technologies 64300/64310 "XR01" configuration:
@@ -282,7 +282,7 @@ Bit(s)	Description	(Table P0768)
  0	Wingine/VGA select
 	=0 VGA
 	=1 Wingine (memory pins are tri-stated)
-Note:	a write-only copy of this register may be accessed at PORT 0022h
+Notes:	a write-only copy of this register may be accessed at PORT 0022h
 	  (index E0h) and PORT 0023h; a read-write copy exists in systems with
 	  built-in Wingine support
 SeeAlso: #P0762,#P0767,#P0770,#P0769
@@ -576,7 +576,7 @@ Bit(s)	Description	(Table P0793)
  0	reference divisor select
 	0 = divide by 4
 	1 = divide by 1
-Note:	Registers XR30-32 are used to program either memory clock or video
+Notes:	Registers XR30-32 are used to program either memory clock or video
 	  clock VCO, selected by XR33 bit 5. Data must be written in sequence
 	  to all three registers, after which they are transferred to VCO
 	  simultaneously.
@@ -586,7 +586,7 @@ Bitfields for Chips&Technologies 64310 "XR31" clock M-divisor register:
 Bit(s)	Description	(Table P0794)
  7	reserved (0)
  6-0	VCO M-divisor (program value - 2)
-Note:	Registers XR30-32 are used to program either memory clock or video
+Notes:	Registers XR30-32 are used to program either memory clock or video
 	  clock VCO, selected by XR33 bit 5. Data must be written in sequence
 	  to all three registers, after which they are transferred to VCO
 	  simultaneously.
@@ -596,7 +596,7 @@ Bitfields for Chips&Technologies 64310 "XR32" clock N-divisor register:
 Bit(s)	Description	(Table P0795)
  7	reserved (0)
  6-0	VCO N-divisor (program value - 2)
-Note:	Registers XR30-32 are used to program either memory clock or video
+Notes:	Registers XR30-32 are used to program either memory clock or video
 	  clock VCO, selected by XR33 bit 5. Data must be written in sequence
 	  to all three registers, after which they are transferred to VCO
 	  simultaneously.
@@ -816,7 +816,7 @@ Bit(s)	Description	(Table P0815)
  5
  4
  3-0
-Note:	this is a mirror of the register accessed via PORT 03D9h, which is
+Notes:	this is a mirror of the register accessed via PORT 03D9h, which is
 	  always visible, while PORT 03D9h is only visible in CGA emulation
 SeeAlso: #P0762,PORT 03D9h
 

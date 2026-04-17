@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P01F001F7
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 01F0-01F7 - HDC 1 (1st Fixed Disk Controller) (ISA, EISA)
 Range:	01F0-01F7 for primary controller, 0170-0177 for secondary controller
@@ -279,7 +279,7 @@ Bit(s)	Description	(Table P0519)
  2	removable-media feature set is supported
  1	security feature set is supported
  0	SMART feature set is supported
-Note:	values of 0000h and FFFFh indicate that this field is not supported
+Notes:	values of 0000h and FFFFh indicate that this field is not supported
 SeeAlso: #P0516,#P0520,#P0521
 
 Bitfields for ATA feature set support/enabled 2:
@@ -439,7 +439,7 @@ Values for Self-Monitoring, Analysis, Reporting Technology (SMART) subcommand:
 	sector-count register set to 0000h to disable, 00F8h to enable
  DCh-DFh reserved
  E0h-EFh vendor-specific
-Note:	to access SMART commands, the Cylinder Low register must be set to
+Notes:	to access SMART commands, the Cylinder Low register must be set to
 	  004Fh and the Cylinder High register must be set to 00C2h before
 	  invoking the SMART command with the SMART command number in the
 	  Features register
@@ -454,7 +454,7 @@ Offset	Size	Description	(Table P0528)
 16Ah 18 BYTEs	reserved (0)
 17Ch 131 BYTEs	vendor-specific
 1FFh	BYTE	checksum (two's complement of eight-bit sum of first 511 bytes)
-Note:	if the drive provides fewer than 30 attributes, all remaining attribute
+Notes:	if the drive provides fewer than 30 attributes, all remaining attribute
 	  records are filled with NUL (00h) bytes
 SeeAlso: #P0527,#P0529
 
@@ -474,7 +474,7 @@ Offset	Size	Description	(Table P0529)
 172h 16 BYTEs	reserved (0)
 182h 125 BYTEs	vendor-specific
 1FFh	BYTE	checksum (two's complement of eight-bit sum of first 511 bytes)
-Note:	if the drive provides fewer than 30 attributes, all remaining attribute
+Notes:	if the drive provides fewer than 30 attributes, all remaining attribute
 	  records are filled with NUL (00h) bytes
 SeeAlso: #P0527,#P0528
 
@@ -495,7 +495,7 @@ Offset	Size	Description	(Table P0531)
 		FEh invalid (do not use)
 		FFh always failing (for testing)
  02h 10 BYTEs	reserved (0)
-Note:	the attribute ID and actual threshold values are vendor-specific
+Notes:	the attribute ID and actual threshold values are vendor-specific
 SeeAlso: #P0528,#P0532
 
 Format of S.M.A.R.T attribute value:

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 217160CL01
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Windows95 - LONG FILENAME - GET SHORT (8.3) FILENAME FOR FILE
 	AX = 7160h
@@ -20,7 +20,7 @@ Return: CF set on error
 	CF clear if successful
 	    ES:DI buffer filled with equivalent short filename (full path,
 		  even if relative path given, and all uppercase)
-Note:	this call returns the short name for any long-filename portions of
+Notes:	this call returns the short name for any long-filename portions of
 	  the provided pathname or filename
 SeeAlso: AH=60h,AX=7160h/CL=00h,AX=7160h/CL=02h
 

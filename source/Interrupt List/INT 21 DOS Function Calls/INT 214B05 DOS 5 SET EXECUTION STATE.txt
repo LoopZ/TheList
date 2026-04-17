@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214B05
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 5+ - SET EXECUTION STATE
 	AX = 4B05h
@@ -11,7 +11,7 @@ Return: CF clear if successful
 	    AX = 0000h
 	CF set on error
 	    AX = error code (see #01680 at AH=59h/BX=0000h)
-Note:	used by programs which intercept AX=4B00h to prepare new programs for
+Notes:	used by programs which intercept AX=4B00h to prepare new programs for
 	  execution (including setting the DOS version number).	 No DOS, BIOS
 	  or other software interrupt may be called after return from this call
 	  before commencement of the child process.  If DOS is running in the

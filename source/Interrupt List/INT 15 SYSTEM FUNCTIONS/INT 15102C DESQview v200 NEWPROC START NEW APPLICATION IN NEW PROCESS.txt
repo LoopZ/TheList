@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 15102C
   Category: Q 	DESQview/TopView and Quarterdeck programs
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - DESQview v2.00+ - "NEWPROC" - START NEW APPLICATION IN NEW PROCESS
 	AX = 102Ch
@@ -151,7 +151,7 @@ Offset	Size	Description	(Table 00432)
 ---type 05h---
  03h  N BYTEs	ASCII copy of fields as typed into DVPMAN, separated by commas:
 		starting row, starting column, starting height, starting width
-Note:	if there are multiple occurrences of record types 01h, 02h, or 03h,
+Notes:	if there are multiple occurrences of record types 01h, 02h, or 03h,
 	  only the last instance of each type is used; multiple occurrences of
 	  type 04h are concatenated
 SeeAlso: #00427

@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E2--SF0E
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - DIRECTORY SERVICES - DELETE TRUSTEE FROM DIRECTORY
 	AH = E2h subfn 0Eh
 	DS:SI -> request buffer (see #01862)
 	ES:DI -> reply buffer (see #01863)
 Return: AL = status (00h,98h,9Bh,9Ch) (see #01839)
-Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
 	  Alloy NTNX
 SeeAlso: AH=E2h/SF=0Ch,AH=E2h/SF=0Dh,AX=F216h/SF=0Eh
 

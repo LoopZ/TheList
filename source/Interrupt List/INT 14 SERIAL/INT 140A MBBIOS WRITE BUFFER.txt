@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 140A
   Category: S 	serial I/O
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 14 - MBBIOS - WRITE BUFFER
 	AH = 0Ah
@@ -11,7 +11,7 @@ INT 14 - MBBIOS - WRITE BUFFER
 Return: AX = status (see #00304,#00305)
 	CX = unsent character count
 	DI updated
-Note:	the PACCOM version of MBBIOS does not use CX or ES:DI; instead, ES
+Notes:	the PACCOM version of MBBIOS does not use CX or ES:DI; instead, ES
 	  contains the segment of a buffer containing the packet to be sent,
 	  which by default will be freed once the packet has been sent.	 Use
 	  AH=0Ch"MBBIOS" to allocate the buffer.

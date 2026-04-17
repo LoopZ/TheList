@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2171A8
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Windows95 - LONG FILENAME - GENERATE SHORT FILENAME
 	AX = 71A8h
@@ -19,7 +19,7 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code
 		7100h if function not supported
-Note:	this function uses the same algorithm as the filesystem except that
+Notes:	this function uses the same algorithm as the filesystem except that
 	  the returned name never has a numeric tail for disambiguation
 SeeAlso: AX=7160h/CL=00h,AX=7160h/CL=02h,AX=71A7h/BL=00h
 

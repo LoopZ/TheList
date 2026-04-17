@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214402
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Advanced SCSI Programming Interface (ASPI) - INTERFACE
 	AX = 4402h
@@ -47,7 +47,7 @@ Values for ASPI request number:
  05h	"SET_HAPRMS"	set host adapter parameters
  06h	get disk drive information
  7Fh	(Adaptec) get ASPI manager info?
-Note:	request 7Fh is supported by all the Adaptec's DOS ASPI managers:
+Notes:	request 7Fh is supported by all the Adaptec's DOS ASPI managers:
 	  ASPI2DOS.SYS (for AHA-152x), ASPI4DOS.SYS (for AHA-154x/164x),
 	  ASPI7DOS.SYS (for AIC-77xx), and ASPI8DOS.SYS (for AIC-78xx)
 
@@ -164,7 +164,7 @@ Bit(s)	Description	(Table 01456)
  4	transfer from host to SCSI target
  5	scatter/gather
  7-6	reserved
-Note:	no data is transferred if both bits 3 and 4 are set; if neither is
+Notes:	no data is transferred if both bits 3 and 4 are set; if neither is
 	  set, the direction is determined by the SCSI command
 SeeAlso: #01454
 
@@ -286,7 +286,7 @@ Values ASPI post function is called with:
 	interrupts disabled
 Return: EBP, EBX, ESI, EDI must be preserved
 	interrupts disabled
-Note:	the post function may issue any ASPI function except an abort; it
+Notes:	the post function may issue any ASPI function except an abort; it
 	  should complete as quickly as possible
 
 Format of ASPI2DOS.SYS v3.65 host adapter unique parameters:

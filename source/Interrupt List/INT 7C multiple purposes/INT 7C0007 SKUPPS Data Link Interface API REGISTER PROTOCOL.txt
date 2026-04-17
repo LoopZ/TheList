@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7C0007
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7C - SK-UPPS Data Link Interface API - REGISTER PROTOCOL
 	AX = 0007h
@@ -91,7 +91,7 @@ Notes:	The protocol's Receive Upcall routine will be called whenever a frame
 Values SK-UPPS Event Upcall is called with:
 	AX = event code (see #03854)
 Return: nothing
-Note:	All Event Upcalls may be ignored by the protocol.
+Notes:	All Event Upcalls may be ignored by the protocol.
 SeeAlso: #03851
 
 (Table 03854)
@@ -123,5 +123,5 @@ Bit(s)	Description	(Table 03855)
  2	reserved		FDDI_EVENT
  1	reserved		RING_OP_CHANGE
  0	reserved		reserved
-Note:	EV_NETWORK_STATUS is not supported on Ethernet
+Notes:	EV_NETWORK_STATUS is not supported on Ethernet
 

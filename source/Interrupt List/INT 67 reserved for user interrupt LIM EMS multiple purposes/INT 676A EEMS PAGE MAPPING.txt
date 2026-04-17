@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 676A
   Category: m 	memory management
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 67 - EEMS - PAGE MAPPING
 	AH = 6Ah
@@ -30,7 +30,7 @@ INT 67 - EEMS - PAGE MAPPING
 		CH = first page frame
 		CL = number of frames
 Return: AH = status (see #03648)
-Note:	similar to EMS function 4Eh, except that a subrange of pages can be
+Notes:	similar to EMS function 4Eh, except that a subrange of pages can be
 	  specified
 SeeAlso: AH=69h
 

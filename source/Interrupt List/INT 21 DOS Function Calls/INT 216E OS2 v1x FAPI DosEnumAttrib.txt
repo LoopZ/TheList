@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 216E
   Category: O   other operating systems
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 U - OS/2 v1.x FAPI - "DosEnumAttrib"
 	AH = 6Eh
@@ -12,7 +12,7 @@ Return: CF clear if successful
 	    DS:SI buffer updated
 	CF set on error
 	    AX = error code
-Note:	also supported by OS/2 v2.0+ Virtual DOS Machines
+Notes:	also supported by OS/2 v2.0+ Virtual DOS Machines
 SeeAlso: AX=5703h,AH=6Fh"OS/2",INT 2F/AX=112Dh
 
 Format of OS/2 DosEnumAttrib parameter packet:

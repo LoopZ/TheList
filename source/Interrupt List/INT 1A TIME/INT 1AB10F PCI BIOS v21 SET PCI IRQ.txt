@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1AB10F
   Category: X 	expansion bus BIOSes
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 1A - PCI BIOS v2.1+ - SET PCI IRQ
 	AX = B10Fh
@@ -17,7 +17,7 @@ Return: CF clear if successful
 	    AH = 00h
 	CF set on error
 	    AH = error code (59h) (see #01243)
-Note:	assumes that the calling application has determined the IRQ routing
+Notes:	assumes that the calling application has determined the IRQ routing
 	  topology (see AX=B10Eh), has ensured that the selected IRQ will not
 	  cause a conflict, and will update the interrupt line configuration
 	  register on all devices which currently use the IRQ line

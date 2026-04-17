@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214F
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 2+ - "FINDNEXT" - FIND NEXT MATCHING FILE
 	AH = 4Fh
@@ -18,6 +18,6 @@ Notes:	under Novell DOS 7, if the FindFirst call (AH=4Eh) had CX=0088h, then
 	  in the data block in the DTA, other disk operations such as renaming,
 	  moving, deleting, or creating files can cause inaccurate directory
 	  searches, such as finding the same file twice
-BUG:	DR DOS 3.41 and 5.0 return the Directory attribute for the volume label
+BUGS:	DR DOS 3.41 and 5.0 return the Directory attribute for the volume label
 SeeAlso: AH=12h,AH=4Eh,AX=714Fh,AX=71A1h
 

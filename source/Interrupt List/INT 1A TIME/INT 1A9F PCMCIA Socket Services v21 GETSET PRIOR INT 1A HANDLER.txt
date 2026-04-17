@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1A9F
   Category: X 	expansion bus BIOSes
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 1A - PCMCIA Socket Services v2.1 - GET/SET PRIOR INT 1A HANDLER
 	AH = 9Fh
@@ -17,6 +17,6 @@ Return: CF clear if successful
 	CF set on error
 	    AH = error code (01h,15h,18h) (see #00656)
 Desc:	allows hooking of INT 16h "behind" the Socket Services hook
-Note:	this API is supported by recent versions of the AMI BIOS
+Notes:	this API is supported by recent versions of the AMI BIOS
 SeeAlso: AH=9Eh,AH=A0h"PCMCIA",AH=AEh"PCMCIA"
 

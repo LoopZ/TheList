@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F217SFEB
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare v3+ - GET CONNECTION'S OPEN FILES
 	AX = F217h subfn EBh
@@ -20,7 +20,7 @@ Offset	Size	Description	(Table 02249)
  02h	BYTE	EBh (subfunction "Get Connection's Open Files")
  03h	WORD	target connection number
  05h	WORD	last record seen (set to 0000h for first call)
-Note:	connection numbers greater than the maximum supported by the server
+Notes:	connection numbers greater than the maximum supported by the server
 	  can cause ABENDs
 SeeAlso: #02250
 

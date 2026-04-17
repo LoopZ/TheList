@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1501
   Category: b 	vendor-specific BIOS extensions
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - Amstrad PC1512 - WRITE DATA TO NON-VOLATILE RAM
 	AH = 01h
@@ -47,7 +47,7 @@ Offset	Size	Description	(Table 00405)
  26h	BYTE	initial system UART setup byte
  27h	BYTE	initial external UART setup byte
  28h 24 BYTEs	available for user application
-Note:	bytes 00h-0Dh are the same on the IBM AT as they are used/updated by
+Notes:	bytes 00h-0Dh are the same on the IBM AT as they are used/updated by
 	  the clock chip
 
 Bitfields for RTC status register A:

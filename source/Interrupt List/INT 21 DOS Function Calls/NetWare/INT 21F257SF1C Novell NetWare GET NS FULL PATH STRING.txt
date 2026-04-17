@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F257SF1C
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - GET NS FULL PATH STRING
 	AX = F257h subfn 1Ch
@@ -11,7 +11,7 @@ INT 21 - Novell NetWare - GET NS FULL PATH STRING
 	DS:SI -> request buffer (see #02418)
 	ES:DI -> reply buffer (see #02419)
 Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
-Note:	this call returns the path in reverse order (root directory last)
+Notes:	this call returns the path in reverse order (root directory last)
 SeeAlso: AH=F2h"Novell",AX=F257h/SF=03h,AX=F257h/SF=15h
 
 Format of NetWare "Get NS Full Path String" request packet:
@@ -37,7 +37,7 @@ Offset	Size	Description	(Table 02420)
 		bit 0: last component is a filename
  02h	DWORD	cookie1
  06h	DWORD	cookie2
-Note:	"cookie1" and "cookie2" are to be set to FFFFFFFFh initially; if
+Notes:	"cookie1" and "cookie2" are to be set to FFFFFFFFh initially; if
 	  "cookie2" is FFFFFFFFh on return, all path components have been
 	  transferred
 SeeAlso: #02418,#02419

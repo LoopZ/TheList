@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 10F7
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - EGA Register Interface Library - DEFINE DEFAULT REGISTER TABLE
 	AH = F7h
@@ -20,7 +20,7 @@ INT 10 - EGA Register Interface Library - DEFINE DEFAULT REGISTER TABLE
 	ES:BX -> table of one-byte entries, one byte to be written to each
 		 register
 Return: nothing
-Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+Notes:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
 	  compatibility box, and others
 SeeAlso: AH=F0h"EGA",AH=F6h"EGA"
 

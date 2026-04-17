@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1A02
   Category: B 	BIOS
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 1A - TIME - GET REAL-TIME CLOCK TIME (AT,XT286,PS)
 	AH = 02h
@@ -20,7 +20,7 @@ Notes:	this function is also supported by the Sperry PC, which predates the
 	  is preset by checking if the returned values are non-zero. If they
 	  are, this function is called one more time, before it is assumed
 	  that no RTC is present.
-BUG:	some BIOSes leave CF unchanged if successful, so CF should be cleared
+BUGS:	some BIOSes leave CF unchanged if successful, so CF should be cleared
 	  before calling this function
 SeeAlso: AH=00h,AH=03h,AH=04h,INT 21/AH=2Ch
 

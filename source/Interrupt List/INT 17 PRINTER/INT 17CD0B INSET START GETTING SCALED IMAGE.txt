@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 17CD0B
   Category: P 	printer enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 17 - INSET - START GETTING SCALED IMAGE
 	AX = CD0Bh
@@ -13,5 +13,5 @@ INT 17 - INSET - START GETTING SCALED IMAGE
 Return: AX = status
 	    0000h OK
 	    FFFFh error
-Note:	image is returned in strips by repeated calls to AX=CD0Ch
+Notes:	image is returned in strips by repeated calls to AX=CD0Ch
 

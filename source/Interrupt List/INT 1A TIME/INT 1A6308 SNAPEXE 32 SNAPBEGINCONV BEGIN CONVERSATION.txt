@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1A6308
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 1A - SNAP.EXE 3.2+ - "SNAP_BEGINCONV" - BEGIN CONVERSATION
 	AX = 6308h
@@ -16,7 +16,7 @@ INT 1A - SNAP.EXE 3.2+ - "SNAP_BEGINCONV" - BEGIN CONVERSATION
 		WORD	offset of "Cparms" structure (see #00655)
 Return: ???
 	STACK unchanged
-Note:	all stacked offsets are within the SNAP data segment (use AX=6A01h
+Notes:	all stacked offsets are within the SNAP data segment (use AX=6A01h
 	  to allocate a buffer)
 SeeAlso: AX=6405h,AX=7202h
 

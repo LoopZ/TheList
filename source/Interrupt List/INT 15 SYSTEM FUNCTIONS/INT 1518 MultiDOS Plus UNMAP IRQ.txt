@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1518
   Category: T 	DOS-based task switchers/multitaskers
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - MultiDOS Plus - UNMAP IRQ
 	AH = 18h
@@ -10,6 +10,6 @@ INT 15 - MultiDOS Plus - UNMAP IRQ
 Return: AX = status
 	    0000h successful
 	    0001h invalid IRQ
-Note:	results are unpredictable if the IRQ has not been mapped
+Notes:	results are unpredictable if the IRQ has not been mapped
 SeeAlso: AH=17h"MultiDOS",AH=19h"MultiDOS"
 

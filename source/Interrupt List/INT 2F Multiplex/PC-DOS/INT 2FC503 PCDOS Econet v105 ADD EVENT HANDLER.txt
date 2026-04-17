@@ -1,14 +1,14 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FC503
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - PC-DOS Econet v1.05 - ADD EVENT HANDLER
 	AX = C503h
 	DS:DX -> event handler (see #03046)
 Return: AX = return code (see #03037)
-Note:	the interrupt-enable state will be preserved, but interrupts may be
+Notes:	the interrupt-enable state will be preserved, but interrupts may be
 	  enabled during processing of this function
 SeeAlso: AX=C500h,AX=C504h,AX=C505h,AX=C508h
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 4B8103
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 4B - Virtual DMA Specification - LOCK DMA REGION
 	AX = 8103h
@@ -63,6 +63,6 @@ Offset	Size	Description	(Table 03223)
  10h	DWORD	page table entry 0 (same as 80386 page table entry)
  14h	DWORD	page table entry 1
 	...
-Note:	bits 1-11 of the page table entries should be zero; bit 0 set if page
+Notes:	bits 1-11 of the page table entries should be zero; bit 0 set if page
 	  is present and locked
 

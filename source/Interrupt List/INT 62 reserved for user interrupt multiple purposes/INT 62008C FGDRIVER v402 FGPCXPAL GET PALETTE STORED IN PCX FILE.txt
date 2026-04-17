@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 62008C
   Category: V   video
       Flag: u   partially documented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 62 u - FGDRIVER v4.02 - "FG_PCXPAL" - GET PALETTE STORED IN PCX FILE
 	AX = 008Ch
@@ -10,7 +10,7 @@ INT 62 u - FGDRIVER v4.02 - "FG_PCXPAL" - GET PALETTE STORED IN PCX FILE
 Return: AX = number of colors in palette (16 or 256) or
 	    FFFEh not a valid PCX file
 	    FFFFh file not found
-Note:	the FGDRIVER functions are rearranged with each major release, but
+Notes:	the FGDRIVER functions are rearranged with each major release, but
 	  their parameters do not change (see #03474 at AX=0000h)
 SeeAlso: AX=008Dh
 
@@ -20,7 +20,7 @@ Offset	Size	Description	(Table 03494)
  02h	WORD	offset of ASCIZ .PCX filename
  04h	WORD	segment of buffer for .PCX palette RGB triples
  06h	WORD	offset of buffer for .PCX palette RGB triples
-Note:	the buffer for the palette must hold at least three times as many bytes
+Notes:	the buffer for the palette must hold at least three times as many bytes
 	  as there are colors in the palette
 SeeAlso: #03495
 

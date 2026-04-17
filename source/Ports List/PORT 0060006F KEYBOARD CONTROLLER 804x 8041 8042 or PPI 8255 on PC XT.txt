@@ -1,11 +1,11 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P0060006F
   Category: K 	keyboard enhancers
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0060-006F - KEYBOARD CONTROLLER 804x (8041, 8042) (or PPI (8255) on PC,XT)
-Note:	XT uses ports 60h-63h, AT uses ports 60h-64h
+Notes:	XT uses ports 60h-63h, AT uses ports 60h-64h
 
 0060  RW  KB controller data port or keyboard input buffer (ISA, EISA)
 		should only be read from after status port bit0 = 1
@@ -67,7 +67,7 @@ Bit(s)	Description	(Table P0383)
  2	reserved (see note)
  1	gate A20
  0	system reset
-Note:	bits 2 and 3 are the turbo speed switch or password lock on
+Notes:	bits 2 and 3 are the turbo speed switch or password lock on
 	  Award/AMI/Phoenix BIOSes.  These bits make use of nonstandard
 	  keyboard controller BIOS functionality to manipulate
 		pin 23 (8041 port 22) as turbo switch for AWARD
@@ -136,7 +136,7 @@ Value	Count	Description
  FDh	double	[MCA] set specific key to make only
  FEh	sngl	resend last scancode
  FFh	sngl	perform internal power-on reset function
-Note:	each command is acknowledged by FAh (ACK), if not mentioned otherwise.
+Notes:	each command is acknowledged by FAh (ACK), if not mentioned otherwise.
 	  See PORT 0060h-R for details.
 SeeAlso: #P0387
 
@@ -223,7 +223,7 @@ Values for keyboard special codes:
  FEh	Resend: CPU to controller should resend last keyboard-command
  FEh	(mouse) CPU to controller should resend last mouse-command
  FFh	(MF2 in codeset1) keydetection/overrun error
-Note:	keyboard stops scanning and waits for next command after returning
+Notes:	keyboard stops scanning and waits for next command after returning
 	  code FCh or FDh
 SeeAlso: PORT 0060h-R
 
@@ -267,7 +267,7 @@ Bit(s)	Description	(Table P0393)
  2	NMI parity check status
  1	speaker data status
  0	timer 2 clock gate to speaker status
-Note:	also supported by OPTi 82C392
+Notes:	also supported by OPTi 82C392
 SeeAlso: PORT 0061h-R,#P0392
 
 Bitfields for Progr. Peripheral Interface (8255) system control port [output]:
@@ -282,7 +282,7 @@ Bit(s)	Description	(Table P0394)
 	original PC: cassette motor off
  1	speaker data enable
  0	timer 2 gate to speaker enable
-Note:	bits 2 and 3 are sometimes used as turbo switch
+Notes:	bits 2 and 3 are sometimes used as turbo switch
 SeeAlso: PORT 0061h-W,#P00051,#P0395,#P0396,#P0397
 
 Bitfields for PPI (XT only) data port C:
@@ -342,7 +342,7 @@ Bit(s)	Description	(Table P0397)
  2	port B mode: 0 = mode0, 1 = mode1
  1	port B direction: 0 = output, 1 = input
  0	port C bits 3-0 direction: 0 = output, 1 = input
-Note:	Attention: Never write anything other than 99h to this port
+Notes:	Attention: Never write anything other than 99h to this port
 	  (better: never write anything to this port, only during BIOS
 	  init), as other values may connect multiple output drivers
 	  and will cause hardware damage in PC/XTs!  By setting command
@@ -542,7 +542,7 @@ Value		Description
 		bits 0-3 contain the mask for the bits to be pulsed.  A bit is
 		  pulsed if its mask bit is zero
 		bit0=system reset. Don't set to zero. Pulse only!
-Note:	 keyboard controllers are widely different from each other.  You
+Notes:	 keyboard controllers are widely different from each other.  You
 	   cannot generally exchange them between different machines.
 	 (Award) Derived from Award's Enhanced KB controller advertising sheet.
 	 (Compaq) Derived from the Compaq Deskpro 386 Tech. Ref. Guide.
@@ -565,7 +565,7 @@ Values for Chips&Technologies extension commands:
 	    bit 6: LED port (=0 Port1, =1 Port2)
 	    bits 5-0: one bit set selects corresponding bit in Port1/Port2 as
 		LED output
-Note:	these commands and any arguments are sent to PORT 0060h after writing
+Notes:	these commands and any arguments are sent to PORT 0060h after writing
 	  command A1h to PORT 0064h
 SeeAlso: #P0401
 
@@ -610,7 +610,7 @@ Bit(s)	Description	(Table P0405)
 	  configuration of turbo switch
  1	gate address A20
  0	system reset
-Note:	bit 0 (system reset) should always be set when writing the output
+Notes:	bit 0 (system reset) should always be set when writing the output
 	  port, as the system may hang constantly; use pulse output port
 	  (command FEh) instead.
 SeeAlso: #P0404
@@ -635,6 +635,6 @@ Values for keyboard controller RAM location:
 	nonzero if password matched
  16h	password discard scancode 1
  17h	password discard scancode 2
-Note:	make codes matching either discard scancode are ignored during password
+Notes:	make codes matching either discard scancode are ignored during password
 	  entry
 

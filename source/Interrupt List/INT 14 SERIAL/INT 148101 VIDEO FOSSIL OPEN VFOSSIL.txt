@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 148101
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 14 - VIDEO FOSSIL - OPEN VFOSSIL
 	AX = 8101h
@@ -10,7 +10,7 @@ INT 14 - VIDEO FOSSIL - OPEN VFOSSIL
 	CX = length of buffer in bytes
 Return: AX = 1954h if installed
 	    BH = highest VFOSSIL application function supported
-Note:	the number of initialized pointers in the application function table
+Notes:	the number of initialized pointers in the application function table
 	  will never exceed CX/4; if the buffer is large enough, BH+1 pointers
 	  will be initialized
 SeeAlso: AX=8102h
@@ -158,7 +158,7 @@ Call VioSetCurPos with:
 		WORD	cursor column
 		WORD	cursor row
 Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
-Note:	if either coordinate is invalid, the cursor is not moved
+Notes:	if either coordinate is invalid, the cursor is not moved
 SeeAlso: #00380
 
 (Table 00382)
@@ -227,7 +227,7 @@ Call VioWrtCellStr with:
 		WORD	length of cell string in bytes
 		DWORD	pointer to cell string to write
 Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
-Note:	write wraps at end of line and terminates if it reaches end of screen
+Notes:	write wraps at end of line and terminates if it reaches end of screen
 
 (Table 00389)
 Call VioWrtCharStr with:
@@ -237,7 +237,7 @@ Call VioWrtCharStr with:
 		WORD	length of character string
 		DWORD	pointer to character string to write
 Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
-Note:	write wraps at end of line and terminates if it reaches end of screen
+Notes:	write wraps at end of line and terminates if it reaches end of screen
 
 (Table 00390)
 Call VioWrtCharStrAttr with:
@@ -248,7 +248,7 @@ Call VioWrtCharStrAttr with:
 		WORD	length of character string
 		DWORD	pointer to character string to write
 Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
-Note:	write wraps at end of line and terminates if it reaches end of screen
+Notes:	write wraps at end of line and terminates if it reaches end of screen
 
 (Table 00391)
 Call VioWrtNAttr with:
@@ -258,7 +258,7 @@ Call VioWrtNAttr with:
 		WORD	number of times to write attribute
 		DWORD	pointer to display attribute to replicate
 Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
-Note:	write wraps at end of line and terminates if it reaches end of screen
+Notes:	write wraps at end of line and terminates if it reaches end of screen
 
 (Table 00392)
 Call VioWrtNCell with:
@@ -268,7 +268,7 @@ Call VioWrtNCell with:
 		WORD	number of times to write cell
 		DWORD	pointer to cell to replicate
 Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
-Note:	write wraps at end of line and terminates if it reaches end of screen
+Notes:	write wraps at end of line and terminates if it reaches end of screen
 
 (Table 00393)
 Call VioWrtNChar with:
@@ -278,5 +278,5 @@ Call VioWrtNChar with:
 		WORD	number of times to write character
 		DWORD	pointer to character to replicate
 Return: AX = error code (00h, 74h, 166h, 167h, 1B4h) (see #00373)
-Note:	write wraps at end of line and terminates if it reaches end of screen
+Notes:	write wraps at end of line and terminates if it reaches end of screen
 

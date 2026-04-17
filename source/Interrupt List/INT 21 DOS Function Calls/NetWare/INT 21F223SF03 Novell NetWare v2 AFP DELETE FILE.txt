@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F223SF03
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare v2+ - AFP DELETE FILE
 	AX = F223h subfn 03h
@@ -11,7 +11,7 @@ INT 21 - Novell NetWare v2+ - AFP DELETE FILE
 	DS:SI -> request packet (see #02306)
 	ES:DI ignored
 Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
-Note:	directories may be deleted if they are empty
+Notes:	directories may be deleted if they are empty
 SeeAlso: AH=F2h"Novell",AX=F223h/SF=02h,AX=F223h/SF=0Dh
 
 Format of NetWare "AFP Delete File" request packet:

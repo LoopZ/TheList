@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 215F98
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - LANtastic - SEND UNSOLICITED MESSAGE
 	AX = 5F98h
@@ -10,7 +10,7 @@ INT 21 - LANtastic - SEND UNSOLICITED MESSAGE
 Return: CF clear if successful
 	CF set on error
 	    AX = error code
-Note:	v4.1- return no errors
+Notes:	v4.1- return no errors
 SeeAlso: AX=5F99h
 
 Format of LANtastic message buffer:

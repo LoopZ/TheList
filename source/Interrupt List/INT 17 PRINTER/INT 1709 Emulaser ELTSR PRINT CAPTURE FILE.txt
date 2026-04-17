@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1709
   Category: P   printer enhancements
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 17 U - Emulaser ELTSR - PRINT CAPTURE FILE???
 	AH = 09h
@@ -14,7 +14,7 @@ Return: AX = status
 	    FFh failed
 Program: ELTSR is the resident portion of the Emulaser PostScript emulator by
 	  Vertisoft Systems, Inc.
-Note:	this function calls through to INT 1A/AX=E401h, and thus requires
+Notes:	this function calls through to INT 1A/AX=E401h, and thus requires
 	  that either ELSPL or Disk Spool II be installed
 SeeAlso: AH=0Ah,INT 1A/AX=E401h,INT 1A/AH=E5h
 

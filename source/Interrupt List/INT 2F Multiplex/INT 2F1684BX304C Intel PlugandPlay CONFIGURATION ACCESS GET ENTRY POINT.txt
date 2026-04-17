@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1684BX304C
   Category: x 	non-volatile config storage
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Intel Plug-and-Play - CONFIGURATION ACCESS - GET ENTRY POINT
 	AX = 1684h
@@ -10,7 +10,7 @@ INT 2F - Intel Plug-and-Play - CONFIGURATION ACCESS - GET ENTRY POINT
 	ES:DI = 0000h:0000h
 Return: ES:DI -> API entry point (see #02700)
 		  0000h:0000h if Configuration Access not loaded
-Note:	this API is often provided by a DOS device driver, in which case it
+Notes:	this API is often provided by a DOS device driver, in which case it
 	  is available whether or not MSWindows is running
 Index:	installation check;Plug-and-Play Configuration Access
 SeeAlso: AX=1684h/BX=0034h

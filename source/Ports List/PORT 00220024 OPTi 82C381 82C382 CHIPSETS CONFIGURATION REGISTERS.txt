@@ -1,11 +1,11 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P00220024
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0022-0024 - OPTi 82C381/82C382 CHIPSETS - CONFIGURATION REGISTERS
-Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+Notes:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
 	  even if the same register is being accessed a second time
 SeeAlso: PORT 0022h"82C206"
 
@@ -29,7 +29,7 @@ Values for OPTi 82C381/82C382 configuration register index:
  1Ah	non-cacheable block 2 size (see #P0132)
  1Bh	non-cacheable block 2 address (see #P0133)
  1Ch	cacheable area (see #P0134)
-Note:	registers 00h and 01h address the 82C381, the remaining registers
+Notes:	registers 00h and 01h address the 82C381, the remaining registers
 	  address the 82C382
 SeeAlso: #P0189
 
@@ -102,7 +102,7 @@ Bit(s)	Description	(Table P0126)
  2	enable D8000-DBFFF
  1	enable D4000-D7FFF
  0	enable D0000-D3FFF
-Note:	0 = disable Shadow RAM (default), 1 = enable Shadow RAM
+Notes:	0 = disable Shadow RAM (default), 1 = enable Shadow RAM
 SeeAlso: #P0121
 
 Bitfields for OPTi 82C381/82C382 memory bank configuration:
@@ -199,7 +199,7 @@ SeeAlso: #P0121,#P0131,#P0133
 Bitfields for OPTi 82C381/82C382 non-cacheable block address:
 Bit(s)	Description	(Table P0133)
  7-0	bits 23-16 of non-cacheable block's address
-Note:	the selected address must be a multiple of the block size
+Notes:	the selected address must be a multiple of the block size
 	  selected by register 18h/1Ah
 SeeAlso: #P0121,#P0132,#P0134
 

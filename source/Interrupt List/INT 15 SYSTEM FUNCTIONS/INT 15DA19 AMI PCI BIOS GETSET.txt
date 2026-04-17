@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 15DA19
   Category: -   reserved (and not otherwise classified)
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 U - AMI PCI BIOS - GET/SET ???
 	AX = DA19h
@@ -20,6 +20,6 @@ Return: CF clear if successful
 	    BX,DX = ??? (subfunctions 00h and 01h only)
 	CF set on error
 	    AH = error code (86h unsupported subfunction)
-Note:	the first ??? is stored in CMOS RAM locations 1Bh-1Eh, the second in
+Notes:	the first ??? is stored in CMOS RAM locations 1Bh-1Eh, the second in
 	  locations 1Fh-22h in the v1.00.05.AX1 BIOS
 

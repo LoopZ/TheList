@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 10F2
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - EGA Register Interface Library - READ REGISTER RANGE
 	AH = F2h
@@ -11,7 +11,7 @@ INT 10 - EGA Register Interface Library - READ REGISTER RANGE
 	DX = group index (00h,08h,10h,18h) (see #00223)
 	ES:BX -> buffer, CL bytes
 Return: nothing
-Note:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
+Notes:	the RIL is provided by EGA.SYS, the Microsoft Mouse driver, the OS/2
 	  compatibility box, and others
 SeeAlso: AH=F0h"EGA",AH=F3h"EGA",AH=FAh"EGA"
 

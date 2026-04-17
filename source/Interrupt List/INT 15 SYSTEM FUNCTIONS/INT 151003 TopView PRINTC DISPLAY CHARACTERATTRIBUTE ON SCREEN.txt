@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 151003
   Category: Q 	DESQview/TopView and Quarterdeck programs
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - TopView - "PRINTC" - DISPLAY CHARACTER/ATTRIBUTE ON SCREEN
 	AX = 1003h
@@ -10,6 +10,6 @@ INT 15 - TopView - "PRINTC" - DISPLAY CHARACTER/ATTRIBUTE ON SCREEN
 	BL = character
 	DX = segment of object handle for window
 Return: nothing
-Note:	BX=0000h does not display anything, it only positions the hardware
+Notes:	BX=0000h does not display anything, it only positions the hardware
 	  cursor to the logical cursor's current position
 

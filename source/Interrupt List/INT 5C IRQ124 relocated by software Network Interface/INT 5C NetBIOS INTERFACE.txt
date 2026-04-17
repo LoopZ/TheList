@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 5C
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 5C - NetBIOS INTERFACE
 	ES:BX -> network control block (NCB) (see #03249)
@@ -131,7 +131,7 @@ Values for NetBIOS command code field in NCB:
  7Fh	Beame&Whiteside BWNB installation check (returns with return code and
 	  completion code both set to 03h, while invalid functions return only
 	  return code field set to 03h)
-Note:	OR any of the above except 70h with 80h for non-waiting call
+Notes:	OR any of the above except 70h with 80h for non-waiting call
 
 Format of NetBIOS structure "astatus":
 Offset	Size	Description	(Table 03251)
@@ -160,7 +160,7 @@ Offset	Size	Description	(Table 03251)
  38h	WORD  as_bufsize
  3Ah	WORD  as_names
  3Ch 16 name structures	 as_name (see #03252)
-Note:	it has been reported that the first field should be 16 bytes instead
+Notes:	it has been reported that the first field should be 16 bytes instead
 	  of six (shifthing all remaining fields by ten bytes)
 
 Format of NetBIOS structure "name":

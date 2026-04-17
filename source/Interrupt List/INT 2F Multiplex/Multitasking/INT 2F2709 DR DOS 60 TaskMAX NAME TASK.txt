@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F2709
   Category: T 	DOS-based task switchers/multitaskers
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - DR DOS 6.0 TaskMAX - NAME TASK
 	AX = 2709h
@@ -14,7 +14,7 @@ Return: AL = task flags
 	    81h ID in use, task name fixed
 	BX = task ID
 	ES:DI -> name in task name table (see AX=2701h)
-Note:	the task retains the given name until it terminates or the name is
+Notes:	the task retains the given name until it terminates or the name is
 	  removed by specifying a name of 8 NULs.
 SeeAlso: AX=2701h,AX=2707h
 

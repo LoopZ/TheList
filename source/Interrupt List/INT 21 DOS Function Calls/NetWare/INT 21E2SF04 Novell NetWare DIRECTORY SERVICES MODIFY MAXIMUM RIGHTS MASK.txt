@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E2--SF04
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - DIRECTORY SERVICES - MODIFY MAXIMUM RIGHTS MASK
 	AH = E2h subfn 04h
@@ -22,7 +22,7 @@ Offset	Size	Description	(Table 01850)
  05h	BYTE	rights to revoke (see #01849)
  06h	BYTE	length of directory path (00h-FFh)
  07h  N BYTEs	directory path
-Note:	the rights specified at offset 05h are revoked first, and then the
+Notes:	the rights specified at offset 05h are revoked first, and then the
 	  rights specified at offset 04h are added to the resulting rights
 	  mask
 SeeAlso: #01847,#01851

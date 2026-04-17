@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1506
   Category: T 	DOS-based task switchers/multitaskers
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - MultiDOS Plus - READ MAILBOX
 	AH = 06h
@@ -14,7 +14,7 @@ Return: AH = status
 		CX = number of bytes copied
 		DX = actual length of message
 	    02h invalid mailbox number
-Note:	if the caller's buffer is not large enough, the message is truncated
+Notes:	if the caller's buffer is not large enough, the message is truncated
 	  and the remainder is lost
 SeeAlso: AH=04h"MultiDOS",AH=05h"MultiDOS"
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: B379
   Category: U 	resident utilities
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT B3 - ZIPKEY - LOOK UP ZIPCODES FOR A GIVEN CITY
 	AH = 79h
@@ -13,7 +13,7 @@ Return: AL = ZIPKEY state code of first matching state
 	DX = zipcode region of first match (0-999)
 	CL = last two digits of first zipcode in first range (0-99)
 	CH = last two digits of last zipcode in first range (0-99)
-Note:	to find all matching cities, repeat search with BL set to one more than
+Notes:	to find all matching cities, repeat search with BL set to one more than
 	  the returned AL
 SeeAlso: AH=78h,AH=7Ah
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 14ED
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 14 - TelAPI - "telpoll" - POLL TELNET SESSION FOR CONNECTION COMPLETION
 	AH = EDh
@@ -10,6 +10,6 @@ INT 14 - TelAPI - "telpoll" - POLL TELNET SESSION FOR CONNECTION COMPLETION
 Return: AX = status (0000h,0001h,FFFFh,etc.) (see also #00397)
 	    0000h session now connected
 	    0001h connection still in progress
-Note:	this function is not supported by the Microdyne TelAPI v3.7
+Notes:	this function is not supported by the Microdyne TelAPI v3.7
 SeeAlso: AH=EDh,AX=FF00h
 

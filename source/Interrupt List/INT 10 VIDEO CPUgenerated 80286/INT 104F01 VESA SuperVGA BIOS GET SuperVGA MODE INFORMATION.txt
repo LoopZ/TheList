@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 104F01
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - VESA SuperVGA BIOS - GET SuperVGA MODE INFORMATION
 	AX = 4F01h
@@ -79,7 +79,7 @@ Offset	Size	Description	(Table 00079)
  3Dh	BYTE	linear modes: bit position of reserved mask LSB
  3Eh	DWORD	maximum pixel clock for graphics video mode, in Hz
  42h 190 BYTEs	reserved (0)
-Note:	while VBE 1.1 and higher will zero out all unused bytes of the buffer,
+Notes:	while VBE 1.1 and higher will zero out all unused bytes of the buffer,
 	  v1.0 did not, so applications that want to be backward compatible
 	  should clear the buffer before calling
 

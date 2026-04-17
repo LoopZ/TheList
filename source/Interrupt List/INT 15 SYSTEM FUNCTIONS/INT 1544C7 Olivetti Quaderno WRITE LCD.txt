@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1544C7
   Category: b 	vendor-specific BIOS extensions
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - Olivetti Quaderno - WRITE LCD
 	AX = 44C7h
@@ -14,6 +14,6 @@ INT 15 - Olivetti Quaderno - WRITE LCD
 		BL = right alphanumeric character on display (see #00466)
 		CL = colon flags (see #00467)
 Return: nothing
-Note:	this function is also supported by XBIOS.COM
+Notes:	this function is also supported by XBIOS.COM
 SeeAlso: AX=44C6h
 

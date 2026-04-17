@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FD880
   Category: N   network
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F U - Novell NetWare Lite v1.0+ - SERVER - INSTALLATION CHECK
 	AX = D880h
@@ -13,7 +13,7 @@ Return: AL = FFh if installed
 	    ES:DI -> private API entry point (see #03090)
 	    SI = ??? (offset of configuration info?)
 	    AH may be destroyed
-Note:	this function is also supported by Personal NetWare SERVER, but DI is
+Notes:	this function is also supported by Personal NetWare SERVER, but DI is
 	  not set; instead, ES:SI points at the API entry point
 SeeAlso: AX=7A00h,AX=D800h,INT 2A/AX=D852h
 

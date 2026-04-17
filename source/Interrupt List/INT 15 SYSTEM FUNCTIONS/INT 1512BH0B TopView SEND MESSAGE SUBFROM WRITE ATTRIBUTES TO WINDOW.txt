@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1512--BH0B
   Category: Q 	DESQview/TopView and Quarterdeck programs
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - TopView - SEND MESSAGE - "SUBFROM" - WRITE ATTRIBUTES TO WINDOW
 	AH = 12h
@@ -15,7 +15,7 @@ INT 15 - TopView - SEND MESSAGE - "SUBFROM" - WRITE ATTRIBUTES TO WINDOW
 	STACK:	DWORD number of attributes to write
 		DWORD address of attributes
 Return: STACK popped
-Note:	the attributes are written starting at the current cursor position; the
+Notes:	the attributes are written starting at the current cursor position; the
 	  cursor is left just after the last position written
 SeeAlso: AH=12h/BH=0Ah"WINDOW"
 

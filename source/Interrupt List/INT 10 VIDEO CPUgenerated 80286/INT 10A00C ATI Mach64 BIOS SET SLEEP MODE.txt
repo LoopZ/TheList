@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 10A00C
   Category: p 	power management
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - ATI Mach64 BIOS - SET SLEEP MODE
 	AX = A00Ch
@@ -14,6 +14,6 @@ INT 10 - ATI Mach64 BIOS - SET SLEEP MODE
 Return: AH = status
 	    00h successful
 	    01h failed
-Note:	CL bit 2 affects values written to video card's ports
+Notes:	CL bit 2 affects values written to video card's ports
 SeeAlso: AX=A000h,AX=A00Dh,AX=4F00h,AX=4F10h/BL=01h
 

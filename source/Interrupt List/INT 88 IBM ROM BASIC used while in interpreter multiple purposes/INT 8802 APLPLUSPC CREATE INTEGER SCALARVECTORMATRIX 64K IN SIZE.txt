@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 88--02
   Category: r 	runtime support
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 88 - APL*PLUS/PC - CREATE INTEGER SCALAR/VECTOR/MATRIX <64K IN SIZE
 	AL = 02h
@@ -12,6 +12,6 @@ INT 88 - APL*PLUS/PC - CREATE INTEGER SCALAR/VECTOR/MATRIX <64K IN SIZE
 	DX = second dimension (if any)
 Return: ES:DI -> object
 	CX = number of elements in the object
-Note:	each dimension must be 32767 or smaller
+Notes:	each dimension must be 32767 or smaller
 SeeAlso: AL=01h,AL=08h,INT C8"APL"
 

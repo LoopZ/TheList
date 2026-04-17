@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1011
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - VIDEO - Realtek RTVGA - TEXT-MODE CHARACTER GENERATOR FUNCTIONS
 	AH = 11h
@@ -14,7 +14,7 @@ INT 10 - VIDEO - Realtek RTVGA - TEXT-MODE CHARACTER GENERATOR FUNCTIONS
 		 parameters are the same as for AX=1112h
 	AL = 0Bh load ROM 8x16 character set (VGA) and recalculate mode parms
 		 parameters are the same as for AX=1114h
-Note:	these functions should only be called under the same conditions as
+Notes:	these functions should only be called under the same conditions as
 	  AL=1xh (see AX=1110h"EGA")
 SeeAlso: AX=1100h,AX=1110h"CHARGEN",AX=1110h"Realtek",MEM 0040h:0084h
 Index:	text mode;font|text mode;screen rows

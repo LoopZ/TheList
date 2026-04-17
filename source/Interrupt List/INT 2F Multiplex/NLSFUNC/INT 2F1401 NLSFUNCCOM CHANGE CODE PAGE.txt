@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1401
   Category: U   resident utilities
       Flag: C   callout or callback (usually hooked rather than called)
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F CU - NLSFUNC.COM - CHANGE CODE PAGE
 	AX = 1401h
@@ -13,7 +13,7 @@ INT 2F CU - NLSFUNC.COM - CHANGE CODE PAGE
 Return: AL = status
 	     00h successful
 	     else DOS error code
-Note:	this function is called by the DOS v3.3+ kernel
+Notes:	this function is called by the DOS v3.3+ kernel
 SeeAlso: AX=1400h"NLSFUNC",AX=1402h"NLSFUNC",INT 21/AH=66h
 
 Format of DOS 3.30 internal code page structure:

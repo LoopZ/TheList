@@ -1,13 +1,13 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: Pxxxx
    Sort As: Pxxxx+02
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT xxxx - Adaptec AIC-78xx PCI SCSI controller
 Range:	anywhere on 256-byte boundary
-Note:	Adaptec AIC-78xx SCSI controllers are basically compatible with the
+Notes:	Adaptec AIC-78xx SCSI controllers are basically compatible with the
 	  AIC-777x SCSI controllers
 SeeAlso: PORT 0340h-035Fh"Adaptec AHA-152x",PORT 1C00h-1CBFh"Adaptec AIC-777x"
 
@@ -80,7 +80,7 @@ SeeAlso: PORT 0340h-035Fh"Adaptec AHA-152x",PORT 1C00h-1CBFh"Adaptec AIC-777x"
 +09E  R-  queue out count register (QOUTCNT)
 	  number of the SCBs in the queue out
 +0A0  RW  SCB array (32 bytes) (see #P1003)
-Note:	AIC-7850 SCSI controllers sporatically get garbage in the MSBs of the
+Notes:	AIC-7850 SCSI controllers sporatically get garbage in the MSBs of the
 	  queue in/out count registers (QINCNT/QOUTCNT)
 
 Bitfields for AIC-7870 board control register (BRDCTL):
@@ -163,7 +163,7 @@ Bit(s)	Description	(Table P1053)
  2	reserved
  1	"SELWIDE"
  0	reserved
-Note:	clearing bits 7-6 will take the card out of diagnostic mode and make
+Notes:	clearing bits 7-6 will take the card out of diagnostic mode and make
 	  the host adapter LED follow bus activity
 SeeAlso: #P0988
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 131A
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 13 - ESDI FIXED DISK - FORMAT UNIT (PS)
 	AH = 1Ah
@@ -13,7 +13,7 @@ INT 13 - ESDI FIXED DISK - FORMAT UNIT (PS)
 Return: CF set on error
 	CF clear if successful
 	AH = status (see #00234 at AH=01h)
-Note:	if periodic interrupt selected, INT 15/AH=0Fh is called after each
+Notes:	if periodic interrupt selected, INT 15/AH=0Fh is called after each
 	  cylinder is formatted
 SeeAlso: AH=07h,INT 15/AH=0Fh
 

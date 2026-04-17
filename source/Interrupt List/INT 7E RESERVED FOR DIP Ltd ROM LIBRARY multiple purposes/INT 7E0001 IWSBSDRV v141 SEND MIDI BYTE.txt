@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7E0001
   Category: s 	sound/speech
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7E - IWSBSDRV v1.41 - SEND MIDI BYTE
 	AX = 0001h
@@ -14,7 +14,7 @@ Return: EAX = status
 	    FFFFFFFFh on error (function disabled)
 Program: IWSBSDRV is the resident portion of the InterWave SBOS sound card
 	  emulator for the Gravis UltraSound Plug-and-Play
-Note:	this function is only supported if the MIDISIMPLE device has been
+Notes:	this function is only supported if the MIDISIMPLE device has been
 	  opened via the InterWave Game API (see INT 2F/AX=CD21h)
 SeeAlso: AX=0002h,INT 2F/AX=CD21h,#03074
 

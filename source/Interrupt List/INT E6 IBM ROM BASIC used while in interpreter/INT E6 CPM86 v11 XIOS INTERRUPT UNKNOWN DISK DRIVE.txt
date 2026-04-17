@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: E6
   Category: O 	other operating systems
       Flag: C 	callout or callback (usually hooked rather than called)
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT E6 C - CP/M-86 v1.1 - XIOS INTERRUPT / UNKNOWN DISK DRIVE
 	AX = function which accessed drive
@@ -14,7 +14,7 @@ INT E6 C - CP/M-86 v1.1 - XIOS INTERRUPT / UNKNOWN DISK DRIVE
 Return:	AX = return value
 Desc:	called by CP/M-86 kernel when an unknown disk drive is used, which
 	  permits an application to provide access services
-Note:	This was labelled "XIOS interrupt" in later Digital Research
+Notes:	This was labelled "XIOS interrupt" in later Digital Research
 	  documentation (CCP/M-86) and "for the version 1.0 back door".
 
 Format of CP/M-86 unknown-drive paramter block:
@@ -25,7 +25,7 @@ Offset	Size	Description	(Table 04063)
  04h	WORD	sector number
  06h	DWORD	data transfer address
  0Ah	BYTE	verify flag (nonzero to verify writes)
-Note:	in CP/M-86 v1.1, this is actually a portion of a BIOS disk data
+Notes:	in CP/M-86 v1.1, this is actually a portion of a BIOS disk data
 	  table which starts one byte before the address given to the INT E6
 	  handler; that extra byte is the current logical drive number
 

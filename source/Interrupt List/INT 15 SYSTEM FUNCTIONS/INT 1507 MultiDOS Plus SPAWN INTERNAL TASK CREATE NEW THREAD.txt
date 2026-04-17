@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1507
   Category: T 	DOS-based task switchers/multitaskers
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - MultiDOS Plus - SPAWN INTERNAL TASK (CREATE NEW THREAD)
 	AH = 07h
@@ -12,6 +12,6 @@ Return: AH = status
 	    00h successful
 	    01h no free task control blocks
 	    02h no free memory for task's stack
-Note:	execution returns immediately to calling task
+Notes:	execution returns immediately to calling task
 SeeAlso: AH=08h"MultiDOS",AH=09h"MultiDOS",AH=13h"MultiDOS"
 

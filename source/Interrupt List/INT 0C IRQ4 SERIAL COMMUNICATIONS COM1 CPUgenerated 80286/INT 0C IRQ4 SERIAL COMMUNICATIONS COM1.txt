@@ -1,13 +1,13 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 0C
   Category: H 	hardware
       Flag: C 	callout or callback (usually hooked rather than called)
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 0C C - IRQ4 - SERIAL COMMUNICATIONS (COM1)
 Desc:	automatically asserted by the UART when COM1 needs attention, if the
 	  UART has been programmed to generate interrupts
-BUG:	this vector is modified but not restored by Direct Access v4.0, and
+BUGS:	this vector is modified but not restored by Direct Access v4.0, and
 	  may be left dangling by other programs written with the same version
 	  of compiled BASIC
 Notes:	on many PC's, COM3 shares this interrupt

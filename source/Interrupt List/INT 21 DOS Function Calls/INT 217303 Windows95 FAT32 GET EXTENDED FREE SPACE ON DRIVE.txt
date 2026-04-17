@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 217303
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Windows95 - FAT32 - GET EXTENDED FREE SPACE ON DRIVE
 	AX = 7303h
@@ -21,7 +21,7 @@ Notes:	on DOS versions which do not support the FAT32 calls, this function
 	  will return CF set/AX = 0015h (invalid drive). In a DOS box, omitting
 	  the drive letter (DS:DX -> "\") results in the free space for the
 	  current default drive, as expected
-BUG:	this function returns a maximum of 2GB free space even on an FAT32
+BUGS:	this function returns a maximum of 2GB free space even on an FAT32
 	  partition larger than 2GB under some versions of Win95 and Win98,
 	  apparently by limiting the number of reported free clusters to no
 	  more than 64K -- but only in a DOS window if a TSR has hooked INT 21h

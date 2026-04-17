@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FCB01
   Category: F 	FAX
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Communicating Applications Specification - SUBMIT A TASK
 	AX = CB01h
 	DS:DX -> ASCIZ name of task control file
 Return: AX >= 0: event handle
 	AX < 0: two's complement of error code (see #03048)
-Note:	files needed for an event must be kept until task is complete or error
+Notes:	files needed for an event must be kept until task is complete or error
 SeeAlso: AX=CB0Bh,AX=CB15h
 
 (Table 03048)

@@ -1,14 +1,14 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7F11
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7F - Alloy NTNX, MW386 - SEND DATAGRAM
 	AH = 11h
 	DX:SI -> request block (see #03953)
 Return: AL = status (see #03952)
-Note:	if wildcard channel FFh used, actual channel number will be filled in
+Notes:	if wildcard channel FFh used, actual channel number will be filled in
 SeeAlso: AH=12h
 
 (Table 03952)

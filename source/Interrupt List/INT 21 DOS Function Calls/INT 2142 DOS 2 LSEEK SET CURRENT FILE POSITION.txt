@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2142
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 2+ - "LSEEK" - SET CURRENT FILE POSITION
 	AH = 42h
@@ -23,7 +23,7 @@ Notes:	for origins 01h and 02h, the pointer may be positioned before the
 	  be extended by the next write (see AH=40h); for FAT32 drives, the
 	  file must have been opened with AX=6C00h with the "extended size"
 	  flag in order to expand the file beyond 2GB
-BUG:	using this method to grow a file from zero bytes to a very large size
+BUGS:	using this method to grow a file from zero bytes to a very large size
 	  can corrupt the FAT in some versions of DOS; the file should first
 	  be grown from zero to one byte and then to the desired large size
 SeeAlso: AH=24h,AX=7142h,INT 2F/AX=1228h

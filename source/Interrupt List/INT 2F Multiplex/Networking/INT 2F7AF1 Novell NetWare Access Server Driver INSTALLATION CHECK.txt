@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F7AF1
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Novell NetWare - Access Server Driver - INSTALLATION CHECK
 	AX = 7AF1h
@@ -50,7 +50,7 @@ Return: CF clear if successful
 	CF set on error
 	interrupts disabled
 	CX = number of bytes read
-Note:	the driver will add a NUL to the buffer when a break signal is detected
+Notes:	the driver will add a NUL to the buffer when a break signal is detected
 SeeAlso: #02912,#02913
 
 (Table 02913)
@@ -195,7 +195,7 @@ Offset	Size	Description	(Table 02924)
  0Eh	WORD	input framing errors
  10h	WORD	lost characters due to hardware overrun
  12h	WORD	lost characters due to data buffer overrun
-Note:	the counts are not allowed to wrap around; once a count reaches FFFFh
+Notes:	the counts are not allowed to wrap around; once a count reaches FFFFh
 	  or FFFFFFFFh, it is no longer incremented
 
 Format of Access Server XON/XOFF characters:

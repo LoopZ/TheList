@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E7
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER DATE AND TIME
 	AH = E7h
@@ -10,7 +10,7 @@ INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER DATE AND TIME
 Return: AL = error code
 	    00h successful
 	    FFh unsuccessful
-Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+,
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+,
 	  Alloy NTNX, and Banyan VINES
 SeeAlso: AH=2Ah,AH=2Ch,AX=5FC0h,AH=E3h/SF=CAh,AX=F214h
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6002
   Category: G 	debuggers/debugging tools
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 60 - MDEBUG - SET STATUS
 	AH = 02h
@@ -25,7 +25,7 @@ Return: AX = return code
 	    FFFDh display mode is invalid
 	    0000h successful, status changed
 	    else AL = error reasons (see #03307)
-Note:	the values of the registers SE and OF are always changed, the other
+Notes:	the values of the registers SE and OF are always changed, the other
 	  values are only changed if they are valid
 SeeAlso: AH=00h"MDEBUG"
 Index:	hotkeys;MDEBUG

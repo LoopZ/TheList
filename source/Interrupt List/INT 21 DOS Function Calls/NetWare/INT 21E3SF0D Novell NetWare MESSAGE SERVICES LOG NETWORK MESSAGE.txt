@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E3--SF0D
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - MESSAGE SERVICES - LOG NETWORK MESSAGE
 	AH = E3h subfn 0Dh
@@ -11,7 +11,7 @@ INT 21 - Novell NetWare - MESSAGE SERVICES - LOG NETWORK MESSAGE
 Return: AL = status
 	    00h successful
 Desc:	append a line to the default file server's NET$LOG.MSG file
-Note:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
+Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
 	  Alloy NTNX
 SeeAlso: AH=E1h/SF=09h
 

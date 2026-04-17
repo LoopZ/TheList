@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: D404
   Category: O 	other operating systems
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT D4 - PC-MOS/386 v3.0+ - GET TASK CONTROL BLOCK
 	AH = 04h
@@ -11,7 +11,7 @@ Return: CF clear if successful
 	    ES = segment of Task Control Block (TCB) (see #04006)
 	CF set on error
 	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
-Note:	superseded by AH=27h
+Notes:	superseded by AH=27h
 SeeAlso: AH=02h,AH=27h,AH=28h,AH=29h,AH=2Ah,INT 38
 
 Format of PC-MOS/386 Task Control Block:

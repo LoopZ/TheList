@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E3--SF46
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - BINDERY SERVICES - GET BINDERY ACCESS LEVEL
 	AH = E3h subfn 46h
@@ -10,7 +10,7 @@ INT 21 - Novell NetWare - BINDERY SERVICES - GET BINDERY ACCESS LEVEL
 	ES:DI -> reply buffer (see #01958)
 Return: AL = status
 	    00h successful
-Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
 SeeAlso: AX=F217h/SF=46h
 
 Format of NetWare "Get Bindery Access Level" request buffer:

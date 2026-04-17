@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: E0----CL86
   Category: O 	other operating systems
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT E0 - ConcCP/M,DR Multiuser DOS - "Q_MAKE" - CREATE MESSAGE QUEUE
 	CL = 86h
 	DS:DX -> queue descriptor (see #04042)
 Return: AX = status (0000h success, FFFFh failure)
 	CX = error code (see #04021)
-Note:	also supported by REAL/32
+Notes:	also supported by REAL/32
 SeeAlso: INT E0/CL=87h
 
 Format of DR Multiuser DOS queue descriptor:

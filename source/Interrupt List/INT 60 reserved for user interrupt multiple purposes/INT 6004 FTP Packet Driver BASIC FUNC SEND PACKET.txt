@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6004
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 60 - FTP Packet Driver - BASIC FUNC - SEND PACKET
 	AH = 04h
@@ -11,6 +11,6 @@ INT 60 - FTP Packet Driver - BASIC FUNC - SEND PACKET
 Return: CF set on error
 	    DH = error code (see #03305)
 	CF clear if successful
-Note:	the buffer may be modified immediately upon return from this call
+Notes:	the buffer may be modified immediately upon return from this call
 SeeAlso: AH=0Bh
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1505
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - CD-ROM - READ VTOC
 	AX = 1505h
@@ -13,6 +13,6 @@ Return: CF set on error
 	    AX = error code (15=invalid drive,21=not ready)
 	CF clear if successful
 	    AX = volume descriptor type (1=standard,FFh=terminator,0=other)
-Note:	This function was not supported by Novell DOS 7 NWCDEX prior to the
+Notes:	This function was not supported by Novell DOS 7 NWCDEX prior to the
 	  08/16/94 update
 

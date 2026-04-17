@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P9AE89AE9
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 9AE8-9AE9 - 8514/A and compatible - GRAPHICS PROCESSOR STATUS / COMMAND
 Notes:	supported by ATI Mach8 and Mach32 chipsets
@@ -24,7 +24,7 @@ Bit(s)	Description	(Table P1035)
  7	queue status flag 1
  6-0	queue status flags 2-8 (0=empty, 1=filled)
 	(each bit represents a position in queue)
-Note:	queue status flag N is cleared whenever at least N slots are available
+Notes:	queue status flag N is cleared whenever at least N slots are available
 	  in the FIFO; at any given time, the CPU may write only as many values
 	  to the FIFO as there are slots available
 SeeAlso: #P1036

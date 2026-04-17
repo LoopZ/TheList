@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1512--BH12
   Category: Q 	DESQview/TopView and Quarterdeck programs
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - DESQview 2.50+ - SEND MESSAGE - "GETNAME" - GET NAME OF MAILBOX
 	AH = 12h
@@ -15,6 +15,6 @@ INT 15 - DESQview 2.50+ - SEND MESSAGE - "GETNAME" - GET NAME OF MAILBOX
 	       DWORD pointer to buffer
 Return: STACK: DWORD length of returned name (or size of buffer, if less)
 Program: DESQview 2.5x is distributed as part of DESQview/X 1.0x
-Note:	the returned name is not NUL-terminated
+Notes:	the returned name is not NUL-terminated
 SeeAlso: AH=12h/BH=11h"SETNAME",AX=DE0Eh
 

@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F111C
   Category: N   network
       Flag: C   callout or callback (usually hooked rather than called)
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F CU - NETWORK REDIRECTOR - FINDNEXT
 	AX = 111Ch
@@ -18,6 +18,6 @@ Return: CF set on error
 	    [DTA] = updated findfirst search data
 		    (bit 7 of first byte must be set)
 	    [DTA+15h] = standard directory entry for file (see #01352)
-Note:	this function is called by the DOS 3.1+ kernel
+Notes:	this function is called by the DOS 3.1+ kernel
 SeeAlso: AX=1119h,AX=111Bh,INT 21/AH=1Ah,INT 21/AH=4Fh
 

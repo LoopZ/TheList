@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 217139
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Windows95 - LONG FILENAME - MAKE DIRECTORY
 	AX = 7139h
@@ -11,7 +11,7 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code (see #01680)
 		7100h if function not supported
-Note:	for compatibility with DOS versions prior to v7.00, the carry flag
+Notes:	for compatibility with DOS versions prior to v7.00, the carry flag
 	  should be set on call to ensure that it is set on exit
 SeeAlso: AH=39h,AX=713Ah,AX=713Bh,AX=43FFh/BP=5053h
 

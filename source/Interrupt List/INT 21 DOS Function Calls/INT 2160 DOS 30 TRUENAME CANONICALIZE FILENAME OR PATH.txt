@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2160
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 3.0+ - "TRUENAME" - CANONICALIZE FILENAME OR PATH
 	AH = 60h
@@ -72,7 +72,7 @@ Notes:	the input path need not actually exist
 	  "Cdex.   D:\path", where "D" is the CD-ROM drive letter
 	the Windows95 MSCDEX-replacement VxD returns "D:\path", even though the
 	  MS-DOS 7.00 MSCDEX behaves identically to older versions (above)
-BUG:	Windows95 incorrectly treats filenames where the first two characters
+BUGS:	Windows95 incorrectly treats filenames where the first two characters
 	  after the drive letter and colon are both slashes (either forward
 	  or backward) as a UNC (network name) and requires several seconds
 	  to attempt to resolve the name before returning an unchanged

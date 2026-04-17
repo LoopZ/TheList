@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 15C3
   Category: B 	BIOS
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - SYSTEM - ENABLE/DISABLE WATCHDOG TIMEOUT (PS50+)
 	AH = C3h
@@ -14,6 +14,6 @@ INT 15 - SYSTEM - ENABLE/DISABLE WATCHDOG TIMEOUT (PS50+)
 	    03h enable Gearbox system
 Return: CF set on error
 	CF clear if successful
-Note:	the watchdog timer generates an NMI
+Notes:	the watchdog timer generates an NMI
 SeeAlso: INT 21/AH=2Bh/CX=6269h"WDTSR"
 

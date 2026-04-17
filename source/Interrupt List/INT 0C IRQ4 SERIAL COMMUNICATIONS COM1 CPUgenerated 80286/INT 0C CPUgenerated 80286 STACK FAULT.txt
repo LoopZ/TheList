@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 0C
   Category: C 	CPU-generated
       Flag: C 	callout or callback (usually hooked rather than called)
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 0C C - CPU-generated (80286+) - STACK FAULT
 Desc:	this interrupt is generated in protected mode on a stack overflow or
@@ -12,7 +12,7 @@ Desc:	this interrupt is generated in protected mode on a stack overflow or
 	generated on any access that crosses segment limits using SS
 	collides with IRQ #4 default handler. in Real 86 Mode, the two may
 	  be distinguished by checking the In-Service Register of the PIC
-Note:	the 80286 will shut down in real mode if SP=1 before a push.  On the
+Notes:	the 80286 will shut down in real mode if SP=1 before a push.  On the
 	  PC AT and compatibles, external circuitry generates a reset on
 	  shutdown.
 SeeAlso: INT 0B"CPU",INT 0D"CPU"

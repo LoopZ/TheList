@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7FABCDBX0000
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7F - IBM 8516 Touch Screen Device Driver - GET API ENTRY
 	AX = ABCDh
@@ -27,7 +27,7 @@ Notes:	each driver function takes two stack parameters using Pascal calling
 Format of 8516 Touch Screen Function 00h parameter block:
 Offset	Size	Description	(Table 03968)
  00h	WORD	0000h (function number)
-Note:	this function should be called before any other device driver functions
+Notes:	this function should be called before any other device driver functions
 
 Format of 8516 Touch Screen Function 00h results buffer:
 Offset	Size	Description	(Table 03969)

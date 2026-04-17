@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 213F-sort-as-213F++
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 2+ - "READ" - READ FROM FILE OR DEVICE
 	AH = 3Fh
@@ -19,7 +19,7 @@ Notes:	data is read beginning at current file position, and the file position
 	  read occurred
 	if reading from CON, read stops at first CR
 	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
-BUG:	Novell NETX.EXE v3.26 and 3.31 do not set CF if the read fails due to
+BUGS:	Novell NETX.EXE v3.26 and 3.31 do not set CF if the read fails due to
 	  a record lock (see AH=5Ch), though it does return AX = 0005h; this
 	  has been documented by Novell
 SeeAlso: AH=27h,AH=40h,AH=93h,INT 2F/AX=1108h,INT 2F/AX=1229h

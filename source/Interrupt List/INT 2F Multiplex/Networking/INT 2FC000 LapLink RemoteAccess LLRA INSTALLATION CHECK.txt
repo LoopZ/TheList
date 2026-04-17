@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FC000
   Category: N   network
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F U - LapLink RemoteAccess (LLRA) - INSTALLATION CHECK
 	AX = C000h
@@ -15,7 +15,7 @@ Return: AL = FFh if one of the components is installed
 	DL = major version number
 	DH = minor version number
 Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
-Note:	LapLink components are installed in the order listed above, but not
+Notes:	LapLink components are installed in the order listed above, but not
 	  necessarily all four; each gets its own multiplex number (default
 	  C0h-C3h)
 SeeAlso: AX=C002h"LapLink",AX=C205h"LapLink",AX=C2F0h"LapLink"

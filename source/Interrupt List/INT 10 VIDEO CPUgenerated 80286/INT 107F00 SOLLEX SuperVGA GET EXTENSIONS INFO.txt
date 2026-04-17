@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 107F00
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - SOLLEX SuperVGA - GET EXTENSIONS INFO
 	AX = 7F00h
@@ -50,7 +50,7 @@ Offset	Size	Description	(Table 00201)
  2Dh	DWORD	offset to relocatable portion of SOLLEX extensions (for CONFIG)
  2Eh	DWORD	offset to unused section of the extensions ROM
  31h 16 BYTEs	reserved
-Note:	all DWORD pointers initially require segment fixups; if the segment
+Notes:	all DWORD pointers initially require segment fixups; if the segment
 	  is 0000h, it should be changed to the returned ES, otherwise it
 	  may be assumed to be correct
 

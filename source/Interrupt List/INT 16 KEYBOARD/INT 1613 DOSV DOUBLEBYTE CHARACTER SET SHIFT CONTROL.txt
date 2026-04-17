@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1613
   Category: J 	Japanese
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 16 - DOS/V - DOUBLE-BYTE CHARACTER SET SHIFT CONTROL
 	AH = 13h
@@ -12,7 +12,7 @@ INT 16 - DOS/V - DOUBLE-BYTE CHARACTER SET SHIFT CONTROL
 			  bits
 	    01h get shift status
 		Return: DX = current shift status (see #00589)
-Note:	these functions are supplied by the Japanese Front-End Processor
+Notes:	these functions are supplied by the Japanese Front-End Processor
 SeeAlso: AH=14h,INT 21/AX=6301h
 
 Bitfields for DOS/V shift status:

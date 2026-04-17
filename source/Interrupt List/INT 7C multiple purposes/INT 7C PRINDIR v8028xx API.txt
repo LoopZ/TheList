@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7C
   Category: P 	printer enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7C - PRINDIR v8.02-8.xx - API
 	AH = function
@@ -41,7 +41,7 @@ Program: PRINDIR is a shareware printer-redirection program by J.M. Allen
 	  Creations
 InstallCheck:	test for the ASCIZ signature "PRINDIR N.NN" (where N.NN is the
 	  version number) two bytes beyond the start of the interrupt handler
-Note:	prior versions of PRINDIR used INT 7A instead of INT 7C
+Notes:	prior versions of PRINDIR used INT 7A instead of INT 7C
 SeeAlso: INT 7A"PRINDIR",INT 2F/AX=7F00h"PRINDIR"
 Index:	hotkeys;PRINDIR
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 610007BX0008
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 61 - Banyan VINES - ENUMERATE StreetTalk NAMES
 	AX = 0007h
@@ -12,7 +12,7 @@ Return: AX = status (see also #03432)
 	    0000h successful
 	    0411h all matching names have been returned
 	    0412h some groups unavailable, all available matches returned
-Note:	each program using this call should continue until a nonzero status
+Notes:	each program using this call should continue until a nonzero status
 	  is returned; otherwise, some resources will not be freed for several
 	  hours
 SeeAlso: AX=0007h/BX=0005h,AX=0007h/BX=0007h,AX=0007h/BX=0009h

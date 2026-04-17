@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2183
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - European MS-DOS 4.0 - "PARTITION" - GET/SET FOREGROUND PARTITION SIZE
 	AH = 83h
@@ -16,7 +16,7 @@ Return: CF clear if successful
 	    AX = error code (01h,07h,0Dh)(see #01680 at AH=59h/BX=0000h)
 Desc:	specify or determine how much memory may be allocated by the foreground
 	  process
-Note:	if the partition size is set to 0000h, no partition management is done
+Notes:	if the partition size is set to 0000h, no partition management is done
 	  and all memory allocation is compatible with DOS 3.2.
 	the partition size can be changed regardless of what use is being made
 	  of the changed memory; subsequent allocations will follow the

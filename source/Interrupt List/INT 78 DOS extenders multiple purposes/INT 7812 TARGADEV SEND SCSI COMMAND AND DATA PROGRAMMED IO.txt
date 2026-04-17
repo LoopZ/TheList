@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7812
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 78 - TARGA.DEV - SEND SCSI COMMAND AND DATA (PROGRAMMED I/O)
 	AH = 12h
@@ -14,7 +14,7 @@ Return: AH = SCSI status byte
 	    AL = SCSI message byte
 	CF set on error
 	    AL = error code (see #03786)
-Note:	this command sends data internally one byte at a time
+Notes:	this command sends data internally one byte at a time
 SeeAlso: AH=14h
 
 Format of TARGA.DEV SCSI Command:

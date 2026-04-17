@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F4B20
   Category: W 	MS Windows
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - MS Windows 3+ - WIN.COM - SET PROGRAM TO EXECUTE ON EXIT
 	AX = 4B20h
@@ -18,6 +18,6 @@ Format of WIN.COM buffer:
 Offset	Size	Description	(Table 02824)
  00h 128 BYTEs	commandline for program (count byte, command tail, 0Dh)
  80h 128 BYTEs	ASCIZ pathname of program to execute
-Note:	the order above is for a Windows95 DOS box; it may be reversed under
+Notes:	the order above is for a Windows95 DOS box; it may be reversed under
 	  Windows 3.x
 

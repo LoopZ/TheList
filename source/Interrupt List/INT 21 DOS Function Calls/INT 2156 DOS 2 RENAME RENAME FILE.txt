@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2156
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 2+ - "RENAME" - RENAME FILE
 	AH = 56h
@@ -31,7 +31,7 @@ Notes:	allows move between directories on same logical volume
 	  mask in CL are renamed.
 	under the FlashTek X-32 DOS extender, the old-name pointer is in DS:EDX
 	  and the new-name pointer is in ES:EDI (DS must equal ES)
-BUG:	(DR DOS 3.41) when invoked via AX=5D00h, this function will generate
+BUGS:	(DR DOS 3.41) when invoked via AX=5D00h, this function will generate
 	  a new directory entry with the new name (including any wildcards)
 	  which can only be removed with a sector editor
 SeeAlso: AH=17h,AX=4301h,AX=43FFh/BP=5053h,AX=5D00h,AH=60h,AX=7156h

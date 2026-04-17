@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E3--SF0C
   Category: N   network
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 U - Novell NetWare - VERIFY NETWORK SERIAL NUMBER
 	AH = E3h subfn 0Ch
@@ -10,7 +10,7 @@ INT 21 U - Novell NetWare - VERIFY NETWORK SERIAL NUMBER
 	ES:DI -> reply buffer (see #01897)
 Return: AL = status
 	    00h successful
-Note:	if the network serial number to be verified is correct, the reply
+Notes:	if the network serial number to be verified is correct, the reply
 	  buffer will contain the corresponding application number
 SeeAlso: AH=E3h/SF=12h,AX=F217h/SF=0Ch
 

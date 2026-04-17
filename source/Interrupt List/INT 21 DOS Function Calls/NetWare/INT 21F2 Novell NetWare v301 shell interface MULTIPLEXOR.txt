@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F2
   Category: N   network
       Flag: u   partially documented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 u - Novell NetWare v3.01+ shell interface - MULTIPLEXOR
 	AH = F2h
@@ -15,7 +15,7 @@ INT 21 u - Novell NetWare v3.01+ shell interface - MULTIPLEXOR
 	ES:DI -> reply buffer (ignored if DX=0000h)
 Return: AX = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
 	reply buffer filled as appropriate for function
-Note:	this is a multiplexor providing a "raw" interface to the underlying
+Notes:	this is a multiplexor providing a "raw" interface to the underlying
 	  NetWare Core Protocol.  Many functions which were accessed via a
 	  separate AH function in older versions can also be accessed here,
 	  but some NetWare 3.x calls appear to be available only here.
@@ -419,6 +419,6 @@ Fnc/Subfn	Description
 7Bh/38h	Get Known Servers Information			(see AX=F27Bh/SF=38h)
 7Bh/3Ch	Get Server Set Commands Information		(see AX=F27Bh/SF=3Ch)
 7Bh/3Dh	Get Server Set Categories			(see AX=F27Bh/SF=3Dh)
-Note:	the subfunction is stored at DS:SI for AL=56h,57h, DS:SI+2 for
+Notes:	the subfunction is stored at DS:SI for AL=56h,57h, DS:SI+2 for
 	  AL=15h-17h,23h
 

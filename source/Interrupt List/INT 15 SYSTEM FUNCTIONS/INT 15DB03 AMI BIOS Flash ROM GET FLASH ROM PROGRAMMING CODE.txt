@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 15DB03
   Category: b   vendor-specific BIOS extensions
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 U - AMI BIOS - Flash ROM - GET FLASH ROM PROGRAMMING CODE
 	AX = DB03h
@@ -39,7 +39,7 @@ Return: AH = status
 	    02h ???
 	    03h ???
 	    04h ???
-Note:	DS:SI and ES:DI are ignored for function 02h
+Notes:	DS:SI and ES:DI are ignored for function 02h
 
 Format of AMI BIOS Flash ROM programming parameters:
 Offset	Size	Description	(Table 00549)

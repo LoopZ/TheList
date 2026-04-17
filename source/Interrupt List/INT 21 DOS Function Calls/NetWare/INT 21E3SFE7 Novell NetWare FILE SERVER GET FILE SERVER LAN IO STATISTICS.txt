@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E3--SFE7
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER LAN I/O STATISTICS
 	AH = E3h subfn E7h
@@ -10,7 +10,7 @@ INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER LAN I/O STATISTICS
 	ES:DI -> reply buffer (see #02080)
 Return: AL = status
 	    00h successful
-Note:	this function is supported by Advanced NetWare 2.1+
+Notes:	this function is supported by Advanced NetWare 2.1+
 SeeAlso: AH=E3h/SF=0Eh,AH=E3h/SF=11h,AH=E3h/SF=D3h,AH=E3h/SF=E8h
 SeeAlso: AH=E7h"Novell",AX=F217h/SF=E7h
 
@@ -51,6 +51,6 @@ Offset	Size	Description	(Table 02080)
  38h	DWORD	number of NetBIOS packets propagated through net
  3Ch	DWORD	total number of non-file-service packets
  40h	DWORD	total number of routed packets
-Note:	all fields except the first are big-endian
+Notes:	all fields except the first are big-endian
 SeeAlso: #02080,#02245 at AX=F217h/SF=E7h
 

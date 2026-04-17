@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E3--SF0F
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - FILE SERVICES - SCAN FILE INFORMATION
 	AH = E3h subfn 0Fh
 	DS:SI -> request buffer (see #01903)
 	ES:DI -> reply buffer (see #01904)
 Return: AL = status (see #01902)
-Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
 SeeAlso: AH=B6h,AH=E3h/SF=10h,AX=F217h/SF=0Fh
 
 (Table 01902)
@@ -45,7 +45,7 @@ Offset	Size	Description	(Table 01904)
  20h	DWORD	(big-endian) object ID of owner
  24h	DWORD	(big-endian) date and time last archived (see #01846)
  28h 55 BYTEs	reserved
-Note:	the official documentation erroneously lists the field at offset 04h as
+Notes:	the official documentation erroneously lists the field at offset 04h as
 	  15 bytes and thus shifts the remaining fields by one byte
 SeeAlso: #01903,#02165
 

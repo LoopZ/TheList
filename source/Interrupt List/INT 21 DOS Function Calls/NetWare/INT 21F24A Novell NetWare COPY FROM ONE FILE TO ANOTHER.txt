@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F24A
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - COPY FROM ONE FILE TO ANOTHER
 	AX = F24Ah
@@ -11,7 +11,7 @@ INT 21 - Novell NetWare - COPY FROM ONE FILE TO ANOTHER
 	DS:SI -> request buffer (see #02354)
 	ES:DI -> reply buffer (see #02355)
 Return: AX = status (see #02350)
-Note:	this function only marks the file for deletion; use AH=E2h/SF=CEh to
+Notes:	this function only marks the file for deletion; use AH=E2h/SF=CEh to
 	  actually delete all marked files
 SeeAlso: AH=F2h"Novell",AX=F243h,AX=F247h,AH=F3h"NetWare"
 

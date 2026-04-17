@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 164504
   Category: e 	electronic mail
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 16 - Shamrock Software EMAIL - CHECK FOR USER FUNCTION COMMAND-WORD
 	AX = 4504h
@@ -16,7 +16,7 @@ Return: AX = 4D00h if EMAIL installed on specified port
 		ES:BX buffer contains line entered by user which begins with
 			the defined command word and has been converted to all
 			caps
-Note:	caller must process the returned commandline and invoke AX=4505h
+Notes:	caller must process the returned commandline and invoke AX=4505h
 	  within five seconds with the result of that processing
 SeeAlso: AX=4503h,AX=4505h
 

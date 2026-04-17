@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 60----DI030B
   Category: b   vendor-specific BIOS extensions
       Flag: u   partially documented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 60 u - HP 95LX System Manager - SET CURSOR POSITION
 	DI = 030Bh
@@ -11,7 +11,7 @@ INT 60 u - HP 95LX System Manager - SET CURSOR POSITION
 		WORD	column
 Return: ???
 	STACK unchanged
-Note:	cursor is hidden if the specified position is not on the physical
+Notes:	cursor is hidden if the specified position is not on the physical
 	  display
 SeeAlso: INT 10/AH=02h,INT 15/AX=4DD4h,INT 61"HP 95LX",INT 62"HP 95LX"
 

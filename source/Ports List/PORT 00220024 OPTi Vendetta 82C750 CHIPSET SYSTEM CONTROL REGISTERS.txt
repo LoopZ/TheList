@@ -1,11 +1,11 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P00220024
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0022-0024 - OPTi "Vendetta" (82C750) CHIPSET - SYSTEM CONTROL REGISTERS
-Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+Notes:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
 	  even if the same register is being accessed a second time
 SeeAlso: PORT 0022h"82C206"
 
@@ -277,7 +277,7 @@ Bit(s)	Description	(Table P0230)
  0	write hit cycle lead-off time when combining Dirty/Tag RAM
 	0 = single write hit lead-off cycle = 5 cycles
 	1 = single write hit lead-off cycle = 4 cycles
-Note:	bit 0 should be set same as register 16h bit 4
+Notes:	bit 0 should be set same as register 16h bit 4
 SeeAlso: #P0219
 
 Bitfields for OPTi "Vendetta" pre-snoop control register:
@@ -302,7 +302,7 @@ Bit(s)	Description	(Table P0232)
  5-4	logical bank 2 DRAM type
  3-2	logical bank 1 DRAM type
  1-0	logical bank 0 DRAM type
-Note:	banks 4 and 5 do not support asymmetric DRAM
+Notes:	banks 4 and 5 do not support asymmetric DRAM
 SeeAlso: #P0219
 
 Bitfields for OPTi "Vendetta" GUI memory location register:
@@ -836,7 +836,7 @@ Bit(s)	Description	(Table P0267)
 	1 = EPMI1# triggered on rising edge
  3	EPMI1# debounce enable
  2-0	reserved
-Note:	bits 7 and 6 cannot both be set at the same time
+Notes:	bits 7 and 6 cannot both be set at the same time
 SeeAlso: #P0219
 
 Bitfields for OPTi "Vendetta" power management control register 2:
@@ -857,7 +857,7 @@ Bit(s)	Description	(Table P0268)
 	1 = EPMI2# triggered on rising edge
  3	EPMI2# debounce enable
  2-0	reserved
-Note:	bits 7 and 6 cannot both be set at the same time
+Notes:	bits 7 and 6 cannot both be set at the same time
 SeeAlso: #P0219
 
 Bitfields for OPTi "Vendetta" power management control register 3:
@@ -878,7 +878,7 @@ Bit(s)	Description	(Table P0269)
 	1 = EPMI3# triggered on rising edge
  3	EPMI3# debounce enable
  2-0	reserved
-Note:	bits 7 and 6 cannot both be set at the same time
+Notes:	bits 7 and 6 cannot both be set at the same time
 SeeAlso: #P0219
 
 Bitfields for OPTi "Vendetta" general purpose chip select control register:
@@ -896,6 +896,6 @@ Bit(s)	Description	(Table P0270)
  2	GPCS2# address bit masking (fourth bit to register F3h bits 6-4)
  1	GPCS1# address bit masking (fourth bit to register F3h bits 2-0)
  0	GPCS0# address bit masking (fourth bit to register E7h bits 2-0)
-Note:	indexes ADh and FFh address same register
+Notes:	indexes ADh and FFh address same register
 SeeAlso: #P0219
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 148004
   Category: S 	serial I/O
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 14 - ARTICOM - ATTACH ASYNCHRONOUS RESOURCE
 	AX = 8004h
@@ -11,7 +11,7 @@ INT 14 - ARTICOM - ATTACH ASYNCHRONOUS RESOURCE
 	CL = adapter to use for attach, 0FFh to search all
 	ES:DI -> attachment structure (see #00361)
 Return: AX = error code, if error (see #00360)
-Note:	The wildcard '*' is supported in the server and resource fields.  If
+Notes:	The wildcard '*' is supported in the server and resource fields.  If
 	  wild cards are used then the first matching available server is
 	  attached.
 SeeAlso: AX=8000h,AX=8003h,AX=8005h

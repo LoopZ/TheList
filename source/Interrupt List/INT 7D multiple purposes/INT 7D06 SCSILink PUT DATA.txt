@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7D06
   Category: G 	debuggers/debugging tools
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7D - SCSILink - PUT DATA
 	AH = 06h
@@ -11,6 +11,6 @@ INT 7D - SCSILink - PUT DATA
 Return: CF clear if successful
 	CF set on error
 	    AL = error code (01h = too much data)
-Note:	the specified data is stored in SCSILink's PSP
+Notes:	the specified data is stored in SCSILink's PSP
 SeeAlso: AH=07h
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F7A2F
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Novell NetWare - IPXODI v2.12 - GET GNMA SUPPORT
 	AX = 7A2Fh
@@ -10,7 +10,7 @@ Return: AX = 0000h if supported and active
 	    BX = support level (0001h)
 	    ES:DI -> GNMA entry point (see #02898)
 Program: GNMA is the Generic NetWare Management Agent
-Note:	IPXODI v2.12 is distributed as part of the Personal NetWare system
+Notes:	IPXODI v2.12 is distributed as part of the Personal NetWare system
 	  bundled with Novell DOS 7
 SeeAlso: INT 7A/BX=001Fh
 
@@ -103,7 +103,7 @@ Values GNMA responder's request handler is called with:
 			all registers (except SS:SP) may be destroyed
 		Note:	called whenever a network managment application
 			  terminates
-Note:	the responder handler should switch to a local stack if it enables
+Notes:	the responder handler should switch to a local stack if it enables
 	  interrupts or uses more than a few words of stack space
 SeeAlso: #02899
 

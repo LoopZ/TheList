@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F5200
   Category: k 	file/disk compression
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - JAM.SYS v1.10+ - "GetVersion" - INSTALLATION CHECK
 	AX = 5200h
@@ -49,7 +49,7 @@ Offset	Size	Description	(Table 02832)
 11Ah	DWORD	address of the host-drive DPB (Drive Parameter Block)
 11Eh	DWORD	number of free sectors in JAM archive file
 122h	WORD	device status word (see #02835)
-Note:	the first 33h bytes are copied from the archive file's boot sector
+Notes:	the first 33h bytes are copied from the archive file's boot sector
 SeeAlso: #02831
 
 Bitfields for JAMINFO flags:
@@ -86,6 +86,6 @@ Values for JAM.SYS status (high byte):
  0Bh	archive file overflow
  0Ch	bad DOS request
  0Dh	incorrect parameters in JAMINFO structure
-Note:	the low byte of the status is the DOS error code for the Host drive
+Notes:	the low byte of the status is the DOS error code for the Host drive
 SeeAlso: #02598 at INT 2F/AX=0802h
 

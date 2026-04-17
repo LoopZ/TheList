@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: Mxxxxxxx0
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 MEM xxxxh:xxx0h - Desktop Management Interface / System Management BIOS
 InstallCheck:	scan paragraph boundaries F000h to FFFFh for signature string
@@ -41,7 +41,7 @@ Offset	Size	Description	(Table M0112)
  1Ch	WORD	number of SMBIOS structures
  1Eh	BYTE	BCD SMBIOS revision (high nybble = major, low = minor)
 		00h if specification version only given in bytes 06h/07h
-BUG:	due to an error in the v2.1 specification, some implementations might
+BUGS:	due to an error in the v2.1 specification, some implementations might
 	  indicate a length of 1Eh bytes instead of 1Fh
 SeeAlso: #M0111
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7A----BX0003
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7A - Novell NetWare - IPX Driver - SEND PACKET
 	BX = 0003h
@@ -112,7 +112,7 @@ Values for IPX packet type:
  11h	NetWare Core Protocol (also used by Service Advertising Protocol)
  14h	Propagated Packet (for NetWare), NetBIOS name packet
  15h-1Eh experimental protocols
-Note:	undocumented packet type 14h will cross up to 16 networks deep in
+Notes:	undocumented packet type 14h will cross up to 16 networks deep in
 	  all directions; as Aaron Martin of Origin Systems discovered, the
 	  first 64 bytes of the IPX data in such packets should be considered
 	  reserved, as IPX places the traversed server nodes there.

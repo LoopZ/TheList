@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1788
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 17 - Alloy NTNX, MW386 - REMOVE PRINTER FROM SPOOLER
 	AH = 88h
@@ -12,7 +12,7 @@ INT 17 - Alloy NTNX, MW386 - REMOVE PRINTER FROM SPOOLER
 	    01h MW386
 		DX = MW386 printer number
 Return: AH = status (see #00642)
-Note:	removes specified printer from the spooler's list of printers
+Notes:	removes specified printer from the spooler's list of printers
 SeeAlso: AH=89h,AH=8Bh
 
 (Table 00643)

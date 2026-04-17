@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1485
   Category: S 	serial I/O
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 14 - COMM-DRV v14.0 - RECEIVE PACKET
 	AH = 85h
@@ -12,7 +12,7 @@ INT 14 - COMM-DRV v14.0 - RECEIVE PACKET
 Return: AH = line status (see #00304)
 	    bit 7 set on error
 	AL destroyed
-Note:	this call requires that at least the requested number of bytes are
+Notes:	this call requires that at least the requested number of bytes are
 	  already present in the input buffer, and will fail if there are
 	  fewer bytes available
 SeeAlso: AH=84h"COMM-DRV",AH=86h"COMM-DRV",AH=8Eh"COMM-DRV"

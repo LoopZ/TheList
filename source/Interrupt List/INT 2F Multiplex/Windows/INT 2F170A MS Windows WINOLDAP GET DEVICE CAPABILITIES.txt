@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F170A
   Category: W 	MS Windows
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - MS Windows "WINOLDAP" - GET DEVICE CAPABILITIES
 	AX = 170Ah
 	DX = GDI information index (see #02726)
 Return: AX = integer value of the desired item
 	      (see #02727,#02728,#02729,#02730,#02731,#02732,#02733)
-Note:	This function returns the device-capability bits for the given display
+Notes:	This function returns the device-capability bits for the given display
 
 (Table 02726)
 Values for GDI information index:

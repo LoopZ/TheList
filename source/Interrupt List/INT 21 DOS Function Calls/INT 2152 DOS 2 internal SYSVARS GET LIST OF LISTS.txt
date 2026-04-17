@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2152
   Category: D   DOS kernel
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 U - DOS 2+ internal - "SYSVARS" - GET LIST OF LISTS
 	AH = 52h
@@ -310,7 +310,7 @@ Offset	Size	Description	(Table 01634)
 		  the next stack to be allocated (initially same as value in
 		  0Eh and works its way down in steps of 8 to the value in
 		  0Ch as hardware interrupts pre-empt each other)
-Note:	the STACKS code segment data may, if present, be located as follows:
+Notes:	the STACKS code segment data may, if present, be located as follows:
     DOS 3.2:	The code segment data is at a paragraph boundary fairly early
 		  in the IBMBIO segment (seen at 0070:0190h)
     DOS 3.3:	The code segment is at a paragraph boundary in the DOS data
@@ -466,7 +466,7 @@ Offset	Size	Description	(Table 01637)
  06h	DWORD	pointer to start of system file table chain for file
  0Ah	WORD	unique sequence number
  0Ch	var	ASCIZ full pathname
-Note:	not supported by DR DOS SHARE 1.1 and 2.0; will reportedly be
+Notes:	not supported by DR DOS SHARE 1.1 and 2.0; will reportedly be
 	  supported by Novell DOS 7
 SeeAlso: #01636,#01638
 
@@ -902,7 +902,7 @@ Offset	Size	Description	(Table 01645)
  00h 67 BYTEs	ASCIZ path in form X:\ (does not show either current directory
 		  or network path)
  43h  4 BYTEs	???
-Note:	the WinNT CDS contains only as many entries as there are local drives,
+Notes:	the WinNT CDS contains only as many entries as there are local drives,
 	  not LASTDRIVE entries.
 
 Format of DOS device driver header:
@@ -958,7 +958,7 @@ Bit(s)	Description	(Table 01647)
  2	device is NUL
  1	device is standard output
  0	device is standard input
-Note:	for European MS-DOS 4.0, bit 11 also indicates that bits 8-6 contain a
+Notes:	for European MS-DOS 4.0, bit 11 also indicates that bits 8-6 contain a
 	  version code (000 = DOS 3.0,3.1; 001 = DOS 3.2;
 	  010 = European DOS 4.0)
 SeeAlso: #01648,#01646
@@ -981,7 +981,7 @@ Bit(s)	Description	(Table 01648)
  5-2	reserved
  1	driver supports 32-bit sector addressing (DOS 3.31+)
  0	 reserved
-Note:	for European MS-DOS 4.0, bit 11 also indicates that bits 8-6 contain a
+Notes:	for European MS-DOS 4.0, bit 11 also indicates that bits 8-6 contain a
 	  version code (000 = DOS 3.0,3.1; 001 = DOS 3.2;
 	  010 = European DOS 4.0)
 SeeAlso: #01647,#01646
@@ -1093,7 +1093,7 @@ Offset	Size	Description	(Table 01655)
  11h	WORD	size of data in buffer if remote buffer (see also #01656)
  13h	BYTE	reserved (padding)
  14h		buffered data
-Note:	for DOS 4.x, all buffered sectors which have the same hash value
+Notes:	for DOS 4.x, all buffered sectors which have the same hash value
 	  (computed as the sum of high and low words of the logical sector
 	  number divided by the number of disk buffer chains) are on the same
 	  doubly-linked circular chain; for DOS 5+, only a single circular
@@ -1203,7 +1203,7 @@ Call IFS utility function entry point with:
 		    CX = size of stack in bytes
 	AH = 27h increment InDOS flag
 	AH = 28h decrement InDOS flag
-Note:	IFS drivers which do not wish to implement functions 20h or 24h-28h may
+Notes:	IFS drivers which do not wish to implement functions 20h or 24h-28h may
 	  pass them on to the default handler pointed at by [LoL+37h]
 SeeAlso: #01659,#01660
 
@@ -1453,7 +1453,7 @@ Offset	Size	Description	(Table 01662)
 		(see AH=30h,INT 2F/AX=122Fh)
 ---DOS 4 only---
  N+2	BYTE	number of times to return fake version number (FFh = always)
-Note:	if the name of the executable for the program making the DOS "get
+Notes:	if the name of the executable for the program making the DOS "get
 	  version" call matches one of the names in this list, DOS returns the
 	  specified version rather than the true version number
 

@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 101E00
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - VIDEO - FLAT-PANEL - READ INFORMATION
 	AX = 1E00h
 Return: AL = 1Eh if function supported
 	    BL = flat-panel status (see #00052)
 	    ES:DI -> information table (see #00053)
-Note:	IBM classifies this function as optional
+Notes:	IBM classifies this function as optional
 SeeAlso: AX=1E01h,AX=1E02h,AX=1E03h,AX=1E04h,AX=1E05h,AX=1EFEh
 
 Bitfields for flat-panel status:

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2C0033
   Category: m 	memory management
       Flag: P 	available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2C P - Cloaking v1.01 - REGISTER CLOAKING CLIENT
 	AX = 0033h
@@ -19,6 +19,6 @@ Offset	Size	Description	(Table 02567)
  0Eh 20 BYTEs	client name
  22h	DWORD	physical address of client start
  26h	DWORD	client's total size in bytes
-Note:	the link area should not be modified once the structure has been
+Notes:	the link area should not be modified once the structure has been
 	  used for the registration call
 

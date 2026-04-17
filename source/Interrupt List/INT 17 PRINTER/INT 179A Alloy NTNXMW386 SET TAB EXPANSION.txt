@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 179A
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 17 - Alloy NTNX,MW386 - SET TAB EXPANSION
 	AH = 9Ah
@@ -14,7 +14,7 @@ INT 17 - Alloy NTNX,MW386 - SET TAB EXPANSION
 		DX = MW386 printer number
 	CL = tab length (00h = no expansion, 01h-63h = spaces per tab)
 Return: AL = status (see #00642)
-Note:	beginning with MW386 v2.0, tab expansion is set on a per-printer basis
+Notes:	beginning with MW386 v2.0, tab expansion is set on a per-printer basis
 	  rather than a per-user basis; NTNX and MW386 v1.x ignore DX
 SeeAlso: AH=A4h
 

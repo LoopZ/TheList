@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6B11--DX0001
   Category: S 	serial I/O
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 6B - NPC NCSI EXTENDED SERIAL I/O - ALLOCATE A VIRTUAL CIRCUIT
 	AH = 11h
@@ -15,6 +15,6 @@ Return: CF clear if successful
 	    CH = ??? (01h for Novell TELAPI.EXE)
 	CF set on error
 	    ???
-Note:	this function is also supported by TelAPI
+Notes:	this function is also supported by TelAPI
 SeeAlso: AH=12h,AH=15h,AH=16h,AH=17h,AH=18h
 

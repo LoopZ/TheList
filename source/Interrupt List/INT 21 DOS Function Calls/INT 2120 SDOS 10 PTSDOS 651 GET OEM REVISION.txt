@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2120-sort-as-2120PTS-DOS
   Category: O 	other operating systems
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - S/DOS 1.0+ & PTS-DOS 6.51+ - GET OEM REVISION
 	AH = 20h
@@ -15,7 +15,7 @@ INT 21 - S/DOS 1.0+ & PTS-DOS 6.51+ - GET OEM REVISION
 			AL = revision code (default is 00h, but may vary)
 Desc:	S/DOS is a reduced and modified PTS-DOS 6.51 release with source code
 	  on CD
-Note:	This function is provided by S/DOS 1.0 (and is most probably also
+Notes:	This function is provided by S/DOS 1.0 (and is most probably also
 	  supported with PTS-DOS 6.51+, maybe even earlier).  It clears the
 	  CF flag for all other AL arguments, too. However, AL = 00h and 01h
 	  are handled separately. The revision code can be individually defined

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1100SFDADA
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - MSCDEX (MS CD-ROM Extensions) - INSTALLATION CHECK
 	AX = 1100h subfn DADAh
@@ -15,7 +15,7 @@ Return: AL = status
 	    FFh installed
 		STACK: WORD	ADADh if MSCDEX installed
 				DADBh if Lotus CD/Networker installed
-Note:	although MSCDEX sets the stack word to ADADh on return, any value other
+Notes:	although MSCDEX sets the stack word to ADADh on return, any value other
 	  than DADAh is considered to mean that MSCDEX is already installed;
 	  Lotus CD/Networker v4+ uses this feature to fool MSCDEX into
 	  thinking it is already installed when it is in fact CD/Networker

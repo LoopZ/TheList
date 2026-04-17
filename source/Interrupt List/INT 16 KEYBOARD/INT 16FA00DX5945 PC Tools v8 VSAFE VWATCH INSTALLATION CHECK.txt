@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 16FA00DX5945
   Category: v   virus/antivirus
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 16 U - PC Tools v8+ VSAFE, VWATCH - INSTALLATION CHECK
 	AX = FA00h
@@ -11,6 +11,6 @@ Return: CF clear
 	DI = 4559h
 	BX = BIOS hotkey scancode (default 2F00h) (VSAFE only)
 		FFFFh if disabled
-Note:	MS-DOS 6.0 bundles VSAFE and VWATCH as part of its virus protection
+Notes:	MS-DOS 6.0 bundles VSAFE and VWATCH as part of its virus protection
 SeeAlso: AX=FA05h,INT 13/AH=FAh,INT 21/AH=FAh"VDEFEND",INT 2F/AX=6282h
 

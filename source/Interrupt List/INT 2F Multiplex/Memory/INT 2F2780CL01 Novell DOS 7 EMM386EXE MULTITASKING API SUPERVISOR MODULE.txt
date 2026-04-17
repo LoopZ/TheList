@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F2780CL01
   Category: m   memory management
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F U - Novell DOS 7 - EMM386.EXE - MULTITASKING API - SUPERVISOR MODULE
 	AX = 2780h
@@ -172,7 +172,7 @@ Format of Novell DOS/OpenDOS EMM386 module descriptor:
 Offset	Size	Description	(Table 02741)
  00h 12 BYTEs	descriptor parameter block (see #02740)
  0Ch	DWORD	-> module entry point
-Note:	for function "Z_ModuleReg", only DESC_PB_SEL and the module entry point
+Notes:	for function "Z_ModuleReg", only DESC_PB_SEL and the module entry point
 	  need to be initialized before calling EMM386
 SeeAlso: #02740
 

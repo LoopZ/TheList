@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1781
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 17 - Alloy NTNX, MW386 - CANCEL JOBS FOR CURRENT USER
 	AH = 81h
 	AL = 00h (NTNX compatibility mode)
 	CL = number of jobs to cancel
 Return: AL = status (see #00642)
-Note:	this function cancels the last CL printouts for the current task
+Notes:	this function cancels the last CL printouts for the current task
 SeeAlso: AH=82h
 
 (Table 00642)

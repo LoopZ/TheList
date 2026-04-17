@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F4A15BX0000
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - MS EMM386.EXE v4.46+ - INSTALL I/O VIRTUALIZATION HANDLER
 	AX = 4A15h
@@ -38,6 +38,6 @@ Return: (via FAR RET)
 	CF clear if I/O access successfully virtualized
 	CF set if access not virtualized (default handler will be called to
 	      perform the I/O)
-BUG:	32-bit I/O on trapped ports hangs the DOS 6.22 EMM386
+BUGS:	32-bit I/O on trapped ports hangs the DOS 6.22 EMM386
 SeeAlso: #02815
 

@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1261
   Category: O 	other operating systems
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - PTS-DOS 6.51, S/DOS 1.0+ - GET FIRST UMB
 	AX = 1261h
 Return: AX = address of first UMB or 1 if invalid function.
 	    (the 1 is likely multDOS error return, also with CF set)
 	CF may be set if unsupported function
-Note:	This function is known to be supported by Paragon Technology Systems
+Notes:	This function is known to be supported by Paragon Technology Systems
 	  PTS-DOS 6.51 and S/DOS 1.0, and probably was also supported
 	  in earlier releases.
 	supported by lDOS. lDOS currently always allocates a first UMCB in

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214402
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - WORKGRP.SYS - GET API ENTRY POINT
 	AX = 4402h
@@ -23,7 +23,7 @@ Offset	Size	Description	(Table 01485)
  00h	WORD	3633h  \ signature???
  02h	WORD	EF6Fh  /
  04h	DWORD	address of entry point (see #01486)
-Note:	first four bytes of buffer must be 6Fh E9h 33h 36h on entry when using
+Notes:	first four bytes of buffer must be 6Fh E9h 33h 36h on entry when using
 	  IOCTL rather than READ to get the entry point record
 
 (Table 01486)

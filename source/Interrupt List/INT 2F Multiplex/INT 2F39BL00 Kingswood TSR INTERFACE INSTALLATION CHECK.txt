@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F39--BL00
   Category: t 	TSR libraries
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Kingswood TSR INTERFACE - INSTALLATION CHECK
 	AH = 39h
@@ -12,7 +12,7 @@ Return: AL = status
 	    00h not installed
 	    FFh installed
 		DX = segment address of resident module
-Note:	All of Kingswood Software's TSRs use this interface.  Usually the
+Notes:	All of Kingswood Software's TSRs use this interface.  Usually the
 	  resident module is installed by allocating a block of upper memory,
 	  setting its owner ID to 000Ah (used by DOS), and filling the MCB name
 	  field with the TSR's name.

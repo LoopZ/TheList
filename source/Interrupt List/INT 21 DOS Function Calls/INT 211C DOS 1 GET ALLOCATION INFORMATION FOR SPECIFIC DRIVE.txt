@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 211C
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 1+ - GET ALLOCATION INFORMATION FOR SPECIFIC DRIVE
 	AH = 1Ch
@@ -18,7 +18,7 @@ Notes:	under DOS 1.x, DS:BX points at an actual copy of the FAT; later
 	this function may not be properly supported on CD-ROMs and other
 	  installable file systems (use AX=4402h"CD-ROM" for CD-ROMs
 	  instead)
-BUG:	DOS 7.10 (Win95B/Win98) reportedly returns incorrect values in AL and
+BUGS:	DOS 7.10 (Win95B/Win98) reportedly returns incorrect values in AL and
 	  DX for FAT12/FAT16 drives, even though it manages correct results
 	  for FAT32 drives (DOS windows are not affected, only real-mode
 	  DOS)

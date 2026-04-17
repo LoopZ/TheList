@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: Pxxxx
     Sort As: Pxxxx+04
   Category: p 	power management
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT xxxx - AMD-645 - Power Management Registers
 Range:	on any 256-byte boundary
@@ -58,7 +58,7 @@ Bit(s)	Description	(Table P1059)
  4	system bus requested by any bus master
  3-1	reserved (0)
  0	ACPI timer carried into highest bit
-Note:	all bits are write-clear: write a 1 bit to acknowledge the
+Notes:	all bits are write-clear: write a 1 bit to acknowledge the
 	  status and clear that bit
 SeeAlso: #P1060,MEM xxxxh:xxx0h"ACPI"
 
@@ -156,7 +156,7 @@ Bit(s)	Description	(Table P1067)
  2	GP0 timer timed out
  1	secondary event timer timed out
  0	"PACT_STS" an enabled primary system activity has occurred (see #P1071)
-Note:	this register is write-clear: writing a 1 to a bit clears that bit
+Notes:	this register is write-clear: writing a 1 to a bit clears that bit
 SeeAlso: #P1066
 
 Bitfields for AMD-645 PM Global Enable register:
@@ -203,7 +203,7 @@ Bit(s)	Description	(Table P1070)
  2	reserved (0)
  1	a primary interrupt occurred (see #01049 [offset 44h])
  0	ISA busmaster or DMA activity occurred
-Note:	this register is write-clear: write a 1 to a bit to clear it
+Notes:	this register is write-clear: write a 1 to a bit to clear it
 SeeAlso: #P1071,#P1069
 
 Bitfields for AMD-645 PM Primary Activity Detect Enable register:
@@ -253,7 +253,7 @@ Bit(s)	Description	(Table P1074)
  2	value for GPIO2/I2CD1 pin
  1	value for GPIO1/I2CD2 pin
  0	value for GPIO0 pin
-Note:	while these bits can be read back, they only indicate the values which
+Notes:	while these bits can be read back, they only indicate the values which
 	  are driven onto the pins if configured for output; to read the actual
 	  input values, use the "input value" register at offset 44h
 	  (see #P1075)

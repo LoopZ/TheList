@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2C0012
   Category: m 	memory management
       Flag: P 	available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2C P - Cloaking v1.01 - "Query_Current_VM"
 	AX = 0012h
@@ -11,7 +11,7 @@ Return: CF clear
 	ESI = handle of system VM
 	ECX = VM status flags (see #02562)
 	EDX = shell flags (see #02563)
-Note:	this function is only available while MS Windows is running in enhanced
+Notes:	this function is only available while MS Windows is running in enhanced
 	  mode
 SeeAlso: AX=000Fh,AX=0011h,AX=0013h
 

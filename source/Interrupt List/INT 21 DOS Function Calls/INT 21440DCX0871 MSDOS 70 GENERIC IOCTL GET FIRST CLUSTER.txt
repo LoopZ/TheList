@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21440DCX0871
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - MS-DOS 7.0+ - GENERIC IOCTL - GET FIRST CLUSTER
 	AX = 440Dh
@@ -14,7 +14,7 @@ Return: CF set on error
 	    AX = error code (01h,02h,etc.) (see #01680 at AH=59h/BX=0000h)
 	CF clear if successful
 	    DX:AX = first cluster number
-Note:	this function finds any file or directory regardless of attributes,
+Notes:	this function finds any file or directory regardless of attributes,
 	  except that it will not find volume labels
 SeeAlso: AX=440Dh"DOS 3.2+",AX=440Dh/CX=086Ch,#01352
 

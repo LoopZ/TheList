@@ -1,12 +1,12 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: MA0008180
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 MEM A000h:8180h - S3 - STREAMS PROCESSOR
 Size:	128 BYTEs
-Note:	the S3 graphics processor registers can be mapped at either
+Notes:	the S3 graphics processor registers can be mapped at either
 	  linear 000A0000h or at offset 16M from the start of the linear
 	  frame buffer
 SeeAlso: MEM A000h:8100h,MEM A000h:FF00h
@@ -45,7 +45,7 @@ Offset	Size	Description	(Table M0058)
 81F4h	DWORD	primary window size (see #M0069)
 81F8h	DWORD	secondary start coordinate (see #M0068)
 81FCh	DWORD	secondary window size (see #M0069)
-Note:	changes to registers 81E0h-81E8h do not take effect until the next
+Notes:	changes to registers 81E0h-81E8h do not take effect until the next
 	  VSYNC
 SeeAlso: #M0073,#M0057,#M0070
 
@@ -102,7 +102,7 @@ Bit(s)	Description	(Table M0062)
  26-16	K2 horizontal scaling factor (input width - output width)
  15-11	reserved
  10-0	K1 horizontal scaling factor (input width - 1)
-Note:	changes to this register do not take effect until the next VSYNC
+Notes:	changes to this register do not take effect until the next VSYNC
 SeeAlso: #M0061
 
 Bitfields for S3 Streams Processor chroma-key control:
@@ -122,7 +122,7 @@ Bit(s)	Description	(Table M0063)
 	23-16 = red or Y
 	15-8 = green or U/Cb
 	7-0 = blue or V/Cr
-Note:	if the keyed stream is YUV or YCrCb, then this register contains the
+Notes:	if the keyed stream is YUV or YCrCb, then this register contains the
 	  lower bound and 8194h contains the upper bound of the chromakey
 	  value
 SeeAlso: #M0058

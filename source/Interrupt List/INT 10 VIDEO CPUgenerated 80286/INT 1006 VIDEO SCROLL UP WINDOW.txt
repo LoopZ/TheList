@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1006
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - VIDEO - SCROLL UP WINDOW
 	AH = 06h
@@ -11,7 +11,7 @@ INT 10 - VIDEO - SCROLL UP WINDOW
 	CH,CL = row,column of window's upper left corner
 	DH,DL = row,column of window's lower right corner
 Return: nothing
-Note:	affects only the currently active page (see AH=05h)
+Notes:	affects only the currently active page (see AH=05h)
 BUGS:	some implementations (including the original IBM PC) have a bug which
 	  destroys BP
 	the Trident TVGA8900CL (BIOS dated 1992/9/8) clears DS to 0000h when

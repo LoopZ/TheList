@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6F00
   Category: b 	vendor-specific BIOS extensions
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 6F - HP Vectra EX-BIOS - "F_ISR" (internal) - RESPOND TO LOGICAL ISR
 	AH = 00h
@@ -146,7 +146,7 @@ Values for HP Vectra EX-BIOS status:
  F8h	driver is busy
  FAh	bad parameter
  FEh	operation failed
-Note:	status codes are always even; negative values (>= 80h) indicate errors
+Notes:	status codes are always even; negative values (>= 80h) indicate errors
 	  while positive values indicate exceptional conditions
 
 Format of HP EX-BIOS driver header data:
@@ -216,7 +216,7 @@ Bit(s)	Description	(Table 03747)
  2	physical touch device
  1	reserved
  0	class extension bit
-Note:	special values: FFFFh maps to all other devices (V_PNULL), and 0000h
+Notes:	special values: FFFFh maps to all other devices (V_PNULL), and 0000h
 	  maps to no other driver
 SeeAlso: #03745
 

@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F110C
   Category: N   network
       Flag: C   callout or callback (usually hooked rather than called)
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F CU - NETWORK REDIRECTOR - GET DISK INFORMATION
 	AX = 110Ch
@@ -15,6 +15,6 @@ Return: CF clear if data valid
 	    CX = bytes per sector
 	    DX = number of available clusters
 	CF set if data invalid
-Note:	this function is called by the DOS 3.1+ kernel
+Notes:	this function is called by the DOS 3.1+ kernel
 SeeAlso: INT 21/AH=36h
 

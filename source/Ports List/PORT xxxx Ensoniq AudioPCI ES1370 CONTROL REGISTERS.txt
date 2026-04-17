@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: Pxxxx
    Sort As: Pxxxx+06
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT xxxx - Ensoniq AudioPCI ES1370 - CONTROL REGISTERS
 Range:	anywhere on 64 byte boundary
@@ -87,7 +87,7 @@ Bit(s)	Description	(Table P1076)
  1	crystal clock input disable
  0	PCI clock input disable
 ------
-Note:	this register is addressable as byte, word and dword
+Notes:	this register is addressable as byte, word and dword
 
 Bitfields for Ensoniq ES1370/ES1371 interrupt/chip select status register:
 Bit(s)	Description	(Table P1077)
@@ -162,7 +162,7 @@ Bit(s)	Description	(Table P1081)
 	1101 = ADC frame information
 	1110 = UART FIFO
 	1111 = UART FIFO
-Note:	this register is addressable as byte, word and dword
+Notes:	this register is addressable as byte, word and dword
 
 Bitfields for Ensoniq ES1370/ES1371 CODEC write register:
 Bit(s)	Description	(Table P1082)
@@ -180,7 +180,7 @@ Bit(s)	Description	(Table P1082)
 ---index 16h---
  1	0 = CODEC power down
 ------
-Note:	(AudioPCI ES1370) this register is addressable as word and dword
+Notes:	(AudioPCI ES1370) this register is addressable as word and dword
 
 Bitfields for Ensoniq ES1370/ES1371 serial interface control register:
 Bit(s)	Description	(Table P1083)
@@ -211,13 +211,13 @@ Bit(s)	Description	(Table P1083)
 	11 = 16-bit stereo
  3-2	DAC2 channel data format (same values as bits 5-4)
  1-0	DAC1 channel data format (same values as bits 5-4)
-Note:	this register is addressable as byte, word and dword
+Notes:	this register is addressable as byte, word and dword
 
 Bitfields for Ensoniq ES1370/ES1371 DAC1/2/ADC channel sample count register:
 Bit(s)	Description	(Table P1084)
  31-16	sample counter current value (read-only)
  15-0	sample counter (samples - 1)
-Note:	these registers are addressable as word and dword
+Notes:	these registers are addressable as word and dword
 
 Bitfields for Ensoniq ES1370/ES1371 internal memory 1:
 Bit(s)	Description	(Table P1085)

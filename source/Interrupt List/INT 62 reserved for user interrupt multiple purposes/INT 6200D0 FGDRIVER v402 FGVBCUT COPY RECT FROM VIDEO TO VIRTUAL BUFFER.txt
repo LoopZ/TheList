@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6200D0
   Category: V   video
       Flag: u   partially documented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 62 u - FGDRIVER v4.02 - "FG_VBCUT" - COPY RECT FROM VIDEO TO VIRTUAL BUFFER
 	AX = 00D0h
@@ -14,7 +14,7 @@ INT 62 u - FGDRIVER v4.02 - "FG_VBCUT" - COPY RECT FROM VIDEO TO VIRTUAL BUFFER
 	ES = Y coordinate of destination's upper left corner
 Desc:	copy a rectangle from the active video page to the active virtual
 	  buffer
-Note:	the FGDRIVER functions are rearranged with each major release, but
+Notes:	the FGDRIVER functions are rearranged with each major release, but
 	  their parameters do not change (see #03474)
 SeeAlso: AX=00CDh,AX=00CFh,AX=00D4h,AX=00D6h
 

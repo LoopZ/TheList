@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F168EDX0001
   Category: W 	MS Windows
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Windows95 - TITLE - SET VIRTUAL MACHINE TITLE
 	AX = 168Eh
@@ -15,7 +15,7 @@ Notes:	if ES:DI is 0000h:0000h or points at an empty string, the current
 	  title is removed
 	the VM title should only be changed on explicit instruction from the
 	  user
-BUG:	this function can return a successful status even though the title was
+BUGS:	this function can return a successful status even though the title was
 	  not changed; reportedly, waiting for two clock ticks after program
 	  startup solves this problem
 SeeAlso: AX=168Eh/DX=0000h,AX=168Eh/DX=0003h

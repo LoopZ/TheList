@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F48C5BL02
   Category: U 	resident utilities
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - PCED/ASSOC - ASSOCIATION TEST
 	AX = 48C5h
@@ -14,6 +14,6 @@ Return: AX = status
 	BX destroyed
 Program: ASSOC is a resident utility included as part of the PCED package which
 	  associates files with executable programs based on their extensions
-Note:	chains if BL > 02h on entry
+Notes:	chains if BL > 02h on entry
 SeeAlso: AX=48C0h,AX=48C5h/BL=00h,AX=48C5h/BL=01h
 

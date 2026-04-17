@@ -1,11 +1,11 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P0022002B
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0022-002B - INTEL 82355, PART OF CHIPSET FOR 386sx
-Note:	initialisation in POST will disable these addresses, only a hard
+Notes:	initialisation in POST will disable these addresses, only a hard
 	  reset will enable them again.
 
 0022w RW  82335 MCR memory configuration register (if LOCK=0) (see #P0272)
@@ -37,7 +37,7 @@ Bit(s)	Description	(Table P0272)
  0	"ROMEN#" ROM enable
 	0 enable BIOS ROM accesses (E0000h-FFFFFh)
 	1 disable BIOS ROM accesses, enable shadow
-Note:	One of the remaining reserved bits is the LOCK bit, which will be set
+Notes:	One of the remaining reserved bits is the LOCK bit, which will be set
 	  during power on, disabling access to the 82335s registers.
 
 Bitfields for 82335 roll compare register:

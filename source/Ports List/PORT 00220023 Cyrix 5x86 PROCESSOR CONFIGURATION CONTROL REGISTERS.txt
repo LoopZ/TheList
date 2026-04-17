@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P00220023
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0022-0023 - Cyrix 5x86 PROCESSOR - CONFIGURATION CONTROL REGISTERS
 SeeAlso: PORT 0022h"Cx486SLC",PORT 0022h"486S2",PORT 0022h"6x86"
@@ -40,7 +40,7 @@ Bit(s)	Description	(Table P0024)
  4	(6x86) no LOCK during bus cycles
  6-5	reserved
  7	(6x86) use address region 3 as SMM space
-Note:	bits 1,2,7 may only be written when CCR3 bit 0 is enabled
+Notes:	bits 1,2,7 may only be written when CCR3 bit 0 is enabled
 SeeAlso: #P0020,#P0025,#P0026,#P0027
 
 Bitfields for Cyrix 5x86,6x86 Configuration Control Register 2 (CCR2):
@@ -77,7 +77,7 @@ Bit(s)	Description	(Table P0027)
  4	enable directory table entry cache
  6-5	reserved
  7	enable CPUID instruction (stepping 1+ and Cx6x86)
-Note:	this register is only accessible when bits 7-4 of CCR3 are 0001
+Notes:	this register is only accessible when bits 7-4 of CCR3 are 0001
 SeeAlso: #P0024,#P0025,#P0026
 
 Bitfields for Cyrix 5x86 Performance Control register:
@@ -88,7 +88,7 @@ Bit(s)	Description	(Table P0028)
  6-3	reserved (0)
  7	load-store serialization enabled
 	(memory reads and writes may be reorganized into optimum order)
-Note:	this register is only accessible when bits 7-4 of CCR3 are 0001
+Notes:	this register is only accessible when bits 7-4 of CCR3 are 0001
 SeeAlso: #P0030,#P0024
 
 Bitfields for Cyrix 5x86 SMM Address Region register:
@@ -104,5 +104,5 @@ Bit(s)	Description	(Table P0030)
 	10 reserved
 	11 3:1
  2	CPU running at half bus speed, ignore bits 1-0
-Note:	this register is only accessible when bits 7-4 of CCR3 are 0001
+Notes:	this register is only accessible when bits 7-4 of CCR3 are 0001
 

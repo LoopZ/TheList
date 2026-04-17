@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FCB06
   Category: F 	FAX
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Communicating Applications Specification - FIND NEXT QUEUE ENTRY
 	AX = CB06h
@@ -13,6 +13,6 @@ INT 2F - Communicating Applications Specification - FIND NEXT QUEUE ENTRY
 Return: AX = 0000h successful
 	    BX = event handle for found event
 	AX < 0	   error code (see #03048)
-Note:	direction of search is same as preceding FIND FIRST call
+Notes:	direction of search is same as preceding FIND FIRST call
 SeeAlso: AX=CB05h
 

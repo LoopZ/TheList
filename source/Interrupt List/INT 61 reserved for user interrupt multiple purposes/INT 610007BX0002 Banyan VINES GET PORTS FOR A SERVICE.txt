@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 610007BX0002
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 61 - Banyan VINES - GET PORTS FOR A SERVICE
 	AX = 0007h
@@ -10,7 +10,7 @@ INT 61 - Banyan VINES - GET PORTS FOR A SERVICE
 	DS:DX -> StreetTalk service name
 	DS:DI -> port record block (see #03433)
 Return: AX = status (see #03432)
-Note:	if the requested number of ports is greater than five, it will be reset
+Notes:	if the requested number of ports is greater than five, it will be reset
 	  to five
 SeeAlso: AX=0007h/BX=0001h,AX=0007h/BX=0003h,AX=0007h/BX=0004h
 SeeAlso: AX=0007h/BX=000Ah

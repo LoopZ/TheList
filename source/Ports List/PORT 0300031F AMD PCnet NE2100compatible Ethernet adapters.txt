@@ -1,13 +1,13 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P0300031F
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0300-031F - AMD PCnet - NE2100-compatible Ethernet adapters
 Range:	may be placed at 0300h, 0320h, 0340h, or 0360h, with the card's ROM
 	  appearing at segment C800h, CC00h, D000h, or D400h, respectively
-Note:	for the PCnet-FAST chip, the I/O address may be read from the PCI
+Notes:	for the PCnet-FAST chip, the I/O address may be read from the PCI
 	  configuration space at offset 10h (see #00878 at INT 1A/AX=B10Ah)
 SeeAlso: PORT 0300h"NE2000",#00878
 
@@ -172,7 +172,7 @@ Bit(s)	Description	(Table P0555)
  4	"DXMT2PD" disable Transmit Two Part Deferral
  3	"EMBA"	enable modified back-off algorithm
  2-0	reserved
-Note:	other bits are reserved
+Notes:	other bits are reserved
 SeeAlso: #P0552,#P0554,#P0556
 
 Bitfields for AMD PCnet CSR4 interrupt masks and status bits:

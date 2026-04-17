@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 4F8100
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 4F - Common Access Method SCSI interface rev 2.3 - SEND CCB TO XPT/SIM
 	AX = 8100h
@@ -10,7 +10,7 @@ INT 4F - Common Access Method SCSI interface rev 2.3 - SEND CCB TO XPT/SIM
 Return: AH = status
 	    00h successful
 	    01h invalid CCB address (0000h:0000h)
-Note:	the SCSI Interface Module (SIM) may complete the requested function
+Notes:	the SCSI Interface Module (SIM) may complete the requested function
 	  and invoke the completion callback function before this call returns
 SeeAlso: AX=8200h,INT 2F/AX=7F01h,INT 4B"Common Access Method"
 
@@ -216,7 +216,7 @@ Values for CAM status:
  3Dh	received SCSI Command Descriptor Block
  3Eh	LUN already enabled
  3Fh	SCSI bus busy
-Note:	bit 6 set to indicate frozen SIM queue
+Notes:	bit 6 set to indicate frozen SIM queue
 	bit 7 set to indicate valid autosense
 
 Bitfields for CAM target-mode flags:

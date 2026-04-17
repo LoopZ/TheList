@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 11FF--SI6A6A
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 11 - WD7000 SDLP interface - EXECUTE GENERIC SCSI COMMAND
 	AH = FFh
@@ -16,7 +16,7 @@ INT 11 - WD7000 SDLP interface - EXECUTE GENERIC SCSI COMMAND
 Return: CF set on error
 	    AL = error code
 	CF clear if successful
-Note:	because of busmaster operations with WD7000FASST avoid accessing
+Notes:	because of busmaster operations with WD7000FASST avoid accessing
 	  video memory directly; check 386 memory manager for VDS support.
 	  The WD7000XTAT works with programmed IO and does not have this
 	  limitation.

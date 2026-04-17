@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6101
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 61 - Banyan VINES - CHECK SERVICE
 	AH = 01h
@@ -12,7 +12,7 @@ Return: AX = status
 	    0001h not installed
 	    0002h invalid ID
 	    0003h invalid function
-Note:	Only the offset part of the service pointer is checked for a nonzero
+Notes:	Only the offset part of the service pointer is checked for a nonzero
 	  value
 SeeAlso: AH=00h,AH=02h"VINES",AH=03h"VINES"
 

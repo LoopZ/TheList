@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 131C0A
   Category: d   disk I/O enhancements
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 13 U - ESDI FIXED DISK - GET DEVICE CONFIGURATION
 	AX = 1C0Ah
@@ -11,7 +11,7 @@ INT 13 U - ESDI FIXED DISK - GET DEVICE CONFIGURATION
 Return: CF set on error
 	CF clear if successful
 	AH = status (see #00234 at AH=01h)
-Note:	device configuration format can be found in IBM ESDI Fixed Disk Drive
+Notes:	device configuration format can be found in IBM ESDI Fixed Disk Drive
 	  Adapter/A Technical Reference
 SeeAlso: AX=1C08h,AX=1C0Bh,AX=1C0Ch
 

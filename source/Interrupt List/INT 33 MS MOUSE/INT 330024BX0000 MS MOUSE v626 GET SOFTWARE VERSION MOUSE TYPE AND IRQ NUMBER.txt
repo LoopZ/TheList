@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 330024BX0000
   Category: M 	mouse/pointing device
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 33 - MS MOUSE v6.26+ - GET SOFTWARE VERSION, MOUSE TYPE, AND IRQ NUMBER
 	AX = 0024h
@@ -13,7 +13,7 @@ Return: AX = FFFFh on error
 	    BL = minor version
 	    CH = type (1=bus, 2=serial, 3=InPort, 4=PS/2, 5=HP)
 	    CL = interrupt (0=PS/2, 2=IRQ2, 3=IRQ3,...,7=IRQ7,...,0Fh=IRQ15)
-Note:	although current Microsoft documentation states that this function was
+Notes:	although current Microsoft documentation states that this function was
 	  introduced in v6.26, it appears to have been present as early as
 	  v6.02 (for earlier versions, use INT 33/AX=006Dh)
 SeeAlso: AX=004Dh,AX=006Dh

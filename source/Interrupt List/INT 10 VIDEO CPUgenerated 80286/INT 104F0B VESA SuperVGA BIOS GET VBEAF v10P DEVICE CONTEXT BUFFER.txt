@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 104F0B
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - VESA SuperVGA BIOS - GET VBE/AF v1.0P DEVICE CONTEXT BUFFER
 	AX = 4F0Bh
@@ -16,7 +16,7 @@ Return: AL = 4Fh if function supported
 		CX = number of bytes required for buffer (if BL=00h on entry)
 		ES:DI buffer initialized (if BL=01h on entry)
 	    01h failed
-Note:	this interface description is derived from the draft VBE/AF proposal
+Notes:	this interface description is derived from the draft VBE/AF proposal
 	  (version 1.0P, document revsion 0.12P, dated 13jan95)
 SeeAlso: AX=4F00h,AX=4F01h,AX=4F17h
 
@@ -122,7 +122,7 @@ Call VBE/AF v1.0P function "DrawScanList" with:
 Desc:	draw multiple solid horizontal lines at successive Y coordinates,
 	  using the currently-active foreground color and mix, omitting the
 	  pixel at the largest X coordinate for each line
-Note:	the scanline list consists of pairs of X coordinates; because the
+Notes:	the scanline list consists of pairs of X coordinates; because the
 	  last pixel is omitted, a scanline will be skipped if X1==X2
 SeeAlso: #00089,#00094,#00096,#00107
 
@@ -135,7 +135,7 @@ Call VBE/AF v1.0P function "DrawRect" with:
 	EDX = bottom coordinate
 Desc:	draw a solid rectangle in the currently-active foreground color and
 	  mix, omitting the rightmost X coordinate and bottom-most scan line
-Note:	results are undefined if EAX>ECX or EBX>EDX; nothing will be drawn if
+Notes:	results are undefined if EAX>ECX or EBX>EDX; nothing will be drawn if
 	  EAX=ECX or EBX=EDX
 SeeAlso: #00089,#00094,#00095,#00097
 
@@ -161,7 +161,7 @@ Call VBE/AF v1.0P function "DrawPattScan" with:
 Desc:	draw a patterned horizontal line from (X1,Y) to (X2,Y) in the
 	  currently-active foreground color and mix, omitting the pixel at
 	  the largest X coordinate
-Note:	for each pixel in the line, if DL bit (X mod 8) is set, the pixel is
+Notes:	for each pixel in the line, if DL bit (X mod 8) is set, the pixel is
 	  drawn, and left untouched if the bit is clear
 SeeAlso: #00089,#00096,#00097,#00094,#00099,#00107
 

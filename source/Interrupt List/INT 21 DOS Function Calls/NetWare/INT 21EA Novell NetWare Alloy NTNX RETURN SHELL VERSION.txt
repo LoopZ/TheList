@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21EA
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare, Alloy NTNX - RETURN SHELL VERSION
 	AH = EAh
@@ -25,6 +25,6 @@ Return: AH = operating system (00h = MS-DOS)
 	    01h expanded memory
 	    02h extended memory
 	CL = shell revision number
-Note:	this function is supported by NetWare 4.6 and Advanced NetWare 1.0+
+Notes:	this function is supported by NetWare 4.6 and Advanced NetWare 1.0+
 SeeAlso: INT DF"Victor"
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FCA04
   Category: v 	virus/antivirus
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - TBSCANX - SCAN FILE
 	AX = CA04h
@@ -12,6 +12,6 @@ Return: CF clear if no virus signatures found
 	CF set if signature found
 	    ES:BX -> ASCIZ virus name
 	AX,CX,DX destroyed
-Note:	this function requires at least 4K free memory
+Notes:	this function requires at least 4K free memory
 SeeAlso: AX=CA03h
 

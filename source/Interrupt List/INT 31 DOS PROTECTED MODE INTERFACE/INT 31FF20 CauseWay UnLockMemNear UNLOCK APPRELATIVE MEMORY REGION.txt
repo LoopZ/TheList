@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 31FF20
   Category: E 	DOS extenders
       Flag: P 	available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 31 P - CauseWay - "UnLockMemNear" - UNLOCK APP-RELATIVE MEMORY REGION
 	AX = FF20h
@@ -11,7 +11,7 @@ INT 31 P - CauseWay - "UnLockMemNear" - UNLOCK APP-RELATIVE MEMORY REGION
 Return: CF clear if successful
 	CF set on error
 Desc:	allow memory to be swapped out by the virtual memory manager
-Note:	locks are applied on 4K page boundaries, so memory above and below
+Notes:	locks are applied on 4K page boundaries, so memory above and below
 	  the specified region may be unlocked as well
 SeeAlso: AX=FF1Eh,AX=FF1Fh
 

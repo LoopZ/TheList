@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1012--BH55
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 10 - VIDEO - ALTERNATE FUNC SELECT (ATI,Tatung,Taxan) - ENHANCED FEATURES
 	AH = 12h
@@ -22,7 +22,7 @@ INT 10 - VIDEO - ALTERNATE FUNC SELECT (ATI,Tatung,Taxan) - ENHANCED FEATURES
 				  (and subfunc BL=05h) (see #00028)
 			BP = FFFFh on error
 			SI = 0000h (ATI Mach32)
-Note:	the ATI Mouse driver (MOUSE.COM/MOUSE.SYS) uses subfunction 06h to get
+Notes:	the ATI Mouse driver (MOUSE.COM/MOUSE.SYS) uses subfunction 06h to get
 	  the mode table for mode 03h, and then looks for a signature string
 	  beginning within 32 bytes of the offset specified by the word at
 	  ES:000Ch

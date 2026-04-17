@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FFE00DX474F
   Category: U 	resident utilities
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - GO! v3.22+ - API
 	AX = FE00h
@@ -23,7 +23,7 @@ Return: BX:CX buffer filled with result (search functions only)
 		no matches (i.e. first byte is length of name, followed by
 		name)
 Program: GO! is a shareware directory locator TSR by Steve Ryckman
-Note:	the application-supplied buffer for the requests and results which
+Notes:	the application-supplied buffer for the requests and results which
 	  BX:CX points at must lie outside the conventional (low-640K)
 	  memory, since the TSR swaps memory on pop-up; a common location is
 	  the last 96 bytes of the video memory or a UMB

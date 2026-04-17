@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1E
   Category: B 	BIOS
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 1E - SYSTEM DATA - DISKETTE PARAMETERS
 Notes:	the default parameter table (see #01264) is located at F000h:EFC7h for
@@ -21,7 +21,7 @@ Notes:	the default parameter table (see #01264) is located at F000h:EFC7h for
 	  (uncompressed) IBMBIO.COM files bigger than 29 KB, it may
 	  occasionally cause the floppy parameters to get trashed due to a 
 	  bug in the DR-DOS 7.03 IBMBIO.COM startup code.
-BUG:	The 2nd level decompressor of the DR-DOS 7.03 IBMBIO.COM (1998/08/11 to
+BUGS:	The 2nd level decompressor of the DR-DOS 7.03 IBMBIO.COM (1998/08/11 to
 	  1999/07) start-up code erroneously assumes that the floppy parameters
 	  reside at 0000h:7C00h (normally set up there by the boot sector)
 	  instead of relying on the INT 1Eh vector to point at their location.

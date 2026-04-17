@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 13EF
   Category: c 	caches/spoolers
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 13 - Ontrack Drive Rocket - SET CYLINDER OFFSET
 	AH = EFh
@@ -15,7 +15,7 @@ Program: Drive Rocket is a drive accelerator by Ontrack Computer Systems for
 Desc:	the following INT 13 call will add the number given by this call to
 	  the specified cylinder to get the actual cylinder number, then reset
 	  the offset to zero
-Note:	this function is also supported by the NOW! disk cache, and presumably
+Notes:	this function is also supported by the NOW! disk cache, and presumably
 	  newer versions of SWBIOS and Disk Manager
 	for software which supports this call, AH=EEh is equivalent to calling
 	  this function with CX=0400h

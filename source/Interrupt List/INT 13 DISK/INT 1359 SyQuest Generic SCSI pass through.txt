@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1359
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 13 - SyQuest - Generic SCSI pass through
 	AH = 59h
@@ -32,7 +32,7 @@ Offset	Size	Description	(Table 00286)
  0Ch	DWORD	result data length (actual length of data transferred)
  10h	DWORD	-> CDB (see #03236,#03237,#03238)
  14h	DWORD	-> data buffer
-Note:	The handler does not perform a 'Request Sense' command if there was an
+Notes:	The handler does not perform a 'Request Sense' command if there was an
 	  error
 
 (Table 00287)

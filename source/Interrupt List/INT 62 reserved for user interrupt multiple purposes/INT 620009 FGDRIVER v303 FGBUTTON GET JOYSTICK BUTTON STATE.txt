@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 620009
   Category: V   video
       Flag: u   partially documented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 62 u - FGDRIVER v3.03+ - "FG_BUTTON" - GET JOYSTICK BUTTON STATE
 	AX = 0009h
@@ -10,7 +10,7 @@ INT 62 u - FGDRIVER v3.03+ - "FG_BUTTON" - GET JOYSTICK BUTTON STATE
 Return: AX = button states
 	    bit 0: top button pressed
 	    bit 1: bottom button pressed
-Note:	the FGDRIVER functions are rearranged with each major release, but
+Notes:	the FGDRIVER functions are rearranged with each major release, but
 	  their parameters do not change (see #03474)
 SeeAlso: AX=0052h,AX=0056h,AX=005Eh,AX=0062h,AX=0077h
 

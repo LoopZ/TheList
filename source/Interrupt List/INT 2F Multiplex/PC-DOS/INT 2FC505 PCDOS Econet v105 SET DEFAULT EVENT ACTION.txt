@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FC505
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - PC-DOS Econet v1.05 - SET DEFAULT EVENT ACTION
 	AX = C505h
@@ -11,7 +11,7 @@ INT 2F - PC-DOS Econet v1.05 - SET DEFAULT EVENT ACTION
 	    01h enable (call event handler chain)
 	    02h store until enabled or disabled (default)
 Return: AX = return code (see #03037)
-Note:	the interrupt-enable state will be preserved, but interrupts may be
+Notes:	the interrupt-enable state will be preserved, but interrupts may be
 	  enabled during processing of this function
 SeeAlso: AX=C500h,AX=C503h,AX=C506h,AX=C508h
 

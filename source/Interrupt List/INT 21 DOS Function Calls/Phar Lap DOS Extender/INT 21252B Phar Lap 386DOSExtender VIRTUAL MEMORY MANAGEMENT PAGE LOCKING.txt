@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21252B
   Category: E 	DOS extenders
       Flag: P 	available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 P - Phar Lap 386/DOS-Extender - VIRTUAL MEMORY MANAGEMENT - PAGE LOCKING
 	AX = 252Bh
@@ -17,6 +17,6 @@ INT 21 P - Phar Lap 386/DOS-Extender - VIRTUAL MEMORY MANAGEMENT - PAGE LOCKING
 	EDX = size of memory region in bytes
 Return: CF clear if successful
 	CF set on error
-Note:	this function is also supported by FlashTek X-32VM; if X-32 is not
+Notes:	this function is also supported by FlashTek X-32VM; if X-32 is not
 	  using virtual memory, this function always succeeds
 

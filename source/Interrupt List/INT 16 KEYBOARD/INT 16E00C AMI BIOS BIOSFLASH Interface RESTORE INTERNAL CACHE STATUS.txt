@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 16E00C
   Category: b 	vendor-specific BIOS extensions
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 16 - AMI BIOS - BIOS-FLASH Interface - RESTORE INTERNAL CACHE STATUS
 	AX = E00Ch
@@ -10,7 +10,7 @@ INT 16 - AMI BIOS - BIOS-FLASH Interface - RESTORE INTERNAL CACHE STATUS
 Return: CF clear if successful
 	    AL = FAh
 	CF set on error
-Note:	always returns error if the hardware does not contain internal
+Notes:	always returns error if the hardware does not contain internal
 	  cache or this call is made in protected mode
 SeeAlso: AX=E000h,AX=E00Bh
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 4B8102DX0000
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 4B - Virtual DMA Specification (VDS) - GET VERSION
 	AX = 8102h
@@ -18,7 +18,7 @@ Return: CF clear if successful
 	    SI:DI = maximum DMA buffer size
 	CF set on error
 	    AL = error code (see #03218)
-Note:	bit 5 of 0040h:007Bh is supposed to be set if VDS is supported; this is
+Notes:	bit 5 of 0040h:007Bh is supposed to be set if VDS is supported; this is
 	  apparently not always the case
 SeeAlso: INT 2C/AX=002Bh,INT 31/AX=0400h,MEM 0040h:007Bh"4Bh"
 Index:	installation check;Virtual DMA Specification

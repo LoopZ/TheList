@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1684BX000E
   Category: W 	MS Windows
       Flag: P 	available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F P - MS Windows - VCD - GET API ENTRY POINT
 	AX = 1684h
@@ -46,7 +46,7 @@ Call VCD entry point with:
 	    else
 		Return: CF set
 			EAX = FFFFFFFFh
-Note:	these functions are apparently only available from the system VM,
+Notes:	these functions are apparently only available from the system VM,
 	  returning CF set and EAX=FFFFFFFFh otherwise
 SeeAlso: #02651,#02653
 

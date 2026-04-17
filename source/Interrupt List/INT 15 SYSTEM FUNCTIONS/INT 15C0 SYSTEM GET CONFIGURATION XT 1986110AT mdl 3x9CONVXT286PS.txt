@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 15C0
   Category: B 	BIOS
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 - SYSTEM - GET CONFIGURATION (XT >1986/1/10,AT mdl 3x9,CONV,XT286,PS)
 	AH = C0h
@@ -403,7 +403,7 @@ Offset	Size	Description	(Table 00520)
  10h  8 BYTEs	ASCII signature string "TOSHIBA "
  18h  8 BYTEs	always zero???
  20h	DWORD	-> built-in BIOS setup program entry point or 0000h:0000h
-Note:	this record is located at F000h:E000h
+Notes:	this record is located at F000h:E000h
 SeeAlso: #00517,#00518
 
 (Table 00521)

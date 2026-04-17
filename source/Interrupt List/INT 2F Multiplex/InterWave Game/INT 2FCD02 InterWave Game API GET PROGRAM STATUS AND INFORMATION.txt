@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FCD02
   Category: s 	sound/speech
       Flag: R 	available only in real or V86 mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F R - InterWave Game API - GET PROGRAM STATUS AND INFORMATION
 	AX = CD02h
@@ -14,7 +14,7 @@ Return: CX = program status
 	BX = supported API version (BCD, BH=major, BL=minor) if CX bit 2 set
 	ES:DI -> ASCIZ identification string
 Range:	AH=CDh-ECh, selected by scanning for an available multiplex number
-Note:	ordinarily, an application will loop through all valid program
+Notes:	ordinarily, an application will loop through all valid program
 	  identifiers (as returned by AX=CD01h); if any of the installed
 	  programs conflicts with the use the caller wishes to make of the
 	  InterWave chip, it should be disabled with AX=CD03h first

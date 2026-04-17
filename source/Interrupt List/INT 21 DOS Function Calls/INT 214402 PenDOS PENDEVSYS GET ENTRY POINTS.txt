@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214402
   Category: n   non-traditional input devices
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 U - PenDOS PENDEV.SYS - GET ENTRY POINTS
 	AX = 4402h
@@ -47,6 +47,6 @@ Call PENDEV.SYS function to clear entry point with:
 	AX = index of entry point (0-9)
 Return: CF clear if successful
 	CF set on error (AX out of range)
-Note:	resets the jump at the specified entry point to its default target,
+Notes:	resets the jump at the specified entry point to its default target,
 	  which simply returns
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F12FFBX0406
   Category: m 	memory management
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Novell DOS 7+ - MEMORYMAX CREATE ACCESS KEY
 	AX = 12FFh
@@ -18,7 +18,7 @@ Return: CF clear if successful
 		       80h if access key already exists
 	        0001h (AX > 0) function not supported
 		    CX undefined
-Note:	This function is supported by Novell DOS 7+ EMM386.EXE 3.0+ and
+Notes:	This function is supported by Novell DOS 7+ EMM386.EXE 3.0+ and
 	  possibly by HIMEM.SYS 2.3+.
 SeeAlso: AX=12FFh/BX=0506h
 

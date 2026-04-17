@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F112F
   Category: N   network
       Flag: C   callout or callback (usually hooked rather than called)
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F CU - IFSFUNC.EXE (DOS 4.x only) - IFS IOCTL
 	AX = 112Fh
@@ -23,6 +23,6 @@ INT 2F CU - IFSFUNC.EXE (DOS 4.x only) - IFS IOCTL
 Return: CF set on error
 	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
 	CF clear if successful
-Note:	this function is called by the DOS 4.0 kernel
+Notes:	this function is called by the DOS 4.0 kernel
 SeeAlso: INT 21/AH=6Bh
 

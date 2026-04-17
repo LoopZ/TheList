@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 214B
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 2+ - "EXEC" - LOAD AND/OR EXECUTE PROGRAM
 	AH = 4Bh
@@ -135,15 +135,15 @@ Notes:	DOS 2.x destroys all registers, including SS:SP
 	  expected to be special cased by interrupt hooks (eg dosemu2)
 	  so that they receive exactly the same user stack as was set
 	  up by the interrupt caller.
-Note:   When creating a command tail, it consists of a length byte followed
-	by the string of characters. It should then be followed with a
-	CR (0x0d) and a NULL (0x00). However, neither the CR or NULL
-	are to be included in the length byte. The command tail will be
-	copied to the program PSP when executed. Depending on the DOS
-	manufacturer and version, the PSP command tail is limited to 125
-	or 126 characters plus a Carriage Return. Some DOS versions may
-	set a CMDLINE environment variable that can exceed the limited
-	number of characters supported by the PSP.
+	When creating a command tail, it consists of a length byte followed
+	  by the string of characters. It should then be followed with a
+	  CR (0x0D) and a NULL (0x00). However, neither the CR or NULL
+	  are to be included in the length byte. The command tail will be
+	  copied to the program PSP when executed. Depending on the DOS
+	  manufacturer and version, the PSP command tail is limited to 125
+	  or 126 characters plus a Carriage Return. Some DOS versions may
+	  set a CMDLINE environment variable that can exceed the limited
+	  number of characters supported by the PSP.
 BUGS:	DOS 2.00 assumes that DS points at the current program's PSP
 	Load Overlay (subfunction 03h) loads up to 512 bytes too many if the
 	  file contains additional data after the actual overlay (see #01594
@@ -372,7 +372,7 @@ Offset	Size	Description	(Table 01596)
  3Ah	WORD	offset to segment reference thunks or length of gangload area
  3Ch	WORD	minimum code swap area size
  3Eh  2 BYTEs	expected Windows version (minor version first)
-Note:	this header is documented in detail in the Windows 3.1 SDK Programmer's
+Notes:	this header is documented in detail in the Windows 3.1 SDK Programmer's
 	  Reference, Vol 4.
 SeeAlso: #01594
 
@@ -424,7 +424,7 @@ Offset	Size	Description	(Table 01601)
  02h	WORD	length of image in file (0000h = 64K)
  04h	WORD	segment attributes (see #01602)
  06h	WORD	number of bytes to allocate for segment (0000h = 64K)
-Note:	the first segment table entry is entry number 1
+Notes:	the first segment table entry is entry number 1
 SeeAlso: #01604
 
 Bitfields for segment attributes:
@@ -487,7 +487,7 @@ Offset	Size	Description	(Table 01605)
 	 02h	WORD	number of resources of this type
 	 04h	DWORD	reserved for runtime use
 	 08h  N Resources (see #01606)
-Note:	resource type and name strings are stored immediately following the
+Notes:	resource type and name strings are stored immediately following the
 	  resource table, and are not null-terminated
 SeeAlso: #01606
 
@@ -530,7 +530,7 @@ Offset	Size	Description	(Table 01607)
 	 01h  2 BYTEs	INT 3F instruction (CDh 3Fh)
 	 03h	BYTE	segment number
 	 05h	WORD	offset
-Note:	table entries are numbered starting from 1
+Notes:	table entries are numbered starting from 1
 SeeAlso: #01608
 
 Format of new executable resident/nonresident name table entry:
@@ -614,7 +614,7 @@ Offset	Size	Description	(Table 01609)
  BCh	DWORD	pointer to ??? (dynamically-loadable VxDs only???)
  C0h	WORD	device ID (MS-Windows VxD only)
  C2h	WORD	DDK version (MS-Windows VxD only)
-Note:	used by EMM386.EXE, QEMM, and Windows 3.0 Enhanced Mode drivers
+Notes:	used by EMM386.EXE, QEMM, and Windows 3.0 Enhanced Mode drivers
 
 Bitfields for Linear Executable module type:
 Bit(s)	Description	(Table 01610)
@@ -697,7 +697,7 @@ Offset	Size	Description	(Table 01615)
 				bits 3-7: number of stack parameters
 		 04h	DWORD	offset of entry point
 		 08h  2 BYTEs	???
-Note:	empty bundles (bit flags at 00h = 00h) are used to skip unused indices,
+Notes:	empty bundles (bit flags at 00h = 00h) are used to skip unused indices,
 	  and do not contain the remaining nine bytes
 
 Format of LX linear executable entry table [array]:
@@ -739,7 +739,7 @@ Offset	Size	Description	(Table 01616)
  05h	WORD	module ordinal
 		(forwarder's index into Import Module Name table)
  07h	DWORD	procedure name offset or import ordinal number
-Note:	all fields after the first two bytes are repeated N times
+Notes:	all fields after the first two bytes are repeated N times
 
 Bitfields for linear executable fixup type:
 Bit(s)	Description	(Table 01617)
@@ -921,7 +921,7 @@ Offset	Size	Description	(Table 01624)
  44h	WORD	number of optimized symbol records
  46h	WORD	debugging flags
  48h  8 BYTEs	padding
-Note:	additional information on the Borland debugging info may be found in
+Notes:	additional information on the Borland debugging info may be found in
 	  Borland's Open Architecture Handbook
 SeeAlso: #01600
 

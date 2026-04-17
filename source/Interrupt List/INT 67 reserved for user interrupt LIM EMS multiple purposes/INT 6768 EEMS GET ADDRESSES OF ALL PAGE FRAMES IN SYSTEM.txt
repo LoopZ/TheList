@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 6768
   Category: m 	memory management
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 67 - EEMS - GET ADDRESSES OF ALL PAGE FRAMES IN SYSTEM
 	AH = 68h
@@ -10,5 +10,5 @@ INT 67 - EEMS - GET ADDRESSES OF ALL PAGE FRAMES IN SYSTEM
 Return: AH = status (see also AH=40h)
 	AL = number of entries
 	buffer at ES:DI filled
-Note:	equivalent to LIM 4.0 function 58h
+Notes:	equivalent to LIM 4.0 function 58h
 

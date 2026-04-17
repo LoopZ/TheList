@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F217SFE7
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - GET FILE SERVER LAN I/O STATISTICS
 	AX = F217h subfn E7h
@@ -43,6 +43,6 @@ Offset	Size	Description	(Table 02245)
  36h	DWORD	number of NetBIOS packets propagated through net
  3Ah	DWORD	total number of non-file-service packets
  3Eh	DWORD	total number of routed packets
-Note:	all fields are big-endian
+Notes:	all fields are big-endian
 SeeAlso: #02079,#02080 at AH=E3h/SF=E7h
 

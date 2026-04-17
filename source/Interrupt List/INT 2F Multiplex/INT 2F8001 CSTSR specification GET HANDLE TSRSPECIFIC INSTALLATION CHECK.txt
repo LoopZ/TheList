@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F8001
   Category: t 	TSR libraries
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - CS_TSR specification - GET HANDLE (TSR-SPECIFIC INSTALLATION CHECK)
 	AX = 8001h
 	DS:SI -> ASCIZ signature string for desired TSR (see #02929)
 Return: BX = process handle or 0000h if specified TSR not installed
 	ES:DI -> process block for TSR (see #02928) if BX<>0000h
-Note:	A widely-available copy of ASCII billing itself as "ASCII 2.OO by
+Notes:	A widely-available copy of ASCII billing itself as "ASCII 2.OO by
 	  Nick Zaikin Jr." is in fact a hacked copy of the Compact Soft
 	  ASCII v4.23 which is identical except for the changed attribution
 	  and version (in fact, some instances of "4.23" were missed); the

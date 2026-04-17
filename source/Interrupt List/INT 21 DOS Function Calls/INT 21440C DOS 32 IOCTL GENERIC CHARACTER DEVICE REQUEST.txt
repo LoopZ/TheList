@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21440C
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 3.2+ - IOCTL - GENERIC CHARACTER DEVICE REQUEST
 	AX = 440Ch
@@ -18,7 +18,7 @@ Return: CF set on error
 	    DS:DX -> iteration count if CL=65h
 	    SI = returned value (European MS-DOS 4.0, OS/2 comp box)
 	    DI = returned value (European MS-DOS 4.0, OS/2 comp box)
-Note:	DR DOS 3.41 and 5.0 return error code 16h on CL=45h,65h if the device
+Notes:	DR DOS 3.41 and 5.0 return error code 16h on CL=45h,65h if the device
 	  does not support a retry counter
 SeeAlso: AX=440Dh"DOS 3.2+",INT 2F/AX=0802h,INT 2F/AX=122Bh,INT 2F/AX=14FFh
 SeeAlso: INT 2F/AX=1A01h
@@ -53,7 +53,7 @@ Values for generic character IOCTL function:
  6Ah	query selected code page (see #01549)
  6Bh	query codepage prepare list (DOS 4.0+) (see #01553)
  7Fh	get display information (DOS 4.0+) (see #01552)
-Note:	bit assignments for function code:
+Notes:	bit assignments for function code:
 	    bit 7: set to ignore if unsupported, clear to return error
 	    bit 6: set if passed to driver, clear if intercepted by DOS
 	    bit 5: set if queries data from device, clear if sends command
@@ -92,7 +92,7 @@ Offset	Size	Description	(Table 04116)
  03h	WORD	number of colors
  05h	WORD	width
  07h	WORD	height
-Note:	these functions appear never to have been released to the public
+Notes:	these functions appear never to have been released to the public
 SeeAlso: #01546
 
 Format of parameter block for function 45h:

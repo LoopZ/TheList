@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 33000A
   Category: M 	mouse/pointing device
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 33 - MS MOUSE v3.0+ - DEFINE TEXT CURSOR
 	AX = 000Ah
@@ -13,7 +13,7 @@ INT 33 - MS MOUSE v3.0+ - DEFINE TEXT CURSOR
 	    0001h hardware
 		CX = start scan line
 		DX = end scan line
-Note:	when the software cursor is selected, the character/attribute data at
+Notes:	when the software cursor is selected, the character/attribute data at
 	  the current screen position is ANDed with the screen mask and then
 	  XORed with the cursor mask
 SeeAlso: AX=0009h,INT 62/AX=007Eh

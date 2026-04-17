@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P0040005F
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0040-005F - PIT - PROGRAMMABLE INTERVAL TIMER (8253, 8254)
 Notes:	XT & AT use ports 40h-43h; PS/2 uses ports 40h, 42h-44h, and 47h
@@ -88,7 +88,7 @@ Bit(s)	Description	(Table P0380)
  2	select counter 1
  1	select counter 0
  0	reserved (0)
-Note:	after issuing a read back 'get status' command, any new read back
+Notes:	after issuing a read back 'get status' command, any new read back
 	  command is ignored until the status is read from all selected
 	  counters.
 

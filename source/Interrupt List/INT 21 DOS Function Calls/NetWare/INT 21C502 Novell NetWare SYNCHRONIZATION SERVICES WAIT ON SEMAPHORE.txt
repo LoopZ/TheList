@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21C502
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - WAIT ON SEMAPHORE
 	AX = C502h
@@ -15,7 +15,7 @@ Return: AL = status
 	    FFh invalid handle
 Desc:	decrement the semaphore's value, optionally waiting until its value
 	  becomes positive before decrementing
-Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+Notes:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
 	  Alloy NTNX
 SeeAlso: AX=C500h"NetWare",AX=C501h,AX=C503h,AX=F220h/SF=02h
 

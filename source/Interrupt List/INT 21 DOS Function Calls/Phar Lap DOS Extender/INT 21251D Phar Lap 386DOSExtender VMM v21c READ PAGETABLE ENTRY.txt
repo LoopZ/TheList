@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21251D
   Category: E   DOS extenders
       Flag: O   obsolete (no longer present in current versions)
       Flag: P   available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 OP - Phar Lap 386/DOS-Extender VMM v2.1c - READ PAGE-TABLE ENTRY
 	AX = 251Dh
@@ -18,6 +18,6 @@ Return: CF clear if successful
 	    EAX = error code
 		09h invalid address or NOPAGE option set
 		78h invalid under DPMI
-Note:	this function is obsolete; use AX=252Bh/BH=09h instead
+Notes:	this function is obsolete; use AX=252Bh/BH=09h instead
 SeeAlso: AX=251Eh,AX=252Bh/BH=09h,AX=EB00h,INT 31/AX=0506h
 

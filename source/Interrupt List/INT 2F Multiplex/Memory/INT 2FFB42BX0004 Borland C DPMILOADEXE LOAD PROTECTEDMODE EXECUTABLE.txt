@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FFB42BX0004
   Category: E   DOS extenders
       Flag: P   available only in protected mode
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F PU - Borland C++ DPMILOAD.EXE - LOAD PROTECTED-MODE EXECUTABLE???
 	AX = FB42h
@@ -12,7 +12,7 @@ INT 2F PU - Borland C++ DPMILOAD.EXE - LOAD PROTECTED-MODE EXECUTABLE???
 Return: CX = selector of ??? or 0000h
 ---BC3.0---
 	DX = status (0000h,FFF4h,others???) (see #03129)
-Note:	the filename may also be terminated by a CR rather than a NUL under the
+Notes:	the filename may also be terminated by a CR rather than a NUL under the
 	  BC++ 3.0 version of DPMILOAD
 
 (Table 03129)

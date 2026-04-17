@@ -1,13 +1,13 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7C0001
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 7C - SK-UPPS Data Link Interface API - DOWN DRIVER
 	AX = 0001h
 Return: AX = completion code (see #03846)
-Note:	the DLI will refuse to unload if there are any protocols
+Notes:	the DLI will refuse to unload if there are any protocols
 	  (see AX=0007h) or clients (see AX=0010h) active.
 Index:	uninstall;SK-UPPS Data Link Interface
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 215F33
   Category: N   network
       Flag: u   partially documented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 u - Named Pipes - LOCAL DosQNmPHandState
 	AX = 5F33h
@@ -12,7 +12,7 @@ Return: CF clear if successful
 	    AL = maximum number of instances
 	CF set on error
 	    AX = error code
-Note:	this function was introduced by LAN Manager but is also supported by
+Notes:	this function was introduced by LAN Manager but is also supported by
 	  the Novell DOS Named Pipe Extender, Banyan VINES, OS/2 Virtual DOS
 	  Machines, and others
 SeeAlso: AX=5F32h,AX=5F34h

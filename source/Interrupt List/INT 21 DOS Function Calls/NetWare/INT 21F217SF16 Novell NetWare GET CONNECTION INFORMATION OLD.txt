@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21F217SF16
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - GET CONNECTION INFORMATION (OLD)
 	AX = F217h subfn 16h
@@ -19,7 +19,7 @@ Offset	Size	Description	(Table 02170)
  00h	WORD	0002h (length of following data)
  02h	BYTE	16h (subfunction "Get Connection Information (old)")
  03h	BYTE	target connection number
-Note:	connection numbers greater than the maximum supported by the server
+Notes:	connection numbers greater than the maximum supported by the server
 	  can cause ABENDs
 SeeAlso: #02171
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 215F87
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - LANtastic v3+ - GET ACCOUNT
 	AX = 5F87h
@@ -12,7 +12,7 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code
 	BX destroyed
-Note:	must be logged into the specified machine
+Notes:	must be logged into the specified machine
 
 Format of LANtastic user account structure:
 Offset	Size	Description	(Table 01728)

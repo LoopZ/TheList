@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2FD201BX5145
   Category: m 	memory management
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - Quarterdeck RPCI - QEMM v5.0+ - INSTALLATION CHECK
 	AX = D201h
@@ -12,7 +12,7 @@ INT 2F - Quarterdeck RPCI - QEMM v5.0+ - INSTALLATION CHECK
 Return: BX = 4F4Bh ("OK")
 	ES:DI -> QEMM API entry point (see INT 67/AH=3Fh)
 Range:	AH=C0h to AH=FFh, selected by scanning AH=D2h-FFh, then AH=C0h-D1h
-Note:	this call is not available under QEMM v6.00 unless Windows3 support
+Notes:	this call is not available under QEMM v6.00 unless Windows3 support
 	  has been disabled with the NW3 switch to QEMM386.SYS
 SeeAlso: AX=D200h,AX=D201h/BX=4849h,INT 67/AH=3Fh
 

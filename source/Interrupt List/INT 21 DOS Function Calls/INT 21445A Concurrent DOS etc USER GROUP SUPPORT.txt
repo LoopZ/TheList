@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21445A
   Category: O   other operating systems
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 U - Concurrent DOS etc. - USER GROUP SUPPORT
 	AX = 445Ah
@@ -16,7 +16,7 @@ INT 21 U - Concurrent DOS etc. - USER GROUP SUPPORT
 	DX = data for operation if set
 	BX = key (if required)
 Return: AX = result
-Note:	This function was introduced on 1990/06/04 for CDOS.  It has been
+Notes:	This function was introduced on 1990/06/04 for CDOS.  It has been
 	  supported by DR PalmDOS and DR DOS "Panther" (BDOS 1070h),
 	  but it is not supported by Novell DOS 7 - DR-DOS 7.03.
 

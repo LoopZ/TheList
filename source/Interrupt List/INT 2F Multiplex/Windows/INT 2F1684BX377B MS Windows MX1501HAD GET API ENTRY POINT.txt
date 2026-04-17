@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1684BX377B
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F - MS Windows - MX1501HAD - GET API ENTRY POINT
 	AX = 1684h
@@ -10,7 +10,7 @@ INT 2F - MS Windows - MX1501HAD - GET API ENTRY POINT
 	ES:DI = 0000h:0000h
 Return: ES:DI -> VxD API entry point (see #02708)
 		  0000h:0000h if the VxD does not support an API
-Note:	The drivers VCMD95C.VXD and VCMD.386 are part of the driver disks
+Notes:	The drivers VCMD95C.VXD and VCMD.386 are part of the driver disks
 	  provided with the chip-card-reader/keyboard combination MX 1501 HAD,
 	  produced by Cherry
 SeeAlso: AX=1684h"DEVICE API",INT 20"Windows"

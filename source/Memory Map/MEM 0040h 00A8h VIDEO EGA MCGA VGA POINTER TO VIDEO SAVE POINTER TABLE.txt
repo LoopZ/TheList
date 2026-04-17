@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: M004000A8
   Category: V 	video
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 MEM 0040h:00A8h - VIDEO (EGA/MCGA/VGA) - POINTER TO VIDEO SAVE POINTER TABLE
 Size:	DWORD
@@ -68,7 +68,7 @@ Offset	Size	Description	(Table M0041)
  18h		VGA Modes 02h or 03h in 400-line mode
  19h		VGA Mode  07h in 400-line mode
  1Ah-1Ch	VGA Modes 11h-13h
-Note:	An array of 23 [EGA] or 29 [VGA] elements, each element being 64
+Notes:	An array of 23 [EGA] or 29 [VGA] elements, each element being 64
 	  bytes long.  Elements appear in the above order.
  
 Format of Video Parameter Table element [EGA, VGA only]:
@@ -143,7 +143,7 @@ Offset	Size	Description	(Table M0047)
  03h	DWORD	ptr to font table
  07h	BYTEs	Array of mode values to which this font is to pertain
 	BYTE	FFh end of array
-Note:	Authorities differ, some say same as first override above, but IBM
+Notes:	Authorities differ, some say same as first override above, but IBM
 	  says it is as shown above
  
 Format of Graphics Character Set Override:

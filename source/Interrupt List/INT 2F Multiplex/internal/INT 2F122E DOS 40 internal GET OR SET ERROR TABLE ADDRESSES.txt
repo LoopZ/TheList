@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F122E
   Category: D   DOS kernel
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F U - DOS 4.0+ internal - GET OR SET ERROR TABLE ADDRESSES
 	AX = 122Eh
@@ -48,7 +48,7 @@ Offset	Size	Description	(Table 02614)
 		 00h	WORD	error message number
 		 02h	WORD	offset of error message from start of header
 				error messages are count byte followed by msg
-Note:	DOS 5 error tables consist of one word per error number; each word
+Notes:	DOS 5 error tables consist of one word per error number; each word
 	  contains either the offset of a counted string or 0000h
 
 (Table 02615)

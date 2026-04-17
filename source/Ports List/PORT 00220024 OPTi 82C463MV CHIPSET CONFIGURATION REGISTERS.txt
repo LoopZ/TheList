@@ -1,14 +1,14 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: P00220024
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 PORT 0022-0024 - OPTi 82C463MV CHIPSET - CONFIGURATION REGISTERS
 Desc:	the 82C463MV contains a memory control unit (MCU), an AT Bus
 	  Control Unit (BCU), a Power Management Unit (PMU), data
 	  buffers and a 82C206 type IPC (without real time clock)
-Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+Notes:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
 	  even if the same register is being accessed a second time
 SeeAlso: PORT 0022h"82C206"
 
@@ -302,7 +302,7 @@ Bit	Description	(Table P0146)
 	=0 active high
  1	external EPMI1 pin polarity (see bit 2)
  0	send reset pulse during resume
-Note:	for 1X clock with Intel SL Enhanced CPU, bit 6 must be =1
+Notes:	for 1X clock with Intel SL Enhanced CPU, bit 6 must be =1
 SeeAlso: #P0135,#P0147,#P0148
 
 Bitfields for 82C463MV PMU control 2 (doze timer, register 41h):
@@ -407,7 +407,7 @@ Bit	Description	(Table P0153)
  2	KBD_ACCESS
  1	DSK_ACCESS
  0	LCD_ACCESS
-Note:	If a bit is =1, the corresponding access will reload IDLE_TIMER
+Notes:	If a bit is =1, the corresponding access will reload IDLE_TIMER
 	  otherwise not.
 SeeAlso: #P0135
 
@@ -667,7 +667,7 @@ Bit	Description	(Table P0171)
  2	enable IRQ4
  1	enable IRQ3
  0	enable IRQ1
-Note:	the value written into this register selects which IRQs generate
+Notes:	the value written into this register selects which IRQs generate
 	  PMI#6 in normal mode, the value read from this register indicates
 	  active IRQs at the time of the read
 SeeAlso: #P0135,#P0159,#P0170
@@ -719,7 +719,7 @@ Bit	Description	(Table P0173)
 	=0 PIO1 function (set register 57h bit 1 to determine input or
 	  output mode)
  0	enable CPU clock change request protocol
-Note:	for hardware doze mode, bit 5 must be 0
+Notes:	for hardware doze mode, bit 5 must be 0
 SeeAlso: #P0135,#P0147,#P0154,#P0159,#P0174
 
 Bitfields for OPTi 82C463MV CPU frequency (register 67h):
@@ -762,7 +762,7 @@ Bit(s)	Description	(Table P0175)
 	    11 64 ms
  1	enable PPWR bit 1 suspend auto toggle (see also #P0156)
  0	enable PPWR bit 0 suspend auto toggle (see also #P0156)
-Note:	bits 1 and 0 are not influenced by mask bits 5 and 4 of register 54h
+Notes:	bits 1 and 0 are not influenced by mask bits 5 and 4 of register 54h
 SeeAlso: #P0135,#P0146
 
 Bitfields for OPTi 82C463MV resume IRQ selects (register 6Ah):

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 7800
   Category: d 	disk I/O enhancements
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 78 - TARGA.DEV - CMC International SCSI device driver - SET I/O PORT
 	AH = 00h
@@ -11,7 +11,7 @@ Return: CF set on error
 	    AL = error code (see #03786)
 InstallCheck:	(used by TARGA.DEV) test for the string "SCSI" at offset 03h
 	  into the interrupt handler
-Note:	if this routine is not called, the port is the driver's default
+Notes:	if this routine is not called, the port is the driver's default
 	  (usually 0280h or 0300h)
 SeeAlso: AH=01h,AH=02h
 Index:	installation check;TARGA.DEV

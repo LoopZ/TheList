@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F1403
   Category: U   resident utilities
       Flag: C   callout or callback (usually hooked rather than called)
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F CU - NLSFUNC.COM - SET CODE PAGE
 	AX = 1403h
@@ -12,6 +12,6 @@ INT 2F CU - NLSFUNC.COM - SET CODE PAGE
 	DX = country code (see #01400 at INT 21/AH=38h)
 Return: AL = status
 	     ???
-Note:	this function is called by the DOS v3.3+ kernel on INT 21/AH=38h
+Notes:	this function is called by the DOS v3.3+ kernel on INT 21/AH=38h
 SeeAlso: AX=1402h"NLSFUNC",AX=1404h,INT 21/AH=38h"SET"
 

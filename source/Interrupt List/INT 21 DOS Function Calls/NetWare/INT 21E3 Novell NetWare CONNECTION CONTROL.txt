@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E3
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - CONNECTION CONTROL
 	AH = E3h
@@ -11,7 +11,7 @@ INT 21 - Novell NetWare - CONNECTION CONTROL
 Return: AL = status
 	    00h successful
 	    else error code
-Note:	supported by NetWare 4.0+, Advanced NetWare 1.0+, and Alloy NTNX
+Notes:	supported by NetWare 4.0+, Advanced NetWare 1.0+, and Alloy NTNX
 SeeAlso: AH=E3h/SF=0Ah,AH=E3h/SF=32h,AH=E3h/SF=64h,AH=E3h/SF=C8h
 
 Format of NetWare request buffer:
@@ -66,7 +66,7 @@ Values for NetWare security levels:
  02h	"object" only clients logged-in with object's name, type, and password
  03h	"supervisor" only clients logged-in with supervisor privileges
  04h	"NetWare" only NetWare may access
-Note:	the above values are stored in a nybble; the high half-byte is write
+Notes:	the above values are stored in a nybble; the high half-byte is write
 	  access and the low half-byte is read access
 
 (Table 01890)

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 215E00
   Category: D 	DOS kernel
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - DOS 3.1+ network - GET MACHINE NAME
 	AX = 5E00h
@@ -15,6 +15,6 @@ Return: CF clear if successful
 		    DS:DX buffer filled with blank-paded name
 	CF set on error
 	    AX = error code (01h) (see #01680 at AH=59h)
-Note:	supported by OS/2 v1.3+ compatibility box, PC-NFS
+Notes:	supported by OS/2 v1.3+ compatibility box, PC-NFS
 SeeAlso: AX=5E01h
 

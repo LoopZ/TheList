@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 21E3--SF3D
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - Novell NetWare - BINDERY SERVICES - READ PROPERTY VALUE
 	AH = E3h subfn 3Dh
@@ -10,7 +10,7 @@ INT 21 - Novell NetWare - BINDERY SERVICES - READ PROPERTY VALUE
 	ES:DI -> reply buffer (see #01943)
 Return: AL = status (see #01941)
 Desc:	retrieve one 128-byte segment of the specified property's value
-Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
 SeeAlso: AH=E3h/SF=39h,AH=E3h/SF=3Ch,AH=E3h/SF=3Eh,AX=F217h/SF=3Dh
 
 (Table 01941)

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 15DB04
   Category: b   vendor-specific BIOS extensions
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 15 U - AMI BIOS - Flash ROM - GET BIOS REVISION
 	AX = DB04h
@@ -16,6 +16,6 @@ Return: CF clear if supported
 		00h normal mode
 		01h ROM recovery mode
 	    AL = ??? (02h)
-Note:	used by FMUP.EXE, Intel's Flash Memory Update utility
+Notes:	used by FMUP.EXE, Intel's Flash Memory Update utility
 SeeAlso: AX=DA05h,AX=DA15h,AX=DA8Ch,AX=DB00h,AX=DB03h
 

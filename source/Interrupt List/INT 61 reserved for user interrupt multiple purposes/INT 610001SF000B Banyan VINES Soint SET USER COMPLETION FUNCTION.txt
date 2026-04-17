@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 610001SF000B
   Category: N 	network
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 61 - Banyan VINES - "Soint" - SET USER COMPLETION FUNCTION
 	AX = 0001h subfn 000Bh
 	DS:DX -> communications control block (function 000Bh) (see #03343)
 Return: AX = status (00h-0Ah,A2h) (see #03339)
 Range:	INT 60h to INT 66h
-Note:	The Banyan interrupt handler is identified by the string "BANV" in
+Notes:	The Banyan interrupt handler is identified by the string "BANV" in
 	  the four bytes immediately preceding the interrupt handler
 SeeAlso: AX=0001h/SF=0005h,AX=0001h/SF=0008h
 

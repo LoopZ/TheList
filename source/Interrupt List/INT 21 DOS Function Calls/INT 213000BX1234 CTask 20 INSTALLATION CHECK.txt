@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 213000BX1234
   Category: T 	DOS-based task switchers/multitaskers
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 21 - CTask 2.0+ - INSTALLATION CHECK
 	AX = 3000h
@@ -12,6 +12,6 @@ Return: AL = DOS major version
 	AH = DOS minor version
 	CX:BX -> Ctask global data block
 Program: CTask is a multitasking kernel for C written by Thomas Wagner
-Note:	if first eight bytes of returned data block equal eight bytes passed
+Notes:	if first eight bytes of returned data block equal eight bytes passed
 	  in, CTask is resident
 

@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 1AB109
   Category: X 	expansion bus BIOSes
       Flag: n/a
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 1A - PCI BIOS v2.0c+ - READ CONFIGURATION WORD
 	AX = B109h
@@ -19,7 +19,7 @@ Notes:	this function may require up to 1024 byte of stack; it will not enable
 	  interrupts if they were disabled before making the call
 	the meanings of BL and BH on entry were exchanged between the initial
 	  drafts of the specification and final implementation
-BUG:	the Award BIOS 4.51PG (dated 05/24/96) incorrectly returns FFFFh for
+BUGS:	the Award BIOS 4.51PG (dated 05/24/96) incorrectly returns FFFFh for
 	  register 00h if the PCI function number is nonzero
 SeeAlso: AX=B108h,AX=B10Ah,AX=B189h,INT 2F/AX=1684h/BX=304Ch
 

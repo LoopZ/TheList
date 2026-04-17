@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 2F13
   Category: D   DOS kernel
       Flag: U   undocumented function
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 2F U - DOS 3.2+ - SET DISK INTERRUPT HANDLER
 	AH = 13h
@@ -33,7 +33,7 @@ Notes:	IO.SYS hooks INT 13 and inserts one or more filters ahead of the
 	  point)
 	the preloadable Novell DOS 7+ SECURITY.BIN driver $SECURE$ traps
 	  this call.
-BUG:	Novell DOS 7 IBMBIO.COM before 1995-05-08 trashed AX on return from
+BUGS:	Novell DOS 7 IBMBIO.COM before 1995-05-08 trashed AX on return from
 	  this function. VGACOPY by Thomas M”nkemeier's VGA Software GmbH
 	  crashed due to this.	Later releases of Novell DOS 7 preserved the
 	  contents of the AX register.

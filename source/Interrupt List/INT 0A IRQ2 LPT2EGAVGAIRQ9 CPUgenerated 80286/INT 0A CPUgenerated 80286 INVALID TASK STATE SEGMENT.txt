@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 0A
   Category: C   CPU-generated
       Flag: C   callout or callback (usually hooked rather than called)
       Flag: P   available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 0A CP - CPU-generated (80286+) - INVALID TASK STATE SEGMENT
 Desc:	automatically called during a task switch if the new TSS specified by
@@ -17,7 +17,7 @@ Desc:	automatically called during a task switch if the new TSS specified by
 		non-conforming code segment's DPL differs from CPL
 		conforming code segment's DPL > CPL
 		DS/ES selectors outside LDT/GDT limit or not readable segments
-Note:	the handler must use a task gate in order to have a valid TSS under
+Notes:	the handler must use a task gate in order to have a valid TSS under
 	  which to execute; it must also reset the busy bit in the new TSS
 SeeAlso: INT 0B"CPU"
 

@@ -1,15 +1,15 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
  Unique ID: 31050B
   Category: E 	DOS extenders
       Flag: P 	available only in protected mode
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 INT 31 P - DPMI 1.0+ - GET MEMORY INFORMATION
 	AX = 050Bh
 	ES:(E)DI -> 128-byte buffer for memory information (see #03157)
 Return: CF clear if successful
 	CF set on error (DPMI 0.9 only)
-Note:	16-bit programs use ES:DI, 32-bit programs must use ES:EDI
+Notes:	16-bit programs use ES:DI, 32-bit programs must use ES:EDI
 SeeAlso: AX=0500h
 
 Format of DPMI memory information:
