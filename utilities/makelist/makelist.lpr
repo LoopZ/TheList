@@ -154,11 +154,16 @@ end;
 procedure SetHeader(Title : String; Part : integer = 0; Total : integer = 0);
 begin
    if LegacyMode then Title:=UpperCase(Title);
-   if Part + Total = 0 then
-     Header:=RightPad(Title, TitleWidth) + TAB +
-       RightPad(ReleaseVersion, 14) + TAB +
-       'Last Change ' + LastChange
-   else
+   if Part + Total = 0 then begin
+     if LegacyMode then begin
+       Header:=RightPad(Title, TitleWidth) + TAB +
+         RightPad(ReleaseVersion, 14) + TAB +
+         'Last Change ' + LastChange;
+     end else begin
+       Header:=Title + SPACE4 + ReleaseVersion + SPACE4 +
+         'Last Change ' + LastChange;
+     end;
+   end else
      Header:=Title + COMMA + SPACE + 'part ' + IntToStr(Part) + ' of ' +
        IntToStr(Total);
    if HeaderData <> '' then
@@ -904,7 +909,7 @@ begin
   if LegacyMode then
     LastChange:=Lowercase(FormatDateTime('ddmmmYY', BuildTime))
   else
-    LastChange:=Lowercase(FormatDateTime('ddmmmYY hh:nn', BuildTime));
+    LastChange:=FormatDateTime('yyyy-mm-dd hh:nn"Z" mmm ddd', BuildTime);
   TitleWidth:=0;
   for I := 0 to High(DOSNAMES) do
      if Length(DOSNAMES[I].Name) > TitleWidth then
