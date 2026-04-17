@@ -17,9 +17,9 @@ With the exception of the [Miscellaneous](source/Miscellaneous) directory, the o
 
 ## Group sub-directories
 
-Every _group_ sub-directory contains at least one _Comment Section_ file. These files always start with an **underscore** character. Generally, these files are included as-is into the appropriate _LST_ file based on the order as defined in the [_Mapping.txt](source/_Mapping.txt) file.
+Every _group_ sub-directory contains at least one _Comment Section_ file. The filenames of these files always start with an **underscore** character. Generally, these files are included as-is into the appropriate _LST_ file based on the order as defined in the [_Mapping.txt](source/_Mapping.txt) file.
 
-Most _groups_ _(like [Interrupt List](source/Interrupt%20List) and [Ports List](source/Ports%20List))_ can contain numerous sub-directories and files used for the items in a _LST_ file. The directory and file names for those items are not important to the program that compiles _The List_. Their names are only for our convience when finding and editing an entry for _The List_. Those items can be broken down into any level of sub-paths which we find suitable to our needs in maintaining the project.
+Most _groups_ _(like [Interrupt List](source/Interrupt%20List) and [Ports List](source/Ports%20List))_ can contain numerous sub-directories and files used for the items in a _LST_ file. The directory and file names for those items are not important to the program that compiles _The List_. Their names are only for our convenience when finding and editing an entry for _The List_. Those items can be broken down into any level of sub-paths which we find suitable to our needs in maintaining the project. (When compiling, the unique IDs or sort-as IDs (described below) are used to determine the order of entries.)
 
 _Note: All files are required to have a `.txt` filename extension and must be encoded in standard ASCII using code page 437. UTF-8 and other text encoding schemes are not supported at this time._
 
@@ -117,7 +117,6 @@ The section names are:
   * Desc:
   * Note:
   * Notes:
-  * MORE:
   * BUG:
   * BUGS:
   * Program:
