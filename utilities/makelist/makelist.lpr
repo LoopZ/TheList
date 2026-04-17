@@ -395,6 +395,7 @@ begin
   N:= SectionTree.Add(ID, Data);
   if not Assigned(N) then begin
     LogMessage(vbVerbose, TAB + 'Duplicate UniqueID (' + ID + ') for file: ' + Name);
+    WriteIssue;
     Inc(TotalDuplicates);
     XX:=0;
     repeat
