@@ -115,9 +115,7 @@ The section names are:
 
   * Return:
   * Desc:
-  * Note:
   * Notes:
-  * BUG:
   * BUGS:
   * Program:
   * InstallCheck:
