@@ -12,7 +12,7 @@ Return: AL = status
 	    01h end of file, no data read
 	    02h segment wrap in DTA, no data read
 	    03h end of file, partial record read
-	Disk Tranfer Area filled with record read from file
+	Disk Transfer Area filled with record read from file
 Notes:	the record is read from the current file position as specified by the
 	  random record and record size fields of the FCB
 	the file position is not updated after reading the record

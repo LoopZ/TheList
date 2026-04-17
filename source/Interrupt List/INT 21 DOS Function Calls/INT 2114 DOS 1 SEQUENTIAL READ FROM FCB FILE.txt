@@ -12,7 +12,7 @@ Return: AL = status
 	    01h end of file (no data)
 	    02h segment wrap in DTA
 	    03h end of file, partial record read
-	Disk Tranfer Area filled with record read from file
+	Disk Transfer Area filled with record read from file
 Notes:	reads a record of the size specified in the FCB beginning at the
 	  current file position, then updates the current block and current
 	  record fields in the FCB
