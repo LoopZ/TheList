@@ -27,7 +27,7 @@ _Note: All files are required to have a `.txt` filename extension and must be en
 
 ### List item headers
 
-The individual list item entry files each contain a header that has important information that is needed when compiling the list files. The header starts and ends with two horizontal bars comprised of 80 dashes (minus characters). While there are several possible fields, only the **Unique ID** field is absolutely mandatory.
+The individual list item entry files each contain a header that has important information that is needed when compiling the list files. The header starts and ends with two horizontal bars comprised of at least 75 dashes (minus characters). While there are several possible fields, only the **Unique ID** field is absolutely mandatory.
 
 * **Unique ID** - Mandatory field. It contains the ID which will be used for the section break in the compiled _LST_ file. For example,
 [Interrupt 21h function 4Ch](source/Interrupt%20List/INT%2021%20DOS%20Function%20Calls/INT%20214C%20DOS%202%20EXIT%20TERMINATE%20WITH%20RETURN%20CODE.txt)
@@ -48,7 +48,7 @@ the ID can be suffixed with a **-sort-as-** ID to better identify the entry and 
 
 ### List item contents
 
-After the second 80-dash separator line that ends the header,
+After the second all-dash separator line that ends the header,
 the contents of the list item follow.
 All contents are copied exactly into the _LST_ file during compilation,
 except that leading and trailing empty lines are skipped
