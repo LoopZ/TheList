@@ -11,6 +11,6 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code (DPMI 1.0+) (see also #03143)
 		8001h unsupported, 16-bit host
-BUG:	the Borland C++ 3.1 DPMILOAD returns with CF clear but BX and CX
+BUGS:	the Borland C++ 3.1 DPMILOAD returns with CF clear but BX and CX
 	  unchanged
 

@@ -9,7 +9,7 @@ INT 7F - IBM 8514/A Adapter Interface (HDILOAD.EXE)
 Return: CF set on error
 	CF clear if successful
 	    CX:DX -> array of FAR pointers to entry points (see #03877)
-Note:	most functions are invoked by pushing the DWORD parameter block pointer
+Notes:	most functions are invoked by pushing the DWORD parameter block pointer
 	  and then performing a FAR call via the appropriate vector of the
 	  entry point array, placing the FAR address of the function's
 	  parameter block on the top of the stack
@@ -216,7 +216,7 @@ Offset	Size	Description	(Table 03890)
  0Ah  2 WORDs	X,Y coordinates of source's upper-left corner in display memory
  0Eh  2 WORDs	X,Y coordinates of destination's upper-left corner in
 		  display memory
-Note:	copies data from one location in video memory to another
+Notes:	copies data from one location in video memory to another
 SeeAlso: #03891
 
 Format of HBBCHN parameter block:
@@ -224,7 +224,7 @@ Offset	Size	Description	(Table 03891)
  00h	WORD	0006h (length of following data)
  02h	DWORD	-> data buffer in system memory
  06h	WORD	number of bytes to transfer
-Note:	this function performs the actual data transfer for a bitBLT set up
+Notes:	this function performs the actual data transfer for a bitBLT set up
 	  with HBBR, HBBW, or HCBBW
 SeeAlso: #03890,#03892,#03893,#03894
 
@@ -309,7 +309,7 @@ Format of HCMRK parameter block:
 Offset	Size	Description	(Table 03899)
  00h	WORD	length of following data
  02h 2N WORDs	X,Y of N points
-Note:	draws N+1 marker symbols, the first one at the current position
+Notes:	draws N+1 marker symbols, the first one at the current position
 SeeAlso: #03908
 
 Format of HCRLINE parameter block:
@@ -366,7 +366,7 @@ Format of HLINE parameter block:
 Offset	Size	Description	(Table 03907)
  00h	WORD	length of following data (multiple of 4)
  02h 2N WORDs	X,Y coordinates for each of N points in polyline
-Note:	on completion, the current position is set to the last point drawn
+Notes:	on completion, the current position is set to the last point drawn
 SeeAlso: #03897,#03918,#03900
 
 Format of HMRK parameter block:
@@ -418,7 +418,7 @@ Format of HQDFPAL parameter block:
 Offset	Size	Description	(Table 03913)
  00h	WORD	0040h (length of following data)
  02h 16	DWORDs	(ret) color index values
-Note:	the default palette is set to match the default EGA/VGA 16-color
+Notes:	the default palette is set to match the default EGA/VGA 16-color
 	  palettes
 
 Format of HQDPS parameter block:
@@ -464,7 +464,7 @@ Offset	Size	Description	(Table 03917)
  02h  2 WORDs	X,Y coordinates of top left corner or rectangle
  06h	WORD	rectangle's width
  08h	WORD	rectangle's height
-Note:	the rectangle is filled using the current pattern, color, and mix
+Notes:	the rectangle is filled using the current pattern, color, and mix
 
 Format of HRLINE parameter block:
 Offset	Size	Description	(Table 03918)
@@ -472,13 +472,13 @@ Offset	Size	Description	(Table 03918)
  02h  2 WORDs	X,Y coordinates of starting point
  06h 2N WORDs	X,Y coordinates relative to the position of the previous point
 		  for each of N points in polyline
-Note:	on completion, the current position is set to the last point drawn
+Notes:	on completion, the current position is set to the last point drawn
 SeeAlso: #03907,#03897,#03900
 
 Format of HRLPC parameter block:
 Offset	Size	Description	(Table 03919)
  00h	WORD	0000h (no data following)
-Note:	used for continuity of lines crossing scissors boundaries
+Notes:	used for continuity of lines crossing scissors boundaries
 SeeAlso: #03932
 
 Format of HRPAL parameter block:
@@ -573,7 +573,7 @@ Bit(s)	Description	(Table 03931)
 Format of HSLPC parameter block:
 Offset	Size	Description	(Table 03932)
  00h	WORD	0000h (no data following)
-Note:	used for continuity of lines crossing scissors boundaries
+Notes:	used for continuity of lines crossing scissors boundaries
 SeeAlso: #03919
 
 Format of HSLT parameter block:

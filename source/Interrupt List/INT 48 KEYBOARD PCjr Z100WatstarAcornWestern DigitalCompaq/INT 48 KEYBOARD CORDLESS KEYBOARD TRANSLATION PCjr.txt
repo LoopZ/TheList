@@ -6,7 +6,7 @@
 
 INT 48 - KEYBOARD - CORDLESS KEYBOARD TRANSLATION (PCjr)
 	AL = scan code???
-Note:	This interrupt may be un-initialized (0000h:0000h) on old machines.
+Notes:	This interrupt may be un-initialized (0000h:0000h) on old machines.
 	  This should be checked before calling or hooking this vector.
 	MS-DOS/PC DOS 3.3x-4.x KEYB hooked the INT 48h handler. For AL <= 80h
 	  it checked that either ALT and neither CTRL key was pressed,

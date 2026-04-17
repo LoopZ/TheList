@@ -120,7 +120,7 @@ Bit(s)	Description	(Table P0825)
 	10 = card data lost
 	11 = battery/data ok
 	(I/O card) status change (ignore bit 1)
-Note:	this register is read-only
+Notes:	this register is read-only
 SeeAlso: #P0823
 
 Bitfields for Cirrus Logic CL-PD6710/6722/6729 power control:
@@ -176,7 +176,7 @@ Bit(s)	Description	(Table P0828)
  1	battery warning change (ignore on I/O card)
  0	(memory card) battery dead change
 	(I/O card) status change
-Note:	reading this read-only register resets all bits to 0
+Notes:	reading this read-only register resets all bits to 0
 SeeAlso: #P0823
 
 Bitfields for Cirrus Logic CL-PD6710/6722/6729 management interrupt config:
@@ -464,7 +464,7 @@ Bit(s)	Description	(Table P0846)
 --- register 2Fh extended index 0Bh bits 4-3 = 10 ---
  7-0	reserved
 ------
-Note:	for software compatibility this register should only be used as write
+Notes:	for software compatibility this register should only be used as write
 	  port, and bits 7-4 should be ignored
 SeeAlso: #P0842
 
@@ -525,7 +525,7 @@ Bit(s)	Description	(Table P0851)
  2	IDE interface (read-only)
  1-0	number of sockets (read-only)
 	00 = two
-Note:	CL-PD6729 does not support GPSTB even if bit 5 = 1
+Notes:	CL-PD6729 does not support GPSTB even if bit 5 = 1
 SeeAlso: #P0842
 
 Bitfields for Cirrus Logic CL-PD6729 device capability byte B:

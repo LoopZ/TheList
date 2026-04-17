@@ -9,7 +9,7 @@ INT 15 u - IBM BIOS - SMART ENERGY SYSTEM - GET ROM STARTUP VIDEO REG TABLES
 	BL = data index (00h-0Dh) (see #00459)
 Return: ES:BX -> table for register (see #00460,#00461)
 	CX = size of table in bytes (may be 0000h)
-Note:	IBM classifies this function as optional
+Notes:	IBM classifies this function as optional
 SeeAlso: AX=2300h,AX=2301h,AX=2303h
 
 (Table 00459)

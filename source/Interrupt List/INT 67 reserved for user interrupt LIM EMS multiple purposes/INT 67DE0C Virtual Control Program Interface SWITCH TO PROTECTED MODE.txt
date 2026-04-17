@@ -14,7 +14,7 @@ Return: interrupts disabled
 	SS:ESP must have at least 16 bytes space, and the entry point is
 	      required to set up a new stack before enabling interrupts
 	EAX, ESI, DS, ES, FS, GS destroyed
-Note:	in protected mode, calling the protected-mode VCPI entry point with
+Notes:	in protected mode, calling the protected-mode VCPI entry point with
 	  AX = DE0Ch
 	  DS = segment selector mapping entire linear address space obtained
 		  via AX=DE01h

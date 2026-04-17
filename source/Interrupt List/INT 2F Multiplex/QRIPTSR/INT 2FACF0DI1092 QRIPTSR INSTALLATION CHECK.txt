@@ -12,6 +12,6 @@ Return: AX = 9142h if installed
 	    ---if DX nonzero---
 	    BX = QRIP version number in hex (BH = major, BL = minor)
 	    CX = current flags (see AX=AC01h)
-Note:	if DI <> 1092h on entry, QRIP chains the call
+Notes:	if DI <> 1092h on entry, QRIP chains the call
 SeeAlso: AX=AC00h/DI=1092h,AX=AC01h,AX=AC04h,AX=AC06h,AX=AC1Ah,AX=ACFFh
 

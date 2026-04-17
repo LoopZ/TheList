@@ -8,7 +8,7 @@ INT 62 u - FGDRIVER v4.02 - "FG_FLICHEAD" - READ FLI/FLC FILE HEADER
 	AX = 002Eh
 	ES:BX -> FLICHEAD variable pointer record (see #03477)
 Return: AX = status (see #03476)
-Note:	the FGDRIVER functions are rearranged with each major release, but
+Notes:	the FGDRIVER functions are rearranged with each major release, but
 	  their parameters do not change (see #03474 at AX=0000h)
 SeeAlso: AX=002Dh,AX=002Fh,AX=0030h,AX=0032h
 

@@ -8,7 +8,7 @@ INT 15 - DESQview - GET PROGRAM NAME
 	AX = DE00h
 Return: AX = offset into DESQVIEW.DVO of program most recently selected from
 	      the "Switch Windows" menu (see #00550)
-Note:	always returns AX=0000h under DESQview/X
+Notes:	always returns AX=0000h under DESQview/X
 SeeAlso: AX=DE07h
 
 Format of program entry in DESQVIEW.DVO:

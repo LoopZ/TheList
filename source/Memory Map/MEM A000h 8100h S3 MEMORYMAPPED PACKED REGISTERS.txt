@@ -9,7 +9,7 @@ Size:	80 BYTEs
 Access:	Write-Only
 Desc:	these registers pack two 16-bit I/O registers into a single DWORD
 	  for faster writes
-Note:	the S3 graphics processor registers can be mapped at either
+Notes:	the S3 graphics processor registers can be mapped at either
 	  linear 000A0000h or at offset 16M from the start of the linear
 	  frame buffer
 SeeAlso: MEM A000h:8180h
@@ -55,7 +55,7 @@ Offset	Size	Description	(Table M0057)
 8168h	DWORD	(Trio64 only) Pattern Y (low word), Pattern X (high word)
 		(see PORT EAE8h,PORT EAEAh)
 816Ch	DWORD	??? (written by STLTH64.DRV for Win95)
-Note:	setting 8138h to 0 and 813Ch to 12345678h may be a magic value to unlock
+Notes:	setting 8138h to 0 and 813Ch to 12345678h may be a magic value to unlock
 	  some S3 features
 SeeAlso: #M0073,#M0070
 

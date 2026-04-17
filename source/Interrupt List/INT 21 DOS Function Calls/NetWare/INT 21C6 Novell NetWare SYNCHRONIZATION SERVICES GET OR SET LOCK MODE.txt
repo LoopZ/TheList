@@ -11,7 +11,7 @@ INT 21 - Novell NetWare - SYNCHRONIZATION SERVICES - GET OR SET LOCK MODE
 	    01h set new extended locks mode
 	    02h get lock mode
 Return: AL = current lock mode
-Note:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
+Notes:	this function is supported by NetWare 4.6+, Advanced NetWare 1.0+, and
 	  Alloy NTNX
 	the locking mode should be 01h for NetWare 4.61+ and Advanced
 	  NetWare 1.0+ locking calls, and 00h for all older calls

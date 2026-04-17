@@ -11,7 +11,7 @@ INT 6F - HP Vectra EX-BIOS - "F_INS_FIXGETDS" - INSTALL VALUES IN FIXED VECTOR
 	ES:DI -> new CS:IP entry point
 Return: AH = status (00h) (see #03744)
 	BP,DS destroyed
-Note:	on installation, the given entry point will be invoked with an SF_INIT
+Notes:	on installation, the given entry point will be invoked with an SF_INIT
 	  call (see AX=0200h"SF_INIT"), with the "last used DS" value in BX;
 	  the routine should adjust BX and return the new value.  If the
 	  SF_INIT call returns with error code FEh, the power-on self-test

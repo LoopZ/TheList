@@ -12,7 +12,7 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code (see #03319)
 Range:	INT 20 to INT E0, selected by configuration
-Note:	the descriptor will be closed and resources released.  If a stream
+Notes:	the descriptor will be closed and resources released.  If a stream
 	  descriptor, the protocol (FIN etc) is completed unless the
 	  non-blocking option has been set.
 SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=09h"PC/TCP"

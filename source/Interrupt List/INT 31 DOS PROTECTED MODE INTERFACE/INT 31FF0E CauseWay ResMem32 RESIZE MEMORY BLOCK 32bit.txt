@@ -10,7 +10,7 @@ INT 31 P - CauseWay - "ResMem32" - RESIZE MEMORY BLOCK (32-bit)
 	ECX = new size in bytes
 Return: CF clear if successful
 	CF set on error
-Note:	the memory block may have to be copied to another location in order
+Notes:	the memory block may have to be copied to another location in order
 	  to satisfy the requested new size, in which case the base address
 	  of the selector is updated
 SeeAlso: AX=FF0Ch,AX=FF0Dh,AX=FF13h

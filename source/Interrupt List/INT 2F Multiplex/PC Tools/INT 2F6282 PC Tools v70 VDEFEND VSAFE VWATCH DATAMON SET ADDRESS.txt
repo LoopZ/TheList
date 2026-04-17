@@ -9,7 +9,7 @@ INT 2F U - PC Tools v7.0+ VDEFEND, VSAFE, VWATCH, DATAMON - SET ??? ADDRESS
 	CX:DX -> ??? or 0000h:0000h
 	DI = segment of ??? record (see #02846) or 0000h/FFFFh to ignore
 Return: BX = 0062h
-Note:	if CX:DX = 0000h:0000h on entry, the ??? address is not changed
+Notes:	if CX:DX = 0000h:0000h on entry, the ??? address is not changed
 	  (DATAMON only)
 SeeAlso: INT 13/AH=FAh"VSAFE",INT 21/AH=FAh"VDEFEND"
 

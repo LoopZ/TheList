@@ -8,7 +8,7 @@ INT 2F - PC-DOS Econet v1.05 - PERFORM NETWORK OPERATION
 	AX = C502h
 	DS:DX -> control block (see #03036)
 Return: AX = return code (see #03037) (same as returned in control block)
-Note:	the interrupt-enable state will be preserved, but interrupts may be
+Notes:	the interrupt-enable state will be preserved, but interrupts may be
 	  enabled during processing of this function
 SeeAlso: AX=C500h
 
@@ -115,7 +115,7 @@ Offset	Size	Description	(Table 03038)
 		80h+2N get non-volatile byte N
 		81h+2N set non-volatile byte N
  02h	var	new data
-Note:	all command blocks should be padded to twelve bytes with zeros if
+Notes:	all command blocks should be padded to twelve bytes with zeros if
 	  needed
 SeeAlso: #03036
 

@@ -9,6 +9,6 @@ INT 2F - QRIP/TSR - OUTPUT NULL-TERMINATED STRING THROUGH QRIP
 	DI = 1092h
 	DX:BX -> ASCIZ string
 Return: nothing
-Note:	if DI <> 1092h on entry, QRIP chains the call
+Notes:	if DI <> 1092h on entry, QRIP chains the call
 SeeAlso: AX=AC04h,AX=AC06h,AX=AC09h,AX=AC0Ah,AX=ACF0h
 

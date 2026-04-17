@@ -103,7 +103,7 @@ Bit(s)	Description	(Table P0016)
 	0x  no operation
 	10  read interrupt request register on next read from PORT 0020h
 	11  read interrupt in-service register on next read from PORT 0020h
-Note:	the special mask mode permits all other interrupts (even those with
+Notes:	the special mask mode permits all other interrupts (even those with
 	  lower priority) to be processed while an interrupt is already in
 	  service, but will not re-issue an interrupt for a particular IRQ
 	  while it remains in service

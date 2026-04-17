@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 PORT 0022-0024 - OPTi 82C281/282/283 CHIPSETS - CONFIGURATION REGISTERS
-Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+Notes:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
 	  even if the same register is being accessed a second time
 SeeAlso: PORT 0022h"82C206"
 
@@ -89,7 +89,7 @@ Bit(s)	Description	(Table P0102)
  2	enable D800-DBFF
  1	enable D400-D7FF
  0	enable D000-D3FF
-Note:	bits 7-4 are only in effect when register 11h bit 6 is set; bits 3-0
+Notes:	bits 7-4 are only in effect when register 11h bit 6 is set; bits 3-0
 	  are only in effect when register 11h bit 5 is set
 SeeAlso: #P0099,#P0101,#P0103
 
@@ -145,6 +145,6 @@ SeeAlso: #P0099,#P0106
 Bitfields for OPTi 82C281/82C282 cache control register 2:
 Bit(s)	Description	(Table P0106)
  7-0	starting address bits 23-16 of non-cacheable region
-Note:	the specified starting address must be a multiple of the region size
+Notes:	the specified starting address must be a multiple of the region size
 SeeAlso: #P0099,#P0105
 

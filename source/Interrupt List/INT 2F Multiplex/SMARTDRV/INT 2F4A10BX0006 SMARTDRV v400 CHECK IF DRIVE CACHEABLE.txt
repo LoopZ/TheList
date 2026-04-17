@@ -10,7 +10,7 @@ INT 2F CU - SMARTDRV v4.00+ - CHECK IF DRIVE CACHEABLE
 	BX = 0006h
 	CL = drive number (01h = A:)
 Return: AX = 0006h if drive should not be cached by SMARTDRV
-Note:	called by SMARTDRV at startup to determine whether it should cache
+Notes:	called by SMARTDRV at startup to determine whether it should cache
 	  a particular drive
 SeeAlso: AX=4A10h/BX=0000h
 

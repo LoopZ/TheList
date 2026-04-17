@@ -31,7 +31,7 @@ Notes:	If the read cache is off, reads will not be cached, but writes will
 	On calling this function, NWCACHE flushes any delayed writes,
 	  but you should not rely on this, since this behavior may vanish
 	  in future versions.
-BUG:	The MS-DOS 6.20+ SCANDISK disables a SMARTDRV 4+ compatible cache
+BUGS:	The MS-DOS 6.20+ SCANDISK disables a SMARTDRV 4+ compatible cache
 	  for the drive it is about to process.  However, at least when the
 	  cache loaded is NWCACHE, the cache will still remain disabled for
 	  this drive after SCANDISK has finished.  The reason for this behavior

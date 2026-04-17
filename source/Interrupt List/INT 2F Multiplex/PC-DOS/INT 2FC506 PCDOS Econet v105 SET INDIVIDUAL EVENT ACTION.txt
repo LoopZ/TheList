@@ -12,7 +12,7 @@ INT 2F - PC-DOS Econet v1.05 - SET INDIVIDUAL EVENT ACTION
 	    01h enable (call event handler chain)
 	    02h store until enabled or disabled (default)
 Return: AX = return code (see #03037)
-Note:	the interrupt-enable state will be preserved, but interrupts may be
+Notes:	the interrupt-enable state will be preserved, but interrupts may be
 	  enabled during processing of this function
 SeeAlso: AX=C500h,AX=C504h,AX=C505h,AX=C507h
 

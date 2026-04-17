@@ -19,7 +19,7 @@ Return: CF clear if successful
 	CF set on error
 	    AL = error code
 		0Ch drive table number out of range
-Note:	the drive number in AL is *not* the logical DOS drive number, but
+Notes:	the drive number in AL is *not* the logical DOS drive number, but
 	  the number of an internal data table; multiple data tables, each
 	  describing a distinct disk format, may be shared by one logical
 	  drive

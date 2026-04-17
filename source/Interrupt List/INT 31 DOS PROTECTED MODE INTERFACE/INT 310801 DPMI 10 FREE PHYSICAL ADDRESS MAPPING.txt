@@ -10,6 +10,6 @@ INT 31 P - DPMI 1.0+ - FREE PHYSICAL ADDRESS MAPPING
 Return: CF clear if successful
 	CF set on error
 	    AX = error code (8025h) (see #03143)
-Note:	should be called at end of access to device mapped with AX=0800h
+Notes:	should be called at end of access to device mapped with AX=0800h
 SeeAlso: AX=0508h,AX=0509h,AX=0800h,INT 21/AX=EB03h
 

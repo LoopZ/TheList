@@ -12,7 +12,7 @@ Return: AX = status (see #03325)
 Desc:	Calls an adapter driver or redirector service. The service handler
 	  pointers are stored at offset 0010h in the code segment of the
 	  BANV interrupt handler (see #03323).
-Note:	Banyan can use any interrupt from 60h through 66h.  The Banyan
+Notes:	Banyan can use any interrupt from 60h through 66h.  The Banyan
 	  interrupt handler is identified by the string "BANV" in the four
 	  bytes immediately preceding the interrupt handler
 SeeAlso: AH=01h,AH=03h

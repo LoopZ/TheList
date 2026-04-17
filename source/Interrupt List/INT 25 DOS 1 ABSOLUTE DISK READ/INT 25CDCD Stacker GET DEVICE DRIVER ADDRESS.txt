@@ -11,7 +11,7 @@ INT 25 - Stacker - GET DEVICE DRIVER ADDRESS
 	DX = 0000h
 Return: AX = CDCDh if Stacker installed
 	    DS:BX buffer filled
-Note:	not supported by Stacker Anywhere; to obtain the Stacker device
+Notes:	not supported by Stacker Anywhere; to obtain the Stacker device
 	  driver address and to detect drives controlled by all versions
 	  of Stacker, INT 21/AX=4404h"Stacker" or lookup via the CDS and DPB
 	  should be preferred (see INT 21/AH=52h)

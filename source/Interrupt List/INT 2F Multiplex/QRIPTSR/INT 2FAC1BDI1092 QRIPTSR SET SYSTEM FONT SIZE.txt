@@ -9,7 +9,7 @@ INT 2F - QRIP/TSR - SET SYSTEM FONT SIZE
 	DI = 1092h
 	BX = font size (see #02970)
 Return: nothing
-Note:	if DI <> 1092h on entry, QRIP chains the call
+Notes:	if DI <> 1092h on entry, QRIP chains the call
 SeeAlso: AX=AC04h,AX=ACF0h
 
 (Table 02970)

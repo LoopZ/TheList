@@ -10,7 +10,7 @@ INT 61 - Banyan VINES - GET NUMBER OF OPEN FILES ON REMOTE DRIVE
 Return: AX = status
 	    0000h open file count returned in request block
 Desc:	Counts the number of open files on the specified remote drive.
-Note:	No error is returned if the specified drive number is invalid or points
+Notes:	No error is returned if the specified drive number is invalid or points
 	  to a local drive. Use AX=0004h/SF=0006h to test if a given drive
 	  number is assigned to a remote drive.
 SeeAlso: AX=0004h/SF=0006h

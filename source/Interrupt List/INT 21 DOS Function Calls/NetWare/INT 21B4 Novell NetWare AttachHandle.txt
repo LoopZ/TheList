@@ -8,7 +8,7 @@ INT 21 U - Novell NetWare - "AttachHandle"
 	AH = B4h
 	DS:SI -> input buffer (see #01802)
 Return: AX = DOS file handle or return code
-Note:	this is an interface provided by NetWare to give DOS file access to
+Notes:	this is an interface provided by NetWare to give DOS file access to
 	  NetWare files on non-DOS systems such as Macintosh, OS/2, and Unix
 SeeAlso: AX=E909h
 
@@ -19,6 +19,6 @@ Offset	Size	Description	(Table 01802)
  02h	DWORD	"OpenHandle"
  06h	WORD	"OpenHandleCount"
  08h	DWORD	"OpenFileSize"
-Note:	the six bytes at 02h-07h appear to be the six-byte NetWare handle
+Notes:	the six bytes at 02h-07h appear to be the six-byte NetWare handle
 	  returned by AX=E909h
 

@@ -11,6 +11,6 @@ Return: AX = status
 	    0001h data retrieved
 		BX = sender's ID
 		CX = data
-Note:	each robot has a 20-word receive FIFO; if the FIFO is full, other
+Notes:	each robot has a 20-word receive FIFO; if the FIFO is full, other
 	  robots will be unable to send more data until some is read
 

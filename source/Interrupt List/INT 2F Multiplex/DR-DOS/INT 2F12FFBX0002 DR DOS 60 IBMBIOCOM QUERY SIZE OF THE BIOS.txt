@@ -10,7 +10,7 @@ INT 2F U - DR DOS 6.0+ IBMBIO.COM - QUERY SIZE OF THE BIOS
 Return: AX = 0000h if supported
 	DX = size of the DOS BIOS in paragraphs
 	CL and flags trashed
-Note:	This API is provided by IBMBIO.COM for the initialization phase
+Notes:	This API is provided by IBMBIO.COM for the initialization phase
 	  of drivers loaded via DEVICE=/HIDEVICE=/DEVICEHIGH= directives and
 	  is only available during these short time intervals. It is called
 	  by DR DOS 6.0 EMM386.SYS and Novell DOS 7 EMM386.EXE to query the

@@ -31,7 +31,7 @@ Notes:	errors on a floppy may be due to the motor failing to spin up quickly
 	AWARD AT BIOS and AMI 386sx BIOS have been extended to handle more
 	  than 1024 cylinders by placing bits 10 and 11 of the cylinder number
 	  into bits 6 and 7 of DH
-BUG:	some Epson ROM BIOSes sometimes have problems properly handling this
+BUGS:	some Epson ROM BIOSes sometimes have problems properly handling this
 	  function. The workaround is to reset the disk (INT 13/AH=00h) before
 	  the call.
 SeeAlso: AH=02h,AH=44h,INT 4D/AH=04h,INT 4D/AH=06h

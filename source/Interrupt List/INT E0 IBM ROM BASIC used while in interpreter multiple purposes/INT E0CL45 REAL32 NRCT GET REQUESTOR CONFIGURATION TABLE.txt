@@ -19,7 +19,7 @@ Offset	Size	Description	(Table 04031)
  01h	BYTE	local resource ID
  02h	BYTE	remote resource ID
  03h	BYTE	server node ID number
-Note:	the RCT Control Block is a union of two possible structures; this
+Notes:	the RCT Control Block is a union of two possible structures; this
 	  variant is used when mapping disk drives and list devices
 SeeAlso: #04032
 
@@ -31,7 +31,7 @@ Offset	Size	Description	(Table 04032)
  01h  8 BYTEs	local queue name (case-sensitive)
  09h  8 BYTEs	remote queue name (case-sensitive)
  11h	BYTE	server node ID number
-Note:	the RCT Control Block is a union of two possible structures; this
+Notes:	the RCT Control Block is a union of two possible structures; this
 	  variant is used when mapping queues
 SeeAlso: #04031
 

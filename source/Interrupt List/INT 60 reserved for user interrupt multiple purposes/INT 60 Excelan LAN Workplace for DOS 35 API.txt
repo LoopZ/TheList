@@ -9,9 +9,9 @@ INT 60 - Excelan LAN Workplace for DOS 3.5 - API
 Return: request packet updated
 InstallCheck:	test for the WORD 4142h ('AB') immediately preceding the
 	  interrupt handler
-Note:	this interrupt is also supported by Beame&Whiteside's BWLWP35 shim,
+Notes:	this interrupt is also supported by Beame&Whiteside's BWLWP35 shim,
 	  which was used in creating this description
-BUG:	because BWLWP35 range-checks only the low byte of the function number,
+BUGS:	because BWLWP35 range-checks only the low byte of the function number,
 	  and has a fencepost error even in that test, functions 000Bh and
 	  XX01h-XX0Bh (XX nonzero) branch to random locations
 SeeAlso: INT 2F/AX=7A40h

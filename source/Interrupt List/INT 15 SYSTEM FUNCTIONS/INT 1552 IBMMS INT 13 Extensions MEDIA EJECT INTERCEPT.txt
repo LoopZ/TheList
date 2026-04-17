@@ -11,7 +11,7 @@ Return: CF clear if OK to eject media
 	    AH = 00h
 	CF set if ejection disallowed
 	    AH = error code (B1h,B3h) (see #00234)
-Note:	called by the IBM/MS INT 13 Extensions driver/BIOS when an ejection
+Notes:	called by the IBM/MS INT 13 Extensions driver/BIOS when an ejection
 	  request is made
 SeeAlso: INT 13/AH=46h"INT 13 Extensions"
 

@@ -19,7 +19,7 @@ Return: CF set on error
 	AH = status (see #00234 at INT 13/AH=01h)
 	AL = number of sectors transferred
 	ES:BX -> buffer for last sector processed (including one with errors)
-Note:	even though no data is transferred, ES:BX must still be valid because
+Notes:	even though no data is transferred, ES:BX must still be valid because
 	  an actual comparison with disk data is performed, not just the CRC
 	  check of the standard PC BIOS or INT 4D/AH=04h
 SeeAlso: AH=00h,AH=01h,AH=02h,AH=04h,INT 13/AH=04h

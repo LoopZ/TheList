@@ -9,7 +9,7 @@ INT 21 - DR DOS v3.31+ - RUN ALREADY-LOADED KERNEL FILE
 	DS:DX -> ASCIZ name of program to EXEC
 	ES = segment of PSP for kernel file
 Return: only if call failed
-Note:	DR DOS uses this call after an AX=4B01h to load the kernel file into
+Notes:	DR DOS uses this call after an AX=4B01h to load the kernel file into
 	  memory and patch the program's parent-PSP field to point at itself
 SeeAlso: AH=4Bh"EXEC"
 

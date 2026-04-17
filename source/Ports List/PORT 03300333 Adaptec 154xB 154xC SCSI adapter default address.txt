@@ -186,7 +186,7 @@ Command	Description		   Parameters		Results
  8Dh	exteded setup information  DIL?			???
 	  (since AHA-1540B
 	  rev. 1.4?)
-Note:	ATBS	   AT bus transfer speed (see #P9004)
+Notes:	ATBS	   AT bus transfer speed (see #P9004)
 		   00h,AAh 5.0	MB/s
 		   01h,99h 6.7	Mb/s
 		   02h	   8.0	Mb/s
@@ -449,7 +449,7 @@ Offset	Size	Description	(Table P9004)
 	11 more than 2 terminators
  5-4	???
  3-0	???
-Note:	if bits 7-6 are zero and bits 5-4 are not, ASPI4DOS.SYS complains that
+Notes:	if bits 7-6 are zero and bits 5-4 are not, ASPI4DOS.SYS complains that
 	  fewer than 2 terminators detected
 SeeAlso: #P0580
 
@@ -458,7 +458,7 @@ Offset	Size	Description	(Table P9005)
  00h	BYTE	disconnect status
 		bit N is set if target ID N is unable to disconnect?
  01h	BYTE	(AHA-154xC) ???
-Note:	byte at offset 01h is the same as at offset 25h in the setup data
+Notes:	byte at offset 01h is the same as at offset 25h in the setup data
 SeeAlso: #P9004
 
 Format of AHA-154x mailbox array:
@@ -625,7 +625,7 @@ Offset	Size	Description	(Table P0586)
  01h	BYTE	address and control
 		bits 7-5: target ID
 		bits 4-0: reserved
-Note:	if a SCSI command completes with the BUSY status, the host adapter
+Notes:	if a SCSI command completes with the BUSY status, the host adapter
 	  periodically restarts it until it completes with other status
 	if a SCSI command completes with the CHECK CONDITION status, the host
 	  adapter automatically issues a REQUEST SENSE command with the data
@@ -652,7 +652,7 @@ Values for CCB type:
  04h	initiator CCB with scatter/gather and residual length (see #P0590)
 	(AHA-154xB or higher)
  81h	bus device reset CCB
-Note:	residual length is returned in the data length field of CCB
+Notes:	residual length is returned in the data length field of CCB
 	initiator CCB with scatter/gather cannot have a zero data length or
 	  contain more than 16 entries
 SeeAlso: #P0577,#P0586
@@ -720,7 +720,7 @@ Offset	Size	Description	(Table P0590)
 		in big-endian format
  03h  3 BYTEs	data pointer
 		physical address in big-endian format
-Note:	if the segment ends at odd/even bondary, the next segment must begin
+Notes:	if the segment ends at odd/even bondary, the next segment must begin
 	  on the same boundary
 SeeAlso: #P0577
 

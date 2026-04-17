@@ -8,7 +8,7 @@ INT 7F - Alloy NTNX, MW386 - GET NTNX FILE MODE
 	AH = 26h
 	CL = 00h
 Return: AX = file mode bits (see #03965)
-Note:	MW386 does not support file modes, and always returns AX=001Fh
+Notes:	MW386 does not support file modes, and always returns AX=001Fh
 SeeAlso: AH=26h,AH=26h/CL=06h
 
 Bitfields for Alloy file mode bits:

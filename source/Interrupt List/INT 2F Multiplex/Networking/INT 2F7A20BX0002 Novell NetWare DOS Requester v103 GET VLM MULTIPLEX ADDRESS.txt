@@ -9,7 +9,7 @@ INT 2F - Novell NetWare - DOS Requester v1.03+ - GET VLM MULTIPLEX ADDRESS
 	BX = 0002h
 Return: AX = 0000h
 	ES:BX -> VLM multiplex entry point (see #02895)
-Note:	for v1.10, this function is only available while VLM.EXE is loading
+Notes:	for v1.10, this function is only available while VLM.EXE is loading
 	  the .VLM modules, because ES is destroyed on return
 SeeAlso: AX=7A20h/BX=0000h,AX=7A20h/BX=0001h,AX=7A20h/BX=0003h
 

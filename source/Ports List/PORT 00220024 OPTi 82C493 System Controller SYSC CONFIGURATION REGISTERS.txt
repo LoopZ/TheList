@@ -9,7 +9,7 @@ Desc:	The OPTi 486SXWB contains three chips and is designed for systems
 	  running at 20, 25 and 33MHz.	The chipset includes an 82C493 System
 	  Controller (SYSC), the 82C392 Data Buffer Controller, and the
 	  82C206 Integrated peripheral Controller (IPC).
-Note:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
+Notes:	every access to PORT 0024h must be preceded by a write to PORT 0022h,
 	  even if the same register is being accessed a second time
 SeeAlso: PORT 0022h"82C206"
 
@@ -119,7 +119,7 @@ Bit(s)	Description	(Table P0182)
  2	enable Shadow RAM at D8000h - DBFFFh area
  1	enable Shadow RAM at D4000h - D7FFFh area
  0	enable Shadow RAM at D0000h - D3FFFh area
-Note:	the default is disabled (0) for all areas
+Notes:	the default is disabled (0) for all areas
 
 Bitfields for OPTi-82C493 DRAM Control Register 1:
 Bit(s)	Description	(Table P0183)
@@ -195,7 +195,7 @@ Bit(s)	Description	(Table P0185)
  2	enable Shadow RAM at C8000h - CBFFFh
  1	enable Shadow RAM at C4000h - C7FFFh
  0	enable Shadow RAM at C0000h - C3FFFh
-Note:	the default is disabled (0) for bits 4-0
+Notes:	the default is disabled (0) for bits 4-0
 SeeAlso: #P0183,#P0184
 
 Bitfields for OPTi-82C493 Control Register 3:
@@ -236,7 +236,7 @@ Bit(s)	Description	(Table P0187)
 	1xx  disabled (default)
  4-2	unused
  1-0	Address bits 25 and 24 of non-cachable memory block (default = 00)
-Note:	this register is used together with configuration register 29h
+Notes:	this register is used together with configuration register 29h
 	  (non-cacheable block 1) or register 2Bh (block 2) (see #P0188) to
 	  define a non-cacheable block.	 The starting address must be a
 	  multiple of the block size
@@ -245,7 +245,7 @@ SeeAlso: #P0178,#P0188
 Bitfields for OPTi-82C493 Non-cacheable Block Register 2:
 Bit(s)	Description	(Table P0188)
  7-0	Address bits 23-16 of non-cachable memory block (default = 0001xxxx)
-Note:	the block address is forced to be a multiple of the block size by
+Notes:	the block address is forced to be a multiple of the block size by
 	  ignoring the appropriate number of the least-significant bits
 SeeAlso: #P0178,#P0187
 

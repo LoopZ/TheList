@@ -14,7 +14,7 @@ Return: CF clear if successful
 		86h function not supported
 Notes:	also supported by AMI PCI BIOS and Qualitas 386MAX v6.01+
 	IBM classifies this function as optional
-BUG:	AMI BIOS v1.00.03.AV0M never reports an error on failure to disable
+BUGS:	AMI BIOS v1.00.03.AV0M never reports an error on failure to disable
 	  the A20 gate; it simply writes 0 to PORT 0092h
 SeeAlso: AX=2401h,AX=2402h,AX=2403h,PORT 0092h
 

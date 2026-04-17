@@ -9,7 +9,7 @@ INT 62 - MS SQL Server/Sybase DBLIBRARY interface - UNINSTALL/GET PSP ADDR
 	CX = FFFEh
 	DX = FFFFh
 Return: AX = PSP address of resident DBLIBRARY
-Note:	this call does not free the memory allocated to the TSR; the calling
+Notes:	this call does not free the memory allocated to the TSR; the calling
 	  code must do the deallocation.
 SeeAlso: INT 62"DBLIBRARY"
 

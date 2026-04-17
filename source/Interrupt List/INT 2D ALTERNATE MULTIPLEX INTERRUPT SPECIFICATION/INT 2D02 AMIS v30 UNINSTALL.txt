@@ -29,7 +29,7 @@ Return: AL = status
 	    FFh successful
 	return at DX:BX with AX destroyed if successful and TSR honors
 	  specific return address
-Note:	this function is not valid unless a program is installed on the
+Notes:	this function is not valid unless a program is installed on the
 	  specified multiplex number; use INT 2D/AL=00h to check
 SeeAlso: INT 2D/AL=00h,INT 2D/AL=01h,INT 2D/AL=03h,INT 2D/AL=04h,INT 2D/AL=05h
 SeeAlso: INT 2D/AL=06h

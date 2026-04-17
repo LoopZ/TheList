@@ -14,7 +14,7 @@ Return: CF clear if successful
 		0000h if control block too small for given command
 	CF set on error
 	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
-Note:	NCache2 (from the Norton Utilities v8.0) attempts to support this
+Notes:	NCache2 (from the Norton Utilities v8.0) attempts to support this
 	  interface, but does not do so correctly, often hanging the system;
 	  one should use the SmartDrive v4.x or NCache private interfaces
 	  (see INT 2F/AX=4A10h/BX=0000h,INT 2F/AX=FE00h/DI=4E55h)
@@ -60,5 +60,5 @@ Offset	Size	Description	(Table 01523)
  01h	WORD	number of 16K pages by which to increase/reduce cache size
 ---function 0Dh---
  01h	DWORD	new address to which to chain on INT 13
-Note:	the previous address is not preserved
+Notes:	the previous address is not preserved
 

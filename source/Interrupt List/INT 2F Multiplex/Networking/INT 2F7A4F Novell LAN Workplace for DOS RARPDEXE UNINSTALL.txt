@@ -8,7 +8,7 @@ INT 2F U - Novell LAN Workplace for DOS - RARPD.EXE - UNINSTALL
 	AX = 7A4Fh
 Return: AX = 7AFFh if installed
 	DX,ES destroyed
-Note:	this call conflicts with SNMP.EXE (both RARPD and SNMP are supplied
+Notes:	this call conflicts with SNMP.EXE (both RARPD and SNMP are supplied
 	  with LAN Workplace for DOS!), such that running SNMP will uninstall
 	  RARPD as SNMP checks whether it is already installed!
 SeeAlso: AX=7A4Eh"RARPD",AX=7A4Fh/BX=0001h

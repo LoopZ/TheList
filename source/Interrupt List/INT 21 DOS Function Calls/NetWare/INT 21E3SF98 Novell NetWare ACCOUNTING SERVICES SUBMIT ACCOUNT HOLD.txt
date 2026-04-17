@@ -9,7 +9,7 @@ INT 21 - Novell NetWare - ACCOUNTING SERVICES - SUBMIT ACCOUNT HOLD
 	DS:SI -> request buffer (see #02006)
 	ES:DI -> reply buffer (see #02007)
 Return: AL = status (00h,C0h-C3h) (see #02002)
-Note:	this function is supported by Advanced NetWare 2.1+
+Notes:	this function is supported by Advanced NetWare 2.1+
 SeeAlso: AH=E3h/SF=96h,AH=E3h/SF=97h,AX=F217h/SF=98h
 
 Format of NetWare "Submit Account Hold" request buffer:

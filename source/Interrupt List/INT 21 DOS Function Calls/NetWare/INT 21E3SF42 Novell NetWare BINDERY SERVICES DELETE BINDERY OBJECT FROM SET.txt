@@ -10,7 +10,7 @@ INT 21 - Novell NetWare - BINDERY SERVICES - DELETE BINDERY OBJECT FROM SET
 	ES:DI -> reply buffer (see #01953)
 Return: AL = status (see #01950)
 Desc:	delete the specified object from a set property
-Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
 SeeAlso: AH=E3h/SF=40h,AH=E3h/SF=42h,AH=E3h/SF=43h,AX=F217h/SF=42h
 
 Format of NetWare "Delete Bindery Object from Set" request buffer:

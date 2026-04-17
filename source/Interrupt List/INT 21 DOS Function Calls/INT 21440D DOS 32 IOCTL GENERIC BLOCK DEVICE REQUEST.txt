@@ -143,7 +143,7 @@ Offset	Size	Description	(Table 01562)
  05h	WORD	number of first sector to read/write
  07h	WORD	number of sectors
  09h	DWORD	transfer address
-Note:	under Windows95, a volume must be locked (see AX=440Dh/CX=084Bh) in
+Notes:	under Windows95, a volume must be locked (see AX=440Dh/CX=084Bh) in
 	  order to perform direct accesses such as track reads and writes
 	  with this IOCTL function
 
@@ -188,7 +188,7 @@ Offset	Size	Description	(Table 01565)
  11h  8 BYTEs	filesystem type "FAT12	 " or "FAT16   "
 		  (generally CL=66h only, but MS-DOS 5.0 will write the
 		  given filesystem type to the disk)
-Note:	under MS-DOS 7.0 or a Windows95 DOS box, the volume label field can
+Notes:	under MS-DOS 7.0 or a Windows95 DOS box, the volume label field can
 	  return as all blanks even when a volume label has been set (the Win95
 	  installation seems to blank the volume label field in the partition
 	  boot sector; once LABEL has been run, the volume label is reported
@@ -207,7 +207,7 @@ Offset	Size	Description	(Table 01567)
 		01h unlock media
 		02h get locking status
  01h	BYTE	(ret) drive's lock status (number of pending locks on drive)
-Note:	also supported by MS-DOS 7.0+
+Notes:	also supported by MS-DOS 7.0+
 
 Format of parameter block for function 52h:
  00h	BYTE	(call) unused???	(Table 01568)
@@ -290,14 +290,14 @@ Notes:	parameter structure possibly depends on driver
 Format of parameter block for function 7Fh for SystemSoft ATADRV.EXE:
 Offset	Size	Description	(Table 01573)
  00h	DWORD	-> unknown location within driver
-Note:	function supported by the SystemSoft ATADRV.EXE PCMCIA/ATA driver
+Notes:	function supported by the SystemSoft ATADRV.EXE PCMCIA/ATA driver
 	  but not by the Award PCDISK.EXE PCMCIA/ATA driver
 SeeAlso: #01574
 
 Format of parameter block for function 7Fh for Phoenix PCMATA.SYS:
 Offset	Size	Description	(Table 01574)
  00h  8 BYTEs	???
-Note:	this function supported by the Phoenix PCMATA.SYS PCMCIA/ATA driver
+Notes:	this function supported by the Phoenix PCMATA.SYS PCMCIA/ATA driver
 	  but not by the Award PCDISK.EXE PCMCIA/ATA driver
 SeeAlso: #01573
 

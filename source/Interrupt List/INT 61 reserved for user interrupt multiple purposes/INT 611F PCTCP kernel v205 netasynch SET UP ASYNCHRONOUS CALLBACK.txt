@@ -14,7 +14,7 @@ Return: CF clear if successful
 	    DS:DX -> previous handler
 	CF set on error
 	    AX = error code (see #03319 at INT 61"FTP Software")
-Note:	ICMP messages do not trigger events on stream connections
+Notes:	ICMP messages do not trigger events on stream connections
 SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
 
 (Table 03466)

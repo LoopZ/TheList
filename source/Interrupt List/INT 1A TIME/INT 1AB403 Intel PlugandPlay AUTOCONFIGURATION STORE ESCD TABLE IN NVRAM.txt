@@ -11,7 +11,7 @@ Return: CF clear if successful
 	    AX = 0000h
 	CF set on error
 	    AX = error code (0055h) (see #01243)
-Note:	sets the configuration table's checksum field, then copies the table
+Notes:	sets the configuration table's checksum field, then copies the table
 	  into nonvolatile storage (i.e. FlashROM)
 SeeAlso: AX=B400h,AX=B402h
 

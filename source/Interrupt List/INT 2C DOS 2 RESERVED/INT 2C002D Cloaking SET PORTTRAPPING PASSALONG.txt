@@ -27,6 +27,6 @@ Values Cloaking port-trapping passalong address is called with:
 	CF clear
 Return: CF clear if RM386 should perform I/O operation
 	CF set if I/O should be skipped
-Note:	RM386 skips the trapped I/O instruction, so the passalong handler
+Notes:	RM386 skips the trapped I/O instruction, so the passalong handler
 	  should not modify the client CS:EIP
 

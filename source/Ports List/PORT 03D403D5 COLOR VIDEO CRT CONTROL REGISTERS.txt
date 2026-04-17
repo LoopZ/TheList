@@ -86,7 +86,7 @@ Bit(s)	Description	(Table P0709)
  2	palette address source
  1	reserved
  0	state of attribute-controller flip-flop (0 = index, 1 = data)
-Note:	this register was not documented for the original IBM VGA; this
+Notes:	this register was not documented for the original IBM VGA; this
 	   description is from the C&T Wingine documentation
 SeeAlso: #P0708,#P0718
 
@@ -108,7 +108,7 @@ Values for MCGA (only) CRT Controller register index:
 	only 00h, 10h, 20h, 30h (default 00h) are allowed here
 	  for textmode fonts at A0000, A2000, A4000, A6000
  14h -W	number of characters to load during vert. retrace period (default FFh)
-Note:	registers 10h-14h can appear at PORT 03D5h only, not at 03B5h
+Notes:	registers 10h-14h can appear at PORT 03D5h only, not at 03B5h
 SeeAlso: #P0654,#P0708,#P0756,#P0715
 
 Bitfields for MCGA (only) CRT mode control register:
@@ -157,6 +157,6 @@ Bit(s)	Description	(Table P0714)
  2	enable hsync/vsync
  1	positive vsync polarity
  0	positive hsync polarity
-Note:	default 46h in all modes, except 04h in mode 11h)
+Notes:	default 46h in all modes, except 04h in mode 11h)
 SeeAlso: #P0710
 

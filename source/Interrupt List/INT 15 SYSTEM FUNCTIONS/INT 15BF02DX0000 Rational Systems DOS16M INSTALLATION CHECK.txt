@@ -9,7 +9,7 @@ INT 15 - Rational Systems DOS/16M - INSTALLATION CHECK
 	DX = 0000h
 Return: DX = nonzero if installed
 	    DX:SI -> XBRK structure (see #00508)
-Note:	this function is also supported by DOS/4G
+Notes:	this function is also supported by DOS/4G
 SeeAlso: AX=BF01h,AX=BFDCh,AX=BFDEh/BX=0000h
 SeeAlso: INT 21/AH=FFh/DH=0Eh,INT 2F/AH=A1h,INT 2F/AX=F100h,INT 2F/AX=FBA1h
 

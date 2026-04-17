@@ -11,7 +11,7 @@ Return: AX = status (see also #03400)
 	    0000h successful
 	    0033h invalid request ID (returned if variable index out of range)
 Desc:	Returns the value of the specified global variable
-Note:	The data will be truncated if the specified buffer is not large enough.
+Notes:	The data will be truncated if the specified buffer is not large enough.
 	  Check the length word in the request block to find out how many
 	  bytes should have been copied.
 SeeAlso: AX=0004h/SF=0014h,AX=0006h

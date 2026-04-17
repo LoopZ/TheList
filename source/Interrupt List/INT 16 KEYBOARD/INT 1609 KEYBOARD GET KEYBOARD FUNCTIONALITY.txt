@@ -8,7 +8,7 @@ INT 16 - KEYBOARD - GET KEYBOARD FUNCTIONALITY
 	AH = 09h
 Return: AL = supported keyboard functions (see #00585)
 	AH destroyed by many BIOSes
-Note:	this function is only available if bit 6 of the second feature byte
+Notes:	this function is only available if bit 6 of the second feature byte
 	  returned by INT 15/AH=C0h is set (see #00509)
 SeeAlso: AH=03h,AH=0Ah,AH=10h,AH=11h,AH=12h,AH=20h,AH=21h,AH=22h,INT 15/AH=C0h
 

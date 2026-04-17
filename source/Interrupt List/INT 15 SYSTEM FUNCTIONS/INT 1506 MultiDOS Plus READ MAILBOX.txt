@@ -14,7 +14,7 @@ Return: AH = status
 		CX = number of bytes copied
 		DX = actual length of message
 	    02h invalid mailbox number
-Note:	if the caller's buffer is not large enough, the message is truncated
+Notes:	if the caller's buffer is not large enough, the message is truncated
 	  and the remainder is lost
 SeeAlso: AH=04h"MultiDOS",AH=05h"MultiDOS"
 

@@ -10,7 +10,7 @@ Return: AL = FFh if installed
 	    DX:BX -> FAR entry point (see #02986,#02987,#02988)
 	    ES:SI -> signature string "LINKSUP$"
 Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
-Note:	on return, ES = DX for LSL v1.10 and v2.05; LSL makes use of this in
+Notes:	on return, ES = DX for LSL v1.10 and v2.05; LSL makes use of this in
 	  its search for a previous installation
 SeeAlso: AX=5100h,AX=C000h"NESL"
 
@@ -22,7 +22,7 @@ Call LSL function "Request MLID Registration" with:
 Return: AX = completion code (0000h,8001h) (see #02989)
 	DS:DI buffer filled if successful
 	BX,CX corrupted
-Note:	see "Novell LAN Driver Developer's Guide, Volume III" for more details
+Notes:	see "Novell LAN Driver Developer's Guide, Volume III" for more details
 
 (Table 02987)
 Call LSL function "get support entry points" with:
@@ -35,7 +35,7 @@ Call LSL function "Request MLID API entry point" with:
 	BX = 0003h
 Return: ES:SI -> MLID (Multiple Link Interface Driver) API entry point
 		(call with BX=function 00h-10h, not range-checked)
-Note:	LSL v1.10 and v2.05 execute BX=0003h for BX=0000h and any BX >= 0003h
+Notes:	LSL v1.10 and v2.05 execute BX=0003h for BX=0000h and any BX >= 0003h
 
 (Table 02989)
 Values for LSL completion code:
@@ -64,7 +64,7 @@ Offset	Size	Description	(Table 02991)
  00h	DWORD	-> ??? entry point (called with BX=function 00h-11h)
  04h	WORD	???
  06h	WORD	???
-Note:	due to a fencepost error, LSL v2.05 (distributed with Novell DOS 7)
+Notes:	due to a fencepost error, LSL v2.05 (distributed with Novell DOS 7)
 	  will crash if the above entry point is called with BX=0012h
 
 Format of entry point record:
@@ -231,7 +231,7 @@ Call MLID control handler with:
 		???
 Return: AX = completion code (see #02989)
 	ZF set if successful
-Note:	not all boards/MLIDs support function 0010h; see bit 13 in the MLID
+Notes:	not all boards/MLIDs support function 0010h; see bit 13 in the MLID
 	  mode flags field of the MLID's configuration table
 
 (Table 02996)
@@ -460,7 +460,7 @@ Offset	Size	Description	(Table 03009)
  00h	DWORD	-> next GSCB (maintained internally by LSL)
  04h	DWORD	-> entry point for general service handler
  08h	WORD	command code for this general service (8000h-FFFFh)
-Note:	the control block must not be altered or deallocated until the general
+Notes:	the control block must not be altered or deallocated until the general
 	  service is removed
 
 Format of Lookahead structure:

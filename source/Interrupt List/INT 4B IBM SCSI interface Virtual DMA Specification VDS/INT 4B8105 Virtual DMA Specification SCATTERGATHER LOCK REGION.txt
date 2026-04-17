@@ -17,7 +17,7 @@ Return: CF clear if successful
 	    AL = error code (see #03218)
 	    EDDS region size field filled with max length in bytes that can be
 		  locked and described in the EDDS table
-BUG:	Windows 3.0 in enhanced mode may return zero instead of the physical
+BUGS:	Windows 3.0 in enhanced mode may return zero instead of the physical
 	  page address for pages which were originally not present
 SeeAlso: AX=8103h,AX=8106h
 

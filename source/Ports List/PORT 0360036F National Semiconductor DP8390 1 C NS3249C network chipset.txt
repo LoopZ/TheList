@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 PORT 0360-036F - National Semiconductor DP8390(1)C/NS3249C network chipset
-Note:	cards based on this IEEE 802.3 networking chipset can use any range
+Notes:	cards based on this IEEE 802.3 networking chipset can use any range
 	  of 16 consecutive addresses, and provide a total of four pages of
 	  sixteen registers (see #P0627,#P0628,#P0629,#P0759)
 
@@ -70,7 +70,7 @@ Number	Read Register				Write Register
  0Dh	Tx configuration reg.		TCR	reserved
  0Eh	data configuration reg.		DCR	reserved
  0Fh	interrupt mask reg.		IMR	reserved
-Note:	this is a diagnostics page, and should never be modfied under normal
+Notes:	this is a diagnostics page, and should never be modfied under normal
 	  operation.
 SeeAlso: #P0627,#P0628,#P0630
 
@@ -78,7 +78,7 @@ SeeAlso: #P0627,#P0628,#P0630
 Values for NS DP8390C/NS3249C network chipset Page 3 registers:
 Number	Read Register				Write Register
  00h	Command CR (see #P0631)			Command CR
-Note:	Test Page - should never be modified!
+Notes:	Test Page - should never be modified!
 SeeAlso: #P0627,#P0628,#P0629
 
 Bitfields for NS DP8390C/NS3249C network chipset command register (00h):

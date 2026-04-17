@@ -7,7 +7,7 @@
 INT 7F - Alloy NTNX, MW386 - GET LIST OF SHARED DRIVES
 	AH = 07h
 Return: ES:DI -> shared drive list (see #03947)
-Note:	MW386 considers all fixed disks to be shared drives; only C and D will
+Notes:	MW386 considers all fixed disks to be shared drives; only C and D will
 	  be returned as shared
 
 Format of Alloy shared drive list:

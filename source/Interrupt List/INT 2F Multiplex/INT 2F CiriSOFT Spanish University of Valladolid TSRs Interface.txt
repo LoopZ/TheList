@@ -14,7 +14,7 @@ Return: AL = 00h not installed
 	     FFh installed; and if ES:DI was 1492h:1992h on entry, ES:DI will
 		   point to author_name_ver table (see #02588)
 	AH = FFh
-Note:	this interface permits advanced communication with TSRs: it is possible
+Notes:	this interface permits advanced communication with TSRs: it is possible
 	  to make a generic uninstall utility, advanced TSR relocator programs
 	  in order to fit fragmented memory areas, etc.
 SeeAlso: INT 2D"AMIS",INT 2F"Compuscience"
@@ -61,7 +61,7 @@ Offset	Size	Description	(Table 02590)
  05h	BYTE	second vector number
  06h	DWORD	second vector pointer before installing the TSR
  0Ah	...	(and so on)
-Note:	the TSR must use these variables to invoke the previous interrupt
+Notes:	the TSR must use these variables to invoke the previous interrupt
 	  handler routines
 SeeAlso: #02588
 

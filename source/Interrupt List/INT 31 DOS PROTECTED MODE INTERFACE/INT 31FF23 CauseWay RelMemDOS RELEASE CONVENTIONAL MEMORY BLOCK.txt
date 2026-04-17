@@ -10,6 +10,6 @@ INT 31 P - CauseWay - "RelMemDOS" - RELEASE CONVENTIONAL MEMORY BLOCK
 Return: CF clear if successful
 	CF set on error
 	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
-Note:	all descriptors allocated for the block are freed
+Notes:	all descriptors allocated for the block are freed
 SeeAlso: AX=FF21h,AX=FF22h,INT 21/AH=4Ah
 

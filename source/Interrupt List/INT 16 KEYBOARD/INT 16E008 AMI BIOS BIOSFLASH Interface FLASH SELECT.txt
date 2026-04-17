@@ -10,7 +10,7 @@ Return: CF clear if successful
 	    AL = FAh
 	CF set on error
 Desc:	select the Flash ROM if the system contains both EPROM and Flash ROM
-Note:	this function performs any delay required to allow the Flash ROM to
+Notes:	this function performs any delay required to allow the Flash ROM to
 	  stabilize in the selected state; if no EPROM is present, this
 	  function always returns successfully
 SeeAlso: AX=E000h,AX=E007h,AX=E009h

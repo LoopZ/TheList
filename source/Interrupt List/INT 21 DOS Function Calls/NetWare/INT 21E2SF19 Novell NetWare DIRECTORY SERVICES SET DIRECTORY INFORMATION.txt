@@ -9,7 +9,7 @@ INT 21 - Novell NetWare - DIRECTORY SERVICES - SET DIRECTORY INFORMATION
 	DS:SI -> request buffer (see #01881)
 	ES:DI -> reply buffer (see #01882)
 Return: AL = status (00h,9Bh,9Ch) (see #01839)
-Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
 SeeAlso: AH=E2h/SF=02h,AH=E2h/SF=0Fh,AX=F216h/SF=19h
 
 Format of NetWare "Set Directory Information" request buffer:

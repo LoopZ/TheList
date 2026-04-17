@@ -11,7 +11,7 @@ Return: DL = status
 	    FFh if successful
 		CX incremented
 	    else error: all registers unchanged
-Note:	this function must end with a  far call to the old INT 2F handler after
+Notes:	this function must end with a  far call to the old INT 2F handler after
 	  changing the registers
 	this function must be reentrant
 

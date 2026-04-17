@@ -8,7 +8,7 @@ INT 16 - TurboPower TSRs - INSTALLATION CHECK
 	AX = F0F0h
 Return: AX = 0F0Fh if installed
 	    ES:DI -> last data block in TSR list (see #00615)
-Note:	the returned TSR list provides support for communication among TSRs
+Notes:	the returned TSR list provides support for communication among TSRs
 	  built with TurboPower's Turbo Professional and Object Professional
 	  libraries for Turbo Pascal
 SeeAlso: AX=E0E0h

@@ -23,7 +23,7 @@ INT 2F U - MS-DOS 7 kernel - (DE)ALLOCATE HMA MEMORY BLOCK
 		ES:DI -> block to be freed
 	    on >= 03h lDOS returns ES:DI=FFFFh:FFFFh
 		(possibly MS-DOS v7 as well)
-Note:	in MS-DOS v7+ and lDOS, function AX=4A02h is implemented by
+Notes:	in MS-DOS v7+ and lDOS, function AX=4A02h is implemented by
 	  calling this function with DL=00h and CX=CS
 	MS-DOS v7 never allocates all memory, always splitting the
 	  free HMCB to create a new free HMCB and an allocated HMCB.

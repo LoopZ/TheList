@@ -46,7 +46,7 @@ Notes:	most of the SMARTDRV API, including this call, is supported by
 	  future issues of NWCACHE (2.0+).
 	SMARTDRV v3.x had a completely different API using IOCTL calls, which
 	  was also supported by the Norton Caches
-BUG:	Although DS and ES registers are listed as unmodified, some
+BUGS:	Although DS and ES registers are listed as unmodified, some
 	  releases of SMARTDRV seem to trash the DS register, at least the
 	  MS-DOS 6.2+ KEYB takes care to preserve the DS register when calling
 	  this function.

@@ -340,7 +340,7 @@ Call European MS-DOS 4.0 device helper function with:
 		Return: AX,BX,CX,DX destroyed
 		Note:	must be called in the context of the process which
 			  called CritEnter on the semaphore
-Note:	the DWORD pointing at the request queue must be allocated by the driver
+Notes:	the DWORD pointing at the request queue must be allocated by the driver
 	  and initialized to 0000h:0000h.  It always points at the next request
 	  to be executed
 

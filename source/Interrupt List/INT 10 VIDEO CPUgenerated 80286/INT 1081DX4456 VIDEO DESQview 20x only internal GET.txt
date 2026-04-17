@@ -9,7 +9,7 @@ INT 10 U - VIDEO - DESQview 2.0x only - internal - GET ???
 	DX = 4456h ('DV')
 Return: ES = segment of DESQview data structure for video buffer
 	    BYTE ES:[0] = current window number in DV 2.0x
-Note:	this function is probably meant for internal use only, due to the magic
+Notes:	this function is probably meant for internal use only, due to the magic
 	  value required in DX
 SeeAlso: AH=82h"DESQview"
 

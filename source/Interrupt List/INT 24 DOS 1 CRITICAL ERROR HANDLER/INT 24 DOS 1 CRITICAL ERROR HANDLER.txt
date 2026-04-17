@@ -55,7 +55,7 @@ Notes:	the only DOS calls the handler may make are INT 21/AH=01h-0Ch,30h,59h
 	  as 4DOS.COM/NDOS.COM.	 OpenDOS 7.01+ COMMAND.COM (1997-03-21)
 	  introduced this under /N, which is still supported by newer releases
 	  (although it has a slightly different meaning now).
-BUG:	DR DOS COMMAND.COM before 1998-05-07 caused incorrect error messages
+BUGS:	DR DOS COMMAND.COM before 1998-05-07 caused incorrect error messages
 	  to occur if the error code had a non-zero MSB (e.g. NWCDEX's
 	  "IO error reading from device" instead of the correct
 	  "not ready error").  This was fixed with the DR-OpenDOS 7.03
@@ -76,7 +76,7 @@ Bit(s)	Description	(Table 02544)
 	00 = DOS area	01 = FAT
 	10 = root dir	11 = data area
  0	set if write, clear if read
-Note:	Abort is always allowed
+Notes:	Abort is always allowed
 SeeAlso: #02545,#02546
 
 (Table 02545)
@@ -104,13 +104,13 @@ Values for critical error code:
  12h  (18)  (DOS 4.0+) code page mismatch
  13h  (19)  (DOS 4.0+) out of input
  14h  (20)  (DOS 4.0+) insufficient disk space
-Note:	Critical error codes 00h..0Ch are the traditional codes reported
+Notes:	Critical error codes 00h..0Ch are the traditional codes reported
 	  through INT 24.  These code assignments are mapped to error codes
 	  13h..1Fh reported by INT21/AH=59h (see #01680).  Similarly, the
 	  DOS 3.x critical error codes 0Dh..11h are mapped to INT21/AH=59h
 	  error codes 20h..24h, however, the DOS 4.0+ critical error codes are
 	  not mapped.
-BUG:	Paragon Technology Systems' S/DOS 1.0 sources (a stripped down issue
+BUGS:	Paragon Technology Systems' S/DOS 1.0 sources (a stripped down issue
 	  of PTS-DOS 6.51 with sources on CD) erroneously list DOS INT 24
 	  error	codes 12h..14h as 11h..13h, however, since the sources do not
 	  make use of these defines, this seems to be only a documentation

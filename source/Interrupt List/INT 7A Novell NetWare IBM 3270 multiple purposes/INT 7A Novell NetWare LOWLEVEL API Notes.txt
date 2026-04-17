@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 INT 7A - Novell NetWare - LOW-LEVEL API - Notes
-Note:	this interrupt is used for IPX/SPX access in NetWare versions through
+Notes:	this interrupt is used for IPX/SPX access in NetWare versions through
 	  2.0a; in later versions, you should use INT 2F/AX=7A00h to get an
 	  entry point even though INT 7A still exists.	For both INT 7A and
 	  the FAR entry point, BX contains the function number; IPX is

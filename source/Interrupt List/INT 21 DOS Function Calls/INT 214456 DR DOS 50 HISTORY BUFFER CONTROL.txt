@@ -8,7 +8,7 @@ INT 21 U - DR DOS 5.0+ - HISTORY BUFFER CONTROL
 	AX = 4456h
 	DL = control flags (see #01582)
 Return: AL = previous value of state flags (see #01583)
-Note:	DR DOS 6.0 only checks bit 0 and ignores the rest of DL
+Notes:	DR DOS 6.0 only checks bit 0 and ignores the rest of DL
 SeeAlso: #01584
 
 Bitfields for control flags:
@@ -17,7 +17,7 @@ Bit(s)	Description	(Table 01582)
 ---Novell DOS 7---
  1	toggle HISTORY usage
  2	toggle INSERT state
-Note:	only one bit at a time may be used
+Notes:	only one bit at a time may be used
 
 Bitfields for state flags:
 Bit(s)	Description	(Table 01583)

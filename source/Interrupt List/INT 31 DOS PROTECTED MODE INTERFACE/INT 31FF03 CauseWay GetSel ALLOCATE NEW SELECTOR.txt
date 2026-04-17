@@ -9,7 +9,7 @@ INT 31 P - CauseWay - "GetSel" - ALLOCATE NEW SELECTOR
 Return: CF clear if successful
 	    BX = new selector
 	CF set on error
-Note:	the new selector is initialized with a base address of 000000h, a limit
+Notes:	the new selector is initialized with a base address of 000000h, a limit
 	  of 0000h, and attributes read/write expand-up data
 SeeAlso: AX=FF04h,AX=FF05h,AX=FF06h
 

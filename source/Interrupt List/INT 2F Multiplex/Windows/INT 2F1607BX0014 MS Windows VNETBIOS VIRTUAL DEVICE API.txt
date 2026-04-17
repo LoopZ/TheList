@@ -9,7 +9,7 @@ INT 2F C - MS Windows - "VNETBIOS" VIRTUAL DEVICE API
 	BX = 0014h (VxD identifier of "VNETBIOS")
 Return: ES:DI -> 128-byte table specifying VNETBIOS actions for each NetBIOS
 		command code (see #02635)
-Note:	VNETBIOS (Virtual NetBIOS) calls this function to determine whether
+Notes:	VNETBIOS (Virtual NetBIOS) calls this function to determine whether
 	  the NetBIOS has an extensions Windows should know about
 SeeAlso: AX=1607h/BX=000Ch,AX=1607h/BX=0010h,AX=1607h/BX=0015h
 

@@ -9,7 +9,7 @@ INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - PUT IMAGE
 	AL = replacement rule (see #03262)
 	DX,CX = row,column of top left corner
 	ES:DI -> image buffer (see #03261)
-Note:	if the specified image does not fit completely on the screen, this call
+Notes:	if the specified image does not fit completely on the screen, this call
 	  does nothing
 SeeAlso: AH=0Dh
 

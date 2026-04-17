@@ -11,7 +11,7 @@ INT 7C - SK-UPPS Data Link Interface API - DLI 2.6+ - GET MEDIA STATISTICS
 	CX = number of bytes to be returned
 Return: AX = completion code (see #03846)
 	CX = number of bytes copied (regardless of value returned in AX)
-Note:	not supported by all DLIs (will return AX=FFFFh if not supported).
+Notes:	not supported by all DLIs (will return AX=FFFFh if not supported).
 SeeAlso: AX=0000h,AX=000Dh
 
 Format of SK-UPPS media-specific statistics for Ethernet:

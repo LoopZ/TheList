@@ -49,7 +49,7 @@ Offset	Size	Description	(Table 01427)
  04h	DWORD	returned dispatch point
  08h	DWORD	unused
  0Ch	WORD	returned protocol manager DS
-Note:	the dispatch point may be called as follows instead of using this IOCTL
+Notes:	the dispatch point may be called as follows instead of using this IOCTL
 	STACK: WORD  protocol manager DS
 	       DWORD pointer to request block
 	Return: AX = returned status
@@ -111,7 +111,7 @@ Offset	Size	Description	(Table 01433)
  04h	DWORD	0000h:0000h
  08h	DWORD	pointer to 16-byte ASCIZ module name
  0Ch	WORD	0000h
-Note:	not supported by the 10NET v5.0 PROTMAN$ driver
+Notes:	not supported by the 10NET v5.0 PROTMAN$ driver
 SeeAlso: #01424,#01425,#01426,#01427,#01428,#01429,#01430,#01431,#01432
 
 (Table 01434)
@@ -184,7 +184,7 @@ Offset	Size	Description	(Table 01435)
  34h	DWORD	pointer to lower dispatch table (see #01437)
 		0000h:0000h if none
  38h  2 DWORDs	reserved, must be 0
-Note:	for compatibility with NDIS 1.x.x, a major version of 00h is
+Notes:	for compatibility with NDIS 1.x.x, a major version of 00h is
 	  interpreted as 01h
 
 (Table 01436)

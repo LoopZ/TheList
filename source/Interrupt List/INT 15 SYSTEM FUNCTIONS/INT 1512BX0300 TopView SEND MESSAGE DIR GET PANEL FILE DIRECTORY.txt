@@ -10,7 +10,7 @@ INT 15 - TopView - SEND MESSAGE - "DIR" - GET PANEL FILE DIRECTORY
 	STACK: DWORD handle of panel object (see #00436)
 Return: STACK: DWORD length of directory (always multiple of 14 bytes)
 	       DWORD address of directory
-Note:	a null string is returned if the object is not open
+Notes:	a null string is returned if the object is not open
 SeeAlso: AH=12h/BX=0400h"APPLY",AH=12h/BH=83h
 
 Format of TopView panel file:

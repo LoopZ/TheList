@@ -8,7 +8,7 @@ INT 81 - Gravis UltraSound - MEGA_EM v3.0+ - SOUNDCARD IRQ REDIRECT
 	AX = 2012h
 	???
 Return: ???
-Note:	MegaEm calls this function from its GUS IRQ handler, and then
+Notes:	MegaEm calls this function from its GUS IRQ handler, and then
 	  immediately returns; this permits it to operate while hooking only
 	  one interrupt through the memory manager in protected mode
 SeeAlso: AX=2010h,AX=2011h

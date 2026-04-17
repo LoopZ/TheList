@@ -19,7 +19,7 @@ Return: CF clear if successful
 	    AX = error code (see #02594)
 Program: PrintCache PRINT.COM is a DOS PRINT replacement included in
 	  LaserTools' PrintCache memory/disk-based print spooler package
-Note:	if either SI or DI differs from the indicated magic values on entry,
+Notes:	if either SI or DI differs from the indicated magic values on entry,
 	  PrintCache will use the default print options for the file for
 	  compatibility with DOS PRINT
 SeeAlso: AX=0100h/SI=20D6h,AX=0101h,AH=00h"PRINT",AX=0107h"PrintCache"

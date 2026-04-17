@@ -10,7 +10,7 @@ Return: CF clear if successful
 	    AX = network descriptor
 	CF set on error
 	    AX = error code (see #03319 at INT 61"FTP Software")
-Note:	the descriptor will be an integer in the range 00h-1Fh, and a DOS call
+Notes:	the descriptor will be an integer in the range 00h-1Fh, and a DOS call
 	  is made to allocate this as a file descriptor.  Hence a number may
 	  not refer to a PC/TCP network descriptor and a DOS file handle
 	  simultaneously.

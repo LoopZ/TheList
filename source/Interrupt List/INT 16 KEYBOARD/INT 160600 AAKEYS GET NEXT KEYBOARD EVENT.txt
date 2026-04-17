@@ -14,7 +14,7 @@ Return:	CF clear if successful
 Program: AAKEYS is a TSR by Anthony Appleyard which records keyboard scan
 	  codes in a 256-byte buffer in addition to any normal processing which
 	  takes place
-Note:	the installation check consists of calling INT 16/AX=06xxh (where 'xx'
+Notes:	the installation check consists of calling INT 16/AX=06xxh (where 'xx'
 	  is any subfunction other than those listed here) and testing whether
 	  AX=BEEFh on return
 SeeAlso: AX=0601h,AX=0602h,AX=0603h,AX=0604h

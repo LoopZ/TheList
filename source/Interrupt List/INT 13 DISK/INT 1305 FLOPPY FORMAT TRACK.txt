@@ -17,7 +17,7 @@ Return: CF set on error
 Notes:	on AT or higher, call AH=17h first
 	the number of sectors per track is read from the diskette parameter
 	  table pointed at by INT 1E
-BUG:	some old Compaq BIOSes have a bug when attempting to call this function
+BUGS:	some old Compaq BIOSes have a bug when attempting to call this function
 	  from Windows Standard Mode with EMM386 loaded.  A possible workaround
 	  is to call this function from Real Mode e.g. through DPMI function
 	  "Call Real Mode function with FAR return" (see INT 31/AX=0301h).

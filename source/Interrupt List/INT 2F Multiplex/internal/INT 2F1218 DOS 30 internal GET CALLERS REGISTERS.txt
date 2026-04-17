@@ -7,5 +7,5 @@
 INT 2F U - DOS 3.0+ internal - GET CALLER'S REGISTERS
 	AX = 1218h
 Return: DS:SI -> saved caller's AX,BX,CX,DX,SI,DI,BP,DS,ES (on stack)
-Note:	only valid while within DOS
+Notes:	only valid while within DOS
 

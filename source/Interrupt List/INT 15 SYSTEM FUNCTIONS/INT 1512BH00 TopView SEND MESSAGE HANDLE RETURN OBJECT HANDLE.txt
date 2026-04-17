@@ -22,7 +22,7 @@ INT 15 - TopView - SEND MESSAGE - "HANDLE" - RETURN OBJECT HANDLE
 	    0Ch (2.26+) task owning object with handle in DWORD on top of stack
 	    0Dh (2.26+) task handle of owner (parent) of current task
 Return: DWORD on top of stack is object handle
-Note:	BL=0Ch,0Dh returns 00000000h if the object is not open (keyboard,
+Notes:	BL=0Ch,0Dh returns 00000000h if the object is not open (keyboard,
 	  mailbox, panel, pointer, and timer objects) or is an orphan (task,
 	  window)
 SeeAlso: AH=12h/BH=02h,AH=12h/BH=80h

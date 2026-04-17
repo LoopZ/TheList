@@ -8,7 +8,7 @@ INT 33 - MS MOUSE v1.0+ - POSITION MOUSE CURSOR
 	AX = 0004h
 	CX = column
 	DX = row
-Note:	the row and column are truncated to the next lower multiple of the cell
+Notes:	the row and column are truncated to the next lower multiple of the cell
 	  size (typically 8x8 in text modes); however, some versions of the
 	  Microsoft documentation incorrectly state that the coordinates are
 	  rounded

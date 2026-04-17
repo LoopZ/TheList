@@ -6,7 +6,7 @@
 
 INT 11 - BIOS - GET EQUIPMENT LIST
 Return: (E)AX = BIOS equipment list word (see #00226,#03215 at INT 4B"Tandy")
-Note:	since older BIOSes do not know of the existence of EAX, the high word
+Notes:	since older BIOSes do not know of the existence of EAX, the high word
 	  of EAX should be cleared before this call if any of the high bits
 	  will be tested
 SeeAlso: INT 4B"Tandy 2000",MEM 0040h:0010h

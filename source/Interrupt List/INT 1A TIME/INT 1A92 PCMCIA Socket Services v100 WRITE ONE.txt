@@ -15,7 +15,7 @@ Return: CF clear if successful
 	    AH destroyed
 	CF set on error
 	    AH = error code (01h,07h,0Bh,12h,14h) (see #00656)
-Note:	this function is only valid for I/O-mapped sockets; it also does not
+Notes:	this function is only valid for I/O-mapped sockets; it also does not
 	  implement Card Technology handling--use AH=94h when writing to
 	  non-RAM technologies
 SeeAlso: AH=91h,AH=94h,INT 21/AX=440Dh"DOS 3.2+"

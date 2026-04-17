@@ -9,7 +9,7 @@ INT E0 - REAL/32 - "C_WRITE" - WRITE CHARACTER TO DEFAULT CONSOLE
 	DX = character
 Return: nothing
 	may destroy SI,DI???
-Note:	Tab characters are expanded to blanks up to the next multiple of
+Notes:	Tab characters are expanded to blanks up to the next multiple of
 	  eight columns
 SeeAlso: INT E0/CL=01h,INT E0/CL=06h,INT 21/AH=02h
 

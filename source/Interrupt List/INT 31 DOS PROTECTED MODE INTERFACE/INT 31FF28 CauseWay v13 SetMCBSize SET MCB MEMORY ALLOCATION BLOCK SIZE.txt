@@ -12,7 +12,7 @@ Return: CF clear if successful
 	CF set on error (threshold > 64K)
 Desc:	specify the memory allocation size below which CauseWay will use
 	  internal MCB chains rather than allocating full 4K pages via DPMI
-Note:	the specified threshold will be rounded up to the next higher multiple
+Notes:	the specified threshold will be rounded up to the next higher multiple
 	  of 4K
 SeeAlso: AX=FF00h,AX=FF27h
 

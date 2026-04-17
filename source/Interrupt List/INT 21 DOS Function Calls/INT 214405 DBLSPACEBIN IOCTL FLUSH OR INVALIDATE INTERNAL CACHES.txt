@@ -13,7 +13,7 @@ Return: CF clear if IOCTL successful -- check DSPACKET for actual status
 	    AX = number of bytes actually transferred
 	CF set on error
 	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
-Note:	this call is identical to the documented AX=4404h
+Notes:	this call is identical to the documented AX=4404h
 SeeAlso: AX=4404h"DBLSPACE",INT 2F/AX=4A11h/BX=0000h
 
 Format of DoubleSpace DSPACKET structure:

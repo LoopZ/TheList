@@ -12,7 +12,7 @@ INT 2F U - POWER.EXE - GET/SET POWER STATUS
 	    01h set status
 		BL = new power managment status (see #02837)
 Return: AX = function status (see #02838)
-Note:	called by MS Windows 3.1 POWER.DRV
+Notes:	called by MS Windows 3.1 POWER.DRV
 SeeAlso: AH=53h,AX=5400h,AX=5402h,AX=5403h
 
 Bitfields for power management status:

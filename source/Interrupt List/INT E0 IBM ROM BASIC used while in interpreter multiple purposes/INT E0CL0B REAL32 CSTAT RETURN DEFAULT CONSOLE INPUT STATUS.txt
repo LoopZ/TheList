@@ -10,6 +10,6 @@ Return: AX = status
 	    0000h no characters ready
 	    0001h character available
 	may destroy SI,DI???
-Note:	after setting bit 0 of the console mode word with C_MODE, this function
+Notes:	after setting bit 0 of the console mode word with C_MODE, this function
 	  will only return AX=0001h when the user presses Ctrl-C.
 

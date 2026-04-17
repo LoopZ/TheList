@@ -17,7 +17,7 @@ Notes:	new PSP is updated with memory size information; INTs 22h, 23h, 24h
 	  expected to be special cased by interrupt hooks (eg dosemu2)
 	  so that they receive exactly the same user stack as was set
 	  up by the interrupt caller.
-BUG:	DR DOS 6.0 original releases 05/1991 & 08/1991 had a problem where the
+BUGS:	DR DOS 6.0 original releases 05/1991 & 08/1991 had a problem where the
 	  segment from which the PSP was copied was incorrect so that the PSP
 	  was not filled correctly and did not contain the command tail.  The
 	  DR DOS 6.0 BDOS patch "PAT312" English (1992/01/07, XDIR /C: A0C6h)
@@ -123,7 +123,7 @@ Notes:	in DOS v3+, the limit on simultaneously open files may be increased by
 	  or ldos.ini. FreeDOS happens to put the DOSDATA segment in this
 	  spot as well, but does not support relocating DOSDATA. (see also
 	  INT 2F/AX=1203h on DOSDATA segment details.)
-BUG:	When shelling out from the Borland Pascal 7.00 IDE, overly-long
+BUGS:	When shelling out from the Borland Pascal 7.00 IDE, overly-long
 	  command lines will not be delimited by a 0Dh character, and the
 	  length byte is set to 80h!  A workaround is to always patch in a
 	  0Dh at the last position of the command line buffer before scanning

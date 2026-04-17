@@ -13,7 +13,7 @@ Return: CF clear if successful
 	    buffer filled (see #03603 at INT 67/AH=3Fh)
 	CF set on error
 	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
-Note:	This function is called by the Novell DOS 7+ MEM utility.
+Notes:	This function is called by the Novell DOS 7+ MEM utility.
 
 Format of Novell DOS 7 - DR-DOS 7.03 EMM386.EXE state record:
 Offset	Size	Description	(Table 01511)
@@ -23,7 +23,7 @@ Offset	Size	Description	(Table 01511)
  1Ah 12 BYTEs	(ret) bitmap for BIOS range
  26h 12 BYTEs	(ret) bitmap for ROM range
  32h 12 BYTEs	(ret) bitmap for map range
-Note:	each bitmap covers the upper-memory address range A000h-FFFFh, where
+Notes:	each bitmap covers the upper-memory address range A000h-FFFFh, where
 	  offset X bit B within the bitmap indicates the state of the 4K page
 	  starting at segment A000h + (8X + B) * 100h
 

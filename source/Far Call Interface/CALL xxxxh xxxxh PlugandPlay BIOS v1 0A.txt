@@ -96,7 +96,7 @@ Call Plug-and-Play BIOS function 00h with:
 		DWORD	-> WORD in which to return size of largest device node
 		WORD	PnP BIOS writable segment/selector
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned char *, unsigned int *, unsigned int);
 
 (Table F0027)
@@ -137,7 +137,7 @@ Call Plug-and-Play BIOS function 03h with:
 		DWORD	-> WORD buffer for event message identifier (see #F0030)
 		WORD	PnP BIOS writable segment/selector
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned int *, unsigned int);
 
 (Table F0030)
@@ -158,7 +158,7 @@ Call Plug-and-Play BIOS function 04h with:
 		WORD	message identifier (see #F0032)
 		WORD	PnP BIOS writable segment/selector
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned int, unsigned int);
 SeeAlso: #F0031,#F0033
 
@@ -180,7 +180,7 @@ Call Plug-and-Play BIOS function 05h with:
 		DWORD	-> buffer for docking station info (see #F0036)
 		WORD	PnP BIOS writable segment/selector
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned char *, unsigned int);
 SeeAlso: #F0031,#F0034
 
@@ -202,7 +202,7 @@ Call Plug-and-Play BIOS function 07h with:
 		DWORD	-> preferred resource allocation or -> END_TAG if none
 		WORD	PnP BIOS writable segment/selector
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, int, unsigned long, unsigned long, unsigned long,
 		int, int, char *, unsigned int);
 
@@ -220,7 +220,7 @@ Call Plug-and-Play BIOS function 08h with:
 		DWORD	-> buffer for preferred resource allocation
 		WORD	PnP BIOS writable segment/selector
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, int, unsigned long *, unsigned long *,
 		unsigned long *, unsigned int *, char *, unsigned int);
 
@@ -276,7 +276,7 @@ Call Plug-and-Play BIOS function 0Bh with:
 Return: AX = status (see #F0081)
 Desc:	copies the Advanced Power Management v1.1 device identifier table to
 	  Plug-and-Play device identifier mappings
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned int *, unsigned char *, unsigned int);
 SeeAlso: INT 15/AX=5300h
 
@@ -293,7 +293,7 @@ Call Plug-and-Play BIOS function 40h with:
 		DWORD	-> buffer for configuration structure (see #F0042)
 		WORD	PnP BIOS writable segment/selector
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned char *, unsigned int);
 
 Format of Plug-and-Play ISA Configuration Structure:
@@ -314,7 +314,7 @@ Call Plug-and-Play BIOS function 41h with:
 			  (if memory-mapped, else 00000000h)
 		WORD	PnP BIOS writable segment/selector
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned int *, unsigned int *, unsigned long *,
 		  unsigned int);
 SeeAlso: INT 1A/AX=B401h
@@ -456,7 +456,7 @@ Offset	Size	Description	(Table F0052)
 		bit 0: structure(s) changed
  02h	WORD	structure handle (if change status == 03h)
  04h 12 BYTEs	reserved (0)
-Note:	if multiple structures changed, all of the SMBIOS structures must be
+Notes:	if multiple structures changed, all of the SMBIOS structures must be
 	  enumerated to determine what changed
 SeeAlso: #F0051
 
@@ -655,7 +655,7 @@ Offset	Size	Description	(Table F0059)
 		(if strings are present, only a single byte of 00h is needed,
 		  because the terminating NUL of the last string forms the
 		  first	byte of the end-of-structure marker)
-Note:	structures can have new fields added in successive revisions of the
+Notes:	structures can have new fields added in successive revisions of the
 	  SMBIOS specification, so applications should use the actual length
 	  field given in the SMBIOS structure; as of SMBIOS v2.3, structure
 	  types also have a minimum length to enable the addition of optional
@@ -931,7 +931,7 @@ Call BIOS Boot Specification function 60h with:
 		DWORD	-> WORD buffer for BIOS Boot Spec version number (BCD)
 Return: AX = status (see #F0081)
 	   0081h if BIOS Boot not available
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, int *) ;
 SeeAlso: #F0075,#F0076,#F0077,#F0078
 
@@ -942,7 +942,7 @@ Call BIOS Boot Specification function 61h "Get IPL Device Count" with:
 		DWORD	-> WORD buffer for max. number of IPL devices supported
 		DWORD	-> WORD buffer for size of an IPL table entry
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned int *, unsigned int *, unsigned int *) ;
 SeeAlso: #F0074,#F0076,#F0077,#F0078
 
@@ -967,7 +967,7 @@ Call BIOS Boot Specification function 63h "Set Boot Priority" with:
 	STACK:	WORD	0063h (function "Set Boot Priority")
 		DWORD	-> buffer containing new boot priority list (see #F0076)
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned char *) ;
 SeeAlso: #F0074,#F0075,#F0076,#F0078
 
@@ -976,7 +976,7 @@ Call BIOS Boot Specification function 64h with:
 	STACK:	WORD	0064h (function "Get IPL Device from Last Boot")
 		DWORD	-> WORD buffer for index in IPL table of boot device
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned int *) ;
 SeeAlso: #F0074,#F0075,#F0076,#F0077,#F0079
 
@@ -999,7 +999,7 @@ Call BIOS Boot Specification function 66h "Set Boot First" with:
 			  from which to attempt booting first before
 			  considering the boot priority list
 Return: AX = status (see #F0081)
-Note:	the large-model C declaration is
+Notes:	the large-model C declaration is
 	  int (*entry)(int, unsigned int *) ;
 SeeAlso: #F0074,#F0075,#F0076,#F0077,#F0079
 

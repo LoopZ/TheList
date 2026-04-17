@@ -7,7 +7,7 @@
 INT 67 - LIM EMS - GET MANAGER STATUS
 	AH = 40h
 Return: AH = status (00h,80h,81h,84h) (see #03648)
-Note:	this call can be used only after establishing that the EMS driver is in
+Notes:	this call can be used only after establishing that the EMS driver is in
 	  fact present
 SeeAlso: AH=3Fh,AX=FFA5h,@xxxxh:xxxxh"PMM"
 

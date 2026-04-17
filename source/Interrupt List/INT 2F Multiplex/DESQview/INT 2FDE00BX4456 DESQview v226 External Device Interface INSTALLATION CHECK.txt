@@ -15,7 +15,7 @@ Return: AL = FFh if installed (even if other registers do not match)
 	    CX = 5245h ("RE")
 	    DX = 4456h ("DV")
 Range:	AH=C0h to AH=FFh, selected by scanning AH=DEh-FFh, then AH=C0h-DDh
-Note:	the XDI handler should not issue any DOS or BIOS calls, nor should it
+Notes:	the XDI handler should not issue any DOS or BIOS calls, nor should it
 	  issue DESQview API calls other than those allowed from hardware ints
 SeeAlso: AX=DE02h,INT 15/AX=5400h
 

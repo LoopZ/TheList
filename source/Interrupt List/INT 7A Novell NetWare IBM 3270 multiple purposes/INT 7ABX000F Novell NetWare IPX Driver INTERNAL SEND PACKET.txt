@@ -9,7 +9,7 @@ INT 7A - Novell NetWare - IPX Driver - INTERNAL - SEND PACKET
 	ES:SI -> Event Control Block (see #03810 at BX=0003h)
 		IPX header's checksum field must be set to FFFFh (see #03815)
 		IPX header's total-length field must be set
-Note:	nearly identical to function 0003h, but does not copy address into
+Notes:	nearly identical to function 0003h, but does not copy address into
 	  the first fragment, and bypasses normal error checking
 SeeAlso: BX=0003h
 

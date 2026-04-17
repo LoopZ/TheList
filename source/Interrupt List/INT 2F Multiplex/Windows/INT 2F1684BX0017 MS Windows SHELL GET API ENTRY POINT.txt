@@ -141,7 +141,7 @@ Call SHELL entry point with:
 	    0108h ???
 Return: CF set if called from VM other than system VM
 	    EAX = FFFFFFFFh
-Note:	except for functions 0013h,0026h,and 010xh, this API may only be
+Notes:	except for functions 0013h,0026h,and 010xh, this API may only be
 	  called from the system VM
 SeeAlso: #01283 at INT 20"Windows"
 
@@ -163,7 +163,7 @@ Offset	Size	Description	(Table 02658)
  2Ah	WORD	maximum KB of DPMI???
  2Ch	WORD	minimum KB of DPMI???
  2Eh 128 BYTEs	title
-Note:	the PWORDs at offsets 08h,0Eh, and 14h consist of a DWORD offset
+Notes:	the PWORDs at offsets 08h,0Eh, and 14h consist of a DWORD offset
 	  followed by a WORD selector
 
 Bitfields for 386 Enhanced Mode PIF flags:

@@ -27,7 +27,7 @@ Return: AL = FFh
 		06h process new command line
 		    DS:SI -> new command line (ASCIZ string, max 66 chars)
 	       else unknown status, but continue processing commmand line
-Note:	this function must end with a far call to the old INT 2F handler (with
+Notes:	this function must end with a far call to the old INT 2F handler (with
 	  registers unchanged) if the driver does not support the interpreter
 	  command in BX.  Otherwise, the driver must not chain to the old
 	  INT 2F.

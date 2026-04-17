@@ -7,7 +7,7 @@
 INT 04 C - CPU-generated - INTO DETECTED OVERFLOW
 Desc:	the INTO instruction will generate this interrupt if OF (Overflow Flag)
 	  is set; otherwise, INTO is effectively a NOP
-Note:	may be used for convenient overflow testing (to prevent errors from
+Notes:	may be used for convenient overflow testing (to prevent errors from
 	  propagating) instead of JO or a JNO/JMP combination
 SeeAlso: INT 00"CPU",OPCODE "AAD",OPCODE "AAM"
 

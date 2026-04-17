@@ -23,7 +23,7 @@ Notes:	this function reads in four to seven bytes of error-correcting code
 	  after the first sector with an ECC error
 	used for diagnostics only on PS/2 systems; IBM officially classifies
 	  this function as optional
-BUG:	on the original IBM AT BIOS (1984/01/10) this function does not disable
+BUGS:	on the original IBM AT BIOS (1984/01/10) this function does not disable
 	  interrupts for harddisks (DL >= 80h). On these machines the MS-DOS/
 	  PC DOS IO.SYS/IBMBIO.COM installs a special filter to bypass the
 	  buggy code in the ROM (see CALL F000h:211Eh)

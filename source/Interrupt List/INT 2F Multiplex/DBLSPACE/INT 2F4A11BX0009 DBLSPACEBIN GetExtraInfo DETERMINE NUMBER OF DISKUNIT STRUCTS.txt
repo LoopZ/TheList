@@ -13,7 +13,7 @@ Return: AX = status (see also #02804)
 		CL = number of DISK_UNIT structures allocated
 			  (see AX=4A11h/BX=0005h)
 		CH = DoubleGuard enabled-checks bitflags in bits 6-0 (DOS 6.2)
-Note:	the DoubleGuard checks are enabled or disabled as a block by the
+Notes:	the DoubleGuard checks are enabled or disabled as a block by the
 	  DoubleGuard= line in DBLSPACE.INI; they may be individually set with
 	  the CheckSum= line.
 SeeAlso: AX=4A11h/BX=0000h,AX=4A11h/BX=0008h

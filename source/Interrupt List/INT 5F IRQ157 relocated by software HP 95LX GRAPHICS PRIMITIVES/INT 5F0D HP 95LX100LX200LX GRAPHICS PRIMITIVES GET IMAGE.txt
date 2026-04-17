@@ -9,7 +9,7 @@ INT 5F - HP 95LX/100LX/200LX GRAPHICS PRIMITIVES - GET IMAGE
 	DX,CX = row,column of first corner
 	BP,SI = row,column of second corner
 	ES:DI -> image buffer (see #03261)
-Note:	the specified corners are included in the saved image
+Notes:	the specified corners are included in the saved image
 SeeAlso: AH=0Eh
 
 Format of HP 95LX image buffer:

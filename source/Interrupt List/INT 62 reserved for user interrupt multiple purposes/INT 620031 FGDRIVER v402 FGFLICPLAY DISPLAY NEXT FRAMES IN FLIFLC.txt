@@ -10,7 +10,7 @@ INT 62 u - FGDRIVER v4.02 - "FG_FLICPLAY" - DISPLAY NEXT FRAME(S) IN FLI/FLC
 	CX = number of frames to display starting at current frame
 	DX = control flags (see #03479)
 Return: AX = number of frames displayed
-Note:	the FGDRIVER functions are rearranged with each major release, but
+Notes:	the FGDRIVER functions are rearranged with each major release, but
 	  their parameters do not change (see #03474 at AX=0000h)
 SeeAlso: AX=0030h,AX=0033h,AX=00B8h
 

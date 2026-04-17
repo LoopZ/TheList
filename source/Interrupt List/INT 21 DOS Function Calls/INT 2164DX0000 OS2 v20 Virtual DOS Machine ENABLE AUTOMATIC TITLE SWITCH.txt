@@ -9,7 +9,7 @@ INT 21 U - OS/2 v2.0+ Virtual DOS Machine - ENABLE AUTOMATIC TITLE SWITCH
 	DX = 0000h (function number)
 	CX = 636Ch (magic value, "cl")
 	BX = 0000h (indicates special request)
-Note:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
+Notes:	if CX is not 636Ch on entry, INT 21/AH=6Ch is invoked, because a bug
 	  in OS/2 1.x FAPI erroneously called AH=64h instead of AH=6Ch
 SeeAlso: AH=64h/DX=0001h,INT 21/AH=4Bh
 

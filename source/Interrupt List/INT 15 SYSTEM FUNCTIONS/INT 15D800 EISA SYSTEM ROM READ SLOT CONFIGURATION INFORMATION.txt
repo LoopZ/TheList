@@ -18,7 +18,7 @@ Return: CF clear if successful
 	DH = number of device functions
 	DL = combined function information byte (see #00540)
 	SI:DI = 4-byte compressed ID (DI = bytes 0&1, SI = bytes 2&3)
-Note:	call with AL=80h if using 32-bit CS addressing mode instead of 16-bit
+Notes:	call with AL=80h if using 32-bit CS addressing mode instead of 16-bit
 SeeAlso: AX=D801h,AX=D804h
 
 Bitfields for EISA AL bit flags:

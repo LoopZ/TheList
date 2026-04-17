@@ -10,7 +10,7 @@ INT 31 P - DPMI 1.0+ - INSTALL RESIDENT HANDLER INIT CALLBACK
 Return: CF clear if successful
 	CF set on error
 	    AX = error code (8015h,8021h,8025h) (see #03143 at AX=0000h)
-Note:	calling this function declares an intent to provide resident
+Notes:	calling this function declares an intent to provide resident
 	  protected mode services after terminating with AX=0C01h
 SeeAlso: AX=0303h,AX=0C01h
 

@@ -8,7 +8,7 @@ INT 2F U - DBLSPACE.BIN - GET RELOCATION SIZE
 	AX = 4A11h
 	BX = FFFFh
 Return: AX = number of paragraphs needed by DBLSPACE.BIN
-Note:	used by DBLSPACE.SYS to relocate the DBLSPACE driver to its final
+Notes:	used by DBLSPACE.SYS to relocate the DBLSPACE driver to its final
 	  position in memory
 	this function is also supported by the version of SuperStor bundled
 	  with IBM DOS 6.x and "preloading" versions of Stacker

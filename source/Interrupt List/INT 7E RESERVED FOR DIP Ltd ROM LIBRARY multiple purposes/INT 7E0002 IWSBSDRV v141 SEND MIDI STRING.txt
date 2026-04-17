@@ -12,7 +12,7 @@ INT 7E - IWSBSDRV v1.41 - SEND MIDI STRING
 Return: EAX = status
 	    00000000h if successful
 	    FFFFFFFFh on error (function disabled)
-Note:	this function is only supported if the MIDISIMPLE device has been
+Notes:	this function is only supported if the MIDISIMPLE device has been
 	  opened via the InterWave Game API (see INT 2F/AX=CD21h)
 SeeAlso: AX=0001h,INT 2F/AX=CD21h,#03074
 

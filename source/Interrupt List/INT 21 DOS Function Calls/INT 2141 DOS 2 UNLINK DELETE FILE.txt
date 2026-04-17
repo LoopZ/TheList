@@ -26,7 +26,7 @@ Notes:	(DOS 3.1+) wildcards are allowed if invoked via AX=5D00h, in which case
 	under DR DOS and DR Multiuser DOS, this function will fail if the file
 	  is currently open
 	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
-BUG:	DR DOS 3.41 crashes if called via AX=5D00h
+BUGS:	DR DOS 3.41 crashes if called via AX=5D00h
 SeeAlso: AH=13h,AX=4301h,AX=4380h,AX=5D00h,AH=60h,AX=7141h,AX=F244h
 SeeAlso: INT 2F/AX=1113h
 

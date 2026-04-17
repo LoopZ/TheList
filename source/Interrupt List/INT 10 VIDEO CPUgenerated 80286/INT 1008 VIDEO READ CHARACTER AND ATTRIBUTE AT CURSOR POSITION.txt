@@ -26,7 +26,7 @@ Notes:	for monochrome displays, a foreground of 1 with background 0 is
 	  BIOSes which do not preserve SI or DI; the Novell DOS kernel
 	  preserves SI, DI, and BP before many INT 10h calls to avoid problems
 	  due to those registers not being preserved by the BIOS.
-BUG:	some IBM PC ROM BIOSes destroy BP when in graphics modes
+BUGS:	some IBM PC ROM BIOSes destroy BP when in graphics modes
 SeeAlso: AH=09h,AX=1003h,AX=1103h,AH=12h/BL=37h,AX=5001h
 
 Bitfields for character's display attribute:

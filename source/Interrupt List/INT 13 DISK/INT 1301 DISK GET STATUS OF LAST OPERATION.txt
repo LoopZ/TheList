@@ -10,7 +10,7 @@ INT 13 - DISK - GET STATUS OF LAST OPERATION
 Return: CF clear if successful (returned status 00h)
 	CF set on error
 	AH = status of previous operation (see #00234)
-Note:	some BIOSes return the status in AL; the PS/2 Model 30/286 returns the
+Notes:	some BIOSes return the status in AL; the PS/2 Model 30/286 returns the
 	  status in both AH and AL
 SeeAlso: AH=00h,INT 4D/AH=01h,MEM 0040h:0041h,MEM 0040h:0074h
 

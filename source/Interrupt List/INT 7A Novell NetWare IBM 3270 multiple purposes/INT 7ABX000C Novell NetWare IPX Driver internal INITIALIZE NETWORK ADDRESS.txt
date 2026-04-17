@@ -9,6 +9,6 @@ INT 7A U - Novell NetWare - IPX Driver - internal - INITIALIZE NETWORK ADDRESS
 	CX:DX = global network address (see INT 7A/BX=0002h)
 	ES:DI -> "OSINCRITICALSECTION" flag
 	DS:SI -> current mode for socket
-Note:	the address cannot be changed once it has been initialized
+Notes:	the address cannot be changed once it has been initialized
 SeeAlso: INT 7A/BX=0024h
 

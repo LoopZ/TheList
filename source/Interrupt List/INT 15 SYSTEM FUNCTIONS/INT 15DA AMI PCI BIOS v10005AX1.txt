@@ -12,7 +12,7 @@ Return: CF clear if successful
 	    varies by function
 	CF set on error
 	    AH = error code (86h unsupported [sub]function)
-Note:	functions not listed above always return CF set and AH=86h; in the
+Notes:	functions not listed above always return CF set and AH=86h; in the
 	  examined BIOS, functions 02h-04h,06h-07h,89h-8Bh, and 8Dh also
 	  always return CF set and AH=86h
 SeeAlso: AX=DA00h,AX=DA01h,AX=DA88h,AX=DA99h,AX=DB00h

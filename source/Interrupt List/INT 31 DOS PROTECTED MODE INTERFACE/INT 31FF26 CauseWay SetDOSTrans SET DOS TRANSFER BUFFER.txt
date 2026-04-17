@@ -10,7 +10,7 @@ INT 31 P - CauseWay - "SetDOSTrans" - SET DOS TRANSFER BUFFER
 	ECX = new transfer buffer size
 	DX = protected-mode selector for new transfer buffer
 Return: nothing
-Note:	the specific buffer must be located in conventional memory; only the
+Notes:	the specific buffer must be located in conventional memory; only the
 	  first 64K will be used
 SeeAlso: AX=FF25h
 

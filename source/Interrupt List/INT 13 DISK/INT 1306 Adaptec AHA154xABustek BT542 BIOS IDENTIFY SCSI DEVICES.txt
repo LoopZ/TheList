@@ -12,7 +12,7 @@ Return: AH = status code (see #00234)
 		(80h nonconcurrent operation, 81h concurrent operation)
 	CF set on error
 Desc:	determine the number of the first supported SCSI drive
-Note:	the return value is 80h when two SCSI drives are supported, 81h if
+Notes:	the return value is 80h when two SCSI drives are supported, 81h if
 	  only one SCSI drive is installed
 SeeAlso: AH=08h"PC",#00732 at INT 1A/AX=B102h
 

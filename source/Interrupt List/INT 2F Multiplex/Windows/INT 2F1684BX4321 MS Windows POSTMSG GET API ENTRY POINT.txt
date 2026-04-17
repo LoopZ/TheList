@@ -16,7 +16,7 @@ Call POSTMSG protected-mode entry point with:
 	AX = window handle
 	CX:BX -> callback procedure (see #02713)
 Return: nothing
-Note:	this call registers a WinApp with the VxD; the callback must be in a
+Notes:	this call registers a WinApp with the VxD; the callback must be in a
 	  fixed, non-discardable code segment
 SeeAlso: #02714,#02715
 

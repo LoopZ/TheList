@@ -11,7 +11,7 @@ Return: nothing
 Desc:	called by an application controlling the InterWave chip's mixer
 	  whenever the mixer's settings are changed
 Range:	AH=CDh-ECh, selected by scanning for an available multiplex number
-Note:	when an application intercepts this function call, it must read the
+Notes:	when an application intercepts this function call, it must read the
 	  new mixer settings from the InterWave chip
 SeeAlso: AX=CD00h"InterWave",AX=CD01h"InterWave",AX=CD02h"InterWave"
 SeeAlso: AX=CD05h"InterWave",AX=CD21h"InterWave",AX=CD22h"InterWave"

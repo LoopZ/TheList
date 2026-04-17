@@ -129,7 +129,7 @@ Offset	Size	Description	(Table 01055)
  7Ah  2 BYTEs	reserved
  7Ch	DWORD	Frame Buffer Range (see #01062)
  80h 128 BYTEs	reserved
-Note:	the 82434NX is part of the Intel Neptune chipset
+Notes:	the 82434NX is part of the Intel Neptune chipset
 SeeAlso: #01064,#01083
 
 Bitfields for Intel 82434LX/NX Host CPU Selection:
@@ -227,7 +227,7 @@ Bit(s)	Description	(Table 01061)
  2	L2 cache data parity error
  1	reserved
  0	Shutdown cycle detected
-Note:	clear status bits by writing a 'one' bit to each bit to be cleared
+Notes:	clear status bits by writing a 'one' bit to each bit to be cleared
 SeeAlso: #01060,#01055
 
 Bitfields for Intel 82434LX/NX Frame Buffer Range register:
@@ -244,7 +244,7 @@ Bit(s)	Description	(Table 01062)
  7	enable transparent bufer writes
  6-4	reserved
  3-0	buffer size in MB (less 1); must be power of 2
-Note:	if bits 31-20=0, the frame buffer feature is disabled
+Notes:	if bits 31-20=0, the frame buffer feature is disabled
 SeeAlso: #01055
 
 Format of PCI Configuration data for Intel 82424 Cache Controller:
@@ -276,7 +276,7 @@ Offset	Size	Description	(Table 01063)
  64h  4 BYTEs	unused???
  68h	WORD	Memory Hole-0
  6Ah	WORD	Memory Hole-1
-Note:	the above field names are those given by EduWARE's PCI Configuration
+Notes:	the above field names are those given by EduWARE's PCI Configuration
 	  Manager v1.2
 SeeAlso: #01055,#01083,#01108
 
@@ -400,7 +400,7 @@ Bit(s)	Description	(Table 01067)
  2	bank 2 fixed priority mode select A
  1	bank 1 fixed priority mode select
  0	bank 0 fixed priority mode select
-Note:	if both 'rotate' and 'fixed' bits are set for a given bank,
+Notes:	if both 'rotate' and 'fixed' bits are set for a given bank,
 	  that bank will be in rotating-priority mode
 SeeAlso: #01064,#01066
 
@@ -436,7 +436,7 @@ Bit(s)	Description	(Table 01070)
  2	enabel 800K-816K (D800h-DBFFh)
  1	enable 784K-800K (D400h-D7FFh)
  0	enable 768K-784K (D000h-D3FFh)
-Note:	ISA accesses within any enabled ranges are forwarded to the PCI bus
+Notes:	ISA accesses within any enabled ranges are forwarded to the PCI bus
 SeeAlso: #01064,#01069
 
 Bitfields for Intel 82378/82379 ISA Clock Divisor Register:
@@ -493,7 +493,7 @@ Bit(s)	Description	(Table 01073)
 	01 COM2 (02F8h-02FFh)
 	10 reserved
 	11 port A disabled
-Note:	if both serial ports are set to the same address, port B is disabled
+Notes:	if both serial ports are set to the same address, port B is disabled
 SeeAlso: #01064,#01072,PORT 0092h
 
 Bitfields for Intel 82378/82379 MEMCS# Attribute Register 1/2/3:
@@ -506,7 +506,7 @@ Bit(s)	Description	(Table 01074)
  2	read-enable x4000h-x7FFFh expansion ROM
  1	write-enable x0000h-x3FFFh expansion ROM
  0	read-enable x0000h-x3FFFh expansion ROM
-Note:	x = C/D/E depending on the attribute register
+Notes:	x = C/D/E depending on the attribute register
 SeeAlso: #01064
 
 Bitfields for Intel 82378ZB Scatter Gather Relocation Base Address:
@@ -520,7 +520,7 @@ Bit(s)	Description	(Table 01076)
  7	disable IRQ routing
  6-4	reserved (0)
  3-0	ISA IRQ number to which to route the PCI IRQ
-Note:	IRQs 0-2, 8, and 13 are reserved
+Notes:	IRQs 0-2, 8, and 13 are reserved
 SeeAlso: #01064,#01167,#01100
 
 Bitfields for Intel 82379AB PIC/APIC Configuration Control Register:
@@ -593,7 +593,7 @@ Bit(s)	Description	(Table 01081)
  15-3	Fast-Off IRQ (15-3) enable (system and break events)
  2	reserved
  1-0	Fast-Off IRQ (1-0) enable (system and break events)
-Note:	any enabled system event restarts the Fast-Off Timer, thus preventing
+Notes:	any enabled system event restarts the Fast-Off Timer, thus preventing
 	  a Fast-Off powerdown; any enabled break event awakens the system from
 	  powerdown
 SeeAlso: #01064,#01079,#01080,#01082,#01167
@@ -610,7 +610,7 @@ Bit(s)	Description	(Table 01082)
  2	IRQ4 triggered SMI
  1	IRQ3 triggered SMI
  0	IRQ1 triggered SMI
-Note:	software must explicitly reset the appropriate bits
+Notes:	software must explicitly reset the appropriate bits
 SeeAlso: #01064,#01081,#01167
 
 Format of PCI Configuration data for Intel 82425EX PSC:
@@ -905,7 +905,7 @@ Offset	Size	Description	(Table 01099)
  73h  6 BYTEs	reserved
  79h	BYTE	Miscellaneous Control register (see #01128)
  7Ah 134 BYTEs	reserved
-Note:	The Intel 82439TX chipset uses PCI configuration mechanism #1
+Notes:	The Intel 82439TX chipset uses PCI configuration mechanism #1
 SeeAlso:  #00873,PORT 0CF8h
 
 Format of PCI Configuration Data for Intel 82371AB (PIIX4), ISA Bridge:
@@ -1416,7 +1416,7 @@ Bit(s)	Description	(Table 01123)
 	010 segment A000-BFFF
 	100 segment C000-CFFF (82437MX,82443EX only)
 	other reserved
-Note:	bits 5 and 6 must never both be set at the same time
+Notes:	bits 5 and 6 must never both be set at the same time
 SeeAlso: #01099,#01108,#01098,#01124,#01106,#01107,#01142,#01129
 
 Bitfields for Intel 82437VX Shared Memory Buffer control register:
@@ -1523,7 +1523,7 @@ Offset	Size	Description	(Table 01130)
 		(vendor ID 8086h, device ID 7181h)
 		chipset is 82443EX if revision >= 03h
  40h 192 BYTEs	reserved
-Note:	The Intel 82443LX chipset uses PCI configuration mechanism #1
+Notes:	The Intel 82443LX chipset uses PCI configuration mechanism #1
 SeeAlso: #01129,#01143,PORT 0CF8h
 
 Bitfields for Intel 82443EX/LX (Device 0) PAC Configuration register:
@@ -1671,7 +1671,7 @@ Bit(s)	Description	(Table 01138)
  0	Single-bit ECC error occurred flag
 ---82443EX---
  7-0	reserved
-Note:	Write a 1 to bits 4 & 0 to clear the flags
+Notes:	Write a 1 to bits 4 & 0 to clear the flags
 SeeAlso: #01129,#01139
 
 Bitfields for Intel 82443EX/LX Error Status 1 register:
@@ -1680,7 +1680,7 @@ Bit(s)	Description	(Table 01139)
  2	AGP non-snoopable access outside of graphics arperture
  1	AGP non-snoopable access outside of main DRAM ranges and arperture
  0	access to invalid graphics arperture translation table entry
-Note:	Write a 1 to these bit(s) to clear
+Notes:	Write a 1 to these bit(s) to clear
 SeeAlso: #01129,#01138
 
 Bitfields for Intel 82443EX/LX Multi-Transaction Timer register:
@@ -2057,7 +2057,7 @@ Bit(s)	Description	(Table 01156)
  0	enable SERR# on receiving single-bit (corrected) ECC error
 ---82443EX/LX---
  2-0	reserved
-Note:	bits 1 and 0 must be clear on systems not supporting ECC
+Notes:	bits 1 and 0 must be clear on systems not supporting ECC
 SeeAlso: #01155,#01157,#01142,#01129
 
 Bitfields for Intel 82443BX Error Status Register:
@@ -2092,7 +2092,7 @@ Bit(s)	Description	(Table 01159)
  1-0	supported AGP data transfer type(s)
 	bit 0: 1x data transfer mode
 	bit 1: 2x data transfer mode
-Note:	bits 0 and 1 may not both be clear
+Notes:	bits 0 and 1 may not both be clear
 SeeAlso: #01160,#01142,#01158,#01129
 
 Bitfields for Intel 82443BX/EX/LX AGP Command Register:
@@ -2427,7 +2427,7 @@ Bit(s)	Description	(Table 01173)
  0	ISA Clock Divisor Status
 	=1 Divisor=3 (PCICLK=25MHz) default
 	=0 Divisor=4 (PCICLK=33MHz)
-Note:	This is a read-only register that reports on chipset jumper settings.
+Notes:	This is a read-only register that reports on chipset jumper settings.
 SeeAlso: #01168,PORT xxxxh"Intel 82371"
 
 Bitfields for Intel 82371MX Audio enable register:
@@ -2469,7 +2469,7 @@ Bit(s)	Description	(Table 01177)
  7-4	reserved
  3	Expansion enabled
  2-0	DMA channel
-Note:	The PCI DMA Expansion request lines (REQ[A,B]#/GNT[A,B]#) provide PCI
+Notes:	The PCI DMA Expansion request lines (REQ[A,B]#/GNT[A,B]#) provide PCI
 	  DMA and PCI DMA expansion support.
 SeeAlso: #01168,PORT xxxxh"Intel 82371"
 
@@ -2503,7 +2503,7 @@ SeeAlso: #01168,PORT xxxxh"Intel 82371"
 Bitfields for Intel 82371MX Programmable Address Control registers:
 Bit(s)	Description	(Table 01182)
  15-0	Programmable Address Control
-Note:	This register selects a 16-bit I/O address range to be forwarded to
+Notes:	This register selects a 16-bit I/O address range to be forwarded to
 	  the Extended I/O Bus, if enabled in the Programmable Address Range
 	  register.
 SeeAlso: #01168,PORT xxxxh"Intel 82371"
@@ -2525,7 +2525,7 @@ Bit(s)	Description	(Table 01185)
  15-10	reserved
  9-1	I/O Configuration Address
  0	I/O Configuration Address Enabled
-Note:	This register provides an I/O address range to be forwarded to the
+Notes:	This register provides an I/O address range to be forwarded to the
 	  Extended I/O Bus for accesses to the configuration space of an
 	  integrated I/O device. PCI address bits 9-1 are compared to bits
 	  9-1 of this register. Address bits 31-10 must be 0.
@@ -2576,7 +2576,7 @@ SeeAlso: #01168,PORT xxxxh"Intel 82371"
 Bitfields for Intel 82371MX Local Trap Address for Device 3 register:
 Bit(s)	Description	(Table 01190)
  15-0	Local Trap Address base for Device 3
-Note:	Is compared with bits 15-0 of PCI I/O Addresses. Address bits 31-16
+Notes:	Is compared with bits 15-0 of PCI I/O Addresses. Address bits 31-16
 	  must be 0.
 SeeAlso: #01168,PORT xxxxh"Intel 82371"
 
@@ -2587,10 +2587,10 @@ Bit(s)	Description	(Table 01191)
 	=0100	COM3 03E8h-83EFh
 	=0010	COM2 02F8h-02FFh
 	=0001	COM1 03F8h-03FFh
-Note:	These bits when set cause an SMI# when access to the corresponding I/O
+Notes:	These bits when set cause an SMI# when access to the corresponding I/O
 	  port range is made.
  3-0	Local Trap Mask
-Note:	This field selects the range of trappable addresses (in bytes).
+Notes:	This field selects the range of trappable addresses (in bytes).
 SeeAlso: #01168,PORT xxxxh"Intel 82371"
 
 Bitfields for Intel 82371MX Local Trap SMI Enable/Status registers:
@@ -2602,7 +2602,7 @@ Bit(s)	Description	(Table 01192)
  2	DEV3
  1	DEV2
  0	DEV1
-Note:	a set bit indicates in the Enable register turns generation of SMI# on
+Notes:	a set bit indicates in the Enable register turns generation of SMI# on
 	  I/O accesses to the address region used by the selected device;
 	  a set bit in the Status register indicates which trap caused an SMI#
 	  interrupt.
@@ -2617,7 +2617,7 @@ Bit(s)	Description	(Table 01193)
  2	DEV3
  1	DEV2
  0	DEV1
-Note:	each bit in the Enable register turns on the associated SMI Timer; a
+Notes:	each bit in the Enable register turns on the associated SMI Timer; a
 	  set bit in the Status register indicates which local standby timer
 	  caused the SMI interrupt
 SeeAlso: #01168,#01194,PORT xxxxh"Intel 82371"
@@ -2632,7 +2632,7 @@ Bit(s)	Description	(Table 01194)
  2	DEV1
  1	Audio MDAK2
  0	Audio MDAK1
-Note:	This register enables local standby timer reloading. When the
+Notes:	This register enables local standby timer reloading. When the
 	  associated I/O address range is accessed, the standby timer is
 	  reloaded with it's default value. Also note the different bit-order
 	  for this register only.
@@ -2641,7 +2641,7 @@ SeeAlso: #01168,#01193,PORT xxxxh"Intel 82371"
 Bitfields for Intel 82371MX Count Value registers:
 Bit(s)	Description	(Table 01195)
  7-0	Count value
-Note:	This field contains the initial count value for various time-out
+Notes:	This field contains the initial count value for various time-out
 	  events. 00 is an illegal programmed value. The programmed value is
 	  decremented by certain events or system clocks, and the event is
 	  triggered when the count reaches 0.
@@ -2665,7 +2665,7 @@ Bit(s)	Description	(Table 01197)
  2	IRQ4
  1	IRQ3
  0	IRQ1
-Note:	each set bit in the Enable register turns on SMI# generation for the
+Notes:	each set bit in the Enable register turns on SMI# generation for the
 	  associated hardware event; a set bit in the Status register indicates
 	  which event caused the SMI interrupt
 SeeAlso: #01168,PORT xxxxh"Intel 82371"
@@ -2677,7 +2677,7 @@ Bit(s)	Description	(Table 01198)
  2	SRBTN#
  1	BATLOW#
  0	reserved
-Note:	Enables SMI# generation for the above hardware events
+Notes:	Enables SMI# generation for the above hardware events
 SeeAlso: #01168,#01199,PORT xxxxh"Intel 82371"
 
 Bitfields for Intel 82371MX Miscellaneous SMI Status register:
@@ -2698,7 +2698,7 @@ Bit(s)	Description	(Table 01200)
  3	Local Standby Timers Enabled
  2	Global Standby Timer Enabled
  1	SRBTN# and BATLOW# Enabled
-Note:	Enables SMI# generation for the above hardware events
+Notes:	Enables SMI# generation for the above hardware events
 SeeAlso: #01168,#01201,PORT xxxxh"Intel 82371"
 
 Bitfields for Intel 82371MX Global SMI Status register:
@@ -2747,7 +2747,7 @@ Bit(s)	Description	(Table 01205)
  7	Clock Throttle standy by timer frequency
 	=1 32ms
 	=0 4ms
-Note:	Sets the granularity of the Clock Throttle Standby Timer
+Notes:	Sets the granularity of the Clock Throttle Standby Timer
  6-5	reserved
  4	Enable Auto Clock Throttle
  3-2	STPCLK# Mode
@@ -2822,7 +2822,7 @@ Value	AT Port	Description
  39h	A0h	Slave PIC OCW3 Register (bits 0,2 & 5 only valid)
 Desc:	This register is used to read the current programmed value of certain
 	  AT compatable I/O ports which are traditionally write-only.
-Note:	To read a given register, write the value from the table to the shadow
+Notes:	To read a given register, write the value from the table to the shadow
 	  register, then immediately re-read the shadow register. The returned
 	  value is the current value of the I/O port.
 SeeAlso: #01168,PORT xxxxh"Intel 82371"
@@ -3138,7 +3138,7 @@ Offset	Size	Description	(Table 01228)
  0Eh	WORD	EEPROM control register
  10h	DWORD	MDI control register
  14h	DWORD	Early RCV Interrupt Rx byte count (RXBC) register
-Note:	see www.intel.com/design/network/datashts/64434604.pdf for additional
+Notes:	see www.intel.com/design/network/datashts/64434604.pdf for additional
 	  details
 SeeAlso: #01228
 
@@ -3312,7 +3312,7 @@ Bit(s)	Description	(Table 01239)
  1	reset mode (0 = soft reset, 1 = hard reset)
  0	deturbo mode (82441FX)
 	reserved (82443EX/LX)
-Note:	BIST should not be enabled during a soft reset
+Notes:	BIST should not be enabled during a soft reset
 SeeAlso: #01229,#01129,PORT 0CF9h
 
 Format of PCI Configuration data for Intel 82454KX/GX:

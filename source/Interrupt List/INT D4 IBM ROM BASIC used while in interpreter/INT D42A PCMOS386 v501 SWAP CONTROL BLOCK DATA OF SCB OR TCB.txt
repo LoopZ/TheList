@@ -14,6 +14,6 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code (see also #01680 at INT 21/AH=59h/BX=0000h)
 		05h access denied due to an invalid segment/selector
-Note:	the interrupts are disabled during the swap to prevent corruption
+Notes:	the interrupts are disabled during the swap to prevent corruption
 SeeAlso: AH=26h,AH=27h,AH=28h,AH=29h
 

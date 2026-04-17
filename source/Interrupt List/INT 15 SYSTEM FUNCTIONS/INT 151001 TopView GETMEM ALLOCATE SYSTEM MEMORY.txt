@@ -11,7 +11,7 @@ Return: ES:DI -> block of memory or 0000h:0000h (DV v2.26+)
 	AX = status (DV v2.42)
 	    0000h successful
 	    0001h failed
-Note:	use SETERROR (AX=DE15h) to avoid a user prompt if there is insufficient
+Notes:	use SETERROR (AX=DE15h) to avoid a user prompt if there is insufficient
 	  common memory.  Under DV v2.42, this call never generates a user
 	  prompt regardless of the SETERROR value; instead, it always returns
 	  AX=0001h and ES:DI=0000h:0000h if out of memory

@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 PORT 0388-0389 - AdLib - MONO SOUND OUTPUT
-Note:	also supported by SoundBlaster and compatibles
+Notes:	also supported by SoundBlaster and compatibles
 SeeAlso: PORT 0220h-0223h,PORT 0388h-038Fh"soundmachine"
 
 0388  R-  both speakers -- Status
@@ -16,7 +16,7 @@ SeeAlso: PORT 0220h-0223h,PORT 0388h-038Fh"soundmachine"
 0388  -W  both speakers -- Address port (see #P0645)
 	index in OPL2 (YMF3812), OPL3 (YMF262), OPL4 (YF278-F)
 0389  -W  data port
-Note:	the AdLib requires a delay of 3.3 microseconds between writing to
+Notes:	the AdLib requires a delay of 3.3 microseconds between writing to
 	  PORT 0388h and writing to PORT 0389h, and a delay of 23 microseconds
 	  after a write to PORT 0389h before any other operation is allowed
 

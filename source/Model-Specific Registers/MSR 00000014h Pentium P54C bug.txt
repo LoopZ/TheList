@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 MSR 00000014h - Pentium P54C - bug?
-Note:	returns 0 on all reads and ignores any writes for P54C processors with
+Notes:	returns 0 on all reads and ignores any writes for P54C processors with
 	  CPUID values <= 0524h, rather than causing an exception; possibly due
 	  to a microcode bug
 

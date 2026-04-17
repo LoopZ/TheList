@@ -8,6 +8,6 @@ INT 17 - PC Magazine PCSpool - BUILD PAUSE CONTROL RECORD
 	AH = C1h
 	DX = printer port (0-3)
 	DS:SI -> ASCIZ string to save for display
-Note:	flushes pending writes
+Notes:	flushes pending writes
 SeeAlso: AH=C0h,AH=C2h
 

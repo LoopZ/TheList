@@ -25,7 +25,7 @@ Desc:	Returns an array of low-level adapter-specific optimized
 	or I/O ports to access PC Card memory.	Adapters that access
 	PC Card memory through windows mapped to host system memory
 	do not support this function.
-Note:	offsets returned are 16-bit offsets into the
+Notes:	offsets returned are 16-bit offsets into the
 	Socket Services code segment.  They must be called
 	appropriately for the processor mode selected.
 	(Real, 16:16 and 16:32 modes use FAR CALL,

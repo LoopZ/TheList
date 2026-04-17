@@ -12,7 +12,7 @@ INT 13 - FIXED DISK - FORMAT TRACK AND SET BAD SECTOR FLAGS (XT,PORT)
 	DH = head
 	DL = drive
 Return: AH = status code (see #00234)
-Note:	AWARD AT BIOS and AMI 386sx BIOS have been extended to handle more
+Notes:	AWARD AT BIOS and AMI 386sx BIOS have been extended to handle more
 	  than 1024 cylinders by placing bits 10 and 11 of the cylinder number
 	  into bits 6 and 7 of DH
 SeeAlso: AH=05h"FIXED",AH=07h"FIXED"

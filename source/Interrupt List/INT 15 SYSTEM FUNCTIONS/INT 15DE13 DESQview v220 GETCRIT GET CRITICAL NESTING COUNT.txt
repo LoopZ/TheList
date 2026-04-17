@@ -9,6 +9,6 @@ INT 15 - DESQview v2.20+ - "GETCRIT" - GET CRITICAL NESTING COUNT
 Return: BX = number of calls to BEGINC or ENTERC
 	      (see INT 15/AX=101Bh,INT 15/AX=DE1Ch) without matching ENDC
 	      (see INT 15/AX=101Ch)
-Note:	this API call may be made from within a hardware interrupt handler
+Notes:	this API call may be made from within a hardware interrupt handler
 SeeAlso: AX=101Bh,AX=101Ch,AX=DE1Bh,AX=DE1Ch
 

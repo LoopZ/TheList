@@ -23,7 +23,7 @@ Return: AL = FFh
 		BX = new key code
 		MDEBUG will not pass the new key to the command driver(s)
 	   else treat like code 00h
-Note:	this function must end with a far call to the old INT 2F handler (with
+Notes:	this function must end with a far call to the old INT 2F handler (with
 	  registers unchanged) if the driver does not support the key in BX.
 	  Otherwise, the driver must not chain to the old INT 2F.
 SeeAlso: AX=D104h

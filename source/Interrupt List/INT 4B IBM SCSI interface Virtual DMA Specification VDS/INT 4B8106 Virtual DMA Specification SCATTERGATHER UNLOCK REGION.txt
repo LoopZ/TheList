@@ -12,7 +12,7 @@ INT 4B - Virtual DMA Specification - SCATTER/GATHER UNLOCK REGION
 Return: CF clear if successful
 	CF set on error
 	    AL = error code (see #03218)
-Note:	according to the Microsoft version of the VDS specification, the
+Notes:	according to the Microsoft version of the VDS specification, the
 	  actual scatter/gather list is ignored, while according to the IBM
 	  version of the specification, "the result of a LOCK operation"
 	  must be provided to this function

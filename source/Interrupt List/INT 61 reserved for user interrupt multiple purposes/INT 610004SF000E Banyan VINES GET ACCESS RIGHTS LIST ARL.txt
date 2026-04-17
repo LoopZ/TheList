@@ -11,7 +11,7 @@ Return: AX = status (see also #03400)
 	    0000h request has been processed
 Desc:	Returns the owner, group, and extended access rights for the specified
 	  file or directory
-Note:	A status of 0000h does not necessarily indicate a successful request;
+Notes:	A status of 0000h does not necessarily indicate a successful request;
 	  check the status word at offset 000Eh of the request block too
 SeeAlso: AX=0004h/SF=000Fh
 

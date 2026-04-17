@@ -10,7 +10,7 @@ INT 6F - HP Vectra EX-BIOS - "F_SND_CLICK" - GENERATE KEYCLICK
 Return: AH = status (see #03744)
 	BP,DS destroyed
 Desc:	generate a keyclick if fewer than four clicks are already pending
-Note:	if keyclicks are already pending, the remaining click count is
+Notes:	if keyclicks are already pending, the remaining click count is
 	  incremented and the function returns immediately
 SeeAlso: AH=00h"HP Vectra",AH=30h/BP=0012h,AH=36h/BP=0012h,AH=3Ah/BP=0012h
 

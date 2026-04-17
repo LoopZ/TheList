@@ -6,7 +6,7 @@
 
 MSR C0000081h - AMD K6 - SYSCALL TARGET ADDRESS
 Size:	64 bits
-Note:	if SYSCALL is supported (as indicated by CPUID; SYSCALL is not
+Notes:	if SYSCALL is supported (as indicated by CPUID; SYSCALL is not
 	  yet implemented in current steppings of the K6), this MSR specifies
 	  the address to which the SYSCALL instruction (opcode 0Fh 05h -- same
 	  as 80286 LOADALL!) transfers control, provided it has also been

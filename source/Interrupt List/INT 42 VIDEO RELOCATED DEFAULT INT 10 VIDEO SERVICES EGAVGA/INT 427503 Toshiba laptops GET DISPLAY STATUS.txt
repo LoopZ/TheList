@@ -14,7 +14,7 @@ Return: AX = 7575h if supported
 	    02h external VGA display is active
 	    03h both displays active / DeskStation display mode enabled
 		(not possible on all machines)
-Note:	used by VCHAD.EXE and supported by all Toshiba VGA laptops until about
+Notes:	used by VCHAD.EXE and supported by all Toshiba VGA laptops until about
 	  1994 (string "TOSHIBA " at F000:E010h should be checked before call)
 	no longer supported by T21xx series, use INT 10/AX=5F50h instead
 	INT 42 normally points to F000:F065h but may be redirected by QEMM386

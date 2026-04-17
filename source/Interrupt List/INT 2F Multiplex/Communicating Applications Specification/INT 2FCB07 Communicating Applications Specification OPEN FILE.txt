@@ -19,7 +19,7 @@ INT 2F - Communicating Applications Specification - OPEN FILE
 Return: AX = 0000h successful
 	    BX = DOS file handle for requested file
 	AX < 0	   error code (see #03048)
-Note:	the returned file handle has been opened in read-only mode and should
+Notes:	the returned file handle has been opened in read-only mode and should
 	  be closed with INT 21/AH=3Eh after use
 SeeAlso: AX=CB01h,AX=CB05h,AX=CB14h
 

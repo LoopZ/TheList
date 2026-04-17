@@ -22,7 +22,7 @@ Return: AX = status
 	    0000h failure
 		BL = error code (80h,B0h,B2h) (see #02775)
 		DX = maximum available size
-Note:	this function is identical to function 12h
+Notes:	this function is identical to function 12h
 SeeAlso: #02768,#02784
 
 (Table 02784)
@@ -40,7 +40,7 @@ Call the Netroom RM386 v6.00 "Create new UMB entry" function with:
 	DI = start of UMB in block
 Return: AX = 0001h (success)
 	DI = segment of first high-DOS block
-Note:	the new UMB is not linked into the high-memory chain
+Notes:	the new UMB is not linked into the high-memory chain
 SeeAlso: #02766,#02784,#02786
 
 (Table 02786)

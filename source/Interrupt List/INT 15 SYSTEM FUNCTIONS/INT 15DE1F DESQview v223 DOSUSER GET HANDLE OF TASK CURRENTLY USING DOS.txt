@@ -7,6 +7,6 @@
 INT 15 - DESQview v2.23+ - "DOSUSER" - GET HANDLE OF TASK CURRENTLY USING DOS
 	AX = DE1Fh
 Return: BX = segment of task handle or 0000h if no tasks are using DOS
-Note:	this API call may be made from within a hardware interrupt handler
+Notes:	this API call may be made from within a hardware interrupt handler
 SeeAlso: AX=DE13h,INT 21/AH=34h
 

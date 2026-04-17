@@ -14,7 +14,7 @@ Return: AX = completion code (see #03846)
 Program: SK-UPPS is the Schneider & Koch Universal Portable Protocol Stack,
 	  which provides an API on top of its Data Link Interface, allowing the
 	  use of any of several network transport layers
-Note:	If the buffer supplied is too small, CX still contains the total number
+Notes:	If the buffer supplied is too small, CX still contains the total number
 	  of active protocols and the buffer has been filled until full.
 SeeAlso: AX=000Ch,AX=0014h
 

@@ -14,7 +14,7 @@ Return: CF clear if successful
 	CF set on errro
 	    AX = error code (see also #01680 at INT 21/AH=59h/BX=0000h)
 		05h access denied due to an invalid segment/selector
-Note:	 this function performs no bounds checking
+Notes:	 this function performs no bounds checking
 Program: PC-MOS/386 is a multitasking/multiuser MS-DOS-compatible operating
 	  system by The Software Link, Inc.
 SeeAlso: AH=26h,AH=27h,AH=28h,AH=2Ah

@@ -8,7 +8,7 @@ INT 2F - DR DOS 6.0 TaskMAX - CONVERT TASK INDEX TO TASK ID
 	AX = 270Ah
 	DX = task index
 Return: DX = task ID (FFFFh if index invalid)
-Note:	task IDs stay constant, while indexes can change when other tasks are
+Notes:	task IDs stay constant, while indexes can change when other tasks are
 	  deleted
 SeeAlso: AX=2701h,AX=270Bh
 

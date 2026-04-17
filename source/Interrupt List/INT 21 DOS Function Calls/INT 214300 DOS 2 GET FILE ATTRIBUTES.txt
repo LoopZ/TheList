@@ -15,7 +15,7 @@ Return: CF clear if successful
 Notes:	under the FlashTek X-32 DOS extender, the filename pointer is in DS:EDX
 	under DR DOS 3.41 and 5.0, attempts to change the subdirectory bit are
 	  simply ignored without an error
-BUG:	Windows for Workgroups returns error code 05h (access denied) instead
+BUGS:	Windows for Workgroups returns error code 05h (access denied) instead
 	  of error code 02h (file not found) when attempting to get the
 	  attributes of a nonexistent file.  This causes open() with O_CREAT
 	  and fopen() with the "w" mode to fail in Borland C++.

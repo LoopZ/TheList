@@ -9,7 +9,7 @@ INT 15 - Arabic/Hebrew MS-DOS 5.0???+ - INSTALLATION CHECK
 	BX = FFFFh
 Return: BX = FFFFh (Arabic/Hebrew MS-DOS not installed)
 	BX = version (e.g. 0101h for Arabic/Hebrew MS-DOS 5.0)
-Note:	This call is made by the SK_HGC.COM TSR for HGC and HGC/RAMFont
+Notes:	This call is made by the SK_HGC.COM TSR for HGC and HGC/RAMFont
 	  graphics adapters to ensure it runs on the correct version of
 	  Arabic or Hebrew MS-DOS.
 	The function is probably implemented in the ARABIC.COM/HEBREW.COM

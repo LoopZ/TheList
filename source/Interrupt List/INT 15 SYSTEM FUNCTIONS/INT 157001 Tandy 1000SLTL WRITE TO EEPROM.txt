@@ -9,7 +9,7 @@ INT 15 - Tandy 1000SL/TL - WRITE TO EEPROM
 	BL = number of word to read (00h-3Fh)
 	DX = new value for EEPROM word
 Return: CF clear if function supported
-Note:	the EEPROMs are normally written only by the system setup program;
+Notes:	the EEPROMs are normally written only by the system setup program;
 	  changing the values can badly mess up a Tandy
 SeeAlso: AX=7000h
 

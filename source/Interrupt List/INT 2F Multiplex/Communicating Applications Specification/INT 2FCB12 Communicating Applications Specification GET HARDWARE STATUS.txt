@@ -34,7 +34,7 @@ Offset	Size	Description	(Table 03054)
  15h  9 BYTEs	reserved
  1Eh 21 BYTEs	ASCIZ CCITT identification
  33h 77 BYTEs	reserved
-Note:	the Intel Connection CoProcessor and SatisFAXtion may be distinguished
+Notes:	the Intel Connection CoProcessor and SatisFAXtion may be distinguished
 	  by examining the byte at offset 14h
 
 Bitfields for Connection CoProcessor baud rate:
@@ -70,7 +70,7 @@ Offset	Size	Description	(Table 03056)
  4Eh 13 BYTEs	ASCIZ resident manager name
  5Bh  5 BYTEs	ASCIZ resident manager version number
  60h 32 BYTEs	reserved
-Note:	the Intel Connection CoProcessor and SatisFAXtion may be distinguished
+Notes:	the Intel Connection CoProcessor and SatisFAXtion may be distinguished
 	  by examining the byte at offset 14h
 
 Bitfields for Connection CoProcessor connection status flags:
@@ -120,7 +120,7 @@ Bit(s)	Description	(Table 03060)
  2	alternate interrupt switch open
  1	COM SEL 1 switch open
  0	COM SEL 0 switch open
-Note:	valid combinations of 0-2 are
+Notes:	valid combinations of 0-2 are
 	000  COM2 IRQ3 IObase 2F8h
 	001  COM1 IRQ4 IObase 3F8h
 	010  COM4 IRQ3 IObase 2E8h

@@ -15,7 +15,7 @@ Return: CF clear if successful
 InstallCheck:	test for the signature "TCPTSR" three bytes beyond the start
 	  of the interrupt handler
 Range:	INT 20h to INT E0h, selected by configuration
-BUG:	the SLIP kernel for v2.05 bounds-checks the wrong register, so values
+BUGS:	the SLIP kernel for v2.05 bounds-checks the wrong register, so values
 	  greater than 54h in AH may crash the system.	Other kernels may have
 	  this bug as well.
 SeeAlso: INT 61/AH=00h"PC/TCP",INT 61/AH=2Ah,INT 61/AH=54h

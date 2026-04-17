@@ -14,10 +14,10 @@ Return: AL = FFh if installed
 Program: NWCACHE is the disk cache included with Personal NetWare,
 	    Novell DOS 7, Caldera OpenDOS 7.01, DR-OpenDOS 7.02, DR-DOS 7.02,
 	    and Caldera Thin Clients/Lineo DR-DOS 7.03.
-Note:	This function is called by the NetWare Lite and Personal NetWare
+Notes:	This function is called by the NetWare Lite and Personal NetWare
 	  SERVER.  It may also be called by future (post DR-DOS 7.03)
 	  COMMAND.COM before it returns to the prompt.
-BUG:	Some pre-BETA 17 (1993/09/28) versions of NWCACHE returned -1,0,1
+BUGS:	Some pre-BETA 17 (1993/09/28) versions of NWCACHE returned -1,0,1
 	  instead of 1,2,3 for the memory type in CL.
 SeeAlso: AX=D800h,AX=D880h
 

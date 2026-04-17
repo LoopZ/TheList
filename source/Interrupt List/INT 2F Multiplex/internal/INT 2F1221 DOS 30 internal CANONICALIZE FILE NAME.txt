@@ -10,6 +10,6 @@ INT 2F U - DOS 3.0+ internal - CANONICALIZE FILE NAME
 	ES:DI -> 128-byte buffer for resulting canonical file name
 	SS = DOS DS (must be using a DOS internal stack)
 Return: (see INT 21/AH=60h)
-Note:	identical to INT 21/AH=60h
+Notes:	identical to INT 21/AH=60h
 SeeAlso: AX=1123h,INT 21/AH=60h
 

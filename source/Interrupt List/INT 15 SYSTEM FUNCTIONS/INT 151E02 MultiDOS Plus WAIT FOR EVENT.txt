@@ -10,7 +10,7 @@ INT 15 - MultiDOS Plus - WAIT FOR EVENT
 Return: AH = status
 	    00h successful
 	    01h invalid event/trigger number
-Note:	if the event counter is zero, the task is suspended until the event is
+Notes:	if the event counter is zero, the task is suspended until the event is
 	  triggered with AX=1E01h; else, the counter is decremented and the
 	  call returns immediately
 SeeAlso: AX=1E00h,AX=1E01h

@@ -9,7 +9,7 @@ INT 78 - TARGA.DEV - SET DMA CHANNEL
 	AL = interface board DMA channel
 Return: CF set on error
 	AL = error code (see #03786)
-Note:	if this routine is not called, the DMA channel is the driver's default
+Notes:	if this routine is not called, the DMA channel is the driver's default
 	  (usually 3)
 SeeAlso: AH=00h,AH=03h"TARGA"
 

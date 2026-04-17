@@ -12,7 +12,7 @@ Return: CF clear if successful
 	    AH destroyed
 	CF set on error
 	    AH = error code (01h,0Bh,14h) (see #00656)
-Note:	toggles RESET pin of the specified card, but does not wait after
+Notes:	toggles RESET pin of the specified card, but does not wait after
 	  toggling the pin; it is the caller's responsibility to avoid
 	  accessing the card before it is ready again
 

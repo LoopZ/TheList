@@ -14,7 +14,7 @@ Return: AX = status
 	    FFFFh MAGic busy, retry later
 		BX,DX destroyed
 	CX destroyed
-BUG:	in v1.16 and v1.17, this function is not recognized as valid, but
+BUGS:	in v1.16 and v1.17, this function is not recognized as valid, but
 	  AX=0000h is accepted and will branch into hyperspace
 SeeAlso: AX=0001h,AX=0006h
 

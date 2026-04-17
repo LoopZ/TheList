@@ -11,7 +11,7 @@ Return: AL = status
 	    FFh if successful
 		DS:DX buffer filled (refer to note below)
 	    81h on error
-Note:	the first byte of the buffer is unchanged; depending on a byte in
+Notes:	the first byte of the buffer is unchanged; depending on a byte in
 	  IBMBIO.COM, the remainder of the buffer is filled with either
 	  "C:\ROMSHELL.COM",0Dh or xxh,xxh,0Fh,"C:\ROMSHELL.COM",0Dh
 SeeAlso: AX=1980h,AX=1982h

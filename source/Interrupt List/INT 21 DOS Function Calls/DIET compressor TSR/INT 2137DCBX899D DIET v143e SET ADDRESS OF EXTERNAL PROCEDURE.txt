@@ -9,7 +9,7 @@ INT 21 - DIET v1.43e - SET ADDRESS OF EXTERNAL PROCEDURE
 	BX = 899Dh ('DI' + 'ET')
 	DS:DX -> external procedure (see #01397)
 Return: AX = 0000h
-Note:	the resident code will call the specified external procedure at the
+Notes:	the resident code will call the specified external procedure at the
 	  beginning of decompression and when compression is exited on failure
 SeeAlso: AX=37DDh
 

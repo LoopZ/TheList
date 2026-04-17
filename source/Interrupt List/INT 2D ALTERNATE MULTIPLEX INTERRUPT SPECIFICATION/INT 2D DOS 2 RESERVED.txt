@@ -5,8 +5,8 @@
 ----------------------------------------------------------------------------
 
 INT 2D - DOS 2+ - RESERVED
-Note:	this vector is not used in DOS versions <= 6.00, and points at an IRET
-BUG:	RM386 v6.00-6.02 (as distributed with Helix's Netroom v3.x) contains
+Notes:	this vector is not used in DOS versions <= 6.00, and points at an IRET
+BUGS:	RM386 v6.00-6.02 (as distributed with Helix's Netroom v3.x) contains
 	  a stack bug in its protected-mode INT 2D handler which causes a crash
 	  when INT 2D is invoked from V86 mode
 

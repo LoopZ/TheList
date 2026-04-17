@@ -9,7 +9,7 @@ INT 10 - VIDEO - UltraVision - GET ULTRAVISION PALETTE (EGA,VGA)
 Return: CL = palette table number
 	DS:DX -> 17-byte palette register list (see #00217)
 	DS:SI -> current font names table (see #00218,#00219)
-Note:	only the font names are valid on monochrome EGA systems
+Notes:	only the font names are valid on monochrome EGA systems
 SeeAlso: AX=1009h,AX=CD00h
 
 Format of UltraVision palette register list:

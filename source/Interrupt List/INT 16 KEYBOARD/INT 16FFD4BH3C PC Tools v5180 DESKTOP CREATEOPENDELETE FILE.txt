@@ -16,7 +16,7 @@ INT 16 U - PC Tools v5.1-8.0 DESKTOP - CREATE/OPEN/DELETE FILE
 	DS:SI -> ASCIZ filename
 Return: BX = file handle
 	    0000h on error
-Note:	operation is attempted in (in order) the directory from which the
+Notes:	operation is attempted in (in order) the directory from which the
 	  desktop was started/run???, the directory specified with the
 	  filename, X:\PCTOOLS\, and X:\
 

@@ -16,7 +16,7 @@ Return: AH = status (see #03744)
 	BP,DS destroyed
 Desc:	generic read-byte function; for driver V_HPHIL, retrieves the value
 	  of a specific HP-HIL device register
-Note:	this function is only available if the driver is in the open state
+Notes:	this function is only available if the driver is in the open state
 	  (see AX=020Eh"SF_OPEN")
 SeeAlso: AH=06h"F_PUT_BYTE",AH=0Ah"F_PUT_BUFFER",AH=0Ch"F_GET_BUFFER"
 

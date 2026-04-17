@@ -8,6 +8,6 @@ INT 2F - Communicating Applications Specification - ABORT CURRENT EVENT
 	AX = CB02h
 Return: AX >= 0: event handle of aborted event
 	AX < 0: error code (see #03048)
-Note:	termination could take up to 30 seconds
+Notes:	termination could take up to 30 seconds
 SeeAlso: AX=CB08h,AX=CB10h
 

@@ -9,6 +9,6 @@ INT 2C P - Cloaking - GET PROTECTED-MODE INTERRUPT VECTOR
 	CL = vector (00h-7Fh)
 Return: CF clear
 	DX:EBX -> current interrupt handler
-Note:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
+Notes:	this function was first introduced with RM386 (RAM-MAN/386) v6.00
 SeeAlso: AX=0007h,INT 31/AX=0204h
 

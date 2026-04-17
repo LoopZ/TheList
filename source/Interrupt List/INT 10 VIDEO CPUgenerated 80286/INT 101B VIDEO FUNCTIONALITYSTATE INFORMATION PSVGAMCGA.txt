@@ -11,7 +11,7 @@ INT 10 - VIDEO - FUNCTIONALITY/STATE INFORMATION (PS,VGA/MCGA)
 	ES:DI -> 64-byte buffer for state information (see #00040)
 Return: AL = 1Bh if function supported
 	    ES:DI buffer filled with state information
-BUG:	Trident 8900 (BIOS D3.0 1991/11/12) and Trident 9000 (C3.0 1991/10/25)
+BUGS:	Trident 8900 (BIOS D3.0 1991/11/12) and Trident 9000 (C3.0 1991/10/25)
 	  do not correctly set the fields at offsets 27h and 29h of the
 	  state information
 SeeAlso: AH=15h,AX=1A00h,AX=1F01h

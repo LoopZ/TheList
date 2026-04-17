@@ -17,7 +17,7 @@ Program: DUBLDISK.SYS is the device driver portion of DoubleDisk, a disk
 	  expander by Vertisoft Systems, Inc.
 InstallCheck:	for v2.6, scan memory for the signature "FAT 2.6  byte:",
 	  which is immediately followed by a data table (see #01531)
-BUG:	VOPT (a disk optimizer by Golden Bow Software) assumes that any driver
+BUGS:	VOPT (a disk optimizer by Golden Bow Software) assumes that any driver
 	  which returns the "correct" number of bytes when the first word of
 	  the buffer for the data record contains the signature value 4444h is
 	  DoubleDisk; a workaround is for the non-DoubleDisk driver to return

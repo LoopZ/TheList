@@ -46,7 +46,7 @@ Offset	Size	Description	(Table 01690)
 		(all offsets are 0D0Ch, but this list is still present for
 		  DOS 3.x compatibility)
  -1	BYTE	unused padding
-Note:	the above data is not actually part of the SDA, and is much more likely
+Notes:	the above data is not actually part of the SDA, and is much more likely
 	  to change between DOS versions/OEMs than data in the SDA itself
 ---start of actual SDA---
  00h	BYTE	critical error flag ("ErrorMode")
@@ -250,7 +250,7 @@ Note:	the above data is not actually part of the SDA, and is much more likely
 7D0h	WORD	high word of ECX used by "FREECLUSTER"
 7D2h	WORD	high word of EDI used by "GETEOF"
 7D4h  3 WORDs	???
-Note:	the only fields which remain valid BETWEEN calls to INT 21h are those
+Notes:	the only fields which remain valid BETWEEN calls to INT 21h are those
 	  in the initial "swap-always" portion of the SDA
 SeeAlso: #01687,#01689
 

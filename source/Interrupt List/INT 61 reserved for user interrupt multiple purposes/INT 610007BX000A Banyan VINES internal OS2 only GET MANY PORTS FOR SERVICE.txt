@@ -9,7 +9,7 @@ INT 61 - Banyan VINES - internal, OS/2 only - GET MANY PORTS FOR SERVICE
 	BX = 000Ah
 	DS:DX -> port control block (see #03440)
 Return: AX = status (see AX=0007h/BX=0000h)
-Note:	This function cannot be called from applications, as the DS register
+Notes:	This function cannot be called from applications, as the DS register
 	  is checked against the redirector data segment address (status code
 	  0001h will be returned if DS doesn't match)
 SeeAlso: AX=0007h/BX=0001h,AX=0007h/BX=0002h,AX=0007h/BX=0004h

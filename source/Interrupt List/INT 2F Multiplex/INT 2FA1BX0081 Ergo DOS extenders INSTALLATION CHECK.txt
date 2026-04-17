@@ -12,7 +12,7 @@ INT 2F - Ergo DOS extenders - INSTALLATION CHECK
 	    FFh HummingBoard DOS extender
 	ES:DI -> 16-byte buffer
 Return: if installed, first four bytes of ES:DI buffer are "IABH"
-Note:	since TKERNEL is a licensed version, it is likely that subfunctions
+Notes:	since TKERNEL is a licensed version, it is likely that subfunctions
 	  BX=0082h and BX=0084h are present and function identically to the
 	  AX=FBA1h/BX=008xh calls
 SeeAlso: AX=ED00h,AX=FBA1h/BX=0081h,INT 15/AX=BF02h

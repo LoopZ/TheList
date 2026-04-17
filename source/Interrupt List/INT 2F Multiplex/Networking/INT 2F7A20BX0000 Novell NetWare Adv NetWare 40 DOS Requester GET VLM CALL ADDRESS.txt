@@ -217,7 +217,7 @@ Values for VLM status code:
  89FDh	bad station number; lock collision
  89FEh	directory locked; bindery locked; timeout
  89FFh	general error; hard error; lock error
-Note:	some server-generated error codes have multiple interpretations; use
+Notes:	some server-generated error codes have multiple interpretations; use
 	  the one appropriate to the failing call
 
 (Table 02861)
@@ -282,7 +282,7 @@ Offset	Size	Description	(Table 02862)
  4Ah	WORD	Full Map Count
  4Ch	WORD	???
  4Eh 80 BYTEs	ASCIZ configuration file filename
-Note:	the number of entry points in the header is reported as "Func" in the
+Notes:	the number of entry points in the header is reported as "Func" in the
 	  VLM /D display.
 
 Format of VLM Control Block for VLM v1.20 [array]:
@@ -301,7 +301,7 @@ Offset	Size	Description	(Table 02863)
  16h	WORD	GSegSize
  18h	WORD	SSegSize
  1Ah	BYTE	VLMName[9] ASCIZ
-Note:	this information is shown in VLM /d under the dashed line. There are
+Notes:	this information is shown in VLM /d under the dashed line. There are
 	  as many 35-byte blocks as modules loaded
 SeeAlso: #02862
 
@@ -441,7 +441,7 @@ Offset	Size	Description	(Table 02868)
  08h	WORD	number of failed "allocate handle" calls
  0Ah	WORD	number of failed "add name" calls
  0Ch	WORD	number of failed task calls
-Note:	some versions of the NetWare requester reportedly do not implement
+Notes:	some versions of the NetWare requester reportedly do not implement
 	  this correctly
 SeeAlso: #02867
 
@@ -519,7 +519,7 @@ Values for NetWare Connection Manager CEI (Connection Entry Information):
 		bit 5: packet signing active
  15h	W	soft resource count
  16h	FR	connection locked
-Note:	flag meanings
+Notes:	flag meanings
 	    F=flag value
 	    B=byte value
 	    W=word value

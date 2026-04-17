@@ -8,7 +8,7 @@ INT 15 - DESQview v2.40+ - "GETDVPATH" - GET DESQview DIRECTORY
 	AX = DE25h
 	ES:DI -> 67-byte buffer for ASCIZ directory name
 Return: ES:DI buffer filled with directory from which DESQview was started
-BUG:	DV 2.42 does not place a terminating NUL at the end of the directory
+BUGS:	DV 2.42 does not place a terminating NUL at the end of the directory
 	  name, so if the buffer is not cleared to zeros before the call,
 	  there is no way to tell where the directory name ends.  This bug
 	  has been fixed in DV 2.52 (DV/X 1.02)

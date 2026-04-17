@@ -7,7 +7,7 @@
 CALL xxxxh:xxxxh - POST Memory Manager Specification (PMM) v1.0
 InstallCheck:	scan paragraph boundaries E000h to FFFFh for signature string
 	  "$PMM" followed by a valid PMM header structure (see #F0092)
-Note:	the PMM is only available at system boot -- between the completion
+Notes:	the PMM is only available at system boot -- between the completion
 	  of the memory check and the call to INT 19; this includes Option
 	  ROM initialization and Plug-and-Play Boot Connection Vectors, but
 	  not the Bootstrap Entry Vector (which is called after INT 19)

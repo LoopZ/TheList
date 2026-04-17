@@ -10,7 +10,7 @@ INT 21 - 10NET v5.0 - TERMINATE PRINT JOB
 Return: CF clear if successful
 	CF set on error
 	    AX = error code (see #01680 at AH=59h/BX=0000h)
-Note:	this call resets the spool termination mode to "truncate"
+Notes:	this call resets the spool termination mode to "truncate"
 	  (see AX=5D08h)
 SeeAlso: AX=5E04h"10NET",AX=5E06h
 

@@ -13,7 +13,7 @@ INT 15 - SYSTEM - WAIT ON EXTERNAL EVENT (CONVERTIBLE and some others)
 	DX = I/O port address if AL bit 4 set
 	ES:DI -> user byte if AL bit 4 clear
 Return: after event or timeout occurs
-Note:	call AH=C0h and examine bit 3 of feature byte 1 to determine whether
+Notes:	call AH=C0h and examine bit 3 of feature byte 1 to determine whether
 	  this function is supported
 SeeAlso: AH=83h,AH=86h,AH=C0h
 

@@ -14,7 +14,7 @@ Return: AX = status???
 	    0000h successful
 	    0001h failed
 Program: AAPISG is a driver by Voyetra for the Aztech Sound Galaxy sound board
-BUG:	the function range check uses JL instead of JB, so it will cause a
+BUGS:	the function range check uses JL instead of JB, so it will cause a
 	  crash if BL >= 80h on entry
 SeeAlso: AX=4331h,AX=564Dh,AX=5658h
 

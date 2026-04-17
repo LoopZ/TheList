@@ -12,7 +12,7 @@ INT 21 - DOS 1+ - SET SYSTEM DATE
 Return: AL = status
 	    00h successful
 	    FFh invalid date, system date unchanged
-Note:	DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$
+Notes:	DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$
 	  driver interface, the CMOS time is also updated to the current
 	  DOS time (which is the BIOS time-of-day clock with the default
 	  CLOCK$ driver)

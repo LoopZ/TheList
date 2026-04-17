@@ -12,7 +12,7 @@ Return: ???
 	---if DX bit 0 set---
 	AX = 0031h
 	CX = 0000h
-BUG:	if the task switcher is running, and DX bit 0 is set on call, this
+BUGS:	if the task switcher is running, and DX bit 0 is set on call, this
 	  function will crash because its exit code attempts to pop several
 	  registers which are not pushed when DX bit 0 is set
 

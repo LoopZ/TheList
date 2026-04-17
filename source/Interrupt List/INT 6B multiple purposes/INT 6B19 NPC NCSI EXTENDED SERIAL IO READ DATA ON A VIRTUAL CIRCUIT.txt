@@ -11,6 +11,6 @@ INT 6B - NPC NCSI EXTENDED SERIAL I/O - READ DATA ON A VIRTUAL CIRCUIT
 	ES:BX -> buffer for received characters
 Return: CX = 0000h if failed
 	CX = nonzero (possibly number of characters received) if successful
-Note:	this function is also supported by TelAPI
+Notes:	this function is also supported by TelAPI
 SeeAlso: AX=0100h,AH=12h,AH=18h
 

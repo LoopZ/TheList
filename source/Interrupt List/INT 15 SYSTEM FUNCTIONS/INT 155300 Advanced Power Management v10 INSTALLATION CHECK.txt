@@ -14,7 +14,7 @@ Return: CF clear if successful
 	    CX = flags (see #00472)
 	CF set on error
 	    AH = error code (06h,09h,86h) (see #00473)
-BUG:	early versions of the Award Modular BIOS with built-in APM support
+BUGS:	early versions of the Award Modular BIOS with built-in APM support
 	  reportedly do not set BX on return
 
 Bitfields for APM flags:

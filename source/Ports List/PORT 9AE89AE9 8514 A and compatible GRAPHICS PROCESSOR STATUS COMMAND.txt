@@ -24,7 +24,7 @@ Bit(s)	Description	(Table P1035)
  7	queue status flag 1
  6-0	queue status flags 2-8 (0=empty, 1=filled)
 	(each bit represents a position in queue)
-Note:	queue status flag N is cleared whenever at least N slots are available
+Notes:	queue status flag N is cleared whenever at least N slots are available
 	  in the FIFO; at any given time, the CPU may write only as many values
 	  to the FIFO as there are slots available
 SeeAlso: #P1036

@@ -8,7 +8,7 @@ INT 7F - Alloy NTNX, MW386 - SEND MESSAGE OR COMMAND TO USER(S)
 	AH = 21h
 	AL = sender's user ID
 	DS:DX -> control packet (see #03962)
-Note:	messages or commands are ignored if disabled by the destination user
+Notes:	messages or commands are ignored if disabled by the destination user
 SeeAlso: AH=22h
 
 Format of Alloy control packet:
@@ -20,5 +20,5 @@ Offset	Size	Description	(Table 03962)
  01h	BYTE	destination user ID or 'A' for all users
  02h 62 BYTEs	ASCIZ message (packet type 00h)
 		BIOS keycodes terminated by NUL byte (type 01h) or word (02h)
-Note:	a maximum of 16 keycodes will be processed for NTNX and MW386 commands
+Notes:	a maximum of 16 keycodes will be processed for NTNX and MW386 commands
 

@@ -9,7 +9,7 @@ INT 33 - MS MOUSE v6.26+ - GET MAXIMUM VIRTUAL COORDINATES
 Return: BX = mouse-disabled flag (0000h mouse enabled, nonzero disabled)
 	CX = maximum virtual X (for current video mode)
 	DX = maximum virtual Y
-Note:	for driver versions before 7.05, this call returns the currently-set
+Notes:	for driver versions before 7.05, this call returns the currently-set
 	  maximum coordinates; v7.05+ returns the absolute maximum coordinates
 SeeAlso: AX=0031h
 

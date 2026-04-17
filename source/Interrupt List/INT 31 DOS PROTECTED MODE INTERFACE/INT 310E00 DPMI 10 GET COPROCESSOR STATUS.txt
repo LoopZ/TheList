@@ -8,7 +8,7 @@ INT 31 P - DPMI 1.0+ - GET COPROCESSOR STATUS
 	AX = 0E00h
 Return: CF clear
 	AX = coprocessor status (see #03160)
-Note:	supported by 386MAX v6.01, which otherwise only supports DPMI 0.9
+Notes:	supported by 386MAX v6.01, which otherwise only supports DPMI 0.9
 SeeAlso: AX=0E01h
 
 Bitfields for DPMI coprocessor status:

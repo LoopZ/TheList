@@ -19,7 +19,7 @@ Notes:	the real mode call structure is static, causing reentrancy problems;
 	DPMI hosts must provide at least 16 callbacks per client
 	the limited DPMI host built into Phar Lap's 286|DOS-Extender v2.5 does
 	  not support this function
-BUG:	Windows NT 4.0 either ignores or clears the high 16 bits of EDI,
+BUGS:	Windows NT 4.0 either ignores or clears the high 16 bits of EDI,
 	  causing an illegal instruction error if the real mode call
 	  structure's offset in ES is greater than 64K
 SeeAlso: AX=0304h,AX=0C00h

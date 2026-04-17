@@ -13,7 +13,7 @@ Return: CF clear if successful
 	    AX = number of bytes actually read
 	CF set on error
 	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
-Note:	NCache2 (from the Norton Utilities v8.0) attempts to support this
+Notes:	NCache2 (from the Norton Utilities v8.0) attempts to support this
 	  interface, but does not do so correctly, often hanging the system;
 	  one should use the SmartDrive v4.x or NCache private interfaces
 	  (see INT 2F/AX=4A10h/BX=0000h,INT 2F/AX=FE00h/DI=4E55h)

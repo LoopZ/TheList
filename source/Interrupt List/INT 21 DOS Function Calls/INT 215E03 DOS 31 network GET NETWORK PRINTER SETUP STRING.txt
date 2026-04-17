@@ -13,7 +13,7 @@ Return: CF clear if successful
 	    ES:DI buffer filled
 	CF set on error
 	    AX = error code (01h) (see #01680 at AH=59h/BX=0000h)
-Note:	also supported by 10NET v5.0, but 10NET is documented as using DS:SI
+Notes:	also supported by 10NET v5.0, but 10NET is documented as using DS:SI
 	  instead of ES:DI
 SeeAlso: AX=5E02h,INT 2F/AX=111Fh
 

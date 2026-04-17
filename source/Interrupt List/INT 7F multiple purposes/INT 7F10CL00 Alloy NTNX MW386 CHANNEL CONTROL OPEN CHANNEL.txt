@@ -10,7 +10,7 @@ INT 7F - Alloy NTNX, MW386 - CHANNEL CONTROL - OPEN CHANNEL
 	AL = channel number
 	DX:DI -> channel buffer
 Return: AL = status (00h-03h,0Dh) (see #03951)
-Note:	may not be invoked from within a hardware interrupt handler
+Notes:	may not be invoked from within a hardware interrupt handler
 SeeAlso: AH=10h/CL=01h,AH=10h/CL=04h,AH=14h/CL=02h
 
 (Table 03951)

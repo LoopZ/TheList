@@ -18,8 +18,8 @@ Return: CF clear if successful
 	CF set on error
 	    AL = error code (see #03218)
 	    DDS region size field filled wth maximum contiguous length in bytes
-Note:	Windows 3.0 does not check whether the region extends beyond the end of
+Notes:	Windows 3.0 does not check whether the region extends beyond the end of
 	  a segment
-BUG:	Windows 3.0 in enhanced mode does not return a correct code on error
+BUGS:	Windows 3.0 in enhanced mode does not return a correct code on error
 SeeAlso: AX=8103h,AX=8106h
 

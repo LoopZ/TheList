@@ -9,6 +9,6 @@ INT 2F - QRIP/TSR - HANGUP
 	DI = 1092h
 Return: nothing
 Desc:	inform QRIP that carrier has been lost
-Note:	if DI <> 1092h on entry, QRIP chains the call
+Notes:	if DI <> 1092h on entry, QRIP chains the call
 SeeAlso: AX=ACF0h
 

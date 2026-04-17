@@ -9,7 +9,7 @@ INT 21 - Novell NetWare - ACCOUNTING SERVICES - GET ACCOUNT STATUS
 	DS:SI -> request buffer (see #02003)
 	ES:DI -> reply buffer (see #02004)
 Return: AL = status (00h,C0h,C1h) (see #02002)
-Note:	this function is supported by Advanced NetWare 2.1+
+Notes:	this function is supported by Advanced NetWare 2.1+
 SeeAlso: AH=E3h/SF=97h,AH=E3h/SF=98h,AH=E3h/SF=99h,AX=F217h/SF=96h
 
 (Table 02002)
@@ -43,7 +43,7 @@ Offset	Size	Description	(Table 02004)
 	...
  F8h	DWORD	(big-endian) object ID, server 16
  FCh	DWORD	(big-endian) hold amount, server 16
-Note:	the reply buffer lists the servers which have placed holds on a portion
+Notes:	the reply buffer lists the servers which have placed holds on a portion
 	  of the account balance, and the amount reserved by each
 SeeAlso: #02003,#02224 at AX=F217h/SF=96h
 

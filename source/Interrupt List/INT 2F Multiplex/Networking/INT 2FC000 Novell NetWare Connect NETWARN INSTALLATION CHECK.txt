@@ -12,7 +12,7 @@ Program: NETWARN is a utility supplied with NetWare Connect to warn a
 	  remote dialup user when programs are about to be loaded slowly over
 	  the modem link.
 Range:	AH=C0h to AH=FFh, selected by scanning for first free multiplex number
-Note:	on return, verify that it is NETWARN responding by examining signature
+Notes:	on return, verify that it is NETWARN responding by examining signature
 	  at in NETWARN's data table in the resident segment (see #03027)
 SeeAlso: AX=C000h"ODI",AX=C000h"NESL"
 
@@ -29,7 +29,7 @@ Offset	Size	Description	(Table 03027)
  119h	DWORD	INT 2Fh vector before NETWARN loaded
  11Dh 16 BYTEs	ASCIIZ local name of last device which was checked
  12Dh 128 BYTEs ASCIIZ remote name of last device which was checked
-Note:	the specified offsets are from the start of the resident segment
+Notes:	the specified offsets are from the start of the resident segment
 
 Bitfields for NETWARN options:
 Bit(s)	Description	(Table 03028)

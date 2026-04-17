@@ -11,7 +11,7 @@ INT 1A - PCI BIOS v2.0c+ - WRITE CONFIGURATION BYTE (32-bit)
 	DI = register number (0000h-00FFh)
 	CL = byte to write
 Return: as for AX=B10Bh
-Note:	the meanings of BL and BH on return were exchanged between the initial
+Notes:	the meanings of BL and BH on return were exchanged between the initial
 	  drafts of the specification and final implementation
 SeeAlso: AX=B10Bh,AX=B18Ch,AX=B18Dh
 

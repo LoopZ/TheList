@@ -17,7 +17,7 @@ Notes:	(DOS 3.1+) file opened for read/write in compatibility mode
 	DR DOS checks password attached with AX=4303h
 	(FAT32 drive) this function will only succeed for creating a volume
 	  label; FAT32 does not support FCBs for file I/O
-BUG:	APPEND for DOS 3.3+ corrupts DX if the file is not found
+BUGS:	APPEND for DOS 3.3+ corrupts DX if the file is not found
 SeeAlso: AH=10h,AH=16h,AH=3Dh,AX=4303h
 
 Format of File Control Block:
@@ -102,7 +102,7 @@ Offset	Size	Description	(Table 01350)
  1Bh	WORD	starting cluster of file
  1Dh	WORD	number of sector containing directory entry (see #01352)
  1Fh	BYTE	number of directory entry within sector
-Note:	if FCB opened on character device, DWORD at 1Ah is set to the address
+Notes:	if FCB opened on character device, DWORD at 1Ah is set to the address
 	  of the device driver header, then the BYTE at 1Ah is overwritten.
 SeeAlso: #01646
 

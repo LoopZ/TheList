@@ -17,7 +17,7 @@ Return: CF clear if successful
 	    DX = port (if any) which awakened task
 	CF set on error
 	    AX = error code (see #01680 at INT 21/AH=59h/BX=0000h)
-Note:	a device driver may make this call with AL=00h, which indicates that
+Notes:	a device driver may make this call with AL=00h, which indicates that
 	  the driver is responsible for setting and clearing the TCBWAIT field
 	  in the TCB.  To put task to sleep, set TCBWAIT bits 2-0 to 001; to
 	  reawaken it, set bit 1 (leaving other bits unchanged)

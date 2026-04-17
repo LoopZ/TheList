@@ -10,7 +10,7 @@ INT 15 - TopView - "ISOBJ" - VERIFY OBJECT HANDLE
 Return: BX = status
 	    FFFFh if ES:DI is a valid object handle (see #00414)
 	    0000h if ES:DI is not
-Note:	under DESQview versions prior to 2.50, an object handle is always a
+Notes:	under DESQview versions prior to 2.50, an object handle is always a
 	  pointer to the object; for versions 2.50 and up, only task handles
 	  are always pointers--other handles may consist of a unique object
 	  number and offset into DESQview's common memory (see #00423)
@@ -425,7 +425,7 @@ Offset	Size	Description	(Table 00423)
  02h	WORD	bytes of commom memory, including header
  04h	WORD	offset of first free block
  06h  N BYTEs	size depends of DV version, ??? (DVP buffer???)
-Note:	the above is located at the beginning of the commom memory segment
+Notes:	the above is located at the beginning of the commom memory segment
 SeeAlso: #00424,#00425,#00433
 
 Format of DESQview Free block header:

@@ -15,7 +15,7 @@ INT 10 - VIDEO - GRAPH-MODE CHARGEN - SET USER GRAPHICS CHARACTERS (PS,EGA,VGA)
 	    02h 25 rows
 	    03h 43 rows
 Return: AL = new number of rows (Diamond Stealth64 Video)
-Note:	this function is meant to be called immediately after a mode set;
+Notes:	this function is meant to be called immediately after a mode set;
 	  results are unpredictable at other times
 SeeAlso: AX=1120h,AX=1122h,AX=1123h,AX=1124h,AX=1129h"Compaq"
 SeeAlso: AX=1129h"Diamond",INT 1F"SYSTEM DATA",INT 43"VIDEO DATA"

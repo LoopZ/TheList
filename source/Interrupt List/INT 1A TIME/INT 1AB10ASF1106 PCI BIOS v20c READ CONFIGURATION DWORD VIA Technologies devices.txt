@@ -107,7 +107,7 @@ Offset	Size	Description	(Table 00983)
  75h	BYTE	PCI arbitration control 1 (see #01009)
  76h	BYTE	PCI arbitration control 2 (see #01010)
  77h 137 BYTEs	reserved
-Note:	the AMD-640 uses PCI configuration mechanism #1; bus/device/function
+Notes:	the AMD-640 uses PCI configuration mechanism #1; bus/device/function
 	  are always 00h/00h/00h
 SeeAlso: #00817,#01011
 
@@ -207,7 +207,7 @@ Bit(s)	Description	(Table 00990)
  2-0	last populated memory bank
 	000 - 101 = Bank0 - Bank5
 	110,111 reserved
-Note:	banks 2-4 are non-cacheable if tag RAM is ten bits + modified bit
+Notes:	banks 2-4 are non-cacheable if tag RAM is ten bits + modified bit
 SeeAlso: #00983,#00989
 
 Bitfields for AMD-640 DRAM Type register:
@@ -313,7 +313,7 @@ Bit(s)	Description	(Table 00997)
  2	add one wait state for memory data-to-host data pop
  1	reduce RAS# precharge by 1T for SDRAM
  0	reduce RAS# to CAS# delay for SDRAM
-Note:	bits 1 and 0 have no effect unless SDRAM has been selected via the
+Notes:	bits 1 and 0 have no effect unless SDRAM has been selected via the
 	  DRAM type register (see #00991)
 SeeAlso: #00983,#00996,#00982
 
@@ -555,7 +555,7 @@ Bit(s)	Description	(Table 01014)
 	101 PCLK/10
 	110 PCLK/12
 	111 OSC/2
-Note:	in order to safely change the ISA clock, bit 3 must first be cleared,
+Notes:	in order to safely change the ISA clock, bit 3 must first be cleared,
 	  then bits 2-0 may be changed, and finally bit 3 can be set again
 SeeAlso: #01011,#01013
 
@@ -716,7 +716,7 @@ Bit(s)	Description	(Table 01031)
  2	enable internal RTC
  1	enable internal PS/2 mouse
  0	enable internal keyboard controller
-Note:	the default value of this register is latched from external pins at
+Notes:	the default value of this register is latched from external pins at
 	  power-up
 SeeAlso: #01011
 
@@ -776,7 +776,7 @@ Offset	Size	Description	(Table 01034)
  62h  6 BYTEs	reserved
  68h	WORD	secondary sector size (see #01045)
  6Ah 150 BYTEs	reserved
-Note:	the AMD-645 IDE controller is compatible with the SFF 8038i v1.0 spec
+Notes:	the AMD-645 IDE controller is compatible with the SFF 8038i v1.0 spec
 SeeAlso: #00817,#01011,#01046
 
 Bitfields for AMD-645 IDE Chip Enable register:

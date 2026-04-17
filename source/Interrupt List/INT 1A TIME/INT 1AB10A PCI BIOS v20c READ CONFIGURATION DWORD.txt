@@ -19,7 +19,7 @@ Notes:	this function may require up to 1024 byte of stack; it will not enable
 	  interrupts if they were disabled before making the call
 	the meanings of BL and BH on entry were exchanged between the initial
 	  drafts of the specification and final implementation
-BUG:	the Award BIOS 4.51PG (dated 05/24/96) incorrectly returns FFFFFFFFh
+BUGS:	the Award BIOS 4.51PG (dated 05/24/96) incorrectly returns FFFFFFFFh
 	  for register 00h if the PCI function number is nonzero
 SeeAlso: AX=B108h,AX=B109h,AX=B10Ah/SF=8086h,AX=B18Ah,INT 2F/AX=1684h/BX=304Ch
 
@@ -161,7 +161,7 @@ Bit(s)	Description	(Table 00880)
  13	received master abort
  14	signaled system error (device is asserting SERR# line)
  15	detected parity error (set even if parity error reporting is disabled)
-Note:	bits 12, 13 and 15 are cleared by writing a 1 into the corresponding
+Notes:	bits 12, 13 and 15 are cleared by writing a 1 into the corresponding
 	  bit
 SeeAlso: #00878,#00879
 
@@ -211,7 +211,7 @@ Offset	Size	Description	(Table 00884)
  04h	WORD	power managment capabilities status register (see #00886)
  06h	BYTE	PMCSR bridge support extensions (see #00887)
  07h	BYTE	(optional) read-only data register (see #00888)
-Note:	this information is from the v0.93 draft of the specification and is
+Notes:	this information is from the v0.93 draft of the specification and is
 	  subject to change
 SeeAlso: #00878,#00880
 
@@ -239,7 +239,7 @@ Bit(s)	Description	(Table 00885)
  3	PCI clock required for PME# generation
  2-0	specification version
 	001 = v1.0; four bytes of power management registers
-Note:	this information is from the v0.93 draft of the specification and is
+Notes:	this information is from the v0.93 draft of the specification and is
 	  subject to change
 SeeAlso: #00884,#00886,#00887
 
@@ -263,7 +263,7 @@ Bit(s)	Description	(Table 00886)
 	00 = D0
 	...
 	11 = D3
-Note:	this information is from the v0.93 draft of the specification and is
+Notes:	this information is from the v0.93 draft of the specification and is
 	  subject to change
 SeeAlso: #00884,#00885,#00887
 
@@ -274,7 +274,7 @@ Bit(s)	Description	(Table 00887)
  5	(read-only) Bus Power State B2 supported
  4	dynamic clock control enable
  3-0	reserved (0)
-Note:	this information is from the v0.93 draft of the specification and is
+Notes:	this information is from the v0.93 draft of the specification and is
 	  subject to change
 SeeAlso: #00884,#00885,#00886
 
@@ -369,7 +369,7 @@ Bit(s)	Description	(Table 00892)
  2	CCD2# (card detect 2) changed state
  3	interface power cycle completed
 31-4	reserved (0)
-Note:	the bits in this register are set by the bridge, and cleared by writing
+Notes:	the bits in this register are set by the bridge, and cleared by writing
 	  a one into the bits one wishes to clear
 SeeAlso: #00890,#00893,#00895
 
@@ -409,7 +409,7 @@ Bit(s)	Description	(Table 00894)
  29	socket can accept Vcc = 3.3 volts
  30	socket can accept Vcc = X.X volts
  31	socket can accept Vcc = Y.Y volts
-Note:	bits 0-3 may be cleared by writing a 1 into the respective bits
+Notes:	bits 0-3 may be cleared by writing a 1 into the respective bits
 SeeAlso: #00890,#00892,#00893,#00896
 
 Bitfields for CardBus Socket Force Event Register:
@@ -422,7 +422,7 @@ Bit(s)	Description	(Table 00895)
  14-5	reserved (0)
  15	enable card interrupts via CINT# pin
  31-16	reserved
-Note:	this register can simulate events by forcing the values of some of the
+Notes:	this register can simulate events by forcing the values of some of the
 	  bits in the Event Mask Register; any bit of this register which is
 	  set to 1 forces the corresponding bit in the Mask Register to 1,
 	  while bits set to 0 leave the corresponding bit unchanged
@@ -528,7 +528,7 @@ Offset	Size	Description	(Table 00902)
  4Ch	DWORD	"HcRhDescriptorB"	Root Hub Descriptor B (see #00916)
  50h	DWORD	"HcRhStatus"		Root Hub status (see #00917)
  54h  N DWORDs	"HCRhPortStatus[1-N]"	Root Hub port status N (see #00918)
-Note:	OpenHCI reserves a full 4K page of the systems address space for its
+Notes:	OpenHCI reserves a full 4K page of the systems address space for its
 	  memory-mapped registers
 SeeAlso: #00878,#00882,#F0085,#00966
 
@@ -536,7 +536,7 @@ Bitfields for OpenHCI "HcRevision" register:
 Bit(s)	Description	(Table 00903)
  31-8	reserved
  7-0	BCD OpenHCI specification number (10h = 1.0, 11h = 1.1)
-Note:	this register is read-only
+Notes:	this register is read-only
 SeeAlso: #00902,#00904
 
 Bitfields for OpenHCI "HcControl" register:
@@ -572,7 +572,7 @@ Bit(s)	Description	(Table 00905)
  2	BLF	bulk list contains TDs
  1	CLF	control list contains TDs
  0	HCR	host controller software reset
-Note:	writing a 1 bit sets the corresponding bit, while a 0 bit leaves the
+Notes:	writing a 1 bit sets the corresponding bit, while a 0 bit leaves the
 	  corresponding bit unchanged
 SeeAlso: #00902,#00903,#00906
 
@@ -588,7 +588,7 @@ Bit(s)	Description	(Table 00906)
  2	SF	start of frame
  1	WDH	writeback done
  0	SO	scheduling overrun
-Note:	writing a 1 bit clears the corresponding bit of the register
+Notes:	writing a 1 bit clears the corresponding bit of the register
 SeeAlso: #00902,#00903,#00905,#00907
 
 Bitfields for OpenHCI "HcInterruptEnable" and "HcInterruptDisable" registers:
@@ -603,7 +603,7 @@ Bit(s)	Description	(Table 00907)
  2	SF	start of frame
  1	WDH	HcDoneHead writeback
  0	SO	scheduling overrun
-Note:	writing a 1 bit to HcInterruptEnable enables the corresponding
+Notes:	writing a 1 bit to HcInterruptEnable enables the corresponding
 	  interrupt, while writing a 1 bit to HcInterruptDisable disables it;
 	  zero bits are ignored.  On reading, both registers return the
 	  same value, which reflects the currently enabled interrupts
@@ -613,7 +613,7 @@ Bitfields for OpenHCI "HcHCCA" register:
 Bit(s)	Description	(Table 00908)
  31-8	physical address of Host Controller Communications Area (bits 31-8)
  7-0	reserved (0)
-Note:	the required alignment for the HCCA may be determined by writing
+Notes:	the required alignment for the HCCA may be determined by writing
 	  FFFFFFFFh to this register and determining the number of low-order
 	  zero bits
 SeeAlso: #00902,#00909,#00910
@@ -629,7 +629,7 @@ Bitfields for OpenHCI "HcControlHeadED"/"HcControlCurrentED" register:
 Bit(s)	Description	(Table 00910)
  31-4	physical address of first/current Endpoint Descriptor (bits 31-4)
  3-0	reserved (0)
-Note:	HcControlCurrentED is set to 0000000h to indicate the end of the
+Notes:	HcControlCurrentED is set to 0000000h to indicate the end of the
 	  Control list
 SeeAlso: #00902,#00908,#00909
 
@@ -638,7 +638,7 @@ Bit(s)	Description	(Table 00911)
  31-4	physical address of first/current Endpoint Descriptor in the Bulk
 	  list (bits 31-4)
  3-0	reserved (0)
-Note:	HcBulkCurrentED is set to 0000000h to indicate the end of the Bulk
+Notes:	HcBulkCurrentED is set to 0000000h to indicate the end of the Bulk
 	  list
 SeeAlso: #00902,#00908,#00910
 

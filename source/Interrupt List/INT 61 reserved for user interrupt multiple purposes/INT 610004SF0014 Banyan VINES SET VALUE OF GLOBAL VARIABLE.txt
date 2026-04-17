@@ -11,7 +11,7 @@ Return: AX = status
 	    0000h successful
 	    0033h invalid request ID (returned if variable index out of range)
 Desc:	Assigns a new value to the specified global variable
-Note:	If the specified number of bytes to copy exceeds the size of the
+Notes:	If the specified number of bytes to copy exceeds the size of the
 	  destination variable, nothing will be copied.
 SeeAlso: AX=0004h/SF=0013h,AX=0006h
 

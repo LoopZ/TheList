@@ -12,6 +12,6 @@ INT 21 - DOS 2+ - IOCTL - SET DEVICE INFORMATION
 Return: CF clear if successful
 	CF set on error
 	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
-Note:	this function was not supported by Digital Research's DOS Plus
+Notes:	this function was not supported by Digital Research's DOS Plus
 SeeAlso: AX=4400h,INT 2F/AX=122Bh
 

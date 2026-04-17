@@ -8,7 +8,7 @@ INT 2F U - HIMEM.SYS v3.09+ - GET XMS HANDLE TABLE
 	AX = 4309h
 Return: AL = 43h if function supported
 	    ES:BX -> XMS handle table (see #02747)
-Note:	HIMEM.SYS v3.09 is part of MS-DOS 6.0.
+Notes:	HIMEM.SYS v3.09 is part of MS-DOS 6.0.
 SeeAlso: AX=4308h
 
 Format of XMS handle table:

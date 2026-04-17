@@ -9,7 +9,7 @@ INT 21 P - Phar Lap 386/DOS-Extender v3.0+ - READ/WRITE SYSTEM REGISTERS
 	EBX = direction (00h read registers, 01h write)
 	DS:EDX -> system register record (see #01375)
 Return: CF clear
-Note:	this call is only available under MS Windows if PHARLAP.386 VDD is
+Notes:	this call is only available under MS Windows if PHARLAP.386 VDD is
 	  installed
 
 Format of Phar Lap system register record:

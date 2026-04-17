@@ -9,7 +9,7 @@ INT 31 P - CauseWay - "IntXX" - SIMULATE REAL-MODE INTERRUPT
 	BL = interrupt number
 	ES:(E)DI -> real-mode register list (see #03148 at AX=0300h)
 Return: register list updated
-Note:	CauseWay fills in the values for SS, SP, and FLAGS itself, and ignores
+Notes:	CauseWay fills in the values for SS, SP, and FLAGS itself, and ignores
 	  the values specified for CS and IP
 SeeAlso: AX=0300h,AX=FF02h
 

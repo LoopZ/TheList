@@ -41,7 +41,7 @@ Offset	Size	Description	(Table M0112)
  1Ch	WORD	number of SMBIOS structures
  1Eh	BYTE	BCD SMBIOS revision (high nybble = major, low = minor)
 		00h if specification version only given in bytes 06h/07h
-BUG:	due to an error in the v2.1 specification, some implementations might
+BUGS:	due to an error in the v2.1 specification, some implementations might
 	  indicate a length of 1Eh bytes instead of 1Fh
 SeeAlso: #M0111
 

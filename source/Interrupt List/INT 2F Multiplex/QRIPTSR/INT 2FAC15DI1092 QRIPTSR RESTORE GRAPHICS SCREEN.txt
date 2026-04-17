@@ -9,6 +9,6 @@ INT 2F - QRIP/TSR - RESTORE GRAPHICS SCREEN
 	DI = 1092h
 Return: nothing
 Desc:	restores the graphics screen saved by the last call to AX=AC14h
-Note:	if DI <> 1092h on entry, QRIP chains the call
+Notes:	if DI <> 1092h on entry, QRIP chains the call
 SeeAlso: AX=AC03h,AX=AC14h
 

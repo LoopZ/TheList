@@ -11,7 +11,7 @@ InstallCheck: after a hardware reset, the first read of the index port returns
 	  read-after-write always returns the written value)
 Range:	PORT 002Eh, PORT 015Ch, PORT 026Eh, or PORT 0398h, depending on
 	  external strapping
-Note:	to set a register, the data port must be written twice in a row; the
+Notes:	to set a register, the data port must be written twice in a row; the
 	  value is latched on the second write
 
 002E  RW  configuration register index

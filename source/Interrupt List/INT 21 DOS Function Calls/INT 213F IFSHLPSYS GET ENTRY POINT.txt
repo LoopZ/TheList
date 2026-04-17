@@ -52,7 +52,7 @@ Return: AX = status
 	    0001h failed (already set)
 		DX = 0000h
 	BX destroyed
-Note:	the trap handler is called with a function number in BX, and the
+Notes:	the trap handler is called with a function number in BX, and the
 	  original BX on top of the stack; a null handler must perform a
 	  POP BX and an IRET
 ---if function 02h---

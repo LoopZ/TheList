@@ -10,7 +10,7 @@ Return: ZF set if no keystroke available
 	ZF clear if keystroke available
 	    AH = BIOS scan code
 	    AL = ASCII character
-Note:	if a keystroke is present, it is not removed from the keyboard buffer;
+Notes:	if a keystroke is present, it is not removed from the keyboard buffer;
 	  however, any extended keystrokes which are not compatible with 83/84-
 	  key keyboards are removed by IBM and most fully-compatible BIOSes in
 	  the process of checking whether a non-extended keystroke is available

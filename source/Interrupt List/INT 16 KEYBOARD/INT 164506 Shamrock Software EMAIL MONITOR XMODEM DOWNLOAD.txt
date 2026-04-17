@@ -15,7 +15,7 @@ Return: AX = 4D00h if EMAIL installed on specified port
 		02h XGET completed successfully
 	    ES:BX buffer filled with last filename given to XGET command
 		(without path)
-Note:	DH=02h will only be returned once per XGET; subsequent calls will
+Notes:	DH=02h will only be returned once per XGET; subsequent calls will
 	  return DH=00h
 SeeAlso: AX=4500h,INT 17/AX=2408h
 

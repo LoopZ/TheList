@@ -20,7 +20,7 @@ Return: CF clear if successful
 Notes:	this functionality is provided by EMM386, and partially supported by
 	  HIDOS.SYS
 	BL specifies which program handles the call, BH is the function number
-BUG:	4DOS 5.51(a) often hangs the system (reported to be reproducable), if
+BUGS:	4DOS 5.51(a) often hangs the system (reported to be reproducable), if
 	  MEMMAX +V is issued from the 4DOS prompt.  To avoid this, one should
 	  temporary load COMMAND.COM followed by MEMMAX +v , starting the
 	  application, MEMMAX -v and EXIT.  4DOS 5.5c does not show this

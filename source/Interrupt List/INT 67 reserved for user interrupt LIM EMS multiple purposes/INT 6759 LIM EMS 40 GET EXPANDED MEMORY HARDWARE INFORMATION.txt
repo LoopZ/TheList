@@ -14,7 +14,7 @@ INT 67 - LIM EMS 4.0 - GET EXPANDED MEMORY HARDWARE INFORMATION
 			DX = total raw pages
 Return: AH = status (see also AH=58h"EMS 4.0")
 	    A4h access denied by operating system
-Note:	subfunction 00h is for use by operating systems only, and can be
+Notes:	subfunction 00h is for use by operating systems only, and can be
 	  enabled or disabled at any time by the operating system
 
 Format of EMS hardware configuration array:

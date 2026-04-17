@@ -19,7 +19,7 @@ INT 67 U - Compaq CEMM v5.10+ - PRIVATE API
 	    0004h BUG: crashes system due to fencepost error
 Return: AH = 84h
 	AL = status (84h = error, FFh = success)
-Note:	if BX <> 4345h or DX > 0004h on entry, CEMM behaves identically to
+Notes:	if BX <> 4345h or DX > 0004h on entry, CEMM behaves identically to
 	  Microsoft's EMM386 (see AX=FFA5h"Microsoft EMM386")
 SeeAlso: AX=FFA5h"Microsoft EMM386",#01513 at INT 21/AX=4402h/SF=02h,#03666
 

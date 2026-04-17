@@ -12,7 +12,7 @@ INT 1A - Tandy 2500???, Tandy 1000SL/TL - DIGITAL SOUND - RECORD SOUND
 Return: AH = 00h
 	CF set if sound busy
 	CF clear if sound chip free
-Note:	the value in DX should be 1/10 the corresponding value for
+Notes:	the value in DX should be 1/10 the corresponding value for
 	  INT 1A/AH=83h on the 1000TL, 1/11.5 on the 1000SL.  Call
 	  INT 1A/AX=8100h and INT 1A/AH=84h before invoking this function.
 	The BIOS issues an INT 15/AX=91FBh when the input is complete

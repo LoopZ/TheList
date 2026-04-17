@@ -12,7 +12,7 @@ Return: CF clear if successful
 	    ECX = expanded data length
 	CF set on error
 	    EAX = error code (01h file error, 02h bad data, 03h not CWC file)
-Note:	the provided file may consist of the concatenation of several CWC
+Notes:	the provided file may consist of the concatenation of several CWC
 	  files; the one beginning at the current file position will be
 	  expanded
 SeeAlso: AX=FF2Bh

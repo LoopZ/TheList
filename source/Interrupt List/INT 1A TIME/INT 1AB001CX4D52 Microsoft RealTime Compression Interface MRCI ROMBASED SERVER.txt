@@ -11,7 +11,7 @@ INT 1A - Microsoft Real-Time Compression Interface (MRCI) - ROM-BASED SERVER
 Return: CX = 4943h ("IC") if installed
 	DX = 524Dh ("RM") if installed
 	    ES:DI -> MRCINFO structure (see #00725)
-Note:	this call is functionally identical to INT 2F/AX=4A12h, which should
+Notes:	this call is functionally identical to INT 2F/AX=4A12h, which should
 	  be called first, as this call is used for the first, ROM-based
 	  MRCI server, while the other call is used for RAM-based servers
 	  which may be partially or entirely replacing a prior server
@@ -64,7 +64,7 @@ Return: AX = status
 	    0004h incompressible data
 	    0005h bad compressed data format
 	BP destroyed (MS-DOS 6.2)
-Note:	MRCI driver may chain to a previous driver
+Notes:	MRCI driver may chain to a previous driver
 
 Format of MRCREQUEST structure:
 Offset	Size	Description	(Table 00728)

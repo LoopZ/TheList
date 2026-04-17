@@ -28,7 +28,7 @@ Call VTD.386/VTD.VXD entry point with:
 	    0102h get current virtual machine time
 		Return: EAX = cumulative amount of time the virtual machine has
 				  been active, in milliseconds
-Note:	this entry point should only be called directly when TOOLHELP.DLL
+Notes:	this entry point should only be called directly when TOOLHELP.DLL
 	  TimerCount() cannot be called
 SeeAlso: #01268,#01270,#01269 at INT 20"Windows"
 

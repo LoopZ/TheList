@@ -10,7 +10,7 @@ INT 31 P - CauseWay v1.3 - "GetMemSO" - ALLOCATE MEMORY AND RETURN SEL:OFFSET
 Return: CF clear if successful
 	   SI:DI = selector:offset of allocated memory
 	CF set on error
-Note:	unlike "GetMem" (AX=FF0Bh), this function will reuse selectors until a
+Notes:	unlike "GetMem" (AX=FF0Bh), this function will reuse selectors until a
 	  segment is full, rather than allocating a new selector for each
 	  memory block
 SeeAlso: AX=FF00h,AX=FF2Dh,AX=FF2Eh

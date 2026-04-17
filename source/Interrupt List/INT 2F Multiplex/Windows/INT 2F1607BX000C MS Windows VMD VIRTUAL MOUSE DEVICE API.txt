@@ -8,7 +8,7 @@ INT 2F C - MS Windows - "VMD" VIRTUAL MOUSE DEVICE API
 	AX = 1607h
 	BX = 000Ch (VxD identifier of "VMD")
 Return: CX = nonzero if mouse driver already virtualized
-Note:	VMD (Virtual Mouse Driver) calls this and then checks whether CX is
+Notes:	VMD (Virtual Mouse Driver) calls this and then checks whether CX is
 	  nonzero; if yes, it will not automatically virtualize the mouse
 	  driver.  This would be used if MOUSE.COM already virtualizes
 	  itself using the Windows API.

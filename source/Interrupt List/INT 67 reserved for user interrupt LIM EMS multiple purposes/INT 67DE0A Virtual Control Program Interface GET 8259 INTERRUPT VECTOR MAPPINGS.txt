@@ -10,6 +10,6 @@ Return: AH = 00h successful
 	    BX = first vector used by master 8259 (IRQ0)
 	    CX = first vector used by slave 8259 (IRQ8)
 	AH nonzero: failed
-Note:	CX is undefined in systems without a slave 8259
+Notes:	CX is undefined in systems without a slave 8259
 SeeAlso: AX=DE0Bh,INT 21/AX=250Ch,INT 31/AX=0400h
 

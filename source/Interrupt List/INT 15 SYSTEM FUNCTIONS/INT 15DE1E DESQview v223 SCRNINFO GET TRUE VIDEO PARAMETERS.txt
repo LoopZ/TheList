@@ -9,6 +9,6 @@ INT 15 - DESQview v2.23+ - "SCRNINFO" - GET TRUE VIDEO PARAMETERS
 Return: CL = actual number of rows on screen
 	CH = actual number of columns on screen
 	BL = actual video mode (may differ from INT 10/AH=0Fh return) (v2.26+)
-Note:	this API call may be made from a hardware interrupt handler
+Notes:	this API call may be made from a hardware interrupt handler
 SeeAlso: INT 10/AH=0Fh
 

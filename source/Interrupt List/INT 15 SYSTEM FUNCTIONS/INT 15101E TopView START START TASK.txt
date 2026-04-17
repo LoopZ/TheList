@@ -9,6 +9,6 @@ INT 15 - TopView - "START" - START TASK
 	ES = segment of object handle for task to be started
 	    (== handle of main window for that task)
 Return: indicated task is started up again
-Note:	once a task has been started, additional "START"s are ignored
+Notes:	once a task has been started, additional "START"s are ignored
 SeeAlso: AX=101Dh,AX=102Bh,INT 21/AH=82h
 

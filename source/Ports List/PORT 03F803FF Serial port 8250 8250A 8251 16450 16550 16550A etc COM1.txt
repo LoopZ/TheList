@@ -7,7 +7,7 @@
 PORT 03F8-03FF - Serial port (8250,8250A,8251,16450,16550,16550A,etc.) COM1
 Range:	PORT 02E8h-02EFh (COM2), PORT 02F8h-02FFh (typical non-PS/2 COM3), and
 	  PORT 03E8h-03EFh (typical non-PS/2 COM4)
-Note:	chips overview:
+Notes:	chips overview:
 	 8250  original PC, specified up to 56Kbd, but mostly runs
 	       only 9600Bd, no scratchregister, bug: sometimes shots
 	       ints without reasons
@@ -68,7 +68,7 @@ Values for serial port divisor latch registers:
 	 38400	      3		  00h 03h
 	 57600	      2		  00h 02h
 	115200	      1		  00h 01h
-Note:	MIDI baudrate 32250Bd with 4Mhz quarz for c't MIDI interface
+Notes:	MIDI baudrate 32250Bd with 4Mhz quarz for c't MIDI interface
 	  following c't 01/1991:   '14400'	  00h 08h
 
 Bitfields for serial port interrupt enable register (IER):
@@ -83,7 +83,7 @@ Bit(s)	Description	(Table P0877)
  1	transmitter-holding-register empty interrupt enable
  0	received-data-available interrupt enable
 	  (also 16550(A) timeout interrupt)
-Note:	16550(A) will interrupt with a timeout if data exists in the FIFO
+Notes:	16550(A) will interrupt with a timeout if data exists in the FIFO
 	  and isn't read within the time it takes to receive four bytes or if
 	  no data is received within the time it takes to receive four bytes
 SeeAlso: #P0878

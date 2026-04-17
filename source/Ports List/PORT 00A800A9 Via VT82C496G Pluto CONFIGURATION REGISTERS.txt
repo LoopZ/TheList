@@ -363,7 +363,7 @@ Bit(s)	Description	(Table P0435)
 	101 = 512 KB
 	110 = 1 MB
 	111 = (VT82C570M) 2 MB
-Note:	(VT82C570M) write hit timing is always 1 wait state (X-2-2-2) for
+Notes:	(VT82C570M) write hit timing is always 1 wait state (X-2-2-2) for
 	  asynchronous SRAM; read/write hit timing is always 3-1-1-1 for
 	  synchronous SRAM
 SeeAlso: #P0419
@@ -610,7 +610,7 @@ Bit(s)	Description	(Table P0452)
  0	interrupt mode global control
 	0 = 8259A compatible mode (all interrupt edge triggered)
 	1 = extended mode (enables selection with registers 62h and 63h)
-Note:	for bits 7-3, 0 = edge-triggered, 1 = level-sensitive
+Notes:	for bits 7-3, 0 = edge-triggered, 1 = level-sensitive
 SeeAlso: #P0419,#P0450,#P0453
 
 Bitfields for Via VT82C496G/VT82C570M IRQ15-9 interrupt mode:
@@ -623,7 +623,7 @@ Bit(s)	Description	(Table P0453)
  2	IRQ10 interrupt mode
  1	IRQ9 interrupt mode
  0	???
-Note:	for bits 7-6 and 4-1, 0 = edge-triggered, 1 = level-sensitive
+Notes:	for bits 7-6 and 4-1, 0 = edge-triggered, 1 = level-sensitive
 SeeAlso: #P0419,#P0451,#P0452
 
 Bitfields for Via VT82C496G/VT82C570M register 64h:

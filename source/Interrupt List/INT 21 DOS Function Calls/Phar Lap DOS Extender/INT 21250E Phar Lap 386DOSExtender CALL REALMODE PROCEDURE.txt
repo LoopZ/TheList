@@ -17,7 +17,7 @@ Return: CF clear if successful
 	CF set on error
 	    EAX = error code
 		01h not enough real-mode stack space
-Note:	this function is also supported by FlashTek X-32VM; under X-32VM, the
+Notes:	this function is also supported by FlashTek X-32VM; under X-32VM, the
 	  call will fail if ECX > 0000003Fh
 SeeAlso: AX=250Dh,AX=2510h,AH=E1h"OS/286",INT 31/AX=0301h
 

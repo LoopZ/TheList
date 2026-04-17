@@ -22,7 +22,7 @@ Offset	Size	Description	(Table 03697)
  1Ah  8 BYTEs	(big-endian) TP_ID
  22h	DWORD	(big-endian) conversation ID
  26h	BYTE	(MC_Test only) test (0=posted, 1=request_to_send received)
-Note:	error code has different interpretations for:
+Notes:	error code has different interpretations for:
 	0 posted data
 	1 posted not data (primary return code = 0)
 	1 bad TP_ID (primary return code = 1)

@@ -14,7 +14,7 @@ INT 6F - HP Vectra EX-BIOS - "F_DEF_MASKS" - DEFINE GRAPHICS CURSOR MASKS
 	ES:SI -> sprite mask (screen mask followed by XOR sprite mask)
 Return: AH = status (see #03744)
 	BP,DS destroyed
-Note:	the save area is one byte wider than the actual sprite mask; the total
+Notes:	the save area is one byte wider than the actual sprite mask; the total
 	  size of the sprite is at most 144 bytes
 SeeAlso: AH=00h"HP Vectra",AH=04h"F_TRACK_INIT",AH=08h"F_TRACK_OFF"
 SeeAlso: AH=0Ch"F_SET_LIMITS_X",AH=10h"F_PUT_SPRITE",AH=12h"F_REMOVE_SPRITE"

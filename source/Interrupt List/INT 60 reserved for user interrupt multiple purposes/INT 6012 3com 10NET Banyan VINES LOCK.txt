@@ -11,6 +11,6 @@ INT 60 - 3com, 10NET, Banyan VINES - LOCK
 	DS:BX -> 31-byte ASCIZ semaphore name
 Return: AL = status (see also #03314)
 	    01h semaphore currently locked by another PC
-Note:	unlike function 11h, this function returns immediately
+Notes:	unlike function 11h, this function returns immediately
 SeeAlso: AH=11h,AH=13h
 

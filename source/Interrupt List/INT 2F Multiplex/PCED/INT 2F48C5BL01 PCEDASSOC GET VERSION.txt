@@ -9,6 +9,6 @@ INT 2F - PCED/ASSOC - GET VERSION
 	BL = 01h
 Return: AX = 0000h if installed
 	    BX = binary ASSOC version (BL = major, BH = minor)
-Note:	chains if BL > 02h on entry
+Notes:	chains if BL > 02h on entry
 SeeAlso: AX=48C0h,AX=48C5h/BL=00h,AX=48C5h/BL=02h
 

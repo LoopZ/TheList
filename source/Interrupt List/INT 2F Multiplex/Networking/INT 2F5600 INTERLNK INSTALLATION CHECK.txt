@@ -16,7 +16,7 @@ Return: AL = FFh if installed
 Notes:	INTERLNK was derived from Sewell Development Corporation's FASTLYNX.
 	Some Microsoft software explicitly clears the BH and CX registers
 	  before calling this function.
-BUG:	reportedly, the MS-DOS INTERSRV program (though not INTERLNK) causes
+BUGS:	reportedly, the MS-DOS INTERSRV program (though not INTERLNK) causes
 	  serious FAT corruption and data loss when run under Novell DOS 7.
 	  INTERSRV apparently checks for DR-DOS by testing the "OS"
 	  environment variable for the value "DRDOS", which is no longer
@@ -44,7 +44,7 @@ Offset	Size	Description	(Table 02845)
 113h 26 BYTEs	remote drive number (0=A:, 0FEh=unused) (refer to note below)
 12Dh 26 BYTEs	always 0FEh ???
 147h 26 BYTEs	always 0FFh ???
-Note:	to obtain the remote drive number, subtract the value at offset 10Ch
+Notes:	to obtain the remote drive number, subtract the value at offset 10Ch
 	  from the local drive number before indexing into the table at 113h
 	  (example: if local drives F, G, H are remote drives C, F, E then
 	  the first three bytes at offset 113h are 02h, 05h, 04h)

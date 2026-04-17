@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 PORT 0022-0023 - Chips&Technologies 84031/84035 - CONFIGURATION REGISTERS
-Note:	each access to PORT 0023h must immediately follow a write to
+Notes:	each access to PORT 0023h must immediately follow a write to
 	  PORT 0022h (this is to avoid accidental accesses)
 SeeAlso: PORT 0022h"82C311",PORT 0022h"82C315"
 
@@ -94,7 +94,7 @@ Bit(s)	Description	(Table P0083)
  1	use VL-bus-compatible preemptive arbitration for LGNT#
  0	deturbo mode (enable CPU holds as specified by performance-control
 	  register) (see #P0082)
-Note:	the documentation says that bit 6 should remain clear
+Notes:	the documentation says that bit 6 should remain clear
 SeeAlso: #P0077,#P0082
 
 Bitfields for C&T 84035 DMA clock select:
@@ -112,7 +112,7 @@ Bit(s)	Description	(Table P0084)
 	1100 SCLK/2 (for 16 MHz SCLK)
 	1101 SCLK/1.5
 	else reserved
-Note:	bits 3-0 should normally be set the same as register 07h bits 3-0
+Notes:	bits 3-0 should normally be set the same as register 07h bits 3-0
 SeeAlso: #P0077
 
 Bitfields for C&T 84031 DRAM timing:

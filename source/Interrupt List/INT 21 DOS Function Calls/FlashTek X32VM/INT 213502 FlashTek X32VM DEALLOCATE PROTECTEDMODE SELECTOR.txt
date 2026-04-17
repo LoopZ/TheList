@@ -9,6 +9,6 @@ INT 21 P - FlashTek X-32VM - DEALLOCATE PROTECTED-MODE SELECTOR
 	BX = selector
 Return: CF clear if successful
 	CF set on error (invalid selector)
-Note:	only selectors allocated via AX=3501h should be deallocated
+Notes:	only selectors allocated via AX=3501h should be deallocated
 SeeAlso: AX=3501h,INT 31/AX=0001h
 

@@ -42,7 +42,7 @@ Offset	Size	Description	(Table 04026)
  28h 12 BYTEs	reserved
  34h	WORD	offset of memory page allocation root
  36h 22 BYTEs	reserved
-Note:	At least offset 10h (UDA) is also supported by MDOS 5.00, 5.01, 5.10,
+Notes:	At least offset 10h (UDA) is also supported by MDOS 5.00, 5.01, 5.10,
 	  as the DR DOS MEM utility retrieves this UDA segment through
 	  INT E0/CL=9Ah when INT 21/AX=4451h returns 1463h, 1465h, or 1466h.
 SeeAlso: #04025

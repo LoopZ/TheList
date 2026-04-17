@@ -10,7 +10,7 @@ INT 6F - 10NET - LOCK SEMAPHORE, RETURN IMMEDIATELY
 	ES:SI = Ethernet address or 0
 	DS:BX -> 31-byte ASCIZ semaphore name
 Return: AL = status (see #03767)
-Note:	same as INT 60/AH=12h
+Notes:	same as INT 60/AH=12h
 SeeAlso: AH=0Ch"10NET",INT 60/AH=12h
 
 (Table 03767)

@@ -17,7 +17,7 @@ Return: CF set on error
 	CF clear if successful
 Desc:	lock all logical volumes on the same physical volume as the indicated
 	  drive
-Note:	the physical volume must be locked before direct disk writes via
+Notes:	the physical volume must be locked before direct disk writes via
 	  INT 13 are permitted by Windows95
 SeeAlso: AX=440Dh"DOS 3.2+",AX=440Dh/CX=084Ah,AX=440Dh/CX=086Bh
 SeeAlso: AX=440Dh/CX=086Ch

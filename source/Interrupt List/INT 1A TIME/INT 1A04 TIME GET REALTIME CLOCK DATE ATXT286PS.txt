@@ -35,7 +35,7 @@ Notes:	DR-DOS 7.02 (after 1998-06-06) and 7.03 hook this function and correct
 	  identical means, which cannot be switched off.
 	MS-DOS and older issues of PC DOS do not provide any such means, and
 	  thus requires extra Y2K-TSRs to be loaded when run on buggy BIOSes.
-BUG:	some BIOSes, such as the 1998/07/25 system ROM in the Compaq Deskpro
+BUGS:	some BIOSes, such as the 1998/07/25 system ROM in the Compaq Deskpro
 	  EP/SB, leave CF unchanged if successful, so CF should be cleared
 	  before calling this function
 SeeAlso: AH=02h,AH=04h"Sperry",AH=05h,INT 21/AH=2Ah,INT 4B/AH=02h"TI"

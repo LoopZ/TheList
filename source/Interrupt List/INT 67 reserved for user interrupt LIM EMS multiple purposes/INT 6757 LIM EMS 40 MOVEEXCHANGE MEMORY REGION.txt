@@ -11,7 +11,7 @@ INT 67 - LIM EMS 4.0 - MOVE/EXCHANGE MEMORY REGION
 	    01h exchange memory region
 	DS:SI -> structure describing source and destination (see #03653)
 Return: AH = status (see #03652)
-Note:	source and destination may overlap for a move, in which case the copy
+Notes:	source and destination may overlap for a move, in which case the copy
 	  direction is chosen such that the destination receives an intact copy
 	  of the source region
 

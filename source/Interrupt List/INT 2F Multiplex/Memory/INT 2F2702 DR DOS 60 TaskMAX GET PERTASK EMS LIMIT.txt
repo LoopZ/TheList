@@ -7,7 +7,7 @@
 INT 2F - DR DOS 6.0 TaskMAX - GET PER-TASK EMS LIMIT
 	AX = 2702h
 Return: DX = maximum pages INT 67/AH=42h will report available
-Note:	TaskMAX does not limit EMS allocations other than by limiting the
+Notes:	TaskMAX does not limit EMS allocations other than by limiting the
 	  amount which is reported as being available at a given time
 SeeAlso: AX=2703h,INT 67/AH=42h
 

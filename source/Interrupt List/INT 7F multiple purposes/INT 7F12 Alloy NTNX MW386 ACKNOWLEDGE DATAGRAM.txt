@@ -9,7 +9,7 @@ INT 7F - Alloy NTNX, MW386 - ACKNOWLEDGE DATAGRAM
 	AL = channel number being acknowledged
 	DI:DX = 32-bit status to return to sender
 Return: AL = status (see #03954)
-Note:	also unlocks the channel, allowing the next datagram to be received
+Notes:	also unlocks the channel, allowing the next datagram to be received
 SeeAlso: AH=11h,AH=15h/CL=04h
 
 (Table 03954)

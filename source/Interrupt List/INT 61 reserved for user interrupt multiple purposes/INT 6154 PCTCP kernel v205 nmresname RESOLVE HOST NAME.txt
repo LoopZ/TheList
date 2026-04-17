@@ -14,9 +14,9 @@ Return: CF clear if successful
 	    destination buffer filled with canonical host name
 	CF set on error
 	    AX = error code (see #03319 at INT 61"FTP Software")
-Note:	this function uses all configured methods in turn to resolve the
+Notes:	this function uses all configured methods in turn to resolve the
 	  name (numerical, then host table, then DNS, then IEN116)
-BUG:	the SLIP kernel for v2.05 bounds-checks the wrong register, so values
+BUGS:	the SLIP kernel for v2.05 bounds-checks the wrong register, so values
 	  greater than 54h in AH may crash the system.	Other kernels may have
 	  this bug as well; it has been fixed in the v2.2 SLIPDRV kernel.
 SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP",INT 61/AH=50h,INT 61/AH=51h

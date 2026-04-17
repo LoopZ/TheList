@@ -11,7 +11,7 @@ INT 2F - INTERLNK - CHECK IF REDIRECTED DRIVE
 	BL = instance number (00h=any, 01h=first loaded, etc.)
 	(CX = 0000h, see note)
 Return: (as for AL=00h if redirected drive)
-Note:	some Microsoft software explicitly clears the CX register before
+Notes:	some Microsoft software explicitly clears the CX register before
 	  calling this function.
 SeeAlso: AX=5600h,AX=5601h
 

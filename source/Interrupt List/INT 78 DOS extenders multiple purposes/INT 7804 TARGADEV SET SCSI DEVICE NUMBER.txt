@@ -9,7 +9,7 @@ INT 78 - TARGA.DEV - SET SCSI DEVICE NUMBER
 	AL = SCSI device number
 Return: CF set on error
 	AL = error code (see #03786)
-Note:	if this routine is not called, the device number used is the driver's
+Notes:	if this routine is not called, the device number used is the driver's
 	  default (usually 0)
 SeeAlso: AH=02h,AH=05h
 

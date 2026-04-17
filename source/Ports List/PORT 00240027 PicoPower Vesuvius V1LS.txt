@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 PORT 0024-0027 - PicoPower Vesuvius - V1-LS
-Note:	software must use 16-bit accesses to these ports; 8-bit accesses will
+Notes:	software must use 16-bit accesses to these ports; 8-bit accesses will
 	  be directed to the V3-LS chip in the chipset instead of the V1-LS
 SeeAlso: PORT 0024h"V3-LS"
 
@@ -160,7 +160,7 @@ Bit(s)	Description	(Table P0296)
 	110 = -1.10 ns
 	111 = -0.55 ns
  2-0	miscellaneous configuration
-Note:	this register is read-only
+Notes:	this register is read-only
 SeeAlso: #P0294
 
 Bitfields for PicoPower Vesuvius V2-LS V2 version ID register:
@@ -725,7 +725,7 @@ Bit(s)	Description	(Table P0331)
  2	hard disk 2 on
  1	hard disk 1 on
  0	video on
-Note:	No group mask for I/O trap.
+Notes:	No group mask for I/O trap.
 	SMI generated if a bit is 0 and corresponding device is accessed.
 SeeAlso: #P0294
 
@@ -746,7 +746,7 @@ Bit(s)	Description	(Table P0333)
  7	mask sleep time-out from SMI
  6	mask doze time-out from SMI
  5-0	mask device timer 5-0 time-out from SMI
-Note:	Primary activity mask is in register 31Ah bit 1.
+Notes:	Primary activity mask is in register 31Ah bit 1.
 SeeAlso: #P0294
 
 Bitfields for PicoPower Vesuvius V1-LS software SMI trigger mask register:
@@ -899,7 +899,7 @@ Bit(s)	Description	(Table P0348)
  3-0	doze mode timer one's digit
 	0000-1001 = 0-9
 	1010-1111 = reserved
-Note:	the timer is disabled when both ten's and one's digits are 0
+Notes:	the timer is disabled when both ten's and one's digits are 0
 SeeAlso: #P0294
 
 Bitfields for PicoPower Vesuvius V1-LS sleep/suspend mode timer register:
@@ -911,7 +911,7 @@ Bit(s)	Description	(Table P0349)
  3-0	sleep/suspend mode timer one's digit
 	0000-1001 = 0-9
 	1010-1111 = reserved
-Note:	the timer is disabled when both ten's and one's digits are 0
+Notes:	the timer is disabled when both ten's and one's digits are 0
 SeeAlso: #P0294
 
 Bitfields for PicoPower Vesuvius V1-LS secondary activity timer register:
@@ -926,7 +926,7 @@ Bit(s)	Description	(Table P0350)
  3-0	secondary activity timer one's digit
 	0000-1001 = 0-9
 	1010-1111 = reserved
-Note:	the timer is disabled when both ten's and one's digits are 0
+Notes:	the timer is disabled when both ten's and one's digits are 0
 SeeAlso: #P0294
 
 Bitfields for PicoPower Vesuvius V1-LS power on demand primary activity timer:

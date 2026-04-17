@@ -9,7 +9,7 @@ INT 15 - SYSTEM - POINTING DEVICE BIOS INTERFACE (PS) - SET DEVICE HANDLER ADDR
 	ES:BX -> FAR user device handler or 0000h:0000h to cancel
 Return: CF set on error
 	    AH = status (see #00522)
-Note:	when the subroutine is called, it is passed the following values on
+Notes:	when the subroutine is called, it is passed the following values on
 	  the stack; the handler should return with a FAR return without
 	  popping the stack:
 		WORD 1: status (see #00525)

@@ -17,7 +17,7 @@ Offset	Size	Description	(Table 04057)
  02h	WORD	number of page to map into above page, or 0000h to unmap
  04h	WORD	window number (0000h, as only one window currently supported)
  06h	WORD	reserved
-Note:	all users of the system share the window, so applications should not
+Notes:	all users of the system share the window, so applications should not
 	  use it for arguments to system calls, attempt to read/write to/from
 	  files via the window, etc.
 

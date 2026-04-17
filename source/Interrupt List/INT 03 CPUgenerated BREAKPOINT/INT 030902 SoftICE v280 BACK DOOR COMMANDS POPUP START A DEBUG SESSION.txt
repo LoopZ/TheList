@@ -10,7 +10,7 @@ INT 03 - Soft-ICE v2.80 - BACK DOOR COMMANDS - POPUP & START A DEBUG SESSION
 	DI = magic value 4A4Dh ('JM')
 	DS:BX -> initial register values (see #00001)
 Return: registers as specified in initial register values table
-Note:	This function is called by LDR.EXE in loading a program to
+Notes:	This function is called by LDR.EXE in loading a program to
 	  be debugged. After executing the function, Soft-ICE pops up its
 	  debugging window and you may start debugging your program.
 Return: ???

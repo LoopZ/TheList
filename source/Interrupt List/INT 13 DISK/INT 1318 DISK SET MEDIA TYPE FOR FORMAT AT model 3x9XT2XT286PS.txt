@@ -16,7 +16,7 @@ Return: AH = status
 	    0Ch not supported or drive type unknown
 	    80h there is no disk in the drive
 	ES:DI -> 11-byte parameter table (see #01264 at INT 1E)
-Note:	this function does not set the INT 1E vector to point at the returned
+Notes:	this function does not set the INT 1E vector to point at the returned
 	  parameter table; it is the caller's responsibility to do so
 SeeAlso: AH=05h,AH=07h,AH=17h,INT 1E
 

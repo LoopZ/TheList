@@ -13,7 +13,7 @@ Return: CF clear if successful
 	    buffer filled (refer to INT 67/AH=3Fh for entry point parameters)
 	CF set on error
 	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
-Note:	Quarterdeck recently (June 1993) documented this function, but the
+Notes:	Quarterdeck recently (June 1993) documented this function, but the
 	  documentation incorrectly states that it is only available for
 	  QEMM 6+
 SeeAlso: AX=4402h"HOOKROM",INT 2F/AX=D201h/BX=5145h,INT 67/AH=3Fh

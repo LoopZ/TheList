@@ -10,6 +10,6 @@ INT 16 U - PC Tools v8+ VSAFE - GET HOTKEY DISABLE FLAG
 Return: CF clear
 	DI = 4559h
 	BL = hotkey disable flag (nonzero if hotkey disabled)
-Note:	this function is a NOP under VWATCH, merely returning CF clear/DI=4559h
+Notes:	this function is a NOP under VWATCH, merely returning CF clear/DI=4559h
 SeeAlso: AX=FA00h,AX=FA05h
 

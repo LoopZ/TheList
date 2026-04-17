@@ -9,7 +9,7 @@ INT 2F U - DOS 3.0+ internal - SHARING RETRY DELAY
 	SS = DOS DS (must be using a DOS internal stack)
 Return: after delay set by INT 21/AX=440Bh, unless in server call
 	  (INT 21/AX=5D00h)
-Note:	delay is dependent on the processor speed, and is skipped entirely if
+Notes:	delay is dependent on the processor speed, and is skipped entirely if
 	  inside a server call
 SeeAlso: INT 21/AX=440Bh,INT 21/AH=52h,INT 62/AX=0097h
 

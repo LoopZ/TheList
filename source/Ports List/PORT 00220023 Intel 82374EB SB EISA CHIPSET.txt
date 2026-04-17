@@ -89,7 +89,7 @@ Bit(s)	Description	(Table P0041)
 	  0E4000h-0E7FFFh, FFEE4000h-FFEE7FFFh, and FFFE4000h-FFFE7FFFh
   0	Low BIOS 1: assert LBIOSCS# for memory read cycles to locations
 	  0E0000h-0E3FFFh, FFEE0000h-FFEE3FFFh, and FFFE0000h-FFFE3FFFh
-Note:	if bit 3 of register 43h (BIOSCSB) is set, then LBIOSCS# will be
+Notes:	if bit 3 of register 43h (BIOSCSB) is set, then LBIOSCS# will be
 	  asserted for write cycles as well as read cycles on any enabled range
 SeeAlso: #P0039,#P0042
 
@@ -105,7 +105,7 @@ Bit(s)	Description	(Table P0042)
 	  0C4000h-0C7FFFh
   0	Low VGA BIOS: assert LBIOSCS# for memory read cycles to locations
 	  0C0000h-0C3FFFh
-Note:	if bit 3 of register 43h (BIOSCSB) is set, then LBIOSCS# will be
+Notes:	if bit 3 of register 43h (BIOSCSB) is set, then LBIOSCS# will be
 	  asserted for write cycles as well as read cycles on any enabled range
 	  above
 SeeAlso: #P0039,#P0041
@@ -259,7 +259,7 @@ Bit(s)	Description	(Table P0047)
 	=0 (default) the SMI# signal is masked and negated
 	=1 SMI# signal is enabled and a system management interrupt condition
 	  causes the SMI# signal to be asserted
-Note:	bit 0 only affects the SMI# signal and does not affect the
+Notes:	bit 0 only affects the SMI# signal and does not affect the
 	  detection/recording of SMI events (i.e., it does not affect the SMI
 	  status bits in the SMIREQ Register). Thus, SMI conditions can be
 	  pending when bit 0 is set to 1; if an SMI is already pending, the

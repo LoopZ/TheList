@@ -26,7 +26,7 @@ Notes:	the Critical Error flag is used in conjunction with the InDOS flag
 	  in use: 00h = DOS 3.x, 01h = DOS 4.0-6.0, other = error.
 	DR DOS 3.41+ supports this function, but the SDA format beyond the
 	  first 18h bytes is completely different from MS-DOS
-BUG:	calling this function with certain values in DX crashes Novell DOS 7.0
+BUGS:	calling this function with certain values in DX crashes Novell DOS 7.0
 	  prior to Update 14
 SeeAlso: AH=52h,AX=5D0Bh,INT 2A/AH=80h,INT 2A/AH=81h,INT 2A/AH=82h
 
@@ -193,7 +193,7 @@ Offset	Size	Description	(Table 01687)
 739h	BYTE	volume change flag
 73Ah	BYTE	flag: virtual open
 73Bh	BYTE	???
-Note:	the only fields which remain valid BETWEEN calls to INT 21h are those
+Notes:	the only fields which remain valid BETWEEN calls to INT 21h are those
 	  in the initial "swap-always" portion of the SDA
 SeeAlso: #01690
 

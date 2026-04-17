@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------
 
 PORT 03F0-03F7 - FDC 1 (1st Floppy Disk Controller) second FDC at 0370
-Note:	floppy disk controller is usually an 8272, 8272A, NEC765 (or
+Notes:	floppy disk controller is usually an 8272, 8272A, NEC765 (or
 	  compatible), or an 82072 or 82077AA for perpendicular recording at
 	  2.88M
 SeeAlso: PORT 0370h-0377h
@@ -324,7 +324,7 @@ Values for FDC Controller chip type identification:
     90h	   00h	 73h   National Semiconductor PC87306
     90h	   00h	other  Intel 82078 compatible
     A0h	    -	  -    SMC FDC37c65C+
-Note:	Before issuing the partid command, one must first issue an unlock
+Notes:	Before issuing the partid command, one must first issue an unlock
 	  FIFO, immediately followed by a lock FIFO instruction. The status
 	  byte returned by the lock FIFO instruction is used in the table above
 SeeAlso: #P0873

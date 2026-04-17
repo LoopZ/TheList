@@ -11,7 +11,7 @@ Return: AH = requested protocol (see #02968)
 	AL = file type (see #02969)
 	DX:BX -> ASCIZ filename or 0000h:0000h
 	CX = length of filename
-Note:	if DI <> 1092h on entry, QRIP chains the call
+Notes:	if DI <> 1092h on entry, QRIP chains the call
 SeeAlso: AX=ACF0h
 
 (Table 02968)
@@ -35,7 +35,7 @@ Values for QRIP file type:
  03h	HLP file sequence to be stored, then auto-loaded if needed
  04h	COMPOSITE DYNAMIC file sequence (batch protocols only)
  05h	ACTIVE DYNAMIC file sequence (batch protocols only)
-Note:	for file types 04h and 05h, any .RIP or .ICN files are stored in
+Notes:	for file types 04h and 05h, any .RIP or .ICN files are stored in
 	  the icon directory; in mode 05h, any .RIP files are also played
 	  back as they are received
 SeeAlso: #02968

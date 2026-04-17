@@ -19,7 +19,7 @@ Return: AL = status
 		CX = 10Net data segment
 		CX:DX -> 10Net Configuration Table
 			  (see #01691 at INT 21/AX=5E01h"10NET")
-Note:	if CX <> F041h on entry, neither CX nor DX will be changed, and this
+Notes:	if CX <> F041h on entry, neither CX nor DX will be changed, and this
 	  call becomes identical to the standard installation check above
 SeeAlso: AX=B800h"network",INT 21/AX=5E01h"10NET"
 

@@ -9,7 +9,7 @@ INT 15 - Tandy 1000SL/TL - READ FROM EEPROM
 	BL = number of word to read (00h-3Fh)
 Return: CF clear if function supported
 	    DX = contents of EEPROM word
-Note:	newer Tandy 1000-series machines use EEPROM instead of CMOS RAM in
+Notes:	newer Tandy 1000-series machines use EEPROM instead of CMOS RAM in
 	  the clock chip to store system configuration information
 SeeAlso: AX=7001h
 

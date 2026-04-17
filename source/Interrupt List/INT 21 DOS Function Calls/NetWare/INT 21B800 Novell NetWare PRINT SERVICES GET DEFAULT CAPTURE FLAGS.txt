@@ -10,7 +10,7 @@ INT 21 - Novell NetWare - PRINT SERVICES - GET DEFAULT CAPTURE FLAGS
 	ES:BX -> reply buffer for capture flags table (see #01805)
 Return: AL = status
 	    00h successful
-Note:	this function is supported by Advanced NetWare 2.0+
+Notes:	this function is supported by Advanced NetWare 2.0+
 SeeAlso: AX=B801h,AX=B802h,AH=DFh/DL=00h,AH=DFh/DL=04h
 
 Format of NetWare capture flags table:

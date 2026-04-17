@@ -7,7 +7,7 @@
 INT 2F U - DOS 3.0+ internal - GET DOS DATA SEGMENT
 	AX = 1203h
 Return: DS = data segment of IBMDOS.COM/MSDOS.SYS
-Note:	for DOS prior to version 5.0, the data segment is the same as the code
+Notes:	for DOS prior to version 5.0, the data segment is the same as the code
 	  segment (and both are placed at a fixed place before the first MCB)
 	the List of Lists (INT 21/AH=52h) and the Swappable Data Area(s)
 	  (INT 21/AX=5D06h, INT 21/AX=5D0Bh) are usually in the DOS DS.

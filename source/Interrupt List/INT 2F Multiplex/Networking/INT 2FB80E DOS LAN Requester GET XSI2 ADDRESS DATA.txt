@@ -7,7 +7,7 @@
 INT 2F U - DOS LAN Requester - GET XSI2 ADDRESS / DATA
 	AX = B80Eh
 Return: DS:DI -> XSI2 TSR's resident data (see #02983)
-Note:	this function is used by NET.COM to locate the USERID and DOMAIN of
+Notes:	this function is used by NET.COM to locate the USERID and DOMAIN of
 	  the logged-in user (which may differ from the NET START domain
 	  name from DOSLAN.INI which is returned by AX=B80Fh)
 SeeAlso: AX=B800h,AX=B80Fh

@@ -9,7 +9,7 @@ INT 2F - MS Windows - GET DEVICE API ENTRY POINT
 	BX = virtual device (VxD) ID (see #02642)
 	ES:DI = 0000h:0000h
 Return: ES:DI -> VxD API entry point, or 0:0 if the VxD does not support an API
-Note:	some Windows enhanced-mode virtual devices provide services that
+Notes:	some Windows enhanced-mode virtual devices provide services that
 	  applications can access.  For example, the Virtual Display Device
 	  (VDD) provides an API used in turn by WINOLDAP.
 SeeAlso: AX=1684h/BX=0001h,AX=1684h/BX=0015h,AX=1683h,AX=4011h,INT 20"Windows"

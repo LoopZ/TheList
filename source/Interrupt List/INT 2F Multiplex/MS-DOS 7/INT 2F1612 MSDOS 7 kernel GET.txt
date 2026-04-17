@@ -8,7 +8,7 @@ INT 2F U - MS-DOS 7 kernel - GET ???
 	AX = 1612h
 Return: AX = 0000h if supported
 	    ES:BX -> DOS 7 kernel data (see #02641)
-Note:	called by VTD.VXD; one of the returned data items is a pointer to the
+Notes:	called by VTD.VXD; one of the returned data items is a pointer to the
 	  WORD in which the default CLOCK$ driver maintains its count of days
 	  since 01jan1980
 SeeAlso: AX=160Fh,AX=1611h,AX=1613h

@@ -12,7 +12,7 @@ INT 2F C - MS Windows 3.1 - "BLOCKDEV" VIRTUAL HARD DISK DEVICE API
 	    0002h ending FastDisk compatibility tests
 	    0003h check if FastDisk installation allowed
 		Return: CX = 0000h if allowed
-Note:	this interface is called by the Windows FastDisk driver (such as
+Notes:	this interface is called by the Windows FastDisk driver (such as
 	  WDCTRL) when it thinks that the INT 13h handler immediately below
 	  IO.SYS's INT 13h code is not in ROM; it should be supported by any
 	  program which hooks itself underneath IO.SYS's INT 13h code with

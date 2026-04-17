@@ -12,7 +12,7 @@ Return: AX = status
 		ES:DI -> allocated system memory (see #00433)
 	    0001h failed
 		ES:DI = 0000h:0000h
-Note:	under DV 2.42, this call is identical to AX=1001h
+Notes:	under DV 2.42, this call is identical to AX=1001h
 SeeAlso: AX=1001h,AX=1002h,AX=DE0Ch
 
 Format of DESQview system memory block header:
@@ -21,6 +21,6 @@ Offset	Size	Description	(Table 00433)
  02h	WORD	segment of previous header or 0000h
  04h	WORD	size of block in paragraphs, including header
  06h	BYTE	availability flag (00h in use, 01h free)
-Note:	this header is located one paragraph before the memory block proper
+Notes:	this header is located one paragraph before the memory block proper
 SeeAlso: #00423
 

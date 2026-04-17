@@ -11,7 +11,7 @@ Return: CF clear if successful
 	    AH destroyed
 	CF set on error
 	    AH = error code (see #00656)
-Note:	the callback will be invoked on any socket changes whose notification
+Notes:	the callback will be invoked on any socket changes whose notification
 	  has not been disabled with the status change enable mask; it may be
 	  invoked either while processing a hardware interrupt from the adapter
 	  or while processing the following Socket Services request

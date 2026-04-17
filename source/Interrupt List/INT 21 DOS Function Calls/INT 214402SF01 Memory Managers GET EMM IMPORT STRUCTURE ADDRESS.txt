@@ -27,7 +27,7 @@ Offset	Size	Description	(Table 01514)
  00h	DWORD	physical address of EMM import structure (see #01515)
  04h	BYTE	EMM import structure major version
  05h	BYTE	EMM import structure minor version
-Note:	vession 1.00 contains only EMS information (Windows 3.0+)
+Notes:	vession 1.00 contains only EMS information (Windows 3.0+)
 	version 1.10 contains UMB/XMS/HMA/EMS information (Windows 3.1)
 	version 1.11 is version 1.10 plus memory manager maker/product name
 SeeAlso: #03643
@@ -102,7 +102,7 @@ Offset	Size	Description	(Table 01518)
  02h  8 BYTEs	EMS handle's name
  0Ah	WORD	number of 16K pages for handle
  0Ch	DWORD	physical address of page table entries forming page map
-Note:	all values should be zero for the system handle if no large frame
+Notes:	all values should be zero for the system handle if no large frame
 	  support is present
 
 Format of XMS handle info record:

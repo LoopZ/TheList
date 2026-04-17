@@ -11,7 +11,7 @@ Return: AL = status
 		DS:BX -> Drive Parameter Block (DPB) (see #01357 for DOS 1.x,
 			AH=32h for DOS 2+)
 	    FFh invalid drive
-Note:	this call was undocumented prior to the release of DOS 5.0; however,
+Notes:	this call was undocumented prior to the release of DOS 5.0; however,
 	  only the DOS 4.0+ version of the DPB has been documented
 SeeAlso: AH=32h,AX=7302h
 
@@ -30,7 +30,7 @@ Offset	Size	Description	(Table 01357)
  0Fh	BYTE	sectors per FAT
  10h	WORD	starting sector of directory
  12h	WORD	address of allocation table
-Note:	the DOS 1.0 table is the same except that the first and last fields
+Notes:	the DOS 1.0 table is the same except that the first and last fields
 	  are missing; see INT 21/AH=32h for the DOS 2+ version
 SeeAlso: #01395,#04039
 

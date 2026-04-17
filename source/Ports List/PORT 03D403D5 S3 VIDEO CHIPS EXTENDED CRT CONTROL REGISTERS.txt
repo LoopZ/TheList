@@ -153,7 +153,7 @@ Bit(s)	Description	(Table P0721)
 	00 IBM-compatible, 8 or 9 dots
 	01 7 dots
 	10 9 dits
-Note:	on the Trio64V+, bits 7, 5, and 3-0 are reserved
+Notes:	on the Trio64V+, bits 7, 5, and 3-0 are reserved
 SeeAlso: #P0720,#P0722,#M0076
 
 Bitfields for S3 "CR33" Backwards Compatibility 2 register:
@@ -167,7 +167,7 @@ Bit(s)	Description	(Table P0722)
  1	disable VDE protection (PORT 03D4h register 11h bit 7 will not act
 	  on PORT 03D4h register 7h bits 1 and 6)
  0	reserved (Trio32/64)
-Note:	on the Trio64V+, bits 7, 2, and 0 are reserved
+Notes:	on the Trio64V+, bits 7, 2, and 0 are reserved
 SeeAlso: #P0708,#P0721,#P0723
 
 Bitfields for S3 "CR34" Backwards Compatibility 3 register:
@@ -211,7 +211,7 @@ Bit(s)	Description	(Table P0725)
 	01 VESA local bus
 	10 PCI
 	11 reserved
-Note:	the default value of this register is latched from external pins at
+Notes:	the default value of this register is latched from external pins at
 	  power-up; bits 1-0 are read-only
 SeeAlso: #P0708,#P0724,#P0726
 
@@ -242,7 +242,7 @@ Bit(s)	Description	(Table P0727)
  2	enable alternate refresh count control (bits 1-0)
 	when enabled, bits 1-0 override CR11 bit 6
  1-0	alternate refresh count: number of refresh cycles per scan line
-Note:	the description of this register is based on the Trio32/Trio64/Trio64V+
+Notes:	the description of this register is based on the Trio32/Trio64/Trio64V+
 	  documentation and may vary somewhat for other S3 chips
 SeeAlso: #P0708
 
@@ -251,7 +251,7 @@ Bit(s)	Description	(Table P0728)
  7-0	bits 7-0 of time in characters clocks from start of active display
 	  until FIFO data fetching restarts after start of horizontal blanking
 	  (bit 8 is in CR5D bit 6)
-Note:	the value for this register is typically CR0 less 5, and helps ensure
+Notes:	the value for this register is typically CR0 less 5, and helps ensure
 	  adequate time for RAM refresh, etc. taht require control of display
 	  memory
 SeeAlso: #P0708
@@ -272,7 +272,7 @@ Bit(s)	Description	(Table P0730)
  7-6	reserved (0)
  5	interlaced video
  4-0	reserved
-Note:	bit 5 also enables CR3C
+Notes:	bit 5 also enables CR3C
 SeeAlso: #P0708,#P0731
 
 Bitfields for S3 "CR43" Extended Mode register:
@@ -282,7 +282,7 @@ Bit(s)	Description	(Table P0731)
  3	(Trio64V+) ??? used by BIOS, officially reserved
  2	logical screen width (CR13), bit 8
  1-0	reserved (0)
-Note:	bit 2 is disabled unless CR51 bits 5-4=00
+Notes:	bit 2 is disabled unless CR51 bits 5-4=00
 SeeAlso: #P0708,#P0730
 
 Bitfields for S3 "CR45" Hardware Graphics Cursor Mode register:
@@ -394,13 +394,13 @@ Bit(s)	Description	(Table P0739)
  2	tri-state VSYNC output
  1	tri-state HSYNC output
  0	enable VSYNC input for genlocking
-Note:	bits 4-3 are reserved on the Trio64V+
+Notes:	bits 4-3 are reserved on the Trio64V+
 SeeAlso: #P0708,#P0740
 
 Bitfields for S3 "CR57" External Sync Control 2 register:
 Bit(s)	Description	(Table P0740)
  7-0	delay in scan lines from falling edge of VSYNC to reset of V-counter
-Note:	this register must NOT be 00h when genlocking is enabled (CR56 bit 0)
+Notes:	this register must NOT be 00h when genlocking is enabled (CR56 bit 0)
 SeeAlso: #P0708,#P0739
 
 Bitfields for S3 "CR58" Linear Addressing Control register:
@@ -418,7 +418,7 @@ Bit(s)	Description	(Table P0741)
 	01 = 1M
 	10 = 2M
 	11 = 4M (Trio64/64V+, not Trio32)
-Note:	this description is based on the Trio32/Trio64 documenation; the
+Notes:	this description is based on the Trio32/Trio64 documenation; the
 	  bits may vary slightly for other S3 chips
 SeeAlso: #P0723
 
@@ -531,7 +531,7 @@ Bit(s)	Description	(Table P0751)
 	11 full Streams Processor operation
  1	reserved (0)
  0	VCLK phase (=0 VCLK is inverted DCLK; =1 VCLK in phase with DCLK)
-Note:	the streams mode should only be changed during vertical sync
+Notes:	the streams mode should only be changed during vertical sync
 	  (PORT 03DAh bit 3)
 SeeAlso: #P0708,#P0750,#P0687
 
@@ -551,7 +551,7 @@ Bit(s)	Description	(Table P0752)
 	01 = 5ns stretch, 1 unit delay
 	10 = 3.5ns stretch, no delay
 	11 = no stretch, no delay
-Note:	the default value of this register is latched from external pins at
+Notes:	the default value of this register is latched from external pins at
 	  power-up
 SeeAlso: #P0708
 
@@ -565,7 +565,7 @@ Bitfields for S3 Trio32/Trio64 "CR6A" Extended System Control 4 register:
 Bit(s)	Description	(Table P0754)
  7-6	reserved
  5-0	bits 19-14 of CPU base address
-Note:	CR31 bit 0 must be set to enable this register
+Notes:	CR31 bit 0 must be set to enable this register
 SeeAlso: #P0708,#P0753
 
 Bitfields for S3 Trio64V+ "CR6F" Configuration 4 register:

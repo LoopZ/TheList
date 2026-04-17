@@ -8,7 +8,7 @@ INT 2F U - PrintCache v3.1 PCACHE.EXE - INSTALL ???
 	AX = C00Eh
 	ES:DX -> ???
 Return: BX destroyed
-Note:	ES:DX is stored internally if the variable is currently 0000h:0000h,
+Notes:	ES:DX is stored internally if the variable is currently 0000h:0000h,
 	  but ignored if already set; a counter is incremented
 SeeAlso: AX=C000h"PCACHE",AX=C00Fh"PCACHE"
 

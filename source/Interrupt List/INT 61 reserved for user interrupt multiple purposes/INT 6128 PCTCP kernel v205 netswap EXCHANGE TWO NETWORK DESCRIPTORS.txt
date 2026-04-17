@@ -11,7 +11,7 @@ INT 61 - PC/TCP kernel v2.05+ - "net_swap" - EXCHANGE TWO NETWORK DESCRIPTORS
 Return: CF clear if successful
 	CF set on error
 	    AX = error code (see #03319 at INT 61"FTP Software")
-Note:	the two descriptors will exchange places; both must be local or both
+Notes:	the two descriptors will exchange places; both must be local or both
 	  global
 SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"
 

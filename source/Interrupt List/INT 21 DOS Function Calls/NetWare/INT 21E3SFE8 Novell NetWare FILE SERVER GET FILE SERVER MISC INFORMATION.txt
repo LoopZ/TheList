@@ -9,7 +9,7 @@ INT 21 - Novell NetWare - FILE SERVER - GET FILE SERVER MISC INFORMATION
 	DS:SI -> request buffer (see #02081)
 	ES:DI -> reply buffer (see #02082)
 Return: AL = status (00h,C6h) (see #02053)
-Note:	this function is supported by Advanced NetWare 2.1+
+Notes:	this function is supported by Advanced NetWare 2.1+
 SeeAlso: AH=E3h/SF=0Eh,AH=E3h/SF=11h,AH=E3h/SF=CDh,AH=E3h/SF=E7h
 SeeAlso: AX=F217h/SF=E8h
 

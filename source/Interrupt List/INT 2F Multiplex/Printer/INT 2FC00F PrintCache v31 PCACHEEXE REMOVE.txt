@@ -7,7 +7,7 @@
 INT 2F U - PrintCache v3.1 PCACHE.EXE - REMOVE ???
 	AX = C00Fh
 Return: BX destroyed
-Note:	this function decrements the counter used by AX=C00Eh, and clears the
+Notes:	this function decrements the counter used by AX=C00Eh, and clears the
 	  internal pointer variable to 0000h:0000h when it reaches zero
 SeeAlso: AX=C000h"PCACHE",AX=C00Eh"PCACHE"
 

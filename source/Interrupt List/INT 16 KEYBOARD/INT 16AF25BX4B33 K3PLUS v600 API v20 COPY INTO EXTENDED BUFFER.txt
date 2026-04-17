@@ -13,6 +13,6 @@ Return: CF clear if successful
 	CF set on error (i.e. buffer full)
 	    CX = number of keystrokes NOT transferred
 	    ES:SI -> first keystroke not transferred
-Note:	this function replaces the identical function AH=25h"K3"
+Notes:	this function replaces the identical function AH=25h"K3"
 SeeAlso: AH=25h"K3",AX=AF20h,AX=AF4Dh,AX=AF50h,INT 2F/AX=D44Fh/BX=0001h
 

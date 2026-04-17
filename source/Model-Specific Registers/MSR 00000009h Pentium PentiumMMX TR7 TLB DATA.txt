@@ -22,7 +22,7 @@ Bit(s)	Description	(Table R0008)
  3-0	bits 3-0 of TLB entry number (PentiumMMX only)
  3-2	TLB entry number (non-MMX Pentium)
  1-0	reserved (0) (non-MMX Pentium)
-Note:	if a write with bit 4 (Hit Indicator) set is followed by a read, the
+Notes:	if a write with bit 4 (Hit Indicator) set is followed by a read, the
 	  value returned in bit 4 indicates whether the selected address was
 	  found in the TLB; if found, bits 3-2 indicate which entry contained
 	  the hit

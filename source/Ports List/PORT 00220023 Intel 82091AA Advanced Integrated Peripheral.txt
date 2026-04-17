@@ -83,7 +83,7 @@ Bit(s)	Description	(Table P0093)
 	(this bit must be pulsed, remaining high for at least 1.2 us)
  1	(read-only) FDC is idle
  0	power-down FDC
-Note:	to restore FDC from explicit powerdown via bit 0, clear bit 0, then
+Notes:	to restore FDC from explicit powerdown via bit 0, clear bit 0, then
 	  reset the FDC using bit 2 (hardware reset) or using a software reset
 	  (FDC's DOR bit 2 or DSR bit 7)
 SeeAlso: #P0088,#P0092
@@ -120,7 +120,7 @@ Bit(s)	Description	(Table P0095)
  2	reset parallel port (pulse this bit; must remain high for 1.13 us)
  1	(read-only) parallel port is idle
  0	power-down parallel port
-Note:	an explicit power-down may be canceled by either clearing bit 0 or
+Notes:	an explicit power-down may be canceled by either clearing bit 0 or
 	  pulsing bit 2 to reset the port
 SeeAlso: #P0088,#P0094
 
@@ -141,7 +141,7 @@ Bit(s)	Description	(Table P0096)
 	110 PORT 0338h-033Fh
 	111 PORT 03E8h-03EFh
  0	enable serial port
-Note:	although it is possible to configure both serial ports at the same
+Notes:	although it is possible to configure both serial ports at the same
 	  address, this is not recommended because the 82091AA disables serial
 	  port B without placing it into powerdown mode
 SeeAlso: #P0088,#P0097

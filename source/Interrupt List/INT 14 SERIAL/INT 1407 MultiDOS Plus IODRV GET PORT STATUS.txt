@@ -9,7 +9,7 @@ INT 14 - MultiDOS Plus IODRV - GET PORT STATUS
 Return: CL = modem status (see #00305)
 	CH = character at head of input queue (if any)
 	DX = number of characters in input queue
-Note:	the port number is stored at offset BEh in the Task Control Block
+Notes:	the port number is stored at offset BEh in the Task Control Block
 SeeAlso: AH=03h,AH=05h"MultiDOS",AH=08h"MultiDOS",AH=09h"MultiDOS"
 SeeAlso: AH=23h"MultiDOS",INT 15/AH=13h"MultiDOS"
 

@@ -11,7 +11,7 @@ Return: AX = 0000h (successful)
 	ES:SI buffer filled
 Desc:	determine, for each of the ten allowable sessions, whether the session
 	  is currently available
-Note:	each word in the buffer is filled with either 0000h to indicate that
+Notes:	each word in the buffer is filled with either 0000h to indicate that
 	 the corresponding sesion is unavailable, or 0001h if available
 SeeAlso: AH=E0h,AH=E5h,AX=FF00h
 

@@ -13,7 +13,7 @@ Return: AX = 0000h if installed
 	    CF clear
 	    ES:DI -> server structure (see #02791)
 	    ES:BX -> registration structure (pre-NWDOS 7 beta spec) (see #02793)
-Note:	the DPMS 1.0 server included with the original release of Novell DOS
+Notes:	the DPMS 1.0 server included with the original release of Novell DOS
 	  7.0 supports both the beta and 1.0 specification, setting ES:BX even
 	  if CX and DX are not as specified on entry (since the beta
 	  specification did not use those registers).  However, the DPMS 1.1

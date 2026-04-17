@@ -10,7 +10,7 @@ INT 2F - Banyan VINES v4+ - GET BANV INTERRUPT NUMBER
 Return: AX = 0000h if installed
 	    BX = interrupt number (60h to 66h)
 	   nonzero not present
-Note:	if AX is nonzero, VINES 3.x or earlier may be installed, thus it is
+Notes:	if AX is nonzero, VINES 3.x or earlier may be installed, thus it is
 	  necessary to examine the four bytes preceding the handlers for
 	  INT 60 through INT 66 for the string "BANV"
 SeeAlso: AX=D702h,AX=D703h,AX=D704h

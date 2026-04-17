@@ -18,7 +18,7 @@ Offset	Size	Description	(Table 02749)
 		either short jump (EBh XXh) followed by three NOPs or
 		  far jump (EAh XXXX:XXXX) to a program which has hooked itself
 		  into the XMS driver chain
-Note:	to hook into the XMS driver chain, a program should follow the chain of
+Notes:	to hook into the XMS driver chain, a program should follow the chain of
 	  far jumps until it reaches the short jump of the driver at the end
 	  of the chain; this short jump is to be replaced with a far jump to
 	  the new handler's entry point, which should contain a short jump
@@ -45,7 +45,7 @@ Return: AX = status
 	    0001h success
 	    0000h failure
 		BL = error code (80h,81h,90h,91h,92h) (see #02775)
-Note:	HIMEM.SYS will fail function 01h with error code 91h if AL=40h and
+Notes:	HIMEM.SYS will fail function 01h with error code 91h if AL=40h and
 	  DX=KB free extended memory returned by last call of function 08h
 SeeAlso: #02752,#02784
 
@@ -83,7 +83,7 @@ Return: AX = status
 	    0001h success
 	    0000h failure
 		BL = error code (80h,81h,82h) (see #02775)
-Note:	this function is used for direct access to extended memory
+Notes:	this function is used for direct access to extended memory
 SeeAlso: #02753,#02756
 
 (Table 02756)
@@ -111,7 +111,7 @@ Call the XMS driver "Query free extended memory" function with:
 Return: AX = size of largest extended memory block in KB
 	DX = total extended memory in KB
 	BL = error code (00h,80h,81h,A0h) (see #02775)
-Note:	this function does not include the HMA in the returned memory sizes
+Notes:	this function does not include the HMA in the returned memory sizes
 SeeAlso: #02750,#02757,#02759,#02771
 
 (Table 02759)
@@ -143,7 +143,7 @@ Return: AX = status
 	    0001h success
 	    0000h failure
 		BL = error code (80h-82h,A3h-A9h) (see #02775)
-Note:	if either handle in the EMM structure is 0000h, the corresponding
+Notes:	if either handle in the EMM structure is 0000h, the corresponding
 	  offset is considered to be an absolute segment:offset address in
 	  directly addressable memory
 SeeAlso: #02759,#02762
@@ -157,7 +157,7 @@ Return: AX = status
 		DX:BX = 32-bit physical address of locked block
 	    0000h failure
 		BL = error code (80h,81h,A2h,ACh,ADh) (see #02775)
-Note:	MS Windows 3.x rejects this function for handles allocated after
+Notes:	MS Windows 3.x rejects this function for handles allocated after
 	  Windows started
 SeeAlso: #02759,#02761,#02763,#02777
 
@@ -182,8 +182,8 @@ Return: AX = status
 		DX = block size in KB
 	    0000h failure
 		BL = error code (80h,81h,A2h) (see #02775)
-BUG:	MS Windows 3.10 acts as though unallocated handles are in use
-Note:	MS Windows 3.00 has problems with this call
+BUGS:	MS Windows 3.10 acts as though unallocated handles are in use
+Notes:	MS Windows 3.00 has problems with this call
 SeeAlso: #02750,#02759,#02773
 
 (Table 02765)
@@ -224,7 +224,7 @@ Return: AX = status
 	    0001h success
 	    0000h failure
 		BL = error code (80h,B2h) (see #02775)
-Note:	the XMS driver need not implement functions 10h through 12h to be
+Notes:	the XMS driver need not implement functions 10h through 12h to be
 	  considered compliant with the standard
 SeeAlso: #02760,#02766,#02768
 
@@ -238,7 +238,7 @@ Return: AX = status
 	    0000h failure
 		BL = error code (80h,B0h,B2h) (see #02775)
 		DX = maximum available size (RM386)
-Note:	the XMS driver need not implement functions 10h through 12h to be
+Notes:	the XMS driver need not implement functions 10h through 12h to be
 	  considered compliant with the standard
 SeeAlso: #02765,#02766,#02767,#02783
 
@@ -264,7 +264,7 @@ Return: EAX = largest block of extended memory, in KB
 	ECX = physical address of highest byte of memory
 	    (valid even on error codes 81h and A0h)
 	EDX = total Kbytes of extended memory (0 if status A0h)
-BUG:	HIMEM v3.03-3.07 crash on an 80286 machine if any of the 8Xh functions
+BUGS:	HIMEM v3.03-3.07 crash on an 80286 machine if any of the 8Xh functions
 	  are called
 SeeAlso: #02758,#02772
 
@@ -290,7 +290,7 @@ Return: AX = status
 		EDX = block size in KB
 	    0000h failure
 		BL = status (80h,81h,A2h) (see #02775)
-BUG:	MS-DOS 6.0 HIMEM.SYS leaves CX unchanged
+BUGS:	MS-DOS 6.0 HIMEM.SYS leaves CX unchanged
 SeeAlso: #02764,#02772,#02774
 
 (Table 02774)
@@ -302,7 +302,7 @@ Return: AX = status
 	    0001h success
 	    0000h failure
 		BL = status (80h,81h,A0h-A2h,ABh) (see #02775)
-BUG:	HIMEM v3.03-3.07 crash on an 80286 machine if any of the 8Xh functions
+BUGS:	HIMEM v3.03-3.07 crash on an 80286 machine if any of the 8Xh functions
 	  are called
 SeeAlso: #02765,#02773
 

@@ -10,6 +10,6 @@ Return: AL > 80h if supported
 	AX = 00C4h if supported (1000SL/TL)
 	    CF set if sound chip is busy
 	    CF clear  if sound chip is free
-Note:	the value of CF is not definitive; call this function until CF is
+Notes:	the value of CF is not definitive; call this function until CF is
 	  clear on return, then call AH=84h"Tandy"
 

@@ -13,7 +13,7 @@ Return: CF clear
 	CL = processor type (02h=80286, 03h=80386, 04h=80486)
 	DH = curr value of virtual master interrupt controller base interrupt
 	DL = curr value of virtual slave interrupt controller base interrupt
-BUG:	Windows NT versions from the March 1993 beta to at least the Final
+BUGS:	Windows NT versions from the March 1993 beta to at least the Final
 	  release with fixes to CSD002 report version 0090h (0.144); this has
 	  reportedly been corrected in the Windows NT 3.5 beta
 SeeAlso: AX=0401h,INT 21/AX=250Ch,INT 2F/AX=1687h,INT 4B/AX=8102h/DX=0000h

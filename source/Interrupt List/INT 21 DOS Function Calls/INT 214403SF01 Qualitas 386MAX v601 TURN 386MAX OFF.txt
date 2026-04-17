@@ -14,6 +14,6 @@ Return: DS:DX -> BYTE status (00h = successful)
 	    AX destroyed
 	CF set on error
 	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
-Note:	this function will fail if any EMS or UMBs are in use
+Notes:	this function will fail if any EMS or UMBs are in use
 SeeAlso: AX=4403h/SF=02h,AX=4403h/SF=03h,AX=4403h/SF=05h
 

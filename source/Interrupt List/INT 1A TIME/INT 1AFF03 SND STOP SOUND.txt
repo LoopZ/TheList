@@ -9,7 +9,7 @@ INT 1A - SND - STOP SOUND
 Return: AH = status
 	    00h successful
 	    01h busy
-Note:	turns off any sound currently being emitted by the PC's speaker unless
+Notes:	turns off any sound currently being emitted by the PC's speaker unless
 	  SND is currently busy processing an API call (this includes
 	  background music).  Use AX=FF05h to stop the sound even if an API
 	  call is in progress.

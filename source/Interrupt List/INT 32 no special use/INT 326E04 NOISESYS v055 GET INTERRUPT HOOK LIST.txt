@@ -10,6 +10,6 @@ Return: AL = status
 	    00h = unimplemented
 	    04h = DX:BX -> interrupt hook list
 	    FEh = subfunction disabled
-Note:	the hook list array ends with API interrupt (usually 32h, although
+Notes:	the hook list array ends with API interrupt (usually 32h, although
 	  it will differ if the API is installed at another interrupt)
 

@@ -26,7 +26,7 @@ Return: CF set on error
 	    AX = country code (Novell NWDOS v7.0)
 	    BX = country code
 	    DS:DX buffer filled
-Note:	this function is not supported by the Borland DPMI host, but no error
+Notes:	this function is not supported by the Borland DPMI host, but no error
 	  is returned; as a workaround, one should allocate a buffer in
 	  conventional memory with INT 31/AX=0100h and simulate an INT 21 with
 	  INT 31/AX=0300h
@@ -301,5 +301,5 @@ Values for country code:
       (30xxx)	reserved for user-definable country codes
       (31xxx)	reserved for OEM-defined country codes
       (32000+)	reserved for future expansion
-Note:	not all country codes are supported by all versions of DOS
+Notes:	not all country codes are supported by all versions of DOS
 

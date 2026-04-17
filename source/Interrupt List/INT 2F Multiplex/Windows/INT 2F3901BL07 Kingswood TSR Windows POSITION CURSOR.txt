@@ -11,7 +11,7 @@ INT 2F - Kingswood TSR Windows - POSITION CURSOR
 	CL = X coordinate (0-39)
 Return: AX = error code (0000h if successful)
 	SI,DI,DS,ES preserved
-Note:	the hardware cursor is always disabled when a TSR window is opened;
+Notes:	the hardware cursor is always disabled when a TSR window is opened;
 	  this call only sets a text position
 SeeAlso: AH=39h/BL=00h,AX=3901h/BL=08h,AX=3901h/BL=09h
 

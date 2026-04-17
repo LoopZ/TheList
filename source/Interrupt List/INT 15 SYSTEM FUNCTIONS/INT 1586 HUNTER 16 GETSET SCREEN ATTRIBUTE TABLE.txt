@@ -9,7 +9,7 @@ INT 15 - HUNTER 16 - GET/SET SCREEN ATTRIBUTE TABLE
 	AL = function (00h get, nonzero set)
 	BX = 1234h
 	DS:SI -> 256-byte Attribute buffer
-Note:	In text modes each character has its attribute byte XOR'd with the
+Notes:	In text modes each character has its attribute byte XOR'd with the
 	  corresponding byte in the attribute table.  If the attribute is 15,
 	  15 is XOR'd with Table[15]
 

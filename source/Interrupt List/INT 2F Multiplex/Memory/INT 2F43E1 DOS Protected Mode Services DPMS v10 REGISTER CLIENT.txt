@@ -11,7 +11,7 @@ INT 2F - DOS Protected Mode Services (DPMS) v1.0 - REGISTER CLIENT
 Return: AX = 0000h if supported
 	   CF clear
 	   ES:DI buffer filled with API entry point code from offset 0Ah
-Note:	the client is allowed to copy the returned API code to any location in
+Notes:	the client is allowed to copy the returned API code to any location in
 	  memory, and need not keep the three code fields together
 SeeAlso: AX=43E0h,AX=43E2h,AX=43E3h
 
@@ -28,7 +28,7 @@ Offset	Size	Description	(Table 02794)
  1Ah  9 BYTEs	32-bit protected-mode API code (see #02795)
  23h	BYTE	space for return instruction
 		set to C3h for near return, CBh for far return
-Note:	the DPMS server fills the return opcode bytes with zeros and DPMS
+Notes:	the DPMS server fills the return opcode bytes with zeros and DPMS
 	  requests will thus crash the system unless the application
 	  explicitly sets them (some early versions set them to C3h by
 	  default, but one should not rely on that)
@@ -218,7 +218,7 @@ Call DPMS entry point with:
 			    SI:DI = handle
 			CF set on error
 			    AX = error code (see #02796)
-Note:	the beta DPMS specification, which is still supported by the Novell
+Notes:	the beta DPMS specification, which is still supported by the Novell
 	  DOS 7.0 DPMS host, only supported functions 0100h-0103h, 0200h-0207h,
 	  0300h-0304h, and 0400h
 

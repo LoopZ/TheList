@@ -13,7 +13,7 @@ Return: AX = status (see also AX=EE01h)
 	    0004h memory shortage
 	    0005h unable to open the requested file
 	    0007h invalid page number for file
-Note:	although this call is not required, the exit code can alert the
+Notes:	although this call is not required, the exit code can alert the
 	  caller to problems; if the call is not made, the program should
 	  enforce a delay of about 1/2 second to allow the viewer to pop up,
 	  and should not get keyboard input or attempt disk accesses during

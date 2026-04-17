@@ -10,7 +10,7 @@ INT 13 - DISK - RESET DISK SYSTEM
 Return: AH = status (see #00234)
 	CF clear if successful (returned AH=00h)
 	CF set on error
-Note:	forces controller to recalibrate drive heads (seek to track 0)
+Notes:	forces controller to recalibrate drive heads (seek to track 0)
 	for PS/2 35SX, 35LS, 40SX and L40SX, as well as many other systems,
 	  both the master drive and the slave drive respond to the Reset
 	  function that is issued to either drive

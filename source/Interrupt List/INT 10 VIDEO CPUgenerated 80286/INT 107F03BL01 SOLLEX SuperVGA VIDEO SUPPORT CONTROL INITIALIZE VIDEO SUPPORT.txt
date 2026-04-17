@@ -14,7 +14,7 @@ Return: AL <> 7Fh if not supported
 	    AH = status
 		00h successful
 		01h failed
-Note:	initializes the indicated video support by calling ES:0003h; this
+Notes:	initializes the indicated video support by calling ES:0003h; this
 	  function may be used to switch the active video support back to
 	  ROM after AX=7F03h/BL=02h
 SeeAlso: AX=7F03h/BL=00h

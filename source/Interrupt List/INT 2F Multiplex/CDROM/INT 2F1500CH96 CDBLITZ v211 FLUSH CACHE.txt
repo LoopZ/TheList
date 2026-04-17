@@ -9,7 +9,7 @@ INT 2F U - CDBLITZ v2.11 - FLUSH CACHE
 	CH = 96h (function number)
 	BX = 1234h (magic value for CDBLITZ)
 Return: CF clear
-Note:	this function resets the counts for number of sectors read and number
+Notes:	this function resets the counts for number of sectors read and number
 	  of cache hits, but no other values in the statistics record
 	  (see #02627)
 SeeAlso: AX=1500h/CH=90h

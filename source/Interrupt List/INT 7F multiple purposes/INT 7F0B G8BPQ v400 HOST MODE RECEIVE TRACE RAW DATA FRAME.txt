@@ -8,7 +8,7 @@ INT 7F - G8BPQ v4.00+ - HOST MODE - RECEIVE TRACE (RAW DATA) FRAME
 	AH = 0Bh
 	ES:DI -> buffer for received data (see #03950)
 Return: CX = number of bytes received
-Note:	the specified buffer must be large enough to receive a full frame
+Notes:	the specified buffer must be large enough to receive a full frame
 SeeAlso: AH=03h"G8BPQ",AH=08h"G8BPQ",AH=0Ah"G8BPQ"
 
 Format of G8BPQ received data:

@@ -10,7 +10,7 @@ INT 21 - Novell NetWare - FILE SERVICES - SET FILE INFORMATION
 	ES:DI -> reply buffer (see #01906)
 Return: AL = status
 	    00h successful
-Note:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
+Notes:	this function is supported by Advanced NetWare 1.0+ and Alloy NTNX
 	the caller must have modify privileges on the directory containing the
 	  file
 SeeAlso: AH=B6h,AH=E3h/SF=0Fh,AX=F217h/SF=10h

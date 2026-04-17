@@ -21,7 +21,7 @@ Return: CF clear if successful
 	    AH = error code (see #00234)
 	    disk address packet's block count field set to number of blocks
 	      successfully transferred
-Note:	the BIOS returns CF set/AH=01h (invalid function) if verify is
+Notes:	the BIOS returns CF set/AH=01h (invalid function) if verify is
 	  requested but not supported
 SeeAlso: AH=03h,AH=41h"INT 13 Ext",AH=42h"INT 13 Ext",AH=44h
 

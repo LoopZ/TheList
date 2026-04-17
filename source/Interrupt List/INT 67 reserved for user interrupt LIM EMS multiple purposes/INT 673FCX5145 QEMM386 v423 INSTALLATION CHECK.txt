@@ -40,7 +40,7 @@ Return: CF clear
 	AL = QEMM state
 	    bit 0 set if QEMM turned OFF
 	    bit 1 set if in "Auto" mode
-Note:	this function is officially documented
+Notes:	this function is officially documented
 SeeAlso: #03526,#03527,#03528,#03640
 
 (Table 03526)
@@ -50,7 +50,7 @@ Values for calling QEMM "QPI_SetStatus" function:
 	    bit 0 set: place QEMM in OFF state
 Return: CF clear if successful
 	CF set on error
-Note:	this function is officially documented
+Notes:	this function is officially documented
 SeeAlso: #03525
 
 (Table 03527)
@@ -81,7 +81,7 @@ Values for calling QEMM QPI function 04h:
 Return: CF clear if successful
 	    DX = page number of a 4K page
 	CF set if unable to allocate page
-Note:	QEMM mode unchanged if not AUTO/OFF
+Notes:	QEMM mode unchanged if not AUTO/OFF
 SeeAlso: #03530
 
 (Table 03530)
@@ -89,7 +89,7 @@ Values for calling QEMM QPI function 05h:
 	AH = 05h free 4K page and turn QEMM off
 	DX = page number returned by function 04h
 Return: CF clear
-Note:	QEMM mode unchanged if not AUTO/ON
+Notes:	QEMM mode unchanged if not AUTO/ON
 SeeAlso: #03529,#03531
 
 (Table 03531)
@@ -97,7 +97,7 @@ Values for calling QEMM QPI function 06h:
 	AH = 06h make new mapping context???
 	DX = page number of 4K page to hold page table
 Return: CF clear
-Note:	copies page table into given page and then sets ??? page table entry
+Notes:	copies page table into given page and then sets ??? page table entry
 	  to point at copy
 SeeAlso: #03532,#03533
 
@@ -167,7 +167,7 @@ Values for calling QEMM QPI function 0Eh:
 	DS:BX -> FAR routine for getting hardware cursor address
 	ES:DX -> FAR routine for setting hardware cursor address
 Return: CF clear
-Note:	both callbacks are invoked with CL indicating which
+Notes:	both callbacks are invoked with CL indicating which
 	  CRT controller register to access (0Eh for high
 	  byte of cursor address, 0Fh for low byte)
 	the DS:BX callback should return BX=cursor address;
@@ -181,7 +181,7 @@ Values for calling QEMM QPI function 0Fh:
 	DX = number of pages
 Return: CF clear
 	AL = 00h/01h if ???
-Note:	if CX=0100h and DX=0010h, the HMA is remapped to
+Notes:	if CX=0100h and DX=0010h, the HMA is remapped to
 	  simulate a disabled A20
 
 (Table 03541)
@@ -302,7 +302,7 @@ Values for calling QEMM QPI function 11h:
 Return: CF clear
 	BL = ???
 	ES:DI buffer filled
-Note:	each byte of the buffer corresponds to a 4K page, and
+Notes:	each byte of the buffer corresponds to a 4K page, and
 	  contains the type of that page: 00h = mappable,
 	  02h = mapped ROM, 03h = high RAM, 04h = excluded,
 	  05h = video, 06h = ROM, 07h = adapter ROM,
@@ -349,7 +349,7 @@ Values for calling QEMM QPI function 1302h:
 	???
 Return: CF clear
 	???
-Note:	disables certain interrupts at the two 8259 PICs during
+Notes:	disables certain interrupts at the two 8259 PICs during
 	  execution; also modifies CRT controller during
 	  execution under certain circumstances
 
@@ -373,7 +373,7 @@ Values for calling QEMM QPI function 1305h:
 	(related to graphics virtualization, changes memory mappings)
 	CX = start offset within A000h segment of virtualized mem???
 Return: CF clear
-Note:	disables certain interrupts at the two 8259 PICs during
+Notes:	disables certain interrupts at the two 8259 PICs during
 	  execution (see #03566) and runs inside a QEMM
 	  critical section
 
@@ -382,14 +382,14 @@ Values for calling QEMM QPI function 1306h:
 	AX = 1306h set DESQview critical section counter address
 	ES:BX -> WORD DESQview critical section counter or 0000h:0000h
 Return: CF clear
-Note:	also sets a pointer in the low-memory part of QEMM to
+Notes:	also sets a pointer in the low-memory part of QEMM to
 	  the current value of INT 15 if ES:BX not 0000h:0000h
 
 (Table 03561)
 Values for calling QEMM QPI function 1307h:
 	AX = 1307h ??? (changes memory mappings for entire A000h segment)
 Return: CF clear
-Note:	disables certain interrupts at the two 8259 PICs during
+Notes:	disables certain interrupts at the two 8259 PICs during
 	  execution (see #03566) and runs inside a QEMM
 	  critical section
 
@@ -400,7 +400,7 @@ Values for calling QEMM QPI function 1308h:
 	    00h restore CRTC I/O port trapping to previous state
 	    else start trapping all accesses to I/O ports 03B0-03DF
 Return: CF clear
-Note:	if called more than once in a row with BL nonzero, the
+Notes:	if called more than once in a row with BL nonzero, the
 	  original state of the I/O port trapping will be lost
 
 (Table 03563)
@@ -408,7 +408,7 @@ Values for calling QEMM QPI function 1309h:
 	AX = 1309h Hercules mode-change support
 	ES:BX -> new address for Hercules mode-change callback
 Return: CF clear
-Note:	the callback function is called whenever the CRTC mode
+Notes:	the callback function is called whenever the CRTC mode
 	  register is written, with AL set to the value written
 
 (Table 03564)
@@ -424,7 +424,7 @@ Values for calling QEMM QPI function 130Bh:
 	BL = ??? (??? or 00h)
 Return: CF clear
 	???
-Note:	calls AX=130Eh in some cases
+Notes:	calls AX=130Eh in some cases
 
 (Table 03566)
 Values for calling QEMM QPI function 130Ch:
@@ -438,7 +438,7 @@ Values for calling QEMM QPI function 130Dh:
 	AX = 130Dh map EGA memory at A0000h
 	???
 Return: CF clear
-Note:	disables certain interrupts at the two 8259 PICs during execution
+Notes:	disables certain interrupts at the two 8259 PICs during execution
 	  (see #03566) and runs inside a QEMM critical section
 	calls AX=1307h (see #03561)
 
@@ -458,7 +458,7 @@ Values for calling QEMM QPI function 1310h:
 	AX = 1310h copy modified pages to physical video RAM???
 	???
 Return: CF clear
-Note:	disables certain interrupts at the two 8259 PICs during execution
+Notes:	disables certain interrupts at the two 8259 PICs during execution
 	  (see #03566) and runs inside a QEMM critical section
 	also calls AX=130Dh (see #03567)
 
@@ -467,14 +467,14 @@ Values for calling QEMM QPI function 1311h:
 	AX = 1311h set ???
 	BL = zero/nonzero???
 Return: CF clear
-Note:	certain operations will be performed with interrupts
+Notes:	certain operations will be performed with interrupts
 	  (as set by AX=130Ch) enabled rather than disabled if
 	  called with BL nonzero
 
 (Table 03572)
 Values for calling QEMM QPI function 1312h:
 	AX = 1312h (v6.02) NOP???
-Note:	called by DV 2.42, but appears to be a NOP in QEMM 6.02
+Notes:	called by DV 2.42, but appears to be a NOP in QEMM 6.02
 
 (Table 03573)
 Values for calling QEMM QPI function 1400h:
@@ -484,7 +484,7 @@ Values for calling QEMM QPI function 1400h:
 	BL = highest ??? to return (one less than number of words)
 Return: CF clear
 	AX = ??? (4204h for v6.00)
-Note:	QEMM also sets the protected mode INT 02 and INT 06
+Notes:	QEMM also sets the protected mode INT 02 and INT 06
 	  vectors to alternate handlers in certain cases
 
 (Table 03574)
@@ -637,7 +637,7 @@ Values for calling QEMM v5.11+ "QPI_UntrappedIORead" function:
 	DX = port number
 Return: CF clear
 	BL = port value
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03592)
 Values for calling QEMM v5.11+ "QPI_UntrappedIOWrite" function:
@@ -645,7 +645,7 @@ Values for calling QEMM v5.11+ "QPI_UntrappedIOWrite" function:
 	BL = value to send
 	DX = port number
 Return: CF clear
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03593)
 Values for calling QEMM v5.11+ "QPI_UntrappedIOReadIndexed" function:
@@ -654,7 +654,7 @@ Values for calling QEMM v5.11+ "QPI_UntrappedIOReadIndexed" function:
 	DX = base port number
 Return: CF clear
 	BL = value read from I/O port (DX+1)
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03594)
 Values for calling QEMM v5.11+ "QPI_UntrappedIOWriteIndexed" function:
@@ -663,7 +663,7 @@ Values for calling QEMM v5.11+ "QPI_UntrappedIOWriteIndexed" function:
 	BL = value for second I/O port (DX+1)
 	DX = base port number
 Return: CF clear
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03595)
 Values for calling QEMM v7.03+ "QPI_UntrappedIO" function:
@@ -675,7 +675,7 @@ Values for calling QEMM v7.03+ "QPI_UntrappedIO" function:
 	DX = I/O port to be accessed
 Return: CF clear
 	BX = value read (if CX indicates read)
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03596)
 Values for calling QEMM v7.03+ function 1A05h
@@ -688,14 +688,14 @@ Values for calling QEMM v7.03+ "QPI_GetIOCallback" function:
 	AX = 1A06h
 Return: CF clear
 	ES:DI -> current I/O callback function (see #03599)
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03598)
 Values for calling QEMM v7.03+ "QPI_SetIOCallback" function:
 	AX = 1A07h
 	ES:DI -> new I/O callback function (see #03599)
 Return: CF clear
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03599)
 Values QEMM v7.03+ I/O callback function is called with:
@@ -715,21 +715,21 @@ Values for calling QEMM v7.03+ "QPI_GetPortTrap" function:
 	DX = I/O port number
 Return: CF clear
 	BL = trapping state (00h not being trapped, 01h trap installed)
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03601)
 Values for calling QEMM v7.03+ "QPI_SetPortTrap" function:
 	AX = 1A09h
 	DX = I/O port number
 Return: CF clear
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03602)
 Values for calling QEMM v7.03+ "QPI_ClearPortTrap" function:
 	AX = 1A0Ah
 	DX = I/O port number
 Return: CF clear
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03603)
 Values for calling QEMM v5.11+ QPI function 1B00h:
@@ -745,7 +745,7 @@ Values for calling QEMM v5.11+ QPI function 1B01h:
 Return: CF set on error
 	    (i.e. no Global EMM Import rec. allocated)
 	CF clear if successful
-Note:	shuts down EMS and initializes Global EMM Import record; this function
+Notes:	shuts down EMS and initializes Global EMM Import record; this function
 	  is invoked from the callback supplied by INT 2F/AX=1605h
 
 (Table 03605)
@@ -753,7 +753,7 @@ Values for calling QEMM v5.11+ QPI function 1B02h:
 	AX = 1B02h enable V86 mode
 Return: CF set on error
 	CF clear if successful
-Note:	restarts EMS and frees Global EMM Import record; this function is
+Notes:	restarts EMS and frees Global EMM Import record; this function is
 	  invoked from the callback supplied by INT 2F/AX=1605h
 
 (Table 03606)
@@ -783,7 +783,7 @@ Return: CF clear
 	    01h if string ends in ".DRV"
 	    FFh if string ends in "GDI.EXE"
 	    00h otherwise
-Note:	when MS Windows 3.0 standard mode starts, QEMM patches all drivers
+Notes:	when MS Windows 3.0 standard mode starts, QEMM patches all drivers
 	  until GDI.EXE is loaded
 
 (Table 03609)
@@ -792,7 +792,7 @@ Values for calling QEMM v5.11+ QPI function 1B06h:
 	CX = length of data pointed at by DS:DX
 	DS:DX -> buffer containing Windows driver code
 Return: CF clear
-Note:	patches all SMSW x/TEST x,1 instruction sequences into MOV x,CS/VERW x
+Notes:	patches all SMSW x/TEST x,1 instruction sequences into MOV x,CS/VERW x
 	  sequences, which has the effect that the protected-mode check will
 	  only indicate protected mode in native protected mode and not in V86
 	  mode
@@ -827,11 +827,11 @@ Return: CF clear
 Values for calling QEMM v5.11+ QPI function 1C03h:
 	AX = 1C03h set V86-mode IRQ8-15 handlers
 	ES:DI -> 8 DWORDs containing V86-mode handler addresses
-BUG:	although the jump table only contains four entries, QEMM 6.00 will
+BUGS:	although the jump table only contains four entries, QEMM 6.00 will
 	  attempt to use it for any value of AL between 00h and 2Ah, thus
 	  branching unpredictably for AL=04h-2Ah; QEMM v7.01 behaves
 	  similarly for AL=04h-1Bh
-Note:	when enabled, the appropriate IRQs are reflected back to the specified
+Notes:	when enabled, the appropriate IRQs are reflected back to the specified
 	  handlers in virtual-86 mode after the CPU automatically invokes the
 	  protected-mode handler inside QEMM
 
@@ -889,14 +889,14 @@ Return: CF clear
 	DH = reserved (always 00h for v6.00)
 	SI = reserved (always 0000h for v6.00)
 	DI = reserved (always 0000h for v6.00)
-Note:	this function is officially documented
+Notes:	this function is officially documented
 
 (Table 03621)
 Values for calling QEMM v6.00+ "QPI_GetStealthCount" function:
 	AX = 1E01h get number of Stealth'ed ROMs
 Return: CF clear
 	BX = number of Stealth'ed ROMs
-Note:	this function is officially documented
+Notes:	this function is officially documented
 
 (Table 03622)
 Values for calling QEMM v6.00+ "QPI_GetStealthList" function:
@@ -905,7 +905,7 @@ Values for calling QEMM v6.00+ "QPI_GetStealthList" function:
 Return: CF clear
 	BX = number of Stealth'ed ROMs
 	ES:DI buffer filled
-Note:	this function is officially documented
+Notes:	this function is officially documented
 
 (Table 03623)
 Values for unimplemented Stealth information functions:
@@ -919,7 +919,7 @@ Values for calling QEMM v6.00+ "QEMM_GET_PTE"/"QPI_GetPTE" function:
 	CX = page number (0000h-010Fh)
 Return: CF clear
 	EDX = page table entry
-Note:	this function is officially documented
+Notes:	this function is officially documented
 
 (Table 03625)
 Values for calling QEMM v6.00+ "QEMM_SET_PTE"/"QPI_SetPTE" function:
@@ -927,7 +927,7 @@ Values for calling QEMM v6.00+ "QEMM_SET_PTE"/"QPI_SetPTE" function:
 	CX = page number (0000h-010Fh)
 	EDX = new page table entry
 Return: CF clear
-Note:	this function is officially documented
+Notes:	this function is officially documented
 SeeAlso: #03549
 
 (Table 03626)
@@ -945,7 +945,7 @@ Return: CF clear
 	    bits 6-1 reserved
 	    bit 0: VirtualHDIRQ currently enabled
 		(INT 15/AH=90h suppressed when enabled)
-Note:	this function is officially documented
+Notes:	this function is officially documented
 SeeAlso: #03628
 
 (Table 03628)
@@ -954,7 +954,7 @@ Values for calling QEMM v6.00+ "QEMM_SET_VHI_INFO"/"QPI_SetVHIInfo" function:
 	BL bit 0 = new VirtualHDIRQ state
 Return: CF clear
 	BL = old VHI setting (bits 0 and 7, see #03627)
-Note:	this function is officially documented
+Notes:	this function is officially documented
 SeeAlso: #03627
 
 (Table 03629)
@@ -970,7 +970,7 @@ Values for calling QEMM v6.00+ "QEMM_COPY_STEALTH_ROMS"/"QPI_CopyStealthRoms":
 	ECX = number of bytes to copy
 Return: CF clear if successful
 	CF set on error (no Stealth or DS:SI < C000h:0000h or DS:SI + ECX > 1M)
-Note:	this function was officially documented with the release of QEMM 7.50
+Notes:	this function was officially documented with the release of QEMM 7.50
 
 (Table 03631)
 Values for calling QEMM v6.00+ QPI function 21xxh:
@@ -1060,7 +1060,7 @@ Format of protection level Region List:
 Offset	Size	Description	(Table 03642)
  00h	WORD	number of PAIRS of pointers to follow
  02h 2N DWORDs	start/end seg:ofs addresses of ??? regions
-Note:	QEMM converts the segmented addresses into linear addresses in place
+Notes:	QEMM converts the segmented addresses into linear addresses in place
 
 Format of EMM Import structure:
 Offset	Size	Description	(Table 03643)

@@ -89,7 +89,7 @@ Offset	Size	Description	(Table 02568)
  09h  2 BYTEs	short jump to hardware reset routine
 		must point at a valid FAR procedure (may be just RETF)
  0Bh  7 BYTEs	reserved (0) by IBM for future expansion
-Note:	when chaining to the prior handler, the interrupt handler must perform
+Notes:	when chaining to the prior handler, the interrupt handler must perform
 	  an indirect jump/call using the address at offset 02h in the
 	  ISP header.  This permits another AMIS TSR to hook itself into
 	  the chain at a position other than as the first handler to receive

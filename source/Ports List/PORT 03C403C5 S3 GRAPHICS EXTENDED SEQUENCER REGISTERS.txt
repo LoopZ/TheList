@@ -47,7 +47,7 @@ Bit(s)	Description	(Table P0686)
  5	=0 tri-state pixel-data lines (reduces power consumption)
  4-0	maximum 2*MCLKs that secondary memory controllers are granted access to
 	  Trio's memory bus
-Note:	bit 6 must be set for 4M fast page-mode memory; it has no effect if
+Notes:	bit 6 must be set for 4M fast page-mode memory; it has no effect if
 	  EDO memory is selected via CR36 bit 2
 SeeAlso: #P0685
 
@@ -74,7 +74,7 @@ Values for S3 Trio32/Trio64 color mode:
 0111	mode 12 = 640x480x24-bit (packed), 1 pixel/3 DCLKs (Trio32 only)
 1101	mode 13 = 24-bit, 1 pixel/VCLK
 else	reserved
-Note:	mode 8 also requires SR18 bit 7=1 and either SR15 bit 4=1 or
+Notes:	mode 8 also requires SR18 bit 7=1 and either SR15 bit 4=1 or
 	  SR15 bit 6=1
 SeeAlso: #P0687,#P0751
 
@@ -91,7 +91,7 @@ Bit(s)	Description	(Table P0689)
 	=0 Trio64-compatible
 	=1 new LPB type
  0	enable feature connector
-Note:	bits 7-4 are used to select the DPMS power mode as follows:
+Notes:	bits 7-4 are used to select the DPMS power mode as follows:
 	    0000 On
 	    0001 Standby
 	    0100 Suspend

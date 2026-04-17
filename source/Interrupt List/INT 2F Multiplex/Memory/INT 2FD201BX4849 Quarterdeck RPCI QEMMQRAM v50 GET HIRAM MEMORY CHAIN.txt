@@ -13,7 +13,7 @@ Return: BX = 4F4Bh ("OK")
 	CX = segment of start of HIRAM chain
 	DX = reserved block owner (QEMM/QRAM code segment)
 Range:	AH=C0h to AH=FFh, selected by scanning AH=D2h-FFh, then AH=C0h-D1h
-Note:	the HIRAM memory chain has the same format as the regular DOS 4.0
+Notes:	the HIRAM memory chain has the same format as the regular DOS 4.0
 	  memory chain (see #01628 at INT 21/AH=52h), except that XMS Upper
 	  Memory Blocks have the block header program name field set to
 	  "UMB"; blocks whose "owner" field is set to the reserved segment

@@ -9,6 +9,6 @@ INT 7F - Alloy NTNX, MW386 - CHANNEL CONTROL - CLOSE CHANNEL
 	CL = 01h
 	AL = channel number
 Return: AL = status (00h-03h,0Ah) (see #03951)
-Note:	may not be invoked from within a hardware interrupt handler
+Notes:	may not be invoked from within a hardware interrupt handler
 SeeAlso: AH=10h/CL=00h,AH=10h/CL=05h
 

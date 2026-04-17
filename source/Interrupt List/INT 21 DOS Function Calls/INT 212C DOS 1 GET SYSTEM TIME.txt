@@ -10,7 +10,7 @@ Return: CH = hour
 	CL = minute
 	DH = second
 	DL = 1/100 seconds
-Note:	on most systems, the resolution of the system clock is about 5/100sec,
+Notes:	on most systems, the resolution of the system clock is about 5/100sec,
 	  so returned times generally do not increment by 1
 	on some systems, DL may always return 00h
 SeeAlso: AH=2Ah,AH=2Dh,AH=E7h"Novell",INT 1A/AH=00h,INT 1A/AH=02h,INT 1A/AH=FEh
