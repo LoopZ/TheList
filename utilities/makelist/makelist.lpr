@@ -583,7 +583,8 @@ begin
         Cat(Flags,Copy(V, 1,1));
       end;
     else
-      LogMessage(vbVerbose, 'Extraneous header field "' +  K + '" in file: '+ Name);
+      LogMessage(vbMinimal, 'Extraneous header field "' +  K + '" in file: '+ Name);
+      Inc(TotalProblems);
     end;
   end;
   if FSORTAS <> '' then begin
