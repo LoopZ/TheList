@@ -83,7 +83,8 @@ After the summary base line, input conditions may follow,
 mostly listing register values to set up to call this entry's function.
 All input conditions are indented with a tab
 at the very beginning of the line.
-ecm's IntList expects input registers to be in one of the following formats
+[ecm's IntList](https://pushbx.org/ecm/web/#projects-intlist)
+expects input registers to be in one of the following formats
 to pick them up for its dynamic summary
 and as register states for hyperlink destinations:
 
@@ -138,7 +139,8 @@ in which `A` is alphanumeric (all-caps) and `n` are decimal digits.
 
 #### Hyperlinks
 
-IntList uses the following patterns to match references as hyperlinks
+[IntList](https://pushbx.org/ecm/web/#projects-intlist)
+uses the following patterns to match references as hyperlinks
 within entries after the summary base line:
 
   * Name matches are matched as `"<N NONDOUBLEQUOTEs>"`, name matches are allowed after all references except for tables. Note that there must not be any whitespace before the opening doublequote.
