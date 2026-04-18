@@ -57,6 +57,9 @@ const
   // Enable more strict verification for use with CI/CD
   CICD : boolean = false;
 
+  // Enable replacement of Release number with 'NB' for nightly builds
+  NightlyBuild : boolean = false;
+
   // File extension for all source files
   SrcExt = '.txt';
   // Directory Mapping file

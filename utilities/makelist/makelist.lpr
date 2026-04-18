@@ -897,6 +897,9 @@ begin
       Halt(1);
     end;
   end;
+  if NightlyBuild then
+    ReleaseVersion:='Release NB'
+  else
   if FileLoad(DirSource + ReleaseFile, ReleaseVersion) <> 0 then
     ReleaseVersion:='Release ?';
   ReleaseVersion:=StringReplace(ReleaseVersion, CR, SPACE, [rfReplaceAll]);

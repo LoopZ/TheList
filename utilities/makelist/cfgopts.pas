@@ -63,6 +63,7 @@ const
     (S:''; L:'--legacy'; V:''; M:'Enable compatibility mode for legacy parsers.'),
     (S:''; L:''; V:''; M:''),
     (S:''; L:'--cicd'; V:''; M:'More strict verification for usage with CI/CD.'),
+    (S:''; L:'--nightly'; V:''; M:'Replace the release number with NB for nightly builds.'),
     (S:''; L:'--issues'; V:'(file)'; M:'Write a list of the files with issues to a file.')
   );
 
@@ -155,6 +156,7 @@ begin
       '--cicd' : CICD:=True;
       '--modern' : LegacyMode:=False;
       '--legacy' : LegacyMode:=True;
+      '--nightly' : NightlyBuild:=True;
       '--issues' : IssueFileName:=Trim(NextOpt);
       '-s', '--source' : DirSource:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : DirOutput:=IncludeTrailingPathDelimiter(Trim(NextOpt));
