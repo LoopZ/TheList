@@ -160,7 +160,7 @@ begin
          RightPad(ReleaseVersion, 14) + TAB +
          'Last Change ' + LastChange;
      end else begin
-       Header:=Title + SPACE4 + ReleaseVersion + SPACE4 +
+       Header:=Title + SPACE3 + ReleaseVersion + SPACE3 +
          'Last Change ' + LastChange;
      end;
    end else

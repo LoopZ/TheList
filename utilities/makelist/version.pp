@@ -17,7 +17,7 @@ interface
 
 const
   { General Application Information }
-  APP_VERSION: String = '1.4.3';
+  APP_VERSION: String = '1.4.4';
   APP_BUILD: String = '0';
   APP_TITLE: String = 'makelist';
   APP_LEGALCOPYRIGHT: String = '(c) 2025-2026 Jerome Shidel';
