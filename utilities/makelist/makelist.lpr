@@ -24,15 +24,36 @@ uses
 
 // Saves Filename of an Entry with a problem, error, etc to a file when the
 // "IssueFileName" file name is set.
-procedure WriteIssue;
+procedure SaveIssues;
+var
+  Handle : Text;
+  N : TBinaryTreeNode;
 begin
   if IssueFileName= '' then Exit;
-  if not IssueFileOpen then begin
-    System.Assign(IssueFileHandle, IssueFileName);
-    System.Rewrite(IssueFileHandle);
-    IssueFileOpen:=True;
+  N:=IssuesTree.First;
+  if Not Assigned(N) then Exit;
+  System.Assign(Handle, IssueFileName);
+  System.Rewrite(Handle);
+  While Assigned(N) do begin
+    WriteLn(Handle, N.UniqueID);
+    N:=N.Next;
   end;
-  WriteLn(IssueFileHandle, LastFileName);
+  System.Close(Handle)
+end;
+
+// Adds the Filename (or LastFileName when left blank to the List of File Issues
+//
+// IssueType is:
+//    fitWarning   = 0;
+//    fitDuplicate = 1;
+//    fitProblem   = 2;
+//    fitError     = 3;
+procedure FileIssue(IssueType : Integer; Filename : String = '');
+begin
+  if FileName='' then
+    IssuesTree.Add(LastFileName, IssueType)
+  else
+    IssuesTree.Add(FileName, IssueType);
 end;
 
 // Returns the DOS file name from the Long file name or Group Title
@@ -400,7 +421,10 @@ begin
   N:= SectionTree.Add(ID, Data);
   if not Assigned(N) then begin
     LogMessage(vbVerbose, TAB + 'Duplicate UniqueID (' + ID + ') for file: ' + Name);
-    WriteIssue;
+    N:=FileIDTree.Find(ID);
+    if Assigned(N) then
+      FileIssue(fitDuplicate, N.Text);
+    FileIssue(fitDuplicate);
     Inc(TotalDuplicates);
     XX:=0;
     repeat
@@ -408,6 +432,7 @@ begin
       Inc(XX);
     until Assigned(N);
   end;
+  FileIDTree.Add(ID, LastFileName);
 end;
 
 // Adds a Glossary Entry into the Section Tree for the GLOSSARY.LST
@@ -418,14 +443,14 @@ begin
   ID:=Trim(PopDelim(Data, CRLF));
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
@@ -451,14 +476,14 @@ begin
   ID:=UpperCase(StringReplace(Trim(Copy(Title, 1, MaxLinkID)), SPACE, '-', [rfReplaceAll]));
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No Term specified for file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No definition, excluded file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
@@ -472,7 +497,7 @@ var
 begin
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
@@ -493,14 +518,14 @@ begin
   ID:=ExcludeLeading(ID, 'SMM-');
   if ID='' then begin
     LogMessage(vbMinimal, TAB + 'No ID specified for file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
   Data:=TrimCRLF(Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
@@ -632,7 +657,7 @@ begin
     if (TableCode <> '') then begin
       if (not HasLeading(S, TableCode)) then begin
         LogMessage(vbMinimal, TAB + 'Invalid Table Prefix in file: ' + Name);
-        WriteIssue;
+        FileIssue(fitError);
         Inc(TotalErrors);
         Continue;
       end;
@@ -641,7 +666,7 @@ begin
     Val(S, V, E);
     if E <> 0 then begin
       LogMessage(vbMinimal, TAB + 'Invalid Table Number in file: ' + Name);
-      WriteIssue;
+      FileIssue(fitError);
       Inc(TotalErrors);
       Continue;
     end;
@@ -649,12 +674,12 @@ begin
     N:=TableTree.Add(T);
     if not Assigned(N) then begin
       LogMessage(vbMinimal, TAB + 'Duplicated Table ID (' + T + ') in file: ' + Name);
-      WriteIssue;
+      FileIssue(fitError);
       Inc(TotalErrors);
     end;
   end;
   LogMessage(vbMinimal, TAB+ 'Broken Table declaration in file: ' + Name);
-  WriteIssue;
+  FileIssue(fitError);
   Inc(TotalErrors);
 end;
 
@@ -665,19 +690,19 @@ var
 begin
   if not FileToSection(Name, Data, IDSORT, IDLIST, Category, Flags) then begin
     LogMessage(vbMinimal, TAB + 'Invalid entry header for file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
   if IDLIST='' then begin
     LogMessage(vbMinimal, TAB + 'No ID found for file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
   if Pos(HeaderBar, Data) > 0 then begin
     LogMessage(vbNormal, TAB+ 'Probably joined entry data in file: ' + Name);
-    WriteIssue;
+    FileIssue(fitProblem);
     Inc(TotalProblems);
   end;
   { TODO 5 -cDevel Add UID validation, not really possible }
@@ -686,7 +711,7 @@ begin
   HighestTable(Name, Data);
   if Length(Data) = 0 then begin
     LogMessage(vbMinimal, TAB + 'No data, excluded file: ' + Name);
-    WriteIssue;
+    FileIssue(fitError);
     Inc(TotalErrors);
     Exit;
   end;
@@ -907,8 +932,10 @@ begin
   ReleaseVersion:=Trim(StringReplace(ReleaseVersion, TAB, SPACE, [rfReplaceAll]));
   SectionTree := TBinaryTree.Create;
   TableTree := TBinaryTree.Create;
+  IssuesTree:= TBinaryTree.Create;
   CommentFiles:=TStringList.Create;
   FileInfo := TBinaryTree.Create;
+  FileIDTree := TBinaryTree.Create;
   BuildTime:= LocalTimeToUniversal(Now);
   if LegacyMode then
     LastChange:=Lowercase(FormatDateTime('ddmmmYY', BuildTime))
@@ -946,10 +973,7 @@ begin
   ReadFileMap;
   Banner;
   Build;
-  if IssueFileOpen then begin
-    System.Close(IssueFileHandle);
-    IssueFileOpen:=False;
-  end;
+  SaveIssues;
   LogMessage(vbNormal, '');
   LogMessage(vbNormal, 'Total Number of Entries:    ' + IntToStr(TotalEntries));
   LogMessage(vbNormal, 'Total Number of Tables:     ' + IntToStr(TotalTables));

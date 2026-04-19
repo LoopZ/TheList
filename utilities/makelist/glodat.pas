@@ -223,19 +223,28 @@ var
   TotalDuplicates : integer;
   // File Info for the FILELIST Section
   FileInfo : TBinaryTree;
-
+  // List of files with Issues
+  IssuesTree : TBinaryTree;
+  // File name for ID map
+  FileIDTree : TBinaryTree;
 { ---------------------------------------------------------------------------- }
 const
   // Filename to write file list of problem files.
   IssueFileName   : String = '';
-  // Tracks if the Issues file has been opened.
-  IssueFileOpen   : boolean = false;
 
 var
   // The current working Entry file name for Issues.
   LastFileName: String;
-  // The Issues text file handle.
-  IssueFileHandle : Text;
+
+const
+  // File Issue Type: Warning
+  fitWarning   = 0;
+  // File Issue Type: Duplicate
+  fitDuplicate = 1;
+  // File Issue Type: Problem
+  fitProblem   = 2;
+  // File Issue Type: Error
+  fitError     = 3;
 
 implementation
 
