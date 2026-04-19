@@ -1,5 +1,6 @@
 ----------------------------------------------------------------------------
  Unique ID: P00220024
+   Sort As: P00220024+03
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
 ----------------------------------------------------------------------------
@@ -62,7 +63,7 @@ Bit(s)	Description	(Table P0109)
 	1 RDYI# input to the 82C291 will not be output to the CPU. RDY# from
 	  the local device must be directed to the 82C291 and the CPU
  0	system memory parity checking
-	0 disable, no parity checking	     
+	0 disable, no parity checking
 	1 enable, will check parity
 SeeAlso: #P0107
 
@@ -204,7 +205,7 @@ Bit(s)	Description	(Table P0118)
  3	enable non-cacheable segment B
  2-0	size of no-cacheable memory segment B (same values as bits 6-4)
 SeeAlso: #P0107,#P0119
-    
+
 Bitfields for OPTi 82C291/82C295 Non-Cacheable Segments register 2:
 Bit(s)	Description	(Table P0119)
  7-0	address bits 23-16 for starting address of non-cacheable memory

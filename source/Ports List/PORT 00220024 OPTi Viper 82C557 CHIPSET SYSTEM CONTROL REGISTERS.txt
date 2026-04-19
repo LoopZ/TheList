@@ -1,5 +1,6 @@
 ----------------------------------------------------------------------------
  Unique ID: P00220024
+   Sort As: P00220024+08
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
 ----------------------------------------------------------------------------
@@ -126,7 +127,7 @@ Bit(s)	Description	(Table P0192)
  3	CAS pulse width during reads
 	0 3 CLKs
 	1 2 CLKs
- 2	CAS pulse width during writes 
+ 2	CAS pulse width during writes
 	0 3 CLKs
 	1 2 CLKs
  1-0	RAS precharge time
@@ -344,7 +345,7 @@ Bit(s)	Description	(Table P0205)
  4	(Viper) ECLK - CLK skew, activated when synchronou SRAMs are being used
 	    0 skew between CLK and ECLK is not too large
 	    1 skew is too large
-	(Vendetta) 
+	(Vendetta)
 	    0 preemption when CPU needs memory
 	    1 reserved
  3	enable A0000-BFFFF as system memory
@@ -632,7 +633,7 @@ Bit(s)	Description	(Table P0216)
 	      banks of synchronous SRAM
 	(Vendetta) reserved
  4	(Viper only) enable fast BRDY# generation for PCI cycles
- 3	(Viper only) enable fast FRAME# generation for PCI cycles	    
+ 3	(Viper only) enable fast FRAME# generation for PCI cycles
  2	(Viper only) byte merging/piping control
 	0 no pipelining when byte merging is on
 	1 pipelining enabled along with byte merging

@@ -1,5 +1,6 @@
 ----------------------------------------------------------------------------
  Unique ID: P00220024
+   Sort As: P00220024+04
   Category: - 	reserved (and not otherwise classified)
       Flag: n/a
 ----------------------------------------------------------------------------
@@ -88,7 +89,7 @@ Bit(s)	Description	(Table P0125)
 	1 shadow RAM selectively enabled by configuration register 12h
  4	write-protect shadow RAM at D0000h-DFFFFh (default = not protected)
  3	write-protect shadow RAM at E0000h-EFFFFh
- 2	enable Timeout precharge counter 
+ 2	enable Timeout precharge counter
  1-0	reserved
 SeeAlso: #P0121
 
@@ -109,41 +110,41 @@ Bitfields for OPTi 82C381/82C382 memory bank configuration:
 Bit(s)	Description	(Table P0127)
  7	Reserved
  6-4	Bank0 and Bank1 configuration
-	(val)	Bank0	 Bank1 
-	000	256K	 -  
+	(val)	Bank0	 Bank1
+	000	256K	 -
 	001	256K	 256K
-	010	256K	 1M  
+	010	256K	 1M
 	011	1M	 256K
-	100	1M	 -  
-	101	1M	 1M 
-	110	-	 -  
-	111	256K	 - 
+	100	1M	 -
+	101	1M	 1M
+	110	-	 -
+	111	256K	 -
  3	reserved
  2-0	Bank2 and Bank3 configuration
-	(val)	Bank2	 Bank3 
-	000	256K	 -  
+	(val)	Bank2	 Bank3
+	000	256K	 -
 	001	256K	 256K
-	010	-	 -  
+	010	-	 -
 	011	1M	 256K
-	100	1M	 -  
-	101	1M	 1M 
-	11X	-	 -  
+	100	1M	 -
+	101	1M	 1M
+	11X	-	 -
 SeeAlso: #P0121,#P0128
 
 Bitfields for OPTi 82C381/82C382 DRAM configuration:
 Bit(s)	Description	(Table P0128)
  7,6	number of read cycle wait states (default = 01)
  5	write cycle wait state
-	0 = 0 wait 
-	1 = 1 wait (default)	  
- 4-0	reserved	
+	0 = 0 wait
+	1 = 1 wait (default)
+ 4-0	reserved
 SeeAlso: #P0121
 
 Bitfields for OPTi 82C381/82C382 video adapter shadow:
 Bit(s)	Description	(Table P0129)
  7	reserved
  6	copy enable for C0000-EFFFF
-	0 write to AT Channel (default) 
+	0 write to AT Channel (default)
 	1 write to local DRAM
  5	Shadow RAM at C0000-CFFFF writability
 	0 read/write (default)
@@ -160,10 +161,10 @@ SeeAlso: #P0121
 Bitfields for OPTi 82C381/82C382 fast GateA20 control:
 Bit(s)	Description	(Table P0130)
  7-4	Reserved
- 3	Fast GateA20 Control  
+ 3	Fast GateA20 Control
 	0 Signal controled by GATEA20 signal from Keyboard Controler
 	1 CPUA20 enabled onto GA20
- 2-0	reserved	
+ 2-0	reserved
 SeeAlso: #P0121
 
 Bitfields for OPTi 82C381/82C382 cache configuration:
@@ -173,11 +174,11 @@ Bit(s)	Description	(Table P0131)
  6	enable Cache
  5	write-through cache (Note: this bit must be set)
  4-3	line size
-	00  4 bytes 
+	00  4 bytes
 	01  8 bytes
 	10  16 bytes
 	11  reserved
- 2-0	reserved	
+ 2-0	reserved
 SeeAlso: #P0121
 
 Bitfields for OPTi 82C381/82C382 non-cacheable block size:
