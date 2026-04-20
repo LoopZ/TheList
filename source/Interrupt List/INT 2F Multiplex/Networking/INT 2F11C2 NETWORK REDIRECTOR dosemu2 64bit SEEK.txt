@@ -1,0 +1,22 @@
+----------------------------------------------------------------------------
+ Unique ID: 2F11C2
+  Category: N   network
+      Flag: C   callout or callback (usually hooked rather than called)
+----------------------------------------------------------------------------
+
+INT 2F C - NETWORK REDIRECTOR - dosemu2 - 64-bit SEEK
+	AX = 11C2h
+	DS:DX -> 64-bit seek buffer (in destination offset, out result seek)
+	CL = origin of move
+	    00h start of file
+	    01h current file position
+	    02h end of file
+	ES:DI -> SFT
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    buffer updated with new 64-bit file position
+Notes:	called by fdpp or lDOS SEEKEXT to service 64-bit seeking from
+	  INT 21/AX=7142h on a redirector SFT
+	previously used function number AX=1142h
+SeeAlso: INT 21/AH=42h,INT 21/AX=7142h,AX=1142h
