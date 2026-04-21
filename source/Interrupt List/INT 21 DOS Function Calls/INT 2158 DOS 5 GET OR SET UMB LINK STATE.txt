@@ -27,7 +27,9 @@ Notes:	a program which changes the UMB link state should restore it before
 	  allocating UMBs with AX=5801h as well
 	enabling the UMB link will patch the last Low Memory Area MCB to
 	  hold an 'M' letter to indicate it is not the last MCB, likewise
-	  disabling the UMB link will patch the last LMCB's letter to 'Z'
+	  disabling the UMB link will patch the last LMCB's letter to 'Z'.
+	  (the last LMCB is the MCB before the first UMCB. the latter is
+	  typically at segment 9FFFh for a 640 KiB Low Memory Area.)
 	DOS keeps track of the UMB link state in an internal variable too
 	if the extended allocation strategy mask 100h is set (see #01679
 	  at AH=58h), lDOS can use UMBs even with the UMB link disabled.

@@ -34,15 +34,15 @@ Values for DOS extended error code:
  07h (7)   memory control block destroyed
  08h (8)   insufficient memory
  09h (9)   memory block address invalid
- 0Ah (10)  environment invalid (usually >32K in length)
- 0Bh (11)  format invalid
+ 0Ah (10)  environment invalid (usually >32 KiB in length)
+ 0Bh (11)  format invalid (AH=4Bh)
  0Ch (12)  access code invalid
  0Dh (13)  data invalid
  0Eh (14)  reserved
  0Eh (14)  (PTS-DOS 6.51+, S/DOS 1.0+) fixup overflow
  0Fh (15)  invalid drive
  10h (16)  attempted to remove current directory
- 11h (17)  not same device
+ 11h (17)  not same device (AH=56h)
  12h (18)  no more files
 ---DOS 3.0+ (INT 24 errors)---
  13h (19)  disk write-protected

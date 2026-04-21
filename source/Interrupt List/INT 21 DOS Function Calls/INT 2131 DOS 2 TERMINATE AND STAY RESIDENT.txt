@@ -12,8 +12,12 @@ Return: never
 Notes:	the value in DX only affects the memory block containing the PSP;
 	  additional memory such as the environment block and memory
 	  allocated via AH=48h is not affected
+	like AH=4Ah if DX indicates to grow the block, and there is not
+	  enough free memory, the block is grown to the maximum size.
+	  likewise, if the requested size can be fulfilled then the owner
+	  of the PSP's MCB is rewritten to the terminating PSP.
 	the minimum number of paragraphs which will remain resident is 11h
-	  for DOS 2.x and 06h for DOS 3.0+
+	  for DOS 2.x and 06h for DOS 3.0+ and FreeDOS
 	most TSRs can save some memory by releasing their environment block
 	  before terminating (see #01378 at AH=26h,AH=49h). to aid tools
 	  that want to inspect resident processes, the PSP field that refers
@@ -21,7 +25,7 @@ Notes:	the value in DX only affects the memory block containing the PSP;
 	any open files remain open, so one should close any files which will
 	  not be used before going resident; to access a file which is left
 	  open from the TSR, one must switch PSP segments first (see AH=50h)
-	  or patch the Job File Table associated with another PSP
+	  or patch the PHT / Job File Table associated with another PSP
 	(TSRs that do not need their file handles while resident frequently
 	  fail to close them; running such a TSR with for example > NUL
 	  output redirection will leak an SFT entry.)
