@@ -21,11 +21,11 @@ Notes:	if CX is zero, no data is written, and the file is truncated or
 	  the "extended size" flag in order to expand the file beyond 2GB;
 	  otherwise the write will fail with error code 0005h (access denied)
 	the usual cause for AX < CX on return is a full disk
+	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
 BUGS:	a write of zero bytes will appear to succeed when it actually failed
 	  if the write is extending the file and there is not enough disk
 	  space for the expanded file (DOS 5.0-6.0); one should therefore check
 	  whether the file was in fact extended by seeking to 0 bytes from
 	  the end of the file (INT 21/AX=4202h with CX:Dx=0000h:0000h)
-	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
 SeeAlso: AH=28h,AH=3Fh"DOS",AH=93h,INT 2F/AX=1109h
 
