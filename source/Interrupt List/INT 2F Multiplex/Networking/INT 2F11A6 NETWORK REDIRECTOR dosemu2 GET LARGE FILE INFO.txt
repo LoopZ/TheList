@@ -1,0 +1,17 @@
+----------------------------------------------------------------------------
+ Unique ID: 2F11A6
+  Category: N   network
+      Flag: C   callout or callback (usually hooked rather than called)
+----------------------------------------------------------------------------
+
+INT 2F C - NETWORK REDIRECTOR - dosemu2 - GET LARGE FILE INFO
+	AX = 11A6h
+	DS:DX -> buffer for result (see #01784)
+	ES:DI -> SFT
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    buffer written
+Notes:	called by fdpp or lDOS SEEKEXT to service INT 21/AX=71A6h on a
+	  redirector SFT
+SeeAlso: INT 21/AX=71A6h

@@ -25,7 +25,7 @@ BUGS:	this function returns a maximum of 2GB free space even on an FAT32
 	  partition larger than 2GB under some versions of Win95 and Win98,
 	  apparently by limiting the number of reported free clusters to no
 	  more than 64K -- but only in a DOS window if a TSR has hooked INT 21h
-SeeAlso: AX=7302h,AX=7304h,AX=7305h,AH=36h
+SeeAlso: AX=7302h,AX=7304h,AX=7305h,AH=36h,INT 2F/AX=11A3h"dosemu2"
 
 Format of extended free space structure:
 Offset	Size	Description	(Table 01789)

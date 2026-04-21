@@ -22,5 +22,4 @@ Notes:	free space on drive in bytes is AX * BX * CX
 	  use AX=4402h"CD-ROM" instead
 	(FAT32 drive) the reported total and free space are limited to 2G-32K
 	  should they exceed that value
-SeeAlso: AH=1Bh,AH=1Ch,AX=4402h"CD-ROM",AX=7303h
-
+SeeAlso: AH=1Bh,AH=1Ch,AX=4402h"CD-ROM",AX=7303h,INT 2F/AX=110Ch

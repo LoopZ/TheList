@@ -1,0 +1,17 @@
+----------------------------------------------------------------------------
+ Unique ID: 2F11A3
+  Category: N   network
+      Flag: C   callout or callback (usually hooked rather than called)
+----------------------------------------------------------------------------
+
+INT 2F C - NETWORK REDIRECTOR - dosemu2 - GET LARGE DISK SPACE
+	AX = 11A3h
+	ES:DI -> CDS
+Return: CF set on error
+	    AX = DOS error code (see #01680 at INT 21/AH=59h/BX=0000h)
+	CF clear if successful
+	    SI = block size (currently always 512)
+	    AX:BX = number of blocks on disk, clamped to all-1s
+	    CX:DX = number of blocks free, clamped to all-1s
+Notes:	called by fdpp to service INT 21/AX=7303h on a redirector drive
+SeeAlso: INT 21/AX=7303h

@@ -18,7 +18,7 @@ Return: CF clear if successful
 	    AX = error code (01h,06h) (see #01680 at AH=59h/BX=0000h)
 	CF unchanged or CF set if no function 71h subfunctions supported
 	    AX = error code (7100h)
-SeeAlso: AH=42h
+SeeAlso: AH=42h,INT 2F/AX=1142h"dosemu2",INT 2F/AX=11C2h"dosemu2"
 Notes:	supported by FAT+ builds of Enhanced DR-DOS (including 2023+ lDOS
 	  flavour and if FATPLUS option enabled for 2023+ SvarDOS flavour;
 	  the SvarDOS fork introduced the FATPLUS option to disable it by

@@ -18,6 +18,10 @@ Return: CF set on error
 Notes:	this function is called by the DOS 3.1+ kernel, but only when seeking
 	  from the end of a file opened with sharing modes set in such a
 	  manner that another process is able to change the size of the file
-	  while it is already open
+	  while it is already open. if the seek origin is the file's current
+	  seek or the start of the file, its resulting seek can be entirely
+	  determined by DOS's local understanding of the file (its SFT). if
+	  the seek origin is EOF and EOF may have changed, the redirector
+	  must be called to determine the final seek.
 SeeAlso: AX=1228h,INT 21/AH=42h
 

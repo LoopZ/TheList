@@ -44,7 +44,7 @@ screen in 8 rows of 16 values.
 The CMOS RAM space has an upper limit of 128 bytes because of the structure
 of port 70: only bits 0-6 are used for addressing, bit 7 is used to 
 enable (0) or disable (1) Non-Maskable Interrupts (NMI) and explains why
-IBM uses 80h OR <address> to read/write data & follows with  a "throw-away"
+IBM uses 80h OR <address> to read/write data & follows with a "throw-away"
 call.
 
 Note that if the CMOS only has 64 bytes available, addressing will 
@@ -162,8 +162,8 @@ version of MSD reports my XT as having 20+ MB of extended memory.
 Where a definiton appears universal, no identification is made. Where
 the definition is thought to be specific to a manufacturer/model (AMI, 
 AMSTRAD, IBM AT, IBM PS/2) the identification is enclosed in parens. The
-AMSTAD definitions appear to relate to 8088/8086 (PC and PC/XT class)
-mchines only. AT class machines appear to adhere to IBM PC/AT fornat.
+AMSTRAD definitions appear to relate to 8088/8086 (PC and PC/XT class)
+machines only. AT class machines appear to adhere to IBM PC/AT format.
 
 
 ----------------------------------------------------------------------------
