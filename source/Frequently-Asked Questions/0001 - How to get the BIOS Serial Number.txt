@@ -1,5 +1,6 @@
 Q: Is there an interrupt to get the BIOS serial number as shown on the
    power-up screen?
+
 A: (Ralf Brown)
    There is no general way to get the serial number.  In most cases, you
    need to know the proper offset in the BIOS image for that particular
@@ -12,3 +13,9 @@ A: (Ralf Brown)
    identical as shipped from the factory with the original BIOS version.
    Because of this, the BIOS serial number is essentially useless for
    any identification purposes.
+
+Notes: Since this original question was answered, many modern systems may have
+   a unique per-machine serial number which may be available in standard SMBIOS
+   tables (accessible via INT 15/AX=E842h on some systems or by scanning memory
+   for the _SM_ anchor). For unique hardware identification,
+   see SMBIOS/DMI structures.
