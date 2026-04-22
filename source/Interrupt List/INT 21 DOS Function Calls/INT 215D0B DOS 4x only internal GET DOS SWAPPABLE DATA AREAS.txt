@@ -207,7 +207,7 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 2E7h	WORD	high word of 32-bit sector number, or temp data buffer size
 		   from disk buffer
 2E9h	WORD	"sda_OffsetMagicPatch"
-2EBh	BYTE	disk full on >32M partition when set to 01h
+2EBh	BYTE	disk full when set to 01h, marked with ">32mb" comment
 2ECh	WORD	stores DS during call to [List-of-Lists + 37h]
 2EEh	WORD	temporary storage (various uses)
 2F0h	BYTE	storage for drive error

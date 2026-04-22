@@ -21,11 +21,32 @@ Notes:	if CX is zero, no data is written, and the file is truncated or
 	  the "extended size" flag in order to expand the file beyond 2GB;
 	  otherwise the write will fail with error code 0005h (access denied)
 	the usual cause for AX < CX on return is a full disk
+	when a file must be extended (it was shorter than the current seek
+	  plus input CX) but there isn't enough disk space free, FreeDOS will
+	  allocate all remaining free clusters to the file, and may do a
+	  partial write. it may return AX = 0000h or 0 < AX < CX in this case.
+	  MS-DOS instead always returns AX = 0000h with the file size
+	  preserved from what it was prior to this call (no partial write and
+	  not even extending to the file seek prior to this call).
+	a portable check that a write succeeded in full should first check
+	  that the returned CF is clear, then check that the returned AX == CX
+	  (only applicable if CX was nonzero, see BUGS below).
+	dosemu2 mfs redirected drives return error 0005h if CX = 0000h and
+	  the file cannot grow to the indicated size, with the prior file size
+	  preserved. non-zero writes are passed to the Linux write syscall.
+	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
 BUGS:	a write of zero bytes will appear to succeed when it actually failed
 	  if the write is extending the file and there is not enough disk
 	  space for the expanded file (DOS 5.0-6.0); one should therefore check
 	  whether the file was in fact extended by seeking to 0 bytes from
-	  the end of the file (INT 21/AX=4202h with CX:Dx=0000h:0000h)
-	under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+	  the end of the file (INT 21/AX=4202h with CX:DX=0000h:0000h)
+	FreeDOS kernel bug #241 concerns seeking to a position larger than the
+	  disk free space, then writing using this function. it will allocate
+	  all free clusters to the file but fail to update the file size field.
+	MS-DOS v4 and v5 (at least) will truncate the "amount of clusters to
+	  allocate" to a 16-bit quantity so if trying to allocate eg 256 MiB
+	  on a FAT12 1440 KiB diskette (512 BpC) the needed amount is truncated
+	  and the file is corrupted. this bug does not exist on MS-DOS v7.10,
+	  presumably because it calculates the amount as a 32-bit number as it
+	  needs to support large values for FAT32 drives.
 SeeAlso: AH=28h,AH=3Fh"DOS",AH=93h,INT 2F/AX=1109h
-
