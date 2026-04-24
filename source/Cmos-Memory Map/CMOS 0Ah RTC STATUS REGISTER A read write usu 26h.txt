@@ -8,14 +8,14 @@ CMOS 0Ah - RTC - STATUS REGISTER A (read/write) (usu 26h)
 
 Bitfields for Real-Time Clock status register A:
 Bit(s)	Description	(Table C0001)
- 7	=1 time update cycle in progress, data ouputs undefined 
+ 7	=1 time update cycle in progress, data outputs undefined
 	(bit 7 is read only)
  6-4	22 stage divider
 	010 = 32768 Hz time base (default)
  3-0	rate selection bits for interrupt
 	0000 none
 	0011 122 microseconds (minimum)
-	1111 500 milliseconds	
+	1111 500 milliseconds
 	0110 976.562 microseconds (default 1024 Hz)
 Notes:	some operating systems seem to change the CMOS clock rate to slower
 	  values for unknown purposes. Since on older ATs the clock rate does
