@@ -17,5 +17,8 @@ Return: ???
 	STACK unchanged
 Notes:	this function is called by the DOS 3.1+ kernel when creating a file
 	  on a drive for which the SDA CDS pointer has offset FFFFh
+BUGS:	called by INT 21/AH=5Ah if two consecutive backslashes are specified
+	  (eg "A:\\"), and MS-DOS v5 and v6 will loop infinitely if this
+	  call returns the default error code 01h.
 SeeAlso: AX=1106h,AX=1116h,AX=1117h,AX=112Eh,INT 21/AH=60h
 
