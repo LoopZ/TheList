@@ -36,14 +36,14 @@ Values for DOS extended error code:
  09h (9)   memory block address invalid
  0Ah (10)  environment invalid (usually >32 KiB in length)
  0Bh (11)  format invalid (AH=4Bh)
- 0Ch (12)  access code invalid
- 0Dh (13)  data invalid
+ 0Ch (12)  access code invalid (AH=3Dh,6Ch)
+ 0Dh (13)  data invalid (AH=44h,57h,6Ch,69h)
  0Eh (14)  reserved
  0Eh (14)  (PTS-DOS 6.51+, S/DOS 1.0+) fixup overflow
  0Fh (15)  invalid drive
- 10h (16)  attempted to remove current directory
+ 10h (16)  attempted to remove current directory (AH=3Ah)
  11h (17)  not same device (AH=56h)
- 12h (18)  no more files
+ 12h (18)  no more files (AH=4Eh,4Fh)
 ---DOS 3.0+ (INT 24 errors)---
  13h (19)  disk write-protected
  14h (20)  unknown unit
@@ -54,19 +54,19 @@ Values for DOS extended error code:
  19h (25)  seek error
  1Ah (26)  unknown media type (non-DOS disk)
  1Bh (27)  sector not found
- 1Ch (28)  printer out of paper
+ 1Ch (28)  printer out of paper (internally used as disk full by FreeDOS)
  1Dh (29)  write fault
  1Eh (30)  read fault
  1Fh (31)  general failure
  20h (32)  sharing violation
  21h (33)  lock violation
- 22h (34)  disk change invalid (ES:DI -> media ID structure)(see #01681)
+ 22h (34)  disk change invalid (ES:DI -> media ID structure) (see #01681)
  23h (35)  FCB unavailable
  23h (35)  (PTS-DOS 6.51+, S/DOS 1.0+) bad FAT
- 24h (36)  sharing buffer overflow
+ 24h (36)  sharing buffer overflow (FreeDOS: DE_DEADLOCK)
  25h (37)  (DOS 4.0+) code page mismatch
  26h (38)  (DOS 4.0+) cannot complete file operation (EOF / out of input)
- 27h (39)  (DOS 4.0+) insufficient disk space
+ 27h (39)  (DOS 4.0+) insufficient disk space (FreeDOS: DE_LOCK)
  28h-31h   reserved
 ---OEM network errors (INT 24)---
  32h (50)  network request not supported
