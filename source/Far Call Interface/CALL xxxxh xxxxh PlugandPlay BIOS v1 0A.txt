@@ -26,7 +26,7 @@ Offset	Size	Description	(Table F0024)
  08h	BYTE	checksum (8-bit sum of all bytes in structure, including this
 		  one, should equal zero)
  09h	DWORD	physical address of event notification flag if using polling
-		(bit 0 set when a system even occurs)
+		(bit 0 set when a system event occurs)
  0Dh	WORD	real mode entry offset (see #F0025)
  0Fh	WORD	real mode code segment
  11h	WORD	16-bit protected mode entry point offset (see #F0025)
@@ -56,9 +56,9 @@ Call Plug-and-Play BIOS entry point with:
 			      (see #F0041)
 			0041h Get Extended System Configuration Data Info
 			      (see #F0043)
-			0042h Read Extended SYstem Configuration Data
+			0042h Read Extended System Configuration Data
 			      (see #F0044)
-			0043h Write Extended SYstem Configuration Data
+			0043h Write Extended System Configuration Data
 			      (see #F0045)
 			---Desktop Management Interface v2.0+---
 			0050h Get DMI Information (see #F0046)
@@ -148,7 +148,7 @@ Values for PnP Event Identifier:
  0002h	"DOCK_CHANGED" devices have been added to or removed from system
  0003h	"SYSTEM_DEVICE_CHANGED" removable system devices have been inserted
 	  or removed
- 0004h	"CONFIG_CHANGE_FAILED" error detected while atempting to add or remove
+ 0004h	"CONFIG_CHANGE_FAILED" error detected while attempting to add or remove
 	  devices
  8000h-FFFEh OEM-defined events
  FFFFh	"UNKNOWN_SYSTEM_EVENT"
@@ -425,7 +425,7 @@ SeeAlso: #F0048,#F0059
 Values for SMBIOS structure-change operation:
  00h	change a single byte in the identified structure
  01h	change a word (two bytes) in the identified structure
- 02h	change a DWORD (four byets) in the identified structure
+ 02h	change a DWORD (four bytes) in the identified structure
  03h	add the identified structure to the SMBIOS structure pool
  04h	remove the identified structure from the SMBIOS structure pool
  05h	change a string in the identified structure
@@ -1067,7 +1067,7 @@ Offset	Size	Description	(Table F0083)
  16h	WORD	Boot Connection Vector offset (real/protected mode) or 0000h
 		(see #F0089)
  18h	WORD	Disconnect Vector offset (real/protected mode) or 0000h
-		far-called by system BIOS is boot attempt failed
+		far-called by system BIOS if boot attempt failed
  1Ah	WORD	bootstrap entry point (real/protected mode) or 0000h
  1Ch	WORD	reserved (0)
  1Eh	WORD	Static Resource Information offset (real/prot mode) or 0000h
