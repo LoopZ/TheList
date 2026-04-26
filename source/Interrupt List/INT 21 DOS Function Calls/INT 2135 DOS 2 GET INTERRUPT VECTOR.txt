@@ -10,5 +10,6 @@ INT 21 - DOS 2+ - GET INTERRUPT VECTOR
 Return: ES:BX -> current interrupt handler
 Notes:	under DR DOS 5.0+, this function does not use any of the DOS-internal
 	  stacks and may thus be called at any time
+	lDOS as of 2026-04-26 also runs this function on the user stack
 SeeAlso: AH=25h,AX=2503h
 

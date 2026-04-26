@@ -9,7 +9,7 @@ INT 21 U - DOS 3.1+ internal - SERVER FUNCTION CALL
 	DS:DX -> DOS parameter list (see #01686)
 	DPL contains all register values for a call to INT 21h
 Return: as appropriate for function being called
-Notes:	does not check AH.  Out of range values will crash the system
+Notes:	does not check AH. out of range values will crash the system (see BUGS)
 	executes using specified computer ID and process ID
 	sharing delay loops skipped
 	a special sharing mode is enabled to handle FCBs opened across network
@@ -26,6 +26,19 @@ BUGS:	the OS/2 2.0 DOS Boot Session incorrectly maps DOS drive letters,
 	DR DOS 5.0-6.0 merely recursively call INT 21 after loading the
 	  registers from the DPL, leading to problems for peer-to-peer
 	  networks
+	on MS-DOS v4.01 and v5, calling AH=33h,AH=50h,AH=51h,AH=62h, or AH=64h
+	  using this function crashes the system. this is because the DISPATCH
+	  table entries point to the user stack functions, which do not expect
+	  to be called from the main REDISP entry. high function numbers that
+	  exceed the DISPATCH table size (eg AH=6Dh,AH=71h,AH=73h) also crash.
+	lDOS as of 2026-04-26 returns MS-DOS v1 style errors (AL = 00h, CF
+	  unchanged) for the above listed function numbers. AH=25h and AH=35h
+	  are handled in a special way: if they are called directly they use
+	  small handlers on the user stack. if they are called using this
+	  function then the old code that works from REDISP is used instead.
+	Enhanced DR-DOS appears to handle function AH=33h fine(?) but crashes
+	  on AH=75h or higher. it corrupts memory for function AH=62h. likely,
+	  function AH=51h is broken as well. function AH=50h appears fine.
 SeeAlso: AH=3Dh,AH=41h,AH=56h,AH=60h
 
 Format of DOS parameter list:
