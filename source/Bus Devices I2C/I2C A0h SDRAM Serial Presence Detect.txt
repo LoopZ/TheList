@@ -44,9 +44,9 @@ Offset	Size	Description	(Table I0104)
  10h	BYTE	SDRAM device attributes: supported burst lengths (see #I0054)
  11h	BYTE	SDRAM device attributes: number of banks on device
 		(00h = reserved)
- 12h	BYTE	SDRAM device atttributes: CAS latency (see #I0055)
- 13h	BYTE	SDRAM device atttributes: CS latency (see #I0056)
- 14h	BYTE	SDRAM device atttributes: WE latency (see #I0056)
+ 12h	BYTE	SDRAM device attributes: CAS latency (see #I0055)
+ 13h	BYTE	SDRAM device attributes: CS latency (see #I0056)
+ 14h	BYTE	SDRAM device attributes: WE latency (see #I0056)
  15h	BYTE	SDRAM module attributes (see #I0057)
  16h	BYTE	SDRAM device attributes: general (see #I0058)
  17h	BYTE	SDRAM minimum cycle time at second highest CAS latency
@@ -172,7 +172,7 @@ SeeAlso: #I0047,#I0055
 
 Bitfields for SDRAM module attributes:
 Bit(s)	Description	(Table I0114)
- 0	buffered addres/control inputs (Ax, RAS, CAS, WE, CKE, S)
+ 0	buffered address/control inputs (Ax, RAS, CAS, WE, CKE, S)
  1	registered address/control inputs (Ax, RAS, CAS, WE, CKE, S)
  2	on-card PLL for clock
  3	buffered DQMB inputs
