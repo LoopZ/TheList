@@ -20,11 +20,18 @@ Bitfields for file time:
 Bit(s)	Description	(Table 01665)
  15-11	hours (0-23)
  10-5	minutes
- 4-0	seconds/2
+ 4-0	seconds/2 (this cannot encode odd seconds)
+Notes:	all of these fields are 0-based
 
 Bitfields for file date:
 Bit(s)	Description	(Table 01666)
- 15-9	year - 1980
+ 15-9	year minus 1980 (0 to 127, corresponding to 1980 to 2107)
  8-5	month
  4-0	day
-
+Notes:	the month and day are encoded 1-based, so that if they hold zeroes
+	  they encode an invalid date. this is typically the case if
+	  the entire file date is all-zeroes.
+	the lDOS bootimg assembler script usually initialises all file dates
+	  and times as all-zeroes. some shells (eg MS-DOS v4.01 command.com)
+	  will detect these and not display any date, others (eg FreeCOM)
+	  may display a stamp like "1980-00-00 00:00:00"
