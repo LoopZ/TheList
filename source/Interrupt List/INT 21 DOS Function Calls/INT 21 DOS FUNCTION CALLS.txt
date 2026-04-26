@@ -1,0 +1,18 @@
+----------------------------------------------------------------------------
+ Unique ID: 21
+  Category: D 	DOS kernel
+      Flag: n/a
+----------------------------------------------------------------------------
+
+INT 21 - DOS - FUNCTION CALLS
+	AH = function
+Return:
+--- most MS-DOS v2+ functions ---
+	CF clear if successful
+	CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+--- some MS-DOS v1 functions, functions beyond last supported ---
+	CF unchanged
+	AL = 00h on error
+Notes:	high function numbers like AH=6Ch, AH=71h, AH=73h use the
+	  MS-DOS v1 style error return if they're not supported at all

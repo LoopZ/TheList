@@ -22,6 +22,7 @@ Notes:	under the FlashTek X-32 DOS extender, the path pointer is in DS:EDX
 	MS-DOS 5.0 and DR DOS 3.41/5.0 will insert a missing trailing backslash
 	  before appending the generated filename, but due to this, an empty
 	  string results in a file in the root directory
+	the buffer may be already written even if this call returns an error
 BUGS:	COMPAQ DOS 3.31 hangs if the pathname is at XXXXh:0000h; it apparently
 	  wraps around to the end of the segment
 	MS-DOS 5.00 revisions A and B and PC-DOS 5.00 revision A reportedly
@@ -29,6 +30,13 @@ BUGS:	COMPAQ DOS 3.31 hangs if the pathname is at XXXXh:0000h; it apparently
 	  root directory is full (no free directory entries)
 	Mark Incley <mincley@krisalis.demon.co.uk> reports that this function
 	  hangs in MS-DOS 6.2x if the name includes two consecutive path
-	  separators (e.g. C:\\ )
+	  separators (e.g. "C:\\"). this was observed on MS-DOS v5 as well,
+	  but not on lDOS (based on MS-DOS v4.01). lDOS treats this name
+	  as a UNC path but returns immediately (with an error).
+	the MS-DOS v5 bug is due to looping on the internal error 5 if the
+	  extended error code (see offset 04h in #01690) is not equal to 41h
+	  (network access denied) or 53h (fail on INT 24). if no redirector
+	  handles the UNC, the INT 2F/AX=1118h call returns error 01h which
+	  causes DOS to loop infinitely.
 SeeAlso: AH=3Ch,AH=5Bh
 

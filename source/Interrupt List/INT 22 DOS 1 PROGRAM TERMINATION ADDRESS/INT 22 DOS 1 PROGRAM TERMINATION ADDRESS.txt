@@ -8,9 +8,17 @@ INT 22 - DOS 1+ - PROGRAM TERMINATION ADDRESS
 Desc:	this vector specifies the address of the routine which is to be given
 	  control after a program is terminated; it should never be called
 	  directly, since it does not point at an interrupt handler
-Notes:	this vector is restored from the DWORD at offset 0Ah in the PSP during
-	  termination, and then a FAR JMP is performed to the address in INT 22
+Notes:	this vector is restored during termination from the "Parent Return
+	  Address", the DWORD at offset 0Ah in the PSP (see #01378) and then
+	  the INT 22 vector is patched into the CS:IP of the parent's user
+	  stack frame (stack frame found from offset 2Eh in the parent PSP,
+	  parent PSP found from offset 16h in the child PSP).
 	normally points at the instruction immediately following INT 21/AH=4Bh
 	  call which loaded the current program
-SeeAlso: INT 20,INT 21/AH=00h,INT 21/AH=31h,INT 21/AH=4Ch
-
+	DOS should return to this address with CF=0, IF=1, DF=0, TF=0. the
+	  CF clear indicates to the INT 21/AH=4Bh caller that EXEC did succeed
+	lDOS programs may patch the Parent Return Address (usually along the
+	  parent) of a process to return to some other address
+	processes that are patched to be self-parented should also update the
+	  PRA in order to return into their own code
+SeeAlso: INT 20,INT 21/AH=00h,INT 21/AH=31h,INT 21/AH=4Ch,INT 27
