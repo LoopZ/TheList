@@ -8,7 +8,7 @@ INT 21 - Software Carousel - BOOT THE SYSTEM
 	AX = DF09h
 Return: AL = status
 	    00h Carousel not running
-	    FFh unsucessful
+	    FFh unsuccessful
 		AH = error code (01h,03h) (see #01813)
 Notes:	this function never returns if successful
 

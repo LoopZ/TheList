@@ -45,7 +45,7 @@ Return: RETF, CF set: terminate process
 	RETF, CF clear, ZF set: abort any interrupted system call with an error
 	RETF, CF clear, ZF clear: restart any interrupted system call
 	IRET: restart any interrupted system call
-Notes:	the signal handler may also perform a nonlocal GOTO by resetting the
+Notes:	the signal handler may also perform a non-local GOTO by resetting the
 	  stack pointer and jumping; before doing so, it should dismiss the
 	  signal by calling this function with BL=04h
 

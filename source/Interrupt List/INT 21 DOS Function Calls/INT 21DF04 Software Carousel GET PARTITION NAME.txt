@@ -12,7 +12,7 @@ Return: AL = status
 	    01h successful
 		CX = length of name (00h if default partition name)
 		ES:BX -> partition name (if CX nonzero)
-	    FFh unsucessful
+	    FFh unsuccessful
 		AH = error code (01h) (see #01813)
 SeeAlso: AX=DF06h
 

@@ -12,7 +12,7 @@ Return: AL = status
 	    01h successful
 		BL = partition state (00h no program running, 01h prog running)
 		DX = partition size in KB
-	    FFh unsucessful
+	    FFh unsuccessful
 		AH = error code (01h) (see #01813)
 SeeAlso: AX=DF05h
 

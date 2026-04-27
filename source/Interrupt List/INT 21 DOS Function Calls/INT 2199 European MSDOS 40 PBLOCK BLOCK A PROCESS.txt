@@ -8,7 +8,7 @@ INT 21 u - European MS-DOS 4.0 - "PBLOCK" - BLOCK A PROCESS
 	AH = 99h
 	DS:BX -> memory location to block on
 	CX = timeout in milliseconds
-	DH = nonzero if interruptable
+	DH = nonzero if interruptible
 Return: CF clear if awakened by event
 	    AX = 0000h
 	CF set if unusual wakeup

@@ -14,6 +14,6 @@ Desc:	this function closes the current capture file for the default LPT
 Notes:	this function is supported by NetWare 4.0+, Advanced NetWare 1.0+, and
 	  Alloy NTNX; under NTNX, it sends a print break (see INT 17/AH=84h)
 	if more data is sent to the LPT port after this call, a new capture
-	  file will be opeend
+	  file will be opened
 SeeAlso: AH=DFh/DL=00h,AH=DFh/DL=01h,AH=DFh/DL=02h,AH=DFh/DL=07h
 

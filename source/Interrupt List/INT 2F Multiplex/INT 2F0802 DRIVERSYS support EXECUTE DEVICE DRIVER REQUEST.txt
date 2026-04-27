@@ -108,7 +108,7 @@ Offset	Size	Description	(Table 02597)
 		Note:	some drives (or controllers???) forget the change line
 			  status if another drive is accessed afterwards. The
 			  DOS IO.SYS layer takes care of this by not relying
-			  on the reported change line status when the change 
+			  on the reported change line status when the change
 			  line is not active and a different drive is accessed,
 			  instead it reports "don't know" to the DOS kernel.
 ---command code 02h---
@@ -292,7 +292,7 @@ Call European MS-DOS 4.0 device helper function with:
 	    09h "ProcBlock" block on event
 		AX:BX = event identifier (typically a pointer)
 		CX = timeout in ms or 0000h for never
-		DH = interruptable flag (nonzero if pause may be interrupted)
+		DH = interruptible flag (nonzero if pause may be interrupted)
 		interrupts disabled
 		Return: after corresponding ProcRun call
 			CF clear if event wakeup, set if unusual wakeup

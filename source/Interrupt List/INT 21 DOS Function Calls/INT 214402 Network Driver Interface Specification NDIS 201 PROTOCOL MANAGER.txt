@@ -293,7 +293,8 @@ Offset	Size	Description	(Table 01441)
  54h	DWORD	broadcast bytes transmitted (FFFFFFFFh = not counted)
  58h	DWORD	multicast bytes transmitted (FFFFFFFFh = not counted)
  5Ch	DWORD	frames not transmitted--timeout (FFFFFFFFh = not counted)
- 60h	DWORD	frames not transmitted--hardware error (FFFFFFFFh = not countd)
+ 60h	DWORD	frames not transmitted--hardware error
+        (FFFFFFFFh = not counted)
  64h  N BYTEs	vendor-specific info
 
 Bitfields for MAC status bits:

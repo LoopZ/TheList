@@ -30,7 +30,7 @@ Offset	Size	Description	(Table 02161)
  02h	DWORD	volume type
  06h	DWORD	status flag bits
 		bit 0: suballocation
-		bit 1: compressoin
+		bit 1: compression
 		bit 2: migration
 		bit 3: auditing
  0Ah	DWORD	sector size
@@ -41,7 +41,7 @@ Offset	Size	Description	(Table 02161)
  1Eh	DWORD	freeable in-limbo sectors
  22h	DWORD	non-freeable in-limbo sectors
  26h	DWORD	non-freeable available suballocated sectors
- 2Ah	DWORD	unuable suballocated sectors
+ 2Ah	DWORD	unusable suballocated sectors
  2Eh	DWORD	total suballocated clusters
  32h	DWORD	number of data streams
  36h	DWORD	number of in-limbo data streams
