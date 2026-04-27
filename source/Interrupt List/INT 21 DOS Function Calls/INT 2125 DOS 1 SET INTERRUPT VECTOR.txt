@@ -20,6 +20,7 @@ Notes:	this function is preferred over direct modification of the interrupt
 	  of just two words in addition to the IRET frame, allowing it to be
 	  called from INT 21h functions, specificially device drivers.  This
 	  fixes the MCS SMB client
+	lDOS as of 2026-04-26 also runs this function on the user stack
 	Novell NetWare (except the new DOS Requester) monitors the offset of
 	  any INT 24 set, and if equal to the value at startup, substitutes
 	  its own handler to allow handling of network errors; this introduces
