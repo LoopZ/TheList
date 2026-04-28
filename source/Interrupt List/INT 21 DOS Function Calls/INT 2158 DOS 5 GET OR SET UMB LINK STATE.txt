@@ -33,4 +33,11 @@ Notes:	a program which changes the UMB link state should restore it before
 	DOS keeps track of the UMB link state in an internal variable too
 	if the extended allocation strategy mask 100h is set (see #01679
 	  at AH=58h), lDOS can use UMBs even with the UMB link disabled.
+BUGS:	FreeDOS only allocates UMBs once during fdconfig.sys processing,
+	  after the first device driver that provides at least one UMB on
+	  the XMS interface (see INT 2F/AX=4310h). (FreeDOS kernel issue
+	  #250.) reportedly, MS-DOS will allocate any additional UMBs
+	  after subsequent drivers were loaded. this is also true of lDOS.
+	FreeDOS tries to allocate the first UMB without checking that it
+	  is large enough with DOSDATA=UMB (FreeDOS kernel issue #203).
 SeeAlso: #01687,#02766 at INT 2F/AX=4310h,AX=4B80h"FreeDOS"
