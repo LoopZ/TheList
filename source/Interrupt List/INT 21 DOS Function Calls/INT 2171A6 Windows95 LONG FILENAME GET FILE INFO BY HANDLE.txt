@@ -14,7 +14,7 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code
 		7100h if function not supported
-SeeAlso: AX=71A7h/BL=00h
+SeeAlso: AX=71A7h/BL=00h,INT 2F/AX=11A6h"dosemu2"
 Notes:	supported by FAT+ builds of Enhanced DR-DOS on local FAT FS drives;
 	  only SFNs are actually used but the DOS wants to be able to return
 	  64-bit file sizes (as FAT+ allows 38-bit file sizes on disk).

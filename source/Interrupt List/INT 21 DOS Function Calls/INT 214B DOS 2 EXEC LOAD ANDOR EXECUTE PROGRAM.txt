@@ -12,7 +12,7 @@ INT 21 - DOS 2+ - "EXEC" - LOAD AND/OR EXECUTE PROGRAM
 	    03h load overlay (see #01591)
 	    04h load and execute in background (European MS-DOS 4.0 only)
 		"Exec & Go" (see also AH=80h)
-	DS:DX -> ASCIZ program name (must include extension)
+	DS:DX -> ASCIZ program filename (must include extension)
 	ES:BX -> parameter block (see #01590,#01591,#01592)
 	CX = mode (subfunction 04h only)
 		0000h child placed in zombie mode after termination
@@ -152,7 +152,7 @@ BUGS:	DOS 2.00 assumes that DS points at the current program's PSP
 	  top word of the caller's stack if the loaded module terminates with
 	  INT 21/AH=4Ch in some versions of MS-DOS, including v5.00.
 SeeAlso: AX=4B05h,AH=4Ch,AH=4Dh,AH=64h/BX=0025h,AH=8Ah,INT 2E,INT 60/DI=0604h
-SeeAlso: AX=4B80h"FreeDOS"
+SeeAlso: AX=4B80h"FreeDOS",AX=714Bh"RxDOS"
 
 Format of EXEC parameter block for AL=00h,01h,04h:
 Offset	Size	Description	(Table 01590)

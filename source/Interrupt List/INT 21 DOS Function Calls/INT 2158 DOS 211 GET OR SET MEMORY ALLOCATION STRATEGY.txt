@@ -11,7 +11,7 @@ INT 21 - DOS 2.11+ - GET OR SET MEMORY ALLOCATION STRATEGY
 		Return: AX = current strategy (see #01679)
 	    01h set allocation strategy
 		BL = new allocation strategy (see #01679)
-		BH = 00h (DOS 5+)
+		BH = 00h (DOS 5+), new extended strategy (lDOS)
 Return: CF clear if successful
 	CF set on error
 	    AX = error code (01h) (see #01680)
@@ -25,7 +25,7 @@ Notes:	the Set subfunction accepts any value in BL for DOS 3.x and 4.x;
 	  before terminating
 	Toshiba MS-DOS v2.11 supports subfunctions 00h and 01h, as does the
 	  TI Professional MS-DOS v2.13
-	DR DOS 3.41 reportedly reverses subfunctions 00h and 01h
+BUGS:	DR DOS 3.41 reportedly reverses subfunctions 00h and 01h
 SeeAlso: AH=48h,AH=49h,AH=4Ah,INT 2F/AX=4310h"XMS",INT 67/AH=3Fh
 SeeAlso: AX=4B80h"FreeDOS"
 
@@ -34,7 +34,7 @@ Values for DOS memory allocation strategy:
  00h all memory first fit
  01h all memory best fit
  02h all memory last fit
----DOS 5+ ---
+--- DOS 5+ ---
  40h upper memory first fit
  41h upper memory best fit
  42h upper memory last fit

@@ -1,0 +1,22 @@
+----------------------------------------------------------------------------
+ Unique ID: 21714B
+  Category: D 	DOS kernel
+      Flag: n/a
+----------------------------------------------------------------------------
+
+INT 21 - RxDOS - LONG FILENAME - "EXEC" - LOAD AND/OR EXECUTE PROGRAM
+	AX = 714Bh
+	CL = type of load
+	    00h load and execute
+	    01h load but do not execute
+	    03h load overlay (see #01591)
+	DS:DX -> ASCIZ program long filename (must include extension)
+	ES:BX -> parameter block (see #01590,#01591,#01592)
+Return:	as for AH=4Bh
+	CF unchanged and AL = 00h if no LFNs are supported at all
+	possibly other error (eg 01h) with LFN servers other than RxDOS's
+SeeAlso: AH=4Bh,AX=335Eh,AX=3360h
+Notes:	supported by LFN builds of RxDOS (such as v7.1.5)
+	should be called with CF set as function 71h subfunctions may
+	  return with DOS v1 style error return (AL = 00h, CF unchanged).
+	  if caller sets CF this results in an AX = 7100h, CF set return.
