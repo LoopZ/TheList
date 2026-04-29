@@ -25,14 +25,14 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	OS/2 Warp 3.0 Virtual DOS Machines report v20.30; Warp 4 VDMs report
 	  v20.40.
 	the Windows NT NTVDM DOS returns version 5.00, subject to SETVER
-	DOS 4.01 and 4.02 identify themselves as version 4.00; use
-	  INT 21/AH=87h to distinguish between the original European MS-DOS 4.0
-	  and the later PC-DOS 4.0x and MS-DOS 4.0x
+	MS-DOS 4.01 and 4.02 identify themselves as version 4.00
 	The MS-DOS v4.01 command.com displays the version as v4.01 by adding
 	  one to the minor version as returned from this function.
 	MS-DOS v4.00 was originally developed as v3.40, some references to
 	  this version number remained. The default contents of the special
 	  program list of MS-DOS v4.00 all are set up as returning v3.40
+	use INT 21/AH=87h to distinguish between multitasking/European MS-DOS
+	  4.00 and the v3.40 based developments PC-DOS 4.0x and MS-DOS 4.0x
 	IBM DOS 6.1 reports its version as 6.00; use the OEM number to
 	  distinguish between MS-DOS 6.00 and IBM DOS 6.1 (there was never an
 	  IBM DOS 6.0)
@@ -122,8 +122,7 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 BUGS:	FreeDOS sources note that "32RTM won't like non-zero values" in CX
 SeeAlso: AX=3000h/BX=3000h,AX=3306h"DOS",AX=4452h,AH=87h,INT 15/AX=4900h
 SeeAlso: AH=20h"S/DOS",INT 2F/AX=122Fh,INT 2F/AX=4010h,INT 2F/AX=4A33h
-SeeAlso: INT 2F/AX=E002h
-SeeAlso: AX=33FCh
+SeeAlso: INT 2F/AX=E002h,AX=33FCh"FreeDOS",AX=33FFh
 
 (Table 01394)
 Values for DOS OEM number:
@@ -194,4 +193,3 @@ Notes:	'*' indicates an OEM release of MS-DOS, while '-' indicates an OEM
 	    Zenith DOS 2.x (uses Zenith disk mechanism, extra drives at G:)
 	    Zenith DOS 3.x (can be configured for Zenith or MS-DOS mechanism)
 	    Zenith DOS 3.3 PLUS (>32MB partitions similar to MS-DOS 4+)
-
