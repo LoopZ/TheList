@@ -15,6 +15,6 @@ Return: AL = status
 Notes:	DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$
 	  driver interface, the CMOS time is also updated to the current
 	  DOS time (which is the BIOS time-of-day clock with the default
-	  CLOCK$ driver)
+	  CLOCK$ driver, see MEM 0040h:006Ch and INT 08"IRQ0", INT 1C)
 SeeAlso: AH=2Ah,AH=2Dh,INT 1A/AH=05h
 
