@@ -14,4 +14,12 @@ Notes:	This function does not use any of the DOS-internal stacks and may
 	  drive letters sequentially to the other drives in the system
 	this call is supported by OS/2 Warp 3.0, but not earlier versions of
 	  OS/2; it is also supported by Novell DOS 7
+	the boot drive is the default drive during config processing
+	Enhanced DR-DOS and lDOS may set the boot drive to correspond to any
+	  on-disk file system/partition if their kernels are loaded from a
+	  given file system. if no exact partition match is found, then the
+	  first partition logged in on the same unit may be used.
+	other DOS versions reportedly only support using drive A: or C: (or
+	  possibly B:) as the boot drive; loading from an INT 13 unit >= 80h
+	  will then select drive C: as boot drive.
 SeeAlso: AX=335Fh
