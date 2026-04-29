@@ -37,8 +37,11 @@ SeeAlso: #01690
 Format of DOS 4.0-6.0 swappable data area:
 Offset	Size	Description	(Table 01690)
  -34	BYTE	printer echo flag (00h off, FFh active)
+ -33	BYTE	verify flag
+ -32	BYTE	CharCo (counts 0..63 for STATCHK call during text output)
  -31	BYTE	current switch character (ignored by DOS 5+)
  -30	BYTE	current memory allocation strategy (see AH=58h)
+ -29	BYTE	fShare (set by SHARE?)
  -28	BYTE	incremented on each INT 21/AX=5E01h call
  -27 16 BYTEs	machine name set by INT 21/AX=5E01h
  -11  5 WORDs	zero-terminated list of offsets which need to be patched to
@@ -74,7 +77,8 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 ---remainder need only be swapped if in DOS---
  1Ah	WORD	value of AX on call to INT 21
 		Note:	does not contain correct value on functions 00h-0Ch,
-			  50h, 51h, 59h, or 62h			
+			  50h, 51h, 59h, or 62h. possibly also true of the
+			  functions 33h, 64h, 25h, 35h (user stack functions)
  1Ch	WORD	PSP segment for sharing/network (0000h = local)
  1Eh	WORD	network machine number for sharing/network (0000h = local)
  20h	WORD	first usable memory block found when allocating memory
@@ -91,8 +95,8 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
  2Fh	BYTE	padding (unused)
  30h	BYTE	day of month
  31h	BYTE	month
- 32h	WORD	year - 1980
- 34h	WORD	number of days since 01jan1980
+ 32h	WORD	year minus 1980
+ 34h	WORD	number of days since 1980-01-01
  36h	BYTE	day of week (0 = Sunday)
  37h	BYTE	flag: console swapped during read from device
  38h	BYTE	flag: safe to call INT 28 if nonzero
@@ -125,7 +129,7 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 237h 11 BYTEs	wildcard destination specification for rename (FCB format)
 242h	BYTE	terminating NUL for above filespec
 243h	BYTE	padding???
-244h	WORD	destination starting sector (cluster???)
+244h	WORD	DESTSTART, REN destination start dir cluster (init from 2A2h)
 246h  5 BYTEs	extra space to allow a directory entry to be stored starting
 		  at offset 22Bh
 24Bh	BYTE	extended FCB file attributes
@@ -153,7 +157,7 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 260h	DWORD	pointer to Drive Parameter Block for critical error invocation
 264h	DWORD	pointer to stack frame containing user registers on INT 21
 268h	WORD	stores SP across INT 24
-26Ah	DWORD	pointer to DOS Drive Parameter Block for ???
+26Ah	DWORD	pointer to current DOS Drive Parameter Block (see #01395)
 26Eh	WORD	segment of disk buffer
 270h	DWORD	saving partial cluster number
 274h	WORD	"sda_PREREAD" 00h if preread, 01h if optional
@@ -175,7 +179,7 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 29Ah	WORD	last relative cluster within file being accessed
 29Ch	WORD	temp: absolute cluster number being accessed
 29Eh	DWORD	directory sector number
-2A2h	WORD	directory cluster number
+2A2h	WORD	DIRSTART, directory cluster number
 2A4h	DWORD	current relative sector number within file
 2A8h	DWORD	current sector number (number of previously written sectors)
 2ACh	WORD	current byte offset within sector
@@ -188,7 +192,7 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 2BCh	WORD	next file cluster number
 2BEh	DWORD	number of bytes appended to file
 2C2h	DWORD	pointer to current work disk buffer
-2C6h	DWORD	pointer to working SFT
+2C6h	DWORD	pointer to working SFT "SFT of console swapped guy"
 2CAh	WORD	used by INT 21 dispatcher to store caller's BX
 2CCh	WORD	used by INT 21 dispatcher to store caller's DS
 2CEh	WORD	temporary storage while saving/restoring caller's registers
@@ -211,7 +215,7 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 2ECh	WORD	stores DS during call to [List-of-Lists + 37h]
 2EEh	WORD	temporary storage (various uses)
 2F0h	BYTE	storage for drive error
-2F1h	WORD	DOS 3.4 (European MS-DOS 4.00) bit flags
+2F1h	WORD	MS-DOS v3.40 (development branch that led to v4.00) bit flags
 2F3h	DWORD	pointer to user-supplied filename
 2F7h	DWORD	pointer to user-supplied rename destination filename
 2FBh	WORD	stores SS during call to [List-of-Lists + 37h] and INT 25,26 
