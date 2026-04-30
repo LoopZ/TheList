@@ -13,6 +13,12 @@ Notes:	Microsoft recommends using INT 21/AH=4Ch for DOS 2+
 	  whatever cleanup it needs to do (restoring the INT 22,INT 23,INT 24
 	  vectors from the PSP assumed to be located at offset 0000h in the
 	  segment indicated by the stack copy of CS, etc.)
+	on MS-DOS v1 dirty FATs are written, the two or three INT vectors are
+	  copied to the IVT, and the resulting INT 22 vector is used along
+	  with the original (child / process that's terminating) user stack
+	  to return to the parent. the CS:IP and FL on the stack are not
+	  popped and the live FL contains IF=1 DF=0 and arithmetic status
+	  flags from XOR AX,AX (including ZF=1 CF=0).
 	if the PSP is its own parent, the process's memory is not freed; if
 	  INT 22 additionally points into the terminating program, the
 	  process is effectively NOT terminated

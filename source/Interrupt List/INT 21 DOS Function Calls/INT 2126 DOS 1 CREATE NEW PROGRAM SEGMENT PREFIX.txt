@@ -38,7 +38,7 @@ Offset	Size	Description	(Table 01378)
  0Ah	DWORD	stored INT 22 termination address (Parent Return Address)
  0Eh	DWORD	stored INT 23 control-Break handler address
  12h	DWORD	DOS 1.1+ stored INT 24 critical error handler address
- 16h	WORD	segment of parent PSP (can be this PSP itself)
+ 16h	WORD	(presumed DOS 2+) parent PSP segment (can be this PSP itself)
  18h 20 BYTEs	DOS 2+ Job File Table, one byte per file handle, FFh = closed
 		(the JFT is known as Process Handle Table for lDOS)
  2Ch	WORD	DOS 2+ segment of environment for process (see #01379)
@@ -88,9 +88,6 @@ Notes:	in DOS v3+, the limit on simultaneously open files may be increased by
 	  Novell NetWare also uses values from FEh down to 80h or one more than
 	  FILES= (whichever is greater) to indicate remote files (except on
 	  OS/2, where is uses CFh down to 80h)
-	MS-DOS 5.00 incorrectly fills the FCB fields when loading a program
-	  high; the first FCB is empty and the second contains the first
-	  parameter
 	some DOS extenders place protected-mode values in various PSP fields
 	  such as the "parent" field, which can confuse PSP walkers.  Always
 	  check either for the CDh 20h signature or that the suspected PSP is
@@ -122,12 +119,16 @@ Notes:	in DOS v3+, the limit on simultaneously open files may be increased by
 	  vector, which may be relocated during processing of dconfig.sys
 	  or ldos.ini. FreeDOS happens to put the DOSDATA segment in this
 	  spot as well, but does not support relocating DOSDATA. (see also
-	  INT 2F/AX=1203h on DOSDATA segment details.)
+	  INT 31 on its use and INT 2F/AX=1203h on DOSDATA segment details.)
 BUGS:	When shelling out from the Borland Pascal 7.00 IDE, overly-long
 	  command lines will not be delimited by a 0Dh character, and the
 	  length byte is set to 80h!  A workaround is to always patch in a
 	  0Dh at the last position of the command line buffer before scanning
 	  the command line.
+	MS-DOS 5.00 incorrectly fills the FCB fields when loading a program
+	  high; the first FCB is empty and the second contains the first
+	  parameter
+	FreeDOS FreeCOM reportedly corrupts the second FCB (FreeCOM bug #185)
 
 Format of environment block:
 Offset	Size	Description	(Table 01379)
