@@ -21,6 +21,15 @@ Notes:	this function is preferred over direct modification of the interrupt
 	  called from INT 21h functions, specificially device drivers.  This
 	  fixes the MCS SMB client
 	lDOS as of 2026-04-26 also runs this function on the user stack
+	in OpenDOS v7.01 and Enhanced DR-DOS, this function and AH=35h are
+	  dispatched from the normal int 21h handler but are marked with a
+	  comment reading "WARNING - use no stack as device drivers have
+	  called us re-entrantly". apparently this is intended to not use
+	  more than a single word (the dispatcher near return address) of the
+	  DOS-internal stack. however, this scheme is not consistent as part
+	  of the code runs with IF set so IRQs may run, and debuggers may
+	  also cause the code to use more of the stack.
+	see notes on AH=35h and #02568 for restoring interrupt vectors
 	Novell NetWare (except the new DOS Requester) monitors the offset of
 	  any INT 24 set, and if equal to the value at startup, substitutes
 	  its own handler to allow handling of network errors; this introduces

@@ -11,5 +11,26 @@ Return: ES:BX -> current interrupt handler
 Notes:	under DR DOS 5.0+, this function does not use any of the DOS-internal
 	  stacks and may thus be called at any time
 	lDOS as of 2026-04-26 also runs this function on the user stack
+	in OpenDOS v7.01 and Enhanced DR-DOS, this function and AH=25h are
+	  dispatched from the normal int 21h handler but are marked with a
+	  comment reading "WARNING - use no stack as device drivers have
+	  called us re-entrantly". apparently this is intended to not use
+	  more than a single word (the dispatcher near return address) of the
+	  DOS-internal stack. however, this scheme is not consistent as part
+	  of the code runs with IF set so IRQs may run, and debuggers may
+	  also cause the code to use more of the stack.
+	if a program wants to uninstall an interrupt handler, especially if
+	  it was installed residently and other foreground programs have run
+	  since, it should find the vector or downlink that points to its
+	  handler. this search should start from the IVT, which this call
+	  accesses. if the returned vector doesn't point at the program's
+	  handler, it may next scan the topmost handler for an IBM Interrupt
+	  Sharing Protocol header (see #02568) and if found, compare that
+	  header's downlink with its handler address. the search may continue
+	  if the downlink doesn't match but points at another IISP header.
+	the advanced deinstallation method of lDOS TSRs (see notes in #02568)
+	  also may query AMIS multiplexers for their handlers (INT 2D/AL=04h)
+	  to find hidden chains not reachable from the topmost handler that
+	  is returned by this call.
 SeeAlso: AH=25h,AX=2503h
 
