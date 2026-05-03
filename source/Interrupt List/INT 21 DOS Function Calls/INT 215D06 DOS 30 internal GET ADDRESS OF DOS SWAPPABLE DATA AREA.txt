@@ -26,6 +26,10 @@ Notes:	the Critical Error flag is used in conjunction with the InDOS flag
 	  in use: 00h = DOS 3.x, 01h = DOS 4.0-6.0, other = error.
 	DR DOS 3.41+ supports this function, but the SDA format beyond the
 	  first 18h bytes is completely different from MS-DOS
+	an OS/2 Museum page from 2025 February and its comments reported that
+	  this call is supported since MS-DOS v3.00 but the format differed
+	  from the SDA known for MS-DOS v3.10, and in particular ErrorMode is
+	  not located at the address returned from this call.
 BUGS:	calling this function with certain values in DX crashes Novell DOS 7.0
 	  prior to Update 14
 SeeAlso: AH=52h,AX=5D0Bh,INT 2A/AH=80h,INT 2A/AH=81h,INT 2A/AH=82h

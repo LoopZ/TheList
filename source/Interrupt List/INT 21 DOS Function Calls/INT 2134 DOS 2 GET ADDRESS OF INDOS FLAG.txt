@@ -11,23 +11,46 @@ Notes:	this function executes on the DOS stack, and thus cannot be called
 	  while another DOS function is already executing; you should use
 	  this function once at the beginning of the program and store the
 	  returned pointer rather than calling it when requiring DOS access
+	InDOS is generally in the DOS data segment (see also INT 2F/AX=1203h)
+	on (Enhanced) DR-DOS and lDOS, programs running in device driver init
+	  (DEVICE=) or during INSTALLFIRST=, INSTALLMID=, or INSTALL= (in
+	  dconfig.sys or ldos.ini) may encounter an address from this call
+	  that becomes stale later as DOSDATA is relocated. if a program is
+	  to support this it should allow updating its references to DOSDATA
+	  (including the address of the InDOS flag) using either the segment
+	  of the INT 31 vector or by calling INT 2F/AX=1203h.
 	the value of InDOS is incremented whenever an INT 21 function begins
-	  and decremented whenever one completes
+	  and decremented whenever one completes (except for user stack
+	  functions, which may include AH=25h,33h,35h,50h,51h,62h,64h and
+	  high functions beyond the last supported, eg 6Ch, 71h, or 73h)
 	during an INT 28 call, it is safe to call some INT 21 functions even
 	  though InDOS may be 01h instead of zero
 	InDOS alone is not sufficient for determining when it is safe to
-	  enter DOS, as the critical error handling decrements InDOS and
-	  increments the critical error flag for the duration of the critical
-	  error.  Thus, it is possible for InDOS to be zero even if DOS is
-	  busy.
+	  enter DOS, as the critical error handling increments the critical
+	  error flag and decrements InDOS for the duration of the critical
+	  error (around calling INT 24).  Thus, it is possible for InDOS to
+	  be zero even if DOS is busy.
+	the critical error flag is the byte immediately following InDOS in
+	  DOS 2.x, and the byte BEFORE the InDOS flag in DOS v3.10+ and
+	  DR DOS 3.41+, however, according to a 2025 February OS/2 Museum
+	  article it is neither of these in MS-DOS/PC-DOS/COMPAQ DOS v3.00.
+	an earlier revision (up to 61) of this interrupt list reported that
+	  in "COMPAQ DOS 3.0" the critical error flag is located 1AAh bytes
+	  BEFORE the critical section (InDOS) flag.
+	on the OS/2 Museum blog, it is further reported that Turbo Pascal 6.0
+	  THELP scans the InDOS flag segment for part of the DOS instructions
+	  CMP BYTE [ErrorMode],0 \ JNZ DispCall \ MOV SP, IOStack to locate
+	  ErrorMode on DOS v3 and v4. this code is in the int 21h handler.
+	for DOS 3.10+, an undocumented call exists to get the address of the
+	  critical error flag (see AX=5D06h). it is reported this differs and
+	  does not point to the critical error flag on DOS v3.00
+	FreeDOS also increments and decrements InDOS during handling of
+	  INT 25 and INT 26 absolute disk sector I/O calls
 	SMARTDRV 4.0 sets the InDOS flag while flushing its buffers to disk,
 	  then zeros it on completion
-	the critical error flag is the byte immediately following InDOS in
-	  DOS 2.x, and the byte BEFORE the InDOS flag in DOS 3.0+ and
-	  DR DOS 3.41+ (except COMPAQ DOS 3.0, where the critical error flag
-	  is located 1AAh bytes BEFORE the critical section flag)
-	for DOS 3.1+, an undocumented call exists to get the address of the
-	  critical error flag (see AX=5D06h)
+	lDebug, FreeDOS Debug/X, and Enhanced Debug will detect the InDOS
+	  flag being set to force use of their ROM-BIOS I/O handlers rather
+	  than calling DOS, to allow debugging DOS itself.
 	this function was undocumented prior to the release of DOS 5.0.
 SeeAlso: AX=5D06h,AX=5D0Bh,INT 15/AX=DE1Fh,INT 28
 
