@@ -26,9 +26,47 @@ Notes:	the Critical Error flag is used in conjunction with the InDOS flag
 	  in use: 00h = DOS 3.x, 01h = DOS 4.0-6.0, other = error.
 	DR DOS 3.41+ supports this function, but the SDA format beyond the
 	  first 18h bytes is completely different from MS-DOS
+	an OS/2 Museum page from 2025 February and its comments reported that
+	  this call is supported since MS-DOS v3.00 but the format differed
+	  from the SDA known for MS-DOS v3.10, and in particular ErrorMode is
+	  not located at the address returned from this call.
 BUGS:	calling this function with certain values in DX crashes Novell DOS 7.0
 	  prior to Update 14
 SeeAlso: AH=52h,AX=5D0Bh,INT 2A/AH=80h,INT 2A/AH=81h,INT 2A/AH=82h
+
+Format of DOS 3.00 (non-COMPAQ DOS) Swappable Data Area:
+Offset	Size	Description	(Table 26006)
+ 05h	WORD	current PSP
+ 09h	BYTE	current drive
+ 10h	DWORD	current DTA
+35Fh 128 BYTEs	first filename
+3DFh 128 BYTEs	second filename
+45Fh 21 BYTEs	findfirst/findnext search data block (see #01626 at AH=4Eh)
+51Eh	BYTE	directory search attributes
+51Fh	BYTE	file open/access mode
+525h	DWORD	pointer to stack frame containing user registers on INT 21
+548h	DWORD	pointer to current directory structure for drive being accessed
+59Bh 21 BYTEs	FindFirst search data for source file(s) of a rename operation
+		(see #01626 at AH=4Eh)
+Notes:	this version of the SDA is detected by dosemu2 as an AX=3000h return
+	  of version 3.00 to 3.09, and a CX return value of this call != 0832h
+	these are the fields gleaned from dosemu2 redirector sources
+
+Format of DOS 3.00 (COMPAQ DOS) Swappable Data Area:
+Offset	Size	Description	(Table 26007)
+ 0Ch	WORD	current PSP
+ 16h	DWORD	current DTA
+ 20h	BYTE	current drive
+187h 128 BYTEs	first filename
+207h 128 BYTEs	second filename
+287h 21 BYTEs	findfirst/findnext search data block (see #01626 at AH=4Eh)
+32Eh	BYTE	directory search attributes
+32Fh	BYTE	file open/access mode
+346h	DWORD	pointer to stack frame containing user registers on INT 21
+362h	DWORD	pointer to current directory structure for drive being accessed
+Notes:	this version of the SDA is detected by dosemu2 as an AX=3000h return
+	  of version 3.00 to 3.09, and a CX return value of this call == 0832h
+	these are the fields gleaned from dosemu2 redirector sources
 
 Format of DOS 3.10-3.30 Swappable Data Area:
 Offset	Size	Description	(Table 01687)
