@@ -13,7 +13,9 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code (0Fh) (see #01680 at AH=59h/BX=0000h)
 Notes:	the returned path does not include a drive or the initial backslash
-	many Microsoft products for Windows rely on AX being 0100h on success
+	many Microsoft products for Windows rely on AX being 0100h on success,
+	  this does not appear to be true of MS-DOS v4 which only sets AL to
+	  zero explicitly, commented as "MZ 19 Jan 84"
 	under the FlashTek X-32 DOS extender, the buffer pointer is in DS:ESI
 SeeAlso: AH=19h,AH=3Bh,AH=71h,INT 15/AX=DE25h
 
