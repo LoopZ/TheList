@@ -13,7 +13,8 @@ Return: CF clear if successful
 	    AX = error code (04h,06h) (see #01680 at AH=59h/BX=0000h)
 Notes:	closes file with handle CX if it is still open
 	DOS 3.30 hangs if BX=CX on entry
+	lDOS (and predumably MS-DOS v4.01 too) closes the handle and returns
+	  error 06h if BX=CX on entry
 	moving file pointer for either handle will also move it for the other,
 	  because both will refer to the same system file table
 SeeAlso: AH=3Dh,AH=45h
-
