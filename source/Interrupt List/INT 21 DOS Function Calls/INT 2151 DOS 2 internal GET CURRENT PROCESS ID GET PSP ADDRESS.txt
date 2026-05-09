@@ -18,7 +18,7 @@ Notes:	DOS uses the current PSP address to determine which processes own files
 	identical to the documented AH=62h
 	this call was undocumented prior to the release of DOS 5.0
 	FreeDOS Debug/X, lDebug/X, and Enhanced Debug/X may directly read
-	  the PSP field in the SDA (offset 10h in #01687 at AX=5D05h).
+	  the PSP field in the SDA (offset 10h in #01687 at AX=5D06h).
 	  lDebug checks for this field matching its PSP initially and will
 	  disable the direct SDA access on a mismatch. lDebug also uses the
 	  INT 31 segment to track DOSDATA relocations (see INT 2F/AX=1203h).
