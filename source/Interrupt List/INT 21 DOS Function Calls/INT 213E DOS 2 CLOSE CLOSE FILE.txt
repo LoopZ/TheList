@@ -14,7 +14,7 @@ Return: CF clear if successful
 Notes:	if the file was written to, any pending disk writes are performed, the
 	  time and date stamps are set to the current time, and the directory
 	  entry is updated
-	recent versions of DOS preserve AH because some versions of Multiplan
-	  had a bug which depended on AH being preserved
-SeeAlso: AH=10h,AH=3Ch,AH=3Dh,INT 2F/AX=1106h,INT 2F/AX=1227h
-
+	recent versions of DOS (including MS-DOS v4.01) preserve AH in the
+	  AX value returned on success because some versions of Multiplan had
+	  a bug which depended on AH being preserved
+SeeAlso: AH=10h,AH=3Ch,AH=3Dh,INT 2F/AX=1106h,INT 2F/AX=1227h,AH=68h,AH=6Ah

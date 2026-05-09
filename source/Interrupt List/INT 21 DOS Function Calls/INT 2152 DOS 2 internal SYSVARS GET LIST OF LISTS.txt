@@ -875,6 +875,10 @@ Notes:	the path for invalid drives is normally set to X:\, but may be empty
 	Window NT 4.0 always uses X:\PATH, even for substituted drives (i.e.
 	  the CDS will *not* contain the original path prior to SUBST)
 	SoftWindows on the Macintosh PowerPC sets \\E for the host drive
+BUGS:	MS-DOS v4.00 and v4.01 will dereference the IFS pointer at offset
+	  52h to determine whether a redirector CDS (offset 43h bit 15 set)
+	  is actually remote or not (eg for AX=4409h), but some redirectors
+	  don't initialise the IFS pointer
 SeeAlso: #01644,INT 21/AX=71AAh/BL=00h
 
 Format of DR DOS 5.0-6.0 current directory structure entry (array):

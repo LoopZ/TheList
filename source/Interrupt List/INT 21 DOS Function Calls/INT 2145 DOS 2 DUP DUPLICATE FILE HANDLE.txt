@@ -14,6 +14,7 @@ Return: CF clear if successful
 Notes:	moving file pointer for either handle will also move it for the other,
 	  because both will refer to the same system file table
 	for DOS versions prior to 3.3, file writes may be forced to disk by
-	  duplicating the file handle and closing the duplicate
+	  duplicating the file handle and closing the duplicate. the same
+	  effect is available using AH=68h or AH=6Ah on later versions.
 SeeAlso: AH=3Dh,AH=46h
 
