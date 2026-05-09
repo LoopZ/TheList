@@ -1,5 +1,6 @@
 ----------------------------------------------------------------------------
  Unique ID: 1308
+   Sort As: 1308+10
   Category: B 	BIOS
       Flag: n/a
 ----------------------------------------------------------------------------
@@ -49,7 +50,7 @@ Notes:	may return successful even though specified drive is greater than the
 	  return only the number of drives DL attached to the corresponding
 	  controller as specified by the DL value on entry.  However, on
 	  Compaq machines with "COMPAQ" signature at F000h:FFEAh,
-	  MS-DOS/PC DOS IO.SYS/IBMBIO.COM call INT 15/AX=E400h and 
+	  MS-DOS/PC DOS IO.SYS/IBMBIO.COM call INT 15/AX=E400h and
 	  INT 15/AX=E480h to enable Compaq "mode 2" before retrieving the count
 	  of hard disks installed in the system (DL) from this function.
 	the maximum cylinder number reported in CX is usually two less than
