@@ -31,5 +31,7 @@ Notes:	on local drives, DX bits not listed above are the attribute word from
 	  on the first call; a subsequent call will return the correct error
 	  code
 	this function was not supported by Digital Research's DOS Plus
+BUGS:	MS-DOS v4.00 and v4.01 would dereference the IFS driver pointer in
+	  a redirector CDS (see offset 52h in #01643) to check whether to set
+	  bit 12. this pointer may not be initialised for some redirectors
 SeeAlso: AX=4400h,AX=4408h,AX=440Ah,INT 2F/AX=122Bh
-
