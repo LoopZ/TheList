@@ -25,6 +25,8 @@ Format of BIOS Parameter Block:
 Offset	Size	Description	(Table 01663)
  00h	WORD	number of bytes per sector
  02h	BYTE	number of sectors per cluster
+		for the Enhanced DR-DOS extension of 256 sectors per cluster,
+		  this byte contains 00h (presumed to cause a hang on MS-DOS)
  03h	WORD	number of reserved sectors at start of disk
  05h	BYTE	number of FATs
  06h	WORD	number of entries in root directory
@@ -66,7 +68,8 @@ Offset	Size	Description	(Table 01664)
 		bits 3-0: the 0-based FAT number of the active FAT
 		    (if mirroring disabled)
  1Fh	WORD	file system version (high byte=major, low byte=minor)
-		0000h = Win95-OSR2
+		0000h = MSWindows95-OSR2
+		0001h = Enhanced DR-DOS FAT32 with explicit FAT+ support
  21h	DWORD	starting cluster number of root directory
  25h	WORD	file system information sector number (see also #01788)
 		FFFFh if none
