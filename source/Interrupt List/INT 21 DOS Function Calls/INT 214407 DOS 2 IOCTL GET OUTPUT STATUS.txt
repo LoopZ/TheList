@@ -8,7 +8,7 @@ INT 21 - DOS 2+ - IOCTL - GET OUTPUT STATUS
 	AX = 4407h
 	BX = file handle
 Return: CF clear if successful
-	    AL = input status
+	    AL = output status
 		00h not ready
 		FFh ready
 	CF set on error
