@@ -7,7 +7,7 @@
 INT 21 u - LAN Manager Enhanced DOS - LOCAL DosPrintJobGetId
 	AX = 5F43h
 	BX = handle of remote print job
-	CX = size of PRIDINFO struture
+	CX = size of PRIDINFO structure
 	ES:DI -> PRIDINFO structure (see #01713)
 Return: CF clear if successful
 	    PRIDINFO filled in

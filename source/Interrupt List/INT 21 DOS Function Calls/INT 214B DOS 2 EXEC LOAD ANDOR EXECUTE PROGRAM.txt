@@ -137,7 +137,7 @@ Notes:	DOS 2.x destroys all registers, including SS:SP
 	  up by the interrupt caller.
 	When creating a command tail, it consists of a length byte followed
 	  by the string of characters. It should then be followed with a
-	  CR (0x0D) and a NULL (0x00). However, neither the CR or NULL
+	  CR (0x0D) and a NULL (0x00). However, neither the CR nor NULL
 	  are to be included in the length byte. The command tail will be
 	  copied to the program PSP when executed. Depending on the DOS
 	  manufacturer and version, the PSP command tail is limited to 125
@@ -167,7 +167,7 @@ SeeAlso: #01591,#01592
 Notes:	MS-DOS copies 128 bytes from the command line tail pointer into
 	  the created child PSP (to PSP:0080h), and 12 bytes from each
 	  default FCB pointer (to PSP:005Ch and PSP:006Ch). each of the
-	  default FCBs is also initialised with 4 bytes of all-zeroes
+	  default FCBs is also initialized with 4 bytes of all-zeroes
 	  after the 12 copied bytes.
 
 Format of EXEC parameter block for AL=03h:
@@ -310,7 +310,7 @@ Notes:	if the word at offset 02h is 4, it should be treated as 00h, since
 	the amount of pages (at offset 04h) may be shifted left by 5 bits to
 	  convert it to an amount of paragraphs, with the shifted out bits
 	  ignored (equivalent to calculating modulo 1 MiB at a certain point)
-	relocations entries need not be in any particular order, although they
+	relocation entries need not be in any particular order, although they
 	  are typically stored in order from beginning to end of the load
 	  image
 SeeAlso: #01596

@@ -178,7 +178,7 @@ Notes:	the next MCB is at segment (current + size + 1)
 	lDOS S MCBs are heavily used by lDOS (lMS-DOS and lRxDOS), only device
 	  allocations are still placed into SD MCBs with subsegments.
 	MS-DOS and FreeDOS set up a fully functional MCB chain later during
-	  processing of config.sys or fdconfig,sys, particularly it is not
+	  processing of config.sys or fdconfig.sys, particularly it is not
 	  yet set up properly during DEVICE= execution
 	lDOS sets up the MCB chain much earlier	(in the function NEARDOSINIT),
 	  before ldos.ini is even opened and read. allocations like the init
@@ -1044,7 +1044,7 @@ Offset	Size	Description	(Table 01652)
  17h  4 WORDs	EMS partial page mapping information???
 SeeAlso: #01649,#01650,#01653,#01657
 
-Format of DOS 4.01 (from UR 25066 Corrctive Services Disk on) disk buffer info:
+Format of DOS 4.01 (from UR 25066 Corrective Services Disk on) disk buffer info:
 Offset	Size	Description	(Table 01653)
  00h	DWORD	pointer to array of disk buffer hash chain heads (see #01654)
  04h	WORD	number of disk buffer hash chains (referred to as NDBCH below)
@@ -1177,7 +1177,7 @@ Call IFS utility function entry point with:
 			 02h	WORD	number of SFTs (actually counts only
 					the first two file table arrays)
 			 04h	WORD	number of FCB table entries
-			 06h	WORD	number of proctected FCBs
+			 06h	WORD	number of protected FCBs
 			 08h  6 BYTEs	unused
 			 0Eh	WORD	largest sector size supported
 	    AL = 06h get machine name

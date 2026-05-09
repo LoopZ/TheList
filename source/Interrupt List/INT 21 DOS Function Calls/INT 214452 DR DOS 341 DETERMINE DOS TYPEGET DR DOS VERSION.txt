@@ -33,7 +33,7 @@ Notes:	the DR DOS version is stored in the environment variable VER
 	  DR-DOS which may return 14h instead of 10h. Tools should also strip
 	  off the CP/Net bit before checking the kernel version.
 	  Often used version checks like >= 1070h are invalid, therefore,
-	  hence the AH and AL must be checked seperately.
+	  hence the AH and AL must be checked separately.
 	In DR DOS 3.31-6.0, and DR PalmDOS, DX=AX on return.
 	For Novell DOS 7 - DR DOS 7.03 the DX value returned by this function
 	  is the same as the DX value returned by INT 21/AX=3306h"DOS", and
@@ -84,7 +84,7 @@ Notes:	the DR DOS version is stored in the environment variable VER
 	Additional version check for 1072h kernels: At API level, there
 	  is no known way to distinguish Novell DOS 7 from OpenDOS 7.01,
 	  however, an IBMBIO.COM/IBMDOS.COM file date since 1997 and the
-	  existance of an environment variable %OS%=OPENDOS usually indicates
+	  existence of an environment variable %OS%=OPENDOS usually indicates
 	  an OpenDOS system (but not the other way around; some OpenDOS
 	  BETAs still used %OS%=NWDOS!).
 	Additional version checks for 1073h kernels: A functional test of
@@ -204,7 +204,7 @@ Values for Digital Research operating system ID codes (full AX return value):
 	  while the printer is offline caused the system to hang.
 	- DR DOS 6.0 "Windows 3.1 update, April 1992" "dr6win" (03/1992,
 	  1992-04-07). This public update only includes patches addressing
-	  full Windows 3.1 compatiblity. There should have been a full
+	  full Windows 3.1 compatibility. There should have been a full
 	  "business update" for registered users, shipping a little bit later.
 	- DR DOS 6.0 ??? English (1992-04-07)
 	- DR DOS 6.0 BDOS patch "pat354" English (1992-07-28, XDIR /C: 3398h)
@@ -246,7 +246,7 @@ Values for Digital Research operating system ID codes (full AX return value):
 	  (This issue already supported DPMS, had the "Vladivar" pre-emptive
 	  multitasker, DPMS-SuperStor disk compression, Multiuser-security
 	  (World/Group/Owner), and much improved multi-windowing ViewMAX/3 GUI
-	  which looked alot more like Windows than GEM. It pretended to be
+	  which looked a lot more like Windows than GEM. It pretended to be
 	  PC DOS 5. However, this issue was never released and later partially
 	  merged into the Novell DOS 7 project (without Multiuser-security and
 	  ViewMAX/3). In 1999, Caldera Thin Clients released ViewMAX/3 under

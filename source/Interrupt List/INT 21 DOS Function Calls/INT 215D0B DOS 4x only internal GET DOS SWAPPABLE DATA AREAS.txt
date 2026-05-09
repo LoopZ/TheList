@@ -68,7 +68,7 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 		  might be invoked during an EXEC
  10h	WORD	current PSP
  12h	WORD	stores SP across an INT 23
- 14h	WORD	return code from last process termination (zerod after reading
+ 14h	WORD	return code from last process termination (zeroed after reading
 		  with AH=4Dh)
  16h	BYTE	current drive
  17h	BYTE	extended break flag
@@ -218,7 +218,7 @@ Notes:	the above data is not actually part of the SDA, and is much more likely
 2F1h	WORD	MS-DOS v3.40 (development branch that led to v4.00) bit flags
 2F3h	DWORD	pointer to user-supplied filename
 2F7h	DWORD	pointer to user-supplied rename destination filename
-2FBh	WORD	stores SS during call to [List-of-Lists + 37h] and INT 25,26 
+2FBh	WORD	stores SS during call to [List-of-Lists + 37h] and INT 25,26
 2FDh	WORD	stores SP during call to [List-of-Lists + 37h] and INT 25,26
 2FFh	BYTE	flag, nonzero if stack switched in calling [List-of-Lists+37h]
 300h 21 BYTEs	FindFirst search data for source file(s) of a rename operation

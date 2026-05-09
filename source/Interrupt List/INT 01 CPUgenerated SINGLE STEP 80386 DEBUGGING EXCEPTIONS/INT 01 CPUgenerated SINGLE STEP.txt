@@ -13,7 +13,7 @@ Notes:	interrupts are prioritized such that external interrupts are invoked
 	  first instruction of the handler executes
 	used by debuggers for single-instruction execution tracing, such as
 	  MS-DOS DEBUG's T command
-	usually initialised to point at an IRET by DOS
+	usually initialized to point at an IRET by DOS
 	MS-DOS v7 checks for the signature text "JP" directly before the
 	  INT 01 handler during its init, and if found preserves the INT 01
 	  and INT 03 vectors rather than initialising them to -> IRET

@@ -38,7 +38,7 @@ Notes:	ctrl0 has different uses among the TSRs.
 			    run with bit 7 clear, it wakes the screen
 		WORD 01h: ".count": count of idle ticks
 		WORD 03h: ".limit": ticks until screen is switched off,
-			    initialised from command line times 1092
+			    initialized from command line times 1092
 		BYTE 05h: "idle": 1 if screen is already off
 		BYTE 07h: "what": 1 to sleep, 0 to wake up
 	EIDL: ctrl0 is 1 byte

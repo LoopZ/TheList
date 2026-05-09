@@ -16,12 +16,12 @@ Notes:	used by debuggers to implement breakpoints, such as MS-DOS DEBUG's G
 	  input
 	called by QEMM-386 if the user presses 'I' (undocumented) when prompted
 	  after an exception error message
-	usually initialised to point at an IRET by DOS
+	usually initialized to point at an IRET by DOS
 	lDOS (FreeDOS, Enhanced DR-DOS, lMS-DOS) may call this for debugger
 	  detection. this usually initialises CF to be clear. if the debugger
 	  modifies it so CF is set (lDebug: r f CY) then the debugger is
 	  detected and its INT 01 and INT 03 vectors are preserved.
-	may be uninitialised by the ROM-BIOS when passing control to the next
+	may be uninitialized by the ROM-BIOS when passing control to the next
 	  boot loader. lDOS debugger detection has an option to run INT 03 only
 	  if the vector appears valid (offset != FFFFh and segment != 0000h).
 	  (not supported by the FreeDOS debugger detection.)

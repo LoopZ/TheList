@@ -21,7 +21,7 @@ Notes:	(DOS 3.1+) wildcards are allowed if invoked via AX=5D00h, in which case
 	  because the FAT chain for the file is cleared
 	deleting a file which is currently open may lead to filesystem
 	  corruption.  Unless SHARE is loaded, DOS does not close the handles
-	  referencing the deleted file, thus allowing writes to a nonexistant
+	  referencing the deleted file, thus allowing writes to a nonexistent
 	  file.
 	under DR DOS and DR Multiuser DOS, this function will fail if the file
 	  is currently open
