@@ -986,7 +986,7 @@ begin
   if TotalErrors > 0 then
     LogMessage(vbMinimal, 'Total Number of Errors:     ' + IntToStr(TotalErrors));
   if CICD then begin
-    if (TotalProblems > 0) or (TotalErrors > 0)then begin
+    if (TotalProblems > 0) or (TotalErrors > 0) or (TotalDuplicates > 0) then begin
       LogMessage(vbCritical, 'Done, CI/CD verification error.');
       Halt(1);
     end;
