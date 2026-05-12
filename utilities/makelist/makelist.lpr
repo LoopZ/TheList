@@ -281,12 +281,13 @@ begin
 end;
 
 // Reads a file if it exists, normalizes line endings and truncates trailing
-// and leading blank lines.
+// and leading blank lines. Also, issues warnings for excessively long lines.
 function ReadFile(FileName : String; out Data : RawByteString) : boolean;
 var
   E : Integer;
   A : TArrayOfString;
   I : Integer;
+  M : integer;
 begin
   LastFileName:='';
   if not FileExists(FileName) then begin
@@ -299,8 +300,16 @@ begin
     Halt(E);
   end;
   A:=Explode(NormalizeLineEndings(Data, leLF));
-  for I := 0 to High(A) do
+  M:=0;
+  for I := 0 to High(A) do begin
     A[I]:=TrimRight(A[I]);
+    if Length(A[I]) > M then M:=Length(A[I]);
+  end;
+  if M > 79 then begin
+    Inc(TotalWarnings);
+    LogMessage(vbNormal, TAB + 'Warning, long line: ' + FileName);
+    FileIssue(fitWarning, FileName);
+  end;
   Data:=TrimCRLF(Implode(A, CRLF) + CRLF);
   Result:=True;
   LastFileName:=FileName;
