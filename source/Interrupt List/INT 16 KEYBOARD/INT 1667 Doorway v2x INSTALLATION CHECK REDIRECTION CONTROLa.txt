@@ -4,7 +4,7 @@
       Flag: n/a
 ----------------------------------------------------------------------------
 
-INT 16 - Doorway v2.x+ - INSTALLATION CHECK / REDIRECTION CONTROLa
+INT 16 - Doorway v2.x+ - INSTALLATION CHECK / REDIRECTION CONTROL
 	AH = 67h
 	AL = Doorway mode
 	    00h turn off DOS redirection
@@ -14,7 +14,7 @@ Return: AH = 80h if Doorway is actively redirecting output
 Program: Doorway is a program by Marshall Dudley which allows most DOS programs
 	  to run as a BBS door without modification
 Notes:	to perform an installation check without changing the redirection
-	  state, if is necessary to restore the original mode if AL was not
+	  state, it is necessary to restore the original mode if AL was not
 	  80h on return
 SeeAlso: INT 10/AH=BBh"Doorway"
 

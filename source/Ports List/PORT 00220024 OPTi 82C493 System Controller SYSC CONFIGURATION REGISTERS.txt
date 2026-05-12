@@ -27,10 +27,10 @@ Values for OPTi 82C493 System Controller configuration register index:
  25h	DRAM Control Register 2 (see #P0184)
  26h	Shadow RAM Control Register 3 (see #P0185)
  27h	Control Register 3 (see #P0186)
- 28h	Non-cachable Block 1 Register 1 (see #P0187)
- 29h	Non-cachable Block 1 Register 2 (see #P0188)
- 2Ah	Non-cachable Block 2 Register 1 (see #P0187)
- 2Bh	Non-cachable Block 2 Register 2 (see #P0188)
+ 28h	Non-cacheable Block 1 Register 1 (see #P0187)
+ 29h	Non-cacheable Block 1 Register 2 (see #P0188)
+ 2Ah	Non-cacheable Block 2 Register 1 (see #P0187)
+ 2Bh	Non-cacheable Block 2 Register 2 (see #P0188)
 
 Bitfields for OPTi-82C493 Control Register 1:
 Bit(s)	Description	(Table P0179)
@@ -229,14 +229,14 @@ SeeAlso: #P0179,#P0180
 
 Bitfields for OPTi-82C493 Non-cacheable Block Register 1:
 Bit(s)	Description	(Table P0187)
- 7-5	Size of non-cachable memory block
+ 7-5	Size of non-cacheable memory block
 	000  64K
 	001  128K
 	010  256K
 	011  512K
 	1xx  disabled (default)
  4-2	unused
- 1-0	Address bits 25 and 24 of non-cachable memory block (default = 00)
+ 1-0	Address bits 25 and 24 of non-cacheable memory block (default = 00)
 Notes:	this register is used together with configuration register 29h
 	  (non-cacheable block 1) or register 2Bh (block 2) (see #P0188) to
 	  define a non-cacheable block.	 The starting address must be a
@@ -245,7 +245,7 @@ SeeAlso: #P0178,#P0188
 
 Bitfields for OPTi-82C493 Non-cacheable Block Register 2:
 Bit(s)	Description	(Table P0188)
- 7-0	Address bits 23-16 of non-cachable memory block (default = 0001xxxx)
+ 7-0	Address bits 23-16 of non-cacheable memory block (default = 0001xxxx)
 Notes:	the block address is forced to be a multiple of the block size by
 	  ignoring the appropriate number of the least-significant bits
 SeeAlso: #P0178,#P0187

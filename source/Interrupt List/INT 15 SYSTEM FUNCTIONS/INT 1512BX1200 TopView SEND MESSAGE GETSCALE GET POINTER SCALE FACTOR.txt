@@ -8,7 +8,7 @@ INT 15 - TopView - SEND MESSAGE - "GETSCALE" - GET POINTER SCALE FACTOR
 	AH = 12h
 	BX = 1200h
 	STACK: DWORD object handle for pointer
-Return: STACK: DWORD pointer pos scaled as if window were this many colums wide
-	       DWORD pointer pos scaled as if window were this many rows high
+Return: STACK: DWORD pointer pos scaled as if window were this many columns
+	       wide DWORD pointer pos scaled as if window were this many rows high
 SeeAlso: AH=12h/BX=1100h
 

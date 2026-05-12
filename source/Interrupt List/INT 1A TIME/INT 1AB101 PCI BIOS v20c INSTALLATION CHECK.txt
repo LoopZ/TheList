@@ -17,7 +17,7 @@ Return: AH = 00h if installed
 	    CL = number of last PCI bus in system
 	EAX, EBX, ECX, and EDX may be modified
 	all other flags (except IF) may be modified
-Notes:	this function may require up to 1024 byte of stack; it will not enable
+Notes:	this function may require up to 1024 bytes of stack; it will not enable
 	  interrupts if they were disabled before making the call
 	some BIOSes do not change EDI, so applications looking for the
 	  protected-mode entry point should set EDI to 00000000h before

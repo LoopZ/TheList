@@ -101,7 +101,7 @@ Call EPP BIOS entry point with:
 	    0Eh Address/Block-Write
 		AL = device address
 		ES:DI -> data to be sent (v1.0,v3.0)
-		DS:SI -> data to be send (Revision 7)
+		DS:SI -> data to be sent (Revision 7)
 		CX = number of bytes to write
 		Return: AH = status (see #00634)
 			CX = number of bytes NOT transferred

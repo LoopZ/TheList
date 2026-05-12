@@ -15,7 +15,7 @@ Return: CF clear if successful
 	AH = status (00h,87h) (see #00729)
 	EAX, EBX, ECX, and EDX may be modified
 	all other flags (except IF) may be modified
-Notes:	this function may require up to 1024 byte of stack; it will not enable
+Notes:	this function may require up to 1024 bytes of stack; it will not enable
 	  interrupts if they were disabled before making the call
 	the meanings of BL and BH on entry were exchanged between the initial
 	  drafts of the specification and final implementation
@@ -229,7 +229,7 @@ Bit(s)	Description	(Table 00941)
  14	ISA IRQ15 blocking enable
  13	DMA/ISA master to preempt PCI master enable
  12	PCI priority is fixed instead of rotating
- 11-10	back-to-back ISA I/O delay 
+ 11-10	back-to-back ISA I/O delay
 	00 = 3 ATCLKs
 	01 = 12 ATCLKs
 	10 = no delay
@@ -415,7 +415,7 @@ Bitfields for OPTi 82C750 Vendetta (device 1) interrupt multiplexing control:
 Bit(s)	Description	(Table 00950)
  15	pin functionality
 	0 = AE22:IRQ3, AF21:IRQ5, AE21:IRQ6, AD21:IRQ7, AE20:IRQ9, AF19:IRQ11
-	1 = AE22:MIRQ3/5, AF21:MIRQ7/9, AE21:MIRQ11/15, 
+	1 = AE22:MIRQ3/5, AF21:MIRQ7/9, AE21:MIRQ11/15,
 	    AD21:EPMI1#, AE20:EPMI2#, AF19:GMIRQ
  14	pin R22 functionality (0 = PREQ2#, 1 = EPMI0#)
  13	IRQ1 latching enable
@@ -662,7 +662,7 @@ Offset	Size	Description	(Table 00965)
 		bit 1: port 2 output disable
 		bit 0: port 1 output disable
  51h	BYTE	interrupt assignment
-		bit 7: host controller type 
+		bit 7: host controller type
 		    0 = Viper-N+ (send 1 data phase on IRQ driveback)
 		    1 = FireStar (send 2 data phases on IRQ driveback)
 		bit 6: IRQ driveback enable

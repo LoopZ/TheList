@@ -13,7 +13,7 @@ INT 1A - PCMCIA Socket Services v1.00 - SET WINDOW
 	DH = window attributes (see #00678)
 	DL = access speed (only one bit set) (see #00674)
 	SI = window base address (bytes if I/O, 4K units if memory window)
-	DI = card offset addrress (memory only, 4K units)
+	DI = card offset address (memory only, 4K units)
 Return: CF clear if successful
 	    AH destroyed
 	CF set on error
