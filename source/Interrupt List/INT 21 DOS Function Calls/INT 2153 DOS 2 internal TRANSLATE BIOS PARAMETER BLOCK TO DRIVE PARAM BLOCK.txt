@@ -8,7 +8,7 @@ INT 21 - DOS 2+ internal - TRANSLATE BIOS PARAMETER BLOCK TO DRIVE PARAM BLOCK
 	AH = 53h
 	DS:SI -> BIOS Parameter Block (see #01663)
 	ES:BP -> buffer for Drive Parameter Block (see #01395 at AH=32h)
-	    DBP drive byte must be set to valid drive (Windows95-OSR2)
+	    DPB drive byte must be set to valid drive (Windows95-OSR2)
 	---Windows95---
 	CX = signature 4558h ('EX') for FAT32 extended BPB/DPB (see #01664)
 	DX = signature 4152h ('AR') for FAT32 extended BPB/DPB

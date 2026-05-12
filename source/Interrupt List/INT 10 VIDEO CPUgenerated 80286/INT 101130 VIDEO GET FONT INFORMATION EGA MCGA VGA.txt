@@ -18,7 +18,7 @@ INT 10 - VIDEO - GET FONT INFORMATION (EGA, MCGA, VGA)
 	    11h (UltraVision v2+) 8x20 font (VGA) or 8x19 font (autosync EGA)
 	    12h (UltraVision v2+) 8x10 font (VGA) or 8x11 font (autosync EGA)
 Return: ES:BP = specified pointer
-	CX    = bytes/character of on-screen font (not the requested font!)
+	CX    = bytes per character of on-screen font (not the requested font!)
 	DL    = highest character row on screen
 Notes:	for UltraVision v2+, the 9xN alternate fonts follow the corresponding
 	  8xN font at ES:BP+256N

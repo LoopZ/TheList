@@ -26,7 +26,7 @@ Notes:	This function will cause a mode set, completely resetting
 		     R0A = bytes/char-2 ; cursor start
 		     R0B = 0		; cursor end
 		     R12 = ((rows+1)*(bytes/char))-1 ; vertical display end
-		     R14 = bytes/char	; underline loc
+		     R14 = bytes/char	; underline location
 			   (*** BUG: should be 1 less ***)
 	the current block specifiers may be determined with INT 10/AH=1Bh,
 	  looking at offsets 2Bh and 2Ch of the returned data (VGA only)

@@ -11,7 +11,7 @@ INT 10 - VIDEO - SET TEXT-MODE CURSOR SHAPE
 Return: nothing
 Desc:	specify the starting and ending scan lines to be occupied by the
 	  hardware cursor in text modes
-Notes:	buggy on EGA systems--BIOS remaps cursor shape in 43 line modes, but
+Notes:	buggy on EGA systems--BIOS remaps cursor shape in 43-line modes, but
 	  returns unmapped cursor shape
 	UltraVision scales size to the current font height by assuming 14-line
 	  monochrome and 8-line color fonts; this call is not valid if cursor

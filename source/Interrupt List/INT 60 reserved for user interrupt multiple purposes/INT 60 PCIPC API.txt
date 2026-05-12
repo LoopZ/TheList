@@ -28,7 +28,7 @@ Values for PC-IPC command code:
 	set status field, writes WORD to data buffer containing free
 	  message space in bytes, and sets the "size" field to the
 	  number of messages waiting
- 02h "IPC_CMND_ENABLE"	reenable PC-IPC
+ 02h "IPC_CMND_ENABLE"	re-enable PC-IPC
 	ignored unless called with the same ID that disabled PC-IPC
  03h "IPC_CMND_DISABLE" disable PC-IPC
  04h "IPC_CMND_INSTALL" reset PC-IPC

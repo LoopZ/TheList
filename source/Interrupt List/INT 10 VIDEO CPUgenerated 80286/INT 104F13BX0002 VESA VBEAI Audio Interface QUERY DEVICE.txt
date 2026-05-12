@@ -131,9 +131,9 @@ Offset	Size	Description	(Table 00116)
 		02h bad sample rate
 		03h bad block length
 		04h bad block address
-		05h app. missed an IRQ
+		05h application missed an IRQ
 		06h don't understand the PCM size/format
-		80h-.. vendors specific errors
+		80h-.. vendor-specific errors
  48h	DWORD	TimerTick
  4Ch	DWORD	ApplPSyncCB: CallBack: play filled in by the app
  50h	DWORD	ApplRSyncCB: CallBack: rec filled in by the app
@@ -209,7 +209,7 @@ Offset	Size	Description	(Table 00120)
 		06h an incoming patch couldn't be stored
 		07h had to drop an incoming byte
 		08h driver is failing a patch download
-		80h-.. vendors specific errors
+		80h-.. vendor-specific errors
  58h	DWORD	Patch Block free callback
  5Ch	DWORD	MIDI byte avail. callback
 SeeAlso: #00116,#00124
@@ -264,7 +264,7 @@ Offset	Size	Description	(Table 00124)
 		0017h path
 		0018h get IO address
 		0080h-.. vendors can add DevChks above 0x80
- 1Ch	DWORD	set vol to an absolute setting
+ 1Ch	DWORD	set volume to an absolute setting
 		01h user master volume setting
 		02h application master volume setting
  20h	DWORD	set 3D volume
