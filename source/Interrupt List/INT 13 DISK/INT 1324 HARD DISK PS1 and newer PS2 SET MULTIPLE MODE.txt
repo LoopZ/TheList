@@ -10,7 +10,7 @@ INT 13 - HARD DISK - PS/1 and newer PS/2 - SET MULTIPLE MODE
 	AL = number of sectors per block (2,4,8,16)
 	DL = drive number (80h,81h)
 Return: CF clear if successful
-	CF set onerror
+	CF set on error
 	AH = status (see #00234 at AH=01h)
 Desc:	specify how many sectors the controller should transfer as a group
 	  between operation-complete interrupts when using the Read Multiple

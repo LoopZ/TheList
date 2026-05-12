@@ -53,7 +53,7 @@ Notes:	Some implementations of Remote (Initial) Program Loader (RPL/RIPL)
 	  which assumed A: and B: to be invalid drives then and would discard
 	  any attempts to access these drives.	Implementations of RPL should
 	  set bit 0 to indicate a "virtual" floppy.
-	The IBM PC DOS 3.3x-2000 IBMBIO.COM contains two occurences of code
+	The IBM PC DOS 3.3x-2000 IBMBIO.COM contains two occurrences of code
 	  sequences like:
 	    INT 11h
 	    JMP SHORT skip
@@ -62,7 +62,7 @@ Notes:	Some implementations of Remote (Initial) Program Loader (RPL/RIPL)
 	    TEST AX,1
 	  While at the first glance this seems to be a bug since it just
 	  wastes memory and the condition is always true, this could well be
-	  a signature for an applyable patch to stop it from forcing AX bit 0
+	  a signature for an applicable patch to stop it from forcing AX bit 0
 	  to be always on. MS-DOS IO.SYS does not contain these signatures,
 	  however.
 BUGs:	Some old BIOSes didn't properly report the count of floppy drives

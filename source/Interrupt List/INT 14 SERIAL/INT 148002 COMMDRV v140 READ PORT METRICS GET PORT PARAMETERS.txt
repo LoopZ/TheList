@@ -10,6 +10,6 @@ INT 14 - COMM-DRV v14.0 - READ PORT METRICS - GET PORT PARAMETERS
 	DX = port number
 Return: AH bit 7 set on error
 	AH bit 7 clear if successful
-	    BX:DI -> Port Control Block (see #00367) (modifyable portion only)
+	    BX:DI -> Port Control Block (see #00367) (modifiable portion only)
 SeeAlso: AX=8000h"COMM-DRV",AX=8001h"COMM-DRV",AX=8003h"COMM-DRV"
 

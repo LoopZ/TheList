@@ -51,7 +51,7 @@ INT 78 - ULTRAMID - API
 	--- resource functions ---
 	    0013h allocate memory
 		BX:DX = size of GUS memory needed
-		Return: AX:DX = address of memory, or 0000:0000 if not avaiable
+		Return: AX:DX = address of memory, or 0000:0000 if not available
 	    0014h free memory
 		BX:DX = address of memory to be freed
 	    0015h uninstall

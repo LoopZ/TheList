@@ -10,7 +10,7 @@ INT 14 - Connection Manager - RECEIVE CHARACTER BLOCK
 	AL = connection ID
 	BL = flag
 	    00h wait for data
-	    nonzero do not wait if no data avaiable
+	    nonzero do not wait if no data available
 	CX = size of receive buffer
 	ES:DI -> buffer for received characters
 Return: AH = return code (00h-02h,04h,FFh) (see #00303)

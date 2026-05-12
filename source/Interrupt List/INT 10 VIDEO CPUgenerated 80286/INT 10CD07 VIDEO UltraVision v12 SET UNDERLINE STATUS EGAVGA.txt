@@ -15,7 +15,7 @@ Return: CL = hardware underline status
 Notes:	when underline or strikeout is enabled in color text modes, the
 	  specified colors will be assigned temporarily to colors 01h and 09h,
 	  allowing affected text to match non-underlined text.	The color
-	  remapping uses values from the current onscreen palette regardless
+	  remapping uses values from the current on-screen palette regardless
 	  of the palette locking status (see AX=CD01h)
 	specify the standard colors (BL=01h,BH=09h) to enable underline or
 	  strikeout without color remapping

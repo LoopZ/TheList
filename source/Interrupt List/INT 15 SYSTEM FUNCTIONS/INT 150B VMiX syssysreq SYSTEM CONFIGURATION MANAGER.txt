@@ -11,7 +11,7 @@ INT 15 - VMiX - "sys_sysreq" - SYSTEM CONFIGURATION MANAGER
 		DWORD	pointer to ASCIZ name of requested method
 			"abort" abort current send/receive on comm port
 			"block" start/end critical section
-			"close" terminate interrupt-drive comm I/O
+			"close" terminate interrupt-driven comm I/O
 			"open" prepare comm port for interrupt-driven I/O
 			"delay" set delay timer and wait
 			"hibernate" put process to sleep

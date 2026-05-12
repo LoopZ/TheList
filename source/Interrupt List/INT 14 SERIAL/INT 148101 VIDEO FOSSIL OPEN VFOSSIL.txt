@@ -179,7 +179,7 @@ SeeAlso: #00384
 Call VioScrollUp with:
 	STACK:	WORD	VIO handle (must be 00h)
 		DWORD	pointer to char/attr cell for filling emptied rows
-		WORD	number or rows to scroll (FFFFh = clear area)
+		WORD	number of rows to scroll (FFFFh = clear area)
 		WORD	right column of scroll area
 		WORD	bottom row of scroll area
 		WORD	left column of scroll area
@@ -191,7 +191,7 @@ SeeAlso: #00385,INT 10/AH=06h
 Call VioScrollDn with:
 	STACK:	WORD	VIO handle (must be 00h)
 		DWORD	pointer to char/attr cell for filling emptied rows
-		WORD	number or rows to scroll (FFFFh = clear area)
+		WORD	number of rows to scroll (FFFFh = clear area)
 		WORD	right column of scroll area
 		WORD	bottom row of scroll area
 		WORD	left column of scroll area

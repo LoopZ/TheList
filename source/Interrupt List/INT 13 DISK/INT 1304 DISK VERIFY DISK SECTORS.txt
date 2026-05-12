@@ -20,7 +20,7 @@ Return: CF set on error
 Notes:	errors on a floppy may be due to the motor failing to spin up quickly
 	  enough (timeout error 80h); the write should be retried at least
 	  three times, resetting the disk with AH=00h between attempts
-	on floppys, the operation should also be retried on media change
+	on floppies, the operation should also be retried on media change
 	  (06h) detection.
 	this function does not compare the disk with memory, it merely
 	  checks whether the sector's stored CRC matches the data's actual CRC

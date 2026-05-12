@@ -7,7 +7,7 @@
 INT 2C P - Cloaking - SET SEGMENT BASE ADDRESS
 	AX = 0002h
 	SI = selector
-	EBX = new physical base addres
+	EBX = new physical base address
 Return: CF clear if successful
 	CF set on error
 	    AX = error code (see #02556)
