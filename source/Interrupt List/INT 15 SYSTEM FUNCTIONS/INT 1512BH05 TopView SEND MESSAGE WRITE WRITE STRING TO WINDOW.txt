@@ -124,9 +124,9 @@ Opcodes:args
 	BYTE number of rows (signed)
  B9h  adjust viewport column
 	BYTE number of columns (signed)
- BAh  adjust virtual screen height [contents of window unpredict after]
+ BAh  adjust virtual screen height [contents of window unpredictable after]
 	BYTE number of rows to increase (signed)
- BBh  adjust virtual screen width [contents of window unpredictbl after]
+ BBh  adjust virtual screen width [contents of window unpredictable after]
 	BYTE number of columns to increase (signed)
  BCh-BFh reserved (currently unused)
  C0h  set logical cursor position
@@ -205,7 +205,7 @@ Opcodes:args
 		bits 7,6 = 11 panel stream creates new window
 			 = 10 panel defines new field table for existing window
 			 = 01 panel stream uses existing window & field table
-		bit 5 = 1 stream contains a field table (create kyboard object)
+		bit 5 = 1 stream contains a field table (create keyboard object)
 		bit 4 = 1 stream defines input fields (create keyboard object)
 		bit 3 = 1 stream defines select fields but not input fields
 		bit 2 = 1 stream defines exclusive input window (DV 2.2)
@@ -377,7 +377,7 @@ Offset	Size	Description	(Table 00444)
 		  00h if have to point-&-click or is an extended-ASCII
 		      keystroke (only if two-key menus enabled)
  06h	BYTE	(select field only) normal color of field
- 07h	BYTE	second key for select field.  This byte is present iff
+ 07h	BYTE	second key for select field.  This byte is present if
 		  two-letter menu entries selected with opcode E5h, and in that
 		  case is present regardless of field type
 SeeAlso: #00442
@@ -406,7 +406,7 @@ Values for MODE 01h "QUERY STREAM" opcodes:
  A3h return left column of scrolling region in next byte
  A4h return row of physical window origin in next byte
  A5h return column of physical window origin in next byte
- A6h return height of physcial window in next byte
+ A6h return height of physical window in next byte
  A7h return width of physical window in next byte
  A8h return row of viewport origin in next byte
  A9h return column of viewport origin in next byte
@@ -607,7 +607,7 @@ Values asynchronous notification routine defined by man.stream 8Ah called with:
 		   BYTE	 field mouse is on, 0 if none
 		   BYTE	 amount moved: >0 right, <0 left, 0 done
 	       45h  scrolled vertically
-		   DWORD object hande of window
+		   DWORD object handle of window
 		   BYTE	 mouse row within window
 		   BYTE	 mouse column within window
 		   BYTE	 field mouse is on, 0 if none
@@ -629,7 +629,7 @@ Values asynchronous notification routine defined by man.stream 8Ah called with:
 	       4Bh  switched away from the window ("lower")
 	       4Ch  video mode changed
 		   BYTE new BIOS video mode
-	       4Dh  Scissors/cUt selected
+	       4Dh  Scissors/Cut selected
 		   DWORD object handle of window
 		   BYTE	 row of upper left corner
 		   BYTE	 column of upper left corner

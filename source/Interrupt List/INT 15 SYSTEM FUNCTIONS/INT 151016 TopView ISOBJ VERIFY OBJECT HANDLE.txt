@@ -422,10 +422,10 @@ SeeAlso: #00421
 Format of DESQview Common Memory Header (v2.31-2.60):
 Offset	Size	Description	(Table 00423)
  00h	WORD	offset of lowest used block
- 02h	WORD	bytes of commom memory, including header
+ 02h	WORD	bytes of common memory, including header
  04h	WORD	offset of first free block
  06h  N BYTEs	size depends of DV version, ??? (DVP buffer???)
-Notes:	the above is located at the beginning of the commom memory segment
+Notes:	the above is located at the beginning of the common memory segment
 SeeAlso: #00424,#00425,#00433
 
 Format of DESQview Free block header:
