@@ -57,6 +57,8 @@ Notes:	the OS/2 v1.x Compatibility Box returns major version 0Ah (10)
 	  version y.
 	Enhanced DR-DOS as of v7.01.07 returns DR-DOS (OEM EEh) v6.00 here,
 	  but v7.01 on the MS-DOS v5+ function INT 21/AX=3306h"DOS".
+	DR DOS v9 (rev 648) returns DR-DOS (OEM EEh) v3.31 here and does not
+	  support the MS-DOS v5+ function INT 21/AX=3306h"DOS".
 	RxDOS v7.24 returns v7.24 on INT 21/AX=3306h"DOS" and either v7.10 (if
 	  FAT32 supported), v7.00 (if FAT32 not supported but LFN supported),
 	  or v6.22 (if both FAT32 and LFN not supported) on AH=30h.
@@ -166,7 +168,7 @@ Values for DOS OEM number:
  DCh -	Apparently used for DOS-C kernel (historically the base of the
 	 FreeDOS kernel) for some alternative builds.
  EDh -	reserved for future OpenDOS/DR-DOS based projects  http://www.drdos.org
- EEh	DR DOS (used for Enhanced DR-DOS since v7.01.07)
+ EEh	DR DOS (used for Enhanced DR-DOS since v7.01.07 and for DR DOS v9)
  EFh	Novell DOS
 	Note:	released versions of Novell DOS 7 use OEM ID 00h instead
  FDh	FreeDOS	 http://www.freedos.org/
