@@ -286,8 +286,7 @@ function ReadFile(FileName : String; out Data : RawByteString) : boolean;
 var
   E : Integer;
   A : TArrayOfString;
-  I : Integer;
-  M : integer;
+  I, L, M : integer;
 begin
   LastFileName:='';
   if not FileExists(FileName) then begin
@@ -303,7 +302,8 @@ begin
   M:=0;
   for I := 0 to High(A) do begin
     A[I]:=TrimRight(A[I]);
-    if Length(A[I]) > M then M:=Length(A[I]);
+    L:=Length(TrimRight(PasExt.DeTab(A[I])));
+    if L > M then M:=L;
   end;
   if M > 79 then begin
     Inc(TotalWarnings);
