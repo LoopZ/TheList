@@ -10,7 +10,7 @@ INT 21 P - Phar Lap 386/DOS-Extender - GET CONFIGURATION INFORMATION
 Return: ???
 Notes:	details are not yet available
 	this function takes a pointer to the configuration buffer (see #01365)
-	  and a poitner to a BYTE as arguments
+	  and a pointer to a BYTE as arguments
 
 Format of Phar Lap configuration buffer:
 Offset	Size	Description	(Table 01365)
@@ -57,7 +57,7 @@ Offset	Size	Description	(Table 01365)
  98h	DWORD	-SWAPCHK (0 = OFF, 1 = ON, 2 = FORCE, 3 = MAX)
  9Ch	DWORD	-CODESIZE setting
  A0h	DWORD	minimum swap file size (-MINSWFSIZE)
- A4h	DWORD	maximum swap fiel size (-MAXSWFSIZE)
+ A4h	DWORD	maximum swap file size (-MAXSWFSIZE)
  A8h	DWORD	page replacement policy (0 = LFU, 1 = NUR)
  ACh	DWORD	number of GDT entries (-NGDTENT)
  B0h	DWORD	number of LDT entries (-NLDTENT)

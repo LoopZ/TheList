@@ -8,7 +8,7 @@ INT 21 - FreeDOS - SET RETURNED DOS VERSION
 	AX = 33FCh
 	BX = DOS version (AX value for INT 21/AH=30h)
 Return:	AL != FFh and AL != 00h expected by ecm fork of Eric Auer's
-	  callver ("simple DOS version override helper")
+	  CALLVER ("simple DOS version override helper")
 	RxDOS, SvarEDR-DOS, and FreeDOS do not modify any registers
 Notes:	supported by RxDOS v7.24, apparently setting the default
 	  version number stored in the PSP offset 40h (see #01378

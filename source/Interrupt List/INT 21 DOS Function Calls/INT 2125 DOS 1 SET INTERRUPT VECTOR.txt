@@ -18,7 +18,7 @@ Notes:	this function is preferred over direct modification of the interrupt
 	  Since 1998/05/29, DR-DOS 7.03 no longer uses any internal stacks and
 	  tests for this function much earlier, to allow a minimal stack usage
 	  of just two words in addition to the IRET frame, allowing it to be
-	  called from INT 21h functions, specificially device drivers.  This
+	  called from INT 21h functions, specifically device drivers.  This
 	  fixes the MCS SMB client
 	lDOS as of 2026-04-26 also runs this function on the user stack
 	in OpenDOS v7.01 and Enhanced DR-DOS, this function and AH=35h are

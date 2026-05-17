@@ -79,7 +79,7 @@ Offset	Size	Description	(Table 01430)
  00h	WORD	07h
  02h	WORD	returned status (see #01434)
  04h	DWORD	unused
- 08h	DWORD	poitner to ASCIZ name of the module to be prebind initialized
+ 08h	DWORD	pointer to ASCIZ name of the module to be prebind initialized
  0Ch	WORD	unused
 SeeAlso: #01424,#01425,#01426,#01427,#01428,#01429,#01431,#01432,#01433
 
@@ -253,7 +253,7 @@ Bit(s)	Description	(Table 01439)
  12	supports interrupt request
  13	supports source routing bridge
  14	supports GDT virtual addresses (OS/2 version)
- 15	multiple TransferDatas allowed durign a single indication
+ 15	multiple TransferDatas allowed during a single indication
  16	MAC normally sets FrameSize = 0 in ReceiveLookahead
  17-31	reserved, must be 0
 

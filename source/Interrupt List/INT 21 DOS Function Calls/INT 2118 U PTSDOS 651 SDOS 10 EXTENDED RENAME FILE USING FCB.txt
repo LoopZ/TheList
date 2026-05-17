@@ -9,7 +9,7 @@ INT 21 - U - PTS-DOS 6.51 & S/DOS 1.0 - EXTENDED RENAME FILE USING FCB
 	DS:DX -> modified FCB (see also #01345)
 Return: AL = status
 	     00h successfully renamed
-	     FFh no matching files,file is read-only, or new name already exists
+	     FFh no matching files, file is read-only, or new name already exists
 Notes:	This function is provided by Paragon Technology Systems S/DOS 1.0
 	  (and most probably also PTS-DOS 6.51, maybe even earlier). It uses
 	  the same code as for function INT 21/AH=17h, but additionally sets

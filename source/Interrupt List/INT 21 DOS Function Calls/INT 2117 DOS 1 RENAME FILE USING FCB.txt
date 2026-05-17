@@ -12,7 +12,7 @@ INT 21 - DOS 1+ - RENAME FILE USING FCB
 		in the 11 bytes beginning at offset 11h
 Return: AL = status
 	    00h successfully renamed
-	    FFh no matching files,file is read-only, or new name already exists
+	    FFh no matching files, file is read-only, or new name already exists
 Notes:	subdirectories may be renamed using an extended FCB with the
 	  appropriate attribute, as may volume labels
 	DR DOS checks password attached with AX=4303h before permitting rename

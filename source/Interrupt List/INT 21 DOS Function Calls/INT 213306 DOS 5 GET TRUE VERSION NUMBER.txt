@@ -31,7 +31,7 @@ Notes:	this function always returns the true version number, unlike AH=30h,
 	  IBM DOS v6.10 (because of the version mismatch in true IBM DOS
 	  mentioned for INT 21/AH=30h); versions through Update 15 all
 	  return revision code 00h
-	Heiko Goeman's Advanced WinDOS 2.10/2.11/2.21 returns DOS 5.00, 
+	Heiko Goeman's Advanced WinDOS 2.10/2.11/2.21 returns DOS 5.00,
 	  revision 0.
 	Novell DOS 7, OpenDOS 7.01, DR-OpenDOS 7.02, DR-DOS 7.02, DR-DOS 7.03
 	  all return IBM 6.00, which some software displays as IBM DOS 6.10
@@ -48,7 +48,7 @@ Notes:	this function always returns the true version number, unlike AH=30h,
 	  and INT 21/AX=3001h.
 	DR-DOS 7.02+ IBMDOS.COM (since 1998-01-10) now recognizes optional
 	  paths to filenames stored in the SETVER list. Previously such
-	  entries were never found. This enables a three staged model of
+	  entries were never found. This enables a three-staged model of
 	  SETVERed versions:
 	  highest priority = entry with path is matching.
 	  middle priority = entry without path is matching.
