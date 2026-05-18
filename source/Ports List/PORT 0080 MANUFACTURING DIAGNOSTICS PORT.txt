@@ -437,7 +437,7 @@ Values for Microid Research MR-BIOS POST codes:
 	  0Fh/0Ah, and both 8259s)
  07h	OEM-specific hook #1 (typically cache and shadow RAM disable)
  08h	test refresh toggle (beep code LH-HHL)
- 09h	pattern test both 8237s (beep code LH-LLH)	
+ 09h	pattern test both 8237s (beep code LH-LLH)
  0Ah	test first 64K RAM (beep code LH-LLLL or LH-HLLL)
  0Bh	pattern test both 8259s mask registers
 	(beep code LH-HHHL [master] or LH-LLLH [slave])
@@ -463,7 +463,7 @@ Values for Microid Research MR-BIOS POST codes:
  1Eh	floppy controller test/determination and CMOS validation
  1Fh	determine/test fixed disk controller, validate CMOS settings
  20h	rigorous CMOS parameter validation
- 21h	check frnot-panel lock, wait for user acknowledgement of errors
+ 21h	check frnot-panel lock, wait for user acknowledgment of errors
  22h	set NumLock, password-security trap, dispatch to setup utility
  23h	OEM-specific hook #5
  24h	set keyboard typematic rate

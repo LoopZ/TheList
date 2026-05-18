@@ -6,7 +6,7 @@
 
 INT 21 U - DOS 5+ ROM - FIND FIRST ROM PROGRAM
 	AH = 6Dh
-	DS:DX -> ASCIZ program name (may contain wildcrds)
+	DS:DX -> ASCIZ program name (may contain wildcards)
 Return: CF clear if found
 	    Disk Transfer Area filled with ROM search structure (see #01771)
 	CF set if not found

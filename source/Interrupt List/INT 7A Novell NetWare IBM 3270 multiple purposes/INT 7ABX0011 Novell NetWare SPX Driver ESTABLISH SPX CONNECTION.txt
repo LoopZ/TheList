@@ -40,7 +40,7 @@ Offset	Size	Description	(Table 03826)
  1Eh	BYTE	connection control (see #03827)
  1Fh	BYTE	datastream type
 		FEh terminate connection request packet
-		FFh terminate connection acknowledgement packet
+		FFh terminate connection acknowledgment packet
 		other user-defined, ignored by SPX
  20h	WORD	(big-endian) source connection ID
  22h	WORD	(big-endian) destination connection ID
@@ -54,6 +54,6 @@ Bit(s)	Description	(Table 03827)
  3-0	unused???
  4	end of message
  5	reserved
- 6	acknowledgement required
+ 6	acknowledgment required
  7	system packet
 

@@ -245,15 +245,15 @@ Call protocol stack control entry point with:
 		Return: ES:SI -> protocol stack's statistics table (see #03000)
 	    0002h "BindToMLID"
 		CX = board number to bind to
-		ES:SI -> implementation-dependant parameter string
+		ES:SI -> implementation-dependent parameter string
 	    0003h "UnBindFromMLID"
 		CX = board number from which protocol should unbind
-		ES:SI -> optional implementation-dependant parameter string
+		ES:SI -> optional implementation-dependent parameter string
 	    0004h "MLIDDeRegistered"
 		CX = board number that has de-registered from LSL
 Return: AX = status
 	    0000h successful
-	    else implementation-dependant error codes
+	    else implementation-dependent error codes
 	ZF set if successful
 	SS:SP, DS, BP preserved
 

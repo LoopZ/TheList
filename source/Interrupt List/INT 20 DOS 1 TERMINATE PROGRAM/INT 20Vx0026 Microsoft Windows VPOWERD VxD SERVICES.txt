@@ -38,7 +38,7 @@ Values for VPOWERD (VxD ID 0026h) service number:
  08h	get APM 1.1 power state (see INT 15/AX=530Ch)
 	Return: ???
  09h	invoke OEM APM function
-	??? -> bufer containing parameters for INT 15/AX=5380h
+	??? -> buffer containing parameters for INT 15/AX=5380h
 	Return: EAX = error code (see #02665) or 00000000h if successful
 		buffer updated if successful
  0Ah	register power handler

@@ -7,7 +7,7 @@
 INT 14 - 3com BAPI SERIAL I/O - GET/SET CONFIGURATION INFO
 	AH = B3h
 	AL = direction (00h get, 01h set)
-	DH = session ID (00h for external session managment)
+	DH = session ID (00h for external session management)
 	DL = configuration item (00h = end-of-line mapping)
 	CX = new configuration item value (if AL=01h)
 	    ---if DL=00h---

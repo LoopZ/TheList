@@ -9,7 +9,7 @@ INT 2F U - DR DOS 5.0 - FIXUP SHARE STUB TABLE???
 	ES:BX -> new SHARE stub table to use???
 Return: DS destroyed???
 Notes:	Sets a pointer in the kernel. ES:BX points to a structure in SHARE's
-	  segment, which presumeably contains a number (4 or 11???) of entries
+	  segment, which presumably contains a number (4 or 11???) of entries
 	  of 5 bytes each and is probably part of some kind of share stub
 	  dispatcher that gets fixed up by this call.
 	This was seen called by DR DOS 5.0 SHARE 1.00 (when INT 2F/AX=1000h

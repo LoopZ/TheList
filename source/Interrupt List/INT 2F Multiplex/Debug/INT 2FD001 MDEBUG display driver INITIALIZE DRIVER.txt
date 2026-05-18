@@ -7,8 +7,8 @@
 INT 2F C - MDEBUG display driver - INITIALIZE DRIVER
 	AX = D001h
 Return: CF set on error
-	AL = driver semaphor
-	AH = buffer semaphor
+	AL = driver semaphore
+	AH = buffer semaphore
 Range:	AH=C0h to AH=FFh, selected by switch or programmatically
 Notes:	MDEBUG calls this function after every successful call of the function
 	  00h. The function should reset all internal data and the status of

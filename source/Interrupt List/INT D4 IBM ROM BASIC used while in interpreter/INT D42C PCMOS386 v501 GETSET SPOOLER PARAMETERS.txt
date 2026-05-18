@@ -8,7 +8,7 @@ INT D4 - PC-MOS/386 v5.01 - GET/SET SPOOLER PARAMETERS
 	AH = 2Ch
 	AL = function
 	    00h set spooler timeout
-		CX = timout value in seconds
+		CX = timeout value in seconds
 	    01h get spooler timeout
 		Return: CX = current timeout in seconds
 	    02h get spooler parameters

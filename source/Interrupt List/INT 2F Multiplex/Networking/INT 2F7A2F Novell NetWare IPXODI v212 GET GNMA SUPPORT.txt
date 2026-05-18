@@ -84,7 +84,7 @@ Values GNMA responder's request handler is called with:
 			DF clear
 			interrupts disabled
 			other registers may be destroyed
-	    01h responder acknowledgement complete
+	    01h responder acknowledgment complete
 		ES:SI -> responder structure (see #02899) from registration
 		DF clear
 		interrupts disabled
@@ -101,7 +101,7 @@ Values GNMA responder's request handler is called with:
 		Return:	DF clear
 			interrupts disabled
 			all registers (except SS:SP) may be destroyed
-		Note:	called whenever a network managment application
+		Note:	called whenever a network management application
 			  terminates
 Notes:	the responder handler should switch to a local stack if it enables
 	  interrupts or uses more than a few words of stack space

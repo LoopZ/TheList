@@ -157,7 +157,7 @@ Value	Count	Description
  ECh	sngl	reset mouse wrap mode (to normal mode)
  EEh	sngl	set wrap mode
  F0h	sngl	set remote mode (instead of stream mode), mouse sends data
-		  only on issueing command EBh.
+		  only on issuing command EBh.
  F2h	sngl	read mouse ID (read one, two?? ID bytes)
 		00h=mouse
  F3h	double	set mouse sample rate in reports per second
@@ -459,9 +459,9 @@ Value		Description
 		  input port, status word are sent to PORT 0060h in scan-code
 		  format; Chips&Technologies 8042's append "CHIPS Vxxx" where
 		  "xxx" is the controller version number
- ADh	sngl	disable keyboard (sets bit 4 of commmand byte)
+ ADh	sngl	disable keyboard (sets bit 4 of command byte)
  ADh	Vectra	HP Vectra diagnostic dump
- AEh	sngl	enable keyboard	 (resets bit 4 of commmand byte)
+ AEh	sngl	enable keyboard	 (resets bit 4 of command byte)
  AFh	AWARD	Enhanced Command: read keyboard version
  AFh	AMI	set extended controller RAM
 		write address to PORT 0060h, wait for controller ready, then

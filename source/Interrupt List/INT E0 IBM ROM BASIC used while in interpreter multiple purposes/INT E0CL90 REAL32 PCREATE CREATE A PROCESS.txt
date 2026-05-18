@@ -9,7 +9,7 @@ INT E0 - REAL/32 - "P_CREATE" - CREATE A PROCESS
 	DS:DX -> process descriptor in calling process' system memory area
 		(see #04026)
 Return: AX = status
-Notes:	this call can create more than one process if the specied process
+Notes:	this call can create more than one process if the specified process
 	  descriptor's link (next-process) field is nonzero
 	all reserved and unused fields in the process descriptor should be
 	  filled with zeros; passing an invalid descriptor or pointer may

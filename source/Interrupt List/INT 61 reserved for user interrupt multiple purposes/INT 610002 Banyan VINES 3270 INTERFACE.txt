@@ -36,8 +36,8 @@ Values for VINES 3270 interface function number:
  18h "pi2gerr"	 get finer error detail
  19h "pi2dhold"	 (3270/SNA only)  holds a 3270 device
  1Ah "pi2shut"	 release memory-resident module
- 1Ch "pi2sprof"	 save profile info in res driver (not supp in >3.0)
- 1Dh "pi2gprof"	 get prevsly stored profile info (not supp in >3.0)
+ 1Ch "pi2sprof"	 save profile info in res driver (not supported in >3.0)
+ 1Dh "pi2gprof"	 get previously stored profile info (not supported in >3.0)
 
 (Table 03347)
 Values for VINES 3270 status:
@@ -263,7 +263,7 @@ Offset	Size	Description	(Table 03366)
       M BYTEs	extended attributes
 		01h extended attributes are in effect (stored at screen+1920)
 		    each extended attribute specifies
-		    bits 0,1: 00=normal, 01=blink, 10=reverse, 11=underscor
+		    bits 0,1: 00=normal, 01=blink, 10=reverse, 11=underscore
 		    bits 2-4: 000=default,001=blue,010=red,011=pink,
 			      100=green,101=turquoise,110=yellow,111=white
 	BYTE	extended color

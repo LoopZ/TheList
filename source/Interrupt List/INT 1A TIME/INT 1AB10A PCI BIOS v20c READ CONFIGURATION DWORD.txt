@@ -203,12 +203,12 @@ SeeAlso: #00878
 Format of PCI Capabilities List:
 Offset	Size	Description	(Table 00884)
  00h	BYTE	capability identifier
-		01h PCI Power Managment
+		01h PCI Power Management
  01h	BYTE	offset of next item (within configuration space) or 00h
       N	BYTEs	varies by capability type
 ---PCI Power Management---
- 02h	WORD	power managment capabilities (see #00885) (read-only)
- 04h	WORD	power managment capabilities status register (see #00886)
+ 02h	WORD	power management capabilities (see #00885) (read-only)
+ 04h	WORD	power management capabilities status register (see #00886)
  06h	BYTE	PMCSR bridge support extensions (see #00887)
  07h	BYTE	(optional) read-only data register (see #00888)
 Notes:	this information is from the v0.93 draft of the specification and is
@@ -495,7 +495,7 @@ Bit(s)	Description	(Table 00901)
  6	reset secondary bus
  5	master abort mode on secondary bus
  4	reserved
- 3	VGA enable (when set, forward VGA memory and I/O ranges to seconary
+ 3	VGA enable (when set, forward VGA memory and I/O ranges to secondary
 	  bus)
  2	ISA enable
  1	reserved
@@ -546,7 +546,7 @@ Bit(s)	Description	(Table 00904)
  9	RWC	controller supports Remote Wakeup signalling
  8	IR	Interrupt Routing
 		0 normal host bus interrupt
-		1 System Managment Interrupt
+		1 System Management Interrupt
  7-6	HCFS	USB Host Controller Functional State
 		00 USBReset
 		01 USBResume

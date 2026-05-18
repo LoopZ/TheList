@@ -19,7 +19,7 @@ Notes:	the default handler for the pointer set by this call under DELWATCH
 	  INT 2F/AH=10h/AL<=09h chain in the kernel, so that they can actually
 	  allows the kernel to ensure that several conditions are met when
 	  passing control to these registered components including proper
-	  maintaining A20, re-enterancy, or critical section mutexing
+	  maintaining A20, re-entrancy, or critical section mutexing
 	  (e.g. getting the disk sub-system queue "MXdisk").
 	The default handler in the BDOS just sets the carry flag and returns.
 	Currently known clients to this shared interface are DR DOS 6.0

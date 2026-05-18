@@ -24,7 +24,7 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code
 		0001h DOS file access error
-		0002h not a CuaseWay 3P file
+		0002h not a CauseWay 3P file
 		0003h not enough memory
 SeeAlso: AX=FF2Ah,INT 21/AH=4Bh
 
@@ -67,6 +67,6 @@ Offset	Size	Description	(Table 03165)
 			0010 stack
 			0011 read-only data
 		bit 25: force segment descriptor's D bit to 0
-		bit 26: force segmetn descriptor's D bit to 1
+		bit 26: force segment descriptor's D bit to 1
 SeeAlso: #03163
 

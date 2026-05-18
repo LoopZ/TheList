@@ -8,7 +8,7 @@
 INT 14 - 3com BAPI SERIAL I/O - WRITE BLOCK
 	AH = A4h
 	CX = length of buffer in bytes
-	DH = session ID (00h for external session managment)
+	DH = session ID (00h for external session management)
 	ES:BX -> buffer containing data
 Return: AH = return code (00h,01h,03h,07h,0Ah,0Bh) (see #00394)
 	CX = number of bytes actually sent

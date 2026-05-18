@@ -8,7 +8,7 @@ INT 2F U - MS-DOS 7 kernel - GET SHELL PARAMETERS
 	AX = 1611h
 Return: AX = 0000h if supported
 	    DS:DX -> primary shell's executable name
-	    DS:SI -> prinary shell command line (counted string)
+	    DS:SI -> primary shell command line (counted string)
 	    BH = ??? (00h)
 	    BL = ??? (00h,40h)
 Desc:	return the program name and commandline from the CONFIG.SYS SHELL=

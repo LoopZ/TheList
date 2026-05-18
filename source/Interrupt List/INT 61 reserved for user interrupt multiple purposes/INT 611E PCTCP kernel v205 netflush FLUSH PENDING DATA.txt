@@ -12,7 +12,7 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code (see #03319 at INT 61"FTP Software")
 Range:	INT 20 to INT E0, selected by configuration
-Notes:	bufferred data is transmitted immediately, overriding Nagle's algorithm
+Notes:	buffered data is transmitted immediately, overriding Nagle's algorithm
 	  if necessary
 	this function is not supported by Beame&Whiteside's BWPCTCP v3.0a shim
 SeeAlso: INT 61"FTP Software",INT 61/AH=00h"PC/TCP"

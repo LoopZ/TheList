@@ -30,7 +30,7 @@ Notes:	original flags are left on stack, and must be popped by caller
 	  (CMP CX,-01; JZ ????) at offset +1 from the INT 25h/26h entry points
 	  and 2Eh, FFh, 2Eh (JMP DWORD PTR CS:[????]) at the location pointed
 	  to by the JZ ????. If it finds these signatures it will use the
-	  target address of the far jump for its sub-sequent checks, otherwise
+	  target address of the far jump for its subsequent checks, otherwise
 	  it will just take the previous interrupt entry points when scanning
 	  for FAh, 2Eh, 8Ch, 16h (CLI; MOV CS:????,SS) or FAh, 2Eh, 89h, 26h
 	  (CLI; MOV CS:????,SP) right at the beginning. Hence, it seems the

@@ -241,7 +241,7 @@ Bit(s)	Description	(Table 01062)
  11-10	reserved
  9	no lock requests
  8	reserved
- 7	enable transparent bufer writes
+ 7	enable transparent buffer writes
  6-4	reserved
  3-0	buffer size in MB (less 1); must be power of 2
 Notes:	if bits 31-20=0, the frame buffer feature is disabled
@@ -1535,10 +1535,10 @@ Bit(s)	Description	(Table 01131)
  14	(82443EX) reserved
  13-12	reserved
  11	??? (Not documented by Intel!)
- 10	PCI Agent to Arperture Access Disable
+ 10	PCI Agent to Aperture Access Disable
  9	Aperture Access Global Enable
  8-6	(82443EX) reserved
- 8-7	(82443LX) DRAM Data Integrety Mode
+ 8-7	(82443LX) DRAM Data Integrity Mode
 	00  Non-ECC (no check, no correct)
 	01  EC-only (do check, no correct)
 	10  reserved
@@ -1677,9 +1677,9 @@ SeeAlso: #01129,#01139
 Bitfields for Intel 82443EX/LX Error Status 1 register:
 Bit(s)	Description	(Table 01139)
  7-3	reserved
- 2	AGP non-snoopable access outside of graphics arperture
- 1	AGP non-snoopable access outside of main DRAM ranges and arperture
- 0	access to invalid graphics arperture translation table entry
+ 2	AGP non-snoopable access outside of graphics aperture
+ 1	AGP non-snoopable access outside of main DRAM ranges and aperture
+ 0	access to invalid graphics aperture translation table entry
 Notes:	Write a 1 to these bit(s) to clear
 SeeAlso: #01129,#01138
 

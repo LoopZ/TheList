@@ -26,7 +26,7 @@ Return: AL = FFh
 		    DS:SI -> new command line (ASCIZ string, max 66 chars)
 		06h process new command line
 		    DS:SI -> new command line (ASCIZ string, max 66 chars)
-	       else unknown status, but continue processing commmand line
+	       else unknown status, but continue processing command line
 Notes:	this function must end with a far call to the old INT 2F handler (with
 	  registers unchanged) if the driver does not support the interpreter
 	  command in BX.  Otherwise, the driver must not chain to the old
@@ -35,7 +35,7 @@ Notes:	this function must end with a far call to the old INT 2F handler (with
 (Table 03077)
 Values for MDEBUG error number:
  01h	syntax error
- 02h	first shell of the command.com is activ
+ 02h	first shell of the command.com is active
  03h	Esc pressed
  04h	break pressed
  05h	DOS is busy

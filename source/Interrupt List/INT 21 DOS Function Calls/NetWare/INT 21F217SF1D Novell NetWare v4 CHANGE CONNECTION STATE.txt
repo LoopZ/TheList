@@ -13,7 +13,7 @@ INT 21 - Novell NetWare v4 - CHANGE CONNECTION STATE
 Return: AL = status (see #02860 at INT 2F/AX=7A20h/BX=0000h)
 	reply buffer filled
 
-Format of NetWare "Change Connection State" requst buffer:
+Format of NetWare "Change Connection State" request buffer:
 Offset	Size	Description	(Table 02180)
  00h	WORD	length of following data
  02h	BYTE	1Dh (subfunction "Change Connection State")

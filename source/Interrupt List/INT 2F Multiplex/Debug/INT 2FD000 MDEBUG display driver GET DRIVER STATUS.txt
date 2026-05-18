@@ -11,15 +11,15 @@ Return: CF set on error
 	    all other registers must be unchanged)
 	CF clear if successful
 	    AL = FFh
-	    AH = driver semaphor
+	    AH = driver semaphore
 		00h driver is not active
 		01h driver is active
 	    BX = CS of the driver
 	    CX = driver version (CH = major, CL = minor, must be >= 013Ch)
-	    DL = buffer semaphor
+	    DL = buffer semaphore
 		00h driver is not pending
 		01h driver is pending between functions 02h and 03h
-	    DH = show semaphor
+	    DH = show semaphore
 		00h driver is not pending
 		01h driver is pending between functions 04h and 05h
 Program: MDEBUG is a shareware memory-resident debugging tool by Bernd
