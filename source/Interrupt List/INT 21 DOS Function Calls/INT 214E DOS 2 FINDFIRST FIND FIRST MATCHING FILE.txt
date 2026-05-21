@@ -22,7 +22,8 @@ Notes:	for search attributes other than 08h, all files with at MOST the
 	this call also returns successfully if given the name of a character
 	  device without wildcards.  DOS 2.x returns attribute 00h, size 0,
 	  and the current date and time.  DOS 3.0+ returns attribute 40h and
-	  the current date and time.
+	  the current date and time. MS-DOS v4.01 and v5.00 (at least) return
+	  the file size equal to the character device header's segment.
 	immediately after an INT 2F/AX=B711h (APPEND return found name), the
 	  name at DS:DX will be overwritten; if AL = 00h on entry, the actual
 	  found pathname will be stored, otherwise, the actual found path
@@ -38,6 +39,14 @@ BUGS:	under DOS 3.x and 4.x, the second and subsequent calls to this function
 	  directory search without the volume-label bit.  Such implicit
 	  searches are performed by CREATE (AH=3Ch), OPEN (AH=3Dh), UNLINK
 	  (AH=41h), and RENAME (AH=56h)
+	the above bug is actually the fact that the *first* call with the label
+	  attribute and a character device name will find the character device,
+	  whereas it is intended that a label search should only ever match a
+	  label. MS-DOS v5.00 fixes this case by internally setting the Attrib
+	  variable to the value from SAttrib (Search Attribute), so that the
+	  DEVNAME function is able to detect the fact that a label search is in
+	  progress, causing it to not match any character device. lDOS picked
+	  this patch to its source text as of 2026-05-19.
 	DR DOS 3.41 and 5.0 return the Directory attribute for the volume label
 SeeAlso: AH=11h,AH=4Fh,AX=4301h,AX=714Eh,AX=71A1h,AX=F257h/SF=02h
 SeeAlso: INT 2F/AX=111Bh,INT 2F/AX=B711h
