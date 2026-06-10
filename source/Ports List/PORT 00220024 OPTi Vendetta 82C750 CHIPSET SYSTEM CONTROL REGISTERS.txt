@@ -222,7 +222,7 @@ Bit(s)	Description	(Table P0227)
  6	0 = normal fast page mode
 	1 = detect EDO
  5	NA# generation
-	0 = aggresive
+	0 = aggressive
 	1 = normal
  4	DRAM read cycle lead-off 1 CLK reduce enable
  3-2	reserved
@@ -633,13 +633,13 @@ SeeAlso: #P0219
 Bitfields for OPTi "Vendetta" enter GREEN state port register:
 Bit(s)	Description	(Table P0255)
  7-0	GREEN state values for external power control latch
-	  (transfered to register ECh on enter GREEN state PPWRL#)
+	  (transferred to register ECh on enter GREEN state PPWRL#)
 SeeAlso: #P0219
 
 Bitfields for OPTi "Vendetta" return to NORMAL state configuration port:
 Bit(s)	Description	(Table P0256)
  7-0	NORMAL state values for external power control latch
-	  (transfered to register ECh on return to NORMAL state PPWRL#)
+	  (transferred to register ECh on return to NORMAL state PPWRL#)
 SeeAlso: #P0219
 
 Bitfields for OPTi "Vendetta" shadow register for external power control latch:

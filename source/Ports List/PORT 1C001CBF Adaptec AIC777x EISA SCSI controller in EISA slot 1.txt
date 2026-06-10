@@ -90,10 +90,10 @@ Notes:	the SCSI latched data registers are used to transfer data on the SCSI
 	in a twin channel configuration the separate register set with the
 	  addresses 00h-1Eh exists for each channel
 	the SCSI/host address register (SHADDR) holds the host address for the
-	  byte about to be transfered on the SCSI bus; it is counted up in the
+	  byte about to be transferred on the SCSI bus; it is counted up in the
 	  same manner as SCSI transfer count register (STCNT) is counted down
 	  and should always be used to determine the address of the last byte
-	  transfered since the host address register (HADDR) can be skewed by
+	  transferred since the host address register (HADDR) can be skewed by
 	  read ahead
 	the source/destination index registers (SINDEX/DINDEX) are used by the
 	  PhaseEngine processor to indirectly address the data memory (i.e. the
@@ -117,7 +117,7 @@ Notes:	the SCSI latched data registers are used to transfer data on the SCSI
 	  sent by CPU to the PhaseEngine processor and returned to CPU (when
 	  the associated SCSI command completes) respectively; CPU selects
 	  the SCB RAM area via the SCB pointer register (SCBPTR), downloads
-	  prepared SCB to addresses A0h-BFh (this requeires the PhaseEngine
+	  prepared SCB to addresses A0h-BFh (this requires the PhaseEngine
 	  processor to be paused), then places the SCB pointer value to the
 	  queue in FIFO by writing it to the respective register, from which
 	  the SCB pointers can be read (and removed) in the FIFO order; the
@@ -610,7 +610,7 @@ Notes:	93C46 serial EEPROM chips have 1024 bits organized into 64 16-bit
 	  to provide clocking for the EEPROM chip
 	bit 1 going from low to high causes the EEPROM chip to sample the data
 	  out pin and initiates the next bit to be sent through the data in pin
-	bit 2 must be set for a minimum of 1 mcs with the bit 1 goig high and
+	bit 2 must be set for a minimum of 1 mcs with the bit 1 going high and
 	  then low for the EEPROM chip to be selected; then the instruction can
 	  be sent to the EEPROM chip
 	instruction can be terminated by taking the EEPROM chip select pin low,
@@ -640,7 +640,7 @@ Opcode	   Function  Parameter	Description
 01AAAAAAb  WRITE     D15..D0	write register with address A5..A0
 10AAAAAAb  READ	     -		read registers starting with address A5..A0
 11AAAAAAb  ERASE     -		erase register with address A5..A0
-Notes:	while the chip select pin remains high an instuction and the optional
+Notes:	while the chip select pin remains high an instruction and the optional
 	  parameter word can be clocked in MSB first, beginning with the start
 	  bit of 1
 	16-bit parameter and data words are transferred MSB first, beginning

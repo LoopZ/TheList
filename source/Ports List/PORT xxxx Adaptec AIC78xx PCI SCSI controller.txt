@@ -80,7 +80,7 @@ SeeAlso: PORT 0340h-035Fh"Adaptec AHA-152x",PORT 1C00h-1CBFh"Adaptec AIC-777x"
 +09E  R-  queue out count register (QOUTCNT)
 	  number of the SCBs in the queue out
 +0A0  RW  SCB array (32 bytes) (see #P1003)
-Notes:	AIC-7850 SCSI controllers sporatically get garbage in the MSBs of the
+Notes:	AIC-7850 SCSI controllers sporadically get garbage in the MSBs of the
 	  queue in/out count registers (QINCNT/QOUTCNT)
 
 Bitfields for AIC-7870 board control register (BRDCTL):
@@ -141,7 +141,7 @@ Notes:	AIC-7873/7883 use 93C56/93C66 serial EEPROM chips, others use 93C46;
 	  to provide clocking for the EEPROM chip
 	bit 2 going from low to high causes the EEPROM chip to sample the data
 	  out pin and initiates the next bit to be sent through the data in pin
-	bit 3 must be set for a minimum of 1 mcs with the bit 2 goig high and
+	bit 3 must be set for a minimum of 1 mcs with the bit 2 going high and
 	  then low for the EEPROM chip to be selected; then the instruction can
 	  be sent to the EEPROM chip
 	instruction can be terminated by taking the EEPROM chip select pin low,
