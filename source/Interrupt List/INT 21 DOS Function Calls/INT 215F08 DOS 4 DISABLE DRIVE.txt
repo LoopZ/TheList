@@ -12,6 +12,11 @@ Return: CF clear if successful
 	CF set on error
 	    AX = error code (0Fh) (see #01680 at AH=59h/BX=0000h)
 Notes:	simply clears the "valid" bit in the drive's CDS
+	in MS-DOS v4.01 and v5.00, the drive is checked to exist in the
+	  CDS array and it is checked that the DPB pointer's low word
+	  is not zero, see offset 45h in #01643. if these conditions
+	  are met, the offset 43h flag mask 4000h ("physical drive") is
+	  cleared, otherwise error 000Fh is returned.
 	this function is not supported by Novell DOS 7 through at least
 	  Update 4, but support was added by Update 13
 	previous revisions of this entry claimed it was a "DOS 5+"
