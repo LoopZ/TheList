@@ -5,7 +5,7 @@
       Flag: n/a
 ----------------------------------------------------------------------------
 
-INT 21 - DOS 5+ - ENABLE DRIVE
+INT 21 - DOS 4+ - ENABLE DRIVE
 	AX = 5F07h
 	DL = drive number (0=A:)
 Return: CF clear if successful
@@ -14,5 +14,8 @@ Return: CF clear if successful
 Notes:	simply sets the "valid" bit in the drive's CDS
 	this function is not supported by Novell DOS 7 through at least
 	  Update 4, but support was added by Update 13
+	previous revisions of this entry claimed it was a "DOS 5+"
+	  function, however the 2024 April release of MS-DOS v4.00
+	  source texts under the MIT license show it already existed
 SeeAlso: AH=52h,AX=5F08h"DOS"
 
