@@ -5,14 +5,22 @@
       Flag: n/a
 ----------------------------------------------------------------------------
 
-INT 21 - DOS 5+ - ENABLE DRIVE
+INT 21 - DOS 4+ - ENABLE DRIVE
 	AX = 5F07h
 	DL = drive number (0=A:)
 Return: CF clear if successful
 	CF set on error
 	    AX = error code (0Fh) (see #01680 at AH=59h/BX=0000h)
 Notes:	simply sets the "valid" bit in the drive's CDS
+	in MS-DOS v4.01 and v5.00, the drive is checked to exist in the
+	  CDS array and it is checked that the DPB pointer's low word
+	  is not zero, see offset 45h in #01643. if these conditions
+	  are met, the offset 43h flag mask 4000h ("physical drive") is
+	  set, otherwise error 000Fh is returned.
 	this function is not supported by Novell DOS 7 through at least
 	  Update 4, but support was added by Update 13
+	previous revisions of this entry claimed it was a "DOS 5+"
+	  function, however the 2024 April release of MS-DOS v4.00
+	  source texts under the MIT license show it already existed
 SeeAlso: AH=52h,AX=5F08h"DOS"
 
