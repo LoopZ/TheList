@@ -1,0 +1,18 @@
+----------------------------------------------------------------------------
+ Unique ID: 2D--25
+  Category: U 	resident utilities
+      Flag: n/a
+----------------------------------------------------------------------------
+
+INT 2D - lDOS TSRs - GET CTRL5
+	AH = AMIS multiplex number
+	AL = 25h
+Return:	AL = size of returned ctrl5
+	DX:BX -> control data
+Notes:	ctrl5 may have different uses among the TSRs.
+	LBACACHE: ctrl5 is 4 DWORDs (only supported if _MEMO_COUNTERS set)
+		--- known MEMO statistics, reset by uncache ZERO ---
+		DWORD 00h: point queries
+		DWORD 04h: point hits
+		DWORD 08h: memo queries (equals point queries - point hits)
+		DWORD 0Ch: memo hits

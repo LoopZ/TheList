@@ -31,6 +31,13 @@ Return: AL = status
 	  specific return address
 Notes:	this function is not valid unless a program is installed on the
 	  specified multiplex number; use INT 2D/AL=00h to check
+	LBACACHE will try to free its XMS handle if possible, and upon
+	  success will also free a Low Memory Area stack if any was
+	  allocated with the TUNS installation option. It will then set
+	  its running variable to RUNNING_FREED (see AL=23h"lDOS") and
+	  return with code 04h. If the XMS freeing failed then the
+	  running variable is not modified and the multiplexer returns
+	  with code 01h instead.
 SeeAlso: INT 2D/AL=00h,INT 2D/AL=01h,INT 2D/AL=03h,INT 2D/AL=04h,INT 2D/AL=05h
 SeeAlso: INT 2D/AL=06h
 Index:	uninstall;Alternate Multiplex Interrupt Specification|uninstall;AMIS

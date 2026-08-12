@@ -1,0 +1,18 @@
+----------------------------------------------------------------------------
+ Unique ID: 2D--31
+   Sort As: 2D--31+01
+  Category: c 	caches/spoolers
+      Flag: n/a
+----------------------------------------------------------------------------
+
+INT 2D - LBACACHE - FLUSH ONE UNIT
+	AH = AMIS multiplex number for LBACACHE
+	AL = 31h
+	DL = unit number to operate on (0, 1, or 80h to 87h)
+Return:	AL = FFh to indicate suppported
+	AL != FFh if not supported
+Notes:	Discards all cached data for the specified unit and initialises
+	  all its main cache table entries to all-1s.
+	Currently also resets the entire bonus table (for all units) to
+	  all point at the first main cache table entry.
+SeeAlso: AL=30h"LBACACHE"

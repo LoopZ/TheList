@@ -1,0 +1,25 @@
+----------------------------------------------------------------------------
+ Unique ID: 2D--24
+  Category: U 	resident utilities
+      Flag: n/a
+----------------------------------------------------------------------------
+
+INT 2D - lDOS TSRs - GET CTRL4
+	AH = AMIS multiplex number
+	AL = 24h
+Return:	AL = size of returned ctrl4
+	DX:BX -> control data
+Notes:	ctrl4 may have different uses among the TSRs.
+	LBACACHE: ctrl4 is 4 BYTEs
+		WORD 00h: "fddstat",
+			1/2 enable A:/B: caching
+			10h/20h signal A:/B: changed
+			100h/200h A:/B: caching allowed mask
+		BYTE 02h: tune flags,
+			bit 0 TUNA (fully associative caching)
+			bit 1 TUNW (allocate on write)
+			bit 2 TUNS (allocated a Low Memory Area stack)
+		BYTE 03h: cache temperature,
+			0 normal
+			1 melt
+			-1 freeze
