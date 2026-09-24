@@ -384,8 +384,16 @@ Offset	Size	Description	(Table 02776)
  06h	DWORD	offset into source block
  0Ah	WORD	destination handle
  0Ch	DWORD	offset into destination block
-Notes:	if source and destination overlap, only forward moves (source base
-	  less than destination base) are guaranteed to work properly
+Notes:	if source and destination overlap, only forward (UP) moves are
+	  guaranteed to work properly. this is incorrectly referred to as
+	  "where the source base is less than the destination base" in the
+	  XMS v2 and v3 specifications. an UP move, forward move, or move
+	  with the Direction Flag clear, with overlapping data in fact
+	  only works to place the entire source data at the destination if
+	  the destination starts below the source.
+	it is not clearly specified, but it may be assumed that moves with
+	  overlap will either work to preserve the source data or, if the
+	  handler doesn't support backwards (DN) moves, return error A8h.
 	if either handle is zero, the corresponding offset is interpreted
 	  as a real-mode address referring to memory directly addressable
 	  by the processor for V86M function 0Bh or PM function 7B00h. see
