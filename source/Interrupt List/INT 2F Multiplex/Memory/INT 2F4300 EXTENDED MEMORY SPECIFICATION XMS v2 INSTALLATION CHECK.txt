@@ -12,6 +12,8 @@ Notes:	XMS gives access to extended memory and noncontiguous/nonEMS memory
 	  above 640K
 	this installation check DOES NOT follow the format used by other
 	  software
+	dosemu2 provides an XMS interface when calling the Protected Mode
+	  INT 2F handler, other DPMI hosts such as HDPMI are known not to.
 SeeAlso: AX=4310h,AX=1687h,INT 67/AH=40h,@xxxxh:xxxxh"PMM"
 Index:	installation check;XMS version 2+
 
