@@ -12,5 +12,6 @@ INT 30 - (NOT A VECTOR!) - DOS 1+ - FAR JMP instruction for CP/M-style calls
 BUGS:	in PSPs created by MS-DOS 2+ Debug, the instruction at PSP:0005h
 	  (see #01378) points two bytes too low in memory. fixed in lDOS
 	  MSDebug (fork based on MS-DOS v2 Debug)
-SeeAlso: INT 21/AH=26h
-
+	previous revisions of this interrupt list misidentified the Debug
+	  bug as being a DOS (kernel) bug, likely due to testing in Debug.
+SeeAlso: INT 31"CP/M",INT 21/AH=26h
