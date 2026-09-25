@@ -10,6 +10,13 @@ Return: ES:BX -> driver entry point (see #02749,#02750,#02753,#02760,#02769,#027
 Notes:	HIMEM.SYS v2.77 chains to previous handler if AH is not 00h or 10h
 	HIMEM.SYS requires at least 256 bytes free stack space when calling
 	  the driver entry point
+	dosemu2 provides an entrypoint when INT 2F/AX=4310h is called in
+	  Protected Mode. this entrypoint is a far pointer either in ES:BX
+	  or ES:EBX, which must be called with the operand size that
+	  corresponds to the client bitness. that is, 32-bit clients must
+	  far call dword (o32) ES:EBX while 16-bit clients must far call
+	  word (o16) ES:BX. stack size (B bit) and code segment default size
+	  (D bit) do not matter to the entrypoint however.
 SeeAlso: AX=4300h,AX=4310h"Cloaking",AX=4310h"Netroom",AX=4310h"XMZ"
 
 Format of XMS driver entry point:
@@ -146,7 +153,16 @@ Return: AX = status
 Notes:	if either handle in the EMM structure is 0000h, the corresponding
 	  offset is considered to be an absolute segment:offset address in
 	  directly addressable memory
-SeeAlso: #02759,#02762
+	if either handle is zero when calling the dosemu2 Protected Mode
+	  XMS entrypoint, handling may differ depending on the dosemu2
+	  revision and the bitness of the DPMI client. it may use the
+	  address field as a segment:offset of Virtual 86 Mode addressable
+	  memory (just like the Virtual 86 Mode entrypoint), or as a
+	  32-bit near offset in the caller's current DS, or as a 16:16
+	  selector:offset value using the caller's current GDT and LDT.
+	under dosemu2 as of 2026-09-22, use PM XMS function 7Bh to specify
+	  explicitly what interpretation to use for zero handle addresses.
+SeeAlso: #02759,#02762,#26008
 
 (Table 02762)
 Call the XMS driver "Lock extended memory block" function with:
@@ -256,6 +272,29 @@ Call the QEMM v5.11 "???" function with:
 Return: ???
 SeeAlso: #02769,#02783
 
+(Table 26008)
+Call the dosemu2 PM XMS driver "Move extended memory block" function with:
+	AH = 7Bh
+	AL = type of address used for zero handle
+	    00h = Virtual 86 Mode 16:16 segment:offset
+	    01h = 32-bit linear address
+	    02h = 32-bit near offset in current DS
+	    03h = Protected Mode 16:16 selector:offset
+	    else unknown, may be assigned in future revisions
+	DS:SI -> EMM structure (see #02776)
+Return: AX = status
+	    0001h success
+	    0000h failure
+		BL = error code (80h-82h,A3h-A9h,AEh) (see #02775)
+Notes:	added to dosemu2 as of 2026-09-22
+	only available when calling the Protected Mode XMS entrypoint
+	dosemu2 which supports this call never returns error 80h, which
+	  is the expected error return for XMS handlers that do not know
+	  of this extension. an unsupported type in AL will return the
+	  new error code AEh, to allow dispatching based on whether the
+	  subfunction or the whole function is unsupported.
+SeeAlso: #02761
+
 (Table 02771)
 Call the XMS v3.0 driver "Query free extended memory" function with:
 	AH = 88h
@@ -333,6 +372,7 @@ Values for XMS error code returned in BL:
  ABh	block is locked
  ACh	block lock count overflowed
  ADh	lock failed
+ AEh	(dosemu2 XMS PM) unknown/unsupported move type
  B0h	only a smaller UMB is available
  B1h	no UMB's are available
  B2h	UMB segment number is invalid
@@ -344,11 +384,22 @@ Offset	Size	Description	(Table 02776)
  06h	DWORD	offset into source block
  0Ah	WORD	destination handle
  0Ch	DWORD	offset into destination block
-Notes:	if source and destination overlap, only forward moves (source base
-	  less than destination base) are guaranteed to work properly
+Notes:	if source and destination overlap, only forward (UP) moves are
+	  guaranteed to work properly. this is incorrectly referred to as
+	  "where the source base is less than the destination base" in the
+	  XMS v2 and v3 specifications. an UP move, forward move, or move
+	  with the Direction Flag clear, with overlapping data in fact
+	  only works to place the entire source data at the destination if
+	  the destination starts below the source.
+	it is not clearly specified, but it may be assumed that moves with
+	  overlap will either work to preserve the source data or, if the
+	  handler doesn't support backwards (DN) moves, return error A8h.
 	if either handle is zero, the corresponding offset is interpreted
 	  as a real-mode address referring to memory directly addressable
-	  by the processor
+	  by the processor for V86M function 0Bh or PM function 7B00h. see
+	  description of functions 0Bh and 7Bh for other interpretations
+	  of zero-handle addresses in the Protected Mode XMS interface.
+SeeAlso: #02761,#26008
 
 Format of XMS handle info [array]:
 Offset	Size	Description	(Table 02777)
