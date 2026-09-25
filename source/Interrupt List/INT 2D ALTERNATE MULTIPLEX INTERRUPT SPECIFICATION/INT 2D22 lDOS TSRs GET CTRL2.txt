@@ -34,3 +34,22 @@ Notes:	ctrl2 has different uses among the TSRs.
 	lDebug: this call is not supported
 	Loader: this call is not supported
 	lDOS kernel: this call is not supported
+	LBACACHE: ctrl2 is 14h, 1Eh, or 20h BYTEs
+		--- STAT statistics reset by uncache ZERO ---
+		DWORD 00h: read hits
+		DWORD 04h: read misses
+		DWORD 08h: write hits
+		DWORD 0Ch: write misses
+		--- debugging hints and uncache INFO and TABLE info ---
+		(These variables are informational, changing them is not
+		 supported and they should be treated as constants.)
+		WORD 10h: offset of main cache table (typically ~ 1000h)
+		BYTE 12h: log2 of cache table entry size (3)
+		BYTE 13h: log2 of how many sectors per entry (0..4)
+		--- new TABLE details ---
+		DWORD 14h: amount of sectors (to be) allocated in XMS
+		DWORD 18h: amount of table entries, should not be changed
+			currently because of hidden table size variables
+		WORD 1Ch: table format sequential (0)
+		--- bonus table details ---
+		WORD 1Eh: amount of bonus table entries (after table)

@@ -56,3 +56,6 @@ Notes:	ctrl0 has different uses among the TSRs.
 	lDebug: this call is not supported
 	Loader: this call is not supported
 	lDOS kernel: this call is not supported
+	LBACACHE: ctrl0 is 6 BYTEs
+		WORD 00h: XMS handle, zero if not currently allocated
+		DWORD 02h: 16:16 far pointer to XMS handler entrypoint

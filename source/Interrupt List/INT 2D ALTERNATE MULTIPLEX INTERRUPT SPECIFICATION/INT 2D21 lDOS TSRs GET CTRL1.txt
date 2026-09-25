@@ -32,3 +32,8 @@ Notes:	ctrl1 has different uses among the TSRs.
 	lDebug: this call is not supported
 	Loader: this call is not supported
 	lDOS kernel: this call is not supported
+	LBACACHE: ctrl1 is 10 WORDs
+		8 WORDs 00h: geometry for units 80h to 87h,
+			low byte: maximum S-coordinate number (= amount)
+			high byte: maximum H-coordinate number (amount - 1)
+		2 WORDs 10h: geometry for units 00h and 01h

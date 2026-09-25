@@ -1,0 +1,17 @@
+----------------------------------------------------------------------------
+ Unique ID: 2D--30
+   Sort As: 2D--30+03
+  Category: c 	caches/spoolers
+      Flag: n/a
+----------------------------------------------------------------------------
+
+INT 2D - LBACACHE - FLUSH ALL UNITS
+	AH = AMIS multiplex number for LBACACHE
+	AL = 30h
+Return:	AL = FFh to indicate suppported
+	AL != FFh if not supported
+Notes:	Discards all cached data and initialises the main cache table to
+	  all-1s and the bonus table to all point at the first table entry.
+	Should be called before enabling an LBACACHE instance lest it uses
+	  stale data, see the running variable in ctrl3 at AL=23h"lDOS".
+SeeAlso: AL=31h"LBACACHE"

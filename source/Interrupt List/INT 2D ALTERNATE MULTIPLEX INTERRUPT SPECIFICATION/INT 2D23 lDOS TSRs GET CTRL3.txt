@@ -1,0 +1,30 @@
+----------------------------------------------------------------------------
+ Unique ID: 2D--23
+  Category: U 	resident utilities
+      Flag: n/a
+----------------------------------------------------------------------------
+
+INT 2D - lDOS TSRs - GET CTRL3
+	AH = AMIS multiplex number
+	AL = 23h
+Return:	AL = size of returned ctrl3
+	DX:BX -> control data
+Notes:	ctrl3 may have different uses among the TSRs.
+	LBACACHE: ctrl3 is 4 WORDs
+		WORD 00h: running variable, low byte use:
+			00h RUNNING_INIT (resident not yet installed)
+			01h RUNNING_ENABLED (normal operation)
+			02h RUNNING_DISA (disabled using DISA command)
+			04h RUNNING_SHUTDOWN (disabled by int 13h handler)
+			08h RUNNING_FREED (tried to uninstall, XMS freed)
+		WORD 02h: TSR size, obsolete / currently unused (was used
+			to indicate minimum size of dead TSR to keep)
+		WORD 04h: 8 LSBs indicate LBA support for units 80h to 87h,
+			MSB indicates dosemu detected
+		WORD 06h: 8 LSBs indicate cache enable for units 80h to 87h
+Notes:	Before changing the LBACACHE running variable from RUNNING_DISA or
+	  RUNNING_SHUTDOWN to RUNNING_ENABLED, the flush all units function
+	  AL=30h"LBACACHE" should be called to flush the entire cache. This
+	  ensures that no stale data is served on the int 13h interface.
+	The LBACACHE int 13h handler tests bit 0 of the running variable,
+	  if clear then it immediately chains to its int 13h downlink.
