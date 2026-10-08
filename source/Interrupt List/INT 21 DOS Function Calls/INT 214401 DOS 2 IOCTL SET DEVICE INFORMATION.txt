@@ -6,12 +6,25 @@
 
 INT 21 - DOS 2+ - IOCTL - SET DEVICE INFORMATION
 	AX = 4401h
-	BX = handle (must refer to character device)
+	BX = handle (must refer to character device on MS-DOS v5 and v7.10)
 	DX = device information word (see #01423)
-	    (DH must be zero for DOS version prior to 6.x)
+	    (DH must be zero for MS-DOS v5 and v7.10 at least)
+	    (DH may be zero or one for MS-DOS v4.00 and v4.01)
 Return: CF clear if successful
+	    (undocumented) AL = prior SFT flags low byte
 	CF set on error
 	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
 Notes:	this function was not supported by Digital Research's DOS Plus
+	calling this function on character devices will set the SFT flags
+	  low byte to whatever was passed in DL, except that bit 7 is always
+	  forced set so the SFT entry remains marked as a character device.
+	on MS-DOS v4.00 and v4.01, the handle may refer to either a disk
+	  file or a character device. disk files only use the low bit of DH,
+	  which can set "Handle_Fail_I24", ignoring what was passed in DL.
+	  for character devices, the low bit of DH can be set to set the
+	  "Handle_Fail_I24" flag. there's no way to clear "Handle_Fail_I24".
+	errors are checked as follows: error 06h if invalid handle, then
+	  error 0Dh if invalid bits set in DH, then error 01h if on MS-DOS
+	  v5 or v7.10 and a disk file handle was passed.
 SeeAlso: AX=4400h,INT 2F/AX=122Bh
 
