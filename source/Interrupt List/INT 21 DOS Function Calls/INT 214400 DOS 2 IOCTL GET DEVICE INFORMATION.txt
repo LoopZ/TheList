@@ -9,11 +9,13 @@ INT 21 - DOS 2+ - IOCTL - GET DEVICE INFORMATION
 	BX = handle
 Return: CF clear if successful
 	    DX = device information word (see #01423)
-	    AX destroyed
+	    AX destroyed (= DX in MS-DOS v4.00, v4.01, v5, v7.10)
 	CF set on error
 	    AX = error code (01h,05h,06h) (see #01680 at AH=59h/BX=0000h)
 Notes:	value in DH corresponds to high byte of device driver's attribute word
-	  if handle refers to a character device
+	  if handle refers to a character device.
+	DH appears to be all-zeroes if handle refers to a disk file, at least
+	  on MS-DOS v4.00, v4.01, v5, and v7.10
 	Novell NetWare reportedly does not return a drive number in bits 5-0
 	  for a disk file
 	this function was not supported by Digital Research's DOS Plus
@@ -22,6 +24,7 @@ SeeAlso: AX=4401h,INT 2F/AX=122Bh
 Bitfields for device information word:
 Bit(s)	Description	(Table 01423)
  character device
+  15	set (indicates that a device is a character device)
   14	device driver can process IOCTL requests (see AX=4402h"DOS 2+")
   13	output until busy supported
   11	driver supports OPEN/CLOSE calls
@@ -34,14 +37,24 @@ Bit(s)	Description	(Table 01423)
    2	NUL device
    1	standard output
    0	standard input
- disk file
+ disk file (internal, not returned(?) by function AX=4400h)
   15	file is remote (DOS 3.0+)
   14	don't set file date/time on closing (DOS 3.0+)
   11	media not removable
-   8	(DOS 4 only) generate INT 24 if no disk space on write or read past
-	  end of file
+   8	(DOS 4 only) generate INT 24 if no disk space on write disk full
+	  or read past end of file, equate is called "Handle_Fail_I24"
+ disk file (returned by function AX=4400h)
    7	clear (indicates file)
    6	file has not been written
   5-0	drive number (0 = A:)
+Notes:	bit 8 can be set on MS-DOS v4, both for disk files or character
+	  devices, using AX=4401h but it apparently cannot be reset
+	  using any system call.
+	bit 8 seen set with no AX=4401h call on dosemu2 mfs redirector.
+	  this is considered a bug in dosemu2, reported on 2026-10-08 on
+	  a change added 2019-10-16.
+	bit 8 is never returned from the SFT entry on AX=4400h. for disk
+	  files, DH is always all-zeroes. for character devices, DH is
+	  always set from the device header's attributes, not the SFT.
+	  tested on MS-DOS v4.00, v4.01, v5, v7.10 as yet.
 SeeAlso: INT 29
-

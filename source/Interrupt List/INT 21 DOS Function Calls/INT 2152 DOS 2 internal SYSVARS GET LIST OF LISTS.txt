@@ -596,6 +596,7 @@ Offset	Size	Description	(Table 01642)
 			bit 13 set if named pipe
 			bit 12 set if no inherit
 			bit 11 set if network spooler
+			bit 8  "Handle_Fail_I24", MS-DOS v4 AX=4401h can set
 			bit 7  set if device, clear if file (only if local)
 			bits 6-0 as for AX=4400h
 	 07h	DWORD	pointer to device driver header if character device
