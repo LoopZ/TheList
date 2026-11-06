@@ -55,8 +55,32 @@ const
 
   CICD : boolean = false;
 
+function KeyToVal(S : String) : int64;
+
+function ValToKey(V : Int64) : String;
+
 implementation
 
+function KeyToVal(S : String) : int64;
+var
+  I : integer;
+begin
+  Result:=0;
+  I := 0;
+  While Length(S) > I do begin
+    Inc(I);
+    Result:=Result shl 8 + Ord(S[I]);
+  end;
+end;
+
+function ValToKey(V : Int64) : String;
+begin
+  Result := '';
+  While V > 0 do begin
+    Result := Chr(V and $ff) + Result;
+    V:= V shr 8;
+  end;
+end;
 
 initialization
 

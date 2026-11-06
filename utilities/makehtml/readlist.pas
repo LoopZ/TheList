@@ -46,11 +46,15 @@ end;
 
 // Determines if a section header is an Entry or a Comment.
 // Returns the ID for the Section. Returns True if it is an Entry.
-function IsEntry(const SectionHeader : RawByteString; out ID : String) : boolean;
+function IsEntry(const SectionHeader : RawByteString; out ID, IK : String) : boolean;
+
 begin
   ID:='';
+  IK:='';
   Result:=False;
   if not HasLeading(SectionHeader, SectionDivider) then Exit;
+  IK:=StringReplace(Copy(SectionHeader, 9, 2), '-', '', [rfReplaceAll]);
+  if IK = '!' then IK:= '';
   Result:=Copy(SectionHeader, 11, 2) <> '--';
   if Result then
     ID:=Copy(SectionHeader, 11)
@@ -191,7 +195,7 @@ var
   E : Integer;
   Data : RawByteString;
   First : Boolean;
-  Header, Section, ID : String;
+  Header, Section, ID, IK : String;
   L : Char;
   N : TBinaryTreeNode;
 begin
@@ -235,9 +239,10 @@ begin
         LogMessage(vbNormal, 'processing file: ' +ExtractFileName(Filename));
 
       end else begin
-        if IsEntry(Header, ID) then begin
+        if IsEntry(Header, ID, IK) then begin
           // It is a Section entry
           N:=AddToTree(ListFiles[High(ListFiles)].Entries, ID, Section);
+          N.Value:=KeyToVal(IK);
           LogMessage(vbExcessive, TAB + 'Entry: ' + N.UniqueID);
         end else if (ID = '-') and Assigned(N) then begin
           // Divider is a continuation of previous section or entry

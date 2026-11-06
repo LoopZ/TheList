@@ -18,15 +18,70 @@ uses
   {$ENDIF}
   SysUtils,
   { you can add units after this }
-  Version, PasExt, BinTree, GloData;
+  Version, PasExt, BinTree, GloData, HtmlKit;
 
 procedure WriteTheList(Pathname : String);
 
 implementation
 
+function CommentTitle(S : String) : String;
+begin
+  case Uppercase(S) of
+    'ADMIN' : Result:= 'Administration';
+  else
+    Result :=TitleCase(Lowercase(StringReplace(S, '_', ' ', [rfReplaceAll])));
+  end;
+end;
+
+procedure WriteGroupFiles(Pathname : String; List : integer);
+var
+  S, T : String;
+  E : TBinaryTreeNode;
+begin
+  S:='<html><body>';
+  Cat(S, tagDiv('list-head', ListFiles[List].Header));
+
+  // Index Comments
+  E := ListFiles[List].Comments.First;
+  if  Assigned(E) then begin
+    Cat(S, beginDiv('list-comments') + LF);
+    While Assigned(E) do begin
+      Cat(S, tagDiv('list-comment-item', tagA('comments/' + E.UniqueID,
+        CommentTitle(E.UniqueID))));
+      E:=E.Next;
+    end;
+    Cat(S, endDiv);
+  end;
+
+  // Index Entries
+  E := ListFiles[List].Entries.First;
+  Cat(S, beginDiv('list-index') + LF);
+  While Assigned(E) do begin
+    T := E.Text;
+    T := Trim(PopDelim(T, LF));
+    Cat(S, tagDiv('list-index-item', tagComment('Category: ' + ValToKey(E.Value)) + tagA(E.UniqueID, T)));
+    E:=E.Next;
+  end;
+  Cat(S, endDiv);
+
+  // Page footer
+  Cat(S, '</body></html>');
+  if FileSave(Pathname + 'index.html', S) <> 0 then begin
+    LogMessage(vbCritical, 'Unable to create output file: ' + Pathname + 'index.html');
+    Halt(1);
+  end;
+end;
+
 procedure WriteGroup(Pathname : String; List : integer);
 begin
   LogMessage(vbNormal, 'output group: ' + ListFiles[List].Group);
+  Pathname := IncludeTrailingPathDelimiter(Pathname) + ListFiles[List].Group;
+  if not CreateTree(Pathname, True) then begin
+    LogMessage(vbCritical, 'Unable to create directory: ' + Pathname);
+    Halt(1);
+  end;
+  Pathname:=IncludeTrailingPathDelimiter(Pathname);
+  WriteGroupFiles(Pathname, List);
 end;
 
 procedure WriteTheList(Pathname: String);
