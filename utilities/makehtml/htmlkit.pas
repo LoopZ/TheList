@@ -23,9 +23,12 @@ uses
 const
   HtmlExt : String = '.html';
 
+function HtmlRef(Filename : RawByteString) : RawByteString;
 function url(PathName, Filename : RawByteString) : RawByteString; overload;
 function url(Filename : RawByteString) : RawByteString; overload;
 procedure SaveHtml(Pathname, Filename, Title, Contents : RawByteString);
+
+function tagTargetID(const TargetID, Content : RawByteString) : RawByteString;
 
 function tagComment(const Content : RawByteString; Escape : boolean = false) : RawByteString;
 
@@ -59,7 +62,7 @@ implementation
 var
   CSSData : RawByteString;
 
-function Safename(Filename : RawByteString) : RawByteString;
+function HtmlRef(Filename : RawByteString) : RawByteString;
 begin
   Filename:=StringReplace(EscapeHTML(Filename), '/', '%2f', [rfReplaceAll]);
   Result:=Filename;
@@ -74,7 +77,7 @@ function url(PathName, Filename : RawByteString) : RawByteString;  overload;
 begin
   if Pathname <> '' then
     PathName:=IncludeTrailingpathDelimiter(PathName);
-  Result:=PathName + Safename(Filename) + HtmlExt;
+  Result:=PathName + HtmlRef(Filename) + HtmlExt;
 end;
 
 procedure SaveHtml(Pathname, Filename, Title, Contents : RawByteString);
@@ -96,6 +99,27 @@ begin
   end;
 end;
 
+function tagTargetID(const TargetID, Content : RawByteString) : RawByteString;
+var
+  T, C : String;
+  X : boolean;
+begin
+  if not HasLeading(Content, '<') then
+    Result:='<span id="' + TargetID + '">' + Content + '</span>'
+  else begin
+    C := Content;
+    T := Trim(PopDelim(C, '>'));
+    X:= HasTrailing(T, '/');
+    if X then begin
+      T :=Trim(ExcludeTrailing(T, '/'));
+      X := True;
+    end;
+    Cat(T, SPACE + 'id="' + TargetID + '"');
+    if X then
+      Cat(T, SPACE + '/');
+    Result:=T + '>' + C;
+  end;
+end;
 
 function tagComment(const Content : RawByteString; Escape : boolean = false) : RawByteString;
 begin

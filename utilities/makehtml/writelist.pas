@@ -38,9 +38,16 @@ end;
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
   Body, T, ID, Flags, CatKey : String;
-  E : TBinaryTreeNode;
+  E, N : TBinaryTreeNode;
+  LP, LN : String;
 begin
-  Body:= tagDiv('list-head', ListFiles[List].Header);
+  Body:=
+    tagDiv('list-navbar', LF +
+      tagDiv('list-nav-prev', '') +
+      tagDiv('list-nav-up', tagA(url('..', 'index'), 'Index')) +
+      tagDiv('list-nav-next', '')
+    ) +
+    tagDiv('list-head', ListFiles[List].Header);
 
   // Index Comments
   E := ListFiles[List].Comments.First;
@@ -68,14 +75,33 @@ begin
     Flags := CutDelim(ID, SPACE, 3);
     ID := CutDelim(ID, SPACE, 1, 2);
     Cat(Body,
-      tagTableRow('list-index-row',
-        tagTableData('identifier-col', ID) +
-        tagTableData('flags-col', Flags) +
-        tagTableData('category-col', CatKey) +
-        tagTableData('title-col', tagA(url(E.UniqueID), T, true))
+      tagTargetID(E.UniqueID,
+        tagTableRow('list-index-row',
+          tagTableData('identifier-col', ID) +
+          tagTableData('flags-col', Flags) +
+          tagTableData('category-col', CatKey) +
+          tagTableData('title-col', tagA(url(E.UniqueID), T, true))
+        )
       )
     );
-    SaveHtml(Pathname, E.UniqueID, T, tagDiv('list-entry', EscapeHtml(E.Text)));
+    N := E.Previous;
+    if Assigned(N) then
+      LP := tagA(url(N.UniqueID), 'Previous')
+    else
+      LP := '';
+    N := E.Next;
+    if Assigned(N) then
+      LN := tagA(url(N.UniqueID), 'Next')
+    else
+      LN := '';
+    SaveHtml(Pathname, E.UniqueID, T,
+      tagDiv('list-navbar', LF +
+        tagDiv('list-nav-prev', LP) +
+        tagDiv('list-nav-up', tagA(url('index') + '#' + E.UniqueID, 'Index')) +
+        tagDiv('list-nav-next', LN)
+      ) +
+      tagDiv('list-entry', EscapeHtml(E.Text))
+    );
     E:=E.Next;
   end;
   Cat(Body, endTable + endDiv);

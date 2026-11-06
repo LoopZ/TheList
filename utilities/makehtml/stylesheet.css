@@ -1,0 +1,137 @@
+:root {
+  --bg-color: #1e1e1e;
+  --text-color: #d4d4d4;
+  --header-bg: #2d2d2d;
+  --border-color: #404040;
+  --link-color: #569cd6;
+  --link-hover: #9cdcfe;
+  --accent-color: #4ec9b0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.5;
+
+}
+
+.list-head, .list-entry, .list-text {
+  background-color: var(--header-bg);
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.list-comments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+
+}
+
+.list-comment-item {
+  white-space: nowrap;
+}
+
+.list-comment-item a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.list-comment-item a:hover {
+  text-decoration: underline;
+}
+
+.list-index {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.list-index-row {
+  display: grid;
+  grid-template-columns: 220px 40px 40px 1fr;
+  align-items: center;
+  padding: 6px 10px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 3px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.list-index-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.list-index-row a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-family: monospace;
+}
+
+.list-index-row a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.flag-col {
+  font-family: monospace;
+  font-weight: bold;
+  color: #ce9178;
+  text-align: center;
+}
+
+.title-col {
+  color: var(--text-color);
+}
+
+.list-navbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.list-navbar a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-family: monospace;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.list-navbar a:hover {
+  color: var(--link-hover);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-color);
+}
+
+.list-nav-prev {
+  text-align: left;
+}
+
+.list-nav-up {
+  text-align: center;
+  font-weight: bold;
+}
+
+.list-nav-next {
+  text-align: right;
+}
+
+.list-navbar > div:empty {
+  visibility: hidden;
+}
