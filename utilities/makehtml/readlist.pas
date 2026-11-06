@@ -198,6 +198,15 @@ begin
   SetLength(ListFiles, Length(ListFiles) + 1);
   ListFiles[High(ListFiles)].Kind:=ListType;
   ListFiles[High(ListFiles)].Name:=UpperCase(ExtractFileBase(Filename));
+  if Lowercase(ExtractFileBase(Filename)) = 'interrup' then
+    ListFiles[High(ListFiles)].Group:='interrupt'
+  else
+    ListFiles[High(ListFiles)].Group:=Lowercase(ListFiles[High(ListFiles)].Name);
+  case Lowercase(ExtractFileName(Filename)) of
+    'biblio.lst'   : ListFiles[High(ListFiles)].Group:='bibliography';
+    'interrup.1st' : Cat(ListFiles[High(ListFiles)].Group, '_1st');
+    'interrup.pri' : Cat(ListFiles[High(ListFiles)].Group, '_primer');
+  end;
   ListFiles[High(ListFiles)].Header:='';
   ListFiles[High(ListFiles)].Comments:=TBinaryTree.Create;
   ListFiles[High(ListFiles)].Entries:=TBinaryTree.Create;
@@ -332,7 +341,7 @@ begin
   end;
   case ListType of
     lfExclude : begin
-      LogMessage(vbExcessive, 'Skip file: ' + Filename);
+      LogMessage(vbVerbose, 'Skip file: ' + Filename);
       Exit;
     end;
     lfUnknown : begin

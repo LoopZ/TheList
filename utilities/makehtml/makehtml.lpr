@@ -20,7 +20,8 @@ uses
   PasExt, BinTree,    // A couple basic MPLA units.
   CfgOpts,            // Command Line option processing.
   GloData,            // Global types, variables, data, etc.
-  ReadList;           // Loading and dissecting of The List release files.
+  ReadList,           // Loading and dissecting of The List release files.
+  WriteList;          // Saves the HTML version of The List to disk.
 
 // Converts The List to HTML
 procedure Conversion;
@@ -39,6 +40,7 @@ begin
     LogMessage(vbNormal, 'Created HTML output directory: ' + Output)
   end;
   ReadTheList(Source);
+  WriteTheList(Output);
   LogMessage(vbNormal, 'Conversion finished.');
 end;
 

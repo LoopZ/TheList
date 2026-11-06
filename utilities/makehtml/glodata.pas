@@ -29,6 +29,7 @@ type
   TListFile =record
     Kind     : TListType;
     Name     : String;
+    Group    : String;
     Header   : String;
     Comments : TBinaryTree;
     Entries  : TBinaryTree;
