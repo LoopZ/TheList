@@ -37,28 +37,29 @@ end;
 
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
-  body, T, ID, Flags, CatKey : String;
+  Body, T, ID, Flags, CatKey : String;
   E : TBinaryTreeNode;
 begin
-  body:= tagDiv('list-head', ListFiles[List].Header);
+  Body:= tagDiv('list-head', ListFiles[List].Header);
 
   // Index Comments
   E := ListFiles[List].Comments.First;
   if  Assigned(E) then begin
-    Cat(body, beginDiv('list-comments') + LF);
+    Cat(Body, beginDiv('list-comments') + LF);
     While Assigned(E) do begin
-      Cat(body, tagDiv('list-comment-item', tagA(Url('comments', E.UniqueID),
+      Cat(Body, tagDiv('list-comment-item', tagA(Url('comments', E.UniqueID),
         CommentTitle(E.UniqueID))));
       SaveHtml(Pathname + 'comments', E.UniqueID, CommentTitle(E.UniqueID),
         tagDiv('list-text', EscapeHtml(E.Text)));
       E:=E.Next;
     end;
-    Cat(body, endDiv);
+    Cat(Body, endDiv);
   end;
 
   // Index Entries
+  Cat(Body, beginDiv('list-entries'));
   E := ListFiles[List].Entries.First;
-  Cat(body, beginTable('list-index') + LF);
+  Cat(Body, beginTable('list-index') + LF);
   While Assigned(E) do begin
     T := E.Text;
     T := Trim(PopDelim(T, LF));
@@ -66,7 +67,7 @@ begin
     ID := PopDelim(T, ' - ');
     Flags := CutDelim(ID, SPACE, 3);
     ID := CutDelim(ID, SPACE, 1, 2);
-    Cat(body,
+    Cat(Body,
       tagTableRow('list-index-row',
         tagTableData('identifier-col', ID) +
         tagTableData('flags-col', Flags) +
@@ -77,9 +78,9 @@ begin
     SaveHtml(Pathname, E.UniqueID, T, tagDiv('list-entry', EscapeHtml(E.Text)));
     E:=E.Next;
   end;
-  Cat(body, endTable);
+  Cat(Body, endTable + endDiv);
 
-  SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), body);
+  SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), Body);
 end;
 
 function WriteGroup(Pathname : String; List : integer) : RawByteString;
