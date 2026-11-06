@@ -49,7 +49,8 @@ begin
     While Assigned(E) do begin
       Cat(body, tagDiv('list-comment-item', tagA(Url('comments', E.UniqueID),
         CommentTitle(E.UniqueID))));
-      SaveHtml(Pathname + 'comments', E.UniqueID, CommentTitle(E.UniqueID), E.Text);
+      SaveHtml(Pathname + 'comments', E.UniqueID, CommentTitle(E.UniqueID),
+        tagDiv('list-text', EscapeHtml(E.Text)));
       E:=E.Next;
     end;
     Cat(body, endDiv);
@@ -69,10 +70,10 @@ begin
         tagTableData('identifier-col', ID) +
         tagTableData('flags-col', Flags) +
         tagComment('Category: ' + CatKey) +
-        tagTableData('title-col', tagA(url(E.UniqueID), T))
+        tagTableData('title-col', tagA(url(E.UniqueID), T, true))
       )
     );
-    SaveHtml(Pathname, E.UniqueID, T, E.Text);
+    SaveHtml(Pathname, E.UniqueID, T, tagDiv('list-entry', EscapeHtml(E.Text)));
     E:=E.Next;
   end;
   Cat(body, endTable);
