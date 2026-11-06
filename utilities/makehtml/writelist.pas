@@ -64,12 +64,13 @@ begin
     T := Trim(PopDelim(T, LF));
     CatKey := ValToKey(E.Value);
     ID := PopDelim(T, ' - ');
-    Flags := '';
+    Flags := CutDelim(ID, SPACE, 3);
+    ID := CutDelim(ID, SPACE, 1, 2);
     Cat(body,
       tagTableRow('list-index-row',
         tagTableData('identifier-col', ID) +
         tagTableData('flags-col', Flags) +
-        tagComment('Category: ' + CatKey) +
+        tagTableData('category-col', CatKey) +
         tagTableData('title-col', tagA(url(E.UniqueID), T, true))
       )
     );
@@ -81,7 +82,7 @@ begin
   SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), body);
 end;
 
-procedure WriteGroup(Pathname : String; List : integer);
+function WriteGroup(Pathname : String; List : integer) : RawByteString;
 begin
   LogMessage(vbNormal, 'output group: ' + ListFiles[List].Group);
   Pathname := IncludeTrailingPathDelimiter(Pathname) + ListFiles[List].Group;
@@ -91,11 +92,17 @@ begin
   end;
   Pathname:=IncludeTrailingPathDelimiter(Pathname);
   WriteGroupFiles(Pathname, List);
+  Result:=tagTableRow('list-index-row',
+    tagTableData('title-col',
+      tagA(url(ListFiles[List].Group, 'index'), ListFiles[List].Group)
+    )
+ );
 end;
 
 procedure WriteTheList(Pathname: String);
 var
   I : integer;
+  Body : RawByteString;
 begin
   if DirectoryExists(Pathname) then begin
     LogMessage(vbNormal, 'HTML output directory already exists: ' + Pathname);
@@ -110,9 +117,12 @@ begin
     Halt(1);
   end else
     LogMessage(vbNormal, 'Created HTML output directory: ' + Pathname);
+  Body:=beginTable('list-index') + LF;
   for I := Low(ListFiles) to High(ListFiles) do begin
-      WriteGroup(PathName, I);
+    Cat(Body, WriteGroup(PathName, I));
   end;
+  Cat(Body, endTable);
+  SaveHtml(Pathname, 'index', 'The List', body);
 end;
 
 end.
