@@ -28,48 +28,56 @@ function CommentTitle(S : String) : String;
 begin
   case Uppercase(S) of
     'ADMIN' : Result:= 'Administration';
+    'NOTE'  : Result:= 'Notes';
   else
     Result :=TitleCase(Lowercase(StringReplace(S, '_', ' ', [rfReplaceAll])));
   end;
 end;
 
+
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
-  S, T : String;
+  body, T, ID, Flags, CatKey : String;
   E : TBinaryTreeNode;
 begin
-  S:='<html><body>';
-  Cat(S, tagDiv('list-head', ListFiles[List].Header));
+  body:= tagDiv('list-head', ListFiles[List].Header);
 
   // Index Comments
   E := ListFiles[List].Comments.First;
   if  Assigned(E) then begin
-    Cat(S, beginDiv('list-comments') + LF);
+    Cat(body, beginDiv('list-comments') + LF);
     While Assigned(E) do begin
-      Cat(S, tagDiv('list-comment-item', tagA('comments/' + E.UniqueID,
+      Cat(body, tagDiv('list-comment-item', tagA(Url('comments', E.UniqueID),
         CommentTitle(E.UniqueID))));
+      SaveHtml(Pathname + 'comments', E.UniqueID, CommentTitle(E.UniqueID), E.Text);
       E:=E.Next;
     end;
-    Cat(S, endDiv);
+    Cat(body, endDiv);
   end;
 
   // Index Entries
   E := ListFiles[List].Entries.First;
-  Cat(S, beginDiv('list-index') + LF);
+  Cat(body, beginTable('list-index') + LF);
   While Assigned(E) do begin
     T := E.Text;
     T := Trim(PopDelim(T, LF));
-    Cat(S, tagDiv('list-index-item', tagComment('Category: ' + ValToKey(E.Value)) + tagA(E.UniqueID, T)));
+    CatKey := ValToKey(E.Value);
+    ID := PopDelim(T, ' - ');
+    Flags := '';
+    Cat(body,
+      tagTableRow('list-index-row',
+        tagTableData('identifier-col', ID) +
+        tagTableData('flags-col', Flags) +
+        tagComment('Category: ' + CatKey) +
+        tagTableData('title-col', tagA(url(E.UniqueID), T))
+      )
+    );
+    SaveHtml(Pathname, E.UniqueID, T, E.Text);
     E:=E.Next;
   end;
-  Cat(S, endDiv);
+  Cat(body, endTable);
 
-  // Page footer
-  Cat(S, '</body></html>');
-  if FileSave(Pathname + 'index.html', S) <> 0 then begin
-    LogMessage(vbCritical, 'Unable to create output file: ' + Pathname + 'index.html');
-    Halt(1);
-  end;
+  SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), body);
 end;
 
 procedure WriteGroup(Pathname : String; List : integer);

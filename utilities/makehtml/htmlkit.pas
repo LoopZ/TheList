@@ -20,7 +20,12 @@ uses
   { you can add units after this }
   Version, PasExt;
 
-function url(const Filename : String) : RawByteString;
+const
+  HtmlExt : String = '.html';
+
+function url(PathName, Filename : RawByteString) : RawByteString; overload;
+function url(Filename : RawByteString) : RawByteString; overload;
+procedure SaveHtml(Pathname, Filename, Title, Contents : RawByteString);
 
 function tagComment(const Content : RawByteString; Escape : boolean = false) : RawByteString;
 
@@ -35,12 +40,62 @@ function tagSpan(const ID, Content : RawByteString; Escape : boolean = false) : 
 function tagA(const Href, Content : RawByteString; Escape : boolean = false) : RawByteString; overload;
 function tagA(const ID, Href, Content : RawByteString; Escape : boolean = false) : RawByteString; overload;
 
+function beginTable(const ID : RawByteString) : RawByteString;
+function endTable : RawByteString;
+function tagTable(const ID, Content : RawByteString; Escape : boolean = false) : RawByteString;
+
+function beginTableRow(const ID : RawByteString) : RawByteString;
+function endTableRow : RawByteString;
+function tagTableRow(const ID, Content : RawByteString; Escape : boolean = false) : RawByteString;
+
+function beginTableData(const ID : RawByteString) : RawByteString;
+function endTableData : RawByteString;
+function tagTableData(const ID, Content : RawByteString; Escape : boolean = false) : RawByteString;
+
+function StyleSheet : RawByteString;
+
 implementation
 
-function url(const Filename : String) : RawByteString;
+var
+  CSSData : RawByteString;
+
+function Safename(Filename : RawByteString) : RawByteString;
 begin
+  Filename:=StringReplace(EscapeHTML(Filename), '/', '%2f', [rfReplaceAll]);
   Result:=Filename;
 end;
+
+function url(Filename : RawByteString) : RawByteString;  overload;
+begin
+  Result:=url('', Filename);
+end;
+
+function url(PathName, Filename : RawByteString) : RawByteString;  overload;
+begin
+  if Pathname <> '' then
+    PathName:=IncludeTrailingpathDelimiter(PathName);
+  Result:=PathName + Safename(Filename) + HtmlExt;
+end;
+
+procedure SaveHtml(Pathname, Filename, Title, Contents : RawByteString);
+begin
+  if not CreateTree(Pathname, True) then begin
+    LogMessage(vbCritical, 'Unable to create directory: ' + Pathname);
+    Halt(1);
+  end;
+  Contents := '<html>' + LF +
+    '<head><title>' + EscapeHtml(Title) + '</title></head>' + LF +
+    StyleSheet +
+    '<body>' + LF +
+    Contents +
+    '</body></html>' + LF;
+  Filename:=Url(IncludeTrailingPathDelimiter(Pathname), Filename);
+  if FileSave(Filename, Contents) <> 0 then begin
+    LogMessage(vbCritical, 'Unable to write file: ' + Filename );
+    Halt(1);
+  end;
+end;
+
 
 function tagComment(const Content : RawByteString; Escape : boolean = false) : RawByteString;
 begin
@@ -89,17 +144,87 @@ end;
 function tagA(const Href, Content : RawByteString; Escape : boolean = false) : RawByteString;
 begin
   if Escape then
-    Result:='<a href="' + url(Href) + '">' + PasExt.EscapeHTML(Content) + '</a>'
+    Result:='<a href="' + Href + '">' + PasExt.EscapeHTML(Content) + '</a>'
   else
-    Result:='<a href="' + url(Href) + '">' + Content + '</a>';
+    Result:='<a href="' + Href + '">' + Content + '</a>';
 end;
 
 function tagA(const ID, HRef, Content : RawByteString; Escape : boolean = false) : RawByteString;
 begin
   if Escape then
-    Result:='<a class="' + ID + '"> href="' + url(Href) + '">' + PasExt.EscapeHTML(Content) + '</a>'
+    Result:='<a class="' + ID + '"> href="' + Href + '">' + PasExt.EscapeHTML(Content) + '</a>'
   else
-    Result:='<a class="' + ID + '"> href="' + url(Href) + '">' + Content + '</a>';
+    Result:='<a class="' + ID + '"> href="' + Href + '">' + Content + '</a>';
 end;
+
+function beginTable(const ID: RawByteString): RawByteString;
+begin
+  Result:='<table class="' + ID + '">';
+end;
+
+function endTable: RawByteString;
+begin
+  Result:='</table>';
+end;
+
+function tagTable(const ID, Content: RawByteString; Escape: boolean
+  ): RawByteString;
+begin
+  if Escape then
+    Result:=beginTable(ID) + PasExt.EscapeHTML(Content) + endTable + LF
+  else
+    Result:=beginTable(ID) + Content + endTable + LF;
+end;
+
+function beginTableRow(const ID: RawByteString): RawByteString;
+begin
+   Result:='<tr class="' + ID + '">';
+end;
+
+function endTableRow: RawByteString;
+begin
+  Result:='</td>';
+end;
+
+function tagTableRow(const ID, Content: RawByteString; Escape: boolean
+  ): RawByteString;
+begin
+  if Escape then
+    Result:=beginTableRow(ID) + PasExt.EscapeHTML(Content) + endTableRow + LF
+  else
+    Result:=beginTableRow(ID) + Content + endTableRow + LF;
+end;
+
+function beginTableData(const ID: RawByteString): RawByteString;
+begin
+  Result:='<td class="' + ID + '">';
+end;
+
+function endTableData: RawByteString;
+begin
+  Result:='</td>';
+end;
+
+function tagTableData(const ID, Content: RawByteString; Escape: boolean
+  ): RawByteString;
+begin
+  if Escape then
+    Result:=beginTableData(ID) + PasExt.EscapeHTML(Content) + endTableData
+  else
+    Result:=beginTableData(ID) + Content + endTableData;
+end;
+
+function StyleSheet : RawByteString;
+begin
+  Result:='<style>' + LF +
+  CSSData +
+    '</style>' + LF;
+end;
+
+initialization
+
+  if FileLoad(AppExecPath + 'stylesheet.css', CSSData) <> 0 then
+    CSSData:='/* no style sheet found */';
+  CSSData:=IncludeTrailing(NormalizeLineEndings(CSSData), LF);
 
 end.
