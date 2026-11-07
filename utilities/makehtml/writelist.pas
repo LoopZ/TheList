@@ -155,6 +155,25 @@ begin
   Cat(Result, endTable + endDiv);
 end;
 
+function WriteFaq(Node : TBinaryTreeNode) : RawByteString;
+begin
+  Result:='';
+  if not Assigned(Node) then exit;
+  Cat(Result, beginDiv('list-items'));
+  Cat(Result, beginTable('list-faq') + LF);
+  While Assigned(Node) do begin
+    Cat(Result,
+      tagTargetID(Node.UniqueID,
+        tagTableRow('list-faq-row',
+          tagTableData('text-pre-col', EscapeHtml(Node.Text))
+        )
+      )
+    );
+    Node:=Node.Next;
+  end;
+  Cat(Result, endTable + endDiv);
+end;
+
 
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
@@ -173,7 +192,8 @@ begin
   case ListFiles[List].Kind of
     lfBiblio : Cat(Body, WriteBiblio(ListFiles[List].Entries.First));
     lfGlossary : Cat(Body, WriteGlossary(ListFiles[List].Entries.First));
-   // lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM, lfTables, lfOverview
+    lfFaq : Cat(Body, WriteFaq(ListFiles[List].Entries.First));
+   // lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfSMM, lfTables, lfOverview
   else
     Cat(Body, WriteEntries(PathName, ListFiles[List].Entries.First));
   end;

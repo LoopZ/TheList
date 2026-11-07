@@ -69,7 +69,8 @@ body {
 }
 
 .list-biblio-row,
-.list-glossary-row {
+.list-glossary-row,
+.list-faq-row {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -80,14 +81,20 @@ body {
   margin-bottom: 6px;
 }
 
-.list-index-row:hover,
-.list-biblio-row:hover,
-.list-glossary-row:hover {
+.list-faq {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.list-index-row:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
 .list-biblio-row:hover,
-.list-glossary-row:hover {
+.list-glossary-row:hover,
+.list-faq-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -109,8 +116,15 @@ body {
   text-align: center;
 }
 
-.title-col, .text-col {
+.title-col,
+.text-col,
+.text-pre-col {
   color: var(--text-color);
+}
+
+.text-pre-col {
+  font-family: monospace;
+  white-space: pre-wrap;
 }
 
 .list-navbar {
