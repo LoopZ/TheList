@@ -34,34 +34,89 @@ begin
   end;
 end;
 
-function WriteComments(PathName: RawByteString; Node : TBinaryTreeNode) : RawByteString;
+function NavBarHtml(Node : TBinaryTreeNode; TargetId : RawByteString;
+  TargetPath : RawByteString ) : RawByteString;
 var
-  Body : RawByteString;
+  P, N : RawByteString;
+begin
+  P := '';
+  N := '';
+  if Assigned(Node.Previous) then
+    P := tagA(url(Node.Previous.UniqueID), 'Previous');
+  if Assigned(Node.Next) then
+    N := tagA(url(Node.Next.UniqueID), 'Next');
+  if (TargetID <> '') then
+    TargetID:=IncludeLeading(TargetID, '#');
+  if (TargetPath <> '') then
+    TargetPath:=IncludeTrailing(TargetPath, '/');
+  Result:=
+    tagDiv('list-navbar', LF +
+      tagDiv('list-nav-prev', P) +
+      tagDiv('list-nav-up',tagA(TargetPath +  url('index') + TargetID, 'Index')) +
+      tagDiv('list-nav-next', N)
+    );
+end;
+
+function WriteComments(PathName: RawByteString; Node : TBinaryTreeNode) : RawByteString;
 begin
   Result:='';
-  if  Assigned(Node) then begin
-    Cat(Result, beginDiv('list-comments') + LF);
-    While Assigned(Node) do begin
-      Cat(Result, tagDiv('list-comment-item', tagA(Url('comments', Node.UniqueID),
-        CommentTitle(Node.UniqueID))));
-      Body:=
-        tagDiv('list-navbar', LF +
-          tagDiv('list-nav-prev', '') +
-          tagDiv('list-nav-up', tagA(url('..', 'index'), 'Index')) +
-          tagDiv('list-nav-next', '')
-        ) + tagDiv('list-text', EscapeHtml(Node.Text));
-        SaveHtml(Pathname + 'comments', Node.UniqueID, CommentTitle(Node.UniqueID), Body);
-      Node:=Node.Next;
-    end;
-    Cat(Result, endDiv);
+  if not Assigned(Node) then exit;
+
+  Cat(Result, beginDiv('list-comments') + LF);
+  While Assigned(Node) do begin
+    Cat(Result, tagDiv('list-comment-item', tagA(Url('comments', Node.UniqueID),
+      CommentTitle(Node.UniqueID))));
+
+    // Save Comments File
+    SaveHtml(Pathname + 'comments', Node.UniqueID, CommentTitle(Node.UniqueID),
+      NavBarHtml(Node, '', '..') + tagDiv('list-text', EscapeHtml(Node.Text)));
+
+    Node:=Node.Next;
   end;
+  Cat(Result, endDiv);
+end;
+
+function WriteEntries(PathName: RawByteString; Node : TBinaryTreeNode) : RawByteString;
+ var
+   T, ID, Flags, CatKey : RawByteString;
+begin
+  Result:='';
+  if not Assigned(Node) then exit;
+  Cat(Result, beginDiv('list-entries'));
+  Cat(Result, beginTable('list-index') + LF);
+  While Assigned(Node) do begin
+    T := Node.Text;
+    T := Trim(PopDelim(T, LF));
+    CatKey := ValToKey(Node.Value);
+    ID := PopDelim(T, ' - ');
+    Flags := CutDelim(ID, SPACE, 3);
+    ID := CutDelim(ID, SPACE, 1, 2);
+    Cat(Result,
+      tagTargetID(Node.UniqueID,
+        tagTableRow('list-index-row',
+          tagTableData('identifier-col', ID) +
+          tagTableData('flags-col', Flags) +
+          tagTableData('category-col', CatKey) +
+          tagTableData('title-col', tagA(url(Node.UniqueID), T, true))
+        )
+      )
+    );
+
+    // Save Entry File
+    SaveHtml(Pathname, Node.UniqueID, ID,
+      NavBarHtml(Node, Node.UniqueID, '') +
+      tagDiv('list-entry', EscapeHtml(Node.Text))
+    );
+
+    Node:=Node.Next;
+  end;
+  Cat(Result, endTable + endDiv);
+
 end;
 
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
-  Body, T, ID, Flags, CatKey : String;
-  E, N : TBinaryTreeNode;
-  LP, LN : String;
+  Body : RawByteString;
 begin
   Body:=
     tagDiv('list-navbar', LF +
@@ -74,47 +129,7 @@ begin
   Cat(Body, WriteComments(PathName, ListFiles[List].Comments.First));
 
   // Index Entries
-  Cat(Body, beginDiv('list-entries'));
-  E := ListFiles[List].Entries.First;
-  Cat(Body, beginTable('list-index') + LF);
-  While Assigned(E) do begin
-    T := E.Text;
-    T := Trim(PopDelim(T, LF));
-    CatKey := ValToKey(E.Value);
-    ID := PopDelim(T, ' - ');
-    Flags := CutDelim(ID, SPACE, 3);
-    ID := CutDelim(ID, SPACE, 1, 2);
-    Cat(Body,
-      tagTargetID(E.UniqueID,
-        tagTableRow('list-index-row',
-          tagTableData('identifier-col', ID) +
-          tagTableData('flags-col', Flags) +
-          tagTableData('category-col', CatKey) +
-          tagTableData('title-col', tagA(url(E.UniqueID), T, true))
-        )
-      )
-    );
-    N := E.Previous;
-    if Assigned(N) then
-      LP := tagA(url(N.UniqueID), 'Previous')
-    else
-      LP := '';
-    N := E.Next;
-    if Assigned(N) then
-      LN := tagA(url(N.UniqueID), 'Next')
-    else
-      LN := '';
-    SaveHtml(Pathname, E.UniqueID, T,
-      tagDiv('list-navbar', LF +
-        tagDiv('list-nav-prev', LP) +
-        tagDiv('list-nav-up', tagA(url('index') + '#' + E.UniqueID, 'Index')) +
-        tagDiv('list-nav-next', LN)
-      ) +
-      tagDiv('list-entry', EscapeHtml(E.Text))
-    );
-    E:=E.Next;
-  end;
-  Cat(Body, endTable + endDiv);
+  Cat(Body, WriteEntries(PathName, ListFiles[List].Entries.First));
 
   SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), Body);
 end;
