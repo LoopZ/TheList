@@ -57,6 +57,8 @@ function tagTableData(const ID, Content : RawByteString; Escape : boolean = fals
 
 function StyleSheet : RawByteString;
 
+function CP437toUTF8(const S : RawByteString) : UTF8String;
+
 implementation
 
 var
@@ -86,14 +88,18 @@ begin
     LogMessage(vbCritical, 'Unable to create directory: ' + Pathname);
     Halt(1);
   end;
-  Contents := '<html>' + LF +
-    '<head><title>' + EscapeHtml(Title) + '</title></head>' + LF +
+  Contents := '<!DOCTYPE html>' + LF +
+    '<html lang="en">' + LF +
+    '<head>' + LF +
+    '<meta charset="UTF-8">' + LF +
+    '<title>' + EscapeHtml(Title) + '</title>' + LF +
     StyleSheet +
+    '</head>' + LF +
     '<body>' + LF +
     Contents +
     '</body></html>' + LF;
   Filename:=Url(IncludeTrailingPathDelimiter(Pathname), Filename);
-  if FileSave(Filename, Contents) <> 0 then begin
+  if FileSave(Filename, CP437toUTF8(Contents)) <> 0 then begin
     LogMessage(vbCritical, 'Unable to write file: ' + Filename );
     Halt(1);
   end;
@@ -245,10 +251,81 @@ begin
     '</style>' + LF;
 end;
 
+{$I map437.pp}
+
+function CP437toUTF8(const S : RawByteString) : UTF8String;
+var
+  Values : TArrayOfInt32;
+  I : integer;
+begin
+  Values:=[];
+  SetLength(Values, Length(S));
+  for I := 0 to Length(Values) - 1 do
+    Values[I]:=CP437Map[Ord(S[I+1])];
+  ValuesToUTF8(Values, Result);
+end;
+
+(*
+procedure MakeMap;
+var
+  D, L, I, T : RawByteString;
+  V, X, E : Integer;
+  A : array[0..255] of integer;
+begin
+  if FileLoad(AppExecPath + 'map437.txt', D) <> 0 then
+    Halt(1);
+  D:=IncludeTrailing(NormalizeLineEndings(D), LF);
+  for V:=0 to 255 do
+    A[V]:=V;
+  While (D <> '') do begin
+    T:=Trim(PopDelim(D, LF));
+    L:=T;
+    I:=Trim(PopDelim(L, '='));
+    if L = '' then Continue;
+    if HasLeading(I, '0X', false) then
+      I:='$' + ExcludeLeading(I, '0X', false);
+    if HasLeading(L, '0X', false) then
+      L:='$' + ExcludeLeading(L, '0X', false);
+    Val(I, V, E);
+    if (E <> 0) or (V<0) or (V>255) then begin
+      WriteLn('Error: ', T);
+      Halt(1);
+    end;
+    Val(L, X, E);
+    if (E <> 0) or (X<0) or (X>$ffff) then begin
+      WriteLn('Error: ', T);
+      Halt(1);
+    end;
+    if V < 32 then continue; // ignore control chars
+    A[V]:=X;
+  end;
+  D := 'const' + LF +
+    SPACE2+ 'CP437Map : array[0..255] of Int32 = (' + LF;
+  for E := 0 to 15 do begin
+    Cat(D, SPACE6);
+    for X := 0 to 15 do begin
+      Cat(D, LeftPad(IntToStr(A[E * 16 + X]), 4));
+      if X < 15 then
+        Cat(D, ', ');
+    end;
+    if E < 15 then
+      Cat(D, ',');
+    Cat(D, LF);
+  end;
+  Cat(D, SPACE2 + ');' + LF);
+  WriteLn(D);
+  if FileSave(AppExecPath + 'map437.pp', D) <> 0 then
+    Halt(1);
+  Halt(0);
+end;
+*)
+
 initialization
 
   if FileLoad(AppExecPath + 'stylesheet.css', CSSData) <> 0 then
     CSSData:='/* no style sheet found */';
   CSSData:=IncludeTrailing(NormalizeLineEndings(CSSData), LF);
+
+{  MakeMap; }
 
 end.

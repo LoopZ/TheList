@@ -35,6 +35,8 @@ begin
   LogMessage(vbNormal, 'Conversion finished.');
 end;
 
+{$R *.res}
+
 begin
   Options;
   Banner;

@@ -17,7 +17,7 @@ interface
 
 const
   { General Application Information }
-  APP_VERSION: String = '0.0.1';
+  APP_VERSION: String = '0.0.2';
   APP_BUILD: String = '0';
   APP_TITLE: String = 'makehtml';
   APP_LEGALCOPYRIGHT: String = '(c) 2026 Jerome Shidel';
