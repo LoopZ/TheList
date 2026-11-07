@@ -212,6 +212,7 @@ begin
     'interrup.pri' : Cat(ListFiles[High(ListFiles)].Group, '_primer');
   end;
   ListFiles[High(ListFiles)].Header:='';
+  ListFiles[High(ListFiles)].TextData:='';
   ListFiles[High(ListFiles)].Comments:=TBinaryTree.Create;
   ListFiles[High(ListFiles)].Entries:=TBinaryTree.Create;
   First:=True;
@@ -225,6 +226,12 @@ begin
     end;
     LogMessage(vbNormal, 'processing file: ' +ExtractFileName(Filename));
     Data:=NormalizeLineEndings(Data);
+
+    if ListType = lfTextFile then begin
+      ListFiles[High(ListFiles)].TextData:=Data;
+      Break;
+    end;
+
     // Get File Header
     Header:=PopSection(Data);
     if First then begin
@@ -292,10 +299,15 @@ begin
     else
       Cat(Filename, 'A');
   until (not FileExists(Filename));
-  LogMessage(vbNormal, TAB + 'Comments ' +
-    IntToStr(ListFiles[High(ListFiles)].Comments.Count));
-  LogMessage(vbNormal, TAB + 'Entries  ' +
-    IntToStr(ListFiles[High(ListFiles)].Entries.Count));
+  if ListType = lfTextFile then begin
+    LogMessage(vbNormal, TAB + 'Text Size ' +
+      IntToStr(Length(ListFiles[High(ListFiles)].TextData)));
+  end else begin
+    LogMessage(vbNormal, TAB + 'Comments ' +
+      IntToStr(ListFiles[High(ListFiles)].Comments.Count));
+    LogMessage(vbNormal, TAB + 'Entries  ' +
+      IntToStr(ListFiles[High(ListFiles)].Entries.Count));
+  end;
 end;
 
 // Determines and initiates the Process for a file in 'The List' release.
@@ -321,9 +333,9 @@ begin
   else if (Length(Ext) = 4) and ((Ext >= '.ZZA') and (Ext <= '.ZZZ')) then
     ListType:=lfSubPart
   else case UpperCase(ExtractFileBase(FileName)) of
-    'CATEGORY' : if Ext = '.KEY' then ListType:=lfExclude;
-    'LICENSE'  : if Ext = ''     then ListType:=lfExclude;
-    'README'   : if Ext = '.NOW' then ListType:=lfExclude;
+    'CATEGORY' : if Ext = '.KEY' then ListType:=lfCategories;
+    'LICENSE'  : if Ext = ''     then ListType:=lfTextFile;
+    'README'   : if Ext = '.NOW' then ListType:=lfTextFile;
     'BIBLIO'   : ListType:=IsList(lfBiblio);
     'GLOSSARY' : ListType:=IsList(lfGlossary);
     'OVERVIEW' : ListType:=IsList(lfOverview);
@@ -338,7 +350,7 @@ begin
     'FAQ'      : ListType:=IsList(lfFAQ);
     'SMM'      : ListType:=IsList(lfSMM);
     'INTERRUP' : case Ext of
-      '.PRI' : ListType:=lfExclude;
+      '.PRI' : ListType:=lfTextFile;
       '.1ST' : ListType:=lfList;
       '.LST',
       '.A'   : ListType:=IsList(lfList);
@@ -355,7 +367,8 @@ begin
     end;
     lfSubPart : Exit;
     lfBiblio, lfGlossary, lfTables, lfOverview,
-    lfList, lfLinks, lfFAQ, lfSMM : ProcessList(Filename);
+    lfList, lfLinks, lfFAQ, lfSMM,
+    lfCategories, lfTextFile: ProcessList(Filename);
   end;
 end;
 

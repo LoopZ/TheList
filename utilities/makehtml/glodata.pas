@@ -23,7 +23,7 @@ uses
 type
   // Types of entries in a LIST file
   TListType = (lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM,
-    lfBiblio, lfGlossary, lfTables, lfOverview);
+    lfBiblio, lfGlossary, lfTables, lfOverview, lfCategories, lfTextFile);
 
   // Record for information on open LIST file
   TListFile =record
@@ -31,6 +31,7 @@ type
     Name     : String;
     Group    : String;
     Header   : String;
+    TextData : String;
     Comments : TBinaryTree;
     Entries  : TBinaryTree;
   end;

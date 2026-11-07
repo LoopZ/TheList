@@ -247,6 +247,22 @@ begin
   Cat(Result, endTable + endDiv);
 end;
 
+function WriteTextFile(const Data :RawByteString) : RawByteString;
+begin
+  Result:='';
+  if Data = '' then exit;
+  Cat(Result,
+    tagDiv('list-items',
+      tagTable('list-textfile',
+        tagTableRow('list-textfile-row',
+          tagTableData('text-pre-col',
+            EscapeHTML(Data)
+          )
+        )
+      )
+    )
+  );
+end;
 
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
@@ -257,8 +273,10 @@ begin
       tagDiv('list-nav-prev', '') +
       tagDiv('list-nav-up', tagA(url('..', 'index'), 'Index')) +
       tagDiv('list-nav-next', '')
-    ) +
-    tagDiv('list-head', ListFiles[List].Header);
+    );
+
+  if ListFiles[List].Header <> '' then
+    Cat(Body, tagDiv('list-head', ListFiles[List].Header));
 
   Cat(Body, WriteComments(PathName, ListFiles[List].Comments.First));
 
@@ -269,10 +287,11 @@ begin
     lfLinks : Cat(Body, WriteLinks(ListFiles[List].Entries.First));
     lfTables : Cat(Body, WriteTables(ListFiles[List].Entries.First));
     lfSMM : Cat(Body, WriteSMM(Pathname, ListFiles[List].Entries.First));
-   // lfUnknown, lfExclude, lfSubPart, lfList, lfOverview
   else
     Cat(Body, WriteEntries(PathName, ListFiles[List].Entries.First));
   end;
+
+  Cat(Body, WriteTextFile(ListFiles[List].TextData));
 
   SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), Body);
 end;
