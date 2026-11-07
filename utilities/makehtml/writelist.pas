@@ -34,6 +34,28 @@ begin
   end;
 end;
 
+function WriteComments(PathName: RawByteString; Node : TBinaryTreeNode) : RawByteString;
+var
+  Body : RawByteString;
+begin
+  Result:='';
+  if  Assigned(Node) then begin
+    Cat(Result, beginDiv('list-comments') + LF);
+    While Assigned(Node) do begin
+      Cat(Result, tagDiv('list-comment-item', tagA(Url('comments', Node.UniqueID),
+        CommentTitle(Node.UniqueID))));
+      Body:=
+        tagDiv('list-navbar', LF +
+          tagDiv('list-nav-prev', '') +
+          tagDiv('list-nav-up', tagA(url('..', 'index'), 'Index')) +
+          tagDiv('list-nav-next', '')
+        ) + tagDiv('list-text', EscapeHtml(Node.Text));
+        SaveHtml(Pathname + 'comments', Node.UniqueID, CommentTitle(Node.UniqueID), Body);
+      Node:=Node.Next;
+    end;
+    Cat(Result, endDiv);
+  end;
+end;
 
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
@@ -49,19 +71,7 @@ begin
     ) +
     tagDiv('list-head', ListFiles[List].Header);
 
-  // Index Comments
-  E := ListFiles[List].Comments.First;
-  if  Assigned(E) then begin
-    Cat(Body, beginDiv('list-comments') + LF);
-    While Assigned(E) do begin
-      Cat(Body, tagDiv('list-comment-item', tagA(Url('comments', E.UniqueID),
-        CommentTitle(E.UniqueID))));
-      SaveHtml(Pathname + 'comments', E.UniqueID, CommentTitle(E.UniqueID),
-        tagDiv('list-text', EscapeHtml(E.Text)));
-      E:=E.Next;
-    end;
-    Cat(Body, endDiv);
-  end;
+  Cat(Body, WriteComments(PathName, ListFiles[List].Comments.First));
 
   // Index Entries
   Cat(Body, beginDiv('list-entries'));
