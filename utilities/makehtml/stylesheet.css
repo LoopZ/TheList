@@ -68,7 +68,8 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.list-biblio-row {
+.list-biblio-row,
+.list-glossary-row {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -80,11 +81,13 @@ body {
 }
 
 .list-index-row:hover,
-.list-biblio-row:hover {
+.list-biblio-row:hover,
+.list-glossary-row:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.list-biblio-row:hover {
+.list-biblio-row:hover,
+.list-glossary-row:hover {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -150,4 +153,15 @@ body {
 
 .list-navbar > div:empty {
   visibility: hidden;
+}
+
+.list-glossary-term {
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+
+}
+
+.list-glossary-definition {
 }

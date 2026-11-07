@@ -133,6 +133,28 @@ begin
   Cat(Result, endTable + endDiv);
 end;
 
+function WriteGlossary(Node : TBinaryTreeNode) : RawByteString;
+begin
+  Result:='';
+  if not Assigned(Node) then exit;
+  Cat(Result, beginDiv('list-items'));
+  Cat(Result, beginTable('list-glossary') + LF);
+  While Assigned(Node) do begin
+    Cat(Result,
+      tagTargetID(Node.UniqueID,
+        tagTableRow('list-glossary-row',
+          tagTableData('text-col',
+            tagDiv('list-glossary-term', EscapeHtml(Node.UniqueID))+
+            tagDiv('list-glossary-definition', EscapeHtml(Trim(Node.Text)))
+          )
+        )
+      )
+    );
+    Node:=Node.Next;
+  end;
+  Cat(Result, endTable + endDiv);
+end;
+
 
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
@@ -150,7 +172,8 @@ begin
 
   case ListFiles[List].Kind of
     lfBiblio : Cat(Body, WriteBiblio(ListFiles[List].Entries.First));
-   // lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM, lfGlossary, lfTables, lfOverview
+    lfGlossary : Cat(Body, WriteGlossary(ListFiles[List].Entries.First));
+   // lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM, lfTables, lfOverview
   else
     Cat(Body, WriteEntries(PathName, ListFiles[List].Entries.First));
   end;
