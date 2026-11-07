@@ -193,6 +193,29 @@ begin
   Cat(Result, endTable + endDiv);
 end;
 
+function WriteTables(Node : TBinaryTreeNode) : RawByteString;
+begin
+  Result:='';
+  if not Assigned(Node) then exit;
+  Cat(Result, beginDiv('list-items'));
+  Cat(Result, beginTable('list-tables') + LF);
+  While Assigned(Node) do begin
+    Cat(Result,
+      tagTargetID(Node.UniqueID,
+        tagTableRow('list-tables-row',
+          tagTableData('text-col',
+            tagDiv('list-tables-term', EscapeHtml(Node.UniqueID))+
+            tagDiv('list-tables-definition', EscapeHtml(Trim(Node.Text)))
+          )
+        )
+      )
+    );
+    Node:=Node.Next;
+  end;
+  Cat(Result, endTable + endDiv);
+end;
+
+
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
   Body : RawByteString;
@@ -212,7 +235,8 @@ begin
     lfGlossary : Cat(Body, WriteGlossary(ListFiles[List].Entries.First));
     lfFaq : Cat(Body, WriteFaq(ListFiles[List].Entries.First));
     lfLinks : Cat(Body, WriteLinks(ListFiles[List].Entries.First));
-   // lfUnknown, lfExclude, lfSubPart, lfList, lfSMM, lfTables, lfOverview
+    lfTables : Cat(Body, WriteTables(ListFiles[List].Entries.First));
+   // lfUnknown, lfExclude, lfSubPart, lfList, lfSMM, lfOverview
   else
     Cat(Body, WriteEntries(PathName, ListFiles[List].Entries.First));
   end;

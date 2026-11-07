@@ -71,7 +71,8 @@ body {
 .list-biblio-row,
 .list-glossary-row,
 .list-faq-row,
-.list-links-row {
+.list-links-row,
+.list-tables-row {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -83,7 +84,8 @@ body {
 }
 
 .list-faq,
-.list-links {
+.list-links,
+.list-tables {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -96,7 +98,8 @@ body {
 .list-biblio-row:hover,
 .list-glossary-row:hover,
 .list-faq-row:hover,
-.list-links-row:hover {
+.list-links-row:hover,
+.list-tables-row:hover {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
 }
@@ -125,7 +128,8 @@ body {
   color: var(--text-color);
 }
 
-.text-pre-col {
+.text-pre-col,
+.list-tables-definition {
   font-family: monospace;
   white-space: pre-wrap;
 }
@@ -172,7 +176,8 @@ body {
   visibility: hidden;
 }
 
-.list-glossary-term {
+.list-glossary-term,
+.list-tables-term {
   font-size: 1.2rem;
   font-style: italic;
   font-weight: bold;
