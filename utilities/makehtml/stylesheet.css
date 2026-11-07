@@ -68,8 +68,24 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.list-index-row:hover {
+.list-biblio-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 6px;
+}
+
+.list-index-row:hover,
+.list-biblio-row:hover {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.list-biblio-row:hover {
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .list-index-row a {
@@ -90,7 +106,7 @@ body {
   text-align: center;
 }
 
-.title-col {
+.title-col, .text-col {
   color: var(--text-color);
 }
 

@@ -207,7 +207,7 @@ end;
 
 function endTableRow: RawByteString;
 begin
-  Result:='</td>';
+  Result:='</tr>';
 end;
 
 function tagTableRow(const ID, Content: RawByteString; Escape: boolean

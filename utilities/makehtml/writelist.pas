@@ -82,7 +82,7 @@ function WriteEntries(PathName: RawByteString; Node : TBinaryTreeNode) : RawByte
 begin
   Result:='';
   if not Assigned(Node) then exit;
-  Cat(Result, beginDiv('list-entries'));
+  Cat(Result, beginDiv('list-items'));
   Cat(Result, beginTable('list-index') + LF);
   While Assigned(Node) do begin
     T := Node.Text;
@@ -114,6 +114,26 @@ begin
 
 end;
 
+function WriteBiblio(Node : TBinaryTreeNode) : RawByteString;
+begin
+  Result:='';
+  if not Assigned(Node) then exit;
+  Cat(Result, beginDiv('list-items'));
+  Cat(Result, beginTable('list-biblio') + LF);
+  While Assigned(Node) do begin
+    Cat(Result,
+      tagTargetID(Node.UniqueID,
+        tagTableRow('list-biblio-row',
+          tagTableData('text-col', EscapeHtml(Node.Text))
+        )
+      )
+    );
+    Node:=Node.Next;
+  end;
+  Cat(Result, endTable + endDiv);
+end;
+
+
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
   Body : RawByteString;
@@ -128,8 +148,12 @@ begin
 
   Cat(Body, WriteComments(PathName, ListFiles[List].Comments.First));
 
-  // Index Entries
-  Cat(Body, WriteEntries(PathName, ListFiles[List].Entries.First));
+  case ListFiles[List].Kind of
+    lfBiblio : Cat(Body, WriteBiblio(ListFiles[List].Entries.First));
+   // lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM, lfGlossary, lfTables, lfOverview
+  else
+    Cat(Body, WriteEntries(PathName, ListFiles[List].Entries.First));
+  end;
 
   SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), Body);
 end;
