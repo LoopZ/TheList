@@ -70,7 +70,8 @@ body {
 
 .list-biblio-row,
 .list-glossary-row,
-.list-faq-row {
+.list-faq-row,
+.list-links-row {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -81,7 +82,8 @@ body {
   margin-bottom: 6px;
 }
 
-.list-faq {
+.list-faq,
+.list-links {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -93,7 +95,8 @@ body {
 
 .list-biblio-row:hover,
 .list-glossary-row:hover,
-.list-faq-row:hover {
+.list-faq-row:hover,
+.list-links-row:hover {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
 }

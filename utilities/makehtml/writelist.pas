@@ -174,6 +174,24 @@ begin
   Cat(Result, endTable + endDiv);
 end;
 
+function WriteLinks(Node : TBinaryTreeNode) : RawByteString;
+begin
+  Result:='';
+  if not Assigned(Node) then exit;
+  Cat(Result, beginDiv('list-items'));
+  Cat(Result, beginTable('list-links') + LF);
+  While Assigned(Node) do begin
+    Cat(Result,
+      tagTargetID(Node.UniqueID,
+        tagTableRow('list-links-row',
+          tagTableData('text-pre-col', EscapeHtml(Node.Text))
+        )
+      )
+    );
+    Node:=Node.Next;
+  end;
+  Cat(Result, endTable + endDiv);
+end;
 
 procedure WriteGroupFiles(Pathname : String; List : integer);
 var
@@ -193,7 +211,8 @@ begin
     lfBiblio : Cat(Body, WriteBiblio(ListFiles[List].Entries.First));
     lfGlossary : Cat(Body, WriteGlossary(ListFiles[List].Entries.First));
     lfFaq : Cat(Body, WriteFaq(ListFiles[List].Entries.First));
-   // lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfSMM, lfTables, lfOverview
+    lfLinks : Cat(Body, WriteLinks(ListFiles[List].Entries.First));
+   // lfUnknown, lfExclude, lfSubPart, lfList, lfSMM, lfTables, lfOverview
   else
     Cat(Body, WriteEntries(PathName, ListFiles[List].Entries.First));
   end;
