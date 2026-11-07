@@ -72,7 +72,8 @@ body {
 .list-glossary-row,
 .list-faq-row,
 .list-links-row,
-.list-tables-row {
+.list-tables-row,
+.list-smm-row {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -85,10 +86,15 @@ body {
 
 .list-faq,
 .list-links,
-.list-tables {
+.list-table,
+.list-smm {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.list-smm {
+  min-width: 600px;
 }
 
 .list-index-row:hover {
@@ -99,18 +105,21 @@ body {
 .list-glossary-row:hover,
 .list-faq-row:hover,
 .list-links-row:hover,
-.list-tables-row:hover {
+.list-tables-row:hover,
+.list-smm-row {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.list-index-row a {
+.list-index-row a,
+.list-smm-row a {
   color: var(--link-color);
   text-decoration: none;
   font-family: monospace;
 }
 
-.list-index-row a:hover {
+.list-index-row a:hover,
+.list-smm-row a:hover {
   color: var(--link-hover);
   text-decoration: underline;
 }
