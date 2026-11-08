@@ -25,7 +25,7 @@ type
   // Types of Sections in a LST file
   TSectionKind = (
     skNone,      // Simply copied files or is not broken into multiple files
-    skInterrupt, skCMOS, skFarCall, skI2C, skMemory, skMSR, skPort,
+    skInterrupt, skCMOS, skFarCall, skI2C, skMemory, skMSR, skPort, skAbout,
     skStandard,  // All the same
     skGlossary,  // Just glued together
     skTable,     // Just glued together in an empty comment section
@@ -52,7 +52,7 @@ const
   LegacyMode : boolean = False;
 
   // Maximum bytes allowed in LST file. use -1 for no restriction.
-  MaxFileSize : integer = 360 * 1024;
+  MaxFileSize : integer = 720 * 1024;  // Use 360 for 360k splitting
 
   // Enable more strict verification for use with CI/CD
   CICD : boolean = false;
@@ -112,7 +112,8 @@ const
     (Name:'Overview';                  DOS:'OVERVIEW.LST'; Kind:skNone),
     (Name:'Ports List';                DOS:'PORTS.LST';    Kind:skPort),
     (Name:'Selected Tables';           DOS:'TABLES.LST';   Kind:skTable),
-    (Name:'System-Management Mode';    DOS:'SMM.LST';      Kind:skSMM)
+    (Name:'System-Management Mode';    DOS:'SMM.LST';      Kind:skSMM),
+    (Name:'About';                     DOS:'ABOUT.LST';    Kind:skAbout)
   );
 
   // Sections to include in the INTERRUP.1ST file
@@ -127,6 +128,20 @@ const
     'Trademarks',
     'Quotes',
     'Contact Info'
+  );
+
+  // Sections to include in the ABOUT.1ST file
+  ABOUT_LST : TArrayOfString = (
+    'Welcome',
+    'Introduction',
+    'Details',
+    'Sections',
+    'Copyright',
+    'Disclaimer',
+    'Listings',
+    'Categories',
+    'Flags',
+    'Note'
   );
 
   // General order of sections for all LST files (excluding INTERRUP.1ST).
@@ -167,7 +182,8 @@ const
   (Name:'TABLES.LST';   Text:'a list of selected tables'),
   (Name:'LINKS.LST';    Text:'a list of links to reference and sites in the docs'),
   (Name:'FAQ.LST';      Text:'a list of frequently asked questions'),
-  (Name:'README.NOW';   Text:'a read me document')
+  (Name:'README.NOW';   Text:'a read me document'),
+  (Name:'ABOUT.LST';    Text:'information useful for conversion of The List')
   );
 
 { ---------------------------------------------------------------------------- }

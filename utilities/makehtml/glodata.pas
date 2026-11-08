@@ -23,7 +23,8 @@ uses
 type
   // Types of entries in a LIST file
   TListType = (lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM,
-    lfBiblio, lfGlossary, lfTables, lfOverview, lfCategories, lfTextFile);
+    lfBiblio, lfGlossary, lfTables, lfOverview, lfCategories, lfTextFile,
+    lfAbout);
 
   // Record for information on open LIST file
   TListFile =record

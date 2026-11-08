@@ -336,6 +336,7 @@ begin
     'CATEGORY' : if Ext = '.KEY' then ListType:=lfCategories;
     'LICENSE'  : if Ext = ''     then ListType:=lfTextFile;
     'README'   : if Ext = '.NOW' then ListType:=lfTextFile;
+    'ABOUT'    : if Ext = '.LST' then ListType:=lfAbout;
     'BIBLIO'   : ListType:=IsList(lfBiblio);
     'GLOSSARY' : ListType:=IsList(lfGlossary);
     'OVERVIEW' : ListType:=IsList(lfOverview);
@@ -367,7 +368,7 @@ begin
     end;
     lfSubPart : Exit;
     lfBiblio, lfGlossary, lfTables, lfOverview,
-    lfList, lfLinks, lfFAQ, lfSMM,
+    lfList, lfLinks, lfFAQ, lfSMM, lfAbout,
     lfCategories, lfTextFile: ProcessList(Filename);
   end;
 end;
