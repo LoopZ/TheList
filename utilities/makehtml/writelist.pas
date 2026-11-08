@@ -18,7 +18,7 @@ uses
   {$ENDIF}
   SysUtils,
   { you can add units after this }
-  Version, PasExt, BinTree, GloData, HtmlKit;
+  Version, PasExt, BinTree, GloData, HtmlKit, AboutLst;
 
 procedure WriteTheList(Pathname : String);
 
@@ -297,6 +297,9 @@ begin
 end;
 
 function WriteGroup(Pathname : String; List : integer) : RawByteString;
+var
+  Title : String;
+  Node : TBinaryTreeNode;
 begin
   LogMessage(vbNormal, 'output group: ' + ListFiles[List].Group);
   Pathname := IncludeTrailingPathDelimiter(Pathname) + ListFiles[List].Group;
@@ -306,12 +309,56 @@ begin
   end;
   Pathname:=IncludeTrailingPathDelimiter(Pathname);
   WriteGroupFiles(Pathname, List);
-  Result:=tagTableRow('list-index-row',
-    tagTableData('title-col',
-      tagA(url(ListFiles[List].Group, 'index'), ListFiles[List].Group)
+  Node:=Listings.Find(ListFiles[List].Group, false);
+  if Assigned(Node) then
+    Title:=Node.Text
+  else
+    Title:=ListFiles[List].Group;
+  Result:=tagTableRow('list-links-row',
+    tagTableData('links-title-col',
+      tagA(url(ListFiles[List].Group, 'index'), Title)
     )
  );
 end;
+
+
+procedure WriteIntroPage(Pathname: String; Content : RawByteString);
+var
+  Body, T, R, D : RawByteString;
+begin
+  T := ListFiles[AboutIndex].header;
+  R:=Trim(ExcludeLeading(PopDelim(T, LF), 'about', false));
+  R:=Trim(ExcludeLeading(R, 'the list', false));
+  D:=Trim(CutDelim(R, SPACE, 7));
+  R:=CutDelim(R, SPACE, 1, 2);
+  if Uppercase(R) = 'RELEASE NB' then
+    R:='Nightly Build';
+  Body := tagDiv('list-banner',
+    tagDiv('list-title',
+      tagSpan('list-title-thelist', 'The List') +
+      tagSpan('list-title-hypen', '-') +
+      tagSpan('list-title-release', R)
+    ) +
+    tagDiv('list-date',
+      tagSpan('list-date-parens', '(') +
+      tagSpan('list-date-stamp', D) +
+      tagSpan('list-date-parens', ')')
+    )
+  ) + tagDiv('list-into',
+    StringReplace(EscapeHtml(ListIntro), LF + LF, '<br>'+LF+'<br>'+LF, [rfReplaceAll])
+  );
+  Cat(Body,
+    beginDiv('list-grouping') +
+    tagDiv('list-grouping-header', 'Browse by File') +
+    beginDiv('list-grouping-links')
+  );
+  Cat(Body, beginTable('list-table-links') + LF);
+  Cat(Body, Content);
+  Cat(Body, endTable + endDiv + endDiv);
+  Cat(Body, tagDiv('list-tail', Trim(EscapeHTML(T))));
+  SaveHtml(Pathname, 'index', 'The List', body);
+end;
+
 
 procedure WriteTheList(Pathname: String);
 var
@@ -331,12 +378,11 @@ begin
     Halt(1);
   end else
     LogMessage(vbNormal, 'Created HTML output directory: ' + Pathname);
-  Body:=beginTable('list-index') + LF;
+  Body:='';
   for I := Low(ListFiles) to High(ListFiles) do begin
     Cat(Body, WriteGroup(PathName, I));
   end;
-  Cat(Body, endTable);
-  SaveHtml(Pathname, 'index', 'The List', body);
+  WriteIntroPage(Pathname, Body);
 end;
 
 end.

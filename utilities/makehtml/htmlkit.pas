@@ -160,7 +160,7 @@ end;
 
 function endSpan : RawByteString;
 begin
-     Result:='</span>' + LF;
+     Result:='</span>';
 end;
 
 function tagSpan(const ID, Content : RawByteString; Escape : boolean = false) : RawByteString;
