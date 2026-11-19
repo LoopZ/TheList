@@ -8,9 +8,11 @@ INT 2F U - DOS 3.3+ internal - INSTALLABLE COMMAND - EXECUTE
 	AX = AE01h
 	DX = magic value FFFFh
 	CH = 00h
-	CL = length of command name (4DOS v4.0)
+	CL = length of command name (4DOS v4.0, MS-DOS v4.01)
 	DS:BX -> command line buffer (see #02977)
 	DS:SI -> command name buffer (see #02978)
+	(at least in MS-DOS v4.01, v6.22) ES:DI -> far callable command.com
+		"sysparse" entrypoint (this is called by APPEND)
 Return: DS:SI buffer updated
 	  if length byte is nonzero, the following bytes contain the uppercase
 	  internal command to execute and the command line buffer contains the
@@ -25,5 +27,10 @@ BUGS:	Novell DOS 7.0's COMMAND.COM (prior to Update 12) will attempt to run
 	  command name buffer to "REM" followed by enough blanks to pad out
 	  the original command's length, which will also work with MS-DOS 6.
 	  (from padgett@tccslr.dnet.mmc.com)
+	FreeCOM and SvarCOM pass DI = 0, and may crash if used with MS-DOS
+	  APPEND because APPEND may try to call into the "sysparse" entry.
+	  FreeCOM's sources (lib/mux_ae.c) comment on the setting DI = 0 as
+	  "Magic value 4dos v4" so it is possible that 4DOS also crashes.
+	FreeCOM passes in CX minus command line length (DS:BX) rather than
+	  plus the command name length (DS:SI).
 SeeAlso: AX=AE00h
-
