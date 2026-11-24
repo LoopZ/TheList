@@ -166,13 +166,22 @@ Offset	Size	Description	(Table 01628)
  0Ch	WORD	"smcbLink", not used yet (planned to be an owner segment)
  0Eh	WORD	reserved
 Notes:	the next MCB is at segment (current + size + 1)
-	under DOS 3.1+, the first memory block is the DOS data segment,
+	an MCB may contain all-zeroes in the word 03h. such an MCB may be
+	  created by explicitly allocating an empty memory block, resizing an
+	  existing block to a zero size, or by operations on surrounding MCBs.
+	it is expected that every subsequent MCB is stored at a higher segment
+	  than a prior MCB, ie that the size in word 03h doesn't overflow.
+	under DOS 3.1+, the first block is a segment of DOS data structures,
 	  containing installable drivers, buffers, etc.	 Under DOS 4.0+ it is
 	  divided into subsegments, each with its own memory control block
 	  (see #01633), the first of which is at offset 0000h.
+	the DOS data segment (see INT 2F/AX=1203h) is typically in front of
+	  the first MCB, except in lDOS (optionally) and DR-DOS v7
 	for DOS 5+, blocks owned by DOS may have either "SC" or "SD" in bytes
 	  08h and 09h.	"SC" is system code or locked-out inter-UMB memory,
 	  "SD" is system data, device drivers, etc.
+	MS-DOS v6 LH may allocate excluded UMBs using owner 8 and the name
+	  filled with "HIDDEN  " (two trailing blanks, not NULs)
 	Some versions of DR DOS use only seven characters of the program name,
 	  placing a NUL in the eighth byte.
 	lDOS S MCBs are heavily used by lDOS (lMS-DOS and lRxDOS), only device
@@ -187,6 +196,8 @@ Notes:	the next MCB is at segment (current + size + 1)
 	it is reported that some versions of command.com free memory blocks
 	  used transiently from code running in those very blocks, thus
 	  running in free memory for a bit after this point.
+	lDOS source texts note that splitting MCBs is the only operation that
+	  creates new MCBs, everything else operates on existing MCBs.
 SeeAlso: #01630,#01632,#01633
 
 (Table 01629)
