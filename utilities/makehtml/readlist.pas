@@ -35,13 +35,31 @@ var
   ListType  : TListType;
 
 // Removes extra leading and trailing line feeds
-function TrimLF(const Data : String) : String;
+function TrimLF(const Data : String; var Lines : Int64) : String;
 begin
   Result:=Data;
-  While HasLeading(Result, LF) do
+  While HasLeading(Result, LF) do begin
     Delete(Result, 1, 1);
-  While HasTrailing(Result, LF + LF) do
+    Lines += 1;
+  end;
+  While HasTrailing(Result, LF + LF) do begin
     SetLength(Result, Length(Result) - 1);
+    Lines += 1;
+  end;
+end;
+
+function CountLF(const Data : String) : Int64;
+var
+  P: Integer;
+begin
+  Result := 0;
+  P := 1;
+  while P <= Length(Data) do
+  begin
+    if Data[P] = LF then
+      Result += 1;
+    P += 1;
+  end;
 end;
 
 // Determines if a section header is an Entry or a Comment.
@@ -79,23 +97,21 @@ begin
 end;
 
 // Returns the next section from the Data. Removes that section from the Data.
-function PopSection(var Data : RawByteString):RawByteString;
+function PopSection(var Data : RawByteString; var Lines : Int64):RawByteString;
 var
   P : Integer;
 begin
    Result:='';
-   if HasLeading(Data, SectionDivider) then begin
-     P:=Pos(LF, Data);
-     if P < 1 then P:= 1;
-   end else
-     P:=1;
    P:=Pos(LF + SectionDivider, Data);
    if P < 1 then begin
      Result:=Data;
      Data:='';
      Exit;
    end;
-   Result:=TrimLF(Copy(Data, 1, P - 1));
+   Result:=TrimLF(Copy(Data, 1, P), Lines);
+   Lines += CountLF(Result);
+   if Result[Length(Result)] = LF then
+     SetLength(Result, Length(Result) - 1);
    Delete(Data, 1, P);
 end;
 
@@ -119,15 +135,20 @@ begin
 end;
 
 // Separates a glossary section into individual entries.
-procedure AddGlossary(Section : String);
+procedure AddGlossary(Section : String; var Lines : Int64);
 var
+  LineNumber : Int64;
   ID, Item : String;
   N : TBinaryTreeNode;
 begin
   while (Length(Section) > 0) do begin
+    LineNumber := Lines;
     Item:=PopDelim(Section, LF + LF);
+    Lines += 2;
     ID:=Trim(PopDelim(Item, LF));
-    Item:=TrimLF(Item);
+    Lines += 1;
+    Item := TrimLF(Item, Lines);
+    Lines += CountLF(Item);
     if (ID = '') and (Item = '') then begin
       // Should not happen, but just in case...
       LogMessage(vbMinimal, '(null item)');
@@ -136,27 +157,32 @@ begin
        if CICD then Halt(1);
     end else begin
       N:=AddToTree(ListFiles[High(ListFiles)].Entries, ID, Item);
+      N.LineNumber := LineNumber;
       LogMessage(vbExcessive, TAB + 'Entry: ' + N.UniqueID);
     end;
   end;
 end;
 
 // Separates a bibliography section into individual entries.
-procedure AddBibliography(Section : String);
+procedure AddBibliography(Section : String; var Lines : Int64);
 var
-  ID : Int64;
+  ID, LineNumber : Int64;
   Item : String;
   N : TBinaryTreeNode;
 begin
   ID:=0;
   while (Length(Section) > 0) do begin
+    LineNumber := Lines;
     Item:=PopDelim(Section, LF + LF);
-    Item:=TrimLF(Item);
+    Lines += 2;
+    Item := TrimLF(Item, Lines);
+    Lines += CountLF(Item);
     if (Item = '') then begin
       // Should not happen, but just in case...
       LogMessage(vbMinimal, '(null item)');
     end else begin
       N:=AddToTree(ListFiles[High(ListFiles)].Entries, '$'+HexStr(ID,8), Item);
+      N.LineNumber := LineNumber;
       Inc(ID);
       LogMessage(vbExcessive, TAB + 'Entry: ' + N.UniqueID);
     end;
@@ -164,19 +190,23 @@ begin
 end;
 
 // Separates a tables section into individual entries.
-procedure AddTables(Section : String);
+procedure AddTables(Section : String; var Lines : Int64);
 begin
-  AddGlossary(Section);
+  AddGlossary(Section, Lines);
 end;
 
 // Separates a titles section into individual entries.
-procedure AddTitles(Section : String);
+procedure AddTitles(Section : String; var Lines : Int64);
 var
+  LineNumber : Int64;
   ID, Item : String;
   N : TBinaryTreeNode;
 begin
   while (Length(Section) > 0) do begin
+    LineNumber := Lines;
     Item:=PopDelim(Section, LF);
+    Lines += 1;
+    Lines += CountLF(Item);
     ID:=Trim(PopDelim(Item, '-'));
     Item:=Trim(Item);
     if (ID = '') or (Item = '') then begin
@@ -184,6 +214,7 @@ begin
       LogMessage(vbMinimal, '(null item)');
     end else begin
       N:=AddToTree(ListFiles[High(ListFiles)].Entries, ID, ID + ' - ' + Item);
+      N.LineNumber := LineNumber;
       LogMessage(vbExcessive, TAB + 'Entry: ' + N.UniqueID);
     end;
   end;
@@ -192,6 +223,7 @@ end;
 // Loads and processes the sections in a LST file or group of LST files.
 procedure ProcessList(Filename : String);
 var
+  LineNumber, Lines, NextLineNumber : Int64;
   E : Integer;
   Data : RawByteString;
   First : Boolean;
@@ -232,15 +264,18 @@ begin
       Break;
     end;
 
+    NextLineNumber := 1;
+    Lines := 1;
     // Get File Header
-    Header:=PopSection(Data);
+    Header:=PopSection(Data, NextLineNumber);
     if First then begin
       ListFiles[High(ListFiles)].Header:=Header;
       First:=False;
     end;
+    LineNumber := NextLineNumber;
     N:=nil;
     While Length(Data) <> 0 do begin
-      Section:=PopSection(Data);
+      Section:=PopSection(Data, NextLineNumber);
       Header:=PopDelim(Section, LF);
       if Length(Section) = 0 then begin
         LogMessage(vbNormal, 'processing file: ' +ExtractFileName(Filename));
@@ -250,6 +285,7 @@ begin
           // It is a Section entry
           N:=AddToTree(ListFiles[High(ListFiles)].Entries, ID, Section);
           N.Value:=KeyToVal(IK);
+          N.LineNumber := LineNumber;
           LogMessage(vbExcessive, TAB + 'Entry: ' + N.UniqueID);
         end else if (ID = '-') and Assigned(N) then begin
           // Divider is a continuation of previous section or entry
@@ -257,39 +293,51 @@ begin
           LogMessage(vbExcessive, TAB + 'Continue: ' + N.UniqueID);
         end else begin
           N:=nil;
+          Lines := LineNumber;
           case Uppercase(ID) of
             '' : LogMessage(vbNormal, TAB + 'Unidentified section');
             'BIBLIOGRAPHY' : begin
               if ListType = lfBiblio then
-                AddBibliography(Section)
-              else
+                AddBibliography(Section, Lines)
+              else begin
                 N:=AddToTree(ListFiles[High(ListFiles)].Comments, ID, Section);
+                N.LineNumber := LineNumber;
+              end;
             end;
             'GLOSSARY' : begin
               if ListType = lfGlossary then
-                AddGlossary(Section)
-              else
+                AddGlossary(Section, Lines)
+              else begin
                 N:=AddToTree(ListFiles[High(ListFiles)].Comments, ID, Section);
+                N.LineNumber := LineNumber;
+              end;
             end;
             'TABLES' : begin
               if ListType = lfTables then
-                AddTables(Section)
-              else
+                AddTables(Section, Lines)
+              else begin
                 N:=AddToTree(ListFiles[High(ListFiles)].Comments, ID, Section);
+                N.LineNumber := LineNumber;
+              end;
             end;
             'TITLES' : begin
               if ListType = lfOverview then
-                AddTitles(Section)
-              else
+                AddTitles(Section, Lines)
+              else begin
                 N:=AddToTree(ListFiles[High(ListFiles)].Comments, ID, Section);
+                N.LineNumber := LineNumber;
+              end;
             end
-          else
+          else begin
             N:=AddToTree(ListFiles[High(ListFiles)].Comments, ID, Section);
+            N.LineNumber := LineNumber;
+            end;
           end;
           if Assigned(N) then
             LogMessage(vbExcessive, TAB + 'Comment: ' + N.UniqueID);
         end;
       end;
+      LineNumber := NextLineNumber;
     end;
     if HasTrailing(Filename, '.LST', false) then Break;
     L:=Filename[Length(Filename)];
