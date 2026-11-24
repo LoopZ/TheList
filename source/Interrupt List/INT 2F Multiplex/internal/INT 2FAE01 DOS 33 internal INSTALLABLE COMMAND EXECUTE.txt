@@ -27,10 +27,13 @@ BUGS:	Novell DOS 7.0's COMMAND.COM (prior to Update 12) will attempt to run
 	  command name buffer to "REM" followed by enough blanks to pad out
 	  the original command's length, which will also work with MS-DOS 6.
 	  (from padgett@tccslr.dnet.mmc.com)
-	FreeCOM and SvarCOM pass DI = 0, and may crash if used with MS-DOS
-	  APPEND because APPEND may try to call into the "sysparse" entry.
-	  FreeCOM's sources (lib/mux_ae.c) comment on the setting DI = 0 as
-	  "Magic value 4dos v4" so it is possible that 4DOS also crashes.
+	FreeCOM passes DI = 0, and may crash if used with MS-DOS APPEND
+	  because APPEND may try to call into the "sysparse" entry. FreeCOM's
+	  sources (lib/mux_ae.c) comment on the setting DI = 0 as "Magic
+	  value 4dos v4" so it is possible that 4DOS also crashes.
+	SvarCOM in 2026 November initially copied FreeCOM in passing DI = 0,
+	  but received a subsequent patch to offer the interface expected by
+	  MS-DOS APPEND after a comment pointing out the crash.
 	FreeCOM passes in CX minus command line length (DS:BX) rather than
 	  plus the command name length (DS:SI).
 SeeAlso: AX=AE00h
