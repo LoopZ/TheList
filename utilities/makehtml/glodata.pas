@@ -23,7 +23,8 @@ uses
 type
   // Types of entries in a LIST file
   TListType = (lfUnknown, lfExclude, lfSubPart, lfList, lfLinks, lfFAQ, lfSMM,
-    lfBiblio, lfGlossary, lfTables, lfOverview);
+    lfBiblio, lfGlossary, lfTables, lfOverview, lfCategories, lfTextFile,
+    lfAbout);
 
   // Record for information on open LIST file
   TListFile =record
@@ -31,6 +32,7 @@ type
     Name     : String;
     Group    : String;
     Header   : String;
+    TextData : String;
     Comments : TBinaryTree;
     Entries  : TBinaryTree;
   end;
@@ -55,8 +57,32 @@ const
 
   CICD : boolean = false;
 
+function KeyToVal(S : String) : int64;
+
+function ValToKey(V : Int64) : String;
+
 implementation
 
+function KeyToVal(S : String) : int64;
+var
+  I : integer;
+begin
+  Result:=0;
+  I := 0;
+  While Length(S) > I do begin
+    Inc(I);
+    Result:=Result shl 8 + Ord(S[I]);
+  end;
+end;
+
+function ValToKey(V : Int64) : String;
+begin
+  Result := '';
+  While V > 0 do begin
+    Result := Chr(V and $ff) + Result;
+    V:= V shr 8;
+  end;
+end;
 
 initialization
 

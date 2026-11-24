@@ -43,6 +43,7 @@ begin
     'smm'        : Result:=skSMM;
     'link'       : Result:=skLink;
     'faq'        : Result:=skFAQ;
+    'about'      : Result:=skAbout;
   else
     Result:=skNone;
     raise Exception.Create('Section Type "'+Trim(S)+'" was not recognized.');

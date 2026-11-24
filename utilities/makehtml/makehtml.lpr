@@ -21,7 +21,8 @@ uses
   CfgOpts,            // Command Line option processing.
   GloData,            // Global types, variables, data, etc.
   ReadList,           // Loading and dissecting of The List release files.
-  WriteList;          // Saves the HTML version of The List to disk.
+  WriteList,          // Saves the HTML version of The List to disk.
+  AboutLst;           // About List Data Processing for HTML.
 
 // Converts The List to HTML
 procedure Conversion;
@@ -30,19 +31,13 @@ begin
     LogMessage(vbCritical, 'Unable to locate The List files at: ' + Source);
     Halt(1);
   end;
-  if DirectoryExists(Output) then
-    LogMessage(vbNormal, 'HTML output directory already exists: ' + Output)
-  else begin
-    if not CreateTree(Output) then begin
-      LogMessage(vbCritical, 'Unable to create HTML output directory: ' + Output);
-      Halt(1);
-    end;
-    LogMessage(vbNormal, 'Created HTML output directory: ' + Output)
-  end;
   ReadTheList(Source);
+  ProcessAboutLst;
   WriteTheList(Output);
   LogMessage(vbNormal, 'Conversion finished.');
 end;
+
+{$R *.res}
 
 begin
   Options;

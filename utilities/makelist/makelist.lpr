@@ -142,6 +142,7 @@ begin
   CommentFiles.Clear;
   CommentFiles.Sorted:=True;
   DirScan(PathName + UNDERSCORE + WildCard + SrcExt, CommentFiles, [dsFiles]);
+
   UpperCase(CommentFiles);
 end;
 
@@ -808,7 +809,7 @@ end;
 
 // Create a LST file with all of its Comment and Entry Sections in a
 // order specified by the "Sections" parameter.
-procedure CreateList(PathName: String; const Sections : TArrayOfString);
+procedure CreateList(PathName: String; Sections : TArrayOfString);
 var
   I : Integer;
   Section : String;
@@ -819,6 +820,8 @@ begin
   TableHigh:=-1;
   TableCount:=0;
   OutName:=DosFileName(PathName);
+  if OutName = 'ABOUT.LST' then
+     Sections := ABOUT_LST;
   LogMessage(vbNormal, 'Group: ' + PathName + SPACE + '(' + OutName + ')');
   SectionKind:=FindSectionKind(PathName);
   BaseDir:=DirSource + PathName + PathDelimiter;
@@ -836,6 +839,7 @@ begin
   WorkingData:='';
   for I := 0 to High(Sections) do begin
     Section:=UpperCase(Sections[I]);
+    // WriteLn(Section);
     PopCommentFile(Section);
     if Section = '*' then begin
       AddDataFiles;
