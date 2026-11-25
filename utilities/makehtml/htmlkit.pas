@@ -191,9 +191,9 @@ end;
 function tagA(const ID, HRef, Content : RawByteString; Escape : boolean = false) : RawByteString;
 begin
   if Escape then
-    Result:='<a class="' + ID + '"> href="' + Href + '">' + PasExt.EscapeHTML(Content) + '</a>'
+    Result:='<a class="' + ID + '" href="' + Href + '">' + PasExt.EscapeHTML(Content) + '</a>'
   else
-    Result:='<a class="' + ID + '"> href="' + Href + '">' + Content + '</a>';
+    Result:='<a class="' + ID + '" href="' + Href + '">' + Content + '</a>';
 end;
 
 function beginTable(const ID: RawByteString): RawByteString;
