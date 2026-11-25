@@ -81,34 +81,32 @@ function WriteSMM(PathName: RawByteString; Node : TBinaryTreeNode) : RawByteStri
 var
   T : RawByteString;
 begin
- Result:='';
- if not Assigned(Node) then exit;
- Cat(Result, beginDiv('list-items'));
- Cat(Result, beginTable('list-smm') + LF);
- While Assigned(Node) do begin
-   T := Node.Text;
-   T := Trim(PopDelim(T, LF));
-   Cat(Result,
-     tagTargetID(Node.UniqueID,
-       tagTableRow('list-smm-row',
-         tagTableData('text-col', tagA(url(Node.UniqueID), T, true))
-       )
-     )
-   );
+  Result:='';
+  if not Assigned(Node) then exit;
+  Cat(Result, beginDiv('list-items'));
+  Cat(Result, beginTable('list-smm') + LF);
+  While Assigned(Node) do begin
+    T := Node.Text;
+    T := Trim(PopDelim(T, LF));
+    Cat(Result,
+      tagTargetID(Node.UniqueID,
+        tagTableRow('list-smm-row',
+          tagTableData('text-col', tagA(url(Node.UniqueID), T, true))
+        )
+      )
+    );
 
-   // Save Entry File
-   SaveHtml(Pathname, Node.UniqueID, T,
-     NavBarHtml(Node, Node.UniqueID, '') +
-     tagDiv('list-entry', EscapeHtml(Node.Text)),
-     Node.LineNumber
-   );
+    // Save Entry File
+    SaveHtml(Pathname, Node.UniqueID, T,
+      NavBarHtml(Node, Node.UniqueID, '') +
+      tagDiv('list-entry', EscapeHtml(Node.Text)),
+      Node.LineNumber
+    );
 
-   Node:=Node.Next;
- end;
- Cat(Result, endTable + endDiv);
-
+    Node:=Node.Next;
+  end;
+  Cat(Result, endTable + endDiv);
 end;
-
 
 function WriteEntries(PathName: RawByteString; Node : TBinaryTreeNode) : RawByteString;
  var
@@ -146,7 +144,6 @@ begin
     Node:=Node.Next;
   end;
   Cat(Result, endTable + endDiv);
-
 end;
 
 function WriteBiblio(Node : TBinaryTreeNode) : RawByteString;

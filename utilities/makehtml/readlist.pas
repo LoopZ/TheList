@@ -16,7 +16,7 @@ uses
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
-  SysUtils,
+  SysUtils, Classes,
   { you can add units after this }
   Version, PasExt, BinTree, GloData;
 
@@ -425,11 +425,14 @@ end;
 procedure ReadTheList(Pathname: String);
 var
   I : Integer;
-  L : TArrayOfRawByteString;
+  L : TStringList;
 begin
+  L:=TStringList.Create;
   DirScan(IncludeTrailingPathDelimiter(Pathname) + Wildcard, L, [dsFiles]);
-  for I := 0 to High(L) do
+  L.Sort;
+  for I := 0 to L.Count - 1 do
     ProcessFile(IncludeTrailingPathDelimiter(Pathname) + L[I]);
+  L.Free;
 end;
 
 end.

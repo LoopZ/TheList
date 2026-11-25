@@ -46,11 +46,11 @@ function GetTextSection(Section : RawByteString) : RawByteString;
 var
   Node : TBinaryTreeNode;
 begin
+  Result:='';
+  if AboutIndex = -1 then Exit;
   Node:=ListFiles[AboutIndex].Comments.Find(Section, false);
   if Assigned(Node) then
-    Result := Node.Text
-  else
-    Result := '';
+    Result := Node.Text;
 
 end;
 
@@ -60,6 +60,7 @@ var
   Data, ID, Value : RawByteString;
 begin
   Tree.Clear;
+  if AboutIndex = -1 then Exit;
   Node:=ListFiles[AboutIndex].Comments.Find(Section, false);
   if not Assigned(Node) then Exit;
   Data:=Trim(Node.Text);
@@ -97,5 +98,6 @@ initialization
   Listings:=nil;
   Categories:=nil;
   IntFlags:=nil;
+  ListIntro:='';
 
 end.
