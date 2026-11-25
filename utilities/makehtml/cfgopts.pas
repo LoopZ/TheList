@@ -57,7 +57,7 @@ const
     (S:'-s'; L:'--source'; V:'(path)'; M:'Specify a path that contains "The List" files.'),
     (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the HTML files.'),
     (S:''; L:''; V:''; M:''),
-    (S:'-s'; L:'--cicd'; V:'(path)'; M:'For use with CI/CD pipelines and will fails on errors.')
+    (S:''; L:'--cicd'; V:''; M:'For use with CI/CD pipelines and will fails on errors.')
   );
 
 var
