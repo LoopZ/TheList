@@ -108,10 +108,10 @@ begin
      Data:='';
      Exit;
    end;
-   Result:=TrimLF(Copy(Data, 1, P), Lines);
+   Result:=TrimLF(Copy(Data, 1, P - 1), Lines);
    Lines += CountLF(Result);
-   if Result[Length(Result)] = LF then
-     SetLength(Result, Length(Result) - 1);
+   if (P > 0) and (Data[P] = LF) then
+     Lines += 1;
    Delete(Data, 1, P);
 end;
 
