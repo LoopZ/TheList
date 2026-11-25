@@ -43,6 +43,7 @@ type
     FOwner: TCustomBinaryTree;
     FParent: TBinaryTreeNode;
     FText: String;
+    FLineNumber: Int64;
     FUniqueID: RawByteString;
     FValue: Int64;
     function GetNext: TBinaryTreeNode;
@@ -53,6 +54,7 @@ type
     procedure SetSubTree(AValue: TCustomBinaryTree);
     procedure SetText(AValue: String);
     procedure SetValue(AValue: Int64);
+    procedure SetLineNumber(AValue: Int64);
   protected
     property Parent : TBinaryTreeNode read FParent;
     property Lesser : TBinaryTreeNode read FLesser;
@@ -72,6 +74,7 @@ type
     property Flags : dword read FFlags write SetFlags;
     property Value : Int64 read FValue write SetValue;
     property Text : String read FText write SetText;
+    property LineNumber : Int64 read FLineNumber write SetLineNumber;
   published
   end;
 
@@ -251,6 +254,12 @@ begin
   FText:=AValue;
 end;
 
+procedure TBinaryTreeNode.SetLineNumber(AValue: Int64);
+begin
+  if FLineNumber=AValue then Exit;
+  FLineNumber:=AValue;
+end;
+
 procedure TBinaryTreeNode.SetValue(AValue: Int64);
 begin
   if FValue=AValue then Exit;
@@ -272,6 +281,7 @@ begin
   FFlags:=0;
   FValue:=0;
   FText:='';
+  FLineNumber := 0;
   FColor:=rcRed;
 end;
 

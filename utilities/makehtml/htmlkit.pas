@@ -26,7 +26,7 @@ const
 function HtmlRef(Filename : RawByteString) : RawByteString;
 function url(PathName, Filename : RawByteString) : RawByteString; overload;
 function url(Filename : RawByteString) : RawByteString; overload;
-procedure SaveHtml(Pathname, Filename, Title, Contents : RawByteString);
+procedure SaveHtml(Pathname, Filename, Title, Contents : RawByteString; LineNumber : Int64 = 0);
 
 function tagTargetID(const TargetID, Content : RawByteString) : RawByteString;
 
@@ -82,12 +82,21 @@ begin
   Result:=PathName + HtmlRef(Filename) + HtmlExt;
 end;
 
-procedure SaveHtml(Pathname, Filename, Title, Contents : RawByteString);
+procedure SaveHtml(Pathname, Filename, Title, Contents : RawByteString; LineNumber : Int64 = 0);
+var
+  linelist : text;
 begin
   if not CreateTree(Pathname, True) then begin
     LogMessage(vbCritical, 'Unable to create directory: ' + Pathname);
     Halt(1);
   end;
+  Assign(linelist, IncludeTrailingPathDelimiter(Pathname) + 'linelist.txt');
+  if FileExists(IncludeTrailingPathDelimiter(Pathname) + 'linelist.txt') then
+    Append(linelist)
+  else
+    Rewrite(linelist);
+  Writeln(linelist, HtmlRef(Filename) + HtmlExt, ' ', LineNumber);
+  Close(linelist);
   Contents := '<!DOCTYPE html>' + LF +
     '<html lang="en">' + LF +
     '<head>' + LF +

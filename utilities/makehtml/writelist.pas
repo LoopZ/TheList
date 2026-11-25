@@ -69,7 +69,8 @@ begin
 
     // Save Comments File
     SaveHtml(Pathname + 'comments', Node.UniqueID, CommentTitle(Node.UniqueID),
-      NavBarHtml(Node, '', '..') + tagDiv('list-text', EscapeHtml(Node.Text)));
+      NavBarHtml(Node, '', '..') + tagDiv('list-text', EscapeHtml(Node.Text)),
+      Node.LineNumber);
 
     Node:=Node.Next;
   end;
@@ -98,7 +99,8 @@ begin
    // Save Entry File
    SaveHtml(Pathname, Node.UniqueID, T,
      NavBarHtml(Node, Node.UniqueID, '') +
-     tagDiv('list-entry', EscapeHtml(Node.Text))
+     tagDiv('list-entry', EscapeHtml(Node.Text)),
+     Node.LineNumber
    );
 
    Node:=Node.Next;
@@ -137,7 +139,8 @@ begin
     // Save Entry File
     SaveHtml(Pathname, Node.UniqueID, ID,
       NavBarHtml(Node, Node.UniqueID, '') +
-      tagDiv('list-entry', EscapeHtml(Node.Text))
+      tagDiv('list-entry', EscapeHtml(Node.Text)),
+      Node.LineNumber
     );
 
     Node:=Node.Next;
@@ -293,7 +296,7 @@ begin
 
   Cat(Body, WriteTextFile(ListFiles[List].TextData));
 
-  SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), Body);
+  SaveHtml(Pathname, 'index', TitleCase(ListFiles[List].Group), Body, 0);
 end;
 
 function WriteGroup(Pathname : String; List : integer) : RawByteString;
@@ -356,7 +359,7 @@ begin
   Cat(Body, Content);
   Cat(Body, endTable + endDiv + endDiv);
   Cat(Body, tagDiv('list-tail', Trim(EscapeHTML(T))));
-  SaveHtml(Pathname, 'index', 'The List', body);
+  SaveHtml(Pathname, 'index', 'The List', body, 0);
 end;
 
 
