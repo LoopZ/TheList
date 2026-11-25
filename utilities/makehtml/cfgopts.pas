@@ -57,7 +57,9 @@ const
     (S:'-s'; L:'--source'; V:'(path)'; M:'Specify a path that contains "The List" files.'),
     (S:'-o'; L:'--output'; V:'(path)'; M:'Specify a path to store the HTML files.'),
     (S:''; L:''; V:''; M:''),
-    (S:''; L:'--cicd'; V:''; M:'For use with CI/CD pipelines and will fails on errors.')
+    (S:''; L:'--cicd'; V:''; M:'For use with CI/CD pipelines and will fail on errors.'),
+    (S:''; L:''; V:''; M:''),
+    (S:''; L:'--scale'; V:'(value)'; M:'Viewport initial scale metadata for mobile devices.')
   );
 
 var
@@ -147,6 +149,7 @@ begin
       '-s', '--source' : Source:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '-o', '--output' : Output:=IncludeTrailingPathDelimiter(Trim(NextOpt));
       '--cicd' : CICD := True;
+      '--scale' : ViewportScale:=Trim(NextOpt);
     else
       SeeHelp('Invalid command-line option: ' + Opt);
     end;
