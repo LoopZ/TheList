@@ -57,6 +57,9 @@ const
 
   CICD : boolean = false;
 
+  ViewportScale : String = '0.5';
+
+
 function KeyToVal(S : String) : int64;
 
 function ValToKey(V : Int64) : String;

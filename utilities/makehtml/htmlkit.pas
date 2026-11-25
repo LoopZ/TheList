@@ -18,7 +18,7 @@ uses
   {$ENDIF}
   SysUtils,
   { you can add units after this }
-  Version, PasExt;
+  Version, PasExt, GloData;
 
 const
   HtmlExt : String = '.html';
@@ -101,6 +101,8 @@ begin
     '<html lang="en">' + LF +
     '<head>' + LF +
     '<meta charset="UTF-8">' + LF +
+    '<meta name="viewport" content="width=device-width, initial-scale=' +
+      ViewportScale + '">' + LF +
     '<title>' + EscapeHtml(Title) + '</title>' + LF +
     StyleSheet +
     '</head>' + LF +
