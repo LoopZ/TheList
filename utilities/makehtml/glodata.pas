@@ -55,10 +55,17 @@ const
   Output : String = '../../html/';
   {$ENDIF}
 
+  { CICD mode, can fail with error instead of trying to autorecover }
   CICD : boolean = false;
 
+  { Mobile Device ViewPort Initial-Scale setting for header metadata tag }
   ViewportScale : String = '0.5';
 
+  { Create extra files like 'linelist.txt' for use by other programs }
+  GenerateReferenceFiles : boolean = true;
+
+  HTML_File_Count : integer = 0;
+  OTHER_File_Count : integer = 0;
 
 function KeyToVal(S : String) : int64;
 

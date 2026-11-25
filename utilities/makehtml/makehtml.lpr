@@ -35,6 +35,10 @@ begin
   ProcessAboutLst;
   WriteTheList(Output);
   LogMessage(vbNormal, 'Conversion finished.');
+  if HTML_File_Count > 0 then
+    LogMessage(vbNormal, 'Created ' + IntToStr(HTML_File_Count) + ' HTML files.');
+  if OTHER_File_Count > 0 then
+    LogMessage(vbNormal, 'Created ' + IntToStr(OTHER_File_Count) + ' reference files.');
 end;
 
 {$R *.res}

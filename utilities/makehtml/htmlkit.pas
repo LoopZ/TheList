@@ -90,13 +90,17 @@ begin
     LogMessage(vbCritical, 'Unable to create directory: ' + Pathname);
     Halt(1);
   end;
-  Assign(linelist, IncludeTrailingPathDelimiter(Pathname) + 'linelist.txt');
-  if FileExists(IncludeTrailingPathDelimiter(Pathname) + 'linelist.txt') then
-    Append(linelist)
-  else
-    Rewrite(linelist);
-  Writeln(linelist, HtmlRef(Filename) + HtmlExt, ' ', LineNumber);
-  Close(linelist);
+  if GenerateReferenceFiles then begin
+    Assign(linelist, IncludeTrailingPathDelimiter(Pathname) + 'linelist.txt');
+    if FileExists(IncludeTrailingPathDelimiter(Pathname) + 'linelist.txt') then
+      Append(linelist)
+    else begin
+      Rewrite(linelist);
+      Inc(OTHER_File_Count);
+    end;
+    Writeln(linelist, HtmlRef(Filename) + HtmlExt, ' ', LineNumber);
+    Close(linelist);
+  end;
   Contents := '<!DOCTYPE html>' + LF +
     '<html lang="en">' + LF +
     '<head>' + LF +
@@ -114,6 +118,7 @@ begin
     LogMessage(vbCritical, 'Unable to write file: ' + Filename );
     Halt(1);
   end;
+  Inc(HTML_File_Count);
 end;
 
 function tagTargetID(const TargetID, Content : RawByteString) : RawByteString;
