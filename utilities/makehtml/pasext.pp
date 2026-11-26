@@ -318,10 +318,17 @@ var
 
 (* Some very simple convenience functions and procedures *)
 
-  { Counts the number of occurrences of Target character in S. }
+  { Counts the number of occurrences of the Target character in S. }
   function CountChar(const S: RawByteString; Target: AnsiChar): Int64; overload;
-  { Counts the number of occurrences of Target character in S. }
+  { Counts the number of occurrences of the Target character in S. }
   function CountChar(const S: UnicodeString; Target: System.WideChar): Int64; overload;
+
+  { Counts the number of occurrences of Target character in a substring of S. }
+  function CountChar(const S: RawByteString; Target: AnsiChar;
+    StartIndex: SizeInt; Count: SizeInt = -1): Int64; overload;
+  { Counts the number of occurrences of Target character in a substring of S. }
+  function CountChar(const S: UnicodeString; Target: System.WideChar;
+    StartIndex: SizeInt; Count: SizeInt = -1): Int64; overload;
 
   { convert a TArrayOfByte to a RawByteString }
   function ToString(const V : TArrayOfByte) : RawByteString; overload;
@@ -2006,6 +2013,62 @@ begin
     Inc(Offset);
     Inc(P, Offset);
     Dec(Len, Offset);
+  end;
+end;
+
+function CountChar(const S: RawByteString; Target: AnsiChar;
+  StartIndex: SizeInt; Count: SizeInt = -1): Int64;
+var
+  P: PByte;
+  Len, MaxLen, Offset: SizeInt;
+  BT: Byte;
+begin
+  Result := 0;
+  Len := Length(S);
+  if (Len < 1) or (Count = 0) or (StartIndex > Len) then Exit;
+
+  if StartIndex < 1 then StartIndex := 1;
+
+  MaxLen := Len - StartIndex + 1;
+  if (Count < 0) or (Count > MaxLen) then Count := MaxLen;
+
+  P := PByte(PAnsiChar(S)) + (StartIndex - 1);
+  BT := Byte(Target);
+  while Count > 0 do begin
+    Offset := IndexByte(P^, Count, BT);
+    if Offset < 0 then Break;
+    Inc(Result);
+    Inc(Offset);
+    Inc(P, Offset);
+    Dec(Count, Offset);
+  end;
+end;
+
+function CountChar(const S: UnicodeString; Target: System.WideChar;
+  StartIndex: SizeInt; Count: SizeInt): Int64;
+var
+  P: PWord;
+  Len, MaxLen, Offset: SizeInt;
+  WT: Word;
+begin
+  Result := 0;
+  Len := Length(S);
+  if (Len < 1) or (Count = 0) or (StartIndex > Len) then Exit;
+
+  if StartIndex < 1 then StartIndex := 1;
+
+  MaxLen := Len - StartIndex + 1;
+  if (Count < 0) or (Count > MaxLen) then Count := MaxLen;
+
+  P := PWord(PWideChar(S)) + (StartIndex - 1);
+  WT := Word(Target);
+  while Count > 0 do begin
+    Offset := IndexWord(P^, Count, WT);
+    if Offset < 0 then Break;
+    Inc(Result);
+    Inc(Offset);
+    Inc(P, Offset);
+    Dec(Count, Offset);
   end;
 end;
 {$POP}
