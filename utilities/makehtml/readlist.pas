@@ -49,17 +49,8 @@ begin
 end;
 
 function CountLF(const Data : String) : Int64;
-var
-  P: Integer;
 begin
-  Result := 0;
-  P := 1;
-  while P <= Length(Data) do
-  begin
-    if Data[P] = LF then
-      Result += 1;
-    P += 1;
-  end;
+  Result:=CountChar(Data, LF);
 end;
 
 // Determines if a section header is an Entry or a Comment.

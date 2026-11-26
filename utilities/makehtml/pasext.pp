@@ -318,6 +318,11 @@ var
 
 (* Some very simple convenience functions and procedures *)
 
+  { Counts the number of occurrences of Target character in S. }
+  function CountChar(const S: RawByteString; Target: AnsiChar): Int64; overload;
+  { Counts the number of occurrences of Target character in S. }
+  function CountChar(const S: UnicodeString; Target: System.WideChar): Int64; overload;
+
   { convert a TArrayOfByte to a RawByteString }
   function ToString(const V : TArrayOfByte) : RawByteString; overload;
   { convert a string to an array of bytes }
@@ -1959,6 +1964,51 @@ begin
   Result:=TStringList.Create;
   WordsOfString(S, Result);
 end;
+
+{$PUSH}
+{$WARN 6058 off} // Suppress "marked as inline is not inlined"
+function CountChar(const S: RawByteString; Target: AnsiChar): Int64;
+var
+  P: PByte;
+  Len, Offset: SizeInt;
+  BT : Byte;
+begin
+  Result := 0;
+  Len := Length(S);
+  if Len = 0 then Exit;
+  P := PByte(PAnsiChar(S));
+  BT := Byte(Target);
+  while Len > 0 do begin
+    Offset := IndexByte(P^, Len, BT);
+    if Offset < 0 then Break;
+    Inc(Result);
+    Inc(Offset);
+    Inc(P, Offset);
+    Dec(Len, Offset);
+  end;
+end;
+
+function CountChar(const S: UnicodeString; Target: System.WideChar): Int64;
+var
+  P: PWord;
+  Len, Offset: SizeInt;
+  WT: Word;
+begin
+  Result := 0;
+  Len := Length(S);
+  if Len = 0 then Exit;
+  P := PWord(PWideChar(S));
+  WT := Word(Target);
+  while Len > 0 do begin
+    Offset := IndexWord(P^, Len, WT);
+    if Offset < 0 then Break;
+    Inc(Result);
+    Inc(Offset);
+    Inc(P, Offset);
+    Dec(Len, Offset);
+  end;
+end;
+{$POP}
 
 function ToString(const V: TArrayOfByte): RawByteString;
 var
